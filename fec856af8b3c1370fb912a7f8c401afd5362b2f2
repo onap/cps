@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "82e6f806_e8ab2a68",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-11T16:43:24Z",
+      "side": 1,
+      "message": "As mentioned in grooming. This is part of future commit.",
+      "parentUuid": "184f3563_2767c79b",
+      "range": {
+        "startLine": 213,
+        "startChar": 24,
+        "endLine": 213,
+        "endChar": 46
+      },
+      "revId": "fec856af8b3c1370fb912a7f8c401afd5362b2f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d07879c2_62fe73d1",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/YangModelCmHandleRetriever.java",
         "patchSetId": 6
@@ -36,6 +60,30 @@
       "writtenOn": "2022-05-11T13:36:25Z",
       "side": 1,
       "message": "in the next few classes you are using a CMHnadleState object, seems to contradict your use of String here?!",
+      "range": {
+        "startLine": 62,
+        "startChar": 34,
+        "endLine": 62,
+        "endChar": 40
+      },
+      "revId": "fec856af8b3c1370fb912a7f8c401afd5362b2f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "97e96bb4_a5a5f883",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/YangModelCmHandleRetriever.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-11T16:43:24Z",
+      "side": 1,
+      "message": "Will be done as part of future commit. But the leaves are a collection of objects when retrieved as part of CmHandleDataNode.\nSo the Yang Model expects them to be strings which is they are converted here using String.valueOf.\nCmHandleState.valueOf converts the String value of the state retrieved as part of the data node in the leaves collection to Type CmHandleState.\nThere might be a more efficient way of doing this conversion?",
+      "parentUuid": "d07879c2_62fe73d1",
       "range": {
         "startLine": 62,
         "startChar": 34,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "c6a3b400_1551e45d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-11T16:43:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bcdf7606_acb3ad9f",
+      "range": {
+        "startLine": 41,
+        "startChar": 16,
+        "endLine": 41,
+        "endChar": 34
+      },
+      "revId": "fec856af8b3c1370fb912a7f8c401afd5362b2f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ca720171_174fc63a",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
         "patchSetId": 6
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "ea350f01_f38d4888",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-11T16:43:24Z",
+      "side": 1,
+      "message": "I wrote this inline with the implementation proposal diagram. Have changed it now.",
+      "parentUuid": "ca720171_174fc63a",
+      "range": {
+        "startLine": 47,
+        "startChar": 48,
+        "endLine": 47,
+        "endChar": 58
+      },
+      "revId": "fec856af8b3c1370fb912a7f8c401afd5362b2f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d003db99_149020ec",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/YangModelCmHandleRetrieverSpec.groovy",
         "patchSetId": 6
@@ -105,6 +201,30 @@
       "writtenOn": "2022-05-11T13:36:25Z",
       "side": 1,
       "message": "why did you add thsi here, I see no other changes so this data is not used/and or not asserted anywhere?",
+      "range": {
+        "startLine": 39,
+        "startChar": 18,
+        "endLine": 39,
+        "endChar": 37
+      },
+      "revId": "fec856af8b3c1370fb912a7f8c401afd5362b2f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9c33fc5c_331d275e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/YangModelCmHandleRetrieverSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-11T16:43:24Z",
+      "side": 1,
+      "message": "Will be added in a later test. If it wasn\u0027t added here, an illegal argument exception was thrown on the test below that the cm handle state was null.\n\nIt should have asserted in test below too!",
+      "parentUuid": "d003db99_149020ec",
       "range": {
         "startLine": 39,
         "startChar": 18,
