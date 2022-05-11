@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "184f3563_2767c79b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-11T13:36:25Z",
+      "side": 1,
+      "message": "is this intended to change in this commit or in a future commit?",
+      "range": {
+        "startLine": 213,
+        "startChar": 24,
+        "endLine": 213,
+        "endChar": 46
+      },
+      "revId": "fec856af8b3c1370fb912a7f8c401afd5362b2f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d07879c2_62fe73d1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/YangModelCmHandleRetriever.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-11T13:36:25Z",
+      "side": 1,
+      "message": "in the next few classes you are using a CMHnadleState object, seems to contradict your use of String here?!",
+      "range": {
+        "startLine": 62,
+        "startChar": 34,
+        "endLine": 62,
+        "endChar": 40
+      },
+      "revId": "fec856af8b3c1370fb912a7f8c401afd5362b2f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bcdf7606_acb3ad9f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-11T13:36:25Z",
+      "side": 1,
+      "message": "was this not parameterized before ?!",
+      "range": {
+        "startLine": 41,
+        "startChar": 16,
+        "endLine": 41,
+        "endChar": 34
+      },
+      "revId": "fec856af8b3c1370fb912a7f8c401afd5362b2f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca720171_174fc63a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-11T13:36:25Z",
+      "side": 1,
+      "message": "?",
+      "range": {
+        "startLine": 47,
+        "startChar": 48,
+        "endLine": 47,
+        "endChar": 58
+      },
+      "revId": "fec856af8b3c1370fb912a7f8c401afd5362b2f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d003db99_149020ec",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/YangModelCmHandleRetrieverSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-11T13:36:25Z",
+      "side": 1,
+      "message": "why did you add thsi here, I see no other changes so this data is not used/and or not asserted anywhere?",
+      "range": {
+        "startLine": 39,
+        "startChar": 18,
+        "endLine": 39,
+        "endChar": 37
+      },
+      "revId": "fec856af8b3c1370fb912a7f8c401afd5362b2f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
