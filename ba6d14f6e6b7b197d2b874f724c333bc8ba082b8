@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9dc95215_f75a35a7",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/14-loadData-dmi-registry-2022-05-10-schema-set.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-11T13:41:09Z",
+      "side": 1,
+      "message": "NB: we are not very consistent using SQL. I think all keyword LIEK SELECT, WHERE etc should be uppercase (i dint bother highlighting them all before). But don\u0027t worry about it for now. I hope we get to a liquibase replacement or simplictacion and at that time we can clean up all the SQL formatting...",
+      "range": {
+        "startLine": 29,
+        "startChar": 19,
+        "endLine": 29,
+        "endChar": 25
+      },
+      "revId": "ba6d14f6e6b7b197d2b874f724c333bc8ba082b8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
