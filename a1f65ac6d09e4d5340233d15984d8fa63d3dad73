@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ec25b90c_d604da76",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/NcmpConfiguration.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-11T12:51:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4759be53_2ca1b7f2",
+      "range": {
+        "startLine": 46,
+        "startChar": 5,
+        "endLine": 46,
+        "endChar": 14
+      },
+      "revId": "a1f65ac6d09e4d5340233d15984d8fa63d3dad73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "75e66857_7e8a9eb3",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
         "patchSetId": 5
@@ -36,6 +60,30 @@
       "writtenOn": "2022-05-11T11:40:48Z",
       "side": 1,
       "message": "remove",
+      "range": {
+        "startLine": 47,
+        "startChar": 15,
+        "endLine": 47,
+        "endChar": 20
+      },
+      "revId": "a1f65ac6d09e4d5340233d15984d8fa63d3dad73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "50337bdc_1414e6f1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-11T12:51:22Z",
+      "side": 1,
+      "message": "The lock hasn\u0027t been implemented as part of this specific commit. So we have decided to keep ToDo\u0027s for not yet completed tasks as part of large commits.",
+      "parentUuid": "75e66857_7e8a9eb3",
       "range": {
         "startLine": 47,
         "startChar": 15,
