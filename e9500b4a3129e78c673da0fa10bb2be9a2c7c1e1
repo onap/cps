@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b274bd64_eeb4b3a9",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/config/CpsSessionFactory.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-05-11T16:13:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5de4747f_1c9e2604",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 9
+      },
+      "revId": "e9500b4a3129e78c673da0fa10bb2be9a2c7c1e1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "65c90bba_99e5d0cf",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/config/CpsSessionFactory.java",
         "patchSetId": 16
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "8cdb6847_1654a6b9",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/config/CpsSessionFactory.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-05-11T16:13:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "65c90bba_99e5d0cf",
+      "range": {
+        "startLine": 55,
+        "startChar": 15,
+        "endLine": 55,
+        "endChar": 29
+      },
+      "revId": "e9500b4a3129e78c673da0fa10bb2be9a2c7c1e1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "87bcf4b5_f9ed8573",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/config/CpsSessionFactory.java",
         "patchSetId": 16
@@ -68,6 +116,30 @@
       "revId": "e9500b4a3129e78c673da0fa10bb2be9a2c7c1e1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "95c746d8_90049e3b",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/config/CpsSessionFactory.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-05-11T16:13:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "87bcf4b5_f9ed8573",
+      "range": {
+        "startLine": 59,
+        "startChar": 8,
+        "endLine": 59,
+        "endChar": 30
+      },
+      "revId": "e9500b4a3129e78c673da0fa10bb2be9a2c7c1e1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -114,6 +186,54 @@
       "revId": "e9500b4a3129e78c673da0fa10bb2be9a2c7c1e1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d0b9d51c_adb0819b",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-05-11T16:13:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e8662dc2_72d7558c",
+      "range": {
+        "startLine": 104,
+        "startChar": 16,
+        "endLine": 104,
+        "endChar": 30
+      },
+      "revId": "e9500b4a3129e78c673da0fa10bb2be9a2c7c1e1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a8d3f026_e5ac3d56",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-05-11T16:13:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e8662dc2_72d7558c",
+      "range": {
+        "startLine": 104,
+        "startChar": 16,
+        "endLine": 104,
+        "endChar": 30
+      },
+      "revId": "e9500b4a3129e78c673da0fa10bb2be9a2c7c1e1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
