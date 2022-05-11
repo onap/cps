@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0c200b69_338a11aa",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/NcmpConfiguration.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-05-11T16:29:47Z",
+      "side": 1,
+      "message": "2021 - 2022",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 23
+      },
+      "revId": "b35ac010c3764e300df0e9fafaa1fce354ecfa00",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "36b9fab5_a8e634d4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/NcmpConfiguration.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-05-11T16:29:47Z",
+      "side": 1,
+      "message": "By default spring beans are scoped as singletons so this declaration is not required",
+      "range": {
+        "startLine": 57,
+        "startChar": 5,
+        "endLine": 57,
+        "endChar": 10
+      },
+      "revId": "b35ac010c3764e300df0e9fafaa1fce354ecfa00",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b6e10ba2_6a791a3b",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/config/CpsSessionFactory.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-05-11T16:29:47Z",
+      "side": 1,
+      "message": "Same as previous comment",
+      "range": {
+        "startLine": 35,
+        "startChar": 1,
+        "endLine": 35,
+        "endChar": 6
+      },
+      "revId": "b35ac010c3764e300df0e9fafaa1fce354ecfa00",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bfcad6b0_827a39d0",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/utils/SessionManagerIntegrationSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-05-11T16:29:47Z",
+      "side": 1,
+      "message": "1. This should be WITH_ROLLBACK 😊\n2. On line 69 you declare objectUnderTest.closeSession(otherSessionId, true) but then attempt to close the session in cleanup. By this time the session will already have closed and the session would have been committed. Will this cause any issues for holding memory or threads?",
+      "range": {
+        "startLine": 47,
+        "startChar": 64,
+        "endLine": 47,
+        "endChar": 75
+      },
+      "revId": "b35ac010c3764e300df0e9fafaa1fce354ecfa00",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd11edfa_c311761e",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/utils/SessionManagerSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-05-11T16:29:47Z",
+      "side": 1,
+      "message": "dummy-session for consistency",
+      "range": {
+        "startLine": 58,
+        "startChar": 40,
+        "endLine": 58,
+        "endChar": 52
+      },
+      "revId": "b35ac010c3764e300df0e9fafaa1fce354ecfa00",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
