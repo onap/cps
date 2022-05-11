@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5de4747f_1c9e2604",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/config/CpsSessionFactory.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-11T15:17:42Z",
+      "side": 1,
+      "message": "extract this into a private getSessionFactory() so you can use it on line 55 and line 59!\n(theoretically the system could call closeSessionFactory without ever opening a session and that woudl lead to a NPE as it is now)",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 9
+      },
+      "revId": "e9500b4a3129e78c673da0fa10bb2be9a2c7c1e1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "65c90bba_99e5d0cf",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/config/CpsSessionFactory.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-11T15:17:42Z",
+      "side": 1,
+      "message": "getSessionFactory().openSession()",
+      "range": {
+        "startLine": 55,
+        "startChar": 15,
+        "endLine": 55,
+        "endChar": 29
+      },
+      "revId": "e9500b4a3129e78c673da0fa10bb2be9a2c7c1e1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "87bcf4b5_f9ed8573",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/config/CpsSessionFactory.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-11T15:17:42Z",
+      "side": 1,
+      "message": "getSessionFactory().close()",
+      "range": {
+        "startLine": 59,
+        "startChar": 8,
+        "endLine": 59,
+        "endChar": 30
+      },
+      "revId": "e9500b4a3129e78c673da0fa10bb2be9a2c7c1e1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7f38234c_48fd2b7a",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-11T15:17:42Z",
+      "side": 1,
+      "message": "good compromise!",
+      "range": {
+        "startLine": 101,
+        "startChar": 53,
+        "endLine": 101,
+        "endChar": 73
+      },
+      "revId": "e9500b4a3129e78c673da0fa10bb2be9a2c7c1e1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e8662dc2_72d7558c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-11T15:17:42Z",
+      "side": 1,
+      "message": "no need for \u0027\u003d\u003d true\u0027 it is already a boolean. \n\n\nOption: you could consider introducing constant (or ENUM) in this class that make readability upon use clearer:\nie.\npublic final static boolean WITH_COMMIT \u003d true;\npublic final static boolean WITH_ROLLBACK \u003d true;\n\nand then in a client class you could use\n\ncloseSession(SessionManager.WITH_COMMIT)",
+      "range": {
+        "startLine": 104,
+        "startChar": 16,
+        "endLine": 104,
+        "endChar": 30
+      },
+      "revId": "e9500b4a3129e78c673da0fa10bb2be9a2c7c1e1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
