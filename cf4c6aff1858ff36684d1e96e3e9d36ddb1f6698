@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ea37c186_52d88908",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/config/CpsSessionFactory.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-11T13:26:31Z",
+      "side": 1,
+      "message": "Note: we agreed to explicitly state Singleton even if it is the default for clarity",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 47
+      },
+      "revId": "cf4c6aff1858ff36684d1e96e3e9d36ddb1f6698",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0b7d2338_c31d4cc0",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-11T13:26:31Z",
+      "side": 1,
+      "message": "See path #13: just log a warning that session x has failed but continue loop!  (dont throw exception)",
+      "range": {
+        "startLine": 76,
+        "startChar": 16,
+        "endLine": 77,
+        "endChar": 59
+      },
+      "revId": "cf4c6aff1858ff36684d1e96e3e9d36ddb1f6698",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "19282c8b_1c524b1f",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/SessionManager.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-11T13:26:31Z",
+      "side": 1,
+      "message": "add sessionFactory.close();",
+      "range": {
+        "startLine": 79,
+        "startChar": 7,
+        "endLine": 79,
+        "endChar": 9
+      },
+      "revId": "cf4c6aff1858ff36684d1e96e3e9d36ddb1f6698",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1c012af9_4194f68a",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsPersistenceSpecBase.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-11T13:26:31Z",
+      "side": 1,
+      "message": "not needed, please remove",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 21
+      },
+      "revId": "cf4c6aff1858ff36684d1e96e3e9d36ddb1f6698",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
