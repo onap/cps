@@ -1,6 +1,6 @@
-/*-
+/*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation.
+ * Copyright (C) 2022 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,16 +18,20 @@
  * ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.spi.repository;
+package org.onap.cps.spi.model;
 
-import java.util.Collection;
-import org.onap.cps.spi.model.ModuleReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
-/**
- * This interface is used in conjunction with {@link ModuleReferenceRepository} to create native sql queries.
- */
-public interface ModuleReferenceQuery {
-
-    Collection<ModuleReference> identifyNewModuleReferences(
-        final Collection<ModuleReference> moduleReferencesToCheck);
+@Setter
+@Getter
+@EqualsAndHashCode
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class DataNodeIdentifier {
+    private String dataspace;
+    private String schemaSetName;
+    private String anchorName;
+    private String xpath;
 }

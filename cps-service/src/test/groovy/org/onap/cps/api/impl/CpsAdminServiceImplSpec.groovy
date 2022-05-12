@@ -177,15 +177,6 @@ class CpsAdminServiceImplSpec extends Specification {
             1 * mockCpsAdminPersistenceService.deleteDataspace('someDataspace')
     }
 
-    def 'Query CM Handles.'() {
-        given: 'a cm handle query'
-            def cmHandleQueryParameters = new CmHandleQueryParameters()
-        when: 'query cm handles is invoked'
-            objectUnderTest.queryCmHandles(cmHandleQueryParameters)
-        then: 'associated persistence service method is invoked with correct parameter'
-            1 * mockCpsAdminPersistenceService.queryCmHandles(cmHandleQueryParameters)
-    }
-
     def 'Delete dataspace with invalid dataspace id.'() {
         when: 'delete dataspace is invoked'
             objectUnderTest.deleteDataspace('some dataspace name')
@@ -194,5 +185,4 @@ class CpsAdminServiceImplSpec extends Specification {
         and: 'associated persistence service method is not invoked'
             0 * mockCpsAdminPersistenceService.deleteDataspace(_)
     }
-
 }
