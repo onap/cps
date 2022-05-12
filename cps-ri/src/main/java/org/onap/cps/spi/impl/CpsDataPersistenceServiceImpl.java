@@ -26,6 +26,7 @@ import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ImmutableSet.Builder;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -53,6 +54,8 @@ import org.onap.cps.spi.exceptions.ConcurrencyException;
 import org.onap.cps.spi.exceptions.CpsAdminException;
 import org.onap.cps.spi.exceptions.CpsPathException;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
+import org.onap.cps.spi.model.CmHandleQueryParameters;
+import org.onap.cps.spi.model.ConditionProperties;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.DataNodeBuilder;
 import org.onap.cps.spi.repository.AnchorRepository;
@@ -68,6 +71,9 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService {
 
+    private static final String HAS_ALL_PROPERTIES = "hasAllProperties";
+    private static final String HAS_ALL_MODULES = "hasAllModules";
+    private static final String MODULE_NAME = "moduleName";
     private final DataspaceRepository dataspaceRepository;
 
     private final AnchorRepository anchorRepository;
@@ -356,7 +362,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     }
 
     private void deleteDataNode(final String dataspaceName, final String anchorName, final String targetXpath,
-        final boolean onlySupportListNodeDeletion) {
+                                final boolean onlySupportListNodeDeletion) {
         final String parentNodeXpath;
         FragmentEntity parentFragmentEntity = null;
         boolean targetDeleted = false;
@@ -372,7 +378,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             parentFragmentEntity = getFragmentByXpath(dataspaceName, anchorName, parentNodeXpath);
             final String lastXpathElement = targetXpath.substring(targetXpath.lastIndexOf('/'));
             final boolean isListElement = REG_EX_PATTERN_FOR_LIST_ELEMENT_KEY_PREDICATE
-                .matcher(lastXpathElement).find();
+                    .matcher(lastXpathElement).find();
             if (isListElement) {
                 targetDeleted = deleteDataNode(parentFragmentEntity, targetXpath);
             } else {
@@ -385,9 +391,9 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         }
         if (!targetDeleted) {
             final String additionalInformation = onlySupportListNodeDeletion
-                ? "The target is probably not a List." : "";
+                    ? "The target is probably not a List." : "";
             throw new DataNodeNotFoundException(parentFragmentEntity.getDataspace().getName(),
-                parentFragmentEntity.getAnchor().getName(), targetXpath, additionalInformation);
+                    parentFragmentEntity.getAnchor().getName(), targetXpath, additionalInformation);
         }
     }
 
@@ -398,11 +404,108 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             return true;
         }
         if (parentFragmentEntity.getChildFragments()
-            .removeIf(fragment -> fragment.getXpath().equals(normalizedTargetXpath))) {
+                .removeIf(fragment -> fragment.getXpath().equals(normalizedTargetXpath))) {
             fragmentRepository.save(parentFragmentEntity);
             return true;
         }
         return false;
+    }
+
+    /**
+     * Query and return cm handles that match the given query parameters.
+     *
+     * @param cmHandleQueryParameters the cm handle query parameters
+     * @return collection of cm handles
+     */
+    @Override
+    public Collection<DataNode> queryCmHandles(final CmHandleQueryParameters cmHandleQueryParameters) {
+
+        if (cmHandleQueryParameters.getCmHandleQueryRestParameters().isEmpty()) {
+            return getAllCmHandles();
+        }
+
+        final Collection<DataNode> amalgamatedQueryResult = new ArrayList<>();
+        boolean firstQuery = true;
+
+        for (final Map.Entry<String, String> entry :
+                getPublicPropertyPairs(cmHandleQueryParameters.getCmHandleQueryRestParameters()).entrySet()) {
+            final StringBuilder cmHandlePath = new StringBuilder();
+            cmHandlePath.append("//public-properties[@name='").append(entry.getKey()).append("' ");
+            cmHandlePath.append("and @value='").append(entry.getValue()).append("']");
+            cmHandlePath.append("/ancestor::cm-handles");
+
+            final Collection<DataNode> singleConditionQueryResult = queryDataNodes("NCMP-Admin",
+                            "ncmp-dmi-registry", String.valueOf(cmHandlePath), FetchDescendantsOption.OMIT_DESCENDANTS);
+
+            if (firstQuery) {
+                firstQuery = false;
+                amalgamatedQueryResult.addAll(singleConditionQueryResult);
+            } else {
+                amalgamatedQueryResult.retainAll(singleConditionQueryResult);
+            }
+
+            if (amalgamatedQueryResult.isEmpty()) {
+                break;
+            }
+        }
+
+        for (final String moduleConditions : getModuleNames(cmHandleQueryParameters.getCmHandleQueryRestParameters())) {
+            final StringBuilder cmHandlePath = new StringBuilder();
+            cmHandlePath.append("//module_name[@name='").append(moduleConditions).append("']");
+            cmHandlePath.append("/ancestor::cm-handles");
+
+            final Collection<DataNode> singleConditionQueryResult = queryDataNodes("NCMP-Admin",
+                            "ncmp-dmi-registry", String.valueOf(cmHandlePath), FetchDescendantsOption.OMIT_DESCENDANTS);
+
+            if (firstQuery) {
+                firstQuery = false;
+                amalgamatedQueryResult.addAll(singleConditionQueryResult);
+            } else {
+                amalgamatedQueryResult.retainAll(singleConditionQueryResult);
+            }
+
+            if (amalgamatedQueryResult.isEmpty()) {
+                break;
+            }
+        }
+
+        return amalgamatedQueryResult;
+    }
+
+    private List<Map<String, String>> getConditions(final List<ConditionProperties> conditionProperties,
+                                                    final String name) {
+        for (final ConditionProperties conditionProperty : conditionProperties) {
+            if (conditionProperty.getName().equals(name)) {
+                return conditionProperty.getConditionParameters();
+            }
+        }
+        return Collections.emptyList();
+    }
+
+    private List<String> getModuleNames(final List<ConditionProperties> conditionProperties) {
+        final List<String> result = new ArrayList<>();
+        getConditions(conditionProperties, HAS_ALL_MODULES).forEach(
+                m -> {
+                    if (m.containsKey(MODULE_NAME)) {
+                        result.add(m.get(MODULE_NAME));
+                    } else {
+                        log.error("Wrong module name key.");
+                    }
+                }
+        );
+        return result;
+    }
+
+    private Map<String, String> getPublicPropertyPairs(final List<ConditionProperties> conditionProperties) {
+        final Map<String, String> result = new HashMap<>();
+        getConditions(conditionProperties, HAS_ALL_PROPERTIES).forEach(result::putAll);
+        return result;
+    }
+
+    private Collection<DataNode> getAllCmHandles() {
+        return queryDataNodes("NCMP-Admin",
+                "ncmp-dmi-registry", "//public-properties/ancestor::cm-handles",
+                FetchDescendantsOption.OMIT_DESCENDANTS);
     }
 
     private boolean deleteAllListElements(final FragmentEntity parentFragmentEntity, final String listXpath) {
