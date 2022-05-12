@@ -70,6 +70,7 @@
                         <exclude>org/onap/cps/ncmp/rest/controller/*MapperImpl.class</exclude>
                         <exclude>org/onap/cps/rest/controller/*MapperImpl.class</exclude>
                         <exclude>org/onap/cps/ncmp/api/impl/async/*MapperImpl.class</exclude>
+                        <exclude>org/onap/cps/ncmp/rest/stub/*</exclude>
                     </excludes>
                 </configuration>
                 <executions>
