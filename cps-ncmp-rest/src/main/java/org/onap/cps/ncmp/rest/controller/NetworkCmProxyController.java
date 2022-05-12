@@ -28,9 +28,6 @@ import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.PATCH;
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.UPDATE;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,18 +45,12 @@ import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.ncmp.rest.api.NetworkCmProxyApi;
 import org.onap.cps.ncmp.rest.executor.CpsNcmpTaskExecutor;
 import org.onap.cps.ncmp.rest.mapper.RestOutputCmHandleStateMapper;
-import org.onap.cps.ncmp.rest.model.CmHandleProperties;
-import org.onap.cps.ncmp.rest.model.CmHandleProperty;
 import org.onap.cps.ncmp.rest.model.CmHandlePublicProperties;
 import org.onap.cps.ncmp.rest.model.CmHandleQueryRestParameters;
-import org.onap.cps.ncmp.rest.model.CmHandles;
-import org.onap.cps.ncmp.rest.model.ConditionProperties;
-import org.onap.cps.ncmp.rest.model.Conditions;
-import org.onap.cps.ncmp.rest.model.ModuleNameAsJsonObject;
-import org.onap.cps.ncmp.rest.model.ModuleNamesAsJsonArray;
 import org.onap.cps.ncmp.rest.model.RestModuleReference;
 import org.onap.cps.ncmp.rest.model.RestOutputCmHandle;
 import org.onap.cps.ncmp.rest.model.RestOutputCmHandlePublicProperties;
+import org.onap.cps.ncmp.rest.util.DeprecationHelper;
 import org.onap.cps.utils.CpsValidator;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
@@ -79,6 +70,8 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     private static final String NO_TOPIC = null;
     private final NetworkCmProxyDataService networkCmProxyDataService;
     private final JsonObjectMapper jsonObjectMapper;
+
+    private final DeprecationHelper deprecationHelper;
     private final NcmpRestInputMapper ncmpRestInputMapper;
     private final RestOutputCmHandleStateMapper restOutputCmHandleStateMapper;
     private final CpsNcmpTaskExecutor cpsNcmpTaskExecutor;
@@ -212,30 +205,35 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     }
 
     /**
-     * Execute cm handle search.
+     * Query and return cm handles that match the given query parameters.
      *
-     * @param conditions the conditions
-     * @return cm handles returned from search.
+     * @param cmHandleQueryRestParameters the cm handle query parameters
+     * @return collection of cm handles
      */
     @Override
-    public ResponseEntity<CmHandles> executeCmHandleSearch(final Conditions conditions) {
-        final List<ConditionProperties> conditionProperties =
-            conditions.getConditions().stream().collect(Collectors.toList());
-        final CmHandles cmHandles = new CmHandles();
-        cmHandles.setCmHandles(toCmHandleProperties(processConditions(conditionProperties)));
-        return ResponseEntity.ok(cmHandles);
+    public ResponseEntity<List<RestOutputCmHandle>> executeCmHandleSearch(
+            final CmHandleQueryRestParameters cmHandleQueryRestParameters) {
+        final CmHandleQueryApiParameters cmHandleQueryApiParameters =
+                deprecationHelper.mapOldConditionProperties(cmHandleQueryRestParameters);
+        final Set<NcmpServiceCmHandle> cmHandles = networkCmProxyDataService
+                .executeCmHandleSearch(cmHandleQueryApiParameters);
+        final List<RestOutputCmHandle> outputCmHandles =
+                cmHandles.stream().map(this::toRestOutputCmHandle).collect(Collectors.toList());
+        return ResponseEntity.ok(outputCmHandles);
     }
 
     /**
-     * Query and return cm handles that match the given query parameters.
+     * Query and return cm handle ids that match the given query parameters.
      *
      * @param cmHandleQueryRestParameters the cm handle query parameters
      * @return collection of cm handle ids
      */
-    public ResponseEntity<List<String>> queryCmHandles(
+    @Override
+    public ResponseEntity<List<String>> executeCmHandleIdSearch(
         final CmHandleQueryRestParameters cmHandleQueryRestParameters) {
-        final Set<String> cmHandleIds = networkCmProxyDataService.queryCmHandles(
-            jsonObjectMapper.convertToValueType(cmHandleQueryRestParameters, CmHandleQueryApiParameters.class));
+        final CmHandleQueryApiParameters cmHandleQueryApiParameters =
+                jsonObjectMapper.convertToValueType(cmHandleQueryRestParameters, CmHandleQueryApiParameters.class);
+        final Set<String> cmHandleIds = networkCmProxyDataService.executeCmHandleIdSearch(cmHandleQueryApiParameters);
         return ResponseEntity.ok(List.copyOf(cmHandleIds));
     }
 
@@ -279,41 +277,6 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
             .map(ncmpRestInputMapper::toRestModuleReference)
                 .collect(Collectors.toList());
         return new ResponseEntity<>(restModuleReferences, HttpStatus.OK);
-    }
-
-    private Collection<String> processConditions(final List<ConditionProperties> conditionProperties) {
-        for (final ConditionProperties conditionProperty : conditionProperties) {
-            if (conditionProperty.getName().equals("hasAllModules")) {
-                return executeCmHandleSearchesForModuleNames(conditionProperty);
-            } else {
-                log.warn("Unrecognized condition name {}.", conditionProperty.getName());
-            }
-        }
-        log.warn("No valid conditions found {}.", conditionProperties);
-        return Collections.emptyList();
-    }
-
-    private Collection<String> executeCmHandleSearchesForModuleNames(final ConditionProperties conditionProperties) {
-        return networkCmProxyDataService
-            .executeCmHandleHasAllModulesSearch(getModuleNames(conditionProperties.getConditionParameters()));
-    }
-
-    private Collection<String> getModuleNames(final ModuleNamesAsJsonArray moduleNamesAsJsonArray) {
-        final Collection<String> moduleNames = new ArrayList<>(moduleNamesAsJsonArray.size());
-        for (final ModuleNameAsJsonObject moduleNameAsJsonObject : moduleNamesAsJsonArray) {
-            moduleNames.add(moduleNameAsJsonObject.getModuleName());
-        }
-        return moduleNames;
-    }
-
-    private CmHandleProperties toCmHandleProperties(final Collection<String> cmHandleIdentifiers) {
-        final CmHandleProperties cmHandleProperties = new CmHandleProperties();
-        for (final String cmHandleIdentifier : cmHandleIdentifiers) {
-            final CmHandleProperty cmHandleProperty = new CmHandleProperty();
-            cmHandleProperty.setCmHandleId(cmHandleIdentifier);
-            cmHandleProperties.add(cmHandleProperty);
-        }
-        return cmHandleProperties;
     }
 
     private RestOutputCmHandle toRestOutputCmHandle(final NcmpServiceCmHandle ncmpServiceCmHandle) {
