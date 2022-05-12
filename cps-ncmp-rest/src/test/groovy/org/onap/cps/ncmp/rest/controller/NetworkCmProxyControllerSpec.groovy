@@ -24,6 +24,8 @@
 package org.onap.cps.ncmp.rest.controller
 
 import org.mapstruct.factory.Mappers
+import org.onap.cps.ncmp.api.models.CmHandleQueryApiParameters
+import org.onap.cps.ncmp.api.models.ConditionApiProperties
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import spock.lang.Shared
 
@@ -213,8 +215,20 @@ class NetworkCmProxyControllerSpec extends Specification {
         given: 'an endpoint and json data'
             def searchesEndpoint = "$ncmpBasePathV1/ch/searches"
             String jsonString = TestUtils.getResourceFileContent('cmhandle-search.json')
-        and: 'the service method is invoked with module names and returns two cm handle ids'
-            mockNetworkCmProxyDataService.executeCmHandleHasAllModulesSearch(['module1', 'module2']) >> ['some-cmhandle-id1', 'some-cmhandle-id2']
+        and: 'valid CmHandleQueryApiParameters input'
+            def cmHandleQueryApiParameters = new CmHandleQueryApiParameters()
+            def conditionApiProperties = new ConditionApiProperties()
+            conditionApiProperties.conditionName = 'hasAllModules'
+            conditionApiProperties.conditionParameters = [[moduleName:'module1'], [moduleName:'module2']]
+            cmHandleQueryApiParameters.cmHandleQueryRestParameters = [conditionApiProperties]
+        and: 'the service method is invoked with module names and returns two cm handles'
+            def cmHandel1 = new NcmpServiceCmHandle()
+            cmHandel1.cmHandleId = 'some-cmhandle-id1'
+            cmHandel1.publicProperties = [color:'yellow']
+            def cmHandel2 = new NcmpServiceCmHandle()
+            cmHandel2.cmHandleId = 'some-cmhandle-id2'
+            cmHandel2.publicProperties = [color:'green']
+            mockNetworkCmProxyDataService.executeCmHandleSearch(*_) >> [cmHandel1, cmHandel2]
         when: 'the searches api is invoked'
             def response = mvc.perform(post(searchesEndpoint)
                     .contentType(MediaType.APPLICATION_JSON)
@@ -222,7 +236,7 @@ class NetworkCmProxyControllerSpec extends Specification {
         then: 'response status returns OK'
             response.status == HttpStatus.OK.value()
         and: 'the expected response content is returned'
-            response.contentAsString == '{"cmHandles":[{"cmHandleId":"some-cmhandle-id1"},{"cmHandleId":"some-cmhandle-id2"}]}'
+            response.contentAsString == '[{"cmHandle":"some-cmhandle-id1","publicCmHandleProperties":[{"color":"yellow"}]},{"cmHandle":"some-cmhandle-id2","publicCmHandleProperties":[{"color":"green"}]}]'
     }
 
     def 'Get Cm Handle details by Cm Handle id.' () {
@@ -266,20 +280,35 @@ class NetworkCmProxyControllerSpec extends Specification {
         given: 'an endpoint and json data'
             def searchesEndpoint = "$ncmpBasePathV1/ch/searches"
             String jsonString = TestUtils.getResourceFileContent('invalid-cmhandle-search.json')
+        and: 'the service method is invoked with module names and returns two cm handles'
+            def cmHandel1 = new NcmpServiceCmHandle()
+            cmHandel1.cmHandleId = 'some-cmhandle-id1'
+            cmHandel1.publicProperties = [color:'yellow']
+            def cmHandel2 = new NcmpServiceCmHandle()
+            cmHandel2.cmHandleId = 'some-cmhandle-id2'
+            cmHandel2.publicProperties = [color:'green']
+            mockNetworkCmProxyDataService.executeCmHandleSearch(*_) >> [cmHandel1, cmHandel2]
         when: 'the searches api is invoked'
             def response = mvc.perform(post(searchesEndpoint)
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(jsonString)).andReturn().response
         then: 'an empty cm handle identifier is returned'
-            response.contentAsString == '{"cmHandles":[]}'
+            response.contentAsString == '[{"cmHandle":"some-cmhandle-id1","publicCmHandleProperties":[{"color":"yellow"}]},{"cmHandle":"some-cmhandle-id2","publicCmHandleProperties":[{"color":"green"}]}]'
     }
 
     def 'Query for cm handles matching query parameters'() {
         given: 'an endpoint and json data'
-            def searchesEndpoint = "$ncmpBasePathV1/data/ch/searches"
-            String jsonString = '{"publicCmHandleProperties": {"name": "Contact", "value": "newemailforstore@bookstore.com"}}'
+            def searchesEndpoint = "$ncmpBasePathV1/ch/id-searches"
+            String jsonString = '{' +
+                        '"cmHandleQueryRestParameters": [{' +
+                            '"conditionName": "hasAllProperties",' +
+                            '"conditionParameters":[' +
+                                '{"Contact": "newemailforstore@bookstore.com"}' +
+                            ']' +
+                        '}]' +
+                    '}'
         and: 'the service method is invoked with module names and returns cm handle ids'
-            1 * mockNetworkCmProxyDataService.queryCmHandles(_) >> ['some-cmhandle-id1', 'some-cmhandle-id2']
+            1 * mockNetworkCmProxyDataService.executeCmHandleIdSearch(*_) >> ['some-cmhandle-id1', 'some-cmhandle-id2']
         when: 'the searches api is invoked'
             def response = mvc.perform(post(searchesEndpoint)
                 .contentType(MediaType.APPLICATION_JSON)
@@ -290,7 +319,7 @@ class NetworkCmProxyControllerSpec extends Specification {
 
     def 'Query for cm handles with invalid request payload'() {
         when: 'the searches api is invoked'
-            def searchesEndpoint = "$ncmpBasePathV1/data/ch/searches"
+            def searchesEndpoint = "$ncmpBasePathV1/ch/id-searches"
             def invalidInputData = '{invalidJson}'
             def response = mvc.perform(post(searchesEndpoint)
                     .contentType(MediaType.APPLICATION_JSON)

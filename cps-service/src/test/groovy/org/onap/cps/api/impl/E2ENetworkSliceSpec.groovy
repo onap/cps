@@ -25,6 +25,7 @@ package org.onap.cps.api.impl
 import org.onap.cps.TestUtils
 import org.onap.cps.api.CpsAdminService
 import org.onap.cps.notification.NotificationService
+import org.onap.cps.spi.CpsCmHandlerQueryService
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.CpsModulePersistenceService
 import org.onap.cps.spi.model.Anchor
@@ -36,12 +37,13 @@ class E2ENetworkSliceSpec extends Specification {
     def mockModuleStoreService = Mock(CpsModulePersistenceService)
     def mockDataStoreService = Mock(CpsDataPersistenceService)
     def mockCpsAdminService = Mock(CpsAdminService)
+    def mockCpsCmHandlerQueryService = Mock(CpsCmHandlerQueryService)
     def mockNotificationService = Mock(NotificationService)
     def mockYangTextSchemaSourceSetCache = Mock(YangTextSchemaSourceSetCache)
     def cpsModuleServiceImpl = new CpsModuleServiceImpl(mockModuleStoreService,
             mockYangTextSchemaSourceSetCache,mockCpsAdminService )
     def cpsDataServiceImpl = new CpsDataServiceImpl(mockDataStoreService, mockCpsAdminService,
-            mockYangTextSchemaSourceSetCache, mockNotificationService)
+            mockCpsCmHandlerQueryService, mockYangTextSchemaSourceSetCache, mockNotificationService)
 
     def dataspaceName = 'someDataspace'
     def anchorName = 'someAnchor'

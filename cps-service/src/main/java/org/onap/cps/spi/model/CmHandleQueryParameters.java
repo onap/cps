@@ -24,18 +24,16 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Collections;
-import java.util.Map;
+import java.util.List;
 import javax.validation.Valid;
 import lombok.Getter;
 import lombok.Setter;
 
 @Setter
 @Getter
-@JsonInclude(Include.NON_NULL)
+@JsonInclude(Include.NON_EMPTY)
 public class CmHandleQueryParameters {
-
-    @JsonProperty("publicCmHandleProperties")
+    @JsonProperty("cmHandleQueryRestParameters")
     @Valid
-    private Map<String, String> publicProperties = Collections.emptyMap();
-
+    private List<ConditionProperties> cmHandleQueryRestParameters = Collections.emptyList();
 }

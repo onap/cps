@@ -21,8 +21,6 @@
 package org.onap.cps.spi.repository;
 
 import java.util.Collection;
-import java.util.Set;
-import org.onap.cps.spi.model.CmHandleQueryParameters;
 import org.onap.cps.spi.model.ModuleReference;
 
 /**
@@ -32,13 +30,4 @@ public interface ModuleReferenceQuery {
 
     Collection<ModuleReference> identifyNewModuleReferences(
         final Collection<ModuleReference> moduleReferencesToCheck);
-
-    /**
-     * Query and return cm handles that match the given query parameters.
-     *
-     * @param cmHandleQueryParameters the cm handle query parameters
-     * @return collection of cm handle ids
-     */
-    Set<String> queryCmHandles(CmHandleQueryParameters cmHandleQueryParameters);
-
 }

@@ -32,12 +32,12 @@ Suite Setup           Create Session      CPS_URL    http://${CPS_CORE_HOST}:${C
 
 ${auth}                                     Basic Y3BzdXNlcjpjcHNyMGNrcyE=
 ${ncmpBasePath}                             /ncmp/v1
-${jsonMatchingQueryParameters}              {"publicCmHandleProperties": {"Contact" : "newemailforstore@bookstore.com", "Contact2" : "storeemail2@bookstore.com"}}
-${jsonMissingPropertyQueryParameters}       {"publicCmHandleProperties": { "" : "doesnt matter"}}
+${jsonMatchingQueryParameters}              {"cmHandleQueryRestParameters": [{"conditionName": "hasAllProperties", "conditionParameters": [{"Contact" : "newemailforstore@bookstore.com"}, {"Contact2" : "storeemail2@bookstore.com"}]}]}
+${jsonMissingPropertyQueryParameters}       {"cmHandleQueryRestParameters": [{"conditionName": "hasAllProperties", "conditionParameters": [{"" : "doesnt matter"}]}]}
 
 *** Test Cases ***
 Retrieve CM Handles where query parameters Match
-    ${uri}=              Set Variable       ${ncmpBasePath}/data/ch/searches
+    ${uri}=              Set Variable       ${ncmpBasePath}/ch/id-searches
     ${headers}=          Create Dictionary  Content-Type=application/json   Authorization=${auth}
     ${response}=         POST On Session    CPS_URL   ${uri}   headers=${headers}   data=${jsonMatchingQueryParameters}
     ${responseJson}=     Set Variable       ${response.json()}
@@ -45,7 +45,7 @@ Retrieve CM Handles where query parameters Match
     Should Contain       ${responseJson}    PNFDemo
 
 Throw 400 when Structure of Request is Incorrect
-    ${uri}=              Set Variable       ${ncmpBasePath}/data/ch/searches
+    ${uri}=              Set Variable       ${ncmpBasePath}/ch/id-searches
     ${headers}=          Create Dictionary  Content-Type=application/json   Authorization=${auth}
     ${response}=         POST On Session    CPS_URL   ${uri}   headers=${headers}   data=${jsonMissingPropertyQueryParameters}    expected_status=400
     Should Be Equal As Strings              ${response}   <Response [400]>

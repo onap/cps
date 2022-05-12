@@ -32,7 +32,7 @@ import lombok.Setter;
 
 @Setter(AccessLevel.PROTECTED)
 @Getter
-@EqualsAndHashCode
+@EqualsAndHashCode(exclude = {"childDataNodes", "xpathsChildren"})
 public class DataNode {
 
     DataNode() {    }
