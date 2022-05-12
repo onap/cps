@@ -1,0 +1,45 @@
+{
+    "stores:bookstore": {
+        "categories": [
+            {
+                "code": "02",
+                "books": [
+                    {
+                        "title": "A Horror book",
+                        "price": "2000",
+                        "pub_year": 2003,
+                        "lang": "English",
+                        "authors": [
+                            "Joe"
+                        ]
+                    },
+                    {
+                        "title": "Another Horror Book",
+                        "price": "2000",
+                        "pub_year": 2003,
+                        "lang": "English",
+                        "authors": [
+                            "Joe"
+                        ]
+                    }
+                ],
+                "name": "Horror"
+            },
+            {
+                "code": "100",
+                "books": [
+                    {
+                        "title": "A Cook book",
+                        "price": "2011",
+                        "pub_year": 2019,
+                        "lang": "English",
+                        "authors": [
+                            "Rahul"
+                        ]
+                    }
+                ],
+                "name": "CookBook"
+            }
+        ]
+    }
+}
