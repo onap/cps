@@ -114,7 +114,6 @@ public class NetworkCmProxyStubController implements NetworkCmProxyApi {
             + "passthrough-operational-example.json");
         try (InputStream inputStream = resource.getInputStream()) {
             final String string = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
-            System.out.println(string);
             responseObject = mapper.readValue(string, Object.class);
         } catch (final IOException e) {
             e.printStackTrace();
