@@ -133,52 +133,7 @@ components:
             type: string
             example: my-property
 
-    Conditions:
-      type: object
-      properties:
-        conditions:
-          $ref: '#/components/schemas/ConditionsData'
-    ConditionsData:
-      type: array
-      items:
-        type: object
-        $ref: '#/components/schemas/ConditionProperties'
-    ConditionProperties:
-      properties:
-        name:
-          type: string
-          example: hasAllModules
-        conditionParameters:
-          $ref: '#/components/schemas/ModuleNamesAsJsonArray'
-    ModuleNamesAsJsonArray:
-      type: array
-      items:
-        type: object
-        $ref: '#/components/schemas/ModuleNameAsJsonObject'
-        example: [my-module-1, my-module-2, my-module-3]
-    ModuleNameAsJsonObject:
-        properties:
-          moduleName:
-            type: string
-            example: my-module
-
     #Response Schemas
-    CmHandles:
-      type: object
-      properties:
-        cmHandles:
-          $ref: '#/components/schemas/CmHandleProperties'
-    CmHandleProperties:
-      type: array
-      items:
-        type: object
-        $ref: '#/components/schemas/CmHandleProperty'
-    CmHandleProperty:
-      properties:
-        cmHandleId:
-          type: string
-          example: my-cm-handle-id
-
     RestModuleReference:
       type: object
       title: Module reference details
@@ -190,15 +145,59 @@ components:
           type: string
           example: my-module-revision
 
-    CmHandleQueryRestParameters:
+    CmHandleQueryParameters:
       type: object
       title: Cm Handle query parameters for executing cm handle search
       properties:
-        publicCmHandleProperties:
-          type: object
-          additionalProperties:
-            type: string
-            example: Book Type
+        cmHandleQueryParameters:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/ConditionProperties'
+        conditions:
+          deprecated: true
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/OldConditionProperties'
+          description: not necessary, it is just for backward compatibility
+      example:
+        cmHandleQueryParameters:
+          - conditionName: hasAllModules
+            conditionParameters:
+              - { "moduleName": "my-module-1" }
+              - { "moduleName": "my-module-2" }
+              - { "moduleName": "my-module-3" }
+          - conditionName: hasAllProperties
+            conditionParameters:
+              - { "Color": "yellow" }
+              - { "Shape": "circle" }
+              - { "Size": "small" }
+    ConditionProperties:
+      properties:
+        conditionName:
+          type: string
+        conditionParameters:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: string
+    OldConditionProperties:
+      deprecated: true
+      properties:
+        name:
+          type: string
+        conditionParameters:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/ModuleNameAsJsonObject'
+    ModuleNameAsJsonObject:
+      properties:
+        moduleName:
+          type: string
+          example: my-module
 
     RestOutputCmHandle:
       type: object

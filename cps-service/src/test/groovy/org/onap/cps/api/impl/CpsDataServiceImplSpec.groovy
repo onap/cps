@@ -26,10 +26,12 @@ import org.onap.cps.TestUtils
 import org.onap.cps.api.CpsAdminService
 import org.onap.cps.notification.NotificationService
 import org.onap.cps.notification.Operation
+import org.onap.cps.spi.CpsCmHandlerQueryService
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.model.Anchor
+import org.onap.cps.spi.model.CmHandleQueryParameters
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.DataNodeBuilder
 import org.onap.cps.yang.YangTextSchemaSourceSet
@@ -41,11 +43,12 @@ import java.time.OffsetDateTime
 class CpsDataServiceImplSpec extends Specification {
     def mockCpsDataPersistenceService = Mock(CpsDataPersistenceService)
     def mockCpsAdminService = Mock(CpsAdminService)
+    def mockCpsCmHandlerQueryService= Mock(CpsCmHandlerQueryService)
     def mockYangTextSchemaSourceSetCache = Mock(YangTextSchemaSourceSetCache)
     def mockNotificationService = Mock(NotificationService)
 
     def objectUnderTest = new CpsDataServiceImpl(mockCpsDataPersistenceService, mockCpsAdminService,
-            mockYangTextSchemaSourceSetCache, mockNotificationService)
+            mockCpsCmHandlerQueryService, mockYangTextSchemaSourceSetCache, mockNotificationService)
 
     def setup() {
         mockCpsAdminService.getAnchor(dataspaceName, anchorName) >> anchor
@@ -446,5 +449,14 @@ class CpsDataServiceImplSpec extends Specification {
         then: 'the persistence service method to lock anchor is invoked with the given timeout'
             1 * mockCpsDataPersistenceService.lockAnchor('some-sessionId', 'some-dataspaceName',
                     'some-anchorName', 250L)
+    }
+
+    def 'Query CM Handles.'() {
+        given: 'a cm handle query'
+            def cmHandleQueryParameters = new CmHandleQueryParameters()
+        when: 'query cm handles is invoked'
+            objectUnderTest.queryCmHandles(cmHandleQueryParameters)
+        then: 'associated persistence service method is invoked with correct parameter'
+            1 * mockCpsCmHandlerQueryService.queryCmHandles(cmHandleQueryParameters)
     }
 }

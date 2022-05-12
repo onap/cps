@@ -21,17 +21,20 @@
 package org.onap.cps.spi.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import javax.validation.Valid;
 import lombok.Data;
 
 @Data
-@JsonInclude(Include.NON_EMPTY)
-public class CmHandleQueryParameters {
-    @JsonProperty("cmHandleQueryParameters")
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
+public class ConditionProperties {
+    @JsonProperty("conditionName")
+    private String conditionName = "";
+
+    @JsonProperty("conditionParameters")
     @Valid
-    private List<ConditionProperties> cmHandleQueryParameters = Collections.emptyList();
+    private List<Map<String, String>> conditionParameters = Collections.emptyList();
 }

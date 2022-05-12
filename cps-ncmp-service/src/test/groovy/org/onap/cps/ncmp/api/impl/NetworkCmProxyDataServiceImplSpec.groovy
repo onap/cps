@@ -25,10 +25,14 @@ package org.onap.cps.ncmp.api.impl
 import org.onap.cps.ncmp.api.impl.exception.HttpClientRequestException
 import org.onap.cps.ncmp.api.impl.operations.YangModelCmHandleRetriever
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
+import org.onap.cps.ncmp.api.models.CmHandleQueryApiParameters
+import org.onap.cps.ncmp.api.models.ConditionApiProperties
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.ncmp.api.inventory.sync.ModuleSyncService
+import org.onap.cps.spi.model.CmHandleQueryParameters
+import org.onap.cps.spi.model.ConditionProperties
 import spock.lang.Shared
 
 import static org.onap.cps.ncmp.api.impl.operations.DmiOperations.DataStoreEnum.PASSTHROUGH_OPERATIONAL
@@ -272,13 +276,6 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             0 * mockCpsModuleService.getYangResourcesModuleReferences(_, _)
     }
 
-    def 'Get cm handle identifiers for the given module names.'() {
-        when: 'execute a cm handle search for the given module names'
-            objectUnderTest.executeCmHandleHasAllModulesSearch(['some-module-name'])
-        then: 'get anchor identifiers is invoked  with the expected parameters'
-            1 * mockCpsAdminService.queryAnchorNames('NFP-Operational', ['some-module-name'])
-    }
-
     def 'Get a cm handle.'() {
         given: 'the system returns a yang modelled cm handle'
             def dmiServiceName = 'some service name'
@@ -375,5 +372,26 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
                     '"additional-properties":[],"public-properties":[]}]}', null)
             1 * mockCpsAdminService.createAnchor('NFP-Operational', null,
                     'some-cm-handle-id')
+    }
+
+    def 'Execute cm handle id search'(){
+        given: 'valid CmHandleQueryApiParameters input'
+            def cmHandleQueryApiParameters = new CmHandleQueryApiParameters()
+            def conditionApiProperties = new ConditionApiProperties()
+            conditionApiProperties.conditionName = 'hasAllModules'
+            conditionApiProperties.conditionParameters = [[moduleName:'module-name-1']]
+            cmHandleQueryApiParameters.cmHandleQueryParameters = [conditionApiProperties]
+
+            def cmHandleQueryParameters = new CmHandleQueryParameters()
+            def conditionProperties = new ConditionProperties()
+            conditionProperties.conditionName = 'hasAllModules'
+            conditionProperties.conditionParameters = [[moduleName:'module-name-1']]
+            cmHandleQueryParameters.cmHandleQueryParameters = [conditionProperties]
+
+            mockCpsDataService.queryCmHandles(cmHandleQueryParameters) >> [ new DataNode(leaves: [id:'cm-handle-id-1'] )]
+        when: 'execute cm handle search is called'
+            def result = objectUnderTest.executeCmHandleIdSearch(cmHandleQueryApiParameters)
+        then: 'result is the same collection as returned by the CPS Data Service'
+            assert result == ['cm-handle-id-1'] as Set
     }
 }

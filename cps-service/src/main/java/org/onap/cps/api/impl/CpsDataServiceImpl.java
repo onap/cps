@@ -34,10 +34,12 @@ import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.notification.NotificationService;
 import org.onap.cps.notification.Operation;
+import org.onap.cps.spi.CpsCmHandlerQueryService;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.spi.model.Anchor;
+import org.onap.cps.spi.model.CmHandleQueryParameters;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.DataNodeBuilder;
 import org.onap.cps.utils.CpsValidator;
@@ -56,6 +58,7 @@ public class CpsDataServiceImpl implements CpsDataService {
 
     private final CpsDataPersistenceService cpsDataPersistenceService;
     private final CpsAdminService cpsAdminService;
+    private  final CpsCmHandlerQueryService cpsCmHandlerQueryService;
     private final YangTextSchemaSourceSetCache yangTextSchemaSourceSetCache;
     private final NotificationService notificationService;
 
@@ -190,6 +193,11 @@ public class CpsDataServiceImpl implements CpsDataService {
         CpsValidator.validateNameCharacters(dataspaceName, anchorName);
         cpsDataPersistenceService.deleteListDataNode(dataspaceName, anchorName, listNodeXpath);
         processDataUpdatedEventAsync(dataspaceName, anchorName, observedTimestamp, listNodeXpath, DELETE);
+    }
+
+    @Override
+    public Collection<DataNode> queryCmHandles(final CmHandleQueryParameters cmHandleQueryParameters) {
+        return cpsCmHandlerQueryService.queryCmHandles(cmHandleQueryParameters);
     }
 
     private DataNode buildDataNode(final String dataspaceName, final String anchorName,
