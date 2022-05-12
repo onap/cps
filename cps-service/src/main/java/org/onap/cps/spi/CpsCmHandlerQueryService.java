@@ -18,22 +18,18 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.models;
+package org.onap.cps.spi;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Collections;
-import java.util.List;
-import javax.validation.Valid;
-import lombok.Getter;
-import lombok.Setter;
+import java.util.Collection;
+import org.onap.cps.spi.model.CmHandleQueryParameters;
+import org.onap.cps.spi.model.DataNode;
 
-@Setter
-@Getter
-@JsonInclude(Include.NON_EMPTY)
-public class CmHandleQueryApiParameters {
-    @JsonProperty("cmHandleQueryRestParameters")
-    @Valid
-    private List<ConditionApiProperties> cmHandleQueryRestParameters = Collections.emptyList();
+public interface CpsCmHandlerQueryService {
+    /**
+     * Query and return cm handles that match the given query parameters.
+     *
+     * @param cmHandleQueryParameters the cm handle query parameters
+     * @return collection of cm handles
+     */
+    Collection<DataNode> queryCmHandles(CmHandleQueryParameters cmHandleQueryParameters);
 }

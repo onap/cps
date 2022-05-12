@@ -105,15 +105,6 @@ public interface NetworkCmProxyDataService {
     Collection<ModuleReference> getYangResourcesModuleReferences(String cmHandleId);
 
     /**
-     * Query cm handle identifiers for the given collection of module names.
-     *
-     * @param moduleNames module names.
-     * @return a collection of cm handle identifiers. The schema set for each cm handle must include all the
-     *         given module names
-     */
-    Collection<String> executeCmHandleHasAllModulesSearch(Collection<String> moduleNames);
-
-    /**
      * Query cm handle details by cm handle's name.
      *
      * @param cmHandleId cm handle identifier
@@ -125,7 +116,15 @@ public interface NetworkCmProxyDataService {
      * Query and return cm handles that match the given query parameters.
      *
      * @param cmHandleQueryApiParameters the cm handle query parameters
+     * @return collection of cm handles
+     */
+    Set<NcmpServiceCmHandle> executeCmHandleSearch(CmHandleQueryApiParameters cmHandleQueryApiParameters);
+
+    /**
+     * Query and return cm handle ids that match the given query parameters.
+     *
+     * @param cmHandleQueryApiParameters the cm handle query parameters
      * @return collection of cm handle ids
      */
-    Set<String> queryCmHandles(CmHandleQueryApiParameters cmHandleQueryApiParameters);
+    Set<String> executeCmHandleIdSearch(CmHandleQueryApiParameters cmHandleQueryApiParameters);
 }
