@@ -50,15 +50,24 @@ public class YangModelCmHandleRetriever {
      */
     public YangModelCmHandle getYangModelCmHandle(final String cmHandleId) {
         CpsValidator.validateNameCharacters(cmHandleId);
-        final DataNode cmHandleDataNode = getCmHandleDataNode(cmHandleId);
+        return convertCmHandleToYangModel(getCmHandleDataNode(cmHandleId), cmHandleId);
+    }
+
+    /**
+     * This method convert cm handle data node to yang model cm handle.
+     * @param cmHandleDataNode the datanode of the cm handle
+     * @param cmHandleId the id of the cm handle
+     * @return yang model cm handle
+     */
+    public YangModelCmHandle convertCmHandleToYangModel(final DataNode cmHandleDataNode, final String cmHandleId) {
         final NcmpServiceCmHandle ncmpServiceCmHandle = new NcmpServiceCmHandle();
         ncmpServiceCmHandle.setCmHandleId(cmHandleId);
         populateCmHandleProperties(cmHandleDataNode, ncmpServiceCmHandle);
         return YangModelCmHandle.toYangModelCmHandle(
-            String.valueOf(cmHandleDataNode.getLeaves().get("dmi-service-name")),
-            String.valueOf(cmHandleDataNode.getLeaves().get("dmi-data-service-name")),
-            String.valueOf(cmHandleDataNode.getLeaves().get("dmi-model-service-name")),
-            ncmpServiceCmHandle
+                String.valueOf(cmHandleDataNode.getLeaves().get("dmi-service-name")),
+                String.valueOf(cmHandleDataNode.getLeaves().get("dmi-data-service-name")),
+                String.valueOf(cmHandleDataNode.getLeaves().get("dmi-model-service-name")),
+                ncmpServiceCmHandle
         );
     }
 

@@ -23,11 +23,10 @@ package org.onap.cps.spi.repository;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.UUID;
-import java.util.stream.Collectors;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import lombok.AllArgsConstructor;
@@ -36,6 +35,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.CmHandleQueryParameters;
+import org.onap.cps.spi.model.ConditionProperties;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.ModuleReference;
 import org.springframework.transaction.annotation.Transactional;
@@ -45,6 +45,10 @@ import org.springframework.transaction.annotation.Transactional;
 @AllArgsConstructor
 public class ModuleReferenceRepositoryImpl implements ModuleReferenceQuery {
 
+    private static final String HAS_ALL_PROPERTIES = "hasAllProperties";
+    private static final String HAS_ALL_MODULES = "hasAllModules";
+    private static final String MODULE_NAME = "moduleName";
+
     @PersistenceContext
     private EntityManager entityManager;
 
@@ -53,14 +57,14 @@ public class ModuleReferenceRepositoryImpl implements ModuleReferenceQuery {
     @Override
     @SneakyThrows
     public Collection<ModuleReference> identifyNewModuleReferences(
-        final Collection<ModuleReference> moduleReferencesToCheck) {
+            final Collection<ModuleReference> moduleReferencesToCheck) {
 
         if (moduleReferencesToCheck == null || moduleReferencesToCheck.isEmpty()) {
             return Collections.emptyList();
         }
 
         final String tempTableName = "moduleReferencesToCheckTemp"
-            + UUID.randomUUID().toString().replace("-", "");
+                + UUID.randomUUID().toString().replace("-", "");
 
         createTemporaryTable(tempTableName);
         insertDataIntoTable(tempTableName, moduleReferencesToCheck);
@@ -72,27 +76,31 @@ public class ModuleReferenceRepositoryImpl implements ModuleReferenceQuery {
      * Query and return cm handles that match the given query parameters.
      *
      * @param cmHandleQueryParameters the cm handle query parameters
-     * @return collection of cm handle ids
+     * @return collection of cm handles
      */
     @Override
-    public Set<String> queryCmHandles(final CmHandleQueryParameters cmHandleQueryParameters) {
+    public Collection<DataNode> queryCmHandles(final CmHandleQueryParameters cmHandleQueryParameters) {
 
-        if (cmHandleQueryParameters.getPublicProperties().entrySet().isEmpty()) {
+        if (cmHandleQueryParameters.getCmHandleQueryRestParameters().isEmpty()) {
             return getAllCmHandles();
         }
 
         final Collection<DataNode> amalgamatedQueryResult = new ArrayList<>();
-        int queryConditionCounter = 0;
-        for (final Map.Entry<String, String> entry : cmHandleQueryParameters.getPublicProperties().entrySet()) {
+        boolean firstQuery = true;
+
+        for (final Map.Entry<String, String> entry :
+                getPublicPropertyPairs(cmHandleQueryParameters.getCmHandleQueryRestParameters()).entrySet()) {
             final StringBuilder cmHandlePath = new StringBuilder();
             cmHandlePath.append("//public-properties[@name='").append(entry.getKey()).append("' ");
             cmHandlePath.append("and @value='").append(entry.getValue()).append("']");
             cmHandlePath.append("/ancestor::cm-handles");
 
             final Collection<DataNode> singleConditionQueryResult =
-                cpsDataPersistenceService.queryDataNodes("NCMP-Admin",
-                "ncmp-dmi-registry", String.valueOf(cmHandlePath), FetchDescendantsOption.OMIT_DESCENDANTS);
-            if (++queryConditionCounter == 1) {
+                    cpsDataPersistenceService.queryDataNodes("NCMP-Admin",
+                            "ncmp-dmi-registry", String.valueOf(cmHandlePath), FetchDescendantsOption.OMIT_DESCENDANTS);
+
+            if (firstQuery) {
+                firstQuery = false;
                 amalgamatedQueryResult.addAll(singleConditionQueryResult);
             } else {
                 amalgamatedQueryResult.retainAll(singleConditionQueryResult);
@@ -103,19 +111,64 @@ public class ModuleReferenceRepositoryImpl implements ModuleReferenceQuery {
             }
         }
 
-        return extractCmHandleIds(amalgamatedQueryResult);
+        for (final String moduleConditions : getModuleNames(cmHandleQueryParameters.getCmHandleQueryRestParameters())) {
+            final StringBuilder cmHandlePath = new StringBuilder();
+            cmHandlePath.append("//module_name[@name='").append(moduleConditions).append("']");
+            cmHandlePath.append("/ancestor::cm-handles");
+
+            final Collection<DataNode> singleConditionQueryResult =
+                    cpsDataPersistenceService.queryDataNodes("NCMP-Admin",
+                            "ncmp-dmi-registry", String.valueOf(cmHandlePath), FetchDescendantsOption.OMIT_DESCENDANTS);
+
+            if (firstQuery) {
+                firstQuery = false;
+                amalgamatedQueryResult.addAll(singleConditionQueryResult);
+            } else {
+                amalgamatedQueryResult.retainAll(singleConditionQueryResult);
+            }
+
+            if (amalgamatedQueryResult.isEmpty()) {
+                break;
+            }
+        }
+
+        return amalgamatedQueryResult;
     }
 
-    private Set<String> getAllCmHandles() {
-        final Collection<DataNode> cmHandles = cpsDataPersistenceService.queryDataNodes("NCMP-Admin",
-            "ncmp-dmi-registry", "//public-properties/ancestor::cm-handles",
-            FetchDescendantsOption.OMIT_DESCENDANTS);
-        return extractCmHandleIds(cmHandles);
+    private List<Map<String, String>> getConditions(final List<ConditionProperties> conditionProperties,
+                                                    final String name) {
+        for (final ConditionProperties conditionProperty : conditionProperties) {
+            if (conditionProperty.getName().equals(name)) {
+                return conditionProperty.getConditionParameters();
+            }
+        }
+        return Collections.emptyList();
     }
 
-    private Set<String> extractCmHandleIds(final Collection<DataNode> cmHandles) {
-        return cmHandles.stream().map(cmHandle -> cmHandle.getLeaves().get("id").toString())
-            .collect(Collectors.toSet());
+    private List<String> getModuleNames(final List<ConditionProperties> conditionProperties) {
+        final List<String> result = new ArrayList<>();
+        getConditions(conditionProperties, HAS_ALL_MODULES).forEach(
+            m -> {
+                if (m.containsKey(MODULE_NAME)) {
+                    result.add(m.get(MODULE_NAME));
+                } else {
+                    log.error("Wrong module name key.");
+                }
+            }
+        );
+        return result;
+    }
+
+    private Map<String, String> getPublicPropertyPairs(final List<ConditionProperties> conditionProperties) {
+        final Map<String, String> result = new HashMap<>();
+        getConditions(conditionProperties, HAS_ALL_PROPERTIES).forEach(result::putAll);
+        return result;
+    }
+
+    private Collection<DataNode> getAllCmHandles() {
+        return cpsDataPersistenceService.queryDataNodes("NCMP-Admin",
+                "ncmp-dmi-registry", "//public-properties/ancestor::cm-handles",
+                FetchDescendantsOption.OMIT_DESCENDANTS);
     }
 
     private void createTemporaryTable(final String tempTableName) {
@@ -149,11 +202,11 @@ public class ModuleReferenceRepositoryImpl implements ModuleReferenceQuery {
 
     private Collection<ModuleReference> identifyNewModuleReferencesForCmHandle(final String tempTableName) {
         final String sql = String.format(
-            "SELECT %1$s.module_name, %1$s.revision"
-                + " FROM %1$s LEFT JOIN yang_resource"
-                + " ON yang_resource.module_name=%1$s.module_name"
-                + " AND yang_resource.revision=%1$s.revision"
-                + " WHERE yang_resource.module_name IS NULL;", tempTableName);
+                "SELECT %1$s.module_name, %1$s.revision"
+                        + " FROM %1$s LEFT JOIN yang_resource"
+                        + " ON yang_resource.module_name=%1$s.module_name"
+                        + " AND yang_resource.revision=%1$s.revision"
+                        + " WHERE yang_resource.module_name IS NULL;", tempTableName);
 
         @SuppressWarnings("unchecked")
         final List<Object[]> resultsAsObjects = entityManager.createNativeQuery(sql).getResultList();
