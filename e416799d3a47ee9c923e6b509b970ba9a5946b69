@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5366a7b1_97141526",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-12T16:07:25Z",
+      "side": 1,
+      "message": "not sure about this name\nIs it really neede dif so, TEAM: suggestions welcome!",
+      "range": {
+        "startLine": 162,
+        "startChar": 4,
+        "endLine": 162,
+        "endChar": 29
+      },
+      "revId": "e416799d3a47ee9c923e6b509b970ba9a5946b69",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5c65e577_d88837de",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-12T16:07:25Z",
+      "side": 1,
+      "message": "conditionProperties (as it was)",
+      "range": {
+        "startLine": 163,
+        "startChar": 6,
+        "endLine": 163,
+        "endChar": 16
+      },
+      "revId": "e416799d3a47ee9c923e6b509b970ba9a5946b69",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "67982970_8dcb0aba",
+        "filename": "cps-ncmp-rest/docs/openapi/openapi.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-12T16:07:25Z",
+      "side": 1,
+      "message": "I suppose this is a backward incompatibel change?! \nWe just need to make sure to communicate it with our stakeholders!",
+      "range": {
+        "startLine": 44,
+        "startChar": 2,
+        "endLine": 44,
+        "endChar": 21
+      },
+      "revId": "e416799d3a47ee9c923e6b509b970ba9a5946b69",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0bae4dc5_7c6872f9",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-12T16:07:25Z",
+      "side": 1,
+      "message": "extract out to local variabel for bter readinitly and debuggin purposes",
+      "range": {
+        "startLine": 203,
+        "startChar": 16,
+        "endLine": 203,
+        "endChar": 114
+      },
+      "revId": "e416799d3a47ee9c923e6b509b970ba9a5946b69",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "46f9d8bf_76af45c3",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-12T16:07:25Z",
+      "side": 1,
+      "message": "extract out to local variabel for bter readinitly and debuggin purposes",
+      "range": {
+        "startLine": 204,
+        "startChar": 34,
+        "endLine": 204,
+        "endChar": 111
+      },
+      "revId": "e416799d3a47ee9c923e6b509b970ba9a5946b69",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "21bf6179_23f6ce6f",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-12T16:07:25Z",
+      "side": 1,
+      "message": "extract out to local variabel for bter readinitly and debuggin purposes",
+      "range": {
+        "startLine": 217,
+        "startChar": 13,
+        "endLine": 217,
+        "endChar": 110
+      },
+      "revId": "e416799d3a47ee9c923e6b509b970ba9a5946b69",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
