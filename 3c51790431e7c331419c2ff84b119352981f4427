@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6d1802da_aa10dc53",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/NcmpConfiguration.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-12T14:40:39Z",
+      "side": 1,
+      "message": "Question? this enables (the potential to use) scheduling through the whole application?",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 17
+      },
+      "revId": "3c51790431e7c331419c2ff84b119352981f4427",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c26920fe_c01a9496",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/NcmpConfiguration.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-12T14:40:39Z",
+      "side": 1,
+      "message": "why was thsi needed?",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 56
+      },
+      "revId": "3c51790431e7c331419c2ff84b119352981f4427",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0edfd7ff_e1e5dd38",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/yangmodels/YangModelCmHandle.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-12T14:40:39Z",
+      "side": 1,
+      "message": "CmHandleSatte is not limited to Sync so maybe move up one package level",
+      "range": {
+        "startLine": 37,
+        "startChar": 39,
+        "endLine": 37,
+        "endChar": 43
+      },
+      "revId": "3c51790431e7c331419c2ff84b119352981f4427",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3d3bbccc_fd30eeca",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/CmHandleState.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-12T14:40:39Z",
+      "side": 1,
+      "message": "as before, move up one level",
+      "range": {
+        "startLine": 21,
+        "startChar": 40,
+        "endLine": 21,
+        "endChar": 44
+      },
+      "revId": "3c51790431e7c331419c2ff84b119352981f4427",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "deafba63_50fd40f6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-12T14:40:39Z",
+      "side": 1,
+      "message": "NB: no nee for word \u0027new\u0027 (might even be consider misleading)",
+      "range": {
+        "startLine": 43,
+        "startChar": 26,
+        "endLine": 43,
+        "endChar": 29
+      },
+      "revId": "3c51790431e7c331419c2ff84b119352981f4427",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8de11271_36ceff43",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/CmHandleStateSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-12T14:40:39Z",
+      "side": 1,
+      "message": "ready",
+      "range": {
+        "startLine": 30,
+        "startChar": 44,
+        "endLine": 30,
+        "endChar": 49
+      },
+      "revId": "3c51790431e7c331419c2ff84b119352981f4427",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b149e6cc_78e6d216",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/CmHandleStateSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-12T14:40:39Z",
+      "side": 1,
+      "message": "ready",
+      "range": {
+        "startLine": 39,
+        "startChar": 40,
+        "endLine": 39,
+        "endChar": 45
+      },
+      "revId": "3c51790431e7c331419c2ff84b119352981f4427",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
