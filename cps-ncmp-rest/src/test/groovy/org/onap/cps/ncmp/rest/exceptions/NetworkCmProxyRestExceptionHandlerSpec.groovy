@@ -31,6 +31,7 @@ import org.onap.cps.ncmp.api.impl.exception.ServerNcmpException
 import org.onap.cps.ncmp.rest.controller.NcmpRestInputMapper
 import org.onap.cps.ncmp.rest.mapper.RestOutputCmHandleStateMapper
 import org.onap.cps.ncmp.rest.executor.CpsNcmpTaskExecutor
+import org.onap.cps.ncmp.rest.util.DeprecationHelper
 import org.onap.cps.spi.exceptions.CpsException
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.spi.exceptions.DataValidationException
@@ -74,6 +75,9 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
 
     @SpringBean
     CpsNcmpTaskExecutor stubbedCpsTaskExecutor = Stub()
+
+    @SpringBean
+    DeprecationHelper deprecationHelper = Stub()
 
     @Value('${rest.api.ncmp-base-path}')
     def basePathNcmp

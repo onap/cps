@@ -22,6 +22,7 @@
 package org.onap.cps.ncmp.api.impl
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import org.onap.cps.ncmp.api.NetworkCmProxyCmHandlerQueryService
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsDataService
@@ -64,6 +65,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     def mockNetworkCmProxyDataServicePropertyHandler = Mock(NetworkCmProxyDataServicePropertyHandler)
     def mockInventoryPersistence = Mock(InventoryPersistence)
     def mockModuleSyncService = Mock(ModuleSyncService)
+    def mockCpsCmHandlerQueryService = Stub(NetworkCmProxyCmHandlerQueryService)
 
     def noTimestamp = null
     def objectUnderTest = getObjectUnderTestWithModelSyncDisabled()
@@ -387,6 +389,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
 
     def getObjectUnderTest() {
         return Spy(new NetworkCmProxyDataServiceImpl(mockCpsDataService, spiedJsonObjectMapper, mockDmiDataOperations,
-            mockCpsModuleService, mockCpsAdminService, mockNetworkCmProxyDataServicePropertyHandler, mockInventoryPersistence, mockModuleSyncService))
+            mockCpsModuleService, mockCpsAdminService, mockNetworkCmProxyDataServicePropertyHandler, mockInventoryPersistence,
+            mockModuleSyncService, mockCpsCmHandlerQueryService))
     }
 }

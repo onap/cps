@@ -36,7 +36,7 @@ paths:
     $ref: 'ncmp.yml#/fetchModuleReferencesByCmHandle'
 
   /v1/ch/searches:
-    $ref: 'ncmp.yml#/executeCmHandleSearch'
+    $ref: 'ncmp.yml#/searchCmHandles'
 
   /v1/ch/{cm-handle}:
     $ref: 'ncmp.yml#/retrieveCmHandleDetailsById'
@@ -44,5 +44,5 @@ paths:
   /v1/ch/{cm-handle}/properties:
     $ref: 'ncmp.yml#/getCmHandlePropertiesById'
 
-  /v1/data/ch/searches:
-    $ref: 'ncmp.yml#/queryCmHandles'
+  /v1/ch/id-searches:
+    $ref: 'ncmp.yml#/searchCmHandleIds'
