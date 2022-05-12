@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import javax.validation.Valid;
 import lombok.Getter;
@@ -38,4 +39,7 @@ public class CmHandleQueryParameters {
     @Valid
     private Map<String, String> publicProperties = Collections.emptyMap();
 
+    @JsonProperty("conditions")
+    @Valid
+    private List<ModuleConditionProperties> moduleConditionProperties = Collections.emptyList();
 }

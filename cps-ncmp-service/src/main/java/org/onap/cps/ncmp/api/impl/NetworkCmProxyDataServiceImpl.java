@@ -148,29 +148,27 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         return cpsModuleService.getYangResourcesModuleReferences(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId);
     }
 
-    /**
-     * Retrieve cm handle identifiers for the given list of module names.
-     *
-     * @param moduleNames module names.
-     * @return a collection of anchor identifiers
-     */
     @Override
-    public Collection<String> executeCmHandleHasAllModulesSearch(final Collection<String> moduleNames) {
-        return cpsAdminService.queryAnchorNames(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, moduleNames);
-    }
-
-    @Override
-    public Set<String> queryCmHandles(final CmHandleQueryApiParameters cmHandleQueryApiParameters) {
+    public Set<NcmpServiceCmHandle> queryCmHandles(final CmHandleQueryApiParameters cmHandleQueryApiParameters) {
 
         cmHandleQueryApiParameters.getPublicProperties().forEach((key, value) -> {
             if (Strings.isNullOrEmpty(key)) {
                 throw new DataValidationException("Invalid Query Parameter.",
-                    "Missing property name - please supply a valid name.");
+                        "Missing property name - please supply a valid name.");
             }
         });
 
-        return cpsAdminService.queryCmHandles(jsonObjectMapper.convertToValueType(cmHandleQueryApiParameters,
-                org.onap.cps.spi.model.CmHandleQueryParameters.class));
+        return cpsDataService.queryCmHandles(jsonObjectMapper.convertToValueType(cmHandleQueryApiParameters,
+                org.onap.cps.spi.model.CmHandleQueryParameters.class)).stream()
+                .map(dataNode -> yangModelCmHandleRetriever
+                        .convertCmHandleToYangModel(dataNode, dataNode.getLeaves().get("id").toString()))
+                .map(this::convertYangModelCmHandleToNcmpServiceCmHandle).collect(Collectors.toSet());
+    }
+
+    @Override
+    public Set<String> queryCmHandleIds(final CmHandleQueryApiParameters cmHandleQueryApiParameters) {
+        return queryCmHandles(cmHandleQueryApiParameters).stream().map(NcmpServiceCmHandle::getCmHandleId)
+                .collect(Collectors.toSet());
     }
 
     /**
@@ -182,9 +180,13 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     @Override
     public NcmpServiceCmHandle getNcmpServiceCmHandle(final String cmHandleId) {
         CpsValidator.validateNameCharacters(cmHandleId);
+        return convertYangModelCmHandleToNcmpServiceCmHandle(
+                yangModelCmHandleRetriever.getYangModelCmHandle(cmHandleId));
+    }
+
+    private NcmpServiceCmHandle convertYangModelCmHandleToNcmpServiceCmHandle(
+            final YangModelCmHandle yangModelCmHandle) {
         final NcmpServiceCmHandle ncmpServiceCmHandle = new NcmpServiceCmHandle();
-        final YangModelCmHandle yangModelCmHandle =
-            yangModelCmHandleRetriever.getYangModelCmHandle(cmHandleId);
         final List<YangModelCmHandle.Property> dmiProperties = yangModelCmHandle.getDmiProperties();
         final List<YangModelCmHandle.Property> publicProperties = yangModelCmHandle.getPublicProperties();
         ncmpServiceCmHandle.setCmHandleId(yangModelCmHandle.getId());

@@ -25,9 +25,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.UUID;
-import java.util.stream.Collectors;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import lombok.AllArgsConstructor;
@@ -37,6 +35,7 @@ import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.CmHandleQueryParameters;
 import org.onap.cps.spi.model.DataNode;
+import org.onap.cps.spi.model.ModuleConditionProperties;
 import org.onap.cps.spi.model.ModuleReference;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -72,17 +71,19 @@ public class ModuleReferenceRepositoryImpl implements ModuleReferenceQuery {
      * Query and return cm handles that match the given query parameters.
      *
      * @param cmHandleQueryParameters the cm handle query parameters
-     * @return collection of cm handle ids
+     * @return collection of cm handles
      */
     @Override
-    public Set<String> queryCmHandles(final CmHandleQueryParameters cmHandleQueryParameters) {
+    public Collection<DataNode> queryCmHandles(final CmHandleQueryParameters cmHandleQueryParameters) {
 
-        if (cmHandleQueryParameters.getPublicProperties().entrySet().isEmpty()) {
+        if (cmHandleQueryParameters.getPublicProperties().entrySet().isEmpty()
+            && cmHandleQueryParameters.getModuleConditionProperties().isEmpty()) {
             return getAllCmHandles();
         }
 
         final Collection<DataNode> amalgamatedQueryResult = new ArrayList<>();
-        int queryConditionCounter = 0;
+        boolean firstQuery = true;
+
         for (final Map.Entry<String, String> entry : cmHandleQueryParameters.getPublicProperties().entrySet()) {
             final StringBuilder cmHandlePath = new StringBuilder();
             cmHandlePath.append("//public-properties[@name='").append(entry.getKey()).append("' ");
@@ -92,7 +93,9 @@ public class ModuleReferenceRepositoryImpl implements ModuleReferenceQuery {
             final Collection<DataNode> singleConditionQueryResult =
                 cpsDataPersistenceService.queryDataNodes("NCMP-Admin",
                 "ncmp-dmi-registry", String.valueOf(cmHandlePath), FetchDescendantsOption.OMIT_DESCENDANTS);
-            if (++queryConditionCounter == 1) {
+
+            if (firstQuery) {
+                firstQuery = false;
                 amalgamatedQueryResult.addAll(singleConditionQueryResult);
             } else {
                 amalgamatedQueryResult.retainAll(singleConditionQueryResult);
@@ -103,19 +106,47 @@ public class ModuleReferenceRepositoryImpl implements ModuleReferenceQuery {
             }
         }
 
-        return extractCmHandleIds(amalgamatedQueryResult);
+        for (final String moduleConditions : getModuleConditions(
+                cmHandleQueryParameters.getModuleConditionProperties())) {
+            final StringBuilder cmHandlePath = new StringBuilder();
+            cmHandlePath.append("//module_name[@name='").append(moduleConditions).append("']");
+            cmHandlePath.append("/ancestor::cm-handles");
+
+            final Collection<DataNode> singleConditionQueryResult =
+                    cpsDataPersistenceService.queryDataNodes("NCMP-Admin",
+                            "ncmp-dmi-registry", String.valueOf(cmHandlePath), FetchDescendantsOption.OMIT_DESCENDANTS);
+
+            if (firstQuery) {
+                firstQuery = false;
+                amalgamatedQueryResult.addAll(singleConditionQueryResult);
+            } else {
+                amalgamatedQueryResult.retainAll(singleConditionQueryResult);
+            }
+
+            if (amalgamatedQueryResult.isEmpty()) {
+                break;
+            }
+        }
+
+        return amalgamatedQueryResult;
     }
 
-    private Set<String> getAllCmHandles() {
-        final Collection<DataNode> cmHandles = cpsDataPersistenceService.queryDataNodes("NCMP-Admin",
+    private Collection<String> getModuleConditions(final List<ModuleConditionProperties> conditionProperties) {
+        for (final ModuleConditionProperties conditionProperty : conditionProperties) {
+            if (conditionProperty.getName().equals("hasAllModules")) {
+                return conditionProperty.getConditionParameters();
+            } else {
+                log.warn("Unrecognized condition name {}.", conditionProperty.getName());
+            }
+        }
+        log.warn("No valid conditions found {}.", conditionProperties);
+        return Collections.emptyList();
+    }
+
+    private Collection<DataNode> getAllCmHandles() {
+        return cpsDataPersistenceService.queryDataNodes("NCMP-Admin",
             "ncmp-dmi-registry", "//public-properties/ancestor::cm-handles",
             FetchDescendantsOption.OMIT_DESCENDANTS);
-        return extractCmHandleIds(cmHandles);
-    }
-
-    private Set<String> extractCmHandleIds(final Collection<DataNode> cmHandles) {
-        return cmHandles.stream().map(cmHandle -> cmHandle.getLeaves().get("id").toString())
-            .collect(Collectors.toSet());
     }
 
     private void createTemporaryTable(final String tempTableName) {
