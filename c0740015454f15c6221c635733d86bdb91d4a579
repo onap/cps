@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7a04af67_a78e0229",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/config/CpsSessionFactory.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-05-12T10:33:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c606f195_9ff70b31",
+      "range": {
+        "startLine": 50,
+        "startChar": 16,
+        "endLine": 50,
+        "endChar": 35
+      },
+      "revId": "c0740015454f15c6221c635733d86bdb91d4a579",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1b393fea_22fb0e99",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/utils/SessionManagerSpec.groovy",
         "patchSetId": 18
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "2c89b53f_ea616a30",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/utils/SessionManagerSpec.groovy",
+        "patchSetId": 18
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-05-12T10:33:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1b393fea_22fb0e99",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 61
+      },
+      "revId": "c0740015454f15c6221c635733d86bdb91d4a579",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c33e61af_ed12e18a",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/utils/SessionManagerSpec.groovy",
         "patchSetId": 18
@@ -68,6 +116,30 @@
       "revId": "c0740015454f15c6221c635733d86bdb91d4a579",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "883d2a63_3f32e985",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/utils/SessionManagerSpec.groovy",
+        "patchSetId": 18
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-05-12T10:33:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c33e61af_ed12e18a",
+      "range": {
+        "startLine": 74,
+        "startChar": 59,
+        "endLine": 74,
+        "endChar": 87
+      },
+      "revId": "c0740015454f15c6221c635733d86bdb91d4a579",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
