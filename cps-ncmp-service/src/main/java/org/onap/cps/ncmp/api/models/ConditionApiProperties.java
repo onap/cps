@@ -20,20 +20,21 @@
 
 package org.onap.cps.ncmp.api.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import javax.validation.Valid;
 import lombok.Data;
 
 @Data
-@JsonInclude(Include.NON_EMPTY)
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class CmHandleQueryApiParameters {
-    @JsonProperty("cmHandleQueryRestParameters")
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
+public class ConditionApiProperties {
+    @JsonProperty("conditionName")
+    private String conditionName = "";
+
+    @JsonProperty("conditionParameters")
     @Valid
-    private List<ConditionApiProperties> cmHandleQueryRestParameters = Collections.emptyList();
+    private List<Map<String, String>> conditionParameters = Collections.emptyList();
 }
