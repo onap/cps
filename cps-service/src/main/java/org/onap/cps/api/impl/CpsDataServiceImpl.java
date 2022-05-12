@@ -34,6 +34,7 @@ import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.spi.model.Anchor;
+import org.onap.cps.spi.model.CmHandleQueryParameters;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.DataNodeBuilder;
 import org.onap.cps.utils.CpsValidator;
@@ -186,6 +187,11 @@ public class CpsDataServiceImpl implements CpsDataService {
         CpsValidator.validateNameCharacters(dataspaceName, anchorName);
         cpsDataPersistenceService.deleteListDataNode(dataspaceName, anchorName, listNodeXpath);
         processDataUpdatedEventAsync(dataspaceName, anchorName, observedTimestamp, listNodeXpath, Operation.DELETE);
+    }
+
+    @Override
+    public Collection<DataNode> queryCmHandles(final CmHandleQueryParameters cmHandleQueryParameters) {
+        return cpsDataPersistenceService.queryCmHandles(cmHandleQueryParameters);
     }
 
     private DataNode buildDataNode(final String dataspaceName, final String anchorName,

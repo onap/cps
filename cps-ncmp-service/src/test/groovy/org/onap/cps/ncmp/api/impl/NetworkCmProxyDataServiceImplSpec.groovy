@@ -25,6 +25,7 @@ package org.onap.cps.ncmp.api.impl
 import org.onap.cps.ncmp.api.impl.exception.HttpClientRequestException
 import org.onap.cps.ncmp.api.impl.operations.YangModelCmHandleRetriever
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
+import org.onap.cps.ncmp.api.models.CmHandleQueryApiParameters
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import org.onap.cps.spi.exceptions.DataValidationException
@@ -272,13 +273,6 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             0 * mockCpsModuleService.getYangResourcesModuleReferences(_, _)
     }
 
-    def 'Get cm handle identifiers for the given module names.'() {
-        when: 'execute a cm handle search for the given module names'
-            objectUnderTest.executeCmHandleHasAllModulesSearch(['some-module-name'])
-        then: 'get anchor identifiers is invoked  with the expected parameters'
-            1 * mockCpsAdminService.queryAnchorNames('NFP-Operational', ['some-module-name'])
-    }
-
     def 'Get a cm handle.'() {
         given: 'the system returns a yang modelled cm handle'
             def dmiServiceName = 'some service name'
@@ -353,5 +347,47 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
                     '"additional-properties":[],"public-properties":[]}]}', null)
             1 * mockCpsAdminService.createAnchor('NFP-Operational', null,
                     'some-cm-handle-id')
+    }
+
+    def 'Query CM Handles: empty query.'() {
+        given: 'a cm handle query'
+            def cmHandleQueryApiParameters = new CmHandleQueryApiParameters()
+        when: 'query cm handles is invoked'
+            objectUnderTest.queryCmHandles(cmHandleQueryApiParameters)
+        then: 'associated service method is invoked with correct parameter'
+            1 * mockCpsDataService.queryCmHandles(_) >> new ArrayList<DataNode>()
+    }
+
+    def 'Query CM Handles: wrong properties.'() {
+        given: 'a cm handle query'
+            def cmHandleQueryApiParameters = new CmHandleQueryApiParameters()
+            cmHandleQueryApiParameters.setPublicProperties(Collections.singletonMap("", "wrong"))
+        when: 'query cm handles is invoked'
+            objectUnderTest.queryCmHandles(cmHandleQueryApiParameters)
+        then: 'a data validation exception is thrown'
+            thrown(DataValidationException)
+        and: 'CPS services is not invoked'
+            0 * mockCpsDataService.queryCmHandles(_) >> new ArrayList<DataNode>()
+    }
+
+    def 'Query CM Handle ids: empty query.'() {
+        given: 'a cm handle query'
+            def cmHandleQueryApiParameters = new CmHandleQueryApiParameters()
+        when: 'query cm handles is invoked'
+            objectUnderTest.queryCmHandleIds(cmHandleQueryApiParameters)
+        then: 'associated service method is invoked with correct parameter'
+            1 * mockCpsDataService.queryCmHandles(_) >> new ArrayList<DataNode>()
+    }
+
+    def 'Query CM Handle ids: wrong properties.'() {
+        given: 'a cm handle query'
+            def cmHandleQueryApiParameters = new CmHandleQueryApiParameters()
+            cmHandleQueryApiParameters.setPublicProperties(Collections.singletonMap("", "wrong"))
+        when: 'query cm handles is invoked'
+            objectUnderTest.queryCmHandleIds(cmHandleQueryApiParameters)
+        then: 'a data validation exception is thrown'
+            thrown(DataValidationException)
+        and: 'CPS services is not invoked'
+            0 * mockCpsDataService.queryCmHandles(_) >> new ArrayList<DataNode>()
     }
 }

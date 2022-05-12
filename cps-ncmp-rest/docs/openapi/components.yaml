@@ -133,52 +133,7 @@ components:
             type: string
             example: my-property
 
-    Conditions:
-      type: object
-      properties:
-        conditions:
-          $ref: '#/components/schemas/ConditionsData'
-    ConditionsData:
-      type: array
-      items:
-        type: object
-        $ref: '#/components/schemas/ConditionProperties'
-    ConditionProperties:
-      properties:
-        name:
-          type: string
-          example: hasAllModules
-        conditionParameters:
-          $ref: '#/components/schemas/ModuleNamesAsJsonArray'
-    ModuleNamesAsJsonArray:
-      type: array
-      items:
-        type: object
-        $ref: '#/components/schemas/ModuleNameAsJsonObject'
-        example: [my-module-1, my-module-2, my-module-3]
-    ModuleNameAsJsonObject:
-        properties:
-          moduleName:
-            type: string
-            example: my-module
-
     #Response Schemas
-    CmHandles:
-      type: object
-      properties:
-        cmHandles:
-          $ref: '#/components/schemas/CmHandleProperties'
-    CmHandleProperties:
-      type: array
-      items:
-        type: object
-        $ref: '#/components/schemas/CmHandleProperty'
-    CmHandleProperty:
-      properties:
-        cmHandleId:
-          type: string
-          example: my-cm-handle-id
-
     RestModuleReference:
       type: object
       title: Module reference details
@@ -199,6 +154,21 @@ components:
           additionalProperties:
             type: string
             example: Book Type
+        conditions:
+            type: array
+            items:
+              type: object
+              $ref: '#/components/schemas/ModuleConditionProperties'
+    ModuleConditionProperties:
+      properties:
+        name:
+          type: string
+          example: hasAllModules
+        conditionParameters:
+          type: array
+          items:
+            type: string
+            example: [ my-module-1, my-module-2, my-module-3 ]
 
     RestOutputCmHandle:
       type: object

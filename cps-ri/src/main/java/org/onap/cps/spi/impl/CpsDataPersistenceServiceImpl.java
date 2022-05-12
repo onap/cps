@@ -53,11 +53,13 @@ import org.onap.cps.spi.exceptions.ConcurrencyException;
 import org.onap.cps.spi.exceptions.CpsAdminException;
 import org.onap.cps.spi.exceptions.CpsPathException;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
+import org.onap.cps.spi.model.CmHandleQueryParameters;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.DataNodeBuilder;
 import org.onap.cps.spi.repository.AnchorRepository;
 import org.onap.cps.spi.repository.DataspaceRepository;
 import org.onap.cps.spi.repository.FragmentRepository;
+import org.onap.cps.spi.repository.ModuleReferenceRepository;
 import org.onap.cps.spi.utils.SessionManager;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -73,6 +75,8 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     private final AnchorRepository anchorRepository;
 
     private final FragmentRepository fragmentRepository;
+
+    private final ModuleReferenceRepository moduleReferenceRepository;
 
     private final JsonObjectMapper jsonObjectMapper;
 
@@ -224,6 +228,11 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     public void lockAnchor(final String sessionId, final String dataspaceName,
                             final String anchorName, final Long timeoutInMilliseconds) {
         sessionManager.lockAnchor(sessionId, dataspaceName, anchorName, timeoutInMilliseconds);
+    }
+
+    @Override
+    public Collection<DataNode> queryCmHandles(final CmHandleQueryParameters cmHandleQueryParameters) {
+        return moduleReferenceRepository.queryCmHandles(cmHandleQueryParameters);
     }
 
     private static Set<String> processAncestorXpath(final List<FragmentEntity> fragmentEntities,

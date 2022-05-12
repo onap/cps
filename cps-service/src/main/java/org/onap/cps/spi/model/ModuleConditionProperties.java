@@ -18,28 +18,24 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.models;
+package org.onap.cps.spi.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 import javax.validation.Valid;
 import lombok.Getter;
 import lombok.Setter;
 
 @Setter
 @Getter
-@JsonInclude(Include.NON_NULL)
-public class CmHandleQueryApiParameters {
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class ModuleConditionProperties {
+    @JsonProperty("name")
+    private String name = "";
 
-    @JsonProperty("publicCmHandleProperties")
+    @JsonProperty("conditionParameters")
     @Valid
-    private Map<String, String> publicProperties = Collections.emptyMap();
-
-    @JsonProperty("conditions")
-    @Valid
-    private List<ModuleConditionApiProperties> moduleConditionApiProperties = Collections.emptyList();
+    private List<String> conditionParameters = Collections.emptyList();
 }
