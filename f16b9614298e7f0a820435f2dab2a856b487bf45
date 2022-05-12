@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e11175ab_a56ef490",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/yangmodels/YangModelCmHandle.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-05-12T15:34:40Z",
+      "side": 1,
+      "message": "If you proceed to use the new DMI registry yang then the state is not enum.\n\nPerhaps you need another class to define the attributes? Or we can take that in another review may be?\n\nDid you get run your code with latest master? is it working?\n\nex:\n\u003cstate\u003e\n  \u003ccm-handle-state/\u003e\n  \u003clock-reason\u003e\n     \u003creason/\u003e\n     \u003cdetails/\u003e\n  \u003c/lock-reason\u003e\n  \u003clast-update-time/\u003e\n  \u003cdata-sync-enabled\u003efalse\u003c/data-sync-enabled\u003e\n  \u003cdatastores\u003e\n    \u003coperational\u003e\n       \u003csync-state/\u003e\n       \u003clast-sync-time/\u003e\n    \u003c/operational\u003e\n    \u003crunning\u003e\n      \u003csync-state/\u003e\n      \u003clast-sync-time/\u003e\n    \u003c/running\u003e\n  \u003c/datastores\u003e\n\u003c/state\u003e",
+      "revId": "f16b9614298e7f0a820435f2dab2a856b487bf45",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
