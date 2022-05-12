@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "c7c7cf16_ab99d0e6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-12T08:58:41Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "82e6f806_e8ab2a68",
+      "range": {
+        "startLine": 213,
+        "startChar": 24,
+        "endLine": 213,
+        "endChar": 46
+      },
+      "revId": "fec856af8b3c1370fb912a7f8c401afd5362b2f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d07879c2_62fe73d1",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/YangModelCmHandleRetriever.java",
         "patchSetId": 6
@@ -93,6 +117,30 @@
       "revId": "fec856af8b3c1370fb912a7f8c401afd5362b2f2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "20ef37d4_2dcc7b53",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/YangModelCmHandleRetriever.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-12T08:58:41Z",
+      "side": 1,
+      "message": "have to lookat this when we have tehnew model!",
+      "parentUuid": "97e96bb4_a5a5f883",
+      "range": {
+        "startLine": 62,
+        "startChar": 34,
+        "endLine": 62,
+        "endChar": 40
+      },
+      "revId": "fec856af8b3c1370fb912a7f8c401afd5362b2f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -190,6 +238,30 @@
     },
     {
       "key": {
+        "uuid": "a51ff61c_d5702b5d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-12T08:58:41Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ea350f01_f38d4888",
+      "range": {
+        "startLine": 47,
+        "startChar": 48,
+        "endLine": 47,
+        "endChar": 58
+      },
+      "revId": "fec856af8b3c1370fb912a7f8c401afd5362b2f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d003db99_149020ec",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/YangModelCmHandleRetrieverSpec.groovy",
         "patchSetId": 6
@@ -234,6 +306,30 @@
       "revId": "fec856af8b3c1370fb912a7f8c401afd5362b2f2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8329d6b3_cbce3ae8",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/YangModelCmHandleRetrieverSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-12T08:58:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9c33fc5c_331d275e",
+      "range": {
+        "startLine": 39,
+        "startChar": 18,
+        "endLine": 39,
+        "endChar": 37
+      },
+      "revId": "fec856af8b3c1370fb912a7f8c401afd5362b2f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
