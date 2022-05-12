@@ -23,10 +23,8 @@
 package org.onap.cps.spi;
 
 import java.util.Collection;
-import java.util.Set;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
 import org.onap.cps.spi.model.Anchor;
-import org.onap.cps.spi.model.CmHandleQueryParameters;
 
 /*
     Service for handling CPS admin data.
@@ -101,12 +99,4 @@ public interface CpsAdminPersistenceService {
      * @param anchorName anchor name
      */
     void deleteAnchor(String dataspaceName, String anchorName);
-
-    /**
-     * Query and return cm handles that match the given query parameters.
-     *
-     * @param cmHandleQueryParameters the cm handle query parameters
-     * @return collection of cm handle ids
-     */
-    Set<String> queryCmHandles(CmHandleQueryParameters cmHandleQueryParameters);
 }

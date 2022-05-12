@@ -21,13 +21,11 @@
 package org.onap.cps.ncmp.api.inventory;
 
 import java.time.OffsetDateTime;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.CpsDataService;
+import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
-import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
@@ -98,16 +96,7 @@ public class InventoryPersistence {
      */
     public YangModelCmHandle getYangModelCmHandle(final String cmHandleId) {
         CpsValidator.validateNameCharacters(cmHandleId);
-        final DataNode cmHandleDataNode = getCmHandleDataNode(cmHandleId);
-        final NcmpServiceCmHandle ncmpServiceCmHandle = new NcmpServiceCmHandle();
-        ncmpServiceCmHandle.setCmHandleId(cmHandleId);
-        populateCmHandleDetails(cmHandleDataNode, ncmpServiceCmHandle);
-        return YangModelCmHandle.toYangModelCmHandle(
-            (String) cmHandleDataNode.getLeaves().get("dmi-service-name"),
-            (String) cmHandleDataNode.getLeaves().get("dmi-data-service-name"),
-            (String) cmHandleDataNode.getLeaves().get("dmi-model-service-name"),
-            ncmpServiceCmHandle
-        );
+        return YangDataConverter.convertCmHandleToYangModel(getCmHandleDataNode(cmHandleId), cmHandleId);
     }
 
     private DataNode getCmHandleDataNode(final String cmHandle) {
@@ -116,31 +105,6 @@ public class InventoryPersistence {
             NCMP_DMI_REGISTRY_ANCHOR,
             xpathForDmiRegistryToFetchCmHandle,
             FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
-    }
-
-    private static void populateCmHandleDetails(final DataNode cmHandleDataNode,
-                                                final NcmpServiceCmHandle ncmpServiceCmHandle) {
-        final Map<String, String> dmiProperties = new LinkedHashMap<>();
-        final Map<String, String> publicProperties = new LinkedHashMap<>();
-        final CompositeStateBuilder compositeStateBuilder = new CompositeStateBuilder();
-        CompositeState compositeState = compositeStateBuilder.build();
-        for (final DataNode childDataNode: cmHandleDataNode.getChildDataNodes()) {
-            if (childDataNode.getXpath().contains("/additional-properties[@name=")) {
-                addProperty(childDataNode, dmiProperties);
-            } else if (childDataNode.getXpath().contains("/public-properties[@name=")) {
-                addProperty(childDataNode, publicProperties);
-            } else if (childDataNode.getXpath().endsWith("/state")) {
-                compositeState = compositeStateBuilder.fromDataNode(childDataNode).build();
-            }
-        }
-        ncmpServiceCmHandle.setDmiProperties(dmiProperties);
-        ncmpServiceCmHandle.setPublicProperties(publicProperties);
-        ncmpServiceCmHandle.setCompositeState(compositeState);
-    }
-
-    private static void addProperty(final DataNode propertyDataNode, final Map<String, String> propertiesAsMap) {
-        propertiesAsMap.put(String.valueOf(propertyDataNode.getLeaves().get("name")),
-            String.valueOf(propertyDataNode.getLeaves().get("value")));
     }
 
 }

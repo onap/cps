@@ -20,22 +20,24 @@
 
 package org.onap.cps.ncmp.api.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Collections;
-import java.util.Map;
+import java.util.List;
 import javax.validation.Valid;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
 @Getter
-@JsonInclude(Include.NON_NULL)
+@Setter
+@EqualsAndHashCode
+@JsonInclude(Include.NON_EMPTY)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class CmHandleQueryApiParameters {
-
-    @JsonProperty("publicCmHandleProperties")
+    @JsonProperty("cmHandleQueryParameters")
     @Valid
-    private Map<String, String> publicProperties = Collections.emptyMap();
-
+    private List<ConditionApiProperties> cmHandleQueryParameters = Collections.emptyList();
 }
