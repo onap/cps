@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "23bc5a68_a6e7d1f2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/NcmpConfiguration.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-05-12T09:00:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c200b69_338a11aa",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 23
+      },
+      "revId": "b35ac010c3764e300df0e9fafaa1fce354ecfa00",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "36b9fab5_a8e634d4",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/NcmpConfiguration.java",
         "patchSetId": 17
@@ -45,6 +69,30 @@
       "revId": "b35ac010c3764e300df0e9fafaa1fce354ecfa00",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df2f28c8_9cc897da",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/NcmpConfiguration.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-05-12T09:00:49Z",
+      "side": 1,
+      "message": "As commented on previous patch - it is stated for clarity - see\nhttps://gerrit.onap.org/r/c/cps/+/129154/15/cps-ri/src/main/java/org/onap/cps/spi/config/CpsSessionFactory.java#35",
+      "parentUuid": "36b9fab5_a8e634d4",
+      "range": {
+        "startLine": 57,
+        "startChar": 5,
+        "endLine": 57,
+        "endChar": 10
+      },
+      "revId": "b35ac010c3764e300df0e9fafaa1fce354ecfa00",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "740e7c3e_e6bc211b",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/config/CpsSessionFactory.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-05-12T09:00:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b6e10ba2_6a791a3b",
+      "range": {
+        "startLine": 35,
+        "startChar": 1,
+        "endLine": 35,
+        "endChar": 6
+      },
+      "revId": "b35ac010c3764e300df0e9fafaa1fce354ecfa00",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bfcad6b0_827a39d0",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/utils/SessionManagerIntegrationSpec.groovy",
         "patchSetId": 17
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "fc12ea5f_952deb07",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/utils/SessionManagerIntegrationSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-05-12T09:00:49Z",
+      "side": 1,
+      "message": "1. i put it \u0027WITH_COMMIT\u0027 to be consistent with the use of locks (locks can only be released with close session with commit as rollback functionality with locking does not exist)\n2. the session that is closed on line 69 is \u0027otherSessionId\u0027 not the session held by objectUnderTest",
+      "parentUuid": "bfcad6b0_827a39d0",
+      "range": {
+        "startLine": 47,
+        "startChar": 64,
+        "endLine": 47,
+        "endChar": 75
+      },
+      "revId": "b35ac010c3764e300df0e9fafaa1fce354ecfa00",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fd11edfa_c311761e",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/utils/SessionManagerSpec.groovy",
         "patchSetId": 17
@@ -114,6 +210,54 @@
       "revId": "b35ac010c3764e300df0e9fafaa1fce354ecfa00",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0405e21e_8c479aa7",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/utils/SessionManagerSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-05-12T09:00:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fd11edfa_c311761e",
+      "range": {
+        "startLine": 58,
+        "startChar": 40,
+        "endLine": 58,
+        "endChar": 52
+      },
+      "revId": "b35ac010c3764e300df0e9fafaa1fce354ecfa00",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "94aa7012_449c1d6a",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/utils/SessionManagerSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-05-12T09:00:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fd11edfa_c311761e",
+      "range": {
+        "startLine": 58,
+        "startChar": 40,
+        "endLine": 58,
+        "endChar": 52
+      },
+      "revId": "b35ac010c3764e300df0e9fafaa1fce354ecfa00",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
