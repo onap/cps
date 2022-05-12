@@ -25,6 +25,29 @@
     },
     {
       "key": {
+        "uuid": "1b393fea_22fb0e99",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/utils/SessionManagerSpec.groovy",
+        "patchSetId": 18
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-12T09:30:42Z",
+      "side": 1,
+      "message": "this can be in a setup method so you dont have to repeat it everywhere\n(might as well use sesison1 and transaction1 in all  tests)",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 61
+      },
+      "revId": "c0740015454f15c6221c635733d86bdb91d4a579",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c33e61af_ed12e18a",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/utils/SessionManagerSpec.groovy",
         "patchSetId": 18
