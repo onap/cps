@@ -173,5 +173,4 @@ public interface CpsDataPersistenceService {
      * @param timeoutInMilliseconds lock attempt timeout in milliseconds
      */
     void lockAnchor(String sessionID, String dataspaceName, String anchorName, Long timeoutInMilliseconds);
-
 }

@@ -31,7 +31,6 @@ import org.onap.cps.spi.exceptions.DataspaceNotFoundException
 import org.onap.cps.spi.exceptions.SchemaSetNotFoundException
 import org.onap.cps.spi.exceptions.ModuleNamesNotFoundException
 import org.onap.cps.spi.model.Anchor
-import org.onap.cps.spi.model.CmHandleQueryParameters
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.jdbc.Sql
 import org.testcontainers.shaded.com.fasterxml.jackson.databind.ObjectMapper
@@ -45,7 +44,6 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
     ObjectMapper objectMapper
 
     static final String SET_DATA = '/data/anchor.sql'
-    static final String SET_FRAGMENT_DATA = '/data/fragment.sql'
     static final String SAMPLE_DATA_FOR_ANCHORS_WITH_MODULES = '/data/anchors-schemaset-modules.sql'
     static final String DATASPACE_WITH_NO_DATA = 'DATASPACE-002-NO-DATA'
     static final Integer DELETED_ANCHOR_ID = 3002
@@ -224,22 +222,5 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
             'dataspace name does not exist' | 'unknown'       || DataspaceNotFoundException | 'unknown does not exist'
             'dataspace contains an anchor'  | 'DATASPACE-001' || DataspaceInUseException    | 'contains 2 anchor(s)'
             'dataspace contains schemasets' | 'DATASPACE-003' || DataspaceInUseException    | 'contains 1 schemaset(s)'
-    }
-
-    @Sql([CLEAR_DATA, SET_FRAGMENT_DATA])
-    def 'Retrieve cm handle ids when #scenario.'() {
-        when: 'the service is invoked'
-            def cmHandleQueryParameters = new CmHandleQueryParameters()
-            cmHandleQueryParameters.setPublicProperties(publicProperties)
-            def returnedCmHandles = objectUnderTest.queryCmHandles(cmHandleQueryParameters)
-        then: 'the correct expected cm handles are returned'
-            returnedCmHandles == expectedCmHandleIds
-        where: 'the following data is used'
-            scenario                                       | publicProperties                                                                              || expectedCmHandleIds
-            'single matching property'                     | ['Contact' : 'newemailforstore@bookstore.com']                                                || ['PNFDemo2', 'PNFDemo', 'PNFDemo4'] as Set
-            'public property dont match'                   | ['wont_match' : 'wont_match']                                                                 || [] as Set
-            '2 properties, only one match (and)'           | ['Contact' : 'newemailforstore@bookstore.com', 'Contact2': 'newemailforstore2@bookstore.com'] || ['PNFDemo4'] as Set
-            '2 properties, no match (and)'                 | ['Contact' : 'newemailforstore@bookstore.com', 'Contact2': '']                                || [] as Set
-            'No public properties - return all cm handles' | [ : ]                                                                                         || ['PNFDemo3', 'PNFDemo', 'PNFDemo2', 'PNFDemo4'] as Set
     }
 }
