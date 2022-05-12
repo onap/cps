@@ -25,6 +25,8 @@ package org.onap.cps.ncmp.api.impl
 import org.onap.cps.ncmp.api.impl.exception.HttpClientRequestException
 import org.onap.cps.ncmp.api.impl.operations.YangModelCmHandleRetriever
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
+import org.onap.cps.ncmp.api.models.CmHandleQueryApiParameters
+import org.onap.cps.ncmp.api.models.ConditionApiProperties
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import org.onap.cps.spi.exceptions.DataValidationException
@@ -270,13 +272,6 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             thrown(DataValidationException)
         and: 'CPS module services is not invoked'
             0 * mockCpsModuleService.getYangResourcesModuleReferences(_, _)
-    }
-
-    def 'Get cm handle identifiers for the given module names.'() {
-        when: 'execute a cm handle search for the given module names'
-            objectUnderTest.executeCmHandleHasAllModulesSearch(['some-module-name'])
-        then: 'get anchor identifiers is invoked  with the expected parameters'
-            1 * mockCpsAdminService.queryAnchorNames('NFP-Operational', ['some-module-name'])
     }
 
     def 'Get a cm handle.'() {
