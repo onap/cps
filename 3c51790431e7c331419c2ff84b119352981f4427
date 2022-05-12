@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "2f57fc0c_ea246c55",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/NcmpConfiguration.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-12T15:19:15Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "dcc5238b_37315ef1",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 17
+      },
+      "revId": "3c51790431e7c331419c2ff84b119352981f4427",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c26920fe_c01a9496",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/NcmpConfiguration.java",
         "patchSetId": 9
@@ -93,6 +117,30 @@
       "revId": "3c51790431e7c331419c2ff84b119352981f4427",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5ddde146_6be48427",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/NcmpConfiguration.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-12T15:19:15Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0ae07cae_974b988c",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 56
+      },
+      "revId": "3c51790431e7c331419c2ff84b119352981f4427",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
