@@ -1,0 +1,45 @@
+{
+    "stores:bookstore": {
+        "categories": [
+            {
+                "code": "02",
+                "books": [
+                    {
+                        "title": "A Horror book",
+                        "price": "2000",
+                        "pub_year": 2003,
+                        "lang": "English",
+                        "authors": [
+                            "Joe & Rahul"
+                        ]
+                    },
+                    {
+                        "title": "A New book in existing category",
+                        "price": "2000",
+                        "pub_year": 2003,
+                        "lang": "English",
+                        "authors": [
+                            "Joe & Rahul"
+                        ]
+                    }
+                ],
+                "name": "Horror"
+            },
+            {
+                "code": "100",
+                "books": [
+                    {
+                        "title": "A new book in a new category",
+                        "price": "2011",
+                        "pub_year": 2019,
+                        "lang": "English",
+                        "authors": [
+                            "Rahul"
+                        ]
+                    }
+                ],
+                "name": "Category100"
+            }
+        ]
+    }
+}
