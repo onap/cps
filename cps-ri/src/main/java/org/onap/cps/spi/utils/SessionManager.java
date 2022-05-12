@@ -29,44 +29,54 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
+import javax.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.HibernateException;
 import org.hibernate.LockMode;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
+import org.onap.cps.spi.config.CpsSessionFactory;
 import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.DataspaceEntity;
-import org.onap.cps.spi.entities.SchemaSetEntity;
-import org.onap.cps.spi.entities.YangResourceEntity;
 import org.onap.cps.spi.exceptions.SessionManagerException;
 import org.onap.cps.spi.exceptions.SessionTimeoutException;
 import org.onap.cps.spi.repository.AnchorRepository;
 import org.onap.cps.spi.repository.DataspaceRepository;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
 @Slf4j
 @Component
+@Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
 public class SessionManager {
 
+    private final CpsSessionFactory cpsSessionFactory;
     private final TimeLimiterProvider timeLimiterProvider;
     private final DataspaceRepository dataspaceRepository;
     private final AnchorRepository anchorRepository;
-    private static SessionFactory sessionFactory;
-    private static ConcurrentHashMap<String, Session> sessionMap = new ConcurrentHashMap<>();
+    private final ConcurrentHashMap<String, Session> sessionMap = new ConcurrentHashMap<>();
+    public static final boolean WITH_COMMIT = true;
+    public static final boolean WITH_ROLLBACK = false;
 
-    private synchronized void buildSessionFactory() {
-        if (sessionFactory == null) {
-            sessionFactory = new Configuration().configure("hibernate.cfg.xml")
-                    .addAnnotatedClass(AnchorEntity.class)
-                    .addAnnotatedClass(DataspaceEntity.class)
-                    .addAnnotatedClass(SchemaSetEntity.class)
-                    .addAnnotatedClass(YangResourceEntity.class)
-                    .buildSessionFactory();
+    @PostConstruct
+    private void postConstruct() {
+        final Thread shutdownHook = new Thread(this::closeAllSessionsInShutdown);
+        Runtime.getRuntime().addShutdownHook(shutdownHook);
+    }
+
+    private void closeAllSessionsInShutdown() {
+        for (final String sessionId : sessionMap.keySet()) {
+            try {
+                closeSession(sessionId, WITH_ROLLBACK);
+                log.info("Session with session ID {} rolled back and closed", sessionId);
+            } catch (final Exception e) {
+                log.warn("Session with session ID {} failed to close", sessionId);
+            }
         }
+        cpsSessionFactory.closeSessionFactory();
     }
 
     /**
@@ -75,8 +85,7 @@ public class SessionManager {
      * @return Session ID string
      */
     public String startSession() {
-        buildSessionFactory();
-        final Session session = sessionFactory.openSession();
+        final Session session = cpsSessionFactory.openSession();
         final String sessionId = UUID.randomUUID().toString();
         sessionMap.put(sessionId, session);
         session.beginTransaction();
@@ -85,14 +94,20 @@ public class SessionManager {
 
     /**
      * Close session.
-     * Locks will be released and changes will be committed.
+     * Changes are committed when commit boolean is set to true.
+     * Rollback will execute when commit boolean is set to false.
      *
      * @param sessionId session ID
+     * @param commit indicator whether session will commit or rollback
      */
-    public void closeSession(final String sessionId) {
+    public void closeSession(final String sessionId, final boolean commit) {
         try {
             final Session session = getSession(sessionId);
-            session.getTransaction().commit();
+            if (commit) {
+                session.getTransaction().commit();
+            } else {
+                session.getTransaction().rollback();
+            }
             session.close();
         } catch (final HibernateException e) {
             throw new SessionManagerException("Cannot close session",
@@ -162,4 +177,5 @@ public class SessionManager {
         }
         return session;
     }
+
 }
