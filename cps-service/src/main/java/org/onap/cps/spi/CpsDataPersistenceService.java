@@ -25,6 +25,7 @@ package org.onap.cps.spi;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import org.onap.cps.spi.model.CmHandleQueryParameters;
 import org.onap.cps.spi.model.DataNode;
 
 /*
@@ -174,4 +175,11 @@ public interface CpsDataPersistenceService {
      */
     void lockAnchor(String sessionID, String dataspaceName, String anchorName, Long timeoutInMilliseconds);
 
+    /**
+     * Query and return cm handles that match the given query parameters.
+     *
+     * @param cmHandleQueryParameters the cm handle query parameters
+     * @return collection of cm handles
+     */
+    Collection<DataNode> queryCmHandles(CmHandleQueryParameters cmHandleQueryParameters);
 }

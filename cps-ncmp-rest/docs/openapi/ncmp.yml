@@ -258,14 +258,16 @@ executeCmHandleSearch:
       content:
         application/json:
           schema:
-            $ref: 'components.yaml#/components/schemas/Conditions'
+            $ref: 'components.yaml#/components/schemas/CmHandleQueryRestParameters'
     responses:
       200:
         description: OK
         content:
           application/json:
             schema:
-              $ref: 'components.yaml#/components/schemas/CmHandles'
+              type: array
+              items:
+                $ref: 'components.yaml#/components/schemas/RestOutputCmHandle'
       400:
         $ref: 'components.yaml#/components/responses/BadRequest'
       401:
@@ -296,13 +298,13 @@ retrieveCmHandleDetailsById:
       500:
         $ref: 'components.yaml#/components/responses/InternalServerError'
 
-queryCmHandles:
+executeCmHandleIdSearch:
   post:
     description: Execute cm handle query search
     tags:
       - network-cm-proxy
     summary: Execute cm handle query upon a given set of query parameters
-    operationId: queryCmHandles
+    operationId: executeCmHandleIdSearch
     requestBody:
       required: true
       content:
