@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "56852fe4_b90a3c67",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-05-13T14:47:32Z",
+      "side": 1,
+      "message": "It was ConditionProperties, I think ModuleConditionProperties is better,\n because it is a query parameter for modules.\nBut I don\u0027t stick to it.",
+      "parentUuid": "5366a7b1_97141526",
+      "range": {
+        "startLine": 162,
+        "startChar": 4,
+        "endLine": 162,
+        "endChar": 29
+      },
+      "revId": "e416799d3a47ee9c923e6b509b970ba9a5946b69",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5c65e577_d88837de",
         "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2022-05-12T16:07:25Z",
       "side": 1,
       "message": "conditionProperties (as it was)",
+      "range": {
+        "startLine": 163,
+        "startChar": 6,
+        "endLine": 163,
+        "endChar": 16
+      },
+      "revId": "e416799d3a47ee9c923e6b509b970ba9a5946b69",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2634172_63716a39",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-05-13T14:47:32Z",
+      "side": 1,
+      "message": "It is a keyword in openapi, maybe you thought the conditionParameters four row bellow.",
+      "parentUuid": "5c65e577_d88837de",
       "range": {
         "startLine": 163,
         "startChar": 6,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "ffdbb0b9_a3fb4faf",
+        "filename": "cps-ncmp-rest/docs/openapi/openapi.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-05-13T14:47:32Z",
+      "side": 1,
+      "message": "I sure it this is a backward incompatible change.\nWe change this endpoint, and the other endpoints input and output type,\nso it is must be backward incompatible.\nI think after it is not a WIP change, we/I can hold a meeting with stakeholders,\nbut I don\u0027t know the protocol.",
+      "parentUuid": "67982970_8dcb0aba",
+      "range": {
+        "startLine": 44,
+        "startChar": 2,
+        "endLine": 44,
+        "endChar": 21
+      },
+      "revId": "e416799d3a47ee9c923e6b509b970ba9a5946b69",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0bae4dc5_7c6872f9",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
         "patchSetId": 1
@@ -91,6 +163,30 @@
       "revId": "e416799d3a47ee9c923e6b509b970ba9a5946b69",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e71e898_54ac62fa",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-05-13T14:47:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0bae4dc5_7c6872f9",
+      "range": {
+        "startLine": 203,
+        "startChar": 16,
+        "endLine": 203,
+        "endChar": 114
+      },
+      "revId": "e416799d3a47ee9c923e6b509b970ba9a5946b69",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "d45f4887_ebfd1495",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-05-13T14:47:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "46f9d8bf_76af45c3",
+      "range": {
+        "startLine": 204,
+        "startChar": 34,
+        "endLine": 204,
+        "endChar": 111
+      },
+      "revId": "e416799d3a47ee9c923e6b509b970ba9a5946b69",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "21bf6179_23f6ce6f",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
         "patchSetId": 1
@@ -137,6 +257,30 @@
       "revId": "e416799d3a47ee9c923e6b509b970ba9a5946b69",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "77552b7f_6b571b14",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-05-13T14:47:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "21bf6179_23f6ce6f",
+      "range": {
+        "startLine": 217,
+        "startChar": 13,
+        "endLine": 217,
+        "endChar": 110
+      },
+      "revId": "e416799d3a47ee9c923e6b509b970ba9a5946b69",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
