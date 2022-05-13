@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cc1e336b_48c3b558",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 29
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-13T08:47:10Z",
+      "side": 1,
+      "message": "did we define this name (I presume not)\nif we do add \"_in_ms\"",
+      "range": {
+        "startLine": 101,
+        "startChar": 12,
+        "endLine": 101,
+        "endChar": 26
+      },
+      "revId": "e51e81fd79aebcbc828c60dfb7f3adaec9d7f741",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0794914d_3a210182",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/ncmp-async-request-response-event-schema-v1.json",
+        "patchSetId": 29
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-13T08:47:10Z",
+      "side": 1,
+      "message": "NB: but i would prefer to have the properties in a logical consistent order (applies to ALA event asl in DMI plugin)\nlooking at the studies (which are not consistent) i would recommend\n\n\n1) eventId\n2) eventCorrelationId\n3) eventTime\n3) eventTarget\n4) eventType\n5) eventSchema\n6) event/forwardedEvent",
+      "range": {
+        "startLine": 30,
+        "startChar": 9,
+        "endLine": 30,
+        "endChar": 18
+      },
+      "revId": "e51e81fd79aebcbc828c60dfb7f3adaec9d7f741",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dbd44897_e79c3f9a",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-13T08:47:10Z",
+      "side": 1,
+      "message": "time-out-in-millis",
+      "range": {
+        "startLine": 85,
+        "startChar": 42,
+        "endLine": 85,
+        "endChar": 56
+      },
+      "revId": "e51e81fd79aebcbc828c60dfb7f3adaec9d7f741",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "58f0f99a_df05f19a",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-13T08:47:10Z",
+      "side": 1,
+      "message": "suggestion: maybe do the same as in dmi-pluhin and extract the async tasks in a separate method to increase readability",
+      "range": {
+        "startLine": 139,
+        "startChar": 0,
+        "endLine": 143,
+        "endChar": 34
+      },
+      "revId": "e51e81fd79aebcbc828c60dfb7f3adaec9d7f741",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6cf221df_be1c67d2",
+        "filename": "cps-ncmp-rest/src/test/resources/application.yml",
+        "patchSetId": 29
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-13T08:47:10Z",
+      "side": 1,
+      "message": "in-millis",
+      "range": {
+        "startLine": 28,
+        "startChar": 21,
+        "endLine": 28,
+        "endChar": 26
+      },
+      "revId": "e51e81fd79aebcbc828c60dfb7f3adaec9d7f741",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "819f3517_d17c3186",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/async/NcmpAsyncRequestResponseEventUtil.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-13T08:47:10Z",
+      "side": 1,
+      "message": "I am a stickler for order(consistency)\nAs per the comment on the event schema use a logical order and then populate the data in the same order here",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 98
+      },
+      "revId": "e51e81fd79aebcbc828c60dfb7f3adaec9d7f741",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "66b7fedc_c5869cbc",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/CpsAsyncRequestResponseEventSpec.groovy",
+        "patchSetId": 29
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-13T08:47:10Z",
+      "side": 1,
+      "message": "always check your use of \" in Groovy specs :-)",
+      "range": {
+        "startLine": 87,
+        "startChar": 32,
+        "endLine": 87,
+        "endChar": 33
+      },
+      "revId": "e51e81fd79aebcbc828c60dfb7f3adaec9d7f741",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "64dfdd45_4c085cc4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/CpsAsyncRequestResponseEventSpec.groovy",
+        "patchSetId": 29
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-13T08:47:10Z",
+      "side": 1,
+      "message": "can we have a quick call about this test befoer you submit again?",
+      "range": {
+        "startLine": 91,
+        "startChar": 10,
+        "endLine": 94,
+        "endChar": 13
+      },
+      "revId": "e51e81fd79aebcbc828c60dfb7f3adaec9d7f741",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b1206854_7a360880",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/CpsAsyncRequestResponseEventSpec.groovy",
+        "patchSetId": 29
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-13T08:47:10Z",
+      "side": 1,
+      "message": "\u0027",
+      "range": {
+        "startLine": 115,
+        "startChar": 28,
+        "endLine": 115,
+        "endChar": 29
+      },
+      "revId": "e51e81fd79aebcbc828c60dfb7f3adaec9d7f741",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
