@@ -34,6 +34,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.onap.cps.ncmp.api.impl.operations.RequiredDmiService;
+import org.onap.cps.ncmp.api.inventory.CmHandleState;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.utils.CpsValidator;
 
@@ -56,7 +57,7 @@ public class YangModelCmHandle {
     private String dmiDataServiceName;
 
     @JsonProperty("state")
-    private String cmHandleState;
+    private CmHandleState cmHandleState;
 
     @JsonProperty("dmi-model-service-name")
     private String dmiModelServiceName;

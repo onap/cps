@@ -24,6 +24,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.ncmp.api.impl.operations.YangModelCmHandleRetriever
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
+import org.onap.cps.ncmp.api.inventory.CmHandleState
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.model.DataNode
@@ -67,10 +68,10 @@ class SyncUtilsSpec extends Specification{
 
     def 'Update cm handle state from Advised to Ready'() {
         given: 'a yang model cm handle and the expected json data'
-            def yangModelCmHandle = new YangModelCmHandle('id': 'Some-Cm-Handle', 'cmHandleState': 'ADVISED')
+            def yangModelCmHandle = new YangModelCmHandle(id: 'Some-Cm-Handle', cmHandleState: CmHandleState.ADVISED)
             def expectedJsonData = '{"cm-handles":[{"id":"Some-Cm-Handle","state":"READY"}]}'
         when: 'update cm handle state is called'
-            objectUnderTest.updateCmHandleState(yangModelCmHandle, 'READY')
+            objectUnderTest.updateCmHandleState(yangModelCmHandle, CmHandleState.READY)
         then: 'update data note leaves is invoked with the correct params'
             1 * mockCpsDataService.updateNodeLeaves('NCMP-Admin', 'ncmp-dmi-registry', '/dmi-registry', expectedJsonData, _ as OffsetDateTime)
     }

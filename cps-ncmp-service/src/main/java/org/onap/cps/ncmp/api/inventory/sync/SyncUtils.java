@@ -32,6 +32,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.ncmp.api.impl.operations.YangModelCmHandleRetriever;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
+import org.onap.cps.ncmp.api.inventory.CmHandleState;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
@@ -74,10 +75,10 @@ public class SyncUtils {
      * Update the Cm Handle state to "READY".
      *
      * @param yangModelCmHandle yang model cm handle
-     * @param state cm handle state
+     * @param cmHandleState cm handle state
      */
-    public void updateCmHandleState(final YangModelCmHandle yangModelCmHandle, final String state) {
-        yangModelCmHandle.setCmHandleState(state);
+    public void updateCmHandleState(final YangModelCmHandle yangModelCmHandle, final CmHandleState cmHandleState) {
+        yangModelCmHandle.setCmHandleState(cmHandleState);
         final String cmHandleJsonData = String.format("{\"cm-handles\":[%s]}",
             jsonObjectMapper.asJsonString(yangModelCmHandle));
         cpsDataService.updateNodeLeaves(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NCMP_DMI_REGISTRY_PARENT,

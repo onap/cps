@@ -21,7 +21,9 @@
 package org.onap.cps.ncmp.api.impl.config;
 
 import java.util.Arrays;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -30,10 +32,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+@EnableScheduling
 @Configuration
+@RequiredArgsConstructor(access = AccessLevel.PROTECTED)
 public class NcmpConfiguration {
 
     @Getter
@@ -68,4 +73,5 @@ public class NcmpConfiguration {
             Arrays.asList(MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN));
         restTemplate.getMessageConverters().add(mappingJackson2HttpMessageConverter);
     }
+
 }
