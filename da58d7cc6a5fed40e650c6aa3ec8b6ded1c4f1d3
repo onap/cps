@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "203b03dc_684e119a",
+        "filename": "cps-ncmp-rest-stub/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-05-16T11:43:58Z",
+      "side": 1,
+      "message": "This is a new file I believe so only one copyright required",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 46
+      },
+      "revId": "da58d7cc6a5fed40e650c6aa3ec8b6ded1c4f1d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0493f1e3_879728c6",
+        "filename": "cps-ncmp-rest-stub/src/main/java/org/onap/cps/ncmp/rest/stub/Application.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-05-16T11:43:58Z",
+      "side": 1,
+      "message": "2022",
+      "range": {
+        "startLine": 3,
+        "startChar": 17,
+        "endLine": 3,
+        "endChar": 22
+      },
+      "revId": "da58d7cc6a5fed40e650c6aa3ec8b6ded1c4f1d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "482c23e5_2eb2a8d5",
+        "filename": "cps-ncmp-rest-stub/src/main/java/org/onap/cps/ncmp/rest/stub/controller/NetworkCmProxyStubController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-05-16T11:43:58Z",
+      "side": 1,
+      "message": "This will only be thrown is topic is null but if they mean to test more than one variation they might get false positives. It depends on how close to the functionality they would like versus time effort on our part. What are the teams thoughts?",
+      "range": {
+        "startLine": 174,
+        "startChar": 8,
+        "endLine": 174,
+        "endChar": 83
+      },
+      "revId": "da58d7cc6a5fed40e650c6aa3ec8b6ded1c4f1d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b4745b82_ad4d307f",
+        "filename": "cps-ncmp-rest-stub/src/test/java/org/onap/cps/TestApplication.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-05-16T11:43:58Z",
+      "side": 1,
+      "message": "copy paste issue :)",
+      "range": {
+        "startLine": 3,
+        "startChar": 3,
+        "endLine": 3,
+        "endChar": 36
+      },
+      "revId": "da58d7cc6a5fed40e650c6aa3ec8b6ded1c4f1d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
