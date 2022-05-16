@@ -43,11 +43,12 @@ public class ModuleSyncWatchdog {
     public void executeAdvisedCmHandlePoll() {
         YangModelCmHandle advisedCmHandle = syncUtils.getAnAdvisedCmHandle();
         while (advisedCmHandle != null) {
-            final CmHandleState cmHandleState = advisedCmHandle.getCmHandleState();
+            final CmHandleState cmHandleState = advisedCmHandle.getStateModel().getCmhandleState();
             moduleSyncService.syncAndCreateSchemaSet(advisedCmHandle);
             // ToDo Lock Cm Handle if module sync fails
             syncUtils.updateCmHandleState(advisedCmHandle, cmHandleState.ready());
-            log.info("{} is now in {} state", advisedCmHandle.getId(), advisedCmHandle.getCmHandleState());
+            log.info("{} is now in {} state", advisedCmHandle.getId(),
+                    advisedCmHandle.getStateModel().getCmhandleState());
             advisedCmHandle = syncUtils.getAnAdvisedCmHandle();
         }
         log.debug("No Cm-Handles currently found in an ADVISED state");
