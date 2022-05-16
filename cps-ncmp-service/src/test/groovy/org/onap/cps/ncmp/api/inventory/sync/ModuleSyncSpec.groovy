@@ -1,6 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Nordix Foundation
+ *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -53,4 +54,15 @@ class ModuleSyncSpec extends Specification {
             1 * mockSyncUtils.updateCmHandleState(yangModelCmHandle2, CmHandleState.READY)
     }
 
+    def 'Schedule a Cm-Handle Sync for LOCKED Cm-Handles'() {
+        given: 'cm handles in an advised state'
+            def yangModelCmHandle1 = new YangModelCmHandle(cmHandleState: CmHandleState.LOCKED)
+            def yangModelCmHandle2 = new YangModelCmHandle(cmHandleState: CmHandleState.LOCKED)
+        and: 'sync utilities return a cm handle twice'
+            mockSyncUtils.getLockedCmHandle() >> [yangModelCmHandle1, yangModelCmHandle2]
+        when: 'module sync poll is executed'
+            objectUnderTest.executeLockedCmHandlePoll()
+        then: 'the first cm handle is updated to state "ADVISED" from "READY"'
+            1 * mockSyncUtils.updateCmHandleState(yangModelCmHandle1, CmHandleState.ADVISED)
+    }
 }

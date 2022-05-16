@@ -1,6 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Nordix Foundation
+ *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -26,6 +27,7 @@ import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NCMP_DMI
 
 import java.security.SecureRandom;
 import java.time.OffsetDateTime;
+import java.util.Collections;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -70,6 +72,25 @@ public class SyncUtils {
             .get("id").toString();
         return yangModelCmHandleRetriever.getYangModelCmHandle(cmHandleId);
     }
+
+    /**
+     * Query data nodes for cm handles with an "LOCKED" cm handle state".
+     *
+     * @return a random yang model cm handle with an ADVISED state, return null if not found
+     */
+    public List<YangModelCmHandle> getLockedCmHandle() {
+        final List<DataNode> lockedCmHandleList = cpsDataPersistenceService.queryDataNodes("NCMP-Admin",
+            "ncmp-dmi-registry", "//cm-handles[@state=\"LOCKED\"]",
+            FetchDescendantsOption.OMIT_DESCENDANTS);
+        final List<YangModelCmHandle> yangModelCmHandlelist = Collections.emptyList();
+        for (final DataNode lockedCmHandleDataNode: lockedCmHandleList) {
+            final String cmHandleId = lockedCmHandleDataNode.getLeaves()
+                .get("id").toString();
+            yangModelCmHandlelist.add(yangModelCmHandleRetriever.getYangModelCmHandle(cmHandleId));
+        }
+        return yangModelCmHandlelist;
+    }
+
 
     /**
      * Update the Cm Handle state to "READY".

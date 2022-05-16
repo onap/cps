@@ -1,6 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Nordix Foundation
+ *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -29,7 +30,7 @@ class CmHandleStateSpec extends Specification{
         given: 'a cm handle with an ADVISED state'
             def cmHandleState = CmHandleState.ADVISED
         when: 'the state transitions to the READY state'
-            cmHandleState = cmHandleState.ready()
+            cmHandleState = cmHandleState.state()
         then: 'the cm handle state changes to READY'
             assert CmHandleState.READY == cmHandleState
     }
@@ -38,7 +39,7 @@ class CmHandleStateSpec extends Specification{
         given: 'a cm handle with a READY state'
             def cmHandleState = CmHandleState.READY
         when: 'the state transitions to READY state'
-            cmHandleState = cmHandleState.ready()
+            cmHandleState = cmHandleState.state()
         then: 'the cm handle state remains as READY'
             assert CmHandleState.READY == cmHandleState
     }
