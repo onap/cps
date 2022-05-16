@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "d7242a9c_02737e3d",
+        "filename": "cps-ncmp-rest/docs/openapi/openapi.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-05-16T16:22:59Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "47575f8a_1f7d6c47",
+      "range": {
+        "startLine": 44,
+        "startChar": 9,
+        "endLine": 44,
+        "endChar": 20
+      },
+      "revId": "80364dd6e57674946bd27db868ef30527c9338c4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b783ee81_26427549",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/NetworkCmProxyDataService.java",
         "patchSetId": 2
