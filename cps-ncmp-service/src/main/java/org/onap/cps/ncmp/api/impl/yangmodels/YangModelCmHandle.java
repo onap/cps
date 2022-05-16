@@ -34,7 +34,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.onap.cps.ncmp.api.impl.operations.RequiredDmiService;
-import org.onap.cps.ncmp.api.inventory.CmHandleState;
+import org.onap.cps.ncmp.api.inventory.StateModel;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.utils.CpsValidator;
 
@@ -57,7 +57,7 @@ public class YangModelCmHandle {
     private String dmiDataServiceName;
 
     @JsonProperty("state")
-    private CmHandleState cmHandleState;
+    private StateModel stateModel;
 
     @JsonProperty("dmi-model-service-name")
     private String dmiModelServiceName;
@@ -70,16 +70,15 @@ public class YangModelCmHandle {
 
     /**
      * Create a yangModelCmHandle.
-     * @param dmiServiceName dmi service name
-     * @param dmiDataServiceName dmi data service name
+     *
+     * @param dmiServiceName      dmi service name
+     * @param dmiDataServiceName  dmi data service name
      * @param dmiModelServiceName dmi model service name
      * @param ncmpServiceCmHandle the cm handle
      * @return instance of yangModelCmHandle
      */
-    public static YangModelCmHandle toYangModelCmHandle(final String dmiServiceName,
-                                                        final String dmiDataServiceName,
-                                                        final String dmiModelServiceName,
-                                                        final NcmpServiceCmHandle ncmpServiceCmHandle) {
+    public static YangModelCmHandle toYangModelCmHandle(final String dmiServiceName, final String dmiDataServiceName,
+            final String dmiModelServiceName, final NcmpServiceCmHandle ncmpServiceCmHandle) {
         CpsValidator.validateNameCharacters(ncmpServiceCmHandle.getCmHandleId());
         final YangModelCmHandle yangModelCmHandle = new YangModelCmHandle();
         yangModelCmHandle.setId(ncmpServiceCmHandle.getCmHandleId());
@@ -87,13 +86,13 @@ public class YangModelCmHandle {
         yangModelCmHandle.setDmiDataServiceName(dmiDataServiceName);
         yangModelCmHandle.setDmiModelServiceName(dmiModelServiceName);
         yangModelCmHandle.setDmiProperties(asYangModelCmHandleProperties(ncmpServiceCmHandle.getDmiProperties()));
-        yangModelCmHandle.setPublicProperties(asYangModelCmHandleProperties(
-            ncmpServiceCmHandle.getPublicProperties()));
+        yangModelCmHandle.setPublicProperties(asYangModelCmHandleProperties(ncmpServiceCmHandle.getPublicProperties()));
         return yangModelCmHandle;
     }
 
     /**
      * Resolve a dmi service name.
+     *
      * @param requiredService indicates what typo of service is required
      * @return dmi service name
      */
