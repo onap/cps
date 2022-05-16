@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "32d7123d_fd5da6e8",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-05-16T14:48:04Z",
+      "side": 1,
+      "message": "If I use the existing CmHandlePublicProperties the payload will look like this:\n{[{\"propname\":\"propvalue\"}]}\nBut we want:\n{\"publicCmHandleProperties\":[{\"publicprop\":\"propvalue\"}]}\nWhich is why I\u0027ve added RestOuputCmHandlePublicProperties. Instead I can add the object wrapper with the properties at the schema definition on line 314 of ncmp.yml? That would prevent the object from being generated.",
+      "parentUuid": "3f05f533_22fcafee",
+      "range": {
+        "startLine": 220,
+        "startChar": 4,
+        "endLine": 220,
+        "endChar": 38
+      },
+      "revId": "59005fff37c2a355dbbd749bfe7af72401a561ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "37d8269a_6a1f6094",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
         "patchSetId": 3
