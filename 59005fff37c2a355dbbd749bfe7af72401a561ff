@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "aeb25883_3db011c7",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-05-16T14:52:55Z",
+      "side": 1,
+      "message": "Yes I agree changes would be required in ncmp.yaml and that should be ok. The intend was to reuse these schemas wherever possible.",
+      "parentUuid": "32d7123d_fd5da6e8",
+      "range": {
+        "startLine": 220,
+        "startChar": 4,
+        "endLine": 220,
+        "endChar": 38
+      },
+      "revId": "59005fff37c2a355dbbd749bfe7af72401a561ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "37d8269a_6a1f6094",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
         "patchSetId": 3
