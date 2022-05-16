@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7b13bc1a_dd30b2bd",
+        "filename": "cps-ncmp-rest/docs/openapi/openapi.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-05-16T11:35:19Z",
+      "side": 1,
+      "message": "perhaps searchesById?",
+      "range": {
+        "startLine": 44,
+        "startChar": 9,
+        "endLine": 44,
+        "endChar": 20
+      },
+      "revId": "80364dd6e57674946bd27db868ef30527c9338c4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b783ee81_26427549",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/NetworkCmProxyDataService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-05-16T11:35:19Z",
+      "side": 1,
+      "message": "Should this be executeCmHandleIdSearch as defined in openapi.yml? I know this is the api layer and nor rest but perhaps it should be consistent?",
+      "range": {
+        "startLine": 121,
+        "startChar": 29,
+        "endLine": 121,
+        "endChar": 43
+      },
+      "revId": "80364dd6e57674946bd27db868ef30527c9338c4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4dbdd531_0299905a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/YangModelCmHandleRetriever.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-05-16T11:35:19Z",
+      "side": 1,
+      "message": "cm handle data node to yang model cm handle",
+      "range": {
+        "startLine": 57,
+        "startChar": 27,
+        "endLine": 57,
+        "endChar": 68
+      },
+      "revId": "80364dd6e57674946bd27db868ef30527c9338c4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
