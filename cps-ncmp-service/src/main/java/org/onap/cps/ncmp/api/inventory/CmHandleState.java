@@ -21,21 +21,5 @@
 package org.onap.cps.ncmp.api.inventory;
 
 public enum CmHandleState {
-
-    ADVISED {
-        @Override
-        public CmHandleState ready() {
-            return READY;
-        }
-    },
-    READY {
-        @Override
-        public CmHandleState ready() {
-            return this;
-        }
-
-    };
-
-    public abstract CmHandleState ready();
-
+    ADVISED, READY;
 }

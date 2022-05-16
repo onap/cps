@@ -29,7 +29,7 @@ class CmHandleStateSpec extends Specification{
         given: 'a cm handle with an ADVISED state'
             def cmHandleState = CmHandleState.ADVISED
         when: 'the state transitions to the READY state'
-            cmHandleState = cmHandleState.ready()
+            cmHandleState = CmHandleState.READY
         then: 'the cm handle state changes to READY'
             assert CmHandleState.READY == cmHandleState
     }
@@ -38,7 +38,7 @@ class CmHandleStateSpec extends Specification{
         given: 'a cm handle with a READY state'
             def cmHandleState = CmHandleState.READY
         when: 'the state transitions to READY state'
-            cmHandleState = cmHandleState.ready()
+            cmHandleState = CmHandleState.READY
         then: 'the cm handle state remains as READY'
             assert CmHandleState.READY == cmHandleState
     }
