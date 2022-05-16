@@ -32,6 +32,9 @@
 
     <artifactId>cps-ncmp-service</artifactId>
 
+    <properties>
+        <minimum-coverage>0.96</minimum-coverage>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>

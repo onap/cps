@@ -20,6 +20,7 @@
 
 package org.onap.cps.ncmp.api.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import java.util.Collections;
@@ -27,6 +28,7 @@ import java.util.Map;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.onap.cps.ncmp.api.inventory.CompositeState;
 import org.springframework.validation.annotation.Validated;
 
 /**
@@ -46,5 +48,10 @@ public class NcmpServiceCmHandle {
 
     @JsonSetter(nulls = Nulls.AS_EMPTY)
     private Map<String, String> publicProperties = Collections.emptyMap();
+
+    @JsonProperty("state")
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
+
+    private CompositeState compositeState;
 
 }
