@@ -25,6 +25,12 @@ import java.util.Map;
 import lombok.AllArgsConstructor;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
+import org.onap.cps.ncmp.api.inventory.CmHandleState;
+import org.onap.cps.ncmp.api.inventory.CompositeState;
+import org.onap.cps.ncmp.api.inventory.CompositeState.DataStores;
+import org.onap.cps.ncmp.api.inventory.CompositeState.LockReason;
+import org.onap.cps.ncmp.api.inventory.CompositeState.Operational;
+import org.onap.cps.ncmp.api.inventory.CompositeState.Running;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
@@ -53,7 +59,7 @@ public class YangModelCmHandleRetriever {
         final DataNode cmHandleDataNode = getCmHandleDataNode(cmHandleId);
         final NcmpServiceCmHandle ncmpServiceCmHandle = new NcmpServiceCmHandle();
         ncmpServiceCmHandle.setCmHandleId(cmHandleId);
-        populateCmHandleProperties(cmHandleDataNode, ncmpServiceCmHandle);
+        populateCmHandleDetails(cmHandleDataNode, ncmpServiceCmHandle);
         return YangModelCmHandle.toYangModelCmHandle(
             (String) cmHandleDataNode.getLeaves().get("dmi-service-name"),
             (String) cmHandleDataNode.getLeaves().get("dmi-data-service-name"),
@@ -70,7 +76,35 @@ public class YangModelCmHandleRetriever {
             FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
     }
 
-    private static void populateCmHandleProperties(final DataNode cmHandleDataNode,
+    private static void populateCmHandleState(final DataNode childDataNode,
+        final NcmpServiceCmHandle ncmpServiceCmHandle) {
+        final CompositeState compositeState = new CompositeState();
+        compositeState.setCmhandleState(CmHandleState.valueOf((String) childDataNode.getLeaves()
+            .get("cm-handle-state")));
+        for (final DataNode stateChildNode : childDataNode.getChildDataNodes()) {
+            if (stateChildNode.getXpath().endsWith("/lock-reason")) {
+                compositeState.setLockReason(
+                    LockReason.builder().reason((String) stateChildNode.getLeaves().get("reason"))
+                        .details((String) childDataNode.getLeaves().get("details")).build());
+            }
+            if (stateChildNode.getXpath().endsWith("/datastores")) {
+                for (final DataNode dataStoreNodes : stateChildNode.getChildDataNodes()) {
+                    if (dataStoreNodes.getXpath().contains("/operational")) {
+                        compositeState.setDataStores(DataStores.builder().operationalDataStore(Operational.builder()
+                            .syncState((String) dataStoreNodes.getLeaves().get("sync-state"))
+                            .lastSyncTime((String) dataStoreNodes.getLeaves().get("last-sync-time")).build()).build());
+                    } else {
+                        compositeState.setDataStores(DataStores.builder().runningDataStore(Running.builder()
+                            .syncState((String) dataStoreNodes.getLeaves().get("sync-state"))
+                            .lastSyncTime((String) dataStoreNodes.getLeaves().get("last-sync-time")).build()).build());
+                    }
+                }
+            }
+        }
+        ncmpServiceCmHandle.setCompositeState(compositeState);
+    }
+
+    private static void populateCmHandleDetails(final DataNode cmHandleDataNode,
                                                    final NcmpServiceCmHandle ncmpServiceCmHandle) {
         final Map<String, String> dmiProperties = new LinkedHashMap<>();
         final Map<String, String> publicProperties = new LinkedHashMap<>();
@@ -79,6 +113,8 @@ public class YangModelCmHandleRetriever {
                 addProperty(childDataNode, dmiProperties);
             } else if (childDataNode.getXpath().contains("/public-properties[@name=")) {
                 addProperty(childDataNode, publicProperties);
+            } else if (childDataNode.getXpath().endsWith("/state")) {
+                populateCmHandleState(childDataNode, ncmpServiceCmHandle);
             }
         }
         ncmpServiceCmHandle.setDmiProperties(dmiProperties);
