@@ -78,7 +78,7 @@ public class SyncUtils {
      * @param cmHandleState cm handle state
      */
     public void updateCmHandleState(final YangModelCmHandle yangModelCmHandle, final CmHandleState cmHandleState) {
-        yangModelCmHandle.setCmHandleState(cmHandleState);
+        yangModelCmHandle.getStateModel().setCmhandleState(cmHandleState);
         final String cmHandleJsonData = String.format("{\"cm-handles\":[%s]}",
             jsonObjectMapper.asJsonString(yangModelCmHandle));
         cpsDataService.updateNodeLeaves(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NCMP_DMI_REGISTRY_PARENT,
