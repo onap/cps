@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4973397a_bfb95c4c",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-16T08:07:31Z",
+      "side": 1,
+      "message": "probably would use\n...ByCmHandle     or\n...ByCmHanldeId",
+      "range": {
+        "startLine": 305,
+        "startChar": 51,
+        "endLine": 305,
+        "endChar": 53
+      },
+      "revId": "8bcdf0660182fe112bbd1891b750f9c7cb2885b2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fc399339_16516107",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-16T08:07:31Z",
+      "side": 1,
+      "message": "why is there 3 different types involved:\n1) networkCmProxyDataService.getCmHandlePublicProperties returns a Map\n2) the map is added to CmHandlePublicProperties\n3) CmHandlePublicProperties is set (added?) on restOutputCmHandlePublicProperties\n\nI see now 2 and 3 Are REST specific. so maybe its OK but is till looks a bit convoluted and harder to read...",
+      "range": {
+        "startLine": 255,
+        "startChar": 33,
+        "endLine": 255,
+        "endChar": 36
+      },
+      "revId": "8bcdf0660182fe112bbd1891b750f9c7cb2885b2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "208cc1d9_042f0143",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/NetworkCmProxyDataService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-16T08:07:31Z",
+      "side": 1,
+      "message": "Get",
+      "range": {
+        "startLine": 126,
+        "startChar": 7,
+        "endLine": 126,
+        "endChar": 13
+      },
+      "revId": "8bcdf0660182fe112bbd1891b750f9c7cb2885b2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
