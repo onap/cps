@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6b77dda7_4702ca42",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CmHandleState.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-16T15:16:56Z",
+      "side": 1,
+      "message": "i am confused about this enum and its methods now, does it stil make sense to use this or is just confusing the matter...",
+      "range": {
+        "startLine": 28,
+        "startChar": 29,
+        "endLine": 28,
+        "endChar": 34
+      },
+      "revId": "2a5a3e23aae1e48f1f13482470b57fed48ed6839",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "542559ba_cbce4df5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-16T15:16:56Z",
+      "side": 1,
+      "message": "locked with reason misbehaving, you plan on adding that?",
+      "range": {
+        "startLine": 63,
+        "startChar": 68,
+        "endLine": 63,
+        "endChar": 85
+      },
+      "revId": "2a5a3e23aae1e48f1f13482470b57fed48ed6839",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a12f7daa_91549255",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-16T15:16:56Z",
+      "side": 1,
+      "message": "Since you are doing a conversion in this method think carefully about the names, here a my suggestions\nlockedCmHandlesAsDataNodes",
+      "range": {
+        "startLine": 82,
+        "startChar": 29,
+        "endLine": 82,
+        "endChar": 48
+      },
+      "revId": "2a5a3e23aae1e48f1f13482470b57fed48ed6839",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a5dda0fe_c825f367",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-16T15:16:56Z",
+      "side": 1,
+      "message": "(when) will you add lockreason?",
+      "range": {
+        "startLine": 83,
+        "startChar": 54,
+        "endLine": 83,
+        "endChar": 64
+      },
+      "revId": "2a5a3e23aae1e48f1f13482470b57fed48ed6839",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca84e960_800a4d15",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-16T15:16:56Z",
+      "side": 1,
+      "message": "lockedYandModelCmHandles  OR\n\nLockedCmHandlesAsYangModelCmHandles",
+      "range": {
+        "startLine": 85,
+        "startChar": 38,
+        "endLine": 85,
+        "endChar": 60
+      },
+      "revId": "2a5a3e23aae1e48f1f13482470b57fed48ed6839",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
