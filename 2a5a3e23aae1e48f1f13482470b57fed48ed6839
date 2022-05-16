@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "5138bc93_cb20210f",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-05-16T16:21:57Z",
+      "side": 1,
+      "message": "NB: Is this value documented anywhere? Just curious as to how we chose 5 mins",
+      "range": {
+        "startLine": 144,
+        "startChar": 27,
+        "endLine": 144,
+        "endChar": 34
+      },
+      "revId": "2a5a3e23aae1e48f1f13482470b57fed48ed6839",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6b77dda7_4702ca42",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CmHandleState.java",
         "patchSetId": 1
@@ -110,6 +133,52 @@
         "startChar": 38,
         "endLine": 85,
         "endChar": 60
+      },
+      "revId": "2a5a3e23aae1e48f1f13482470b57fed48ed6839",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "00316c1b_e116dc9b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-05-16T16:21:57Z",
+      "side": 1,
+      "message": "locked",
+      "range": {
+        "startLine": 58,
+        "startChar": 33,
+        "endLine": 58,
+        "endChar": 41
+      },
+      "revId": "2a5a3e23aae1e48f1f13482470b57fed48ed6839",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2502fc33_de12dc8f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-05-16T16:21:57Z",
+      "side": 1,
+      "message": "Should this not be CmHandleState.READY if it going from ADVISED to READY?",
+      "range": {
+        "startLine": 66,
+        "startChar": 70,
+        "endLine": 66,
+        "endChar": 92
       },
       "revId": "2a5a3e23aae1e48f1f13482470b57fed48ed6839",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
