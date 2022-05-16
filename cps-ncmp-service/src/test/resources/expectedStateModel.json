@@ -1,0 +1,19 @@
+{
+  "cm-handle-state" : "ADVISED",
+  "lock-reason" : {
+    "reason" : "lock-reason",
+    "details" : "lock-misbehaving-details"
+  },
+  "last-update-time" : "2022-01-01T01:01:01.000-1800",
+  "data-sync-enabled" : false,
+  "datastores" : {
+    "operational" : {
+      "sync-state" : "NONE_REQUESTED",
+      "last-sync-time" : "2022-01-01T01:01:01.000-1800"
+    },
+    "running" : {
+      "sync-state" : "NONE_REQUESTED",
+      "last-sync-time" : "2022-01-01T01:01:01.000-1800"
+    }
+  }
+}
