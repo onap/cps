@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0e756113_c8db1686",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/ncmp-async-request-response-event-schema-v1.json",
+        "patchSetId": 31
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-16T08:19:03Z",
+      "side": 1,
+      "message": "please apply agreed order:\n(if you prefer a different order that\u0027s fine but at the moment order is not consistent between this file and the previous)\n\n1) eventId\n2) eventCorrelationId\n3) eventTime\n3) eventTarget\n4) eventType\n5) eventSchema\n6) event/forwardedEvent",
+      "range": {
+        "startLine": 18,
+        "startChar": 9,
+        "endLine": 18,
+        "endChar": 20
+      },
+      "revId": "d40d64946cbe7b9234406d68bef0c8fc20be002f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a1a918e5_4833823d",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/ncmp-async-request-response-event-schema-v1.json",
+        "patchSetId": 31
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-16T08:19:03Z",
+      "side": 1,
+      "message": "1) eventId\n2) eventCorrelationId\n3) eventTime\n3) eventTarget\n4) eventType\n5) eventSchema\n6) event/forwardedEvent",
+      "range": {
+        "startLine": 42,
+        "startChar": 6,
+        "endLine": 47,
+        "endChar": 21
+      },
+      "revId": "d40d64946cbe7b9234406d68bef0c8fc20be002f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c921aaae_42653bbc",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/CpsAsyncRequestResponseEventSpec.groovy",
+        "patchSetId": 31
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-16T08:19:03Z",
+      "side": 1,
+      "message": "Be careful with replace all !",
+      "range": {
+        "startLine": 5,
+        "startChar": 56,
+        "endLine": 5,
+        "endChar": 57
+      },
+      "revId": "d40d64946cbe7b9234406d68bef0c8fc20be002f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
