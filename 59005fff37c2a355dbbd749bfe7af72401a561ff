@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f05f533_22fcafee",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-05-16T09:44:54Z",
+      "side": 1,
+      "message": "I would suggest to try and use the existing schemas wherever possible. Please check if CmHandlePublicProperties could be used here instead of defining a new schema of type object.",
+      "range": {
+        "startLine": 220,
+        "startChar": 4,
+        "endLine": 220,
+        "endChar": 38
+      },
+      "revId": "59005fff37c2a355dbbd749bfe7af72401a561ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "37d8269a_6a1f6094",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-05-16T09:44:54Z",
+      "side": 1,
+      "message": "in controllers good to use get___\nThe name suggests this method is just fetching the public properties. But the description says searching for both cm handle and properties? Is the intention to return the entire CM handle or just the public properties?",
+      "range": {
+        "startLine": 250,
+        "startChar": 62,
+        "endLine": 250,
+        "endChar": 106
+      },
+      "revId": "59005fff37c2a355dbbd749bfe7af72401a561ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
