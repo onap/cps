@@ -16,11 +16,10 @@
 #  SPDX-License-Identifier: Apache-2.0
 #  ============LICENSE_END=========================================================
 
-ncmp:
-    dmi:
-        auth:
-            username: some-user
-            password: some-password
-        api:
-            base-path: dmi
+dmi:
+    auth:
+        username: some-user
+        password: some-password
+    api:
+        base-path: dmi
 

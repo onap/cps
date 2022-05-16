@@ -130,13 +130,14 @@ logging:
             springframework: INFO
             onap:
                 cps: INFO
-ncmp:
-    dmi:
-        auth:
-            username: ${DMI_USERNAME}
-            password: ${DMI_PASSWORD}
-        api:
-            base-path: dmi
-    timers:
-        advised-modules-sync:
-            sleep-time-ms: 30000
+
+dmi:
+    auth:
+        username: ${DMI_USERNAME}
+        password: ${DMI_PASSWORD}
+    api:
+        base-path: dmi
+
+timers:
+    advised-modules-sync:
+        sleep-time-ms: 30000

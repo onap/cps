@@ -44,11 +44,11 @@ public class NcmpConfiguration {
     @Getter
     @Component
     public static class DmiProperties {
-        @Value("${ncmp.dmi.auth.username}")
+        @Value("${dmi.auth.username}")
         private String authUsername;
-        @Value("${ncmp.dmi.auth.password}")
+        @Value("${dmi.auth.password}")
         private String authPassword;
-        @Value("${ncmp.dmi.api.base-path}")
+        @Value("${dmi.api.base-path}")
         private String dmiBasePath;
     }
 
