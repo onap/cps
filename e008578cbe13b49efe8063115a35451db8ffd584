@@ -22,6 +22,70 @@
       "revId": "e008578cbe13b49efe8063115a35451db8ffd584",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3def00a5_e0efe676",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/yangmodels/YangModelCmHandle.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-17T17:37:16Z",
+      "side": 1,
+      "message": "I presume you mean the indentation?\nI prefer the way it was too. Also the formatting changes take away from the real change which I almost missed because of that. SO in general we need to try to prevent distracting fotmatting changes...",
+      "parentUuid": "e9d6088c_57d17359",
+      "range": {
+        "startLine": 80,
+        "startChar": 56,
+        "endLine": 81,
+        "endChar": 91
+      },
+      "revId": "e008578cbe13b49efe8063115a35451db8ffd584",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "58cae983_6a2b3210",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/StateModel.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-17T17:37:16Z",
+      "side": 1,
+      "message": "It is a good first implementation but I wonder do we need some (write) control so the ecpialy the String values that really represent limited enum values cna not be set to undefined values....\nI\u0027ll organise a chat about this tomorrow",
+      "revId": "e008578cbe13b49efe8063115a35451db8ffd584",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "74df8f2e_f5eeb236",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/StateModel.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-17T17:37:16Z",
+      "side": 1,
+      "message": "State Model to store state conform the Yang resource dmi-registry model.",
+      "range": {
+        "startLine": 32,
+        "startChar": 15,
+        "endLine": 32,
+        "endChar": 28
+      },
+      "revId": "e008578cbe13b49efe8063115a35451db8ffd584",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
