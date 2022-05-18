@@ -1,0 +1,418 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "14093b21_613c78d8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-18T10:46:12Z",
+      "side": 1,
+      "message": "add a bit more detail like\n\n- removed old condition REST from OPEN API\n- something else\n- something else",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 34
+      },
+      "revId": "b6230b175191e296b0903c8f9e5f978e66dfc9b2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "319536d3_e2b0cefa",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-18T10:46:12Z",
+      "side": 1,
+      "message": "constant in (separate) valdiation class",
+      "range": {
+        "startLine": 161,
+        "startChar": 20,
+        "endLine": 161,
+        "endChar": 71
+      },
+      "revId": "b6230b175191e296b0903c8f9e5f978e66dfc9b2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "888fa654_c5f48c73",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-18T10:46:12Z",
+      "side": 1,
+      "message": "extract out local var",
+      "range": {
+        "startLine": 195,
+        "startChar": 45,
+        "endLine": 196,
+        "endChar": 77
+      },
+      "revId": "b6230b175191e296b0903c8f9e5f978e66dfc9b2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e43d4515_25cb82bb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/ConditionApiProperties.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-18T10:46:12Z",
+      "side": 1,
+      "message": "consider \u0027conditionName\u0027\u0027 (from REST down)",
+      "range": {
+        "startLine": 36,
+        "startChar": 19,
+        "endLine": 36,
+        "endChar": 23
+      },
+      "revId": "b6230b175191e296b0903c8f9e5f978e66dfc9b2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "45932a21_b523a9fe",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-18T10:46:12Z",
+      "side": 1,
+      "message": "just []",
+      "range": {
+        "startLine": 359,
+        "startChar": 56,
+        "endLine": 359,
+        "endChar": 81
+      },
+      "revId": "b6230b175191e296b0903c8f9e5f978e66dfc9b2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "73a12827_b3812e25",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-18T10:46:12Z",
+      "side": 1,
+      "message": "condition.name \u003d \u0027hasAllProperties\u0027",
+      "range": {
+        "startLine": 366,
+        "startChar": 12,
+        "endLine": 366,
+        "endChar": 49
+      },
+      "revId": "b6230b175191e296b0903c8f9e5f978e66dfc9b2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6d1c4694_4283ec5e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-18T10:46:12Z",
+      "side": 1,
+      "message": "not needed as method is NOT invoked",
+      "range": {
+        "startLine": 374,
+        "startChar": 53,
+        "endLine": 374,
+        "endChar": 81
+      },
+      "revId": "b6230b175191e296b0903c8f9e5f978e66dfc9b2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a8d371a1_9545d573",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-18T10:46:12Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 388,
+        "startChar": 53,
+        "endLine": 388,
+        "endChar": 81
+      },
+      "revId": "b6230b175191e296b0903c8f9e5f978e66dfc9b2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "823bab29_793ad053",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 402,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-18T10:46:12Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 402,
+        "startChar": 52,
+        "endLine": 402,
+        "endChar": 81
+      },
+      "revId": "b6230b175191e296b0903c8f9e5f978e66dfc9b2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c22bdb7_69afb533",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 449,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-18T10:46:12Z",
+      "side": 1,
+      "message": "remove all unnecessary \"",
+      "range": {
+        "startLine": 449,
+        "startChar": 96,
+        "endLine": 449,
+        "endChar": 98
+      },
+      "revId": "b6230b175191e296b0903c8f9e5f978e66dfc9b2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b0758f79_96c25040",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-18T10:46:12Z",
+      "side": 1,
+      "message": "PROPERTY_QUERY_NAME",
+      "range": {
+        "startLine": 76,
+        "startChar": 32,
+        "endLine": 76,
+        "endChar": 50
+      },
+      "revId": "b6230b175191e296b0903c8f9e5f978e66dfc9b2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6702013d_f6655add",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-18T10:46:12Z",
+      "side": 1,
+      "message": "MODULE_QUERY_NAME",
+      "range": {
+        "startLine": 77,
+        "startChar": 32,
+        "endLine": 77,
+        "endChar": 48
+      },
+      "revId": "b6230b175191e296b0903c8f9e5f978e66dfc9b2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aca7e306_ed8e608c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-18T10:46:12Z",
+      "side": 1,
+      "message": "not need please inline string literal",
+      "range": {
+        "startLine": 78,
+        "startChar": 32,
+        "endLine": 78,
+        "endChar": 59
+      },
+      "revId": "b6230b175191e296b0903c8f9e5f978e66dfc9b2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "77708d01_03af8d8f",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-18T10:46:12Z",
+      "side": 1,
+      "message": "l this new stuff should be in some new QueryHandler class or similar (makes it easier to test too)",
+      "range": {
+        "startLine": 425,
+        "startChar": 32,
+        "endLine": 425,
+        "endChar": 46
+      },
+      "revId": "b6230b175191e296b0903c8f9e5f978e66dfc9b2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "58ad28d0_fad630e9",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-18T10:46:12Z",
+      "side": 1,
+      "message": "consider break up in query specific methods",
+      "range": {
+        "startLine": 434,
+        "startChar": 8,
+        "endLine": 466,
+        "endChar": 9
+      },
+      "revId": "b6230b175191e296b0903c8f9e5f978e66dfc9b2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc48d32d_e5cf9315",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-18T10:46:12Z",
+      "side": 1,
+      "message": "use longer name eg. mapEntry",
+      "range": {
+        "startLine": 484,
+        "startChar": 16,
+        "endLine": 484,
+        "endChar": 17
+      },
+      "revId": "b6230b175191e296b0903c8f9e5f978e66dfc9b2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91a7d3f7_cf7fb5dc",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 488,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-18T10:46:12Z",
+      "side": 1,
+      "message": "re-use validator class (new query specific validation methods) instead of mixing query execution with additional validation",
+      "range": {
+        "startLine": 485,
+        "startChar": 14,
+        "endLine": 488,
+        "endChar": 60
+      },
+      "revId": "b6230b175191e296b0903c8f9e5f978e66dfc9b2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d0e2c923_268a1aef",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/ConditionProperties.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-18T10:46:12Z",
+      "side": 1,
+      "message": "conditionName",
+      "range": {
+        "startLine": 36,
+        "startChar": 19,
+        "endLine": 36,
+        "endChar": 23
+      },
+      "revId": "b6230b175191e296b0903c8f9e5f978e66dfc9b2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
