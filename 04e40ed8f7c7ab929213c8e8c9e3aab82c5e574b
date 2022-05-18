@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4b3fb1ed_79aa8c14",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/StateModel.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-18T11:03:47Z",
+      "side": 1,
+      "message": "add a Spec where you convert using ObjectMapper to prof ti can be mapped and structure coverage...",
+      "revId": "04e40ed8f7c7ab929213c8e8c9e3aab82c5e574b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "339e5964_b17c2bf5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-18T11:03:47Z",
+      "side": 1,
+      "message": "consider: OverallState\n(maybe ask in stand-up)",
+      "range": {
+        "startLine": 50,
+        "startChar": 39,
+        "endLine": 50,
+        "endChar": 49
+      },
+      "revId": "04e40ed8f7c7ab929213c8e8c9e3aab82c5e574b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
