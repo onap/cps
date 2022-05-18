@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "646effe9_c2779bf2",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-18T10:58:51Z",
+      "side": 1,
+      "message": "Should we call this cmHandleProperties?\n\nBecause in the response this will come back as publicCmHandleProperties, and I don\u0027t think we want to explicitly state that in responses which just return these properties.",
+      "range": {
+        "startLine": 223,
+        "startChar": 8,
+        "endLine": 223,
+        "endChar": 32
+      },
+      "revId": "5588e39c7b48e25628903f6bf61b2bb9ba784664",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "251a407d_7c6de1d7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/NetworkCmProxyDataService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-18T10:58:51Z",
+      "side": 1,
+      "message": "a Cm Handles public properties",
+      "range": {
+        "startLine": 129,
+        "startChar": 15,
+        "endLine": 129,
+        "endChar": 48
+      },
+      "revId": "5588e39c7b48e25628903f6bf61b2bb9ba784664",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "46559a59_933531da",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-18T10:58:51Z",
+      "side": 1,
+      "message": "cm handle public properties",
+      "range": {
+        "startLine": 201,
+        "startChar": 18,
+        "endLine": 201,
+        "endChar": 32
+      },
+      "revId": "5588e39c7b48e25628903f6bf61b2bb9ba784664",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "37058341_b25b4a09",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-18T10:58:51Z",
+      "side": 1,
+      "message": "I normally put definitions empty initializations at the top of the method.\n\nPersonal preference, I think CPS follows this convention to0?",
+      "range": {
+        "startLine": 209,
+        "startChar": 8,
+        "endLine": 209,
+        "endChar": 77
+      },
+      "revId": "5588e39c7b48e25628903f6bf61b2bb9ba784664",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
