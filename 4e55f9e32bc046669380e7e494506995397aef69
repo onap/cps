@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "8071b54a_0b78f957",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiOperationsBaseSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-18T13:43:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3d9c22fc_2ce38d42",
+      "range": {
+        "startLine": 60,
+        "startChar": 42,
+        "endLine": 60,
+        "endChar": 55
+      },
+      "revId": "4e55f9e32bc046669380e7e494506995397aef69",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7e51f4b3_50ff6d80",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/CpsValidator.java",
         "patchSetId": 3
@@ -45,6 +69,30 @@
       "revId": "4e55f9e32bc046669380e7e494506995397aef69",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "53a8a0ac_e8e07e45",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/CpsValidator.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-18T13:43:17Z",
+      "side": 1,
+      "message": "Have removed this from CPSValidator and moved it directly to DmiOperations class.",
+      "parentUuid": "7e51f4b3_50ff6d80",
+      "range": {
+        "startLine": 71,
+        "startChar": 65,
+        "endLine": 72,
+        "endChar": 39
+      },
+      "revId": "4e55f9e32bc046669380e7e494506995397aef69",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
