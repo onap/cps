@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "685be397_c106973a",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-05-18T13:36:31Z",
+      "side": 1,
+      "message": "Discussed in daily to keep publicCmHandleProperties",
+      "parentUuid": "646effe9_c2779bf2",
+      "range": {
+        "startLine": 223,
+        "startChar": 8,
+        "endLine": 223,
+        "endChar": 32
+      },
+      "revId": "5588e39c7b48e25628903f6bf61b2bb9ba784664",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "251a407d_7c6de1d7",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/NetworkCmProxyDataService.java",
         "patchSetId": 5
