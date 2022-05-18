@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d8f3cf53_7a6b1c78",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/yangmodels/YangModelCmHandle.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-18T16:26:19Z",
+      "side": 1,
+      "message": "NB - What is your formatting for your IDE set to Priyank? Because I noticed formatting changes in this commit previously.\n\nThere should be a standard ONAP formatting guide as outlined on this page if you haven\u0027t used it yet 😊\n\nhttps://wiki.onap.org/display/DW/Setting+Up+Your+Development+Environment#SettingUpYourDevelopmentEnvironment-IDEs",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 92,
+        "endChar": 60
+      },
+      "revId": "021afe7b6639745a2e7822e74d61d2e17b076f42",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "43cae6f7_c6d1ad9d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/CompositeStateSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-18T16:26:19Z",
+      "side": 1,
+      "message": "I would extract these into their own definitions for readability purposes.\nAnd maybe throw in different scenario\u0027s for synchronized and unsynchronized states.",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 70
+      },
+      "revId": "021afe7b6639745a2e7822e74d61d2e17b076f42",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f71403ac_832fee07",
+        "filename": "cps-ncmp-service/src/test/resources/stateModelSample.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-18T16:26:19Z",
+      "side": 1,
+      "message": "Format this json structure to make it more readable.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 380
+      },
+      "revId": "021afe7b6639745a2e7822e74d61d2e17b076f42",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
