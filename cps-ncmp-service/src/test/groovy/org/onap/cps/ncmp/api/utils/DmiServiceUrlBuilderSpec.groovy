@@ -45,14 +45,14 @@ class DmiServiceUrlBuilderSpec extends Specification {
             def uriVars = objectUnderTest.populateUriVariables(yangModelCmHandle,
                     "cmHandle", PASSTHROUGH_RUNNING)
         and: 'query params'
-            def uriQueries = objectUnderTest.populateQueryParams(resourceId,
-                    'optionsParamInQuery', topicParamInQuery)
+                            def uriQueries = objectUnderTest.populateQueryParams(resourceId,
+                    'optionsParamInQuery', topic)
         when: 'a dmi datastore service url is generated'
             def dmiServiceUrl = objectUnderTest.getDmiDatastoreUrl(uriQueries, uriVars)
         then: 'service url is generated as expected'
             assert dmiServiceUrl == expectedDmiServiceUrl
         where: 'the following parameters are used'
-            scenario                       | topicParamInQuery   | resourceId   || expectedDmiServiceUrl
+            scenario                       | topic               | resourceId   || expectedDmiServiceUrl
             'With valid resourceId'        | 'topicParamInQuery' | 'resourceId' || 'dmiServiceName/dmi/v1/ch/cmHandle/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=resourceId&options=optionsParamInQuery&topic=topicParamInQuery'
             'With Empty resourceId'        | 'topicParamInQuery' | ''           || 'dmiServiceName/dmi/v1/ch/cmHandle/data/ds/ncmp-datastore:passthrough-running?options=optionsParamInQuery&topic=topicParamInQuery'
             'With Empty dmi base path'     | 'topicParamInQuery' | 'resourceId' || 'dmiServiceName/dmi/v1/ch/cmHandle/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=resourceId&options=optionsParamInQuery&topic=topicParamInQuery'

@@ -46,6 +46,7 @@ import org.onap.cps.ncmp.api.impl.exception.InvalidTopicException;
 import org.onap.cps.ncmp.api.models.CmHandleQueryApiParameters;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.ncmp.rest.api.NetworkCmProxyApi;
+import org.onap.cps.ncmp.rest.executor.CpsNcmpTaskExecutor;
 import org.onap.cps.ncmp.rest.model.CmHandleProperties;
 import org.onap.cps.ncmp.rest.model.CmHandleProperty;
 import org.onap.cps.ncmp.rest.model.CmHandlePublicProperties;
@@ -59,6 +60,7 @@ import org.onap.cps.ncmp.rest.model.RestModuleReference;
 import org.onap.cps.ncmp.rest.model.RestOutputCmHandle;
 import org.onap.cps.utils.CpsValidator;
 import org.onap.cps.utils.JsonObjectMapper;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -78,6 +80,10 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     private final NetworkCmProxyDataService networkCmProxyDataService;
     private final JsonObjectMapper jsonObjectMapper;
     private final NcmpRestInputMapper ncmpRestInputMapper;
+    private final CpsNcmpTaskExecutor cpsNcmpTaskExecutor;
+
+    @Value("${notification.async.executor.time-out-value-in-ms}")
+    private int timeOutInMilliSeconds;
 
     /**
      * Get resource data from operational datastore.
@@ -96,16 +102,20 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         final ResponseEntity<Map<String, Object>> asyncResponse = populateAsyncResponse(topicParamInQuery);
         final Map<String, Object> asyncResponseData = asyncResponse.getBody();
 
-        final Object responseObject = networkCmProxyDataService.getResourceDataOperationalForCmHandle(cmHandle,
-                resourceIdentifier,
-                optionsParamInQuery,
-                asyncResponseData == null ? NO_TOPIC : topicParamInQuery,
-                asyncResponseData == null ? NO_REQUEST_ID : asyncResponseData.get(ASYNC_REQUEST_ID).toString());
-
-        if (asyncResponseData == null) {
-            return ResponseEntity.ok(responseObject);
+        if (hasTopic(topicParamInQuery)) {
+            cpsNcmpTaskExecutor.executeTask(() ->
+                networkCmProxyDataService.getResourceDataOperationalForCmHandle(
+                    cmHandle, resourceIdentifier, optionsParamInQuery, topicParamInQuery,
+                    asyncResponseData.get(ASYNC_REQUEST_ID).toString()
+                ), timeOutInMilliSeconds
+            );
+            return ResponseEntity.ok(asyncResponse);
         }
-        return ResponseEntity.ok(asyncResponse);
+
+        final Object responseObject = networkCmProxyDataService.getResourceDataOperationalForCmHandle(
+            cmHandle, resourceIdentifier, optionsParamInQuery, NO_TOPIC, NO_REQUEST_ID);
+
+        return ResponseEntity.ok(responseObject);
     }
 
     /**
@@ -125,16 +135,20 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         final ResponseEntity<Map<String, Object>> asyncResponse = populateAsyncResponse(topicParamInQuery);
         final Map<String, Object> asyncResponseData = asyncResponse.getBody();
 
-        final Object responseObject = networkCmProxyDataService.getResourceDataPassThroughRunningForCmHandle(cmHandle,
-                resourceIdentifier,
-                optionsParamInQuery,
-                asyncResponseData == null ? NO_TOPIC : topicParamInQuery,
-                asyncResponseData == null ? NO_REQUEST_ID : asyncResponseData.get(ASYNC_REQUEST_ID).toString());
-
-        if (asyncResponseData == null) {
-            return ResponseEntity.ok(responseObject);
+        if (hasTopic(topicParamInQuery)) {
+            cpsNcmpTaskExecutor.executeTask(() ->
+                networkCmProxyDataService.getResourceDataPassThroughRunningForCmHandle(
+                    cmHandle, resourceIdentifier, optionsParamInQuery, topicParamInQuery,
+                    asyncResponseData.get(ASYNC_REQUEST_ID).toString()
+                ), timeOutInMilliSeconds
+            );
+            return ResponseEntity.ok(asyncResponse);
         }
-        return ResponseEntity.ok(asyncResponse);
+
+        final Object responseObject = networkCmProxyDataService.getResourceDataPassThroughRunningForCmHandle(
+            cmHandle, resourceIdentifier, optionsParamInQuery, NO_TOPIC, NO_REQUEST_ID);
+
+        return ResponseEntity.ok(responseObject);
     }
 
     @Override
@@ -326,4 +340,9 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         return asyncResponseData;
     }
 
+    private boolean hasTopic(final String topicParamInQuery) {
+        return !(topicParamInQuery == null || topicParamInQuery.isBlank());
+    }
+
 }
+

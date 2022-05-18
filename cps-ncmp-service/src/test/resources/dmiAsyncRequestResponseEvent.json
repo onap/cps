@@ -1,0 +1,30 @@
+{
+  "eventId": "8dbfe0a7-3b28-4109-8fcb-9fbc9c37d56a",
+  "eventCorrelationId": "122ca20b-4f8c-4759-a2b4-f0b9456df204",
+  "eventTime": "2022-05-09T13:34:50.466+0000",
+  "eventSource": "org.onap.ncmp",
+  "eventSchema": "urn:cps:org.onap.cps:async-request-response-event-schema:v1",
+  "eventTarget": "my-topic-999",
+  "eventContent": {
+    "response-data-schema": "urn:cps:org.onap.cps:async-request-response-event-schema:v1",
+    "response-status": "SUCCESS",
+    "response-code": "200",
+    "response-data": {
+      "ietf-netconf-monitoring:netconf-state": {
+        "schemas": {
+          "schema": [
+            {
+              "identifier": "ietf-tls-server",
+              "version": "2016-11-02",
+              "format": "ietf-netconf-monitoring:yang",
+              "namespace": "urn:ietf:params:xml:ns:yang:ietf-tls-server",
+              "location": [
+                "NETCONF"
+              ]
+            }
+          ]
+        }
+      }
+    }
+  }
+}
