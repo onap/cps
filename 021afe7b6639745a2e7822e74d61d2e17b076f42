@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "96128b2a_dd71a84e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/yangmodels/YangModelCmHandle.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-05-18T18:01:36Z",
+      "side": 1,
+      "message": "Actually I have set this config multiple times but somehow it works for some days and then again it gets re-setted to default. Need to check :)",
+      "parentUuid": "d8f3cf53_7a6b1c78",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 92,
+        "endChar": 60
+      },
+      "revId": "021afe7b6639745a2e7822e74d61d2e17b076f42",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "43cae6f7_c6d1ad9d",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/CompositeStateSpec.groovy",
         "patchSetId": 5
@@ -36,6 +60,30 @@
       "writtenOn": "2022-05-18T16:26:19Z",
       "side": 1,
       "message": "I would extract these into their own definitions for readability purposes.\nAnd maybe throw in different scenario\u0027s for synchronized and unsynchronized states.",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 70
+      },
+      "revId": "021afe7b6639745a2e7822e74d61d2e17b076f42",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c4b4fdf4_b19c36e4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/CompositeStateSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-05-18T18:01:36Z",
+      "side": 1,
+      "message": "yeah , makes sense. But as it was not in use for now so I was looking at the overall JSON structure.\nmay be I can create multiple samples for difference scenarios.",
+      "parentUuid": "43cae6f7_c6d1ad9d",
       "range": {
         "startLine": 49,
         "startChar": 0,
@@ -68,6 +116,30 @@
       "revId": "021afe7b6639745a2e7822e74d61d2e17b076f42",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "112abd30_450868f8",
+        "filename": "cps-ncmp-service/src/test/resources/stateModelSample.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-05-18T18:01:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f71403ac_832fee07",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 380
+      },
+      "revId": "021afe7b6639745a2e7822e74d61d2e17b076f42",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
