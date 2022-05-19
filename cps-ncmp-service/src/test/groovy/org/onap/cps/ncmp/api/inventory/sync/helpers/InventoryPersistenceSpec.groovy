@@ -1,6 +1,6 @@
 /*
- * ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2022 Nordix Foundation
+ *  ============LICENSE_START=======================================================
+ *  Copyright (C) 2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -18,31 +18,44 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.operations
+package org.onap.cps.ncmp.api.inventory.sync.helpers
 
+import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.inventory.CmHandleState
+import org.onap.cps.ncmp.api.inventory.CompositeState
 import org.onap.cps.ncmp.api.inventory.CompositeStateBuilder
+import org.onap.cps.ncmp.api.inventory.InventoryPersistence
+import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.exceptions.DataValidationException
-import spock.lang.Shared
-
-import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import org.onap.cps.spi.model.DataNode
+import org.onap.cps.utils.JsonObjectMapper
+import spock.lang.Shared
 import spock.lang.Specification
 
-class YangModelCmHandleRetrieverSpec extends Specification {
+import java.time.OffsetDateTime
+import java.time.ZoneOffset
+import java.time.format.DateTimeFormatter
+
+import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
+
+class InventoryPersistenceSpec extends Specification {
+
+    def spiedJsonObjectMapper = Spy(new JsonObjectMapper(new ObjectMapper()))
 
     def mockCpsDataService = Mock(CpsDataService)
 
-    def objectUnderTest = new YangModelCmHandleRetriever(mockCpsDataService)
+    def mockCompositeStateBuilder = Mock(CompositeStateBuilder)
+
+    def objectUnderTest = new InventoryPersistence(spiedJsonObjectMapper, mockCpsDataService)
+
+    def formattedDateAndTime = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+        .format(OffsetDateTime.of(2022, 12, 31, 20, 30, 40, 1, ZoneOffset.UTC))
 
     def cmHandleId = 'some-cm-handle'
     def leaves = ["dmi-service-name":"common service name","dmi-data-service-name":"data service name","dmi-model-service-name":"model service name"]
     def xpath = "/dmi-registry/cm-handles[@id='some-cm-handle']"
-
-    @Shared
-    def compositeState = new CompositeStateBuilder().withCmHandleState(CmHandleState.ADVISED).build()
 
     @Shared
     def childDataNodesForCmHandleWithAllProperties = [new DataNode(xpath: "/dmi-registry/cm-handles[@id='some cm handle']/additional-properties[@name='name1']", leaves: ["name":"name1", "value":"value1"]),
@@ -56,6 +69,36 @@ class YangModelCmHandleRetrieverSpec extends Specification {
 
     @Shared
     def childDataNodesForCmHandleWithState = [new DataNode(xpath: "/dmi-registry/cm-handles[@id='some-cm-handle']/state", leaves: ['cm-handle-state': 'ADVISED'])]
+
+    def 'Get a Cm Handle Composite State'() {
+        given: 'a valid cm handle id'
+            def cmHandleId = 'Some-Cm-Handle'
+            def dataNode = new DataNode(leaves: ['cm-handle-state': 'ADVISED'])
+            def compositeState = new CompositeState(cmHandleState: 'ADVISED')
+        when: 'get cm handle state is invoked'
+            objectUnderTest.getCmHandleState(cmHandleId)
+        then: 'cps data service get data node is invoked and returns a valid data node'
+            mockCpsDataService.getDataNode('NCMP-Admin', 'ncmp-dmi-registry',
+                '/dmi-registry/cm-handles[@id=\'Some-Cm-Handle\']/state', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
+        and: 'a composite state is returned from the data node'
+            mockCompositeStateBuilder.fromDataNode(dataNode) >> compositeState
+        and: 'the composite state contains the correct values'
+            compositeState.cmHandleState == CmHandleState.ADVISED
+    }
+
+    def 'Update Cm Handle with #scenario State'() {
+        given: 'a cm handle and a composite state'
+            def cmHandleId = 'Some-Cm-Handle'
+            def compositeState = new CompositeState(cmHandleState: cmHandleState, lastUpdateTime: formattedDateAndTime)
+        when: 'update cm handle state is invoked with the #scenario state'
+            objectUnderTest.updateCmHandleState(cmHandleId, compositeState)
+        then: 'update node leaves is invoked with the correct params'
+            1 * mockCpsDataService.replaceNodeTree('NCMP-Admin', 'ncmp-dmi-registry', '/dmi-registry/cm-handles[@id=\'Some-Cm-Handle\']', expectedJsonData, _ as OffsetDateTime)
+        where: 'the following states are used'
+             scenario | cmHandleState        || expectedJsonData
+            'READY'   | CmHandleState.READY  || '{"state":{"cm-handle-state":"READY","last-update-time":"2022-12-31T20:30:40.000+0000"}}'
+            'LOCKED'  | CmHandleState.LOCKED || '{"state":{"cm-handle-state":"LOCKED","last-update-time":"2022-12-31T20:30:40.000+0000"}}'
+    }
 
     def "Retrieve CmHandle using datanode with #scenario."() {
         given: 'the cps data service returns a data node from the DMI registry'
@@ -72,11 +115,11 @@ class YangModelCmHandleRetrieverSpec extends Specification {
             result.dmiProperties == expectedDmiProperties
             result.publicProperties == expectedPublicProperties
         and: 'the state details are returned'
-            result.compositeState.cmhandleState == expectedCompositeState
+            result.compositeState.cmHandleState == expectedCompositeState
         where: 'the following parameters are used'
             scenario                    | childDataNodes                                || expectedDmiProperties                               || expectedPublicProperties                              || expectedCompositeState
             'no properties'             | []                                            || []                                                  || []                                                    || null
-            'DMI and public properties' | childDataNodesForCmHandleWithAllProperties    || [new YangModelCmHandle.Property("name1", "value1")] || [new YangModelCmHandle.Property("name2", "value2")]   || null
+            'DMI and public properties' | childDataNodesForCmHandleWithAllProperties    || [new YangModelCmHandle.Property("name1", "value1")] || [new YangModelCmHandle.Property("name2", "value2")] || null
             'just DMI properties'       | childDataNodesForCmHandleWithDMIProperties    || [new YangModelCmHandle.Property("name1", "value1")] || []                                                    || null
             'just public properties'    | childDataNodesForCmHandleWithPublicProperties || []                                                  || [new YangModelCmHandle.Property("name2", "value2")]   || null
             'with state details'        | childDataNodesForCmHandleWithState            || []                                                  || []                                                    || CmHandleState.ADVISED
@@ -102,4 +145,5 @@ class YangModelCmHandleRetrieverSpec extends Specification {
             result.dmiDataServiceName == null
             result.dmiModelServiceName == null
     }
+
 }

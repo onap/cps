@@ -1,7 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2022 Nordix Foundation
- *  Modifications Copyright (C) 2021 Bell Canada
+ *  Copyright (C) 2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -19,32 +18,60 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.operations;
+package org.onap.cps.ncmp.api.inventory;
 
+import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NCMP_DATASPACE_NAME;
+import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NCMP_DMI_REGISTRY_ANCHOR;
+
+import java.time.OffsetDateTime;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
-import org.onap.cps.ncmp.api.inventory.CompositeState;
-import org.onap.cps.ncmp.api.inventory.CompositeStateBuilder;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.utils.CpsValidator;
+import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.stereotype.Component;
 
-/**
- * Retrieves YangModelCmHandles & properties.
- */
+@RequiredArgsConstructor
 @Component
-@AllArgsConstructor
-public class YangModelCmHandleRetriever {
+public class InventoryPersistence {
 
-    private static final String NCMP_DATASPACE_NAME = "NCMP-Admin";
-    private static final String NCMP_DMI_REGISTRY_ANCHOR = "ncmp-dmi-registry";
+    private final JsonObjectMapper jsonObjectMapper;
 
-    private CpsDataService cpsDataService;
+    private final CpsDataService cpsDataService;
+
+    private static final CompositeStateBuilder compositeStateBuilder = new CompositeStateBuilder();
+
+    /**
+     * Get the Cm Handle Composite State from the data node.
+     *
+     * @param cmHandleId cm handle id
+     * @return the cm handle composite state
+     */
+    public CompositeState getCmHandleState(final String cmHandleId) {
+        final DataNode stateAsDataNode = cpsDataService.getDataNode(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
+            "/dmi-registry/cm-handles[@id='" + cmHandleId + "']/state",
+            FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
+        return compositeStateBuilder.fromDataNode(stateAsDataNode).build();
+    }
+
+    /**
+     * Update the cm handles state.
+     *
+     * @param cmHandleId    cm handle id
+     * @param compositeState composite state
+     */
+    public void updateCmHandleState(final String cmHandleId, final CompositeState compositeState) {
+        final String cmHandleJsonData = String.format("{\"state\":%s}",
+            jsonObjectMapper.asJsonString(compositeState));
+        cpsDataService.replaceNodeTree(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
+            "/dmi-registry/cm-handles[@id='" + cmHandleId + "']",
+            cmHandleJsonData, OffsetDateTime.now());
+    }
 
     /**
      * This method retrieves DMI service name and DMI properties for a given cm handle.
@@ -74,7 +101,7 @@ public class YangModelCmHandleRetriever {
     }
 
     private static void populateCmHandleDetails(final DataNode cmHandleDataNode,
-                                                   final NcmpServiceCmHandle ncmpServiceCmHandle) {
+                                                final NcmpServiceCmHandle ncmpServiceCmHandle) {
         final Map<String, String> dmiProperties = new LinkedHashMap<>();
         final Map<String, String> publicProperties = new LinkedHashMap<>();
         final CompositeStateBuilder compositeStateBuilder = new CompositeStateBuilder();

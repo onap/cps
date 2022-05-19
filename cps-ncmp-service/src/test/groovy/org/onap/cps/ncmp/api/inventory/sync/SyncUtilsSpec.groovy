@@ -20,29 +20,21 @@
 
 package org.onap.cps.ncmp.api.inventory.sync
 
-import com.fasterxml.jackson.databind.ObjectMapper
-import org.onap.cps.api.CpsDataService
-import org.onap.cps.ncmp.api.impl.operations.YangModelCmHandleRetriever
-import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
-import org.onap.cps.ncmp.api.inventory.CmHandleState
 import org.onap.cps.ncmp.api.inventory.CompositeState
+import org.onap.cps.ncmp.api.inventory.InventoryPersistence
+import org.onap.cps.ncmp.api.inventory.LockReasonCategory
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.model.DataNode
-import org.onap.cps.utils.JsonObjectMapper
 import spock.lang.Shared
 import spock.lang.Specification
 
-import java.time.OffsetDateTime
-
 class SyncUtilsSpec extends Specification{
 
-    def mockCpsDataService = Mock(CpsDataService)
     def mockCpsDataPersistenceService = Mock(CpsDataPersistenceService)
-    def spiedJsonObjectMapper = Spy(new JsonObjectMapper(new ObjectMapper()))
-    def mockYangModelCmHandleRetriever = Mock(YangModelCmHandleRetriever)
+    def mockInventoryPersistence = Mock(InventoryPersistence)
 
-    def objectUnderTest = new SyncUtils(mockCpsDataService, mockCpsDataPersistenceService, spiedJsonObjectMapper, mockYangModelCmHandleRetriever)
+    def objectUnderTest = new SyncUtils(mockCpsDataPersistenceService, mockInventoryPersistence)
 
     @Shared
     def dataNode = new DataNode(leaves: ['id': 'cm-handle-123'])
@@ -52,14 +44,14 @@ class SyncUtilsSpec extends Specification{
     def 'Get an advised Cm-Handle where ADVISED cm handle #scenario'() {
         given: 'the cps (persistence service) returns a collection of data nodes'
             mockCpsDataPersistenceService.queryDataNodes('NCMP-Admin',
-                'ncmp-dmi-registry', '//cm-handles[@state=\"ADVISED\"]',
+                'ncmp-dmi-registry', '//state[@cm-handle-state=\"ADVISED\"]/ancestor::cm-handles',
                 FetchDescendantsOption.OMIT_DESCENDANTS) >> dataNodeCollection
         when: 'get advised cm handle is called'
             objectUnderTest.getAnAdvisedCmHandle()
         then: 'the returned data node collection is the correct size'
             dataNodeCollection.size() == expectedDataNodeSize
         and: 'get yang model cm handles is invoked the correct number of times'
-           expectedCallsToGetYangModelCmHandle * mockYangModelCmHandleRetriever.getYangModelCmHandle('cm-handle-123')
+           expectedCallsToGetYangModelCmHandle * mockInventoryPersistence.getYangModelCmHandle('cm-handle-123')
         where: 'the following scenarios are used'
             scenario         | dataNodeCollection || expectedCallsToGetYangModelCmHandle | expectedDataNodeSize
             'exists'         | [ dataNode ]       || 1                                   | 1
@@ -67,16 +59,18 @@ class SyncUtilsSpec extends Specification{
 
     }
 
-    def 'Update cm handle state from Advised to Ready'() {
-        given: 'a yang model cm handle and the expected json data'
-            def compositeState = new CompositeState()
-            compositeState.cmhandleState = CmHandleState.ADVISED
-            def yangModelCmHandle = new YangModelCmHandle(id: 'Some-Cm-Handle', compositeState: compositeState )
-            def expectedJsonData = '{"cm-handles":[{"id":"Some-Cm-Handle","state":{"cm-handle-state":"READY"}}]}'
-        when: 'update cm handle state is called'
-            objectUnderTest.updateCmHandleState(yangModelCmHandle, CmHandleState.READY)
-        then: 'update data note leaves is invoked with the correct params'
-            1 * mockCpsDataService.updateNodeLeaves('NCMP-Admin', 'ncmp-dmi-registry', '/dmi-registry', expectedJsonData, _ as OffsetDateTime)
+    def 'Update Lock Reason, Details and Attempts where lock reason #scenario'() {
+        given: 'A locked state'
+           def compositeState = new CompositeState(lockReason: lockReason)
+        when: 'update cm handle details and attempts is called'
+            objectUnderTest.updateLockReasonDetailsAndAttempts(compositeState, LockReasonCategory.LOCKED_MISBEHAVING, 'new error message')
+        then: 'the composite state lock reason and details are updated'
+            assert compositeState.lockReason.lockReasonCategory == LockReasonCategory.LOCKED_MISBEHAVING
+            assert compositeState.lockReason.details == expectedDetails
+        where:
+            scenario         | lockReason                                                                                   || expectedDetails
+            'does not exist' | null                                                                                         || 'Attempt #1 failed: new error message'
+            'exists' | CompositeState.LockReason.builder().details("Attempt #2 failed: some error message").build() || 'Attempt #3 failed: new error message'
     }
 
 }

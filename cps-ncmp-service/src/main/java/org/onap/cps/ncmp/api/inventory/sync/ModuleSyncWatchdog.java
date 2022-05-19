@@ -1,5 +1,5 @@
 /*
- * ============LICENSE_START=======================================================
+ *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,10 +20,16 @@
 
 package org.onap.cps.ncmp.api.inventory.sync;
 
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.inventory.CmHandleState;
+import org.onap.cps.ncmp.api.inventory.CompositeState;
+import org.onap.cps.ncmp.api.inventory.CompositeStateBuilder;
+import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
+import org.onap.cps.ncmp.api.inventory.LockReasonCategory;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -31,6 +37,8 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 @Component
 public class ModuleSyncWatchdog {
+
+    private final InventoryPersistence inventoryPersistence;
 
     private final SyncUtils syncUtils;
 
@@ -43,11 +51,22 @@ public class ModuleSyncWatchdog {
     public void executeAdvisedCmHandlePoll() {
         YangModelCmHandle advisedCmHandle = syncUtils.getAnAdvisedCmHandle();
         while (advisedCmHandle != null) {
-            moduleSyncService.syncAndCreateSchemaSet(advisedCmHandle);
-            // ToDo Lock Cm Handle if module sync fails
-            syncUtils.updateCmHandleState(advisedCmHandle, CmHandleState.READY);
-            log.info("{} is now in {} state", advisedCmHandle.getId(),
-                    advisedCmHandle.getCompositeState().getCmhandleState());
+            final CompositeStateBuilder compositeStateBuilder = new CompositeStateBuilder();
+            final String cmHandleId = advisedCmHandle.getId();
+            final CompositeState compositeState = inventoryPersistence.getCmHandleState(cmHandleId);
+            try {
+                moduleSyncService.syncAndCreateSchemaSet(advisedCmHandle);
+                compositeState.setCmHandleState(CmHandleState.READY);
+            } catch (final Exception e) {
+                compositeState.setCmHandleState(CmHandleState.LOCKED);
+                syncUtils.updateLockReasonDetailsAndAttempts(compositeState, LockReasonCategory.LOCKED_MISBEHAVING,
+                    e.getMessage());
+            }
+            compositeState.setLastUpdateTime(compositeStateBuilder.lastUpdatedTime(ZonedDateTime.now()
+                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ"))).toString());
+            inventoryPersistence.updateCmHandleState(cmHandleId, compositeState);
+            log.info("{} is now in {} state", cmHandleId,
+                advisedCmHandle.getCompositeState().getCmHandleState());
             advisedCmHandle = syncUtils.getAnAdvisedCmHandle();
         }
         log.debug("No Cm-Handles currently found in an ADVISED state");
