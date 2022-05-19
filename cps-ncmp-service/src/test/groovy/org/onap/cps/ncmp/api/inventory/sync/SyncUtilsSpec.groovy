@@ -76,4 +76,14 @@ class SyncUtilsSpec extends Specification{
             1 * mockCpsDataService.updateNodeLeaves('NCMP-Admin', 'ncmp-dmi-registry', '/dmi-registry', expectedJsonData, _ as OffsetDateTime)
     }
 
+    def 'Update cm handle state from ADVISED to LOCKED'() {
+        given: 'a yang model cm handle and the expected json data'
+            def yangModelCmHandle = new YangModelCmHandle(id: 'Some-Cm-Handle', cmHandleState: CmHandleState.ADVISED)
+            def expectedJsonData = '{"cm-handles":[{"id":"Some-Cm-Handle","state":"LOCKED","lock-reason":"LOCKED_MISBEHAVING","lock-reason-details":"some lock reason details"}]}'
+        when: 'update cm handle state is called'
+            objectUnderTest.updateCmHandleState(yangModelCmHandle, CmHandleState.LOCKED, CmHandleState.LockReasonEnum.LOCKED_MISBEHAVING, 'some lock reason details')
+        then: 'update data note leaves is invoked with the correct params'
+            1 * mockCpsDataService.updateNodeLeaves('NCMP-Admin', 'ncmp-dmi-registry', '/dmi-registry', expectedJsonData, _ as OffsetDateTime)
+    }
+
 }

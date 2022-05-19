@@ -85,4 +85,25 @@ public class SyncUtils {
             cmHandleJsonData, OffsetDateTime.now());
     }
 
+    /**
+     * Update the Cm Handle state to "LOCKED".
+     *
+     * @param yangModelCmHandle yang model cm handle
+     * @param cmHandleState cm handle state
+     * @param lockReasonEnum lock reason enum
+     * @param details lock reason details
+     */
+    public void updateCmHandleState(final YangModelCmHandle yangModelCmHandle,
+                                    final CmHandleState cmHandleState,
+                                    final CmHandleState.LockReasonEnum lockReasonEnum,
+                                    final String details) {
+        yangModelCmHandle.setCmHandleState(cmHandleState);
+        yangModelCmHandle.setLockReason(lockReasonEnum);
+        yangModelCmHandle.setLockReasonDetails(details);
+        final String cmHandleJsonData =  String.format("{\"cm-handles\":[%s]}",
+            jsonObjectMapper.asJsonString(yangModelCmHandle));
+        cpsDataService.updateNodeLeaves(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NCMP_DMI_REGISTRY_PARENT,
+            cmHandleJsonData, OffsetDateTime.now());
+    }
+
 }

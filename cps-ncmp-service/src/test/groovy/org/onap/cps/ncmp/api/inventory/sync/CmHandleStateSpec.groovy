@@ -43,4 +43,31 @@ class CmHandleStateSpec extends Specification{
             assert CmHandleState.READY == cmHandleState
     }
 
+    def 'Transition to LOCK state from ADVISED state'() {
+        given: 'a cm handle with an ADVISED state'
+            def cmHandleState = CmHandleState.ADVISED
+        when: 'the state transitions to the lock'
+            cmHandleState = cmHandleState.lock(CmHandleState.LockReasonEnum.LOCKED_MISBEHAVING, 'some error message')
+        then: 'the cm handle state changes to LOCKED'
+            assert CmHandleState.LOCKED == cmHandleState
+    }
+
+    def 'Transition to READY state from LOCKED state'() {
+        given: 'a cm handle with a LOCKED state'
+            def cmHandleState = CmHandleState.LOCKED
+        when: 'the state transitions to the next state'
+            cmHandleState = cmHandleState.ready()
+        then: 'the cm handle state changes to READY'
+            assert CmHandleState.READY == cmHandleState
+    }
+
+    def 'Transition to LOCK state from LOCKED State'() {
+        given: 'a cm handle with a LOCKED state'
+            def cmHandleState = CmHandleState.LOCKED
+        when: 'the state transitions to lock'
+            cmHandleState = cmHandleState.lock(CmHandleState.LockReasonEnum.LOCKED_MISBEHAVING, 'some error message')
+        then: 'the cm handle state remains to LOCKED'
+            assert CmHandleState.LOCKED == cmHandleState
+    }
+
 }

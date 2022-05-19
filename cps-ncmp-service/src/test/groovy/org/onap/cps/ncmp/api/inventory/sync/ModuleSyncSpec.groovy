@@ -20,7 +20,6 @@
 
 package org.onap.cps.ncmp.api.inventory.sync
 
-
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.inventory.CmHandleState
 import spock.lang.Specification
@@ -51,6 +50,21 @@ class ModuleSyncSpec extends Specification {
             1 * mockModuleSyncService.syncAndCreateSchemaSet(yangModelCmHandle2)
         then: 'the second cm handle is updated to state "READY" from "ADVISED"'
             1 * mockSyncUtils.updateCmHandleState(yangModelCmHandle2, CmHandleState.READY)
+    }
+
+    def 'Schedule a Cm-Handle Sync for ADVISED with failure'() {
+        given: 'cm handles in an advised state'
+            def yangModelCmHandle1 = new YangModelCmHandle(cmHandleState: cmHandleState)
+        and: 'sync utilities return a cm handle'
+            mockSyncUtils.getAnAdvisedCmHandle() >> yangModelCmHandle1
+        when: 'module sync poll is executed'
+            objectUnderTest.executeAdvisedCmHandlePoll()
+        then: 'module sync service attempts to syncs the cm handle and throws an exception'
+            1 * mockModuleSyncService.syncAndCreateSchemaSet(yangModelCmHandle1) >> { throw new Exception('some exception') }
+        and: 'update cm handle with state READY is not invoked"'
+            0 * mockSyncUtils.updateCmHandleState(_, _)
+        and: 'update cm handle with state LOCKED and lock reason and details is invoked'
+            1 * mockSyncUtils.updateCmHandleState(yangModelCmHandle1, CmHandleState.LOCKED, CmHandleState.LockReasonEnum.LOCKED_MISBEHAVING, 'some exception')
     }
 
 }

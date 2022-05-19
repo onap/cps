@@ -59,6 +59,12 @@ public class YangModelCmHandle {
     @JsonProperty("state")
     private CmHandleState cmHandleState;
 
+    @JsonProperty("lock-reason")
+    private CmHandleState.LockReasonEnum lockReason;
+
+    @JsonProperty("lock-reason-details")
+    private String lockReasonDetails;
+
     @JsonProperty("dmi-model-service-name")
     private String dmiModelServiceName;
 

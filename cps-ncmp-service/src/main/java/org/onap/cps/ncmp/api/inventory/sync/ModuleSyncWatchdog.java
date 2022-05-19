@@ -41,14 +41,20 @@ public class ModuleSyncWatchdog {
      */
     @Scheduled(fixedDelayString = "${timers.advised-modules-sync.sleep-time-ms}")
     public void executeAdvisedCmHandlePoll() {
-        YangModelCmHandle advisedCmHandle = syncUtils.getAnAdvisedCmHandle();
-        while (advisedCmHandle != null) {
-            final CmHandleState cmHandleState = advisedCmHandle.getCmHandleState();
-            moduleSyncService.syncAndCreateSchemaSet(advisedCmHandle);
-            // ToDo Lock Cm Handle if module sync fails
-            syncUtils.updateCmHandleState(advisedCmHandle, cmHandleState.ready());
-            log.info("{} is now in {} state", advisedCmHandle.getId(), advisedCmHandle.getCmHandleState());
-            advisedCmHandle = syncUtils.getAnAdvisedCmHandle();
+        YangModelCmHandle newAdvisedCmHandle = syncUtils.getAnAdvisedCmHandle();
+        try {
+            while (newAdvisedCmHandle != null) {
+                final CmHandleState cmHandleState = newAdvisedCmHandle.getCmHandleState();
+                moduleSyncService.syncAndCreateSchemaSet(newAdvisedCmHandle);
+                syncUtils.updateCmHandleState(newAdvisedCmHandle, cmHandleState.ready());
+                log.info("{} is now in {} state", newAdvisedCmHandle.getId(), newAdvisedCmHandle.getCmHandleState());
+                newAdvisedCmHandle = syncUtils.getAnAdvisedCmHandle();
+            }
+        } catch (final Exception e) {
+            syncUtils.updateCmHandleState(newAdvisedCmHandle, newAdvisedCmHandle.getCmHandleState().lock(
+                CmHandleState.LockReasonEnum.LOCKED_MISBEHAVING, e.getMessage()),
+                newAdvisedCmHandle.getCmHandleState().valueOfLockReason(),
+                newAdvisedCmHandle.getCmHandleState().valueOfLockDetails());
         }
         log.debug("No Cm-Handles currently found in an ADVISED state");
     }

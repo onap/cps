@@ -21,21 +21,100 @@
 package org.onap.cps.ncmp.api.inventory;
 
 public enum CmHandleState {
-
     ADVISED {
+        private LockReasonEnum lockReasonEnum;
+        private String details;
+
         @Override
         public CmHandleState ready() {
             return READY;
         }
+
+        @Override
+        public CmHandleState lock(final LockReasonEnum lockReasonEnum, final String lockDetails) {
+            this.lockReasonEnum = lockReasonEnum;
+            this.details = lockDetails;
+            return LOCKED;
+        }
+
+        @Override
+        public LockReasonEnum valueOfLockReason() {
+            return this.lockReasonEnum;
+        }
+
+        @Override
+        public String valueOfLockDetails() {
+            return this.details;
+        }
     },
     READY {
+        private LockReasonEnum lockReasonEnum;
+        private String details;
+
         @Override
         public CmHandleState ready() {
             return this;
         }
 
+        @Override
+        public CmHandleState lock(final LockReasonEnum lockReasonEnum, final String lockDetails) {
+            this.lockReasonEnum = lockReasonEnum;
+            this.details = lockDetails;
+            return LOCKED;
+        }
+
+        @Override
+        public LockReasonEnum valueOfLockReason() {
+            return this.lockReasonEnum;
+        }
+
+        @Override
+        public String valueOfLockDetails() {
+            return this.details;
+        }
+    },
+    LOCKED {
+
+        private LockReasonEnum lockReasonEnum;
+        private String details;
+
+        @Override
+        public CmHandleState ready() {
+            return READY;
+        }
+
+        @Override
+        public CmHandleState lock(final LockReasonEnum lockReasonEnum, final String lockDetails) {
+            this.lockReasonEnum = lockReasonEnum;
+            this.details = lockDetails;
+            return this;
+        }
+
+        @Override
+        public LockReasonEnum valueOfLockReason() {
+            return this.lockReasonEnum;
+        }
+
+        @Override
+        public String valueOfLockDetails() {
+            return this.details;
+        }
     };
 
+    private static String details;
+
     public abstract CmHandleState ready();
+
+    public abstract CmHandleState lock(final LockReasonEnum lockReasonEnum, final String details);
+
+    public abstract LockReasonEnum valueOfLockReason();
+
+    public abstract String valueOfLockDetails();
+
+    public enum LockReasonEnum {
+        LOCKED_MISBEHAVING,
+        LOCKED_UPGRADING,
+        LOCKED_OTHER
+    }
 
 }
