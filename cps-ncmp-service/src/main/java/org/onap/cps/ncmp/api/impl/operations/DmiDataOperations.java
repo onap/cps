@@ -29,6 +29,7 @@ import org.onap.cps.ncmp.api.impl.client.DmiRestClient;
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration;
 import org.onap.cps.ncmp.api.impl.utils.DmiServiceUrlBuilder;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
+import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
 import org.onap.cps.utils.CpsValidator;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.ResponseEntity;
@@ -45,11 +46,11 @@ public class DmiDataOperations extends DmiOperations {
      *
      * @param dmiRestClient {@code DmiRestClient}
      */
-    public DmiDataOperations(final YangModelCmHandleRetriever cmHandlePropertiesRetriever,
+    public DmiDataOperations(final InventoryPersistence inventoryPersistence,
                              final JsonObjectMapper jsonObjectMapper,
                              final NcmpConfiguration.DmiProperties dmiProperties,
                              final DmiRestClient dmiRestClient, final DmiServiceUrlBuilder dmiServiceUrlBuilder) {
-        super(cmHandlePropertiesRetriever, jsonObjectMapper, dmiProperties, dmiRestClient, dmiServiceUrlBuilder);
+        super(inventoryPersistence, jsonObjectMapper, dmiProperties, dmiRestClient, dmiServiceUrlBuilder);
     }
 
     /**
@@ -72,7 +73,7 @@ public class DmiDataOperations extends DmiOperations {
                                                          final String topicParamInQuery) {
         CpsValidator.validateNameCharacters(cmHandleId);
         final YangModelCmHandle yangModelCmHandle =
-                yangModelCmHandleRetriever.getYangModelCmHandle(cmHandleId);
+                inventoryPersistence.getYangModelCmHandle(cmHandleId);
         final DmiRequestBody dmiRequestBody = DmiRequestBody.builder()
             .operation(READ)
             .requestId(requestId)
@@ -104,7 +105,7 @@ public class DmiDataOperations extends DmiOperations {
                                                                              final String dataType) {
         CpsValidator.validateNameCharacters(cmHandleId);
         final YangModelCmHandle yangModelCmHandle =
-            yangModelCmHandleRetriever.getYangModelCmHandle(cmHandleId);
+            inventoryPersistence.getYangModelCmHandle(cmHandleId);
         final DmiRequestBody dmiRequestBody = DmiRequestBody.builder()
             .operation(operation)
             .data(requestData)
