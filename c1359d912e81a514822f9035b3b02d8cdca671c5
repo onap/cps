@@ -25,6 +25,29 @@
     },
     {
       "key": {
+        "uuid": "47be77a7_a3a9fa3e",
+        "filename": "cps-ncmp-events/pom.xml",
+        "patchSetId": 35
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-19T13:44:09Z",
+      "side": 1,
+      "message": "is this correct?!",
+      "range": {
+        "startLine": 47,
+        "startChar": 35,
+        "endLine": 47,
+        "endChar": 59
+      },
+      "revId": "c1359d912e81a514822f9035b3b02d8cdca671c5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a7e20b86_e22d9da2",
         "filename": "cps-ncmp-events/src/main/resources/schemas/ncmp-async-request-response-event-schema-v1.json",
         "patchSetId": 35
@@ -94,6 +117,139 @@
     },
     {
       "key": {
+        "uuid": "124f5151_e31e8a46",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 35
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-19T13:44:09Z",
+      "side": 1,
+      "message": "can it realy be null, if we dont think so dont code for nulll",
+      "parentUuid": "3163206a_0edd1e0c",
+      "range": {
+        "startLine": 109,
+        "startChar": 38,
+        "endLine": 109,
+        "endChar": 41
+      },
+      "revId": "c1359d912e81a514822f9035b3b02d8cdca671c5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f9d7f5b7_a0b685bb",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/executor/CpsNcmpTaskExecutor.java",
+        "patchSetId": 35
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-19T13:44:09Z",
+      "side": 1,
+      "message": "\u0027throwable\u0027 to be consistent with below",
+      "range": {
+        "startLine": 47,
+        "startChar": 64,
+        "endLine": 47,
+        "endChar": 69
+      },
+      "revId": "c1359d912e81a514822f9035b3b02d8cdca671c5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "03ab6933_10d51f34",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/executor/CpsNcmpTaskExecutor.java",
+        "patchSetId": 35
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-19T13:44:09Z",
+      "side": 1,
+      "message": "\u0027throwable\u0027 to be consistent with below",
+      "range": {
+        "startLine": 47,
+        "startChar": 33,
+        "endLine": 47,
+        "endChar": 38
+      },
+      "revId": "c1359d912e81a514822f9035b3b02d8cdca671c5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e80c8944_d0a60583",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/executor/CpsNcmpTaskExecutor.java",
+        "patchSetId": 35
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-19T13:44:09Z",
+      "side": 1,
+      "message": "NB: \u0027throwable\u0027 according to our own conventions",
+      "range": {
+        "startLine": 51,
+        "startChar": 54,
+        "endLine": 51,
+        "endChar": 59
+      },
+      "revId": "c1359d912e81a514822f9035b3b02d8cdca671c5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "78d32844_101af5ed",
+        "filename": "cps-ncmp-service/pom.xml",
+        "patchSetId": 35
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-19T13:44:09Z",
+      "side": 1,
+      "message": "why has the SERVICE-layer become dependent on springboot?!\n\nspring-boot-starter-validation is that for tets only or not?",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 21
+      },
+      "revId": "c1359d912e81a514822f9035b3b02d8cdca671c5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6438fbcd_766e17b3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/async/NcmpAsyncRequestResponseEventMapper.java",
+        "patchSetId": 35
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-19T13:44:09Z",
+      "side": 1,
+      "message": "might need to exclude generated code?!",
+      "revId": "c1359d912e81a514822f9035b3b02d8cdca671c5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "47577596_34c89761",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/CpsAsyncRequestResponseEventSpec.groovy",
         "patchSetId": 35
@@ -110,6 +266,167 @@
         "startChar": 43,
         "endLine": 56,
         "endChar": 47
+      },
+      "revId": "c1359d912e81a514822f9035b3b02d8cdca671c5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "222c5f85_cbe0ec4b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/CpsAsyncRequestResponseEventSpec.groovy",
+        "patchSetId": 35
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-19T13:44:09Z",
+      "side": 1,
+      "message": "jsonbObjectMapper",
+      "range": {
+        "startLine": 90,
+        "startChar": 21,
+        "endLine": 90,
+        "endChar": 28
+      },
+      "revId": "c1359d912e81a514822f9035b3b02d8cdca671c5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f57e2d8_67a1f221",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/CpsAsyncRequestResponseEventSpec.groovy",
+        "patchSetId": 35
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-19T13:44:09Z",
+      "side": 1,
+      "message": "kafakConsumer",
+      "range": {
+        "startLine": 92,
+        "startChar": 34,
+        "endLine": 92,
+        "endChar": 43
+      },
+      "revId": "c1359d912e81a514822f9035b3b02d8cdca671c5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8eaa33bf_8c62cc21",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/CpsAsyncRequestResponseEventSpec.groovy",
+        "patchSetId": 35
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-19T13:44:09Z",
+      "side": 1,
+      "message": "as per convention use full names please",
+      "range": {
+        "startLine": 113,
+        "startChar": 64,
+        "endLine": 113,
+        "endChar": 72
+      },
+      "revId": "c1359d912e81a514822f9035b3b02d8cdca671c5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6aeb05a3_dfb3b270",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/CpsAsyncRequestResponseEventSpec.groovy",
+        "patchSetId": 35
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-19T13:44:09Z",
+      "side": 1,
+      "message": "naming consistency",
+      "range": {
+        "startLine": 118,
+        "startChar": 28,
+        "endLine": 118,
+        "endChar": 66
+      },
+      "revId": "c1359d912e81a514822f9035b3b02d8cdca671c5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5c7ac076_614ba4ce",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/CpsAsyncRequestResponseEventSpec.groovy",
+        "patchSetId": 35
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-19T13:44:09Z",
+      "side": 1,
+      "message": "Properties",
+      "range": {
+        "startLine": 125,
+        "startChar": 22,
+        "endLine": 125,
+        "endChar": 27
+      },
+      "revId": "c1359d912e81a514822f9035b3b02d8cdca671c5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5523aa28_86680355",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/CpsAsyncRequestResponseEventSpec.groovy",
+        "patchSetId": 35
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-19T13:44:09Z",
+      "side": 1,
+      "message": "use static imports to make this more readable and reduce repetition)",
+      "range": {
+        "startLine": 127,
+        "startChar": 32,
+        "endLine": 127,
+        "endChar": 47
+      },
+      "revId": "c1359d912e81a514822f9035b3b02d8cdca671c5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad14899c_cbff3563",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/CpsAsyncRequestResponseEventSpec.groovy",
+        "patchSetId": 35
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-19T13:44:09Z",
+      "side": 1,
+      "message": "use Groovy!  map \u003d [key1:\"some value\", key2:\"some value\"] etc!",
+      "range": {
+        "startLine": 126,
+        "startChar": 1,
+        "endLine": 134,
+        "endChar": 35
       },
       "revId": "c1359d912e81a514822f9035b3b02d8cdca671c5",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
