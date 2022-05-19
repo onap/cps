@@ -49,8 +49,8 @@ import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
 import org.onap.cps.ncmp.api.impl.exception.HttpClientRequestException;
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations;
 import org.onap.cps.ncmp.api.impl.operations.DmiOperations;
-import org.onap.cps.ncmp.api.impl.operations.YangModelCmHandleRetriever;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
+import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.api.inventory.sync.ModuleSyncService;
 import org.onap.cps.ncmp.api.models.CmHandleQueryApiParameters;
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse;
@@ -85,7 +85,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     private final NetworkCmProxyDataServicePropertyHandler networkCmProxyDataServicePropertyHandler;
 
-    private final YangModelCmHandleRetriever yangModelCmHandleRetriever;
+    private final InventoryPersistence inventoryPersistence;
 
     private final ModuleSyncService moduleSyncService;
 
@@ -93,7 +93,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     public DmiPluginRegistrationResponse updateDmiRegistrationAndSyncModule(
         final DmiPluginRegistration dmiPluginRegistration) {
         dmiPluginRegistration.validateDmiPluginRegistration();
-        final var dmiPluginRegistrationResponse = new DmiPluginRegistrationResponse();
+        final DmiPluginRegistrationResponse dmiPluginRegistrationResponse = new DmiPluginRegistrationResponse();
         dmiPluginRegistrationResponse.setRemovedCmHandles(
             parseAndRemoveCmHandlesInDmiRegistration(dmiPluginRegistration.getRemovedCmHandles()));
         if (!dmiPluginRegistration.getCreatedCmHandles().isEmpty()) {
@@ -185,7 +185,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         CpsValidator.validateNameCharacters(cmHandleId);
         final NcmpServiceCmHandle ncmpServiceCmHandle = new NcmpServiceCmHandle();
         final YangModelCmHandle yangModelCmHandle =
-            yangModelCmHandleRetriever.getYangModelCmHandle(cmHandleId);
+            inventoryPersistence.getYangModelCmHandle(cmHandleId);
         final List<YangModelCmHandle.Property> dmiProperties = yangModelCmHandle.getDmiProperties();
         final List<YangModelCmHandle.Property> publicProperties = yangModelCmHandle.getPublicProperties();
         ncmpServiceCmHandle.setCmHandleId(yangModelCmHandle.getId());
@@ -204,7 +204,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     public Map<String, String> getCmHandlePublicProperties(final String cmHandleId) {
         CpsValidator.validateNameCharacters(cmHandleId);
         final YangModelCmHandle yangModelCmHandle =
-            yangModelCmHandleRetriever.getYangModelCmHandle(cmHandleId);
+            inventoryPersistence.getYangModelCmHandle(cmHandleId);
         final List<YangModelCmHandle.Property> yangModelPublicProperties = yangModelCmHandle.getPublicProperties();
         final Map<String, String> cmHandlePublicProperties = new HashMap<>();
         asPropertiesMap(yangModelPublicProperties, cmHandlePublicProperties);

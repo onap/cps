@@ -28,7 +28,6 @@ import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 
 import static CompositeState.DataStores
-import static CompositeState.LockReason
 import static CompositeState.Operational
 import static CompositeState.Running
 import static org.onap.cps.ncmp.utils.TestUtils.getResourceFileContent
@@ -42,8 +41,8 @@ class CompositeStateSpec extends Specification {
 
     def "Composite State Specification"() {
         given: "a Composite State"
-            def compositeState = new CompositeState(cmhandleState: CmHandleState.ADVISED,
-                lockReason: LockReason.builder().reason('lock-reason').details("lock-misbehaving-details").build(),
+            def compositeState = new CompositeState(cmHandleState: CmHandleState.ADVISED,
+                lockReason: CompositeState.LockReason.builder().lockReasonCategory(LockReasonCategory.LOCKED_MISBEHAVING).details("lock misbehaving details").build(),
                 lastUpdateTime: formattedDateAndTime.toString(),
                 dataSyncEnabled: false,
                 dataStores: dataStores())
