@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "585bfc9c_20123e89",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-05-19T10:25:39Z",
+      "side": 1,
+      "message": "Add more details here as there is more to this review",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 34
+      },
+      "revId": "26245d1f92a37cde69398c71899890b814d930a5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9e5f7380_59826bfa",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
         "patchSetId": 6
@@ -48,6 +71,29 @@
     },
     {
       "key": {
+        "uuid": "719d9c29_84e78954",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-05-19T10:25:39Z",
+      "side": 1,
+      "message": "a cm handle property endpoint?",
+      "range": {
+        "startLine": 251,
+        "startChar": 16,
+        "endLine": 251,
+        "endChar": 26
+      },
+      "revId": "26245d1f92a37cde69398c71899890b814d930a5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8f6023c0_3dbd7bd4",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
         "patchSetId": 6
@@ -59,6 +105,29 @@
       "writtenOn": "2022-05-19T10:02:27Z",
       "side": 1,
       "message": "check you (All new and modified) labels; this is not the correct label for below code!",
+      "range": {
+        "startLine": 253,
+        "startChar": 14,
+        "endLine": 253,
+        "endChar": 47
+      },
+      "revId": "26245d1f92a37cde69398c71899890b814d930a5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ec22c53_b39fc0e2",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-05-19T10:25:39Z",
+      "side": 1,
+      "message": "there is no cm handle being defined here",
       "range": {
         "startLine": 253,
         "startChar": 14,
