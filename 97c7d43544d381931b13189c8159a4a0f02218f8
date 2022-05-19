@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "deb0e9d4_cc206c5b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-05-19T09:56:29Z",
+      "side": 1,
+      "message": "nb I think composite state is now better here too",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 13
+      },
+      "revId": "97c7d43544d381931b13189c8159a4a0f02218f8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "58f7568d_2276b4a2",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/CompositeStateSpec.groovy",
         "patchSetId": 6
