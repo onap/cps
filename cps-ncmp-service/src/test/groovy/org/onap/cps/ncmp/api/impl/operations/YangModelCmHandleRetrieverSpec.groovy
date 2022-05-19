@@ -72,7 +72,7 @@ class YangModelCmHandleRetrieverSpec extends Specification {
             result.dmiProperties == expectedDmiProperties
             result.publicProperties == expectedPublicProperties
         and: 'the state details are returned'
-            result.compositeState.cmhandleState == expectedCompositeState
+            result.compositeState.cmHandleState == expectedCompositeState
         where: 'the following parameters are used'
             scenario                    | childDataNodes                                || expectedDmiProperties                               || expectedPublicProperties                              || expectedCompositeState
             'no properties'             | []                                            || []                                                  || []                                                    || null

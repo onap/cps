@@ -26,6 +26,7 @@ package org.onap.cps.ncmp.rest.controller
 import org.mapstruct.factory.Mappers
 import org.onap.cps.ncmp.api.inventory.CmHandleState
 import org.onap.cps.ncmp.api.inventory.CompositeState
+import org.onap.cps.ncmp.api.inventory.LockReasonCategory
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.rest.mapper.RestOutputCmHandleStateMapper
 import org.onap.cps.ncmp.rest.executor.CpsNcmpTaskExecutor
@@ -259,8 +260,8 @@ class NetworkCmProxyControllerSpec extends Specification {
             def cmHandleId = 'some-cm-handle'
             def dmiProperties = [ prop:'some DMI property' ]
             def publicProperties = [ "public prop":'some public property' ]
-            def compositeState = new CompositeState(cmhandleState: CmHandleState.ADVISED,
-                lockReason: LockReason.builder().reason('LOCKED_OTHER').details("lock-misbehaving-details").build(),
+            def compositeState = new CompositeState(cmHandleState: CmHandleState.ADVISED,
+                lockReason: LockReason.builder().lockReasonCategory(LockReasonCategory.LOCKED_MISBEHAVING).details("lock misbehaving details").build(),
                 lastUpdateTime: formattedDateAndTime.toString(),
                 dataSyncEnabled: false,
                 dataStores: dataStores())
@@ -273,8 +274,8 @@ class NetworkCmProxyControllerSpec extends Specification {
             response.status == HttpStatus.OK.value()
         and: 'the response returns public properties and the correct cm handle states'
             response.contentAsString.contains('publicCmHandleProperties')
-            response.contentAsString.contains('LOCKED_OTHER')
-            response.contentAsString.contains('lock-misbehaving-details')
+            response.contentAsString.contains('LOCKED_MISBEHAVING')
+            response.contentAsString.contains('lock misbehaving details')
             response.contentAsString.contains('ADVISED')
             response.contentAsString.contains('NONE_REQUESTED')
             response.contentAsString.contains('2022-12-31T20:30:40.000+0000')
