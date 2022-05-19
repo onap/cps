@@ -37,7 +37,6 @@ import java.time.format.DateTimeFormatter
 
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.PATCH
 import static org.onap.cps.ncmp.api.inventory.CompositeState.DataStores
-import static org.onap.cps.ncmp.api.inventory.CompositeState.LockReason
 import static org.onap.cps.ncmp.api.inventory.CompositeState.Operational
 import static org.onap.cps.ncmp.api.inventory.CompositeState.Running
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
@@ -256,30 +255,20 @@ class NetworkCmProxyControllerSpec extends Specification {
         given: 'an endpoint and a cm handle'
             def cmHandleDetailsEndpoint = "$ncmpBasePathV1/ch/some-cm-handle"
         and: 'an existing ncmp service cm handle'
-            def cmHandleId = 'some-cm-handle'
-            def dmiProperties = [ prop:'some DMI property' ]
-            def publicProperties = [ "public prop":'some public property' ]
-            def compositeState = new CompositeState(cmhandleState: CmHandleState.ADVISED,
-                lockReason: LockReason.builder().reason('LOCKED_OTHER').details("lock-misbehaving-details").build(),
+            def compositeState = new CompositeState(cmHandleState: CmHandleState.ADVISED,
                 lastUpdateTime: formattedDateAndTime.toString(),
-                dataSyncEnabled: false,
                 dataStores: dataStores())
-            def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, dmiProperties: dmiProperties, publicProperties: publicProperties, compositeState: compositeState)
+            def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: 'some-cm-handle', compositeState: compositeState)
         and: 'the service method is invoked with the cm handle id'
             1 * mockNetworkCmProxyDataService.getNcmpServiceCmHandle('some-cm-handle') >> ncmpServiceCmHandle
         when: 'the cm handle details api is invoked'
             def response = mvc.perform(get(cmHandleDetailsEndpoint)).andReturn().response
         then: 'the correct response is returned'
             response.status == HttpStatus.OK.value()
-        and: 'the response returns public properties and the correct cm handle states'
-            response.contentAsString.contains('publicCmHandleProperties')
-            response.contentAsString.contains('LOCKED_OTHER')
-            response.contentAsString.contains('lock-misbehaving-details')
+        and: 'the response returns the correct state and timestamp'
+            response.contentAsString.contains('some-cm-handle')
             response.contentAsString.contains('ADVISED')
-            response.contentAsString.contains('NONE_REQUESTED')
             response.contentAsString.contains('2022-12-31T20:30:40.000+0000')
-        and: 'the content does not contain dmi properties'
-            !response.contentAsString.contains("some DMI property")
     }
 
     def 'Get Cm Handle public properties by Cm Handle id.' () {
@@ -389,7 +378,7 @@ class NetworkCmProxyControllerSpec extends Specification {
                 .syncState('NONE_REQUESTED')
                 .lastSyncTime(formattedDateAndTime.toString()).build())
             .runningDataStore(Running.builder()
-                .syncState('NONE_REQUESTED')
+                .syncState('SYNCHRONIZED')
                 .lastSyncTime(formattedDateAndTime.toString()).build())
             .build()
     }

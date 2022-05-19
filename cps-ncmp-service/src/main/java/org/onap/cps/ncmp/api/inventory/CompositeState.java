@@ -22,6 +22,8 @@ package org.onap.cps.ncmp.api.inventory;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
@@ -38,7 +40,7 @@ import lombok.Setter;
 public class CompositeState {
 
     @JsonProperty("cm-handle-state")
-    private CmHandleState cmhandleState;
+    private CmHandleState cmHandleState;
 
     @JsonProperty("lock-reason")
     private LockReason lockReason;
@@ -52,13 +54,21 @@ public class CompositeState {
     @JsonProperty("datastores")
     private DataStores dataStores;
 
+    public static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+
+
+    /**
+     * This will specify the latest lock reason for a specific cm handle. If a cm handle is in a state other than LOCKED
+     * it specifies the last lock reason.
+     * This can be used to track retry attempts as part of the lock details.
+     */
     @Data
     @Builder
     @JsonInclude(JsonInclude.Include.NON_NULL)
     public static class LockReason {
 
         @JsonProperty("reason")
-        private String reason;
+        private LockReasonCategory lockReasonCategory;
 
         @JsonProperty("details")
         private String details;
@@ -99,6 +109,14 @@ public class CompositeState {
 
         @JsonProperty("last-sync-time")
         private String lastSyncTime;
+    }
+
+    public static String nowInSyncTimeFormat() {
+        return dateTimeFormatter.format(OffsetDateTime.now());
+    }
+
+    public void setLastUpdateTimeNow() {
+        lastUpdateTime = CompositeState.nowInSyncTimeFormat();
     }
 
 }

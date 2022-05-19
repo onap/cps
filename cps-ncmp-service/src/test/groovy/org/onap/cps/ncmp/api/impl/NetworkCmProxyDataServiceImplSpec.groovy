@@ -22,10 +22,11 @@
 
 package org.onap.cps.ncmp.api.impl
 
-import org.onap.cps.ncmp.api.impl.operations.YangModelCmHandleRetriever
+import org.onap.cps.ncmp.api.impl.exception.HttpClientRequestException
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.inventory.CmHandleState
 import org.onap.cps.ncmp.api.inventory.CompositeState
+import org.onap.cps.ncmp.api.inventory.InventoryPersistence
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import org.onap.cps.spi.exceptions.DataValidationException
@@ -57,7 +58,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     def spiedJsonObjectMapper = Spy(new JsonObjectMapper(new ObjectMapper()))
     def mockDmiDataOperations = Mock(DmiDataOperations)
     def nullNetworkCmProxyDataServicePropertyHandler = null
-    def mockYangModelCmHandleRetriever = Mock(YangModelCmHandleRetriever)
+    def mockInventoryPersistence = Mock(InventoryPersistence)
     def mockModuleSyncService = Mock(ModuleSyncService)
     def mockDmiPluginRegistration = Mock(DmiPluginRegistration)
 
@@ -69,7 +70,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: 'some-cm-handle-id')
 
     def objectUnderTest = new NetworkCmProxyDataServiceImpl(mockCpsDataService, spiedJsonObjectMapper, mockDmiDataOperations,
-        mockCpsModuleService, mockCpsAdminService, nullNetworkCmProxyDataServicePropertyHandler, mockYangModelCmHandleRetriever, mockModuleSyncService)
+        mockCpsModuleService, mockCpsAdminService, nullNetworkCmProxyDataServicePropertyHandler, mockInventoryPersistence, mockModuleSyncService)
 
     def cmHandleXPath = "/dmi-registry/cm-handles[@id='testCmHandle']"
 
@@ -171,17 +172,17 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             def dmiServiceName = 'some service name'
             def dmiProperties = [new YangModelCmHandle.Property('Book', 'Romance Novel')]
             def publicProperties = [new YangModelCmHandle.Property('Public Book', 'Public Romance Novel')]
-            def compositeState = new CompositeState(cmhandleState: 'ADVISED')
+            def compositeState = new CompositeState(cmHandleState: 'ADVISED')
             def yangModelCmHandle = new YangModelCmHandle(id: 'some-cm-handle', dmiServiceName: dmiServiceName,
                 dmiProperties: dmiProperties, publicProperties: publicProperties, compositeState: compositeState)
-            1 * mockYangModelCmHandleRetriever.getYangModelCmHandle('some-cm-handle') >> yangModelCmHandle
+            1 * mockInventoryPersistence.getYangModelCmHandle('some-cm-handle') >> yangModelCmHandle
         when: 'getting cm handle details for a given cm handle id from ncmp service'
             def result = objectUnderTest.getNcmpServiceCmHandle('some-cm-handle')
         then: 'the result returns the correct data'
             result.cmHandleId == 'some-cm-handle'
             result.dmiProperties ==[ Book:'Romance Novel' ]
             result.publicProperties == [ "Public Book":'Public Romance Novel' ]
-            result.compositeState.cmhandleState == CmHandleState.ADVISED
+            result.compositeState.cmHandleState == CmHandleState.ADVISED
     }
 
     def 'Get a cm handle with an invalid id.'() {
@@ -190,7 +191,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
         then: 'an exception is thrown'
             thrown(DataValidationException)
         and: 'the yang model cm handle retriever is not invoked'
-            0 * mockYangModelCmHandleRetriever.getYangModelCmHandle(*_)
+            0 * mockInventoryPersistence.getYangModelCmHandle(*_)
     }
 
     def 'Get cm handle public properties'() {
@@ -199,7 +200,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             def publicProperties = [new YangModelCmHandle.Property('public prop', 'some public prop')]
             def yangModelCmHandle = new YangModelCmHandle(id:'some-cm-handle', dmiServiceName: 'some service name', dmiProperties: dmiProperties, publicProperties: publicProperties)
         and: 'the system returns this yang modelled cm handle'
-            1 * mockYangModelCmHandleRetriever.getYangModelCmHandle('some-cm-handle') >> yangModelCmHandle
+            1 * mockInventoryPersistence.getYangModelCmHandle('some-cm-handle') >> yangModelCmHandle
         when: 'getting cm handle public properties for a given cm handle id from ncmp service'
             def result = objectUnderTest.getCmHandlePublicProperties('some-cm-handle')
         then: 'the result returns the correct data'
@@ -212,7 +213,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
         then: 'an exception is thrown'
             thrown(DataValidationException)
         and: 'the yang model cm handle retriever is not invoked'
-            0 * mockYangModelCmHandleRetriever.getYangModelCmHandle(*_)
+            0 * mockInventoryPersistence.getYangModelCmHandle(*_)
     }
 
     def 'Update resource data for pass-through running from dmi using POST #scenario DMI properties.'() {

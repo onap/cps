@@ -23,6 +23,7 @@ package org.onap.cps.ncmp.rest.mapper
 import org.mapstruct.factory.Mappers
 import org.onap.cps.ncmp.api.inventory.CmHandleState
 import org.onap.cps.ncmp.api.inventory.CompositeState
+import org.onap.cps.ncmp.api.inventory.LockReasonCategory
 import org.onap.cps.ncmp.rest.model.RestOutputCmHandleState
 import spock.lang.Specification
 
@@ -42,8 +43,8 @@ class RestOutputCmHandleStateMapperTest extends Specification {
 
     def 'Composite State to Rest Output CmHandleState'() {
         given: 'a composite state model'
-            def compositeState = new CompositeState(cmhandleState: CmHandleState.ADVISED,
-                lockReason: LockReason.builder().reason('LOCKED_OTHER').details('locked-other-details').build(),
+            def compositeState = new CompositeState(cmHandleState: CmHandleState.ADVISED,
+                lockReason: LockReason.builder().lockReasonCategory(LockReasonCategory.LOCKED_MISBEHAVING).details('locked other details').build(),
                 lastUpdateTime: formattedDateAndTime.toString(),
                 dataSyncEnabled: false,
                 dataStores: dataStores())
@@ -54,8 +55,8 @@ class RestOutputCmHandleStateMapperTest extends Specification {
         and: 'mapped result should have correct values'
             assert !result.dataSyncEnabled
             assert result.lastUpdateTime == formattedDateAndTime
-            assert result.lockReason.reason == 'LOCKED_OTHER'
-            assert result.lockReason.details == 'locked-other-details'
+            assert result.lockReason.reason == 'LOCKED_MISBEHAVING'
+            assert result.lockReason.details == 'locked other details'
             assert result.cmHandleState == CmHandleState.ADVISED.name()
             assert result.dataSyncState.operational != null
             assert result.dataSyncState.running != null
@@ -68,7 +69,7 @@ class RestOutputCmHandleStateMapperTest extends Specification {
                 .syncState('NONE_REQUESTED')
                 .lastSyncTime(formattedDateAndTime.toString()).build())
             .runningDataStore(CompositeState.Running.builder()
-                .syncState('NONE_REQUESTED')
+                .syncState('SYNCHRONIZED')
                 .lastSyncTime(formattedDateAndTime.toString()).build())
             .build()
     }
