@@ -22,6 +22,10 @@
 
 package org.onap.cps.api.impl;
 
+import static org.onap.cps.notification.Operation.CREATE;
+import static org.onap.cps.notification.Operation.DELETE;
+import static org.onap.cps.notification.Operation.UPDATE;
+
 import java.time.OffsetDateTime;
 import java.util.Collection;
 import lombok.AllArgsConstructor;
@@ -61,7 +65,7 @@ public class CpsDataServiceImpl implements CpsDataService {
         CpsValidator.validateNameCharacters(dataspaceName, anchorName);
         final DataNode dataNode = buildDataNode(dataspaceName, anchorName, ROOT_NODE_XPATH, jsonData);
         cpsDataPersistenceService.storeDataNode(dataspaceName, anchorName, dataNode);
-        processDataUpdatedEventAsync(dataspaceName, anchorName, observedTimestamp, ROOT_NODE_XPATH, Operation.CREATE);
+        processDataUpdatedEventAsync(dataspaceName, anchorName, observedTimestamp, ROOT_NODE_XPATH, CREATE);
     }
 
     @Override
@@ -70,7 +74,7 @@ public class CpsDataServiceImpl implements CpsDataService {
         CpsValidator.validateNameCharacters(dataspaceName, anchorName);
         final DataNode dataNode = buildDataNode(dataspaceName, anchorName, parentNodeXpath, jsonData);
         cpsDataPersistenceService.addChildDataNode(dataspaceName, anchorName, parentNodeXpath, dataNode);
-        processDataUpdatedEventAsync(dataspaceName, anchorName, observedTimestamp, parentNodeXpath, Operation.CREATE);
+        processDataUpdatedEventAsync(dataspaceName, anchorName, observedTimestamp, parentNodeXpath, CREATE);
     }
 
     @Override
@@ -81,7 +85,7 @@ public class CpsDataServiceImpl implements CpsDataService {
             buildDataNodes(dataspaceName, anchorName, parentNodeXpath, jsonData);
         cpsDataPersistenceService.addListElements(dataspaceName, anchorName, parentNodeXpath,
             listElementDataNodeCollection);
-        processDataUpdatedEventAsync(dataspaceName, anchorName, observedTimestamp, parentNodeXpath, Operation.UPDATE);
+        processDataUpdatedEventAsync(dataspaceName, anchorName, observedTimestamp, parentNodeXpath, UPDATE);
     }
 
     @Override
@@ -98,7 +102,7 @@ public class CpsDataServiceImpl implements CpsDataService {
         final DataNode dataNode = buildDataNode(dataspaceName, anchorName, parentNodeXpath, jsonData);
         cpsDataPersistenceService
             .updateDataLeaves(dataspaceName, anchorName, dataNode.getXpath(), dataNode.getLeaves());
-        processDataUpdatedEventAsync(dataspaceName, anchorName, observedTimestamp, parentNodeXpath, Operation.UPDATE);
+        processDataUpdatedEventAsync(dataspaceName, anchorName, observedTimestamp, parentNodeXpath, UPDATE);
     }
 
     @Override
@@ -113,7 +117,7 @@ public class CpsDataServiceImpl implements CpsDataService {
         for (final DataNode dataNodeUpdate : dataNodeUpdates) {
             processDataNodeUpdate(dataspaceName, anchorName, dataNodeUpdate);
         }
-        processDataUpdatedEventAsync(dataspaceName, anchorName, observedTimestamp, parentNodeXpath, Operation.UPDATE);
+        processDataUpdatedEventAsync(dataspaceName, anchorName, observedTimestamp, parentNodeXpath, UPDATE);
     }
 
     @Override
@@ -143,7 +147,7 @@ public class CpsDataServiceImpl implements CpsDataService {
         CpsValidator.validateNameCharacters(dataspaceName, anchorName);
         final DataNode dataNode = buildDataNode(dataspaceName, anchorName, parentNodeXpath, jsonData);
         cpsDataPersistenceService.replaceDataNodeTree(dataspaceName, anchorName, dataNode);
-        processDataUpdatedEventAsync(dataspaceName, anchorName, observedTimestamp, parentNodeXpath, Operation.UPDATE);
+        processDataUpdatedEventAsync(dataspaceName, anchorName, observedTimestamp, parentNodeXpath, UPDATE);
     }
 
     @Override
@@ -160,7 +164,7 @@ public class CpsDataServiceImpl implements CpsDataService {
             final Collection<DataNode> dataNodes, final OffsetDateTime observedTimestamp) {
         CpsValidator.validateNameCharacters(dataspaceName, anchorName);
         cpsDataPersistenceService.replaceListContent(dataspaceName, anchorName, parentNodeXpath, dataNodes);
-        processDataUpdatedEventAsync(dataspaceName, anchorName, observedTimestamp, parentNodeXpath, Operation.UPDATE);
+        processDataUpdatedEventAsync(dataspaceName, anchorName, observedTimestamp, parentNodeXpath, UPDATE);
     }
 
     @Override
@@ -168,7 +172,7 @@ public class CpsDataServiceImpl implements CpsDataService {
                                final OffsetDateTime observedTimestamp) {
         CpsValidator.validateNameCharacters(dataspaceName, anchorName);
         cpsDataPersistenceService.deleteDataNode(dataspaceName, anchorName, dataNodeXpath);
-        processDataUpdatedEventAsync(dataspaceName, anchorName, observedTimestamp, dataNodeXpath, Operation.DELETE);
+        processDataUpdatedEventAsync(dataspaceName, anchorName, observedTimestamp, dataNodeXpath, DELETE);
     }
 
     @Override
@@ -177,7 +181,7 @@ public class CpsDataServiceImpl implements CpsDataService {
         CpsValidator.validateNameCharacters(dataspaceName, anchorName);
         final Anchor anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
         cpsDataPersistenceService.deleteDataNodes(dataspaceName, anchorName);
-        processDataUpdatedEventAsync(anchor, ROOT_NODE_XPATH, Operation.DELETE, observedTimestamp);
+        processDataUpdatedEventAsync(anchor, ROOT_NODE_XPATH, DELETE, observedTimestamp);
     }
 
     @Override
@@ -185,7 +189,7 @@ public class CpsDataServiceImpl implements CpsDataService {
         final OffsetDateTime observedTimestamp) {
         CpsValidator.validateNameCharacters(dataspaceName, anchorName);
         cpsDataPersistenceService.deleteListDataNode(dataspaceName, anchorName, listNodeXpath);
-        processDataUpdatedEventAsync(dataspaceName, anchorName, observedTimestamp, listNodeXpath, Operation.DELETE);
+        processDataUpdatedEventAsync(dataspaceName, anchorName, observedTimestamp, listNodeXpath, DELETE);
     }
 
     private DataNode buildDataNode(final String dataspaceName, final String anchorName,
@@ -233,10 +237,13 @@ public class CpsDataServiceImpl implements CpsDataService {
         this.processDataUpdatedEventAsync(anchor, xpath, operation, observedTimestamp);
     }
 
-    private void processDataUpdatedEventAsync(final Anchor anchor, final String xpath, final Operation operation,
+    private void processDataUpdatedEventAsync(final Anchor anchor,
+                                              final String xpath,
+                                              final Operation operation,
         final OffsetDateTime observedTimestamp) {
         try {
-            notificationService.processDataUpdatedEvent(anchor, observedTimestamp, xpath, operation);
+            notificationService.processDataUpdatedEvent(anchor, observedTimestamp, xpath,
+                operation);
         } catch (final Exception exception) {
             //If async message can't be queued for notification service, the initial request should not failed.
             log.error("Failed to send message to notification service", exception);
