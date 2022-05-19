@@ -25,6 +25,52 @@
     },
     {
       "key": {
+        "uuid": "a7e20b86_e22d9da2",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/ncmp-async-request-response-event-schema-v1.json",
+        "patchSetId": 35
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-19T11:18:31Z",
+      "side": 1,
+      "message": "agreed order still not applied",
+      "range": {
+        "startLine": 18,
+        "startChar": 9,
+        "endLine": 18,
+        "endChar": 20
+      },
+      "revId": "c1359d912e81a514822f9035b3b02d8cdca671c5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e478eba0_d361e406",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/ncmp-async-request-response-event-schema-v1.json",
+        "patchSetId": 35
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-19T11:18:31Z",
+      "side": 1,
+      "message": "agrred order not applied",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 21
+      },
+      "revId": "c1359d912e81a514822f9035b3b02d8cdca671c5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3163206a_0edd1e0c",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
         "patchSetId": 35
@@ -41,6 +87,29 @@
         "startChar": 38,
         "endLine": 109,
         "endChar": 41
+      },
+      "revId": "c1359d912e81a514822f9035b3b02d8cdca671c5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "47577596_34c89761",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/CpsAsyncRequestResponseEventSpec.groovy",
+        "patchSetId": 35
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-19T11:18:31Z",
+      "side": 1,
+      "message": "this is a (semi)integration spec so please reflect that in the name\nNcmpAsyncRequestResponseEventProducerIntegrationSpec \n\nnot sure if you have any pure unit test (yet) if so they should be in separate spec with ;\u0027Integration\u0027\nBut i think you will need it to tets exception aetc.(you need junit and mocking to trigger exception flows usually)",
+      "range": {
+        "startLine": 56,
+        "startChar": 43,
+        "endLine": 56,
+        "endChar": 47
       },
       "revId": "c1359d912e81a514822f9035b3b02d8cdca671c5",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
