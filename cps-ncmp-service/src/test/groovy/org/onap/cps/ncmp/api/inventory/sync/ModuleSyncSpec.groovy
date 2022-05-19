@@ -23,6 +23,7 @@ package org.onap.cps.ncmp.api.inventory.sync
 
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.inventory.CmHandleState
+import org.onap.cps.ncmp.api.inventory.CompositeState
 import spock.lang.Specification
 
 class ModuleSyncSpec extends Specification {
@@ -37,8 +38,10 @@ class ModuleSyncSpec extends Specification {
 
     def 'Schedule a Cm-Handle Sync for ADVISED Cm-Handles'() {
         given: 'cm handles in an advised state'
-            def yangModelCmHandle1 = new YangModelCmHandle(cmHandleState: cmHandleState)
-            def yangModelCmHandle2 = new YangModelCmHandle(cmHandleState: cmHandleState)
+            def compositeState = new CompositeState()
+            compositeState.cmhandleState = cmHandleState
+            def yangModelCmHandle1 = new YangModelCmHandle(compositeState: compositeState)
+            def yangModelCmHandle2 = new YangModelCmHandle(compositeState: compositeState)
         and: 'sync utilities return a cm handle twice'
             mockSyncUtils.getAnAdvisedCmHandle() >>> [yangModelCmHandle1, yangModelCmHandle2, null]
         when: 'module sync poll is executed'
