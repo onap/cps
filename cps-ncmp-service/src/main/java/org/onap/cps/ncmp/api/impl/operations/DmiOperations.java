@@ -26,6 +26,7 @@ import lombok.RequiredArgsConstructor;
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient;
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration;
 import org.onap.cps.ncmp.api.impl.utils.DmiServiceUrlBuilder;
+import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.stereotype.Service;
 
@@ -44,7 +45,7 @@ public class DmiOperations {
         }
     }
 
-    protected final YangModelCmHandleRetriever yangModelCmHandleRetriever;
+    protected final InventoryPersistence inventoryPersistence;
     protected final JsonObjectMapper jsonObjectMapper;
     protected final NcmpConfiguration.DmiProperties dmiProperties;
     protected final DmiRestClient dmiRestClient;
