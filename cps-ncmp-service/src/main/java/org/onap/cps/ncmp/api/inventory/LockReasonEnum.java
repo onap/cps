@@ -20,6 +20,6 @@
 
 package org.onap.cps.ncmp.api.inventory;
 
-public enum CmHandleState {
-    ADVISED, READY, LOCKED
+public enum LockReasonEnum {
+    LOCKED_MISBEHAVING, LOCKED_UPGRADING, LOCKED_OTHER
 }

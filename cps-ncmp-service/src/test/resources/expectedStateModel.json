@@ -1,7 +1,7 @@
 {
   "cm-handle-state" : "ADVISED",
   "lock-reason" : {
-    "reason" : "lock-reason",
+    "reason" : "LOCKED_MISBEHAVING",
     "details" : "lock-misbehaving-details"
   },
   "last-update-time" : "2022-01-01T01:01:01.000-1800",

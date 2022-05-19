@@ -58,7 +58,7 @@ public class CompositeState {
     public static class LockReason {
 
         @JsonProperty("reason")
-        private String reason;
+        private LockReasonEnum reason;
 
         @JsonProperty("details")
         private String details;
