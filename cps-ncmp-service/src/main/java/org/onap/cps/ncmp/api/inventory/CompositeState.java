@@ -52,13 +52,19 @@ public class CompositeState {
     @JsonProperty("datastores")
     private DataStores dataStores;
 
+
+    /**
+     * This will specify the latest lock reason for a specific cm handle. If a cm handle is in a state other than LOCKED
+     * it specifies the last lock reason.
+     * This can be used to track retry attempts as part of the lock details.
+     */
     @Data
     @Builder
     @JsonInclude(JsonInclude.Include.NON_NULL)
     public static class LockReason {
 
         @JsonProperty("reason")
-        private String reason;
+        private LockReasonCategory lockReasonCategory;
 
         @JsonProperty("details")
         private String details;

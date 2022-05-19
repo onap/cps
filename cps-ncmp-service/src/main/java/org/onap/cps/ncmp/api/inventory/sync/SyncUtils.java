@@ -1,5 +1,5 @@
 /*
- * ============LICENSE_START=======================================================
+ *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,23 +20,19 @@
 
 package org.onap.cps.ncmp.api.inventory.sync;
 
-import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NCMP_DATASPACE_NAME;
-import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NCMP_DMI_REGISTRY_ANCHOR;
-import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NCMP_DMI_REGISTRY_PARENT;
-
 import java.security.SecureRandom;
-import java.time.OffsetDateTime;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.api.CpsDataService;
 import org.onap.cps.ncmp.api.impl.operations.YangModelCmHandleRetriever;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.inventory.CmHandleState;
+import org.onap.cps.ncmp.api.inventory.CompositeState;
+import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
+import org.onap.cps.ncmp.api.inventory.LockReasonCategory;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
-import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.stereotype.Component;
 
 @Slf4j
@@ -45,11 +41,10 @@ import org.springframework.stereotype.Component;
 public class SyncUtils {
 
     private static final SecureRandom secureRandom = new SecureRandom();
-    private final CpsDataService cpsDataService;
 
     private final CpsDataPersistenceService cpsDataPersistenceService;
 
-    private final JsonObjectMapper jsonObjectMapper;
+    private final InventoryPersistence inventoryPersistence;
 
     private final YangModelCmHandleRetriever yangModelCmHandleRetriever;
 
@@ -60,7 +55,7 @@ public class SyncUtils {
      */
     public YangModelCmHandle getAnAdvisedCmHandle() {
         final List<DataNode> advisedCmHandles = cpsDataPersistenceService.queryDataNodes("NCMP-Admin",
-            "ncmp-dmi-registry", "//cm-handles[@state=\"ADVISED\"]",
+            "ncmp-dmi-registry", "//state[@cm-handle-state=\"ADVISED\"]/ancestor::cm-handles",
             FetchDescendantsOption.OMIT_DESCENDANTS);
         if (advisedCmHandles.isEmpty()) {
             return null;
@@ -75,14 +70,29 @@ public class SyncUtils {
      * Update the Cm Handle state to "READY".
      *
      * @param yangModelCmHandle yang model cm handle
-     * @param cmHandleState cm handle state
      */
-    public void updateCmHandleState(final YangModelCmHandle yangModelCmHandle, final CmHandleState cmHandleState) {
-        yangModelCmHandle.getCompositeState().setCmhandleState(cmHandleState);
-        final String cmHandleJsonData = String.format("{\"cm-handles\":[%s]}",
-            jsonObjectMapper.asJsonString(yangModelCmHandle));
-        cpsDataService.updateNodeLeaves(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NCMP_DMI_REGISTRY_PARENT,
-            cmHandleJsonData, OffsetDateTime.now());
+    public void setCmHandleReadyState(final YangModelCmHandle yangModelCmHandle) {
+        final CompositeState compositeState = new CompositeState();
+        yangModelCmHandle.setCompositeState(compositeState);
+        compositeState.setCmhandleState(CmHandleState.READY);
+        inventoryPersistence.updateCmHandleState(compositeState.getCmhandleState(), yangModelCmHandle.getId());
+    }
+
+    /**
+     * Set the Cm Handle state to "LOCKED".
+     *
+     * @param yangModelCmHandle yang model cm handle
+     * @param reason lock reason enum
+     * @param details lock reason details
+     */
+    public void lockCmHandleState(final YangModelCmHandle yangModelCmHandle,
+                                  final LockReasonCategory reason,
+                                  final String details) {
+        final CompositeState compositeState = new CompositeState();
+        yangModelCmHandle.setCompositeState(compositeState);
+        compositeState.setCmhandleState(CmHandleState.LOCKED);
+        inventoryPersistence.updateCmHandleState(compositeState.getCmhandleState(), yangModelCmHandle.getId());
+        inventoryPersistence.saveLockReasonAndDetails(yangModelCmHandle.getId(), reason, details);
     }
 
 }

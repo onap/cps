@@ -1,5 +1,5 @@
 /*
- * ============LICENSE_START=======================================================
+ *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,10 +20,10 @@
 
 package org.onap.cps.ncmp.api.inventory.sync
 
-
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.inventory.CmHandleState
 import org.onap.cps.ncmp.api.inventory.CompositeState
+import org.onap.cps.ncmp.api.inventory.LockReasonCategory
 import spock.lang.Specification
 
 class ModuleSyncSpec extends Specification {
@@ -48,12 +48,28 @@ class ModuleSyncSpec extends Specification {
             objectUnderTest.executeAdvisedCmHandlePoll()
         then: 'module sync service syncs the first cm handle and creates a schema set'
             1 * mockModuleSyncService.syncAndCreateSchemaSet(yangModelCmHandle1)
-        and: 'the first cm handle is updated to state "READY" from "ADVISED"'
-            1 * mockSyncUtils.updateCmHandleState(yangModelCmHandle1, CmHandleState.READY)
+        and: 'the first cm handle is updated'
+            1 * mockSyncUtils.setCmHandleReadyState(yangModelCmHandle1)
         then: 'module sync service syncs the second cm handle and creates a schema set'
             1 * mockModuleSyncService.syncAndCreateSchemaSet(yangModelCmHandle2)
-        then: 'the second cm handle is updated to state "READY" from "ADVISED"'
-            1 * mockSyncUtils.updateCmHandleState(yangModelCmHandle2, CmHandleState.READY)
+        then: 'the second cm handle is updated'
+            1 * mockSyncUtils.setCmHandleReadyState(yangModelCmHandle2)
+    }
+
+    def 'Schedule a Cm-Handle Sync for ADVISED with failure'() {
+        given: 'cm handles in an advised state'
+            def compositeState = new CompositeState(cmhandleState: cmHandleState)
+            def yangModelCmHandle1 = new YangModelCmHandle(compositeState: compositeState)
+        and: 'sync utilities return a cm handle'
+            mockSyncUtils.getAnAdvisedCmHandle() >> yangModelCmHandle1
+        when: 'module sync poll is executed'
+            objectUnderTest.executeAdvisedCmHandlePoll()
+        then: 'module sync service attempts to syncs the cm handle and throws an exception'
+            1 * mockModuleSyncService.syncAndCreateSchemaSet(yangModelCmHandle1) >> { throw new Exception('some exception') }
+        and: 'update cm handle with state READY is not invoked"'
+            0 * mockSyncUtils.setCmHandleReadyState(*_)
+        and: 'lock cm handle with lock reason and details is invoked'
+            1 * mockSyncUtils.lockCmHandleState(yangModelCmHandle1, LockReasonCategory.LOCKED_MISBEHAVING, 'some exception')
     }
 
 }
