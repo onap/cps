@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "649ea537_777dc04c",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 35
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-19T11:16:09Z",
+      "side": 1,
+      "message": "Will this have to be added to OOM and documented?",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 85,
+        "endChar": 57
+      },
+      "revId": "c1359d912e81a514822f9035b3b02d8cdca671c5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3163206a_0edd1e0c",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 35
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-19T11:16:09Z",
+      "side": 1,
+      "message": "There is a warning that this could return a null pointer. Should we have a null check that the async response data isn\u0027t null",
+      "range": {
+        "startLine": 109,
+        "startChar": 38,
+        "endLine": 109,
+        "endChar": 41
+      },
+      "revId": "c1359d912e81a514822f9035b3b02d8cdca671c5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0accb5b_497ab99e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/CpsAsyncRequestResponseEventSpec.groovy",
+        "patchSetId": 35
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-19T11:16:09Z",
+      "side": 1,
+      "message": "Is this necessary, tests seem to pass without it.",
+      "range": {
+        "startLine": 148,
+        "startChar": 0,
+        "endLine": 153,
+        "endChar": 4
+      },
+      "revId": "c1359d912e81a514822f9035b3b02d8cdca671c5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "32e2268b_6ab17ca8",
+        "filename": "cps-service/pom.xml",
+        "patchSetId": 35
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-19T11:16:09Z",
+      "side": 1,
+      "message": "Why were changes detected in this file?",
+      "revId": "c1359d912e81a514822f9035b3b02d8cdca671c5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
