@@ -1,5 +1,5 @@
 /*
- * ============LICENSE_START=======================================================
+ *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,6 +24,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.inventory.CmHandleState;
+import org.onap.cps.ncmp.api.inventory.LockReasonEnum;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -42,13 +43,17 @@ public class ModuleSyncWatchdog {
     @Scheduled(fixedDelayString = "${timers.advised-modules-sync.sleep-time-ms}")
     public void executeAdvisedCmHandlePoll() {
         YangModelCmHandle advisedCmHandle = syncUtils.getAnAdvisedCmHandle();
-        while (advisedCmHandle != null) {
-            moduleSyncService.syncAndCreateSchemaSet(advisedCmHandle);
-            // ToDo Lock Cm Handle if module sync fails
-            syncUtils.updateCmHandleState(advisedCmHandle, CmHandleState.READY);
-            log.info("{} is now in {} state", advisedCmHandle.getId(),
+        try {
+            while (advisedCmHandle != null) {
+                moduleSyncService.syncAndCreateSchemaSet(advisedCmHandle);
+                syncUtils.updateCmHandleState(advisedCmHandle, CmHandleState.READY);
+                log.info("{} is now in {} state", advisedCmHandle.getId(),
                     advisedCmHandle.getCompositeState().getCmhandleState());
-            advisedCmHandle = syncUtils.getAnAdvisedCmHandle();
+                advisedCmHandle = syncUtils.getAnAdvisedCmHandle();
+            }
+        } catch (final Exception e) {
+            syncUtils.lockCmHandleState(advisedCmHandle, CmHandleState.LOCKED,
+                LockReasonEnum.LOCKED_MISBEHAVING,  e.getMessage());
         }
         log.debug("No Cm-Handles currently found in an ADVISED state");
     }
