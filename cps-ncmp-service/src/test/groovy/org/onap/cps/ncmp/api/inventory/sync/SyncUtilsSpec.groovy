@@ -26,6 +26,7 @@ import org.onap.cps.ncmp.api.impl.operations.YangModelCmHandleRetriever
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.inventory.CmHandleState
 import org.onap.cps.ncmp.api.inventory.CompositeState
+import org.onap.cps.ncmp.api.inventory.LockReasonEnum
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.model.DataNode
@@ -52,7 +53,7 @@ class SyncUtilsSpec extends Specification{
     def 'Get an advised Cm-Handle where ADVISED cm handle #scenario'() {
         given: 'the cps (persistence service) returns a collection of data nodes'
             mockCpsDataPersistenceService.queryDataNodes('NCMP-Admin',
-                'ncmp-dmi-registry', '//cm-handles[@state=\"ADVISED\"]',
+                'ncmp-dmi-registry', '//state[@cm-handle-state=\"ADVISED\"]/ancestor::cm-handles',
                 FetchDescendantsOption.OMIT_DESCENDANTS) >> dataNodeCollection
         when: 'get advised cm handle is called'
             objectUnderTest.getAnAdvisedCmHandle()
@@ -67,16 +68,31 @@ class SyncUtilsSpec extends Specification{
 
     }
 
-    def 'Update cm handle state from Advised to Ready'() {
+    def 'Update cm handle state from ADVIED to READY'() {
         given: 'a yang model cm handle and the expected json data'
             def compositeState = new CompositeState()
             compositeState.cmhandleState = CmHandleState.ADVISED
             def yangModelCmHandle = new YangModelCmHandle(id: 'Some-Cm-Handle', compositeState: compositeState )
-            def expectedJsonData = '{"cm-handles":[{"id":"Some-Cm-Handle","state":{"cm-handle-state":"READY"}}]}'
+            def expectedJsonData = '{"state":{"cm-handle-state":"READY"}}'
         when: 'update cm handle state is called'
             objectUnderTest.updateCmHandleState(yangModelCmHandle, CmHandleState.READY)
         then: 'update data note leaves is invoked with the correct params'
-            1 * mockCpsDataService.updateNodeLeaves('NCMP-Admin', 'ncmp-dmi-registry', '/dmi-registry', expectedJsonData, _ as OffsetDateTime)
+            1 * mockCpsDataService.updateNodeLeaves('NCMP-Admin', 'ncmp-dmi-registry', '/dmi-registry/cm-handles[@id=\'Some-Cm-Handle\']', expectedJsonData, _ as OffsetDateTime)
+    }
+
+    def 'Update cm handle state from ADVISED to LOCKED'() {
+        given: 'a yang model cm handle and the expected json data'
+            def compositeState = new CompositeState()
+            compositeState.cmhandleState = CmHandleState.LOCKED
+            def yangModelCmHandle = new YangModelCmHandle(id: 'Some-Cm-Handle', compositeState: compositeState)
+            def expectedJsonDataCmHandleLockState = '{"state":{"cm-handle-state":"LOCKED"}}'
+            def expectedJsonDataCmHandleLockReason = '{"lock-reason": {"reason":"LOCKED_MISBEHAVING","details":"some lock reason details"}}'
+        when: 'update cm handle state is called'
+            objectUnderTest.lockCmHandleState(yangModelCmHandle, CmHandleState.LOCKED, LockReasonEnum.LOCKED_MISBEHAVING, 'some lock reason details')
+        then: 'update data note leaves is invoked with the correct params'
+            1 * mockCpsDataService.updateNodeLeaves('NCMP-Admin', 'ncmp-dmi-registry', '/dmi-registry/cm-handles[@id=\'Some-Cm-Handle\']', expectedJsonDataCmHandleLockState, _ as OffsetDateTime)
+        then: 'update data note leaves is invoked with the correct params'
+            1 * mockCpsDataService.saveData('NCMP-Admin', 'ncmp-dmi-registry', '/dmi-registry/cm-handles[@id=\'Some-Cm-Handle\']/state', expectedJsonDataCmHandleLockReason, _ as OffsetDateTime)
     }
 
 }
