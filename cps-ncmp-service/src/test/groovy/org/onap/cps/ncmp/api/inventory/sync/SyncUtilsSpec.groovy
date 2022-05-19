@@ -20,29 +20,26 @@
 
 package org.onap.cps.ncmp.api.inventory.sync
 
-import com.fasterxml.jackson.databind.ObjectMapper
-import org.onap.cps.api.CpsDataService
+
 import org.onap.cps.ncmp.api.impl.operations.YangModelCmHandleRetriever
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.inventory.CmHandleState
 import org.onap.cps.ncmp.api.inventory.CompositeState
+import org.onap.cps.ncmp.api.inventory.LockReason
+import org.onap.cps.ncmp.api.inventory.sync.helpers.DmiRegistryPersistence
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.model.DataNode
-import org.onap.cps.utils.JsonObjectMapper
 import spock.lang.Shared
 import spock.lang.Specification
 
-import java.time.OffsetDateTime
-
 class SyncUtilsSpec extends Specification{
 
-    def mockCpsDataService = Mock(CpsDataService)
     def mockCpsDataPersistenceService = Mock(CpsDataPersistenceService)
-    def spiedJsonObjectMapper = Spy(new JsonObjectMapper(new ObjectMapper()))
     def mockYangModelCmHandleRetriever = Mock(YangModelCmHandleRetriever)
+    def mockRegistryPersistence = Mock(DmiRegistryPersistence)
 
-    def objectUnderTest = new SyncUtils(mockCpsDataService, mockCpsDataPersistenceService, spiedJsonObjectMapper, mockYangModelCmHandleRetriever)
+    def objectUnderTest = new SyncUtils(mockCpsDataPersistenceService, mockRegistryPersistence, mockYangModelCmHandleRetriever)
 
     @Shared
     def dataNode = new DataNode(leaves: ['id': 'cm-handle-123'])
@@ -52,7 +49,7 @@ class SyncUtilsSpec extends Specification{
     def 'Get an advised Cm-Handle where ADVISED cm handle #scenario'() {
         given: 'the cps (persistence service) returns a collection of data nodes'
             mockCpsDataPersistenceService.queryDataNodes('NCMP-Admin',
-                'ncmp-dmi-registry', '//cm-handles[@state=\"ADVISED\"]',
+                'ncmp-dmi-registry', '//state[@cm-handle-state=\"ADVISED\"]/ancestor::cm-handles',
                 FetchDescendantsOption.OMIT_DESCENDANTS) >> dataNodeCollection
         when: 'get advised cm handle is called'
             objectUnderTest.getAnAdvisedCmHandle()
@@ -67,16 +64,24 @@ class SyncUtilsSpec extends Specification{
 
     }
 
-    def 'Update cm handle state from Advised to Ready'() {
+    def 'Update cm handle state'() {
         given: 'a yang model cm handle and the expected json data'
-            def compositeState = new CompositeState()
-            compositeState.cmhandleState = CmHandleState.ADVISED
-            def yangModelCmHandle = new YangModelCmHandle(id: 'Some-Cm-Handle', compositeState: compositeState )
-            def expectedJsonData = '{"cm-handles":[{"id":"Some-Cm-Handle","state":{"cm-handle-state":"READY"}}]}'
-        when: 'update cm handle state is called'
-            objectUnderTest.updateCmHandleState(yangModelCmHandle, CmHandleState.READY)
-        then: 'update data note leaves is invoked with the correct params'
-            1 * mockCpsDataService.updateNodeLeaves('NCMP-Admin', 'ncmp-dmi-registry', '/dmi-registry', expectedJsonData, _ as OffsetDateTime)
+            def yangModelCmHandle = new YangModelCmHandle(id: 'Some-Cm-Handle', compositeState: new CompositeState())
+        when: 'set cm handle ready state is called'
+            objectUnderTest.setCmHandleReadyState(yangModelCmHandle)
+        then: 'update cm handle state is invoked with the correct parameters'
+            1 * mockRegistryPersistence.updateCmHandleState(CmHandleState.READY, 'Some-Cm-Handle')
+    }
+
+    def 'Update cm handle state from ADVISED to LOCKED'() {
+        given: 'a yang model cm handle and the expected json data'
+            def yangModelCmHandle = new YangModelCmHandle(id: 'Some-Cm-Handle', compositeState: new CompositeState())
+        when: 'lock cm handle state is called'
+            objectUnderTest.lockCmHandleState(yangModelCmHandle, LockReason.LOCKED_MISBEHAVING, 'some lock reason details')
+        then: 'update cm handle state is invoked with the correct parameters'
+            1 * mockRegistryPersistence.updateCmHandleState(CmHandleState.LOCKED, 'Some-Cm-Handle')
+        then: 'save lock reason and details is invoked with the correct parameters'
+            1 * mockRegistryPersistence.saveLockReasonAndDetails('Some-Cm-Handle', LockReason.LOCKED_MISBEHAVING, 'some lock reason details')
     }
 
 }
