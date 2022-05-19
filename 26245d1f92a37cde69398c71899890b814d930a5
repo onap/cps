@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9e5f7380_59826bfa",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-19T10:02:27Z",
+      "side": 1,
+      "message": "Get (it is not a query!)",
+      "range": {
+        "startLine": 245,
+        "startChar": 7,
+        "endLine": 245,
+        "endChar": 17
+      },
+      "revId": "26245d1f92a37cde69398c71899890b814d930a5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eaa03d02_b0688c41",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-19T10:02:27Z",
+      "side": 1,
+      "message": "I see there is a legacy issue in this test spec but this should be a bit more descriptive\n\u0027a cm-handle properties endpoint\u0027 or something like that\n(maybe apply the good scout behavior :-))",
+      "range": {
+        "startLine": 251,
+        "startChar": 16,
+        "endLine": 251,
+        "endChar": 27
+      },
+      "revId": "26245d1f92a37cde69398c71899890b814d930a5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f6023c0_3dbd7bd4",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-19T10:02:27Z",
+      "side": 1,
+      "message": "check you (All new and modified) labels; this is not the correct label for below code!",
+      "range": {
+        "startLine": 253,
+        "startChar": 14,
+        "endLine": 253,
+        "endChar": 47
+      },
+      "revId": "26245d1f92a37cde69398c71899890b814d930a5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "445ec0b3_74d8b669",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/NetworkCmProxyDataService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-19T10:02:27Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 126,
+        "startChar": 51,
+        "endLine": 126,
+        "endChar": 53
+      },
+      "revId": "26245d1f92a37cde69398c71899890b814d930a5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
