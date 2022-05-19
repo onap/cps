@@ -209,6 +209,29 @@
     },
     {
       "key": {
+        "uuid": "42a8086b_fb5dd6e9",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 420,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-05-19T09:51:20Z",
+      "side": 1,
+      "message": "This looks almost identical to the test above. Could this be merged into one using a where block?",
+      "range": {
+        "startLine": 420,
+        "startChar": 4,
+        "endLine": 420,
+        "endChar": 49
+      },
+      "revId": "b6230b175191e296b0903c8f9e5f978e66dfc9b2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3c22bdb7_69afb533",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
         "patchSetId": 5
@@ -386,6 +409,29 @@
         "startChar": 14,
         "endLine": 488,
         "endChar": 60
+      },
+      "revId": "b6230b175191e296b0903c8f9e5f978e66dfc9b2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "550b5155_b472b41b",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 504,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-05-19T09:51:20Z",
+      "side": 1,
+      "message": "either one line or seperate line for consistency",
+      "range": {
+        "startLine": 502,
+        "startChar": 0,
+        "endLine": 504,
+        "endChar": 41
       },
       "revId": "b6230b175191e296b0903c8f9e5f978e66dfc9b2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
