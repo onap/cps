@@ -30,6 +30,7 @@ public class CompositeStateBuilder {
 
     private CmHandleState cmHandleState;
     private LockReason lockReason;
+
     private DataStores datastores;
     private String lastUpdatedTime;
 
@@ -40,7 +41,7 @@ public class CompositeStateBuilder {
      */
     public CompositeState build() {
         final CompositeState compositeState = new CompositeState();
-        compositeState.setCmhandleState(cmHandleState);
+        compositeState.setCmHandleState(cmHandleState);
         compositeState.setLockReason(lockReason);
         compositeState.setDataStores(datastores);
         compositeState.setLastUpdateTime(lastUpdatedTime);
@@ -65,8 +66,8 @@ public class CompositeStateBuilder {
      * @param details for the locked state
      * @return CompositeStateBuilder
      */
-    public CompositeStateBuilder withLockReason(final String reason, final String details) {
-        this.lockReason = LockReason.builder().reason(reason).details(details).build();
+    public CompositeStateBuilder withLockReason(final LockReasonCategory reason, final String details) {
+        this.lockReason = LockReason.builder().lockReasonCategory(reason).details(details).build();
         return this;
     }
 
@@ -118,7 +119,8 @@ public class CompositeStateBuilder {
             .get("cm-handle-state"));
         for (final DataNode stateChildNode : dataNode.getChildDataNodes()) {
             if (stateChildNode.getXpath().endsWith("/lock-reason")) {
-                this.lockReason = new LockReason((String) stateChildNode.getLeaves().get("reason"),
+                this.lockReason = new LockReason(LockReasonCategory.valueOf(
+                    (String) stateChildNode.getLeaves().get("reason")),
                     (String) stateChildNode.getLeaves().get("details"));
             }
             if (stateChildNode.getXpath().endsWith("/datastores")) {

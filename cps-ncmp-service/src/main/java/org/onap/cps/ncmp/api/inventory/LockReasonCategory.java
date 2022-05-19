@@ -1,5 +1,5 @@
 /*
- * ============LICENSE_START=======================================================
+ *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,6 +20,6 @@
 
 package org.onap.cps.ncmp.api.inventory;
 
-public enum CmHandleState {
-    ADVISED, READY, LOCKED
+public enum LockReasonCategory {
+    LOCKED_MISBEHAVING
 }
