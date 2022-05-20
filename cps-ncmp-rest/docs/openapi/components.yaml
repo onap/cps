@@ -209,6 +209,8 @@ components:
           example: my-cm-handle1
         publicCmHandleProperties:
           $ref: '#/components/schemas/CmHandlePublicProperties'
+        state:
+          $ref: '#/components/schemas/RestOutputCmHandleState'
     CmHandlePublicProperties:
       type: array
       items:
@@ -216,6 +218,50 @@ components:
         additionalProperties:
           type: string
           example: Book Type
+    RestOutputCmHandleState:
+      type: object
+      properties:
+        cmHandleState:
+          type: string
+          example: ADVISED
+        lockReason:
+          $ref: '#/components/schemas/lock-reason'
+        lastUpdateTime:
+          type: string
+          example: 2022-01-01T01:01:01.000+0000
+        dataSyncEnabled:
+          type: boolean
+          example: false
+        dataSyncState:
+          $ref: '#/components/schemas/dataStores'
+
+    lock-reason:
+      type: object
+      properties:
+        reason:
+          type: string
+          example: LOCKED_OTHER
+        details:
+          type: string
+          example: locked due to module sync
+
+    dataStores:
+      type: object
+      properties:
+        operational:
+          $ref: '#/components/schemas/sync-state'
+        running:
+          $ref: '#/components/schemas/sync-state'
+
+    sync-state:
+      type: object
+      properties:
+        state:
+          type: string
+          example: NONE_REQUESTED
+        lastSyncTime:
+          type: string
+          example: 2022-01-01T01:01:01.000+0000
 
     RestOutputCmHandlePublicProperties:
       type: object

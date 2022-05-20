@@ -27,6 +27,7 @@ import java.util.Map;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.onap.cps.ncmp.api.inventory.CompositeState;
 import org.springframework.validation.annotation.Validated;
 
 /**
@@ -46,5 +47,8 @@ public class NcmpServiceCmHandle {
 
     @JsonSetter(nulls = Nulls.AS_EMPTY)
     private Map<String, String> publicProperties = Collections.emptyMap();
+
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
+    private CompositeState compositeState;
 
 }

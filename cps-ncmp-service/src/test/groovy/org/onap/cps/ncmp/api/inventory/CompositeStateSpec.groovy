@@ -36,7 +36,8 @@ import static org.springframework.util.StringUtils.trimAllWhitespace
 
 class CompositeStateSpec extends Specification {
 
-    def formattedDateAndTime = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ").format(OffsetDateTime.of(2022, 1, 1, 1, 1, 1, 1, ZoneOffset.MIN))
+    def formattedDateAndTime = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+        .format(OffsetDateTime.of(2022, 1, 1, 1, 1, 1, 1, ZoneOffset.UTC))
     def objectMapper = new ObjectMapper()
 
     def "Composite State Specification"() {

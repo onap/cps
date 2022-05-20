@@ -90,6 +90,7 @@ public class YangModelCmHandle {
         yangModelCmHandle.setDmiProperties(asYangModelCmHandleProperties(ncmpServiceCmHandle.getDmiProperties()));
         yangModelCmHandle.setPublicProperties(asYangModelCmHandleProperties(
                 ncmpServiceCmHandle.getPublicProperties()));
+        yangModelCmHandle.setCompositeState(ncmpServiceCmHandle.getCompositeState());
         return yangModelCmHandle;
     }
 
