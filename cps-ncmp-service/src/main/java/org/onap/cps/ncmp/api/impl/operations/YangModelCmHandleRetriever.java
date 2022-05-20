@@ -55,9 +55,9 @@ public class YangModelCmHandleRetriever {
         ncmpServiceCmHandle.setCmHandleId(cmHandleId);
         populateCmHandleProperties(cmHandleDataNode, ncmpServiceCmHandle);
         return YangModelCmHandle.toYangModelCmHandle(
-            String.valueOf(cmHandleDataNode.getLeaves().get("dmi-service-name")),
-            String.valueOf(cmHandleDataNode.getLeaves().get("dmi-data-service-name")),
-            String.valueOf(cmHandleDataNode.getLeaves().get("dmi-model-service-name")),
+            (String) cmHandleDataNode.getLeaves().get("dmi-service-name"),
+            (String) cmHandleDataNode.getLeaves().get("dmi-data-service-name"),
+            (String) cmHandleDataNode.getLeaves().get("dmi-model-service-name"),
             ncmpServiceCmHandle
         );
     }

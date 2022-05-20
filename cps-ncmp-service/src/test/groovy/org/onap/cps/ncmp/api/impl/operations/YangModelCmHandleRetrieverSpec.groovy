@@ -79,4 +79,16 @@ class YangModelCmHandleRetrieverSpec extends Specification {
         and: 'the result is not returned'
             result == null
     }
+
+    def "Handling missing service names as null CPS-1043."() {
+        given: 'the cps data service returns a data node from the DMI registry with empty child and leaf attributes'
+            def dataNode = new DataNode(childDataNodes:[], leaves: [:])
+            mockCpsDataService.getDataNode('NCMP-Admin', 'ncmp-dmi-registry', xpath, INCLUDE_ALL_DESCENDANTS) >> dataNode
+        when: 'retrieving the yang modelled cm handle'
+            def result = objectUnderTest.getYangModelCmHandle(cmHandleId)
+        then: 'the service names ae returned as null'
+            result.dmiServiceName == null
+            result.dmiDataServiceName == null
+            result.dmiModelServiceName == null
+    }
 }
