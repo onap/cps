@@ -23,10 +23,18 @@
 package org.onap.cps.ncmp.rest.controller
 
 import org.mapstruct.factory.Mappers
+import org.onap.cps.ncmp.api.inventory.CmHandleState
+import org.onap.cps.ncmp.api.inventory.CompositeState
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
+import org.onap.cps.ncmp.rest.mapper.RestOutputCmHandleStateMapper
 import spock.lang.Shared
 
+import java.time.OffsetDateTime
+import java.time.ZoneOffset
+import java.time.format.DateTimeFormatter
+
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.PATCH
+import static org.onap.cps.ncmp.api.inventory.CompositeState.*
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch
@@ -67,6 +75,11 @@ class NetworkCmProxyControllerSpec extends Specification {
 
     @SpringBean
     NcmpRestInputMapper ncmpRestInputMapper = Mappers.getMapper(NcmpRestInputMapper)
+
+    @SpringBean
+    RestOutputCmHandleStateMapper restOutputCmHandleStateMapper = Mappers.getMapper(RestOutputCmHandleStateMapper)
+
+    def formattedDateAndTime = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ").format(OffsetDateTime.of(2022, 1, 1, 1, 1, 1, 1, ZoneOffset.MIN))
 
     @Value('${rest.api.ncmp-base-path}/v1')
     def ncmpBasePathV1
@@ -224,14 +237,19 @@ class NetworkCmProxyControllerSpec extends Specification {
             response.contentAsString == '{"cmHandles":[{"cmHandleId":"some-cmhandle-id1"},{"cmHandleId":"some-cmhandle-id2"}]}'
     }
 
-    def 'Get Cm Handle details by Cm Handle id.' () {
+    def 'Get Cm Handle details by Cm Handle id.'() {
         given: 'an endpoint and a cm handle'
             def cmHandleDetailsEndpoint = "$ncmpBasePathV1/ch/Some-Cm-Handle"
         and: 'an existing ncmp service cm handle'
             def cmHandleId = 'Some-Cm-Handle'
-            def dmiProperties = [ prop:'some DMI property' ]
-            def publicProperties = [ "public prop":'some public property' ]
-            def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, dmiProperties: dmiProperties, publicProperties: publicProperties)
+            def dmiProperties = [prop: 'some DMI property']
+            def publicProperties = ["public prop": 'some public property']
+            def compositeState = new CompositeState(cmhandleState: CmHandleState.ADVISED,
+                lockReason: LockReason.builder().reason('lock-reason').details("lock-misbehaving-details").build(),
+                lastUpdateTime: formattedDateAndTime.toString(),
+                dataSyncEnabled: false,
+                dataStores: dataStores())
+            def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, dmiProperties: dmiProperties, publicProperties: publicProperties, compositeState: compositeState)
         and: 'the service method is invoked with the cm handle id'
             1 * mockNetworkCmProxyDataService.getNcmpServiceCmHandle('Some-Cm-Handle') >> ncmpServiceCmHandle
         when: 'the cm handle details api is invoked'
@@ -242,6 +260,7 @@ class NetworkCmProxyControllerSpec extends Specification {
             response.contentAsString.contains('publicCmHandleProperties')
             response.contentAsString.contains('public prop')
             response.contentAsString.contains('some public property')
+            response.contentAsString.contains('lock-reason')
         and: 'the content does not contain dmi properties'
             !response.contentAsString.contains("some DMI property")
     }
@@ -330,6 +349,15 @@ class NetworkCmProxyControllerSpec extends Specification {
             scenario                   | datastoreInUrl
             ':passthrough-operational' | 'passthrough-operational'
             ':passthrough-running'     | 'passthrough-running'
+    }
+
+    def dataStores() {
+        DataStores.builder().operationalDataStore(Operational.builder()
+            .syncState('NONE_REQUESTED')
+            .lastSyncTime(formattedDateAndTime.toString()).build()).runningDataStore(Running.builder()
+            .syncState('NONE_REQUESTED')
+            .lastSyncTime(formattedDateAndTime.toString()).build())
+            .build()
     }
 
 }

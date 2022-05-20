@@ -46,6 +46,7 @@ import org.onap.cps.ncmp.api.impl.exception.InvalidTopicException;
 import org.onap.cps.ncmp.api.models.CmHandleQueryApiParameters;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.ncmp.rest.api.NetworkCmProxyApi;
+import org.onap.cps.ncmp.rest.mapper.RestOutputCmHandleStateMapper;
 import org.onap.cps.ncmp.rest.model.CmHandleProperties;
 import org.onap.cps.ncmp.rest.model.CmHandleProperty;
 import org.onap.cps.ncmp.rest.model.CmHandlePublicProperties;
@@ -78,6 +79,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     private final NetworkCmProxyDataService networkCmProxyDataService;
     private final JsonObjectMapper jsonObjectMapper;
     private final NcmpRestInputMapper ncmpRestInputMapper;
+    private final RestOutputCmHandleStateMapper restOutputCmHandleStateMapper;
 
     /**
      * Get resource data from operational datastore.
@@ -295,6 +297,8 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         restOutputCmHandle.setCmHandle(ncmpServiceCmHandle.getCmHandleId());
         cmHandlePublicProperties.add(ncmpServiceCmHandle.getPublicProperties());
         restOutputCmHandle.setPublicCmHandleProperties(cmHandlePublicProperties);
+        restOutputCmHandle.setState(restOutputCmHandleStateMapper.toRestOutputCmHandleState(
+                ncmpServiceCmHandle.getCompositeState()));
         return restOutputCmHandle;
     }
 
