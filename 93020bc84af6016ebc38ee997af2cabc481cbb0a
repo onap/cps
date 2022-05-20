@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "30a5d563_36d979b8",
+        "filename": "cps-ncmp-service/pom.xml",
+        "patchSetId": 37
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-20T13:32:17Z",
+      "side": 1,
+      "message": "Sourabh confirmed it was already there (in base) and is used for web-client access (restTemplate)",
+      "range": {
+        "startLine": 45,
+        "startChar": 7,
+        "endLine": 45,
+        "endChar": 119
+      },
+      "revId": "93020bc84af6016ebc38ee997af2cabc481cbb0a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
