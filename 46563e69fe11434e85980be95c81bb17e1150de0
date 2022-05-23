@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "69c3ce3f_faf62003",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-05-23T15:02:27Z",
+      "side": 1,
+      "message": "you can also use the builder to set the properties.\nLockReason.builder().reason(lockReasonEnum).details(details).build();",
+      "range": {
+        "startLine": 113,
+        "startChar": 8,
+        "endLine": 115,
+        "endChar": 39
+      },
+      "revId": "46563e69fe11434e85980be95c81bb17e1150de0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
