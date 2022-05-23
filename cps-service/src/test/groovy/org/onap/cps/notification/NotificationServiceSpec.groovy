@@ -29,7 +29,6 @@ import org.spockframework.spring.SpringSpy
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.scheduling.annotation.EnableAsync
 import org.springframework.test.context.ContextConfiguration
 import spock.lang.Shared
 import spock.lang.Specification
@@ -107,18 +106,18 @@ class NotificationServiceSpec extends Specification {
             1 * mockNotificationPublisher.sendNotification(cpsDataUpdatedEvent)
         where:
             scenario                                   | xpath           | operation            || expectedOperationInEvent
-            'Same event is sent when root nodes'       | ''              | Operation.CREATE     || Operation.CREATE
-            'Same event is sent when root nodes'       | ''              | Operation.UPDATE     || Operation.UPDATE
-            'Same event is sent when root nodes'       | ''              | Operation.DELETE     || Operation.DELETE
-            'Same event is sent when root nodes'       | '/'             | Operation.CREATE     || Operation.CREATE
-            'Same event is sent when root nodes'       | '/'             | Operation.UPDATE     || Operation.UPDATE
-            'Same event is sent when root nodes'       | '/'             | Operation.DELETE     || Operation.DELETE
-            'Same event is sent when container nodes'  | '/parent'       | Operation.CREATE     || Operation.CREATE
-            'Same event is sent when container nodes'  | '/parent'       | Operation.UPDATE     || Operation.UPDATE
-            'Same event is sent when container nodes'  | '/parent'       | Operation.DELETE     || Operation.DELETE
-            'UPDATE event is sent when non root nodes' | '/parent/child' | Operation.CREATE     || Operation.UPDATE
-            'UPDATE event is sent when non root nodes' | '/parent/child' | Operation.UPDATE     || Operation.UPDATE
-            'UPDATE event is sent when non root nodes' | '/parent/child' | Operation.DELETE     || Operation.UPDATE
+            'Same event is sent when root nodes'       | ''              | Operation.CREATE || Operation.CREATE
+            'Same event is sent when root nodes'       | ''              | Operation.UPDATE || Operation.UPDATE
+            'Same event is sent when root nodes'       | ''              | Operation.DELETE || Operation.DELETE
+            'Same event is sent when root nodes'       | '/'             | Operation.CREATE || Operation.CREATE
+            'Same event is sent when root nodes'       | '/'             | Operation.UPDATE || Operation.UPDATE
+            'Same event is sent when root nodes'       | '/'             | Operation.DELETE || Operation.DELETE
+            'Same event is sent when container nodes'  | '/parent'       | Operation.CREATE || Operation.CREATE
+            'Same event is sent when container nodes'  | '/parent'       | Operation.UPDATE || Operation.UPDATE
+            'Same event is sent when container nodes'  | '/parent'       | Operation.DELETE || Operation.DELETE
+            'UPDATE event is sent when non root nodes' | '/parent/child' | Operation.CREATE || Operation.UPDATE
+            'UPDATE event is sent when non root nodes' | '/parent/child' | Operation.UPDATE || Operation.UPDATE
+            'UPDATE event is sent when non root nodes' | '/parent/child' | Operation.DELETE || Operation.UPDATE
     }
 
     def 'Error handling in notification service.'() {
