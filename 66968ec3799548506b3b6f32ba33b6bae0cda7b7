@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "15fa773a_5e3f2289",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-23T15:20:45Z",
+      "side": 1,
+      "message": "The sample should reflect the agreed format\nI think you already are using an (agreed?) format for this make sure example reflects this",
+      "range": {
+        "startLine": 231,
+        "startChar": 19,
+        "endLine": 231,
+        "endChar": 33
+      },
+      "revId": "66968ec3799548506b3b6f32ba33b6bae0cda7b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a37c4f75_2735d58e",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-23T15:20:45Z",
+      "side": 1,
+      "message": "as above",
+      "range": {
+        "startLine": 264,
+        "startChar": 19,
+        "endLine": 264,
+        "endChar": 33
+      },
+      "revId": "66968ec3799548506b3b6f32ba33b6bae0cda7b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a23e5106_699bbc2c",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/mapper/RestOutputCmHandleStateMapper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-23T15:20:45Z",
+      "side": 1,
+      "message": "plural here too?!",
+      "range": {
+        "startLine": 40,
+        "startChar": 59,
+        "endLine": 40,
+        "endChar": 68
+      },
+      "revId": "66968ec3799548506b3b6f32ba33b6bae0cda7b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3111bdd_7a43770f",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/mapper/RestOutputCmHandleStateMapper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-23T15:20:45Z",
+      "side": 1,
+      "message": "plural here too?!",
+      "range": {
+        "startLine": 42,
+        "startChar": 59,
+        "endLine": 42,
+        "endChar": 64
+      },
+      "revId": "66968ec3799548506b3b6f32ba33b6bae0cda7b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c10a4469_785b09fe",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/mapper/RestOutputCmHandleStateMapper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-23T15:20:45Z",
+      "side": 1,
+      "message": "do rwe really need to handle null?!",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 9
+      },
+      "revId": "66968ec3799548506b3b6f32ba33b6bae0cda7b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5da9619f_fa7e8ee0",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-23T15:20:45Z",
+      "side": 1,
+      "message": "never use .* for import (can be set in INtelliJ to not do this)",
+      "range": {
+        "startLine": 38,
+        "startChar": 59,
+        "endLine": 38,
+        "endChar": 62
+      },
+      "revId": "66968ec3799548506b3b6f32ba33b6bae0cda7b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f8c70683_b01485f7",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-23T15:20:45Z",
+      "side": 1,
+      "message": "see comment on this in another test",
+      "range": {
+        "startLine": 83,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 154
+      },
+      "revId": "66968ec3799548506b3b6f32ba33b6bae0cda7b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f71d97e8_474fb8d9",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-23T15:20:45Z",
+      "side": 1,
+      "message": "NB: would prefer a linebreak here",
+      "range": {
+        "startLine": 375,
+        "startChar": 67,
+        "endLine": 375,
+        "endChar": 68
+      },
+      "revId": "66968ec3799548506b3b6f32ba33b6bae0cda7b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f8a76862_c0483b5a",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/mapper/RestOutputCmHandleStateMapperTest.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-23T15:20:45Z",
+      "side": 1,
+      "message": "redundant check, please remove",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 33
+      },
+      "revId": "66968ec3799548506b3b6f32ba33b6bae0cda7b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
