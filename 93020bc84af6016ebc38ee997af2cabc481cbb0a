@@ -22,6 +22,30 @@
       "revId": "93020bc84af6016ebc38ee997af2cabc481cbb0a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b6224e7f_5dfc1809",
+        "filename": "cps-ncmp-service/pom.xml",
+        "patchSetId": 37
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-05-23T07:18:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "30a5d563_36d979b8",
+      "range": {
+        "startLine": 45,
+        "startChar": 7,
+        "endLine": 45,
+        "endChar": 119
+      },
+      "revId": "93020bc84af6016ebc38ee997af2cabc481cbb0a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
