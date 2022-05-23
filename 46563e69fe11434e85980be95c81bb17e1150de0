@@ -22,6 +22,30 @@
       "revId": "46563e69fe11434e85980be95c81bb17e1150de0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1b44f9d6_cd05e7d7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-23T16:00:22Z",
+      "side": 1,
+      "message": "Have put this in currently, but overall I think setters are more readable, especially as I feel with more properties this builder can just get longer and longer.\n\nWhat does the team think?",
+      "parentUuid": "69c3ce3f_faf62003",
+      "range": {
+        "startLine": 113,
+        "startChar": 8,
+        "endLine": 115,
+        "endChar": 39
+      },
+      "revId": "46563e69fe11434e85980be95c81bb17e1150de0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
