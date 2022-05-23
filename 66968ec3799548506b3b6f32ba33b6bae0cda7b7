@@ -25,6 +25,29 @@
     },
     {
       "key": {
+        "uuid": "6bc6aad5_d3b3ef80",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-23T15:39:00Z",
+      "side": 1,
+      "message": "Maybe put in a slightly more detailed message here explaining that the state is in LOCKED due to model sync failure",
+      "range": {
+        "startLine": 246,
+        "startChar": 19,
+        "endLine": 246,
+        "endChar": 31
+      },
+      "revId": "66968ec3799548506b3b6f32ba33b6bae0cda7b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a37c4f75_2735d58e",
         "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
         "patchSetId": 2
@@ -36,6 +59,29 @@
       "writtenOn": "2022-05-23T15:20:45Z",
       "side": 1,
       "message": "as above",
+      "range": {
+        "startLine": 264,
+        "startChar": 19,
+        "endLine": 264,
+        "endChar": 33
+      },
+      "revId": "66968ec3799548506b3b6f32ba33b6bae0cda7b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f819abe2_ede9ed43",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-23T15:39:00Z",
+      "side": 1,
+      "message": "Same comment as above. Put in a dummy timestamp here",
       "range": {
         "startLine": 264,
         "startChar": 19,
@@ -87,6 +133,29 @@
         "startChar": 59,
         "endLine": 42,
         "endChar": 64
+      },
+      "revId": "66968ec3799548506b3b6f32ba33b6bae0cda7b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd761fdd_e1200a5b",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/mapper/RestOutputCmHandleStateMapper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-23T15:39:00Z",
+      "side": 1,
+      "message": "Do we want to return null here? This could potentially throw a null pointer and we may want to have a default value here instead",
+      "range": {
+        "startLine": 48,
+        "startChar": 12,
+        "endLine": 48,
+        "endChar": 24
       },
       "revId": "66968ec3799548506b3b6f32ba33b6bae0cda7b7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
@@ -163,6 +232,121 @@
     },
     {
       "key": {
+        "uuid": "44d154b4_af44f4e7",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-23T15:39:00Z",
+      "side": 1,
+      "message": "See comment below about matching ENUM",
+      "range": {
+        "startLine": 249,
+        "startChar": 57,
+        "endLine": 249,
+        "endChar": 68
+      },
+      "revId": "66968ec3799548506b3b6f32ba33b6bae0cda7b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2f998f1_0ff1eb08",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-23T15:39:00Z",
+      "side": 1,
+      "message": "And the correct cm handle states.",
+      "range": {
+        "startLine": 260,
+        "startChar": 61,
+        "endLine": 260,
+        "endChar": 79
+      },
+      "revId": "66968ec3799548506b3b6f32ba33b6bae0cda7b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "44283b6d_621f499f",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-23T15:39:00Z",
+      "side": 1,
+      "message": "I think a check for just one of these should suffice. Probably the public property value makes most sense.",
+      "range": {
+        "startLine": 261,
+        "startChar": 0,
+        "endLine": 263,
+        "endChar": 69
+      },
+      "revId": "66968ec3799548506b3b6f32ba33b6bae0cda7b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7cd81df6_9d33eb0d",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-23T15:39:00Z",
+      "side": 1,
+      "message": "Should be more inline with the enum structure. LOCK_MISBEHAVING, LOCK_OTHER etc",
+      "range": {
+        "startLine": 264,
+        "startChar": 47,
+        "endLine": 264,
+        "endChar": 58
+      },
+      "revId": "66968ec3799548506b3b6f32ba33b6bae0cda7b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d0ea57b1_1ee7ba02",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-23T15:39:00Z",
+      "side": 1,
+      "message": "Lock details are not being checked.",
+      "range": {
+        "startLine": 265,
+        "startChar": 12,
+        "endLine": 265,
+        "endChar": 55
+      },
+      "revId": "66968ec3799548506b3b6f32ba33b6bae0cda7b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f71d97e8_474fb8d9",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
         "patchSetId": 2
@@ -202,6 +386,29 @@
         "startChar": 0,
         "endLine": 52,
         "endChar": 33
+      },
+      "revId": "66968ec3799548506b3b6f32ba33b6bae0cda7b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2d73b331_d43b56a5",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/mapper/RestOutputCmHandleStateMapperTest.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-23T15:39:00Z",
+      "side": 1,
+      "message": "Make this reason in line with the lock Reason ENUMS",
+      "range": {
+        "startLine": 59,
+        "startChar": 48,
+        "endLine": 59,
+        "endChar": 64
       },
       "revId": "66968ec3799548506b3b6f32ba33b6bae0cda7b7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
