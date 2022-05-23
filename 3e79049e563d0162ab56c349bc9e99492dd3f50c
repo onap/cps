@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b58adbd0_9305343e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-23T16:09:42Z",
+      "side": 1,
+      "message": "vere good!",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 40
+      },
+      "revId": "3e79049e563d0162ab56c349bc9e99492dd3f50c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ec599cb_65e084c0",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-23T16:09:42Z",
+      "side": 1,
+      "message": "Question/Todo: (were) can we add details like:\n- to be included in the result a cm -handle must fulfill ALL the conditions listed here",
+      "range": {
+        "startLine": 156,
+        "startChar": 40,
+        "endLine": 156,
+        "endChar": 59
+      },
+      "revId": "3e79049e563d0162ab56c349bc9e99492dd3f50c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "54b7a5df_a0092136",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-23T16:09:42Z",
+      "side": 1,
+      "message": "Question/Todo: (were) can we add details like:\n- to be included in the result a cm -handle must have ALL the properties listed here",
+      "range": {
+        "startLine": 171,
+        "startChar": 12,
+        "endLine": 171,
+        "endChar": 31
+      },
+      "revId": "3e79049e563d0162ab56c349bc9e99492dd3f50c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8a5dde8b_f140b98f",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-23T16:09:42Z",
+      "side": 1,
+      "message": "we need to think about a deprecation strategy. I think teh usual approach is 1 or 2 release so we could state here this method wil be removed in Release 12 (NO Name know yet)",
+      "range": {
+        "startLine": 225,
+        "startChar": 5,
+        "endLine": 225,
+        "endChar": 15
+      },
+      "revId": "3e79049e563d0162ab56c349bc9e99492dd3f50c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e2ce83b8_317ba1f1",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-23T16:09:42Z",
+      "side": 1,
+      "message": "need to think about this: you are mocking a service cm-response here\nand then testing it. that is really the object conversion you are verifying but maybe that is OK (and OK to extend with public properties.\nBut then I looked at the test belo lines 242-261 and realized it is (already) tets there. So I think this test should just keep it simple and no need for extra detail conversion.\n\nI\u0027ll have a chat later with you why this is important....",
+      "range": {
+        "startLine": 225,
+        "startChar": 0,
+        "endLine": 231,
+        "endChar": 93
+      },
+      "revId": "3e79049e563d0162ab56c349bc9e99492dd3f50c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
