@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e176121d_be378ac1",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNode.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-05-24T13:48:10Z",
+      "side": 1,
+      "message": "It\u0027s a workaround for the CpsCmHandlerQueryServiceImpl row:89",
+      "range": {
+        "startLine": 35,
+        "startChar": 18,
+        "endLine": 35,
+        "endChar": 66
+      },
+      "revId": "bac984a7b5c1bf0413b92db14f2e520d78d3ca70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
