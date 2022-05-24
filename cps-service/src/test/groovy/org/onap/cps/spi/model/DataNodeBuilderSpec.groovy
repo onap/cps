@@ -172,6 +172,18 @@ class DataNodeBuilderSpec extends Specification {
             'NormalizedNode is an unsupported type' | 'not supported' | Mock(NormalizedNode) | 0            | [ ]
     }
 
+    def 'Adding prefix to Xpath when #scenario,'() {
+        when: 'a valid xPath is passed to the addPrefixToXpath method'
+            def result = new DataNodeBuilder().withXpath(someXPath).addModulePrefixToXpath(someModuleName)
+        then: 'the correct modified xPath is given'
+            assert result.contains(expectedModifiedXpath)
+        where: 'the following parameters are used'
+            scenario                        | someXPath                                   | someModuleName  | expectedModifiedXpath
+            'container xpath'               | '/bookstore'                                | 'stores'        | '/stores:bookstore'
+            'xpath contains list attribute' | '/bookstore/categories[@code=1]'            | 'stores'        | '/bookstore/stores:categories[@code=1]'
+            'xpath contains leaf attribute' | '/bookstore/categories[@code=1]/attributes' | 'stores'        | '/bookstore/categories[@code=1]/stores:attribute'
+    }
+
     def static assertLeavesMaps(actualLeavesMap, expectedLeavesMap) {
         expectedLeavesMap.each { key, value ->
             {

@@ -40,6 +40,7 @@ import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.StaleStateException;
+import org.onap.cps.api.impl.YangTextSchemaSourceSetCache;
 import org.onap.cps.cpspath.parser.CpsPathQuery;
 import org.onap.cps.cpspath.parser.CpsPathUtil;
 import org.onap.cps.cpspath.parser.PathParsingException;
@@ -164,9 +165,10 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
 
     @Override
     public DataNode getDataNode(final String dataspaceName, final String anchorName, final String xpath,
-        final FetchDescendantsOption fetchDescendantsOption) {
+                                final FetchDescendantsOption fetchDescendantsOption,
+                                final String moduleName) {
         final FragmentEntity fragmentEntity = getFragmentByXpath(dataspaceName, anchorName, xpath);
-        return toDataNode(fragmentEntity, fetchDescendantsOption);
+        return toDataNode(fragmentEntity, fetchDescendantsOption, moduleName);
     }
 
     private FragmentEntity getFragmentByXpath(final String dataspaceName, final String anchorName,
@@ -252,6 +254,22 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             .withXpath(fragmentEntity.getXpath())
             .withLeaves(leaves)
             .withChildDataNodes(childDataNodes).build();
+    }
+
+    //POC
+    private DataNode toDataNode(final FragmentEntity fragmentEntity,
+                                final FetchDescendantsOption fetchDescendantsOption,
+                                final String moduleName) {
+        final List<DataNode> childDataNodes = getChildDataNodes(fragmentEntity, fetchDescendantsOption);
+        Map<String, Object> leaves = new HashMap<>();
+        if (fragmentEntity.getAttributes() != null) {
+            leaves = jsonObjectMapper.convertJsonString(fragmentEntity.getAttributes(), Map.class);
+        }
+        return new DataNodeBuilder()
+                .withModuleName(moduleName)
+                .withXpath(fragmentEntity.getXpath())
+                .withLeaves(leaves)
+                .withChildDataNodes(childDataNodes).build();
     }
 
     private List<DataNode> getChildDataNodes(final FragmentEntity fragmentEntity,
