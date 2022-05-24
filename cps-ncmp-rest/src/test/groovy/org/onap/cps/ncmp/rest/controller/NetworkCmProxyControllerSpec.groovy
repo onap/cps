@@ -28,6 +28,7 @@ import org.onap.cps.ncmp.api.inventory.CmHandleState
 import org.onap.cps.ncmp.api.inventory.CompositeState
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.rest.mapper.RestOutputCmHandleStateMapper
+import org.onap.cps.ncmp.rest.executor.CpsNcmpTaskExecutor
 import spock.lang.Shared
 
 import java.time.OffsetDateTime
@@ -83,8 +84,8 @@ class NetworkCmProxyControllerSpec extends Specification {
     @SpringBean
     RestOutputCmHandleStateMapper restOutputCmHandleStateMapper = Mappers.getMapper(RestOutputCmHandleStateMapper)
 
-    def formattedDateAndTime = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
-        .format(OffsetDateTime.of(2022, 12, 31, 20, 30, 40, 1, ZoneOffset.UTC))
+    @SpringBean
+    CpsNcmpTaskExecutor spiedCpsTaskExecutor = Spy()
 
     @Value('${rest.api.ncmp-base-path}/v1')
     def ncmpBasePathV1
@@ -94,6 +95,9 @@ class NetworkCmProxyControllerSpec extends Specification {
     @Shared
     def NO_TOPIC = null
     def NO_REQUEST_ID = null
+
+    def formattedDateAndTime = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+        .format(OffsetDateTime.of(2022, 12, 31, 20, 30, 40, 1, ZoneOffset.UTC))
 
     def 'Get Resource Data from pass-through operational.'() {
         given: 'resource data url'
@@ -120,34 +124,40 @@ class NetworkCmProxyControllerSpec extends Specification {
                     "?resourceIdentifier=parent/child&options=(a=1,b=2)${topicQueryParam}"
         when: 'get data resource request is performed'
             def response = mvc.perform(
-                    get(getUrl)
-                    .contentType(MediaType.APPLICATION_JSON)
-            ).andReturn().response
-        then: 'the NCMP data service is called with operational data for cm handle'
-            expectedNumberOfMethodExecutions
-                    * mockNetworkCmProxyDataService."${expectedMethodName}"('testCmHandle',
-                    'parent/child',
-                    '(a=1,b=2)',
-                    expectedTopicName,
-                    _)
-        then: 'response status is expected'
-            response.status == expectedHttpStatus
+                    get(getUrl).contentType(MediaType.APPLICATION_JSON)).andReturn().response
+        then: 'task executor is called appropriate number of times'
+            expectedNumberOfExecutorExecutions * spiedCpsTaskExecutor.executeTask(_, 2000)
+        and: 'response status is expected'
+            response.status == HttpStatus.OK.value()
         where: 'the following parameters are used'
-            scenario                               | datastoreInUrl            | topicQueryParam        || expectedTopicName | expectedMethodName                             | expectedNumberOfMethodExecutions | expectedHttpStatus
-            'url with valid topic'                 | 'passthrough-operational' | '&topic=my-topic-name' || 'my-topic-name'   | 'getResourceDataOperationalForCmHandle'        | 1                                | HttpStatus.OK.value()
-            'no topic in url'                      | 'passthrough-operational' | ''                     || NO_TOPIC          | 'getResourceDataOperationalForCmHandle'        | 1                                | HttpStatus.OK.value()
-            'null topic in url'                    | 'passthrough-operational' | '&topic=null'          || 'null'            | 'getResourceDataOperationalForCmHandle'        | 1                                | HttpStatus.OK.value()
-            'empty topic in url'                   | 'passthrough-operational' | '&topic=\"\"'          || null              | 'getResourceDataOperationalForCmHandle'        | 0                                | HttpStatus.BAD_REQUEST.value()
-            'missing topic in url'                 | 'passthrough-operational' | '&topic='              || null              | 'getResourceDataOperationalForCmHandle'        | 0                                | HttpStatus.BAD_REQUEST.value()
-            'blank topic value in url'             | 'passthrough-operational' | '&topic=\" \"'         || null              | 'getResourceDataOperationalForCmHandle'        | 0                                | HttpStatus.BAD_REQUEST.value()
-            'invalid non-empty topic value in url' | 'passthrough-operational' | '&topic=1_5_*_#'       || null              | 'getResourceDataOperationalForCmHandle'        | 0                                | HttpStatus.BAD_REQUEST.value()
-            'url with valid topic'                 | 'passthrough-running'     | '&topic=my-topic-name' || 'my-topic-name'   | 'getResourceDataPassThroughRunningForCmHandle' | 1                                | HttpStatus.OK.value()
-            'no topic in url'                      | 'passthrough-running'     | ''                     || NO_TOPIC          | 'getResourceDataPassThroughRunningForCmHandle' | 1                                | HttpStatus.OK.value()
-            'null topic in url'                    | 'passthrough-running'     | '&topic=null'          || 'null'            | 'getResourceDataPassThroughRunningForCmHandle' | 1                                | HttpStatus.OK.value()
-            'empty topic in url'                   | 'passthrough-running'     | '&topic=\"\"'          || null              | 'getResourceDataPassThroughRunningForCmHandle' | 0                                | HttpStatus.BAD_REQUEST.value()
-            'missing topic in url'                 | 'passthrough-running'     | '&topic='              || null              | 'getResourceDataPassThroughRunningForCmHandle' | 0                                | HttpStatus.BAD_REQUEST.value()
-            'blank topic value in url'             | 'passthrough-running'     | '&topic=\" \"'         || null              | 'getResourceDataPassThroughRunningForCmHandle' | 0                                | HttpStatus.BAD_REQUEST.value()
-            'invalid non-empty topic value in url' | 'passthrough-running'     | '&topic=1_5_*_#'       || null              | 'getResourceDataPassThroughRunningForCmHandle' | 0                                | HttpStatus.BAD_REQUEST.value()
+            scenario                               | datastoreInUrl            | topicQueryParam        || expectedTopicName | expectedNumberOfExecutorExecutions
+            'url with valid topic'                 | 'passthrough-operational' | '&topic=my-topic-name' || 'my-topic-name'   | 1
+            'no topic in url'                      | 'passthrough-operational' | ''                     || NO_TOPIC          | 0
+            'null topic in url'                    | 'passthrough-operational' | '&topic=null'          || 'null'            | 1
+            'url with valid topic'                 | 'passthrough-running'     | '&topic=my-topic-name' || 'my-topic-name'   | 1
+            'no topic in url'                      | 'passthrough-running'     | ''                     || NO_TOPIC          | 0
+            'null topic in url'                    | 'passthrough-running'     | '&topic=null'          || 'null'            | 1
+    }
+
+    def 'Fail to get Resource Data from #datastoreInUrl when #scenario.'() {
+        given: 'resource data url'
+            def getUrl = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:${datastoreInUrl}" +
+                "?resourceIdentifier=parent/child&options=(a=1,b=2)${topicQueryParam}"
+        when: 'get data resource request is performed'
+            def response = mvc.perform(
+                get(getUrl).contentType(MediaType.APPLICATION_JSON)).andReturn().response
+        then: 'abad request is returned'
+            response.status == HttpStatus.BAD_REQUEST.value()
+        where: 'the following parameters are used'
+            scenario                               | datastoreInUrl            | topicQueryParam
+            'empty topic in url'                   | 'passthrough-operational' | '&topic=\"\"'
+            'missing topic in url'                 | 'passthrough-operational' | '&topic='
+            'blank topic value in url'             | 'passthrough-operational' | '&topic=\" \"'
+            'invalid non-empty topic value in url' | 'passthrough-operational' | '&topic=1_5_*_#'
+            'empty topic in url'                   | 'passthrough-running'     | '&topic=\"\"'
+            'missing topic in url'                 | 'passthrough-running'     | '&topic='
+            'blank topic value in url'             | 'passthrough-running'     | '&topic=\" \"'
+            'invalid non-empty topic value in url' | 'passthrough-running'     | '&topic=1_5_*_#'
     }
 
     def 'Get Resource Data from pass-through running with #scenario value in resource identifier param.'() {
