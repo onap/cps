@@ -48,6 +48,8 @@ import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.FragmentEntity;
+import org.onap.cps.spi.entities.SchemaSetEntity;
+import org.onap.cps.spi.entities.YangResourceEntity;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
 import org.onap.cps.spi.exceptions.ConcurrencyException;
 import org.onap.cps.spi.exceptions.CpsAdminException;
@@ -60,6 +62,8 @@ import org.onap.cps.spi.repository.DataspaceRepository;
 import org.onap.cps.spi.repository.FragmentRepository;
 import org.onap.cps.spi.utils.SessionManager;
 import org.onap.cps.utils.JsonObjectMapper;
+import org.onap.cps.yang.YangTextSchemaSourceSetBuilder;
+import org.opendaylight.yangtools.yang.model.api.SchemaContext;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
@@ -242,16 +246,24 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     }
 
     private DataNode toDataNode(final FragmentEntity fragmentEntity,
-        final FetchDescendantsOption fetchDescendantsOption) {
+                                final FetchDescendantsOption fetchDescendantsOption) {
         final List<DataNode> childDataNodes = getChildDataNodes(fragmentEntity, fetchDescendantsOption);
         Map<String, Object> leaves = new HashMap<>();
         if (fragmentEntity.getAttributes() != null) {
             leaves = jsonObjectMapper.convertJsonString(fragmentEntity.getAttributes(), Map.class);
         }
+        final SchemaSetEntity schemaSetEntity = fragmentEntity.getAnchor().getSchemaSet();
+        final Map<String, String> yangResourceNameToContent =
+                schemaSetEntity.getYangResources().stream().collect(
+                        Collectors.toMap(YangResourceEntity::getName, YangResourceEntity::getContent));
+        final SchemaContext schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent)
+                .getSchemaContext();
+        final String moduleNamePrefix = schemaContext.getModules().iterator().next().getName();
         return new DataNodeBuilder()
-            .withXpath(fragmentEntity.getXpath())
-            .withLeaves(leaves)
-            .withChildDataNodes(childDataNodes).build();
+                .withModuleNamePrefix(moduleNamePrefix)
+                .withXpath(fragmentEntity.getXpath())
+                .withLeaves(leaves)
+                .withChildDataNodes(childDataNodes).build();
     }
 
     private List<DataNode> getChildDataNodes(final FragmentEntity fragmentEntity,

@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Pantheon.tech
- *  Modifications (C) 2021 Nordix Foundation
+ *  Modifications (C) 2021-2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -44,7 +44,7 @@ public class DataMapUtils {
      */
     public static Map<String, Object> toDataMapWithIdentifier(final DataNode dataNode) {
         return ImmutableMap.<String, Object>builder()
-            .put(getNodeIdentifier(dataNode.getXpath()), toDataMap(dataNode))
+            .put(getNodeIdentifierWithPrefix(dataNode.getXpath(), dataNode.getModuleNamePrefix()), toDataMap(dataNode))
             .build();
     }
 
@@ -94,6 +94,14 @@ public class DataMapUtils {
         final int fromIndex = xpath.lastIndexOf("/") + 1;
         final int toIndex = xpath.indexOf("[", fromIndex);
         return toIndex > 0 ? xpath.substring(fromIndex, toIndex) : xpath.substring(fromIndex);
+    }
+
+    private static String getNodeIdentifierWithPrefix(final String xpath, final String moduleNamePrefix) {
+        final int fromIndex = xpath.lastIndexOf("/") + 1;
+        final int toIndex = xpath.indexOf("[", fromIndex);
+        final String nodeIdentifier = toIndex > 0 ? xpath.substring(fromIndex, toIndex) : xpath.substring(fromIndex);
+        final String nodeIdentifierWithPrefix = moduleNamePrefix + ":" + nodeIdentifier;
+        return nodeIdentifierWithPrefix;
     }
 
     private static boolean isContainerNode(final String xpath) {
