@@ -33,7 +33,7 @@ class KafkaTestContainerConfig {
     // Not the best performance but it is good enough for test case
     private static synchronized KafkaContainer getKafkaContainer() {
         if (kafkaContainer == null) {
-            kafkaContainer = new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:6.1.1"))
+            kafkaContainer = new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:6.2.1"))
                     .withEnv("KAFKA_AUTO_CREATE_TOPICS_ENABLE", "false")
             kafkaContainer.start()
             Runtime.getRuntime().addShutdownHook(new Thread(kafkaContainer::stop))
