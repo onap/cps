@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Pantheon.tech
- *  Modifications Copyright (C) 2020 Nordix Foundation
+ *  Modifications Copyright (C) 2020-2022 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -29,16 +29,20 @@ class DataMapUtilsSpec extends Specification {
     def noChildren = []
 
     def dataNode = buildDataNode(
-        "/parent",[parentLeaf:'parentLeafValue', parentLeafList:['parentLeafListEntry1','parentLeafListEntry2']],[
-                buildDataNode('/parent/child-list[@id=1]',[listElementLeaf:'listElement1leafValue'],noChildren),
-                buildDataNode('/parent/child-list[@id=2]',[listElementLeaf:'listElement2leafValue'],noChildren),
-                buildDataNode('/parent/child-object',[childLeaf:'childLeafValue'],
-                        [buildDataNode('/parent/child-object/grand-child-object',[grandChildLeaf:'grandChildLeafValue'],noChildren)]
-                ),
-            ])
+            "/parent",[parentLeaf:'parentLeafValue', parentLeafList:['parentLeafListEntry1','parentLeafListEntry2']],[
+            buildDataNode('/parent/child-list[@id=1]',[listElementLeaf:'listElement1leafValue'],noChildren, 'moduleNamePrefix'),
+            buildDataNode('/parent/child-list[@id=2]',[listElementLeaf:'listElement2leafValue'],noChildren, 'moduleNamePrefix'),
+            buildDataNode('/parent/child-object',[childLeaf:'childLeafValue'],
+                    [buildDataNode('/parent/child-object/grand-child-object',[grandChildLeaf:'grandChildLeafValue'],noChildren, 'moduleNamePrefix')]
+                    ,'moduleNamePrefix')
+    ], 'moduleNamePrefix')
 
-    static def buildDataNode(xpath,  leaves,  children) {
-        return new DataNodeBuilder().withXpath(xpath).withLeaves(leaves).withChildDataNodes(children).build()
+    static def buildDataNode(xpath,  leaves,  children, moduleNamePrefix) {
+        return new DataNodeBuilder().withXpath(xpath)
+                .withLeaves(leaves)
+                .withChildDataNodes(children)
+                .withModuleNamePrefix(moduleNamePrefix)
+                .build()
     }
 
     def 'Data node structure conversion to map.'() {
@@ -65,14 +69,14 @@ class DataMapUtilsSpec extends Specification {
 
     def 'Data node structure conversion to map with root node identifier.'() {
         when: 'data node structure is converted to a map with root node identifier'
-            def result = DataMapUtils.toDataMapWithIdentifier(dataNode)
+            def dataNodeMap = DataMapUtils.toDataMapWithIdentifier(dataNode)
 
-        then: 'root node identifier is not null'
-            result.parent != null
+        then: 'map has the root node identifier wherein parent contains prefix'
+            dataNodeMap.containsKey('moduleNamePrefix:parent')
 
         then: 'root node leaves are populated under its node identifier'
-            def parentNode = result.parent
-            parentNode.parentLeaf == 'parentLeafValue'
+            def parentNode = dataNodeMap.'moduleNamePrefix:parent'
+            parentNode.'parentLeaf' == 'parentLeafValue'
             parentNode.parentLeafList == ['parentLeafListEntry1','parentLeafListEntry2']
 
         and: 'leaves for child element is populated under its node identifier'
@@ -80,5 +84,16 @@ class DataMapUtilsSpec extends Specification {
 
         and: 'leaves for grandchild element is populated under its node identifier'
             parentNode.'child-object'.'grand-child-object'.grandChildLeaf == 'grandChildLeafValue'
+    }
+
+    def 'Adding prefix to data node identifier.'() {
+        when: 'a valid xPath is passed to the addPrefixToXpath method'
+            def result = new DataMapUtils().getNodeIdentifierWithPrefix(xPath,'sampleModuleName')
+        then: 'the correct modified node identifier is given'
+            assert result == expectedNodeIdentifier
+        where: 'the following parameters are used'
+            scenario                        | xPath                                       | expectedNodeIdentifier
+            'container xpath'               | '/bookstore'                                | 'sampleModuleName:bookstore'
+            'xpath contains list attribute' | '/bookstore/categories[@code=1]'            | 'sampleModuleName:categories'
     }
 }

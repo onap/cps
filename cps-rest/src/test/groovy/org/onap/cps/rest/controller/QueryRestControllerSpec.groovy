@@ -56,7 +56,9 @@ class QueryRestControllerSpec extends Specification {
     def 'Query data node by cps path for the given dataspace and anchor with #scenario.'() {
         given: 'service method returns a list containing a data node'
              def dataNode1 = new DataNodeBuilder().withXpath('/xpath')
-                    .withLeaves([leaf: 'value', leafList: ['leaveListElement1', 'leaveListElement2']]).build()
+                     .withLeaves([leaf: 'value', leafList: ['leaveListElement1', 'leaveListElement2']])
+                     .withModuleNamePrefix('moduleNamePrefix')
+                     .build()
             def dataspaceName = 'my_dataspace'
             def anchorName = 'my_anchor'
             def cpsPath = 'some cps-path'
@@ -72,7 +74,7 @@ class QueryRestControllerSpec extends Specification {
                             .andReturn().response
         then: 'the response contains the the datanode in json format'
             response.status == HttpStatus.OK.value()
-            response.getContentAsString().contains('{"xpath":{"leaf":"value","leafList":["leaveListElement1","leaveListElement2"]}}')
+            response.getContentAsString().contains('{"moduleNamePrefix:xpath":{"leaf":"value","leafList":["leaveListElement1","leaveListElement2"]}}')
         where: 'the following options for include descendants are provided in the request'
             scenario                    | includeDescendantsOption || expectedCpsDataServiceOption
             'no descendants by default' | ''                       || OMIT_DESCENDANTS

@@ -70,7 +70,9 @@ class DataRestControllerSpec extends Specification {
 
     @Shared
     static DataNode dataNodeWithLeavesNoChildren = new DataNodeBuilder().withXpath('/xpath')
-        .withLeaves([leaf: 'value', leafList: ['leaveListElement1', 'leaveListElement2']]).build()
+            .withLeaves([leaf: 'value', leafList: ['leaveListElement1', 'leaveListElement2']])
+            .withModuleNamePrefix('moduleNamePrefix')
+            .build()
 
     @Shared
     static DataNode dataNodeWithChild = new DataNodeBuilder().withXpath('/parent')
@@ -184,7 +186,7 @@ class DataRestControllerSpec extends Specification {
         then: 'a success response is returned'
             response.status == HttpStatus.OK.value()
         then: 'the response contains the the datanode in json format'
-            response.getContentAsString() == '{"xpath":{"leaf":"value","leafList":["leaveListElement1","leaveListElement2"]}}'
+            response.getContentAsString() == '{"moduleNamePrefix:xpath":{"leaf":"value","leafList":["leaveListElement1","leaveListElement2"]}}'
         and: 'response contains expected leaf and value'
             response.contentAsString.contains('"leaf":"value"')
         and: 'response contains expected leaf-list and values'

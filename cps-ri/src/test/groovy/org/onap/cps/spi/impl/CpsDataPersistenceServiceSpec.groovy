@@ -22,7 +22,10 @@ package org.onap.cps.spi.impl
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.hibernate.StaleStateException
 import org.onap.cps.spi.FetchDescendantsOption
+import org.onap.cps.spi.entities.AnchorEntity
 import org.onap.cps.spi.entities.FragmentEntity
+import org.onap.cps.spi.entities.SchemaSetEntity
+import org.onap.cps.spi.entities.YangResourceEntity
 import org.onap.cps.spi.exceptions.ConcurrencyException
 import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.model.DataNodeBuilder
@@ -31,6 +34,7 @@ import org.onap.cps.spi.repository.DataspaceRepository
 import org.onap.cps.spi.repository.FragmentRepository
 import org.onap.cps.spi.utils.SessionManager
 import org.onap.cps.utils.JsonObjectMapper
+import spock.lang.Shared
 import spock.lang.Specification
 
 class CpsDataPersistenceServiceSpec extends Specification {
@@ -43,6 +47,25 @@ class CpsDataPersistenceServiceSpec extends Specification {
 
     def objectUnderTest = new CpsDataPersistenceServiceImpl(
             mockDataspaceRepository, mockAnchorRepository, mockFragmentRepository, jsonObjectMapper,mockSessionManager)
+
+    @Shared
+    def NEW_RESOURCE_CONTENT = 'module stores {\n' +
+            '    yang-version 1.1;\n' +
+            '    namespace "org:onap:ccsdk:sample";\n' +
+            '\n' +
+            '    prefix book-store;\n' +
+            '\n' +
+            '    revision "2020-09-15" {\n' +
+            '        description\n' +
+            '        "Sample Model";\n' +
+            '    }' +
+            '}'
+
+    @Shared
+    def yangResourceSet = [new YangResourceEntity(moduleName: 'moduleName', content: NEW_RESOURCE_CONTENT,
+            name: 'sampleYangResource'
+    )] as Set
+
 
     def 'Handling of StaleStateException (caused by concurrent updates) during data node tree update.'() {
 
@@ -79,7 +102,8 @@ class CpsDataPersistenceServiceSpec extends Specification {
         given: 'a fragment with a property JSON value of #scenario'
         mockFragmentRepository.getByDataspaceAndAnchorAndXpath(_, _, _) >> {
             new FragmentEntity(childFragments: Collections.emptySet(),
-                    attributes: "{\"some attribute\": ${dataString}}")
+                    attributes: "{\"some attribute\": ${dataString}}",
+                    anchor: new AnchorEntity(schemaSet: new SchemaSetEntity(yangResources: yangResourceSet )))
         }
         when: 'getting the data node represented by this fragment'
         def dataNode = objectUnderTest.getDataNode('my-dataspace', 'my-anchor',
@@ -104,14 +128,14 @@ class CpsDataPersistenceServiceSpec extends Specification {
 
     def 'Retrieving a data node with invalid JSON'() {
         given: 'a fragment with invalid JSON'
-        mockFragmentRepository.getByDataspaceAndAnchorAndXpath(_, _, _) >> {
-            new FragmentEntity(childFragments: Collections.emptySet(), attributes: '{invalid json')
+            mockFragmentRepository.getByDataspaceAndAnchorAndXpath(_, _, _) >> {
+                new FragmentEntity(childFragments: Collections.emptySet(), attributes: '{invalid json')
         }
         when: 'getting the data node represented by this fragment'
-        def dataNode = objectUnderTest.getDataNode('my-dataspace', 'my-anchor',
+            def dataNode = objectUnderTest.getDataNode('my-dataspace', 'my-anchor',
                 '/parent-01', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
         then: 'a data validation exception is thrown'
-        thrown(DataValidationException)
+            thrown(DataValidationException)
     }
 
     def 'start session'() {
