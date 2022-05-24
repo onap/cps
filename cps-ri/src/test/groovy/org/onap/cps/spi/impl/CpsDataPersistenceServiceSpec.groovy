@@ -22,7 +22,11 @@ package org.onap.cps.spi.impl
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.hibernate.StaleStateException
 import org.onap.cps.spi.FetchDescendantsOption
+import org.onap.cps.spi.entities.AnchorEntity
+import org.onap.cps.spi.entities.DataspaceEntity
 import org.onap.cps.spi.entities.FragmentEntity
+import org.onap.cps.spi.entities.SchemaSetEntity
+import org.onap.cps.spi.entities.YangResourceEntity
 import org.onap.cps.spi.exceptions.ConcurrencyException
 import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.model.DataNodeBuilder
@@ -31,6 +35,10 @@ import org.onap.cps.spi.repository.DataspaceRepository
 import org.onap.cps.spi.repository.FragmentRepository
 import org.onap.cps.spi.utils.SessionManager
 import org.onap.cps.utils.JsonObjectMapper
+import org.onap.cps.yang.YangTextSchemaSourceSet
+import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
+import org.opendaylight.yangtools.yang.model.api.SchemaContext
+import spock.lang.Shared
 import spock.lang.Specification
 
 class CpsDataPersistenceServiceSpec extends Specification {
@@ -44,6 +52,25 @@ class CpsDataPersistenceServiceSpec extends Specification {
     def objectUnderTest = new CpsDataPersistenceServiceImpl(
             mockDataspaceRepository, mockAnchorRepository, mockFragmentRepository, jsonObjectMapper,mockSessionManager)
 
+    @Shared
+    def NEW_RESOURCE_CONTENT = 'module stores {\n' +
+            '    yang-version 1.1;\n' +
+            '    namespace "org:onap:ccsdk:sample";\n' +
+            '\n' +
+            '    prefix book-store;\n' +
+            '\n' +
+            '    revision "2020-09-15" {\n' +
+            '        description\n' +
+            '        "Sample Model";\n' +
+            '    }' +
+            '}'
+
+    @Shared
+    def yangResourceSet = [new YangResourceEntity(moduleName: 'moduleName', content: NEW_RESOURCE_CONTENT,
+            name: 'sampleYangResource'
+    )] as Set
+
+
     def 'Handling of StaleStateException (caused by concurrent updates) during data node tree update.'() {
 
         def parentXpath = '/parent-01'
@@ -51,67 +78,68 @@ class CpsDataPersistenceServiceSpec extends Specification {
         def myAnchorName = 'my-anchor'
 
         given: 'data node object'
-        def submittedDataNode = new DataNodeBuilder()
-                .withXpath(parentXpath)
-                .withLeaves(['leaf-name': 'leaf-value'])
-                .build()
+            def submittedDataNode = new DataNodeBuilder()
+                    .withXpath(parentXpath)
+                    .withLeaves(['leaf-name': 'leaf-value'])
+                    .build()
         and: 'fragment to be updated'
-        mockFragmentRepository.getByDataspaceAndAnchorAndXpath(_, _, _) >> {
-            def fragmentEntity = new FragmentEntity()
-            fragmentEntity.setXpath(parentXpath)
-            fragmentEntity.setChildFragments(Collections.emptySet())
-            return fragmentEntity
-        }
+            mockFragmentRepository.getByDataspaceAndAnchorAndXpath(_, _, _) >> {
+                def fragmentEntity = new FragmentEntity()
+                fragmentEntity.setXpath(parentXpath)
+                fragmentEntity.setChildFragments(Collections.emptySet())
+                return fragmentEntity
+            }
         and: 'data node is concurrently updated by another transaction'
-        mockFragmentRepository.save(_) >> { throw new StaleStateException("concurrent updates") }
+            mockFragmentRepository.save(_) >> { throw new StaleStateException("concurrent updates") }
 
         when: 'attempt to update data node'
-        objectUnderTest.replaceDataNodeTree(myDataspaceName, myAnchorName, submittedDataNode)
+            objectUnderTest.replaceDataNodeTree(myDataspaceName, myAnchorName, submittedDataNode)
 
         then: 'concurrency exception is thrown'
-        def concurrencyException = thrown(ConcurrencyException)
-        assert concurrencyException.getDetails().contains(myDataspaceName)
-        assert concurrencyException.getDetails().contains(myAnchorName)
-        assert concurrencyException.getDetails().contains(parentXpath)
+            def concurrencyException = thrown(ConcurrencyException)
+            assert concurrencyException.getDetails().contains(myDataspaceName)
+            assert concurrencyException.getDetails().contains(myAnchorName)
+            assert concurrencyException.getDetails().contains(parentXpath)
     }
 
     def 'Retrieving a data node with a property JSON value of #scenario'() {
         given: 'a fragment with a property JSON value of #scenario'
         mockFragmentRepository.getByDataspaceAndAnchorAndXpath(_, _, _) >> {
             new FragmentEntity(childFragments: Collections.emptySet(),
-                    attributes: "{\"some attribute\": ${dataString}}")
+                    attributes: "{\"some attribute\": ${dataString}}",
+                    anchor: new AnchorEntity(schemaSet: new SchemaSetEntity(yangResources: yangResourceSet )))
         }
         when: 'getting the data node represented by this fragment'
-        def dataNode = objectUnderTest.getDataNode('my-dataspace', 'my-anchor',
-                '/parent-01', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
+            def dataNode = objectUnderTest.getDataNode('my-dataspace', 'my-anchor',
+                    '/parent-01', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
         then: 'the leaf is of the correct value and data type'
-        def attributeValue = dataNode.leaves.get('some attribute')
-        assert attributeValue == expectedValue
-        assert attributeValue.class == expectedDataClass
+            def attributeValue = dataNode.leaves.get('some attribute')
+            assert attributeValue == expectedValue
+            assert attributeValue.class == expectedDataClass
         where: 'the following Data Type is passed'
-        scenario                              | dataString            || expectedValue     | expectedDataClass
-        'just numbers'                        | '15174'               || 15174             | Integer
-        'number with dot'                     | '15174.32'            || 15174.32          | Double
-        'number with 0 value after dot'       | '15174.0'             || 15174.0           | Double
-        'number with 0 value before dot'      | '0.32'                || 0.32              | Double
-        'number higher than max int'          | '2147483648'          || 2147483648        | Long
-        'just text'                           | '"Test"'              || 'Test'            | String
-        'number with exponent'                | '1.2345e5'            || 1.2345e5          | Double
-        'number higher than max int with dot' | '123456789101112.0'   || 123456789101112.0 | Double
-        'text and numbers'                    | '"String = \'1234\'"' || "String = '1234'" | String
-        'number as String'                    | '"12345"'             || '12345'           | String
+            scenario                              | dataString            || expectedValue     | expectedDataClass
+            'just numbers'                        | '15174'               || 15174             | Integer
+            'number with dot'                     | '15174.32'            || 15174.32          | Double
+            'number with 0 value after dot'       | '15174.0'             || 15174.0           | Double
+            'number with 0 value before dot'      | '0.32'                || 0.32              | Double
+            'number higher than max int'          | '2147483648'          || 2147483648        | Long
+            'just text'                           | '"Test"'              || 'Test'            | String
+            'number with exponent'                | '1.2345e5'            || 1.2345e5          | Double
+            'number higher than max int with dot' | '123456789101112.0'   || 123456789101112.0 | Double
+            'text and numbers'                    | '"String = \'1234\'"' || "String = '1234'" | String
+            'number as String'                    | '"12345"'             || '12345'           | String
     }
 
     def 'Retrieving a data node with invalid JSON'() {
         given: 'a fragment with invalid JSON'
-        mockFragmentRepository.getByDataspaceAndAnchorAndXpath(_, _, _) >> {
-            new FragmentEntity(childFragments: Collections.emptySet(), attributes: '{invalid json')
-        }
+            mockFragmentRepository.getByDataspaceAndAnchorAndXpath(_, _, _) >> {
+                new FragmentEntity(childFragments: Collections.emptySet(), attributes: '{invalid json')
+            }
         when: 'getting the data node represented by this fragment'
-        def dataNode = objectUnderTest.getDataNode('my-dataspace', 'my-anchor',
-                '/parent-01', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
+            def dataNode = objectUnderTest.getDataNode('my-dataspace', 'my-anchor',
+                    '/parent-01', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
         then: 'a data validation exception is thrown'
-        thrown(DataValidationException)
+            thrown(DataValidationException)
     }
 
     def 'start session'() {

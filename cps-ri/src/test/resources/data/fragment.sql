@@ -27,6 +27,27 @@ INSERT INTO DATASPACE (ID, NAME) VALUES
 INSERT INTO SCHEMA_SET (ID, NAME, DATASPACE_ID) VALUES
     (2001, 'SCHEMA-SET-001', 1001);
 
+INSERT INTO YANG_RESOURCE (ID, NAME, CONTENT, CHECKSUM, MODULE_NAME, REVISION) VALUES
+    (4001, 'TEST','', 'SAMPLECHECKSUM','TESTMODULENAME', 'SAMPLEREVISION');
+
+UPDATE YANG_RESOURCE SET
+content = 'module stores {
+               yang-version 1.1;
+               namespace "org:onap:ccsdk:sample";
+
+               prefix book-store;
+
+               revision "2020-09-15" {
+                   description
+                   "Sample Model";
+               }
+           }
+'
+where ID = 4001;
+
+INSERT INTO SCHEMA_SET_YANG_RESOURCES (SCHEMA_SET_ID, YANG_RESOURCE_ID) VALUES
+    (2001, 4001);
+
 INSERT INTO ANCHOR (ID, NAME, DATASPACE_ID, SCHEMA_SET_ID) VALUES
     (3001, 'ANCHOR-001', 1001, 2001),
     (3003, 'ANCHOR-003', 1001, 2001),

@@ -22,6 +22,7 @@ package org.onap.cps.spi.model
 
 import org.onap.cps.TestUtils
 import org.onap.cps.spi.model.DataNodeBuilder
+import org.onap.cps.utils.DataMapUtils
 import org.onap.cps.utils.YangUtils
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
 import org.opendaylight.yangtools.yang.common.QName
@@ -170,6 +171,22 @@ class DataNodeBuilderSpec extends Specification {
             scenario                                | node            | normalizedNode       | expectedSize | expectedNodes
             'NormalizedNode is null'                | 'null'          | null                 | 1            | [ new DataNode() ]
             'NormalizedNode is an unsupported type' | 'not supported' | Mock(NormalizedNode) | 0            | [ ]
+    }
+
+    def 'Use of adding the module name prefix attribute of data node.'() {
+        when: 'data node is built with a prefix'
+            def testDataNode = new DataNodeBuilder()
+                    .withModuleNamePrefix('sampleModuleNamePrefix')
+                    .withXpath(xPath)
+                    .withLeaves(sampleLeaves)
+                    .build()
+        then: 'the result when node request is a #scenario includes the correct prefix'
+            def result = new DataMapUtils().toDataMapWithIdentifier(testDataNode)
+            result.toString() == expectedResult
+        where: 'the following parameters are used'
+            scenario          | xPath                                       | sampleLeaves                   | expectedResult
+            'list attribute'  | '/test-tree/branch[@name=\'Right\']/nest'   | [name: 'Big', birds: ['Owl']]  | '{sampleModuleNamePrefix:nest={name=Big, birds=[Owl]}}'
+            'container xpath' | '/test-tree/branch[@name=\'Left\']'         | [name: 'Left']                 | '{sampleModuleNamePrefix:branch={name=Left}}'
     }
 
     def static assertLeavesMaps(actualLeavesMap, expectedLeavesMap) {
