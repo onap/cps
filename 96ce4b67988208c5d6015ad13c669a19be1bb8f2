@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2d281ea3_b7875174",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/YangModelCmHandleRetriever.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-05-24T17:24:47Z",
+      "side": 1,
+      "message": "Add this to set composite object in yangmodelcmhandle object\nyangModelCmHandle.setCompositeState(ncmpServiceCmHandle.getCompositeState());",
+      "revId": "96ce4b67988208c5d6015ad13c669a19be1bb8f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "794dc7f2_87014519",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/YangModelCmHandleRetriever.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-05-24T17:24:47Z",
+      "side": 1,
+      "message": "code overlap between CPS-1052. May be we can reuse this method in CPS-1052.",
+      "revId": "96ce4b67988208c5d6015ad13c669a19be1bb8f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2c828ca0_16550cb1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/YangModelCmHandleRetriever.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-05-24T17:24:47Z",
+      "side": 1,
+      "message": "Operational is used as inner class so to access it use CompositeState.Operational.builder()",
+      "range": {
+        "startLine": 93,
+        "startChar": 95,
+        "endLine": 93,
+        "endChar": 116
+      },
+      "revId": "96ce4b67988208c5d6015ad13c669a19be1bb8f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e8f656ba_3e923baf",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/YangModelCmHandleRetriever.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-05-24T17:24:47Z",
+      "side": 1,
+      "message": "same as operational",
+      "range": {
+        "startLine": 97,
+        "startChar": 91,
+        "endLine": 97,
+        "endChar": 108
+      },
+      "revId": "96ce4b67988208c5d6015ad13c669a19be1bb8f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
