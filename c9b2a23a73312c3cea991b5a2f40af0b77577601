@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "804f7919_43831a26",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-24T17:19:28Z",
+      "side": 1,
+      "message": "why pass the whole schemacontext if you only need the first module name?!",
+      "range": {
+        "startLine": 269,
+        "startChar": 52,
+        "endLine": 269,
+        "endChar": 65
+      },
+      "revId": "c9b2a23a73312c3cea991b5a2f40af0b77577601",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ba184166_18130cee",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-24T17:19:28Z",
+      "side": 1,
+      "message": "why pass the whole schemacontext if you only need the first module name?!",
+      "range": {
+        "startLine": 95,
+        "startChar": 40,
+        "endLine": 95,
+        "endChar": 53
+      },
+      "revId": "c9b2a23a73312c3cea991b5a2f40af0b77577601",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5ab2a640_4c74cfa5",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNodeBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-24T17:19:28Z",
+      "side": 1,
+      "message": "I think to keep with the builder Pattern you should refactor to have just a withModuleNamePrefix(moduleName) method\n\nwithModuleName(moduleName) {\n this.moduleName \u003d moduleName\n} return this\n\ndo the merging when build is called (see next comment)",
+      "range": {
+        "startLine": 93,
+        "startChar": 27,
+        "endLine": 93,
+        "endChar": 36
+      },
+      "revId": "c9b2a23a73312c3cea991b5a2f40af0b77577601",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb36daf4_19f6fc36",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNodeBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-24T17:19:28Z",
+      "side": 1,
+      "message": "what is happening here, pease add a Groovy test in the DataNodeBuilderSpec so it is clear!",
+      "range": {
+        "startLine": 96,
+        "startChar": 12,
+        "endLine": 96,
+        "endChar": 78
+      },
+      "revId": "c9b2a23a73312c3cea991b5a2f40af0b77577601",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "42eaffba_45a44cb4",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNodeBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-24T17:19:28Z",
+      "side": 1,
+      "message": "add the prefix here!",
+      "range": {
+        "startLine": 157,
+        "startChar": 8,
+        "endLine": 157,
+        "endChar": 33
+      },
+      "revId": "c9b2a23a73312c3cea991b5a2f40af0b77577601",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
