@@ -44,7 +44,7 @@ public class DataMapUtils {
      */
     public static Map<String, Object> toDataMapWithIdentifier(final DataNode dataNode) {
         return ImmutableMap.<String, Object>builder()
-            .put(getNodeIdentifier(dataNode.getXpath()), toDataMap(dataNode))
+            .put(getNodeIdentifierWithPrefix(dataNode.getXpath(), dataNode.getModuleNamePrefix()), toDataMap(dataNode))
             .build();
     }
 
@@ -71,7 +71,7 @@ public class DataMapUtils {
                 dataNodes.stream()
                     .filter(dataNode -> isListElement(dataNode.getXpath()))
                     .collect(groupingBy(
-                        dataNode -> getNodeIdentifier(dataNode.getXpath()),
+                        dataNode -> getNodeIdentifierWithPrefix(dataNode.getXpath(), dataNode.getModuleNamePrefix()),
                         mapping(DataMapUtils::toDataMap, toUnmodifiableList())
                     ))
             ).build();
@@ -85,15 +85,17 @@ public class DataMapUtils {
             .filter(dataNode -> isContainerNode(dataNode.getXpath()))
             .collect(
                 toUnmodifiableMap(
-                    dataNode -> getNodeIdentifier(dataNode.getXpath()),
+                    dataNode -> getNodeIdentifierWithPrefix(dataNode.getXpath(), dataNode.getModuleNamePrefix()),
                     DataMapUtils::toDataMap
                 ));
     }
 
-    private static String getNodeIdentifier(final String xpath) {
+    private static String getNodeIdentifierWithPrefix(final String xpath, final String moduleNamePrefix) {
         final int fromIndex = xpath.lastIndexOf("/") + 1;
         final int toIndex = xpath.indexOf("[", fromIndex);
-        return toIndex > 0 ? xpath.substring(fromIndex, toIndex) : xpath.substring(fromIndex);
+        final String nodeIdentifier = toIndex > 0 ? xpath.substring(fromIndex, toIndex) : xpath.substring(fromIndex);
+        final String nodeIdentifierWithPrefix = moduleNamePrefix + ":" + nodeIdentifier;
+        return nodeIdentifierWithPrefix;
     }
 
     private static boolean isContainerNode(final String xpath) {

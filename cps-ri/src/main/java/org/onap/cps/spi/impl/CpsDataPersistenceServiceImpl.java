@@ -164,9 +164,10 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
 
     @Override
     public DataNode getDataNode(final String dataspaceName, final String anchorName, final String xpath,
-        final FetchDescendantsOption fetchDescendantsOption) {
+                                final FetchDescendantsOption fetchDescendantsOption,
+                                final String moduleNamePrefix) {
         final FragmentEntity fragmentEntity = getFragmentByXpath(dataspaceName, anchorName, xpath);
-        return toDataNode(fragmentEntity, fetchDescendantsOption);
+        return toDataNode(fragmentEntity, fetchDescendantsOption, moduleNamePrefix);
     }
 
     private FragmentEntity getFragmentByXpath(final String dataspaceName, final String anchorName,
@@ -252,6 +253,22 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             .withXpath(fragmentEntity.getXpath())
             .withLeaves(leaves)
             .withChildDataNodes(childDataNodes).build();
+    }
+
+    //POC
+    private DataNode toDataNode(final FragmentEntity fragmentEntity,
+                                final FetchDescendantsOption fetchDescendantsOption,
+                                final String moduleNamePrefix) {
+        final List<DataNode> childDataNodes = getChildDataNodes(fragmentEntity, fetchDescendantsOption);
+        Map<String, Object> leaves = new HashMap<>();
+        if (fragmentEntity.getAttributes() != null) {
+            leaves = jsonObjectMapper.convertJsonString(fragmentEntity.getAttributes(), Map.class);
+        }
+        return new DataNodeBuilder()
+                .withModuleNamePrefix(moduleNamePrefix)
+                .withXpath(fragmentEntity.getXpath())
+                .withLeaves(leaves)
+                .withChildDataNodes(childDataNodes).build();
     }
 
     private List<DataNode> getChildDataNodes(final FragmentEntity fragmentEntity,

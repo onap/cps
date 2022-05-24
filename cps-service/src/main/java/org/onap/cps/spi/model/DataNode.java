@@ -42,6 +42,7 @@ public class DataNode {
     private String anchorName;
     private ModuleReference moduleReference;
     private String xpath;
+    private String moduleNamePrefix;
     private Map<String, Object> leaves = Collections.emptyMap();
     private Collection<String> xpathsChildren;
     private Collection<DataNode> childDataNodes = Collections.emptySet();

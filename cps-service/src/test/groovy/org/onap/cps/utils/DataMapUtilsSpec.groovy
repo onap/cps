@@ -81,4 +81,15 @@ class DataMapUtilsSpec extends Specification {
         and: 'leaves for grandchild element is populated under its node identifier'
             parentNode.'child-object'.'grand-child-object'.grandChildLeaf == 'grandChildLeafValue'
     }
+
+    def 'Adding prefix to data node identifier.'() {
+        when: 'a valid xPath is passed to the addPrefixToXpath method'
+            def result = new DataMapUtils().getNodeIdentifierWithPrefix(xPath,'sampleModuleName')
+        then: 'the correct modified xPath is given'
+            assert result.contains(expectedNodeIdentifier)
+        where: 'the following parameters are used'
+            scenario                        | xPath                                       | expectedNodeIdentifier
+            'container xpath'               | '/bookstore'                                | 'stores:bookstore'
+            'xpath contains list attribute' | '/bookstore/categories[@code=1]'            | 'sampleModuleName:categories'
+    }
 }

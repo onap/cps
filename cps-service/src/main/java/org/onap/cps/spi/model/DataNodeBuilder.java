@@ -45,6 +45,7 @@ public class DataNodeBuilder {
 
     private NormalizedNode<?, ?> normalizedNodeTree;
     private String xpath;
+    private String moduleNamePrefix;
     private String parentNodeXpath = "";
     private Map<String, Object> leaves = Collections.emptyMap();
     private Collection<DataNode> childDataNodes = Collections.emptySet();
@@ -80,6 +81,17 @@ public class DataNodeBuilder {
      */
     public DataNodeBuilder withXpath(final String xpath) {
         this.xpath = xpath;
+        return this;
+    }
+
+    /**
+     * To use module name for creating {@link DataNode}.
+     *
+     * @param moduleNamePrefix module name
+     * @return DataNodeBuilder
+     */
+    public DataNodeBuilder withModuleNamePrefix(final String moduleNamePrefix) {
+        this.moduleNamePrefix = moduleNamePrefix;
         return this;
     }
 
@@ -136,6 +148,7 @@ public class DataNodeBuilder {
     private DataNode buildFromAttributes() {
         final var dataNode = new DataNode();
         dataNode.setXpath(xpath);
+        dataNode.setModuleNamePrefix(moduleNamePrefix);
         dataNode.setLeaves(leaves);
         dataNode.setChildDataNodes(childDataNodes);
         return dataNode;

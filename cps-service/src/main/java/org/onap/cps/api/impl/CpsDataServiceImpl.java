@@ -86,9 +86,14 @@ public class CpsDataServiceImpl implements CpsDataService {
 
     @Override
     public DataNode getDataNode(final String dataspaceName, final String anchorName, final String xpath,
-        final FetchDescendantsOption fetchDescendantsOption) {
+                                final FetchDescendantsOption fetchDescendantsOption) {
+        final Anchor anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
+        final String schemaSetName = anchor.getSchemaSetName();
+        final SchemaContext schemaContext = getSchemaContext(dataspaceName, schemaSetName);
+        final String moduleNamePrefix = schemaContext.getModules().iterator().next().getName();
         CpsValidator.validateNameCharacters(dataspaceName, anchorName);
-        return cpsDataPersistenceService.getDataNode(dataspaceName, anchorName, xpath, fetchDescendantsOption);
+        return cpsDataPersistenceService.getDataNode(dataspaceName, anchorName, xpath,
+                fetchDescendantsOption, moduleNamePrefix);
     }
 
     @Override
