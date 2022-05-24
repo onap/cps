@@ -60,6 +60,7 @@ import org.onap.cps.spi.repository.DataspaceRepository;
 import org.onap.cps.spi.repository.FragmentRepository;
 import org.onap.cps.spi.utils.SessionManager;
 import org.onap.cps.utils.JsonObjectMapper;
+import org.opendaylight.yangtools.yang.model.api.SchemaContext;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
@@ -169,6 +170,14 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         return toDataNode(fragmentEntity, fetchDescendantsOption);
     }
 
+    @Override
+    public DataNode getDataNode(final String dataspaceName, final String anchorName, final String xpath,
+                                final FetchDescendantsOption fetchDescendantsOption,
+                                final SchemaContext schemaContext) {
+        final FragmentEntity fragmentEntity = getFragmentByXpath(dataspaceName, anchorName, xpath);
+        return toDataNode(fragmentEntity, fetchDescendantsOption, schemaContext);
+    }
+
     private FragmentEntity getFragmentByXpath(final String dataspaceName, final String anchorName,
         final String xpath) {
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
@@ -252,6 +261,22 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             .withXpath(fragmentEntity.getXpath())
             .withLeaves(leaves)
             .withChildDataNodes(childDataNodes).build();
+    }
+
+    //POC
+    private DataNode toDataNode(final FragmentEntity fragmentEntity,
+                                final FetchDescendantsOption fetchDescendantsOption,
+                                final SchemaContext schemaContext) {
+        final List<DataNode> childDataNodes = getChildDataNodes(fragmentEntity, fetchDescendantsOption);
+        Map<String, Object> leaves = new HashMap<>();
+        if (fragmentEntity.getAttributes() != null) {
+            leaves = jsonObjectMapper.convertJsonString(fragmentEntity.getAttributes(), Map.class);
+        }
+        final String moduleName = schemaContext.getModules().iterator().next().getName();
+        return new DataNodeBuilder()
+                .withXpath(fragmentEntity.getXpath(), moduleName)
+                .withLeaves(leaves)
+                .withChildDataNodes(childDataNodes).build();
     }
 
     private List<DataNode> getChildDataNodes(final FragmentEntity fragmentEntity,

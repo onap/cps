@@ -26,6 +26,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import org.onap.cps.spi.model.DataNode;
+import org.opendaylight.yangtools.yang.model.api.SchemaContext;
 
 /*
     Data Store interface that is responsible for handling yang data.
@@ -78,6 +79,8 @@ public interface CpsDataPersistenceService {
     DataNode getDataNode(String dataspaceName, String anchorName, String xpath,
         FetchDescendantsOption fetchDescendantsOption);
 
+    DataNode getDataNode(String dataspaceName, String anchorName, String xpath,
+                         FetchDescendantsOption fetchDescendantsOption, SchemaContext schemaContext);
 
     /**
      * Updates leaves for existing data node.

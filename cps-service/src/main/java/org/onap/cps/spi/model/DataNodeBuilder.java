@@ -84,6 +84,25 @@ public class DataNodeBuilder {
     }
 
     /**
+     * POC.
+     *
+     * @param xpath for the data node
+     * @param moduleName module name
+     * @return DataNodeBuilder
+     */
+    public DataNodeBuilder withXpath(final String xpath, final String moduleName) {
+        final StringBuffer stringBuffer = new StringBuffer(xpath);
+        if (xpath.contains("[")) {
+            stringBuffer.insert(xpath.lastIndexOf("/") + 1, moduleName + ":");
+        } else {
+            stringBuffer.insert(1, moduleName + ":");
+        }
+        final String modifiedXpath = stringBuffer.toString();
+        this.xpath = modifiedXpath;
+        return this;
+    }
+
+    /**
      * To use attributes for creating {@link DataNode}.
      *
      * @param leaves for the data node
