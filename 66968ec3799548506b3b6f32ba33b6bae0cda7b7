@@ -378,6 +378,30 @@
     },
     {
       "key": {
+        "uuid": "4978f34f_050d384d",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/mapper/RestOutputCmHandleStateMapper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-24T11:08:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8250bf0f_0de089e0",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 9
+      },
+      "revId": "66968ec3799548506b3b6f32ba33b6bae0cda7b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5da9619f_fa7e8ee0",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
         "patchSetId": 2

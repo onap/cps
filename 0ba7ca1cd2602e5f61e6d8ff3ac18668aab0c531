@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "14f834d2_be78d271",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-24T11:08:06Z",
+      "side": 1,
+      "message": "please use unambiguous example so it is clear which is month and wich is date",
+      "range": {
+        "startLine": 231,
+        "startChar": 24,
+        "endLine": 231,
+        "endChar": 29
+      },
+      "revId": "0ba7ca1cd2602e5f61e6d8ff3ac18668aab0c531",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3f744d4e_88008209",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-24T11:08:06Z",
+      "side": 1,
+      "message": "dont use 1\u0027s as discussed 1",
+      "range": {
+        "startLine": 87,
+        "startChar": 39,
+        "endLine": 87,
+        "endChar": 57
+      },
+      "revId": "0ba7ca1cd2602e5f61e6d8ff3ac18668aab0c531",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
