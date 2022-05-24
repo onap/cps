@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Pantheon.tech
- *  Modifications Copyright (C) 2020 Nordix Foundation
+ *  Modifications Copyright (C) 2020-2022 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -80,5 +80,16 @@ class DataMapUtilsSpec extends Specification {
 
         and: 'leaves for grandchild element is populated under its node identifier'
             parentNode.'child-object'.'grand-child-object'.grandChildLeaf == 'grandChildLeafValue'
+    }
+
+    def 'Adding prefix to data node identifier.'() {
+        when: 'a valid xPath is passed to the addPrefixToXpath method'
+            def result = new DataMapUtils().getNodeIdentifierWithPrefix(xPath,'sampleModuleName')
+        then: 'the correct modified node identifier is given'
+            assert result == expectedNodeIdentifier
+        where: 'the following parameters are used'
+            scenario                        | xPath                                       | expectedNodeIdentifier
+            'container xpath'               | '/bookstore'                                | 'sampleModuleName:bookstore'
+            'xpath contains list attribute' | '/bookstore/categories[@code=1]'            | 'sampleModuleName:categories'
     }
 }
