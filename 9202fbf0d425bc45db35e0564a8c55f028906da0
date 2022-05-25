@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "afae1ad1_b3015bb5",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 40
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-05-25T11:05:00Z",
+      "side": 1,
+      "message": "Refactored",
+      "range": {
+        "startLine": 102,
+        "startChar": 31,
+        "endLine": 104,
+        "endChar": 0
+      },
+      "revId": "9202fbf0d425bc45db35e0564a8c55f028906da0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88be5e05_71cf047c",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 40
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-05-25T11:05:00Z",
+      "side": 1,
+      "message": "Removed",
+      "range": {
+        "startLine": 105,
+        "startChar": 43,
+        "endLine": 105,
+        "endChar": 61
+      },
+      "revId": "9202fbf0d425bc45db35e0564a8c55f028906da0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6fda4082_b578b5ea",
+        "filename": "cps-ncmp-service/pom.xml",
+        "patchSetId": 40
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-05-25T11:05:00Z",
+      "side": 1,
+      "message": "Removed",
+      "range": {
+        "startLine": 45,
+        "startChar": 32,
+        "endLine": 45,
+        "endChar": 39
+      },
+      "revId": "9202fbf0d425bc45db35e0564a8c55f028906da0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "30ca081b_ca2c62ed",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/CpsAsyncRequestResponseEventIntegrationSpec.groovy",
+        "patchSetId": 40
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-05-25T11:05:00Z",
+      "side": 1,
+      "message": "Change order",
+      "range": {
+        "startLine": 110,
+        "startChar": 14,
+        "endLine": 110,
+        "endChar": 23
+      },
+      "revId": "9202fbf0d425bc45db35e0564a8c55f028906da0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
