@@ -16,6 +16,24 @@
       "revId": "b0623697898de50afce9a4d23085594d5e8d2ef7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "357e2b42_ce7305c2",
+        "filename": "cps-ncmp-service/src/test/resources/expectedStateModel.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-25T11:00:42Z",
+      "side": 0,
+      "message": "Would the changes not appear as conflicting if there clashing changes from the recent commit?",
+      "parentUuid": "419c8c8e_fa576bd9",
+      "revId": "b0623697898de50afce9a4d23085594d5e8d2ef7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
