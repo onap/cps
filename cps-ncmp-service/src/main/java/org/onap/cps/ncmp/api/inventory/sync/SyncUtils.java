@@ -21,6 +21,7 @@
 package org.onap.cps.ncmp.api.inventory.sync;
 
 import java.security.SecureRandom;
+import java.util.Collections;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -62,6 +63,30 @@ public class SyncUtils {
         return inventoryPersistence.getYangModelCmHandle(cmHandleId);
     }
 
+    /**
+     * First query data nodes for cm handles with CM Handle Operational Sync State in "UNSYNCHRONIZED" and
+     * randomly select a CM Handle and query the data nodes for CM Handle State in "READY".
+     *
+     * @return a random yang model cm handle with State in READY and Operation Sync State in "UNSYNCHRONIZED",
+     *         return null if not found
+     */
+    public YangModelCmHandle getUnSynchronizedReadyCmHandle() {
+        final List<DataNode> unSynchronizedCmHandles = inventoryPersistence
+                .getOperationalCmHandles("UNSYNCHRONIZED");
+        if (unSynchronizedCmHandles.isEmpty()) {
+            return null;
+        }
+        Collections.shuffle(unSynchronizedCmHandles);
+        for (DataNode cmHandle : unSynchronizedCmHandles) {
+            final String cmHandleId = cmHandle.getLeaves().get("id").toString();
+            final List<DataNode> readyCmHandles = inventoryPersistence
+                    .getCmHandlesByIdAndState(cmHandleId, CmHandleState.READY);
+            if (!readyCmHandles.isEmpty()) {
+                return inventoryPersistence.getYangModelCmHandle(cmHandleId);
+            }
+        }
+        return null;
+    }
 
     /**
      * Update Composite State attempts counter and set new lock reason and details.
