@@ -69,6 +69,9 @@ class InventoryPersistenceSpec extends Specification {
     @Shared
     def childDataNodesForCmHandleWithState = [new DataNode(xpath: "/dmi-registry/cm-handles[@id='some-cm-handle']/state", leaves: ['cm-handle-state': 'ADVISED'])]
 
+    @Shared
+    def sharedDataNodes = [new DataNode()]
+
     def "Retrieve CmHandle using datanode with #scenario."() {
         given: 'the cps data service returns a data node from the DMI registry'
             def dataNode = new DataNode(childDataNodes:childDataNodes, leaves: leaves)
@@ -146,13 +149,36 @@ class InventoryPersistenceSpec extends Specification {
         given: 'a cm handle state to query'
             def cmHandleState = CmHandleState.ADVISED
         and: 'cps data service returns a list of data nodes'
-            def dataNodes = [new DataNode()]
             mockCpsDataPersistenceService.queryDataNodes('NCMP-Admin', 'ncmp-dmi-registry',
-                '//state[@cm-handle-state="ADVISED"]/ancestor::cm-handles', OMIT_DESCENDANTS) >> dataNodes
+                '//state[@cm-handle-state="ADVISED"]/ancestor::cm-handles', OMIT_DESCENDANTS) >> sharedDataNodes
         when: 'get cm handles by state is invoked'
             def result = objectUnderTest.getCmHandlesByState(cmHandleState)
         then: 'the returned result is a list of data nodes returned by cps data service'
-            assert result == dataNodes
+            assert result == sharedDataNodes
+    }
+
+    def 'Get Cm Handles By State and Cm-Handle Id'() {
+        given: 'a cm handle state to query'
+            def cmHandleState = CmHandleState.READY
+        and: 'cps data service returns a list of data nodes'
+            mockCpsDataPersistenceService.queryDataNodes('NCMP-Admin', 'ncmp-dmi-registry',
+                '//cm-handles[@id=\'some-cm-handle\']/state[@cm-handle-state="READY"]/ancestor::cm-handles', OMIT_DESCENDANTS) >> sharedDataNodes
+        when: 'get cm handles by state and id is invoked'
+            def result = objectUnderTest.getCmHandlesByIdAndState(cmHandleId, cmHandleState)
+        then: 'the returned result is a list of data nodes returned by cps data service'
+            assert result == sharedDataNodes
+    }
+
+    def 'Get Cm Handles By Operational Sync State : UNSYNCHRONIZED'() {
+        given: 'a cm handle state to query'
+            def cmHandleState = CmHandleState.READY
+        and: 'cps data service returns a list of data nodes'
+            mockCpsDataPersistenceService.queryDataNodes('NCMP-Admin', 'ncmp-dmi-registry',
+                '//state/datastores/operational[@sync-state="UNSYNCHRONIZED"]/ancestor::cm-handles', OMIT_DESCENDANTS) >> sharedDataNodes
+        when: 'get cm handles by operational sync state as UNSYNCHRONIZED is invoked'
+            def result = objectUnderTest.getOperationalCmHandlesBySyncState("UNSYNCHRONIZED")
+        then: 'the returned result is a list of data nodes returned by cps data service'
+            assert result == sharedDataNodes
     }
 
 }
