@@ -2,6 +2,374 @@
   "comments": [
     {
       "key": {
+        "uuid": "1579979c_df23e66d",
+        "filename": "cps-ncmp-rest/docs/openapi/openapi.yml",
+        "patchSetId": 9
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-25T09:01:13Z",
+      "side": 1,
+      "message": "should we stil have a deprecated version of \n\n /v1/data/ch/searches:\n    $ref: \u0027ncmp.yml#/queryCmHandles\u0027\n\nto be backward compatible?!",
+      "range": {
+        "startLine": 48,
+        "startChar": 21,
+        "endLine": 48,
+        "endChar": 45
+      },
+      "revId": "bac984a7b5c1bf0413b92db14f2e520d78d3ca70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "34cd560a_3ca42790",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-25T09:01:13Z",
+      "side": 1,
+      "message": "put this in below method and make it return this object instead of a void",
+      "range": {
+        "startLine": 207,
+        "startChar": 3,
+        "endLine": 208,
+        "endChar": 115
+      },
+      "revId": "bac984a7b5c1bf0413b92db14f2e520d78d3ca70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cebf7a21_3b565c60",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-25T09:01:13Z",
+      "side": 1,
+      "message": "our convention is to have private methods after the public methods",
+      "range": {
+        "startLine": 226,
+        "startChar": 4,
+        "endLine": 226,
+        "endChar": 12
+      },
+      "revId": "bac984a7b5c1bf0413b92db14f2e520d78d3ca70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce10a560_9899ab2a",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-25T09:01:13Z",
+      "side": 1,
+      "message": "suggested new signature and name: \nCmHandleQueryRestParameters toCmHandleQueryRestParameters(CmHandleQueryApiParameters cmHandleQueryApiParameters)",
+      "range": {
+        "startLine": 226,
+        "startChar": 17,
+        "endLine": 226,
+        "endChar": 42
+      },
+      "revId": "bac984a7b5c1bf0413b92db14f2e520d78d3ca70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a53a7cd4_923db239",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-25T09:01:13Z",
+      "side": 1,
+      "message": "make this method create and return this object\n(probably put this method in a separate class (suggestion DeprecationHelper ?) then it can also be tested more easily...",
+      "range": {
+        "startLine": 227,
+        "startChar": 49,
+        "endLine": 227,
+        "endChar": 77
+      },
+      "revId": "bac984a7b5c1bf0413b92db14f2e520d78d3ca70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "96f2ca15_2a52c65b",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-25T09:01:13Z",
+      "side": 1,
+      "message": "Dont think this method improves readability (I read up about it and it was mainly introduced for lambda expression) and for consistency I would prefer simply:\n\noldConditionProperty.getConditionParameters() !\u003d null",
+      "range": {
+        "startLine": 233,
+        "startChar": 24,
+        "endLine": 233,
+        "endChar": 39
+      },
+      "revId": "bac984a7b5c1bf0413b92db14f2e520d78d3ca70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e41cdec_65fcb18b",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-25T09:01:13Z",
+      "side": 1,
+      "message": "use !\u003d null",
+      "range": {
+        "startLine": 234,
+        "startChar": 27,
+        "endLine": 234,
+        "endChar": 42
+      },
+      "revId": "bac984a7b5c1bf0413b92db14f2e520d78d3ca70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "83760a5b_f4ed19e9",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-25T09:01:13Z",
+      "side": 1,
+      "message": "as per my comments on patch #8 this conversion should NOT be tested as part of this test",
+      "range": {
+        "startLine": 225,
+        "startChar": 0,
+        "endLine": 231,
+        "endChar": 93
+      },
+      "revId": "bac984a7b5c1bf0413b92db14f2e520d78d3ca70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b21fa89_9c0baa08",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-25T09:01:13Z",
+      "side": 1,
+      "message": "as before",
+      "range": {
+        "startLine": 284,
+        "startChar": 0,
+        "endLine": 290,
+        "endChar": 93
+      },
+      "revId": "bac984a7b5c1bf0413b92db14f2e520d78d3ca70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "464849bf_fa494809",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-25T09:01:13Z",
+      "side": 1,
+      "message": "need to discuss, adding this jsonData here without asserting the call details on line 311 does not add value. add I think there are beter ways of doing this...\ntypically parameter-conversion should be tested separately (if possible, it migh tbe needed here, but then we need to make suer to asserts as well if not we should pass in the minimal data required for teh restendpoint to execute ie. not throw an exception",
+      "range": {
+        "startLine": 303,
+        "startChar": 0,
+        "endLine": 309,
+        "endChar": 23
+      },
+      "revId": "bac984a7b5c1bf0413b92db14f2e520d78d3ca70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f390078e_1ba23f29",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-25T09:01:13Z",
+      "side": 1,
+      "message": "following on my comment on prev file it seems now clear to mee that conversion can be tested using the jsonObjectMapperSpec...",
+      "range": {
+        "startLine": 157,
+        "startChar": 16,
+        "endLine": 157,
+        "endChar": 73
+      },
+      "revId": "bac984a7b5c1bf0413b92db14f2e520d78d3ca70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "809083aa_c0fbefcb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-25T09:01:13Z",
+      "side": 1,
+      "message": "extract out to (Yang)DataConverter class",
+      "range": {
+        "startLine": 186,
+        "startChar": 32,
+        "endLine": 186,
+        "endChar": 77
+      },
+      "revId": "bac984a7b5c1bf0413b92db14f2e520d78d3ca70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6f9e4810_c3c34116",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/YangModelCmHandleRetriever.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-25T09:01:13Z",
+      "side": 1,
+      "message": "move to previously suggested (Yang)DataConverter class",
+      "range": {
+        "startLine": 62,
+        "startChar": 29,
+        "endLine": 62,
+        "endChar": 55
+      },
+      "revId": "bac984a7b5c1bf0413b92db14f2e520d78d3ca70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1616e4ff_2cae837c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-25T09:01:13Z",
+      "side": 1,
+      "message": "try to be stricter ie assert (some content) of the parameter passed here\n(there should be example in other test classes)",
+      "range": {
+        "startLine": 385,
+        "startChar": 50,
+        "endLine": 385,
+        "endChar": 51
+      },
+      "revId": "bac984a7b5c1bf0413b92db14f2e520d78d3ca70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "763555f1_69b4a7ed",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-25T09:01:13Z",
+      "side": 1,
+      "message": "typically when you test \u0027delegation\u0027 you do something like this\n\nSay you are testing a method like this:\n\nObject myMethod(input1) {\n  :\n  return delegate.doSomething(input2)\n\nIn Test\n\ngiven:\n  mockDelegate \u003d Mock(Delegate)\nwhen:\n  result \u003d objectUndertTest.myMethod(\u0027some input\u0027)\nthen:\n  1 * mockDelagate.doSomething(expectedInput2) \u003e\u003e mockOutput    // could be another mock if needed, or just a simple sample object\nand:\n  assert result \u003d\u003d mockOutput    \n\n\nActually when the result depend on strict mocked behavior there is NO need to check the dependent method has bene calls and in such case it is better (aslo more naturel) to write the test like so:\n\ngiven:\n  mockDelegate \u003d Mock(Delegate)\n  mockDelagate.doSomething(expectedInput2) \u003e\u003e mockOutput \nwhen:\n  result \u003d objectUndertTest.myMethod(\u0027some input\u0027)\nthen:\n  assert result \u003d\u003d mockOutput    \n\nThe fact you get \u0027mock\u0027 result means the method has bene called (at last once, only very sometimes in optimization bugs it might be need ot check it was not called more then once)",
+      "range": {
+        "startLine": 385,
+        "startChar": 53,
+        "endLine": 385,
+        "endChar": 58
+      },
+      "revId": "bac984a7b5c1bf0413b92db14f2e520d78d3ca70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b95ac1fa_da5aca64",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 398,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-25T09:01:13Z",
+      "side": 1,
+      "message": "try to be stricter ie assert (some content) of the parameter passed here\n(there should be example in other test classes)",
+      "range": {
+        "startLine": 398,
+        "startChar": 50,
+        "endLine": 398,
+        "endChar": 51
+      },
+      "revId": "bac984a7b5c1bf0413b92db14f2e520d78d3ca70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e176121d_be378ac1",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNode.java",
         "patchSetId": 9
