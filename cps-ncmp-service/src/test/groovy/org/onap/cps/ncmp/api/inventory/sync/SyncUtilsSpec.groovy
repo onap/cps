@@ -34,8 +34,11 @@ import spock.lang.Shared
 import spock.lang.Specification
 
 import java.time.OffsetDateTime
+import java.time.format.DateTimeFormatter
 
-class SyncUtilsSpec extends Specification{
+class SyncUtilsSpec extends Specification {
+
+    def DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
 
     def mockCpsDataService = Mock(CpsDataService)
     def mockCpsDataPersistenceService = Mock(CpsDataPersistenceService)
@@ -47,7 +50,9 @@ class SyncUtilsSpec extends Specification{
     @Shared
     def dataNode = new DataNode(leaves: ['id': 'cm-handle-123'])
 
-
+    def dataspaceName = 'NCMP-Admin'
+    def anchorName = 'ncmp-dmi-registry'
+    def lastSyncTime = DATE_TIME_FORMATTER.format(OffsetDateTime.now())
 
     def 'Get an advised Cm-Handle where ADVISED cm handle #scenario'() {
         given: 'the cps (persistence service) returns a collection of data nodes'
@@ -59,11 +64,11 @@ class SyncUtilsSpec extends Specification{
         then: 'the returned data node collection is the correct size'
             dataNodeCollection.size() == expectedDataNodeSize
         and: 'get yang model cm handles is invoked the correct number of times'
-           expectedCallsToGetYangModelCmHandle * mockYangModelCmHandleRetriever.getYangModelCmHandle('cm-handle-123')
+            expectedCallsToGetYangModelCmHandle * mockYangModelCmHandleRetriever.getYangModelCmHandle('cm-handle-123')
         where: 'the following scenarios are used'
             scenario         | dataNodeCollection || expectedCallsToGetYangModelCmHandle | expectedDataNodeSize
-            'exists'         | [ dataNode ]       || 1                                   | 1
-            'does not exist' | [ ]                || 0                                   | 0
+            'exists'         | [dataNode]         || 1                                   | 1
+            'does not exist' | []                 || 0                                   | 0
 
     }
 
@@ -71,12 +76,45 @@ class SyncUtilsSpec extends Specification{
         given: 'a yang model cm handle and the expected json data'
             def compositeState = new CompositeState()
             compositeState.cmhandleState = CmHandleState.ADVISED
-            def yangModelCmHandle = new YangModelCmHandle(id: 'Some-Cm-Handle', compositeState: compositeState )
+            def yangModelCmHandle = new YangModelCmHandle(id: 'Some-Cm-Handle', compositeState: compositeState)
             def expectedJsonData = '{"cm-handles":[{"id":"Some-Cm-Handle","state":{"cm-handle-state":"READY"}}]}'
         when: 'update cm handle state is called'
             objectUnderTest.updateCmHandleState(yangModelCmHandle, CmHandleState.READY)
         then: 'update data note leaves is invoked with the correct params'
             1 * mockCpsDataService.updateNodeLeaves('NCMP-Admin', 'ncmp-dmi-registry', '/dmi-registry', expectedJsonData, _ as OffsetDateTime)
+    }
+
+    def 'Get a Cm-Handle state in READY and Operation Sync State in UNSYNCHRONIZED #scenario'() {
+        given: 'the cps (persistence service) returns a collection of data nodes'
+            mockCpsDataPersistenceService.queryDataNodes(dataspaceName,
+                anchorName, '//state/datastores/operational[@sync-state=\"UNSYNCHRONIZED\"]/ancestor::cm-handles',
+                FetchDescendantsOption.OMIT_DESCENDANTS) >> dataNodeCollection
+        when: 'get unsynchronized and ready cm handle is called'
+            objectUnderTest.getUnSynchronizedReadyCmHandle()
+        then: 'the returned data node collection is the correct size'
+            dataNodeCollection.size() == expectedDataNodeSize
+        and: 'get yang model cm handles is invoked the correct number of times'
+            expectedCallsToGetYangModelCmHandle * mockYangModelCmHandleRetriever.getYangModelCmHandle('cm-handle-123')
+        where: 'the following scenarios are used'
+            scenario         | dataNodeCollection || expectedCallsToGetYangModelCmHandle | expectedDataNodeSize
+            'exists'         | [dataNode]         || 1                                   | 1
+            'does not exist' | []                 || 0                                   | 0
+
+    }
+
+    def 'Update cm handle operational sync state from UNSYNCHRONIZED to SYNCHRONIZED'() {
+        given: 'a yang model cm handle and the expected json data'
+            def compositeState = new CompositeState()
+            compositeState.cmhandleState = CmHandleState.READY
+            compositeState.setDataStores(CompositeState.DataStores.builder()
+                .operationalDataStore(CompositeState.Operational.builder().syncState("SYNCHRONIZED")
+                    .lastSyncTime(lastSyncTime).build()).build())
+            def yangModelCmHandle = new YangModelCmHandle(id: 'cm-handle-1', compositeState: compositeState)
+            def expectedJsonData = '{"cm-handles":[{"id":"cm-handle-1","state":{"cm-handle-state":"READY","datastores":{"operational":{"sync-state":"SYNCHRONIZED","last-sync-time":"' + lastSyncTime + '"}}}}]}'
+        when: 'update cm handle state is called'
+            objectUnderTest.updateCmHandleStateWithNodeLeaves(yangModelCmHandle)
+        then: 'update data note leaves is invoked with the correct params'
+            1 * mockCpsDataService.updateNodeLeavesAndExistingDescendantLeaves('NCMP-Admin', 'ncmp-dmi-registry', '/dmi-registry', expectedJsonData, _ as OffsetDateTime)
     }
 
 }

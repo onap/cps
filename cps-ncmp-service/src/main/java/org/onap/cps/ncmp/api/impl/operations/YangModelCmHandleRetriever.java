@@ -25,6 +25,7 @@ import java.util.Map;
 import lombok.AllArgsConstructor;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
+import org.onap.cps.ncmp.api.inventory.CompositeStateBuilder;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
@@ -53,7 +54,7 @@ public class YangModelCmHandleRetriever {
         final DataNode cmHandleDataNode = getCmHandleDataNode(cmHandleId);
         final NcmpServiceCmHandle ncmpServiceCmHandle = new NcmpServiceCmHandle();
         ncmpServiceCmHandle.setCmHandleId(cmHandleId);
-        populateCmHandleProperties(cmHandleDataNode, ncmpServiceCmHandle);
+        populateCmHandleDetails(cmHandleDataNode, ncmpServiceCmHandle);
         return YangModelCmHandle.toYangModelCmHandle(
             (String) cmHandleDataNode.getLeaves().get("dmi-service-name"),
             (String) cmHandleDataNode.getLeaves().get("dmi-data-service-name"),
@@ -70,8 +71,8 @@ public class YangModelCmHandleRetriever {
             FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
     }
 
-    private static void populateCmHandleProperties(final DataNode cmHandleDataNode,
-                                                   final NcmpServiceCmHandle ncmpServiceCmHandle) {
+    private static void populateCmHandleDetails(final DataNode cmHandleDataNode,
+                                                final NcmpServiceCmHandle ncmpServiceCmHandle) {
         final Map<String, String> dmiProperties = new LinkedHashMap<>();
         final Map<String, String> publicProperties = new LinkedHashMap<>();
         for (final DataNode childDataNode: cmHandleDataNode.getChildDataNodes()) {
@@ -79,6 +80,8 @@ public class YangModelCmHandleRetriever {
                 addProperty(childDataNode, dmiProperties);
             } else if (childDataNode.getXpath().contains("/public-properties[@name=")) {
                 addProperty(childDataNode, publicProperties);
+            } else if (childDataNode.getXpath().endsWith("/state")) {
+                ncmpServiceCmHandle.setCompositeState(new CompositeStateBuilder().fromDataNode(childDataNode).build());
             }
         }
         ncmpServiceCmHandle.setDmiProperties(dmiProperties);

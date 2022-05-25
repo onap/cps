@@ -44,6 +44,10 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class SyncUtils {
 
+    private static final String UNSYNCHRONIZED_CM_HANDLES = "//state/datastores"
+            + "/operational[@sync-state=\"UNSYNCHRONIZED\"]/ancestor::cm-handles";
+    private static final String READY_CM_HANDLES = "//cm-handles[@id='%s']/state[@cm-handle-state=\"READY\"]";
+
     private static final SecureRandom secureRandom = new SecureRandom();
     private final CpsDataService cpsDataService;
 
@@ -72,6 +76,33 @@ public class SyncUtils {
     }
 
     /**
+     * First query data nodes for cm handles with CM Handle Operational Sync State in "UNSYNCHRONIZED" and
+     * randomly select a CM Handle and query the data nodes for CM Handle State in "READY".
+     *
+     * @return a random yang model cm handle with State in READY and Operation Sync State in "UNSYNCHRONIZED",
+     *         return null if not found
+     */
+    public YangModelCmHandle getUnSynchronizedReadyCmHandle() {
+        final List<DataNode> unSynchronizedCmHandles = executeCpsQuery(UNSYNCHRONIZED_CM_HANDLES);
+        if (unSynchronizedCmHandles.isEmpty()) {
+            return null;
+        }
+        final int randomElementIndex = secureRandom.nextInt(unSynchronizedCmHandles.size());
+        final String cmHandleId = unSynchronizedCmHandles.get(randomElementIndex).getLeaves()
+                .get("id").toString();
+        final List<DataNode> readyCmHandles = executeCpsQuery(String.format(READY_CM_HANDLES, cmHandleId));
+        if (!readyCmHandles.isEmpty()) {
+            return yangModelCmHandleRetriever.getYangModelCmHandle(cmHandleId);
+        }
+        return null;
+    }
+
+    private List<DataNode> executeCpsQuery(final String cpsQuery) {
+        return cpsDataPersistenceService.queryDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
+                UNSYNCHRONIZED_CM_HANDLES, FetchDescendantsOption.OMIT_DESCENDANTS);
+    }
+
+    /**
      * Update the Cm Handle state to "READY".
      *
      * @param yangModelCmHandle yang model cm handle
@@ -82,7 +113,19 @@ public class SyncUtils {
         final String cmHandleJsonData = String.format("{\"cm-handles\":[%s]}",
             jsonObjectMapper.asJsonString(yangModelCmHandle));
         cpsDataService.updateNodeLeaves(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NCMP_DMI_REGISTRY_PARENT,
-            cmHandleJsonData, OffsetDateTime.now());
+                cmHandleJsonData, OffsetDateTime.now());
     }
 
+    /**
+     * Update the Cm Handle Operational datastore Syncstate to "SYNCHRONIZED".
+     *
+     * @param yangModelCmHandle yang model cm handle
+     */
+    public void updateCmHandleStateWithNodeLeaves(final YangModelCmHandle yangModelCmHandle) {
+
+        final String cmHandleJsonData = String.format("{\"cm-handles\":[%s]}",
+                jsonObjectMapper.asJsonString(yangModelCmHandle));
+        cpsDataService.updateNodeLeavesAndExistingDescendantLeaves(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
+                NCMP_DMI_REGISTRY_PARENT, cmHandleJsonData, OffsetDateTime.now());
+    }
 }
