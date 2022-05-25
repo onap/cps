@@ -155,4 +155,30 @@ class InventoryPersistenceSpec extends Specification {
             assert result == dataNodes
     }
 
+    def 'Get Cm Handles By State and Cm-Handle Id'() {
+        given: 'a cm handle state to query'
+            def cmHandleState = CmHandleState.READY
+        and: 'cps data service returns a list of data nodes'
+            def dataNodes = [new DataNode()]
+            mockCpsDataPersistenceService.queryDataNodes('NCMP-Admin', 'ncmp-dmi-registry',
+                '//cm-handles[@id=\'some-cm-handle\']/state[@cm-handle-state="READY"]/ancestor::cm-handles', OMIT_DESCENDANTS) >> dataNodes
+        when: 'get cm handles by state and id is invoked'
+            def result = objectUnderTest.getCmHandlesByIdAndState(cmHandleId, cmHandleState)
+        then: 'the returned result is a list of data nodes returned by cps data service'
+            assert result == dataNodes
+    }
+
+    def 'Get Cm Handles By Operational Sync State : UNSYNCHRONIZED'() {
+        given: 'a cm handle state to query'
+            def cmHandleState = CmHandleState.READY
+        and: 'cps data service returns a list of data nodes'
+            def dataNodes = [new DataNode()]
+            mockCpsDataPersistenceService.queryDataNodes('NCMP-Admin', 'ncmp-dmi-registry',
+                '//state/datastores/operational[@sync-state="UNSYNCHRONIZED"]/ancestor::cm-handles', OMIT_DESCENDANTS) >> dataNodes
+        when: 'get cm handles by operational sync state as UNSYNCHRONIZED is invoked'
+            def result = objectUnderTest.getOperationalCmHandlesBySyncState("UNSYNCHRONIZED")
+        then: 'the returned result is a list of data nodes returned by cps data service'
+            assert result == dataNodes
+    }
+
 }
