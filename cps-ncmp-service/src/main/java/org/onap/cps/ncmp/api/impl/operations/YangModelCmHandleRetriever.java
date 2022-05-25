@@ -23,7 +23,7 @@ package org.onap.cps.ncmp.api.impl.operations;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.inventory.CompositeState;
@@ -38,13 +38,13 @@ import org.springframework.stereotype.Component;
  * Retrieves YangModelCmHandles & properties.
  */
 @Component
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class YangModelCmHandleRetriever {
 
     private static final String NCMP_DATASPACE_NAME = "NCMP-Admin";
     private static final String NCMP_DMI_REGISTRY_ANCHOR = "ncmp-dmi-registry";
 
-    private CpsDataService cpsDataService;
+    private final CpsDataService cpsDataService;
 
     /**
      * This method retrieves DMI service name and DMI properties for a given cm handle.
@@ -78,7 +78,7 @@ public class YangModelCmHandleRetriever {
         final Map<String, String> dmiProperties = new LinkedHashMap<>();
         final Map<String, String> publicProperties = new LinkedHashMap<>();
         final CompositeStateBuilder compositeStateBuilder = new CompositeStateBuilder();
-        CompositeState compositeState = compositeStateBuilder.build();
+        CompositeState compositeState = null;
         for (final DataNode childDataNode: cmHandleDataNode.getChildDataNodes()) {
             if (childDataNode.getXpath().contains("/additional-properties[@name=")) {
                 addProperty(childDataNode, dmiProperties);
