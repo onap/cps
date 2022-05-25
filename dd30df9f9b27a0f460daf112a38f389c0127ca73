@@ -1,0 +1,234 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c3d65188_3ae86dcd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/LockReasonEnum.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-25T11:00:02Z",
+      "side": 1,
+      "message": "No need to add Enum to the classname",
+      "range": {
+        "startLine": 23,
+        "startChar": 22,
+        "endLine": 23,
+        "endChar": 26
+      },
+      "revId": "dd30df9f9b27a0f460daf112a38f389c0127ca73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07893053_86ccf938",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/LockReasonEnum.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-25T11:00:02Z",
+      "side": 1,
+      "message": "not sure if we should add values arent using yet...\n(maybe it\u0027s OK)",
+      "range": {
+        "startLine": 24,
+        "startChar": 24,
+        "endLine": 24,
+        "endChar": 40
+      },
+      "revId": "dd30df9f9b27a0f460daf112a38f389c0127ca73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "82bb094a_95dffa74",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-25T11:00:02Z",
+      "side": 1,
+      "message": "I think teh try catch block should be around one single cmHandlesync attempt otherwise the watchdog will go to sleep on after first failure although there are many more handles to process",
+      "range": {
+        "startLine": 45,
+        "startChar": 8,
+        "endLine": 45,
+        "endChar": 11
+      },
+      "revId": "dd30df9f9b27a0f460daf112a38f389c0127ca73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "20d90fa6_06ce1ecd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-25T11:00:02Z",
+      "side": 1,
+      "message": "remove enum both form Class as instacneNames (IntelliJ should do this automatically if you used consistent naming)",
+      "range": {
+        "startLine": 100,
+        "startChar": 65,
+        "endLine": 100,
+        "endChar": 69
+      },
+      "revId": "dd30df9f9b27a0f460daf112a38f389c0127ca73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4799aa7b_81f4b1e9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-25T11:00:02Z",
+      "side": 1,
+      "message": "following I workshop we agreed that teh details should include the timestamp in the detail so we thee retry mechanism (Aditya,s patch)can build in a delay befeor re-attempting...",
+      "range": {
+        "startLine": 110,
+        "startChar": 90,
+        "endLine": 110,
+        "endChar": 97
+      },
+      "revId": "dd30df9f9b27a0f460daf112a38f389c0127ca73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "19b13c3b_de5d5bf6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-25T11:00:02Z",
+      "side": 1,
+      "message": "I think we should have a RegistryPersistecce(Helper) class that implements methods like\n(usual reasons, small classes with limited responsibilities, easy to reuse easy to test)\n\nsaveSate(cmHandleId, CmHandleState) overloaded with\nsaveSate(cmHandleId, CmHandleState, LockReason)\n\nand maybe also the related queries like\n\nSet\u003cString\u003e getAllAdvisedCmHandleIds()\n\n\n\netc.",
+      "range": {
+        "startLine": 113,
+        "startChar": 23,
+        "endLine": 114,
+        "endChar": 85
+      },
+      "revId": "dd30df9f9b27a0f460daf112a38f389c0127ca73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1190393a_ccd4f49b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/CompositeStateSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-25T11:00:02Z",
+      "side": 1,
+      "message": "why the dashes, its is just a string?!",
+      "range": {
+        "startLine": 45,
+        "startChar": 104,
+        "endLine": 45,
+        "endChar": 105
+      },
+      "revId": "dd30df9f9b27a0f460daf112a38f389c0127ca73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "93867639_3f05ecc9",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-25T11:00:02Z",
+      "side": 1,
+      "message": "can you not use Groovy for this?\n\n def compositeState \u003d new CompositeState(cmhandleState: cmHandleState)",
+      "range": {
+        "startLine": 61,
+        "startChar": 9,
+        "endLine": 62,
+        "endChar": 56
+      },
+      "revId": "dd30df9f9b27a0f460daf112a38f389c0127ca73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "26b53ffd_74a4ef9c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-25T11:00:02Z",
+      "side": 1,
+      "message": "an use *_",
+      "range": {
+        "startLine": 71,
+        "startChar": 50,
+        "endLine": 71,
+        "endChar": 55
+      },
+      "revId": "dd30df9f9b27a0f460daf112a38f389c0127ca73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "78cd5930_82e4d76e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/SyncUtilsSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-25T11:00:02Z",
+      "side": 1,
+      "message": "didn\u0027t review these test as they wil be refactored to more simple tets once we have a separate RegistryPersistence(Helper) class",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 5
+      },
+      "revId": "dd30df9f9b27a0f460daf112a38f389c0127ca73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
