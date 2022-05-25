@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "419c8c8e_fa576bd9",
+        "filename": "cps-ncmp-service/src/test/resources/expectedStateModel.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-05-25T10:40:10Z",
+      "side": 0,
+      "message": "I think you need to rebase.\nThis file has some changes which are recently merged.",
+      "revId": "b0623697898de50afce9a4d23085594d5e8d2ef7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
