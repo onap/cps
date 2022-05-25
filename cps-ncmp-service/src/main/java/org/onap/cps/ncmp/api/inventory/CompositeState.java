@@ -57,7 +57,8 @@ public class CompositeState {
     /**
      * Date and Time in the format of yyyy-MM-dd'T'HH:mm:ss.SSSZ
      */
-    public static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+    private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter
+            .ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
 
 
     /**
