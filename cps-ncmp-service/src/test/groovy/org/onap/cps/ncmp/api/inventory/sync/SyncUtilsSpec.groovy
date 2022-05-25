@@ -32,8 +32,6 @@ import org.onap.cps.spi.model.DataNode
 import org.onap.cps.utils.JsonObjectMapper
 import spock.lang.Shared
 import spock.lang.Specification
-
-import java.security.SecureRandom
 import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter
 
