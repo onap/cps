@@ -1,0 +1,86 @@
+{
+
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "urn:cps:org.onap.cps.ncmp.events.lcm:ncmp-event:v1",
+
+  "$ref": "#/definitions/NcmpEvent",
+
+  "definitions": {
+
+    "NcmpEvent": {
+      "description": "The payload for NCMP event.",
+      "type": "object",
+      "javaType" : "org.onap.cps.ncmp.events.lcm.NcmpEvent",
+      "properties": {
+        "eventId": {
+          "description": "The unique id identifying the event for the specified source. Producer must ensure that source + id is unique for each distinct event.",
+          "type": "string"
+        },
+        "eventCorrelationId": {
+          "description": "The id identifying the event for the specified source. ",
+          "type": "string"
+        },
+        "eventTime": {
+          "description": "The timestamp when the data has been observed. The expected format is 'yyyy-MM-dd'T'HH:mm:ss.SSSZ'. Ex: '2020-12-01T00:00:00.000+0000'  ",
+          "type": "string"
+        },
+        "eventSource": {
+          "description": "The source of the event. Producer must ensure that source + id is unique for each distinct event.",
+          "type": "string",
+          "format": "uri"
+        },
+        "eventType": {
+          "description": "The type of the event.",
+          "type": "string"
+        },
+        "eventSchema": {
+          "description": "The schema, including its version, that this event adheres to. E.g. 'urn:cps:org.onap.cps:broadcast-event-schema:v99'.",
+          "type": "string",
+          "format": "uri"
+        },
+        "event": {
+          "$ref": "#/definitions/Event"
+        }
+      },
+      "required": [
+        "eventId",
+        "eventCorrelationId",
+        "eventTime",
+        "eventSource",
+        "eventType",
+        "eventSchema",
+        "event"
+      ],
+      "additionalProperties": false
+    },
+
+    "Event": {
+      "description": "The event content.",
+      "type": "object",
+      "properties": {
+        "operation": {
+          "description": "The name of the Operation that triggered this event.",
+          "type": "string",
+          "enum": ["CREATE", "UPDATE", "DELETE"]
+        },
+        "cmHandle-state": {
+          "description": "State of cmHandle.",
+          "type": "string",
+          "enum": ["ADVISED", "READY", "LOCKED"]
+        },
+        "cmHandle-properties": {
+          "description": "cmHandle properties as json object.",
+          "type": "object",
+          "additionalProperties": true
+        }
+      },
+      "required": [
+        "operation",
+        "cmHandle-state",
+        "cmHandle-properties"
+      ],
+      "additionalProperties": false
+    }
+  }
+
+}
