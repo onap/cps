@@ -21,30 +21,45 @@
 
 package org.onap.cps.ncmp.api.inventory.sync;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.google.common.collect.ImmutableMap;
 import java.security.SecureRandom;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations;
+import org.onap.cps.ncmp.api.impl.operations.DmiOperations;
 import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.inventory.CmHandleState;
 import org.onap.cps.ncmp.api.inventory.CompositeState;
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.api.inventory.LockReasonCategory;
+import org.onap.cps.ncmp.api.inventory.SyncState;
 import org.onap.cps.spi.model.DataNode;
-import org.springframework.stereotype.Component;
+import org.onap.cps.utils.JsonObjectMapper;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 @Slf4j
-@Component
+@Service
 @RequiredArgsConstructor
 public class SyncUtils {
 
     private static final SecureRandom secureRandom = new SecureRandom();
 
     private final InventoryPersistence inventoryPersistence;
+
+    private final DmiDataOperations dmiDataOperations;
+
+    private final JsonObjectMapper jsonObjectMapper;
 
     private static final Pattern retryAttemptPattern = Pattern.compile("^Attempt #(\\d+) failed:");
 
@@ -64,6 +79,30 @@ public class SyncUtils {
         return inventoryPersistence.getYangModelCmHandle(cmHandleId);
     }
 
+    /**
+     * First query data nodes for cm handles with CM Handle Operational Sync State in "UNSYNCHRONIZED" and
+     * randomly select a CM Handle and query the data nodes for CM Handle State in "READY".
+     *
+     * @return a random yang model cm handle with State in READY and Operation Sync State in "UNSYNCHRONIZED",
+     *         return null if not found
+     */
+    public YangModelCmHandle getAnUnSynchronizedReadyCmHandle() {
+        final List<DataNode> unSynchronizedCmHandles = inventoryPersistence
+                .getOperationalCmHandlesBySyncState(SyncState.UNSYNCHRONIZED.name());
+        if (unSynchronizedCmHandles.isEmpty()) {
+            return null;
+        }
+        Collections.shuffle(unSynchronizedCmHandles);
+        for (final DataNode cmHandle : unSynchronizedCmHandles) {
+            final String cmHandleId = cmHandle.getLeaves().get("id").toString();
+            final List<DataNode> readyCmHandles = inventoryPersistence
+                    .getCmHandlesByIdAndState(cmHandleId, CmHandleState.READY);
+            if (!readyCmHandles.isEmpty()) {
+                return inventoryPersistence.getYangModelCmHandle(cmHandleId);
+            }
+        }
+        return null;
+    }
 
     /**
      * Query data nodes for cm handles with an "LOCKED" cm handle state with reason LOCKED_MISBEHAVING".
@@ -99,4 +138,27 @@ public class SyncUtils {
             .lockReasonCategory(lockReasonCategory).build());
     }
 
+    /**
+     * Get the Resourece Data from Node through DMI Passthrough service.
+     *
+     * @param cmHandleId cm handle id
+     * @return optional string containing the resource data
+     */
+    public String getResourceData(final String cmHandleId) {
+        final ResponseEntity<Object> resourceDataResponseEntity = dmiDataOperations.getResourceDataFromDmi(
+                cmHandleId, DmiOperations.DataStoreEnum.PASSTHROUGH_OPERATIONAL,
+                UUID.randomUUID().toString());
+        if (resourceDataResponseEntity.getStatusCode().is2xxSuccessful()) {
+            return getFirstResource(resourceDataResponseEntity.getBody());
+        }
+        return null;
+    }
+
+    private String getFirstResource(final Object responseBody) {
+        final String jsonObjectAsString = jsonObjectMapper.asJsonString(responseBody);
+        final JsonNode overallJsonNode = jsonObjectMapper.convertToJsonNode(jsonObjectAsString);
+        final Iterator<Map.Entry<String, JsonNode>> overallJsonTreeMap = overallJsonNode.fields();
+        final Map.Entry<String, JsonNode> firstElement = overallJsonTreeMap.next();
+        return jsonObjectMapper.asJsonString(ImmutableMap.of(firstElement.getKey(), firstElement.getValue()));
+    }
 }
