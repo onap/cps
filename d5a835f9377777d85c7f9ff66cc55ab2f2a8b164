@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "02a629b6_1c5c3e13",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-05-25T09:08:00Z",
+      "side": 1,
+      "message": "NB : can name it requestId",
+      "range": {
+        "startLine": 134,
+        "startChar": 25,
+        "endLine": 134,
+        "endChar": 47
+      },
+      "revId": "d5a835f9377777d85c7f9ff66cc55ab2f2a8b164",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
