@@ -78,7 +78,7 @@ public class YangModelCmHandleRetriever {
         final Map<String, String> dmiProperties = new LinkedHashMap<>();
         final Map<String, String> publicProperties = new LinkedHashMap<>();
         final CompositeStateBuilder compositeStateBuilder = new CompositeStateBuilder();
-        CompositeState compositeState = compositeStateBuilder.build();
+        CompositeState compositeState = null;
         for (final DataNode childDataNode: cmHandleDataNode.getChildDataNodes()) {
             if (childDataNode.getXpath().contains("/additional-properties[@name=")) {
                 addProperty(childDataNode, dmiProperties);
