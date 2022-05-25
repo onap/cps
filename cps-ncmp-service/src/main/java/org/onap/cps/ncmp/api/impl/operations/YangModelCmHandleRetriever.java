@@ -86,6 +86,7 @@ public class YangModelCmHandleRetriever {
                 addProperty(childDataNode, publicProperties);
             } else if (childDataNode.getXpath().endsWith("/state")) {
                 compositeState = compositeStateBuilder.fromDataNode(childDataNode).build();
+                ncmpServiceCmHandle.setCompositeState(new CompositeStateBuilder().fromDataNode(childDataNode).build());
             }
         }
         ncmpServiceCmHandle.setDmiProperties(dmiProperties);
