@@ -158,3 +158,5 @@ dmi:
 timers:
     advised-modules-sync:
         sleep-time-ms: 30000
+    cm-handle-data-sync:
+        sleep-time-ms: 30000

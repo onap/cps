@@ -20,27 +20,36 @@
 
 package org.onap.cps.ncmp.api.inventory.sync
 
+import com.fasterxml.jackson.databind.JsonNode
+import com.fasterxml.jackson.databind.ObjectMapper
+import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations
+import org.onap.cps.ncmp.api.impl.operations.DmiOperations
 import org.onap.cps.ncmp.api.inventory.CmHandleState
 import org.onap.cps.ncmp.api.inventory.CompositeState
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence
 import org.onap.cps.ncmp.api.inventory.LockReasonCategory
-import org.onap.cps.spi.CpsDataPersistenceService
-import org.onap.cps.spi.FetchDescendantsOption
+import org.onap.cps.ncmp.api.inventory.SyncState
 import org.onap.cps.spi.model.DataNode
+import org.onap.cps.utils.JsonObjectMapper
+import org.springframework.http.HttpStatus
+import org.springframework.http.ResponseEntity
 import spock.lang.Shared
 import spock.lang.Specification
 
 class SyncUtilsSpec extends Specification{
 
-    def mockCpsDataPersistenceService = Mock(CpsDataPersistenceService)
     def mockInventoryPersistence = Mock(InventoryPersistence)
 
-    def objectUnderTest = new SyncUtils(mockInventoryPersistence)
+    def mockDmiDataOperations = Mock(DmiDataOperations)
+
+    def spiedObjectMapper = Spy(ObjectMapper)
+
+    def mockJsonObjectMapper = new JsonObjectMapper(spiedObjectMapper)
+
+    def objectUnderTest = new SyncUtils(mockInventoryPersistence, mockDmiDataOperations, mockJsonObjectMapper)
 
     @Shared
     def dataNode = new DataNode(leaves: ['id': 'cm-handle-123'])
-
-
 
     def 'Get an advised Cm-Handle where ADVISED cm handle #scenario'() {
         given: 'the inventory persistence service returns a collection of data nodes'
@@ -70,6 +79,36 @@ class SyncUtilsSpec extends Specification{
             scenario         | lockReason                                                                                   || expectedDetails
             'does not exist' | null                                                                                         || 'Attempt #1 failed: new error message'
             'exists'         | CompositeState.LockReason.builder().details("Attempt #2 failed: some error message").build() || 'Attempt #3 failed: new error message'
+    }
+
+    def 'Get a Cm-Handle where Operational Sync state is UnSynchronized and Cm-handle state is READY and #scenario'() {
+        given: 'the inventory persistence service returns a collection of data nodes'
+            mockInventoryPersistence.getOperationalCmHandlesBySyncState(SyncState.UNSYNCHRONIZED.name()) >> unSynchronizedDataNodes
+            mockInventoryPersistence.getCmHandlesByIdAndState("cm-handle-123", CmHandleState.READY) >> readyDataNodes
+        when: 'get advised cm handle is called'
+            objectUnderTest.getAnUnSynchronizedReadyCmHandle()
+        then: 'the returned data node collection is the correct size'
+            readyDataNodes.size() == expectedDataNodeSize
+        and: 'get yang model cm handles is invoked the correct number of times'
+            expectedCallsToGetYangModelCmHandle * mockInventoryPersistence.getYangModelCmHandle('cm-handle-123')
+        where: 'the following scenarios are used'
+            scenario                             | unSynchronizedDataNodes | readyDataNodes || expectedCallsToGetYangModelCmHandle | expectedDataNodeSize
+            'exists'                             | [dataNode]              | [dataNode]     || 1                                   | 1
+            'unsynchronized exist but not ready' | [dataNode]              | []             || 0                                   | 0
+            'does not exist'                     | []                      | []             || 0                                   | 0
+    }
+
+    def 'Get resource data through DMI Operations #scenario'() {
+        given: 'the inventory persistence service returns a collection of data nodes'
+            def jsonString = '{"stores:bookstore":{"categories":[{"code":"01"}]}}'
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode jsonNode = mapper.readTree(jsonString);
+            def responseEntity = new ResponseEntity<>(jsonNode, HttpStatus.OK)
+            mockDmiDataOperations.getResourceDataFromDmi('cm-handle-123', DmiOperations.DataStoreEnum.PASSTHROUGH_OPERATIONAL, _) >> responseEntity
+        when: 'get resource data is called'
+            def result = objectUnderTest.getResourceData('cm-handle-123')
+        then: 'the returned data is not empty'
+            result == jsonString
     }
 
 }

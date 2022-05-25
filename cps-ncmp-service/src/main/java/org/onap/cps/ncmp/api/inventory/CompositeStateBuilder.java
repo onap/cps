@@ -98,7 +98,7 @@ public class CompositeStateBuilder {
      * @param lastSyncTime for the locked state
      * @return CompositeStateBuilder
      */
-    public CompositeStateBuilder withOperationalDataStores(final String syncState, final String lastSyncTime) {
+    public CompositeStateBuilder withOperationalDataStores(final SyncState syncState, final String lastSyncTime) {
         this.datastores = DataStores.builder().operationalDataStore(
             Operational.builder().syncState(syncState).lastSyncTime(lastSyncTime).build()).build();
         return this;
@@ -124,7 +124,7 @@ public class CompositeStateBuilder {
                     Operational operationalDataStore = null;
                     if (dataStoreNodes.getXpath().contains("/operational")) {
                         operationalDataStore = Operational.builder()
-                            .syncState((String) dataStoreNodes.getLeaves().get("sync-state"))
+                            .syncState(SyncState.valueOf((String) dataStoreNodes.getLeaves().get("sync-state")))
                             .lastSyncTime((String) dataStoreNodes.getLeaves().get("last-sync-time"))
                             .build();
                     }
