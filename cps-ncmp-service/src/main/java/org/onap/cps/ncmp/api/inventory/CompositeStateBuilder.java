@@ -20,6 +20,8 @@
 
 package org.onap.cps.ncmp.api.inventory;
 
+import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
 import org.onap.cps.ncmp.api.inventory.CompositeState.DataStores;
 import org.onap.cps.ncmp.api.inventory.CompositeState.LockReason;
 import org.onap.cps.ncmp.api.inventory.CompositeState.Operational;
@@ -27,6 +29,9 @@ import org.onap.cps.ncmp.api.inventory.CompositeState.Running;
 import org.onap.cps.spi.model.DataNode;
 
 public class CompositeStateBuilder {
+
+    private static final DateTimeFormatter DATE_TIME_FORMATTER =
+            DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
 
     private CmHandleState cmHandleState;
     private LockReason lockReason;
@@ -61,7 +66,7 @@ public class CompositeStateBuilder {
     /**
      * To use attributes for creating {@link CompositeState}.
      *
-     * @param reason for the locked state
+     * @param reason  for the locked state
      * @param details for the locked state
      * @return CompositeStateBuilder
      */
@@ -73,37 +78,36 @@ public class CompositeStateBuilder {
     /**
      * To use attributes for creating {@link CompositeState}.
      *
-     * @param time for the state change
      * @return CompositeStateBuilder
      */
-    public CompositeStateBuilder withLastUpdatedTime(final String time) {
-        this.lastUpdatedTime = time;
+    public CompositeStateBuilder withLastUpdatedTimeNow() {
+        this.lastUpdatedTime = DATE_TIME_FORMATTER.format(OffsetDateTime.now());
         return this;
     }
 
     /**
      * To use attributes for creating {@link CompositeState}.
      *
-     * @param syncState for the locked state
+     * @param syncState    for the locked state
      * @param lastSyncTime for the locked state
      * @return CompositeStateBuilder
      */
     public CompositeStateBuilder withOperationalDataStores(final String syncState, final String lastSyncTime) {
         this.datastores = DataStores.builder().operationalDataStore(
-            Operational.builder().syncState(syncState).lastSyncTime(lastSyncTime).build()).build();
+                Operational.builder().syncState(syncState).lastSyncTime(lastSyncTime).build()).build();
         return this;
     }
 
     /**
      * To use attributes for creating {@link CompositeState}.
      *
-     * @param syncState for the locked state
+     * @param syncState    for the locked state
      * @param lastSyncTime for the locked state
      * @return CompositeStateBuilder
      */
     public CompositeStateBuilder withRunningDataStores(final String syncState, final String lastSyncTime) {
         this.datastores = DataStores.builder().runningDataStore(
-            Running.builder().syncState(syncState).lastSyncTime(lastSyncTime).build()).build();
+                Running.builder().syncState(syncState).lastSyncTime(lastSyncTime).build()).build();
         return this;
     }
 
@@ -115,11 +119,11 @@ public class CompositeStateBuilder {
      */
     public CompositeStateBuilder fromDataNode(final DataNode dataNode) {
         this.cmHandleState = CmHandleState.valueOf((String) dataNode.getLeaves()
-            .get("cm-handle-state"));
+                .get("cm-handle-state"));
         for (final DataNode stateChildNode : dataNode.getChildDataNodes()) {
             if (stateChildNode.getXpath().endsWith("/lock-reason")) {
                 this.lockReason = new LockReason((String) stateChildNode.getLeaves().get("reason"),
-                    (String) stateChildNode.getLeaves().get("details"));
+                        (String) stateChildNode.getLeaves().get("details"));
             }
             if (stateChildNode.getXpath().endsWith("/datastores")) {
                 for (final DataNode dataStoreNodes : stateChildNode.getChildDataNodes()) {
@@ -127,17 +131,17 @@ public class CompositeStateBuilder {
                     Running runningDataStore = null;
                     if (dataStoreNodes.getXpath().contains("/operational")) {
                         operationalDataStore = Operational.builder()
-                            .syncState((String) dataStoreNodes.getLeaves().get("sync-state"))
-                            .lastSyncTime((String) dataStoreNodes.getLeaves().get("last-sync-time"))
-                            .build();
+                                .syncState((String) dataStoreNodes.getLeaves().get("sync-state"))
+                                .lastSyncTime((String) dataStoreNodes.getLeaves().get("last-sync-time"))
+                                .build();
                     } else {
                         runningDataStore = Running.builder()
-                            .syncState((String) dataStoreNodes.getLeaves().get("sync-state"))
-                            .lastSyncTime((String) dataStoreNodes.getLeaves().get("last-sync-time"))
-                            .build();
+                                .syncState((String) dataStoreNodes.getLeaves().get("sync-state"))
+                                .lastSyncTime((String) dataStoreNodes.getLeaves().get("last-sync-time"))
+                                .build();
                     }
                     this.datastores = DataStores.builder().operationalDataStore(operationalDataStore)
-                        .runningDataStore(runningDataStore).build();
+                            .runningDataStore(runningDataStore).build();
                 }
             }
         }
