@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c5d89641_367e4cdb",
+        "filename": "cps-ncmp-rest/docs/openapi/openapi.yml",
+        "patchSetId": 9
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-25T10:09:40Z",
+      "side": 1,
+      "message": "Toine will write a mail check with our stkeholder,m boytj in Onap (WIpro) adn Ericsson Internal",
+      "parentUuid": "1579979c_df23e66d",
+      "range": {
+        "startLine": 48,
+        "startChar": 21,
+        "endLine": 48,
+        "endChar": 45
+      },
+      "revId": "bac984a7b5c1bf0413b92db14f2e520d78d3ca70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "34cd560a_3ca42790",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
         "patchSetId": 9
@@ -45,6 +69,30 @@
       "revId": "bac984a7b5c1bf0413b92db14f2e520d78d3ca70",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb005aca_6293ec60",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-25T10:09:40Z",
+      "side": 1,
+      "message": "should be on next line, sorry",
+      "parentUuid": "34cd560a_3ca42790",
+      "range": {
+        "startLine": 207,
+        "startChar": 3,
+        "endLine": 208,
+        "endChar": 115
+      },
+      "revId": "bac984a7b5c1bf0413b92db14f2e520d78d3ca70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -225,6 +273,53 @@
         "startChar": 0,
         "endLine": 309,
         "endChar": 23
+      },
+      "revId": "bac984a7b5c1bf0413b92db14f2e520d78d3ca70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "054b05d0_a317cd9d",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-25T10:09:40Z",
+      "side": 1,
+      "message": "just \u0027{}\u0027 would suffice, do conversion test in JsonObjectMapperSpec if needed",
+      "parentUuid": "464849bf_fa494809",
+      "range": {
+        "startLine": 303,
+        "startChar": 0,
+        "endLine": 309,
+        "endChar": 23
+      },
+      "revId": "bac984a7b5c1bf0413b92db14f2e520d78d3ca70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fae5cd6e_e6da3c79",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-25T10:09:40Z",
+      "side": 1,
+      "message": "no need, it is only one parameetr",
+      "range": {
+        "startLine": 311,
+        "startChar": 70,
+        "endLine": 311,
+        "endChar": 71
       },
       "revId": "bac984a7b5c1bf0413b92db14f2e520d78d3ca70",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
