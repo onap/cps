@@ -21,6 +21,7 @@
 package org.onap.cps.utils;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -85,6 +86,22 @@ public class JsonObjectMapper {
             log.error("Parsing error occurred while converting JSON content to specific class type.");
             throw new DataValidationException("Parsing error occurred while converting "
                     + "JSON content to specific class type.", e.getMessage());
+        }
+    }
+
+    /**
+     * Deserialize JSON content from given JSON content String to JsonNode.
+     *
+     * @param jsonContent   JSON content
+     * @return a json node
+     */
+    public JsonNode convertToJsonNode(final String jsonContent) {
+        try {
+            return objectMapper.readTree(jsonContent);
+        } catch (final JsonProcessingException e) {
+            log.error("Parsing error occurred while converting JSON content to Json Node.");
+            throw new DataValidationException("Parsing error occurred while converting "
+                    + "JSON content to Json Node.", e.getMessage());
         }
     }
 }

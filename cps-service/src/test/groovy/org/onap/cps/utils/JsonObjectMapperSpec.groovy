@@ -84,4 +84,22 @@ class JsonObjectMapperSpec extends Specification {
         then: 'an exception is thrown'
             thrown(DataValidationException)
     }
+
+    def 'Map a structurally compatible json String to JsonNode.'() {
+        given: 'Unstructured object'
+            def content = '{ "nest": { "birds": "bird" } }'
+        when: 'the object is mapped to string'
+            def result = jsonObjectMapper.convertToJsonNode(content);
+        then: 'the result is a valid JsonNode'
+            result.fieldNames().next() == "nest"
+    }
+
+    def 'Map a unstructured json String to JsonNode.'() {
+        given: 'Unstructured object'
+            def content = '{ "nest": { "birds": "bird" }] }'
+        when: 'the object is mapped to string'
+            jsonObjectMapper.convertToJsonNode(content);
+        then: 'an exception is thrown'
+            thrown(DataValidationException)
+    }
 }
