@@ -80,6 +80,20 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             'datastore running with properties'    | [yangModelCmHandleProperty] | PASSTHROUGH_RUNNING     | OPTIONS_PARAM || '{"operation":"read","cmHandleProperties":{"prop1":"val1"}}' | 'passthrough-running'     | '&options=(a=1,b=2)'
     }
 
+    def 'call get all resource data.'() {
+        given: 'a cm handle for #cmHandleId'
+            mockYangModelCmHandleRetrieval([yangModelCmHandleProperty])
+        and: 'a positive response from DMI service when it is called with the expected parameters'
+            def responseFromDmi = new ResponseEntity<Object>(HttpStatus.OK)
+            def expectedUrl = dmiServiceBaseUrl + "passthrough-operational?resourceIdentifier=/"
+            mockDmiRestClient.postOperationWithJsonData(expectedUrl, '{"operation":"read","cmHandleProperties":{"prop1":"val1"}}', READ) >> responseFromDmi
+            dmiServiceUrlBuilder.getDmiDatastoreUrl(_, _) >> expectedUrl
+        when: 'get resource data is invoked'
+            def result = objectUnderTest.getResourceDataFromDmi(cmHandleId, PASSTHROUGH_OPERATIONAL, NO_REQUEST_ID)
+        then: 'the result is the response from the DMI service'
+            assert result == responseFromDmi
+    }
+
     def 'Write data for pass-through:running datastore in DMI.'() {
         given: 'a cm handle for #cmHandleId'
             mockYangModelCmHandleRetrieval([yangModelCmHandleProperty])
