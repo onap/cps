@@ -20,6 +20,8 @@
 
 package org.onap.cps.ncmp.api.inventory;
 
+import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
 import org.onap.cps.ncmp.api.inventory.CompositeState.DataStores;
 import org.onap.cps.ncmp.api.inventory.CompositeState.LockReason;
 import org.onap.cps.ncmp.api.inventory.CompositeState.Operational;
@@ -27,6 +29,9 @@ import org.onap.cps.ncmp.api.inventory.CompositeState.Running;
 import org.onap.cps.spi.model.DataNode;
 
 public class CompositeStateBuilder {
+
+    private static final DateTimeFormatter DATE_TIME_FORMATTER =
+            DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
 
     private CmHandleState cmHandleState;
     private LockReason lockReason;
@@ -73,11 +78,10 @@ public class CompositeStateBuilder {
     /**
      * To use attributes for creating {@link CompositeState}.
      *
-     * @param time for the state change
      * @return CompositeStateBuilder
      */
-    public CompositeStateBuilder withLastUpdatedTime(final String time) {
-        this.lastUpdatedTime = time;
+    public CompositeStateBuilder withLastUpdatedTimeNow() {
+        this.lastUpdatedTime = DATE_TIME_FORMATTER.format(OffsetDateTime.now());
         return this;
     }
 
@@ -143,5 +147,4 @@ public class CompositeStateBuilder {
         }
         return this;
     }
-
 }

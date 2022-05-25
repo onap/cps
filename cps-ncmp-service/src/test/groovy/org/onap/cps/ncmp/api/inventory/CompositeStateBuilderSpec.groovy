@@ -47,7 +47,7 @@ class CompositeStateBuilderSpec extends Specification {
         when: 'using composite state builder '
             def compositeState = new CompositeStateBuilder().withCmHandleState(CmHandleState.ADVISED)
                     .withLockReason("lock-reason","").withOperationalDataStores("UNSYNCHRONIZED",
-                    formattedDateAndTime.toString()).withLastUpdatedTime(formattedDateAndTime).build();
+                    formattedDateAndTime.toString()).withLastUpdatedTimeNow().build();
         then: 'it matches expected cm handle state and data store sync state'
             assert compositeState.getCmhandleState() == CmHandleState.ADVISED
             assert compositeState.dataStores.operationalDataStore.syncState == 'UNSYNCHRONIZED'

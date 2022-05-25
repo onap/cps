@@ -38,28 +38,28 @@ class YangModelCmHandleRetrieverSpec extends Specification {
     def objectUnderTest = new YangModelCmHandleRetriever(mockCpsDataService)
 
     def cmHandleId = 'some-cm-handle'
-    def leaves = ["dmi-service-name":"common service name","dmi-data-service-name":"data service name","dmi-model-service-name":"model service name"]
+    def leaves = ["dmi-service-name": "common service name", "dmi-data-service-name": "data service name", "dmi-model-service-name": "model service name"]
     def xpath = "/dmi-registry/cm-handles[@id='some-cm-handle']"
 
     @Shared
     def compositeState = new CompositeStateBuilder().withCmHandleState(CmHandleState.ADVISED).build()
 
     @Shared
-    def childDataNodesForCmHandleWithAllProperties = [new DataNode(xpath: "/dmi-registry/cm-handles[@id='some cm handle']/additional-properties[@name='name1']", leaves: ["name":"name1", "value":"value1"]),
-                                                      new DataNode(xpath: "/dmi-registry/cm-handles[@id='some cm handle']/public-properties[@name='name2']", leaves: ["name":"name2","value":"value2"])]
+    def childDataNodesForCmHandleWithAllProperties = [new DataNode(xpath: "/dmi-registry/cm-handles[@id='some cm handle']/additional-properties[@name='name1']", leaves: ["name": "name1", "value": "value1"]),
+                                                      new DataNode(xpath: "/dmi-registry/cm-handles[@id='some cm handle']/public-properties[@name='name2']", leaves: ["name": "name2", "value": "value2"])]
 
     @Shared
-    def childDataNodesForCmHandleWithDMIProperties = [new DataNode(xpath: "/dmi-registry/cm-handles[@id='some-cm-handle']/additional-properties[@name='name1']", leaves: ["name":"name1", "value":"value1"])]
+    def childDataNodesForCmHandleWithDMIProperties = [new DataNode(xpath: "/dmi-registry/cm-handles[@id='some-cm-handle']/additional-properties[@name='name1']", leaves: ["name": "name1", "value": "value1"])]
 
     @Shared
-    def childDataNodesForCmHandleWithPublicProperties = [new DataNode(xpath: "/dmi-registry/cm-handles[@id='some-cm-handle']/public-properties[@name='name2']", leaves: ["name":"name2","value":"value2"])]
+    def childDataNodesForCmHandleWithPublicProperties = [new DataNode(xpath: "/dmi-registry/cm-handles[@id='some-cm-handle']/public-properties[@name='name2']", leaves: ["name": "name2", "value": "value2"])]
 
     @Shared
-    def childDataNodesForCmHandleWithState = [new DataNode(xpath: "/dmi-registry/cm-handles[@id='some-cm-handle']/state", leaves: ['cm-handle-state': 'ADVISED'])]
+    def childDataNodesForCmHandleWithState = [new DataNode(xpath: "/dmi-registry/cm-handles[@id='some-cm-handle']/state", leaves: ['cm-handle-state': 'READY'])]
 
     def "Retrieve CmHandle using datanode with #scenario."() {
         given: 'the cps data service returns a data node from the DMI registry'
-            def dataNode = new DataNode(childDataNodes:childDataNodes, leaves: leaves)
+            def dataNode = new DataNode(childDataNodes: childDataNodes, leaves: leaves)
             mockCpsDataService.getDataNode('NCMP-Admin', 'ncmp-dmi-registry', xpath, INCLUDE_ALL_DESCENDANTS) >> dataNode
         when: 'retrieving the yang modelled cm handle'
             def result = objectUnderTest.getYangModelCmHandle(cmHandleId)
@@ -71,15 +71,27 @@ class YangModelCmHandleRetrieverSpec extends Specification {
         and: 'the expected DMI properties'
             result.dmiProperties == expectedDmiProperties
             result.publicProperties == expectedPublicProperties
-        and: 'the state details are returned'
-            result.compositeState.cmhandleState == expectedCompositeState
         where: 'the following parameters are used'
-            scenario                    | childDataNodes                                || expectedDmiProperties                               || expectedPublicProperties                              || expectedCompositeState
-            'no properties'             | []                                            || []                                                  || []                                                    || null
-            'DMI and public properties' | childDataNodesForCmHandleWithAllProperties    || [new YangModelCmHandle.Property("name1", "value1")] || [new YangModelCmHandle.Property("name2", "value2")]   || null
-            'just DMI properties'       | childDataNodesForCmHandleWithDMIProperties    || [new YangModelCmHandle.Property("name1", "value1")] || []                                                    || null
-            'just public properties'    | childDataNodesForCmHandleWithPublicProperties || []                                                  || [new YangModelCmHandle.Property("name2", "value2")]   || null
-            'with state details'        | childDataNodesForCmHandleWithState            || []                                                  || []                                                    || CmHandleState.ADVISED
+            scenario                    | childDataNodes                                || expectedDmiProperties                               || expectedPublicProperties
+            'no properties'             | []                                            || []                                                  || []
+            'DMI and public properties' | childDataNodesForCmHandleWithAllProperties    || [new YangModelCmHandle.Property("name1", "value1")] || [new YangModelCmHandle.Property("name2", "value2")]
+            'just DMI properties'       | childDataNodesForCmHandleWithDMIProperties    || [new YangModelCmHandle.Property("name1", "value1")] || []
+            'just public properties'    | childDataNodesForCmHandleWithPublicProperties || []                                                  || [new YangModelCmHandle.Property("name2", "value2")]
+    }
+
+    def "Retrieve CmHandle with Composite State"() {
+        given: 'the cps data service returns a data node from the DMI registry'
+            def dataNode = new DataNode(childDataNodes: childDataNodes, leaves: leaves)
+            mockCpsDataService.getDataNode('NCMP-Admin', 'ncmp-dmi-registry', xpath, INCLUDE_ALL_DESCENDANTS) >> dataNode
+        when: 'retrieving the yang modelled cm handle'
+            def result = objectUnderTest.getYangModelCmHandle(cmHandleId)
+        then: 'the result has the correct id and service names'
+            result.id == cmHandleId
+        and: 'the expected composite state object to be not null properties'
+            result.compositeState != null
+        where: 'the following parameters are used'
+            scenario          | childDataNodes
+            'composite state' | childDataNodesForCmHandleWithState
     }
 
     def "Retrieve CmHandle using datanode with invalid CmHandle id."() {
@@ -93,7 +105,7 @@ class YangModelCmHandleRetrieverSpec extends Specification {
 
     def "Handling missing service names as null CPS-1043."() {
         given: 'the cps data service returns a data node from the DMI registry with empty child and leaf attributes'
-            def dataNode = new DataNode(childDataNodes:[], leaves: [:])
+            def dataNode = new DataNode(childDataNodes: [], leaves: [:])
             mockCpsDataService.getDataNode('NCMP-Admin', 'ncmp-dmi-registry', xpath, INCLUDE_ALL_DESCENDANTS) >> dataNode
         when: 'retrieving the yang modelled cm handle'
             def result = objectUnderTest.getYangModelCmHandle(cmHandleId)
