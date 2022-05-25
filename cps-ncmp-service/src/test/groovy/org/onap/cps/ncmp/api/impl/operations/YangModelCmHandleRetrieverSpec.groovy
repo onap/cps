@@ -22,6 +22,8 @@ package org.onap.cps.ncmp.api.impl.operations
 
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
+import org.onap.cps.ncmp.api.inventory.CmHandleState
+import org.onap.cps.ncmp.api.inventory.CompositeStateBuilder
 import org.onap.cps.spi.exceptions.DataValidationException
 import spock.lang.Shared
 
@@ -40,6 +42,9 @@ class YangModelCmHandleRetrieverSpec extends Specification {
     def xpath = "/dmi-registry/cm-handles[@id='some-cm-handle']"
 
     @Shared
+    def compositeState = new CompositeStateBuilder().withCmHandleState(CmHandleState.ADVISED).build()
+
+    @Shared
     def childDataNodesForCmHandleWithAllProperties = [new DataNode(xpath: "/dmi-registry/cm-handles[@id='some cm handle']/additional-properties[@name='name1']", leaves: ["name":"name1", "value":"value1"]),
                                                       new DataNode(xpath: "/dmi-registry/cm-handles[@id='some cm handle']/public-properties[@name='name2']", leaves: ["name":"name2","value":"value2"])]
 
@@ -48,6 +53,9 @@ class YangModelCmHandleRetrieverSpec extends Specification {
 
     @Shared
     def childDataNodesForCmHandleWithPublicProperties = [new DataNode(xpath: "/dmi-registry/cm-handles[@id='some-cm-handle']/public-properties[@name='name2']", leaves: ["name":"name2","value":"value2"])]
+
+    @Shared
+    def childDataNodesForCmHandleWithState = [new DataNode(xpath: "/dmi-registry/cm-handles[@id='some-cm-handle']/state", leaves: ['cm-handle-state': 'ADVISED'])]
 
     def "Retrieve CmHandle using datanode with #scenario."() {
         given: 'the cps data service returns a data node from the DMI registry'
@@ -63,12 +71,15 @@ class YangModelCmHandleRetrieverSpec extends Specification {
         and: 'the expected DMI properties'
             result.dmiProperties == expectedDmiProperties
             result.publicProperties == expectedPublicProperties
+        and: 'the state details are returned'
+            result.compositeState.cmhandleState == expectedCompositeState
         where: 'the following parameters are used'
-            scenario                    | childDataNodes                                || expectedDmiProperties                               || expectedPublicProperties
-            'no properties'             | []                                            || []                                                  || []
-            'DMI and public properties' | childDataNodesForCmHandleWithAllProperties    || [new YangModelCmHandle.Property("name1", "value1")] || [new YangModelCmHandle.Property("name2", "value2")]
-            'just DMI properties'       | childDataNodesForCmHandleWithDMIProperties    || [new YangModelCmHandle.Property("name1", "value1")] || []
-            'just public properties'    | childDataNodesForCmHandleWithPublicProperties || []                                                  || [new YangModelCmHandle.Property("name2", "value2")]
+            scenario                    | childDataNodes                                || expectedDmiProperties                               || expectedPublicProperties                              || expectedCompositeState
+            'no properties'             | []                                            || []                                                  || []                                                    || null
+            'DMI and public properties' | childDataNodesForCmHandleWithAllProperties    || [new YangModelCmHandle.Property("name1", "value1")] || [new YangModelCmHandle.Property("name2", "value2")]   || null
+            'just DMI properties'       | childDataNodesForCmHandleWithDMIProperties    || [new YangModelCmHandle.Property("name1", "value1")] || []                                                    || null
+            'just public properties'    | childDataNodesForCmHandleWithPublicProperties || []                                                  || [new YangModelCmHandle.Property("name2", "value2")]   || null
+            'with state details'        | childDataNodesForCmHandleWithState            || []                                                  || []                                                    || CmHandleState.ADVISED
     }
 
     def "Retrieve CmHandle using datanode with invalid CmHandle id."() {
