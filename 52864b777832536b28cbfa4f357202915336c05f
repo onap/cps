@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cf0b0d3c_1a1d1018",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-26T15:06:11Z",
+      "side": 1,
+      "message": "lockReasonCategory",
+      "range": {
+        "startLine": 61,
+        "startChar": 91,
+        "endLine": 61,
+        "endChar": 97
+      },
+      "revId": "52864b777832536b28cbfa4f357202915336c05f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b797f0f5_e9cc7a00",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-26T15:06:11Z",
+      "side": 1,
+      "message": "duplicated outside the try catch block (after you remove break), you can remove this one",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 76
+      },
+      "revId": "52864b777832536b28cbfa4f357202915336c05f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9bcf2a93_b2a4785b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-26T15:06:11Z",
+      "side": 1,
+      "message": "you stil breaking out of the loop, that is what I wanted to prevent by moving the try-ctach...\nNo need to break out!",
+      "range": {
+        "startLine": 52,
+        "startChar": 15,
+        "endLine": 52,
+        "endChar": 22
+      },
+      "revId": "52864b777832536b28cbfa4f357202915336c05f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "afb7bc69_cd21ddc5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-26T15:06:11Z",
+      "side": 1,
+      "message": "move this inside the try block",
+      "range": {
+        "startLine": 54,
+        "startChar": 12,
+        "endLine": 54,
+        "endChar": 61
+      },
+      "revId": "52864b777832536b28cbfa4f357202915336c05f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a248d334_e3ea5f4e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-26T15:06:11Z",
+      "side": 1,
+      "message": "and this remains outside try try-catch (as is) so the watchdog continues with the next one!",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 63
+      },
+      "revId": "52864b777832536b28cbfa4f357202915336c05f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "61805350_64802560",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/SyncUtilsSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-26T15:06:11Z",
+      "side": 1,
+      "message": "rename",
+      "range": {
+        "startLine": 40,
+        "startChar": 8,
+        "endLine": 40,
+        "endChar": 32
+      },
+      "revId": "52864b777832536b28cbfa4f357202915336c05f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f1bfad2d_cb8672bd",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/helpers/InventoryPersistenceSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-26T15:06:11Z",
+      "side": 1,
+      "message": "I thought you made calls to 2 methods in this case?",
+      "range": {
+        "startLine": 42,
+        "startChar": 16,
+        "endLine": 42,
+        "endChar": 43
+      },
+      "revId": "52864b777832536b28cbfa4f357202915336c05f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
