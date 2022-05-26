@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "8ec75636_f14c1014",
+        "filename": "cps-ncmp-service/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-26T10:47:46Z",
+      "side": 1,
+      "message": "make sure to remove this again as part of commit with addiotional tests",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 17
+      },
+      "revId": "7f298238337e4f88952a2c0938fee9c34cea5fdd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9fca2826_0b2bbdff",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/YangModelCmHandleRetriever.java",
         "patchSetId": 3
@@ -19,6 +42,161 @@
         "endLine": 4,
         "endChar": 36
       },
+      "revId": "7f298238337e4f88952a2c0938fee9c34cea5fdd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "93200c99_99505e6f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/YangModelCmHandleRetriever.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-26T10:47:46Z",
+      "side": 1,
+      "message": "why build before?",
+      "range": {
+        "startLine": 81,
+        "startChar": 61,
+        "endLine": 81,
+        "endChar": 70
+      },
+      "revId": "7f298238337e4f88952a2c0938fee9c34cea5fdd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5959f2d1_2706c054",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/YangModelCmHandleRetriever.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-26T10:47:46Z",
+      "side": 1,
+      "message": "buidl again?!",
+      "range": {
+        "startLine": 88,
+        "startChar": 83,
+        "endLine": 88,
+        "endChar": 90
+      },
+      "revId": "7f298238337e4f88952a2c0938fee9c34cea5fdd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be860738_8728bd2e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/YangModelCmHandleRetriever.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-26T10:47:46Z",
+      "side": 1,
+      "message": "just call build here",
+      "range": {
+        "startLine": 93,
+        "startChar": 46,
+        "endLine": 93,
+        "endChar": 60
+      },
+      "revId": "7f298238337e4f88952a2c0938fee9c34cea5fdd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "10b8ca61_ada10ccb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CompositeStateBuilder.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-26T10:47:46Z",
+      "side": 1,
+      "message": "does this method really need a parameter, it wil always be called with string version of \u0027now\u0027 correct?\n\nAlternatively add a a method withLastUpdateTimeNow()",
+      "range": {
+        "startLine": 79,
+        "startChar": 54,
+        "endLine": 79,
+        "endChar": 70
+      },
+      "revId": "7f298238337e4f88952a2c0938fee9c34cea5fdd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "783f6598_1c75f071",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CompositeStateBuilder.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-26T10:47:46Z",
+      "side": 1,
+      "message": "duplicate of lien 135, extract out local variable before line #128",
+      "range": {
+        "startLine": 130,
+        "startChar": 39,
+        "endLine": 130,
+        "endChar": 92
+      },
+      "revId": "7f298238337e4f88952a2c0938fee9c34cea5fdd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "74f1a20b_140817d6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CompositeStateBuilder.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-26T10:47:46Z",
+      "side": 1,
+      "message": "duplicate of line 136, extract out local variable before line #128",
+      "range": {
+        "startLine": 131,
+        "startChar": 42,
+        "endLine": 131,
+        "endChar": 99
+      },
+      "revId": "7f298238337e4f88952a2c0938fee9c34cea5fdd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d3372538_3cd3bf96",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/CompositeStateBuilderSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-26T10:47:46Z",
+      "side": 1,
+      "message": "not reviewed as I understand teher wil be a sepaarte commit to cover all tets scenarios",
       "revId": "7f298238337e4f88952a2c0938fee9c34cea5fdd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
