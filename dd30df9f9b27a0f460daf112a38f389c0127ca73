@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c564cc16_dadf95e5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/LockReasonEnum.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-26T09:13:58Z",
+      "side": 1,
+      "message": "Have done this initially to differentiate from the inner class defined within the Composite State class",
+      "parentUuid": "c3d65188_3ae86dcd",
+      "range": {
+        "startLine": 23,
+        "startChar": 22,
+        "endLine": 23,
+        "endChar": 26
+      },
+      "revId": "dd30df9f9b27a0f460daf112a38f389c0127ca73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "07893053_86ccf938",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/LockReasonEnum.java",
         "patchSetId": 7
@@ -45,6 +69,30 @@
       "revId": "dd30df9f9b27a0f460daf112a38f389c0127ca73",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d6c0e3e8_13ff4468",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/LockReasonEnum.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-26T09:13:58Z",
+      "side": 1,
+      "message": "Have removed for the moment.",
+      "parentUuid": "07893053_86ccf938",
+      "range": {
+        "startLine": 24,
+        "startChar": 24,
+        "endLine": 24,
+        "endChar": 40
+      },
+      "revId": "dd30df9f9b27a0f460daf112a38f389c0127ca73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "8a384cdb_809ac58f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-26T09:13:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "82bb094a_95dffa74",
+      "range": {
+        "startLine": 45,
+        "startChar": 8,
+        "endLine": 45,
+        "endChar": 11
+      },
+      "revId": "dd30df9f9b27a0f460daf112a38f389c0127ca73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "20d90fa6_06ce1ecd",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
         "patchSetId": 7
@@ -82,6 +154,30 @@
       "writtenOn": "2022-05-25T11:00:02Z",
       "side": 1,
       "message": "remove enum both form Class as instacneNames (IntelliJ should do this automatically if you used consistent naming)",
+      "range": {
+        "startLine": 100,
+        "startChar": 65,
+        "endLine": 100,
+        "endChar": 69
+      },
+      "revId": "dd30df9f9b27a0f460daf112a38f389c0127ca73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d4f0f158_3be4362f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-26T09:13:58Z",
+      "side": 1,
+      "message": "Done\n\nInitially, I specified the Enum on the name, as within the composite state complex object we have an inner class already called LockReason which is referenced in the builder to down below, so I wanted to differentiate them.",
+      "parentUuid": "20d90fa6_06ce1ecd",
       "range": {
         "startLine": 100,
         "startChar": 65,
@@ -140,6 +236,30 @@
     },
     {
       "key": {
+        "uuid": "0057575c_a72c2a01",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-26T09:13:58Z",
+      "side": 1,
+      "message": "Am working on implementing this now.\n\nSmall question, is there a specific module or directory we think think class should go. \nCurrently, I have just created a new directory called helpers within cps-ncmp-service",
+      "parentUuid": "19b13c3b_de5d5bf6",
+      "range": {
+        "startLine": 113,
+        "startChar": 23,
+        "endLine": 114,
+        "endChar": 85
+      },
+      "revId": "dd30df9f9b27a0f460daf112a38f389c0127ca73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1190393a_ccd4f49b",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/CompositeStateSpec.groovy",
         "patchSetId": 7
@@ -160,6 +280,30 @@
       "revId": "dd30df9f9b27a0f460daf112a38f389c0127ca73",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "971aea68_a51a0938",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/CompositeStateSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-26T09:13:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1190393a_ccd4f49b",
+      "range": {
+        "startLine": 45,
+        "startChar": 104,
+        "endLine": 45,
+        "endChar": 105
+      },
+      "revId": "dd30df9f9b27a0f460daf112a38f389c0127ca73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -186,6 +330,30 @@
     },
     {
       "key": {
+        "uuid": "233ce136_aeb22642",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-26T09:13:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "93867639_3f05ecc9",
+      "range": {
+        "startLine": 61,
+        "startChar": 9,
+        "endLine": 62,
+        "endChar": 56
+      },
+      "revId": "dd30df9f9b27a0f460daf112a38f389c0127ca73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "26b53ffd_74a4ef9c",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncSpec.groovy",
         "patchSetId": 7
@@ -209,6 +377,30 @@
     },
     {
       "key": {
+        "uuid": "b0a17ab8_d42ae963",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-26T09:13:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "26b53ffd_74a4ef9c",
+      "range": {
+        "startLine": 71,
+        "startChar": 50,
+        "endLine": 71,
+        "endChar": 55
+      },
+      "revId": "dd30df9f9b27a0f460daf112a38f389c0127ca73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "78cd5930_82e4d76e",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/SyncUtilsSpec.groovy",
         "patchSetId": 7
@@ -229,6 +421,30 @@
       "revId": "dd30df9f9b27a0f460daf112a38f389c0127ca73",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4fc437f0_9d5b47d9",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/SyncUtilsSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-26T09:13:58Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "78cd5930_82e4d76e",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 5
+      },
+      "revId": "dd30df9f9b27a0f460daf112a38f389c0127ca73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
