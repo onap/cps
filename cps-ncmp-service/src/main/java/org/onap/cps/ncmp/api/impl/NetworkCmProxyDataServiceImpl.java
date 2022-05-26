@@ -193,6 +193,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         final List<YangModelCmHandle.Property> dmiProperties = yangModelCmHandle.getDmiProperties();
         final List<YangModelCmHandle.Property> publicProperties = yangModelCmHandle.getPublicProperties();
         ncmpServiceCmHandle.setCmHandleId(yangModelCmHandle.getId());
+        ncmpServiceCmHandle.setCompositeState(yangModelCmHandle.getCompositeState());
         setDmiProperties(dmiProperties, ncmpServiceCmHandle);
         setPublicProperties(publicProperties, ncmpServiceCmHandle);
         return ncmpServiceCmHandle;

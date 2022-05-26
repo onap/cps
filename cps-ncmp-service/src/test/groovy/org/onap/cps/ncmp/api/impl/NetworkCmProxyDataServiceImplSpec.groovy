@@ -24,6 +24,8 @@ package org.onap.cps.ncmp.api.impl
 
 import org.onap.cps.ncmp.api.impl.operations.YangModelCmHandleRetriever
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
+import org.onap.cps.ncmp.api.inventory.CmHandleState
+import org.onap.cps.ncmp.api.inventory.CompositeState
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import org.onap.cps.spi.exceptions.DataValidationException
@@ -167,16 +169,19 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     def 'Get a cm handle.'() {
         given: 'the system returns a yang modelled cm handle'
             def dmiServiceName = 'some service name'
-            def dmiProperties = [new YangModelCmHandle.Property('aDmiProperty', 'a dmi value')]
-            def publicProperties = [new YangModelCmHandle.Property('aPublicProperty', 'a public value')]
-            def yangModelCmHandle = new YangModelCmHandle(id:'some-cm-handle', dmiServiceName: dmiServiceName, dmiProperties: dmiProperties, publicProperties: publicProperties)
+            def dmiProperties = [new YangModelCmHandle.Property('Book', 'Romance Novel')]
+            def publicProperties = [new YangModelCmHandle.Property('Public Book', 'Public Romance Novel')]
+            def compositeState = new CompositeState(cmhandleState: 'ADVISED')
+            def yangModelCmHandle = new YangModelCmHandle(id: 'some-cm-handle', dmiServiceName: dmiServiceName,
+                dmiProperties: dmiProperties, publicProperties: publicProperties, compositeState: compositeState)
             1 * mockYangModelCmHandleRetriever.getYangModelCmHandle('some-cm-handle') >> yangModelCmHandle
         when: 'getting cm handle details for a given cm handle id from ncmp service'
             def result = objectUnderTest.getNcmpServiceCmHandle('some-cm-handle')
         then: 'the result returns the correct data'
             result.cmHandleId == 'some-cm-handle'
-            result.dmiProperties ==[ aDmiProperty:'a dmi value' ]
-            result.publicProperties == [ aPublicProperty:'a public value' ]
+            result.dmiProperties ==[ Book:'Romance Novel' ]
+            result.publicProperties == [ "Public Book":'Public Romance Novel' ]
+            result.compositeState.cmhandleState == CmHandleState.ADVISED
     }
 
     def 'Get a cm handle with an invalid id.'() {
