@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9b21b42b_43a2e2c4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-05-26T09:53:07Z",
+      "side": 1,
+      "message": "Suggestion : we can log the exception as well.",
+      "revId": "bdbc7432908eae4576226f190bf31161fa849494",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d37f88be_33e5b275",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-05-26T09:53:07Z",
+      "side": 1,
+      "message": "NB : Both the methods look similar, check if we can do one of the below.\n - can refactor to a single method (by accepting the parameters) - if feasible \nOR\n - use method chaining.",
+      "range": {
+        "startLine": 74,
+        "startChar": 4,
+        "endLine": 96,
+        "endChar": 5
+      },
+      "revId": "bdbc7432908eae4576226f190bf31161fa849494",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3be08223_53c5ceec",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/helpers/DmiRegistryPersistence.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-05-26T09:53:07Z",
+      "side": 1,
+      "message": "Amm..I think this class needs to be managed by Spring ( annotate with relevant spring stereotype annotation) as you are injecting this in other class (SyncUtils)",
+      "revId": "bdbc7432908eae4576226f190bf31161fa849494",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
