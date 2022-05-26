@@ -25,6 +25,76 @@
     },
     {
       "key": {
+        "uuid": "7475ab5a_525c82ca",
+        "filename": "cps-ncmp-rest-stub/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-26T14:10:28Z",
+      "side": 1,
+      "message": "correct",
+      "parentUuid": "203b03dc_684e119a",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 46
+      },
+      "revId": "da58d7cc6a5fed40e650c6aa3ec8b6ded1c4f1d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1822bd83_b551610a",
+        "filename": "cps-ncmp-rest-stub/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-26T14:10:28Z",
+      "side": 1,
+      "message": "interesting issue, these are test-stubs. SO yes they should affect test-coverage\nSo you might also need to exclude this code from the reports in the Jacco\\pom.xml\n(maybe below exclusion does both I am not sure)",
+      "range": {
+        "startLine": 38,
+        "startChar": 8,
+        "endLine": 38,
+        "endChar": 48
+      },
+      "revId": "da58d7cc6a5fed40e650c6aa3ec8b6ded1c4f1d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2c718ca4_799946a8",
+        "filename": "cps-ncmp-rest-stub/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-26T14:10:28Z",
+      "side": 1,
+      "message": "why does this have its OWN dpe. mgmt and isn\u0027t use the cps-dependencies?!",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 63,
+        "endChar": 27
+      },
+      "revId": "da58d7cc6a5fed40e650c6aa3ec8b6ded1c4f1d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0493f1e3_879728c6",
         "filename": "cps-ncmp-rest-stub/src/main/java/org/onap/cps/ncmp/rest/stub/Application.java",
         "patchSetId": 1
@@ -71,6 +141,144 @@
     },
     {
       "key": {
+        "uuid": "e5d60d7f_8ea0cae2",
+        "filename": "cps-ncmp-rest-stub/src/main/java/org/onap/cps/ncmp/rest/stub/controller/NetworkCmProxyStubController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-26T14:10:28Z",
+      "side": 1,
+      "message": "Suggestion: since this is a stub for create we could simple y return the happy path 200/201 status so this contract test is \u0027complete\u0027 ?!",
+      "range": {
+        "startLine": 64,
+        "startChar": 15,
+        "endLine": 64,
+        "endChar": 19
+      },
+      "revId": "da58d7cc6a5fed40e650c6aa3ec8b6ded1c4f1d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cc539a7e_081a55c1",
+        "filename": "cps-ncmp-rest-stub/src/main/java/org/onap/cps/ncmp/rest/stub/controller/NetworkCmProxyStubController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-26T14:10:28Z",
+      "side": 1,
+      "message": "Suggestion: since this is a stub for delete we could simple y return the happy path 200/201 status so this contract test is \u0027complete\u0027 ?!",
+      "range": {
+        "startLine": 70,
+        "startChar": 15,
+        "endLine": 70,
+        "endChar": 19
+      },
+      "revId": "da58d7cc6a5fed40e650c6aa3ec8b6ded1c4f1d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d41c5af4_0b853d6f",
+        "filename": "cps-ncmp-rest-stub/src/main/java/org/onap/cps/ncmp/rest/stub/controller/NetworkCmProxyStubController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-26T14:10:28Z",
+      "side": 1,
+      "message": "suggestion: return 501 Not Implemented  for any of these?",
+      "range": {
+        "startLine": 91,
+        "startChar": 15,
+        "endLine": 91,
+        "endChar": 19
+      },
+      "revId": "da58d7cc6a5fed40e650c6aa3ec8b6ded1c4f1d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b76c79e1_097c2da6",
+        "filename": "cps-ncmp-rest-stub/src/main/java/org/onap/cps/ncmp/rest/stub/controller/NetworkCmProxyStubController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-26T14:10:28Z",
+      "side": 1,
+      "message": "question: please remind we what do these annotations do exactly\nif only for INtelliJ did we not agree to not use them anymore?!",
+      "range": {
+        "startLine": 105,
+        "startChar": 14,
+        "endLine": 105,
+        "endChar": 29
+      },
+      "revId": "da58d7cc6a5fed40e650c6aa3ec8b6ded1c4f1d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "98d379f4_32ad6e62",
+        "filename": "cps-ncmp-rest-stub/src/main/java/org/onap/cps/ncmp/rest/stub/controller/NetworkCmProxyStubController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-26T14:10:28Z",
+      "side": 1,
+      "message": "oops",
+      "range": {
+        "startLine": 117,
+        "startChar": 12,
+        "endLine": 117,
+        "endChar": 39
+      },
+      "revId": "da58d7cc6a5fed40e650c6aa3ec8b6ded1c4f1d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f70ff25_f15e3010",
+        "filename": "cps-ncmp-rest-stub/src/main/java/org/onap/cps/ncmp/rest/stub/controller/NetworkCmProxyStubController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-26T14:10:28Z",
+      "side": 1,
+      "message": "use logegr instead?",
+      "range": {
+        "startLine": 120,
+        "startChar": 11,
+        "endLine": 120,
+        "endChar": 32
+      },
+      "revId": "da58d7cc6a5fed40e650c6aa3ec8b6ded1c4f1d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "482c23e5_2eb2a8d5",
         "filename": "cps-ncmp-rest-stub/src/main/java/org/onap/cps/ncmp/rest/stub/controller/NetworkCmProxyStubController.java",
         "patchSetId": 1
@@ -87,6 +295,122 @@
         "startChar": 8,
         "endLine": 174,
         "endChar": 83
+      },
+      "revId": "da58d7cc6a5fed40e650c6aa3ec8b6ded1c4f1d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6317babf_e38a0299",
+        "filename": "cps-ncmp-rest-stub/src/main/java/org/onap/cps/ncmp/rest/stub/controller/NetworkCmProxyStubController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-26T14:10:28Z",
+      "side": 1,
+      "message": "thin line between contract testing and validation of parameters.\nFor now I think we shoudln\u0027t go into validation so teh UTL is valid with and with an topic parameter.....",
+      "parentUuid": "482c23e5_2eb2a8d5",
+      "range": {
+        "startLine": 174,
+        "startChar": 8,
+        "endLine": 174,
+        "endChar": 83
+      },
+      "revId": "da58d7cc6a5fed40e650c6aa3ec8b6ded1c4f1d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07d0414c_77dab24c",
+        "filename": "cps-ncmp-rest-stub/src/main/resources/stubs/cmHandlesSearch.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-26T14:10:28Z",
+      "side": 1,
+      "message": "for collection I usually like to see examples with 2 entries  (just to proof/tets iteration)",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 5
+      },
+      "revId": "da58d7cc6a5fed40e650c6aa3ec8b6ded1c4f1d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e6d0e70_52a91008",
+        "filename": "cps-ncmp-rest-stub/src/main/resources/stubs/passthrough-operational-example.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-26T14:10:28Z",
+      "side": 1,
+      "message": "forever famous :-D",
+      "range": {
+        "startLine": 13,
+        "startChar": 30,
+        "endLine": 13,
+        "endChar": 40
+      },
+      "revId": "da58d7cc6a5fed40e650c6aa3ec8b6ded1c4f1d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5398db9c_8369e977",
+        "filename": "cps-ncmp-rest-stub/src/main/resources/stubs/passthrough-operational-example.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-26T14:10:28Z",
+      "side": 1,
+      "message": "these titles where for very specific scenarios they don\u0027t make sense in the context of this stub and could even leas to questions...\njust be more generic \u0027Another Horror Book\u0027\nOt \u0027Tale of mystery and Imagination\u0027 By Edgar Allen Poe to go for a classic :-D",
+      "range": {
+        "startLine": 17,
+        "startChar": 34,
+        "endLine": 17,
+        "endChar": 65
+      },
+      "revId": "da58d7cc6a5fed40e650c6aa3ec8b6ded1c4f1d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c61d2564_601a2a35",
+        "filename": "cps-ncmp-rest-stub/src/main/resources/stubs/passthrough-operational-example.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-26T14:10:28Z",
+      "side": 1,
+      "message": "Maybe \"Some Cooking Book\"",
+      "range": {
+        "startLine": 32,
+        "startChar": 34,
+        "endLine": 32,
+        "endChar": 62
       },
       "revId": "da58d7cc6a5fed40e650c6aa3ec8b6ded1c4f1d3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
