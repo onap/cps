@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "70873398_6755162b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-05-26T20:11:42Z",
+      "side": 1,
+      "message": "NB : do we standardize the date somewhere?? I mean the date format , zone??\nMaybe if team agrees then we can create a separate task and think on this.",
+      "range": {
+        "startLine": 51,
+        "startChar": 30,
+        "endLine": 51,
+        "endChar": 50
+      },
+      "revId": "6995708d0b241399f4617f6c2cd4ee319f1fef0b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
