@@ -45,6 +45,10 @@ public interface RestOutputCmHandleStateMapper {
     @Named("dataStoreToDataSyncState")
     static DataStores toDataStores(CompositeState.DataStores compositeStateDataStore) {
 
+        if (compositeStateDataStore == null) {
+            return null;
+        }
+
         final DataStores dataStores = new DataStores();
 
         if (compositeStateDataStore.getRunningDataStore() != null) {
@@ -68,6 +72,7 @@ public interface RestOutputCmHandleStateMapper {
 
     /**
      * Converts cmHandleState enum value to equivalent string.
+     *
      * @param cmHandleState cm handle state enum
      * @return cm handle state as string
      */
