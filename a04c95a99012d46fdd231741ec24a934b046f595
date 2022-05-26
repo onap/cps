@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ed02a6cb_3d7d7717",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/ncmp-event-schema-v1.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-05-26T12:30:03Z",
+      "side": 1,
+      "message": "NB : Do we concatenate source and id here to generate unique id to identifying the distinct event?",
+      "range": {
+        "startLine": 16,
+        "startChar": 114,
+        "endLine": 16,
+        "endChar": 125
+      },
+      "revId": "a04c95a99012d46fdd231741ec24a934b046f595",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "585a141b_e5a78138",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/ncmp-event-schema-v1.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-05-26T12:30:03Z",
+      "side": 1,
+      "message": "NB : remove extra space",
+      "range": {
+        "startLine": 20,
+        "startChar": 80,
+        "endLine": 20,
+        "endChar": 81
+      },
+      "revId": "a04c95a99012d46fdd231741ec24a934b046f595",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b9bd6a3f_c16c6801",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/ncmp-event-schema-v1.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-05-26T12:30:03Z",
+      "side": 1,
+      "message": "NB : observed means the time when it is published or it appears to the specified kafka topic?",
+      "range": {
+        "startLine": 24,
+        "startChar": 63,
+        "endLine": 24,
+        "endChar": 71
+      },
+      "revId": "a04c95a99012d46fdd231741ec24a934b046f595",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4fd5a6b_f348d381",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/ncmp-event-schema-v1.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-05-26T12:30:03Z",
+      "side": 1,
+      "message": "NB : Payload of an event.",
+      "range": {
+        "startLine": 58,
+        "startChar": 22,
+        "endLine": 58,
+        "endChar": 40
+      },
+      "revId": "a04c95a99012d46fdd231741ec24a934b046f595",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
