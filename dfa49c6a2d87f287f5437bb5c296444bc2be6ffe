@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9403a591_7aaa021b",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-26T14:33:07Z",
+      "side": 1,
+      "message": "doesn\u0027t really belong here as a parameter... But I understand in you next patch you will do it in the oter hlayer so I will look again.\nIF you do leave it here call it \u0027moduleNamePrefix\u0027",
+      "range": {
+        "startLine": 169,
+        "startChar": 45,
+        "endLine": 169,
+        "endChar": 55
+      },
+      "revId": "dfa49c6a2d87f287f5437bb5c296444bc2be6ffe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7fe758d0_0f61d99b",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-26T14:33:07Z",
+      "side": 1,
+      "message": "in the context of this method I would call it \u0027moduleNamePrefix\u0027",
+      "range": {
+        "startLine": 262,
+        "startChar": 45,
+        "endLine": 262,
+        "endChar": 55
+      },
+      "revId": "dfa49c6a2d87f287f5437bb5c296444bc2be6ffe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f68f6ec5_04355842",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-26T14:33:07Z",
+      "side": 1,
+      "message": "withModuleNamePrefix",
+      "range": {
+        "startLine": 269,
+        "startChar": 17,
+        "endLine": 269,
+        "endChar": 31
+      },
+      "revId": "dfa49c6a2d87f287f5437bb5c296444bc2be6ffe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a12139c_e40d62a7",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-26T14:33:07Z",
+      "side": 1,
+      "message": "moduleNamePrefix",
+      "range": {
+        "startLine": 80,
+        "startChar": 62,
+        "endLine": 80,
+        "endChar": 72
+      },
+      "revId": "dfa49c6a2d87f287f5437bb5c296444bc2be6ffe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e40ed0b_11be7a5e",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNodeBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-26T14:33:07Z",
+      "side": 1,
+      "message": "moduleNamePrefix",
+      "range": {
+        "startLine": 48,
+        "startChar": 19,
+        "endLine": 48,
+        "endChar": 29
+      },
+      "revId": "dfa49c6a2d87f287f5437bb5c296444bc2be6ffe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8376ca58_68fdc09b",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNodeBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-26T14:33:07Z",
+      "side": 1,
+      "message": "withMOduelNamePrix\n\n(I see now Already suggested to add the word \u0027prefix\u0027 in my comment on patch #1)",
+      "range": {
+        "startLine": 93,
+        "startChar": 27,
+        "endLine": 93,
+        "endChar": 41
+      },
+      "revId": "dfa49c6a2d87f287f5437bb5c296444bc2be6ffe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "11a9c806_170cf165",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNodeBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-26T14:33:07Z",
+      "side": 1,
+      "message": "not surr why you use a stringBuffer when only inserting....",
+      "range": {
+        "startLine": 163,
+        "startChar": 14,
+        "endLine": 163,
+        "endChar": 66
+      },
+      "revId": "dfa49c6a2d87f287f5437bb5c296444bc2be6ffe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "49d460d7_d6eee454",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNodeBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-26T14:33:07Z",
+      "side": 1,
+      "message": "I have my doubts about this, see comment in test",
+      "range": {
+        "startLine": 164,
+        "startChar": 4,
+        "endLine": 165,
+        "endChar": 78
+      },
+      "revId": "dfa49c6a2d87f287f5437bb5c296444bc2be6ffe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e7b69fe4_c40b603e",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/spi/model/DataNodeBuilderSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-26T14:33:07Z",
+      "side": 1,
+      "message": "this is why I asked. I don\u0027t think this ir right. WHere did you see this, decide it needed to be added at the end?!",
+      "range": {
+        "startLine": 184,
+        "startChar": 110,
+        "endLine": 184,
+        "endChar": 159
+      },
+      "revId": "dfa49c6a2d87f287f5437bb5c296444bc2be6ffe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
