@@ -79,6 +79,9 @@ spring:
                 spring.deserializer.value.delegate.class: org.springframework.kafka.support.serializer.JsonDeserializer
                 spring.json.value.default.type: org.onap.cps.ncmp.event.model.DmiAsyncRequestResponseEvent
                 spring.json.use.type.headers: false
+
+    jackson:
+      default-property-inclusion: NON_NULL
 app:
     ncmp:
         async-m2m:
