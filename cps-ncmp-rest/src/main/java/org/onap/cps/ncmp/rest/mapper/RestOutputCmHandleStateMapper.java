@@ -23,13 +23,16 @@ package org.onap.cps.ncmp.rest.mapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
+import org.mapstruct.NullValueCheckStrategy;
+import org.mapstruct.NullValuePropertyMappingStrategy;
 import org.onap.cps.ncmp.api.inventory.CmHandleState;
 import org.onap.cps.ncmp.api.inventory.CompositeState;
 import org.onap.cps.ncmp.rest.model.DataStores;
 import org.onap.cps.ncmp.rest.model.RestOutputCmHandleState;
 import org.onap.cps.ncmp.rest.model.SyncState;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS,
+        nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.SET_TO_DEFAULT)
 public interface RestOutputCmHandleStateMapper {
 
     @Mapping(target = "dataSyncState", source = "dataStores", qualifiedByName = "dataStoreToDataSyncState")
@@ -46,6 +49,10 @@ public interface RestOutputCmHandleStateMapper {
     static DataStores toDataStores(CompositeState.DataStores compositeStateDataStore) {
 
         final DataStores dataStores = new DataStores();
+
+        if (compositeStateDataStore == null) {
+            return null;
+        }
 
         if (compositeStateDataStore.getRunningDataStore() != null) {
             final SyncState runningSyncState = new SyncState();

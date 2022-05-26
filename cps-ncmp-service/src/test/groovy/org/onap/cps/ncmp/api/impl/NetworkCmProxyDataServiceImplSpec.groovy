@@ -25,6 +25,8 @@ package org.onap.cps.ncmp.api.impl
 import org.onap.cps.ncmp.api.impl.exception.HttpClientRequestException
 import org.onap.cps.ncmp.api.impl.operations.YangModelCmHandleRetriever
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
+import org.onap.cps.ncmp.api.inventory.CmHandleState
+import org.onap.cps.ncmp.api.inventory.CompositeState
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import org.onap.cps.spi.exceptions.DataValidationException
@@ -284,7 +286,9 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             def dmiServiceName = 'some service name'
             def dmiProperties = [new YangModelCmHandle.Property('Book', 'Romance Novel')]
             def publicProperties = [new YangModelCmHandle.Property('Public Book', 'Public Romance Novel')]
-            def yangModelCmHandle = new YangModelCmHandle(id:'some-cm-handle', dmiServiceName: dmiServiceName, dmiProperties: dmiProperties, publicProperties: publicProperties)
+            def compositeState = new CompositeState(cmhandleState: 'ADVISED')
+            def yangModelCmHandle = new YangModelCmHandle(id: 'some-cm-handle', dmiServiceName: dmiServiceName,
+                dmiProperties: dmiProperties, publicProperties: publicProperties, compositeState: compositeState)
             1 * mockYangModelCmHandleRetriever.getYangModelCmHandle('some-cm-handle') >> yangModelCmHandle
         when: 'getting cm handle details for a given cm handle id from ncmp service'
             def result = objectUnderTest.getNcmpServiceCmHandle('some-cm-handle')
@@ -292,6 +296,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             result.cmHandleId == 'some-cm-handle'
             result.dmiProperties ==[ Book:'Romance Novel' ]
             result.publicProperties == [ "Public Book":'Public Romance Novel' ]
+            result.compositeState.cmhandleState == CmHandleState.ADVISED
 
     }
 
