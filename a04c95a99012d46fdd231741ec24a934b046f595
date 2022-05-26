@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "6dee1c0c_49351123",
+        "filename": "cps-bom/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-26T14:20:25Z",
+      "side": 1,
+      "message": "NB: no changes in this file really, in future try to remove from commit in such cases",
+      "revId": "a04c95a99012d46fdd231741ec24a934b046f595",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ed02a6cb_3d7d7717",
         "filename": "cps-ncmp-events/src/main/resources/schemas/ncmp-event-schema-v1.json",
         "patchSetId": 3
@@ -71,6 +88,52 @@
     },
     {
       "key": {
+        "uuid": "eb741815_c0e3f07d",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/ncmp-event-schema-v1.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-26T14:20:25Z",
+      "side": 1,
+      "message": "guess what my comment would be :-)\n(you can ignore as per netx coment on not having examples)",
+      "range": {
+        "startLine": 24,
+        "startChar": 142,
+        "endLine": 24,
+        "endChar": 159
+      },
+      "revId": "a04c95a99012d46fdd231741ec24a934b046f595",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4aa13f0_b6d74b0f",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/ncmp-event-schema-v1.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-26T14:20:25Z",
+      "side": 1,
+      "message": "you used ex. before\nMore importantly, during Joes\u0027 review we agreed to have NO examples maybe that should be applied here too unless you want to challenge that decision...",
+      "range": {
+        "startLine": 37,
+        "startChar": 88,
+        "endLine": 37,
+        "endChar": 93
+      },
+      "revId": "a04c95a99012d46fdd231741ec24a934b046f595",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f4fd5a6b_f348d381",
         "filename": "cps-ncmp-events/src/main/resources/schemas/ncmp-event-schema-v1.json",
         "patchSetId": 3
@@ -87,6 +150,29 @@
         "startChar": 22,
         "endLine": 58,
         "endChar": 40
+      },
+      "revId": "a04c95a99012d46fdd231741ec24a934b046f595",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c9726ef2_e083b902",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/ncmp-event-schema-v1.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-26T14:20:25Z",
+      "side": 1,
+      "message": "Question: does this mean we have double maintenance with teh Java Enum?\n(I can live with it)",
+      "range": {
+        "startLine": 69,
+        "startChar": 7,
+        "endLine": 69,
+        "endChar": 48
       },
       "revId": "a04c95a99012d46fdd231741ec24a934b046f595",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
