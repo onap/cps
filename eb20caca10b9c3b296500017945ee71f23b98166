@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7122eb84_7bf56f42",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-05-27T10:16:15Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 9,
+        "startChar": 17,
+        "endLine": 9,
+        "endChar": 24
+      },
+      "revId": "eb20caca10b9c3b296500017945ee71f23b98166",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8229c751_c94506dc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-05-27T10:16:15Z",
+      "side": 1,
+      "message": "is this not in use??",
+      "range": {
+        "startLine": 100,
+        "startChar": 56,
+        "endLine": 100,
+        "endChar": 64
+      },
+      "revId": "eb20caca10b9c3b296500017945ee71f23b98166",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "029d83aa_4e5900bf",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/SyncUtilsSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-05-27T10:16:15Z",
+      "side": 1,
+      "message": "also we can use the groovy way to create an instance.",
+      "range": {
+        "startLine": 107,
+        "startChar": 12,
+        "endLine": 111,
+        "endChar": 65
+      },
+      "revId": "eb20caca10b9c3b296500017945ee71f23b98166",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
