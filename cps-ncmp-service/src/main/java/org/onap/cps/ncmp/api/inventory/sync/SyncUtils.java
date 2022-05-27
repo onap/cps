@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Nordix Foundation
+ *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -24,8 +25,10 @@ import java.security.SecureRandom;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.inventory.CmHandleState;
 import org.onap.cps.ncmp.api.inventory.CompositeState;
@@ -40,7 +43,6 @@ import org.springframework.stereotype.Component;
 public class SyncUtils {
 
     private static final SecureRandom secureRandom = new SecureRandom();
-
 
     private final InventoryPersistence inventoryPersistence;
 
@@ -64,6 +66,19 @@ public class SyncUtils {
 
 
     /**
+     * Query data nodes for cm handles with an "LOCKED" cm handle state with reason LOCKED_MISBEHAVING".
+     *
+     * @return a random yang model cm handle with an ADVISED state, return null if not found
+     */
+    public List<YangModelCmHandle> getLockedMisbehavingCmHandles() {
+        final List<DataNode> lockedCmHandleAsDataNodeList = inventoryPersistence.getCmHandlesByCpsPath(
+            "//lock-reason[@reason=\"LOCKED_MISBEHAVING\"]/ancestor::cm-handles");
+        return lockedCmHandleAsDataNodeList.stream()
+            .map(cmHandle -> YangDataConverter.convertCmHandleToYangModel(cmHandle,
+                cmHandle.getLeaves().get("id").toString())).collect(Collectors.toList());
+    }
+
+    /**
      * Update Composite State attempts counter and set new lock reason and details.
      *
      * @param lockReasonCategory lock reason category
@@ -83,6 +98,5 @@ public class SyncUtils {
             .details(String.format("Attempt #%d failed: %s", attempt, errorMessage))
             .lockReasonCategory(lockReasonCategory).build());
     }
-
 
 }
