@@ -46,6 +46,30 @@
       "revId": "8736edcaba8a3b4596802557fb71efaa8f28262f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "504e756b_a46848ed",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/ncmp-event-schema-v1.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-05-27T09:37:26Z",
+      "side": 1,
+      "message": "I see on the wiki, its just the state name. Just wanted to ensure its not a miss. ALso wanted to ensure if this was designed and approved after the new model was put in place.\nI think the lock reason might not be very releavnt for dmi, but the datastore type and sync state could be.",
+      "parentUuid": "ca5ced93_f57915af",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 48
+      },
+      "revId": "8736edcaba8a3b4596802557fb71efaa8f28262f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
