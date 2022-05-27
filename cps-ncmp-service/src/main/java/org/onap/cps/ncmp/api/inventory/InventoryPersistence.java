@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Nordix Foundation
+ *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -24,6 +25,7 @@ import java.time.OffsetDateTime;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.CpsDataService;
+import org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants;
 import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.spi.CpsDataPersistenceService;
@@ -37,9 +39,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class InventoryPersistence {
 
-    private static final String NCMP_DATASPACE_NAME = "NCMP-Admin";
+    private static final String NCMP_DATASPACE_NAME = DmiRegistryConstants.NCMP_DATASPACE_NAME;
 
-    private static final String NCMP_DMI_REGISTRY_ANCHOR = "ncmp-dmi-registry";
+    private static final String NCMP_DMI_REGISTRY_ANCHOR = DmiRegistryConstants.NCMP_DMI_REGISTRY_ANCHOR;
 
     private final JsonObjectMapper jsonObjectMapper;
 
@@ -86,6 +88,18 @@ public class InventoryPersistence {
         return cpsDataPersistenceService.queryDataNodes(NCMP_DATASPACE_NAME,
             NCMP_DMI_REGISTRY_ANCHOR, "//state[@cm-handle-state=\""
                 + cmHandleState + "\"]/ancestor::cm-handles",
+            FetchDescendantsOption.OMIT_DESCENDANTS);
+    }
+
+    /**
+     * Method to return cm handles which are locked with reason LOCKED_MISBEHAVING.
+     *
+     * @return a list of cm handles
+     */
+    public List<DataNode> getLockedMisbehavingCmHandles() {
+        return cpsDataPersistenceService.queryDataNodes(
+            NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
+            "//lock-reason[@reason=\"LOCKED_MISBEHAVING\"]/ancestor::cm-handles",
             FetchDescendantsOption.OMIT_DESCENDANTS);
     }
 
