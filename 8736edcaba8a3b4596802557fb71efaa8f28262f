@@ -97,6 +97,30 @@
     },
     {
       "key": {
+        "uuid": "4cb8b7c3_20752fba",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/ncmp-event-schema-v1.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-05-27T13:41:48Z",
+      "side": 1,
+      "message": "As discussed in the meeting I will be raising this with Kieran and we can check for his response.",
+      "parentUuid": "a2716ce3_b75feb88",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 48
+      },
+      "revId": "8736edcaba8a3b4596802557fb71efaa8f28262f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "deaabf5c_05e87729",
         "filename": "cps-ncmp-events/src/main/resources/schemas/ncmp-event-schema-v1.json",
         "patchSetId": 4
