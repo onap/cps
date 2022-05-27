@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "6618d43b_f8f0b446",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/mapper/RestOutputCmHandleStateMapper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-05-27T11:23:54Z",
+      "side": 1,
+      "message": "I think the variable declaration should be after the null check.",
+      "range": {
+        "startLine": 51,
+        "startChar": 8,
+        "endLine": 51,
+        "endChar": 55
+      },
+      "revId": "a3718e30457346218c9538b603b41eb3eeb8d99a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bb009a1b_295a02a4",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/mapper/RestOutputCmHandleStateMapper.java",
         "patchSetId": 1
