@@ -35,10 +35,12 @@ class CompositeStateBuilderSpec extends Specification {
 
     def static cmHandleId = 'myHandle1'
     def static cmHandleXpath = "/dmi-registry/cm-handles[@id='${cmHandleId}/state']"
-    def static stateDataNodes = [new DataNodeBuilder().withXpath("/dmi-registry/cm-handles[@id='${cmHandleId}']/state/lock-reason")
+    def static stateDataNodes = [new DataNodeBuilder()
+                                         .withXpath("/dmi-registry/cm-handles[@id='${cmHandleId}']/state/lock-reason")
                                          .withLeaves(['reason': 'lock reason', 'details': 'lock details']).build(),
-                                 new DataNodeBuilder().withXpath("/dmi-registry/cm-handles[@id='${cmHandleId}']/state/datastores")
-                                            .withChildDataNodes(Arrays.asList(new DataNodeBuilder()
+                                 new DataNodeBuilder()
+                                         .withXpath("/dmi-registry/cm-handles[@id='${cmHandleId}']/state/datastores")
+                                         .withChildDataNodes(Arrays.asList(new DataNodeBuilder()
                                                     .withXpath("/dmi-registry/cm-handles[@id='${cmHandleId}']/state/datastores/operational")
                                                     .withLeaves(['sync-state': 'UNSYNCHRONIZED']).build())).build()]
     def static cmHandleDataNode = new DataNode(xpath: cmHandleXpath, childDataNodes: stateDataNodes, leaves: ['cm-handle-state': 'ADVISED'])
@@ -47,18 +49,16 @@ class CompositeStateBuilderSpec extends Specification {
         when: 'using composite state builder '
             def compositeState = new CompositeStateBuilder().withCmHandleState(CmHandleState.ADVISED)
                     .withLockReason("lock-reason","").withOperationalDataStores("UNSYNCHRONIZED",
-                    formattedDateAndTime.toString()).withLastUpdatedTime(formattedDateAndTime).build();
+                    formattedDateAndTime.toString()).build();
         then: 'it matches expected cm handle state and data store sync state'
             assert compositeState.getCmhandleState() == CmHandleState.ADVISED
             assert compositeState.dataStores.operationalDataStore.syncState == 'UNSYNCHRONIZED'
     }
 
     def "Build composite state from DataNode "() {
-        given: "a Data Node "
-            def dataNode = new DataNode(leaves: ['cm-handle-state': 'ADVISED'])
         when: 'build from data node function is invoked'
             def compositeState = new CompositeStateBuilder().fromDataNode(cmHandleDataNode).build()
-        then: 'it matches expected state model as JSON'
+        then: 'it matches expected cmhandle state '
             assert compositeState.cmhandleState == CmHandleState.ADVISED
     }
 
