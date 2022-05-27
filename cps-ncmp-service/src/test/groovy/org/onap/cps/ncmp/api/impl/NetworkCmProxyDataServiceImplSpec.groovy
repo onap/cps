@@ -76,11 +76,11 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
 
     def dataNode = new DataNode(leaves: ['id': 'some-cm-handle', 'dmi-service-name': 'testDmiService'])
 
-    def 'Write resource data for pass-through running from DMI using POST #scenario cm handle properties.'() {
+    def 'Write resource data for pass-through running from DMI using POST.'() {
         given: 'cpsDataService returns valid datanode'
             mockCpsDataService.getDataNode('NCMP-Admin', 'ncmp-dmi-registry',
                 cmHandleXPath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
-        when: 'get resource data is called'
+        when: 'write resource data is called'
             objectUnderTest.writeResourceDataPassThroughRunningForCmHandle('testCmHandle',
                 'testResourceId', CREATE,
                 '{some-json}', 'application/json')
@@ -99,25 +99,6 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             thrown(DataValidationException.class)
         and: 'DMI is not invoked'
             0 * mockDmiDataOperations.writeResourceDataPassThroughRunningFromDmi(_, _, _, _, _)
-    }
-
-    def 'Write resource data for pass-through running from DMI using POST "not found" response (from DMI).'() {
-        given: 'cpsDataService returns valid dataNode'
-            mockCpsDataService.getDataNode('NCMP-Admin', 'ncmp-dmi-registry',
-                cmHandleXPath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
-        and: 'DMI returns a response with 404 status code'
-            mockDmiDataOperations.writeResourceDataPassThroughRunningFromDmi('testCmHandle',
-                'testResourceId', CREATE,
-                '{some-json}', 'application/json')
-                >> { new ResponseEntity<>(HttpStatus.NOT_FOUND) }
-        when: 'write resource data is called'
-            objectUnderTest.writeResourceDataPassThroughRunningForCmHandle('testCmHandle',
-                'testResourceId', CREATE,
-                '{some-json}', 'application/json')
-        then: 'exception is thrown'
-            def exceptionThrown = thrown(HttpClientRequestException.class)
-        and: 'http status (not found) error code: 404'
-            exceptionThrown.httpStatus == HttpStatus.NOT_FOUND.value()
     }
 
     def 'Get resource data for pass-through operational from DMI.'() {
@@ -153,52 +134,6 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             thrown(DataValidationException)
     }
 
-    def 'Get resource data for pass-through operational from DMI with Json Processing Exception.'() {
-        given: 'cps data service returns valid data node'
-            mockCpsDataService.getDataNode('NCMP-Admin', 'ncmp-dmi-registry',
-                cmHandleXPath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
-        and: 'objectMapper not able to parse object'
-            spiedJsonObjectMapper.asJsonString(_) >> { throw new JsonProcessingException('testException') }
-        and: 'DMI returns NOK response'
-            mockDmiDataOperations.getResourceDataFromDmi(*_)
-                >> new ResponseEntity<>('NOK-json', HttpStatus.NOT_FOUND)
-        when: 'get resource data is called'
-            objectUnderTest.getResourceDataOperationalForCmHandle('testCmHandle',
-                    'testResourceId',
-                    OPTIONS_PARAM,
-                    NO_TOPIC,
-                    NO_REQUEST_ID)
-        then: 'exception is thrown with the expected response code and details'
-            def exceptionThrown = thrown(HttpClientRequestException.class)
-            exceptionThrown.details.contains('NOK-json')
-            exceptionThrown.httpStatus == HttpStatus.NOT_FOUND.value()
-    }
-
-    def 'Get resource data for pass-through operational from DMI return NOK response.'() {
-        given: 'cps data service returns valid data node'
-            mockCpsDataService.getDataNode('NCMP-Admin', 'ncmp-dmi-registry',
-                cmHandleXPath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
-        and: 'DMI returns NOK response'
-            mockDmiDataOperations.getResourceDataFromDmi('testCmHandle',
-                    'testResourceId',
-                    OPTIONS_PARAM,
-                    PASSTHROUGH_OPERATIONAL,
-                    NO_REQUEST_ID,
-                    NO_TOPIC)
-                    >> new ResponseEntity<>('NOK-json', HttpStatus.NOT_FOUND)
-        when: 'get resource data is called'
-            objectUnderTest.getResourceDataOperationalForCmHandle('testCmHandle',
-                    'testResourceId',
-                    OPTIONS_PARAM,
-                    NO_TOPIC,
-                    NO_REQUEST_ID)
-        then: 'exception is thrown'
-            def exceptionThrown = thrown(HttpClientRequestException.class)
-        and: 'details contain the original response'
-            exceptionThrown.httpStatus == HttpStatus.NOT_FOUND.value()
-            exceptionThrown.details.contains('NOK-json')
-    }
-
     def 'Get resource data for pass-through running from DMI.'() {
         given: 'cpsDataService returns valid data node'
             mockCpsDataService.getDataNode('NCMP-Admin', 'ncmp-dmi-registry',
@@ -231,31 +166,6 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             thrown(DataValidationException)
     }
 
-    def 'Get resource data for pass-through running from DMI return NOK response.'() {
-        given: 'cpsDataService returns valid dataNode'
-            mockCpsDataService.getDataNode('NCMP-Admin', 'ncmp-dmi-registry',
-                cmHandleXPath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
-        and: 'DMI returns NOK response'
-            mockDmiDataOperations.getResourceDataFromDmi('testCmHandle',
-                    'testResourceId',
-                    OPTIONS_PARAM,
-                    PASSTHROUGH_RUNNING,
-                    NO_REQUEST_ID,
-                    NO_TOPIC)
-                    >> new ResponseEntity<>('NOK-json', HttpStatus.NOT_FOUND)
-        when: 'get resource data is called'
-            objectUnderTest.getResourceDataPassThroughRunningForCmHandle('testCmHandle',
-                    'testResourceId',
-                    OPTIONS_PARAM,
-                    NO_TOPIC,
-                    NO_REQUEST_ID)
-        then: 'exception is thrown'
-            def exceptionThrown = thrown(HttpClientRequestException.class)
-        and: 'details contain the original response'
-            exceptionThrown.details.contains('NOK-json')
-            exceptionThrown.httpStatus == HttpStatus.NOT_FOUND.value()
-    }
-
     def 'Getting Yang Resources.'() {
         when: 'yang resources is called'
             objectUnderTest.getYangResourcesModuleReferences('some-cm-handle')
@@ -269,7 +179,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
         then: 'a data validation exception is thrown'
             thrown(DataValidationException)
         and: 'CPS module services is not invoked'
-            0 * mockCpsModuleService.getYangResourcesModuleReferences(_, _)
+            0 * mockCpsModuleService.getYangResourcesModuleReferences(*_)
     }
 
     def 'Get cm handle identifiers for the given module names.'() {
@@ -282,17 +192,16 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     def 'Get a cm handle.'() {
         given: 'the system returns a yang modelled cm handle'
             def dmiServiceName = 'some service name'
-            def dmiProperties = [new YangModelCmHandle.Property('Book', 'Romance Novel')]
-            def publicProperties = [new YangModelCmHandle.Property('Public Book', 'Public Romance Novel')]
+            def dmiProperties = [new YangModelCmHandle.Property('aDmiProperty', 'a dmi value')]
+            def publicProperties = [new YangModelCmHandle.Property('aPublicProperty', 'a public value')]
             def yangModelCmHandle = new YangModelCmHandle(id:'some-cm-handle', dmiServiceName: dmiServiceName, dmiProperties: dmiProperties, publicProperties: publicProperties)
             1 * mockYangModelCmHandleRetriever.getYangModelCmHandle('some-cm-handle') >> yangModelCmHandle
         when: 'getting cm handle details for a given cm handle id from ncmp service'
             def result = objectUnderTest.getNcmpServiceCmHandle('some-cm-handle')
         then: 'the result returns the correct data'
             result.cmHandleId == 'some-cm-handle'
-            result.dmiProperties ==[ Book:'Romance Novel' ]
-            result.publicProperties == [ "Public Book":'Public Romance Novel' ]
-
+            result.dmiProperties ==[ aDmiProperty:'a dmi value' ]
+            result.publicProperties == [ aPublicProperty:'a public value' ]
     }
 
     def 'Get a cm handle with an invalid id.'() {
@@ -301,7 +210,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
         then: 'an exception is thrown'
             thrown(DataValidationException)
         and: 'the yang model cm handle retriever is not invoked'
-            0 * mockYangModelCmHandleRetriever.getYangModelCmHandle(_)
+            0 * mockYangModelCmHandleRetriever.getYangModelCmHandle(*_)
     }
 
     def 'Get cm handle public properties'() {
@@ -323,7 +232,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
         then: 'an exception is thrown'
             thrown(DataValidationException)
         and: 'the yang model cm handle retriever is not invoked'
-            0 * mockYangModelCmHandleRetriever.getYangModelCmHandle(_)
+            0 * mockYangModelCmHandleRetriever.getYangModelCmHandle(*_)
     }
 
     def 'Update resource data for pass-through running from dmi using POST #scenario DMI properties.'() {
@@ -338,27 +247,6 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             1 * mockDmiDataOperations.writeResourceDataPassThroughRunningFromDmi('testCmHandle', 'testResourceId',
                 UPDATE, '{some-json}', 'application/json')
                 >> { new ResponseEntity<>(HttpStatus.OK) }
-    }
-
-    def 'Verify error message from handleResponse is correct for #scenario operation.'() {
-        given: 'writeResourceDataPassThroughRunningFromDmi fails to return OK HttpStatus'
-            mockDmiDataOperations.writeResourceDataPassThroughRunningFromDmi(*_)
-                >> new ResponseEntity<>(HttpStatus.NOT_FOUND)
-        when: 'get resource data is called'
-            objectUnderTest.writeResourceDataPassThroughRunningForCmHandle(
-                'testCmHandle',
-                'testResourceId',
-                givenOperation,
-                '{some-json}',
-                'application/json')
-        then: 'an exception is thrown with the expected error message details with correct operation'
-            def exceptionThrown = thrown(HttpClientRequestException.class)
-            exceptionThrown.getMessage().contains(expectedResponseMessage)
-        where:
-            scenario | givenOperation || expectedResponseMessage
-            'CREATE' | CREATE         || 'Unable to create resource data.'
-            'READ'   | READ           || 'Unable to read resource data.'
-            'UPDATE' | UPDATE         || 'Unable to update resource data.'
     }
 
     def 'Verify modules and create anchor params'() {

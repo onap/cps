@@ -46,7 +46,6 @@ import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
-import org.onap.cps.ncmp.api.impl.exception.HttpClientRequestException;
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations;
 import org.onap.cps.ncmp.api.impl.operations.DmiOperations;
 import org.onap.cps.ncmp.api.impl.operations.YangModelCmHandleRetriever;
@@ -137,9 +136,8 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                                                                final String requestData,
                                                                final String dataType) {
         CpsValidator.validateNameCharacters(cmHandleId);
-        return handleResponse(
-                dmiDataOperations.writeResourceDataPassThroughRunningFromDmi(cmHandleId, resourceIdentifier, operation,
-                        requestData, dataType), operation);
+        return dmiDataOperations.writeResourceDataPassThroughRunningFromDmi(cmHandleId, resourceIdentifier, operation,
+                        requestData, dataType);
     }
 
 
@@ -294,7 +292,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                                            final String requestId) {
         final ResponseEntity<?> responseEntity = dmiDataOperations.getResourceDataFromDmi(
                 cmHandleId, resourceIdentifier, optionsParamInQuery, dataStore, requestId, topicParamInQuery);
-        return handleResponse(responseEntity, OperationEnum.READ);
+        return responseEntity.getBody();
     }
 
     private void setDmiProperties(final List<YangModelCmHandle.Property> dmiProperties,
@@ -335,14 +333,5 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         }
     }
 
-    private static Object handleResponse(final ResponseEntity<?> responseEntity, final OperationEnum operation) {
-        if (responseEntity.getStatusCode().is2xxSuccessful()) {
-            return responseEntity.getBody();
-        } else {
-            final String exceptionMessage = "Unable to " + operation.toString() + " resource data.";
-            throw new HttpClientRequestException(exceptionMessage, (String) responseEntity.getBody(),
-                responseEntity.getStatusCodeValue());
-        }
-    }
 
 }
