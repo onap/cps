@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021-2022 Nordix Foundation
- *  Modifications Copyright (C) 2021 Bell Canada
+ *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -26,7 +26,6 @@ import java.util.Map;
 import lombok.AllArgsConstructor;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
-import org.onap.cps.ncmp.api.inventory.CompositeState;
 import org.onap.cps.ncmp.api.inventory.CompositeStateBuilder;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.spi.FetchDescendantsOption;
@@ -77,20 +76,19 @@ public class YangModelCmHandleRetriever {
                                                    final NcmpServiceCmHandle ncmpServiceCmHandle) {
         final Map<String, String> dmiProperties = new LinkedHashMap<>();
         final Map<String, String> publicProperties = new LinkedHashMap<>();
-        final CompositeStateBuilder compositeStateBuilder = new CompositeStateBuilder();
-        CompositeState compositeState = compositeStateBuilder.build();
+        CompositeStateBuilder compositeStateBuilder = new CompositeStateBuilder();
         for (final DataNode childDataNode: cmHandleDataNode.getChildDataNodes()) {
             if (childDataNode.getXpath().contains("/additional-properties[@name=")) {
                 addProperty(childDataNode, dmiProperties);
             } else if (childDataNode.getXpath().contains("/public-properties[@name=")) {
                 addProperty(childDataNode, publicProperties);
             } else if (childDataNode.getXpath().endsWith("/state")) {
-                compositeState = compositeStateBuilder.fromDataNode(childDataNode).build();
+                compositeStateBuilder = compositeStateBuilder.fromDataNode(childDataNode);
             }
         }
         ncmpServiceCmHandle.setDmiProperties(dmiProperties);
         ncmpServiceCmHandle.setPublicProperties(publicProperties);
-        ncmpServiceCmHandle.setCompositeState(compositeState);
+        ncmpServiceCmHandle.setCompositeState(compositeStateBuilder.build());
     }
 
     private static void addProperty(final DataNode propertyDataNode, final Map<String, String> propertiesAsMap) {

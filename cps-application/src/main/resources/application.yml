@@ -154,3 +154,6 @@ dmi:
 timers:
     advised-modules-sync:
         sleep-time-ms: 30000
+
+    locked-modules-sync:
+        sleep-time-ms: 3000000
