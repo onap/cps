@@ -2,6 +2,138 @@
   "comments": [
     {
       "key": {
+        "uuid": "729fd358_d3ffa98f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-05-27T11:09:01Z",
+      "side": 1,
+      "message": "use - instead of * like below for all\n\n - merge two endpoint for a same backend",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 1
+      },
+      "revId": "bac984a7b5c1bf0413b92db14f2e520d78d3ca70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d80357e3_79db3f8b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-05-27T11:09:01Z",
+      "side": 1,
+      "message": "Please follow \"Commit Message Structure\"\n\nhttps://wiki.onap.org/display/DW/Commit+Messages#CommitMessages-CommitStructure",
+      "revId": "bac984a7b5c1bf0413b92db14f2e520d78d3ca70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a34c9f4_5fbc31de",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 9
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-05-27T11:09:01Z",
+      "side": 1,
+      "message": "NB : CmHandleQueryParameters",
+      "range": {
+        "startLine": 261,
+        "startChar": 55,
+        "endLine": 261,
+        "endChar": 82
+      },
+      "revId": "bac984a7b5c1bf0413b92db14f2e520d78d3ca70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "63b8ce84_bf65bd64",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 9
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-05-27T11:09:01Z",
+      "side": 1,
+      "message": "NB : searchCmHandleIds",
+      "range": {
+        "startLine": 322,
+        "startChar": 0,
+        "endLine": 322,
+        "endChar": 23
+      },
+      "revId": "bac984a7b5c1bf0413b92db14f2e520d78d3ca70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "41c51722_02637321",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 9
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-05-27T11:09:01Z",
+      "side": 1,
+      "message": "to search ch handle ids",
+      "range": {
+        "startLine": 324,
+        "startChar": 41,
+        "endLine": 324,
+        "endChar": 47
+      },
+      "revId": "bac984a7b5c1bf0413b92db14f2e520d78d3ca70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b1907a4_76badc35",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 9
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-05-27T11:09:01Z",
+      "side": 1,
+      "message": "NB : searchCmHandleIds",
+      "range": {
+        "startLine": 328,
+        "startChar": 17,
+        "endLine": 328,
+        "endChar": 40
+      },
+      "revId": "bac984a7b5c1bf0413b92db14f2e520d78d3ca70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1579979c_df23e66d",
         "filename": "cps-ncmp-rest/docs/openapi/openapi.yml",
         "patchSetId": 9
@@ -46,6 +178,52 @@
       "revId": "bac984a7b5c1bf0413b92db14f2e520d78d3ca70",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4bc5150a_16101e34",
+        "filename": "cps-ncmp-rest/docs/openapi/openapi.yml",
+        "patchSetId": 9
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-05-27T11:09:01Z",
+      "side": 1,
+      "message": "NB : searchCmHandleIds",
+      "range": {
+        "startLine": 48,
+        "startChar": 21,
+        "endLine": 48,
+        "endChar": 44
+      },
+      "revId": "bac984a7b5c1bf0413b92db14f2e520d78d3ca70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c62c7f37_813fa2ac",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-05-27T11:09:01Z",
+      "side": 1,
+      "message": "NB : searchCmHandleIds",
+      "range": {
+        "startLine": 205,
+        "startChar": 52,
+        "endLine": 205,
+        "endChar": 73
+      },
+      "revId": "bac984a7b5c1bf0413b92db14f2e520d78d3ca70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     },
     {
       "key": {
@@ -237,6 +415,52 @@
     },
     {
       "key": {
+        "uuid": "274ea1d3_978128b4",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-05-27T11:09:01Z",
+      "side": 1,
+      "message": "Redundant : In CmHandleQueryApiParameters we already setting cmHandleQueryRestParameters to Collections.emptyList();",
+      "range": {
+        "startLine": 230,
+        "startChar": 39,
+        "endLine": 230,
+        "endChar": 87
+      },
+      "revId": "bac984a7b5c1bf0413b92db14f2e520d78d3ca70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "01b69975_0189d3a7",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-05-27T11:09:01Z",
+      "side": 1,
+      "message": "We can use : cmHandleQueryRestParameters.getConditions().parallelStream().forEach\n\nParallel processing would be beneficial here.",
+      "range": {
+        "startLine": 231,
+        "startChar": 12,
+        "endLine": 231,
+        "endChar": 63
+      },
+      "revId": "bac984a7b5c1bf0413b92db14f2e520d78d3ca70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "96f2ca15_2a52c65b",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
         "patchSetId": 9
@@ -328,6 +552,75 @@
       "revId": "bac984a7b5c1bf0413b92db14f2e520d78d3ca70",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "70b1dfe8_314d2292",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-05-27T11:09:01Z",
+      "side": 1,
+      "message": "Redundant : same as previous",
+      "range": {
+        "startLine": 237,
+        "startChar": 47,
+        "endLine": 237,
+        "endChar": 89
+      },
+      "revId": "bac984a7b5c1bf0413b92db14f2e520d78d3ca70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e9a40bb8_06d37540",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-05-27T11:09:01Z",
+      "side": 1,
+      "message": "Parallel processing would be beneficial here as previous.",
+      "range": {
+        "startLine": 238,
+        "startChar": 24,
+        "endLine": 238,
+        "endChar": 77
+      },
+      "revId": "bac984a7b5c1bf0413b92db14f2e520d78d3ca70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5b92c1a5_96a948d8",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-05-27T11:09:01Z",
+      "side": 1,
+      "message": "NB : searchCmHandleIds",
+      "range": {
+        "startLine": 257,
+        "startChar": 40,
+        "endLine": 257,
+        "endChar": 63
+      },
+      "revId": "bac984a7b5c1bf0413b92db14f2e520d78d3ca70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     },
     {
       "key": {
@@ -684,6 +977,52 @@
     },
     {
       "key": {
+        "uuid": "40f5fe0b_98c66f4c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/CmHandleQueryApiParameters.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-05-27T11:09:01Z",
+      "side": 1,
+      "message": "Lombok some annotations that combine multiple other annotations (like @Data combines @ToString, @EqualsAndHashCode, @Getter / @Setter, and @RequiredArgsConstructor), here we should not “pollute” our code with too many annotations.",
+      "range": {
+        "startLine": 32,
+        "startChar": 1,
+        "endLine": 32,
+        "endChar": 5
+      },
+      "revId": "bac984a7b5c1bf0413b92db14f2e520d78d3ca70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "31a056e4_82d44c5c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/ConditionApiProperties.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-05-27T11:09:01Z",
+      "side": 1,
+      "message": "same as previous",
+      "range": {
+        "startLine": 31,
+        "startChar": 1,
+        "endLine": 31,
+        "endChar": 5
+      },
+      "revId": "bac984a7b5c1bf0413b92db14f2e520d78d3ca70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1616e4ff_2cae837c",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
         "patchSetId": 9
@@ -825,6 +1164,236 @@
     },
     {
       "key": {
+        "uuid": "dedf7415_279c287d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsCmHandlerQueryServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-05-27T11:09:01Z",
+      "side": 1,
+      "message": "isAmalgamatedQueryResultEmpty",
+      "range": {
+        "startLine": 68,
+        "startChar": 22,
+        "endLine": 68,
+        "endChar": 33
+      },
+      "revId": "bac984a7b5c1bf0413b92db14f2e520d78d3ca70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c07b904b_117f62b0",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsCmHandlerQueryServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-05-27T11:09:01Z",
+      "side": 1,
+      "message": "NB : isAmalgamatedQueryResultEmpty",
+      "range": {
+        "startLine": 76,
+        "startChar": 96,
+        "endLine": 76,
+        "endChar": 106
+      },
+      "revId": "bac984a7b5c1bf0413b92db14f2e520d78d3ca70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "429a6d04_42c966e5",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsCmHandlerQueryServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-05-27T11:09:01Z",
+      "side": 1,
+      "message": "Duplicated string literals make the process of refactoring error-prone, since we must be sure to update all occurrences.",
+      "range": {
+        "startLine": 83,
+        "startChar": 21,
+        "endLine": 83,
+        "endChar": 31
+      },
+      "revId": "bac984a7b5c1bf0413b92db14f2e520d78d3ca70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "676ac4b2_820cf899",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsCmHandlerQueryServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-05-27T11:09:01Z",
+      "side": 1,
+      "message": "Duplicated string literals as previous",
+      "range": {
+        "startLine": 83,
+        "startChar": 35,
+        "endLine": 83,
+        "endChar": 52
+      },
+      "revId": "bac984a7b5c1bf0413b92db14f2e520d78d3ca70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb2ffc19_7b1b6e16",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsCmHandlerQueryServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-05-27T11:09:01Z",
+      "side": 1,
+      "message": "isAmalgamatedQueryResultEmpty",
+      "range": {
+        "startLine": 85,
+        "startChar": 16,
+        "endLine": 85,
+        "endChar": 26
+      },
+      "revId": "bac984a7b5c1bf0413b92db14f2e520d78d3ca70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0d89e3ed_a9a033a1",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsCmHandlerQueryServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-05-27T11:09:01Z",
+      "side": 1,
+      "message": "isAmalgamatedQueryResultEmpty \u003d !amalgamatedQueryResult.addAll(singleConditionQueryResult);",
+      "range": {
+        "startLine": 86,
+        "startChar": 16,
+        "endLine": 87,
+        "endChar": 74
+      },
+      "revId": "bac984a7b5c1bf0413b92db14f2e520d78d3ca70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f3c3853a_44c6d0d8",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsCmHandlerQueryServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-05-27T11:09:01Z",
+      "side": 1,
+      "message": "NB : Use parallel stream here if insertion order of dataNodes is not important. Need to confirm pls bring this in our daily call.",
+      "range": {
+        "startLine": 103,
+        "startChar": 12,
+        "endLine": 103,
+        "endChar": 27
+      },
+      "revId": "bac984a7b5c1bf0413b92db14f2e520d78d3ca70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7728eee7_cf330790",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsCmHandlerQueryServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-05-27T11:09:01Z",
+      "side": 1,
+      "message": "Use boolean isAmalgamatedQueryResultEmpty for more redability into this method",
+      "range": {
+        "startLine": 109,
+        "startChar": 12,
+        "endLine": 109,
+        "endChar": 25
+      },
+      "revId": "bac984a7b5c1bf0413b92db14f2e520d78d3ca70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7dc73206_64b39f7e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsCmHandlerQueryServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-05-27T11:09:01Z",
+      "side": 1,
+      "message": "Pls verify if condition name is case sensitive.",
+      "range": {
+        "startLine": 117,
+        "startChar": 53,
+        "endLine": 117,
+        "endChar": 59
+      },
+      "revId": "bac984a7b5c1bf0413b92db14f2e520d78d3ca70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a9fd1123_6cb89c92",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsCmHandlerQueryServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-05-27T11:09:01Z",
+      "side": 1,
+      "message": "here as well we can use parallel stream to add module names.",
+      "range": {
+        "startLine": 126,
+        "startChar": 8,
+        "endLine": 126,
+        "endChar": 69
+      },
+      "revId": "bac984a7b5c1bf0413b92db14f2e520d78d3ca70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e176121d_be378ac1",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNode.java",
         "patchSetId": 9
@@ -893,6 +1462,121 @@
       "revId": "bac984a7b5c1bf0413b92db14f2e520d78d3ca70",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a9abe81_5bc46668",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/CmHandleQueryRestParametersValidator.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-05-27T11:09:01Z",
+      "side": 1,
+      "message": "extract all into method",
+      "range": {
+        "startLine": 45,
+        "startChar": 23,
+        "endLine": 46,
+        "endChar": 89
+      },
+      "revId": "bac984a7b5c1bf0413b92db14f2e520d78d3ca70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "117d0cac_f4a93781",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/CmHandleQueryRestParametersValidator.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-05-27T11:09:01Z",
+      "side": 1,
+      "message": "Can be merged : if (conditionProperty.containsKey(\"moduleName\") \u0026\u0026 conditionProperty.get(\"moduleName\").isEmpty())",
+      "range": {
+        "startLine": 85,
+        "startChar": 8,
+        "endLine": 86,
+        "endChar": 63
+      },
+      "revId": "bac984a7b5c1bf0413b92db14f2e520d78d3ca70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be0fea34_eed277ec",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/CmHandleQueryRestParametersValidator.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-05-27T11:09:01Z",
+      "side": 1,
+      "message": "extract into method",
+      "range": {
+        "startLine": 87,
+        "startChar": 16,
+        "endLine": 88,
+        "endChar": 99
+      },
+      "revId": "bac984a7b5c1bf0413b92db14f2e520d78d3ca70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a764e54_190dd707",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/CmHandleQueryRestParametersValidator.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-05-27T11:09:01Z",
+      "side": 1,
+      "message": "else can be removed here",
+      "range": {
+        "startLine": 90,
+        "startChar": 10,
+        "endLine": 93,
+        "endChar": 9
+      },
+      "revId": "bac984a7b5c1bf0413b92db14f2e520d78d3ca70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5f9c879b_10c9c35f",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/E2ENetworkSliceSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-05-27T11:09:01Z",
+      "side": 1,
+      "message": "def mockCpsCmHandlerQueryService \u003d Stub(CpsCmHandlerQueryService)",
+      "range": {
+        "startLine": 40,
+        "startChar": 4,
+        "endLine": 40,
+        "endChar": 69
+      },
+      "revId": "bac984a7b5c1bf0413b92db14f2e520d78d3ca70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
