@@ -1,5 +1,5 @@
 /*
- *  ============LICENSE_START=======================================================
+ * ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,11 +20,13 @@
 
 package org.onap.cps.ncmp.api.inventory.sync;
 
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.inventory.CmHandleState;
 import org.onap.cps.ncmp.api.inventory.CompositeState;
+import org.onap.cps.ncmp.api.inventory.CompositeState.LockReason;
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.api.inventory.LockReasonCategory;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -68,4 +70,20 @@ public class ModuleSyncWatchdog {
         log.debug("No Cm-Handles currently found in an ADVISED state");
     }
 
+    /**
+     * Execute Cm Handle poll which changes the cm handle state from 'LOCKED' to 'ADVISED'.
+     */
+    @Scheduled(fixedDelayString = "${timers.locked-modules-sync.sleep-time-ms}")
+    public void executeLockedMisbehavingCmHandlePoll() {
+        final List<YangModelCmHandle> allLockedMisbehavingCmHandle = syncUtils.getLockedMisbehavingCmHandles();
+        for (final YangModelCmHandle lockedMisbehavingModelCmHandle: allLockedMisbehavingCmHandle) {
+            final CompositeState updatedCompositeState = lockedMisbehavingModelCmHandle.getCompositeState();
+            updatedCompositeState.setCmHandleState(CmHandleState.ADVISED);
+            updatedCompositeState.setLastUpdateTimeNow();
+            updatedCompositeState.setLockReason(LockReason.builder()
+                .details(updatedCompositeState.getLockReason().getDetails()).build());
+            inventoryPersistence.saveCmHandleState(lockedMisbehavingModelCmHandle.getId(), updatedCompositeState);
+        }
+        log.debug("No Cm-Handles currently found in an LOCKED state");
+    }
 }
