@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Nordix Foundation
+ *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -25,6 +26,7 @@ import org.onap.cps.ncmp.api.inventory.CmHandleState
 import org.onap.cps.ncmp.api.inventory.CompositeState
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence
 import org.onap.cps.ncmp.api.inventory.LockReasonCategory
+import org.onap.cps.ncmp.api.inventory.CompositeStateBuilder
 import spock.lang.Specification
 
 class ModuleSyncSpec extends Specification {
@@ -88,4 +90,18 @@ class ModuleSyncSpec extends Specification {
 
     }
 
+    def 'Schedule a Cm-Handle Sync for LOCKED with reason LOCKED_MISBEHAVING Cm-Handles '() {
+        given: 'cm handles in an locked state'
+            def compositeState = new CompositeStateBuilder().withCmHandleState(CmHandleState.LOCKED)
+                    .withLockReason(LockReasonCategory.LOCKED_MISBEHAVING, '').build()
+            def yangModelCmHandle = new YangModelCmHandle(id: 'some-cm-handle', compositeState: compositeState)
+        and: 'sync utilities return a cm handle twice'
+            mockSyncUtils.getLockedMisbehavingCmHandles() >> [yangModelCmHandle, yangModelCmHandle]
+        when: 'module sync poll is executed'
+            objectUnderTest.executeLockedMisbehavingCmHandlePoll()
+        then: 'the first cm handle is updated to state "ADVISED" from "READY"'
+            compositeState.setCmHandleState(CmHandleState.ADVISED)
+            compositeState.setLockReason(CompositeState.LockReason.builder().build())
+            2 * mockInventoryPersistence.saveCmHandleState(yangModelCmHandle.id, compositeState)
+    }
 }

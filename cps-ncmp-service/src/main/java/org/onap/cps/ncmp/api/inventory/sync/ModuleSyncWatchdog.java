@@ -1,6 +1,7 @@
 /*
- *  ============LICENSE_START=======================================================
+ * ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Nordix Foundation
+ *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,11 +21,13 @@
 
 package org.onap.cps.ncmp.api.inventory.sync;
 
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.inventory.CmHandleState;
 import org.onap.cps.ncmp.api.inventory.CompositeState;
+import org.onap.cps.ncmp.api.inventory.CompositeState.LockReason;
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.api.inventory.LockReasonCategory;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -44,7 +47,7 @@ public class ModuleSyncWatchdog {
     /**
      * Execute Cm Handle poll which changes the cm handle state from 'ADVISED' to 'READY'.
      */
-    @Scheduled(fixedDelayString = "${timers.advised-modules-sync.sleep-time-ms}")
+    @Scheduled(fixedDelayString = "${timers.advised-modules-sync.sleep-time-ms:30000}")
     public void executeAdvisedCmHandlePoll() {
         YangModelCmHandle advisedCmHandle = syncUtils.getAnAdvisedCmHandle();
         while (advisedCmHandle != null) {
@@ -68,4 +71,20 @@ public class ModuleSyncWatchdog {
         log.debug("No Cm-Handles currently found in an ADVISED state");
     }
 
+    /**
+     * Execute Cm Handle poll which changes the cm handle state from 'LOCKED' to 'ADVISED'.
+     */
+    @Scheduled(fixedDelayString = "${timers.locked-modules-sync.sleep-time-ms:300000}")
+    public void executeLockedMisbehavingCmHandlePoll() {
+        final List<YangModelCmHandle> lockedMisbehavingCmHandles = syncUtils.getLockedMisbehavingCmHandles();
+        for (final YangModelCmHandle lockedMisbehavingModelCmHandle: lockedMisbehavingCmHandles) {
+            final CompositeState updatedCompositeState = lockedMisbehavingModelCmHandle.getCompositeState();
+            updatedCompositeState.setCmHandleState(CmHandleState.ADVISED);
+            updatedCompositeState.setLastUpdateTimeNow();
+            updatedCompositeState.setLockReason(LockReason.builder()
+                .details(updatedCompositeState.getLockReason().getDetails()).build());
+            log.debug("Locked misbehaving cm handle {} is being recycled", lockedMisbehavingModelCmHandle.getId());
+            inventoryPersistence.saveCmHandleState(lockedMisbehavingModelCmHandle.getId(), updatedCompositeState);
+        }
+    }
 }
