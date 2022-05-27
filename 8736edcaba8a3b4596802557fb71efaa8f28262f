@@ -22,6 +22,30 @@
       "revId": "8736edcaba8a3b4596802557fb71efaa8f28262f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca5ced93_f57915af",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/ncmp-event-schema-v1.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-05-27T09:10:08Z",
+      "side": 1,
+      "message": "I think so.\nAs per the details here\nhttps://wiki.onap.org/pages/viewpage.action?pageId\u003d117744742\nwe have cmhandle-state",
+      "parentUuid": "2e4cc64e_382bd8de",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 48
+      },
+      "revId": "8736edcaba8a3b4596802557fb71efaa8f28262f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
