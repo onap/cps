@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -26,6 +27,7 @@ import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.CpsDataService;
+import org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.spi.CpsDataPersistenceService;
@@ -39,9 +41,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class InventoryPersistence {
 
-    private static final String NCMP_DATASPACE_NAME = "NCMP-Admin";
+    private static final String NCMP_DATASPACE_NAME = DmiRegistryConstants.NCMP_DATASPACE_NAME;
 
-    private static final String NCMP_DMI_REGISTRY_ANCHOR = "ncmp-dmi-registry";
+    private static final String NCMP_DMI_REGISTRY_ANCHOR = DmiRegistryConstants.NCMP_DMI_REGISTRY_ANCHOR;
 
     private final JsonObjectMapper jsonObjectMapper;
 
@@ -92,6 +94,18 @@ public class InventoryPersistence {
     }
 
     /**
+     * Method to return cm handles which are locked with reason LOCKED_MISBEHAVING.
+     *
+     * @return a list of cm handles
+     */
+    public List<DataNode> getLockedMisbehavingCmHandles() {
+        return cpsDataPersistenceService.queryDataNodes(
+            NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
+            "//lock-reason[@reason=\"LOCKED_MISBEHAVING\"]/ancestor::cm-handles",
+            FetchDescendantsOption.OMIT_DESCENDANTS);
+    }
+
+    /**
      * This method retrieves DMI service name and DMI properties for a given cm handle.
      * @param cmHandleId the id of the cm handle
      * @return yang model cm handle
@@ -123,19 +137,18 @@ public class InventoryPersistence {
         final Map<String, String> dmiProperties = new LinkedHashMap<>();
         final Map<String, String> publicProperties = new LinkedHashMap<>();
         final CompositeStateBuilder compositeStateBuilder = new CompositeStateBuilder();
-        CompositeState compositeState = compositeStateBuilder.build();
         for (final DataNode childDataNode: cmHandleDataNode.getChildDataNodes()) {
             if (childDataNode.getXpath().contains("/additional-properties[@name=")) {
                 addProperty(childDataNode, dmiProperties);
             } else if (childDataNode.getXpath().contains("/public-properties[@name=")) {
                 addProperty(childDataNode, publicProperties);
             } else if (childDataNode.getXpath().endsWith("/state")) {
-                compositeState = compositeStateBuilder.fromDataNode(childDataNode).build();
+                compositeStateBuilder.fromDataNode(childDataNode);
             }
         }
         ncmpServiceCmHandle.setDmiProperties(dmiProperties);
         ncmpServiceCmHandle.setPublicProperties(publicProperties);
-        ncmpServiceCmHandle.setCompositeState(compositeState);
+        ncmpServiceCmHandle.setCompositeState(compositeStateBuilder.build());
     }
 
     private static void addProperty(final DataNode propertyDataNode, final Map<String, String> propertiesAsMap) {
