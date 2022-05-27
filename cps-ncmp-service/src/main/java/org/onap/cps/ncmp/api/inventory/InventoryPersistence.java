@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Nordix Foundation
+ *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -89,6 +90,17 @@ public class InventoryPersistence {
             NCMP_DMI_REGISTRY_ANCHOR, "//state[@cm-handle-state=\""
                 + cmHandleState + "\"]/ancestor::cm-handles",
             FetchDescendantsOption.OMIT_DESCENDANTS);
+    }
+
+    /**
+     * Method to return cm handles from the cps path.
+     *
+     * @param cpsPath cpsPath for which the cmHandle is requested
+     * @return a list of cm handles
+     */
+    public List<DataNode> getCmHandlesByCpsPath(final String cpsPath) {
+        return cpsDataPersistenceService.queryDataNodes(
+            NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cpsPath, FetchDescendantsOption.OMIT_DESCENDANTS);
     }
 
     /**
