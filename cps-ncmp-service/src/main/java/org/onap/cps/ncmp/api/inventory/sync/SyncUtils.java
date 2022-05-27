@@ -26,13 +26,15 @@ import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NCMP_DMI
 
 import java.security.SecureRandom;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.ncmp.api.impl.operations.YangModelCmHandleRetriever;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
-import org.onap.cps.ncmp.api.inventory.CmHandleState;
+import org.onap.cps.ncmp.api.inventory.CompositeState;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
@@ -45,6 +47,9 @@ import org.springframework.stereotype.Component;
 public class SyncUtils {
 
     private static final SecureRandom secureRandom = new SecureRandom();
+    private static final String CM_HANDLE_ANCHOR = "ncmp-dmi-registry";
+    private static final String CM_HANDLE_DATASPACE_NAME = "NCMP-Admin";
+
     private final CpsDataService cpsDataService;
 
     private final CpsDataPersistenceService cpsDataPersistenceService;
@@ -53,14 +58,15 @@ public class SyncUtils {
 
     private final YangModelCmHandleRetriever yangModelCmHandleRetriever;
 
+
     /**
      * Query data nodes for cm handles with an "ADVISED" cm handle state, and select a random entry for processing.
      *
      * @return a random yang model cm handle with an ADVISED state, return null if not found
      */
     public YangModelCmHandle getAnAdvisedCmHandle() {
-        final List<DataNode> advisedCmHandles = cpsDataPersistenceService.queryDataNodes("NCMP-Admin",
-            "ncmp-dmi-registry", "//cm-handles[@state=\"ADVISED\"]",
+        final List<DataNode> advisedCmHandles = cpsDataPersistenceService.queryDataNodes(CM_HANDLE_DATASPACE_NAME,
+            CM_HANDLE_ANCHOR, "//cm-handles[@state=\"ADVISED\"]",
             FetchDescendantsOption.OMIT_DESCENDANTS);
         if (advisedCmHandles.isEmpty()) {
             return null;
@@ -72,13 +78,44 @@ public class SyncUtils {
     }
 
     /**
+     * Query data nodes for cm handles with an "LOCKED" cm handle state with reason LOCKED_MISBEHAVING".
+     *
+     * @return a random yang model cm handle with an ADVISED state, return null if not found
+     */
+    public List<YangModelCmHandle> getLockedMisbehavingCmHandles() {
+        final List<DataNode> lockedCmHandleAsDataNodeList = cpsDataPersistenceService.queryDataNodes(
+            CM_HANDLE_DATASPACE_NAME, CM_HANDLE_ANCHOR,
+            "//lock-reason[@reason=\"LOCKED_MISBEHAVING\"]/ancestor::cm-handles",
+            FetchDescendantsOption.OMIT_DESCENDANTS);
+        final List<YangModelCmHandle> lockedCmHandleAsYangModelList = new ArrayList<>();
+        for (final DataNode lockedCmHandleDataNode: lockedCmHandleAsDataNodeList) {
+            final String cmHandleId = lockedCmHandleDataNode.getLeaves()
+                .get("id").toString();
+            lockedCmHandleAsYangModelList.add(yangModelCmHandleRetriever.getYangModelCmHandle(cmHandleId));
+        }
+        return lockedCmHandleAsYangModelList;
+    }
+
+    /**
+     * Query UNSYNCHRONIZED cm Handles".
+     *
+     * @param cmHandlesAsList list of cm handles
+     * @return a list of
+     */
+    public List<YangModelCmHandle> getUnSynchronizedCmHandles(final List<YangModelCmHandle> cmHandlesAsList) {
+        return cmHandlesAsList.stream().filter(
+            lockedCmHandleAsYangModel -> lockedCmHandleAsYangModel.getCompositeState().getDataStores()
+                .getOperationalDataStore().getSyncState().equals("UNSYNCHRONIZED")).collect(Collectors.toList());
+    }
+
+    /**
      * Update the Cm Handle state to "READY".
      *
      * @param yangModelCmHandle yang model cm handle
-     * @param cmHandleState cm handle state
+     * @param compositeState cm handle state
      */
-    public void updateCmHandleState(final YangModelCmHandle yangModelCmHandle, final CmHandleState cmHandleState) {
-        yangModelCmHandle.getCompositeState().setCmhandleState(cmHandleState);
+    public void updateCmHandleState(final YangModelCmHandle yangModelCmHandle, final CompositeState compositeState) {
+        yangModelCmHandle.setCompositeState(compositeState);
         final String cmHandleJsonData = String.format("{\"cm-handles\":[%s]}",
             jsonObjectMapper.asJsonString(yangModelCmHandle));
         cpsDataService.updateNodeLeaves(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NCMP_DMI_REGISTRY_PARENT,
