@@ -27,6 +27,7 @@ import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.model.DataNode
+import org.onap.cps.spi.model.DataNodeBuilder
 import org.onap.cps.utils.JsonObjectMapper
 import spock.lang.Shared
 import spock.lang.Specification
@@ -50,7 +51,7 @@ class InventoryPersistenceSpec extends Specification {
     def objectUnderTest = new InventoryPersistence(spiedJsonObjectMapper, mockCpsDataService, mockCpsDataPersistenceService)
 
     def formattedDateAndTime = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
-        .format(OffsetDateTime.of(2022, 12, 31, 20, 30, 40, 1, ZoneOffset.UTC))
+            .format(OffsetDateTime.of(2022, 12, 31, 20, 30, 40, 1, ZoneOffset.UTC))
 
     def cmHandleId = 'some-cm-handle'
     def leaves = ["dmi-service-name":"common service name","dmi-data-service-name":"data service name","dmi-model-service-name":"model service name"]
@@ -68,6 +69,13 @@ class InventoryPersistenceSpec extends Specification {
 
     @Shared
     def childDataNodesForCmHandleWithState = [new DataNode(xpath: "/dmi-registry/cm-handles[@id='some-cm-handle']/state", leaves: ['cm-handle-state': 'ADVISED'])]
+
+    @Shared
+    def static stateDataNodes = [new DataNodeBuilder()
+                                         .withXpath("/dmi-registry/cm-handles[@id='some-cm-handle']/state/lock-reason")
+                                         .withLeaves(['reason': 'LOCKED_MISBEHAVING', 'details': 'lock details']).build()
+    ]
+
 
     def "Retrieve CmHandle using datanode with #scenario."() {
         given: 'the cps data service returns a data node from the DMI registry'
@@ -88,7 +96,7 @@ class InventoryPersistenceSpec extends Specification {
         where: 'the following parameters are used'
             scenario                    | childDataNodes                                || expectedDmiProperties                               || expectedPublicProperties                              || expectedCompositeState
             'no properties'             | []                                            || []                                                  || []                                                    || null
-            'DMI and public properties' | childDataNodesForCmHandleWithAllProperties    || [new YangModelCmHandle.Property("name1", "value1")] || [new YangModelCmHandle.Property("name2", "value2")]   || null
+            'DMI and public properties' | childDataNodesForCmHandleWithAllProperties    || [new YangModelCmHandle.Property("name1", "value1")] || [new YangModelCmHandle.Property("name2", "value2")] || null
             'just DMI properties'       | childDataNodesForCmHandleWithDMIProperties    || [new YangModelCmHandle.Property("name1", "value1")] || []                                                    || null
             'just public properties'    | childDataNodesForCmHandleWithPublicProperties || []                                                  || [new YangModelCmHandle.Property("name2", "value2")]   || null
             'with state details'        | childDataNodesForCmHandleWithState            || []                                                  || []                                                    || CmHandleState.ADVISED
@@ -105,7 +113,7 @@ class InventoryPersistenceSpec extends Specification {
 
     def "Handling missing service names as null CPS-1043."() {
         given: 'the cps data service returns a data node from the DMI registry with empty child and leaf attributes'
-            def dataNode = new DataNode(childDataNodes:[], leaves: ["cm-handle-state":"ADVISED"])
+            def dataNode = new DataNode(childDataNodes:[], leaves: [:])
             mockCpsDataService.getDataNode('NCMP-Admin', 'ncmp-dmi-registry', xpath, INCLUDE_ALL_DESCENDANTS) >> dataNode
         when: 'retrieving the yang modelled cm handle'
             def result = objectUnderTest.getYangModelCmHandle(cmHandleId)
@@ -121,7 +129,7 @@ class InventoryPersistenceSpec extends Specification {
             def dataNode = new DataNode(leaves: ['cm-handle-state': 'ADVISED'])
         and: 'cps data service returns a valid data node'
             mockCpsDataService.getDataNode('NCMP-Admin', 'ncmp-dmi-registry',
-                '/dmi-registry/cm-handles[@id=\'Some-Cm-Handle\']/state', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
+                    '/dmi-registry/cm-handles[@id=\'Some-Cm-Handle\']/state', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
         when: 'get cm handle state is invoked'
             def result = objectUnderTest.getCmHandleState(cmHandleId)
         then: 'result has returned the correct cm handle state'
@@ -137,7 +145,7 @@ class InventoryPersistenceSpec extends Specification {
         then: 'update node leaves is invoked with the correct params'
             1 * mockCpsDataService.replaceNodeTree('NCMP-Admin', 'ncmp-dmi-registry', '/dmi-registry/cm-handles[@id=\'Some-Cm-Handle\']', expectedJsonData, _ as OffsetDateTime)
         where: 'the following states are used'
-             scenario | cmHandleState        || expectedJsonData
+            scenario | cmHandleState        || expectedJsonData
             'READY'   | CmHandleState.READY  || '{"state":{"cm-handle-state":"READY","last-update-time":"2022-12-31T20:30:40.000+0000"}}'
             'LOCKED'  | CmHandleState.LOCKED || '{"state":{"cm-handle-state":"LOCKED","last-update-time":"2022-12-31T20:30:40.000+0000"}}'
     }
@@ -148,11 +156,25 @@ class InventoryPersistenceSpec extends Specification {
         and: 'cps data service returns a list of data nodes'
             def dataNodes = [new DataNode()]
             mockCpsDataPersistenceService.queryDataNodes('NCMP-Admin', 'ncmp-dmi-registry',
-                '//state[@cm-handle-state="ADVISED"]/ancestor::cm-handles', OMIT_DESCENDANTS) >> dataNodes
+                    '//state[@cm-handle-state="ADVISED"]/ancestor::cm-handles', OMIT_DESCENDANTS) >> dataNodes
         when: 'get cm handles by state is invoked'
             def result = objectUnderTest.getCmHandlesByState(cmHandleState)
         then: 'the returned result is a list of data nodes returned by cps data service'
             assert result == dataNodes
+    }
+
+    def 'Get all locked cm handles with reason LOCKED_MISBEHAVING'() {
+        given: 'a cm handle state to query'
+            def cmHandleDataNode = new DataNode(xpath: 'xpath', leaves: ['cm-handle-state': 'LOCKED'])
+            def cpsPath = '//lock-reason[@reason=\"LOCKED_MISBEHAVING\"]/ancestor::cm-handles'
+        when: 'get cm handles by state is invoked'
+            def result = objectUnderTest.getCmHandlesByCpsPath(cpsPath)
+        then: 'queryDataNode is invoked once with the passed cpsPath'
+            1 * mockCpsDataPersistenceService.queryDataNodes('NCMP-Admin', 'ncmp-dmi-registry',
+                    cpsPath, OMIT_DESCENDANTS)
+                    >> Arrays.asList(cmHandleDataNode)
+        and: 'the returned result is a list of data nodes returned by cps data service'
+            assert result.contains(cmHandleDataNode)
     }
 
 }
