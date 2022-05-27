@@ -20,10 +20,15 @@
 
 package org.onap.cps.ncmp.api.inventory.sync;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.inventory.CmHandleState;
+import org.onap.cps.ncmp.api.inventory.CompositeState;
+import org.onap.cps.ncmp.api.inventory.CompositeState.LockReason;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -44,8 +49,10 @@ public class ModuleSyncWatchdog {
         YangModelCmHandle advisedCmHandle = syncUtils.getAnAdvisedCmHandle();
         while (advisedCmHandle != null) {
             moduleSyncService.syncAndCreateSchemaSet(advisedCmHandle);
+            final CompositeState updatedCompositeState = advisedCmHandle.getCompositeState();
+            updatedCompositeState.setCmhandleState(CmHandleState.READY);
             // ToDo Lock Cm Handle if module sync fails
-            syncUtils.updateCmHandleState(advisedCmHandle, CmHandleState.READY);
+            syncUtils.updateCmHandleState(advisedCmHandle, updatedCompositeState);
             log.info("{} is now in {} state", advisedCmHandle.getId(),
                     advisedCmHandle.getCompositeState().getCmhandleState());
             advisedCmHandle = syncUtils.getAnAdvisedCmHandle();
@@ -53,4 +60,21 @@ public class ModuleSyncWatchdog {
         log.debug("No Cm-Handles currently found in an ADVISED state");
     }
 
+    /**
+     * Execute Cm Handle poll which changes the cm handle state from 'LOCKED' to 'ADVISED'.
+     */
+    @Scheduled(fixedDelayString = "${timers.locked-modules-sync.sleep-time-ms}")
+    public void executeLockedMisbehavingCmHandlePoll() {
+        final List<YangModelCmHandle> allLockedMisbehavingCmHandle = syncUtils.getLockedMisbehavingCmHandles();
+        for (final YangModelCmHandle lockedMisbehavingModelCmHandle: allLockedMisbehavingCmHandle) {
+            final CompositeState updatedCompositeState = lockedMisbehavingModelCmHandle.getCompositeState();
+            updatedCompositeState.setCmhandleState(CmHandleState.ADVISED);
+            updatedCompositeState.setLastUpdateTime(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss")
+                .format(LocalDateTime.now()));
+            updatedCompositeState.setLockReason(LockReason.builder().reason("")
+                .details(updatedCompositeState.getLockReason().getDetails()).build());
+            syncUtils.updateCmHandleState(lockedMisbehavingModelCmHandle, updatedCompositeState);
+        }
+        log.debug("No Cm-Handles currently found in an LOCKED state");
+    }
 }
