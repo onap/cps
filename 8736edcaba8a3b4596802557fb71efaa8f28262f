@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e4cc64e_382bd8de",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/ncmp-event-schema-v1.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-05-27T08:57:14Z",
+      "side": 1,
+      "message": "query: so is it the only Cm-handle-state that needs to be passed? the lock reason and datastore details need not be passed ?",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 48
+      },
+      "revId": "8736edcaba8a3b4596802557fb71efaa8f28262f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
