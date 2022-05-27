@@ -83,7 +83,7 @@ public class DmiDataOperations extends DmiOperations {
                 dmiServiceUrlBuilder.populateQueryParams(resourceId, optionsParamInQuery,
                 topicParamInQuery), dmiServiceUrlBuilder.populateUriVariables(
                         yangModelCmHandle, cmHandleId, dataStore));
-        return dmiRestClient.postOperationWithJsonData(dmiResourceDataUrl, jsonBody);
+        return dmiRestClient.postOperationWithJsonData(dmiResourceDataUrl, jsonBody, READ);
     }
 
     /**
@@ -116,7 +116,7 @@ public class DmiDataOperations extends DmiOperations {
             dmiServiceUrlBuilder.getDmiDatastoreUrl(dmiServiceUrlBuilder.populateQueryParams(resourceId,
                     null, null),
                 dmiServiceUrlBuilder.populateUriVariables(yangModelCmHandle, cmHandleId, PASSTHROUGH_RUNNING));
-        return dmiRestClient.postOperationWithJsonData(dmiUrl, jsonBody);
+        return dmiRestClient.postOperationWithJsonData(dmiUrl, jsonBody, operation);
     }
 
 }

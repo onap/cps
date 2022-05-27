@@ -47,6 +47,7 @@ import spock.lang.Specification
 
 import static org.onap.cps.ncmp.rest.exceptions.NetworkCmProxyRestExceptionHandlerSpec.ApiType.NCMP
 import static org.onap.cps.ncmp.rest.exceptions.NetworkCmProxyRestExceptionHandlerSpec.ApiType.NCMPINVENTORY
+import static org.springframework.http.HttpStatus.BAD_GATEWAY
 import static org.springframework.http.HttpStatus.BAD_REQUEST
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR
 import static org.springframework.http.HttpStatus.NOT_FOUND
@@ -121,10 +122,9 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
 
     def 'Failing DMI Request - passthrough scenario'() {
         given: 'failing DMI request'
-            mockNetworkCmProxyDataService.getResourceDataPassThroughRunningForCmHandle(*_) >> { throw new HttpClientRequestException('Error Message Details NCMP', 'Bad Request from DMI', 400) }
+            setupTestException(new HttpClientRequestException('Error Message Details NCMP', 'Bad Request from DMI', 400) , NCMP)
         when: 'the DMI request is executed'
-            def response = mvc.perform(get("$dataNodeBaseEndpointNcmp/ch/testCmHandle/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=stores:bookstore/categories=100"))
-                .andReturn().response
+            def response = performTestRequest(NCMP)
         then: 'NCMP service responds with 502 Bad Gateway status'
             response.status == HttpStatus.BAD_GATEWAY.value()
         and: 'the NCMP response also contains the original DMI response details'
