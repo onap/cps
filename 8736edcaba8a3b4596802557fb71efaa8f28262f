@@ -94,6 +94,29 @@
       "revId": "8736edcaba8a3b4596802557fb71efaa8f28262f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "deaabf5c_05e87729",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/ncmp-event-schema-v1.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 7680
+      },
+      "writtenOn": "2022-05-27T11:35:51Z",
+      "side": 1,
+      "message": "In the case of delete, I think we won\u0027t have cmhandle-state and cmhandle-properties, so these should not be required.",
+      "range": {
+        "startLine": 79,
+        "startChar": 20,
+        "endLine": 81,
+        "endChar": 29
+      },
+      "revId": "8736edcaba8a3b4596802557fb71efaa8f28262f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
