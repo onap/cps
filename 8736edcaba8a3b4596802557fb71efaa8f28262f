@@ -70,6 +70,30 @@
       "revId": "8736edcaba8a3b4596802557fb71efaa8f28262f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a2716ce3_b75feb88",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/ncmp-event-schema-v1.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-05-27T10:22:35Z",
+      "side": 1,
+      "message": "I see.\nWe can bring this up in today\u0027s call and check.\nAlso we can confirm if this was designed as per the new model.\nThanks 😊",
+      "parentUuid": "504e756b_a46848ed",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 48
+      },
+      "revId": "8736edcaba8a3b4596802557fb71efaa8f28262f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
