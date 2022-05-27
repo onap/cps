@@ -1,6 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Nordix Foundation
+ *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,13 +21,15 @@
 
 package org.onap.cps.ncmp.api.inventory.sync
 
+import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.inventory.CmHandleState
 import org.onap.cps.ncmp.api.inventory.CompositeState
+import org.onap.cps.ncmp.api.inventory.CompositeStateBuilder
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence
 import org.onap.cps.ncmp.api.inventory.LockReasonCategory
 import org.onap.cps.spi.CpsDataPersistenceService
-import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.model.DataNode
+import org.onap.cps.spi.model.DataNodeBuilder
 import spock.lang.Shared
 import spock.lang.Specification
 
@@ -37,10 +40,19 @@ class SyncUtilsSpec extends Specification{
 
     def objectUnderTest = new SyncUtils(mockInventoryPersistence)
 
+    def static cmHandleId = 'cm-handle-123'
+    def static cmHandleXpath = "/dmi-registry/cm-handles[@id='${cmHandleId}/state']"
+    def static stateDataNodes = [new DataNodeBuilder()
+                                         .withXpath("/dmi-registry/cm-handles[@id='${cmHandleId}']/state/lock-reason")
+                                         .withLeaves(['reason': 'LOCKED_MISBEHAVING', 'details': 'lock details']).build()
+                                 ]
+
+    def static cmHandleDataNode = new DataNode(xpath: cmHandleXpath, childDataNodes: stateDataNodes, leaves: ['cm-handle-state': 'LOCKED'])
+
+    def static yangModelCmHandle = new YangModelCmHandle(compositeState: new CompositeStateBuilder().fromDataNode(cmHandleDataNode).build())
+
     @Shared
     def dataNode = new DataNode(leaves: ['id': 'cm-handle-123'])
-
-
 
     def 'Get an advised Cm-Handle where ADVISED cm handle #scenario'() {
         given: 'the inventory persistence service returns a collection of data nodes'
@@ -71,5 +83,20 @@ class SyncUtilsSpec extends Specification{
             'does not exist' | null                                                                                         || 'Attempt #1 failed: new error message'
             'exists'         | CompositeState.LockReason.builder().details("Attempt #2 failed: some error message").build() || 'Attempt #3 failed: new error message'
     }
+    def 'Get all locked Cm-Handle where Lock Reason is LOCKED_MISBEHAVING cm handle #scenario'() {
+        given: 'the cps (persistence service) returns a collection of data nodes'
+            mockInventoryPersistence.getCMHandlesByCpsPath() >> dataNodeCollection
+            mockInventoryPersistence.getYangModelCmHandle('cm-handle-123') >> yangModelCmHandle
+        when: 'get locked Misbehaving cm handle is called'
+            objectUnderTest.getLockedMisbehavingCmHandles()
+        then: 'the returned cm handle collection is the correct size'
+            dataNodeCollection.size() == expectedCmHandleListSize
+        and: 'get yang model cm handles is invoked the correct number of times'
+            expectedCallsToGetYangModelCmHandle * mockInventoryPersistence.getYangModelCmHandle('cm-handle-123')
+        where: 'the following scenarios are used'
+            scenario         | dataNodeCollection         || expectedCallsToGetYangModelCmHandle | expectedCmHandleListSize
+            'exists'         | [dataNode ]                || 1                                   | 1
+            'does not exist' | [ ]                        || 0                                   | 0
 
+    }
 }

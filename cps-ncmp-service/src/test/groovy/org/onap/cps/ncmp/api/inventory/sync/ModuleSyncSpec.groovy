@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Nordix Foundation
+ *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -25,6 +26,7 @@ import org.onap.cps.ncmp.api.inventory.CmHandleState
 import org.onap.cps.ncmp.api.inventory.CompositeState
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence
 import org.onap.cps.ncmp.api.inventory.LockReasonCategory
+import org.onap.cps.ncmp.api.inventory.CompositeStateBuilder
 import spock.lang.Specification
 
 class ModuleSyncSpec extends Specification {
@@ -41,8 +43,8 @@ class ModuleSyncSpec extends Specification {
 
     def 'Schedule a Cm-Handle Sync for ADVISED Cm-Handles'() {
         given: 'cm handles in an advised state'
-            def compositeState1 = new CompositeState(cmHandleState: cmHandleState)
-            def compositeState2 = new CompositeState(cmHandleState: cmHandleState)
+            def compositeState1 = new CompositeState(cmHandleState: this.cmHandleState)
+            def compositeState2 = new CompositeState(cmHandleState: this.cmHandleState)
             def yangModelCmHandle1 = new YangModelCmHandle(id: 'some-cm-handle', compositeState: compositeState1)
             def yangModelCmHandle2 = new YangModelCmHandle(id: 'some-cm-handle-2', compositeState: compositeState2)
         and: 'sync utilities return a cm handle twice'
@@ -54,7 +56,7 @@ class ModuleSyncSpec extends Specification {
         and: 'module sync service syncs the first cm handle and creates a schema set'
             1 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(yangModelCmHandle1)
         and: 'the composite state cm handle state is now READY'
-            assert compositeState1.getCmHandleState() == CmHandleState.READY
+            assert compositeState1.getCmHandleState() == cmHandleState.READY
         and: 'the first cm handle state is updated'
             1 * mockInventoryPersistence.saveCmHandleState('some-cm-handle', compositeState1)
         then: 'the inventory persistence cm handle returns a composite state for the second cm handle'
@@ -62,14 +64,14 @@ class ModuleSyncSpec extends Specification {
         and: 'module sync service syncs the second cm handle and creates a schema set'
             1 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(yangModelCmHandle2)
         and: 'the composite state cm handle state is now READY'
-            assert compositeState2.getCmHandleState() == CmHandleState.READY
+            assert compositeState2.getCmHandleState() == cmHandleState.READY
         and: 'the second cm handle state is updated'
             1 * mockInventoryPersistence.saveCmHandleState('some-cm-handle-2', compositeState2)
     }
 
     def 'Schedule a Cm-Handle Sync for ADVISED Cm-Handle with failure'() {
         given: 'cm handles in an advised state'
-            def compositeState = new CompositeState(cmHandleState: cmHandleState)
+            def compositeState = new CompositeState(cmHandleState: this.cmHandleState)
             def yangModelCmHandle = new YangModelCmHandle(id: 'some-cm-handle', compositeState: compositeState)
         and: 'sync utilities return a cm handle'
             mockSyncUtils.getAnAdvisedCmHandle() >>> [yangModelCmHandle, null]
@@ -80,7 +82,7 @@ class ModuleSyncSpec extends Specification {
         and: 'module sync service attempts to sync the cm handle and throws an exception'
             1 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(*_) >> { throw new Exception('some exception') }
         and: 'the composite state cm handle state is now LOCKED'
-            assert compositeState.getCmHandleState() == CmHandleState.LOCKED
+            assert compositeState.getCmHandleState() == cmHandleState.LOCKED
         and: 'update lock reason, details and attempts is invoked'
             1 * mockSyncUtils.updateLockReasonDetailsAndAttempts(compositeState, LockReasonCategory.LOCKED_MISBEHAVING ,'some exception')
         and: 'the cm handle state is updated'
@@ -88,4 +90,18 @@ class ModuleSyncSpec extends Specification {
 
     }
 
+    def 'Schedule a Cm-Handle Sync for LOCKED with reason LOCKED_MISBEHAVING Cm-Handles '() {
+        given: 'cm handles in an locked state'
+            def compositeState = new CompositeStateBuilder().withCmHandleState(cmHandleState.LOCKED)
+                    .withLockReason(LockReasonCategory.LOCKED_MISBEHAVING, '').build()
+            def yangModelCmHandle = new YangModelCmHandle(id: 'some-cm-handle', compositeState: compositeState)
+        and: 'sync utilities return a cm handle twice'
+            mockSyncUtils.getLockedMisbehavingCmHandles() >> [yangModelCmHandle, yangModelCmHandle]
+        when: 'module sync poll is executed'
+            objectUnderTest.executeLockedMisbehavingCmHandlePoll()
+        then: 'the first cm handle is updated to state "ADVISED" from "READY"'
+            compositeState.setCmHandleState(cmHandleState.ADVISED)
+            compositeState.setLockReason(CompositeState.LockReason.builder().build())
+            2 * mockInventoryPersistence.saveCmHandleState(yangModelCmHandle.id, compositeState)
+    }
 }
