@@ -25,6 +25,29 @@
     },
     {
       "key": {
+        "uuid": "c67173ab_b5f22679",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNodeBuilder.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-05-30T11:23:13Z",
+      "side": 1,
+      "message": "Could we annotate the DataNode class with @Builder? and remove this class or do we need a bespoke builder?",
+      "range": {
+        "startLine": 45,
+        "startChar": 13,
+        "endLine": 45,
+        "endChar": 29
+      },
+      "revId": "9115336b984c526a0309fe14327241f91876f5e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ace35507_b3d938c5",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/DataMapUtils.java",
         "patchSetId": 4
