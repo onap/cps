@@ -26,20 +26,23 @@ package org.onap.cps.ncmp.rest.controller
 import org.mapstruct.factory.Mappers
 import org.onap.cps.ncmp.api.inventory.CmHandleState
 import org.onap.cps.ncmp.api.inventory.CompositeState
+import org.onap.cps.ncmp.api.inventory.CompositeState.DataStores
+import org.onap.cps.ncmp.api.inventory.CompositeState.Operational
+import org.onap.cps.ncmp.api.inventory.CompositeState.Running
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.rest.mapper.RestOutputCmHandleStateMapper
 import org.onap.cps.ncmp.rest.executor.CpsNcmpTaskExecutor
+import org.springframework.http.ResponseEntity
 import spock.lang.Shared
 
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
+import java.util.concurrent.Future
 
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.PATCH
-import static org.onap.cps.ncmp.api.inventory.CompositeState.DataStores
 import static org.onap.cps.ncmp.api.inventory.CompositeState.LockReason
-import static org.onap.cps.ncmp.api.inventory.CompositeState.Operational
-import static org.onap.cps.ncmp.api.inventory.CompositeState.Running
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch
@@ -124,7 +127,8 @@ class NetworkCmProxyControllerSpec extends Specification {
                     "?resourceIdentifier=parent/child&options=(a=1,b=2)${topicQueryParam}"
         when: 'get data resource request is performed'
             def response = mvc.perform(
-                    get(getUrl).contentType(MediaType.APPLICATION_JSON)).andReturn().response
+                    get(getUrl).contentType(MediaType.APPLICATION_JSON)
+            ).andReturn().response
         then: 'task executor is called appropriate number of times'
             expectedNumberOfExecutorExecutions * spiedCpsTaskExecutor.executeTask(_, 2000)
         and: 'response status is expected'
