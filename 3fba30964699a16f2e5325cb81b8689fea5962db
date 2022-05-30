@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8fb854d2_2fa02d65",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/util/DeprecationHelper.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-30T16:25:45Z",
+      "side": 1,
+      "message": "are all these null-checks (4 times!) necessary?!\nthe problem is that each null-check will lead to a branch in the code that requires additional test!\nSo if not really needed, please remove otherwise write the test!",
+      "range": {
+        "startLine": 50,
+        "startChar": 52,
+        "endLine": 50,
+        "endChar": 59
+      },
+      "revId": "3fba30964699a16f2e5325cb81b8689fea5962db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd3000e4_f12a0944",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-30T16:25:45Z",
+      "side": 1,
+      "message": "as per my comment on patch #8 any property mapping should be testing the a mapperSpec not here!",
+      "range": {
+        "startLine": 248,
+        "startChar": 0,
+        "endLine": 253,
+        "endChar": 56
+      },
+      "revId": "3fba30964699a16f2e5325cb81b8689fea5962db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "81263705_1d1c9a84",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/util/DeprecationHelperSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-30T16:25:45Z",
+      "side": 1,
+      "message": "please note my comment on null checks for each valid nullcheck you need additional test in the spec...\n(use mvn clean install on all or a submodule and check the target/site folder for jacoco result including branch coverage , IntelliJ doesn\u0027t give you those details)",
+      "range": {
+        "startLine": 36,
+        "startChar": 4,
+        "endLine": 36,
+        "endChar": 8
+      },
+      "revId": "3fba30964699a16f2e5325cb81b8689fea5962db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c81603e_b981f9cf",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/YangDataConverter.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-30T16:25:45Z",
+      "side": 1,
+      "message": "ah, good to know, hasn\u0027t seen that before\nso you can use this when all methods are static, corect?",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 13
+      },
+      "revId": "3fba30964699a16f2e5325cb81b8689fea5962db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a51f256_be6a9c39",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-30T16:25:45Z",
+      "side": 1,
+      "message": "suggestion: \u0027result is the same collection as returned by the CPS Data Service",
+      "range": {
+        "startLine": 394,
+        "startChar": 21,
+        "endLine": 394,
+        "endChar": 37
+      },
+      "revId": "3fba30964699a16f2e5325cb81b8689fea5962db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4358dafd_4488658a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-30T16:25:45Z",
+      "side": 1,
+      "message": "dont think this is needed",
+      "range": {
+        "startLine": 395,
+        "startChar": 48,
+        "endLine": 395,
+        "endChar": 54
+      },
+      "revId": "3fba30964699a16f2e5325cb81b8689fea5962db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f96b35d3_6eb4cb8a",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsCmHandlerQueryServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-30T16:25:45Z",
+      "side": 1,
+      "message": "We already have common constant for these (that do add some value)\nDo a search on teh stringvalue in IntelliJ",
+      "range": {
+        "startLine": 177,
+        "startChar": 16,
+        "endLine": 177,
+        "endChar": 49
+      },
+      "revId": "3fba30964699a16f2e5325cb81b8689fea5962db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f8f84900_f63b2480",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/CmHandleQueryRestParametersValidator.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-30T16:25:45Z",
+      "side": 1,
+      "message": "good refactoring!",
+      "range": {
+        "startLine": 44,
+        "startChar": 24,
+        "endLine": 44,
+        "endChar": 52
+      },
+      "revId": "3fba30964699a16f2e5325cb81b8689fea5962db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a4527cf_6cd6fda6",
+        "filename": "csit/tests/cm-handle-query/cm-handle-query.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-30T16:25:45Z",
+      "side": 1,
+      "message": "this is the only test required for E2E testing",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 51
+      },
+      "revId": "3fba30964699a16f2e5325cb81b8689fea5962db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
