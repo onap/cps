@@ -20,13 +20,11 @@
 
 package org.onap.cps.ncmp.api.inventory.sync
 
+import org.onap.cps.ncmp.api.NetworkCmProxyDataService
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.inventory.CmHandleState
 import org.onap.cps.ncmp.api.inventory.CompositeState
-import org.onap.cps.ncmp.api.inventory.CompositeStateBuilder
 import spock.lang.Specification
-
-import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter
 
 class DataSyncSpec extends Specification {
@@ -36,26 +34,27 @@ class DataSyncSpec extends Specification {
 
     def mockSyncUtils = Mock(SyncUtils)
 
+    def networkCmProxyDataService = Mock(NetworkCmProxyDataService)
+
     def cmHandleState = CmHandleState.READY
 
-    def objectUnderTest = new DataSyncWatchdog(mockSyncUtils)
+    def objectUnderTest = new DataSyncWatchdog(mockSyncUtils, networkCmProxyDataService)
 
     def 'Schedule Data Sync for Cm Handle State in READY and Operational Sync State in UNSYNCHRONIZED'() {
         given: 'cm handles in an ready state and operational sync state in unsynchronized'
             def compositeState = new CompositeState()
             compositeState.cmhandleState = cmHandleState
             compositeState.setDataStores(CompositeState.DataStores.builder()
-                .operationalDataStore(CompositeState.Operational.builder().syncState("SYNCHRONIZED")
+                .operationalDataStore(CompositeState.Operational.builder().syncState("UNSYNCHRONIZED")
                     .build()).build())
-            def yangModelCmHandle1 = new YangModelCmHandle(id:'cm-handle-1', compositeState: compositeState)
-            def yangModelCmHandle2 = new YangModelCmHandle(id:'cm-handle-2', compositeState: compositeState)
-        and: 'sync utilities return a cm handle twice'
-            mockSyncUtils.getUnSynchronizedReadyCmHandle() >>> [yangModelCmHandle1, yangModelCmHandle2, null]
+            def yangModelCmHandle = new YangModelCmHandle(id:'some-cm-handle', compositeState: compositeState)
+        and: 'sync utilities return a random cm handle'
+            mockSyncUtils.getUnSynchronizedReadyCmHandle() >>> [yangModelCmHandle, null]
         when: 'data sync poll is executed'
             objectUnderTest.executeUnSynchronizedReadyCmHandlePoll()
-        then: 'the first cm handle operational sync state is updated to "SYNCHRONIZED" from "UNSYNCHRONIZED"'
-            1 * mockSyncUtils.updateCmHandleStateWithNodeLeaves(yangModelCmHandle1)
-        then: 'the second cm handle operational sync state is updated to "SYNCHRONIZED" from "UNSYNCHRONIZED"'
-            1 * mockSyncUtils.updateCmHandleStateWithNodeLeaves(yangModelCmHandle2)
+        then: 'the resource data is read from the node'
+            1 * networkCmProxyDataService.getResourceDataPassThroughRunningForCmHandle('some-cm-handle','/',null,null,_)
+        then: 'the cm handle with operational sync state is updated to "SYNCHRONIZED" from "UNSYNCHRONIZED"'
+            1 * mockSyncUtils.updateCmHandleStateWithNodeLeaves(yangModelCmHandle)
     }
 }

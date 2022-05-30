@@ -22,8 +22,10 @@ package org.onap.cps.ncmp.api.inventory.sync;
 
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.inventory.CompositeState;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -38,6 +40,8 @@ public class DataSyncWatchdog {
             DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
     private final SyncUtils syncUtils;
 
+    private final NetworkCmProxyDataService networkCmProxyDataService;
+
     /**
      * Execute Cm Handle poll which queries the cm handle state in 'READY' and Operational Datastore Sync State in
      * 'UNSYNCHRONIZED'.
@@ -47,8 +51,12 @@ public class DataSyncWatchdog {
         YangModelCmHandle unSynchronizedReadyCmHandle = syncUtils.getUnSynchronizedReadyCmHandle();
         while (unSynchronizedReadyCmHandle != null) {
             log.debug("Cm-Handles found in READY and UNSYNCHRONIZED state: {}", unSynchronizedReadyCmHandle.getId());
-            //TODO:
             // Get the Data from RAN
+            final Object resourceData = networkCmProxyDataService.getResourceDataPassThroughRunningForCmHandle(
+                    unSynchronizedReadyCmHandle.getId(), "/", null,
+                    null, UUID.randomUUID().toString());
+            log.trace("Cm Handle Id: {} with Resource Data: {}", unSynchronizedReadyCmHandle.getId(), resourceData);
+            //TODO:
             // Save the data
             // Temporarily set to SYNCHRONIZED to prevent it from picking it in next cycle.
             unSynchronizedReadyCmHandle.getCompositeState().getDataStores()
