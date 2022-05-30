@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "29ba9fcc_895f28ea",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CompositeStateBuilder.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-30T12:52:02Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "d64728e4_199d9256",
+      "revId": "85d4473a5994e2111bb481a641e49badb8602fb0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1b75099f_509d750c",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/CompositeStateBuilderSpec.groovy",
         "patchSetId": 14
@@ -33,6 +51,24 @@
       "revId": "85d4473a5994e2111bb481a641e49badb8602fb0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f35814ce_0d81a35c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/CompositeStateBuilderSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-30T12:52:02Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "1b75099f_509d750c",
+      "revId": "85d4473a5994e2111bb481a641e49badb8602fb0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }

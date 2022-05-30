@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "f6acd112_027c4260",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/mapper/RestOutputCmHandleStateMapper.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-30T12:52:02Z",
+      "side": 1,
+      "message": "Cm Handle State can be removed because the mapping will be done automatically with the change to the variable name here\n\nhttps://gerrit.onap.org/r/c/cps/+/129322/15/cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CompositeState.java",
+      "parentUuid": "9278a771_e3010dbf",
+      "range": {
+        "startLine": 35,
+        "startChar": 4,
+        "endLine": 35,
+        "endChar": 84
+      },
+      "revId": "6995708d0b241399f4617f6c2cd4ee319f1fef0b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6e544732_41f410ba",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
         "patchSetId": 14
@@ -71,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "9fc64f42_81a4389f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CompositeState.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-30T12:52:02Z",
+      "side": 1,
+      "message": "It will be used to track the number of lock attempts. This will be leveraged by the retry mechanism for priority of which cm handles should be retried",
+      "parentUuid": "89629e5b_52b321bd",
+      "range": {
+        "startLine": 56,
+        "startChar": 4,
+        "endLine": 60,
+        "endChar": 7
+      },
+      "revId": "6995708d0b241399f4617f6c2cd4ee319f1fef0b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f89cd15d_08f92c83",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CompositeStateBuilder.java",
         "patchSetId": 14
@@ -82,6 +130,30 @@
       "writtenOn": "2022-05-30T11:19:12Z",
       "side": 1,
       "message": "We don\u0027t care about running?",
+      "range": {
+        "startLine": 130,
+        "startChar": 61,
+        "endLine": 130,
+        "endChar": 72
+      },
+      "revId": "6995708d0b241399f4617f6c2cd4ee319f1fef0b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c49b799d_88069106",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CompositeStateBuilder.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-30T12:52:02Z",
+      "side": 1,
+      "message": "The else handles this as far as I am aware",
+      "parentUuid": "f89cd15d_08f92c83",
       "range": {
         "startLine": 130,
         "startChar": 61,
@@ -165,6 +237,30 @@
     },
     {
       "key": {
+        "uuid": "f26e9266_c395082f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-30T12:52:02Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4cfc3ab8_6cbdcacf",
+      "range": {
+        "startLine": 51,
+        "startChar": 30,
+        "endLine": 51,
+        "endChar": 50
+      },
+      "revId": "6995708d0b241399f4617f6c2cd4ee319f1fef0b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ff053869_e41531c2",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
         "patchSetId": 14
@@ -188,6 +284,30 @@
     },
     {
       "key": {
+        "uuid": "8028e3a0_79b0a4db",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-30T12:52:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff053869_e41531c2",
+      "range": {
+        "startLine": 49,
+        "startChar": 16,
+        "endLine": 52,
+        "endChar": 22
+      },
+      "revId": "6995708d0b241399f4617f6c2cd4ee319f1fef0b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1ca2c813_353d8a5a",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
         "patchSetId": 14
@@ -199,6 +319,30 @@
       "writtenOn": "2022-05-30T11:19:12Z",
       "side": 1,
       "message": "Perhaps use setCmhandleToLockedState or setCmHandleStateToLocked? like similar on line 74 setCmHandleReadyState",
+      "range": {
+        "startLine": 88,
+        "startChar": 16,
+        "endLine": 88,
+        "endChar": 33
+      },
+      "revId": "6995708d0b241399f4617f6c2cd4ee319f1fef0b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b7cee826_3c5a3791",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-30T12:52:02Z",
+      "side": 1,
+      "message": "Has been resolved as part of latest refactor",
+      "parentUuid": "1ca2c813_353d8a5a",
       "range": {
         "startLine": 88,
         "startChar": 16,
@@ -228,6 +372,24 @@
     },
     {
       "key": {
+        "uuid": "cf1cdaed_4e30fd8c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/helpers/InventoryPersistenceSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-30T12:52:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e4695e95_acf28c5f",
+      "revId": "6995708d0b241399f4617f6c2cd4ee319f1fef0b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "549f683e_ac24507b",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/helpers/InventoryPersistenceSpec.groovy",
         "patchSetId": 14
@@ -251,6 +413,30 @@
     },
     {
       "key": {
+        "uuid": "e07d50f5_64c79bfe",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/helpers/InventoryPersistenceSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-30T12:52:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "549f683e_ac24507b",
+      "range": {
+        "startLine": 22,
+        "startChar": 21,
+        "endLine": 22,
+        "endChar": 27
+      },
+      "revId": "6995708d0b241399f4617f6c2cd4ee319f1fef0b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "535be173_f42da3d0",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/helpers/InventoryPersistenceSpec.groovy",
         "patchSetId": 14
@@ -262,6 +448,30 @@
       "writtenOn": "2022-05-30T11:19:12Z",
       "side": 1,
       "message": "same",
+      "range": {
+        "startLine": 35,
+        "startChar": 21,
+        "endLine": 35,
+        "endChar": 27
+      },
+      "revId": "6995708d0b241399f4617f6c2cd4ee319f1fef0b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b6e59c0_98edbb7d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/helpers/InventoryPersistenceSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-30T12:52:02Z",
+      "side": 1,
+      "message": "This test has now been removed with latest refactoring.",
+      "parentUuid": "535be173_f42da3d0",
       "range": {
         "startLine": 35,
         "startChar": 21,
