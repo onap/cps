@@ -1,0 +1,216 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7e92a4eb_77d849c5",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-30T15:17:41Z",
+      "side": 1,
+      "message": "not sure we need all these, see next comment",
+      "range": {
+        "startLine": 263,
+        "startChar": 52,
+        "endLine": 264,
+        "endChar": 106
+      },
+      "revId": "26917046dfc63c7ffc6161307f3ba6181c08f65f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7af20b10_d9528d44",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-30T15:17:41Z",
+      "side": 1,
+      "message": "I think we need to be careful to NOT duplicate mapper functionality testing (next file!) with response output. Al you want to check here is you get the same cm-handle as provide on line 270. Since you dont have the cmh-handle ID here use the timestamp...",
+      "range": {
+        "startLine": 276,
+        "startChar": 0,
+        "endLine": 281,
+        "endChar": 77
+      },
+      "revId": "26917046dfc63c7ffc6161307f3ba6181c08f65f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1a218c1c_d35ae12c",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/mapper/RestOutputCmHandleStateMapperTest.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-30T15:17:41Z",
+      "side": 1,
+      "message": "maybe use a diffrrent value here",
+      "range": {
+        "startLine": 72,
+        "startChar": 28,
+        "endLine": 72,
+        "endChar": 42
+      },
+      "revId": "26917046dfc63c7ffc6161307f3ba6181c08f65f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d30f7731_a1fd69c5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CompositeStateBuilder.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-30T15:17:41Z",
+      "side": 1,
+      "message": "is teh stateBuildre not meregd yet, do you need to rebase?!",
+      "revId": "26917046dfc63c7ffc6161307f3ba6181c08f65f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0636d5b6_f37449cb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CompositeStateBuilder.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-30T15:17:41Z",
+      "side": 1,
+      "message": "lastUpdatedTime",
+      "range": {
+        "startLine": 81,
+        "startChar": 66,
+        "endLine": 81,
+        "endChar": 70
+      },
+      "revId": "26917046dfc63c7ffc6161307f3ba6181c08f65f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "008ca090_88cbc4ba",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-30T15:17:41Z",
+      "side": 1,
+      "message": "Consider moving some existing related method into this class\n(we\u0027ll discuss)",
+      "revId": "26917046dfc63c7ffc6161307f3ba6181c08f65f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "75456640_6210f50b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-30T15:17:41Z",
+      "side": 1,
+      "message": "is this using teh agrreed fromat?!",
+      "range": {
+        "startLine": 64,
+        "startChar": 16,
+        "endLine": 64,
+        "endChar": 47
+      },
+      "revId": "26917046dfc63c7ffc6161307f3ba6181c08f65f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a7abcd77_bf82d885",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/CompositeStateBuilderSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-30T15:17:41Z",
+      "side": 1,
+      "message": "rebase needed!",
+      "revId": "26917046dfc63c7ffc6161307f3ba6181c08f65f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "21ad487f_a3bd3751",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-30T15:17:41Z",
+      "side": 1,
+      "message": "use _* when throwing exceptions to amke teh tets less brittle to changes",
+      "range": {
+        "startLine": 81,
+        "startChar": 61,
+        "endLine": 81,
+        "endChar": 78
+      },
+      "revId": "26917046dfc63c7ffc6161307f3ba6181c08f65f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6fdc5c2b_fb7139b5",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/SyncUtilsSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-30T15:17:41Z",
+      "side": 1,
+      "message": "shorten",
+      "range": {
+        "startLine": 74,
+        "startChar": 15,
+        "endLine": 74,
+        "endChar": 132
+      },
+      "revId": "26917046dfc63c7ffc6161307f3ba6181c08f65f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
