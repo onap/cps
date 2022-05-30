@@ -379,6 +379,30 @@
     },
     {
       "key": {
+        "uuid": "1b7b2cbc_d2d7ec6e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-05-30T15:59:10Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b7cee826_3c5a3791",
+      "range": {
+        "startLine": 88,
+        "startChar": 16,
+        "endLine": 88,
+        "endChar": 33
+      },
+      "revId": "6995708d0b241399f4617f6c2cd4ee319f1fef0b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e4695e95_acf28c5f",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/helpers/InventoryPersistenceSpec.groovy",
         "patchSetId": 14
