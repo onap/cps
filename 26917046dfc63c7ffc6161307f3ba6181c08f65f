@@ -111,6 +111,29 @@
     },
     {
       "key": {
+        "uuid": "a58d76e7_12f775a8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CompositeStateBuilder.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-30T15:32:55Z",
+      "side": 1,
+      "message": "add withLastUpdateTimeNow() that ensure correctly fmatted time form now",
+      "range": {
+        "startLine": 81,
+        "startChar": 33,
+        "endLine": 81,
+        "endChar": 52
+      },
+      "revId": "26917046dfc63c7ffc6161307f3ba6181c08f65f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "008ca090_88cbc4ba",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
         "patchSetId": 17
@@ -128,6 +151,24 @@
     },
     {
       "key": {
+        "uuid": "e8fdb22b_cd73dea2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-30T15:32:55Z",
+      "side": 1,
+      "message": "see org.onap.cps.ncmp.api.impl.operations.YangModelCmHandleRetriever (don\u0027t forget the existing test)\n(also ensure constants are only defined once)",
+      "parentUuid": "008ca090_88cbc4ba",
+      "revId": "26917046dfc63c7ffc6161307f3ba6181c08f65f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "75456640_6210f50b",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
         "patchSetId": 17
@@ -139,6 +180,30 @@
       "writtenOn": "2022-05-30T15:17:41Z",
       "side": 1,
       "message": "is this using teh agrreed fromat?!",
+      "range": {
+        "startLine": 64,
+        "startChar": 16,
+        "endLine": 64,
+        "endChar": 47
+      },
+      "revId": "26917046dfc63c7ffc6161307f3ba6181c08f65f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b4d3b40_9c4becce",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-30T15:32:55Z",
+      "side": 1,
+      "message": "prefer to use (sattic) method from CompositeStAte itself",
+      "parentUuid": "75456640_6210f50b",
       "range": {
         "startLine": 64,
         "startChar": 16,
@@ -184,6 +249,29 @@
         "startChar": 61,
         "endLine": 81,
         "endChar": 78
+      },
+      "revId": "26917046dfc63c7ffc6161307f3ba6181c08f65f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e1ff2011_a67debe7",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/SyncUtilsSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-30T15:32:55Z",
+      "side": 1,
+      "message": "just \u0027a Locked sate with 2 previous attempt\u0027",
+      "range": {
+        "startLine": 68,
+        "startChar": 16,
+        "endLine": 68,
+        "endChar": 114
       },
       "revId": "26917046dfc63c7ffc6161307f3ba6181c08f65f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
