@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "af8aae3a_27c46302",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-05-30T12:56:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c6382ecd_c7e6d918",
+      "range": {
+        "startLine": 255,
+        "startChar": 0,
+        "endLine": 261,
+        "endChar": 95
+      },
+      "revId": "9115336b984c526a0309fe14327241f91876f5e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c67173ab_b5f22679",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNodeBuilder.java",
         "patchSetId": 4
@@ -36,6 +60,30 @@
       "writtenOn": "2022-05-30T11:23:13Z",
       "side": 1,
       "message": "Could we annotate the DataNode class with @Builder? and remove this class or do we need a bespoke builder?",
+      "range": {
+        "startLine": 45,
+        "startChar": 13,
+        "endLine": 45,
+        "endChar": 29
+      },
+      "revId": "9115336b984c526a0309fe14327241f91876f5e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ade4ac9d_070a1fe1",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNodeBuilder.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-05-30T12:56:12Z",
+      "side": 1,
+      "message": "will bring up during today\u0027s stand up 😊",
+      "parentUuid": "c67173ab_b5f22679",
       "range": {
         "startLine": 45,
         "startChar": 13,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "b296d885_889a0e84",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/DataMapUtils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-05-30T12:56:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ace35507_b3d938c5",
+      "range": {
+        "startLine": 100,
+        "startChar": 0,
+        "endLine": 102,
+        "endChar": 117
+      },
+      "revId": "9115336b984c526a0309fe14327241f91876f5e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a72cc1c_d9ffe233",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/DataMapUtils.java",
         "patchSetId": 4
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "ad02567a_dbeb1ba1",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/DataMapUtils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-05-30T12:56:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a72cc1c_d9ffe233",
+      "range": {
+        "startLine": 104,
+        "startChar": 15,
+        "endLine": 104,
+        "endChar": 40
+      },
+      "revId": "9115336b984c526a0309fe14327241f91876f5e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "022984ef_a7db7c57",
         "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DataMapUtilsSpec.groovy",
         "patchSetId": 4
@@ -114,6 +210,30 @@
       "revId": "9115336b984c526a0309fe14327241f91876f5e9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f1727f1a_7ca9d157",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DataMapUtilsSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-05-30T12:56:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "022984ef_a7db7c57",
+      "range": {
+        "startLine": 85,
+        "startChar": 4,
+        "endLine": 85,
+        "endChar": 8
+      },
+      "revId": "9115336b984c526a0309fe14327241f91876f5e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
