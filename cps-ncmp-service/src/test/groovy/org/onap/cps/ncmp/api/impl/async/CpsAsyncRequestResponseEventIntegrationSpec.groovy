@@ -109,7 +109,7 @@ class NcmpAsyncRequestResponseEventProducerIntegrationSpec extends Specification
         when: 'the event is consumed'
             ncmpAsyncRequestResponseEventConsumer.consumeAndForward(testEventSent)
         and: 'the topic is polled'
-            def records = kafkaConsumer.poll(Duration.ofMillis(1500))
+            def records = kafkaConsumer.poll(Duration.ofMillis(2000))
         then: 'poll returns one record'
             assert records.size() == 1
         and: 'consumed forwarded event id is the same as sent event id'

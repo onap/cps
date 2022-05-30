@@ -22,7 +22,9 @@ package org.onap.cps.ncmp.rest.executor;
 
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
+import java.util.Date;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Future;
 import java.util.function.Supplier;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -34,27 +36,36 @@ public class CpsNcmpTaskExecutor {
     /**
      * Execute task asynchronously and publish response to supplied topic.
      *
-     * @param taskSupplier functional method is get() task need to executed asynchronously
+     * @param taskSupplier    functional method is get() task need to executed asynchronously
      * @param timeOutInMillis the time out value in milliseconds
      */
     public void executeTask(final Supplier<Object> taskSupplier, final int timeOutInMillis) {
-        CompletableFuture.supplyAsync(taskSupplier::get)
+        final Future<?> asyncCompletableFuture = CompletableFuture.supplyAsync(taskSupplier::get)
             .orTimeout(timeOutInMillis, MILLISECONDS)
             .whenCompleteAsync(
-                (responseAsJson, throwable) -> {
-                    handleTaskCompletion(throwable);
-                }
+                (responseAsJson, throwable) -> handleTaskCompletion(responseAsJson, throwable)
             );
+        handleDmiResponse(asyncCompletableFuture, timeOutInMillis);
     }
 
-    private void handleTaskCompletion(final Throwable throwable) {
+    private void handleTaskCompletion(final Object responseAsJson, final Throwable throwable) {
         if (throwable == null) {
             log.info("Async task completed successfully.");
         } else {
             log.error("Async task failed. caused by : {}", throwable.getMessage());
         }
     }
+
+    private void handleDmiResponse(final Future<?> asyncCompletableFuture, final int timeOutInMillis) {
+        final long startTime = System.currentTimeMillis();
+        long elapsedTime = 0L;
+
+        while (elapsedTime < timeOutInMillis) {
+            if (asyncCompletableFuture.isDone()) {
+                log.info("Received acknowledgement.");
+                break;
+            }
+            elapsedTime = (new Date()).getTime() - startTime;
+        }
+    }
 }
-
-
-
