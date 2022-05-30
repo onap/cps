@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6bb863d5_2f586497",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-05-30T15:02:11Z",
+      "side": 1,
+      "message": "NB: I personally think this detail section can be in some structured format instead of a plain string.\n\nFor now we are actually using it for recording error message and for the retry attempts.\n\nIf we have some structured format then it would be easy to serialize/deserialize and persist and read back.\n\nI know we can also do all sorts of things with strings as well (using pattern matching and stuff) but this comment of mine is purely keeping easability in mind.\n\nWhat does the team think? (this might not be in this user story scope but if there is value in this we can think about it)",
+      "range": {
+        "startLine": 86,
+        "startChar": 13,
+        "endLine": 86,
+        "endChar": 20
+      },
+      "revId": "f8e3b5490d928ab4919683f0b459d46e653fdfe7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
