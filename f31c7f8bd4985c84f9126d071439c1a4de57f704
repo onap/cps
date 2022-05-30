@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d371b946_f5a5f851",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-30T13:54:21Z",
+      "side": 0,
+      "message": "old redundant test, was NOT actually testing exception handling anything new. both the statuscase and response where defined on lien #173/174",
+      "range": {
+        "startLine": 156,
+        "startChar": 0,
+        "endLine": 175,
+        "endChar": 5
+      },
+      "revId": "f31c7f8bd4985c84f9126d071439c1a4de57f704",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "14e7e01e_b697982d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-30T13:54:21Z",
+      "side": 0,
+      "message": "old redundant test, was NOT actually testing exception handling anything new",
+      "range": {
+        "startLine": 177,
+        "startChar": 0,
+        "endLine": 200,
+        "endChar": 5
+      },
+      "revId": "f31c7f8bd4985c84f9126d071439c1a4de57f704",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5b3b6e2e_be392137",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-30T13:54:21Z",
+      "side": 0,
+      "message": "old redundant test, was NOT actually testing exception handling anything new",
+      "range": {
+        "startLine": 233,
+        "startChar": 0,
+        "endLine": 257,
+        "endChar": 5
+      },
+      "revId": "f31c7f8bd4985c84f9126d071439c1a4de57f704",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
