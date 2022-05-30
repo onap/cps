@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9fb9b1f8_7d7782d8",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/NcmpAsyncRequestResponseEventMapperSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-30T13:51:57Z",
+      "side": 1,
+      "message": "this class as a lot of non-default mappings like:\n @Mapping(source \u003d \"eventSchema\", target \u003d \"forwardedEvent.eventSchema\") \n\neach of these should be verified\nsuggestion: add a separate test that verifies all the \u0027forwarded\u0027 details",
+      "range": {
+        "startLine": 32,
+        "startChar": 44,
+        "endLine": 32,
+        "endChar": 79
+      },
+      "revId": "5b30b23c5dd70b9656f12b4d286f7a39ef984ed0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "556a84c8_a9affd98",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/NcmpAsyncRequestResponseEventMapperSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-30T13:51:57Z",
+      "side": 1,
+      "message": "I would like to emphasise these are empty (and overridden later) using another set/label so maybe something like \ngiven: \u0027a dmi async request response event\u0027\n   def dmiAsyncRequestResponseEvent \u003d new DmiAsyncRequestResponseEvent().... \nand: \u0027The event Id and time are empty\u0027\n    dmiAsyncRequestResponseEvent.setEventId(\u0027\u0027)  //maybe you can still use withEventId() Here?!\n    dmiAsyncRequestResponseEvent.setEventTime(\u0027\u0027)",
+      "range": {
+        "startLine": 37,
+        "startChar": 21,
+        "endLine": 37,
+        "endChar": 36
+      },
+      "revId": "5b30b23c5dd70b9656f12b4d286f7a39ef984ed0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4246ebc0_d271f513",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/NcmpAsyncRequestResponseEventMapperSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-30T13:51:57Z",
+      "side": 1,
+      "message": "make it use to read and check by using something like: correlation-id-123",
+      "range": {
+        "startLine": 37,
+        "startChar": 61,
+        "endLine": 37,
+        "endChar": 97
+      },
+      "revId": "5b30b23c5dd70b9656f12b4d286f7a39ef984ed0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9cdea99b_171ae65e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/NcmpAsyncRequestResponseEventMapperSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-30T13:51:57Z",
+      "side": 1,
+      "message": "value1",
+      "range": {
+        "startLine": 39,
+        "startChar": 89,
+        "endLine": 39,
+        "endChar": 94
+      },
+      "revId": "5b30b23c5dd70b9656f12b4d286f7a39ef984ed0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "27cb90d9_71cbc570",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/NcmpAsyncRequestResponseEventMapperSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-30T13:51:57Z",
+      "side": 1,
+      "message": "property1",
+      "range": {
+        "startLine": 39,
+        "startChar": 81,
+        "endLine": 39,
+        "endChar": 85
+      },
+      "revId": "5b30b23c5dd70b9656f12b4d286f7a39ef984ed0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "99c7f7a4_e7464821",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/NcmpAsyncRequestResponseEventMapperSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-30T13:51:57Z",
+      "side": 1,
+      "message": "incomplete sentence?",
+      "range": {
+        "startLine": 44,
+        "startChar": 72,
+        "endLine": 44,
+        "endChar": 77
+      },
+      "revId": "5b30b23c5dd70b9656f12b4d286f7a39ef984ed0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8cf860c5_3137e5a6",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/NcmpAsyncRequestResponseEventMapperSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-30T13:51:57Z",
+      "side": 1,
+      "message": "how would multiple additional properties be mapped?! I would prefer an example with 2 properties",
+      "range": {
+        "startLine": 50,
+        "startChar": 49,
+        "endLine": 50,
+        "endChar": 65
+      },
+      "revId": "5b30b23c5dd70b9656f12b4d286f7a39ef984ed0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
