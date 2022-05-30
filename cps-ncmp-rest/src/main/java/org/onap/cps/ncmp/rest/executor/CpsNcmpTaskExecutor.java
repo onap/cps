@@ -23,6 +23,7 @@ package org.onap.cps.ncmp.rest.executor;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Future;
 import java.util.function.Supplier;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -34,17 +35,16 @@ public class CpsNcmpTaskExecutor {
     /**
      * Execute task asynchronously and publish response to supplied topic.
      *
-     * @param taskSupplier functional method is get() task need to executed asynchronously
+     * @param taskSupplier    functional method is get() task need to executed asynchronously
      * @param timeOutInMillis the time out value in milliseconds
      */
     public void executeTask(final Supplier<Object> taskSupplier, final int timeOutInMillis) {
-        CompletableFuture.supplyAsync(taskSupplier::get)
+        final Future<?> asyncCompletableFuture = CompletableFuture.supplyAsync(taskSupplier::get)
             .orTimeout(timeOutInMillis, MILLISECONDS)
             .whenCompleteAsync(
-                (responseAsJson, throwable) -> {
-                    handleTaskCompletion(throwable);
-                }
+                (responseAsJson, throwable) -> handleTaskCompletion(throwable)
             );
+        handleDmiResponse(asyncCompletableFuture);
     }
 
     private void handleTaskCompletion(final Throwable throwable) {
@@ -54,7 +54,14 @@ public class CpsNcmpTaskExecutor {
             log.error("Async task failed. caused by : {}", throwable.getMessage());
         }
     }
+
+    private void handleDmiResponse(final Future<?> asyncCompletableFuture) {
+        while (!asyncCompletableFuture.isDone()) {
+            log.debug("Acknowledgement not yet received.");
+        }
+
+        if (asyncCompletableFuture.isDone()) {
+            log.info("Received acknowledgement.");
+        }
+    }
 }
-
-
-
