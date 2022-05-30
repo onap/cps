@@ -31,9 +31,7 @@ import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -104,11 +102,10 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
             final String requestId = UUID.randomUUID().toString();
             cpsNcmpTaskExecutor.executeTask(() ->
                 networkCmProxyDataService.getResourceDataOperationalForCmHandle(
-                    cmHandle, resourceIdentifier, optionsParamInQuery, topicParamInQuery,
-                        requestId
+                    cmHandle, resourceIdentifier, optionsParamInQuery, topicParamInQuery, requestId
                 ), timeOutInMilliSeconds
             );
-            return acknowledgeAsyncRequest(requestId);
+            return ResponseEntity.ok(Collections.singletonMap("requestId", requestId));
         }
 
         final Object responseObject = networkCmProxyDataService.getResourceDataOperationalForCmHandle(
@@ -132,14 +129,14 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
                                                                     final @Valid String optionsParamInQuery,
                                                                     final @Valid String topicParamInQuery) {
         if (isValidTopic(topicParamInQuery)) {
-            final String resourceDataRequestId = UUID.randomUUID().toString();
+            final String requestId = UUID.randomUUID().toString();
             cpsNcmpTaskExecutor.executeTask(() ->
                 networkCmProxyDataService.getResourceDataPassThroughRunningForCmHandle(
                     cmHandle, resourceIdentifier, optionsParamInQuery, topicParamInQuery,
-                        resourceDataRequestId
+                        requestId
                 ), timeOutInMilliSeconds
             );
-            return acknowledgeAsyncRequest(resourceDataRequestId);
+            return ResponseEntity.ok(Collections.singletonMap("requestId", requestId));
         }
 
         final Object responseObject = networkCmProxyDataService.getResourceDataPassThroughRunningForCmHandle(
@@ -335,12 +332,6 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
             return true;
         }
         throw new InvalidTopicException("Topic name " + topicName + " is invalid", "invalid topic");
-    }
-
-    private ResponseEntity<Object> acknowledgeAsyncRequest(final String requestId) {
-        final Map<String, Object> acknowledgeData = new HashMap<>(1);
-        acknowledgeData.put("requestId", requestId);
-        return ResponseEntity.ok(acknowledgeData);
     }
 
 }
