@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ddea94c7_3a74c5c1",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/NcmpAsyncRequestResponseEventMapperSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-05-30T18:11:21Z",
+      "side": 1,
+      "message": "Introduced new tets to cover forward event",
+      "parentUuid": "9fb9b1f8_7d7782d8",
+      "range": {
+        "startLine": 32,
+        "startChar": 44,
+        "endLine": 32,
+        "endChar": 79
+      },
+      "revId": "5b30b23c5dd70b9656f12b4d286f7a39ef984ed0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "556a84c8_a9affd98",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/NcmpAsyncRequestResponseEventMapperSpec.groovy",
         "patchSetId": 1
@@ -59,6 +83,54 @@
       "writtenOn": "2022-05-30T13:51:57Z",
       "side": 1,
       "message": "make it use to read and check by using something like: correlation-id-123",
+      "range": {
+        "startLine": 37,
+        "startChar": 61,
+        "endLine": 37,
+        "endChar": 97
+      },
+      "revId": "5b30b23c5dd70b9656f12b4d286f7a39ef984ed0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7fbaf375_3c608fe3",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/NcmpAsyncRequestResponseEventMapperSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-05-30T18:11:21Z",
+      "side": 1,
+      "message": "Modified",
+      "parentUuid": "556a84c8_a9affd98",
+      "range": {
+        "startLine": 37,
+        "startChar": 21,
+        "endLine": 37,
+        "endChar": 36
+      },
+      "revId": "5b30b23c5dd70b9656f12b4d286f7a39ef984ed0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b864da86_a247efa3",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/NcmpAsyncRequestResponseEventMapperSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-05-30T18:11:21Z",
+      "side": 1,
+      "message": "Used this as sample correlation id",
+      "parentUuid": "4246ebc0_d271f513",
       "range": {
         "startLine": 37,
         "startChar": 61,
@@ -117,6 +189,54 @@
     },
     {
       "key": {
+        "uuid": "866a897f_05e08afe",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/NcmpAsyncRequestResponseEventMapperSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-05-30T18:11:21Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "27cb90d9_71cbc570",
+      "range": {
+        "startLine": 39,
+        "startChar": 81,
+        "endLine": 39,
+        "endChar": 85
+      },
+      "revId": "5b30b23c5dd70b9656f12b4d286f7a39ef984ed0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b1bafbe7_ac95ea6b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/NcmpAsyncRequestResponseEventMapperSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-05-30T18:11:21Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "9cdea99b_171ae65e",
+      "range": {
+        "startLine": 39,
+        "startChar": 89,
+        "endLine": 39,
+        "endChar": 94
+      },
+      "revId": "5b30b23c5dd70b9656f12b4d286f7a39ef984ed0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "99c7f7a4_e7464821",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/NcmpAsyncRequestResponseEventMapperSpec.groovy",
         "patchSetId": 1
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "2eacb640_74aeeca5",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/NcmpAsyncRequestResponseEventMapperSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-05-30T18:11:21Z",
+      "side": 1,
+      "message": "completed",
+      "parentUuid": "99c7f7a4_e7464821",
+      "range": {
+        "startLine": 44,
+        "startChar": 72,
+        "endLine": 44,
+        "endChar": 77
+      },
+      "revId": "5b30b23c5dd70b9656f12b4d286f7a39ef984ed0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8cf860c5_3137e5a6",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/NcmpAsyncRequestResponseEventMapperSpec.groovy",
         "patchSetId": 1
@@ -151,6 +295,30 @@
       "writtenOn": "2022-05-30T13:51:57Z",
       "side": 1,
       "message": "how would multiple additional properties be mapped?! I would prefer an example with 2 properties",
+      "range": {
+        "startLine": 50,
+        "startChar": 49,
+        "endLine": 50,
+        "endChar": 65
+      },
+      "revId": "5b30b23c5dd70b9656f12b4d286f7a39ef984ed0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7ae5d536_39afd9dc",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/NcmpAsyncRequestResponseEventMapperSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-05-30T18:11:21Z",
+      "side": 1,
+      "message": "mapped multiple additional properties",
+      "parentUuid": "8cf860c5_3137e5a6",
       "range": {
         "startLine": 50,
         "startChar": 49,
