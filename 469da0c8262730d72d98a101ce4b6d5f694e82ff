@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "e75a8111_62052fe2",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/mapper/RestOutputCmHandleStateMapperTest.groovy",
+        "patchSetId": 18
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-31T18:17:21Z",
+      "side": 1,
+      "message": "Have currently left this test as it is, as I have an open question.\nWhen creating the new test for this using the builder, I notice that when using the datastore builder, that one datastore will always overwrite the other one. Is this intentional?",
+      "parentUuid": "c0202565_1f70fd53",
+      "range": {
+        "startLine": 46,
+        "startChar": 33,
+        "endLine": 47,
+        "endChar": 147
+      },
+      "revId": "469da0c8262730d72d98a101ce4b6d5f694e82ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c199fadb_ac887f3f",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CompositeStateBuilder.java",
         "patchSetId": 18
@@ -95,6 +119,54 @@
     },
     {
       "key": {
+        "uuid": "9e5f6f8e_86486bfd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CompositeStateBuilder.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-31T18:17:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c199fadb_ac887f3f",
+      "range": {
+        "startLine": 81,
+        "startChar": 49,
+        "endLine": 81,
+        "endChar": 66
+      },
+      "revId": "469da0c8262730d72d98a101ce4b6d5f694e82ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0d3456e7_cb55068b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CompositeStateBuilder.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-31T18:17:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c1557a0d_b2301964",
+      "range": {
+        "startLine": 81,
+        "startChar": 33,
+        "endLine": 81,
+        "endChar": 48
+      },
+      "revId": "469da0c8262730d72d98a101ce4b6d5f694e82ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4fad7b4a_cb560e08",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
         "patchSetId": 18
@@ -106,6 +178,30 @@
       "writtenOn": "2022-05-31T13:16:43Z",
       "side": 1,
       "message": "no use of builder here as we are working on already the composite state thats returned from getCmHandleState",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 92
+      },
+      "revId": "469da0c8262730d72d98a101ce4b6d5f694e82ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "359977c4_12e9d8ad",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-31T18:17:21Z",
+      "side": 1,
+      "message": "See comment below.",
+      "parentUuid": "4fad7b4a_cb560e08",
       "range": {
         "startLine": 54,
         "startChar": 0,
@@ -141,6 +237,30 @@
     },
     {
       "key": {
+        "uuid": "540ed414_19323d98",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-31T18:17:21Z",
+      "side": 1,
+      "message": "A new method has been created in the builder in line with Toine\u0027s comment on Patchset 17 to have a universal method for getting the update time for cm handles.",
+      "parentUuid": "eac9af58_2f2e334e",
+      "range": {
+        "startLine": 65,
+        "startChar": 45,
+        "endLine": 65,
+        "endChar": 66
+      },
+      "revId": "469da0c8262730d72d98a101ce4b6d5f694e82ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3e670775_99a3c68b",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
         "patchSetId": 18
@@ -161,6 +281,30 @@
       "revId": "469da0c8262730d72d98a101ce4b6d5f694e82ff",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "db12103b_a6dec17c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-31T18:17:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e670775_99a3c68b",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 53
+      },
+      "revId": "469da0c8262730d72d98a101ce4b6d5f694e82ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -187,6 +331,30 @@
     },
     {
       "key": {
+        "uuid": "1d57f9ff_5945bf3e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/SyncUtilsSpec.groovy",
+        "patchSetId": 18
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-31T18:17:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "63d440e7_a40b49e7",
+      "range": {
+        "startLine": 73,
+        "startChar": 20,
+        "endLine": 73,
+        "endChar": 22
+      },
+      "revId": "469da0c8262730d72d98a101ce4b6d5f694e82ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6fd64d90_7e3b3e32",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/helpers/InventoryPersistenceSpec.groovy",
         "patchSetId": 18
@@ -207,6 +375,30 @@
       "revId": "469da0c8262730d72d98a101ce4b6d5f694e82ff",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a3ea508_fdda305d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/helpers/InventoryPersistenceSpec.groovy",
+        "patchSetId": 18
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-05-31T18:17:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6fd64d90_7e3b3e32",
+      "range": {
+        "startLine": 103,
+        "startChar": 4,
+        "endLine": 147,
+        "endChar": 5
+      },
+      "revId": "469da0c8262730d72d98a101ce4b6d5f694e82ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
