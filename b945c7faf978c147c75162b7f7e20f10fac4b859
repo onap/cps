@@ -1,0 +1,262 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1c312be1_aa3e1b8b",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-31T17:17:15Z",
+      "side": 1,
+      "message": "prefer to call it cm-handle-data-sync",
+      "range": {
+        "startLine": 157,
+        "startChar": 4,
+        "endLine": 157,
+        "endChar": 9
+      },
+      "revId": "b945c7faf978c147c75162b7f7e20f10fac4b859",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d1e201d8_f9197ea6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/YangModelCmHandleRetriever.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-31T17:17:15Z",
+      "side": 1,
+      "message": "PLease note Dylan is now merging this class with the more aptly named class \u0027registryPersistence\u0027",
+      "revId": "b945c7faf978c147c75162b7f7e20f10fac4b859",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4975f538_bc9114da",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CompositeStateBuilder.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-31T17:17:15Z",
+      "side": 1,
+      "message": "could conflict with Dylan, I asked hiem to do something very similar\n(but I think he kept te original method too, which I think is need when retrieving state form the DB)",
+      "range": {
+        "startLine": 83,
+        "startChar": 0,
+        "endLine": 85,
+        "endChar": 20
+      },
+      "revId": "b945c7faf978c147c75162b7f7e20f10fac4b859",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca7f9047_5c947d84",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-31T17:17:15Z",
+      "side": 1,
+      "message": "prefix with CPS_PATH_",
+      "range": {
+        "startLine": 47,
+        "startChar": 32,
+        "endLine": 47,
+        "endChar": 58
+      },
+      "revId": "b945c7faf978c147c75162b7f7e20f10fac4b859",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "764c6e61_07a9c79a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-31T17:17:15Z",
+      "side": 1,
+      "message": "need to clearly separate 2 responsibilities\n\n- registry persistence (including queries)\n- Sync use case utilities i.e. processing the data you get back from registry persistence \nSee Dylans latest commit https://gerrit.onap.org/r/c/cps/+/129322. I think his will be merged soon and then you can rebase and re-sue...",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 110
+      },
+      "revId": "b945c7faf978c147c75162b7f7e20f10fac4b859",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0cfcced9_800ae1b2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-31T17:17:15Z",
+      "side": 1,
+      "message": "prefix with CPS_PATH_",
+      "range": {
+        "startLine": 49,
+        "startChar": 32,
+        "endLine": 49,
+        "endChar": 49
+      },
+      "revId": "b945c7faf978c147c75162b7f7e20f10fac4b859",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "97461a88_826c4a3c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-31T17:17:15Z",
+      "side": 1,
+      "message": "not sure of this algorithm, you pick a random unsynchronized cm-handle and then check if that one is also \u0027ready\u0027\nif not you return null and teh watch do is going to sleep. correct?! But you should be checking the other ones too before going o sleep!",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 9
+      },
+      "revId": "b945c7faf978c147c75162b7f7e20f10fac4b859",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4369cc10_94e72a2f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-31T17:17:15Z",
+      "side": 1,
+      "message": "this belongs in the new RegsitryPersistence class",
+      "range": {
+        "startLine": 100,
+        "startChar": 0,
+        "endLine": 104,
+        "endChar": 0
+      },
+      "revId": "b945c7faf978c147c75162b7f7e20f10fac4b859",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2d124547_694424f6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-31T17:17:15Z",
+      "side": 1,
+      "message": "this belongs in the new RegsitryPersistence class",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 5
+      },
+      "revId": "b945c7faf978c147c75162b7f7e20f10fac4b859",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1a25ffdc_3cb4c2f8",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/YangModelCmHandleRetrieverSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-31T17:17:15Z",
+      "side": 1,
+      "message": "only oen scenario, no need for where block",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 66
+      },
+      "revId": "b945c7faf978c147c75162b7f7e20f10fac4b859",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7baa8cf7_246a5753",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/DataSyncSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-31T17:17:15Z",
+      "side": 1,
+      "message": "not reviewed becasue of production code concerns...",
+      "revId": "b945c7faf978c147c75162b7f7e20f10fac4b859",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "064a3180_7fe11f69",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/SyncUtilsSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-31T17:17:15Z",
+      "side": 1,
+      "message": "not reviewed because of separation of responsibility concerns",
+      "revId": "b945c7faf978c147c75162b7f7e20f10fac4b859",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
