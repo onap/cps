@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "082b0cd1_298bc7d8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-05-31T16:01:18Z",
+      "side": 1,
+      "message": "NB : ResponseEntity\u003c?\u003e",
+      "range": {
+        "startLine": 133,
+        "startChar": 11,
+        "endLine": 133,
+        "endChar": 18
+      },
+      "revId": "442623a1ae0c427c2b2aa580a6107ac907769260",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "db6a4b21_b16f22e7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-05-31T16:01:18Z",
+      "side": 1,
+      "message": "NB : return getResourceDataResponse(cmHandleId, resourceIdentifier,\n                DmiOperations.DataStoreEnum.PASSTHROUGH_RUNNING, optionsParamInQuery, topicParamInQuery, requestId);",
+      "range": {
+        "startLine": 139,
+        "startChar": 7,
+        "endLine": 140,
+        "endChar": 47
+      },
+      "revId": "442623a1ae0c427c2b2aa580a6107ac907769260",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "89d494f9_a36de8d4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-05-31T16:01:18Z",
+      "side": 1,
+      "message": "NB : As we discussed regarding CPS-830 (ACK) it should be returned ResponseEntity\u003c?\u003e",
+      "range": {
+        "startLine": 287,
+        "startChar": 12,
+        "endLine": 287,
+        "endChar": 19
+      },
+      "revId": "442623a1ae0c427c2b2aa580a6107ac907769260",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "89c23c68_cf3572bc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-05-31T16:01:18Z",
+      "side": 1,
+      "message": "NB : return getResourceDataResponse(cmHandleId, resourceIdentifier,\n                DmiOperations.DataStoreEnum.PASSTHROUGH_RUNNING, optionsParamInQuery, topicParamInQuery, requestId);",
+      "range": {
+        "startLine": 293,
+        "startChar": 8,
+        "endLine": 295,
+        "endChar": 40
+      },
+      "revId": "442623a1ae0c427c2b2aa580a6107ac907769260",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
