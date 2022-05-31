@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "1a037fa6_184e6a1a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-05-31T15:16:31Z",
+      "side": 1,
+      "message": "Do you need to add Bell copyright?",
+      "revId": "8eb04e2c2a64f3484eb92243119d83606717abaa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ca2c68ac_08396ba9",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
         "patchSetId": 7
@@ -25,6 +42,52 @@
     },
     {
       "key": {
+        "uuid": "4e8d3e9f_c284c33c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-05-31T15:16:31Z",
+      "side": 1,
+      "message": "\"L",
+      "range": {
+        "startLine": 81,
+        "startChar": 84,
+        "endLine": 81,
+        "endChar": 85
+      },
+      "revId": "8eb04e2c2a64f3484eb92243119d83606717abaa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "419402e9_e5823be1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-05-31T15:16:31Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 100,
+        "startChar": 38,
+        "endLine": 100,
+        "endChar": 39
+      },
+      "revId": "8eb04e2c2a64f3484eb92243119d83606717abaa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8b676903_773a69e8",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
         "patchSetId": 7
@@ -41,6 +104,29 @@
         "startChar": 15,
         "endLine": 103,
         "endChar": 24
+      },
+      "revId": "8eb04e2c2a64f3484eb92243119d83606717abaa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6c324947_55d7f294",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-05-31T15:16:31Z",
+      "side": 1,
+      "message": "i would recommend simply cmHandles",
+      "range": {
+        "startLine": 105,
+        "startChar": 92,
+        "endLine": 105,
+        "endChar": 107
       },
       "revId": "8eb04e2c2a64f3484eb92243119d83606717abaa",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
