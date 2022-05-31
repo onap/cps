@@ -22,6 +22,30 @@
       "revId": "540ac2685c77ac602a4e607dbe7e131f21e4e269",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a147adfe_0ca12496",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/ncmp-event-schema-v1.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-05-31T15:38:46Z",
+      "side": 1,
+      "message": "😊 I think it came in the arch. meeting one time but frankly I cannot recall now.",
+      "parentUuid": "6722ebc6_c95680e5",
+      "range": {
+        "startLine": 4,
+        "startChar": 41,
+        "endLine": 4,
+        "endChar": 44
+      },
+      "revId": "540ac2685c77ac602a4e607dbe7e131f21e4e269",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
