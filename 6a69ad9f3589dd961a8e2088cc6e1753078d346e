@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "954a0b37_47ba2b1c",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/util/DeprecationHelperSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-31T13:41:12Z",
+      "side": 1,
+      "message": "this is part of then: block",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 96
+      },
+      "revId": "6a69ad9f3589dd961a8e2088cc6e1753078d346e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3656bab1_165f6674",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/util/DeprecationHelperSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-31T13:41:12Z",
+      "side": 1,
+      "message": "rename to expectedCmHandle...",
+      "range": {
+        "startLine": 44,
+        "startChar": 65,
+        "endLine": 44,
+        "endChar": 96
+      },
+      "revId": "6a69ad9f3589dd961a8e2088cc6e1753078d346e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "63f64be6_58c32e91",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/util/DeprecationHelperSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-31T13:41:12Z",
+      "side": 1,
+      "message": "use double || to separate input from output data in test\n(also by convention all \u0027expected\u0027 output variables typically should be named \u0027expectedSomething\u0027 (see prev comment)",
+      "range": {
+        "startLine": 50,
+        "startChar": 282,
+        "endLine": 50,
+        "endChar": 284
+      },
+      "revId": "6a69ad9f3589dd961a8e2088cc6e1753078d346e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3eee0938_8412b3cd",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsCmHandlerQueryServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-31T13:41:12Z",
+      "side": 1,
+      "message": "This need to be moved to NCMP (sorry legacy issue)\nmove to src/main/java/org/onap/cps/ncmp/api (cps-ncmp-service module)\nsuggested name  NmcpCmHandleQueryService(Impl)",
+      "revId": "6a69ad9f3589dd961a8e2088cc6e1753078d346e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd03d2fe_5f546a48",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsCmHandlerQueryServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-31T13:41:12Z",
+      "side": 1,
+      "message": "I now realize although this works correctly since this is an RI implementation it need to be made more generic.. I need to talk to you about this... So of it might need to go to NCMP (query service) instead...",
+      "range": {
+        "startLine": 64,
+        "startChar": 32,
+        "endLine": 64,
+        "endChar": 46
+      },
+      "revId": "6a69ad9f3589dd961a8e2088cc6e1753078d346e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "922ac2ce_fa9a6281",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsCmHandlerQueryServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-31T13:41:12Z",
+      "side": 1,
+      "message": "once moved you should be able to use teh constants :-)",
+      "range": {
+        "startLine": 177,
+        "startChar": 17,
+        "endLine": 177,
+        "endChar": 49
+      },
+      "revId": "6a69ad9f3589dd961a8e2088cc6e1753078d346e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}

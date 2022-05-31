@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "dfc710f6_f84f1a22",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/util/DeprecationHelper.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-31T13:41:12Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "12590c1e_47ceba58",
+      "range": {
+        "startLine": 50,
+        "startChar": 52,
+        "endLine": 50,
+        "endChar": 59
+      },
+      "revId": "3fba30964699a16f2e5325cb81b8689fea5962db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bd3000e4_f12a0944",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
         "patchSetId": 11
@@ -93,6 +117,30 @@
       "revId": "3fba30964699a16f2e5325cb81b8689fea5962db",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "413f476d_8c5a7ab7",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-31T13:41:12Z",
+      "side": 1,
+      "message": "not so sure but we can leave it for now.",
+      "parentUuid": "bf541d1d_1d7b86f7",
+      "range": {
+        "startLine": 248,
+        "startChar": 0,
+        "endLine": 253,
+        "endChar": 56
+      },
+      "revId": "3fba30964699a16f2e5325cb81b8689fea5962db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -213,6 +261,30 @@
     },
     {
       "key": {
+        "uuid": "4f272846_ecdc3c5b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/YangDataConverter.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-31T13:41:12Z",
+      "side": 1,
+      "message": "then we should not use it!\nBlocking issue?!",
+      "parentUuid": "da1059b3_5353d2fb",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 13
+      },
+      "revId": "3fba30964699a16f2e5325cb81b8689fea5962db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9a51f256_be6a9c39",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
         "patchSetId": 11
@@ -307,6 +379,30 @@
     },
     {
       "key": {
+        "uuid": "fd807f25_e8750bf6",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-31T13:41:12Z",
+      "side": 1,
+      "message": "Ack, I see why now",
+      "parentUuid": "65ac11d1_06e3c063",
+      "range": {
+        "startLine": 395,
+        "startChar": 48,
+        "endLine": 395,
+        "endChar": 54
+      },
+      "revId": "3fba30964699a16f2e5325cb81b8689fea5962db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f96b35d3_6eb4cb8a",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsCmHandlerQueryServiceImpl.java",
         "patchSetId": 11
@@ -342,6 +438,30 @@
       "side": 1,
       "message": "We have constants for these, but in an other maven module, and when I add it to this module as dependency, it cause a circular dependency",
       "parentUuid": "f96b35d3_6eb4cb8a",
+      "range": {
+        "startLine": 177,
+        "startChar": 16,
+        "endLine": 177,
+        "endChar": 49
+      },
+      "revId": "3fba30964699a16f2e5325cb81b8689fea5962db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "64300de3_56a17761",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsCmHandlerQueryServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-31T13:41:12Z",
+      "side": 1,
+      "message": "oops I see now, these parameters should not be hard-codeed in RI at all",
+      "parentUuid": "4d4c42ca_7f1fea62",
       "range": {
         "startLine": 177,
         "startChar": 16,
