@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e5e4e2b7_5f442b0b",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/mapper/RestOutputCmHandleStateMapperTest.groovy",
+        "patchSetId": 18
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-05-31T13:16:43Z",
+      "side": 1,
+      "message": "use compositeStateBuilder here : \neg: def compositeState \u003d new CompositeStateBuilder().withCmHandleState(CmHandleState.ADVISED)\n                    .withLockReason(LockReasonCategory.LOCKED_MISBEHAVING,\"\").build();",
+      "range": {
+        "startLine": 46,
+        "startChar": 33,
+        "endLine": 47,
+        "endChar": 147
+      },
+      "revId": "469da0c8262730d72d98a101ce4b6d5f694e82ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4fad7b4a_cb560e08",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-05-31T13:16:43Z",
+      "side": 1,
+      "message": "no use of builder here as we are working on already the composite state thats returned from getCmHandleState",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 92
+      },
+      "revId": "469da0c8262730d72d98a101ce4b6d5f694e82ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eac9af58_2f2e334e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-05-31T13:16:43Z",
+      "side": 1,
+      "message": "LastUpdatedTime can be set, no need of builder here",
+      "range": {
+        "startLine": 65,
+        "startChar": 45,
+        "endLine": 65,
+        "endChar": 66
+      },
+      "revId": "469da0c8262730d72d98a101ce4b6d5f694e82ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
