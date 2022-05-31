@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "db30588e_02401ef3",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNodeBuilder.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-05-31T09:56:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ade4ac9d_070a1fe1",
+      "range": {
+        "startLine": 45,
+        "startChar": 13,
+        "endLine": 45,
+        "endChar": 29
+      },
+      "revId": "9115336b984c526a0309fe14327241f91876f5e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ace35507_b3d938c5",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/DataMapUtils.java",
         "patchSetId": 4
