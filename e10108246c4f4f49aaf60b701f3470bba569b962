@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1686a292_477f2a0a",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/executor/CpsNcmpTaskExecutor.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-05-31T12:29:54Z",
+      "side": 1,
+      "message": "In this case there would be no responseAsJson as the 204 body is empty.",
+      "parentUuid": "c1836da3_3a3cd117",
+      "range": {
+        "startLine": 58,
+        "startChar": 17,
+        "endLine": 58,
+        "endChar": 34
+      },
+      "revId": "e10108246c4f4f49aaf60b701f3470bba569b962",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "554a4da3_11e7594c",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/executor/CpsNcmpTaskExecutor.java",
         "patchSetId": 5
@@ -36,6 +60,30 @@
       "writtenOn": "2022-05-31T11:08:23Z",
       "side": 1,
       "message": "infinite loop?",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 9
+      },
+      "revId": "e10108246c4f4f49aaf60b701f3470bba569b962",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a4f3649f_8d78f630",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/executor/CpsNcmpTaskExecutor.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-05-31T12:29:54Z",
+      "side": 1,
+      "message": "I will add an exit for this",
+      "parentUuid": "554a4da3_11e7594c",
       "range": {
         "startLine": 59,
         "startChar": 0,
