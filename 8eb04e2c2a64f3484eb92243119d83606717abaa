@@ -2,6 +2,69 @@
   "comments": [
     {
       "key": {
+        "uuid": "28050d6a_a7f67764",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-31T17:27:03Z",
+      "side": 1,
+      "message": "di we not agree to check if the last update-time is older then X e.g. if the sync had failed just 1 second ago we should re-attempt yet?!",
+      "range": {
+        "startLine": 72,
+        "startChar": 34,
+        "endLine": 72,
+        "endChar": 51
+      },
+      "revId": "8eb04e2c2a64f3484eb92243119d83606717abaa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1a3314d6_9529c0d8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-31T17:27:03Z",
+      "side": 1,
+      "message": "this statement is not always true. YOu could have just finished the loop",
+      "range": {
+        "startLine": 78,
+        "startChar": 8,
+        "endLine": 78,
+        "endChar": 70
+      },
+      "revId": "8eb04e2c2a64f3484eb92243119d83606717abaa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f9e51366_8aa894ef",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-31T17:27:03Z",
+      "side": 1,
+      "message": "PLease review Dylan commit: https://gerrit.onap.org/r/c/cps/+/129322 he si introducing a RgesitryPersistenc class for clear separation of concerns. YOu and Lathish both need to use that, we need to sync up about this sooN!",
+      "revId": "8eb04e2c2a64f3484eb92243119d83606717abaa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1a037fa6_184e6a1a",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
         "patchSetId": 7
@@ -58,6 +121,29 @@
         "startChar": 84,
         "endLine": 81,
         "endChar": 85
+      },
+      "revId": "8eb04e2c2a64f3484eb92243119d83606717abaa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6023db77_9823bdd9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-31T17:27:03Z",
+      "side": 1,
+      "message": "overlap with Lathis and Dylan, let\u0027s call a meeting to discuss soon!",
+      "range": {
+        "startLine": 85,
+        "startChar": 1,
+        "endLine": 97,
+        "endChar": 5
       },
       "revId": "8eb04e2c2a64f3484eb92243119d83606717abaa",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
@@ -127,6 +213,53 @@
         "startChar": 92,
         "endLine": 105,
         "endChar": 107
+      },
+      "revId": "8eb04e2c2a64f3484eb92243119d83606717abaa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e80ac90f_abfa41b5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-31T17:27:03Z",
+      "side": 1,
+      "message": "agreed",
+      "parentUuid": "6c324947_55d7f294",
+      "range": {
+        "startLine": 105,
+        "startChar": 92,
+        "endLine": 105,
+        "endChar": 107
+      },
+      "revId": "8eb04e2c2a64f3484eb92243119d83606717abaa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5c559b65_88481830",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-31T17:27:03Z",
+      "side": 1,
+      "message": "more overlap with Lathish...",
+      "range": {
+        "startLine": 117,
+        "startChar": 0,
+        "endLine": 123,
+        "endChar": 5
       },
       "revId": "8eb04e2c2a64f3484eb92243119d83606717abaa",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
