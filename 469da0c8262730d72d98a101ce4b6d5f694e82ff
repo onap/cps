@@ -25,6 +25,76 @@
     },
     {
       "key": {
+        "uuid": "c0202565_1f70fd53",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/mapper/RestOutputCmHandleStateMapperTest.groovy",
+        "patchSetId": 18
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-31T14:05:14Z",
+      "side": 1,
+      "message": "legacy: agreed,can use builder here",
+      "parentUuid": "e5e4e2b7_5f442b0b",
+      "range": {
+        "startLine": 46,
+        "startChar": 33,
+        "endLine": 47,
+        "endChar": 147
+      },
+      "revId": "469da0c8262730d72d98a101ce4b6d5f694e82ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c199fadb_ac887f3f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CompositeStateBuilder.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-31T14:05:14Z",
+      "side": 1,
+      "message": "add another method tahtd oes NOT need the time parameter but itself wil use \u0027now\u0027 and correct formatted string etc.",
+      "range": {
+        "startLine": 81,
+        "startChar": 49,
+        "endLine": 81,
+        "endChar": 66
+      },
+      "revId": "469da0c8262730d72d98a101ce4b6d5f694e82ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1557a0d_b2301964",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CompositeStateBuilder.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-31T14:05:14Z",
+      "side": 1,
+      "message": "restore \u0027with\u0027 bit",
+      "range": {
+        "startLine": 81,
+        "startChar": 33,
+        "endLine": 81,
+        "endChar": 48
+      },
+      "revId": "469da0c8262730d72d98a101ce4b6d5f694e82ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4fad7b4a_cb560e08",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
         "patchSetId": 18
@@ -64,6 +134,75 @@
         "startChar": 45,
         "endLine": 65,
         "endChar": 66
+      },
+      "revId": "469da0c8262730d72d98a101ce4b6d5f694e82ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e670775_99a3c68b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-31T14:05:14Z",
+      "side": 1,
+      "message": "extract this as a method into inventoryPersistence (possibly pass state as parameter)",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 53
+      },
+      "revId": "469da0c8262730d72d98a101ce4b6d5f694e82ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "63d440e7_a40b49e7",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/SyncUtilsSpec.groovy",
+        "patchSetId": 18
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-31T14:05:14Z",
+      "side": 1,
+      "message": "aligning",
+      "range": {
+        "startLine": 73,
+        "startChar": 20,
+        "endLine": 73,
+        "endChar": 22
+      },
+      "revId": "469da0c8262730d72d98a101ce4b6d5f694e82ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6fd64d90_7e3b3e32",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/helpers/InventoryPersistenceSpec.groovy",
+        "patchSetId": 18
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-31T14:05:14Z",
+      "side": 1,
+      "message": "NB: legacy move these older/more basi test to teh top",
+      "range": {
+        "startLine": 103,
+        "startChar": 4,
+        "endLine": 147,
+        "endChar": 5
       },
       "revId": "469da0c8262730d72d98a101ce4b6d5f694e82ff",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
