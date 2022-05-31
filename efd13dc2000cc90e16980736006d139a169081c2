@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1f416968_77fb61d6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/DataSyncWatchdog.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-31T14:40:36Z",
+      "side": 1,
+      "message": "I wouldn\u0027 tstart at this (high) level instead look at org.onap.cps.ncmp.api.impl.operations.DmiDataOperations#getResourceDataFromDmi  and extract just the part you need from that method into a new (public) method you can re-sure here:",
+      "range": {
+        "startLine": 55,
+        "startChar": 66,
+        "endLine": 55,
+        "endChar": 110
+      },
+      "revId": "efd13dc2000cc90e16980736006d139a169081c2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
