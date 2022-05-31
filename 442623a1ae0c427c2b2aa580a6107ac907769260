@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "30b8921f_a846f247",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-31T16:29:44Z",
+      "side": 1,
+      "message": "I think there is a reason this should be Object,\ncheck with Aditya, in any case that would be a legacy issue",
+      "parentUuid": "082b0cd1_298bc7d8",
+      "range": {
+        "startLine": 133,
+        "startChar": 11,
+        "endLine": 133,
+        "endChar": 18
+      },
+      "revId": "442623a1ae0c427c2b2aa580a6107ac907769260",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "db6a4b21_b16f22e7",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2022-05-31T16:01:18Z",
       "side": 1,
       "message": "NB : return getResourceDataResponse(cmHandleId, resourceIdentifier,\n                DmiOperations.DataStoreEnum.PASSTHROUGH_RUNNING, optionsParamInQuery, topicParamInQuery, requestId);",
+      "range": {
+        "startLine": 139,
+        "startChar": 7,
+        "endLine": 140,
+        "endChar": 47
+      },
+      "revId": "442623a1ae0c427c2b2aa580a6107ac907769260",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6494ec2c_86a05cb5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-31T16:29:44Z",
+      "side": 1,
+      "message": "doene (I took me a little while to understand exactly what you meant)\nFYI I also removed the CpsValidator call before both calls because it is also done (again) in teh common method",
+      "parentUuid": "db6a4b21_b16f22e7",
       "range": {
         "startLine": 139,
         "startChar": 7,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "7b5e46c7_bffddfed",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-31T16:29:44Z",
+      "side": 1,
+      "message": "done. not needed for Joe anymore but seems good refactoring anyway",
+      "parentUuid": "89d494f9_a36de8d4",
+      "range": {
+        "startLine": 287,
+        "startChar": 12,
+        "endLine": 287,
+        "endChar": 19
+      },
+      "revId": "442623a1ae0c427c2b2aa580a6107ac907769260",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "89c23c68_cf3572bc",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 2
@@ -91,6 +163,30 @@
       "revId": "442623a1ae0c427c2b2aa580a6107ac907769260",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bdf450e8_58e48005",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-05-31T16:29:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "89c23c68_cf3572bc",
+      "range": {
+        "startLine": 293,
+        "startChar": 8,
+        "endLine": 295,
+        "endChar": 40
+      },
+      "revId": "442623a1ae0c427c2b2aa580a6107ac907769260",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
