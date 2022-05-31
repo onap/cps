@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0bb38e39_9a483592",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-05-31T11:17:44Z",
+      "side": 1,
+      "message": "this could be invoked directly as an argument to withMOduleNamePrefix line 257.",
+      "range": {
+        "startLine": 250,
+        "startChar": 40,
+        "endLine": 250,
+        "endChar": 74
+      },
+      "revId": "6cfad8d8a67696833ca133738b54c515ba379a83",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5ba4224e_8b99c4db",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNode.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-05-31T11:17:44Z",
+      "side": 1,
+      "message": "how is moduleReference different ? Could this be reused instead of adding ModuleNamePrefix?",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 44
+      },
+      "revId": "6cfad8d8a67696833ca133738b54c515ba379a83",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dd2f987e_fe3c00e4",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/DataMapUtils.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-05-31T11:17:44Z",
+      "side": 1,
+      "message": "query: should container nodes be returned with module prefix?",
+      "range": {
+        "startLine": 88,
+        "startChar": 32,
+        "endLine": 88,
+        "endChar": 49
+      },
+      "revId": "6cfad8d8a67696833ca133738b54c515ba379a83",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
