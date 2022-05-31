@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "9ce3093f_8834058e",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNode.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-05-31T11:51:56Z",
+      "side": 1,
+      "message": "i think specifying the \u0027prefix\u0027 is much better for readability aswell? and will be constant throughout its use",
+      "parentUuid": "5ba4224e_8b99c4db",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 44
+      },
+      "revId": "6cfad8d8a67696833ca133738b54c515ba379a83",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "dd2f987e_fe3c00e4",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/DataMapUtils.java",
         "patchSetId": 5
@@ -59,6 +83,30 @@
       "writtenOn": "2022-05-31T11:17:44Z",
       "side": 1,
       "message": "query: should container nodes be returned with module prefix?",
+      "range": {
+        "startLine": 88,
+        "startChar": 32,
+        "endLine": 88,
+        "endChar": 49
+      },
+      "revId": "6cfad8d8a67696833ca133738b54c515ba379a83",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cf44789c_aec6d666",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/DataMapUtils.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-05-31T11:51:56Z",
+      "side": 1,
+      "message": "No, i believe its only the top level container - if the container is the top level node from the request then it will have its module prefix",
+      "parentUuid": "dd2f987e_fe3c00e4",
       "range": {
         "startLine": 88,
         "startChar": 32,
