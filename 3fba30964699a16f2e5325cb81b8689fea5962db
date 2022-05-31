@@ -190,6 +190,29 @@
     },
     {
       "key": {
+        "uuid": "da1059b3_5353d2fb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/YangDataConverter.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-05-31T12:42:42Z",
+      "side": 1,
+      "message": "Actually this comes from the experimental feature of lombok and current status seems to be negative. (look out for this)\nhttps://projectlombok.org/features/experimental/UtilityClass",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 13
+      },
+      "revId": "3fba30964699a16f2e5325cb81b8689fea5962db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a51f256_be6a9c39",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
         "patchSetId": 11
