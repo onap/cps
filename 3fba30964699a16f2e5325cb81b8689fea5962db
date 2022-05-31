@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "12590c1e_47ceba58",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/util/DeprecationHelper.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-05-31T12:39:24Z",
+      "side": 1,
+      "message": "Yes, unfortunately they are necessary.",
+      "parentUuid": "8fb854d2_2fa02d65",
+      "range": {
+        "startLine": 50,
+        "startChar": 52,
+        "endLine": 50,
+        "endChar": 59
+      },
+      "revId": "3fba30964699a16f2e5325cb81b8689fea5962db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bd3000e4_f12a0944",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
         "patchSetId": 11
@@ -36,6 +60,30 @@
       "writtenOn": "2022-05-30T16:25:45Z",
       "side": 1,
       "message": "as per my comment on patch #8 any property mapping should be testing the a mapperSpec not here!",
+      "range": {
+        "startLine": 248,
+        "startChar": 0,
+        "endLine": 253,
+        "endChar": 56
+      },
+      "revId": "3fba30964699a16f2e5325cb81b8689fea5962db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf541d1d_1d7b86f7",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-05-31T12:39:24Z",
+      "side": 1,
+      "message": "I removed the commented lines, this is necessary for the rest response conversation, that works in a different way (without objectMapper)",
+      "parentUuid": "bd3000e4_f12a0944",
       "range": {
         "startLine": 248,
         "startChar": 0,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "9d441a94_2caa329c",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/util/DeprecationHelperSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-05-31T12:39:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "81263705_1d1c9a84",
+      "range": {
+        "startLine": 36,
+        "startChar": 4,
+        "endLine": 36,
+        "endChar": 8
+      },
+      "revId": "3fba30964699a16f2e5325cb81b8689fea5962db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0c81603e_b981f9cf",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/YangDataConverter.java",
         "patchSetId": 11
@@ -82,6 +154,30 @@
       "writtenOn": "2022-05-30T16:25:45Z",
       "side": 1,
       "message": "ah, good to know, hasn\u0027t seen that before\nso you can use this when all methods are static, corect?",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 13
+      },
+      "revId": "3fba30964699a16f2e5325cb81b8689fea5962db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "443b471a_e24e2fa6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/YangDataConverter.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-05-31T12:39:24Z",
+      "side": 1,
+      "message": "Yes, it\u0027s correct",
+      "parentUuid": "0c81603e_b981f9cf",
       "range": {
         "startLine": 33,
         "startChar": 0,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "50ff2812_d36dc47c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-05-31T12:39:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a51f256_be6a9c39",
+      "range": {
+        "startLine": 394,
+        "startChar": 21,
+        "endLine": 394,
+        "endChar": 37
+      },
+      "revId": "3fba30964699a16f2e5325cb81b8689fea5962db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4358dafd_4488658a",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
         "patchSetId": 11
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "65ac11d1_06e3c063",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-05-31T12:39:24Z",
+      "side": 1,
+      "message": "It is needed",
+      "parentUuid": "4358dafd_4488658a",
+      "range": {
+        "startLine": 395,
+        "startChar": 48,
+        "endLine": 395,
+        "endChar": 54
+      },
+      "revId": "3fba30964699a16f2e5325cb81b8689fea5962db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f96b35d3_6eb4cb8a",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsCmHandlerQueryServiceImpl.java",
         "patchSetId": 11
@@ -151,6 +295,30 @@
       "writtenOn": "2022-05-30T16:25:45Z",
       "side": 1,
       "message": "We already have common constant for these (that do add some value)\nDo a search on teh stringvalue in IntelliJ",
+      "range": {
+        "startLine": 177,
+        "startChar": 16,
+        "endLine": 177,
+        "endChar": 49
+      },
+      "revId": "3fba30964699a16f2e5325cb81b8689fea5962db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4d4c42ca_7f1fea62",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsCmHandlerQueryServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-05-31T12:39:24Z",
+      "side": 1,
+      "message": "We have constants for these, but in an other maven module, and when I add it to this module as dependency, it cause a circular dependency",
+      "parentUuid": "f96b35d3_6eb4cb8a",
       "range": {
         "startLine": 177,
         "startChar": 16,
@@ -206,6 +374,30 @@
       "revId": "3fba30964699a16f2e5325cb81b8689fea5962db",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fc5bfcac_71fe901f",
+        "filename": "csit/tests/cm-handle-query/cm-handle-query.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-05-31T12:39:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a4527cf_6cd6fda6",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 51
+      },
+      "revId": "3fba30964699a16f2e5325cb81b8689fea5962db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
