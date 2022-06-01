@@ -201,6 +201,30 @@
     },
     {
       "key": {
+        "uuid": "6af7389f_8240b2ba",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/ncmp-event-schema-v1.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-06-01T15:13:47Z",
+      "side": 1,
+      "message": "Also we can go ahead and merge this if other comments are ok , as I have few upcoming patches around this. I can address kieran\u0027s comments if there is need to add PATCH as well.",
+      "parentUuid": "add1bb4d_01afed82",
+      "range": {
+        "startLine": 67,
+        "startChar": 18,
+        "endLine": 67,
+        "endChar": 48
+      },
+      "revId": "540ac2685c77ac602a4e607dbe7e131f21e4e269",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "79708344_60f336ac",
         "filename": "cps-ncmp-events/src/main/resources/schemas/ncmp-event-schema-v1.json",
         "patchSetId": 8
