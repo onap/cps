@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cc9c90a7_e13227ea",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-01T16:34:46Z",
+      "side": 1,
+      "message": "AS discussed, fix the code so that this NOT has to be set (should check for null)\nThen remove from this test (restore original file, don\u0027t want to see it in the commit anymore :-))",
+      "range": {
+        "startLine": 74,
+        "startChar": 12,
+        "endLine": 74,
+        "endChar": 53
+      },
+      "revId": "444274bde3214d993262e9aba766014814246cbb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "29320202_4cac4c81",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-01T16:34:46Z",
+      "side": 1,
+      "message": "Then remove from this test (restore original file, don\u0027t want to see it in the commit anymore :-))",
+      "range": {
+        "startLine": 60,
+        "startChar": 21,
+        "endLine": 60,
+        "endChar": 62
+      },
+      "revId": "444274bde3214d993262e9aba766014814246cbb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eac0067c_4234d2d0",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-01T16:34:46Z",
+      "side": 1,
+      "message": "do you real need this valid resource, can you not mock the validator or somthing?!",
+      "range": {
+        "startLine": 106,
+        "startChar": 91,
+        "endLine": 106,
+        "endChar": 107
+      },
+      "revId": "444274bde3214d993262e9aba766014814246cbb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b8bf4eb8_1dd9ca67",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/CpsDataUpdateEventFactorySpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-01T16:34:46Z",
+      "side": 1,
+      "message": "Then remove from this test (restore original file, don\u0027t want to see it in the commit anymore :-))",
+      "range": {
+        "startLine": 51,
+        "startChar": 20,
+        "endLine": 51,
+        "endChar": 61
+      },
+      "revId": "444274bde3214d993262e9aba766014814246cbb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
