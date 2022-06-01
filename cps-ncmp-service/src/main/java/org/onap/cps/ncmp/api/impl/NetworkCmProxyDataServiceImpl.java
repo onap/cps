@@ -46,7 +46,6 @@ import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
-import org.onap.cps.ncmp.api.impl.exception.HttpClientRequestException;
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations;
 import org.onap.cps.ncmp.api.impl.operations.DmiOperations;
 import org.onap.cps.ncmp.api.impl.operations.YangModelCmHandleRetriever;
@@ -114,9 +113,12 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                                                         final String optionsParamInQuery,
                                                         final String topicParamInQuery,
                                                         final String requestId) {
-        CpsValidator.validateNameCharacters(cmHandleId);
-        return getResourceDataResponse(cmHandleId, resourceIdentifier,
-                DmiOperations.DataStoreEnum.PASSTHROUGH_OPERATIONAL, optionsParamInQuery, topicParamInQuery, requestId);
+        final ResponseEntity<?> responseEntity = dmiDataOperations.getResourceDataFromDmi(cmHandleId,
+            resourceIdentifier,
+            optionsParamInQuery,
+            DmiOperations.DataStoreEnum.PASSTHROUGH_OPERATIONAL,
+            requestId, topicParamInQuery);
+        return responseEntity.getBody();
     }
 
     @Override
@@ -125,21 +127,23 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                                                                final String optionsParamInQuery,
                                                                final String topicParamInQuery,
                                                                final String requestId) {
-        CpsValidator.validateNameCharacters(cmHandleId);
-        return getResourceDataResponse(cmHandleId, resourceIdentifier,
-                DmiOperations.DataStoreEnum.PASSTHROUGH_RUNNING, optionsParamInQuery, topicParamInQuery, requestId);
+        final ResponseEntity<?> responseEntity = dmiDataOperations.getResourceDataFromDmi(cmHandleId,
+            resourceIdentifier,
+            optionsParamInQuery,
+            DmiOperations.DataStoreEnum.PASSTHROUGH_RUNNING,
+            requestId, topicParamInQuery);
+        return responseEntity.getBody();
     }
 
     @Override
     public Object writeResourceDataPassThroughRunningForCmHandle(final String cmHandleId,
-                                                               final String resourceIdentifier,
-                                                               final OperationEnum operation,
-                                                               final String requestData,
-                                                               final String dataType) {
+                                                                 final String resourceIdentifier,
+                                                                 final OperationEnum operation,
+                                                                 final String requestData,
+                                                                 final String dataType) {
         CpsValidator.validateNameCharacters(cmHandleId);
-        return handleResponse(
-                dmiDataOperations.writeResourceDataPassThroughRunningFromDmi(cmHandleId, resourceIdentifier, operation,
-                        requestData, dataType), operation);
+        return dmiDataOperations.writeResourceDataPassThroughRunningFromDmi(cmHandleId, resourceIdentifier, operation,
+            requestData, dataType);
     }
 
 
@@ -171,7 +175,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         });
 
         return cpsAdminService.queryCmHandles(jsonObjectMapper.convertToValueType(cmHandleQueryApiParameters,
-                org.onap.cps.spi.model.CmHandleQueryParameters.class));
+            org.onap.cps.spi.model.CmHandleQueryParameters.class));
     }
 
     /**
@@ -243,7 +247,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         final String schemaSetName = moduleSyncService.syncAndCreateSchemaSet(yangModelCmHandle);
         final String anchorName = yangModelCmHandle.getId();
         cpsAdminService.createAnchor(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, schemaSetName,
-                anchorName);
+            anchorName);
     }
 
     protected List<CmHandleRegistrationResponse> parseAndRemoveCmHandlesInDmiRegistration(
@@ -286,17 +290,6 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         }
     }
 
-    private Object getResourceDataResponse(final String cmHandleId,
-                                           final String resourceIdentifier,
-                                           final DmiOperations.DataStoreEnum dataStore,
-                                           final String optionsParamInQuery,
-                                           final String topicParamInQuery,
-                                           final String requestId) {
-        final ResponseEntity<?> responseEntity = dmiDataOperations.getResourceDataFromDmi(
-                cmHandleId, resourceIdentifier, optionsParamInQuery, dataStore, requestId, topicParamInQuery);
-        return handleResponse(responseEntity, OperationEnum.READ);
-    }
-
     private void setDmiProperties(final List<YangModelCmHandle.Property> dmiProperties,
                                   final NcmpServiceCmHandle ncmpServiceCmHandle) {
         final Map<String, String> dmiPropertiesMap = new LinkedHashMap<>(dmiProperties.size());
@@ -318,7 +311,6 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         }
     }
 
-
     private CmHandleRegistrationResponse registerAndSyncNewCmHandle(final YangModelCmHandle yangModelCmHandle) {
         try {
             final String cmHandleJsonData = String.format("{\"cm-handles\":[%s]}",
@@ -332,16 +324,6 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                 yangModelCmHandle.getId(), RegistrationError.CM_HANDLE_ALREADY_EXIST);
         } catch (final Exception exception) {
             return CmHandleRegistrationResponse.createFailureResponse(yangModelCmHandle.getId(), exception);
-        }
-    }
-
-    private static Object handleResponse(final ResponseEntity<?> responseEntity, final OperationEnum operation) {
-        if (responseEntity.getStatusCode().is2xxSuccessful()) {
-            return responseEntity.getBody();
-        } else {
-            final String exceptionMessage = "Unable to " + operation.toString() + " resource data.";
-            throw new HttpClientRequestException(exceptionMessage, (String) responseEntity.getBody(),
-                responseEntity.getStatusCodeValue());
         }
     }
 

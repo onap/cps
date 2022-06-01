@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Nordix Foundation
+ *  Copyright (C) 2021-2022 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,16 +22,22 @@
 package org.onap.cps.ncmp.api.impl.client
 
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration
+import org.onap.cps.ncmp.api.impl.exception.HttpClientRequestException
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.http.HttpEntity
-import org.springframework.http.HttpHeaders
-import org.springframework.http.HttpMethod
+import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.test.context.ContextConfiguration
+import org.springframework.web.client.HttpServerErrorException
 import org.springframework.web.client.RestTemplate
 import spock.lang.Specification
+
+import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.READ
+import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.PATCH
+import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.CREATE
+
 
 @SpringBootTest
 @ContextConfiguration(classes = [NcmpConfiguration.DmiProperties, DmiRestClient])
@@ -44,14 +50,32 @@ class DmiRestClientSpec extends Specification {
     DmiRestClient objectUnderTest
     def resourceUrl = 'some url'
 
+    def mockResponseEntity = Mock(ResponseEntity)
+
     def 'DMI POST operation with JSON.'() {
         given: 'the rest template returns a valid response entity'
-            def mockResponseEntity = Mock(ResponseEntity)
             mockRestTemplate.postForEntity(resourceUrl, _ as HttpEntity, Object.class) >> mockResponseEntity
         when: 'POST operation is invoked'
-            def result = objectUnderTest.postOperationWithJsonData(resourceUrl, 'json-data')
+            def result = objectUnderTest.postOperationWithJsonData(resourceUrl, 'json-data', READ)
         then: 'the output of the method is equal to the output from the test template'
             result == mockResponseEntity
+    }
+
+    def 'Failing DMI POST operation.'() {
+        given: 'the rest template returns a valid response entity'
+            def serverResponse = 'server response'.getBytes()
+            def httpServerErrorException = new HttpServerErrorException(HttpStatus.FORBIDDEN, 'status text', serverResponse, null)
+            mockRestTemplate.postForEntity(*_) >> { throw httpServerErrorException }
+        when: 'POST operation is invoked'
+            def result = objectUnderTest.postOperationWithJsonData('some url', 'some json', operation)
+        then: 'a Http Client Exception is thrown'
+            def thrown = thrown(HttpClientRequestException)
+        and: 'the exception has the relevant details from the error response'
+            assert thrown.httpStatus == 403
+            assert thrown.message == "Unable to ${operation} resource data."
+            assert thrown.details == 'server response'
+        where: 'the following operation is executed'
+            operation << [CREATE, READ, PATCH]
     }
 
 }
