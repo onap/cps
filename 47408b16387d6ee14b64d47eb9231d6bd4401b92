@@ -94,6 +94,40 @@
     },
     {
       "key": {
+        "uuid": "618f25d7_69a6acb0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-06-01T13:19:55Z",
+      "side": 1,
+      "message": "log exception in trace to help during debugging if there are some issue?",
+      "revId": "47408b16387d6ee14b64d47eb9231d6bd4401b92",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "05ca4178_e43e8088",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-06-01T13:19:55Z",
+      "side": 1,
+      "message": "NB: if the cm handle advised request comes with empty lock reason object then this logic will fail.",
+      "revId": "47408b16387d6ee14b64d47eb9231d6bd4401b92",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4412bc3c_3ea94ccd",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/InventoryPersistenceSpec.groovy",
         "patchSetId": 21
