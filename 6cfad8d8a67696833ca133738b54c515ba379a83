@@ -140,6 +140,75 @@
       "revId": "6cfad8d8a67696833ca133738b54c515ba379a83",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "56ad46c1_b75390fe",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/DataMapUtils.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-06-01T16:40:13Z",
+      "side": 1,
+      "message": "nb: Would personally re-order this as it references a method above it.",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 5
+      },
+      "revId": "6cfad8d8a67696833ca133738b54c515ba379a83",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb83babf_d840a58f",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/spi/model/DataNodeBuilderSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-06-01T16:40:13Z",
+      "side": 1,
+      "message": "Would just say \u0027data node is built with a prefix\u0027.",
+      "range": {
+        "startLine": 177,
+        "startChar": 46,
+        "endLine": 177,
+        "endChar": 66
+      },
+      "revId": "6cfad8d8a67696833ca133738b54c515ba379a83",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4d4d7ff1_c29a14fa",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/spi/model/DataNodeBuilderSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-06-01T16:40:13Z",
+      "side": 1,
+      "message": "The result when node request is a #scenario includes the correct prefix",
+      "range": {
+        "startLine": 183,
+        "startChar": 15,
+        "endLine": 183,
+        "endChar": 89
+      },
+      "revId": "6cfad8d8a67696833ca133738b54c515ba379a83",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
