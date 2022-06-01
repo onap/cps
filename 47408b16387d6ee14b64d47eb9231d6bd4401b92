@@ -361,6 +361,24 @@
     },
     {
       "key": {
+        "uuid": "a62ad761_36ba3157",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-06-01T14:46:17Z",
+      "side": 1,
+      "message": "Has since been merged. Can be done as a later improvment!",
+      "parentUuid": "8e56cc89_a9704371",
+      "revId": "47408b16387d6ee14b64d47eb9231d6bd4401b92",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "05ca4178_e43e8088",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
         "patchSetId": 21
@@ -408,6 +426,24 @@
       "side": 1,
       "message": "If such a payload is used to create the cm handles.\neg:\nsubsection of the cm handle request:\n.\n.\n.\n\"state\": {\n        \"cm-handle-state\": \"ADVISED\",\n        \"lock-reason\": {\n          \"reason\": \"\",\n          \"details\": \"\"\n        }\n;\n;\n}",
       "parentUuid": "f7496009_eb3d4a0d",
+      "revId": "47408b16387d6ee14b64d47eb9231d6bd4401b92",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "54769201_642f78fc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-06-01T14:46:17Z",
+      "side": 1,
+      "message": "Well the reason is passed in directly through the parameters as an enum\n\nIf the details is an empty string it won\u0027t match the pattern and will just default to the string below, being Attempt # failed.",
+      "parentUuid": "144b270e_c6d5169b",
       "revId": "47408b16387d6ee14b64d47eb9231d6bd4401b92",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
