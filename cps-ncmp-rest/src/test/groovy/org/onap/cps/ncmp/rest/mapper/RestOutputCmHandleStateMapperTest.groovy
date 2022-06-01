@@ -22,17 +22,14 @@ package org.onap.cps.ncmp.rest.mapper
 
 import org.mapstruct.factory.Mappers
 import org.onap.cps.ncmp.api.inventory.CmHandleState
-import org.onap.cps.ncmp.api.inventory.CompositeState
+import org.onap.cps.ncmp.api.inventory.CompositeStateBuilder
+import org.onap.cps.ncmp.api.inventory.LockReasonCategory
 import org.onap.cps.ncmp.rest.model.RestOutputCmHandleState
 import spock.lang.Specification
 
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
-
-import static org.onap.cps.ncmp.api.inventory.CompositeState.DataStores
-import static org.onap.cps.ncmp.api.inventory.CompositeState.LockReason
-import static org.onap.cps.ncmp.api.inventory.CompositeState.Operational
 
 class RestOutputCmHandleStateMapperTest extends Specification {
 
@@ -42,11 +39,12 @@ class RestOutputCmHandleStateMapperTest extends Specification {
 
     def 'Composite State to Rest Output CmHandleState'() {
         given: 'a composite state model'
-            def compositeState = new CompositeState(cmhandleState: CmHandleState.ADVISED,
-                lockReason: LockReason.builder().reason('LOCKED_OTHER').details('locked-other-details').build(),
-                lastUpdateTime: formattedDateAndTime.toString(),
-                dataSyncEnabled: false,
-                dataStores: dataStores())
+            def compositeState = new CompositeStateBuilder()
+                .withCmHandleState(CmHandleState.ADVISED)
+                .withLastUpdatedTime(formattedDateAndTime.toString())
+                .withLockReason(LockReasonCategory.LOCKED_MISBEHAVING, 'locked other details')
+                .withOperationalDataStores('SYNCHRONIZED', formattedDateAndTime).build()
+        compositeState.setDataSyncEnabled(false)
         when: 'mapper is called'
             def result = objectUnderTest.toRestOutputCmHandleState(compositeState)
         then: 'result is of the correct type'
@@ -54,22 +52,10 @@ class RestOutputCmHandleStateMapperTest extends Specification {
         and: 'mapped result should have correct values'
             assert !result.dataSyncEnabled
             assert result.lastUpdateTime == formattedDateAndTime
-            assert result.lockReason.reason == 'LOCKED_OTHER'
-            assert result.lockReason.details == 'locked-other-details'
+            assert result.lockReason.reason == 'LOCKED_MISBEHAVING'
+            assert result.lockReason.details == 'locked other details'
             assert result.cmHandleState == CmHandleState.ADVISED.name()
-            assert result.dataSyncState.operational != null
-            assert result.dataSyncState.running != null
+            assert result.dataSyncState.operational.getState() != null
     }
 
-    def dataStores() {
-
-        return DataStores.builder()
-            .operationalDataStore(Operational.builder()
-                .syncState('NONE_REQUESTED')
-                .lastSyncTime(formattedDateAndTime.toString()).build())
-            .runningDataStore(CompositeState.Running.builder()
-                .syncState('NONE_REQUESTED')
-                .lastSyncTime(formattedDateAndTime.toString()).build())
-            .build()
-    }
 }

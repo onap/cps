@@ -34,6 +34,7 @@ import org.onap.cps.ncmp.api.impl.client.DmiRestClient;
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration;
 import org.onap.cps.ncmp.api.impl.utils.DmiServiceUrlBuilder;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
+import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.api.models.YangResource;
 import org.onap.cps.spi.model.ModuleReference;
 import org.onap.cps.utils.JsonObjectMapper;
@@ -51,11 +52,11 @@ public class DmiModelOperations extends DmiOperations {
      *
      * @param dmiRestClient {@code DmiRestClient}
      */
-    public DmiModelOperations(final YangModelCmHandleRetriever dmiPropertiesRetriever,
+    public DmiModelOperations(final InventoryPersistence inventoryPersistence,
                               final JsonObjectMapper jsonObjectMapper,
                               final NcmpConfiguration.DmiProperties dmiProperties,
                               final DmiRestClient dmiRestClient, final DmiServiceUrlBuilder dmiServiceUrlBuilder) {
-        super(dmiPropertiesRetriever, jsonObjectMapper, dmiProperties, dmiRestClient, dmiServiceUrlBuilder);
+        super(inventoryPersistence, jsonObjectMapper, dmiProperties, dmiRestClient, dmiServiceUrlBuilder);
     }
 
     /**

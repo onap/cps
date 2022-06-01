@@ -25,7 +25,6 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 import org.mapstruct.NullValueCheckStrategy;
 import org.mapstruct.NullValuePropertyMappingStrategy;
-import org.onap.cps.ncmp.api.inventory.CmHandleState;
 import org.onap.cps.ncmp.api.inventory.CompositeState;
 import org.onap.cps.ncmp.rest.model.DataStores;
 import org.onap.cps.ncmp.rest.model.RestOutputCmHandleState;
@@ -36,7 +35,7 @@ import org.onap.cps.ncmp.rest.model.SyncState;
 public interface RestOutputCmHandleStateMapper {
 
     @Mapping(target = "dataSyncState", source = "dataStores", qualifiedByName = "dataStoreToDataSyncState")
-    @Mapping(target = "cmHandleState", source = "cmhandleState", qualifiedByName = "cmHandleStateEnumToString")
+    @Mapping(target = "lockReason.reason", source = "lockReason.lockReasonCategory")
     RestOutputCmHandleState toRestOutputCmHandleState(CompositeState compositeState);
 
     /**
@@ -54,13 +53,6 @@ public interface RestOutputCmHandleStateMapper {
 
         final DataStores dataStores = new DataStores();
 
-        if (compositeStateDataStore.getRunningDataStore() != null) {
-            final SyncState runningSyncState = new SyncState();
-            runningSyncState.setState(compositeStateDataStore.getRunningDataStore().getSyncState());
-            runningSyncState.setLastSyncTime(compositeStateDataStore.getRunningDataStore().getLastSyncTime());
-            dataStores.setRunning(runningSyncState);
-        }
-
         if (compositeStateDataStore.getOperationalDataStore() != null) {
             final SyncState operationalSyncState = new SyncState();
             operationalSyncState.setState(compositeStateDataStore.getOperationalDataStore().getSyncState());
@@ -71,17 +63,6 @@ public interface RestOutputCmHandleStateMapper {
 
         return dataStores;
 
-    }
-
-    /**
-     * Converts cmHandleState enum value to equivalent string.
-     *
-     * @param cmHandleState cm handle state enum
-     * @return cm handle state as string
-     */
-    @Named("cmHandleStateEnumToString")
-    static String toCmHandleState(final CmHandleState cmHandleState) {
-        return cmHandleState.name();
     }
 
 }
