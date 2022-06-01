@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "88b506db_ecb2eb28",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/mapper/RestOutputCmHandleStateMapperTest.groovy",
+        "patchSetId": 21
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-06-01T10:54:31Z",
+      "side": 1,
+      "message": "Will remove running from this test as it\u0027s currently not being used.",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 71
+      },
+      "revId": "47408b16387d6ee14b64d47eb9231d6bd4401b92",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "276e1372_fae5f9a7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CompositeStateBuilder.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-06-01T10:54:31Z",
+      "side": 1,
+      "message": "Will remove this as I don\u0027t think it is being used currently.",
+      "range": {
+        "startLine": 108,
+        "startChar": 0,
+        "endLine": 120,
+        "endChar": 0
+      },
+      "revId": "47408b16387d6ee14b64d47eb9231d6bd4401b92",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
