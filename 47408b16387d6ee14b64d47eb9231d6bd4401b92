@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "060cb716_8482a6ae",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/mapper/RestOutputCmHandleStateMapper.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-06-01T13:53:21Z",
+      "side": 1,
+      "message": "Will remove as running is currently not being used.",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 9
+      },
+      "revId": "47408b16387d6ee14b64d47eb9231d6bd4401b92",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "723e3df8_08ad5936",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
         "patchSetId": 21
@@ -13,6 +36,30 @@
       "writtenOn": "2022-06-01T13:29:32Z",
       "side": 1,
       "message": "we agreed to get this removed",
+      "range": {
+        "startLine": 380,
+        "startChar": 0,
+        "endLine": 383,
+        "endChar": 20
+      },
+      "revId": "47408b16387d6ee14b64d47eb9231d6bd4401b92",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a35f628_551bcfce",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 21
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-06-01T13:53:21Z",
+      "side": 1,
+      "message": "Yes this has been removed.",
+      "parentUuid": "723e3df8_08ad5936",
       "range": {
         "startLine": 380,
         "startChar": 0,
@@ -71,6 +118,30 @@
     },
     {
       "key": {
+        "uuid": "fe10c149_2d549361",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CompositeState.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-06-01T13:53:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cca6f254_1ecfd42e",
+      "range": {
+        "startLine": 57,
+        "startChar": 4,
+        "endLine": 57,
+        "endChar": 11
+      },
+      "revId": "47408b16387d6ee14b64d47eb9231d6bd4401b92",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "883de79a_1763e0d8",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CompositeState.java",
         "patchSetId": 21
@@ -91,6 +162,30 @@
       "revId": "47408b16387d6ee14b64d47eb9231d6bd4401b92",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f62a55fe_11b021ea",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CompositeState.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-06-01T13:53:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "883de79a_1763e0d8",
+      "range": {
+        "startLine": 113,
+        "startChar": 0,
+        "endLine": 120,
+        "endChar": 5
+      },
+      "revId": "47408b16387d6ee14b64d47eb9231d6bd4401b92",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -134,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "4a5c76ad_13ad2841",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-06-01T13:53:21Z",
+      "side": 1,
+      "message": "The exception message is logged as part of the lock reason details. I\u0027m not sure if logging it any further is necessary?",
+      "parentUuid": "618f25d7_69a6acb0",
+      "revId": "47408b16387d6ee14b64d47eb9231d6bd4401b92",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "05ca4178_e43e8088",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
         "patchSetId": 21
@@ -145,6 +258,24 @@
       "writtenOn": "2022-06-01T13:19:55Z",
       "side": 1,
       "message": "NB: if the cm handle advised request comes with empty lock reason object then this logic will fail.",
+      "revId": "47408b16387d6ee14b64d47eb9231d6bd4401b92",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f7496009_eb3d4a0d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-06-01T13:53:21Z",
+      "side": 1,
+      "message": "With null or empty? If it\u0027s null it just won\u0027t come into this section here,\nand it will default to the details and reason below. There is a test which covers a null scenario.\n\nI don\u0027t think the lock reason can just be empty an empty object currently.",
+      "parentUuid": "05ca4178_e43e8088",
       "revId": "47408b16387d6ee14b64d47eb9231d6bd4401b92",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
@@ -174,6 +305,30 @@
     },
     {
       "key": {
+        "uuid": "41ca6a6f_d35918ed",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/InventoryPersistenceSpec.groovy",
+        "patchSetId": 21
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-06-01T13:53:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4412bc3c_3ea94ccd",
+      "range": {
+        "startLine": 127,
+        "startChar": 22,
+        "endLine": 127,
+        "endChar": 30
+      },
+      "revId": "47408b16387d6ee14b64d47eb9231d6bd4401b92",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4ab8bea0_9f9b7a83",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/InventoryPersistenceSpec.groovy",
         "patchSetId": 21
@@ -194,6 +349,30 @@
       "revId": "47408b16387d6ee14b64d47eb9231d6bd4401b92",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b4f6f367_a96c8cfe",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/InventoryPersistenceSpec.groovy",
+        "patchSetId": 21
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-06-01T13:53:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ab8bea0_9f9b7a83",
+      "range": {
+        "startLine": 154,
+        "startChar": 15,
+        "endLine": 154,
+        "endChar": 66
+      },
+      "revId": "47408b16387d6ee14b64d47eb9231d6bd4401b92",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
