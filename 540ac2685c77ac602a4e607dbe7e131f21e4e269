@@ -130,6 +130,30 @@
     },
     {
       "key": {
+        "uuid": "4926415f_27927dea",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/ncmp-event-schema-v1.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-06-01T15:07:55Z",
+      "side": 1,
+      "message": "Ahha..Thanks a lot for this. I will add this to my mind glossary 😊",
+      "parentUuid": "91d83084_0e7edb34",
+      "range": {
+        "startLine": 4,
+        "startChar": 41,
+        "endLine": 4,
+        "endChar": 44
+      },
+      "revId": "540ac2685c77ac602a4e607dbe7e131f21e4e269",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a6704d4_385ee990",
         "filename": "cps-ncmp-events/src/main/resources/schemas/ncmp-event-schema-v1.json",
         "patchSetId": 8
@@ -141,6 +165,30 @@
       "writtenOn": "2022-06-01T14:57:16Z",
       "side": 1,
       "message": "you sure about these? Were these values agreed with Kieran?, what about PATCH",
+      "range": {
+        "startLine": 67,
+        "startChar": 18,
+        "endLine": 67,
+        "endChar": 48
+      },
+      "revId": "540ac2685c77ac602a4e607dbe7e131f21e4e269",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "add1bb4d_01afed82",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/ncmp-event-schema-v1.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-06-01T15:07:55Z",
+      "side": 1,
+      "message": "Actually the spike related to this talks about these 3 operations only.\nAlso we have examples related to this.\nBut yes I can recheck with kieran on PATCH.",
+      "parentUuid": "9a6704d4_385ee990",
       "range": {
         "startLine": 67,
         "startChar": 18,
@@ -176,6 +224,30 @@
     },
     {
       "key": {
+        "uuid": "9f049d78_0d5b3f73",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/ncmp-event-schema-v1.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-06-01T15:07:55Z",
+      "side": 1,
+      "message": "if set to true it will actually generate a map implementation where we can have additional parameters. Kind of gives flexible schema 😊",
+      "parentUuid": "79708344_60f336ac",
+      "range": {
+        "startLine": 78,
+        "startChar": 34,
+        "endLine": 78,
+        "endChar": 39
+      },
+      "revId": "540ac2685c77ac602a4e607dbe7e131f21e4e269",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e29a5100_583a2b95",
         "filename": "cps-ncmp-events/src/main/resources/schemas/ncmp-event-schema-v1.json",
         "patchSetId": 8
@@ -187,6 +259,30 @@
       "writtenOn": "2022-06-01T14:57:16Z",
       "side": 1,
       "message": "what does this do/mean?",
+      "range": {
+        "startLine": 84,
+        "startChar": 6,
+        "endLine": 84,
+        "endChar": 35
+      },
+      "revId": "540ac2685c77ac602a4e607dbe7e131f21e4e269",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0fae4339_90683ada",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/ncmp-event-schema-v1.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-06-01T15:07:55Z",
+      "side": 1,
+      "message": "reverted in prev.comment.",
+      "parentUuid": "e29a5100_583a2b95",
       "range": {
         "startLine": 84,
         "startChar": 6,
