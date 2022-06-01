@@ -343,6 +343,24 @@
     },
     {
       "key": {
+        "uuid": "8e56cc89_a9704371",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-06-01T14:08:18Z",
+      "side": 1,
+      "message": "NB:\nNormally we don\u0027t query the DB to get the information about the cm handles. Just enabling the log level to Trace will help during debug.\nlog.trace(\"Failed to update the CM handles state to READY: {}\",e.getMessage())",
+      "parentUuid": "4a5c76ad_13ad2841",
+      "revId": "47408b16387d6ee14b64d47eb9231d6bd4401b92",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "05ca4178_e43e8088",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
         "patchSetId": 21
@@ -372,6 +390,24 @@
       "side": 1,
       "message": "With null or empty? If it\u0027s null it just won\u0027t come into this section here,\nand it will default to the details and reason below. There is a test which covers a null scenario.\n\nI don\u0027t think the lock reason can just be empty an empty object currently.",
       "parentUuid": "05ca4178_e43e8088",
+      "revId": "47408b16387d6ee14b64d47eb9231d6bd4401b92",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "144b270e_c6d5169b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-06-01T14:08:18Z",
+      "side": 1,
+      "message": "If such a payload is used to create the cm handles.\neg:\nsubsection of the cm handle request:\n.\n.\n.\n\"state\": {\n        \"cm-handle-state\": \"ADVISED\",\n        \"lock-reason\": {\n          \"reason\": \"\",\n          \"details\": \"\"\n        }\n;\n;\n}",
+      "parentUuid": "f7496009_eb3d4a0d",
       "revId": "47408b16387d6ee14b64d47eb9231d6bd4401b92",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
