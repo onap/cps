@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "b4274deb_872e6383",
+        "filename": "cps-bom/pom.xml",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-02T09:05:38Z",
+      "side": 1,
+      "message": "ok, I understand whitespace change is intended",
+      "parentUuid": "c9e2a3e3_c9159040",
+      "revId": "540ac2685c77ac602a4e607dbe7e131f21e4e269",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fe552c2e_d8423941",
         "filename": "cps-ncmp-events/pom.xml",
         "patchSetId": 8
@@ -225,6 +243,30 @@
     },
     {
       "key": {
+        "uuid": "074aa2e8_23c61e0a",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/ncmp-event-schema-v1.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-02T09:05:38Z",
+      "side": 1,
+      "message": "I suppose we can always add it later",
+      "parentUuid": "add1bb4d_01afed82",
+      "range": {
+        "startLine": 67,
+        "startChar": 18,
+        "endLine": 67,
+        "endChar": 48
+      },
+      "revId": "540ac2685c77ac602a4e607dbe7e131f21e4e269",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "79708344_60f336ac",
         "filename": "cps-ncmp-events/src/main/resources/schemas/ncmp-event-schema-v1.json",
         "patchSetId": 8
@@ -272,6 +314,30 @@
     },
     {
       "key": {
+        "uuid": "4b75780a_b9f6f5fb",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/ncmp-event-schema-v1.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-02T09:05:38Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9f049d78_0d5b3f73",
+      "range": {
+        "startLine": 78,
+        "startChar": 34,
+        "endLine": 78,
+        "endChar": 39
+      },
+      "revId": "540ac2685c77ac602a4e607dbe7e131f21e4e269",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e29a5100_583a2b95",
         "filename": "cps-ncmp-events/src/main/resources/schemas/ncmp-event-schema-v1.json",
         "patchSetId": 8
@@ -316,6 +382,30 @@
       "revId": "540ac2685c77ac602a4e607dbe7e131f21e4e269",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "13d54a21_9f5c53b2",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/ncmp-event-schema-v1.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-02T09:05:38Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0fae4339_90683ada",
+      "range": {
+        "startLine": 84,
+        "startChar": 6,
+        "endLine": 84,
+        "endChar": 35
+      },
+      "revId": "540ac2685c77ac602a4e607dbe7e131f21e4e269",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
