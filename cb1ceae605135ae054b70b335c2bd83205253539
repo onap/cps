@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fd2c2507_c0d1f8af",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-06-02T15:16:49Z",
+      "side": 1,
+      "message": "NB : Personally, I would use a standard if statement here, I think it\u0027s more readable than using ternary operators.\n\nWhat does the team think?",
+      "range": {
+        "startLine": 224,
+        "startChar": 0,
+        "endLine": 225,
+        "endChar": 95
+      },
+      "revId": "cb1ceae605135ae054b70b335c2bd83205253539",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
