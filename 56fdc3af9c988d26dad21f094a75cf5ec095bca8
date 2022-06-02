@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2f0c11a4_f1fb2012",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/NcmpEventsPublisher.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-02T12:09:12Z",
+      "side": 1,
+      "message": "prefer to use class name: ncmpEvent",
+      "range": {
+        "startLine": 53,
+        "startChar": 68,
+        "endLine": 53,
+        "endChar": 77
+      },
+      "revId": "56fdc3af9c988d26dad21f094a75cf5ec095bca8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "caca9d43_4c944a0c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/NcmpEventsPublisher.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-02T12:09:12Z",
+      "side": 1,
+      "message": "tricky one to name but in this case i would call it \u0027future\u0027 I think it make the most sense in the context of this method",
+      "range": {
+        "startLine": 54,
+        "startChar": 62,
+        "endLine": 54,
+        "endChar": 67
+      },
+      "revId": "56fdc3af9c988d26dad21f094a75cf5ec095bca8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "14253038_5e3b26d5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/NcmpEventsPublisher.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-02T12:09:12Z",
+      "side": 1,
+      "message": "a Trowable is not an Ex(ception) use \u0027t\u0027 or preferable \u0027throwable\u0027",
+      "range": {
+        "startLine": 59,
+        "startChar": 50,
+        "endLine": 59,
+        "endChar": 52
+      },
+      "revId": "56fdc3af9c988d26dad21f094a75cf5ec095bca8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a7279657_ef01c5cc",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/NcmpEventsPublisherSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-02T12:09:12Z",
+      "side": 1,
+      "message": "I think this is the 2second or 3rd place we use this now, can it be factored out in a  common \u0027MessagingSpec\u0027 taht tehn can be extended by teh specific tests",
+      "range": {
+        "startLine": 61,
+        "startChar": 8,
+        "endLine": 61,
+        "endChar": 33
+      },
+      "revId": "56fdc3af9c988d26dad21f094a75cf5ec095bca8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7adb0799_966f38af",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/NcmpEventsPublisherSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-02T12:09:12Z",
+      "side": 1,
+      "message": "replace all \" ith \u0027 in Groovy :-)",
+      "range": {
+        "startLine": 61,
+        "startChar": 37,
+        "endLine": 61,
+        "endChar": 38
+      },
+      "revId": "56fdc3af9c988d26dad21f094a75cf5ec095bca8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fc4d048b_6e4b5685",
+        "filename": "cps-ncmp-service/src/test/resources/expectedNcmpEvent.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-02T12:09:12Z",
+      "side": 1,
+      "message": "use a different value for illustration purposes I think it is better een if tehy will be same for this uusecase",
+      "range": {
+        "startLine": 3,
+        "startChar": 25,
+        "endLine": 3,
+        "endChar": 37
+      },
+      "revId": "56fdc3af9c988d26dad21f094a75cf5ec095bca8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
