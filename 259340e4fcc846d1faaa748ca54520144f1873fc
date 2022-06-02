@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "77cd1881_299ccb9f",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-02T13:44:16Z",
+      "side": 1,
+      "message": "Q: I suppose output is the significant keyword, correct?",
+      "range": {
+        "startLine": 272,
+        "startChar": 8,
+        "endLine": 272,
+        "endChar": 14
+      },
+      "revId": "259340e4fcc846d1faaa748ca54520144f1873fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c27b1e6c_903461ad",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-02T13:44:16Z",
+      "side": 1,
+      "message": "Opinions and feedback form all requested:\n\nI recently discussed this with Dylan And Andras,\n\nShould we have separate mapper test (which Dyan did) or elva it tested here as it included conversion to Rest response (which I am not sure if it cover our code)\n\nI think both approached are OK considering\n1) if there are many complicated conversion a separate tets of the mapper might be preferable\n2) Id there is no separate mapper tets we have to be careful to test conversion only once and not \u0027pollute\u0027 many test with same/similar data. Those other tests should need only one (significant) attribute to verify the output",
+      "range": {
+        "startLine": 273,
+        "startChar": 0,
+        "endLine": 283,
+        "endChar": 5
+      },
+      "revId": "259340e4fcc846d1faaa748ca54520144f1873fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7f4233ef_805ce40a",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-02T13:44:16Z",
+      "side": 1,
+      "message": "minimise duplication with previous test (see discussion point) maybe for this conversion ampper tets would be more appropriate oor do we still need to test conversion to REST output?!",
+      "range": {
+        "startLine": 316,
+        "startChar": 0,
+        "endLine": 325,
+        "endChar": 63
+      },
+      "revId": "259340e4fcc846d1faaa748ca54520144f1873fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3791ef6a_981653de",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-02T13:44:16Z",
+      "side": 1,
+      "message": "maybe insert a few \u0027and:@ to label different parts more detailed",
+      "range": {
+        "startLine": 186,
+        "startChar": 1,
+        "endLine": 189,
+        "endChar": 51
+      },
+      "revId": "259340e4fcc846d1faaa748ca54520144f1873fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
