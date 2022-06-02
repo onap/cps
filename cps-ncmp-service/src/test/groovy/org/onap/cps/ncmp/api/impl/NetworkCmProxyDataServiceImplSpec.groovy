@@ -245,21 +245,21 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
                 'some-cm-handle-id')
     }
 
-    def 'Execute cm handle id search'(){
+    def 'Execute cm handle id search'() {
         given: 'valid CmHandleQueryApiParameters input'
             def cmHandleQueryApiParameters = new CmHandleQueryApiParameters()
             def conditionApiProperties = new ConditionApiProperties()
             conditionApiProperties.conditionName = 'hasAllModules'
-            conditionApiProperties.conditionParameters = [[moduleName:'module-name-1']]
+            conditionApiProperties.conditionParameters = [[moduleName: 'module-name-1']]
             cmHandleQueryApiParameters.cmHandleQueryParameters = [conditionApiProperties]
         and: 'valid CmHandleQueryParameters input'
             def cmHandleQueryParameters = new CmHandleQueryParameters()
             def conditionProperties = new ConditionProperties()
             conditionProperties.conditionName = 'hasAllModules'
-            conditionProperties.conditionParameters = [[moduleName:'module-name-1']]
+            conditionProperties.conditionParameters = [[moduleName: 'module-name-1']]
             cmHandleQueryParameters.cmHandleQueryParameters = [conditionProperties]
         and: 'query cm handle method return with a data node list'
-            mockCpsCmHandlerQueryService.queryCmHandles(cmHandleQueryParameters) >> [ new DataNode(leaves: [id:'cm-handle-id-1'] )]
+            mockCpsCmHandlerQueryService.queryCmHandles(cmHandleQueryParameters) >> [new DataNode(leaves: [id: 'cm-handle-id-1'])]
         when: 'execute cm handle search is called'
             def result = objectUnderTest.executeCmHandleIdSearch(cmHandleQueryApiParameters)
         then: 'result is the same collection as returned by the CPS Data Service'
