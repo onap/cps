@@ -86,7 +86,8 @@ app:
     ncmp:
         async-m2m:
             topic: ${NCMP_ASYNC_M2M_TOPIC:ncmp-async-m2m}
-
+        events:
+            topic: ${NCMP_EVENTS_TOPIC:ncmp-events}
 notification:
     data-updated:
         enabled: false
