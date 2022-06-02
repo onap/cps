@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "4f1b5c2f_865f375e",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-06-02T14:16:06Z",
+      "side": 1,
+      "message": "Yes but I continued with RestOutput established convention",
+      "parentUuid": "77cd1881_299ccb9f",
+      "range": {
+        "startLine": 272,
+        "startChar": 8,
+        "endLine": 272,
+        "endChar": 14
+      },
+      "revId": "259340e4fcc846d1faaa748ca54520144f1873fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c27b1e6c_903461ad",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
         "patchSetId": 1
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "87c77201_252278a4",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-06-02T14:16:06Z",
+      "side": 1,
+      "message": "The mapping occurs in NetworkCmProxyDataServiceImpl.getNcmpServiceCmHandle() directly and this is not tested elsewhere. I can make a mapper class for it and test that. I think at a minimum we should test that \u0027publicCmHandleProperties\u0027 and \u0027state\u0027 exist in response.",
+      "parentUuid": "c27b1e6c_903461ad",
+      "range": {
+        "startLine": 273,
+        "startChar": 0,
+        "endLine": 283,
+        "endChar": 5
+      },
+      "revId": "259340e4fcc846d1faaa748ca54520144f1873fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7f4233ef_805ce40a",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
         "patchSetId": 1
@@ -59,6 +107,30 @@
       "writtenOn": "2022-06-02T13:44:16Z",
       "side": 1,
       "message": "minimise duplication with previous test (see discussion point) maybe for this conversion ampper tets would be more appropriate oor do we still need to test conversion to REST output?!",
+      "range": {
+        "startLine": 316,
+        "startChar": 0,
+        "endLine": 325,
+        "endChar": 63
+      },
+      "revId": "259340e4fcc846d1faaa748ca54520144f1873fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ac356baa_7084e9ee",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-06-02T14:16:06Z",
+      "side": 1,
+      "message": "Same as above, can make mapper method in new YangModelCmHandle to NcmpServiceCmHandle mapper class and test that. Currently it is mapped directly",
+      "parentUuid": "7f4233ef_805ce40a",
       "range": {
         "startLine": 316,
         "startChar": 0,
