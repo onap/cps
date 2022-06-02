@@ -74,7 +74,7 @@ public interface CpsAdminPersistenceService {
 
     /**
      * Query anchor names for the given module names in the provided dataspace.
-     *
+     * If dataspace or one of the given module names does not exists, return with an empty collection.
      *
      * @param dataspaceName dataspace name
      * @param moduleNames a collection of module names

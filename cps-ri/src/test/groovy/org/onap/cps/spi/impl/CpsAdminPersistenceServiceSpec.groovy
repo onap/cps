@@ -174,28 +174,17 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
     @Sql([CLEAR_DATA, SAMPLE_DATA_FOR_ANCHORS_WITH_MODULES])
     def 'Query anchors that have #scenario.'() {
         when: 'all anchor are retrieved for the given dataspace name and module names'
-            def anchors = objectUnderTest.queryAnchors('dataspace-1', inputModuleNames)
+            def anchors = objectUnderTest.queryAnchors(inputDataspaceName, inputModuleNames)
         then: 'the expected anchors are returned'
             anchors.size() == expectedAnchors.size()
             anchors.containsAll(expectedAnchors)
         where: 'the following data is used'
-            scenario                           | inputModuleNames                                    || expectedAnchors
-            'one module'                       | ['module-name-1']                                   || [buildAnchor('anchor-2', 'dataspace-1', 'schema-set-2'), buildAnchor('anchor-1', 'dataspace-1', 'schema-set-1')]
-            'two modules'                      | ['module-name-1', 'module-name-2']                  || [buildAnchor('anchor-2', 'dataspace-1', 'schema-set-2'), buildAnchor('anchor-1', 'dataspace-1', 'schema-set-1')]
-            'no anchors for all three modules' | ['module-name-1', 'module-name-2', 'module-name-3'] || []
-    }
-
-    @Sql([CLEAR_DATA, SAMPLE_DATA_FOR_ANCHORS_WITH_MODULES])
-    def 'Query all anchors for an #scenario.'() {
-        when: 'attempt to query anchors'
-            objectUnderTest.queryAnchors(dataspaceName, moduleNames)
-        then: 'the correct exception is thrown with the relevant details'
-            def thrownException = thrown(expectedException)
-            thrownException.details.contains(expectedMessageDetails)
-        where: 'the following data is used'
-            scenario                          | dataspaceName       | moduleNames                                || expectedException            | expectedMessageDetails  | messageDoesNotContain
-            'unknown dataspace'               | 'db-does-not-exist' | ['does-not-matter']                        || DataspaceNotFoundException   | 'db-does-not-exist'     | 'does-not-matter'
-            'unknown module and known module' | 'dataspace-1'       | ['module-name-1', 'module-does-not-exist'] || ModuleNamesNotFoundException | 'module-does-not-exist' | 'module-name-1'
+            scenario                           | inputDataspaceName  | inputModuleNames                                    || expectedAnchors
+            'one module'                       | 'dataspace-1'       | ['module-name-1']                                   || [buildAnchor('anchor-2', 'dataspace-1', 'schema-set-2'), buildAnchor('anchor-1', 'dataspace-1', 'schema-set-1')]
+            'two modules'                      | 'dataspace-1'       | ['module-name-1', 'module-name-2']                  || [buildAnchor('anchor-2', 'dataspace-1', 'schema-set-2'), buildAnchor('anchor-1', 'dataspace-1', 'schema-set-1')]
+            'no anchors for all three modules' | 'dataspace-1'       | ['module-name-1', 'module-name-2', 'module-name-3'] || []
+            'unknown dataspace'                | 'db-does-not-exist' | ['does-not-matter']                                 || []
+            'unknown module and known module'  | 'dataspace-1'       | ['module-name-1', 'module-does-not-exist']          || []
     }
 
     def buildAnchor(def anchorName, def dataspaceName, def SchemaSetName) {

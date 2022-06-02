@@ -23,10 +23,12 @@
 package org.onap.cps.spi.impl;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.spi.CpsAdminPersistenceService;
 import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.DataspaceEntity;
@@ -34,6 +36,7 @@ import org.onap.cps.spi.entities.SchemaSetEntity;
 import org.onap.cps.spi.entities.YangResourceModuleReference;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
 import org.onap.cps.spi.exceptions.DataspaceInUseException;
+import org.onap.cps.spi.exceptions.DataspaceNotFoundException;
 import org.onap.cps.spi.exceptions.ModuleNamesNotFoundException;
 import org.onap.cps.spi.model.Anchor;
 import org.onap.cps.spi.repository.AnchorRepository;
@@ -43,6 +46,7 @@ import org.onap.cps.spi.repository.YangResourceRepository;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
 
+@Slf4j
 @Component
 @RequiredArgsConstructor
 public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceService {
@@ -113,7 +117,13 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
 
     @Override
     public Collection<Anchor> queryAnchors(final String dataspaceName, final Collection<String> inputModuleNames) {
-        validateDataspaceAndModuleNames(dataspaceName, inputModuleNames);
+        try {
+            validateDataspaceAndModuleNames(dataspaceName, inputModuleNames);
+        } catch (DataspaceNotFoundException | ModuleNamesNotFoundException  e) {
+            log.info("Module search encountered unknown dataspace or modulename, treating this as nothing found");
+            return Collections.emptySet();
+        }
+
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         final Collection<AnchorEntity> anchorEntities = anchorRepository
             .getAnchorsByDataspaceIdAndModuleNames(dataspaceEntity.getId(), inputModuleNames, inputModuleNames.size());
