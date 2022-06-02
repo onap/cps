@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5476bf5a_b3540677",
+        "filename": "cps-ncmp-rest-stub/src/main/java/org/onap/cps/ncmp/rest/stub/controller/NetworkCmProxyStubController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-02T15:22:29Z",
+      "side": 1,
+      "message": "NB:this might be to \u0027real\u0027 not sure...\nalternative: \nasyncResponseData.put(ASYNC_REQUEST_ID, \"sample-request-id-123\");",
+      "range": {
+        "startLine": 168,
+        "startChar": 8,
+        "endLine": 168,
+        "endChar": 74
+      },
+      "revId": "b3f23fec1fa239bbc5b8e60b5e38d75d579a0c45",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "03dbeb58_aec64cdb",
+        "filename": "cps-ncmp-rest-stub/src/main/resources/stubs/passthrough-operational-example.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-02T15:22:29Z",
+      "side": 1,
+      "message": "NB: this is the name of the category correct? so maybe \u0027Cooking Books\u0027",
+      "range": {
+        "startLine": 41,
+        "startChar": 25,
+        "endLine": 41,
+        "endChar": 33
+      },
+      "revId": "b3f23fec1fa239bbc5b8e60b5e38d75d579a0c45",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
