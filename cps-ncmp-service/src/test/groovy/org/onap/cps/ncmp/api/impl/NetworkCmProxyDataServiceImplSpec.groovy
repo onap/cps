@@ -22,11 +22,11 @@
 
 package org.onap.cps.ncmp.api.impl
 
-import org.onap.cps.ncmp.api.impl.exception.HttpClientRequestException
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.inventory.CmHandleState
 import org.onap.cps.ncmp.api.inventory.CompositeState
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence
+import org.onap.cps.ncmp.api.inventory.LockReasonCategory
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import org.onap.cps.spi.exceptions.DataValidationException
@@ -170,19 +170,29 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     def 'Get a cm handle.'() {
         given: 'the system returns a yang modelled cm handle'
             def dmiServiceName = 'some service name'
+            def compositeState = new CompositeState(cmHandleState: CmHandleState.ADVISED,
+                lockReason: CompositeState.LockReason.builder().lockReasonCategory(LockReasonCategory.LOCKED_MISBEHAVING).details("lock misbehaving details").build(),
+                lastUpdateTime: 'some-timestamp',
+                dataSyncEnabled: false,
+                dataStores: dataStores())
             def dmiProperties = [new YangModelCmHandle.Property('Book', 'Romance Novel')]
             def publicProperties = [new YangModelCmHandle.Property('Public Book', 'Public Romance Novel')]
-            def compositeState = new CompositeState(cmHandleState: 'ADVISED')
             def yangModelCmHandle = new YangModelCmHandle(id: 'some-cm-handle', dmiServiceName: dmiServiceName,
                 dmiProperties: dmiProperties, publicProperties: publicProperties, compositeState: compositeState)
             1 * mockInventoryPersistence.getYangModelCmHandle('some-cm-handle') >> yangModelCmHandle
         when: 'getting cm handle details for a given cm handle id from ncmp service'
             def result = objectUnderTest.getNcmpServiceCmHandle('some-cm-handle')
-        then: 'the result returns the correct data'
+        then: 'the result is a ncmpServiceCmHandle'
+            result.class == NcmpServiceCmHandle.class
+        and: 'the cm handle contains the cm handle id'
             result.cmHandleId == 'some-cm-handle'
+        and: 'the cm handle contains the DMI Properties'
             result.dmiProperties ==[ Book:'Romance Novel' ]
+        and: 'the cm handle contains the public Properties'
             result.publicProperties == [ "Public Book":'Public Romance Novel' ]
-            result.compositeState.cmHandleState == CmHandleState.ADVISED
+        and: 'the cm handle contains the cm handle composite state'
+            result.compositeState == compositeState
+
     }
 
     def 'Get a cm handle with an invalid id.'() {
@@ -208,12 +218,39 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     }
 
     def 'Get cm handle public properties with an invalid id.'() {
-        when: 'getting cm handle details for a given cm handle id with an invalid name'
+        when: 'getting cm handle public properties for a given cm handle id with an invalid name'
             objectUnderTest.getCmHandlePublicProperties('invalid cm handle with spaces')
         then: 'an exception is thrown'
             thrown(DataValidationException)
         and: 'the yang model cm handle retriever is not invoked'
             0 * mockInventoryPersistence.getYangModelCmHandle(*_)
+    }
+
+    def 'Get cm handle composite state'() {
+        given: 'a yang modelled cm handle'
+            def compositeState = new CompositeState(cmHandleState: CmHandleState.ADVISED,
+                lockReason: CompositeState.LockReason.builder().lockReasonCategory(LockReasonCategory.LOCKED_MISBEHAVING).details("lock misbehaving details").build(),
+                lastUpdateTime: 'some-timestamp',
+                dataSyncEnabled: false,
+                dataStores: dataStores())
+            def dmiProperties = [new YangModelCmHandle.Property('prop', 'some DMI property')]
+            def publicProperties = [new YangModelCmHandle.Property('public prop', 'some public prop')]
+            def yangModelCmHandle = new YangModelCmHandle(id:'some-cm-handle', dmiServiceName: 'some service name', dmiProperties: dmiProperties, publicProperties: publicProperties, compositeState: compositeState)
+        and: 'the system returns this yang modelled cm handle'
+            1 * mockInventoryPersistence.getYangModelCmHandle('some-cm-handle') >> yangModelCmHandle
+        when: 'getting cm handle composite state for a given cm handle id from ncmp service'
+            def result = objectUnderTest.getCmHandleCompositeState('some-cm-handle')
+        then: 'the result returns the correct data'
+            result == compositeState
+    }
+
+    def 'Get cm handle composite state with an invalid id.'() {
+        when: 'getting cm handle composite state for a given cm handle id with an invalid name'
+            objectUnderTest.getCmHandleCompositeState('invalid cm handle with spaces')
+        then: 'an exception is thrown'
+            thrown(DataValidationException)
+        and: 'the yang model cm handle retriever is not invoked'
+            0 * mockInventoryPersistence.getYangModelCmHandle(_)
     }
 
     def 'Update resource data for pass-through running from dmi using POST #scenario DMI properties.'() {
@@ -244,5 +281,12 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
                 '"additional-properties":[],"public-properties":[]}]}', null)
             1 * mockCpsAdminService.createAnchor('NFP-Operational', null,
                 'some-cm-handle-id')
+    }
+
+    def dataStores() {
+        CompositeState.DataStores.builder()
+            .operationalDataStore(CompositeState.Operational.builder()
+                .syncState('NONE_REQUESTED')
+                .lastSyncTime('some-timestamp').build()).build()
     }
 }

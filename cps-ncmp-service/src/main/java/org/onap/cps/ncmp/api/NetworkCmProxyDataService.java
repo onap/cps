@@ -28,6 +28,7 @@ import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum
 import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
+import org.onap.cps.ncmp.api.inventory.CompositeState;
 import org.onap.cps.ncmp.api.models.CmHandleQueryApiParameters;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistrationResponse;
@@ -129,6 +130,14 @@ public interface NetworkCmProxyDataService {
      * @return a collection of cm handle public properties.
      */
     Map<String, String> getCmHandlePublicProperties(String cmHandleId);
+
+    /**
+     * Get cm handle composite state by cm handle id.
+     *
+     * @param cmHandleId cm handle identifier
+     * @return a cm handle composite state
+     */
+    CompositeState getCmHandleCompositeState(String cmHandleId);
 
     /**
      * Query and return cm handles that match the given query parameters.
