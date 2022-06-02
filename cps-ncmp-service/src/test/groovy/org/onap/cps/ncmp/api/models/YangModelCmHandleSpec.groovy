@@ -21,6 +21,9 @@
 package org.onap.cps.ncmp.api.models
 
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
+import org.onap.cps.ncmp.api.inventory.CmHandleState
+import org.onap.cps.ncmp.api.inventory.CompositeStateBuilder
+import org.onap.cps.ncmp.api.inventory.LockReasonCategory
 import spock.lang.Specification
 
 import static org.onap.cps.ncmp.api.impl.operations.RequiredDmiService.DATA
@@ -34,6 +37,13 @@ class YangModelCmHandleSpec extends Specification {
             ncmpServiceCmHandle.cmHandleId = 'cm-handle-id01'
             ncmpServiceCmHandle.dmiProperties = [myDmiProperty:'value1']
             ncmpServiceCmHandle.publicProperties = [myPublicProperty:'value2']
+        and: 'with a composite state'
+            def compositeState = new CompositeStateBuilder()
+                .withCmHandleState(CmHandleState.LOCKED)
+                .withLastUpdatedTime('some-update-time')
+                .withLockReason(LockReasonCategory.LOCKED_MISBEHAVING, 'locked other details')
+                .withOperationalDataStores('SYNCHRONIZED', 'some-sync-time').build()
+            ncmpServiceCmHandle.setCompositeState(compositeState)
         when: 'it is converted to a yang model cm handle'
             def objectUnderTest = YangModelCmHandle.toYangModelCmHandle('', '', '', ncmpServiceCmHandle)
         then: 'the result has the right size'
@@ -44,6 +54,9 @@ class YangModelCmHandleSpec extends Specification {
         and: 'the public property in the result has the correct name and value'
             assert objectUnderTest.publicProperties[0].name == 'myPublicProperty'
             assert objectUnderTest.publicProperties[0].value == 'value2'
+        and: 'the composite state matches the composite state of the ncmpServiceCmHandle'
+            objectUnderTest.getCompositeState().cmHandleState == CmHandleState.LOCKED
+            objectUnderTest.getCompositeState() == ncmpServiceCmHandle.getCompositeState()
     }
 
     def 'Resolve DMI service name: #scenario and #requiredService service require.'() {
