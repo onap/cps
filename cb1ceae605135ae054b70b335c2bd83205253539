@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "63aeedb9_9ad17ce6",
+        "filename": "cps-application/src/main/java/org/onap/cps/Application.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-06-02T15:26:51Z",
+      "side": 1,
+      "message": "The issue you were getting regarding the RetryContext (which you mentioned yesterday during the dailys) was because of the placement of this EnableRetry or something else??",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 12
+      },
+      "revId": "cb1ceae605135ae054b70b335c2bd83205253539",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fd2c2507_c0d1f8af",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
         "patchSetId": 2
