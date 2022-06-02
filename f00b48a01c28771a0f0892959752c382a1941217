@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6b791e72_511c87e2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/NcmpEventsPublisher.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-06-02T15:08:24Z",
+      "side": 1,
+      "message": "Amm..I was thinking of creating a NcmpEventsService and that will have the configured param to read the topic name.\nAnd then when I call the publisher , we will call with the topic name.",
+      "parentUuid": "fe4b1ef1_44b883eb",
+      "range": {
+        "startLine": 50,
+        "startChar": 29,
+        "endLine": 50,
+        "endChar": 51
+      },
+      "revId": "f00b48a01c28771a0f0892959752c382a1941217",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "89be098b_c8d9f770",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/utils/MessagingSpec.groovy",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2022-06-02T14:42:27Z",
       "side": 1,
       "message": "great, can we already use this in other tests or are they in other modules (we could move it to a shared test util repo if needed)",
+      "range": {
+        "startLine": 32,
+        "startChar": 6,
+        "endLine": 32,
+        "endChar": 20
+      },
+      "revId": "f00b48a01c28771a0f0892959752c382a1941217",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0945bcbd_7fb26dd6",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/utils/MessagingSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-06-02T15:08:24Z",
+      "side": 1,
+      "message": "Yes , I refactored one existing test class.\nOne which relates to Joe/Sourabhs work on Async. CpsAsyncRequestResponseEventIntegrationSpec.groovy\nBut let me check other places as well.",
+      "parentUuid": "89be098b_c8d9f770",
       "range": {
         "startLine": 32,
         "startChar": 6,
