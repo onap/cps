@@ -29,7 +29,7 @@ import org.onap.cps.ncmp.api.impl.exception.DmiRequestException
 import org.onap.cps.ncmp.api.impl.exception.HttpClientRequestException
 import org.onap.cps.ncmp.api.impl.exception.ServerNcmpException
 import org.onap.cps.ncmp.rest.controller.NcmpRestInputMapper
-import org.onap.cps.ncmp.rest.mapper.RestOutputCmHandleStateMapper
+import org.onap.cps.ncmp.rest.mapper.CmHandleStateMapper
 import org.onap.cps.ncmp.rest.executor.CpsNcmpTaskExecutor
 import org.onap.cps.ncmp.rest.util.DeprecationHelper
 import org.onap.cps.spi.exceptions.CpsException
@@ -70,7 +70,7 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
     NcmpRestInputMapper ncmpRestInputMapper = Mappers.getMapper(NcmpRestInputMapper)
 
     @SpringBean
-    RestOutputCmHandleStateMapper restOutputCmHandleStateMapper = Mappers.getMapper(RestOutputCmHandleStateMapper)
+    CmHandleStateMapper cmHandleStateMapper = Mappers.getMapper(CmHandleStateMapper)
 
     @SpringBean
     CpsNcmpTaskExecutor stubbedCpsTaskExecutor = Stub()
