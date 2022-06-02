@@ -143,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "fdfe291f_d54c5364",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-02T09:23:37Z",
+      "side": 1,
+      "message": "ok, I think t could be done but we leave it for now. Have other priorities\u0027 :-)",
+      "parentUuid": "08fdc68b_bb9eaad5",
+      "range": {
+        "startLine": 106,
+        "startChar": 91,
+        "endLine": 106,
+        "endChar": 107
+      },
+      "revId": "444274bde3214d993262e9aba766014814246cbb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b8bf4eb8_1dd9ca67",
         "filename": "cps-service/src/test/groovy/org/onap/cps/notification/CpsDataUpdateEventFactorySpec.groovy",
         "patchSetId": 6
