@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "80edaee5_97f1ec13",
+        "filename": "cps-application/src/main/java/org/onap/cps/Application.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-02T13:21:44Z",
+      "side": 1,
+      "message": "this was all that was missing :-D\n\njust very hard to test, I understand....",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 12
+      },
+      "revId": "c17d917c20f6bde3fbee700fb61b1a9bf73ddf54",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
