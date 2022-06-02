@@ -319,6 +319,27 @@ getCmHandlePropertiesById:
       500:
         $ref: 'components.yaml#/components/responses/InternalServerError'
 
+getCmHandleStateById:
+  get:
+    description: Get CM handle state by cm handle id
+    tags:
+      - network-cm-proxy
+    summary: Get CM handle state
+    operationId: getCmHandleStateByCmHandleId
+    parameters:
+      - $ref: 'components.yaml#/components/parameters/cmHandleInPath'
+    responses:
+      200:
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: 'components.yaml#/components/schemas/RestOutputCmHandleCompositeState'
+      404:
+        $ref: 'components.yaml#/components/responses/NotFound'
+      500:
+        $ref: 'components.yaml#/components/responses/InternalServerError'
+
 searchCmHandleIds:
   post:
     description: Execute cm handle query search, to be included in the result a cm-handle must fulfill ALL the conditions listed here, if one of the given module names does not exists, return with an empty collection.

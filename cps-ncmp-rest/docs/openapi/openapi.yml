@@ -46,3 +46,6 @@ paths:
 
   /v1/ch/id-searches:
     $ref: 'ncmp.yml#/searchCmHandleIds'
+
+  /v1/ch/{cm-handle}/state:
+    $ref: 'ncmp.yml#/getCmHandleStateById'

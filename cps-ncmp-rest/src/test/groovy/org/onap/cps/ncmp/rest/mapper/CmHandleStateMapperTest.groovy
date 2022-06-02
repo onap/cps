@@ -24,18 +24,18 @@ import org.mapstruct.factory.Mappers
 import org.onap.cps.ncmp.api.inventory.CmHandleState
 import org.onap.cps.ncmp.api.inventory.CompositeStateBuilder
 import org.onap.cps.ncmp.api.inventory.LockReasonCategory
-import org.onap.cps.ncmp.rest.model.RestOutputCmHandleState
+import org.onap.cps.ncmp.rest.model.CmHandleCompositeState
 import spock.lang.Specification
 
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 
-class RestOutputCmHandleStateMapperTest extends Specification {
+class CmHandleStateMapperTest extends Specification {
 
     def formattedDateAndTime = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
         .format(OffsetDateTime.of(2022, 12, 31, 20, 30, 40, 1, ZoneOffset.UTC))
-    def objectUnderTest = Mappers.getMapper(RestOutputCmHandleStateMapper)
+    def objectUnderTest = Mappers.getMapper(CmHandleStateMapper)
 
     def 'Composite State to Rest Output CmHandleState'() {
         given: 'a composite state model'
@@ -46,9 +46,9 @@ class RestOutputCmHandleStateMapperTest extends Specification {
                 .withOperationalDataStores('SYNCHRONIZED', formattedDateAndTime).build()
         compositeState.setDataSyncEnabled(false)
         when: 'mapper is called'
-            def result = objectUnderTest.toRestOutputCmHandleState(compositeState)
+            def result = objectUnderTest.toCmHandleCompositeState(compositeState)
         then: 'result is of the correct type'
-            assert result.class == RestOutputCmHandleState.class
+            assert result.class == CmHandleCompositeState.class
         and: 'mapped result should have correct values'
             assert !result.dataSyncEnabled
             assert result.lastUpdateTime == formattedDateAndTime
