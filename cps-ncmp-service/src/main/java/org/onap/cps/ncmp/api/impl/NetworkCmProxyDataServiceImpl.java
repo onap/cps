@@ -49,6 +49,7 @@ import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations;
 import org.onap.cps.ncmp.api.impl.operations.DmiOperations;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
+import org.onap.cps.ncmp.api.inventory.CompositeState;
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.api.inventory.sync.ModuleSyncService;
 import org.onap.cps.ncmp.api.models.CmHandleQueryApiParameters;
@@ -214,6 +215,20 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         final Map<String, String> cmHandlePublicProperties = new HashMap<>();
         asPropertiesMap(yangModelPublicProperties, cmHandlePublicProperties);
         return cmHandlePublicProperties;
+    }
+
+    /**
+     * Get cm handle composite state for a given cm handle id.
+     *
+     * @param cmHandleId cm handle identifier
+     * @return cm handle state
+     */
+    @Override
+    public CompositeState getCmHandleCompositeState(final String cmHandleId) {
+        CpsValidator.validateNameCharacters(cmHandleId);
+        final YangModelCmHandle yangModelCmHandle =
+            inventoryPersistence.getYangModelCmHandle(cmHandleId);
+        return yangModelCmHandle.getCompositeState();
     }
 
     /**
