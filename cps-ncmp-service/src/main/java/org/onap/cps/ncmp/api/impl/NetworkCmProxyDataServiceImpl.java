@@ -226,6 +226,18 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     }
 
     /**
+     * Get cm handle composite state for a given cm handle id.
+     *
+     * @param cmHandleId cm handle identifier
+     * @return cm handle state
+     */
+    @Override
+    public CompositeState getCmHandleCompositeState(final String cmHandleId) {
+        CpsValidator.validateNameCharacters(cmHandleId);
+        return inventoryPersistence.getYangModelCmHandle(cmHandleId).getCompositeState();
+    }
+
+    /**
      * THis method registers a cm handle and initiates modules sync.
      *
      * @param dmiPluginRegistration dmi plugin registration information.

@@ -40,15 +40,17 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
 import org.onap.cps.ncmp.api.impl.exception.InvalidTopicException;
+import org.onap.cps.ncmp.api.inventory.CompositeState;
 import org.onap.cps.ncmp.api.models.CmHandleQueryApiParameters;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.ncmp.rest.api.NetworkCmProxyApi;
 import org.onap.cps.ncmp.rest.executor.CpsNcmpTaskExecutor;
-import org.onap.cps.ncmp.rest.mapper.RestOutputCmHandleStateMapper;
+import org.onap.cps.ncmp.rest.mapper.CmHandleStateMapper;
 import org.onap.cps.ncmp.rest.model.CmHandlePublicProperties;
 import org.onap.cps.ncmp.rest.model.CmHandleQueryParameters;
 import org.onap.cps.ncmp.rest.model.RestModuleReference;
 import org.onap.cps.ncmp.rest.model.RestOutputCmHandle;
+import org.onap.cps.ncmp.rest.model.RestOutputCmHandleCompositeState;
 import org.onap.cps.ncmp.rest.model.RestOutputCmHandlePublicProperties;
 import org.onap.cps.ncmp.rest.util.DeprecationHelper;
 import org.onap.cps.utils.CpsValidator;
@@ -73,7 +75,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
 
     private final DeprecationHelper deprecationHelper;
     private final NcmpRestInputMapper ncmpRestInputMapper;
-    private final RestOutputCmHandleStateMapper restOutputCmHandleStateMapper;
+    private final CmHandleStateMapper cmHandleStateMapper;
     private final CpsNcmpTaskExecutor cpsNcmpTaskExecutor;
 
     @Value("${notification.async.executor.time-out-value-in-ms:2000}")
@@ -253,7 +255,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     /**
      * Get Cm Handle Properties by Cm Handle Id.
      * @param cmHandleId cm-handle identifier
-     * @return cm handle and its properties
+     * @return cm handle properties
      */
     @Override
     public ResponseEntity<RestOutputCmHandlePublicProperties> getCmHandlePublicPropertiesByCmHandleId(
@@ -264,6 +266,21 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
             new RestOutputCmHandlePublicProperties();
         restOutputCmHandlePublicProperties.setPublicCmHandleProperties(cmHandlePublicProperties);
         return ResponseEntity.ok(restOutputCmHandlePublicProperties);
+    }
+
+    /**
+     * Get Cm Handle State by Cm Handle Id.
+     * @param cmHandleId cm-handle identifier
+     * @return cm handle state
+     */
+    @Override
+    public ResponseEntity<RestOutputCmHandleCompositeState> getCmHandleStateByCmHandleId(
+        final String cmHandleId) {
+        final CompositeState cmHandleState = networkCmProxyDataService.getCmHandleCompositeState(cmHandleId);
+        final RestOutputCmHandleCompositeState restOutputCmHandleCompositeState =
+            new RestOutputCmHandleCompositeState();
+        restOutputCmHandleCompositeState.setState(cmHandleStateMapper.toCmHandleCompositeState(cmHandleState));
+        return ResponseEntity.ok(restOutputCmHandleCompositeState);
     }
 
     /**
@@ -286,7 +303,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         restOutputCmHandle.setCmHandle(ncmpServiceCmHandle.getCmHandleId());
         cmHandlePublicProperties.add(ncmpServiceCmHandle.getPublicProperties());
         restOutputCmHandle.setPublicCmHandleProperties(cmHandlePublicProperties);
-        restOutputCmHandle.setState(restOutputCmHandleStateMapper.toRestOutputCmHandleState(
+        restOutputCmHandle.setState(cmHandleStateMapper.toCmHandleCompositeState(
                 ncmpServiceCmHandle.getCompositeState()));
         return restOutputCmHandle;
     }
