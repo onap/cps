@@ -293,6 +293,10 @@ retrieveCmHandleDetailsById:
           application/json:
             schema:
               $ref: 'components.yaml#/components/schemas/RestOutputCmHandle'
+      400:
+        $ref: 'components.yaml#/components/responses/BadRequest'
+      401:
+        $ref: 'components.yaml#/components/responses/Unauthorized'
       404:
         $ref: 'components.yaml#/components/responses/NotFound'
       500:
@@ -314,6 +318,35 @@ getCmHandlePropertiesById:
           application/json:
             schema:
               $ref: 'components.yaml#/components/schemas/RestOutputCmHandlePublicProperties'
+      400:
+        $ref: 'components.yaml#/components/responses/BadRequest'
+      401:
+        $ref: 'components.yaml#/components/responses/Unauthorized'
+      404:
+        $ref: 'components.yaml#/components/responses/NotFound'
+      500:
+        $ref: 'components.yaml#/components/responses/InternalServerError'
+
+getCmHandleStateById:
+  get:
+    description: Get CM handle state by cm handle id
+    tags:
+      - network-cm-proxy
+    summary: Get CM handle state
+    operationId: getCmHandleStateByCmHandleId
+    parameters:
+      - $ref: 'components.yaml#/components/parameters/cmHandleInPath'
+    responses:
+      200:
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: 'components.yaml#/components/schemas/RestOutputCmHandleCompositeState'
+      400:
+        $ref: 'components.yaml#/components/responses/BadRequest'
+      401:
+        $ref: 'components.yaml#/components/responses/Unauthorized'
       404:
         $ref: 'components.yaml#/components/responses/NotFound'
       500:

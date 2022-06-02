@@ -26,17 +26,17 @@ import org.mapstruct.Named;
 import org.mapstruct.NullValueCheckStrategy;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 import org.onap.cps.ncmp.api.inventory.CompositeState;
+import org.onap.cps.ncmp.rest.model.CmHandleCompositeState;
 import org.onap.cps.ncmp.rest.model.DataStores;
-import org.onap.cps.ncmp.rest.model.RestOutputCmHandleState;
 import org.onap.cps.ncmp.rest.model.SyncState;
 
 @Mapper(componentModel = "spring", nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS,
         nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.SET_TO_DEFAULT)
-public interface RestOutputCmHandleStateMapper {
+public interface CmHandleStateMapper {
 
     @Mapping(target = "dataSyncState", source = "dataStores", qualifiedByName = "dataStoreToDataSyncState")
     @Mapping(target = "lockReason.reason", source = "lockReason.lockReasonCategory")
-    RestOutputCmHandleState toRestOutputCmHandleState(CompositeState compositeState);
+    CmHandleCompositeState toCmHandleCompositeState(CompositeState compositeState);
 
     /**
      * Convert from CompositeState datastore to RestOutput Datastores.

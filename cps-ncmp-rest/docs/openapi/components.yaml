@@ -209,7 +209,7 @@ components:
         publicCmHandleProperties:
           $ref: '#/components/schemas/CmHandlePublicProperties'
         state:
-          $ref: '#/components/schemas/RestOutputCmHandleState'
+          $ref: '#/components/schemas/CmHandleCompositeState'
     CmHandlePublicProperties:
       type: array
       items:
@@ -217,7 +217,7 @@ components:
         additionalProperties:
           type: string
           example: Book Type
-    RestOutputCmHandleState:
+    CmHandleCompositeState:
       type: object
       properties:
         cmHandleState:
@@ -267,6 +267,12 @@ components:
       properties:
         publicCmHandleProperties:
           $ref: '#/components/schemas/CmHandlePublicProperties'
+
+    RestOutputCmHandleCompositeState:
+      type: object
+      properties:
+        state:
+          $ref: '#/components/schemas/CmHandleCompositeState'
 
   examples:
     dataSampleRequest:
