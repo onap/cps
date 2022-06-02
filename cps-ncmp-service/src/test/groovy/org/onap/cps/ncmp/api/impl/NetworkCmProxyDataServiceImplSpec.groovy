@@ -31,6 +31,8 @@ import org.onap.cps.ncmp.api.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.ncmp.api.inventory.sync.ModuleSyncService
+import org.onap.cps.spi.exceptions.DataspaceNotFoundException
+import org.onap.cps.spi.exceptions.ModuleNamesNotFoundException
 import spock.lang.Shared
 
 import static org.onap.cps.ncmp.api.impl.operations.DmiOperations.DataStoreEnum.PASSTHROUGH_OPERATIONAL
@@ -244,5 +246,19 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
                 '"additional-properties":[],"public-properties":[]}]}', null)
             1 * mockCpsAdminService.createAnchor('NFP-Operational', null,
                 'some-cm-handle-id')
+    }
+
+    def 'Verify exception handling in executeCmHandleHasAllModulesSearch - exception: #exceptionName'() {
+        given: 'not existing module names'
+            def moduleNames = ['invalid-1', 'invalid-2']
+            mockCpsAdminService.queryAnchorNames(_, _) >> {throw exception}
+        when: 'execute cm handle has all modules search'
+            def result = objectUnderTest.executeCmHandleHasAllModulesSearch(moduleNames)
+        then: 'validate return with empty list'
+            assert result == []
+        where:
+            exceptionName                  | exception
+            'ModuleNamesNotFoundException' | new ModuleNamesNotFoundException('dataspace-name',['invalid-1'])
+            'DataspaceNotFoundException'   | new DataspaceNotFoundException('dataspace-name')
     }
 }

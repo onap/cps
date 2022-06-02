@@ -34,6 +34,7 @@ import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED;
 import com.google.common.base.Strings;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -60,6 +61,8 @@ import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.onap.cps.spi.exceptions.DataValidationException;
+import org.onap.cps.spi.exceptions.DataspaceNotFoundException;
+import org.onap.cps.spi.exceptions.ModuleNamesNotFoundException;
 import org.onap.cps.spi.exceptions.SchemaSetNotFoundException;
 import org.onap.cps.spi.model.ModuleReference;
 import org.onap.cps.utils.CpsValidator;
@@ -161,7 +164,12 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
      */
     @Override
     public Collection<String> executeCmHandleHasAllModulesSearch(final Collection<String> moduleNames) {
-        return cpsAdminService.queryAnchorNames(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, moduleNames);
+        try {
+            return cpsAdminService.queryAnchorNames(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, moduleNames);
+        } catch (DataspaceNotFoundException | ModuleNamesNotFoundException  e) {
+            log.warn("Error during execute cm handle has all module search.", e);
+            return Collections.emptyList();
+        }
     }
 
     @Override
