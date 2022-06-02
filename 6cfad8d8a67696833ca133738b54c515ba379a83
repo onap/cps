@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "39889297_c57bbfb7",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNode.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-06-02T09:01:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9ce3093f_8834058e",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 44
+      },
+      "revId": "6cfad8d8a67696833ca133738b54c515ba379a83",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dd2f987e_fe3c00e4",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/DataMapUtils.java",
         "patchSetId": 5
@@ -143,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "b99f366f_f5b0c353",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/DataMapUtils.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-06-02T09:01:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cf44789c_aec6d666",
+      "range": {
+        "startLine": 88,
+        "startChar": 32,
+        "endLine": 88,
+        "endChar": 49
+      },
+      "revId": "6cfad8d8a67696833ca133738b54c515ba379a83",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "56ad46c1_b75390fe",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/DataMapUtils.java",
         "patchSetId": 5
@@ -163,6 +211,30 @@
       "revId": "6cfad8d8a67696833ca133738b54c515ba379a83",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc91b7f2_2977cd74",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/DataMapUtils.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-06-02T09:01:07Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "56ad46c1_b75390fe",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 5
+      },
+      "revId": "6cfad8d8a67696833ca133738b54c515ba379a83",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -189,6 +261,30 @@
     },
     {
       "key": {
+        "uuid": "4554efeb_a108ed62",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/spi/model/DataNodeBuilderSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-06-02T09:01:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eb83babf_d840a58f",
+      "range": {
+        "startLine": 177,
+        "startChar": 46,
+        "endLine": 177,
+        "endChar": 66
+      },
+      "revId": "6cfad8d8a67696833ca133738b54c515ba379a83",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4d4d7ff1_c29a14fa",
         "filename": "cps-service/src/test/groovy/org/onap/cps/spi/model/DataNodeBuilderSpec.groovy",
         "patchSetId": 5
@@ -209,6 +305,30 @@
       "revId": "6cfad8d8a67696833ca133738b54c515ba379a83",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fab941bd_a112616b",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/spi/model/DataNodeBuilderSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-06-02T09:01:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4d4d7ff1_c29a14fa",
+      "range": {
+        "startLine": 183,
+        "startChar": 15,
+        "endLine": 183,
+        "endChar": 89
+      },
+      "revId": "6cfad8d8a67696833ca133738b54c515ba379a83",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }

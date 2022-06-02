@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2cc2e922_4de0583c",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-06-02T09:01:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cc9c90a7_e13227ea",
+      "range": {
+        "startLine": 74,
+        "startChar": 12,
+        "endLine": 74,
+        "endChar": 53
+      },
+      "revId": "444274bde3214d993262e9aba766014814246cbb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "29320202_4cac4c81",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
         "patchSetId": 6
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "0c63d29d_73de9313",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-06-02T09:01:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "29320202_4cac4c81",
+      "range": {
+        "startLine": 60,
+        "startChar": 21,
+        "endLine": 60,
+        "endChar": 62
+      },
+      "revId": "444274bde3214d993262e9aba766014814246cbb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "eac0067c_4234d2d0",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
         "patchSetId": 6
@@ -59,6 +107,30 @@
       "writtenOn": "2022-06-01T16:34:46Z",
       "side": 1,
       "message": "do you real need this valid resource, can you not mock the validator or somthing?!",
+      "range": {
+        "startLine": 106,
+        "startChar": 91,
+        "endLine": 106,
+        "endChar": 107
+      },
+      "revId": "444274bde3214d993262e9aba766014814246cbb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "08fdc68b_bb9eaad5",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-06-02T09:01:07Z",
+      "side": 1,
+      "message": "yes need this, weve tried mocking it aswell",
+      "parentUuid": "eac0067c_4234d2d0",
       "range": {
         "startLine": 106,
         "startChar": 91,
@@ -91,6 +163,30 @@
       "revId": "444274bde3214d993262e9aba766014814246cbb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b401c6e_1420c3e2",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/CpsDataUpdateEventFactorySpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-06-02T09:01:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b8bf4eb8_1dd9ca67",
+      "range": {
+        "startLine": 51,
+        "startChar": 20,
+        "endLine": 51,
+        "endChar": 61
+      },
+      "revId": "444274bde3214d993262e9aba766014814246cbb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
