@@ -83,6 +83,24 @@
     },
     {
       "key": {
+        "uuid": "c0ac9896_2b092a13",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/NcmpEventsPublisher.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-06-02T15:28:25Z",
+      "side": 1,
+      "message": "Yes. Exactly.\nWe will see this in action in the upcoming patches related to this topic CPS-1034.",
+      "parentUuid": "6a7d5778_e846ae63",
+      "revId": "f00b48a01c28771a0f0892959752c382a1941217",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "58ceb43b_8e3328f9",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/NcmpEventsPublisher.java",
         "patchSetId": 3
