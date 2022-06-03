@@ -92,7 +92,7 @@ public class InventoryPersistence {
     }
 
     /**
-     * This method retrieves DMI service name and DMI properties for a given cm handle.
+     * This method retrieves DMI service name, DMI properties and the state for a given cm handle.
      * @param cmHandleId the id of the cm handle
      * @return yang model cm handle
      */
@@ -106,6 +106,7 @@ public class InventoryPersistence {
             (String) cmHandleDataNode.getLeaves().get("dmi-service-name"),
             (String) cmHandleDataNode.getLeaves().get("dmi-data-service-name"),
             (String) cmHandleDataNode.getLeaves().get("dmi-model-service-name"),
+            ncmpServiceCmHandle.getCompositeState().getCmHandleState(),
             ncmpServiceCmHandle
         );
     }
