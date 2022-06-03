@@ -1,0 +1,170 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a6c020ef_fb8a29a2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-03T15:17:06Z",
+      "side": 1,
+      "message": "NB (partly legacy issue) add JavaDoc",
+      "range": {
+        "startLine": 161,
+        "startChar": 36,
+        "endLine": 161,
+        "endChar": 57
+      },
+      "revId": "b85975efebd470830842607c159b867d478e840a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "80f5e0bb_0e8197b0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/YangModelCmHandleRetriever.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-03T15:17:06Z",
+      "side": 1,
+      "message": "move this method to the new org.onap.cps.ncmp.api.inventory.InventoryPersistence class",
+      "range": {
+        "startLine": 50,
+        "startChar": 29,
+        "endLine": 50,
+        "endChar": 49
+      },
+      "revId": "b85975efebd470830842607c159b867d478e840a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7ad40fbe_0d221141",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/YangDataConverter.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-03T15:17:06Z",
+      "side": 1,
+      "message": "Consider using (extending) CompositeStateBuidler",
+      "range": {
+        "startLine": 84,
+        "startChar": 0,
+        "endLine": 102,
+        "endChar": 5
+      },
+      "revId": "b85975efebd470830842607c159b867d478e840a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "95d03268_e21395e1",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-03T15:17:06Z",
+      "side": 1,
+      "message": "NB: This pretty good but needs some refactoring.\nI can take that or help you with that later.\nI think we\u0027ll focus on the poro code comment for now and merge hopefully Monday to be able to Demo soon!",
+      "revId": "b85975efebd470830842607c159b867d478e840a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "96a3d411_9fa3c09a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-03T15:17:06Z",
+      "side": 1,
+      "message": "NB: coudl add a few and@ labels to explain more detail",
+      "range": {
+        "startLine": 249,
+        "startChar": 8,
+        "endLine": 249,
+        "endChar": 55
+      },
+      "revId": "b85975efebd470830842607c159b867d478e840a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e39f9eb_435511ef",
+        "filename": "cps-ri/src/test/resources/data/fragment.sql",
+        "patchSetId": 13
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-03T15:17:06Z",
+      "side": 1,
+      "message": "can this be reverted now you have moved code tho NCMP Service and no longer have semi-integration tests for this data?",
+      "range": {
+        "startLine": 26,
+        "startChar": 2,
+        "endLine": 34,
+        "endChar": 35
+      },
+      "revId": "b85975efebd470830842607c159b867d478e840a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b8aa0ea0_b1618000",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/CmHandleQueryRestParametersValidator.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-03T15:17:06Z",
+      "side": 1,
+      "message": "NB: Need to add more tests, only the positive scenarios are covered currently",
+      "revId": "b85975efebd470830842607c159b867d478e840a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a40f94b8_c54a281a",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/CmHandleQueryRestParametersValidatorSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-03T15:17:06Z",
+      "side": 1,
+      "message": "NB: as mentioned before need to add more test for negatives\nRun mvn clean install and check: cps/jacoco-report/target/site/jacoco-aggregate/cps-service/org.onap.cps.utils/CmHandleQueryRestParametersValidator.java.html#L43 (check",
+      "revId": "b85975efebd470830842607c159b867d478e840a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
