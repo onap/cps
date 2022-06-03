@@ -66,6 +66,30 @@
     },
     {
       "key": {
+        "uuid": "2419bbed_fdc22dc6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/NcmpEventsPublisher.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-03T08:10:51Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6b791e72_511c87e2",
+      "range": {
+        "startLine": 50,
+        "startChar": 29,
+        "endLine": 50,
+        "endChar": 51
+      },
+      "revId": "f00b48a01c28771a0f0892959752c382a1941217",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6a7d5778_e846ae63",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/NcmpEventsPublisher.java",
         "patchSetId": 3
