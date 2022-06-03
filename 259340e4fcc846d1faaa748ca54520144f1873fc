@@ -49,6 +49,52 @@
     },
     {
       "key": {
+        "uuid": "f7e16226_7e9caf7c",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-03T08:31:49Z",
+      "side": 1,
+      "message": "for clarity insert \u0027(complete)\u0027",
+      "range": {
+        "startLine": 254,
+        "startChar": 12,
+        "endLine": 254,
+        "endChar": 15
+      },
+      "revId": "259340e4fcc846d1faaa748ca54520144f1873fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4ffd5d43_66c50669",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-03T08:31:49Z",
+      "side": 1,
+      "message": "use groovy map and iterate over key value pairs (in a 3rd method) to check if there are in response",
+      "range": {
+        "startLine": 274,
+        "startChar": 0,
+        "endLine": 280,
+        "endChar": 77
+      },
+      "revId": "259340e4fcc846d1faaa748ca54520144f1873fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c27b1e6c_903461ad",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
         "patchSetId": 1
@@ -96,6 +142,29 @@
     },
     {
       "key": {
+        "uuid": "22caa0eb_b39eba0e",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-03T08:31:49Z",
+      "side": 1,
+      "message": "extract out assertPublicProprtiesDetails() and re-use in method that get complete state",
+      "range": {
+        "startLine": 297,
+        "startChar": 12,
+        "endLine": 297,
+        "endChar": 116
+      },
+      "revId": "259340e4fcc846d1faaa748ca54520144f1873fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7f4233ef_805ce40a",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
         "patchSetId": 1
@@ -131,6 +200,29 @@
       "side": 1,
       "message": "Same as above, can make mapper method in new YangModelCmHandle to NcmpServiceCmHandle mapper class and test that. Currently it is mapped directly",
       "parentUuid": "7f4233ef_805ce40a",
+      "range": {
+        "startLine": 316,
+        "startChar": 0,
+        "endLine": 325,
+        "endChar": 63
+      },
+      "revId": "259340e4fcc846d1faaa748ca54520144f1873fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ac7b5abe_45f7aafb",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-03T08:31:49Z",
+      "side": 1,
+      "message": "extract out assertStateDetails() and re-use in method that get complete state",
       "range": {
         "startLine": 316,
         "startChar": 0,
