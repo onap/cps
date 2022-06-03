@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "d5e72890_e366a159",
+        "filename": "cps-ncmp-rest-stub/pom.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-06-03T10:46:35Z",
+      "side": 1,
+      "message": "NB: can be parameterized as it is used more than once.",
+      "range": {
+        "startLine": 101,
+        "startChar": 21,
+        "endLine": 101,
+        "endChar": 38
+      },
+      "revId": "b3f23fec1fa239bbc5b8e60b5e38d75d579a0c45",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5476bf5a_b3540677",
         "filename": "cps-ncmp-rest-stub/src/main/java/org/onap/cps/ncmp/rest/stub/controller/NetworkCmProxyStubController.java",
         "patchSetId": 5
@@ -42,6 +65,23 @@
         "endLine": 41,
         "endChar": 33
       },
+      "revId": "b3f23fec1fa239bbc5b8e60b5e38d75d579a0c45",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4224f2e2_0149d405",
+        "filename": "cps-ncmp-rest-stub/src/test/java/org/onap/cps/TestApplication.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-06-03T10:46:35Z",
+      "side": 1,
+      "message": "NB:I think we can get rid of this class.\nDoesn\u0027t do anything.",
       "revId": "b3f23fec1fa239bbc5b8e60b5e38d75d579a0c45",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
