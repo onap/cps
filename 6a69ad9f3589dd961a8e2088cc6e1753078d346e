@@ -48,6 +48,54 @@
     },
     {
       "key": {
+        "uuid": "d7c336c9_f8202944",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/util/DeprecationHelperSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-06-03T13:20:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3656bab1_165f6674",
+      "range": {
+        "startLine": 44,
+        "startChar": 65,
+        "endLine": 44,
+        "endChar": 96
+      },
+      "revId": "6a69ad9f3589dd961a8e2088cc6e1753078d346e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0da61d1e_7f116fbc",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/util/DeprecationHelperSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-06-03T13:20:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "954a0b37_47ba2b1c",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 96
+      },
+      "revId": "6a69ad9f3589dd961a8e2088cc6e1753078d346e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "63f64be6_58c32e91",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/util/DeprecationHelperSpec.groovy",
         "patchSetId": 12
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "4ccac4cb_ea3f5f71",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/util/DeprecationHelperSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-06-03T13:20:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "63f64be6_58c32e91",
+      "range": {
+        "startLine": 50,
+        "startChar": 282,
+        "endLine": 50,
+        "endChar": 284
+      },
+      "revId": "6a69ad9f3589dd961a8e2088cc6e1753078d346e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3eee0938_8412b3cd",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsCmHandlerQueryServiceImpl.java",
         "patchSetId": 12
@@ -85,6 +157,24 @@
       "revId": "6a69ad9f3589dd961a8e2088cc6e1753078d346e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d8bc7bdc_33b32b94",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsCmHandlerQueryServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-06-03T13:20:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3eee0938_8412b3cd",
+      "revId": "6a69ad9f3589dd961a8e2088cc6e1753078d346e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -111,6 +201,30 @@
     },
     {
       "key": {
+        "uuid": "89afeeaa_81f61c19",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsCmHandlerQueryServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-06-03T13:20:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fd03d2fe_5f546a48",
+      "range": {
+        "startLine": 64,
+        "startChar": 32,
+        "endLine": 64,
+        "endChar": 46
+      },
+      "revId": "6a69ad9f3589dd961a8e2088cc6e1753078d346e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "922ac2ce_fa9a6281",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsCmHandlerQueryServiceImpl.java",
         "patchSetId": 12
@@ -131,6 +245,30 @@
       "revId": "6a69ad9f3589dd961a8e2088cc6e1753078d346e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e02e61c_193823bb",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsCmHandlerQueryServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-06-03T13:20:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "922ac2ce_fa9a6281",
+      "range": {
+        "startLine": 177,
+        "startChar": 17,
+        "endLine": 177,
+        "endChar": 49
+      },
+      "revId": "6a69ad9f3589dd961a8e2088cc6e1753078d346e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
