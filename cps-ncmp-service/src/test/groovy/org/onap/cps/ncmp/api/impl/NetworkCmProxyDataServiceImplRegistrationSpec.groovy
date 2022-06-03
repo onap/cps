@@ -66,7 +66,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     def mockModuleSyncService = Mock(ModuleSyncService)
 
     def noTimestamp = null
-    def objectUnderTest = getObjectUnderTestWithModelSyncDisabled()
+    def objectUnderTest = getObjectUnderTest()
 
     def 'DMI Registration: Create, Update & Delete operations are processed in the right order'() {
         given: 'a registration with operations of all three types'
@@ -164,19 +164,9 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             }
         and: 'save list elements is invoked with the expected parameters'
             interaction {
-                def expectedJsonData = """{"cm-handles":[{"id":"cmhandle","dmi-service-name":"my-server","additional-properties":$expectedDmiProperties,"public-properties":$expectedPublicProperties}]}"""
+                def expectedJsonData = """{"cm-handles":[{"id":"cmhandle","dmi-service-name":"my-server","state":{"cm-handle-state":"ADVISED"},"additional-properties":$expectedDmiProperties,"public-properties":$expectedPublicProperties}]}"""
                 1 * mockCpsDataService.saveListElements('NCMP-Admin', 'ncmp-dmi-registry',
                     '/dmi-registry', expectedJsonData, noTimestamp)
-            }
-        then: 'model sync is invoked with expected parameters'
-            1 * objectUnderTest.syncModulesAndCreateAnchor(_) >> { YangModelCmHandle yangModelCmHandle ->
-                {
-                    assert yangModelCmHandle.id == 'cmhandle'
-                    assert yangModelCmHandle.dmiServiceName == 'my-server'
-                    assert spiedJsonObjectMapper.asJsonString(yangModelCmHandle.getPublicProperties()) == expectedPublicProperties
-                    assert spiedJsonObjectMapper.asJsonString(yangModelCmHandle.getDmiProperties()) == expectedDmiProperties
-
-                }
             }
         where:
             scenario                          | dmiProperties            | publicProperties               || expectedDmiProperties                      | expectedPublicProperties
@@ -233,35 +223,11 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
                 assert it.registrationError == expectedError
                 assert it.errorText == expectedErrorText
             }
-        and: 'model-sync is not invoked'
-            0 * objectUnderTest.syncModulesAndCreateAnchor(_)
         where:
             scenario                                        | cmHandleId             | exception                                               || expectedError           | expectedErrorText
             'cm-handle already exist'                       | 'cmhandle'             | new AlreadyDefinedException('', new RuntimeException()) || CM_HANDLE_ALREADY_EXIST | 'cm-handle already exists'
             'cm-handle has invalid name'                    | 'cm handle with space' | new DataValidationException("", "")                     || CM_HANDLE_INVALID_ID    | 'cm-handle has an invalid character(s) in id'
             'unknown exception while registering cm-handle' | 'cmhandle'             | new RuntimeException('Failed')                          || UNKNOWN_ERROR           | 'Failed'
-    }
-
-    def 'Create CM-Handle Error Handling: Model Sync fails'() {
-        given: 'objects under test without disabled model sync'
-            def objectUnderTest = getObjectUnderTest()
-        and: 'a registration without cm-handle properties'
-            def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server')
-            dmiPluginRegistration.createdCmHandles = [new NcmpServiceCmHandle(cmHandleId: 'cmhandle')]
-        and: 'cm-handler models sync fails'
-            objectUnderTest.syncModulesAndCreateAnchor(*_) >> { throw new RuntimeException('Model-Sync failed') }
-        when: 'registration is updated'
-            def response = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
-        then: 'a failure response is received'
-            response.getCreatedCmHandles().size() == 1
-            with(response.getCreatedCmHandles().get(0)) {
-                assert it.status == Status.FAILURE
-                assert it.cmHandle == 'cmhandle'
-                assert it.registrationError == UNKNOWN_ERROR
-                assert it.errorText == 'Model-Sync failed'
-            }
-        and: 'cm-handle is registered'
-            1 * mockCpsDataService.saveListElements(*_)
     }
 
     def 'Update CM-Handle: Update Operation Response is added to the response'() {
@@ -377,12 +343,6 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             'cm-handle does not exist'   | 'cmhandle'             | new DataNodeNotFoundException("", "", "") || CM_HANDLE_DOES_NOT_EXIST | 'cm-handle does not exist'
             'cm-handle has invalid name' | 'cm handle with space' | new DataValidationException("", "")       || CM_HANDLE_INVALID_ID     | 'cm-handle has an invalid character(s) in id'
             'an unexpected exception'    | 'cmhandle'             | new RuntimeException("Failed")            || UNKNOWN_ERROR            | 'Failed'
-    }
-
-    def getObjectUnderTestWithModelSyncDisabled() {
-        def objectUnderTest = getObjectUnderTest()
-        objectUnderTest.syncModulesAndCreateAnchor(*_) >> null
-        return objectUnderTest
     }
 
     def getObjectUnderTest() {

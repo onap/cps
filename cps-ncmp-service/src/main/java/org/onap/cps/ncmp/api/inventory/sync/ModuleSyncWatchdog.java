@@ -51,7 +51,7 @@ public class ModuleSyncWatchdog {
             final String cmHandleId = advisedCmHandle.getId();
             final CompositeState compositeState = inventoryPersistence.getCmHandleState(cmHandleId);
             try {
-                moduleSyncService.syncAndCreateSchemaSet(advisedCmHandle);
+                moduleSyncService.syncAndCreateSchemaSetAndAnchor(advisedCmHandle);
                 compositeState.setCmHandleState(CmHandleState.READY);
             } catch (final Exception e) {
                 compositeState.setCmHandleState(CmHandleState.LOCKED);

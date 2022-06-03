@@ -52,7 +52,7 @@ class ModuleSyncSpec extends Specification {
         then: 'the inventory persistence cm handle returns a composite state for the first cm handle'
             1 * mockInventoryPersistence.getCmHandleState('some-cm-handle') >> compositeState1
         and: 'module sync service syncs the first cm handle and creates a schema set'
-            1 * mockModuleSyncService.syncAndCreateSchemaSet(yangModelCmHandle1)
+            1 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(yangModelCmHandle1)
         and: 'the composite state cm handle state is now READY'
             assert compositeState1.getCmHandleState() == CmHandleState.READY
         and: 'the first cm handle state is updated'
@@ -60,7 +60,7 @@ class ModuleSyncSpec extends Specification {
         then: 'the inventory persistence cm handle returns a composite state for the second cm handle'
             mockInventoryPersistence.getCmHandleState('some-cm-handle-2') >> compositeState2
         and: 'module sync service syncs the second cm handle and creates a schema set'
-            1 * mockModuleSyncService.syncAndCreateSchemaSet(yangModelCmHandle2)
+            1 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(yangModelCmHandle2)
         and: 'the composite state cm handle state is now READY'
             assert compositeState2.getCmHandleState() == CmHandleState.READY
         and: 'the second cm handle state is updated'
@@ -78,7 +78,7 @@ class ModuleSyncSpec extends Specification {
         then: 'the inventory persistence cm handle returns a composite state for the cm handle'
             1 * mockInventoryPersistence.getCmHandleState('some-cm-handle') >> compositeState
         and: 'module sync service attempts to sync the cm handle and throws an exception'
-            1 * mockModuleSyncService.syncAndCreateSchemaSet(*_) >> { throw new Exception('some exception') }
+            1 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(*_) >> { throw new Exception('some exception') }
         and: 'the composite state cm handle state is now LOCKED'
             assert compositeState.getCmHandleState() == CmHandleState.LOCKED
         and: 'update lock reason, details and attempts is invoked'

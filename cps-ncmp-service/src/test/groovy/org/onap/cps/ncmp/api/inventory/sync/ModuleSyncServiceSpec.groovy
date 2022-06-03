@@ -20,9 +20,11 @@
 
 package org.onap.cps.ncmp.api.inventory.sync
 
+import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.ncmp.api.impl.operations.DmiModelOperations
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
+import org.onap.cps.ncmp.api.inventory.CmHandleState
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import org.onap.cps.spi.model.ModuleReference
 import spock.lang.Specification
@@ -32,8 +34,9 @@ class ModuleSyncServiceSpec extends Specification {
 
     def mockCpsModuleService = Mock(CpsModuleService)
     def mockDmiModelOperations = Mock(DmiModelOperations)
+    def mockCpsAdminService = Mock(CpsAdminService)
 
-    def objectUnderTest = new ModuleSyncService(mockDmiModelOperations, mockCpsModuleService)
+    def objectUnderTest = new ModuleSyncService(mockDmiModelOperations, mockCpsModuleService, mockCpsAdminService)
 
     def expectedDataspaceName = 'NFP-Operational'
 
@@ -42,7 +45,7 @@ class ModuleSyncServiceSpec extends Specification {
             def ncmpServiceCmHandle = new NcmpServiceCmHandle()
             def dmiServiceName = 'some service name'
             ncmpServiceCmHandle.cmHandleId = 'cmHandleId-1'
-            def yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle(dmiServiceName, '' , '', ncmpServiceCmHandle)
+            def yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle(dmiServiceName, '' , '', CmHandleState.ADVISED, ncmpServiceCmHandle)
         and: 'DMI operations returns some module references'
             def moduleReferences =  [ new ModuleReference(moduleName:'module1',revision:'1'),
                                                             new ModuleReference(moduleName:'module2',revision:'2') ]
@@ -50,17 +53,19 @@ class ModuleSyncServiceSpec extends Specification {
         and: 'CPS-Core returns list of existing module resources'
             mockCpsModuleService.getYangResourceModuleReferences(expectedDataspaceName) >> toModuleReference(existingModuleResourcesInCps)
         and: 'DMI-Plugin returns resource(s) for "new" module(s)'
-            mockDmiModelOperations.getNewYangResourcesFromDmi(yangModelCmHandle, [new ModuleReference('module1', '1')]) >> yangResourceToContentMap
+            mockDmiModelOperations.getNewYangResourcesFromDmi(yangModelCmHandle, [new ModuleReference('module1', '1')]) >> newModuleNameContentToMap
         when: 'module sync is triggered'
             mockCpsModuleService.identifyNewModuleReferences(moduleReferences) >> toModuleReference(identifiedNewModuleReferences)
-            def result = objectUnderTest.syncAndCreateSchemaSet(yangModelCmHandle)
-        then: 'the resulting schema set name is the same as the cm handle id'
-            assert result == 'cmHandleId-1'
+            objectUnderTest.syncAndCreateSchemaSetAndAnchor(yangModelCmHandle)
+        then: 'create schema set from module is invoked with correct parameters'
+            1 * mockCpsModuleService.createSchemaSetFromModules('NFP-Operational', 'cmHandleId-1', newModuleNameContentToMap, existingModuleReferencesInCps)
+        and: 'anchor is created with the correct parameters'
+            1 * mockCpsAdminService.createAnchor('NFP-Operational', 'cmHandleId-1', 'cmHandleId-1')
         where: 'the following parameters are used'
-            scenario             | existingModuleResourcesInCps           | identifiedNewModuleReferences | yangResourceToContentMap
-            'one new module'     | [['module2' : '2'], ['module3' : '3']] | [['module1' : '1']]           | [module1: 'some yang source']
-            'no add. properties' | [['module2' : '2'], ['module3' : '3']] | [['module1' : '1']]           | [module1: 'some yang source']
-            'no new module'      | [['module1' : '1'], ['module2' : '2']] | []                            | [:]
+            scenario             | existingModuleResourcesInCps           | identifiedNewModuleReferences | newModuleNameContentToMap       | existingModuleReferencesInCps
+            'one new module'     | [['module2' : '2'], ['module3' : '3']] | [['module1' : '1']]           | [module1: 'some yang source']   | [new ModuleReference(moduleName:'module2',revision:'2')]
+            'no add. properties' | [['module2' : '2'], ['module3' : '3']] | [['module1' : '1']]           | [module1: 'some yang source']   | [new ModuleReference(moduleName:'module2',revision:'2')]
+            'no new module'      | [['module1' : '1'], ['module2' : '2']] | []                            | [:]                             | [new ModuleReference(moduleName:'module1',revision:'1'), new ModuleReference(moduleName:'module2',revision:'2')]
     }
 
     def toModuleReference(moduleReferenceAsMap) {
