@@ -358,6 +358,30 @@
     },
     {
       "key": {
+        "uuid": "9663c3d7_29ebbaa4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/CpsAsyncRequestResponseEventIntegrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-07T16:47:45Z",
+      "side": 1,
+      "message": "for future reference: fro (unit) test performance is not really  consideration. If in doubt readability and low maintenance (ie. re-use) can overrule performance issue",
+      "parentUuid": "c6e28144_b4d41646",
+      "range": {
+        "startLine": 78,
+        "startChar": 58,
+        "endLine": 78,
+        "endChar": 74
+      },
+      "revId": "feb35af4ea691a13fd2d42827bc21d8c80dd807c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3099382d_d9eed96d",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/NcmpEventsPublisherSpec.groovy",
         "patchSetId": 4
