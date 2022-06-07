@@ -1,0 +1,234 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e333d086_6d4f19b5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CompositeState.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-07T17:09:30Z",
+      "side": 1,
+      "message": "NB: needed to be public ?!\n(OH I see now this is from rebase, not your change)",
+      "range": {
+        "startLine": 60,
+        "startChar": 4,
+        "endLine": 60,
+        "endChar": 11
+      },
+      "revId": "4b05dc3a7a9190825ea63882f02c44930ab809d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3621d042_007d2533",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-07T17:09:30Z",
+      "side": 1,
+      "message": "NB: Maybe in future this should be refactored to take a DataStore(enum) parameter",
+      "range": {
+        "startLine": 114,
+        "startChar": 26,
+        "endLine": 114,
+        "endChar": 60
+      },
+      "revId": "4b05dc3a7a9190825ea63882f02c44930ab809d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3fb6fb23_689c0e5f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/DataSyncWatchdog.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-07T17:09:30Z",
+      "side": 1,
+      "message": "default of only 3 seconds, did you mean 30?",
+      "range": {
+        "startLine": 49,
+        "startChar": 78,
+        "endLine": 49,
+        "endChar": 82
+      },
+      "revId": "4b05dc3a7a9190825ea63882f02c44930ab809d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "68c707eb_2b821e9f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/DataSyncWatchdog.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-07T17:09:30Z",
+      "side": 1,
+      "message": "NB: naming coudl eb improved to convey better wat is happening. not sure what is best. Some suggestions\n- getAnUnSynchronizedReadyCmHandle\n- findUnSynchronizedReadyCmHandle\n\nor maybe you can think of something better",
+      "range": {
+        "startLine": 51,
+        "startChar": 66,
+        "endLine": 51,
+        "endChar": 71
+      },
+      "revId": "4b05dc3a7a9190825ea63882f02c44930ab809d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5c64f6b6_4cbaeb6e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/DataSyncWatchdog.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-07T17:09:30Z",
+      "side": 1,
+      "message": "why this check?\nIf it is need you should at least log a warning when empty...",
+      "range": {
+        "startLine": 57,
+        "startChar": 16,
+        "endLine": 57,
+        "endChar": 39
+      },
+      "revId": "4b05dc3a7a9190825ea63882f02c44930ab809d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2977904_0acee64a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-07T17:09:30Z",
+      "side": 1,
+      "message": "good idea. \nBut need to consider performance, maybe a quick Poc(test) to see how long it takes to shuffle 10,000 entries. IF it is \u003c100 ms it is fine.\nactually; will module sync be that quick that we ever get big numbers here?! Maybe not",
+      "range": {
+        "startLine": 88,
+        "startChar": 20,
+        "endLine": 88,
+        "endChar": 27
+      },
+      "revId": "4b05dc3a7a9190825ea63882f02c44930ab809d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "401ef6d3_c080a735",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/InventoryPersistenceSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-07T17:09:30Z",
+      "side": 1,
+      "message": "NB: could extract out common class variable: sampleDataNodes",
+      "range": {
+        "startLine": 162,
+        "startChar": 12,
+        "endLine": 162,
+        "endChar": 44
+      },
+      "revId": "4b05dc3a7a9190825ea63882f02c44930ab809d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9ec2e09f_ce1416df",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/DataSyncSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-07T17:09:30Z",
+      "side": 1,
+      "message": "look liek a createSampleYangModelCmHandle(id) method could be extracted form this and used twice",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 114
+      },
+      "revId": "4b05dc3a7a9190825ea63882f02c44930ab809d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dba79587_42f53bce",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/DataSyncSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-07T17:09:30Z",
+      "side": 1,
+      "message": "not sure if you really needed to test 2 entries but it is there now and it is still easy to read and hopefully wont need much maintenance in future",
+      "range": {
+        "startLine": 65,
+        "startChar": 1,
+        "endLine": 81,
+        "endChar": 5
+      },
+      "revId": "4b05dc3a7a9190825ea63882f02c44930ab809d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "87b77a91_7e2ca4ec",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/SyncUtilsSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-07T17:09:30Z",
+      "side": 1,
+      "message": "do we need that mush data for this test. always try to minimize it to the bare minimum but stil something \u0027recognizable\u0027 as a data object you want/can check later",
+      "range": {
+        "startLine": 98,
+        "startChar": 29,
+        "endLine": 98,
+        "endChar": 206
+      },
+      "revId": "4b05dc3a7a9190825ea63882f02c44930ab809d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
