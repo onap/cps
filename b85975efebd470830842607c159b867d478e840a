@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "f57acb90_9354915c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-06-07T08:44:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a6c020ef_fb8a29a2",
+      "range": {
+        "startLine": 161,
+        "startChar": 36,
+        "endLine": 161,
+        "endChar": 57
+      },
+      "revId": "b85975efebd470830842607c159b867d478e840a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "80f5e0bb_0e8197b0",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/YangModelCmHandleRetriever.java",
         "patchSetId": 13
@@ -45,6 +69,30 @@
       "revId": "b85975efebd470830842607c159b867d478e840a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dba93cdd_a2103bb2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/YangModelCmHandleRetriever.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-06-07T08:44:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "80f5e0bb_0e8197b0",
+      "range": {
+        "startLine": 50,
+        "startChar": 29,
+        "endLine": 50,
+        "endChar": 49
+      },
+      "revId": "b85975efebd470830842607c159b867d478e840a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -111,6 +159,30 @@
     },
     {
       "key": {
+        "uuid": "fe14ca5f_0b0028a7",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-06-07T08:44:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "96a3d411_9fa3c09a",
+      "range": {
+        "startLine": 249,
+        "startChar": 8,
+        "endLine": 249,
+        "endChar": 55
+      },
+      "revId": "b85975efebd470830842607c159b867d478e840a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3e39f9eb_435511ef",
         "filename": "cps-ri/src/test/resources/data/fragment.sql",
         "patchSetId": 13
@@ -134,6 +206,30 @@
     },
     {
       "key": {
+        "uuid": "3b679831_8ececf1f",
+        "filename": "cps-ri/src/test/resources/data/fragment.sql",
+        "patchSetId": 13
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-06-07T08:44:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e39f9eb_435511ef",
+      "range": {
+        "startLine": 26,
+        "startChar": 2,
+        "endLine": 34,
+        "endChar": 35
+      },
+      "revId": "b85975efebd470830842607c159b867d478e840a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b8aa0ea0_b1618000",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/CmHandleQueryRestParametersValidator.java",
         "patchSetId": 13
@@ -151,6 +247,24 @@
     },
     {
       "key": {
+        "uuid": "6d6927b6_5148ce47",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/CmHandleQueryRestParametersValidator.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-06-07T08:44:24Z",
+      "side": 1,
+      "message": "I have test for all negative scenarios",
+      "parentUuid": "b8aa0ea0_b1618000",
+      "revId": "b85975efebd470830842607c159b867d478e840a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a40f94b8_c54a281a",
         "filename": "cps-service/src/test/groovy/org/onap/cps/utils/CmHandleQueryRestParametersValidatorSpec.groovy",
         "patchSetId": 13
@@ -162,6 +276,24 @@
       "writtenOn": "2022-06-03T15:17:06Z",
       "side": 1,
       "message": "NB: as mentioned before need to add more test for negatives\nRun mvn clean install and check: cps/jacoco-report/target/site/jacoco-aggregate/cps-service/org.onap.cps.utils/CmHandleQueryRestParametersValidator.java.html#L43 (check",
+      "revId": "b85975efebd470830842607c159b867d478e840a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f11aeddd_eb8b20eb",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/CmHandleQueryRestParametersValidatorSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-06-07T08:44:24Z",
+      "side": 1,
+      "message": "I see it, but I doesn\u0027t understand, because I covered all negative branch in row 51 and 81.",
+      "parentUuid": "a40f94b8_c54a281a",
       "revId": "b85975efebd470830842607c159b867d478e840a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
