@@ -20,6 +20,7 @@
 
 package org.onap.cps.ncmp.api.inventory;
 
+import java.lang.module.Configuration;
 import java.time.OffsetDateTime;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -43,6 +44,8 @@ public class InventoryPersistence {
 
     private static final String NCMP_DMI_REGISTRY_ANCHOR = "ncmp-dmi-registry";
 
+    private static final String XPATH_TO_CM_HANDLE = "/dmi-registry/cm-handles[@id='" + "%s" + "']";
+
     private final JsonObjectMapper jsonObjectMapper;
 
     private final CpsDataService cpsDataService;
@@ -59,7 +62,7 @@ public class InventoryPersistence {
      */
     public CompositeState getCmHandleState(final String cmHandleId) {
         final DataNode stateAsDataNode = cpsDataService.getDataNode(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-            "/dmi-registry/cm-handles[@id='" + cmHandleId + "']/state",
+                String.format(XPATH_TO_CM_HANDLE, cmHandleId) + "/state",
             FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
         return compositeStateBuilder.fromDataNode(stateAsDataNode).build();
     }
@@ -74,7 +77,7 @@ public class InventoryPersistence {
         final String cmHandleJsonData = String.format("{\"state\":%s}",
             jsonObjectMapper.asJsonString(compositeState));
         cpsDataService.replaceNodeTree(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-            "/dmi-registry/cm-handles[@id='" + cmHandleId + "']",
+            String.format(XPATH_TO_CM_HANDLE, cmHandleId),
             cmHandleJsonData, OffsetDateTime.now());
     }
 
@@ -111,10 +114,9 @@ public class InventoryPersistence {
     }
 
     private DataNode getCmHandleDataNode(final String cmHandle) {
-        final String xpathForDmiRegistryToFetchCmHandle = "/dmi-registry/cm-handles[@id='" + cmHandle + "']";
         return cpsDataService.getDataNode(NCMP_DATASPACE_NAME,
             NCMP_DMI_REGISTRY_ANCHOR,
-            xpathForDmiRegistryToFetchCmHandle,
+            String.format(XPATH_TO_CM_HANDLE, cmHandle),
             FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
     }
 
