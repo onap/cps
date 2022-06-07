@@ -71,6 +71,30 @@
     },
     {
       "key": {
+        "uuid": "31552fc1_351c27a0",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/CpsAsyncRequestResponseEventIntegrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-06-07T10:18:42Z",
+      "side": 1,
+      "message": "I kept it here as we get the flexibility to provide more configuration or override properties to the kafkaTemplate.",
+      "parentUuid": "7e051a57_0d59618f",
+      "range": {
+        "startLine": 45,
+        "startChar": 8,
+        "endLine": 45,
+        "endChar": 22
+      },
+      "revId": "feb35af4ea691a13fd2d42827bc21d8c80dd807c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "dd990a0c_1f8fd897",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/CpsAsyncRequestResponseEventIntegrationSpec.groovy",
         "patchSetId": 4
@@ -94,6 +118,30 @@
     },
     {
       "key": {
+        "uuid": "4bb1259a_94b7d0a4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/CpsAsyncRequestResponseEventIntegrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-06-07T10:18:42Z",
+      "side": 1,
+      "message": "My parent class is only related to Messaging and ObjectMapper doesn\u0027t relates to messaging , so in my opinion its better here.",
+      "parentUuid": "dd990a0c_1f8fd897",
+      "range": {
+        "startLine": 78,
+        "startChar": 58,
+        "endLine": 78,
+        "endChar": 74
+      },
+      "revId": "feb35af4ea691a13fd2d42827bc21d8c80dd807c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3099382d_d9eed96d",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/NcmpEventsPublisherSpec.groovy",
         "patchSetId": 4
@@ -105,6 +153,30 @@
       "writtenOn": "2022-06-07T10:01:27Z",
       "side": 1,
       "message": "Can be moved into parent",
+      "range": {
+        "startLine": 44,
+        "startChar": 8,
+        "endLine": 44,
+        "endChar": 22
+      },
+      "revId": "feb35af4ea691a13fd2d42827bc21d8c80dd807c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "657c10a1_2b7e53c2",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/NcmpEventsPublisherSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-06-07T10:18:42Z",
+      "side": 1,
+      "message": "replied in prev comment.",
+      "parentUuid": "3099382d_d9eed96d",
       "range": {
         "startLine": 44,
         "startChar": 8,
@@ -243,6 +315,30 @@
       "writtenOn": "2022-06-07T10:01:27Z",
       "side": 1,
       "message": "Can be moved into parent",
+      "range": {
+        "startLine": 82,
+        "startChar": 40,
+        "endLine": 82,
+        "endChar": 56
+      },
+      "revId": "feb35af4ea691a13fd2d42827bc21d8c80dd807c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5340056c_c91abe5e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/NcmpEventsPublisherSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-06-07T10:18:42Z",
+      "side": 1,
+      "message": "reason provided in previous similar comment.",
+      "parentUuid": "7b9cb489_8efdea4c",
       "range": {
         "startLine": 82,
         "startChar": 40,
