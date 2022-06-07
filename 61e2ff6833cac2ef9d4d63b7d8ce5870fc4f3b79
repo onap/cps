@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6846d816_1d771794",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-07T12:39:58Z",
+      "side": 1,
+      "message": "not 100% sure if we really should catch this exception too. But it is consistent with catching the modulename exception.\nSo as long as we clearly log what we do here, see next comment I think it is OK",
+      "range": {
+        "startLine": 169,
+        "startChar": 17,
+        "endLine": 169,
+        "endChar": 44
+      },
+      "revId": "61e2ff6833cac2ef9d4d63b7d8ce5870fc4f3b79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ea555f63_4dd46831",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-07T12:39:58Z",
+      "side": 1,
+      "message": "I think this try catch should happen inside org.onap.cps.spi.impl.CpsAdminPersistenceServiceImpl#queryAnchors\nie. move it 2 layers down\n(you can aslo do a semi-integration tets then instead of mocking it)",
+      "range": {
+        "startLine": 167,
+        "startChar": 7,
+        "endLine": 169,
+        "endChar": 9
+      },
+      "revId": "61e2ff6833cac2ef9d4d63b7d8ce5870fc4f3b79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6b37c8f9_abc33aa8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-07T12:39:58Z",
+      "side": 1,
+      "message": "since we are not treating it as an error I think we should change the wording and log level to something like \nlog.info(\u0027Module search encountered unknown dataspace or modulename, treating this as nothing found\u0027)",
+      "range": {
+        "startLine": 170,
+        "startChar": 22,
+        "endLine": 170,
+        "endChar": 74
+      },
+      "revId": "61e2ff6833cac2ef9d4d63b7d8ce5870fc4f3b79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
