@@ -167,6 +167,9 @@ export ROBOT_VARIABLES=
 
 # Sign in to nexus3 docker repo
 docker login -u docker -p docker nexus3.onap.org:10001
+docker login -u docker -p docker nexus3.onap.org:10002/v2
+docker login -u docker -p docker nexus3.onap.org:10003
+docker login -u docker -p docker nexus3.onap.org:10004
 
 # Run setup script plan if it exists
 cd "${TESTPLANDIR}"
