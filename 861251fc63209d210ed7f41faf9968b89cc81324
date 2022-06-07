@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "1da9aac6_8df13fcc",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/CpsAsyncRequestResponseEventIntegrationSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-07T13:15:28Z",
+      "side": 1,
+      "message": "Use the same solution that we discussed \n\nhttps://gerrit.onap.org/r/c/cps/+/129472/4/cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/CpsAsyncRequestResponseEventIntegrationSpec.groovy",
+      "range": {
+        "startLine": 60,
+        "startChar": 8,
+        "endLine": 60,
+        "endChar": 25
+      },
+      "revId": "861251fc63209d210ed7f41faf9968b89cc81324",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "310e0fa4_e05637b2",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/NcmpEventsPublisherSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-07T13:15:28Z",
+      "side": 1,
+      "message": "Use the same solution that we discussed \n\nhttps://gerrit.onap.org/r/c/cps/+/129472/4/cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/CpsAsyncRequestResponseEventIntegrationSpec.groovy",
+      "range": {
+        "startLine": 46,
+        "startChar": 8,
+        "endLine": 46,
+        "endChar": 25
+      },
+      "revId": "861251fc63209d210ed7f41faf9968b89cc81324",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "698c8acd_85aaeaf0",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/utils/MessagingSpec.groovy",
         "patchSetId": 5
