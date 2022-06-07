@@ -1,0 +1,228 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3dd00d52_2966b404",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-07T11:34:35Z",
+      "side": 1,
+      "message": "Use : stubbedDeprecationHelper",
+      "range": {
+        "startLine": 91,
+        "startChar": 22,
+        "endLine": 91,
+        "endChar": 39
+      },
+      "revId": "472ed9022db7973e92b1ab33ee84eef4b7721e56",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "244b20d7_8ff1857d",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandlerSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-07T11:34:35Z",
+      "side": 1,
+      "message": "Use :  stubbedDeprecationHelper",
+      "range": {
+        "startLine": 80,
+        "startChar": 22,
+        "endLine": 80,
+        "endChar": 40
+      },
+      "revId": "472ed9022db7973e92b1ab33ee84eef4b7721e56",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c621e2cd_3748c76f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceImpl.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-07T11:34:35Z",
+      "side": 1,
+      "message": "NB : remove space",
+      "revId": "472ed9022db7973e92b1ab33ee84eef4b7721e56",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "11979e1e_06411a1c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-07T11:34:35Z",
+      "side": 1,
+      "message": "Use : stubbedNetworkCmProxyCmHandlerQueryService",
+      "range": {
+        "startLine": 68,
+        "startChar": 8,
+        "endLine": 68,
+        "endChar": 37
+      },
+      "revId": "472ed9022db7973e92b1ab33ee84eef4b7721e56",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eff702ef_a7b5fe60",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-07T11:34:35Z",
+      "side": 1,
+      "message": "@RequiredArgsConstructor",
+      "range": {
+        "startLine": 47,
+        "startChar": 1,
+        "endLine": 47,
+        "endChar": 19
+      },
+      "revId": "472ed9022db7973e92b1ab33ee84eef4b7721e56",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "086afcb0_cf3d7e6c",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsAdminServiceImpl.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-07T11:34:35Z",
+      "side": 1,
+      "message": "RequiredArgsConstructor",
+      "range": {
+        "startLine": 38,
+        "startChar": 1,
+        "endLine": 38,
+        "endChar": 19
+      },
+      "revId": "472ed9022db7973e92b1ab33ee84eef4b7721e56",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "99f7ca5b_ed0d34b3",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/CmHandleQueryParameters.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-07T11:34:35Z",
+      "side": 1,
+      "message": "Do we need this here or @@Setter and @Gette can serve our purpose?",
+      "range": {
+        "startLine": 31,
+        "startChar": 1,
+        "endLine": 31,
+        "endChar": 5
+      },
+      "revId": "472ed9022db7973e92b1ab33ee84eef4b7721e56",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d6d673e_58786a77",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/ConditionProperties.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-07T11:34:35Z",
+      "side": 1,
+      "message": "Same as previous if we need it bundles the features of @ToString , @EqualsAndHashCode , @Getter , @Setter and @RequiredArgsConstructor together.",
+      "range": {
+        "startLine": 31,
+        "startChar": 1,
+        "endLine": 31,
+        "endChar": 5
+      },
+      "revId": "472ed9022db7973e92b1ab33ee84eef4b7721e56",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ada041ef_3ef0b000",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNodeIdentifier.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-07T11:34:35Z",
+      "side": 1,
+      "message": "same as prevoius (bundles the features of @ToString , @EqualsAndHashCode , @Getter / @Setter and @RequiredArgsConstructor together)",
+      "range": {
+        "startLine": 26,
+        "startChar": 1,
+        "endLine": 26,
+        "endChar": 5
+      },
+      "revId": "472ed9022db7973e92b1ab33ee84eef4b7721e56",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9035fc78_a2e9d2b3",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/CmHandleQueryRestParametersValidator.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-07T11:34:35Z",
+      "side": 1,
+      "message": "We should avoid it as the offical doc says \"Current status: negative - Currently we feel this feature cannot move out of experimental status due to fundamental issues with non-star static imports.\"\n\nhttps://projectlombok.org/features/experimental/UtilityClass",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 13
+      },
+      "revId": "472ed9022db7973e92b1ab33ee84eef4b7721e56",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
