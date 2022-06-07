@@ -119,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "52e2c6e5_611780a8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/YangDataConverter.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-07T10:27:02Z",
+      "side": 1,
+      "message": "sorry you are, forget about this",
+      "parentUuid": "7ad40fbe_0d221141",
+      "range": {
+        "startLine": 84,
+        "startChar": 0,
+        "endLine": 102,
+        "endChar": 5
+      },
+      "revId": "b85975efebd470830842607c159b867d478e840a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "95d03268_e21395e1",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceSpec.groovy",
         "patchSetId": 13
@@ -294,6 +318,24 @@
       "side": 1,
       "message": "I see it, but I doesn\u0027t understand, because I covered all negative branch in row 51 and 81.",
       "parentUuid": "a40f94b8_c54a281a",
+      "revId": "b85975efebd470830842607c159b867d478e840a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "11452965_421fd5d9",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/CmHandleQueryRestParametersValidatorSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-07T10:27:02Z",
+      "side": 1,
+      "message": "I\u0027ll have a look later let\u0027s not worry abut it now",
+      "parentUuid": "f11aeddd_eb8b20eb",
       "revId": "b85975efebd470830842607c159b867d478e840a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
