@@ -286,6 +286,30 @@
     },
     {
       "key": {
+        "uuid": "3a2f4614_caac9936",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/CpsAsyncRequestResponseEventIntegrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-07T13:08:37Z",
+      "side": 1,
+      "message": "Yes we should create a bean or use static as I stated in my previus commecnt into solution section. Creating bean would be more cleaner/appropriate way like below: \n\nStep 1 : Add ObjectMapper and  JsonObjectMapper into spring test context\n\n@SpringBootTest(classes \u003d [ObjectMapper, JsonObjectMapper,...\n\nStep 2 : Inject JsonObjectMapper object that would wire ObjectMapper object from spring test context\n\n@Autowired\nprivate JsonObjectMapper jsonObjectMapper;",
+      "parentUuid": "41307f60_db32c407",
+      "range": {
+        "startLine": 78,
+        "startChar": 58,
+        "endLine": 78,
+        "endChar": 74
+      },
+      "revId": "feb35af4ea691a13fd2d42827bc21d8c80dd807c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3099382d_d9eed96d",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/NcmpEventsPublisherSpec.groovy",
         "patchSetId": 4
