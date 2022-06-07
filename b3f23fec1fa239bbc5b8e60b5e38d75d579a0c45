@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "7e166335_638661b4",
+        "filename": "cps-ncmp-rest-stub/pom.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-06-07T09:26:10Z",
+      "side": 1,
+      "message": "New file 2 copyrights with 2021?",
+      "range": {
+        "startLine": 4,
+        "startChar": 2,
+        "endLine": 5,
+        "endChar": 46
+      },
+      "revId": "b3f23fec1fa239bbc5b8e60b5e38d75d579a0c45",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d5e72890_e366a159",
         "filename": "cps-ncmp-rest-stub/pom.xml",
         "patchSetId": 5
@@ -18,6 +41,98 @@
         "startChar": 21,
         "endLine": 101,
         "endChar": 38
+      },
+      "revId": "b3f23fec1fa239bbc5b8e60b5e38d75d579a0c45",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "31cba2fe_c5fce0ca",
+        "filename": "cps-ncmp-rest-stub/src/main/java/org/onap/cps/ncmp/rest/stub/controller/NetworkCmProxyStubController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-06-07T09:26:10Z",
+      "side": 1,
+      "message": "is this necessary?",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 31
+      },
+      "revId": "b3f23fec1fa239bbc5b8e60b5e38d75d579a0c45",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "89ef9c60_88e77b1f",
+        "filename": "cps-ncmp-rest-stub/src/main/java/org/onap/cps/ncmp/rest/stub/controller/NetworkCmProxyStubController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-06-07T09:26:10Z",
+      "side": 1,
+      "message": "We use cmHandleId a lot elsewhere",
+      "range": {
+        "startLine": 87,
+        "startChar": 109,
+        "endLine": 87,
+        "endChar": 117
+      },
+      "revId": "b3f23fec1fa239bbc5b8e60b5e38d75d579a0c45",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b7a83feb_908e138c",
+        "filename": "cps-ncmp-rest-stub/src/main/java/org/onap/cps/ncmp/rest/stub/controller/NetworkCmProxyStubController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-06-07T09:26:10Z",
+      "side": 1,
+      "message": "cmHandleId",
+      "range": {
+        "startLine": 92,
+        "startChar": 96,
+        "endLine": 92,
+        "endChar": 104
+      },
+      "revId": "b3f23fec1fa239bbc5b8e60b5e38d75d579a0c45",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb107e7a_332534fb",
+        "filename": "cps-ncmp-rest-stub/src/main/java/org/onap/cps/ncmp/rest/stub/controller/NetworkCmProxyStubController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-06-07T09:26:10Z",
+      "side": 1,
+      "message": "cmHandleId, same for rest of methods",
+      "range": {
+        "startLine": 106,
+        "startChar": 85,
+        "endLine": 106,
+        "endChar": 93
       },
       "revId": "b3f23fec1fa239bbc5b8e60b5e38d75d579a0c45",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
