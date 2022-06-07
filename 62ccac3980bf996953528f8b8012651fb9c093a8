@@ -45,6 +45,23 @@
       "revId": "62ccac3980bf996953528f8b8012651fb9c093a8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ccde1e8_daf6a7d7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-06-07T15:55:48Z",
+      "side": 1,
+      "message": "NB: \nMore declarative style can be used here,\n\nreturn lockedCmHandleAsDataNodeList.stream().map(e -\u003e e.getLeaves().get(\"id\").toString())\n                .map(e -\u003e inventoryPersistence.getYangModelCmHandle(e))\n                .collect(Collectors.toList());\n\n//replace e with suitable local variable name.",
+      "revId": "62ccac3980bf996953528f8b8012651fb9c093a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
