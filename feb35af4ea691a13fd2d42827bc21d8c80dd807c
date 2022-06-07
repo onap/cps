@@ -167,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "711fe479_b828255e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/CpsAsyncRequestResponseEventIntegrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-06-07T12:30:24Z",
+      "side": 1,
+      "message": "Cool. \nI agree to this now since there is a cleaner way to override the properties.",
+      "parentUuid": "650bfa40_bcb23626",
+      "range": {
+        "startLine": 45,
+        "startChar": 8,
+        "endLine": 45,
+        "endChar": 22
+      },
+      "revId": "feb35af4ea691a13fd2d42827bc21d8c80dd807c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "dd990a0c_1f8fd897",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/CpsAsyncRequestResponseEventIntegrationSpec.groovy",
         "patchSetId": 4
@@ -226,6 +250,30 @@
       "side": 1,
       "message": "Jackson ObjectMapper performance pitfall :\n\nObjectMapper uses reflection to create the POJO type from the string value, at least to find the constructor annotated with @JsonCreator. To improve performance ObjectMapper keeps some kind of caching per instance so creating a new instance each time requires ObjectMapper to do the expensive work each time.\n\nSolution : Use single instance of ObjectMapper or static can also solve our purpose here as there would be only one thread at a time.\n\nIn general, avoiding unnecessary object creation is generally a good idea.\n\nhttps://theartofdev.com/2014/07/20/jackson-objectmapper-performance-pitfall/",
       "parentUuid": "4bb1259a_94b7d0a4",
+      "range": {
+        "startLine": 78,
+        "startChar": 58,
+        "endLine": 78,
+        "endChar": 74
+      },
+      "revId": "feb35af4ea691a13fd2d42827bc21d8c80dd807c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "41307f60_db32c407",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/CpsAsyncRequestResponseEventIntegrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-06-07T12:30:24Z",
+      "side": 1,
+      "message": "Then we can create an object mapper bean for the test context and then use it , since it will be a bean so we will have a singleton instance for the test context.\n\nStill , It wont be moved to parent class as I explained earlier.\nWhat do you say?",
+      "parentUuid": "3354bfba_001621e2",
       "range": {
         "startLine": 78,
         "startChar": 58,
