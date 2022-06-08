@@ -23,11 +23,9 @@
 package org.onap.cps.api;
 
 import java.util.Collection;
-import java.util.Set;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
 import org.onap.cps.spi.exceptions.CpsException;
 import org.onap.cps.spi.model.Anchor;
-import org.onap.cps.spi.model.CmHandleQueryParameters;
 
 /**
  * CPS Admin Service.
@@ -102,12 +100,4 @@ public interface CpsAdminService {
      *         given module names
      */
     Collection<String> queryAnchorNames(String dataspaceName, Collection<String> moduleNames);
-
-    /**
-     * Query and return cm handles that match the given query parameters.
-     *
-     * @param cmHandleQueryParameters the cm handle query parameters
-     * @return collection of cm handle ids
-     */
-    Set<String> queryCmHandles(CmHandleQueryParameters cmHandleQueryParameters);
 }
