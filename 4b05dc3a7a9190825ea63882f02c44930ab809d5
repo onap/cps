@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "b5830ba8_4c113548",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiDataOperations.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-06-08T09:03:30Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 74,
+        "startChar": 55,
+        "endLine": 74,
+        "endChar": 56
+      },
+      "revId": "4b05dc3a7a9190825ea63882f02c44930ab809d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e333d086_6d4f19b5",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CompositeState.java",
         "patchSetId": 10
@@ -186,6 +209,52 @@
     },
     {
       "key": {
+        "uuid": "49031293_d12b9120",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/DataSyncSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-06-08T09:03:30Z",
+      "side": 1,
+      "message": "the cm-handle data is saved",
+      "range": {
+        "startLine": 69,
+        "startChar": 14,
+        "endLine": 69,
+        "endChar": 27
+      },
+      "revId": "4b05dc3a7a9190825ea63882f02c44930ab809d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ecb358ad_d9d5e5fa",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/DataSyncSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-06-08T09:03:30Z",
+      "side": 1,
+      "message": "the cm-handle data is saved",
+      "range": {
+        "startLine": 77,
+        "startChar": 14,
+        "endLine": 77,
+        "endChar": 27
+      },
+      "revId": "4b05dc3a7a9190825ea63882f02c44930ab809d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "dba79587_42f53bce",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/DataSyncSpec.groovy",
         "patchSetId": 10
@@ -209,6 +278,29 @@
     },
     {
       "key": {
+        "uuid": "30cbeca2_53d9926d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/SyncUtilsSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-06-08T09:03:30Z",
+      "side": 1,
+      "message": "READY and #scenario",
+      "range": {
+        "startLine": 79,
+        "startChar": 99,
+        "endLine": 79,
+        "endChar": 102
+      },
+      "revId": "4b05dc3a7a9190825ea63882f02c44930ab809d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "87b77a91_7e2ca4ec",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/SyncUtilsSpec.groovy",
         "patchSetId": 10
@@ -225,6 +317,29 @@
         "startChar": 29,
         "endLine": 98,
         "endChar": 206
+      },
+      "revId": "4b05dc3a7a9190825ea63882f02c44930ab809d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2d9d0709_c7302810",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/SyncUtilsSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-06-08T09:03:30Z",
+      "side": 1,
+      "message": "Can the jackson object mapper be used instead?",
+      "range": {
+        "startLine": 99,
+        "startChar": 42,
+        "endLine": 99,
+        "endChar": 46
       },
       "revId": "4b05dc3a7a9190825ea63882f02c44930ab809d5",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
