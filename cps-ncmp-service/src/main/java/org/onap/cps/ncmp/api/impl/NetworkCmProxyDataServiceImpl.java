@@ -50,6 +50,7 @@ import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations;
 import org.onap.cps.ncmp.api.impl.operations.DmiOperations;
 import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
+import org.onap.cps.ncmp.api.inventory.CmHandleState;
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.api.inventory.sync.ModuleSyncService;
 import org.onap.cps.ncmp.api.models.CmHandleQueryApiParameters;
@@ -230,14 +231,16 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         List<CmHandleRegistrationResponse> cmHandleRegistrationResponses = new ArrayList<>();
         try {
             cmHandleRegistrationResponses = dmiPluginRegistration.getCreatedCmHandles().stream()
-                    .map(cmHandle ->
-                            YangModelCmHandle.toYangModelCmHandle(
-                                    dmiPluginRegistration.getDmiPlugin(),
-                                    dmiPluginRegistration.getDmiDataPlugin(),
-                                    dmiPluginRegistration.getDmiModelPlugin(), cmHandle)
-                    )
-                    .map(this::registerAndSyncNewCmHandle)
-                    .collect(Collectors.toList());
+                .map(cmHandle ->
+                    YangModelCmHandle.toYangModelCmHandle(
+                        dmiPluginRegistration.getDmiPlugin(),
+                        dmiPluginRegistration.getDmiDataPlugin(),
+                        dmiPluginRegistration.getDmiModelPlugin(),
+                        CmHandleState.ADVISED,
+                        cmHandle)
+                )
+                .map(this::registerNewCmHandle)
+                .collect(Collectors.toList());
         } catch (final DataValidationException dataValidationException) {
             cmHandleRegistrationResponses.add(CmHandleRegistrationResponse.createFailureResponse(dmiPluginRegistration
                             .getCreatedCmHandles().stream()
@@ -245,13 +248,6 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                     RegistrationError.CM_HANDLE_INVALID_ID));
         }
         return cmHandleRegistrationResponses;
-    }
-
-    protected void syncModulesAndCreateAnchor(final YangModelCmHandle yangModelCmHandle) {
-        final String schemaSetName = moduleSyncService.syncAndCreateSchemaSet(yangModelCmHandle);
-        final String anchorName = yangModelCmHandle.getId();
-        cpsAdminService.createAnchor(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, schemaSetName,
-            anchorName);
     }
 
     protected List<CmHandleRegistrationResponse> parseAndRemoveCmHandlesInDmiRegistration(
@@ -294,13 +290,12 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         }
     }
 
-    private CmHandleRegistrationResponse registerAndSyncNewCmHandle(final YangModelCmHandle yangModelCmHandle) {
+    private CmHandleRegistrationResponse registerNewCmHandle(final YangModelCmHandle yangModelCmHandle) {
         try {
             final String cmHandleJsonData = String.format("{\"cm-handles\":[%s]}",
                     jsonObjectMapper.asJsonString(yangModelCmHandle));
             cpsDataService.saveListElements(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NCMP_DMI_REGISTRY_PARENT,
                     cmHandleJsonData, NO_TIMESTAMP);
-            syncModulesAndCreateAnchor(yangModelCmHandle);
             return CmHandleRegistrationResponse.createSuccessResponse(yangModelCmHandle.getId());
         } catch (final AlreadyDefinedException alreadyDefinedException) {
             return CmHandleRegistrationResponse.createFailureResponse(
