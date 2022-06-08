@@ -240,9 +240,8 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
         then: 'validate params for creating anchor and list elements'
             1 * mockCpsDataService.saveListElements('NCMP-Admin', 'ncmp-dmi-registry',
                 '/dmi-registry', '{"cm-handles":[{"id":"some-cm-handle-id",' +
-                '"additional-properties":[],"public-properties":[]}]}', null)
-            1 * mockCpsAdminService.createAnchor('NFP-Operational', null,
-                'some-cm-handle-id')
+                '"state":{"cm-handle-state":"ADVISED"},'
+                + '"additional-properties":[],"public-properties":[]}]}', null)
     }
 
     def 'Execute cm handle id search'(){

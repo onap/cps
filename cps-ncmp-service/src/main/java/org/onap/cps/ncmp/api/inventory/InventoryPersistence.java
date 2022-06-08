@@ -90,7 +90,7 @@ public class InventoryPersistence {
     }
 
     /**
-     * This method retrieves DMI service name and DMI properties for a given cm handle.
+     * This method retrieves DMI service name, DMI properties and the state for a given cm handle.
      * @param cmHandleId the id of the cm handle
      * @return yang model cm handle
      */
