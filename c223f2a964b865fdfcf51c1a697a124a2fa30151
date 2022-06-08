@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5d8682df_943b8b6b",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-06-08T07:47:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "22d11c9c_aaf611d2",
+      "range": {
+        "startLine": 247,
+        "startChar": 16,
+        "endLine": 247,
+        "endChar": 26
+      },
+      "revId": "c223f2a964b865fdfcf51c1a697a124a2fa30151",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b8345641_ff47b784",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/YangDataConverter.java",
         "patchSetId": 15
@@ -92,6 +116,30 @@
       "revId": "c223f2a964b865fdfcf51c1a697a124a2fa30151",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "544bb051_81ed74dd",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/CmHandleQueryRestParametersValidator.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-06-08T07:47:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ac1c5d77_1706548a",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 5
+      },
+      "revId": "c223f2a964b865fdfcf51c1a697a124a2fa30151",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
