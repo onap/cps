@@ -2,6 +2,121 @@
   "comments": [
     {
       "key": {
+        "uuid": "4be4e875_b8c349c8",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 413,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-08T09:28:34Z",
+      "side": 1,
+      "message": "NB: expectedContent",
+      "range": {
+        "startLine": 413,
+        "startChar": 12,
+        "endLine": 413,
+        "endChar": 26
+      },
+      "revId": "522fe55e6f1467a51e912911758f380b33e9766b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5bdcb8a1_208e192a",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-08T09:28:34Z",
+      "side": 1,
+      "message": "where doe this close?!",
+      "range": {
+        "startLine": 414,
+        "startChar": 21,
+        "endLine": 414,
+        "endChar": 22
+      },
+      "revId": "522fe55e6f1467a51e912911758f380b33e9766b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "51f776ef_e38358fe",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-08T09:28:34Z",
+      "side": 1,
+      "message": "somethign not right here, I need to downlaod or chat to you...",
+      "range": {
+        "startLine": 414,
+        "startChar": 13,
+        "endLine": 414,
+        "endChar": 14
+      },
+      "revId": "522fe55e6f1467a51e912911758f380b33e9766b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d15304e7_d0878d7e",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 426,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-08T09:28:34Z",
+      "side": 1,
+      "message": "first I thought this might give false positives but N I don\u0027t think so it is a bit misleading and not needed I think",
+      "range": {
+        "startLine": 426,
+        "startChar": 9,
+        "endLine": 426,
+        "endChar": 19
+      },
+      "revId": "522fe55e6f1467a51e912911758f380b33e9766b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e4078813_3ae614df",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 436,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-08T09:28:34Z",
+      "side": 1,
+      "message": "first I thought this might give false positives but N I don\u0027t think so it is a bit misleading and not needed I think",
+      "range": {
+        "startLine": 436,
+        "startChar": 15,
+        "endLine": 436,
+        "endChar": 19
+      },
+      "revId": "522fe55e6f1467a51e912911758f380b33e9766b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "62e44c6a_b3f78619",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
         "patchSetId": 2
@@ -13,6 +128,30 @@
       "writtenOn": "2022-06-07T15:09:26Z",
       "side": 1,
       "message": "NB: we can actually use some valid timestamp 😊",
+      "range": {
+        "startLine": 290,
+        "startChar": 31,
+        "endLine": 290,
+        "endChar": 45
+      },
+      "revId": "522fe55e6f1467a51e912911758f380b33e9766b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c5a8cbd0_d7273164",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-08T09:28:34Z",
+      "side": 1,
+      "message": "I think for testing purpose this is more redabile but it is just an opinion other might prefer an actual timestampp...",
+      "parentUuid": "62e44c6a_b3f78619",
       "range": {
         "startLine": 290,
         "startChar": 31,
