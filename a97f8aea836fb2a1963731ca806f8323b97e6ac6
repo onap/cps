@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c0d225de_3bdbdddf",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-09T11:55:49Z",
+      "side": 1,
+      "message": "javadoc should be in interface class not in impl.\nPlease add similar comment to REST Endppoint in NCMP-Rest definitions (yaml)",
+      "range": {
+        "startLine": 118,
+        "startChar": 1,
+        "endLine": 125,
+        "endChar": 7
+      },
+      "revId": "a97f8aea836fb2a1963731ca806f8323b97e6ac6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
