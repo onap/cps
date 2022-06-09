@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "554d0747_827b3a05",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-06-09T13:13:54Z",
+      "side": 1,
+      "message": "nb space removed",
+      "range": {
+        "startLine": 2,
+        "startChar": 3,
+        "endLine": 2,
+        "endChar": 4
+      },
+      "revId": "6d416f484dfa1f9d782fd28a664f1614f938973a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "042ef7ce_399f50fc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-06-09T13:13:54Z",
+      "side": 1,
+      "message": "nb space removed",
+      "range": {
+        "startLine": 2,
+        "startChar": 3,
+        "endLine": 2,
+        "endChar": 4
+      },
+      "revId": "6d416f484dfa1f9d782fd28a664f1614f938973a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1297bb40_3d08be59",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-06-09T13:13:54Z",
+      "side": 1,
+      "message": "nb a",
+      "range": {
+        "startLine": 67,
+        "startChar": 44,
+        "endLine": 67,
+        "endChar": 46
+      },
+      "revId": "6d416f484dfa1f9d782fd28a664f1614f938973a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ee18e382_38a005f2",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-06-09T13:13:54Z",
+      "side": 1,
+      "message": "nb space removed",
+      "range": {
+        "startLine": 2,
+        "startChar": 3,
+        "endLine": 2,
+        "endChar": 4
+      },
+      "revId": "6d416f484dfa1f9d782fd28a664f1614f938973a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "11645e53_7a3c9399",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-06-09T13:13:54Z",
+      "side": 1,
+      "message": "I don\u0027t think this is needed in latest",
+      "range": {
+        "startLine": 41,
+        "startChar": 24,
+        "endLine": 41,
+        "endChar": 56
+      },
+      "revId": "6d416f484dfa1f9d782fd28a664f1614f938973a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
