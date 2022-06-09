@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "991cce46_99f6fe81",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-06-09T09:20:20Z",
+      "side": 1,
+      "message": "build failing because of this unused import",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 38
+      },
+      "revId": "5b66360e13713116e23952f43f03fd8a0dbca9e6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0514de8b_ebca4ee0",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
         "patchSetId": 4
@@ -13,6 +36,30 @@
       "writtenOn": "2022-06-09T09:09:35Z",
       "side": 1,
       "message": "CPS_ path?",
+      "range": {
+        "startLine": 47,
+        "startChar": 32,
+        "endLine": 47,
+        "endChar": 37
+      },
+      "revId": "5b66360e13713116e23952f43f03fd8a0dbca9e6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d690d560_ce09d8fe",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-06-09T09:20:20Z",
+      "side": 1,
+      "message": "I think its the complete xpath what is used ... cps-path would have been //cm-handles[@.....].",
+      "parentUuid": "0514de8b_ebca4ee0",
       "range": {
         "startLine": 47,
         "startChar": 32,
