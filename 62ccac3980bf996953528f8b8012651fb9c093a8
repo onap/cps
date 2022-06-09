@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "12cff944_de7bb141",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-06-09T09:02:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "77abe985_830f3e30",
+      "range": {
+        "startLine": 43,
+        "startChar": 4,
+        "endLine": 45,
+        "endChar": 79
+      },
+      "revId": "62ccac3980bf996953528f8b8012651fb9c093a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "93e74bd1_5e22fa70",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
         "patchSetId": 8
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "d32fa1c7_77b9b2f8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-06-09T09:02:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "93e74bd1_5e22fa70",
+      "range": {
+        "startLine": 79,
+        "startChar": 30,
+        "endLine": 79,
+        "endChar": 50
+      },
+      "revId": "62ccac3980bf996953528f8b8012651fb9c093a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1ccde1e8_daf6a7d7",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
         "patchSetId": 8
@@ -59,6 +107,24 @@
       "writtenOn": "2022-06-07T15:55:48Z",
       "side": 1,
       "message": "NB: \nMore declarative style can be used here,\n\nreturn lockedCmHandleAsDataNodeList.stream().map(e -\u003e e.getLeaves().get(\"id\").toString())\n                .map(e -\u003e inventoryPersistence.getYangModelCmHandle(e))\n                .collect(Collectors.toList());\n\n//replace e with suitable local variable name.",
+      "revId": "62ccac3980bf996953528f8b8012651fb9c093a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "743549e5_f78a0e73",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-06-09T09:02:28Z",
+      "side": 1,
+      "message": "I agree, but I think this is more readable and understandable",
+      "parentUuid": "1ccde1e8_daf6a7d7",
       "revId": "62ccac3980bf996953528f8b8012651fb9c093a8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true

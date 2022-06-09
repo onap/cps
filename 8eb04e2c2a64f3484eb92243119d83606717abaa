@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c9c2e92a_aa15e284",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-06-09T09:02:28Z",
+      "side": 1,
+      "message": "we agreed to create a new jira for this",
+      "parentUuid": "28050d6a_a7f67764",
+      "range": {
+        "startLine": 72,
+        "startChar": 34,
+        "endLine": 72,
+        "endChar": 51
+      },
+      "revId": "8eb04e2c2a64f3484eb92243119d83606717abaa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1a3314d6_9529c0d8",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
         "patchSetId": 7
