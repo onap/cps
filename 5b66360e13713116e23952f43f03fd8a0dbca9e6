@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "16eec7c5_152bf86b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-06-09T09:24:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "991cce46_99f6fe81",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 38
+      },
+      "revId": "5b66360e13713116e23952f43f03fd8a0dbca9e6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0514de8b_ebca4ee0",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
         "patchSetId": 4
@@ -69,6 +93,30 @@
       "revId": "5b66360e13713116e23952f43f03fd8a0dbca9e6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "67457e5c_875e60dc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-06-09T09:24:28Z",
+      "side": 1,
+      "message": "yes its xpath instead of cps path",
+      "parentUuid": "d690d560_ce09d8fe",
+      "range": {
+        "startLine": 47,
+        "startChar": 32,
+        "endLine": 47,
+        "endChar": 37
+      },
+      "revId": "5b66360e13713116e23952f43f03fd8a0dbca9e6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
