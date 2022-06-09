@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "0b911856_680c38bc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-09T16:38:54Z",
+      "side": 1,
+      "message": "Te point of this inventory class was that these constants should not be needed anywhere else anymore.\nPlease remove them from DMIRegsitryCosntants (I think they were already) if NOT and other reference should point to the here instead although its more likely that the method using them should be refactored/moved to use this class. But that might be outside the scope of your commit",
+      "range": {
+        "startLine": 42,
+        "startChar": 53,
+        "endLine": 42,
+        "endChar": 95
+      },
+      "revId": "6d416f484dfa1f9d782fd28a664f1614f938973a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cee32a29_136409d2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-09T16:38:54Z",
+      "side": 1,
+      "message": "see prev. comment",
+      "range": {
+        "startLine": 44,
+        "startChar": 80,
+        "endLine": 44,
+        "endChar": 104
+      },
+      "revId": "6d416f484dfa1f9d782fd28a664f1614f938973a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "554d0747_827b3a05",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
         "patchSetId": 10
@@ -64,6 +110,144 @@
         "startChar": 44,
         "endLine": 67,
         "endChar": 46
+      },
+      "revId": "6d416f484dfa1f9d782fd28a664f1614f938973a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "808dfbe7_c5bbdc08",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-09T16:38:54Z",
+      "side": 1,
+      "message": "do we really need to do another query why can we not get all we need for teh first query (include descendant option needed maybe?!)",
+      "range": {
+        "startLine": 77,
+        "startChar": 46,
+        "endLine": 77,
+        "endChar": 99
+      },
+      "revId": "6d416f484dfa1f9d782fd28a664f1614f938973a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "507b74bd_151342ef",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-09T16:38:54Z",
+      "side": 1,
+      "message": "not sure. we already have one mthod taht returns a YangModelCmHandle in teh inventoyPerstsinec class. So I think this method could live there too",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 5
+      },
+      "revId": "6d416f484dfa1f9d782fd28a664f1614f938973a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "62176d0a_44d8d982",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/InventoryPersistenceSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-09T16:38:54Z",
+      "side": 1,
+      "message": "should not be needed here, the class under test has these constant itself (Groovy can acces private stuff no problem)\nAlways bit of a dilemma: \u0027use a producode constant in a test assert\u0027\n\nI think my preference would be to use string literal in the assert... (SQ wont complain becasu ethis is not a .java file :-))",
+      "range": {
+        "startLine": 45,
+        "startChar": 2,
+        "endLine": 46,
+        "endChar": 86
+      },
+      "revId": "6d416f484dfa1f9d782fd28a664f1614f938973a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5c064be6_98e019d1",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/InventoryPersistenceSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-09T16:38:54Z",
+      "side": 1,
+      "message": "I see now they were srting literals, as argued above, I think that was correct, please restore",
+      "range": {
+        "startLine": 85,
+        "startChar": 43,
+        "endLine": 85,
+        "endChar": 70
+      },
+      "revId": "6d416f484dfa1f9d782fd28a664f1614f938973a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "30f5e549_0f555371",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/InventoryPersistenceSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-09T16:38:54Z",
+      "side": 1,
+      "message": "I dont think this is used/needed",
+      "range": {
+        "startLine": 169,
+        "startChar": 0,
+        "endLine": 170,
+        "endChar": 52
+      },
+      "revId": "6d416f484dfa1f9d782fd28a664f1614f938973a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9eb8957f_69d71289",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/InventoryPersistenceSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-09T16:38:54Z",
+      "side": 1,
+      "message": "no need to return DataNode with realistic data that is not used by the test, just an example ID is enough even that is strictly not needed. All the test is proving is that the SAME collection from the service is returned.\n\n\nusually these tets should look something like this\n\ngiven: \u0027the service returns a collection of elements\n   myDummyCollecion \u003d [new someElement()]\n   myMock.doSomething(withExactExpectedParameters) \u003e\u003e someSampleCollection\nwhen: \u0027my I do somethign \u0027 (taht is being delagated to my (mocked) service\n   result \u003d objectUnderTest.doSomthing(parameters)\nthen: \u0027I get the result that was provided by my service\u0027\n   assert result \u003d\u003d someSampleCollection\n\n\nThis proves that it has been \u0027delegated\u0027 correctly which is often all is needed for a unit test.\nThe content of someSampleCollection is irrelevant, it could even be empty but that just looks really bad and possible could hide a real bug... \nSO I usually populate it with just 1 unique element with as little data as is need to make it unique or what the constructors require. Anything more (Like what you have) distract form what is really being tested and might een mislead",
+      "range": {
+        "startLine": 172,
+        "startChar": 48,
+        "endLine": 172,
+        "endChar": 180
       },
       "revId": "6d416f484dfa1f9d782fd28a664f1614f938973a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
