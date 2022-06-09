@@ -46,6 +46,30 @@
       "revId": "59f0f6e213017623668cbc3b8019a62ccb37e19c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5b63d9ea_0d875d85",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-09T10:22:13Z",
+      "side": 1,
+      "message": "Hi Aditya, we agreed to do it here and I think this is OK expected response as it is a query and not a get, maybe we just need to add a bit of info in teh Javadoc of thsi method and teh corresponding Yaml for the eEST API in NCMP",
+      "parentUuid": "d5984621_e62d3043",
+      "range": {
+        "startLine": 124,
+        "startChar": 0,
+        "endLine": 124,
+        "endChar": 42
+      },
+      "revId": "59f0f6e213017623668cbc3b8019a62ccb37e19c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
