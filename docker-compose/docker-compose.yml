@@ -112,6 +112,7 @@ services:
       KAFKA_BOOTSTRAP_SERVER: kafka:9092
       notification.data-updated.enabled: 'true'
       NOTIFICATION_DATASPACE_FILTER_PATTERNS: '.*'
+      TIMERS_ADVISED-MODULES-SYNC_SLEEP-TIME-MS: 2000
     restart: unless-stopped
     depends_on:
       - dbpostgresql
