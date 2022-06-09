@@ -40,11 +40,7 @@ public class CpsNcmpTaskExecutor {
     public void executeTask(final Supplier<Object> taskSupplier, final int timeOutInMillis) {
         CompletableFuture.supplyAsync(taskSupplier::get)
             .orTimeout(timeOutInMillis, MILLISECONDS)
-            .whenCompleteAsync(
-                (responseAsJson, throwable) -> {
-                    handleTaskCompletion(throwable);
-                }
-            );
+            .whenCompleteAsync((responseAsJson, throwable) -> handleTaskCompletion(throwable));
     }
 
     private void handleTaskCompletion(final Throwable throwable) {
