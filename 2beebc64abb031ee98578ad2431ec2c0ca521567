@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "bff61a79_0a1a19fb",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-09T16:01:39Z",
+      "side": 1,
+      "message": "e is an accepted short for exceptions and especially in an \u0027or\u0027 case",
+      "parentUuid": "4869f9cf_b31ad491",
+      "range": {
+        "startLine": 122,
+        "startChar": 76,
+        "endLine": 122,
+        "endChar": 77
+      },
+      "revId": "2beebc64abb031ee98578ad2431ec2c0ca521567",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3f8cf22f_40d4edf4",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
         "patchSetId": 5
@@ -45,6 +69,30 @@
       "revId": "2beebc64abb031ee98578ad2431ec2c0ca521567",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d73f6102_1e6eb680",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-09T16:01:39Z",
+      "side": 1,
+      "message": "I actually asked Andras to use Info level. \nIts always an issue and hard to see what is right/wrong for everyone/every use case we need some guidance for this as a team. For now I wouldn\u0027t change it heer and definitely not a blocking issue for this commit",
+      "parentUuid": "3f8cf22f_40d4edf4",
+      "range": {
+        "startLine": 123,
+        "startChar": 16,
+        "endLine": 123,
+        "endChar": 20
+      },
+      "revId": "2beebc64abb031ee98578ad2431ec2c0ca521567",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
