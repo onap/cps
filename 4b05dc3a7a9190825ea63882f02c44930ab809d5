@@ -380,6 +380,30 @@
     },
     {
       "key": {
+        "uuid": "ab0b8081_f78d8a7c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/DataSyncWatchdog.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-06-10T14:38:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4f80d513_bc0b1010",
+      "range": {
+        "startLine": 57,
+        "startChar": 16,
+        "endLine": 57,
+        "endChar": 39
+      },
+      "revId": "4b05dc3a7a9190825ea63882f02c44930ab809d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b2977904_0acee64a",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
         "patchSetId": 10
@@ -911,6 +935,30 @@
       "side": 1,
       "message": "as this happened a few times recently (I missed it too) I now added a new #10 to our checklist: https://wiki.onap.org/display/DW/CPS+Code+Review+Check+List",
       "parentUuid": "89aceeb8_f9d3a9b5",
+      "range": {
+        "startLine": 99,
+        "startChar": 42,
+        "endLine": 99,
+        "endChar": 46
+      },
+      "revId": "4b05dc3a7a9190825ea63882f02c44930ab809d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "37a88389_63bdc8a5",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/SyncUtilsSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-06-10T14:38:08Z",
+      "side": 1,
+      "message": "Already fixed in latest patch.",
+      "parentUuid": "52b282dd_bfd3c46b",
       "range": {
         "startLine": 99,
         "startChar": 42,
