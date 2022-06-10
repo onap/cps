@@ -26,8 +26,7 @@
         },
         "eventSource": {
           "description": "The source of the event.",
-          "type": "string",
-          "format": "uri"
+          "type": "string"
         },
         "eventType": {
           "description": "The type of the event.",
@@ -35,8 +34,7 @@
         },
         "eventSchema": {
           "description": "The schema, including its version, that this event adheres to.",
-          "type": "string",
-          "format": "uri"
+          "type": "string"
         },
         "event": {
           "$ref": "#/definitions/Event"
