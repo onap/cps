@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8d3fc47a_6cf1a003",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/DataSyncWatchdog.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-10T08:43:35Z",
+      "side": 1,
+      "message": "typo (missing n)",
+      "range": {
+        "startLine": 54,
+        "startChar": 80,
+        "endLine": 54,
+        "endChar": 89
+      },
+      "revId": "491872fcec792fdcf9e931d45feef5a2e5d104c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a797940_f3cf325f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-10T08:43:35Z",
+      "side": 1,
+      "message": "I think we are better of not checking this.\nlet the system throw an exception (using .next() or .get()) if it gets this far without module source!\n\nThis will reduce complete of the code (a quality measure) and also prevent you from having to write testcases for which are really impossible scenarios...",
+      "range": {
+        "startLine": 145,
+        "startChar": 12,
+        "endLine": 145,
+        "endChar": 40
+      },
+      "revId": "491872fcec792fdcf9e931d45feef5a2e5d104c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e9e95ad9_7fd709ce",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/InventoryPersistenceSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-10T08:43:35Z",
+      "side": 1,
+      "message": "NB: i\u0027d rather call it sampleDataNodes or similar...",
+      "range": {
+        "startLine": 73,
+        "startChar": 8,
+        "endLine": 73,
+        "endChar": 24
+      },
+      "revId": "491872fcec792fdcf9e931d45feef5a2e5d104c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9efeb8d1_e80a0de1",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/DataSyncSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-10T08:43:35Z",
+      "side": 1,
+      "message": "Note: I tend to use \u0027static\u0027 instead because it then fits one one line, its just a small personal preference (although it does go against the groovy over java guideline) But you can make up your own mind what you prefer",
+      "range": {
+        "startLine": 45,
+        "startChar": 4,
+        "endLine": 45,
+        "endChar": 11
+      },
+      "revId": "491872fcec792fdcf9e931d45feef5a2e5d104c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f76c0225_1d5195a5",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/DataSyncSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-10T08:43:35Z",
+      "side": 1,
+      "message": "probably would store these as (shared) class variables (even if used in only one test for now) for improved readability.",
+      "range": {
+        "startLine": 58,
+        "startChar": 81,
+        "endLine": 58,
+        "endChar": 118
+      },
+      "revId": "491872fcec792fdcf9e931d45feef5a2e5d104c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "00a14d67_ce4afea8",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/DataSyncSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-10T08:43:35Z",
+      "side": 1,
+      "message": "probably would store these as class variables (even if used in only one test for now) for improved readability.",
+      "range": {
+        "startLine": 64,
+        "startChar": 79,
+        "endLine": 64,
+        "endChar": 116
+      },
+      "revId": "491872fcec792fdcf9e931d45feef5a2e5d104c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4646416e_f8a6bb9e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/DataSyncSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-10T08:43:35Z",
+      "side": 1,
+      "message": "probably would store these as class variables (even if used in only one test for now) for improved readability.",
+      "range": {
+        "startLine": 66,
+        "startChar": 81,
+        "endLine": 66,
+        "endChar": 118
+      },
+      "revId": "491872fcec792fdcf9e931d45feef5a2e5d104c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9216f161_661fe6bd",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/JsonObjectMapperSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-10T08:43:35Z",
+      "side": 1,
+      "message": "NB: \n... a data validation exception ...",
+      "range": {
+        "startLine": 102,
+        "startChar": 18,
+        "endLine": 102,
+        "endChar": 28
+      },
+      "revId": "491872fcec792fdcf9e931d45feef5a2e5d104c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
