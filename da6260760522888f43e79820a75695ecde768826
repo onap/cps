@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6a0d15eb_e36b5548",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-06-10T15:18:09Z",
+      "side": 1,
+      "message": "NB: We can define a default value here as well.\nEg: \n@Scheduled(fixedDelayString \u003d \"${timers.advised-modules-sync.sleep-time-ms:30000}\")",
+      "range": {
+        "startLine": 49,
+        "startChar": 4,
+        "endLine": 49,
+        "endChar": 81
+      },
+      "revId": "da6260760522888f43e79820a75695ecde768826",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aee037fb_3d39cd97",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-06-10T15:18:09Z",
+      "side": 1,
+      "message": "NB : can provide default value as well ,in case property is not defined it can be used.",
+      "range": {
+        "startLine": 76,
+        "startChar": 4,
+        "endLine": 76,
+        "endChar": 80
+      },
+      "revId": "da6260760522888f43e79820a75695ecde768826",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
