@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "b72786f3_d970f39a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/DataSyncWatchdog.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-13T08:33:17Z",
+      "side": 1,
+      "message": "NB : It should be @Service",
+      "range": {
+        "startLine": 35,
+        "startChar": 1,
+        "endLine": 35,
+        "endChar": 10
+      },
+      "revId": "2a7c17ecb62b3939d0dbc95c74e90e0bd8803735",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f311af50_a0f04e1b",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/DataSyncWatchdog.java",
         "patchSetId": 13
@@ -64,6 +87,236 @@
         "startChar": 26,
         "endLine": 61,
         "endChar": 73
+      },
+      "revId": "2a7c17ecb62b3939d0dbc95c74e90e0bd8803735",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "51bd987d_6ecbf54c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/DataSyncWatchdog.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-13T08:33:17Z",
+      "side": 1,
+      "message": "NB : It should be defined as constant or enum",
+      "range": {
+        "startLine": 66,
+        "startChar": 40,
+        "endLine": 66,
+        "endChar": 52
+      },
+      "revId": "2a7c17ecb62b3939d0dbc95c74e90e0bd8803735",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "66124146_1014b6d2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-13T08:33:17Z",
+      "side": 1,
+      "message": "NB : private final SecureRandom secureRandom;",
+      "range": {
+        "startLine": 51,
+        "startChar": 4,
+        "endLine": 51,
+        "endChar": 72
+      },
+      "revId": "2a7c17ecb62b3939d0dbc95c74e90e0bd8803735",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "259b8fd4_096d0734",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-13T08:33:17Z",
+      "side": 1,
+      "message": "NB : It should be defined as constant or enum",
+      "range": {
+        "startLine": 86,
+        "startChar": 53,
+        "endLine": 86,
+        "endChar": 67
+      },
+      "revId": "2a7c17ecb62b3939d0dbc95c74e90e0bd8803735",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2184d9f1_32fc9763",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-13T08:33:17Z",
+      "side": 1,
+      "message": "Can be removed as we used jsonObjectMapper.asJsonString. Ref my comment below",
+      "range": {
+        "startLine": 140,
+        "startChar": 8,
+        "endLine": 140,
+        "endChar": 63
+      },
+      "revId": "2a7c17ecb62b3939d0dbc95c74e90e0bd8803735",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f64dc2a4_2668e642",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-13T08:33:17Z",
+      "side": 1,
+      "message": "We can use JsonObjectMapper here like :\n\n final String resourceJson \u003d jsonObjectMapper.asJsonString(new HashMap\u003cString, Object\u003e() {{\n            put(firstElement.getKey(), firstElement.getValue());\n        }});\n        return resourceJson;",
+      "range": {
+        "startLine": 145,
+        "startChar": 7,
+        "endLine": 152,
+        "endChar": 39
+      },
+      "revId": "2a7c17ecb62b3939d0dbc95c74e90e0bd8803735",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "77672c47_024f8a17",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/InventoryPersistenceSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-13T08:33:17Z",
+      "side": 1,
+      "message": "NB : It should be defined as constant or enum",
+      "range": {
+        "startLine": 165,
+        "startChar": 78,
+        "endLine": 165,
+        "endChar": 83
+      },
+      "revId": "2a7c17ecb62b3939d0dbc95c74e90e0bd8803735",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cfd8383b_45196f90",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/InventoryPersistenceSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-13T08:33:17Z",
+      "side": 1,
+      "message": "NB : It should be defined as constant or enum",
+      "range": {
+        "startLine": 177,
+        "startChar": 61,
+        "endLine": 177,
+        "endChar": 75
+      },
+      "revId": "2a7c17ecb62b3939d0dbc95c74e90e0bd8803735",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "adc9524d_68e9c5a0",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/InventoryPersistenceSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-13T08:33:17Z",
+      "side": 1,
+      "message": "NB : It should be defined as constant or enum",
+      "range": {
+        "startLine": 179,
+        "startChar": 77,
+        "endLine": 179,
+        "endChar": 91
+      },
+      "revId": "2a7c17ecb62b3939d0dbc95c74e90e0bd8803735",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ff9785e_0ff58bea",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/DataSyncSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-13T08:33:17Z",
+      "side": 1,
+      "message": "NB : It should be defined as constant or enum",
+      "range": {
+        "startLine": 82,
+        "startChar": 82,
+        "endLine": 82,
+        "endChar": 94
+      },
+      "revId": "2a7c17ecb62b3939d0dbc95c74e90e0bd8803735",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1e99543_68d4ce88",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/SyncUtilsSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-13T08:33:17Z",
+      "side": 1,
+      "message": "NB : It should be defined as constant or enum",
+      "range": {
+        "startLine": 83,
+        "startChar": 73,
+        "endLine": 83,
+        "endChar": 87
       },
       "revId": "2a7c17ecb62b3939d0dbc95c74e90e0bd8803735",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",

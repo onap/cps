@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "d366828f_853e373c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/DataSyncWatchdog.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-13T08:33:17Z",
+      "side": 1,
+      "message": "NB : It should be @Service",
+      "range": {
+        "startLine": 36,
+        "startChar": 1,
+        "endLine": 36,
+        "endChar": 10
+      },
+      "revId": "491872fcec792fdcf9e931d45feef5a2e5d104c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8d3fc47a_6cf1a003",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/DataSyncWatchdog.java",
         "patchSetId": 12
@@ -42,6 +65,52 @@
         "startChar": 80,
         "endLine": 54,
         "endChar": 89
+      },
+      "revId": "491872fcec792fdcf9e931d45feef5a2e5d104c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d5c2a0ff_5faab181",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/DataSyncWatchdog.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-13T08:33:17Z",
+      "side": 1,
+      "message": "NB : It should be defined as constant or enum",
+      "range": {
+        "startLine": 64,
+        "startChar": 40,
+        "endLine": 64,
+        "endChar": 52
+      },
+      "revId": "491872fcec792fdcf9e931d45feef5a2e5d104c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5dc113df_94dda87c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-13T08:33:17Z",
+      "side": 1,
+      "message": "NB : It should be defined as constant or enum",
+      "range": {
+        "startLine": 87,
+        "startChar": 53,
+        "endLine": 87,
+        "endChar": 67
       },
       "revId": "491872fcec792fdcf9e931d45feef5a2e5d104c3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
