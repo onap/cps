@@ -25,11 +25,14 @@ import static org.onap.cps.ncmp.api.impl.operations.DmiOperations.DataStoreEnum.
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum;
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.READ;
 
+import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient;
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration;
 import org.onap.cps.ncmp.api.impl.utils.DmiServiceUrlBuilder;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
+import org.onap.cps.ncmp.api.inventory.CmHandleState;
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
+import org.onap.cps.spi.exceptions.CpsException;
 import org.onap.cps.utils.CpsValidator;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.ResponseEntity;
@@ -39,6 +42,7 @@ import org.springframework.stereotype.Component;
  * Operations class for DMI data.
  */
 @Component
+@Slf4j
 public class DmiDataOperations extends DmiOperations {
 
     /**
@@ -74,6 +78,8 @@ public class DmiDataOperations extends DmiOperations {
         CpsValidator.validateNameCharacters(cmHandleId);
         final YangModelCmHandle yangModelCmHandle =
                 inventoryPersistence.getYangModelCmHandle(cmHandleId);
+        final CmHandleState cmHandleState = yangModelCmHandle.getCompositeState().getCmHandleState();
+        isCmHandleStateReady(yangModelCmHandle, cmHandleState);
         final DmiRequestBody dmiRequestBody = DmiRequestBody.builder()
             .operation(READ)
             .requestId(requestId)
@@ -106,6 +112,8 @@ public class DmiDataOperations extends DmiOperations {
         CpsValidator.validateNameCharacters(cmHandleId);
         final YangModelCmHandle yangModelCmHandle =
             inventoryPersistence.getYangModelCmHandle(cmHandleId);
+        final CmHandleState cmHandleState = yangModelCmHandle.getCompositeState().getCmHandleState();
+        isCmHandleStateReady(yangModelCmHandle, cmHandleState);
         final DmiRequestBody dmiRequestBody = DmiRequestBody.builder()
             .operation(operation)
             .data(requestData)
@@ -118,6 +126,17 @@ public class DmiDataOperations extends DmiOperations {
                     null, null),
                 dmiServiceUrlBuilder.populateUriVariables(yangModelCmHandle, cmHandleId, PASSTHROUGH_RUNNING));
         return dmiRestClient.postOperationWithJsonData(dmiUrl, jsonBody, operation);
+    }
+
+    private void isCmHandleStateReady(final YangModelCmHandle yangModelCmHandle, final CmHandleState cmHandleState) {
+        log.info("JKE:: CM Handle state {}", cmHandleState);
+        log.info("JKE:: cmHandleState != CmHandleState.READY {}", cmHandleState != CmHandleState.READY);
+
+        if (cmHandleState != CmHandleState.READY) {
+            throw new CpsException("State mismatch exception.", "Cm-Handle not in READY state. "
+                + "cm handle state is "
+                + yangModelCmHandle.getCompositeState().getCmHandleState());
+        }
     }
 
 }
