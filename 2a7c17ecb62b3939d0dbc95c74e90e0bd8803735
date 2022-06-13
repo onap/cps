@@ -209,6 +209,30 @@
     },
     {
       "key": {
+        "uuid": "eaffb70d_25f5f214",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-06-13T08:58:52Z",
+      "side": 1,
+      "message": "To be implemented",
+      "parentUuid": "f64dc2a4_2668e642",
+      "range": {
+        "startLine": 145,
+        "startChar": 7,
+        "endLine": 152,
+        "endChar": 39
+      },
+      "revId": "2a7c17ecb62b3939d0dbc95c74e90e0bd8803735",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "77672c47_024f8a17",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/InventoryPersistenceSpec.groovy",
         "patchSetId": 13
