@@ -86,4 +86,5 @@ Get modules for registered data node
             IF   "${item['moduleName']}" == "stores"
                 Should Be Equal As Strings              "${item['revision']}"   "2020-09-15"
             END
-        END
+    END
+    Sleep    10
