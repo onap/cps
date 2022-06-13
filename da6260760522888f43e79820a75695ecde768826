@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "5d9151be_253087c9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-13T08:00:20Z",
+      "side": 1,
+      "message": "NB: this might need to become a a parameter later...",
+      "range": {
+        "startLine": 103,
+        "startChar": 68,
+        "endLine": 103,
+        "endChar": 107
+      },
+      "revId": "da6260760522888f43e79820a75695ecde768826",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6a0d15eb_e36b5548",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
         "patchSetId": 14
@@ -41,6 +64,98 @@
         "startChar": 4,
         "endLine": 76,
         "endChar": 80
+      },
+      "revId": "da6260760522888f43e79820a75695ecde768826",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a770a81c_025f62e3",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/InventoryPersistenceSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-13T08:00:20Z",
+      "side": 1,
+      "message": "you have made changes so should add Bell copyright :_-)",
+      "range": {
+        "startLine": 3,
+        "startChar": 4,
+        "endLine": 3,
+        "endChar": 40
+      },
+      "revId": "da6260760522888f43e79820a75695ecde768826",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e680c1b_86c6cf1a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/InventoryPersistenceSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-13T08:00:20Z",
+      "side": 1,
+      "message": "this test it now a generic cpsPath query test; the meaning of the path , the content of the cpsPath variable and the returned data do not matter anymore. \nIt is a simple \u0027delegation\u0027 test",
+      "range": {
+        "startLine": 159,
+        "startChar": 9,
+        "endLine": 159,
+        "endChar": 65
+      },
+      "revId": "da6260760522888f43e79820a75695ecde768826",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca3a9e71_4defe57b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/InventoryPersistenceSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-13T08:00:20Z",
+      "side": 1,
+      "message": "no need to test it being called when you your tets depend on mocked behavior. So you can move this to the given: block (mayne as and and:)",
+      "range": {
+        "startLine": 166,
+        "startChar": 12,
+        "endLine": 166,
+        "endChar": 15
+      },
+      "revId": "da6260760522888f43e79820a75695ecde768826",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "397b1667_190bca32",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/SyncUtilsSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-13T08:00:20Z",
+      "side": 1,
+      "message": "I don\u0027t think teh scarios make sense anymore you not testing any different code paths in the production code\nie. There is no logic that does something different if 0 cmHnaldes are returned",
+      "range": {
+        "startLine": 79,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 62
       },
       "revId": "da6260760522888f43e79820a75695ecde768826",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
