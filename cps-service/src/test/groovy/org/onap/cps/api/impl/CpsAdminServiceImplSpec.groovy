@@ -26,7 +26,6 @@ import org.onap.cps.api.CpsDataService
 import org.onap.cps.spi.CpsAdminPersistenceService
 import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.model.Anchor
-import org.onap.cps.spi.model.CmHandleQueryParameters
 import spock.lang.Specification
 import java.time.OffsetDateTime
 

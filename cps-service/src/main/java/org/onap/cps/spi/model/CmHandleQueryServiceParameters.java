@@ -34,7 +34,7 @@ import lombok.Setter;
 @Getter
 @EqualsAndHashCode
 @JsonInclude(Include.NON_EMPTY)
-public class CmHandleQueryParameters {
+public class CmHandleQueryServiceParameters {
     @JsonProperty("cmHandleQueryParameters")
     @Valid
     private List<ConditionProperties> cmHandleQueryParameters = Collections.emptyList();

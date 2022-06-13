@@ -27,7 +27,7 @@ import java.util.Map;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.onap.cps.spi.exceptions.DataValidationException;
-import org.onap.cps.spi.model.CmHandleQueryParameters;
+import org.onap.cps.spi.model.CmHandleQueryServiceParameters;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class CmHandleQueryRestParametersValidator {
@@ -36,10 +36,11 @@ public class CmHandleQueryRestParametersValidator {
 
     /**
      * Validate cm handle query parameters.
-     * @param cmHandleQueryParameters name of data to be validated
+     * @param cmHandleQueryServiceParameters name of data to be validated
      */
-    public static void validateCmHandleQueryParameters(final CmHandleQueryParameters cmHandleQueryParameters) {
-        cmHandleQueryParameters.getCmHandleQueryParameters().forEach(
+    public static void validateCmHandleQueryParameters(
+            final CmHandleQueryServiceParameters cmHandleQueryServiceParameters) {
+        cmHandleQueryServiceParameters.getCmHandleQueryParameters().forEach(
                 conditionApiProperty -> {
                     if (Strings.isNullOrEmpty(conditionApiProperty.getConditionName())) {
                         throwDataValidationException("Missing 'conditionName' - please supply a valid name.");
@@ -54,25 +55,27 @@ public class CmHandleQueryRestParametersValidator {
                                 "Empty 'conditionsParameters' - please supply a valid condition parameter.");
                     }
                     conditionApiProperty.getConditionParameters().forEach(
-                            conditionParameter -> {
-                                if (conditionParameter.isEmpty()) {
-                                    throwDataValidationException(
-                                            "Empty 'conditionsParameter' - please supply a valid condition parameter.");
-                                }
-                                if (conditionParameter.size() > 1) {
-                                    throwDataValidationException("Too many name in one 'conditionsParameter' -"
-                                            + " please supply one name in one condition parameter.");
-                                }
-                                conditionParameter.forEach((key, value) -> {
-                                    if (Strings.isNullOrEmpty(key)) {
-                                        throwDataValidationException(
-                                                "Missing 'conditionsParameterName' - please supply a valid name.");
-                                    }
-                                });
-                            }
+                            CmHandleQueryRestParametersValidator::validateConditionParameter
                     );
                 }
         );
+    }
+
+    private static void validateConditionParameter(final Map<String, String> conditionParameter) {
+        if (conditionParameter.isEmpty()) {
+            throwDataValidationException(
+                    "Empty 'conditionsParameter' - please supply a valid condition parameter.");
+        }
+        if (conditionParameter.size() > 1) {
+            throwDataValidationException("Too many name in one 'conditionsParameter' -"
+                    + " please supply one name in one condition parameter.");
+        }
+        conditionParameter.forEach((key, value) -> {
+            if (Strings.isNullOrEmpty(key)) {
+                throwDataValidationException(
+                        "Missing 'conditionsParameterName' - please supply a valid name.");
+            }
+        });
     }
 
     /**

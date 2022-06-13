@@ -37,7 +37,7 @@ import org.onap.cps.ncmp.api.NetworkCmProxyCmHandlerQueryService;
 import org.onap.cps.spi.CpsAdminPersistenceService;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.model.Anchor;
-import org.onap.cps.spi.model.CmHandleQueryParameters;
+import org.onap.cps.spi.model.CmHandleQueryServiceParameters;
 import org.onap.cps.spi.model.ConditionProperties;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.DataNodeIdentifier;
@@ -58,23 +58,23 @@ public class NetworkCmProxyCmHandlerQueryServiceImpl implements NetworkCmProxyCm
     /**
      * Query and return cm handles that match the given query parameters.
      *
-     * @param cmHandleQueryParameters the cm handle query parameters
+     * @param cmHandleQueryServiceParameters the cm handle query parameters
      * @return collection of cm handles
      */
     @Override
-    public Collection<DataNode> queryCmHandles(final CmHandleQueryParameters cmHandleQueryParameters) {
+    public Collection<DataNode> queryCmHandles(final CmHandleQueryServiceParameters cmHandleQueryServiceParameters) {
 
-        if (cmHandleQueryParameters.getCmHandleQueryParameters().isEmpty()) {
+        if (cmHandleQueryServiceParameters.getCmHandleQueryParameters().isEmpty()) {
             return getAllCmHandles();
         }
 
         final Collection<DataNodeIdentifier> amalgamatedQueryResultIdentifiers = new ArrayList<>();
         final Map<DataNodeIdentifier, DataNode> amalgamatedQueryResults = new HashMap<>();
 
-        final boolean firstQuery = moduleNameQuery(cmHandleQueryParameters,
+        final boolean firstQuery = moduleNameQuery(cmHandleQueryServiceParameters,
                 amalgamatedQueryResultIdentifiers, amalgamatedQueryResults);
 
-        publicPropertyQuery(cmHandleQueryParameters, amalgamatedQueryResultIdentifiers,
+        publicPropertyQuery(cmHandleQueryServiceParameters, amalgamatedQueryResultIdentifiers,
                 amalgamatedQueryResults, firstQuery);
 
         final Collection<DataNode> filteredDataNodes = new ArrayList<>();
@@ -85,12 +85,12 @@ public class NetworkCmProxyCmHandlerQueryServiceImpl implements NetworkCmProxyCm
         return filteredDataNodes;
     }
 
-    private void publicPropertyQuery(final CmHandleQueryParameters cmHandleQueryParameters,
+    private void publicPropertyQuery(final CmHandleQueryServiceParameters cmHandleQueryServiceParameters,
                                      final Collection<DataNodeIdentifier> amalgamatedQueryResultIdentifiers,
                                      final Map<DataNodeIdentifier, DataNode> amalgamatedQueryResults,
                                      boolean firstQuery) {
         for (final Map.Entry<String, String> entry :
-                getPublicPropertyPairs(cmHandleQueryParameters.getCmHandleQueryParameters()).entrySet()) {
+                getPublicPropertyPairs(cmHandleQueryServiceParameters.getCmHandleQueryParameters()).entrySet()) {
             final String cmHandlePath = "//public-properties[@name='" + entry.getKey() + "' " + "and @value='"
                     + entry.getValue() + "']" + "/ancestor::cm-handles";
 
@@ -121,13 +121,13 @@ public class NetworkCmProxyCmHandlerQueryServiceImpl implements NetworkCmProxyCm
         }
     }
 
-    private boolean moduleNameQuery(final CmHandleQueryParameters cmHandleQueryParameters,
+    private boolean moduleNameQuery(final CmHandleQueryServiceParameters cmHandleQueryServiceParameters,
                                     final Collection<DataNodeIdentifier> amalgamatedQueryResultIdentifiers,
                                     final Map<DataNodeIdentifier, DataNode> amalgamatedQueryResults) {
         boolean firstQuery = true;
-        if (!getModuleNames(cmHandleQueryParameters.getCmHandleQueryParameters()).isEmpty()) {
+        if (!getModuleNames(cmHandleQueryServiceParameters.getCmHandleQueryParameters()).isEmpty()) {
             final Collection<Anchor> anchors = cpsAdminPersistenceService.queryAnchors("NFP-Operational",
-                    getModuleNames(cmHandleQueryParameters.getCmHandleQueryParameters()));
+                    getModuleNames(cmHandleQueryServiceParameters.getCmHandleQueryParameters()));
             anchors.forEach(anchor -> {
                 final List<DataNode> dataNodes = getDataNodes("//cm-handles[@id='" + anchor.getName() + "']");
                 dataNodes.parallelStream().forEach(dataNode -> {

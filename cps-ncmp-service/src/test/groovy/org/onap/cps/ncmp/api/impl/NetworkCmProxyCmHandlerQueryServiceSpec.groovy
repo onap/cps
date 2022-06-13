@@ -25,7 +25,7 @@ import org.onap.cps.ncmp.api.NetworkCmProxyCmHandlerQueryService
 import org.onap.cps.spi.CpsAdminPersistenceService
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.model.Anchor
-import org.onap.cps.spi.model.CmHandleQueryParameters
+import org.onap.cps.spi.model.CmHandleQueryServiceParameters
 import org.onap.cps.spi.model.ConditionProperties
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.utils.JsonObjectMapper
@@ -44,7 +44,7 @@ class NetworkCmProxyCmHandlerQueryServiceSpec extends Specification {
 
     def 'Retrieve cm handles with public properties when #scenario.'() {
         given: 'a condition property'
-            def cmHandleQueryParameters = new CmHandleQueryParameters()
+            def cmHandleQueryParameters = new CmHandleQueryServiceParameters()
             def conditionProperties = new ConditionProperties()
             conditionProperties.conditionName = 'hasAllProperties'
             conditionProperties.conditionParameters = publicProperties
@@ -65,7 +65,7 @@ class NetworkCmProxyCmHandlerQueryServiceSpec extends Specification {
 
     def 'Retrieve cm handles with module names when #scenario.'() {
         given: 'a condition property'
-            def cmHandleQueryParameters = new CmHandleQueryParameters()
+            def cmHandleQueryParameters = new CmHandleQueryServiceParameters()
             def conditionProperties = new ConditionProperties()
             conditionProperties.conditionName = 'hasAllModules'
             conditionProperties.conditionParameters = moduleNames
@@ -86,7 +86,7 @@ class NetworkCmProxyCmHandlerQueryServiceSpec extends Specification {
 
     def 'Retrieve cm handles with combined queries when #scenario.'() {
         given: 'condition properties'
-            def cmHandleQueryParameters = new CmHandleQueryParameters()
+            def cmHandleQueryParameters = new CmHandleQueryServiceParameters()
             def conditionProperties1 = new ConditionProperties()
             conditionProperties1.conditionName = 'hasAllProperties'
             conditionProperties1.conditionParameters = publicProperties
@@ -111,7 +111,7 @@ class NetworkCmProxyCmHandlerQueryServiceSpec extends Specification {
         given: 'mock services'
             mockResponses()
         when: 'the service is invoked'
-            def cmHandleQueryParameters = new CmHandleQueryParameters()
+            def cmHandleQueryParameters = new CmHandleQueryServiceParameters()
             def returnedCmHandles = objectUnderTest.queryCmHandles(cmHandleQueryParameters)
         then: 'the correct expected cm handles are returned'
             returnedCmHandles.stream().map(d -> d.leaves.get('id').toString()).collect(Collectors.toList()) == ['PNFDemo', 'PNFDemo2', 'PNFDemo3', 'PNFDemo4']
