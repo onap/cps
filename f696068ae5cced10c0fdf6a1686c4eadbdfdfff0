@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1f7e956d_ffb1cccf",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-13T09:29:31Z",
+      "side": 1,
+      "message": "not sure if ties works for SQ. If need I can alway flag as \u0027false positive\u0027 in SQ server itself (As PTL I have authoirty to do that)",
+      "range": {
+        "startLine": 214,
+        "startChar": 5,
+        "endLine": 214,
+        "endChar": 21
+      },
+      "revId": "f696068ae5cced10c0fdf6a1686c4eadbdfdfff0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
