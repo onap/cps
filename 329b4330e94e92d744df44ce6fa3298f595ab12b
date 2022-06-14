@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0d0e3820_d943c302",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/NcmpEventsGenerator.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-14T15:14:27Z",
+      "side": 1,
+      "message": "NB : populate NcmpEvent",
+      "range": {
+        "startLine": 47,
+        "startChar": 7,
+        "endLine": 47,
+        "endChar": 27
+      },
+      "revId": "329b4330e94e92d744df44ce6fa3298f595ab12b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df4ad020_97e80204",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/NcmpEventsGenerator.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-14T15:14:27Z",
+      "side": 1,
+      "message": "NB : cm handle identifier",
+      "range": {
+        "startLine": 49,
+        "startChar": 34,
+        "endLine": 49,
+        "endChar": 46
+      },
+      "revId": "329b4330e94e92d744df44ce6fa3298f595ab12b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "438db64d_147b2a1f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/NcmpEventsGeneratorSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-14T15:14:27Z",
+      "side": 1,
+      "message": "NB : created/generated/populated",
+      "range": {
+        "startLine": 42,
+        "startChar": 28,
+        "endLine": 42,
+        "endChar": 34
+      },
+      "revId": "329b4330e94e92d744df44ce6fa3298f595ab12b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f73d7731_68c19599",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/NcmpEventsGeneratorSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-14T15:14:27Z",
+      "side": 1,
+      "message": "Smelly instanceof Operator:\n--------------------------------------\n\nThis check is Unnecessary as called method will always returns only one type of object that is NcmpEvent. There is no polymorphism with NcmpEvent.  \n\nThe general \"rule\" would be to avoid it whenever possible, especially when we control the type hierarchy and can use subtype polymorphism for example. The idea is not to ask the object what type it is and do something with it, but rather to ask the object directly or indirectly via a Visitor (essentially double polymorphism) to perform some action.\n\nEven though if we want to check object type then the Class.getName() method can be used in the equals method like below :\n\nassert result.getClass().getSimpleName()\u003d\u003d\u0027NcmpEvent\u0027",
+      "range": {
+        "startLine": 44,
+        "startChar": 8,
+        "endLine": 45,
+        "endChar": 46
+      },
+      "revId": "329b4330e94e92d744df44ce6fa3298f595ab12b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf03aa64_f906a36d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/NcmpEventsGeneratorSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-14T15:14:27Z",
+      "side": 1,
+      "message": "NB : created/generated/populated",
+      "range": {
+        "startLine": 46,
+        "startChar": 30,
+        "endLine": 46,
+        "endChar": 37
+      },
+      "revId": "329b4330e94e92d744df44ce6fa3298f595ab12b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e5c62af_dd0d882d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/NcmpEventsGeneratorSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-14T15:14:27Z",
+      "side": 1,
+      "message": "NB : It\u0027s better to asset header and paylod in seperate and clouse",
+      "range": {
+        "startLine": 48,
+        "startChar": 7,
+        "endLine": 48,
+        "endChar": 57
+      },
+      "revId": "329b4330e94e92d744df44ce6fa3298f595ab12b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1e0aad5_e274c45c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/NcmpEventsGeneratorSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-14T15:14:27Z",
+      "side": 1,
+      "message": "Use enum : operation !\u003d DELETE",
+      "range": {
+        "startLine": 51,
+        "startChar": 16,
+        "endLine": 51,
+        "endChar": 45
+      },
+      "revId": "329b4330e94e92d744df44ce6fa3298f595ab12b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "951ecd76_5471351f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/NcmpEventsGeneratorSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-14T15:14:27Z",
+      "side": 1,
+      "message": "Assert cm handle properties that we sent to the method like : \n\nresult.event.cmhandleProperties[0].toString()\u003d\u003d\u0027[publicProperty1:value1, publicProperty2:value2]",
+      "range": {
+        "startLine": 52,
+        "startChar": 16,
+        "endLine": 52,
+        "endChar": 66
+      },
+      "revId": "329b4330e94e92d744df44ce6fa3298f595ab12b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
