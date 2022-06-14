@@ -94,15 +94,14 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     private final NetworkCmProxyCmHandlerQueryService networkCmProxyCmHandlerQueryService;
 
     @Override
-    public DmiPluginRegistrationResponse updateDmiRegistrationAndSyncModule(
-            final DmiPluginRegistration dmiPluginRegistration) {
+    public DmiPluginRegistrationResponse updateDmiRegistration(final DmiPluginRegistration dmiPluginRegistration) {
         dmiPluginRegistration.validateDmiPluginRegistration();
         final DmiPluginRegistrationResponse dmiPluginRegistrationResponse = new DmiPluginRegistrationResponse();
         dmiPluginRegistrationResponse.setRemovedCmHandles(
                 parseAndRemoveCmHandlesInDmiRegistration(dmiPluginRegistration.getRemovedCmHandles()));
         if (!dmiPluginRegistration.getCreatedCmHandles().isEmpty()) {
             dmiPluginRegistrationResponse.setCreatedCmHandles(
-                    parseAndCreateCmHandlesInDmiRegistrationAndSyncModules(dmiPluginRegistration));
+                parseAndCreateCmHandlesInDmiRegistration(dmiPluginRegistration));
         }
         if (!dmiPluginRegistration.getUpdatedCmHandles().isEmpty()) {
             dmiPluginRegistrationResponse.setUpdatedCmHandles(
@@ -221,12 +220,12 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     }
 
     /**
-     * THis method registers a cm handle and initiates modules sync.
+     * THis method registers a cm handle.
      *
      * @param dmiPluginRegistration dmi plugin registration information.
      * @return cm-handle registration response for create cm-handle requests.
      */
-    public List<CmHandleRegistrationResponse> parseAndCreateCmHandlesInDmiRegistrationAndSyncModules(
+    public List<CmHandleRegistrationResponse> parseAndCreateCmHandlesInDmiRegistration(
             final DmiPluginRegistration dmiPluginRegistration) {
         List<CmHandleRegistrationResponse> cmHandleRegistrationResponses = new ArrayList<>();
         try {

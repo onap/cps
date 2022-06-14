@@ -77,7 +77,7 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
                     .content(jsonData)
             ).andReturn().response
         then: 'the converted object is forwarded to the registration service'
-            1 * mockNetworkCmProxyDataService.updateDmiRegistrationAndSyncModule(mockDmiPluginRegistration) >> new DmiPluginRegistrationResponse()
+            1 * mockNetworkCmProxyDataService.updateDmiRegistration(mockDmiPluginRegistration) >> new DmiPluginRegistrationResponse()
         and: 'response status is no content'
             response.status == HttpStatus.OK.value()
         where: 'the following registration json is used'
@@ -109,7 +109,7 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
                 updatedCmHandles: [CmHandleRegistrationResponse.createSuccessResponse('cm-handle-2')],
                 removedCmHandles: [CmHandleRegistrationResponse.createSuccessResponse('cm-handle-3')]
             )
-            mockNetworkCmProxyDataService.updateDmiRegistrationAndSyncModule(*_) >> dmiRegistrationResponse
+            mockNetworkCmProxyDataService.updateDmiRegistration(*_) >> dmiRegistrationResponse
         when: 'registration endpoint is invoked'
             def response = mvc.perform(
                 post("$ncmpBasePathV1/ch")
@@ -132,7 +132,7 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
                 updatedCmHandles: [updateCmHandleResponse],
                 removedCmHandles: [removeCmHandleResponse]
             )
-            mockNetworkCmProxyDataService.updateDmiRegistrationAndSyncModule(*_) >> dmiRegistrationResponse
+            mockNetworkCmProxyDataService.updateDmiRegistration(*_) >> dmiRegistrationResponse
         when: 'registration endpoint is invoked'
             def response = mvc.perform(
                 post("$ncmpBasePathV1/ch")
