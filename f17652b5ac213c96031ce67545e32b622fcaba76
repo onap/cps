@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "7c8e0c34_fa891290",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-06-14T12:45:37Z",
+      "side": 1,
+      "message": "Copyright?",
+      "revId": "f17652b5ac213c96031ce67545e32b622fcaba76",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "21e77369_3c87ff7c",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
         "patchSetId": 15
@@ -19,6 +36,57 @@
         "endLine": 76,
         "endChar": 85
       },
+      "revId": "f17652b5ac213c96031ce67545e32b622fcaba76",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fb8acc4b_81bb92ea",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-06-14T12:45:37Z",
+      "side": 1,
+      "message": "It is good to log the cm handles that are processed by this job.",
+      "revId": "f17652b5ac213c96031ce67545e32b622fcaba76",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d801b37_1b93d5a3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-06-14T12:45:37Z",
+      "side": 1,
+      "message": "copyright?",
+      "revId": "f17652b5ac213c96031ce67545e32b622fcaba76",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "41778ab0_a3e1e39f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-06-14T12:45:37Z",
+      "side": 1,
+      "message": "return lockedCmHandleAsDataNodeList.stream()\n                .map(cmHandle -\u003e YangDataConverter.convertCmHandleToYangModel(cmHandle,\n                cmHandle.getLeaves().get(\"id\").toString()))\n                .collect(Collectors.toList());",
       "revId": "f17652b5ac213c96031ce67545e32b622fcaba76",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
