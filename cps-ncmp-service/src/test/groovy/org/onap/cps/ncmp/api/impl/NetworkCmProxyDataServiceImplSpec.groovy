@@ -236,7 +236,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             dmiPluginRegistration.createdCmHandles = [ncmpServiceCmHandle]
             mockDmiPluginRegistration.getCreatedCmHandles() >> [ncmpServiceCmHandle]
         when: 'parse and create cm handle in dmi registration then sync module'
-            objectUnderTest.parseAndCreateCmHandlesInDmiRegistrationAndSyncModules(mockDmiPluginRegistration)
+            objectUnderTest.parseAndCreateCmHandlesInDmiRegistration(mockDmiPluginRegistration)
         then: 'validate params for creating anchor and list elements'
             1 * mockCpsDataService.saveListElements('NCMP-Admin', 'ncmp-dmi-registry',
                 '/dmi-registry', '{"cm-handles":[{"id":"some-cm-handle-id",' +

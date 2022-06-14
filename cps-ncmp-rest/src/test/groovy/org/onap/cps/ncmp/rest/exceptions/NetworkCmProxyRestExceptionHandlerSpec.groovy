@@ -139,7 +139,7 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
         if (NCMP == apiType) {
             mockNetworkCmProxyDataService.getYangResourcesModuleReferences(*_) >> { throw exception }
         }
-        mockNetworkCmProxyDataService.updateDmiRegistrationAndSyncModule(*_) >> { throw exception }
+        mockNetworkCmProxyDataService.updateDmiRegistration(*_) >> { throw exception }
     }
 
     def performTestRequest(apiType) {

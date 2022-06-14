@@ -23,7 +23,6 @@ package org.onap.cps.ncmp.api.impl
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.ncmp.api.NetworkCmProxyCmHandlerQueryService
-import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
@@ -77,12 +76,12 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             dmiRegistration.setUpdatedCmHandles([new NcmpServiceCmHandle(cmHandleId: 'cmhandle-2', publicProperties: ['publicProp1': 'value'], dmiProperties: [:])])
             dmiRegistration.setRemovedCmHandles(['cmhandle-2'])
         when: 'registration is processed'
-            objectUnderTest.updateDmiRegistrationAndSyncModule(dmiRegistration)
+            objectUnderTest.updateDmiRegistration(dmiRegistration)
             // Spock validated invocation order between multiple then blocks
         then: 'cm-handles are removed first'
             1 * objectUnderTest.parseAndRemoveCmHandlesInDmiRegistration(*_)
         then: 'cm-handles are created'
-            1 * objectUnderTest.parseAndCreateCmHandlesInDmiRegistrationAndSyncModules(*_)
+            1 * objectUnderTest.parseAndCreateCmHandlesInDmiRegistration(*_)
         then: 'cm-handles are updated'
             1 * mockNetworkCmProxyDataServicePropertyHandler.updateCmHandleProperties(*_)
     }
@@ -98,12 +97,12 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             mockNetworkCmProxyDataServicePropertyHandler.updateCmHandleProperties(*_) >> updateResponses
         and: 'create cm-handles can be processed successfully'
             def createdResponses = [CmHandleRegistrationResponse.createSuccessResponse('cmhandle-1')]
-            objectUnderTest.parseAndCreateCmHandlesInDmiRegistrationAndSyncModules(*_) >> createdResponses
+            objectUnderTest.parseAndCreateCmHandlesInDmiRegistration(*_) >> createdResponses
         and: 'delete cm-handles can be processed successfully'
             def removeResponses = [CmHandleRegistrationResponse.createSuccessResponse('cmhandle-3')]
             objectUnderTest.parseAndRemoveCmHandlesInDmiRegistration(*_) >> removeResponses
         when: 'registration is processed'
-            def response = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiRegistration)
+            def response = objectUnderTest.updateDmiRegistration(dmiRegistration)
         then: 'response has values from all operations'
             response.getRemovedCmHandles() == removeResponses
             response.getCreatedCmHandles() == createdResponses
@@ -118,9 +117,9 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
                 dmiDataPlugin: dmiDataPlugin)
             dmiPluginRegistration.createdCmHandles = [ncmpServiceCmHandle]
         when: 'update registration and sync module is called with correct DMI plugin information'
-            objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
+            objectUnderTest.updateDmiRegistration(dmiPluginRegistration)
         then: 'create cm handles registration and sync modules is called with the correct plugin information'
-            1 * objectUnderTest.parseAndCreateCmHandlesInDmiRegistrationAndSyncModules(dmiPluginRegistration)
+            1 * objectUnderTest.parseAndCreateCmHandlesInDmiRegistration(dmiPluginRegistration)
         where:
             scenario                          | dmiPlugin  | dmiModelPlugin | dmiDataPlugin
             'combined DMI plugin'             | 'service1' | ''             | ''
@@ -134,12 +133,12 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
                 dmiDataPlugin: dmiDataPlugin)
             dmiPluginRegistration.createdCmHandles = [ncmpServiceCmHandle]
         when: 'registration is called with incorrect DMI plugin information'
-            objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
+            objectUnderTest.updateDmiRegistration(dmiPluginRegistration)
         then: 'a DMI Request Exception is thrown with correct message details'
             def exceptionThrown = thrown(DmiRequestException.class)
             assert exceptionThrown.getMessage().contains(expectedMessageDetails)
         and: 'registration is not called'
-            0 * objectUnderTest.parseAndCreateCmHandlesInDmiRegistrationAndSyncModules(dmiPluginRegistration)
+            0 * objectUnderTest.parseAndCreateCmHandlesInDmiRegistration(dmiPluginRegistration)
         where:
             scenario                         | dmiPlugin  | dmiModelPlugin | dmiDataPlugin || expectedMessageDetails
             'empty DMI plugins'              | ''         | ''             | ''            || 'No DMI plugin service names'
@@ -157,7 +156,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server')
             dmiPluginRegistration.createdCmHandles = [new NcmpServiceCmHandle(cmHandleId: 'cmhandle', dmiProperties: dmiProperties, publicProperties: publicProperties)]
         when: 'registration is updated'
-            def response = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
+            def response = objectUnderTest.updateDmiRegistration(dmiPluginRegistration)
         then: 'a successful response is received'
             response.getCreatedCmHandles().size() == 1
             with(response.getCreatedCmHandles().get(0)) {
@@ -188,7 +187,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
         and: 'cm-handle creation is successful for 1st and 3rd; failed for 2nd'
             mockCpsDataService.saveListElements(_, _, _, _, _) >> {} >> { throw new RuntimeException("Failed") } >> {}
         when: 'registration is updated to create cm-handles'
-            def response = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
+            def response = objectUnderTest.updateDmiRegistration(dmiPluginRegistration)
         then: 'a response is received for all cm-handles'
             response.getCreatedCmHandles().size() == 3
         and: '1st and 3rd cm-handle are created successfully'
@@ -216,7 +215,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
         and: 'cm-handler registration fails: #scenario'
             mockCpsDataService.saveListElements(_, _, _, _, _) >> { throw exception }
         when: 'registration is updated'
-            def response = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
+            def response = objectUnderTest.updateDmiRegistration(dmiPluginRegistration)
         then: 'a failure response is received'
             response.getCreatedCmHandles().size() == 1
             with(response.getCreatedCmHandles().get(0)) {
@@ -243,7 +242,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
                                            CmHandleRegistrationResponse.createFailureResponse('cm handle 4', CM_HANDLE_INVALID_ID)]
             mockNetworkCmProxyDataServicePropertyHandler.updateCmHandleProperties(_) >> updateOperationResponse
         when: 'registration is updated'
-            def response = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
+            def response = objectUnderTest.updateDmiRegistration(dmiPluginRegistration)
         then: 'the response contains updateOperationResponse'
             assert response.getUpdatedCmHandles().size() == 4
             assert response.getUpdatedCmHandles().containsAll(updateOperationResponse)
@@ -257,7 +256,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             mockCpsModuleService.deleteSchemaSet(_, 'cmhandle', CASCADE_DELETE_ALLOWED) >>
                 { if (!schemaSetExist) { throw new SchemaSetNotFoundException("", "") } }
         when: 'registration is updated to delete cmhandle'
-            def response = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
+            def response = objectUnderTest.updateDmiRegistration(dmiPluginRegistration)
         then: 'delete list or list element is called'
             1 * mockCpsDataService.deleteListOrListElement(_, _, _, _)
         and: 'successful response is received'
@@ -279,7 +278,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
         and: 'cm-handle deletion is successful for 1st and 3rd; failed for 2nd'
             mockCpsDataService.deleteListOrListElement(_, _, _, _) >> {} >> { throw new RuntimeException("Failed") } >> {}
         when: 'registration is updated to delete cmhandles'
-            def response = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
+            def response = objectUnderTest.updateDmiRegistration(dmiPluginRegistration)
         then: 'a response is received for all cm-handles'
             response.getRemovedCmHandles().size() == 3
         and: '1st and 3rd cm-handle deletes successfully'
@@ -307,7 +306,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
         and: 'schema set deletion failed with unknown error'
             mockCpsModuleService.deleteSchemaSet(_, _, _) >> { throw new RuntimeException('Failed') }
         when: 'registration is updated to delete cmhandle'
-            def response = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
+            def response = objectUnderTest.updateDmiRegistration(dmiPluginRegistration)
         then: 'no exception is thrown'
             noExceptionThrown()
         and: 'cm-handle is not deleted'
@@ -329,7 +328,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
         and: 'cm-handle deletion throws exception'
             mockCpsDataService.deleteListOrListElement(_, _, _, _) >> { throw deleteListElementException }
         when: 'registration is updated to delete cmhandle'
-            def response = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
+            def response = objectUnderTest.updateDmiRegistration(dmiPluginRegistration)
         then: 'no exception is thrown'
             noExceptionThrown()
         and: 'a failure response is received'
