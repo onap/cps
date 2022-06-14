@@ -1,0 +1,510 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b869b9f1_91033805",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/NcmpEventsMapper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-14T08:44:49Z",
+      "side": 1,
+      "message": "Class name is misleading as it\u0027s accepting metadata that is used to create a  NcmpEvent and Event.\n\nNcmpEventGenerator,\nNcmpEventCreater\nor any meaningful name",
+      "range": {
+        "startLine": 45,
+        "startChar": 13,
+        "endLine": 45,
+        "endChar": 30
+      },
+      "revId": "088060157b208b0a1b71ef34c8b44052372a45f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae9fb909_eff4b53a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/NcmpEventsMapper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-14T08:44:49Z",
+      "side": 1,
+      "message": "NB : populateNcmpEvent or any other suitable name\n\nGeneral conversation\n----------------------------\ntoNcmpEvent :  a. simplifies the implementation of mappings between Java bean types\n               b. The source object as parameter and returns the target object (Here we don\u0027t have any source object but attributes required to create new object)",
+      "range": {
+        "startLine": 56,
+        "startChar": 21,
+        "endLine": 56,
+        "endChar": 32
+      },
+      "revId": "088060157b208b0a1b71ef34c8b44052372a45f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe6134df_a436ab22",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/NcmpEventsMapper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-14T08:44:49Z",
+      "side": 1,
+      "message": "Unable to understand the method name can be renamed as createNcmpEvent or any other suitable",
+      "range": {
+        "startLine": 58,
+        "startChar": 36,
+        "endLine": 58,
+        "endChar": 51
+      },
+      "revId": "088060157b208b0a1b71ef34c8b44052372a45f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "099d46e7_b2c5fad5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/NcmpEventsMapper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-14T08:44:49Z",
+      "side": 1,
+      "message": "Can be composed into a single method",
+      "range": {
+        "startLine": 59,
+        "startChar": 7,
+        "endLine": 71,
+        "endChar": 9
+      },
+      "revId": "088060157b208b0a1b71ef34c8b44052372a45f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d9e687e2_930a44a8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/NcmpEventsMapper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-14T08:44:49Z",
+      "side": 1,
+      "message": "This method can accept another 2 agrs that needs to create Event object \n\n,final Operation operation, final NcmpServiceCmHandle ncmpServiceCmHandle)",
+      "range": {
+        "startLine": 75,
+        "startChar": 69,
+        "endLine": 75,
+        "endChar": 71
+      },
+      "revId": "088060157b208b0a1b71ef34c8b44052372a45f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "00c77c51_f458756f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/NcmpEventsMapper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-14T08:44:49Z",
+      "side": 1,
+      "message": "Here we can set event as below :\n\ntry {\n            ncmpEvent.setEvent(createEvent(eventCorrelationId, Operation.fromValue(operation.value()), ncmpServiceCmHandle));\n        } catch (IllegalArgumentException illegalArgumentException) {\n            log.error(\"{} operation not supported\", operation);\n        }\nreturn ncmpEvent;",
+      "range": {
+        "startLine": 83,
+        "startChar": 8,
+        "endLine": 83,
+        "endChar": 25
+      },
+      "revId": "088060157b208b0a1b71ef34c8b44052372a45f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f00d700_b7aac3f6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/NcmpEventsMapper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-14T08:44:49Z",
+      "side": 1,
+      "message": "All these can be composed like :\n\nprivate Event createEvent(final String eventCorrelationId, final Operation operation,\n                              final NcmpServiceCmHandle ncmpServiceCmHandle) {\n        final Event event \u003d new Event();\n        event.setOperation(operation);\n        event.setCmHandleId(eventCorrelationId);\n        if (!Operation.DELETE.equals(operation)) {\n            event.setCmhandleState(Event.CmhandleState.READY);\n            event.setCmhandleProperties(List.of(ncmpServiceCmHandle.getPublicProperties()));\n        }\n        return event;\n    }",
+      "range": {
+        "startLine": 86,
+        "startChar": 4,
+        "endLine": 109,
+        "endChar": 5
+      },
+      "revId": "088060157b208b0a1b71ef34c8b44052372a45f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0fd1b8a2_a63f2ec1",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/NcmpEventsMapperSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-14T08:44:49Z",
+      "side": 1,
+      "message": "Assert public properties as well",
+      "range": {
+        "startLine": 38,
+        "startChar": 15,
+        "endLine": 38,
+        "endChar": 93
+      },
+      "revId": "088060157b208b0a1b71ef34c8b44052372a45f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf8e38d5_fdfa1e8f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/NcmpEventsMapperSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-14T08:44:49Z",
+      "side": 1,
+      "message": "ncmp event is created/generated/populated",
+      "range": {
+        "startLine": 39,
+        "startChar": 15,
+        "endLine": 39,
+        "endChar": 34
+      },
+      "revId": "088060157b208b0a1b71ef34c8b44052372a45f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ba29c6ab_69641299",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/NcmpEventsMapperSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-14T08:44:49Z",
+      "side": 1,
+      "message": "We can send operation enum here.\n\nvaueOf is NullPointerException prone. If needed we can use \"fromValue\"\n\npublic static Event.Operation fromValue(java.lang.String value)",
+      "range": {
+        "startLine": 40,
+        "startChar": 65,
+        "endLine": 40,
+        "endChar": 99
+      },
+      "revId": "088060157b208b0a1b71ef34c8b44052372a45f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "06f8b482_3b9505f6",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/NcmpEventsMapperSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-14T08:44:49Z",
+      "side": 1,
+      "message": "Assert into seperate and: clause\nassert cmhandleState as well result.event.cmhandleState \u003d\u003d cmhandleState",
+      "range": {
+        "startLine": 47,
+        "startChar": 12,
+        "endLine": 47,
+        "endChar": 61
+      },
+      "revId": "088060157b208b0a1b71ef34c8b44052372a45f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d0f1344a_0582d539",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/NcmpEventsMapperSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-14T08:44:49Z",
+      "side": 1,
+      "message": "Avoid using string.\n\nOperation.DELETE,Operation.UPDATE,Operation.DELETE or can be imported as static",
+      "range": {
+        "startLine": 49,
+        "startChar": 26,
+        "endLine": 49,
+        "endChar": 54
+      },
+      "revId": "088060157b208b0a1b71ef34c8b44052372a45f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b441b2fc_915a2c38",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/NcmpEventsMapperSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-14T08:44:49Z",
+      "side": 1,
+      "message": "NB : Is it possible to send any invalid event operation ?",
+      "range": {
+        "startLine": 54,
+        "startChar": 77,
+        "endLine": 54,
+        "endChar": 84
+      },
+      "revId": "088060157b208b0a1b71ef34c8b44052372a45f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "500dade1_2664b7ce",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/NcmpEventsMapperSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-14T08:44:49Z",
+      "side": 1,
+      "message": "Unnecessary : As we never thrown IllegalArgumentException from called method.",
+      "range": {
+        "startLine": 52,
+        "startChar": 3,
+        "endLine": 57,
+        "endChar": 5
+      },
+      "revId": "088060157b208b0a1b71ef34c8b44052372a45f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ed294457_e4cedfaa",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/NcmpEventsServiceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-14T08:44:49Z",
+      "side": 1,
+      "message": "Discussion : I am not able to understand the intent of this test class as it contains only  \"noExceptionThrown()\" that is never thrown.\n\nWe should write a test case to publish ncmp event and validate it using Kafka test containers.",
+      "range": {
+        "startLine": 29,
+        "startChar": 6,
+        "endLine": 29,
+        "endChar": 28
+      },
+      "revId": "088060157b208b0a1b71ef34c8b44052372a45f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "39ab0624_4f9e6f72",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/NcmpEventsServiceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-14T08:44:49Z",
+      "side": 1,
+      "message": "NB : Move it to class level or use it locally into mockResponses and string literal \"test-cm-handle-id\" to method call \n\nobjectUnderTest.publishNcmpEvent(\u0027test-cm-handle-id\u0027, cmHandleOperation)",
+      "range": {
+        "startLine": 39,
+        "startChar": 12,
+        "endLine": 39,
+        "endChar": 48
+      },
+      "revId": "088060157b208b0a1b71ef34c8b44052372a45f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "31d9eaf0_a1d6e72a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/NcmpEventsServiceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-14T08:44:49Z",
+      "side": 1,
+      "message": "operation",
+      "range": {
+        "startLine": 40,
+        "startChar": 36,
+        "endLine": 40,
+        "endChar": 70
+      },
+      "revId": "088060157b208b0a1b71ef34c8b44052372a45f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f0588b4b_4d8129a9",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/NcmpEventsServiceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-14T08:44:49Z",
+      "side": 1,
+      "message": "it can be directly set into mocking method",
+      "range": {
+        "startLine": 42,
+        "startChar": 26,
+        "endLine": 42,
+        "endChar": 36
+      },
+      "revId": "088060157b208b0a1b71ef34c8b44052372a45f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ba103320_3ad6afd0",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/NcmpEventsServiceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-14T08:44:49Z",
+      "side": 1,
+      "message": "use from class level or use string literal \"test-cm-handle-id\"",
+      "range": {
+        "startLine": 44,
+        "startChar": 45,
+        "endLine": 44,
+        "endChar": 55
+      },
+      "revId": "088060157b208b0a1b71ef34c8b44052372a45f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f6fcf24d_d28933a9",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/NcmpEventsServiceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-14T08:44:49Z",
+      "side": 1,
+      "message": "We never thrown any kind of exception from called method.",
+      "range": {
+        "startLine": 45,
+        "startChar": 8,
+        "endLine": 46,
+        "endChar": 31
+      },
+      "revId": "088060157b208b0a1b71ef34c8b44052372a45f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b7a2816_f0328c6c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/NcmpEventsServiceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-14T08:44:49Z",
+      "side": 1,
+      "message": "Avoid using string.\n\nOperation.DELETE,Operation.UPDATE,Operation.DELETE or can be imported as static",
+      "range": {
+        "startLine": 48,
+        "startChar": 26,
+        "endLine": 48,
+        "endChar": 54
+      },
+      "revId": "088060157b208b0a1b71ef34c8b44052372a45f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7abee3a8_b8fc0238",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/NcmpEventsServiceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-14T08:44:49Z",
+      "side": 1,
+      "message": "remove it from here used claas level or create it localy",
+      "range": {
+        "startLine": 51,
+        "startChar": 22,
+        "endLine": 51,
+        "endChar": 32
+      },
+      "revId": "088060157b208b0a1b71ef34c8b44052372a45f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
