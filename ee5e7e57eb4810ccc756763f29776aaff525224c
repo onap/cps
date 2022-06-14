@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fcbf47f5_9f73ae2c",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-06-14T16:05:19Z",
+      "side": 1,
+      "message": "Should these also be included? \n      400:\n        $ref: \u0027components.yaml#/components/responses/BadRequest\u0027\n      401:\n        $ref: \u0027components.yaml#/components/responses/Unauthorized\u0027",
+      "range": {
+        "startLine": 338,
+        "startChar": 0,
+        "endLine": 342,
+        "endChar": 0
+      },
+      "revId": "ee5e7e57eb4810ccc756763f29776aaff525224c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f831544a_294b4a9a",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 431,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-06-14T16:05:19Z",
+      "side": 1,
+      "message": "no end bracket?",
+      "range": {
+        "startLine": 431,
+        "startChar": 21,
+        "endLine": 431,
+        "endChar": 22
+      },
+      "revId": "ee5e7e57eb4810ccc756763f29776aaff525224c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "47514543_0ef46255",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 438,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-06-14T16:05:19Z",
+      "side": 1,
+      "message": "same",
+      "range": {
+        "startLine": 438,
+        "startChar": 27,
+        "endLine": 438,
+        "endChar": 28
+      },
+      "revId": "ee5e7e57eb4810ccc756763f29776aaff525224c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5707cf7f_a829f042",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 448,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-06-14T16:05:19Z",
+      "side": 1,
+      "message": "same again",
+      "range": {
+        "startLine": 448,
+        "startChar": 40,
+        "endLine": 448,
+        "endChar": 41
+      },
+      "revId": "ee5e7e57eb4810ccc756763f29776aaff525224c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "52e3b0a1_cc48c15d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-06-14T16:05:19Z",
+      "side": 1,
+      "message": "NB: Could inline?\n\ne.g. return inventoryPersistence.getYangModelCmHandle(cmHandleId).getCompositeState();",
+      "range": {
+        "startLine": 233,
+        "startChar": 8,
+        "endLine": 235,
+        "endChar": 53
+      },
+      "revId": "ee5e7e57eb4810ccc756763f29776aaff525224c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
