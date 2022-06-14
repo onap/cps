@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "69770e21_e4813b78",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/DataSyncWatchdog.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-06-14T14:26:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d366828f_853e373c",
+      "range": {
+        "startLine": 36,
+        "startChar": 1,
+        "endLine": 36,
+        "endChar": 10
+      },
+      "revId": "491872fcec792fdcf9e931d45feef5a2e5d104c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8d3fc47a_6cf1a003",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/DataSyncWatchdog.java",
         "patchSetId": 12
@@ -95,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "52c63a39_6d4e0467",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/DataSyncWatchdog.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-06-14T14:26:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d5c2a0ff_5faab181",
+      "range": {
+        "startLine": 64,
+        "startChar": 40,
+        "endLine": 64,
+        "endChar": 52
+      },
+      "revId": "491872fcec792fdcf9e931d45feef5a2e5d104c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5dc113df_94dda87c",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
         "patchSetId": 12
@@ -118,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "4a20e26d_7037403d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-06-14T14:26:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5dc113df_94dda87c",
+      "range": {
+        "startLine": 87,
+        "startChar": 53,
+        "endLine": 87,
+        "endChar": 67
+      },
+      "revId": "491872fcec792fdcf9e931d45feef5a2e5d104c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a797940_f3cf325f",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
         "patchSetId": 12
@@ -138,6 +210,30 @@
       "revId": "491872fcec792fdcf9e931d45feef5a2e5d104c3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6aea33aa_f050af96",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-06-14T14:26:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a797940_f3cf325f",
+      "range": {
+        "startLine": 145,
+        "startChar": 12,
+        "endLine": 145,
+        "endChar": 40
+      },
+      "revId": "491872fcec792fdcf9e931d45feef5a2e5d104c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
