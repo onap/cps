@@ -32,10 +32,11 @@ import org.onap.cps.ncmp.api.models.ConditionApiProperties
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import org.onap.cps.spi.exceptions.DataValidationException
-import org.onap.cps.ncmp.api.inventory.sync.ModuleSyncService
 import org.onap.cps.spi.model.CmHandleQueryServiceParameters
 import org.onap.cps.spi.model.ConditionProperties
 import spock.lang.Shared
+
+import java.util.stream.Collectors
 
 import static org.onap.cps.ncmp.api.impl.operations.DmiOperations.DataStoreEnum.PASSTHROUGH_OPERATIONAL
 import static org.onap.cps.ncmp.api.impl.operations.DmiOperations.DataStoreEnum.PASSTHROUGH_RUNNING
@@ -44,7 +45,6 @@ import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum
 
 import org.onap.cps.utils.JsonObjectMapper
 import com.fasterxml.jackson.databind.ObjectMapper
-import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations
@@ -58,12 +58,10 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
 
     def mockCpsDataService = Mock(CpsDataService)
     def mockCpsModuleService = Mock(CpsModuleService)
-    def mockCpsAdminService = Mock(CpsAdminService)
     def spiedJsonObjectMapper = Spy(new JsonObjectMapper(new ObjectMapper()))
     def mockDmiDataOperations = Mock(DmiDataOperations)
     def nullNetworkCmProxyDataServicePropertyHandler = null
     def mockInventoryPersistence = Mock(InventoryPersistence)
-    def mockModuleSyncService = Mock(ModuleSyncService)
     def mockDmiPluginRegistration = Mock(DmiPluginRegistration)
     def mockCpsCmHandlerQueryService = Mock(NetworkCmProxyCmHandlerQueryService)
 
@@ -75,8 +73,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: 'some-cm-handle-id')
 
     def objectUnderTest = new NetworkCmProxyDataServiceImpl(mockCpsDataService, spiedJsonObjectMapper, mockDmiDataOperations,
-        mockCpsModuleService, mockCpsAdminService, nullNetworkCmProxyDataServicePropertyHandler, mockInventoryPersistence,
-        mockModuleSyncService, mockCpsCmHandlerQueryService)
+        mockCpsModuleService, nullNetworkCmProxyDataServicePropertyHandler, mockInventoryPersistence, mockCpsCmHandlerQueryService)
 
     def cmHandleXPath = "/dmi-registry/cm-handles[@id='testCmHandle']"
 
@@ -258,10 +255,31 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             conditionProperties.conditionParameters = [[moduleName: 'module-name-1']]
             cmHandleQueryParameters.cmHandleQueryParameters = [conditionProperties]
         and: 'query cm handle method return with a data node list'
-            mockCpsCmHandlerQueryService.queryCmHandles(cmHandleQueryParameters) >> [new DataNode(leaves: [id: 'cm-handle-id-1'])]
+            mockCpsCmHandlerQueryService.queryCmHandles(cmHandleQueryParameters, true) >> [new NcmpServiceCmHandle(cmHandleId: 'cm-handle-id-1')]
         when: 'execute cm handle search is called'
             def result = objectUnderTest.executeCmHandleIdSearch(cmHandleQueryApiParameters)
         then: 'result is the same collection as returned by the CPS Data Service'
             assert result == ['cm-handle-id-1'] as Set
+    }
+
+    def 'Execute cm handle search'() {
+        given: 'valid CmHandleQueryApiParameters input'
+            def cmHandleQueryApiParameters = new CmHandleQueryApiParameters()
+            def conditionApiProperties = new ConditionApiProperties()
+            conditionApiProperties.conditionName = 'hasAllModules'
+            conditionApiProperties.conditionParameters = [[moduleName: 'module-name-1']]
+            cmHandleQueryApiParameters.cmHandleQueryParameters = [conditionApiProperties]
+        and: 'valid CmHandleQueryParameters input'
+            def cmHandleQueryParameters = new CmHandleQueryServiceParameters()
+            def conditionProperties = new ConditionProperties()
+            conditionProperties.conditionName = 'hasAllModules'
+            conditionProperties.conditionParameters = [[moduleName: 'module-name-1']]
+            cmHandleQueryParameters.cmHandleQueryParameters = [conditionProperties]
+        and: 'query cm handle method return with a data node list'
+            mockCpsCmHandlerQueryService.queryCmHandles(cmHandleQueryParameters, false) >> [new NcmpServiceCmHandle(cmHandleId: 'cm-handle-id-1')]
+        when: 'execute cm handle search is called'
+            def result = objectUnderTest.executeCmHandleSearch(cmHandleQueryApiParameters)
+        then: 'result is the same collection as returned by the CPS Data Service'
+            assert result.stream().map(d -> d.cmHandleId).collect(Collectors.toSet()) == ['cm-handle-id-1'] as Set
     }
 }

@@ -20,16 +20,18 @@
 
 package org.onap.cps.ncmp.api;
 
-import java.util.Collection;
+import java.util.Set;
+import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.spi.model.CmHandleQueryServiceParameters;
-import org.onap.cps.spi.model.DataNode;
 
 public interface NetworkCmProxyCmHandlerQueryService {
     /**
      * Query and return cm handles that match the given query parameters.
      *
      * @param cmHandleQueryServiceParameters the cm handle query parameters
+     * @param justIds when it is true, the dataNodes contains just the ids leave
      * @return collection of cm handles
      */
-    Collection<DataNode> queryCmHandles(CmHandleQueryServiceParameters cmHandleQueryServiceParameters);
+    Set<NcmpServiceCmHandle> queryCmHandles(CmHandleQueryServiceParameters cmHandleQueryServiceParameters,
+                                            boolean justIds);
 }
