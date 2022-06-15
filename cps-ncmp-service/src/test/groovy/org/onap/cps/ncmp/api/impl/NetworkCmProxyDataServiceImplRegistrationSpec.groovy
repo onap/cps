@@ -61,11 +61,9 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     def mockCpsDataService = Mock(CpsDataService)
     def mockCpsModuleService = Mock(CpsModuleService)
     def spiedJsonObjectMapper = Spy(new JsonObjectMapper(new ObjectMapper()))
-    def mockCpsAdminService = Mock(CpsAdminService)
     def mockDmiDataOperations = Mock(DmiDataOperations)
     def mockNetworkCmProxyDataServicePropertyHandler = Mock(NetworkCmProxyDataServicePropertyHandler)
     def mockInventoryPersistence = Mock(InventoryPersistence)
-    def mockModuleSyncService = Mock(ModuleSyncService)
     def stubbedNetworkCmProxyCmHandlerQueryService = Stub(NetworkCmProxyCmHandlerQueryService)
     def mockNcmpEventsService = Mock(NcmpEventsService)
 
@@ -351,7 +349,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
 
     def getObjectUnderTest() {
         return Spy(new NetworkCmProxyDataServiceImpl(mockCpsDataService, spiedJsonObjectMapper, mockDmiDataOperations,
-            mockCpsModuleService, mockCpsAdminService, mockNetworkCmProxyDataServicePropertyHandler, mockInventoryPersistence,
-            mockModuleSyncService, stubbedNetworkCmProxyCmHandlerQueryService, mockNcmpEventsService))
+            mockCpsModuleService, mockNetworkCmProxyDataServicePropertyHandler, mockInventoryPersistence,
+            stubbedNetworkCmProxyCmHandlerQueryService, mockNcmpEventsService))
     }
 }
