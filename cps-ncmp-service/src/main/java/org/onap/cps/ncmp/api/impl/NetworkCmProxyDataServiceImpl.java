@@ -31,6 +31,7 @@ import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NO_TIMES
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum;
 import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED;
 import static org.onap.cps.utils.CmHandleQueryRestParametersValidator.validateCmHandleQueryParameters;
+import static org.onap.ncmp.cmhandle.lcm.event.Event.Operation.DELETE;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -46,6 +47,7 @@ import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.ncmp.api.NetworkCmProxyCmHandlerQueryService;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
+import org.onap.cps.ncmp.api.impl.event.NcmpEventsService;
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations;
 import org.onap.cps.ncmp.api.impl.operations.DmiOperations;
 import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
@@ -92,6 +94,8 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     private final ModuleSyncService moduleSyncService;
 
     private final NetworkCmProxyCmHandlerQueryService networkCmProxyCmHandlerQueryService;
+
+    private final NcmpEventsService ncmpEventsService;
 
     @Override
     public DmiPluginRegistrationResponse updateDmiRegistrationAndSyncModule(
@@ -261,6 +265,8 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                 cpsDataService.deleteListOrListElement(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
                         "/dmi-registry/cm-handles[@id='" + cmHandle + "']", NO_TIMESTAMP);
                 cmHandleRegistrationResponses.add(CmHandleRegistrationResponse.createSuccessResponse(cmHandle));
+                log.debug("Publishing LCM Delete Event for cmHandleId : {}", cmHandle);
+                ncmpEventsService.publishNcmpEvent(cmHandle, DELETE);
             } catch (final DataNodeNotFoundException dataNodeNotFoundException) {
                 log.error("Unable to find dataNode for cmHandleId : {} , caused by : {}",
                         cmHandle, dataNodeNotFoundException.getMessage());

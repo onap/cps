@@ -20,7 +20,6 @@
 
 package org.onap.cps.ncmp.api.impl.event;
 
-import static org.onap.ncmp.cmhandle.lcm.event.Event.CmhandleState.READY;
 import static org.onap.ncmp.cmhandle.lcm.event.Event.Operation.DELETE;
 
 import java.time.ZonedDateTime;
@@ -70,7 +69,8 @@ public class NcmpEventsCreator {
         event.setCmHandleId(eventCorrelationId);
 
         if (!DELETE.equals(operation)) {
-            event.setCmhandleState(READY);
+            event.setCmhandleState(Event.CmhandleState.fromValue(
+                    ncmpServiceCmHandle.getCompositeState().getCmHandleState().toString()));
             event.setCmhandleProperties(List.of(ncmpServiceCmHandle.getPublicProperties()));
         }
         return event;
