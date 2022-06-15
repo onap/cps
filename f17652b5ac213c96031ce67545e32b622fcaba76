@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "c4fcd5ec_f7e2bb82",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 15
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-15T09:12:22Z",
+      "side": 1,
+      "message": "NB : I believe we set sleep time to 50 min. purposely.",
+      "range": {
+        "startLine": 163,
+        "startChar": 23,
+        "endLine": 163,
+        "endChar": 30
+      },
+      "revId": "f17652b5ac213c96031ce67545e32b622fcaba76",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e8f894d_24e13ca5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-15T09:12:22Z",
+      "side": 1,
+      "message": "NB : cps path",
+      "range": {
+        "startLine": 98,
+        "startChar": 22,
+        "endLine": 98,
+        "endChar": 30
+      },
+      "revId": "f17652b5ac213c96031ce67545e32b622fcaba76",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7c8e0c34_fa891290",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
         "patchSetId": 15
@@ -42,6 +88,52 @@
     },
     {
       "key": {
+        "uuid": "04cd5f83_0e6bc48d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-15T09:12:22Z",
+      "side": 1,
+      "message": "NB (plural): allLockedMisbehavingCmHandles",
+      "range": {
+        "startLine": 78,
+        "startChar": 38,
+        "endLine": 78,
+        "endChar": 67
+      },
+      "revId": "f17652b5ac213c96031ce67545e32b622fcaba76",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a54fd234_c508aa84",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-15T09:12:22Z",
+      "side": 1,
+      "message": "NB (plural): allLockedMisbehavingCmHandles",
+      "range": {
+        "startLine": 79,
+        "startChar": 69,
+        "endLine": 79,
+        "endChar": 97
+      },
+      "revId": "f17652b5ac213c96031ce67545e32b622fcaba76",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fb8acc4b_81bb92ea",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
         "patchSetId": 15
@@ -53,6 +145,24 @@
       "writtenOn": "2022-06-14T12:45:37Z",
       "side": 1,
       "message": "It is good to log the cm handles that are processed by this job.",
+      "revId": "f17652b5ac213c96031ce67545e32b622fcaba76",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1468fd25_c2d9c75c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-15T09:12:22Z",
+      "side": 1,
+      "message": "Yes we should log all locked misbehaving cmHandle ids",
+      "parentUuid": "fb8acc4b_81bb92ea",
       "revId": "f17652b5ac213c96031ce67545e32b622fcaba76",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
@@ -87,6 +197,167 @@
       "writtenOn": "2022-06-14T12:45:37Z",
       "side": 1,
       "message": "return lockedCmHandleAsDataNodeList.stream()\n                .map(cmHandle -\u003e YangDataConverter.convertCmHandleToYangModel(cmHandle,\n                cmHandle.getLeaves().get(\"id\").toString()))\n                .collect(Collectors.toList());",
+      "revId": "f17652b5ac213c96031ce67545e32b622fcaba76",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "98fce8b5_fd4e4fe9",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/InventoryPersistenceSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-15T09:12:22Z",
+      "side": 1,
+      "message": "NB : Retrieve",
+      "range": {
+        "startLine": 160,
+        "startChar": 9,
+        "endLine": 160,
+        "endChar": 18
+      },
+      "revId": "f17652b5ac213c96031ce67545e32b622fcaba76",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e03b3ad_0b64a496",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/InventoryPersistenceSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-15T09:12:22Z",
+      "side": 1,
+      "message": "We should enum here \n\nCmHandleState.LOCKED",
+      "range": {
+        "startLine": 162,
+        "startChar": 93,
+        "endLine": 162,
+        "endChar": 99
+      },
+      "revId": "f17652b5ac213c96031ce67545e32b622fcaba76",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "253fd66c_109e1ae1",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-15T09:12:22Z",
+      "side": 1,
+      "message": "assert compositeState.getCmHandleState()\u003d\u003dCmHandleState.ADVISED",
+      "range": {
+        "startLine": 103,
+        "startChar": 12,
+        "endLine": 104,
+        "endChar": 85
+      },
+      "revId": "f17652b5ac213c96031ce67545e32b622fcaba76",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a52d8074_e57fb589",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/SyncUtilsSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-15T09:12:22Z",
+      "side": 1,
+      "message": "[dataNode]",
+      "range": {
+        "startLine": 73,
+        "startChar": 91,
+        "endLine": 73,
+        "endChar": 109
+      },
+      "revId": "f17652b5ac213c96031ce67545e32b622fcaba76",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16997533_513b18a4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/SyncUtilsSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-15T09:12:22Z",
+      "side": 1,
+      "message": "Store cm handle collection :\n\n def result \u003d objectUnderTest.getLockedMisbehavingCmHandles()",
+      "range": {
+        "startLine": 75,
+        "startChar": 12,
+        "endLine": 75,
+        "endChar": 27
+      },
+      "revId": "f17652b5ac213c96031ce67545e32b622fcaba76",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d2645528_e4179ded",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/SyncUtilsSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-15T09:12:22Z",
+      "side": 1,
+      "message": "Here we want to check returned cm handle collection size but never collected from getLockedMisbehavingCmHandles. Should be like\n\nresult.size() \u003d\u003d 1\n\nWe shouls assert cm handle id as well that we send as new DataNode(leaves: [\u0027id\u0027: \u0027cm-handle-123\u0027])\n\nresult.id[0]\u003d\u003d\u0027cm-handle-123\u0027",
+      "range": {
+        "startLine": 77,
+        "startChar": 12,
+        "endLine": 77,
+        "endChar": 30
+      },
+      "revId": "f17652b5ac213c96031ce67545e32b622fcaba76",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d79d3a0e_e9069d10",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/SyncUtilsSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-15T09:12:22Z",
+      "side": 1,
+      "message": "I think for a single scenario where clouse is not needed.",
+      "range": {
+        "startLine": 78,
+        "startChar": 8,
+        "endLine": 80,
+        "endChar": 62
+      },
       "revId": "f17652b5ac213c96031ce67545e32b622fcaba76",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
