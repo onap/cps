@@ -56,8 +56,11 @@ public class NcmpEventsService {
      */
     public void publishNcmpEvent(final String cmHandleId, final Operation operation) {
 
-        final NcmpServiceCmHandle ncmpServiceCmHandle = YangDataConverter.convertYangModelCmHandleToNcmpServiceCmHandle(
-                inventoryPersistence.getYangModelCmHandle(cmHandleId));
+        NcmpServiceCmHandle ncmpServiceCmHandle = new NcmpServiceCmHandle();
+        if (Operation.DELETE != operation) {
+            ncmpServiceCmHandle = YangDataConverter.convertYangModelCmHandleToNcmpServiceCmHandle(
+                    inventoryPersistence.getYangModelCmHandle(cmHandleId));
+        }
         final NcmpEvent ncmpEvent = ncmpEventsCreator.populateNcmpEvent(cmHandleId, operation, ncmpServiceCmHandle);
         ncmpEventsPublisher.publishEvent(topicName, cmHandleId, ncmpEvent);
 
