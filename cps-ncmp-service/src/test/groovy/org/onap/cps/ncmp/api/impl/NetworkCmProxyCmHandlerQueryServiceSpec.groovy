@@ -54,7 +54,7 @@ class NetworkCmProxyCmHandlerQueryServiceSpec extends Specification {
         when: 'the service is invoked'
             def returnedCmHandles = objectUnderTest.queryCmHandles(cmHandleQueryParameters)
         then: 'the correct expected cm handles are returned'
-            returnedCmHandles.stream().map(d -> d.leaves.get('id').toString()).collect(Collectors.toList()) == expectedCmHandleIds
+            returnedCmHandles.stream().map(d -> d.leaves.get('id').toString()).collect(Collectors.toSet()) == expectedCmHandleIds as Set
         where: 'the following data is used'
             scenario                                       | publicProperties                                                                                  || expectedCmHandleIds
             'single matching property'                     | [['Contact' : 'newemailforstore@bookstore.com']]                                                  || ['PNFDemo', 'PNFDemo2', 'PNFDemo4']
@@ -75,10 +75,10 @@ class NetworkCmProxyCmHandlerQueryServiceSpec extends Specification {
         when: 'the service is invoked'
             def returnedCmHandles = objectUnderTest.queryCmHandles(cmHandleQueryParameters)
         then: 'the correct expected cm handles are returned'
-            returnedCmHandles.stream().map(d -> d.leaves.get('id').toString()).collect(Collectors.toList()) == expectedCmHandleIds
+            returnedCmHandles.stream().map(d -> d.leaves.get('id').toString()).collect(Collectors.toSet()) == expectedCmHandleIds as Set
         where: 'the following data is used'
             scenario                               | moduleNames                                                             || expectedCmHandleIds
-            'single matching module name'          | [['moduleName' : 'MODULE-NAME-001']]                                    || ['PNFDemo2', 'PNFDemo3', 'PNFDemo']
+            'single matching module name'          | [['moduleName' : 'MODULE-NAME-001']]                                    || ['PNFDemo3', 'PNFDemo', 'PNFDemo2']
             'module name dont match'               | [['moduleName' : 'MODULE-NAME-004']]                                    || []
             '2 module names, only one match (and)' | [['moduleName' : 'MODULE-NAME-002'], ['moduleName': 'MODULE-NAME-003']] || ['PNFDemo4']
             '2 module names, no match (and)'       | [['moduleName' : 'MODULE-NAME-002'], ['moduleName': 'MODULE-NAME-004']] || []
@@ -99,7 +99,7 @@ class NetworkCmProxyCmHandlerQueryServiceSpec extends Specification {
         when: 'the service is invoked'
             def returnedCmHandles = objectUnderTest.queryCmHandles(cmHandleQueryParameters)
         then: 'the correct expected cm handles are returned'
-            returnedCmHandles.stream().map(d -> d.leaves.get('id').toString()).collect(Collectors.toList()) == expectedCmHandleIds
+            returnedCmHandles.stream().map(d -> d.leaves.get('id').toString()).collect(Collectors.toSet()) == expectedCmHandleIds as Set
         where: 'the following data is used'
             scenario                 | moduleNames                          | publicProperties                                   || expectedCmHandleIds
             'particularly intersect' | [['moduleName' : 'MODULE-NAME-001']] | [['Contact' : 'newemailforstore@bookstore.com']]   || ['PNFDemo2', 'PNFDemo']
@@ -114,7 +114,7 @@ class NetworkCmProxyCmHandlerQueryServiceSpec extends Specification {
             def cmHandleQueryParameters = new CmHandleQueryServiceParameters()
             def returnedCmHandles = objectUnderTest.queryCmHandles(cmHandleQueryParameters)
         then: 'the correct expected cm handles are returned'
-            returnedCmHandles.stream().map(d -> d.leaves.get('id').toString()).collect(Collectors.toList()) == ['PNFDemo', 'PNFDemo2', 'PNFDemo3', 'PNFDemo4']
+            returnedCmHandles.stream().map(d -> d.leaves.get('id').toString()).collect(Collectors.toSet()) == ['PNFDemo', 'PNFDemo2', 'PNFDemo3', 'PNFDemo4'] as Set
     }
 
     void mockResponses() {

@@ -31,6 +31,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.NetworkCmProxyCmHandlerQueryService;
@@ -126,17 +127,19 @@ public class NetworkCmProxyCmHandlerQueryServiceImpl implements NetworkCmProxyCm
                                     final Map<DataNodeIdentifier, DataNode> amalgamatedQueryResults) {
         boolean firstQuery = true;
         if (!getModuleNames(cmHandleQueryServiceParameters.getCmHandleQueryParameters()).isEmpty()) {
-            final Collection<Anchor> anchors = cpsAdminPersistenceService.queryAnchors("NFP-Operational",
-                    getModuleNames(cmHandleQueryServiceParameters.getCmHandleQueryParameters()));
-            anchors.forEach(anchor -> {
-                final List<DataNode> dataNodes = getDataNodes("//cm-handles[@id='" + anchor.getName() + "']");
-                dataNodes.parallelStream().forEach(dataNode -> {
+            final Collection<String> anchorNames = cpsAdminPersistenceService.queryAnchors("NFP-Operational",
+                    getModuleNames(cmHandleQueryServiceParameters.getCmHandleQueryParameters()))
+                    .parallelStream().map(Anchor::getName).collect(Collectors.toList());
+
+            getAllCmHandles().forEach(dataNode -> {
+                if (anchorNames.contains(dataNode.getLeaves().get("id").toString())) {
                     final DataNodeIdentifier dataNodeIdentifier =
                             jsonObjectMapper.convertToValueType(dataNode, DataNodeIdentifier.class);
                     amalgamatedQueryResultIdentifiers.add(dataNodeIdentifier);
                     amalgamatedQueryResults.put(dataNodeIdentifier, dataNode);
-                });
+                }
             });
+
             firstQuery = false;
         }
         return firstQuery;
