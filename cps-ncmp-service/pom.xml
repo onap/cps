@@ -3,6 +3,7 @@
   ============LICENSE_START=======================================================
   Copyright (C) 2021-2022 Nordix Foundation
   Modifications Copyright (C) 2021 Pantheon.tech
+ Modifications Copyright (C) 2022 Bell Canada
   ================================================================================
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -31,10 +32,10 @@
     </parent>
 
     <artifactId>cps-ncmp-service</artifactId>
-    <properties>
-    <minimum-coverage>0.93</minimum-coverage>
-    </properties>
 
+    <properties>
+        <minimum-coverage>0.96</minimum-coverage>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
