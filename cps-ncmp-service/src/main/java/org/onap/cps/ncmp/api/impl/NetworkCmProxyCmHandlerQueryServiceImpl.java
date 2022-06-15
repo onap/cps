@@ -63,17 +63,18 @@ public class NetworkCmProxyCmHandlerQueryServiceImpl implements NetworkCmProxyCm
      * @return collection of cm handles
      */
     @Override
-    public Collection<DataNode> queryCmHandles(final CmHandleQueryParameters cmHandleQueryParameters) {
+    public Collection<DataNode> queryCmHandles(final CmHandleQueryParameters cmHandleQueryParameters,
+                                               final boolean justIds) {
 
         if (cmHandleQueryParameters.getCmHandleQueryParameters().isEmpty()) {
-            return getAllCmHandles();
+            return getAllCmHandles(justIds);
         }
 
         final Collection<DataNodeIdentifier> amalgamatedQueryResultIdentifiers = new ArrayList<>();
         final Map<DataNodeIdentifier, DataNode> amalgamatedQueryResults = new HashMap<>();
 
         final boolean firstQuery = moduleNameQuery(cmHandleQueryParameters,
-                amalgamatedQueryResultIdentifiers, amalgamatedQueryResults);
+                amalgamatedQueryResultIdentifiers, amalgamatedQueryResults, justIds);
 
         publicPropertyQuery(cmHandleQueryParameters, amalgamatedQueryResultIdentifiers,
                 amalgamatedQueryResults, firstQuery);
@@ -124,21 +125,36 @@ public class NetworkCmProxyCmHandlerQueryServiceImpl implements NetworkCmProxyCm
 
     private boolean moduleNameQuery(final CmHandleQueryParameters cmHandleQueryParameters,
                                     final Collection<DataNodeIdentifier> amalgamatedQueryResultIdentifiers,
-                                    final Map<DataNodeIdentifier, DataNode> amalgamatedQueryResults) {
+                                    final Map<DataNodeIdentifier, DataNode> amalgamatedQueryResults,
+                                    final boolean justIds) {
         boolean firstQuery = true;
         if (!getModuleNames(cmHandleQueryParameters.getCmHandleQueryParameters()).isEmpty()) {
             final Collection<String> anchors = cpsAdminPersistenceService.queryAnchors("NFP-Operational",
                     getModuleNames(cmHandleQueryParameters.getCmHandleQueryParameters()))
                     .parallelStream().map(Anchor::getName).collect(Collectors.toList());
 
-            getAllCmHandles().forEach(dataNode -> {
-                if (anchors.contains(dataNode.getLeaves().get("id").toString())) {
-                    final DataNodeIdentifier dataNodeIdentifier =
-                            jsonObjectMapper.convertToValueType(dataNode, DataNodeIdentifier.class);
+            if (justIds) {
+                anchors.forEach(anchor -> {
+                    final DataNodeIdentifier dataNodeIdentifier = new DataNodeIdentifier();
+                    dataNodeIdentifier.setXpath("/dmi-registry/cm-handles[@id='" + anchor + "']");
+                    dataNodeIdentifier.setAnchorName(NCMP_DMI_REGISTRY_ANCHOR);
+                    dataNodeIdentifier.setDataspace(NCMP_DATASPACE_NAME);
+                    final DataNode dataNode =
+                            jsonObjectMapper.convertToValueType(dataNodeIdentifier, DataNode.class);
+                    dataNode.setLeaves(Collections.singletonMap("id", anchor));
                     amalgamatedQueryResultIdentifiers.add(dataNodeIdentifier);
                     amalgamatedQueryResults.put(dataNodeIdentifier, dataNode);
-                }
-            });
+                });
+            } else {
+                getAllCmHandles(false).forEach(dataNode -> {
+                    if (anchors.contains(dataNode.getLeaves().get("id").toString())) {
+                        final DataNodeIdentifier dataNodeIdentifier =
+                                jsonObjectMapper.convertToValueType(dataNode, DataNodeIdentifier.class);
+                        amalgamatedQueryResultIdentifiers.add(dataNodeIdentifier);
+                        amalgamatedQueryResults.put(dataNodeIdentifier, dataNode);
+                    }
+                });
+            }
 
             firstQuery = false;
         }
@@ -172,8 +188,23 @@ public class NetworkCmProxyCmHandlerQueryServiceImpl implements NetworkCmProxyCm
         return result;
     }
 
-    private Collection<DataNode> getAllCmHandles() {
-        return getDataNodes("//public-properties/ancestor::cm-handles");
+    private Collection<DataNode> getAllCmHandles(final boolean justIds) {
+        if (justIds) {
+            final Collection<String> anchors = cpsAdminPersistenceService.getAnchors("NFP-Operational")
+                    .parallelStream().map(Anchor::getName).collect(Collectors.toList());
+            return anchors.stream().map(anchor -> {
+                final DataNodeIdentifier dataNodeIdentifier = new DataNodeIdentifier();
+                dataNodeIdentifier.setXpath("/dmi-registry/cm-handles[@id='" + anchor + "']");
+                dataNodeIdentifier.setAnchorName(NCMP_DMI_REGISTRY_ANCHOR);
+                dataNodeIdentifier.setDataspace(NCMP_DATASPACE_NAME);
+                final DataNode dataNode =
+                        jsonObjectMapper.convertToValueType(dataNodeIdentifier, DataNode.class);
+                dataNode.setLeaves(Collections.singletonMap("id", anchor));
+                return dataNode;
+            }).collect(Collectors.toSet());
+        } else {
+            return getDataNodes("//public-properties/ancestor::cm-handles");
+        }
     }
 
     private List<DataNode> getDataNodes(final String cmHandlePath) {

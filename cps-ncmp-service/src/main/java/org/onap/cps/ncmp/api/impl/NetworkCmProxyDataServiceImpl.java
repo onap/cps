@@ -41,7 +41,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.ncmp.api.NetworkCmProxyCmHandlerQueryService;
@@ -52,7 +51,6 @@ import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.inventory.CmHandleState;
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
-import org.onap.cps.ncmp.api.inventory.sync.ModuleSyncService;
 import org.onap.cps.ncmp.api.models.CmHandleQueryApiParameters;
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse;
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationError;
@@ -64,6 +62,7 @@ import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.spi.exceptions.SchemaSetNotFoundException;
 import org.onap.cps.spi.model.CmHandleQueryParameters;
+import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.ModuleReference;
 import org.onap.cps.utils.CpsValidator;
 import org.onap.cps.utils.JsonObjectMapper;
@@ -83,13 +82,9 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     private final CpsModuleService cpsModuleService;
 
-    private final CpsAdminService cpsAdminService;
-
     private final NetworkCmProxyDataServicePropertyHandler networkCmProxyDataServicePropertyHandler;
 
     private final InventoryPersistence inventoryPersistence;
-
-    private final ModuleSyncService moduleSyncService;
 
     private final NetworkCmProxyCmHandlerQueryService networkCmProxyCmHandlerQueryService;
 
@@ -166,16 +161,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
      */
     @Override
     public Set<NcmpServiceCmHandle> executeCmHandleSearch(final CmHandleQueryApiParameters cmHandleQueryApiParameters) {
-
-        final CmHandleQueryParameters cmHandleQueryParameters = jsonObjectMapper.convertToValueType(
-                cmHandleQueryApiParameters, CmHandleQueryParameters.class);
-
-        validateCmHandleQueryParameters(cmHandleQueryParameters);
-
-        return networkCmProxyCmHandlerQueryService.queryCmHandles(cmHandleQueryParameters).stream()
-                .map(dataNode -> YangDataConverter
-                        .convertCmHandleToYangModel(dataNode, dataNode.getLeaves().get("id").toString()))
-                .map(YangDataConverter::convertYangModelCmHandleToNcmpServiceCmHandle).collect(Collectors.toSet());
+        return executeCmHandleSearchInternal(cmHandleQueryApiParameters, false);
     }
 
     /**
@@ -186,8 +172,8 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
      */
     @Override
     public Set<String> executeCmHandleIdSearch(final CmHandleQueryApiParameters cmHandleQueryApiParameters) {
-        return executeCmHandleSearch(cmHandleQueryApiParameters).stream().map(NcmpServiceCmHandle::getCmHandleId)
-                .collect(Collectors.toSet());
+        return executeCmHandleSearchInternal(cmHandleQueryApiParameters, true).stream()
+                .map(NcmpServiceCmHandle::getCmHandleId).collect(Collectors.toSet());
     }
 
     /**
@@ -279,6 +265,29 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             }
         }
         return cmHandleRegistrationResponses;
+    }
+
+    private Set<NcmpServiceCmHandle> executeCmHandleSearchInternal(
+            final CmHandleQueryApiParameters cmHandleQueryApiParameters, final boolean justIds) {
+        final CmHandleQueryParameters cmHandleQueryParameters = jsonObjectMapper.convertToValueType(
+                cmHandleQueryApiParameters, CmHandleQueryParameters.class);
+
+        validateCmHandleQueryParameters(cmHandleQueryParameters);
+
+        final Collection<DataNode> dataNodes = networkCmProxyCmHandlerQueryService
+                .queryCmHandles(cmHandleQueryParameters, justIds);
+        if (justIds) {
+            return dataNodes.stream().map(dataNode -> {
+                final NcmpServiceCmHandle ncmpServiceCmHandle = new NcmpServiceCmHandle();
+                ncmpServiceCmHandle.setCmHandleId(dataNode.getLeaves().get("id").toString());
+                return ncmpServiceCmHandle;
+            }).collect(Collectors.toSet());
+        } else {
+            return dataNodes.stream()
+                    .map(dataNode -> YangDataConverter
+                            .convertCmHandleToYangModel(dataNode, dataNode.getLeaves().get("id").toString()))
+                    .map(YangDataConverter::convertYangModelCmHandleToNcmpServiceCmHandle).collect(Collectors.toSet());
+        }
     }
 
     private void deleteSchemaSetWithCascade(final String schemaSetName) {

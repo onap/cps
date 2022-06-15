@@ -58,12 +58,10 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
 
     def mockCpsDataService = Mock(CpsDataService)
     def mockCpsModuleService = Mock(CpsModuleService)
-    def mockCpsAdminService = Mock(CpsAdminService)
     def spiedJsonObjectMapper = Spy(new JsonObjectMapper(new ObjectMapper()))
     def mockDmiDataOperations = Mock(DmiDataOperations)
     def nullNetworkCmProxyDataServicePropertyHandler = null
     def mockInventoryPersistence = Mock(InventoryPersistence)
-    def mockModuleSyncService = Mock(ModuleSyncService)
     def mockDmiPluginRegistration = Mock(DmiPluginRegistration)
     def mockCpsCmHandlerQueryService = Mock(NetworkCmProxyCmHandlerQueryService)
 
@@ -75,8 +73,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: 'some-cm-handle-id')
 
     def objectUnderTest = new NetworkCmProxyDataServiceImpl(mockCpsDataService, spiedJsonObjectMapper, mockDmiDataOperations,
-        mockCpsModuleService, mockCpsAdminService, nullNetworkCmProxyDataServicePropertyHandler, mockInventoryPersistence,
-        mockModuleSyncService, mockCpsCmHandlerQueryService)
+        mockCpsModuleService, nullNetworkCmProxyDataServicePropertyHandler, mockInventoryPersistence, mockCpsCmHandlerQueryService)
 
     def cmHandleXPath = "/dmi-registry/cm-handles[@id='testCmHandle']"
 
@@ -258,7 +255,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             conditionProperties.conditionParameters = [[moduleName: 'module-name-1']]
             cmHandleQueryParameters.cmHandleQueryParameters = [conditionProperties]
         and: 'query cm handle method return with a data node list'
-            mockCpsCmHandlerQueryService.queryCmHandles(cmHandleQueryParameters) >> [new DataNode(leaves: [id: 'cm-handle-id-1'])]
+            mockCpsCmHandlerQueryService.queryCmHandles(cmHandleQueryParameters, true) >> [new DataNode(leaves: [id: 'cm-handle-id-1'])]
         when: 'execute cm handle search is called'
             def result = objectUnderTest.executeCmHandleIdSearch(cmHandleQueryApiParameters)
         then: 'result is the same collection as returned by the CPS Data Service'
