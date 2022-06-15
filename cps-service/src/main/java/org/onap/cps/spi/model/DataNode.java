@@ -25,12 +25,11 @@ package org.onap.cps.spi.model;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
-import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter(AccessLevel.PROTECTED)
+@Setter
 @Getter
 @EqualsAndHashCode
 public class DataNode {
