@@ -29,7 +29,8 @@ public interface NetworkCmProxyCmHandlerQueryService {
      * Query and return cm handles that match the given query parameters.
      *
      * @param cmHandleQueryServiceParameters the cm handle query parameters
+     * @param justIds when it is true, the dataNodes contains just the ids leave
      * @return collection of cm handles
      */
-    Collection<DataNode> queryCmHandles(CmHandleQueryServiceParameters cmHandleQueryServiceParameters);
+    Collection<DataNode> queryCmHandles(CmHandleQueryServiceParameters cmHandleQueryServiceParameters, boolean justIds);
 }

@@ -31,7 +31,6 @@ import lombok.Setter;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class DataNodeIdentifier {
     private String dataspace;
-    private String schemaSetName;
     private String anchorName;
     private String xpath;
 }
