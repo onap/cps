@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "628393e8_6d723afe",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/NcmpEventsGenerator.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-06-15T08:29:12Z",
+      "side": 1,
+      "message": "NB: I would call this NcmpEventsCreator",
+      "range": {
+        "startLine": 43,
+        "startChar": 13,
+        "endLine": 43,
+        "endChar": 33
+      },
+      "revId": "ec19d3debaa453cda34e3020ff4b85c059b424ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "695c58c0_d6c20238",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/NcmpEventsGeneratorSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-06-15T08:29:12Z",
+      "side": 1,
+      "message": "NB: rather than adding an if condition, perhaps additional entries into a data table for expected size and cmHandleProperties might be cleaner?",
+      "range": {
+        "startLine": 48,
+        "startChar": 12,
+        "endLine": 48,
+        "endChar": 36
+      },
+      "revId": "ec19d3debaa453cda34e3020ff4b85c059b424ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
