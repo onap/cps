@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b6272127_a7093d36",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncSpec.groovy",
+        "patchSetId": 16
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-15T11:47:32Z",
+      "side": 1,
+      "message": "Updation of composite state is already done to ADVISED into executeLockedMisbehavingCmHandlePoll method at line no 101. line no 103 and 104 is redundent here that can be removed.",
+      "range": {
+        "startLine": 103,
+        "startChar": 12,
+        "endLine": 104,
+        "endChar": 85
+      },
+      "revId": "5bc92fd732ce544bc0bd9304657f7d93db724ff8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
