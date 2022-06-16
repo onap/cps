@@ -33,7 +33,7 @@ import org.springframework.validation.annotation.Validated;
 
 @EnableAsync
 @Configuration
-@ConditionalOnProperty(name = "notification.async.enabled", havingValue = "true", matchIfMissing = false)
+@ConditionalOnProperty(name = "notification.enabled", havingValue = "true", matchIfMissing = false)
 @ConfigurationProperties("notification.async.executor")
 @Validated
 @Setter

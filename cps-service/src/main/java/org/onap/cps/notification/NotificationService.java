@@ -33,6 +33,7 @@ import javax.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.spi.model.Anchor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
@@ -47,6 +48,9 @@ public class NotificationService {
     private final NotificationErrorHandler notificationErrorHandler;
     private List<Pattern> dataspacePatterns;
 
+    @Value("${notification.enabled:true}")
+    private boolean enabled;
+
     @PostConstruct
     public void init() {
         log.info("Notification Properties {}", notificationProperties);
@@ -54,7 +58,7 @@ public class NotificationService {
     }
 
     private List<Pattern> getDataspaceFilterPatterns(final NotificationProperties notificationProperties) {
-        if (notificationProperties.isEnabled()) {
+        if (enabled) {
             return Arrays.stream(notificationProperties.getFilters()
                 .getOrDefault("enabled-dataspaces", "")
                 .split(","))
@@ -100,8 +104,7 @@ public class NotificationService {
         Add more complex rules based on dataspace and anchor later
      */
     private boolean shouldSendNotification(final String dataspaceName) {
-
-        return notificationProperties.isEnabled()
+        return enabled
             && dataspacePatterns.stream()
             .anyMatch(pattern -> pattern.matcher(dataspaceName).find());
     }

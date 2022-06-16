@@ -36,6 +36,5 @@ public class NotificationProperties {
     @NotNull
     private String topic;
     private Map<String, String> filters = Collections.emptyMap();
-    @NotNull
-    private boolean enabled = false;
+
 }
