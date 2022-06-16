@@ -1,5 +1,5 @@
 #  ============LICENSE_START=======================================================
-#  Copyright (C) 2021 Nordix Foundation
+#  Copyright (C) 2021-2022 Nordix Foundation
 #  Modifications Copyright (C) 2021 Bell Canada.
 #  ================================================================================
 #  Licensed under the Apache License, Version 2.0 (the "License");
@@ -23,6 +23,7 @@ rest:
         ncmp-inventory-base-path: /ncmpInventory
 
 notification:
+    enabled: true
     async:
         executor:
             time-out-value-in-ms: 2000

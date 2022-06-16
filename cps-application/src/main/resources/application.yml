@@ -88,14 +88,14 @@ app:
             topic: ${NCMP_ASYNC_M2M_TOPIC:ncmp-async-m2m}
         events:
             topic: ${NCMP_EVENTS_TOPIC:ncmp-events}
+
 notification:
+    enabled: true
     data-updated:
-        enabled: false
         topic: ${CPS_CHANGE_EVENT_TOPIC:cps.data-updated-events}
         filters:
             enabled-dataspaces: ${NOTIFICATION_DATASPACE_FILTER_PATTERNS:""}
     async:
-        enabled: false
         executor:
             core-pool-size: 2
             max-pool-size: 10
