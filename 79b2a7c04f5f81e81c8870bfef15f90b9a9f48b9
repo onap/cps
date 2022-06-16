@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "83cf3524_5c2280b7",
+        "filename": "csit/tests/cps-model-sync/cps-model-sync.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-06-16T14:16:21Z",
+      "side": 1,
+      "message": "Should we use sleep or add a new csit test case to manually update the Cm-Handle State\nusing the following endpoint \n\n/v1/dataspaces/{dataspace-name}/anchors/{anchor-name}/nodes",
+      "range": {
+        "startLine": 90,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 15
+      },
+      "revId": "79b2a7c04f5f81e81c8870bfef15f90b9a9f48b9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
