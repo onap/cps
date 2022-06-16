@@ -16,74 +16,12 @@
 # limitations under the License.
 # ============LICENSE_END=========================================================
 
-version: "3.7"
+version: "3.3"
+
+### docker-compose up -d -> run ALL services ###
+### to disable notifications make notification.enabled to false & comment out kafka/zookeeper services ###
 
 services:
-  ### Services cps-service, cps-ncmp, zookeeper and kafka are commented below, these
-  ### services can be un-commented and used on need to use basis. Only minimal
-  ### services will run (dbpostgresql, cps-and-ncmp and ncmp-dmi-plugin) by default.
-
-  #cps-standalone:
-  #  container_name: cps-service
-  #  image: ${DOCKER_REPO:-nexus3.onap.org:10003}/onap/cps-service:${VERSION:-latest}
-  #  ports:
-  #    - "8881:8080"
-  #    - "8887:8081"
-  #  environment:
-  #    CPS_USERNAME: ${CPS_CORE_USERNAME:-cpsuser}
-  #    CPS_PASSWORD: ${CPS_CORE_PASSWORD:-cpsr0cks!}
-  #    DB_HOST: dbpostgresql
-  #    DB_USERNAME: ${DB_USERNAME:-cps}
-  #    DB_PASSWORD: ${DB_PASSWORD:-cps}
-  #    #KAFKA_BOOTSTRAP_SERVER: kafka:9092
-  #    #notification.data-updated.enabled: 'true'
-  #    #NOTIFICATION_DATASPACE_FILTER_PATTERNS: '.*'
-  #  restart: unless-stopped
-  #  depends_on:
-  #    - dbpostgresql
-
-  #ncmp-standalone:
-  #  container_name: cps-ncmp
-  #  image: ${DOCKER_REPO:-nexus3.onap.org:10003}/onap/cps-ncmp:${VERSION:-latest}
-  #  ports:
-  #    - "8882:8080"
-  #    - "8887:8081"
-  #  environment:
-  #    CPS_USERNAME: ${CPS_CORE_USERNAME:-cpsuser}
-  #    CPS_PASSWORD: ${CPS_CORE_PASSWORD:-cpsr0cks!}
-  #    DB_HOST: dbpostgresql
-  #    DB_USERNAME: ${DB_USERNAME:-cps}
-  #    DB_PASSWORD: ${DB_PASSWORD:-cps}
-  #    DMI_USERNAME: ${DMI_USERNAME:-cpsuser}
-  #    DMI_PASSWORD: ${DMI_PASSWORD:-cpsr0cks!}
-  #    #KAFKA_BOOTSTRAP_SERVER: kafka:9092
-  #    #notification.data-updated.enabled: 'true'
-  #    #NOTIFICATION_DATASPACE_FILTER_PATTERNS: '.*'
-  #  restart: unless-stopped
-  #  depends_on:
-  #    - dbpostgresql
-
-  #  zookeeper:
-  #    image: confluentinc/cp-zookeeper:6.2.1
-  #    environment:
-  #      ZOOKEEPER_CLIENT_PORT: 2181
-  #      ZOOKEEPER_TICK_TIME: 2000
-  #    ports:
-  #      - 22181:2181
-  #
-  #  kafka:
-  #    image: confluentinc/cp-kafka:6.2.1
-  #    depends_on:
-  #      - zookeeper
-  #    ports:
-  #      - 29092:29092
-  #    environment:
-  #      KAFKA_BROKER_ID: 1
-  #      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-  #      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
-  #      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
-  #      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
-  #      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
 
   dbpostgresql:
     container_name: dbpostgresql
@@ -110,37 +48,14 @@ services:
       DMI_USERNAME: ${DMI_USERNAME:-cpsuser}
       DMI_PASSWORD: ${DMI_PASSWORD:-cpsr0cks!}
       KAFKA_BOOTSTRAP_SERVER: kafka:9092
-      notification.data-updated.enabled: 'true'
+      notification.enabled: 'true'
+      notification.async.executor.time-out-value-in-ms: 2000
       NOTIFICATION_DATASPACE_FILTER_PATTERNS: '.*'
       TIMERS_ADVISED-MODULES-SYNC_SLEEP-TIME-MS: 2000
     restart: unless-stopped
     depends_on:
       - dbpostgresql
 
-  ### if kafka is not required comment out zookeeper and kafka ###
-  zookeeper:
-    image: confluentinc/cp-zookeeper:6.2.1
-    container_name: zookeeper
-    ports:
-      - '2181:2181'
-    environment:
-      ZOOKEEPER_CLIENT_PORT: 2181
-
-  kafka:
-    image: confluentinc/cp-kafka:6.2.1
-    container_name: kafka
-    ports:
-      - "19092:19092"
-    depends_on:
-      - zookeeper
-    environment:
-      KAFKA_BROKER_ID: 1
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,CONNECTIONS_FROM_HOST://localhost:19092
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,CONNECTIONS_FROM_HOST:PLAINTEXT
-      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-
-  ### Comment out this section if dmi plugin is not required ###
   ncmp-dmi-plugin:
     container_name: ncmp-dmi-plugin
     image: ${DOCKER_REPO:-nexus3.onap.org:10003}/onap/ncmp-dmi-plugin:${DMI_VERSION:-1.2.0-SNAPSHOT-latest}
@@ -165,3 +80,25 @@ services:
       notification.data-updated.enabled: 'true'
       NOTIFICATION_DATASPACE_FILTER_PATTERNS: '.*'
     restart: unless-stopped
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:6.2.1
+    container_name: zookeeper
+    ports:
+      - '2181:2181'
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+
+  kafka:
+    image: confluentinc/cp-kafka:6.2.1
+    container_name: kafka
+    ports:
+      - "19092:19092"
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,CONNECTIONS_FROM_HOST://localhost:19092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,CONNECTIONS_FROM_HOST:PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
