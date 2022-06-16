@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "28277f2d_0b7e0e86",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-06-16T13:06:15Z",
+      "side": 1,
+      "message": "Personally I would write two separate tests for null, and non null properties and module names. This would shorten the amount of scenarios below, and remove the need for if statements and also shorten the test, making it overall easier to read.",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 13
+      },
+      "revId": "77bbfe68be99e8cc097fbee34896e8e14aed2fc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
