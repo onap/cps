@@ -63,7 +63,7 @@ import org.onap.cps.spi.exceptions.AlreadyDefinedException;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.spi.exceptions.SchemaSetNotFoundException;
-import org.onap.cps.spi.model.CmHandleQueryParameters;
+import org.onap.cps.spi.model.CmHandleQueryServiceParameters;
 import org.onap.cps.spi.model.ModuleReference;
 import org.onap.cps.utils.CpsValidator;
 import org.onap.cps.utils.JsonObjectMapper;
@@ -167,12 +167,12 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     @Override
     public Set<NcmpServiceCmHandle> executeCmHandleSearch(final CmHandleQueryApiParameters cmHandleQueryApiParameters) {
 
-        final CmHandleQueryParameters cmHandleQueryParameters = jsonObjectMapper.convertToValueType(
-                cmHandleQueryApiParameters, CmHandleQueryParameters.class);
+        final CmHandleQueryServiceParameters cmHandleQueryServiceParameters = jsonObjectMapper.convertToValueType(
+                cmHandleQueryApiParameters, CmHandleQueryServiceParameters.class);
 
-        validateCmHandleQueryParameters(cmHandleQueryParameters);
+        validateCmHandleQueryParameters(cmHandleQueryServiceParameters);
 
-        return networkCmProxyCmHandlerQueryService.queryCmHandles(cmHandleQueryParameters).stream()
+        return networkCmProxyCmHandlerQueryService.queryCmHandles(cmHandleQueryServiceParameters).stream()
                 .map(dataNode -> YangDataConverter
                         .convertCmHandleToYangModel(dataNode, dataNode.getLeaves().get("id").toString()))
                 .map(YangDataConverter::convertYangModelCmHandleToNcmpServiceCmHandle).collect(Collectors.toSet());

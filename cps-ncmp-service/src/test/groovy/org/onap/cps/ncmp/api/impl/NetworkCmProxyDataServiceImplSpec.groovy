@@ -33,7 +33,7 @@ import org.onap.cps.ncmp.api.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.ncmp.api.inventory.sync.ModuleSyncService
-import org.onap.cps.spi.model.CmHandleQueryParameters
+import org.onap.cps.spi.model.CmHandleQueryServiceParameters
 import org.onap.cps.spi.model.ConditionProperties
 import spock.lang.Shared
 
@@ -252,7 +252,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             conditionApiProperties.conditionParameters = [[moduleName: 'module-name-1']]
             cmHandleQueryApiParameters.cmHandleQueryParameters = [conditionApiProperties]
         and: 'valid CmHandleQueryParameters input'
-            def cmHandleQueryParameters = new CmHandleQueryParameters()
+            def cmHandleQueryParameters = new CmHandleQueryServiceParameters()
             def conditionProperties = new ConditionProperties()
             conditionProperties.conditionName = 'hasAllModules'
             conditionProperties.conditionParameters = [[moduleName: 'module-name-1']]

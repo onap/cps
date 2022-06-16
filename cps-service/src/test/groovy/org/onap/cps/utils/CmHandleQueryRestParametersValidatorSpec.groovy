@@ -21,14 +21,14 @@
 package org.onap.cps.utils
 
 import org.onap.cps.spi.exceptions.DataValidationException
-import org.onap.cps.spi.model.CmHandleQueryParameters
+import org.onap.cps.spi.model.CmHandleQueryServiceParameters
 import org.onap.cps.spi.model.ConditionProperties
 import spock.lang.Specification
 
 class CmHandleQueryRestParametersValidatorSpec extends Specification {
     def 'CM Handle Query validation: empty query.'() {
         given: 'a cm handle query'
-            def cmHandleQueryParameters = new CmHandleQueryParameters()
+            def cmHandleQueryParameters = new CmHandleQueryServiceParameters()
         when: 'validator is invoked'
             CmHandleQueryRestParametersValidator.validateCmHandleQueryParameters(cmHandleQueryParameters)
         then: 'data validation exception is not thrown'
@@ -37,7 +37,7 @@ class CmHandleQueryRestParametersValidatorSpec extends Specification {
 
     def 'CM Handle Query validation: normal query.'() {
         given: 'a cm handle query'
-            def cmHandleQueryParameters = new CmHandleQueryParameters()
+            def cmHandleQueryParameters = new CmHandleQueryServiceParameters()
             def condition = new ConditionProperties()
             condition.conditionName = 'hasAllProperties'
             condition.conditionParameters = [[key1:'value1'],[key2:'value2']]
@@ -50,7 +50,7 @@ class CmHandleQueryRestParametersValidatorSpec extends Specification {
 
     def 'CM Handle Query validation: #scenario.'() {
         given: 'a cm handle query'
-            def cmHandleQueryParameters = new CmHandleQueryParameters()
+            def cmHandleQueryParameters = new CmHandleQueryServiceParameters()
             def condition = new ConditionProperties()
             condition.conditionName = conditionName
             condition.conditionParameters = conditionParameters

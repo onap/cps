@@ -40,9 +40,11 @@ public class DeprecationHelper {
      * !!! remove it after the old condition removed !!!
      * it only works for module names
      *
+     * @deprecated this method will be removed in Release 12 (No Name know yet)
+     *
      * @param cmHandleQueryParameters the original input parameter
      */
-    @Deprecated //this method wil be removed in Release 12 (No Name know yet)
+    @Deprecated
     public CmHandleQueryApiParameters mapOldConditionProperties(
                                            final CmHandleQueryParameters cmHandleQueryParameters) {
         final CmHandleQueryApiParameters cmHandleQueryApiParameters =
