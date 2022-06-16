@@ -22,6 +22,30 @@
       "revId": "9c3541e917e54660d9aa6ace0875026858c52af2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f51ab63e_a898d7df",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 5658
+      },
+      "writtenOn": "2022-06-16T14:29:39Z",
+      "side": 1,
+      "message": "No, image \"3.1.0\" does not exit yet (this is why line 19 is mentioning \"not released yet\").",
+      "parentUuid": "8498cdb2_d83cdece",
+      "range": {
+        "startLine": 29,
+        "startChar": 41,
+        "endLine": 29,
+        "endChar": 66
+      },
+      "revId": "9c3541e917e54660d9aa6ace0875026858c52af2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
