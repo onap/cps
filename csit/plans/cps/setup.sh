@@ -58,21 +58,20 @@ export $(cut -d= -f1 $WORKSPACE/plans/cps/test.properties)
 
 ###################### setup cps-ncmp ############################
 mkdir -p $WORKSPACE/archives/dc-cps
-cp $WORKSPACE/../docker-compose/*.yml $WORKSPACE/archives/dc-cps
+cp $WORKSPACE/../docker-compose/*.yaml $WORKSPACE/archives/dc-cps
 cd $WORKSPACE/archives/dc-cps
 
-# download docker-compose of a required version (1.25.0 supports configuration of version 3.7)
-curl -L https://github.com/docker/compose/releases/download/1.25.0/docker-compose-`uname -s`-`uname -m` > docker-compose
+curl -L https://github.com/docker/compose/releases/download/1.29.2/docker-compose-`uname -s`-`uname -m` > docker-compose
 chmod +x docker-compose
 
 # start CPS/NCMP, DMI, and PostgreSQL containers with docker compose
-./docker-compose up -d
+docker-compose up -d
 
 ###################### setup sdnc #######################################
 source $WORKSPACE/plans/cps/sdnc/sdnc_setup.sh
 
 ###################### setup pnfsim #####################################
-docker-compose -f $WORKSPACE/plans/cps/pnfsim/docker-compose.yml up -d
+docker-compose -f $WORKSPACE/plans/cps/pnfsim/compose.yaml up -d
 
 # Allow time for netconf-pnp-simulator & SDNC to come up fully
 sleep 30s

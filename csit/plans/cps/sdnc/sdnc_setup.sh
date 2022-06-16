@@ -23,8 +23,8 @@
 
 export SDNC_CERT_PATH=$WORKSPACE/plans/cps/sdnc/certs
 
-#start SDNC containers with docker compose and configuration from docker-compose.yml
-docker-compose -f $WORKSPACE/plans/cps/sdnc/docker-compose.yml up -d
+#start SDNC containers with docker compose and configuration from compose.yml
+docker-compose -f $WORKSPACE/plans/cps/sdnc/compose.yaml up -d
 
 # WAIT 10 minutes maximum and test every 30 seconds if SDNC is up using HealthCheck API
 TIME_OUT=600
