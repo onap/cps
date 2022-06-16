@@ -1,6 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  * Copyright (c) 2021 Bell Canada.
+ * Modifications Copyright (C) 2022 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,7 +34,7 @@ import org.springframework.validation.annotation.Validated;
 
 @EnableAsync
 @Configuration
-@ConditionalOnProperty(name = "notification.async.enabled", havingValue = "true", matchIfMissing = false)
+@ConditionalOnProperty(name = "notification.enabled", havingValue = "true", matchIfMissing = true)
 @ConfigurationProperties("notification.async.executor")
 @Validated
 @Setter

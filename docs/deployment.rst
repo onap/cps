@@ -246,15 +246,12 @@ Any spring supported property can be configured by providing in ``config.additio
 | config.additional.                    | Kafka topic to publish to cps-temporal                                                                  | ``cps.data-updated-events``   |
 | notification.data-updated.topic       |                                                                                                         |                               |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| config.additional.                    | If notification from cps-core to cps-temporal is enabled or not.                                        | ``true``                      |
-| notification.data-updated.enabled     | If this is set to false, then the config.publisher properties could be skipped.                         |                               |
-+---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
 | config.additional.                    | Dataspaces to be enabled for publishing events to cps-temporal                                          | ````                          |
 | notification.data-updated.filters.    |                                                                                                         |                               |
 | enabled-dataspaces                    |                                                                                                         |                               |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| config.additional.                    | If notifications should be processed in synchronous or asynchronous manner                              | ``false``                     |
-| notification.async.enabled            |                                                                                                         |                               |
+| config.additional.                    | If notifications should be turned on and processed                                                      | ``true``                     |
+| notification.enabled                  |                                                                                                         |                               |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
 | config.additional.                    | Core pool size in asynchronous execution of notification.                                               | ``2``                         |
 | notification.async.executor.          |                                                                                                         |                               |

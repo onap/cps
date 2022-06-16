@@ -47,17 +47,23 @@ public class NcmpEventsService {
     @Value("${app.ncmp.events.topic:ncmp-events}")
     private String topicName;
 
+    @Value("${notification.enabled:true}")
+    private boolean lcmEventsEnabled;
+
     /**
      * Publish the NcmpEvent to the public topic.
      *
      * @param cmHandleId Cm Handle Id
      */
     public void publishNcmpEvent(final String cmHandleId) {
-
-        final NcmpServiceCmHandle ncmpServiceCmHandle = YangDataConverter.convertYangModelCmHandleToNcmpServiceCmHandle(
-                inventoryPersistence.getYangModelCmHandle(cmHandleId));
-        final NcmpEvent ncmpEvent = ncmpEventsCreator.populateNcmpEvent(cmHandleId, ncmpServiceCmHandle);
-        ncmpEventsPublisher.publishEvent(topicName, cmHandleId, ncmpEvent);
-
+        if (lcmEventsEnabled) {
+            final NcmpServiceCmHandle ncmpServiceCmHandle =
+                YangDataConverter.convertYangModelCmHandleToNcmpServiceCmHandle(
+                    inventoryPersistence.getYangModelCmHandle(cmHandleId));
+            final NcmpEvent ncmpEvent = ncmpEventsCreator.populateNcmpEvent(cmHandleId, ncmpServiceCmHandle);
+            ncmpEventsPublisher.publishEvent(topicName, cmHandleId, ncmpEvent);
+        } else {
+            log.info("lcm notifications disabled.");
+        }
     }
 }
