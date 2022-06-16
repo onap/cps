@@ -66,7 +66,7 @@ curl -L https://github.com/docker/compose/releases/download/1.25.0/docker-compos
 chmod +x docker-compose
 
 # start CPS/NCMP, DMI, and PostgreSQL containers with docker compose
-./docker-compose up -d
+docker-compose --profile with_kafka up -d
 
 ###################### setup sdnc #######################################
 source $WORKSPACE/plans/cps/sdnc/sdnc_setup.sh
