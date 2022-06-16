@@ -88,6 +88,7 @@ app:
             topic: ${NCMP_ASYNC_M2M_TOPIC:ncmp-async-m2m}
         events:
             topic: ${NCMP_EVENTS_TOPIC:ncmp-events}
+
 notification:
     data-updated:
         enabled: false
@@ -103,6 +104,9 @@ notification:
             wait-for-tasks-to-complete-on-shutdown: true
             thread-name-prefix: Async-
             time-out-value-in-ms: 2000
+    lcm:
+        events:
+            enabled: false
 
 springdoc:
     swagger-ui:
