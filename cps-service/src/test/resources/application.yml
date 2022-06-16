@@ -18,13 +18,12 @@
 #  ============LICENSE_END=========================================================
 
 notification:
+  enabled: true
   data-updated:
     filters:
       enabled-dataspaces: ".*-published,.*-important"
-    enabled: true
     topic: cps-event
   async:
-    enabled: true
     executor:
       core-pool-size: 2
       max-pool-size: 10
