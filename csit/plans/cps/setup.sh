@@ -62,11 +62,11 @@ cp $WORKSPACE/../docker-compose/*.yml $WORKSPACE/archives/dc-cps
 cd $WORKSPACE/archives/dc-cps
 
 # download docker-compose of a required version (1.25.0 supports configuration of version 3.7)
-curl -L https://github.com/docker/compose/releases/download/1.25.0/docker-compose-`uname -s`-`uname -m` > docker-compose
+curl -L https://github.com/docker/compose/releases/download/2.6.0/docker-compose-`uname -s`-`uname -m` > docker-compose
 chmod +x docker-compose
 
 # start CPS/NCMP, DMI, and PostgreSQL containers with docker compose
-./docker-compose up -d
+docker-compose up -d
 
 ###################### setup sdnc #######################################
 source $WORKSPACE/plans/cps/sdnc/sdnc_setup.sh
@@ -131,4 +131,4 @@ check_health $DMI_HOST:$DMI_MANAGEMENT_PORT 'dmi-plugin'
 
 ###################### ROBOT Configurations ##########################
 # Pass variables required for Robot test suites in ROBOT_VARIABLES
-ROBOT_VARIABLES="-v CPS_CORE_HOST:$CPS_CORE_HOST -v CPS_CORE_PORT:$CPS_CORE_PORT -v DMI_HOST:$LOCAL_IP -v DMI_PORT:$DMI_PORT -v CPS_CORE_MANAGEMENT_PORT:$CPS_CORE_MANAGEMENT_PORT -v DATADIR:$WORKSPACE/data --exitonfailure"
+ROBOT_VARIABLES="-v CPS_CORE_HOST:$CPS_CORE_HOST -v CPS_CORE_PORT:$CPS_CORE_PORT -v DMI_HOST:$LOCAL_IP -v DMI_PORT:$DMI_PORT -v CPS_CORE_MANAGEMENT_PORT:$CPS_CORE_MANAGEMENT_PORT -v DATADIR:$WORKSPACE/data --exitonfailure""
