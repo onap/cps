@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8498cdb2_d83cdece",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-16T10:05:59Z",
+      "side": 1,
+      "message": "NB: it doesn\u0027t matter much for commit this update but has this image been buit yet?",
+      "range": {
+        "startLine": 29,
+        "startChar": 41,
+        "endLine": 29,
+        "endChar": 66
+      },
+      "revId": "9c3541e917e54660d9aa6ace0875026858c52af2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
