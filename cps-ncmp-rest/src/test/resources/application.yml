@@ -24,5 +24,6 @@ rest:
 
 notification:
     async:
+        enabled: true
         executor:
             time-out-value-in-ms: 2000
