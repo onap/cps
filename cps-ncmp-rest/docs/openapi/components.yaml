@@ -145,6 +145,30 @@ components:
           type: string
           example: my-module-revision
 
+    RestModuleDefinition:
+      type: object
+      title: Module definitions
+      properties:
+        moduleName:
+          type: string
+          example: my-module-name
+        revision:
+          type: string
+          example: my-module-revision
+        content:
+          type: string
+          example: |
+            module stores {
+            yang-version 1.1;
+            namespace "org:onap:ccsdk:sample";
+            prefix book-store;
+            revision "2020-09-15" {
+            description
+            "Sample Model";
+            }
+            }
+
+
     CmHandleQueryParameters:
       type: object
       title: Cm Handle query parameters for executing cm handle search

@@ -264,4 +264,12 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
         then: 'result is the same collection as returned by the CPS Data Service'
             assert result == ['cm-handle-id-1'] as Set
     }
+
+    def 'Getting module definitions.'() {
+        when: 'get module definitions method is called with a valid cm handle ID'
+            objectUnderTest.getModuleDefinitionsByCmHandleId('some-cm-handle')
+        then: 'CPS module services is invoked once'
+            1 * mockCpsModuleService.getModuleDefinitionsByCmHandleId('NFP-Operational', 'some-cm-handle')
+}
+
 }
