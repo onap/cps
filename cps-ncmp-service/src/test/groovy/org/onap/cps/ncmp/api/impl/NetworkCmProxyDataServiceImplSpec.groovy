@@ -32,7 +32,6 @@ import org.onap.cps.ncmp.api.models.ConditionApiProperties
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import org.onap.cps.spi.exceptions.DataValidationException
-import org.onap.cps.ncmp.api.inventory.sync.ModuleSyncService
 import org.onap.cps.spi.model.CmHandleQueryServiceParameters
 import org.onap.cps.spi.model.ConditionProperties
 import spock.lang.Shared
@@ -44,7 +43,6 @@ import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum
 
 import org.onap.cps.utils.JsonObjectMapper
 import com.fasterxml.jackson.databind.ObjectMapper
-import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations
@@ -58,12 +56,10 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
 
     def mockCpsDataService = Mock(CpsDataService)
     def mockCpsModuleService = Mock(CpsModuleService)
-    def mockCpsAdminService = Mock(CpsAdminService)
     def spiedJsonObjectMapper = Spy(new JsonObjectMapper(new ObjectMapper()))
     def mockDmiDataOperations = Mock(DmiDataOperations)
     def nullNetworkCmProxyDataServicePropertyHandler = null
     def mockInventoryPersistence = Mock(InventoryPersistence)
-    def mockModuleSyncService = Mock(ModuleSyncService)
     def mockDmiPluginRegistration = Mock(DmiPluginRegistration)
     def mockCpsCmHandlerQueryService = Mock(NetworkCmProxyCmHandlerQueryService)
 
@@ -75,8 +71,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: 'some-cm-handle-id')
 
     def objectUnderTest = new NetworkCmProxyDataServiceImpl(mockCpsDataService, spiedJsonObjectMapper, mockDmiDataOperations,
-        mockCpsModuleService, mockCpsAdminService, nullNetworkCmProxyDataServicePropertyHandler, mockInventoryPersistence,
-        mockModuleSyncService, mockCpsCmHandlerQueryService)
+        mockCpsModuleService, nullNetworkCmProxyDataServicePropertyHandler, mockInventoryPersistence, mockCpsCmHandlerQueryService)
 
     def cmHandleXPath = "/dmi-registry/cm-handles[@id='testCmHandle']"
 
@@ -264,4 +259,12 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
         then: 'result is the same collection as returned by the CPS Data Service'
             assert result == ['cm-handle-id-1'] as Set
     }
+
+    def 'Getting module definitions.'() {
+        when: 'get module definitions method is called with a valid cm handle ID'
+            objectUnderTest.getModuleDefinitionsByCmHandleId('some-cm-handle')
+        then: 'CPS module services is invoked once'
+            1 * mockInventoryPersistence.getModuleDefinitionsByCmHandleId('some-cm-handle')
+    }
+
 }
