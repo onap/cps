@@ -246,6 +246,33 @@ fetchModuleReferencesByCmHandle:
       500:
         $ref: 'components.yaml#/components/responses/InternalServerError'
 
+fetchModuleDefinitionsByCmHandle:
+  get:
+    description: Fetch all module definitions (name, revision, yang resource) for a given cm handle
+    tags:
+      - network-cm-proxy
+    summary: Fetch all module definitions (name, revision, yang resource) for a given cm handle
+    operationId: getModuleDefinitionsByCmHandleId
+    parameters:
+      - $ref: 'components.yaml#/components/parameters/cmHandleInPath'
+    responses:
+      200:
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: 'components.yaml#/components/schemas/RestModuleDefinition'
+      400:
+        $ref: 'components.yaml#/components/responses/BadRequest'
+      401:
+        $ref: 'components.yaml#/components/responses/Unauthorized'
+      403:
+        $ref: 'components.yaml#/components/responses/Forbidden'
+      500:
+        $ref: 'components.yaml#/components/responses/InternalServerError'
+
 searchCmHandles:
   post:
     description: Execute cm handle query search, to be included in the result a cm-handle must fulfill ALL the conditions listed here, if one of the given module names does not exists, return with an empty collection.
