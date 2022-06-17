@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "4dcc6988_1efb3166",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/CompositeStateBuilderSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-06-17T11:03:35Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "505cb0a7_3382458d",
+      "range": {
+        "startLine": 44,
+        "startChar": 79,
+        "endLine": 44,
+        "endChar": 80
+      },
+      "revId": "c3aea7864038658f79dc5f2e90cdf196ba40703a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e2815c15_d48b0cda",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/DataSyncSpec.groovy",
         "patchSetId": 15
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "93e9204b_6c233090",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/DataSyncSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-06-17T11:03:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e2815c15_d48b0cda",
+      "range": {
+        "startLine": 76,
+        "startChar": 12,
+        "endLine": 76,
+        "endChar": 42
+      },
+      "revId": "c3aea7864038658f79dc5f2e90cdf196ba40703a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c0209eae_1660a845",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/DataSyncSpec.groovy",
         "patchSetId": 15
@@ -68,6 +116,30 @@
       "revId": "c3aea7864038658f79dc5f2e90cdf196ba40703a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "faeb679f_4e90174b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/DataSyncSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-06-17T11:03:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c0209eae_1660a845",
+      "range": {
+        "startLine": 85,
+        "startChar": 14,
+        "endLine": 85,
+        "endChar": 41
+      },
+      "revId": "c3aea7864038658f79dc5f2e90cdf196ba40703a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
