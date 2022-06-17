@@ -28,7 +28,7 @@ import org.onap.cps.ncmp.api.inventory.CmHandleState
 import org.onap.cps.ncmp.api.inventory.CompositeState
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence
 import org.onap.cps.ncmp.api.inventory.LockReasonCategory
-import org.onap.cps.ncmp.api.inventory.SyncState
+import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
 import org.onap.cps.ncmp.api.models.CmHandleQueryApiParameters
 import org.onap.cps.ncmp.api.models.ConditionApiProperties
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration
@@ -297,10 +297,18 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             assert result == ['cm-handle-id-1'] as Set
     }
 
+    def 'Getting module definitions.'() {
+        when: 'get module definitions method is called with a valid cm handle ID'
+            objectUnderTest.getModuleDefinitionsByCmHandleId('some-cm-handle')
+        then: 'CPS module services is invoked once'
+            1 * mockInventoryPersistence.getModuleDefinitionsByCmHandleId('some-cm-handle')
+    }
+
+
     def dataStores() {
         CompositeState.DataStores.builder()
                 .operationalDataStore(CompositeState.Operational.builder()
-                        .syncState(SyncState.NONE_REQUESTED)
+                        .dataStoreSyncState(DataStoreSyncState.NONE_REQUESTED)
                         .lastSyncTime('some-timestamp').build()).build()
     }
 

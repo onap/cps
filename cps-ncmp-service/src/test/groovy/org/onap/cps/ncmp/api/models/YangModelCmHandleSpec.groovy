@@ -24,7 +24,7 @@ import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.inventory.CmHandleState
 import org.onap.cps.ncmp.api.inventory.CompositeStateBuilder
 import org.onap.cps.ncmp.api.inventory.LockReasonCategory
-import org.onap.cps.ncmp.api.inventory.SyncState
+import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
 import spock.lang.Specification
 
 import static org.onap.cps.ncmp.api.impl.operations.RequiredDmiService.DATA
@@ -43,7 +43,7 @@ class YangModelCmHandleSpec extends Specification {
                 .withCmHandleState(CmHandleState.LOCKED)
                 .withLastUpdatedTime('some-update-time')
                 .withLockReason(LockReasonCategory.LOCKED_MISBEHAVING, 'locked other details')
-                .withOperationalDataStores(SyncState.SYNCHRONIZED, 'some-sync-time').build()
+                .withOperationalDataStores(DataStoreSyncState.SYNCHRONIZED, 'some-sync-time').build()
             ncmpServiceCmHandle.setCompositeState(compositeState)
         when: 'it is converted to a yang model cm handle'
             def objectUnderTest = YangModelCmHandle.toYangModelCmHandle('', '', '', ncmpServiceCmHandle)

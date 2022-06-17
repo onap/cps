@@ -20,6 +20,6 @@
 
 package org.onap.cps.ncmp.api.inventory;
 
-public enum SyncState {
+public enum DataStoreSyncState {
     SYNCHRONIZED, UNSYNCHRONIZED, NONE_REQUESTED
 }

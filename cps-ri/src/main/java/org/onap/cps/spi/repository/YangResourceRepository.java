@@ -67,6 +67,17 @@ public interface YangResourceRepository extends JpaRepository<YangResourceEntity
     Set<YangResourceModuleReference> findAllModuleReferencesByDataspaceAndAnchor(
         @Param("dataspaceName") String dataspaceName, @Param("anchorName") String anchorName);
 
+    @Query(value = "SELECT DISTINCT yang_resource.*\n"
+            + "FROM dataspace\n"
+            + "JOIN anchor ON anchor.dataspace_id = dataspace.id\n"
+            + "JOIN schema_set ON schema_set.id = anchor.schema_set_id\n"
+            + "JOIN schema_set_yang_resources ON schema_set_yang_resources.schema_set_id = schema_set.id\n"
+            + "JOIN yang_resource ON yang_resource.id = schema_set_yang_resources.yang_resource_id\n"
+            + "WHERE dataspace.name = :dataspaceName "
+            + "AND anchor.name =:anchorName", nativeQuery = true)
+    Set<YangResourceEntity> findAllModuleDefinitionsByDataspaceAndAnchor(
+            @Param("dataspaceName") String dataspaceName, @Param("anchorName") String anchorName);
+
     @Query(value = "SELECT DISTINCT\n"
         + "yang_resource.*\n"
         + "FROM\n"

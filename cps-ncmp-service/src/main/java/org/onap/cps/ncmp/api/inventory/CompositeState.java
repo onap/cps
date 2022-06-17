@@ -94,7 +94,7 @@ public class CompositeState {
     public static class Operational {
 
         @JsonProperty("sync-state")
-        private SyncState syncState;
+        private DataStoreSyncState dataStoreSyncState;
 
         @JsonProperty("last-sync-time")
         private String lastSyncTime;

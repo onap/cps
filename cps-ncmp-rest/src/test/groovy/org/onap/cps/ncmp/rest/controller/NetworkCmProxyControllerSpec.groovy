@@ -26,12 +26,13 @@ package org.onap.cps.ncmp.rest.controller
 import org.mapstruct.factory.Mappers
 import org.onap.cps.ncmp.api.inventory.CmHandleState
 import org.onap.cps.ncmp.api.inventory.CompositeState
-import org.onap.cps.ncmp.api.inventory.SyncState
 import org.onap.cps.ncmp.api.inventory.LockReasonCategory
+import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.rest.mapper.CmHandleStateMapper
 import org.onap.cps.ncmp.rest.executor.CpsNcmpTaskExecutor
 import org.onap.cps.ncmp.rest.util.DeprecationHelper
+import org.onap.cps.spi.model.ModuleDefinition
 import spock.lang.Shared
 
 import java.time.OffsetDateTime
@@ -408,10 +409,24 @@ class NetworkCmProxyControllerSpec extends Specification {
             ':passthrough-running'     | 'passthrough-running'
     }
 
+    def 'Get module definitions based on cmHandleId.' () {
+        when: 'get module definition request is performed'
+            def response = mvc.perform(get("$ncmpBasePathV1/ch/some-cmhandle/modules/definitions"))
+                    .andReturn().response
+        then: 'ncmp service method to get module definitions is called'
+            mockNetworkCmProxyDataService.getModuleDefinitionsByCmHandleId('some-cmhandle')
+                    >> [new ModuleDefinition('sampleModuleName', '2021-10-03',
+                    String.format('module sampleModuleName{ %n sample module content %n }'))]
+        and: 'response contains an array with the module name, revision and content where content contains \\n for newlines'
+            response.getContentAsString() == '[{"moduleName":"sampleModuleName","revision":"2021-10-03","content":"module sampleModuleName{ \\n sample module content \\n }"}]'
+        and: 'response returns an OK http code'
+            response.status == HttpStatus.OK.value()
+    }
+
     def dataStores() {
         DataStores.builder()
             .operationalDataStore(Operational.builder()
-                .syncState(SyncState.NONE_REQUESTED)
+                .dataStoreSyncState(DataStoreSyncState.NONE_REQUESTED)
                 .lastSyncTime(formattedDateAndTime.toString()).build()).build()
     }
 

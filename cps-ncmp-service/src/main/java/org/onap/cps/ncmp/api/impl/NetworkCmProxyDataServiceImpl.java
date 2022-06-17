@@ -63,6 +63,7 @@ import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.spi.exceptions.SchemaSetNotFoundException;
 import org.onap.cps.spi.model.CmHandleQueryServiceParameters;
+import org.onap.cps.spi.model.ModuleDefinition;
 import org.onap.cps.spi.model.ModuleReference;
 import org.onap.cps.utils.CpsValidator;
 import org.onap.cps.utils.JsonObjectMapper;
@@ -151,6 +152,12 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     public Collection<ModuleReference> getYangResourcesModuleReferences(final String cmHandleId) {
         CpsValidator.validateNameCharacters(cmHandleId);
         return cpsModuleService.getYangResourcesModuleReferences(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId);
+    }
+
+    @Override
+    public Collection<ModuleDefinition> getModuleDefinitionsByCmHandleId(final String cmHandleId) {
+        CpsValidator.validateNameCharacters(cmHandleId);
+        return inventoryPersistence.getModuleDefinitionsByCmHandleId(cmHandleId);
     }
 
     /**
