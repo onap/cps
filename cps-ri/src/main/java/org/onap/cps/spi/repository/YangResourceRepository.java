@@ -24,6 +24,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 import javax.validation.constraints.NotNull;
+import org.onap.cps.spi.entities.YangResourceDefinition;
 import org.onap.cps.spi.entities.YangResourceEntity;
 import org.onap.cps.spi.entities.YangResourceModuleReference;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -66,6 +67,23 @@ public interface YangResourceRepository extends JpaRepository<YangResourceEntity
         + "anchor.name =:anchorName", nativeQuery = true)
     Set<YangResourceModuleReference> findAllModuleReferencesByDataspaceAndAnchor(
         @Param("dataspaceName") String dataspaceName, @Param("anchorName") String anchorName);
+
+    @Query(value = "SELECT DISTINCT\n"
+            + "yang_resource.module_Name AS module_name,\n"
+            + "yang_resource.revision AS revision,\n"
+            + "yang_resource.content AS content\n"
+            + "FROM\n"
+            + "dataspace\n"
+            + "JOIN anchor ON anchor.dataspace_id = dataspace.id\n"
+            + "JOIN schema_set ON schema_set.id = anchor.schema_set_id\n"
+            + "JOIN schema_set_yang_resources ON schema_set_yang_resources.schema_set_id = "
+            + "schema_set.id\n"
+            + "JOIN yang_resource ON yang_resource.id = schema_set_yang_resources.yang_resource_id\n"
+            + "WHERE\n"
+            + "dataspace.name = :dataspaceName AND\n"
+            + "anchor.name =:anchorName", nativeQuery = true)
+    Set<YangResourceDefinition> findAllModuleDefinitionsByDataspaceAndAnchor(
+            @Param("dataspaceName") String dataspaceName, @Param("anchorName") String anchorName);
 
     @Query(value = "SELECT DISTINCT\n"
         + "yang_resource.*\n"
