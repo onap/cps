@@ -24,7 +24,6 @@ package org.onap.cps.api.impl
 
 import org.onap.cps.TestUtils
 import org.onap.cps.api.CpsAdminService
-import org.onap.cps.spi.CascadeDeleteAllowed
 import org.onap.cps.spi.CpsModulePersistenceService
 import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.exceptions.ModelValidationException
@@ -242,5 +241,12 @@ class CpsModuleServiceImplSpec extends Specification {
             objectUnderTest.identifyNewModuleReferences(moduleReferencesToCheck)
         then: 'cps module persistence service is called with module references to check'
             1 * mockCpsModulePersistenceService.identifyNewModuleReferences(moduleReferencesToCheck);
+    }
+
+    def 'Getting module definitions.'() {
+        when: 'get module definitions method is called with a valid dataspace and anchor name'
+            objectUnderTest.getModuleDefinitionsByCmHandle('some-dataspace-name', 'some-anchor-name')
+        then: 'CPS module persistence service is invoked the correct number of times'
+            1 * mockCpsModulePersistenceService.getYangResourceDefinitions('some-dataspace-name', 'some-anchor-name')
     }
 }
