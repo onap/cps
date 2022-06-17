@@ -23,12 +23,15 @@ package org.onap.cps.ncmp.api.inventory
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.api.CpsDataService
+import org.onap.cps.api.CpsModuleService
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.DataNodeBuilder
+import org.onap.cps.spi.model.ModuleDefinition
+import org.onap.cps.spi.model.ModuleReference
 import org.onap.cps.utils.JsonObjectMapper
 import spock.lang.Shared
 import spock.lang.Specification
@@ -46,10 +49,11 @@ class InventoryPersistenceSpec extends Specification {
 
     def mockCpsDataService = Mock(CpsDataService)
 
+    def mockCpsModuleService = Mock(CpsModuleService)
+
     def mockCpsDataPersistenceService = Mock(CpsDataPersistenceService)
 
-
-    def objectUnderTest = new InventoryPersistence(spiedJsonObjectMapper, mockCpsDataService, mockCpsDataPersistenceService)
+    def objectUnderTest = new InventoryPersistence(spiedJsonObjectMapper, mockCpsDataService, mockCpsModuleService, mockCpsDataPersistenceService)
 
     def formattedDateAndTime = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
             .format(OffsetDateTime.of(2022, 12, 31, 20, 30, 40, 1, ZoneOffset.UTC))
@@ -169,6 +173,16 @@ class InventoryPersistenceSpec extends Specification {
             def result = objectUnderTest.getCmHandlesByCpsPath(cpsPath)
         then: 'the returned result is a list of data nodes returned by cps data service'
             assert result.contains(cmHandleDataNode)
+    }
+
+    def 'Get module definitions'() {
+        given: 'cps module service returns a collection of module definitions'
+            def moduleDefinitions = [new ModuleDefinition('','','')]
+            mockCpsModuleService.getModuleDefinitionsByCmHandleId('NFP-Operational','some-cmHandle-Id') >> moduleDefinitions
+        when: 'get module definitions by cmHandle is invoked'
+            def result = objectUnderTest.getModuleDefinitionsByCmHandleId('some-cmHandle-Id')
+        then: 'the returned result is a collection of module definitions'
+            assert result == moduleDefinitions
     }
 
 }
