@@ -25,6 +25,7 @@ import java.util.Collection;
 import java.util.Map;
 import org.onap.cps.spi.CascadeDeleteAllowed;
 import org.onap.cps.spi.exceptions.DataInUseException;
+import org.onap.cps.spi.model.ModuleDefinition;
 import org.onap.cps.spi.model.ModuleReference;
 import org.onap.cps.spi.model.SchemaSet;
 
@@ -92,6 +93,15 @@ public interface CpsModuleService {
      * @return a list of ModuleReference objects
      */
     Collection<ModuleReference> getYangResourcesModuleReferences(String dataspaceName, String anchorName);
+
+    /**
+     * Retrieve module definitions for the given dataspace name and anchor name.
+     *
+     * @param dataspaceName dataspace name
+     * @param anchorName    anchor name
+     * @return a list of module definition objects (name, revision, yang resource content)
+     */
+    Collection<ModuleDefinition> getModuleDefinitionsByCmHandleId(String dataspaceName, String anchorName);
 
     /**
      * Identify previously unknown Yang Resource module references.
