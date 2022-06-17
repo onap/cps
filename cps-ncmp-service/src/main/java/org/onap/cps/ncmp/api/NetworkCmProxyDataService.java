@@ -32,6 +32,7 @@ import org.onap.cps.ncmp.api.models.CmHandleQueryApiParameters;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistrationResponse;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
+import org.onap.cps.spi.model.ModuleDefinition;
 import org.onap.cps.spi.model.ModuleReference;
 
 /*
@@ -104,6 +105,14 @@ public interface NetworkCmProxyDataService {
      * @return a collection of modules names and revisions
      */
     Collection<ModuleReference> getYangResourcesModuleReferences(String cmHandleId);
+
+    /**
+     * Retrieve module definitions for the given cm handle.
+     *
+     * @param cmHandleId cm handle identifier
+     * @return a collection of module definition (moduleName, revision and yang resource content)
+     */
+    Collection<ModuleDefinition> getModuleDefinitionsByCmHandleId(String cmHandleId);
 
     /**
      * Query cm handle details by cm handle's name.

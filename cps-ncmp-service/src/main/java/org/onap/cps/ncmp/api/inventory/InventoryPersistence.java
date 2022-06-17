@@ -21,15 +21,20 @@
 
 package org.onap.cps.ncmp.api.inventory;
 
+import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME;
+
 import java.time.OffsetDateTime;
+import java.util.Collection;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.CpsDataService;
+import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
+import org.onap.cps.spi.model.ModuleDefinition;
 import org.onap.cps.utils.CpsValidator;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.stereotype.Component;
@@ -47,6 +52,8 @@ public class InventoryPersistence {
     private final JsonObjectMapper jsonObjectMapper;
 
     private final CpsDataService cpsDataService;
+
+    private final CpsModuleService cpsModuleService;
 
     private final CpsDataPersistenceService cpsDataPersistenceService;
 
@@ -118,13 +125,13 @@ public class InventoryPersistence {
 
     /**
      * Method which returns cm handles by the operational sync state of cm handle.
-     * @param syncState sync state
+     * @param dataStoreSyncState sync state
      * @return a list of cm handles
      */
-    public List<DataNode> getCmHandlesByOperationalSyncState(final SyncState syncState) {
+    public List<DataNode> getCmHandlesByOperationalSyncState(final DataStoreSyncState dataStoreSyncState) {
         return cpsDataPersistenceService.queryDataNodes(NCMP_DATASPACE_NAME,
                 NCMP_DMI_REGISTRY_ANCHOR, "//state/datastores"
-                        + "/operational[@sync-state=\"" + syncState + "\"]/ancestor::cm-handles",
+                        + "/operational[@sync-state=\"" + dataStoreSyncState + "\"]/ancestor::cm-handles",
                 FetchDescendantsOption.OMIT_DESCENDANTS);
     }
 
@@ -136,6 +143,16 @@ public class InventoryPersistence {
     public YangModelCmHandle getYangModelCmHandle(final String cmHandleId) {
         CpsValidator.validateNameCharacters(cmHandleId);
         return YangDataConverter.convertCmHandleToYangModel(getCmHandleDataNode(cmHandleId), cmHandleId);
+    }
+
+    /**
+     * Method to return module definitions by cmHandleId.
+     *
+     * @param cmHandleId cm handle ID
+     * @return a collection of module definitions (moduleName, revision and yang resource content)
+     */
+    public Collection<ModuleDefinition> getModuleDefinitionsByCmHandleId(final String cmHandleId) {
+        return cpsModuleService.getModuleDefinitionsByAnchorName(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId);
     }
 
     private DataNode getCmHandleDataNode(final String cmHandle) {

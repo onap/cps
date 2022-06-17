@@ -29,7 +29,7 @@ import org.onap.cps.ncmp.api.inventory.CmHandleState
 import org.onap.cps.ncmp.api.inventory.CompositeState
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence
 import org.onap.cps.ncmp.api.inventory.LockReasonCategory
-import org.onap.cps.ncmp.api.inventory.SyncState
+import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.http.HttpStatus
@@ -94,7 +94,7 @@ class SyncUtilsSpec extends Specification{
 
     def 'Get a Cm-Handle where Operational Sync state is UnSynchronized and Cm-handle state is READY and #scenario'() {
         given: 'the inventory persistence service returns a collection of data nodes'
-            mockInventoryPersistence.getCmHandlesByOperationalSyncState(SyncState.UNSYNCHRONIZED) >> unSynchronizedDataNodes
+            mockInventoryPersistence.getCmHandlesByOperationalSyncState(DataStoreSyncState.UNSYNCHRONIZED) >> unSynchronizedDataNodes
             mockInventoryPersistence.getCmHandlesByIdAndState("cm-handle-123", CmHandleState.READY) >> readyDataNodes
         when: 'get advised cm handle is called'
             objectUnderTest.getAnUnSynchronizedReadyCmHandle()

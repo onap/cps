@@ -40,9 +40,9 @@ import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.inventory.CmHandleState;
 import org.onap.cps.ncmp.api.inventory.CompositeState;
+import org.onap.cps.ncmp.api.inventory.DataStoreSyncState;
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.api.inventory.LockReasonCategory;
-import org.onap.cps.ncmp.api.inventory.SyncState;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.ResponseEntity;
@@ -88,7 +88,7 @@ public class SyncUtils {
      */
     public YangModelCmHandle getAnUnSynchronizedReadyCmHandle() {
         final List<DataNode> unSynchronizedCmHandles = inventoryPersistence
-                .getCmHandlesByOperationalSyncState(SyncState.UNSYNCHRONIZED);
+                .getCmHandlesByOperationalSyncState(DataStoreSyncState.UNSYNCHRONIZED);
         if (unSynchronizedCmHandles.isEmpty()) {
             return null;
         }

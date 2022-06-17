@@ -53,6 +53,7 @@ import org.onap.cps.spi.entities.YangResourceModuleReference;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
 import org.onap.cps.spi.exceptions.DuplicatedYangResourceException;
 import org.onap.cps.spi.exceptions.ModelValidationException;
+import org.onap.cps.spi.model.ModuleDefinition;
 import org.onap.cps.spi.model.ModuleReference;
 import org.onap.cps.spi.repository.DataspaceRepository;
 import org.onap.cps.spi.repository.ModuleReferenceRepository;
@@ -114,12 +115,22 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
 
     @Override
     public Collection<ModuleReference> getYangResourceModuleReferences(final String dataspaceName,
-        final String anchorName) {
+                                                                       final String anchorName) {
         final Set<YangResourceModuleReference> yangResourceModuleReferenceList =
-            yangResourceRepository
-                .findAllModuleReferencesByDataspaceAndAnchor(dataspaceName, anchorName);
+                yangResourceRepository
+                        .findAllModuleReferencesByDataspaceAndAnchor(dataspaceName, anchorName);
         return yangResourceModuleReferenceList.stream().map(CpsModulePersistenceServiceImpl::toModuleReference)
-            .collect(Collectors.toList());
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public Collection<ModuleDefinition> getYangResourceDefinitions(final String dataspaceName,
+                                                                   final String anchorName) {
+        final Set<YangResourceEntity> yangResourceEntities =
+                yangResourceRepository
+                        .findAllModuleDefinitionsByDataspaceAndAnchor(dataspaceName, anchorName);
+        return yangResourceEntities.stream().map(CpsModulePersistenceServiceImpl::toModuleDefinition)
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -342,5 +353,12 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
             .moduleName(yangResourceModuleReference.getModuleName())
             .revision(yangResourceModuleReference.getRevision())
             .build();
+    }
+
+    private static ModuleDefinition toModuleDefinition(final YangResourceEntity yangResourceEntity) {
+        return new ModuleDefinition(
+                yangResourceEntity.getModuleName(),
+                yangResourceEntity.getRevision(),
+                yangResourceEntity.getContent());
     }
 }

@@ -24,7 +24,7 @@ import org.mapstruct.factory.Mappers
 import org.onap.cps.ncmp.api.inventory.CmHandleState
 import org.onap.cps.ncmp.api.inventory.CompositeStateBuilder
 import org.onap.cps.ncmp.api.inventory.LockReasonCategory
-import org.onap.cps.ncmp.api.inventory.SyncState
+import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
 import org.onap.cps.ncmp.rest.model.RestOutputCmHandleState
 import spock.lang.Specification
 
@@ -44,7 +44,7 @@ class RestOutputCmHandleStateMapperTest extends Specification {
                 .withCmHandleState(CmHandleState.ADVISED)
                 .withLastUpdatedTime(formattedDateAndTime.toString())
                 .withLockReason(LockReasonCategory.LOCKED_MISBEHAVING, 'locked other details')
-                .withOperationalDataStores(SyncState.SYNCHRONIZED, formattedDateAndTime).build()
+                .withOperationalDataStores(DataStoreSyncState.SYNCHRONIZED, formattedDateAndTime).build()
         compositeState.setDataSyncEnabled(false)
         when: 'mapper is called'
             def result = objectUnderTest.toRestOutputCmHandleState(compositeState)
