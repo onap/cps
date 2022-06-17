@@ -243,4 +243,11 @@ class CpsModuleServiceImplSpec extends Specification {
         then: 'cps module persistence service is called with module references to check'
             1 * mockCpsModulePersistenceService.identifyNewModuleReferences(moduleReferencesToCheck);
     }
+
+    def 'Getting Module definitions when #scenario is passed.'() {
+        when: 'get module definitions method is called with #scenario'
+            objectUnderTest.getModuleDefinitionsByCmHandleId('some-dataspace-name', 'some-anchor-name')
+        then: 'CPS module persistence service is invoked the correct number of times'
+            1 * mockCpsModulePersistenceService.getYangResourceDefinitions('some-dataspace-name', 'some-anchor-name')
+    }
 }

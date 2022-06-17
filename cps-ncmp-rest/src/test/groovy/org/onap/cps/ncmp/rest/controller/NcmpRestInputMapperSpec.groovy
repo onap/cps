@@ -24,7 +24,9 @@ import org.mapstruct.factory.Mappers
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.rest.model.RestDmiPluginRegistration
 import org.onap.cps.ncmp.rest.model.RestInputCmHandle
+import org.onap.cps.ncmp.rest.model.RestModuleDefinition
 import org.onap.cps.ncmp.rest.model.RestModuleReference
+import org.onap.cps.spi.model.ModuleDefinition
 import org.onap.cps.spi.model.ModuleReference
 import spock.lang.Specification
 
@@ -86,5 +88,14 @@ class NcmpRestInputMapperSpec extends Specification {
             def result = objectUnderTest.toRestModuleReference(moduleReference)
         then: 'the result is of the correct class RestModuleReference'
             result.class == RestModuleReference.class
+    }
+
+    def 'Convert a ModuleDefinition to a RestModuleDefinition'() {
+        given: 'a ModuleDefinition'
+            def moduleDefinition = new ModuleDefinition('moduleName','revision', 'content')
+        when: 'toRestModuleDefinition is called'
+            def result = objectUnderTest.toRestModuleDefinition(moduleDefinition)
+        then: 'the result is of the correct class RestModuleDefinition'
+            result.class == RestModuleDefinition.class
     }
 }

@@ -26,6 +26,7 @@ import org.onap.cps.spi.entities.YangResourceEntity
 import org.onap.cps.spi.exceptions.AlreadyDefinedException
 import org.onap.cps.spi.exceptions.DataspaceNotFoundException
 import org.onap.cps.spi.exceptions.SchemaSetNotFoundException
+import org.onap.cps.spi.model.ModuleDefinition
 import org.onap.cps.spi.model.ModuleReference
 import org.onap.cps.spi.repository.AnchorRepository
 import org.onap.cps.spi.repository.SchemaSetRepository
@@ -212,6 +213,18 @@ class CpsModulePersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase 
         and: 'any shared (still in use by other schema set) yang resources still persists'
             def sharedResourceId = 3003L
             yangResourceRepository.findById(sharedResourceId).isPresent()
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Retrieving all yang resources module definition for the given dataspace and anchor name.'() {
+        given: 'a dataspace and anchor name'
+            def dataspaceName = 'DATASPACE-001'
+            def anchorName = 'ANCHOR1'
+        when: 'all yang resources module definitions are retrieved for the given dataspace and anchor name'
+            def result = objectUnderTest.getYangResourceDefinitions(dataspaceName, anchorName)
+        then: 'the correct module definitions are returned'
+            result.sort() == [new ModuleDefinition('MODULE-NAME-003', 'REVISION-002', 'CONTENT-003'),
+                              new ModuleDefinition('MODULE-NAME-004', 'REVISION-004', 'CONTENT-004')]
     }
 
     def assertSchemaSetPersisted(expectedDataspaceName,
