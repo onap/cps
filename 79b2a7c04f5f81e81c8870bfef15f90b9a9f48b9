@@ -22,6 +22,30 @@
       "revId": "79b2a7c04f5f81e81c8870bfef15f90b9a9f48b9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9dcd811a_bf230e8c",
+        "filename": "csit/tests/cps-model-sync/cps-model-sync.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-06-17T12:20:54Z",
+      "side": 1,
+      "message": "Instead of sleep or update the API manually, We could introduce a retry mechanism (simple loop with max number of retry attempts) to check the status of the cm handle periodically and if it is changed to READY then proceed further otherwise let the test case fail.\nWe are trying to write test case to check the system failure and due to some reason if the Watchdog fails to update the cm handle state then it is the intended behaviour and lets not try to fix that here in the CSIT.",
+      "parentUuid": "83cf3524_5c2280b7",
+      "range": {
+        "startLine": 90,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 15
+      },
+      "revId": "79b2a7c04f5f81e81c8870bfef15f90b9a9f48b9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
