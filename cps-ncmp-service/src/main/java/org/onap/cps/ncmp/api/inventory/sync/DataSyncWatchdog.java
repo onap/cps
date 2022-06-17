@@ -26,8 +26,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.inventory.CompositeState;
+import org.onap.cps.ncmp.api.inventory.DataStoreSyncState;
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
-import org.onap.cps.ncmp.api.inventory.SyncState;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -64,7 +64,7 @@ public class DataSyncWatchdog {
             compositeState.setLastUpdateTimeNow();
             compositeState.getDataStores()
                     .setOperationalDataStore(CompositeState.Operational.builder()
-                            .syncState(SyncState.SYNCHRONIZED)
+                            .dataStoreSyncState(DataStoreSyncState.SYNCHRONIZED)
                             .lastSyncTime(CompositeState.nowInSyncTimeFormat()).build());
             inventoryPersistence.saveCmHandleState(cmHandleId, compositeState);
             unSynchronizedReadyCmHandle = syncUtils.getAnUnSynchronizedReadyCmHandle();

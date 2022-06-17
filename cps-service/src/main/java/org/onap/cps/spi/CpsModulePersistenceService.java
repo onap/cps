@@ -23,6 +23,7 @@ package org.onap.cps.spi;
 
 import java.util.Collection;
 import java.util.Map;
+import org.onap.cps.spi.model.ModuleDefinition;
 import org.onap.cps.spi.model.ModuleReference;
 
 /**
@@ -89,9 +90,18 @@ public interface CpsModulePersistenceService {
      *
      * @param dataspaceName dataspace name
      * @param anchorName    anchor name
-     * @return a collection of module names and revisions
+     * @return a collection of module reference (moduleName and revision)
      */
     Collection<ModuleReference> getYangResourceModuleReferences(String dataspaceName, String anchorName);
+
+    /**
+     * Get YANG resource definitions for the given anchor name and dataspace name.
+     *
+     * @param dataspaceName dataspace name
+     * @param anchorName    anchor name
+     * @return a collection of module definitions (moduleName, revision and yang resource content)
+     */
+    Collection<ModuleDefinition> getYangResourceDefinitions(String dataspaceName, String anchorName);
 
     /**
      * Remove unused Yang Resource Modules.

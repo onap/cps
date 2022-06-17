@@ -94,13 +94,14 @@ public class CompositeStateBuilder {
     /**
      * To use attributes for creating {@link CompositeState}.
      *
-     * @param syncState for the locked state
+     * @param dataStoreSyncState for the locked state
      * @param lastSyncTime for the locked state
      * @return CompositeStateBuilder
      */
-    public CompositeStateBuilder withOperationalDataStores(final SyncState syncState, final String lastSyncTime) {
+    public CompositeStateBuilder withOperationalDataStores(final DataStoreSyncState dataStoreSyncState,
+                                                           final String lastSyncTime) {
         this.datastores = DataStores.builder().operationalDataStore(
-            Operational.builder().syncState(syncState).lastSyncTime(lastSyncTime).build()).build();
+            Operational.builder().dataStoreSyncState(dataStoreSyncState).lastSyncTime(lastSyncTime).build()).build();
         return this;
     }
 
@@ -133,7 +134,7 @@ public class CompositeStateBuilder {
 
     private Operational getOperationalDataStore(final DataNode dataStoreNodes) {
         return Operational.builder()
-                .syncState(SyncState.valueOf((String) dataStoreNodes.getLeaves().get("sync-state")))
+                .dataStoreSyncState(DataStoreSyncState.valueOf((String) dataStoreNodes.getLeaves().get("sync-state")))
                 .lastSyncTime((String) dataStoreNodes.getLeaves().get("last-sync-time"))
                 .build();
     }

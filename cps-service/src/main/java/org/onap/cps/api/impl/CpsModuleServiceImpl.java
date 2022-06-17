@@ -31,6 +31,7 @@ import org.onap.cps.spi.CascadeDeleteAllowed;
 import org.onap.cps.spi.CpsModulePersistenceService;
 import org.onap.cps.spi.exceptions.SchemaSetInUseException;
 import org.onap.cps.spi.model.Anchor;
+import org.onap.cps.spi.model.ModuleDefinition;
 import org.onap.cps.spi.model.ModuleReference;
 import org.onap.cps.spi.model.SchemaSet;
 import org.onap.cps.utils.CpsValidator;
@@ -103,6 +104,13 @@ public class CpsModuleServiceImpl implements CpsModuleService {
         final String anchorName) {
         CpsValidator.validateNameCharacters(dataspaceName, anchorName);
         return cpsModulePersistenceService.getYangResourceModuleReferences(dataspaceName, anchorName);
+    }
+
+    @Override
+    public Collection<ModuleDefinition> getModuleDefinitionsByAnchorName(final String dataspaceName,
+                                                                         final String anchorName) {
+        CpsValidator.validateNameCharacters(dataspaceName, anchorName);
+        return cpsModulePersistenceService.getYangResourceDefinitions(dataspaceName, anchorName);
     }
 
     @Override

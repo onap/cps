@@ -54,7 +54,7 @@ class CompositeStateSpec extends Specification {
 
     def dataStores() {
         DataStores.builder().operationalDataStore(Operational.builder()
-            .syncState(SyncState.NONE_REQUESTED)
+            .dataStoreSyncState(DataStoreSyncState.NONE_REQUESTED)
             .lastSyncTime(formattedDateAndTime.toString()).build())
             .build()
     }

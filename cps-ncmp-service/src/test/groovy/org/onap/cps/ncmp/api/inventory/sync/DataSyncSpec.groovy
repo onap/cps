@@ -25,7 +25,7 @@ import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.inventory.CmHandleState
 import org.onap.cps.ncmp.api.inventory.CompositeState
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence
-import org.onap.cps.ncmp.api.inventory.SyncState
+import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
 import spock.lang.Specification
 
 class DataSyncSpec extends Specification {
@@ -94,7 +94,7 @@ class DataSyncSpec extends Specification {
         def cmHandleState = CmHandleState.READY
         def compositeState = new CompositeState(cmHandleState: cmHandleState)
         compositeState.setDataStores(CompositeState.DataStores.builder()
-            .operationalDataStore(CompositeState.Operational.builder().syncState(SyncState.SYNCHRONIZED)
+            .operationalDataStore(CompositeState.Operational.builder().dataStoreSyncState(DataStoreSyncState.SYNCHRONIZED)
                 .build()).build())
         return compositeState
     }

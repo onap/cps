@@ -47,6 +47,7 @@ import org.onap.cps.ncmp.rest.executor.CpsNcmpTaskExecutor;
 import org.onap.cps.ncmp.rest.mapper.CmHandleStateMapper;
 import org.onap.cps.ncmp.rest.model.CmHandlePublicProperties;
 import org.onap.cps.ncmp.rest.model.CmHandleQueryParameters;
+import org.onap.cps.ncmp.rest.model.RestModuleDefinition;
 import org.onap.cps.ncmp.rest.model.RestModuleReference;
 import org.onap.cps.ncmp.rest.model.RestOutputCmHandle;
 import org.onap.cps.ncmp.rest.model.RestOutputCmHandleCompositeState;
@@ -287,6 +288,21 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
             new RestOutputCmHandleCompositeState();
         restOutputCmHandleCompositeState.setState(cmHandleStateMapper.toCmHandleCompositeState(cmHandleState));
         return ResponseEntity.ok(restOutputCmHandleCompositeState);
+    }
+
+    /**
+     * Return module definitions for a cm handle.
+     *
+     * @param cmHandleId cm-handle identifier
+     * @return list of module definitions (module name, revision, yang resource content)
+     */
+    @Override
+    public ResponseEntity<List<RestModuleDefinition>> getModuleDefinitionsByCmHandleId(final String cmHandleId) {
+        final List<RestModuleDefinition> restModuleDefinitions =
+                networkCmProxyDataService.getModuleDefinitionsByCmHandleId(cmHandleId).stream()
+                        .map(ncmpRestInputMapper::toRestModuleDefinition)
+                        .collect(Collectors.toList());
+        return new ResponseEntity<>(restModuleDefinitions, HttpStatus.OK);
     }
 
     /**

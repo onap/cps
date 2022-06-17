@@ -55,7 +55,8 @@ public interface CmHandleStateMapper {
 
         if (compositeStateDataStore.getOperationalDataStore() != null) {
             final SyncState operationalSyncState = new SyncState();
-            operationalSyncState.setState(compositeStateDataStore.getOperationalDataStore().getSyncState().name());
+            operationalSyncState.setState(compositeStateDataStore.getOperationalDataStore()
+                    .getDataStoreSyncState().name());
             operationalSyncState.setLastSyncTime(compositeStateDataStore.getOperationalDataStore().getLastSyncTime());
             dataStores.setOperational(operationalSyncState);
         }
