@@ -30,6 +30,7 @@ import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.exceptions.ModelValidationException
 import org.onap.cps.spi.exceptions.SchemaSetInUseException
 import org.onap.cps.spi.model.Anchor
+import org.onap.cps.spi.model.ModuleDefinition
 import org.onap.cps.spi.model.ModuleReference
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
 import spock.lang.Specification
@@ -242,5 +243,12 @@ class CpsModuleServiceImplSpec extends Specification {
             objectUnderTest.identifyNewModuleReferences(moduleReferencesToCheck)
         then: 'cps module persistence service is called with module references to check'
             1 * mockCpsModulePersistenceService.identifyNewModuleReferences(moduleReferencesToCheck);
+    }
+
+    def 'Getting module definitions.'() {
+        when: 'get module definitions method is called with a valid dataspace and anchor name'
+            objectUnderTest.getModuleDefinitionsByCmHandleId('some-dataspace-name', 'some-anchor-name')
+        then: 'CPS module persistence service is invoked the correct number of times'
+            1 * mockCpsModulePersistenceService.getYangResourceDefinitions('some-dataspace-name', 'some-anchor-name')
     }
 }
