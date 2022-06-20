@@ -98,7 +98,7 @@ public class CompositeStateBuilder {
      * @param lastSyncTime for the locked state
      * @return CompositeStateBuilder
      */
-    public CompositeStateBuilder withOperationalDataStores(final String syncState, final String lastSyncTime) {
+    public CompositeStateBuilder withOperationalDataStores(final SyncState syncState, final String lastSyncTime) {
         this.datastores = DataStores.builder().operationalDataStore(
             Operational.builder().syncState(syncState).lastSyncTime(lastSyncTime).build()).build();
         return this;
@@ -111,20 +111,19 @@ public class CompositeStateBuilder {
      * @return CompositeState
      */
     public CompositeStateBuilder fromDataNode(final DataNode dataNode) {
-        this.cmHandleState = CmHandleState.valueOf((String) dataNode.getLeaves()
-            .get("cm-handle-state"));
+        this.cmHandleState = (CmHandleState) dataNode.getLeaves().get("cm-handle-state");
         for (final DataNode stateChildNode : dataNode.getChildDataNodes()) {
             if (stateChildNode.getXpath().endsWith("/lock-reason")) {
-                this.lockReason = new LockReason(LockReasonCategory.valueOf(
-                    (String) stateChildNode.getLeaves().get("reason")),
-                    (String) stateChildNode.getLeaves().get("details"));
+                this.lockReason = new LockReason(
+                        (LockReasonCategory) stateChildNode.getLeaves().get("reason"),
+                        (String) stateChildNode.getLeaves().get("details"));
             }
             if (stateChildNode.getXpath().endsWith("/datastores")) {
                 for (final DataNode dataStoreNodes : stateChildNode.getChildDataNodes()) {
                     Operational operationalDataStore = null;
                     if (dataStoreNodes.getXpath().contains("/operational")) {
                         operationalDataStore = Operational.builder()
-                            .syncState((String) dataStoreNodes.getLeaves().get("sync-state"))
+                            .syncState((SyncState) dataStoreNodes.getLeaves().get("sync-state"))
                             .lastSyncTime((String) dataStoreNodes.getLeaves().get("last-sync-time"))
                             .build();
                     }

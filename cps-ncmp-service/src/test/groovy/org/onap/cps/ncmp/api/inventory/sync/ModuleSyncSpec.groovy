@@ -96,7 +96,7 @@ class ModuleSyncSpec extends Specification {
                     .withLockReason(LockReasonCategory.LOCKED_MISBEHAVING, '').build()
             def yangModelCmHandle = new YangModelCmHandle(id: 'some-cm-handle', compositeState: compositeState)
         and: 'sync utilities return a cm handle twice'
-            mockSyncUtils.getLockedMisbehavingCmHandles() >> [yangModelCmHandle, yangModelCmHandle]
+            mockSyncUtils.getLockedMisbehavingYangModelCmHandles() >> [yangModelCmHandle, yangModelCmHandle]
         when: 'module sync poll is executed'
             objectUnderTest.executeLockedMisbehavingCmHandlePoll()
         then: 'the first cm handle is updated to state "ADVISED" from "READY"'
