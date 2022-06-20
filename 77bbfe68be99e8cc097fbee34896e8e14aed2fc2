@@ -22,6 +22,30 @@
       "revId": "77bbfe68be99e8cc097fbee34896e8e14aed2fc2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab232204_3c18b26f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-06-20T08:48:03Z",
+      "side": 1,
+      "message": "Agreed. Best to keep them seperate tests",
+      "parentUuid": "28277f2d_0b7e0e86",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 13
+      },
+      "revId": "77bbfe68be99e8cc097fbee34896e8e14aed2fc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
