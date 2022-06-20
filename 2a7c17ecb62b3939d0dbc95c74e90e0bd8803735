@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "dc0c5102_3cf1553d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-20T12:45:14Z",
+      "side": 1,
+      "message": "agreed",
+      "parentUuid": "f9f40ce2_dd74b022",
+      "range": {
+        "startLine": 114,
+        "startChar": 26,
+        "endLine": 114,
+        "endChar": 60
+      },
+      "revId": "2a7c17ecb62b3939d0dbc95c74e90e0bd8803735",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b72786f3_d970f39a",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/DataSyncWatchdog.java",
         "patchSetId": 13
@@ -306,6 +330,30 @@
     },
     {
       "key": {
+        "uuid": "5af3d7e6_26d449cc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/DataSyncWatchdog.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-20T12:45:14Z",
+      "side": 1,
+      "message": "I think wording is OK just change the last word \u0027in\u0027 to \u0027is\u0027 see y comment on #16",
+      "parentUuid": "18dbec05_cfebbb84",
+      "range": {
+        "startLine": 71,
+        "startChar": 18,
+        "endLine": 71,
+        "endChar": 112
+      },
+      "revId": "2a7c17ecb62b3939d0dbc95c74e90e0bd8803735",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "66124146_1014b6d2",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
         "patchSetId": 13
@@ -350,6 +398,30 @@
       "revId": "2a7c17ecb62b3939d0dbc95c74e90e0bd8803735",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9b680478_2529d7c3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-20T12:45:14Z",
+      "side": 1,
+      "message": "agreed",
+      "parentUuid": "6d805f42_ce8e80b6",
+      "range": {
+        "startLine": 51,
+        "startChar": 4,
+        "endLine": 51,
+        "endChar": 72
+      },
+      "revId": "2a7c17ecb62b3939d0dbc95c74e90e0bd8803735",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {

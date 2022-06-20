@@ -1,0 +1,303 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4f328ada_72bc34c6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-20T12:45:14Z",
+      "side": 1,
+      "message": "... return data nodes representing the cm handles...",
+      "range": {
+        "startLine": 96,
+        "startChar": 16,
+        "endLine": 96,
+        "endChar": 34
+      },
+      "revId": "afb2a3ca9f0b68c868a0fc908ef8718fb2d8565f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e01cced1_891818be",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-20T12:45:14Z",
+      "side": 1,
+      "message": "data nodes representing the cm handles.",
+      "range": {
+        "startLine": 99,
+        "startChar": 24,
+        "endLine": 99,
+        "endChar": 35
+      },
+      "revId": "afb2a3ca9f0b68c868a0fc908ef8718fb2d8565f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "309a7bfd_e2b99308",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-20T12:45:14Z",
+      "side": 1,
+      "message": "getCmHandleDataNodesByCpsPath",
+      "range": {
+        "startLine": 101,
+        "startChar": 26,
+        "endLine": 101,
+        "endChar": 47
+      },
+      "revId": "afb2a3ca9f0b68c868a0fc908ef8718fb2d8565f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e8aa8f34_18c6c66f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-20T12:45:14Z",
+      "side": 1,
+      "message": "as per comment on #13\ngetCmHandlesByOperationalSyncState",
+      "range": {
+        "startLine": 124,
+        "startChar": 26,
+        "endLine": 124,
+        "endChar": 60
+      },
+      "revId": "afb2a3ca9f0b68c868a0fc908ef8718fb2d8565f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8e8b65fb_692d6c80",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/DataSyncWatchdog.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-20T12:45:14Z",
+      "side": 1,
+      "message": "is",
+      "range": {
+        "startLine": 72,
+        "startChar": 94,
+        "endLine": 72,
+        "endChar": 97
+      },
+      "revId": "afb2a3ca9f0b68c868a0fc908ef8718fb2d8565f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dafbcec7_c944ecab",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-20T12:45:14Z",
+      "side": 1,
+      "message": "should the method be refactored to take SynState enum as parameter and then use .name() internally",
+      "range": {
+        "startLine": 91,
+        "startChar": 52,
+        "endLine": 91,
+        "endChar": 84
+      },
+      "revId": "afb2a3ca9f0b68c868a0fc908ef8718fb2d8565f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "51341154_8b971326",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-20T12:45:14Z",
+      "side": 1,
+      "message": "unfortunately ew stil have too many different classes  for cm handle information and we need to be clear/consistent in the name: getLockedMisbehavingYangModelCmHandles\n(we could ask ourselves if ew really need that type her but that might be a future concern)",
+      "range": {
+        "startLine": 112,
+        "startChar": 55,
+        "endLine": 112,
+        "endChar": 64
+      },
+      "revId": "afb2a3ca9f0b68c868a0fc908ef8718fb2d8565f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6b9edb92_3626ab10",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiDataOperationsSpec.groovy",
+        "patchSetId": 16
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-20T12:45:14Z",
+      "side": 1,
+      "message": "the system returns a cm handle with a sample property",
+      "range": {
+        "startLine": 84,
+        "startChar": 16,
+        "endLine": 84,
+        "endChar": 43
+      },
+      "revId": "afb2a3ca9f0b68c868a0fc908ef8718fb2d8565f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "19eb2b6a_138b27c9",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/CompositeStateBuilderSpec.groovy",
+        "patchSetId": 16
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-20T12:45:14Z",
+      "side": 1,
+      "message": "don\u0027t use .name() assert the expected enum instead",
+      "range": {
+        "startLine": 54,
+        "startChar": 75,
+        "endLine": 54,
+        "endChar": 102
+      },
+      "revId": "afb2a3ca9f0b68c868a0fc908ef8718fb2d8565f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dd5c277a_c0dd20cc",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/DataSyncSpec.groovy",
+        "patchSetId": 16
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-20T12:45:14Z",
+      "side": 1,
+      "message": "sample resource data",
+      "range": {
+        "startLine": 50,
+        "startChar": 16,
+        "endLine": 50,
+        "endChar": 89
+      },
+      "revId": "afb2a3ca9f0b68c868a0fc908ef8718fb2d8565f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "38b86282_e9e49ddc",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/DataSyncSpec.groovy",
+        "patchSetId": 16
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-20T12:45:14Z",
+      "side": 1,
+      "message": "remove this as this is not being asserted here",
+      "range": {
+        "startLine": 62,
+        "startChar": 67,
+        "endLine": 62,
+        "endChar": 106
+      },
+      "revId": "afb2a3ca9f0b68c868a0fc908ef8718fb2d8565f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c8bcab3e_f55bd39d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/SyncUtilsSpec.groovy",
+        "patchSetId": 16
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-20T12:45:14Z",
+      "side": 1,
+      "message": "spy functionality not used (as far as I can se) just use a real instance and name it accordingly",
+      "range": {
+        "startLine": 46,
+        "startChar": 28,
+        "endLine": 46,
+        "endChar": 31
+      },
+      "revId": "afb2a3ca9f0b68c868a0fc908ef8718fb2d8565f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "560b841d_ed814bcc",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/SyncUtilsSpec.groovy",
+        "patchSetId": 16
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-20T12:45:14Z",
+      "side": 1,
+      "message": "is correct",
+      "range": {
+        "startLine": 123,
+        "startChar": 33,
+        "endLine": 123,
+        "endChar": 45
+      },
+      "revId": "afb2a3ca9f0b68c868a0fc908ef8718fb2d8565f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
