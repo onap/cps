@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d92b3ce4_d08b6e1b",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-06-20T13:29:04Z",
+      "side": 1,
+      "message": "Remove",
+      "revId": "d242ed6c919902e3c0433c00468ebb40b934867b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d1accc29_7624d03d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-06-20T13:29:04Z",
+      "side": 1,
+      "message": "there is no scenario defined",
+      "range": {
+        "startLine": 268,
+        "startChar": 41,
+        "endLine": 268,
+        "endChar": 50
+      },
+      "revId": "d242ed6c919902e3c0433c00468ebb40b934867b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "637253bd_424decd7",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-06-20T13:29:04Z",
+      "side": 1,
+      "message": "once",
+      "range": {
+        "startLine": 271,
+        "startChar": 46,
+        "endLine": 271,
+        "endChar": 73
+      },
+      "revId": "d242ed6c919902e3c0433c00468ebb40b934867b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5de1f3f3_e09f3ec9",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-06-20T13:29:04Z",
+      "side": 1,
+      "message": "no need to define here. Can inline them on line 224 and use a when then",
+      "range": {
+        "startLine": 221,
+        "startChar": 12,
+        "endLine": 222,
+        "endChar": 37
+      },
+      "revId": "d242ed6c919902e3c0433c00468ebb40b934867b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1b6d429b_c948d7da",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-06-20T13:29:04Z",
+      "side": 1,
+      "message": "no scenario",
+      "range": {
+        "startLine": 247,
+        "startChar": 42,
+        "endLine": 247,
+        "endChar": 50
+      },
+      "revId": "d242ed6c919902e3c0433c00468ebb40b934867b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9017f0cb_bf58b67e",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-06-20T13:29:04Z",
+      "side": 1,
+      "message": "same",
+      "range": {
+        "startLine": 248,
+        "startChar": 61,
+        "endLine": 248,
+        "endChar": 69
+      },
+      "revId": "d242ed6c919902e3c0433c00468ebb40b934867b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
