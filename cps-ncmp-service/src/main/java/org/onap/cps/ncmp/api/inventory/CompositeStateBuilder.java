@@ -111,8 +111,9 @@ public class CompositeStateBuilder {
      * @return CompositeState
      */
     public CompositeStateBuilder fromDataNode(final DataNode dataNode) {
-        this.cmHandleState =  CmHandleState.valueOf((String) dataNode.getLeaves()
-                .get("cm-handle-state"));
+        this.cmHandleState = CmHandleState.valueOf((String) dataNode.getLeaves()
+            .get("cm-handle-state"));
+        this.lastUpdatedTime = (String) dataNode.getLeaves().get("last-update-time");
         for (final DataNode stateChildNode : dataNode.getChildDataNodes()) {
             if (stateChildNode.getXpath().endsWith("/lock-reason")) {
                 this.lockReason = getLockReason(stateChildNode);

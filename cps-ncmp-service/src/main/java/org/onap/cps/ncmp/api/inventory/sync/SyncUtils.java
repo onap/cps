@@ -24,6 +24,9 @@ package org.onap.cps.ncmp.api.inventory.sync;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.collect.ImmutableMap;
 import java.security.SecureRandom;
+import java.time.Duration;
+import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -138,6 +141,28 @@ public class SyncUtils {
         compositeState.setLockReason(CompositeState.LockReason.builder()
             .details(String.format("Attempt #%d failed: %s", attempt, errorMessage))
             .lockReasonCategory(lockReasonCategory).build());
+    }
+
+
+    /**
+     * Check if the retry mechanism should attempt to unlock the cm handle based on the last update time.
+     *
+     * @param compositeState the composite state currently in the locked state
+     * @return if the retry mechanism should be attempted
+     */
+    public boolean isReadyForRetry(final CompositeState compositeState) {
+        int timeUntilNextAttempt = 1;
+        final OffsetDateTime time =
+            OffsetDateTime.parse(compositeState.getLastUpdateTime(),
+                DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ"));
+        final Matcher matcher = retryAttemptPattern.matcher(compositeState.getLockReason().getDetails());
+        if (matcher.find()) {
+            timeUntilNextAttempt = (int) Math.pow(2, Integer.parseInt(matcher.group(1)));
+        } else {
+            log.debug("First Attempt: no current attempts found.");
+        }
+        final int timeSinceLastAttempt = (int) Duration.between(time, OffsetDateTime.now()).toMinutes();
+        return timeSinceLastAttempt > timeUntilNextAttempt;
     }
 
     /**

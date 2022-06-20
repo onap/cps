@@ -74,13 +74,16 @@ public class ModuleSyncWatchdog {
      * Execute Cm Handle poll which changes the cm handle state from 'LOCKED' to 'ADVISED'.
      */
     @Scheduled(fixedDelayString = "${timers.locked-modules-sync.sleep-time-ms:300000}")
-    public void executeLockedMisbehavingCmHandlePoll() {
+    public void executeLockedCmHandlePoll() {
         final List<YangModelCmHandle> lockedMisbehavingCmHandles = syncUtils.getLockedMisbehavingYangModelCmHandles();
-        for (final YangModelCmHandle lockedMisbehavingModelCmHandle : lockedMisbehavingCmHandles) {
-            final CompositeState compositeState = lockedMisbehavingModelCmHandle.getCompositeState();
-            setCompositeStateToAdvisedAndRetainOldLockReasonDetails(compositeState);
-            log.debug("Locked misbehaving cm handle {} is being recycled", lockedMisbehavingModelCmHandle.getId());
-            inventoryPersistence.saveCmHandleState(lockedMisbehavingModelCmHandle.getId(), compositeState);
+        for (final YangModelCmHandle moduleSyncFailedCmHandle : lockedMisbehavingCmHandles) {
+            final CompositeState compositeState = moduleSyncFailedCmHandle.getCompositeState();
+            final boolean isReadyForRetry = syncUtils.isReadyForRetry(compositeState);
+            if (isReadyForRetry) {
+                setCompositeStateToAdvisedAndRetainOldLockReasonDetails(compositeState);
+                log.debug("Locked misbehaving cm handle {} is being recycled", moduleSyncFailedCmHandle.getId());
+                inventoryPersistence.saveCmHandleState(moduleSyncFailedCmHandle.getId(), compositeState);
+            }
         }
     }
 
