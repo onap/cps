@@ -22,7 +22,6 @@ package org.onap.cps.ncmp.api.models
 
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.inventory.CmHandleState
-import org.onap.ncmp.cmhandle.lcm.event.Event
 import spock.lang.Specification
 
 import static org.onap.cps.ncmp.api.impl.operations.RequiredDmiService.DATA
