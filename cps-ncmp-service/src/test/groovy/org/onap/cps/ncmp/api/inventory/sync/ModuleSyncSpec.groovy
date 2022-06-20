@@ -90,16 +90,25 @@ class ModuleSyncSpec extends Specification {
 
     }
 
-    def 'Schedule a Cm-Handle Sync for LOCKED with reason LOCKED_MISBEHAVING Cm-Handles '() {
+    def 'Schedule a Cm-Handle Sync for LOCKED with reason LOCKED_MISBEHAVING Cm-Handles with #scenario'() {
         given: 'cm handles in an locked state'
             def compositeState = new CompositeStateBuilder().withCmHandleState(CmHandleState.LOCKED)
-                    .withLockReason(LockReasonCategory.LOCKED_MISBEHAVING, '').build()
+                    .withLockReason(LockReasonCategory.LOCKED_MISBEHAVING, '').withLastUpdatedTimeNow().build()
             def yangModelCmHandle = new YangModelCmHandle(id: 'some-cm-handle', compositeState: compositeState)
         and: 'sync utilities return a cm handle twice'
             mockSyncUtils.getLockedMisbehavingYangModelCmHandles() >> [yangModelCmHandle, yangModelCmHandle]
+        and: 'inventory persistence returns the composite state of the cm handle'
+            mockInventoryPersistence.getCmHandleState(yangModelCmHandle.getId()) >> compositeState
+        and: 'sync utils retry locked cm handle returns #retryLockCmHandleResult'
+            mockSyncUtils.retryLockedCmHandle(compositeState) >>> retryLockCmHandleResult
         when: 'module sync poll is executed'
             objectUnderTest.executeLockedMisbehavingCmHandlePoll()
         then: 'the first cm handle is updated to state "ADVISED" from "READY"'
-            2 * mockInventoryPersistence.saveCmHandleState(yangModelCmHandle.id, compositeState)
+            expectedNumberOfInvocationsToSaveCmHandleState * mockInventoryPersistence.saveCmHandleState(yangModelCmHandle.id, compositeState)
+        where:
+            scenario                        | retryLockCmHandleResult || expectedNumberOfInvocationsToSaveCmHandleState
+            'retry locked cm handle once'   | [true, false]           || 1
+            'retry locked cm handle twice'  | [true, true]            || 2
+            'do not retry locked cm handle' | [false, false]          || 0
     }
 }
