@@ -86,7 +86,7 @@ public class ModuleSyncWatchdog {
      */
     @Scheduled(fixedDelayString = "${timers.locked-modules-sync.sleep-time-ms:300000}")
     public void executeLockedMisbehavingCmHandlePoll() {
-        final List<YangModelCmHandle> lockedMisbehavingCmHandles = syncUtils.getLockedMisbehavingCmHandles();
+        final List<YangModelCmHandle> lockedMisbehavingCmHandles = syncUtils.getLockedMisbehavingYangModelCmHandles();
         for (final YangModelCmHandle lockedMisbehavingModelCmHandle: lockedMisbehavingCmHandles) {
             final CompositeState updatedCompositeState = lockedMisbehavingModelCmHandle.getCompositeState();
             updatedCompositeState.setCmHandleState(CmHandleState.ADVISED);

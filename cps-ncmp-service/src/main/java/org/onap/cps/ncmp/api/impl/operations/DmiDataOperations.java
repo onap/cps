@@ -75,21 +75,33 @@ public class DmiDataOperations extends DmiOperations {
                                                          final DataStoreEnum dataStore,
                                                          final String requestId,
                                                          final String topicParamInQuery) {
-        CpsValidator.validateNameCharacters(cmHandleId);
-        final YangModelCmHandle yangModelCmHandle =
-                inventoryPersistence.getYangModelCmHandle(cmHandleId);
+        final YangModelCmHandle yangModelCmHandle = getYangModelCmHandle(cmHandleId);
+        final String jsonBody = getDmiRequestBody(READ, requestId, null, null, yangModelCmHandle);
+        final String dmiResourceDataUrl = getDmiRequestUrl(cmHandleId, resourceId, optionsParamInQuery, dataStore,
+                topicParamInQuery, yangModelCmHandle);
         final CmHandleState cmHandleState = yangModelCmHandle.getCompositeState().getCmHandleState();
         isCmHandleStateReady(yangModelCmHandle, cmHandleState);
-        final DmiRequestBody dmiRequestBody = DmiRequestBody.builder()
-            .operation(READ)
-            .requestId(requestId)
-            .build();
-        dmiRequestBody.asDmiProperties(yangModelCmHandle.getDmiProperties());
-        final String jsonBody = jsonObjectMapper.asJsonString(dmiRequestBody);
-        final String dmiResourceDataUrl = dmiServiceUrlBuilder.getDmiDatastoreUrl(
-                dmiServiceUrlBuilder.populateQueryParams(resourceId, optionsParamInQuery,
-                topicParamInQuery), dmiServiceUrlBuilder.populateUriVariables(
-                        yangModelCmHandle, cmHandleId, dataStore));
+        return dmiRestClient.postOperationWithJsonData(dmiResourceDataUrl, jsonBody, READ);
+    }
+
+    /**
+     * This method fetches all the resource data from operational data store for given cm handle
+     * identifier using dmi client.
+     *
+     * @param cmHandleId network resource identifier
+     * @param dataStore  data store enum
+     * @param requestId  requestId for async responses
+     * @return {@code ResponseEntity} response entity
+     */
+    public ResponseEntity<Object> getResourceDataFromDmi(final String cmHandleId,
+                                                         final DataStoreEnum dataStore,
+                                                         final String requestId) {
+        final YangModelCmHandle yangModelCmHandle = getYangModelCmHandle(cmHandleId);
+        final String jsonBody = getDmiRequestBody(READ, requestId, null, null, yangModelCmHandle);
+        final String dmiResourceDataUrl = getDmiRequestUrl(cmHandleId, "/", null, dataStore,
+                null, yangModelCmHandle);
+        final CmHandleState cmHandleState = yangModelCmHandle.getCompositeState().getCmHandleState();
+        isCmHandleStateReady(yangModelCmHandle, cmHandleState);
         return dmiRestClient.postOperationWithJsonData(dmiResourceDataUrl, jsonBody, READ);
     }
 
@@ -109,23 +121,42 @@ public class DmiDataOperations extends DmiOperations {
                                                                              final OperationEnum operation,
                                                                              final String requestData,
                                                                              final String dataType) {
-        CpsValidator.validateNameCharacters(cmHandleId);
-        final YangModelCmHandle yangModelCmHandle =
-            inventoryPersistence.getYangModelCmHandle(cmHandleId);
+        final YangModelCmHandle yangModelCmHandle = getYangModelCmHandle(cmHandleId);
+        final String jsonBody = getDmiRequestBody(operation, null, requestData, dataType, yangModelCmHandle);
+        final String dmiUrl = getDmiRequestUrl(cmHandleId, resourceId, null, PASSTHROUGH_RUNNING,
+                null, yangModelCmHandle);
         final CmHandleState cmHandleState = yangModelCmHandle.getCompositeState().getCmHandleState();
         isCmHandleStateReady(yangModelCmHandle, cmHandleState);
-        final DmiRequestBody dmiRequestBody = DmiRequestBody.builder()
-            .operation(operation)
-            .data(requestData)
-            .dataType(dataType)
-            .build();
-        dmiRequestBody.asDmiProperties(yangModelCmHandle.getDmiProperties());
-        final String jsonBody = jsonObjectMapper.asJsonString(dmiRequestBody);
-        final String dmiUrl =
-            dmiServiceUrlBuilder.getDmiDatastoreUrl(dmiServiceUrlBuilder.populateQueryParams(resourceId,
-                    null, null),
-                dmiServiceUrlBuilder.populateUriVariables(yangModelCmHandle, cmHandleId, PASSTHROUGH_RUNNING));
         return dmiRestClient.postOperationWithJsonData(dmiUrl, jsonBody, operation);
+    }
+
+    private YangModelCmHandle getYangModelCmHandle(final String cmHandleId) {
+        CpsValidator.validateNameCharacters(cmHandleId);
+        return inventoryPersistence.getYangModelCmHandle(cmHandleId);
+    }
+
+    private String getDmiRequestBody(final OperationEnum operation, final String requestId, final String requestData,
+                                     final String dataType, final YangModelCmHandle yangModelCmHandle) {
+        final DmiRequestBody dmiRequestBody = DmiRequestBody.builder()
+                .operation(operation)
+                .requestId(requestId)
+                .data(requestData)
+                .dataType(dataType)
+                .build();
+        dmiRequestBody.asDmiProperties(yangModelCmHandle.getDmiProperties());
+        return jsonObjectMapper.asJsonString(dmiRequestBody);
+    }
+
+    private String getDmiRequestUrl(final String cmHandleId,
+                                      final String resourceId,
+                                      final String optionsParamInQuery,
+                                      final DataStoreEnum dataStore,
+                                      final String topicParamInQuery,
+                                      final YangModelCmHandle yangModelCmHandle) {
+        return dmiServiceUrlBuilder.getDmiDatastoreUrl(
+                dmiServiceUrlBuilder.populateQueryParams(resourceId, optionsParamInQuery,
+                        topicParamInQuery), dmiServiceUrlBuilder.populateUriVariables(
+                        yangModelCmHandle, cmHandleId, dataStore));
     }
 
     private void isCmHandleStateReady(final YangModelCmHandle yangModelCmHandle, final CmHandleState cmHandleState) {
