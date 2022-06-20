@@ -55,7 +55,7 @@ public interface RestOutputCmHandleStateMapper {
 
         if (compositeStateDataStore.getOperationalDataStore() != null) {
             final SyncState operationalSyncState = new SyncState();
-            operationalSyncState.setState(compositeStateDataStore.getOperationalDataStore().getSyncState());
+            operationalSyncState.setState(compositeStateDataStore.getOperationalDataStore().getSyncState().name());
             operationalSyncState.setLastSyncTime(compositeStateDataStore.getOperationalDataStore().getLastSyncTime());
             dataStores.setOperational(operationalSyncState);
         }
