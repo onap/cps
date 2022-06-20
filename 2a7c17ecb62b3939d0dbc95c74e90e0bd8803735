@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "4952a087_692d271f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-06-20T12:18:55Z",
+      "side": 1,
+      "message": "data nodes?",
+      "range": {
+        "startLine": 99,
+        "startChar": 25,
+        "endLine": 99,
+        "endChar": 35
+      },
+      "revId": "2a7c17ecb62b3939d0dbc95c74e90e0bd8803735",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f9f40ce2_dd74b022",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-06-20T12:18:55Z",
+      "side": 1,
+      "message": "Perhaps getCmHandlesByOperationalSyncState",
+      "range": {
+        "startLine": 114,
+        "startChar": 26,
+        "endLine": 114,
+        "endChar": 60
+      },
+      "revId": "2a7c17ecb62b3939d0dbc95c74e90e0bd8803735",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b72786f3_d970f39a",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/DataSyncWatchdog.java",
         "patchSetId": 13
@@ -237,6 +283,29 @@
     },
     {
       "key": {
+        "uuid": "18dbec05_cfebbb84",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/DataSyncWatchdog.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-06-20T12:18:55Z",
+      "side": 1,
+      "message": "NB: No Cm-handles found with state READY and operational sync state UNSYNCHRONIZED ?",
+      "range": {
+        "startLine": 71,
+        "startChar": 18,
+        "endLine": 71,
+        "endChar": 112
+      },
+      "revId": "2a7c17ecb62b3939d0dbc95c74e90e0bd8803735",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "66124146_1014b6d2",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
         "patchSetId": 13
@@ -425,6 +494,29 @@
     },
     {
       "key": {
+        "uuid": "c4c06026_8669c076",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiDataOperationsSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-06-20T12:18:55Z",
+      "side": 1,
+      "message": "Where is this value being set?",
+      "range": {
+        "startLine": 84,
+        "startChar": 32,
+        "endLine": 84,
+        "endChar": 43
+      },
+      "revId": "2a7c17ecb62b3939d0dbc95c74e90e0bd8803735",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "77672c47_024f8a17",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/InventoryPersistenceSpec.groovy",
         "patchSetId": 13
@@ -563,6 +655,75 @@
       "revId": "2a7c17ecb62b3939d0dbc95c74e90e0bd8803735",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee5e0bbf_d0d17887",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/DataSyncSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-06-20T12:18:55Z",
+      "side": 1,
+      "message": "given resourceData is availbale",
+      "range": {
+        "startLine": 49,
+        "startChar": 16,
+        "endLine": 49,
+        "endChar": 89
+      },
+      "revId": "2a7c17ecb62b3939d0dbc95c74e90e0bd8803735",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "622e0566_03f275ca",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/DataSyncSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-06-20T12:18:55Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 52,
+        "startChar": 106,
+        "endLine": 52,
+        "endChar": 110
+      },
+      "revId": "2a7c17ecb62b3939d0dbc95c74e90e0bd8803735",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "db73a80b_c03c082e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/DataSyncSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-06-20T12:18:55Z",
+      "side": 1,
+      "message": "This only verifies that the method is being called and not verifying that the state has changed",
+      "range": {
+        "startLine": 62,
+        "startChar": 11,
+        "endLine": 62,
+        "endChar": 94
+      },
+      "revId": "2a7c17ecb62b3939d0dbc95c74e90e0bd8803735",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     },
     {
       "key": {
