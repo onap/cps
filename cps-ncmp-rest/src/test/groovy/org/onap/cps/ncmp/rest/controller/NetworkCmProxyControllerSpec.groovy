@@ -26,6 +26,7 @@ package org.onap.cps.ncmp.rest.controller
 import org.mapstruct.factory.Mappers
 import org.onap.cps.ncmp.api.inventory.CmHandleState
 import org.onap.cps.ncmp.api.inventory.CompositeState
+import org.onap.cps.ncmp.api.inventory.SyncState
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.rest.mapper.RestOutputCmHandleStateMapper
 import org.onap.cps.ncmp.rest.executor.CpsNcmpTaskExecutor
@@ -392,7 +393,7 @@ class NetworkCmProxyControllerSpec extends Specification {
     def dataStores() {
         DataStores.builder()
             .operationalDataStore(Operational.builder()
-                .syncState('NONE_REQUESTED')
+                .syncState(SyncState.NONE_REQUESTED)
                 .lastSyncTime(formattedDateAndTime.toString()).build()).build()
     }
 

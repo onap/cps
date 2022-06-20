@@ -93,14 +93,39 @@ public class InventoryPersistence {
     }
 
     /**
-     * Method to return cm handles from the cps path.
+     * Method to return data nodes representing the cm handles.
      *
      * @param cpsPath cps path for which the cmHandle is requested
+     * @return a list of data nodes representing the cm handles.
+     */
+    public List<DataNode> getCmHandleDataNodesByCpsPath(final String cpsPath) {
+        return cpsDataPersistenceService.queryDataNodes(
+                NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cpsPath, FetchDescendantsOption.OMIT_DESCENDANTS);
+    }
+
+    /**
+     * Method which returns cm handles by the cm handle id and state.
+     * @param cmHandleId cm handle id
+     * @param cmHandleState cm handle state
      * @return a list of cm handles
      */
-    public List<DataNode> getCmHandlesByCpsPath(final String cpsPath) {
-        return cpsDataPersistenceService.queryDataNodes(
-            NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cpsPath, FetchDescendantsOption.OMIT_DESCENDANTS);
+    public List<DataNode> getCmHandlesByIdAndState(final String cmHandleId, final CmHandleState cmHandleState) {
+        return cpsDataPersistenceService.queryDataNodes(NCMP_DATASPACE_NAME,
+                NCMP_DMI_REGISTRY_ANCHOR, "//cm-handles[@id='" + cmHandleId + "']/state[@cm-handle-state=\""
+                        + cmHandleState + "\"]/ancestor::cm-handles",
+                FetchDescendantsOption.OMIT_DESCENDANTS);
+    }
+
+    /**
+     * Method which returns cm handles by the operational sync state of cm handle.
+     * @param syncState sync state
+     * @return a list of cm handles
+     */
+    public List<DataNode> getCmHandlesByOperationalSyncState(final SyncState syncState) {
+        return cpsDataPersistenceService.queryDataNodes(NCMP_DATASPACE_NAME,
+                NCMP_DMI_REGISTRY_ANCHOR, "//state/datastores"
+                        + "/operational[@sync-state=\"" + syncState + "\"]/ancestor::cm-handles",
+                FetchDescendantsOption.OMIT_DESCENDANTS);
     }
 
     /**
