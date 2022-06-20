@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bcdc583d_989b089e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-06-20T15:40:41Z",
+      "side": 1,
+      "message": "I would add a bit more in the description about how the new code fixes the performance :)",
+      "revId": "5c39f83feca1b3e29f7f4166d1306c9003408976",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}

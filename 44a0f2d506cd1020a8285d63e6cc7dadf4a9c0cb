@@ -1,0 +1,349 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b935c585_f31d2148",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-06-20T15:40:41Z",
+      "side": 1,
+      "message": "cmHandleIds",
+      "range": {
+        "startLine": 75,
+        "startChar": 33,
+        "endLine": 75,
+        "endChar": 66
+      },
+      "revId": "44a0f2d506cd1020a8285d63e6cc7dadf4a9c0cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ff5a2d68_5ab6fdb1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-06-20T15:40:41Z",
+      "side": 1,
+      "message": "cmHandles",
+      "range": {
+        "startLine": 76,
+        "startChar": 47,
+        "endLine": 76,
+        "endChar": 70
+      },
+      "revId": "44a0f2d506cd1020a8285d63e6cc7dadf4a9c0cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "40989511_8603706f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-06-20T15:40:41Z",
+      "side": 1,
+      "message": "Would change the order of these two methods based on where they come in the class.",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 53
+      },
+      "revId": "44a0f2d506cd1020a8285d63e6cc7dadf4a9c0cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc9462d9_16bca603",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-06-20T15:40:41Z",
+      "side": 1,
+      "message": "filteredNcmpServiceCmHandles",
+      "range": {
+        "startLine": 89,
+        "startChar": 15,
+        "endLine": 89,
+        "endChar": 42
+      },
+      "revId": "44a0f2d506cd1020a8285d63e6cc7dadf4a9c0cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c9c0688e_9eb5dd06",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-06-20T15:40:41Z",
+      "side": 1,
+      "message": "I\u0027m confused about this if else? The logic seems to be doing similar things in both cases, of just adding the cm handle id to the list to be returned.",
+      "range": {
+        "startLine": 103,
+        "startChar": 0,
+        "endLine": 116,
+        "endChar": 19
+      },
+      "revId": "44a0f2d506cd1020a8285d63e6cc7dadf4a9c0cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "20e426f2_7ec35eef",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-06-20T15:40:41Z",
+      "side": 1,
+      "message": "I would separate these into two separate methods, one which will return a collection of type string of the cm handles. And one which returns the collection of type ncmp service cm handle.\n\nI think this may lead to not having to duplicate the justIds boolean in a lot of places too.",
+      "range": {
+        "startLine": 183,
+        "startChar": 0,
+        "endLine": 196,
+        "endChar": 5
+      },
+      "revId": "44a0f2d506cd1020a8285d63e6cc7dadf4a9c0cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d3d8f972_b6ae63a8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-06-20T15:40:41Z",
+      "side": 1,
+      "message": "cmHandleIds",
+      "range": {
+        "startLine": 208,
+        "startChar": 8,
+        "endLine": 208,
+        "endChar": 41
+      },
+      "revId": "44a0f2d506cd1020a8285d63e6cc7dadf4a9c0cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "430406d0_0c56c6de",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-06-20T15:40:41Z",
+      "side": 1,
+      "message": "cmHandles",
+      "range": {
+        "startLine": 209,
+        "startChar": 8,
+        "endLine": 209,
+        "endChar": 31
+      },
+      "revId": "44a0f2d506cd1020a8285d63e6cc7dadf4a9c0cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "633f8949_c9f74ae6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-06-20T15:40:41Z",
+      "side": 1,
+      "message": "I think we should probably have two different methods for this. As opposed to using a boolean flag. One for getting just the id\u0027s and one for the full cm handle.",
+      "range": {
+        "startLine": 163,
+        "startChar": 73,
+        "endLine": 163,
+        "endChar": 78
+      },
+      "revId": "44a0f2d506cd1020a8285d63e6cc7dadf4a9c0cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7fc21649_f5f4995b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-06-20T15:40:41Z",
+      "side": 1,
+      "message": "Should be written as two different scenarios I think. One to return the cm handle id\u0027s one to return the two full cm handles. If we separate out the methods it should probably be two separate tests.",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 106
+      },
+      "revId": "44a0f2d506cd1020a8285d63e6cc7dadf4a9c0cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a6a3cc00_51270b9d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-06-20T15:40:41Z",
+      "side": 1,
+      "message": "single property matches.",
+      "range": {
+        "startLine": 60,
+        "startChar": 13,
+        "endLine": 60,
+        "endChar": 37
+      },
+      "revId": "44a0f2d506cd1020a8285d63e6cc7dadf4a9c0cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1cabb71a_6559afb0",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-06-20T15:40:41Z",
+      "side": 1,
+      "message": "public property does not match",
+      "range": {
+        "startLine": 61,
+        "startChar": 13,
+        "endLine": 61,
+        "endChar": 39
+      },
+      "revId": "44a0f2d506cd1020a8285d63e6cc7dadf4a9c0cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cf603b43_2e66d028",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-06-20T15:40:41Z",
+      "side": 1,
+      "message": "and what?",
+      "range": {
+        "startLine": 62,
+        "startChar": 42,
+        "endLine": 62,
+        "endChar": 47
+      },
+      "revId": "44a0f2d506cd1020a8285d63e6cc7dadf4a9c0cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b6124ecf_efaadeac",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-06-20T15:40:41Z",
+      "side": 1,
+      "message": "similar to comments above.",
+      "range": {
+        "startLine": 102,
+        "startChar": 0,
+        "endLine": 103,
+        "endChar": 106
+      },
+      "revId": "44a0f2d506cd1020a8285d63e6cc7dadf4a9c0cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f3d9cc8b_182dc419",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-06-20T15:40:41Z",
+      "side": 1,
+      "message": "What is the difference between both of these? Can we not just pass the top one into the search method as a param?\n\nWhy do we need two separate models, it looks like both models contain the same data types and names?",
+      "range": {
+        "startLine": 266,
+        "startChar": 0,
+        "endLine": 277,
+        "endChar": 83
+      },
+      "revId": "44a0f2d506cd1020a8285d63e6cc7dadf4a9c0cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
