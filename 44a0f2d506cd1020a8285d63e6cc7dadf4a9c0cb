@@ -143,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "26f7f508_c724788f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-21T11:55:50Z",
+      "side": 1,
+      "message": "as it is a map I usually use both key and value names like\ncmHandleId2NcmpServiceCmHandle  or\ncmHandleIdToNcmpServiceCmHandle",
+      "parentUuid": "ff5a2d68_5ab6fdb1",
+      "range": {
+        "startLine": 76,
+        "startChar": 47,
+        "endLine": 76,
+        "endChar": 70
+      },
+      "revId": "44a0f2d506cd1020a8285d63e6cc7dadf4a9c0cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "40989511_8603706f",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceImpl.java",
         "patchSetId": 5
@@ -237,6 +261,30 @@
     },
     {
       "key": {
+        "uuid": "3432054c_e291258a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-21T11:55:50Z",
+      "side": 1,
+      "message": "another good name in the context of the method could be just \u0027queryResult\u0027",
+      "parentUuid": "bc9462d9_16bca603",
+      "range": {
+        "startLine": 89,
+        "startChar": 15,
+        "endLine": 89,
+        "endChar": 42
+      },
+      "revId": "44a0f2d506cd1020a8285d63e6cc7dadf4a9c0cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c9c0688e_9eb5dd06",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceImpl.java",
         "patchSetId": 5
@@ -281,6 +329,29 @@
       "revId": "44a0f2d506cd1020a8285d63e6cc7dadf4a9c0cb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "86cbc860_9eb33409",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-21T11:55:50Z",
+      "side": 1,
+      "message": "just use \u0027//cm-handles\u0027\n\u0027/dmi-registry/cm-handles\u0027",
+      "range": {
+        "startLine": 193,
+        "startChar": 33,
+        "endLine": 193,
+        "endChar": 73
+      },
+      "revId": "44a0f2d506cd1020a8285d63e6cc7dadf4a9c0cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     },
     {
       "key": {
