@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "c25f5023_48162096",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-21T09:21:52Z",
+      "side": 1,
+      "message": "check with Tony about \u0027LOCKED\u0027\nused for misbehaving during module (and possible data sync)",
+      "range": {
+        "startLine": 7,
+        "startChar": 41,
+        "endLine": 7,
+        "endChar": 48
+      },
+      "revId": "946dac18590d3a104231b3a076da1f7c13fc81f1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "deffa729_7444a142",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 2
@@ -42,6 +65,29 @@
         "startChar": 25,
         "endLine": 212,
         "endChar": 32
+      },
+      "revId": "946dac18590d3a104231b3a076da1f7c13fc81f1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a9adb7c2_0a47518d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-21T09:21:52Z",
+      "side": 1,
+      "message": "temporary I assume",
+      "range": {
+        "startLine": 212,
+        "startChar": 24,
+        "endLine": 212,
+        "endChar": 34
       },
       "revId": "946dac18590d3a104231b3a076da1f7c13fc81f1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
@@ -93,6 +139,75 @@
       "revId": "946dac18590d3a104231b3a076da1f7c13fc81f1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5d4009f4_034cf961",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiDataOperations.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-21T09:21:52Z",
+      "side": 1,
+      "message": "not the right place. probably no need for class at all",
+      "range": {
+        "startLine": 76,
+        "startChar": 8,
+        "endLine": 76,
+        "endChar": 47
+      },
+      "revId": "946dac18590d3a104231b3a076da1f7c13fc81f1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb4b2340_37a6aead",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/YangModelCmHandleRetriever.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-21T09:21:52Z",
+      "side": 1,
+      "message": "need to change once new model has been applied be Lathish",
+      "range": {
+        "startLine": 61,
+        "startChar": 44,
+        "endLine": 61,
+        "endChar": 55
+      },
+      "revId": "946dac18590d3a104231b3a076da1f7c13fc81f1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e79379ef_c5bab695",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/CpsValidator.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-21T09:21:52Z",
+      "side": 1,
+      "message": "canRead(datastore?)\ncanWrite()",
+      "range": {
+        "startLine": 69,
+        "startChar": 23,
+        "endLine": 69,
+        "endChar": 49
+      },
+      "revId": "946dac18590d3a104231b3a076da1f7c13fc81f1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     },
     {
       "key": {
