@@ -22,6 +22,30 @@
       "revId": "8a85791b8e38967b637445991caf16160721f4c8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "04d0b334_a8730a05",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-06-21T09:41:03Z",
+      "side": 1,
+      "message": "Actually the creation part i.e moving from ADVISED to READY is been done by the ModuleSyncWatchdog and I want to emit the event only when it is in READY state.",
+      "parentUuid": "af1f7d70_6e09ccf7",
+      "range": {
+        "startLine": 233,
+        "startChar": 46,
+        "endLine": 233,
+        "endChar": 100
+      },
+      "revId": "8a85791b8e38967b637445991caf16160721f4c8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
