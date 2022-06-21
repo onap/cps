@@ -22,6 +22,30 @@
       "revId": "5a18717be8b791535c0a76a084b959867bf0c9af",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "99d3dc4f_ff347f3d",
+        "filename": "cps-ncmp-rest/src/test/resources/application.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-06-21T11:36:50Z",
+      "side": 1,
+      "message": "This is enabled here for the tests in src/main/test",
+      "parentUuid": "9dd4f05d_5414e098",
+      "range": {
+        "startLine": 27,
+        "startChar": 8,
+        "endLine": 27,
+        "endChar": 21
+      },
+      "revId": "5a18717be8b791535c0a76a084b959867bf0c9af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
