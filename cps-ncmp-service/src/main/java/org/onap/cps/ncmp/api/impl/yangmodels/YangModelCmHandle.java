@@ -34,9 +34,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.onap.cps.ncmp.api.impl.operations.RequiredDmiService;
-import org.onap.cps.ncmp.api.inventory.CmHandleState;
 import org.onap.cps.ncmp.api.inventory.CompositeState;
-import org.onap.cps.ncmp.api.inventory.CompositeStateBuilder;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.utils.CpsValidator;
 
@@ -70,8 +68,6 @@ public class YangModelCmHandle {
     @JsonProperty("public-properties")
     private List<Property> publicProperties;
 
-    private static final CompositeStateBuilder compositeStateBuilder = new CompositeStateBuilder();
-
     /**
      * Create a yangModelCmHandle.
      *
@@ -84,7 +80,6 @@ public class YangModelCmHandle {
     public static YangModelCmHandle toYangModelCmHandle(final String dmiServiceName,
                                                         final String dmiDataServiceName,
                                                         final String dmiModelServiceName,
-                                                        final CmHandleState cmHandleState,
                                                         final NcmpServiceCmHandle ncmpServiceCmHandle) {
         CpsValidator.validateNameCharacters(ncmpServiceCmHandle.getCmHandleId());
         final YangModelCmHandle yangModelCmHandle = new YangModelCmHandle();
@@ -95,8 +90,7 @@ public class YangModelCmHandle {
         yangModelCmHandle.setDmiProperties(asYangModelCmHandleProperties(ncmpServiceCmHandle.getDmiProperties()));
         yangModelCmHandle.setPublicProperties(asYangModelCmHandleProperties(
                 ncmpServiceCmHandle.getPublicProperties()));
-        compositeStateBuilder.withCmHandleState(cmHandleState);
-        yangModelCmHandle.setCompositeState(compositeStateBuilder.build());
+        yangModelCmHandle.setCompositeState(ncmpServiceCmHandle.getCompositeState());
         return yangModelCmHandle;
     }
 
