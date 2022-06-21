@@ -566,6 +566,30 @@
     },
     {
       "key": {
+        "uuid": "fe8d4096_c30e7224",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/SyncUtilsSpec.groovy",
+        "patchSetId": 16
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-21T08:19:59Z",
+      "side": 1,
+      "message": "still dont see a reason fo this to be a spy?!",
+      "parentUuid": "f4bb1eb5_7296e1dc",
+      "range": {
+        "startLine": 46,
+        "startChar": 28,
+        "endLine": 46,
+        "endChar": 31
+      },
+      "revId": "afb2a3ca9f0b68c868a0fc908ef8718fb2d8565f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "26766816_f329963f",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/SyncUtilsSpec.groovy",
         "patchSetId": 16
