@@ -22,6 +22,76 @@
       "revId": "3b1d84ac048bd057a5497a2d0243cba675980781",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e9e1426_697e992c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-21T17:03:09Z",
+      "side": 1,
+      "message": "as this is a temporary quick fix this can be resolved lated (if still applicable int the proper fix)",
+      "parentUuid": "7d41fee7_414cb884",
+      "range": {
+        "startLine": 132,
+        "startChar": 67,
+        "endLine": 132,
+        "endChar": 86
+      },
+      "revId": "3b1d84ac048bd057a5497a2d0243cba675980781",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7b903259_9609d2cf",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-21T17:03:09Z",
+      "side": 1,
+      "message": "in future (for proper fix) please use proper names :-)",
+      "range": {
+        "startLine": 57,
+        "startChar": 43,
+        "endLine": 57,
+        "endChar": 44
+      },
+      "revId": "3b1d84ac048bd057a5497a2d0243cba675980781",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07c80f7d_12754195",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-21T17:03:09Z",
+      "side": 1,
+      "message": "in future (for proper fix) please use proper names :-)",
+      "range": {
+        "startLine": 78,
+        "startChar": 43,
+        "endLine": 78,
+        "endChar": 45
+      },
+      "revId": "3b1d84ac048bd057a5497a2d0243cba675980781",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
