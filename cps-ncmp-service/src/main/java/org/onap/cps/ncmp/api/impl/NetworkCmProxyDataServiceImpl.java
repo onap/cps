@@ -53,6 +53,7 @@ import org.onap.cps.ncmp.api.impl.operations.DmiOperations;
 import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.inventory.CmHandleState;
+import org.onap.cps.ncmp.api.inventory.CompositeState;
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.api.inventory.sync.ModuleSyncService;
 import org.onap.cps.ncmp.api.models.CmHandleQueryApiParameters;
@@ -235,13 +236,15 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         List<CmHandleRegistrationResponse> cmHandleRegistrationResponses = new ArrayList<>();
         try {
             cmHandleRegistrationResponses = dmiPluginRegistration.getCreatedCmHandles().stream()
-                .map(cmHandle ->
-                    YangModelCmHandle.toYangModelCmHandle(
+                .map(cmHandle -> {
+                    cmHandle.setCompositeState(new CompositeState());
+                    cmHandle.getCompositeState().setCmHandleState(CmHandleState.ADVISED);
+                    return YangModelCmHandle.toYangModelCmHandle(
                         dmiPluginRegistration.getDmiPlugin(),
                         dmiPluginRegistration.getDmiDataPlugin(),
                         dmiPluginRegistration.getDmiModelPlugin(),
-                        CmHandleState.ADVISED,
-                        cmHandle)
+                        cmHandle);
+                    }
                 )
                 .map(this::registerNewCmHandle)
                 .collect(Collectors.toList());

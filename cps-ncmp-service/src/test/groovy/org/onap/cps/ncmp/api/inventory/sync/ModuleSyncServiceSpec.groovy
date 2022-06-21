@@ -24,7 +24,6 @@ import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.ncmp.api.impl.operations.DmiModelOperations
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
-import org.onap.cps.ncmp.api.inventory.CmHandleState
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import org.onap.cps.spi.model.ModuleReference
 import spock.lang.Specification
@@ -45,7 +44,7 @@ class ModuleSyncServiceSpec extends Specification {
             def ncmpServiceCmHandle = new NcmpServiceCmHandle()
             def dmiServiceName = 'some service name'
             ncmpServiceCmHandle.cmHandleId = 'cmHandleId-1'
-            def yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle(dmiServiceName, '' , '', CmHandleState.ADVISED, ncmpServiceCmHandle)
+            def yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle(dmiServiceName, '', '', ncmpServiceCmHandle)
         and: 'DMI operations returns some module references'
             def moduleReferences =  [ new ModuleReference(moduleName:'module1',revision:'1'),
                                                             new ModuleReference(moduleName:'module2',revision:'2') ]
