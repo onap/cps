@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7d41fee7_414cb884",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-06-21T14:41:15Z",
+      "side": 1,
+      "message": "NB: can you check your performance with using Set instead of List please??\nI know it is in memory but still the underlying data-structure for Set is more efficient when we do a search/contains operation.\nFor 1000s of ids it would make some difference as your whole fix is because of the performance issue.",
+      "range": {
+        "startLine": 132,
+        "startChar": 67,
+        "endLine": 132,
+        "endChar": 86
+      },
+      "revId": "3b1d84ac048bd057a5497a2d0243cba675980781",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
