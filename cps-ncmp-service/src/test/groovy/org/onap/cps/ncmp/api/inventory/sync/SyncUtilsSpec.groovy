@@ -25,6 +25,7 @@ import org.onap.cps.ncmp.api.inventory.CmHandleState
 import org.onap.cps.ncmp.api.inventory.CompositeState
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence
 import org.onap.cps.ncmp.api.inventory.LockReasonCategory
+import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.model.DataNode
 import spock.lang.Shared
 import spock.lang.Specification
@@ -70,7 +71,8 @@ class SyncUtilsSpec extends Specification{
     def 'Get all locked Cm-Handle where Lock Reason is LOCKED_MISBEHAVING cm handle #scenario'() {
         given: 'the cps (persistence service) returns a collection of data nodes'
             mockInventoryPersistence.getCmHandlesByCpsPath(
-                    '//lock-reason[@reason="LOCKED_MISBEHAVING"]/ancestor::cm-handles') >> [dataNode ]
+                    '//lock-reason[@reason="LOCKED_MISBEHAVING"]/ancestor::cm-handles',
+                FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> [dataNode ]
         when: 'get locked Misbehaving cm handle is called'
             def result = objectUnderTest.getLockedMisbehavingCmHandles()
         then: 'the returned cm handle collection is the correct size'

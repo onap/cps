@@ -28,7 +28,6 @@ import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.model.DataNode
-import org.onap.cps.spi.model.DataNodeBuilder
 import org.onap.cps.utils.JsonObjectMapper
 import spock.lang.Shared
 import spock.lang.Specification
@@ -163,10 +162,11 @@ class InventoryPersistenceSpec extends Specification {
             def cpsPath = '//cps-path'
         and: 'cps data service returns a valid data node'
             mockCpsDataPersistenceService.queryDataNodes('NCMP-Admin', 'ncmp-dmi-registry',
-                    cpsPath, OMIT_DESCENDANTS)
+                    cpsPath, INCLUDE_ALL_DESCENDANTS)
                     >> Arrays.asList(cmHandleDataNode)
         when: 'get cm handles by cps path is invoked'
-            def result = objectUnderTest.getCmHandlesByCpsPath(cpsPath)
+            def result = objectUnderTest.getCmHandlesByCpsPath(cpsPath,
+                INCLUDE_ALL_DESCENDANTS)
         then: 'the returned result is a list of data nodes returned by cps data service'
             assert result.contains(cmHandleDataNode)
     }
