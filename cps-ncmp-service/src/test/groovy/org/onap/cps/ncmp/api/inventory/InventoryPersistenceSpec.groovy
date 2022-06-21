@@ -188,10 +188,10 @@ class InventoryPersistenceSpec extends Specification {
             def cpsPath = '//cps-path'
         and: 'cps data service returns a valid data node'
             mockCpsDataPersistenceService.queryDataNodes('NCMP-Admin', 'ncmp-dmi-registry',
-                    cpsPath, OMIT_DESCENDANTS)
+                    cpsPath, INCLUDE_ALL_DESCENDANTS)
                     >> Arrays.asList(cmHandleDataNode)
         when: 'get cm handles by cps path is invoked'
-            def result = objectUnderTest.getCmHandleDataNodesByCpsPath(cpsPath)
+            def result = objectUnderTest.getCmHandleDataNodesByCpsPath(cpsPath, INCLUDE_ALL_DESCENDANTS)
         then: 'the returned result is a list of data nodes returned by cps data service'
             assert result.contains(cmHandleDataNode)
     }

@@ -98,9 +98,10 @@ public class InventoryPersistence {
      * @param cpsPath cps path for which the cmHandle is requested
      * @return a list of data nodes representing the cm handles.
      */
-    public List<DataNode> getCmHandleDataNodesByCpsPath(final String cpsPath) {
+    public List<DataNode> getCmHandleDataNodesByCpsPath(final String cpsPath,
+                                                        final FetchDescendantsOption fetchDescendantsOption) {
         return cpsDataPersistenceService.queryDataNodes(
-                NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cpsPath, FetchDescendantsOption.OMIT_DESCENDANTS);
+                NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cpsPath, fetchDescendantsOption);
     }
 
     /**
