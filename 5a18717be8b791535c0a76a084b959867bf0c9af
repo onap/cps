@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9dd4f05d_5414e098",
+        "filename": "cps-ncmp-rest/src/test/resources/application.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-06-21T09:44:03Z",
+      "side": 1,
+      "message": "default here is \u0027true\u0027 but \u0027false\u0027 in https://gerrit.onap.org/r/c/cps/+/129636/7/cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java ?",
+      "range": {
+        "startLine": 27,
+        "startChar": 8,
+        "endLine": 27,
+        "endChar": 21
+      },
+      "revId": "5a18717be8b791535c0a76a084b959867bf0c9af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
