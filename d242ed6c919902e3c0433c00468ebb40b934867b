@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "06e6e6ed_13eb46e6",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-06-21T08:59:20Z",
+      "side": 1,
+      "message": "Please move the usage of Rest prefix",
+      "range": {
+        "startLine": 148,
+        "startChar": 4,
+        "endLine": 148,
+        "endChar": 24
+      },
+      "revId": "d242ed6c919902e3c0433c00468ebb40b934867b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d92b3ce4_d08b6e1b",
         "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
         "patchSetId": 6
@@ -34,6 +57,75 @@
       "revId": "d242ed6c919902e3c0433c00468ebb40b934867b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4f2de68b_1cddfa53",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-06-21T08:59:20Z",
+      "side": 1,
+      "message": "blank space and line ..",
+      "range": {
+        "startLine": 164,
+        "startChar": 0,
+        "endLine": 164,
+        "endChar": 12
+      },
+      "revId": "d242ed6c919902e3c0433c00468ebb40b934867b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "162eed6b_9dd28453",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-06-21T08:59:20Z",
+      "side": 1,
+      "message": "this could be removed",
+      "range": {
+        "startLine": 267,
+        "startChar": 0,
+        "endLine": 267,
+        "endChar": 10
+      },
+      "revId": "d242ed6c919902e3c0433c00468ebb40b934867b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "63217b18_d8aef850",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NcmpRestInputMapper.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-06-21T08:59:20Z",
+      "side": 1,
+      "message": "whats the difference between this and RestModuleReference?",
+      "range": {
+        "startLine": 58,
+        "startChar": 4,
+        "endLine": 58,
+        "endChar": 24
+      },
+      "revId": "d242ed6c919902e3c0433c00468ebb40b934867b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     },
     {
       "key": {
