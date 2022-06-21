@@ -43,6 +43,7 @@ import org.onap.cps.ncmp.api.inventory.CompositeState;
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.api.inventory.LockReasonCategory;
 import org.onap.cps.ncmp.api.inventory.SyncState;
+import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.ResponseEntity;
@@ -111,7 +112,8 @@ public class SyncUtils {
      */
     public List<YangModelCmHandle> getLockedMisbehavingYangModelCmHandles() {
         final List<DataNode> lockedCmHandleAsDataNodeList = inventoryPersistence.getCmHandleDataNodesByCpsPath(
-            "//lock-reason[@reason=\"LOCKED_MISBEHAVING\"]/ancestor::cm-handles");
+            "//lock-reason[@reason=\"LOCKED_MISBEHAVING\"]/ancestor::cm-handles",
+            FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
         return lockedCmHandleAsDataNodeList.stream()
             .map(cmHandle -> YangDataConverter.convertCmHandleToYangModel(cmHandle,
                 cmHandle.getLeaves().get("id").toString())).collect(Collectors.toList());

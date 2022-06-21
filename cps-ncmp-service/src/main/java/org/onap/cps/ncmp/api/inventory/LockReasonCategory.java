@@ -21,5 +21,18 @@
 package org.onap.cps.ncmp.api.inventory;
 
 public enum LockReasonCategory {
-    LOCKED_MISBEHAVING
+    LOCKED_MISBEHAVING("LOCK_MISBEHAVING"),
+    EMPTY("");
+
+    private final String lockReason;
+
+    LockReasonCategory(final String lockReason) {
+        this.lockReason = lockReason;
+    }
+
+    @Override
+    public String toString() {
+        return this.lockReason;
+    }
+
 }

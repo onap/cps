@@ -92,7 +92,8 @@ public class ModuleSyncWatchdog {
             updatedCompositeState.setCmHandleState(CmHandleState.ADVISED);
             updatedCompositeState.setLastUpdateTimeNow();
             updatedCompositeState.setLockReason(LockReason.builder()
-                .details(updatedCompositeState.getLockReason().getDetails()).build());
+                .details(updatedCompositeState.getLockReason().getDetails()).
+                lockReasonCategory(LockReasonCategory.valueOf("EMPTY")).build());
             log.debug("Locked misbehaving cm handle {} is being recycled", lockedMisbehavingModelCmHandle.getId());
             inventoryPersistence.saveCmHandleState(lockedMisbehavingModelCmHandle.getId(), updatedCompositeState);
         }
