@@ -154,6 +154,30 @@
     },
     {
       "key": {
+        "uuid": "adce8248_d400d1be",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-06-22T09:22:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "162eed6b_9dd28453",
+      "range": {
+        "startLine": 267,
+        "startChar": 0,
+        "endLine": 267,
+        "endChar": 10
+      },
+      "revId": "d242ed6c919902e3c0433c00468ebb40b934867b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "63217b18_d8aef850",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NcmpRestInputMapper.java",
         "patchSetId": 6
@@ -198,6 +222,30 @@
       "revId": "d242ed6c919902e3c0433c00468ebb40b934867b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dca59ecb_ec8c9336",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NcmpRestInputMapper.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-06-22T09:22:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4861823e_0d80cbc7",
+      "range": {
+        "startLine": 58,
+        "startChar": 4,
+        "endLine": 58,
+        "endChar": 24
+      },
+      "revId": "d242ed6c919902e3c0433c00468ebb40b934867b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
