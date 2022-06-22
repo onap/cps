@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "52e54a0b_8910ebe5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/NcmpEventsService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-06-22T11:42:49Z",
+      "side": 1,
+      "message": "If we decide to put this logic here then better to log the event created.\nOtherwise it would be better not to allow the code to do any hardwork for nothing 😊  If the flag is disabled then no need to do anything.\nWhat do you think?",
+      "range": {
+        "startLine": 69,
+        "startChar": 8,
+        "endLine": 73,
+        "endChar": 9
+      },
+      "revId": "4d348ff50eb9980b76ad35499f169c92be8564a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
