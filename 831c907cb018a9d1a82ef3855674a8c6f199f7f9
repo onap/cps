@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1119ffa7_36e768ff",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/InventoryPersistenceSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-22T11:06:37Z",
+      "side": 1,
+      "message": "as you started using string literals be consistent....",
+      "range": {
+        "startLine": 166,
+        "startChar": 82,
+        "endLine": 166,
+        "endChar": 107
+      },
+      "revId": "831c907cb018a9d1a82ef3855674a8c6f199f7f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a9559c21_135ac636",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/InventoryPersistenceSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-22T11:06:37Z",
+      "side": 1,
+      "message": "as you started using string literals be consistent....",
+      "range": {
+        "startLine": 187,
+        "startChar": 92,
+        "endLine": 187,
+        "endChar": 119
+      },
+      "revId": "831c907cb018a9d1a82ef3855674a8c6f199f7f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
