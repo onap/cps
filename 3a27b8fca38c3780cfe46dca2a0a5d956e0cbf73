@@ -120,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "38c7bff6_532a4510",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 10
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-22T10:05:14Z",
+      "side": 1,
+      "message": "as discussed default shoudl be true and we tell bug-author how to turn it off \n(I don\u0027t think this parameter should be documented in our RTD as it is really a temp solution for just one client)",
+      "parentUuid": "2f9b543c_f97061cf",
+      "range": {
+        "startLine": 109,
+        "startChar": 21,
+        "endLine": 109,
+        "endChar": 27
+      },
+      "revId": "3a27b8fca38c3780cfe46dca2a0a5d956e0cbf73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9ea9fcd4_fe583c42",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
         "patchSetId": 10
