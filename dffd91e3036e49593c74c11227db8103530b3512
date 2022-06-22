@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b822b2ee_96d1712d",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-22T09:47:26Z",
+      "side": 1,
+      "message": "use same as below: 2020-09-15",
+      "range": {
+        "startLine": 157,
+        "startChar": 19,
+        "endLine": 157,
+        "endChar": 37
+      },
+      "revId": "dffd91e3036e49593c74c11227db8103530b3512",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c36bf543_0b800e46",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-22T09:47:26Z",
+      "side": 1,
+      "message": "we need to get rid of these constants by moving all persistence related methods (incl. legacy)  into a dedicated class, see comments below",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 113
+      },
+      "revId": "82658b8ef221e8fcb98bd3de77850ce406a03595",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2d617daa_bd8d381c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-22T09:47:26Z",
+      "side": 1,
+      "message": "create a small method in InventoryPersistenceService that does this as that is the central place for all NCMP persistence related methods in NCMP and that we we shouldn\u0027t have to expose NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME anymore",
+      "range": {
+        "startLine": 159,
+        "startChar": 8,
+        "endLine": 159,
+        "endChar": 119
+      },
+      "revId": "82658b8ef221e8fcb98bd3de77850ce406a03595",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6515b9d2_4b4edf9b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-22T09:47:26Z",
+      "side": 1,
+      "message": "create a small method in InventoryPersistenceService that does this as that is the central place for all NCMP persistence related methods in NCMP and that we we shouldn\u0027t have to expose NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME anymore",
+      "range": {
+        "startLine": 165,
+        "startChar": 8,
+        "endLine": 165,
+        "endChar": 119
+      },
+      "revId": "82658b8ef221e8fcb98bd3de77850ce406a03595",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "820ab99b_4c819e32",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-22T09:47:26Z",
+      "side": 1,
+      "message": "create a small method in InventoryPersistenceService that does this as that is the central place for all NCMP persistence related methods in NCMP and that we we shouldn\u0027t have to expose NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME anymore",
+      "range": {
+        "startLine": 302,
+        "startChar": 0,
+        "endLine": 305,
+        "endChar": 52
+      },
+      "revId": "82658b8ef221e8fcb98bd3de77850ce406a03595",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c5c7c752_4cacd655",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/entities/YangResourceDefinition.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-22T09:47:26Z",
+      "side": 1,
+      "message": "Why no use the already existing YangResourceEntity ?! \nIt as a few additional fields but that doesnt matter, you an simply ignore them when converting\n\nalso don\u0027t have to think about yet another name for this thing because the name od this interface is misleading and not very intuitive...",
+      "revId": "82658b8ef221e8fcb98bd3de77850ce406a03595",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bfec795a_ca3e461f",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-22T09:47:26Z",
+      "side": 1,
+      "message": "NB: is this too long for one line?",
+      "range": {
+        "startLine": 359,
+        "startChar": 4,
+        "endLine": 360,
+        "endChar": 62
+      },
+      "revId": "82658b8ef221e8fcb98bd3de77850ce406a03595",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
