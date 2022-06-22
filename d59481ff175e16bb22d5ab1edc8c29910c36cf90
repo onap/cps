@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "272568f4_b215b894",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/CompositeStateBuilderSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-22T10:02:53Z",
+      "side": 1,
+      "message": "NB: for these tets you don\u0027t have to use the enums, string literals would be fine here...",
+      "range": {
+        "startLine": 40,
+        "startChar": 64,
+        "endLine": 40,
+        "endChar": 108
+      },
+      "revId": "d59481ff175e16bb22d5ab1edc8c29910c36cf90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "82f0d77d_d7eba915",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/InventoryPersistenceSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-22T10:02:53Z",
+      "side": 1,
+      "message": "NB: for these tets you don\u0027t have to use the enums, string literals would be fine here...",
+      "range": {
+        "startLine": 72,
+        "startChar": 150,
+        "endLine": 72,
+        "endChar": 178
+      },
+      "revId": "d59481ff175e16bb22d5ab1edc8c29910c36cf90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
