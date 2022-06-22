@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "c259b764_15084e0d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/CompositeStateBuilderSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-22T11:33:53Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2f764faf_6802f7f2",
+      "range": {
+        "startLine": 59,
+        "startChar": 53,
+        "endLine": 59,
+        "endChar": 81
+      },
+      "revId": "d59481ff175e16bb22d5ab1edc8c29910c36cf90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "82f0d77d_d7eba915",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/InventoryPersistenceSpec.groovy",
         "patchSetId": 19
