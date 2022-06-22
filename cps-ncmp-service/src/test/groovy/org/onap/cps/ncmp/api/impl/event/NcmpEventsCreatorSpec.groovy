@@ -45,8 +45,8 @@ class NcmpEventsCreatorSpec extends Specification {
             assert result.eventCorrelationId == cmHandleId
         and: 'event payload is mapped correctly'
             assert result.event.operation == operation
-            assert result.event.cmhandleProperties.size() == cmHandlePropertiesListSize
-            assert result.event.cmhandleProperties[0] == cmHandleProperties
+            assert (result.event.cmhandleProperties != null) ? result.event.cmhandleProperties.size() : 0 == cmHandlePropertiesListSize
+            assert (result.event.cmhandleProperties != null) ? result.event.cmhandleProperties[0] : null == cmHandleProperties
         where: 'the following operations are used'
             operation | cmHandlePropertiesListSize | cmHandleProperties
             CREATE    | 1                          | ['publicProperty1': 'value1', 'publicProperty2': 'value2']

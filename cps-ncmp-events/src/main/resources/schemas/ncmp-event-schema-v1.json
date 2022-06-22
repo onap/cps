@@ -72,6 +72,7 @@
         "cmhandle-properties": {
           "description": "cmHandle properties as json object.",
           "type": "object",
+          "default": null,
           "existingJavaType": "java.util.List<java.util.Map<String,String>>",
           "additionalProperties": false
         }
