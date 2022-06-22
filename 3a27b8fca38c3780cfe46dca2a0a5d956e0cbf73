@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "2f9b543c_f97061cf",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 10
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-06-22T08:33:08Z",
+      "side": 1,
+      "message": "Actually we want it disabled I would think. Otherwise the customer will still be facing issues reported around logging. Perhaps I need to update some docs?",
+      "parentUuid": "72a3c079_a9d17e65",
+      "range": {
+        "startLine": 109,
+        "startChar": 21,
+        "endLine": 109,
+        "endChar": 27
+      },
+      "revId": "3a27b8fca38c3780cfe46dca2a0a5d956e0cbf73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9ea9fcd4_fe583c42",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
         "patchSetId": 10
