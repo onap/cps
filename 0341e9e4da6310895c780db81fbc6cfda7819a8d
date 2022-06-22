@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "74740bd0_cc084c34",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-22T09:17:49Z",
+      "side": 1,
+      "message": "set time stamp as well so maybe you do need to use the builder again :-)\nInclude/update a test to verify the timestamp is set to something...",
+      "range": {
+        "startLine": 241,
+        "startChar": 49,
+        "endLine": 241,
+        "endChar": 88
+      },
+      "revId": "0341e9e4da6310895c780db81fbc6cfda7819a8d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
