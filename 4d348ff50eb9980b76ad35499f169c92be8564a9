@@ -2,6 +2,75 @@
   "comments": [
     {
       "key": {
+        "uuid": "3f7af4cd_b559d2b6",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-22T13:14:50Z",
+      "side": 1,
+      "message": "By default it should be true",
+      "range": {
+        "startLine": 79,
+        "startChar": 41,
+        "endLine": 79,
+        "endChar": 46
+      },
+      "revId": "4d348ff50eb9980b76ad35499f169c92be8564a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "68d3e318_1ff71871",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/async/NcmpAsyncRequestResponseEventConsumer.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-22T13:14:50Z",
+      "side": 1,
+      "message": "I case of missing this property by default it should be true. \n\nTo stop this bean to be created one need to make \"notification.async.enabled\" false explicitly.",
+      "range": {
+        "startLine": 37,
+        "startChar": 99,
+        "endLine": 37,
+        "endChar": 104
+      },
+      "revId": "4d348ff50eb9980b76ad35499f169c92be8564a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a9c0cce4_b76f9142",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/NcmpEventsService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-22T13:14:50Z",
+      "side": 1,
+      "message": "Default should be true here as well until we set \u0027notification.lcm.events.enabled\u0027 to false explicitly.",
+      "range": {
+        "startLine": 51,
+        "startChar": 46,
+        "endLine": 51,
+        "endChar": 51
+      },
+      "revId": "4d348ff50eb9980b76ad35499f169c92be8564a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "52e54a0b_8910ebe5",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/NcmpEventsService.java",
         "patchSetId": 11
@@ -18,6 +87,53 @@
         "startChar": 8,
         "endLine": 73,
         "endChar": 9
+      },
+      "revId": "4d348ff50eb9980b76ad35499f169c92be8564a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "49174751_50f65192",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/NcmpEventsService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-22T13:14:50Z",
+      "side": 1,
+      "message": "I think we should not land here into this class if lcmEventsEnabled is false and invoke publishNcmpEvent only if lcmEventsEnabled is true like :\n\nif(lcmEventsEnabled) {\nncmpEventsService.publishNcmpEvent(cmHandleId, CREATE ot UPDATE or DELETE);\n}",
+      "parentUuid": "52e54a0b_8910ebe5",
+      "range": {
+        "startLine": 69,
+        "startChar": 8,
+        "endLine": 73,
+        "endChar": 9
+      },
+      "revId": "4d348ff50eb9980b76ad35499f169c92be8564a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3cb6d7b3_15f82dd8",
+        "filename": "docker-compose/csit/csit-docker-compose.yml",
+        "patchSetId": 11
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-22T13:14:50Z",
+      "side": 1,
+      "message": "consistency as all existing docker-compose file is usong : version: \"3.7\"",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 12
       },
       "revId": "4d348ff50eb9980b76ad35499f169c92be8564a9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
