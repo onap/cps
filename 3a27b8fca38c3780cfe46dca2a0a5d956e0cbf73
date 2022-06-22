@@ -1,0 +1,182 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4eb27695_232e77e1",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 10
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-22T07:59:43Z",
+      "side": 1,
+      "message": "i wonder should this be a mor general switch, to turn off ALL notification handling of Kafa is no present\nie.\nnotification:\n   enabled: false",
+      "range": {
+        "startLine": 107,
+        "startChar": 4,
+        "endLine": 107,
+        "endChar": 8
+      },
+      "revId": "3a27b8fca38c3780cfe46dca2a0a5d956e0cbf73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "238ec6ce_5f8dd7f5",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 10
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-22T07:59:43Z",
+      "side": 1,
+      "message": "should it no be \u0027true\u0027 by default?!",
+      "range": {
+        "startLine": 109,
+        "startChar": 21,
+        "endLine": 109,
+        "endChar": 27
+      },
+      "revId": "3a27b8fca38c3780cfe46dca2a0a5d956e0cbf73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9ea9fcd4_fe583c42",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-22T07:59:43Z",
+      "side": 1,
+      "message": "see, this has nothing to do with LCM (life-cycle-management )  that\u0027s why I want to rename the parameter\n(lcm is what Priyank is working on about the creation and deleten of cm handles)",
+      "range": {
+        "startLine": 92,
+        "startChar": 34,
+        "endLine": 92,
+        "endChar": 71
+      },
+      "revId": "3a27b8fca38c3780cfe46dca2a0a5d956e0cbf73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9f669811_55144369",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-22T07:59:43Z",
+      "side": 1,
+      "message": "warn",
+      "range": {
+        "startLine": 106,
+        "startChar": 16,
+        "endLine": 106,
+        "endChar": 20
+      },
+      "revId": "3a27b8fca38c3780cfe46dca2a0a5d956e0cbf73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "48cd0b0a_5a904ec9",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-22T07:59:43Z",
+      "side": 1,
+      "message": "warn",
+      "range": {
+        "startLine": 140,
+        "startChar": 16,
+        "endLine": 140,
+        "endChar": 20
+      },
+      "revId": "3a27b8fca38c3780cfe46dca2a0a5d956e0cbf73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fc14f9b2_eda0f936",
+        "filename": "cps-ncmp-rest/src/test/resources/application.yml",
+        "patchSetId": 10
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-22T07:59:43Z",
+      "side": 1,
+      "message": "ok, so we have more detailed control, not suer if needed. need to discuss in small group I think",
+      "range": {
+        "startLine": 27,
+        "startChar": 8,
+        "endLine": 27,
+        "endChar": 21
+      },
+      "revId": "3a27b8fca38c3780cfe46dca2a0a5d956e0cbf73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e30b6e66_bc7a0267",
+        "filename": "csit/plans/cps/setup.sh",
+        "patchSetId": 10
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-22T07:59:43Z",
+      "side": 1,
+      "message": "is this still valid/necessary comment?",
+      "range": {
+        "startLine": 64,
+        "startChar": 48,
+        "endLine": 64,
+        "endChar": 93
+      },
+      "revId": "3a27b8fca38c3780cfe46dca2a0a5d956e0cbf73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e6d0198_12f62f09",
+        "filename": "csit/plans/cps/test.properties",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-22T07:59:43Z",
+      "side": 1,
+      "message": "teher is a lot more happing the just turning off messaging?!\nCna you add to commit message what this is about I suspect just a little clean up",
+      "revId": "3a27b8fca38c3780cfe46dca2a0a5d956e0cbf73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
