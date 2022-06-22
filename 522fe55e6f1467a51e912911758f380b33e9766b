@@ -94,6 +94,30 @@
     },
     {
       "key": {
+        "uuid": "fdca9da6_434ee255",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 426,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-06-22T10:25:30Z",
+      "side": 1,
+      "message": "It is needed unfortunately, returns null pointer otherwise",
+      "parentUuid": "d15304e7_d0878d7e",
+      "range": {
+        "startLine": 426,
+        "startChar": 9,
+        "endLine": 426,
+        "endChar": 19
+      },
+      "revId": "522fe55e6f1467a51e912911758f380b33e9766b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e4078813_3ae614df",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
         "patchSetId": 2
