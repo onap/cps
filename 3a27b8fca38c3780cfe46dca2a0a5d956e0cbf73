@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6404eae0_28e54013",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 10
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-06-22T08:31:27Z",
+      "side": 1,
+      "message": "We can do this. The way I have it is that you can turn on what notifications you want. you can have async and cps-updated but not lcm and any combination thereof.",
+      "parentUuid": "4eb27695_232e77e1",
+      "range": {
+        "startLine": 107,
+        "startChar": 4,
+        "endLine": 107,
+        "endChar": 8
+      },
+      "revId": "3a27b8fca38c3780cfe46dca2a0a5d956e0cbf73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "238ec6ce_5f8dd7f5",
         "filename": "cps-application/src/main/resources/application.yml",
         "patchSetId": 10
@@ -36,6 +60,30 @@
       "writtenOn": "2022-06-22T07:59:43Z",
       "side": 1,
       "message": "should it no be \u0027true\u0027 by default?!",
+      "range": {
+        "startLine": 109,
+        "startChar": 21,
+        "endLine": 109,
+        "endChar": 27
+      },
+      "revId": "3a27b8fca38c3780cfe46dca2a0a5d956e0cbf73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "72a3c079_a9d17e65",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 10
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-06-22T08:31:27Z",
+      "side": 1,
+      "message": "It can be yes. I will update it",
+      "parentUuid": "238ec6ce_5f8dd7f5",
       "range": {
         "startLine": 109,
         "startChar": 21,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "ef6271ca_e45b06cb",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-06-22T08:31:27Z",
+      "side": 1,
+      "message": "We already have a flag for async in application.yml. I added the lcm for Priynks work (NcmpEvents). If I didn\u0027t add this there would still be logs for kafka which the customer doesnt want.",
+      "parentUuid": "9ea9fcd4_fe583c42",
+      "range": {
+        "startLine": 92,
+        "startChar": 34,
+        "endLine": 92,
+        "endChar": 71
+      },
+      "revId": "3a27b8fca38c3780cfe46dca2a0a5d956e0cbf73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9f669811_55144369",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
         "patchSetId": 10
@@ -91,6 +163,30 @@
       "revId": "3a27b8fca38c3780cfe46dca2a0a5d956e0cbf73",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe82e52f_b890aa2d",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-06-22T08:31:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f669811_55144369",
+      "range": {
+        "startLine": 106,
+        "startChar": 16,
+        "endLine": 106,
+        "endChar": 20
+      },
+      "revId": "3a27b8fca38c3780cfe46dca2a0a5d956e0cbf73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "bfc543a5_5ca14ee4",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-06-22T08:31:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "48cd0b0a_5a904ec9",
+      "range": {
+        "startLine": 140,
+        "startChar": 16,
+        "endLine": 140,
+        "endChar": 20
+      },
+      "revId": "3a27b8fca38c3780cfe46dca2a0a5d956e0cbf73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fc14f9b2_eda0f936",
         "filename": "cps-ncmp-rest/src/test/resources/application.yml",
         "patchSetId": 10
@@ -137,6 +257,30 @@
       "revId": "3a27b8fca38c3780cfe46dca2a0a5d956e0cbf73",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b23d4c71_8bda2f0d",
+        "filename": "cps-ncmp-rest/src/test/resources/application.yml",
+        "patchSetId": 10
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-06-22T08:31:27Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "fc14f9b2_eda0f936",
+      "range": {
+        "startLine": 27,
+        "startChar": 8,
+        "endLine": 27,
+        "endChar": 21
+      },
+      "revId": "3a27b8fca38c3780cfe46dca2a0a5d956e0cbf73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "54b19287_08179b2d",
+        "filename": "csit/plans/cps/setup.sh",
+        "patchSetId": 10
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-06-22T08:31:27Z",
+      "side": 1,
+      "message": "Will remove",
+      "parentUuid": "e30b6e66_bc7a0267",
+      "range": {
+        "startLine": 64,
+        "startChar": 48,
+        "endLine": 64,
+        "endChar": 93
+      },
+      "revId": "3a27b8fca38c3780cfe46dca2a0a5d956e0cbf73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1e6d0198_12f62f09",
         "filename": "csit/plans/cps/test.properties",
         "patchSetId": 10
@@ -174,6 +342,24 @@
       "writtenOn": "2022-06-22T07:59:43Z",
       "side": 1,
       "message": "teher is a lot more happing the just turning off messaging?!\nCna you add to commit message what this is about I suspect just a little clean up",
+      "revId": "3a27b8fca38c3780cfe46dca2a0a5d956e0cbf73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e0201a41_cb13c50b",
+        "filename": "csit/plans/cps/test.properties",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-06-22T08:31:27Z",
+      "side": 1,
+      "message": "I sorted these alphabetically (I didn\u0027t add any extra parameters here). I can revert if needed.",
+      "parentUuid": "1e6d0198_12f62f09",
       "revId": "3a27b8fca38c3780cfe46dca2a0a5d956e0cbf73",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
