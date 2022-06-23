@@ -214,6 +214,30 @@
     },
     {
       "key": {
+        "uuid": "0e1340cd_555322c3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/NcmpEventsService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-06-23T10:45:29Z",
+      "side": 1,
+      "message": "Actually looking at where the calls are made there is not much more to be done. I think this might be the best place for this?",
+      "parentUuid": "1f1c9389_b0294776",
+      "range": {
+        "startLine": 69,
+        "startChar": 8,
+        "endLine": 73,
+        "endChar": 9
+      },
+      "revId": "4d348ff50eb9980b76ad35499f169c92be8564a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3cb6d7b3_15f82dd8",
         "filename": "docker-compose/csit/csit-docker-compose.yml",
         "patchSetId": 11
