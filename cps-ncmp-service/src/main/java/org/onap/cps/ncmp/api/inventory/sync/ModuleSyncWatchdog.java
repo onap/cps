@@ -21,12 +21,9 @@
 
 package org.onap.cps.ncmp.api.inventory.sync;
 
-import static org.onap.ncmp.cmhandle.lcm.event.Event.Operation.CREATE;
-
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.ncmp.api.impl.event.NcmpEventsService;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.inventory.CmHandleState;
 import org.onap.cps.ncmp.api.inventory.CompositeState;
@@ -47,11 +44,8 @@ public class ModuleSyncWatchdog {
 
     private final ModuleSyncService moduleSyncService;
 
-    private final NcmpEventsService ncmpEventsService;
-
     /**
      * Execute Cm Handle poll which changes the cm handle state from 'ADVISED' to 'READY'.
-     * Also publish the LCM Create Event when cm handle state is moved to 'READY'.
      */
     @Scheduled(fixedDelayString = "${timers.advised-modules-sync.sleep-time-ms:30000}")
     public void executeAdvisedCmHandlePoll() {
@@ -72,10 +66,6 @@ public class ModuleSyncWatchdog {
             inventoryPersistence.saveCmHandleState(cmHandleId, compositeState);
             log.info("{} is now in {} state", cmHandleId,
                 advisedCmHandle.getCompositeState().getCmHandleState());
-            if (compositeState.getCmHandleState() == CmHandleState.READY) {
-                log.debug("Publishing LCM Create Event for cmHandleId : {}", cmHandleId);
-                ncmpEventsService.publishNcmpEvent(cmHandleId, CREATE);
-            }
             advisedCmHandle = syncUtils.getAnAdvisedCmHandle();
         }
         log.debug("No Cm-Handles currently found in an ADVISED state");

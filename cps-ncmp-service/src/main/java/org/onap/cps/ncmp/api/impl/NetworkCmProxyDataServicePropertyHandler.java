@@ -27,7 +27,6 @@ import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NCMP_DAT
 import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NCMP_DMI_REGISTRY_ANCHOR;
 import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NCMP_DMI_REGISTRY_PARENT;
 import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NO_TIMESTAMP;
-import static org.onap.ncmp.cmhandle.lcm.event.Event.Operation.UPDATE;
 
 import com.google.common.collect.ImmutableMap;
 import java.util.ArrayList;
@@ -41,7 +40,6 @@ import java.util.regex.Pattern;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsDataService;
-import org.onap.cps.ncmp.api.impl.event.NcmpEventsService;
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse;
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationError;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
@@ -63,8 +61,6 @@ public class NetworkCmProxyDataServicePropertyHandler {
     private static final String CM_HANDLE_XPATH_TEMPLATE = NCMP_DMI_REGISTRY_PARENT + "/cm-handles[@id='%s']";
 
     private final CpsDataService cpsDataService;
-
-    private final NcmpEventsService ncmpEventsService;
 
     /**
      * Iterates over incoming ncmpServiceCmHandles and update the dataNodes based on the updated attributes.
@@ -109,7 +105,6 @@ public class NetworkCmProxyDataServicePropertyHandler {
     private void processUpdates(final DataNode existingCmHandleDataNode, final NcmpServiceCmHandle incomingCmHandle) {
         if (!incomingCmHandle.getPublicProperties().isEmpty()) {
             updateProperties(existingCmHandleDataNode, PUBLIC_PROPERTY, incomingCmHandle.getPublicProperties());
-            publishLcmEventOnPublicPropertiesUpdate(incomingCmHandle.getCmHandleId());
         }
         if (!incomingCmHandle.getDmiProperties().isEmpty()) {
             updateProperties(existingCmHandleDataNode, DMI_PROPERTY, incomingCmHandle.getDmiProperties());
@@ -183,11 +178,6 @@ public class NetworkCmProxyDataServicePropertyHandler {
         log.debug("Building a new node with xpath {} with leaves (name : {} , value : {})", xpath, attributeKey,
                 attributeValue);
         return new DataNodeBuilder().withXpath(xpath).withLeaves(ImmutableMap.copyOf(updatedLeaves)).build();
-    }
-
-    private void publishLcmEventOnPublicPropertiesUpdate(final String cmHandleId) {
-        log.debug("Publishing LCM Update event for cmHandleId : {}", cmHandleId);
-        ncmpEventsService.publishNcmpEvent(cmHandleId, UPDATE);
     }
 
     enum PropertyType {

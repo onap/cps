@@ -7,7 +7,6 @@
   "eventSchema": "org.onap.ncmp.cmhandle.lcm.event:v1",
   "event": {
     "cmHandleId": "cmhandle-test",
-    "operation": "CREATE",
     "cmhandle-state": "READY",
     "cmhandle-properties": [
       {

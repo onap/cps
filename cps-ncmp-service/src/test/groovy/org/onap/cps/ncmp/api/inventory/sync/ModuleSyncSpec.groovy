@@ -21,9 +21,6 @@
 
 package org.onap.cps.ncmp.api.inventory.sync
 
-import static org.onap.ncmp.cmhandle.lcm.event.Event.Operation.CREATE
-
-import org.onap.cps.ncmp.api.impl.event.NcmpEventsService
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.inventory.CmHandleState
 import org.onap.cps.ncmp.api.inventory.CompositeState
@@ -40,11 +37,9 @@ class ModuleSyncSpec extends Specification {
 
     def mockModuleSyncService = Mock(ModuleSyncService)
 
-    def mockNcmpEventsService = Mock(NcmpEventsService)
-
     def cmHandleState = CmHandleState.ADVISED
 
-    def objectUnderTest = new ModuleSyncWatchdog(mockInventoryPersistence, mockSyncUtils, mockModuleSyncService, mockNcmpEventsService)
+    def objectUnderTest = new ModuleSyncWatchdog(mockInventoryPersistence, mockSyncUtils, mockModuleSyncService)
 
     def 'Schedule a Cm-Handle Sync for ADVISED Cm-Handles'() {
         given: 'cm handles in an advised state'
@@ -72,9 +67,6 @@ class ModuleSyncSpec extends Specification {
             assert compositeState2.getCmHandleState() == CmHandleState.READY
         and: 'the second cm handle state is updated'
             1 * mockInventoryPersistence.saveCmHandleState('some-cm-handle-2', compositeState2)
-        and: 'the ncmp event will be published for both cmHandles'
-            1 * mockNcmpEventsService.publishNcmpEvent('some-cm-handle', CREATE)
-            1 * mockNcmpEventsService.publishNcmpEvent('some-cm-handle-2', CREATE)
     }
 
     def 'Schedule a Cm-Handle Sync for ADVISED Cm-Handle with failure'() {
@@ -95,8 +87,6 @@ class ModuleSyncSpec extends Specification {
             1 * mockSyncUtils.updateLockReasonDetailsAndAttempts(compositeState, LockReasonCategory.LOCKED_MISBEHAVING ,'some exception')
         and: 'the cm handle state is updated'
             1 * mockInventoryPersistence.saveCmHandleState('some-cm-handle', compositeState)
-        and: 'the ncmp event is not published'
-            0 * mockNcmpEventsService.publishNcmpEvent(_, _)
 
     }
 

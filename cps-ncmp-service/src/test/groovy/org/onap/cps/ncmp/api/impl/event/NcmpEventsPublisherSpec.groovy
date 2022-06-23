@@ -60,7 +60,7 @@ class NcmpEventsPublisherSpec extends MessagingSpec {
                 eventSource: URI.create('org.onap.ncmp'),
                 eventTime: '2022-12-31T20:30:40.000+0000',
                 eventType: 'org.onap.ncmp.cmhandle.lcm.event',
-                event: new Event(cmHandleId: 'cmhandle-test', cmhandleState: 'READY', operation: 'CREATE', cmhandleProperties: [['publicProperty1': 'value1'], ['publicProperty2': 'value2']]))
+                event: new Event(cmHandleId: 'cmhandle-test', cmhandleState: 'READY', cmhandleProperties: [['publicProperty1': 'value1'], ['publicProperty2': 'value2']]))
         and: 'we have an expected NcmpEvent'
             def expectedJsonString = TestUtils.getResourceFileContent('expectedNcmpEvent.json')
             def expectedNcmpEvent = jsonObjectMapper.convertJsonString(expectedJsonString, NcmpEvent.class)

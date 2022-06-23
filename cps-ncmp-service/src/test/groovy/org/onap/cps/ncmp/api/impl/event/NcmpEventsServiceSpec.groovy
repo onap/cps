@@ -26,10 +26,6 @@ import org.onap.cps.ncmp.api.inventory.InventoryPersistence
 import org.onap.ncmp.cmhandle.lcm.event.NcmpEvent
 import spock.lang.Specification
 
-import static org.onap.ncmp.cmhandle.lcm.event.Event.Operation.CREATE
-import static org.onap.ncmp.cmhandle.lcm.event.Event.Operation.DELETE
-import static org.onap.ncmp.cmhandle.lcm.event.Event.Operation.UPDATE
-
 class NcmpEventsServiceSpec extends Specification {
 
     def mockInventoryPersistence = Mock(InventoryPersistence)
@@ -40,23 +36,21 @@ class NcmpEventsServiceSpec extends Specification {
 
     def 'Create and Publish event for #operation'() {
         given: 'a cm handle id and operation and responses are mocked'
-            mockResponses('test-cm-handle-id', operation, 'test-topic')
+            mockResponses('test-cm-handle-id', 'test-topic')
         when: 'service is called to publish ncmp event'
-            objectUnderTest.publishNcmpEvent('test-cm-handle-id', operation)
+            objectUnderTest.publishNcmpEvent('test-cm-handle-id')
         then: 'no exception is thrown'
             noExceptionThrown()
-        where: 'for following operations'
-            operation << [CREATE, UPDATE, DELETE]
     }
 
-    def mockResponses(cmHandleId, operation, topicName) {
+    def mockResponses(cmHandleId, topicName) {
 
         def yangModelCmHandle = new YangModelCmHandle(id: cmHandleId, publicProperties: [new YangModelCmHandle.Property('publicProperty1', 'value1')], dmiProperties: [])
         def ncmpEvent = new NcmpEvent(eventId: UUID.randomUUID().toString(), eventCorrelationId: cmHandleId)
         def ncmpServiceCmhandle = YangDataConverter.convertYangModelCmHandleToNcmpServiceCmHandle(yangModelCmHandle)
 
         mockInventoryPersistence.getYangModelCmHandle(cmHandleId) >> yangModelCmHandle
-        mockNcmpEventsMapper.populateNcmpEvent(cmHandleId, operation, ncmpServiceCmhandle) >> ncmpEvent
+        mockNcmpEventsMapper.populateNcmpEvent(cmHandleId, ncmpServiceCmhandle) >> ncmpEvent
         mockNcmpEventsPublisher.publishEvent(topicName, cmHandleId, ncmpEvent) >> {}
     }
 

@@ -25,10 +25,6 @@ import org.onap.cps.ncmp.api.inventory.CompositeStateBuilder
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import spock.lang.Specification
 
-import static org.onap.ncmp.cmhandle.lcm.event.Event.Operation.CREATE
-import static org.onap.ncmp.cmhandle.lcm.event.Event.Operation.DELETE
-import static org.onap.ncmp.cmhandle.lcm.event.Event.Operation.UPDATE
-
 class NcmpEventsCreatorSpec extends Specification {
 
     def objectUnderTest = new NcmpEventsCreator()
@@ -39,19 +35,12 @@ class NcmpEventsCreatorSpec extends Specification {
             def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, compositeState: new CompositeStateBuilder().withCmHandleState(CmHandleState.READY).build(),
                 publicProperties: ['publicProperty1': 'value1', 'publicProperty2': 'value2'])
         when: 'the event is populated'
-            def result = objectUnderTest.populateNcmpEvent(cmHandleId, operation, ncmpServiceCmHandle)
+            def result = objectUnderTest.populateNcmpEvent(cmHandleId, ncmpServiceCmHandle)
         then: 'event header is mapped correctly'
             assert result.eventSource == 'org.onap.ncmp'
             assert result.eventCorrelationId == cmHandleId
         and: 'event payload is mapped correctly'
-            assert result.event.operation == operation
-            assert (result.event.cmhandleProperties != null) ? result.event.cmhandleProperties.size() : 0 == cmHandlePropertiesListSize
-            assert (result.event.cmhandleProperties != null) ? result.event.cmhandleProperties[0] : null == cmHandleProperties
-        where: 'the following operations are used'
-            operation | cmHandlePropertiesListSize | cmHandleProperties
-            CREATE    | 1                          | ['publicProperty1': 'value1', 'publicProperty2': 'value2']
-            UPDATE    | 1                          | ['publicProperty1': 'value1', 'publicProperty2': 'value2']
-            DELETE    | 0                          | null
-
+            assert result.event.cmhandleProperties.size() == 1
+            assert result.event.cmhandleProperties[0] == ['publicProperty1': 'value1', 'publicProperty2': 'value2']
     }
 }

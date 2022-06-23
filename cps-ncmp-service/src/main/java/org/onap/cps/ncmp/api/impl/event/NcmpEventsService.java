@@ -25,7 +25,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
-import org.onap.ncmp.cmhandle.lcm.event.Event.Operation;
 import org.onap.ncmp.cmhandle.lcm.event.NcmpEvent;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -52,16 +51,12 @@ public class NcmpEventsService {
      * Publish the NcmpEvent to the public topic.
      *
      * @param cmHandleId Cm Handle Id
-     * @param operation  Relevant operation(CREATE,UPDATE or DELETE)
      */
-    public void publishNcmpEvent(final String cmHandleId, final Operation operation) {
+    public void publishNcmpEvent(final String cmHandleId) {
 
-        NcmpServiceCmHandle ncmpServiceCmHandle = new NcmpServiceCmHandle();
-        if (Operation.DELETE != operation) {
-            ncmpServiceCmHandle = YangDataConverter.convertYangModelCmHandleToNcmpServiceCmHandle(
-                    inventoryPersistence.getYangModelCmHandle(cmHandleId));
-        }
-        final NcmpEvent ncmpEvent = ncmpEventsCreator.populateNcmpEvent(cmHandleId, operation, ncmpServiceCmHandle);
+        final NcmpServiceCmHandle ncmpServiceCmHandle = YangDataConverter.convertYangModelCmHandleToNcmpServiceCmHandle(
+                inventoryPersistence.getYangModelCmHandle(cmHandleId));
+        final NcmpEvent ncmpEvent = ncmpEventsCreator.populateNcmpEvent(cmHandleId, ncmpServiceCmHandle);
         ncmpEventsPublisher.publishEvent(topicName, cmHandleId, ncmpEvent);
 
     }

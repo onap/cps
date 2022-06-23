@@ -59,11 +59,6 @@
           "description": "cmHandle id",
           "type": "string"
         },
-        "operation": {
-          "description": "The name of the Operation that triggered this event.",
-          "type": "string",
-          "enum": ["CREATE", "UPDATE", "DELETE"]
-        },
         "cmhandle-state": {
           "description": "State of cmHandle.",
           "type": "string",

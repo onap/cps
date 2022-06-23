@@ -21,14 +21,12 @@
 
 package org.onap.cps.ncmp.api.impl
 
-import org.onap.cps.ncmp.api.impl.event.NcmpEventsService
 import org.onap.cps.spi.exceptions.DataValidationException
 
 import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationError.CM_HANDLE_DOES_NOT_EXIST
 import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationError.CM_HANDLE_INVALID_ID
 import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationError.UNKNOWN_ERROR
 import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.Status
-import static org.onap.ncmp.cmhandle.lcm.event.Event.Operation.UPDATE
 
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
@@ -41,9 +39,8 @@ import spock.lang.Specification
 class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
 
     def mockCpsDataService = Mock(CpsDataService)
-    def mockNcmpEventsService = Mock(NcmpEventsService)
 
-    def objectUnderTest = new NetworkCmProxyDataServicePropertyHandler(mockCpsDataService, mockNcmpEventsService)
+    def objectUnderTest = new NetworkCmProxyDataServicePropertyHandler(mockCpsDataService)
     def dataspaceName = 'NCMP-Admin'
     def anchorName = 'ncmp-dmi-registry'
     def static cmHandleId = 'myHandle1'
@@ -70,8 +67,6 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
                     assert args[3].leaves.containsAll(convertToProperties(expectedPropertiesAfterUpdate))
                 }
             }
-        and: 'ncmp event is published'
-            1 * mockNcmpEventsService.publishNcmpEvent(cmHandleId, UPDATE)
         where: 'following public properties updates are made'
             scenario                          | updatedPublicProperties      || expectedPropertiesAfterUpdate
             'property added'                  | ['newPubProp1': 'pub-val']   || [['publicProp3': 'publicValue3'], ['publicProp4': 'publicValue4'], ['newPubProp1': 'pub-val']]
@@ -94,8 +89,6 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
                     assert args[3].leaves.containsAll(convertToProperties(expectedPropertiesAfterUpdate))
                 }
             }
-        and: 'ncmp event is not published on dmi properties update'
-            0 * mockNcmpEventsService.publishNcmpEvent(_, _)
         where: 'following DMI properties updates are made'
             scenario                          | updatedDmiProperties                || expectedPropertiesAfterUpdate                                                                                           | expectedCallsToReplaceMethod
             'property added'                  | ['newAdditionalProp1': 'add-value'] || [['additionalProp1': 'additionalValue1'], ['additionalProp2': 'additionalValue2'], ['newAdditionalProp1': 'add-value']] | 1
@@ -121,8 +114,6 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
                     assert arg[2].contains("@name='publicProp")
                 }
             }
-        and: 'ncmp event is published with updated public properties'
-            1 * mockNcmpEventsService.publishNcmpEvent(cmHandleId, UPDATE)
         where: 'following public properties updates are made'
             scenario                              | originalPropertyDataNodes || expectedCallsToDeleteDataNode
             '2 original properties, both removed' | propertyDataNodes         || 2
@@ -145,8 +136,6 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
                 assert it.registrationError == expectedError
                 assert it.errorText == expectedErrorText
             }
-        and: 'ncmp event is not published'
-            0 * mockNcmpEventsService.publishNcmpEvent(_, _)
         where:
             scenario                   | cmHandleId               | exception                                                                                           || expectedError            | expectedErrorText
             'Cm Handle does not exist' | 'cmHandleId'             | new DataNodeNotFoundException('NCMP-Admin', 'ncmp-dmi-registry')                                    || CM_HANDLE_DOES_NOT_EXIST | 'cm-handle does not exist'
@@ -183,8 +172,6 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
             }
         then: 'the replace list method is called twice'
             2 * mockCpsDataService.replaceListContent(dataspaceName, anchorName, cmHandleXpath, _, noTimeStamp)
-        and: 'the ncmp event is published'
-            2 * mockNcmpEventsService.publishNcmpEvent(cmHandleId, UPDATE)
     }
 
     def convertToProperties(expectedPropertiesAfterUpdateAsMap) {
