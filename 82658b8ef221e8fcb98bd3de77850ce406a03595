@@ -369,6 +369,24 @@
     },
     {
       "key": {
+        "uuid": "c37aafc8_bdb3230a",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/entities/YangResourceDefinition.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-06-23T16:45:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c5c7c752_4cacd655",
+      "revId": "82658b8ef221e8fcb98bd3de77850ce406a03595",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bfec795a_ca3e461f",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
         "patchSetId": 8
