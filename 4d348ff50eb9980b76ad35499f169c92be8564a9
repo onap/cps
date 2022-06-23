@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "65c74a9c_ef51111d",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-06-23T09:18:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f7af4cd_b559d2b6",
+      "range": {
+        "startLine": 79,
+        "startChar": 41,
+        "endLine": 79,
+        "endChar": 46
+      },
+      "revId": "4d348ff50eb9980b76ad35499f169c92be8564a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "68d3e318_1ff71871",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/async/NcmpAsyncRequestResponseEventConsumer.java",
         "patchSetId": 11
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "83ff3d0b_1b508725",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/async/NcmpAsyncRequestResponseEventConsumer.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-06-23T09:18:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "68d3e318_1ff71871",
+      "range": {
+        "startLine": 37,
+        "startChar": 99,
+        "endLine": 37,
+        "endChar": 104
+      },
+      "revId": "4d348ff50eb9980b76ad35499f169c92be8564a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a9c0cce4_b76f9142",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/NcmpEventsService.java",
         "patchSetId": 11
@@ -68,6 +116,30 @@
       "revId": "4d348ff50eb9980b76ad35499f169c92be8564a9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "49ceef25_30b0e822",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/NcmpEventsService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-06-23T09:18:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a9c0cce4_b76f9142",
+      "range": {
+        "startLine": 51,
+        "startChar": 46,
+        "endLine": 51,
+        "endChar": 51
+      },
+      "revId": "4d348ff50eb9980b76ad35499f169c92be8564a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -106,6 +178,30 @@
       "side": 1,
       "message": "I think we should not land here into this class if lcmEventsEnabled is false and invoke publishNcmpEvent only if lcmEventsEnabled is true like :\n\nif(lcmEventsEnabled) {\nncmpEventsService.publishNcmpEvent(cmHandleId, CREATE ot UPDATE or DELETE);\n}",
       "parentUuid": "52e54a0b_8910ebe5",
+      "range": {
+        "startLine": 69,
+        "startChar": 8,
+        "endLine": 73,
+        "endChar": 9
+      },
+      "revId": "4d348ff50eb9980b76ad35499f169c92be8564a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f1c9389_b0294776",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/NcmpEventsService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-06-23T09:18:18Z",
+      "side": 1,
+      "message": "Will do",
+      "parentUuid": "49174751_50f65192",
       "range": {
         "startLine": 69,
         "startChar": 8,
