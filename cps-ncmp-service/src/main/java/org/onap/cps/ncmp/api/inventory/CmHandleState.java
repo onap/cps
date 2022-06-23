@@ -21,5 +21,5 @@
 package org.onap.cps.ncmp.api.inventory;
 
 public enum CmHandleState {
-    ADVISED, READY, LOCKED
+    ADVISED, READY, LOCKED, DELETING, DELETED
 }
