@@ -101,6 +101,7 @@ services:
     ports:
       - ${CPS_CORE_PORT:-8883}:8080
       - ${CPS_CORE_MANAGEMENT_PORT:-8887}:8081
+      - '5005:5005'
     environment:
       CPS_USERNAME: ${CPS_CORE_USERNAME:-cpsuser}
       CPS_PASSWORD: ${CPS_CORE_PASSWORD:-cpsr0cks!}
@@ -113,6 +114,7 @@ services:
       notification.data-updated.enabled: 'true'
       NOTIFICATION_DATASPACE_FILTER_PATTERNS: '.*'
       TIMERS_ADVISED-MODULES-SYNC_SLEEP-TIME-MS: 2000
+      JAVA_TOOL_OPTIONS: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
     restart: unless-stopped
     depends_on:
       - dbpostgresql

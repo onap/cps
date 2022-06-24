@@ -82,6 +82,8 @@ spring:
 
     jackson:
       default-property-inclusion: NON_NULL
+      serialization:
+        FAIL_ON_EMPTY_BEANS: false
 app:
     ncmp:
         async-m2m:
@@ -141,7 +143,7 @@ management:
                 enabled: true
 
 logging:
-    format: json
+    format: text
     level:
         org:
             springframework: INFO
@@ -157,8 +159,8 @@ dmi:
 
 timers:
     advised-modules-sync:
-        sleep-time-ms: 30000
+        sleep-time-ms: 60000
     locked-modules-sync:
-        sleep-time-ms: 300000
+        sleep-time-ms: 120000
     cm-handle-data-sync:
-        sleep-time-ms: 30000
+        sleep-time-ms: 180000

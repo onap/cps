@@ -60,13 +60,13 @@ public class DataSyncWatchdog {
             } else {
                 cpsDataService.saveData("NFP-Operational", cmHandleId,
                         resourceData, OffsetDateTime.now());
+                compositeState.setLastUpdateTimeNow();
+                compositeState.getDataStores()
+                        .setOperationalDataStore(CompositeState.Operational.builder()
+                                .syncState(SyncState.SYNCHRONIZED)
+                                .lastSyncTime(CompositeState.nowInSyncTimeFormat()).build());
+                inventoryPersistence.saveCmHandleState(cmHandleId, compositeState);
             }
-            compositeState.setLastUpdateTimeNow();
-            compositeState.getDataStores()
-                    .setOperationalDataStore(CompositeState.Operational.builder()
-                            .syncState(SyncState.SYNCHRONIZED)
-                            .lastSyncTime(CompositeState.nowInSyncTimeFormat()).build());
-            inventoryPersistence.saveCmHandleState(cmHandleId, compositeState);
             unSynchronizedReadyCmHandle = syncUtils.getAnUnSynchronizedReadyCmHandle();
         }
         log.debug("No Cm-Handles currently found in an READY State and Operational Sync State is UNSYNCHRONIZED");
