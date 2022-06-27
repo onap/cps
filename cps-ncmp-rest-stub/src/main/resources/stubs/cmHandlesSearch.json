@@ -1,10 +1,8 @@
-{
-  "cmHandles": [
+[
     {
-      "cmHandleId": "stub-cm-handle-id"
+      "cmHandle": "stub-cm-handle-id"
     },
     {
-      "cmHandleId": "stub-cm-handle-id2"
+      "cmHandle": "stub-cm-handle-id2"
     }
   ]
-}
