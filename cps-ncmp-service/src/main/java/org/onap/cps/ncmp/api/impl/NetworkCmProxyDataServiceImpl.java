@@ -28,6 +28,9 @@ import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NCMP_DMI
 import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NCMP_DMI_REGISTRY_PARENT;
 import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME;
 import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NO_TIMESTAMP;
+import static org.onap.cps.ncmp.api.impl.event.NcmpCmHandleStateTransition.ANY_TO_DELETING;
+import static org.onap.cps.ncmp.api.impl.event.NcmpCmHandleStateTransition.DELETING_TO_DELETED;
+import static org.onap.cps.ncmp.api.impl.event.NcmpCmHandleStateTransition.NOTHING_TO_ADVISED;
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum;
 import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED;
 import static org.onap.cps.utils.CmHandleQueryRestParametersValidator.validateCmHandleQueryParameters;
@@ -46,6 +49,7 @@ import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.ncmp.api.NetworkCmProxyCmHandlerQueryService;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
+import org.onap.cps.ncmp.api.impl.event.NcmpEventsStateHandler;
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations;
 import org.onap.cps.ncmp.api.impl.operations.DmiOperations;
 import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
@@ -93,6 +97,8 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     private final ModuleSyncService moduleSyncService;
 
     private final NetworkCmProxyCmHandlerQueryService networkCmProxyCmHandlerQueryService;
+
+    private final NcmpEventsStateHandler ncmpEventsStateHandler;
 
     @Override
     public DmiPluginRegistrationResponse updateDmiRegistrationAndSyncModule(
@@ -174,8 +180,8 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         validateCmHandleQueryParameters(cmHandleQueryServiceParameters);
 
         return networkCmProxyCmHandlerQueryService.queryCmHandles(cmHandleQueryServiceParameters).stream()
-                .map(dataNode -> YangDataConverter
-                        .convertCmHandleToYangModel(dataNode, dataNode.getLeaves().get("id").toString()))
+                .map(dataNode -> YangDataConverter.convertCmHandleToYangModel(dataNode,
+                        dataNode.getLeaves().get("id").toString()))
                 .map(YangDataConverter::convertYangModelCmHandleToNcmpServiceCmHandle).collect(Collectors.toSet());
     }
 
@@ -269,6 +275,8 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                 deleteSchemaSetWithCascade(cmHandle);
                 cpsDataService.deleteListOrListElement(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
                         "/dmi-registry/cm-handles[@id='" + cmHandle + "']", NO_TIMESTAMP);
+                log.debug("Moving the cmHandleId : {} state from ANY_TO_DELETING", cmHandle);
+                ncmpEventsStateHandler.publishNcmpEventForStateTransition(cmHandle, ANY_TO_DELETING);
                 cmHandleRegistrationResponses.add(CmHandleRegistrationResponse.createSuccessResponse(cmHandle));
             } catch (final DataNodeNotFoundException dataNodeNotFoundException) {
                 log.error("Unable to find dataNode for cmHandleId : {} , caused by : {}",
@@ -285,6 +293,9 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                         cmHandle, exception.getMessage());
                 cmHandleRegistrationResponses.add(
                         CmHandleRegistrationResponse.createFailureResponse(cmHandle, exception));
+            } finally {
+                log.debug("Moving the cmHandleId : {} state from DELETING_TO_DELETED", cmHandle);
+                ncmpEventsStateHandler.publishNcmpEventForStateTransition(cmHandle, DELETING_TO_DELETED);
             }
         }
         return cmHandleRegistrationResponses;
@@ -305,6 +316,8 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                     jsonObjectMapper.asJsonString(yangModelCmHandle));
             cpsDataService.saveListElements(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NCMP_DMI_REGISTRY_PARENT,
                     cmHandleJsonData, NO_TIMESTAMP);
+            log.debug("Moving the cmHandleId : {} state from NOTHING_TO_ADVISED", yangModelCmHandle.getId());
+            ncmpEventsStateHandler.publishNcmpEventForStateTransition(yangModelCmHandle.getId(), NOTHING_TO_ADVISED);
             return CmHandleRegistrationResponse.createSuccessResponse(yangModelCmHandle.getId());
         } catch (final AlreadyDefinedException alreadyDefinedException) {
             return CmHandleRegistrationResponse.createFailureResponse(

@@ -20,39 +20,31 @@
 
 package org.onap.cps.ncmp.api.impl.event
 
-import org.onap.cps.ncmp.api.impl.utils.YangDataConverter
-import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
-import org.onap.cps.ncmp.api.inventory.InventoryPersistence
+
+import org.onap.ncmp.cmhandle.lcm.event.Event
 import org.onap.ncmp.cmhandle.lcm.event.NcmpEvent
 import spock.lang.Specification
 
 class NcmpEventsServiceSpec extends Specification {
 
-    def mockInventoryPersistence = Mock(InventoryPersistence)
     def mockNcmpEventsPublisher = Mock(NcmpEventsPublisher)
-    def mockNcmpEventsMapper = Mock(NcmpEventsCreator)
 
-    def objectUnderTest = new NcmpEventsService(mockInventoryPersistence, mockNcmpEventsPublisher, mockNcmpEventsMapper)
+    def objectUnderTest = new NcmpEventsService(mockNcmpEventsPublisher)
 
-    def 'Create and Publish event for #operation'() {
-        given: 'a cm handle id and operation and responses are mocked'
-            mockResponses('test-cm-handle-id', 'test-topic')
+    def 'Publish the NCMP Event provided'() {
+        given: 'a cm handle id and an event to be published'
+            def cmHandleId = 'test-cm-handle-id'
+            def ncmpEvent = ncmpSampleEventToBePublished(cmHandleId)
         when: 'service is called to publish ncmp event'
-            objectUnderTest.publishNcmpEvent('test-cm-handle-id')
+            objectUnderTest.publishNcmpEvent(cmHandleId, ncmpEvent)
         then: 'no exception is thrown'
             noExceptionThrown()
     }
 
-    def mockResponses(cmHandleId, topicName) {
-
-        def yangModelCmHandle = new YangModelCmHandle(id: cmHandleId, publicProperties: [new YangModelCmHandle.Property('publicProperty1', 'value1')], dmiProperties: [])
-        def ncmpEvent = new NcmpEvent(eventId: UUID.randomUUID().toString(), eventCorrelationId: cmHandleId)
-        def ncmpServiceCmhandle = YangDataConverter.convertYangModelCmHandleToNcmpServiceCmHandle(yangModelCmHandle)
-
-        mockInventoryPersistence.getYangModelCmHandle(cmHandleId) >> yangModelCmHandle
-        mockNcmpEventsMapper.populateNcmpEvent(cmHandleId, ncmpServiceCmhandle) >> ncmpEvent
-        mockNcmpEventsPublisher.publishEvent(topicName, cmHandleId, ncmpEvent) >> {}
+    def ncmpSampleEventToBePublished(cmHandleId) {
+        def ncmpEvent = new NcmpEvent(eventId: UUID.randomUUID().toString(), eventCorrelationId: cmHandleId,
+            event: new Event(cmHandleId: cmHandleId))
+        return ncmpEvent
     }
-
 
 }
