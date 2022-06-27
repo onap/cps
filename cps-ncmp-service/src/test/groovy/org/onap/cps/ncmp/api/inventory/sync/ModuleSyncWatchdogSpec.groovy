@@ -29,7 +29,7 @@ import org.onap.cps.ncmp.api.inventory.LockReasonCategory
 import org.onap.cps.ncmp.api.inventory.CompositeStateBuilder
 import spock.lang.Specification
 
-class ModuleSyncSpec extends Specification {
+class ModuleSyncWatchdogSpec extends Specification {
 
     def mockInventoryPersistence = Mock(InventoryPersistence)
 
@@ -53,6 +53,8 @@ class ModuleSyncSpec extends Specification {
             objectUnderTest.executeAdvisedCmHandlePoll()
         then: 'the inventory persistence cm handle returns a composite state for the first cm handle'
             1 * mockInventoryPersistence.getCmHandleState('some-cm-handle') >> compositeState1
+        and: 'module sync service deletes schema set of cm handle if it exists'
+            1 * mockModuleSyncService.deleteSchemaSetIfExists(yangModelCmHandle1)
         and: 'module sync service syncs the first cm handle and creates a schema set'
             1 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(yangModelCmHandle1)
         and: 'the composite state cm handle state is now READY'
