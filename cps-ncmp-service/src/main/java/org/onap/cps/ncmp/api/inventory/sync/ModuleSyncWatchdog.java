@@ -27,7 +27,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.inventory.CmHandleState;
 import org.onap.cps.ncmp.api.inventory.CompositeState;
-import org.onap.cps.ncmp.api.inventory.CompositeState.LockReason;
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.api.inventory.LockReasonCategory;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -79,12 +78,16 @@ public class ModuleSyncWatchdog {
         final List<YangModelCmHandle> lockedMisbehavingCmHandles = syncUtils.getLockedMisbehavingYangModelCmHandles();
         for (final YangModelCmHandle lockedMisbehavingModelCmHandle: lockedMisbehavingCmHandles) {
             final CompositeState updatedCompositeState = lockedMisbehavingModelCmHandle.getCompositeState();
-            updatedCompositeState.setCmHandleState(CmHandleState.ADVISED);
-            updatedCompositeState.setLastUpdateTimeNow();
-            updatedCompositeState.setLockReason(LockReason.builder()
-                .details(updatedCompositeState.getLockReason().getDetails()).build());
+            updateCompositeState(updatedCompositeState);
             log.debug("Locked misbehaving cm handle {} is being recycled", lockedMisbehavingModelCmHandle.getId());
             inventoryPersistence.saveCmHandleState(lockedMisbehavingModelCmHandle.getId(), updatedCompositeState);
         }
+    }
+
+    private void updateCompositeState(final CompositeState updatedCompositeState) {
+        updatedCompositeState.setCmHandleState(CmHandleState.ADVISED);
+        updatedCompositeState.setLastUpdateTimeNow();
+        updatedCompositeState.setLockReason(CompositeState.LockReason.builder()
+                .details(updatedCompositeState.getLockReason().getDetails()).build());
     }
 }
