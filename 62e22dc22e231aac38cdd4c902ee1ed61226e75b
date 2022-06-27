@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6107ee27_fd903a5f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/async/NcmpAsyncRequestResponseEventConsumer.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-27T10:10:42Z",
+      "side": 1,
+      "message": "In case of missing \u0027notification.enabled\u0027 property by default matchIfMissing should be true. \n\nTo stop this bean to be created one need to set \"notification.async.enabled\" false in application.yml explicitly.\n\nhttps://gerrit.onap.org/r/c/cps/+/129636/11..20/cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/async/NcmpAsyncRequestResponseEventConsumer.java",
+      "range": {
+        "startLine": 37,
+        "startChar": 93,
+        "endLine": 37,
+        "endChar": 98
+      },
+      "revId": "62e22dc22e231aac38cdd4c902ee1ed61226e75b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ffcb3650_0dd205f4",
+        "filename": "cps-service/src/main/java/org/onap/cps/config/AsyncConfig.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-27T10:10:42Z",
+      "side": 1,
+      "message": "should be true by default.\n\nAs application check havingValue from application.yml that one should make it false there to avoid notification otherwise it would fall back to matchIfMissing that need to be true.",
+      "range": {
+        "startLine": 37,
+        "startChar": 93,
+        "endLine": 37,
+        "endChar": 98
+      },
+      "revId": "62e22dc22e231aac38cdd4c902ee1ed61226e75b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "29242ff5_2637896a",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 20
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-27T10:10:42Z",
+      "side": 1,
+      "message": "${DB_PASSWORD:-cps}",
+      "range": {
+        "startLine": 39,
+        "startChar": 19,
+        "endLine": 39,
+        "endChar": 22
+      },
+      "revId": "62e22dc22e231aac38cdd4c902ee1ed61226e75b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
