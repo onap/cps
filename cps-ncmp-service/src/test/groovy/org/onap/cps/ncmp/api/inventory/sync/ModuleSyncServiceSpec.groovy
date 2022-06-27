@@ -1,5 +1,5 @@
 /*
- * ============LICENSE_START=======================================================
+ *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,7 +24,11 @@ import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.ncmp.api.impl.operations.DmiModelOperations
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
+import org.onap.cps.ncmp.api.inventory.CmHandleState
+import org.onap.cps.ncmp.api.inventory.CompositeState
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
+import org.onap.cps.spi.CascadeDeleteAllowed
+import org.onap.cps.spi.exceptions.SchemaSetNotFoundException
 import org.onap.cps.spi.model.ModuleReference
 import spock.lang.Specification
 
@@ -65,6 +69,42 @@ class ModuleSyncServiceSpec extends Specification {
             'one new module'     | [['module2' : '2'], ['module3' : '3']] | [['module1' : '1']]           | [module1: 'some yang source']   | [new ModuleReference(moduleName:'module2',revision:'2')]
             'no add. properties' | [['module2' : '2'], ['module3' : '3']] | [['module1' : '1']]           | [module1: 'some yang source']   | [new ModuleReference(moduleName:'module2',revision:'2')]
             'no new module'      | [['module1' : '1'], ['module2' : '2']] | []                            | [:]                             | [new ModuleReference(moduleName:'module1',revision:'1'), new ModuleReference(moduleName:'module2',revision:'2')]
+    }
+
+    def 'Delete Schema Set for CmHandle where the CmHandle has not already been synced' () {
+        given: 'a CmHandle in the advised state'
+            def cmHandle = new YangModelCmHandle(id: 'some-cmhandle-id', compositeState: new CompositeState(cmHandleState: CmHandleState.ADVISED))
+        and: 'the Schema Set does not exist for the CmHandle'
+            1 * mockCpsModuleService.deleteSchemaSet(_ as String, 'some-cmhandle-id',
+                CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED) >> { throw new SchemaSetNotFoundException('some-dataspace-name', 'some-cmhandle-id') }
+        when: 'delete schema set if exists is called'
+            objectUnderTest.deleteSchemaSetIfExists(cmHandle)
+        then: 'there are no exceptions'
+            noExceptionThrown()
+    }
+
+    def 'Delete Schema Set for CmHandle where the CmHandle has already been synced' () {
+        given: 'a CmHandle in the advised state'
+            def cmHandle = new YangModelCmHandle(id: 'some-cmhandle-id', compositeState: new CompositeState(cmHandleState: CmHandleState.ADVISED))
+        and: 'the Schema Set exists for the CmHandle'
+            1 * mockCpsModuleService.deleteSchemaSet(_ as String, 'some-cmhandle-id',
+                CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED)
+        when: 'delete schema set if exists is called'
+            objectUnderTest.deleteSchemaSetIfExists(cmHandle)
+        then: 'there are no exceptions'
+            noExceptionThrown()
+    }
+
+    def 'Delete Schema Set for CmHandle with other exception' () {
+        given: 'a CmHandle in the advised state'
+            def cmHandle = new YangModelCmHandle(id: 'some-cmhandle-id', compositeState: new CompositeState(cmHandleState: CmHandleState.ADVISED))
+        and: 'the Schema Set exists for the CmHandle'
+            1 * mockCpsModuleService.deleteSchemaSet(_ as String, 'some-cmhandle-id',
+                CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED) >> { throw new Exception() }
+        when: 'delete schema set if exists is called'
+            objectUnderTest.deleteSchemaSetIfExists(cmHandle)
+        then: 'an exception is thrown'
+            thrown(Exception)
     }
 
     def toModuleReference(moduleReferenceAsMap) {
