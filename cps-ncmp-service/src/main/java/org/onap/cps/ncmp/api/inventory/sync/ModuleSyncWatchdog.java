@@ -27,7 +27,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.inventory.CmHandleState;
 import org.onap.cps.ncmp.api.inventory.CompositeState;
-import org.onap.cps.ncmp.api.inventory.CompositeState.LockReason;
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.api.inventory.LockReasonCategory;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -77,14 +76,19 @@ public class ModuleSyncWatchdog {
     @Scheduled(fixedDelayString = "${timers.locked-modules-sync.sleep-time-ms:300000}")
     public void executeLockedMisbehavingCmHandlePoll() {
         final List<YangModelCmHandle> lockedMisbehavingCmHandles = syncUtils.getLockedMisbehavingYangModelCmHandles();
-        for (final YangModelCmHandle lockedMisbehavingModelCmHandle: lockedMisbehavingCmHandles) {
-            final CompositeState updatedCompositeState = lockedMisbehavingModelCmHandle.getCompositeState();
-            updatedCompositeState.setCmHandleState(CmHandleState.ADVISED);
-            updatedCompositeState.setLastUpdateTimeNow();
-            updatedCompositeState.setLockReason(LockReason.builder()
-                .details(updatedCompositeState.getLockReason().getDetails()).build());
+        for (final YangModelCmHandle lockedMisbehavingModelCmHandle : lockedMisbehavingCmHandles) {
+            final CompositeState compositeState = lockedMisbehavingModelCmHandle.getCompositeState();
+            setCompositeStateToAdvisedAndRetainOldLockReasonDetails(compositeState);
             log.debug("Locked misbehaving cm handle {} is being recycled", lockedMisbehavingModelCmHandle.getId());
-            inventoryPersistence.saveCmHandleState(lockedMisbehavingModelCmHandle.getId(), updatedCompositeState);
+            inventoryPersistence.saveCmHandleState(lockedMisbehavingModelCmHandle.getId(), compositeState);
         }
+    }
+
+    private void setCompositeStateToAdvisedAndRetainOldLockReasonDetails(final CompositeState compositeState) {
+        compositeState.setCmHandleState(CmHandleState.ADVISED);
+        compositeState.setLastUpdateTimeNow();
+        final String oldLockReasonDetails = compositeState.getLockReason().getDetails();
+        compositeState.setLockReason(CompositeState.LockReason.builder()
+                .details(oldLockReasonDetails).build());
     }
 }

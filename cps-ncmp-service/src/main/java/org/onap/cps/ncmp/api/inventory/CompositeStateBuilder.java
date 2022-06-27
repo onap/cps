@@ -1,7 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  * Copyright (C) 2022 Bell Canada
- * Copyright (C) 2022 Nordix Foundation.
+ * Modifications Copyright (C) 2022 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -115,24 +115,33 @@ public class CompositeStateBuilder {
                 .get("cm-handle-state"));
         for (final DataNode stateChildNode : dataNode.getChildDataNodes()) {
             if (stateChildNode.getXpath().endsWith("/lock-reason")) {
-                this.lockReason = new LockReason(LockReasonCategory.valueOf(
-                        (String) stateChildNode.getLeaves().get("reason")),
-                        (String) stateChildNode.getLeaves().get("details"));
+                this.lockReason = getLockReason(stateChildNode);
             }
             if (stateChildNode.getXpath().endsWith("/datastores")) {
                 for (final DataNode dataStoreNodes : stateChildNode.getChildDataNodes()) {
                     Operational operationalDataStore = null;
                     if (dataStoreNodes.getXpath().contains("/operational")) {
-                        operationalDataStore = Operational.builder()
-                            .syncState(SyncState.valueOf((String) dataStoreNodes.getLeaves().get("sync-state")))
-                            .lastSyncTime((String) dataStoreNodes.getLeaves().get("last-sync-time"))
-                            .build();
+                        operationalDataStore = getOperationalDataStore(dataStoreNodes);
                     }
                     this.datastores = DataStores.builder().operationalDataStore(operationalDataStore).build();
                 }
             }
         }
         return this;
+    }
+
+    private Operational getOperationalDataStore(final DataNode dataStoreNodes) {
+        return Operational.builder()
+                .syncState(SyncState.valueOf((String) dataStoreNodes.getLeaves().get("sync-state")))
+                .lastSyncTime((String) dataStoreNodes.getLeaves().get("last-sync-time"))
+                .build();
+    }
+
+    private LockReason getLockReason(final DataNode stateChildNode) {
+        final boolean isLockReasonExists = stateChildNode.getLeaves().containsKey("reason");
+        return new LockReason(isLockReasonExists
+                ? LockReasonCategory.valueOf((String) stateChildNode.getLeaves().get("reason"))
+                : null, (String) stateChildNode.getLeaves().get("details"));
     }
 
 }
