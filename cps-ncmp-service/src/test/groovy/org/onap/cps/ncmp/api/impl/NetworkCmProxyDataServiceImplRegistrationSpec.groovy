@@ -26,6 +26,8 @@ import org.onap.cps.ncmp.api.NetworkCmProxyCmHandlerQueryService
 import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
+import org.onap.cps.ncmp.api.impl.event.NcmpCmHandleStateTransition
+import org.onap.cps.ncmp.api.impl.event.NcmpEventsStateHandler
 import org.onap.cps.ncmp.api.impl.exception.DmiRequestException
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence
@@ -66,6 +68,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     def mockModuleSyncService = Mock(ModuleSyncService)
     def stubbedNetworkCmProxyCmHandlerQueryService = Stub(NetworkCmProxyCmHandlerQueryService)
     def noTimestamp = null
+    def mockNcmpEventsStateHandler = Mock(NcmpEventsStateHandler)
     def objectUnderTest = getObjectUnderTest()
 
     def 'DMI Registration: Create, Update & Delete operations are processed in the right order'() {
@@ -79,8 +82,14 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             // Spock validated invocation order between multiple then blocks
         then: 'cm-handles are removed first'
             1 * objectUnderTest.parseAndRemoveCmHandlesInDmiRegistration(*_)
+        and: 'LCM event is published with cmHandle State as DELETING'
+            1 * mockNcmpEventsStateHandler.publishNcmpEventForStateTransition('cmhandle-2', NcmpCmHandleStateTransition.ANY_TO_DELETING)
+        and: 'LCM event is published with cmHandle State as DELETED'
+            1 * mockNcmpEventsStateHandler.publishNcmpEventForStateTransition('cmhandle-2', NcmpCmHandleStateTransition.DELETING_TO_DELETED)
         then: 'cm-handles are created'
             1 * objectUnderTest.parseAndCreateCmHandlesInDmiRegistrationAndSyncModules(*_)
+        and: 'LCM event is published with cmHandle State as ADVISED'
+            1 * mockNcmpEventsStateHandler.publishNcmpEventForStateTransition('cmhandle-1', NcmpCmHandleStateTransition.NOTHING_TO_ADVISED)
         then: 'cm-handles are updated'
             1 * mockNetworkCmProxyDataServicePropertyHandler.updateCmHandleProperties(*_)
     }
@@ -173,6 +182,8 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
                     }
                 }
             }
+        and: 'LCM event will be published with cmHandle State as ADVISED'
+            1 * mockNcmpEventsStateHandler.publishNcmpEventForStateTransition('cmhandle', NcmpCmHandleStateTransition.NOTHING_TO_ADVISED)
         where:
             scenario                          | dmiProperties            | publicProperties               || expectedDmiProperties                      | expectedPublicProperties
             'with dmi & public properties'    | ['dmi-key': 'dmi-value'] | ['public-key': 'public-value'] || '[{"name":"dmi-key","value":"dmi-value"}]' | '[{"name":"public-key","value":"public-value"}]'
@@ -228,6 +239,8 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
                 assert it.registrationError == expectedError
                 assert it.errorText == expectedErrorText
             }
+        and: 'no LCM event is raised when we failed to create a cmHandle'
+            0 * mockNcmpEventsStateHandler.publishNcmpEventForStateTransition(_, _)
         where:
             scenario                                        | cmHandleId             | exception                                               || expectedError           | expectedErrorText
             'cm-handle already exist'                       | 'cmhandle'             | new AlreadyDefinedException('', new RuntimeException()) || CM_HANDLE_ALREADY_EXIST | 'cm-handle already exists'
@@ -269,6 +282,9 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
                 assert it.status == Status.SUCCESS
                 assert it.cmHandle == 'cmhandle'
             }
+        and: 'LCM event is published for the deleted cmHandle'
+            1 * mockNcmpEventsStateHandler.publishNcmpEventForStateTransition('cmhandle', NcmpCmHandleStateTransition.ANY_TO_DELETING)
+            1 * mockNcmpEventsStateHandler.publishNcmpEventForStateTransition('cmhandle', NcmpCmHandleStateTransition.DELETING_TO_DELETED)
         where:
             scenario                                            | schemaSetExist
             'schema-set exists and can be deleted successfully' | true
@@ -294,6 +310,9 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
                 assert it.status == Status.SUCCESS
                 assert it.cmHandle == 'cmhandle3'
             }
+        and: 'LCM event is raised for cmHandles which are deleted successfully'
+            2 * mockNcmpEventsStateHandler.publishNcmpEventForStateTransition(_, NcmpCmHandleStateTransition.ANY_TO_DELETING)
+            2 * mockNcmpEventsStateHandler.publishNcmpEventForStateTransition(_, NcmpCmHandleStateTransition.DELETING_TO_DELETED)
         and: '2nd cm-handle deletion fails'
             with(response.getRemovedCmHandles().get(1)) {
                 assert it.status == Status.FAILURE
@@ -301,6 +320,8 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
                 assert it.errorText == 'Failed'
                 assert it.cmHandle == 'cmhandle2'
             }
+        and: 'no LCM event published for the 2nd cm-handle'
+            0 * mockNcmpEventsStateHandler.publishNcmpEventForStateTransition('cmHandle2', _)
     }
 
     def 'Remove CmHandle Error Handling: Schema Set Deletion failed'() {
@@ -323,6 +344,8 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
                 assert it.errorText == 'Failed'
                 assert it.registrationError == UNKNOWN_ERROR
             }
+        and: 'no LCM event is triggered'
+            0 * mockNcmpEventsStateHandler.publishNcmpEventForStateTransition(_, _)
     }
 
     def 'Remove CmHandle Error Handling: #scenario'() {
@@ -353,6 +376,6 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     def getObjectUnderTest() {
         return Spy(new NetworkCmProxyDataServiceImpl(mockCpsDataService, spiedJsonObjectMapper, mockDmiDataOperations,
             mockCpsModuleService, mockCpsAdminService, mockNetworkCmProxyDataServicePropertyHandler, mockInventoryPersistence,
-            mockModuleSyncService, stubbedNetworkCmProxyCmHandlerQueryService))
+            mockModuleSyncService, stubbedNetworkCmProxyCmHandlerQueryService, mockNcmpEventsStateHandler))
     }
 }

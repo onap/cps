@@ -23,32 +23,34 @@ package org.onap.cps.ncmp.api.impl.event;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.ncmp.cmhandle.lcm.event.NcmpEvent;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 /**
- * NcmpEventService to map the event correctly and publish to the public topic.
+ * Ncmp Events State handler responsible for finalizing the NcmpEvent based on the trigger of the event and delegating
+ * the responsibility of publishing to the service layer.
  */
 
-@Slf4j
 @Service
+@Slf4j
 @RequiredArgsConstructor
-public class NcmpEventsService {
+public class NcmpEventsStateHandler {
 
-    private final NcmpEventsPublisher ncmpEventsPublisher;
+    private final NcmpEventsService ncmpEventsService;
 
-    @Value("${app.ncmp.events.topic:ncmp-events}")
-    private String topicName;
+    private final NcmpEventsCreator ncmpEventsCreator;
 
     /**
-     * Publish the NcmpEvent to the public topic.
+     * Create and Delegate for Publishing the Ncmp Event on any relevant state change.
      *
-     * @param cmHandleId Cm Handle Id
-     * @param ncmpEvent  Ncmp Event
+     * @param cmHandleId                  Cm Handle Id
+     * @param ncmpCmHandleStateTransition Cm Handle State Transition Event
      */
-    public void publishNcmpEvent(final String cmHandleId, final NcmpEvent ncmpEvent) {
+    public void publishNcmpEventForStateTransition(final String cmHandleId,
+            final NcmpCmHandleStateTransition ncmpCmHandleStateTransition) {
 
-        ncmpEventsPublisher.publishEvent(topicName, cmHandleId, ncmpEvent);
+        final NcmpEvent ncmpEvent = ncmpEventsCreator.populateNcmpEvent(cmHandleId, ncmpCmHandleStateTransition);
+        ncmpEventsService.publishNcmpEvent(cmHandleId, ncmpEvent);
 
     }
+
 }

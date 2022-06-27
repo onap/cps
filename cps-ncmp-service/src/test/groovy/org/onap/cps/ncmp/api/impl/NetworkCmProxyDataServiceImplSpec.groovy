@@ -23,6 +23,7 @@
 package org.onap.cps.ncmp.api.impl
 
 import org.onap.cps.ncmp.api.NetworkCmProxyCmHandlerQueryService
+import org.onap.cps.ncmp.api.impl.event.NcmpEventsStateHandler
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.inventory.CmHandleState
 import org.onap.cps.ncmp.api.inventory.CompositeState
@@ -66,6 +67,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     def mockModuleSyncService = Mock(ModuleSyncService)
     def mockDmiPluginRegistration = Mock(DmiPluginRegistration)
     def mockCpsCmHandlerQueryService = Mock(NetworkCmProxyCmHandlerQueryService)
+    def mockNcmpEventsStateHandler = Mock(NcmpEventsStateHandler)
 
     def NO_TOPIC = null
     def NO_REQUEST_ID = null
@@ -76,7 +78,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
 
     def objectUnderTest = new NetworkCmProxyDataServiceImpl(mockCpsDataService, spiedJsonObjectMapper, mockDmiDataOperations,
         mockCpsModuleService, mockCpsAdminService, nullNetworkCmProxyDataServicePropertyHandler, mockInventoryPersistence,
-        mockModuleSyncService, mockCpsCmHandlerQueryService)
+        mockModuleSyncService, mockCpsCmHandlerQueryService, mockNcmpEventsStateHandler)
 
     def cmHandleXPath = "/dmi-registry/cm-handles[@id='testCmHandle']"
 
