@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e02a745_a3fcde73",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NcmpRestInputMapper.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-06-27T16:35:00Z",
+      "side": 1,
+      "message": "NB this probably shouldn\u0027t be called NcmpRest\"Input\"Mapper anymore as it also contains the mappings to RestModule objects which are \"output\" variables",
+      "range": {
+        "startLine": 38,
+        "startChar": 17,
+        "endLine": 38,
+        "endChar": 37
+      },
+      "revId": "fe8da022221be2e86b20e5cb59a15c93e8500901",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "45e7fcc6_c826af14",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsModuleService.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-06-27T16:35:00Z",
+      "side": 1,
+      "message": "I think should be getModuleDefinitions as no cmHandleId is used",
+      "range": {
+        "startLine": 104,
+        "startChar": 33,
+        "endLine": 104,
+        "endChar": 65
+      },
+      "revId": "fe8da022221be2e86b20e5cb59a15c93e8500901",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ea46ab10_9ccb0f1c",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-06-27T16:35:00Z",
+      "side": 1,
+      "message": "I think should be getModuleDefinitions as no cmHandleId is used",
+      "range": {
+        "startLine": 110,
+        "startChar": 40,
+        "endLine": 110,
+        "endChar": 72
+      },
+      "revId": "fe8da022221be2e86b20e5cb59a15c93e8500901",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
