@@ -60,7 +60,7 @@ public class InventoryPersistence {
      */
     public CompositeState getCmHandleState(final String cmHandleId) {
         final DataNode stateAsDataNode = cpsDataService.getDataNode(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                String.format(XPATH_TO_CM_HANDLE, cmHandleId) + "/state",
+            String.format(XPATH_TO_CM_HANDLE, cmHandleId) + "/state",
             FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
         return compositeStateBuilder.fromDataNode(stateAsDataNode).build();
     }
@@ -96,11 +96,13 @@ public class InventoryPersistence {
      * Method to return data nodes representing the cm handles.
      *
      * @param cpsPath cps path for which the cmHandle is requested
+     * @param fetchDescendantsOption defines the scope of data to fetch: either single node or all the descendant nodes
      * @return a list of data nodes representing the cm handles.
      */
-    public List<DataNode> getCmHandleDataNodesByCpsPath(final String cpsPath) {
+    public List<DataNode> getCmHandleDataNodesByCpsPath(final String cpsPath,
+                                                        final FetchDescendantsOption fetchDescendantsOption) {
         return cpsDataPersistenceService.queryDataNodes(
-                NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cpsPath, FetchDescendantsOption.OMIT_DESCENDANTS);
+            NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cpsPath, fetchDescendantsOption);
     }
 
     /**
@@ -111,9 +113,9 @@ public class InventoryPersistence {
      */
     public List<DataNode> getCmHandlesByIdAndState(final String cmHandleId, final CmHandleState cmHandleState) {
         return cpsDataPersistenceService.queryDataNodes(NCMP_DATASPACE_NAME,
-                NCMP_DMI_REGISTRY_ANCHOR, "//cm-handles[@id='" + cmHandleId + "']/state[@cm-handle-state=\""
-                        + cmHandleState + "\"]/ancestor::cm-handles",
-                FetchDescendantsOption.OMIT_DESCENDANTS);
+            NCMP_DMI_REGISTRY_ANCHOR, "//cm-handles[@id='" + cmHandleId + "']/state[@cm-handle-state=\""
+                + cmHandleState + "\"]/ancestor::cm-handles",
+            FetchDescendantsOption.OMIT_DESCENDANTS);
     }
 
     /**
@@ -123,9 +125,9 @@ public class InventoryPersistence {
      */
     public List<DataNode> getCmHandlesByOperationalSyncState(final SyncState syncState) {
         return cpsDataPersistenceService.queryDataNodes(NCMP_DATASPACE_NAME,
-                NCMP_DMI_REGISTRY_ANCHOR, "//state/datastores"
-                        + "/operational[@sync-state=\"" + syncState + "\"]/ancestor::cm-handles",
-                FetchDescendantsOption.OMIT_DESCENDANTS);
+            NCMP_DMI_REGISTRY_ANCHOR, "//state/datastores"
+                + "/operational[@sync-state=\"" + syncState + "\"]/ancestor::cm-handles",
+            FetchDescendantsOption.OMIT_DESCENDANTS);
     }
 
     /**

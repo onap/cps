@@ -164,9 +164,14 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             }
         and: 'save list elements is invoked with the expected parameters'
             interaction {
-                def expectedJsonData = """{"cm-handles":[{"id":"cmhandle","dmi-service-name":"my-server","state":{"cm-handle-state":"ADVISED"},"additional-properties":$expectedDmiProperties,"public-properties":$expectedPublicProperties}]}"""
                 1 * mockCpsDataService.saveListElements('NCMP-Admin', 'ncmp-dmi-registry',
-                    '/dmi-registry', expectedJsonData, noTimestamp)
+                    '/dmi-registry', _, noTimestamp) >> {
+                    args -> {
+                        assert args[3].startsWith('{"cm-handles":[{"id":"cmhandle","dmi-service-name":"my-server","state":{"cm-handle-state":"ADVISED","last-update-time":"20')
+                        assert args[3].contains(expectedDmiProperties)
+                        assert args[3].contains(expectedPublicProperties)
+                    }
+                }
             }
         where:
             scenario                          | dmiProperties            | publicProperties               || expectedDmiProperties                      | expectedPublicProperties
