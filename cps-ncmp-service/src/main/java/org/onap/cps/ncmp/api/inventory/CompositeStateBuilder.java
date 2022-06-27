@@ -115,9 +115,9 @@ public class CompositeStateBuilder {
                 .get("cm-handle-state"));
         for (final DataNode stateChildNode : dataNode.getChildDataNodes()) {
             if (stateChildNode.getXpath().endsWith("/lock-reason")) {
-                this.lockReason = new LockReason(LockReasonCategory.valueOf(
-                        (String) stateChildNode.getLeaves().get("reason")),
-                        (String) stateChildNode.getLeaves().get("details"));
+                this.lockReason = new LockReason(stateChildNode.getLeaves().containsKey("reason")
+                        ? LockReasonCategory.valueOf((String) stateChildNode.getLeaves().get("reason"))
+                        : null, (String) stateChildNode.getLeaves().get("details"));
             }
             if (stateChildNode.getXpath().endsWith("/datastores")) {
                 for (final DataNode dataStoreNodes : stateChildNode.getChildDataNodes()) {
