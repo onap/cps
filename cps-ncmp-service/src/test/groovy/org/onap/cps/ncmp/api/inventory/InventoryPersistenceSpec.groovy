@@ -141,9 +141,10 @@ class InventoryPersistenceSpec extends Specification {
         then: 'update node leaves is invoked with the correct params'
             1 * mockCpsDataService.replaceNodeTree('NCMP-Admin', 'ncmp-dmi-registry', '/dmi-registry/cm-handles[@id=\'Some-Cm-Handle\']', expectedJsonData, _ as OffsetDateTime)
         where: 'the following states are used'
-            scenario | cmHandleState        || expectedJsonData
-            'READY'   | CmHandleState.READY  || '{"state":{"cm-handle-state":"READY","last-update-time":"2022-12-31T20:30:40.000+0000"}}'
-            'LOCKED'  | CmHandleState.LOCKED || '{"state":{"cm-handle-state":"LOCKED","last-update-time":"2022-12-31T20:30:40.000+0000"}}'
+            scenario    | cmHandleState          || expectedJsonData
+            'READY'     | CmHandleState.READY    || '{"state":{"cm-handle-state":"READY","last-update-time":"2022-12-31T20:30:40.000+0000"}}'
+            'LOCKED'    | CmHandleState.LOCKED   || '{"state":{"cm-handle-state":"LOCKED","last-update-time":"2022-12-31T20:30:40.000+0000"}}'
+            'DELETING'  | CmHandleState.DELETING || '{"state":{"cm-handle-state":"DELETING","last-update-time":"2022-12-31T20:30:40.000+0000"}}'
     }
 
     def 'Get Cm Handles By State'() {

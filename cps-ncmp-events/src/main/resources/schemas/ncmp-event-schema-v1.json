@@ -62,7 +62,7 @@
         "cmhandle-state": {
           "description": "State of cmHandle.",
           "type": "string",
-          "enum": ["ADVISED", "READY", "LOCKED"]
+          "enum": ["ADVISED", "READY", "LOCKED", "DELETING", "DELETED"]
         },
         "cmhandle-properties": {
           "description": "cmHandle properties as json object.",
