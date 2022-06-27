@@ -32,6 +32,8 @@ import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.ncmp.api.impl.operations.DmiModelOperations;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
+import org.onap.cps.spi.CascadeDeleteAllowed;
+import org.onap.cps.spi.exceptions.SchemaSetNotFoundException;
 import org.onap.cps.spi.model.ModuleReference;
 import org.springframework.stereotype.Service;
 
@@ -81,6 +83,23 @@ public class ModuleSyncService {
                         newModuleNameToContentMap, existingModuleReferencesFromCmHandle);
         cpsAdminService.createAnchor(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, schemaSetAndAnchorName,
             schemaSetAndAnchorName);
+    }
+
+    /**
+     * Deletes the SchemaSet for provided cmHandle if the SchemaSet Exists.
+     *
+     * @param yangModelCmHandle the yang model of cm handle.
+     */
+    public void deleteSchemaSetIfExists(final YangModelCmHandle yangModelCmHandle) {
+        final String schemaSetAndAnchorName = yangModelCmHandle.getId();
+        try {
+            cpsModuleService.deleteSchemaSet(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, schemaSetAndAnchorName,
+                CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED);
+            log.debug("SchemaSet for {} has been deleted. Ready to be recreated.", schemaSetAndAnchorName);
+        } catch (final SchemaSetNotFoundException e) {
+            log.debug("No SchemaSet for {}. Assuming CmHandle has not been previously Module Synced.",
+                schemaSetAndAnchorName);
+        }
     }
 
 }
