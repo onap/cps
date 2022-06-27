@@ -21,6 +21,8 @@
 
 package org.onap.cps.ncmp.api.inventory.sync
 
+import org.onap.cps.ncmp.api.impl.event.NcmpCmHandleStateTransition
+import org.onap.cps.ncmp.api.impl.event.NcmpEventsStateHandler
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.inventory.CmHandleState
 import org.onap.cps.ncmp.api.inventory.CompositeState
@@ -37,9 +39,11 @@ class ModuleSyncSpec extends Specification {
 
     def mockModuleSyncService = Mock(ModuleSyncService)
 
+    def mockNcmpEventsStateHandler = Mock(NcmpEventsStateHandler)
+
     def cmHandleState = CmHandleState.ADVISED
 
-    def objectUnderTest = new ModuleSyncWatchdog(mockInventoryPersistence, mockSyncUtils, mockModuleSyncService)
+    def objectUnderTest = new ModuleSyncWatchdog(mockInventoryPersistence, mockSyncUtils, mockModuleSyncService, mockNcmpEventsStateHandler)
 
     def 'Schedule a Cm-Handle Sync for ADVISED Cm-Handles'() {
         given: 'cm handles in an advised state'
@@ -67,6 +71,9 @@ class ModuleSyncSpec extends Specification {
             assert compositeState2.getCmHandleState() == CmHandleState.READY
         and: 'the second cm handle state is updated'
             1 * mockInventoryPersistence.saveCmHandleState('some-cm-handle-2', compositeState2)
+        and: 'the state transition trigger is raised to publish the LCM event'
+            1 * mockNcmpEventsStateHandler.publishNcmpEventForStateTransition('some-cm-handle', NcmpCmHandleStateTransition.ADVISED_TO_READY)
+            1 * mockNcmpEventsStateHandler.publishNcmpEventForStateTransition('some-cm-handle-2', NcmpCmHandleStateTransition.ADVISED_TO_READY)
     }
 
     def 'Schedule a Cm-Handle Sync for ADVISED Cm-Handle with failure'() {
@@ -87,6 +94,8 @@ class ModuleSyncSpec extends Specification {
             1 * mockSyncUtils.updateLockReasonDetailsAndAttempts(compositeState, LockReasonCategory.LOCKED_MISBEHAVING ,'some exception')
         and: 'the cm handle state is updated'
             1 * mockInventoryPersistence.saveCmHandleState('some-cm-handle', compositeState)
+        and: 'the state transition trigger is raised to publish the LCM event'
+            1 * mockNcmpEventsStateHandler.publishNcmpEventForStateTransition('some-cm-handle', NcmpCmHandleStateTransition.ADVISED_TO_LOCKED)
 
     }
 

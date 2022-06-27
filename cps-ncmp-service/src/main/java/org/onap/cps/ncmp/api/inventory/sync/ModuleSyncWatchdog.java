@@ -24,6 +24,8 @@ package org.onap.cps.ncmp.api.inventory.sync;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.ncmp.api.impl.event.NcmpCmHandleStateTransition;
+import org.onap.cps.ncmp.api.impl.event.NcmpEventsStateHandler;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.inventory.CmHandleState;
 import org.onap.cps.ncmp.api.inventory.CompositeState;
@@ -44,6 +46,8 @@ public class ModuleSyncWatchdog {
 
     private final ModuleSyncService moduleSyncService;
 
+    private final NcmpEventsStateHandler ncmpEventsStateHandler;
+
     /**
      * Execute Cm Handle poll which changes the cm handle state from 'ADVISED' to 'READY'.
      */
@@ -56,16 +60,26 @@ public class ModuleSyncWatchdog {
             try {
                 moduleSyncService.syncAndCreateSchemaSetAndAnchor(advisedCmHandle);
                 compositeState.setCmHandleState(CmHandleState.READY);
+                compositeState.setLastUpdateTimeNow();
+                inventoryPersistence.saveCmHandleState(cmHandleId, compositeState);
+                log.info("{} is now in {} state", cmHandleId,
+                        advisedCmHandle.getCompositeState().getCmHandleState());
+                log.info("Moving the cmHandleId : {} state from ADVISED_TO_READY", cmHandleId);
+                ncmpEventsStateHandler.publishNcmpEventForStateTransition(cmHandleId,
+                        NcmpCmHandleStateTransition.ADVISED_TO_READY);
             } catch (final Exception e) {
                 compositeState.setCmHandleState(CmHandleState.LOCKED);
                 syncUtils.updateLockReasonDetailsAndAttempts(compositeState,
                     LockReasonCategory.LOCKED_MISBEHAVING,
                     e.getMessage());
+                compositeState.setLastUpdateTimeNow();
+                inventoryPersistence.saveCmHandleState(cmHandleId, compositeState);
+                log.info("{} is now in {} state", cmHandleId,
+                        advisedCmHandle.getCompositeState().getCmHandleState());
+                log.info("Moving the cmHandleId : {} state from ADVISED_TO_LOCKED", cmHandleId);
+                ncmpEventsStateHandler.publishNcmpEventForStateTransition(cmHandleId,
+                        NcmpCmHandleStateTransition.ADVISED_TO_LOCKED);
             }
-            compositeState.setLastUpdateTimeNow();
-            inventoryPersistence.saveCmHandleState(cmHandleId, compositeState);
-            log.info("{} is now in {} state", cmHandleId,
-                advisedCmHandle.getCompositeState().getCmHandleState());
             advisedCmHandle = syncUtils.getAnAdvisedCmHandle();
         }
         log.debug("No Cm-Handles currently found in an ADVISED state");
@@ -85,6 +99,9 @@ public class ModuleSyncWatchdog {
                 .details(updatedCompositeState.getLockReason().getDetails()).build());
             log.debug("Locked misbehaving cm handle {} is being recycled", lockedMisbehavingModelCmHandle.getId());
             inventoryPersistence.saveCmHandleState(lockedMisbehavingModelCmHandle.getId(), updatedCompositeState);
+            log.info("Moving the cmHandleId : {} state from LOCKED_TO_ADVISED", lockedMisbehavingModelCmHandle.getId());
+            ncmpEventsStateHandler.publishNcmpEventForStateTransition(lockedMisbehavingModelCmHandle.getId(),
+                    NcmpCmHandleStateTransition.LOCKED_TO_ADVISED);
         }
     }
 }

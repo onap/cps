@@ -26,6 +26,7 @@ import org.onap.cps.ncmp.api.NetworkCmProxyCmHandlerQueryService
 import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
+import org.onap.cps.ncmp.api.impl.event.NcmpEventsStateHandler
 import org.onap.cps.ncmp.api.impl.exception.DmiRequestException
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence
@@ -66,6 +67,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     def mockModuleSyncService = Mock(ModuleSyncService)
     def stubbedNetworkCmProxyCmHandlerQueryService = Stub(NetworkCmProxyCmHandlerQueryService)
     def noTimestamp = null
+    def mockNcmpEventsStateHandler = Mock(NcmpEventsStateHandler)
     def objectUnderTest = getObjectUnderTest()
 
     def 'DMI Registration: Create, Update & Delete operations are processed in the right order'() {
@@ -348,6 +350,6 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     def getObjectUnderTest() {
         return Spy(new NetworkCmProxyDataServiceImpl(mockCpsDataService, spiedJsonObjectMapper, mockDmiDataOperations,
             mockCpsModuleService, mockCpsAdminService, mockNetworkCmProxyDataServicePropertyHandler, mockInventoryPersistence,
-            mockModuleSyncService, stubbedNetworkCmProxyCmHandlerQueryService))
+            mockModuleSyncService, stubbedNetworkCmProxyCmHandlerQueryService, mockNcmpEventsStateHandler))
     }
 }
