@@ -236,6 +236,30 @@
     },
     {
       "key": {
+        "uuid": "5724e729_369ecabc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-06-27T08:10:37Z",
+      "side": 1,
+      "message": "agreed with team to create separte jira task for this to seperate this refactoring from this commit ( see https://jira.onap.org/browse/CPS-1117 )",
+      "parentUuid": "c36bf543_0b800e46",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 113
+      },
+      "revId": "82658b8ef221e8fcb98bd3de77850ce406a03595",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2d617daa_bd8d381c",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 8
@@ -256,6 +280,30 @@
       "revId": "82658b8ef221e8fcb98bd3de77850ce406a03595",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c02618f9_88bd7005",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-06-27T08:10:37Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2d617daa_bd8d381c",
+      "range": {
+        "startLine": 159,
+        "startChar": 8,
+        "endLine": 159,
+        "endChar": 119
+      },
+      "revId": "82658b8ef221e8fcb98bd3de77850ce406a03595",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -326,6 +374,30 @@
       "revId": "82658b8ef221e8fcb98bd3de77850ce406a03595",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4084b0ff_8d42f099",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-06-27T08:10:37Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "820ab99b_4c819e32",
+      "range": {
+        "startLine": 302,
+        "startChar": 0,
+        "endLine": 305,
+        "endChar": 52
+      },
+      "revId": "82658b8ef221e8fcb98bd3de77850ce406a03595",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
