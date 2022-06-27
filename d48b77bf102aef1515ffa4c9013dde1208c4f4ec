@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "87b62f70_481f734f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CompositeStateBuilder.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-06-27T14:13:14Z",
+      "side": 1,
+      "message": "NB: legacy - missing \"modifications\"",
+      "range": {
+        "startLine": 4,
+        "startChar": 3,
+        "endLine": 4,
+        "endChar": 13
+      },
+      "revId": "d48b77bf102aef1515ffa4c9013dde1208c4f4ec",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
