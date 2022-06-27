@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "748d6aa1_d677408c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/async/NcmpAsyncRequestResponseEventConsumer.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-06-27T11:10:49Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6ca24839_54ddb6c9",
+      "range": {
+        "startLine": 37,
+        "startChar": 93,
+        "endLine": 37,
+        "endChar": 98
+      },
+      "revId": "62e22dc22e231aac38cdd4c902ee1ed61226e75b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ffcb3650_0dd205f4",
         "filename": "cps-service/src/main/java/org/onap/cps/config/AsyncConfig.java",
         "patchSetId": 20
@@ -72,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "35521b38_a1ea62aa",
+        "filename": "cps-service/src/main/java/org/onap/cps/config/AsyncConfig.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-06-27T11:10:49Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ffcb3650_0dd205f4",
+      "range": {
+        "startLine": 37,
+        "startChar": 93,
+        "endLine": 37,
+        "endChar": 98
+      },
+      "revId": "62e22dc22e231aac38cdd4c902ee1ed61226e75b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "29242ff5_2637896a",
         "filename": "docker-compose/docker-compose.yml",
         "patchSetId": 20
@@ -92,6 +140,30 @@
       "revId": "62e22dc22e231aac38cdd4c902ee1ed61226e75b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f56f7a8e_7b4e5a38",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 20
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-06-27T11:10:49Z",
+      "side": 1,
+      "message": "I was facing an error in build related to this value, which never happened before. I have reverted it.",
+      "parentUuid": "29242ff5_2637896a",
+      "range": {
+        "startLine": 39,
+        "startChar": 19,
+        "endLine": 39,
+        "endChar": 22
+      },
+      "revId": "62e22dc22e231aac38cdd4c902ee1ed61226e75b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
