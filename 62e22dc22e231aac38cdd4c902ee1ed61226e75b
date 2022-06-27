@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6ca24839_54ddb6c9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/async/NcmpAsyncRequestResponseEventConsumer.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-27T10:13:33Z",
+      "side": 1,
+      "message": "I meant \"notification.enabled\" not \"notification.async.enabled\" to set false in application.yml explicitly.",
+      "parentUuid": "6107ee27_fd903a5f",
+      "range": {
+        "startLine": 37,
+        "startChar": 93,
+        "endLine": 37,
+        "endChar": 98
+      },
+      "revId": "62e22dc22e231aac38cdd4c902ee1ed61226e75b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ffcb3650_0dd205f4",
         "filename": "cps-service/src/main/java/org/onap/cps/config/AsyncConfig.java",
         "patchSetId": 20
