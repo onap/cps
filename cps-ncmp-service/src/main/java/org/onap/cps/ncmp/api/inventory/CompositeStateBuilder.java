@@ -1,7 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  * Copyright (C) 2022 Bell Canada
- * Copyright (C) 2022 Nordix Foundation.
+ * Modifications (C) 2022 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -115,9 +115,9 @@ public class CompositeStateBuilder {
                 .get("cm-handle-state"));
         for (final DataNode stateChildNode : dataNode.getChildDataNodes()) {
             if (stateChildNode.getXpath().endsWith("/lock-reason")) {
-                this.lockReason = new LockReason(LockReasonCategory.valueOf(
-                        (String) stateChildNode.getLeaves().get("reason")),
-                        (String) stateChildNode.getLeaves().get("details"));
+                this.lockReason = new LockReason(stateChildNode.getLeaves().containsKey("reason")
+                        ? LockReasonCategory.valueOf((String) stateChildNode.getLeaves().get("reason"))
+                        : null, (String) stateChildNode.getLeaves().get("details"));
             }
             if (stateChildNode.getXpath().endsWith("/datastores")) {
                 for (final DataNode dataStoreNodes : stateChildNode.getChildDataNodes()) {
