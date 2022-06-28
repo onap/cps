@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a2e3174d_d96fc5e8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-28T10:51:49Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "877be1b7_28c6618e",
+      "range": {
+        "startLine": 256,
+        "startChar": 35,
+        "endLine": 256,
+        "endChar": 55
+      },
+      "revId": "dfd3e63369bb68cfc22ef36a53d1bd43f0305646",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c6fdcab8_fc9c951d",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CompositeStateBuilder.java",
         "patchSetId": 9
@@ -45,6 +69,30 @@
       "revId": "dfd3e63369bb68cfc22ef36a53d1bd43f0305646",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "492ff4cb_bf80337f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CompositeStateBuilder.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-28T10:51:49Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c6fdcab8_fc9c951d",
+      "range": {
+        "startLine": 118,
+        "startChar": 50,
+        "endLine": 120,
+        "endChar": 30
+      },
+      "revId": "dfd3e63369bb68cfc22ef36a53d1bd43f0305646",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -95,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "b8e0b8bc_04cdb6c0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-28T10:51:49Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "525961b1_b3c0e30b",
+      "range": {
+        "startLine": 103,
+        "startChar": 56,
+        "endLine": 103,
+        "endChar": 107
+      },
+      "revId": "dfd3e63369bb68cfc22ef36a53d1bd43f0305646",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1213a535_f3cc4c9f",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
         "patchSetId": 9
@@ -115,6 +187,30 @@
       "revId": "dfd3e63369bb68cfc22ef36a53d1bd43f0305646",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e3657d52_7dcc0010",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-28T10:51:49Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1213a535_f3cc4c9f",
+      "range": {
+        "startLine": 87,
+        "startChar": 59,
+        "endLine": 87,
+        "endChar": 80
+      },
+      "revId": "dfd3e63369bb68cfc22ef36a53d1bd43f0305646",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -162,6 +258,30 @@
       "revId": "dfd3e63369bb68cfc22ef36a53d1bd43f0305646",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "18b3225d_6da56fc8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-28T10:51:49Z",
+      "side": 1,
+      "message": "We want to retain only lock details here.",
+      "parentUuid": "535186bb_e290ea9c",
+      "range": {
+        "startLine": 90,
+        "startChar": 8,
+        "endLine": 91,
+        "endChar": 86
+      },
+      "revId": "dfd3e63369bb68cfc22ef36a53d1bd43f0305646",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
