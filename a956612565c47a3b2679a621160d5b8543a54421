@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "ee5ba155_06689562",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NcmpRestInputMapperSpec.groovy",
+        "patchSetId": 16
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-06-28T12:08:28Z",
+      "side": 1,
+      "message": "Ah okay, I see that now, they are two different methods!",
+      "parentUuid": "1bac3cc7_164acfca",
+      "range": {
+        "startLine": 84,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 5
+      },
+      "revId": "a956612565c47a3b2679a621160d5b8543a54421",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c3887375_4f0ff1f4",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 16
@@ -93,6 +117,30 @@
       "revId": "a956612565c47a3b2679a621160d5b8543a54421",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35db269e_727100ca",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-06-28T12:08:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "19231699_69bd917d",
+      "range": {
+        "startLine": 159,
+        "startChar": 8,
+        "endLine": 159,
+        "endChar": 81
+      },
+      "revId": "a956612565c47a3b2679a621160d5b8543a54421",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
