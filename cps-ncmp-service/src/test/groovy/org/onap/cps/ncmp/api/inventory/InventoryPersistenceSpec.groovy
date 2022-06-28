@@ -25,11 +25,14 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
+import org.onap.cps.spi.CascadeDeleteAllowed
 import org.onap.cps.spi.CpsDataPersistenceService
+import org.onap.cps.spi.CpsAdminPersistenceService
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.ModuleDefinition
+import org.onap.cps.spi.model.ModuleReference
 import org.onap.cps.utils.JsonObjectMapper
 import spock.lang.Shared
 import spock.lang.Specification
@@ -51,7 +54,10 @@ class InventoryPersistenceSpec extends Specification {
 
     def mockCpsDataPersistenceService = Mock(CpsDataPersistenceService)
 
-    def objectUnderTest = new InventoryPersistence(spiedJsonObjectMapper, mockCpsDataService, mockCpsModuleService, mockCpsDataPersistenceService)
+    def mockCpsAdminPersistenceService = Mock(CpsAdminPersistenceService)
+
+    def objectUnderTest = new InventoryPersistence(spiedJsonObjectMapper, mockCpsDataService, mockCpsModuleService,
+            mockCpsDataPersistenceService, mockCpsAdminPersistenceService)
 
     def formattedDateAndTime = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
             .format(OffsetDateTime.of(2022, 12, 31, 20, 30, 40, 1, ZoneOffset.UTC))
@@ -210,4 +216,71 @@ class InventoryPersistenceSpec extends Specification {
             assert result == moduleDefinitions
     }
 
+    def 'Get module references'() {
+        given: 'cps module service returns a collection of module references'
+            def moduleReferences = [new ModuleReference('moduleName','revision','namespace')]
+            mockCpsModuleService.getYangResourcesModuleReferences('NFP-Operational','some-cmHandle-Id') >> moduleReferences
+        when: 'get yang resources module references by cmHandle is invoked'
+            def result = objectUnderTest.getYangResourcesModuleReferences('some-cmHandle-Id')
+        then: 'the returned result is a collection of module definitions'
+            assert result == moduleReferences
+    }
+
+    def 'Save list elements'() {
+        when: 'the method to save list elements is called'
+            objectUnderTest.saveListElements('sampleJsonData')
+        then: 'the data service method to save list elements is called once'
+            1 * mockCpsDataService.saveListElements('NCMP-Admin','ncmp-dmi-registry','/dmi-registry','sampleJsonData',null)
+    }
+
+    def 'Delete list or list elements'() {
+        when: 'the method to delete list or list elements is called'
+            objectUnderTest.deleteListOrListElement('sampleXPath')
+        then: 'the data service method to save list elements is called once'
+            1 * mockCpsDataService.deleteListOrListElement('NCMP-Admin','ncmp-dmi-registry','sampleXPath',null)
+    }
+
+    def 'Delete schema set with a valid schema set name'() {
+        when: 'the method to delete schema set is called with valid schema set name'
+            objectUnderTest.deleteSchemaSetWithCascade('sampleSchemaSetName')
+        then: 'the module service to delete schemaSet is invoked once'
+            1 * mockCpsModuleService.deleteSchemaSet('NFP-Operational', 'sampleSchemaSetName', CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED)
+    }
+
+    def 'Delete schema set with an invalid schema set name'() {
+        when: 'the method to delete schema set is called with an invalid schema set name'
+            objectUnderTest.deleteSchemaSetWithCascade('invalid SchemaSet name')
+        then: 'a data validation exception is thrown'
+            thrown(DataValidationException)
+        and: 'the module service to delete schemaSet is not called'
+            0 * mockCpsModuleService.deleteSchemaSet('NFP-Operational', 'sampleSchemaSetName', CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED)
+    }
+
+    def 'Query data nodes via cpsPath'() {
+        when: 'the method to query data nodes is called'
+            objectUnderTest.queryDataNodes('sampleCmHandlePath')
+        then: 'the data persistence service method to query data nodes is invoked once'
+            1 * mockCpsDataPersistenceService.queryDataNodes('NCMP-Admin','ncmp-dmi-registry','sampleCmHandlePath', INCLUDE_ALL_DESCENDANTS)
+    }
+
+    def 'Get data node via cpsPath'() {
+        when: 'the method to get data nodes is called'
+            objectUnderTest.getDataNode('sampleCmHandlePath')
+        then: 'the data persistence service method to query data nodes is invoked once'
+            1 * mockCpsDataPersistenceService.getDataNode('NCMP-Admin','ncmp-dmi-registry','sampleCmHandlePath', INCLUDE_ALL_DESCENDANTS)
+    }
+
+    def 'Query anchors'() {
+        when: 'the method to query anchors is called'
+            objectUnderTest.queryAnchors(['SAMPLE-MODULE-NAME'])
+        then: 'the admin persistence service method to query anchors is invoked once with the same parameter'
+            1 * mockCpsAdminPersistenceService.queryAnchors('NFP-Operational',['SAMPLE-MODULE-NAME'])
+    }
+
+    def 'Get anchors'() {
+        when: 'the method to get anchors with no parameters is called'
+          objectUnderTest.getAnchors()
+        then: 'the admin persistence service method to query anchors is invoked once with a specific dataspace name'
+            1 * mockCpsAdminPersistenceService.getAnchors('NFP-Operational')
+    }
 }
