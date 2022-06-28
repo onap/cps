@@ -22,7 +22,6 @@
 package org.onap.cps.ncmp.api.inventory.sync;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.google.common.collect.ImmutableMap;
 import java.security.SecureRandom;
 import java.time.Duration;
 import java.time.OffsetDateTime;
@@ -190,6 +189,6 @@ public class SyncUtils {
         final JsonNode overallJsonNode = jsonObjectMapper.convertToJsonNode(jsonObjectAsString);
         final Iterator<Map.Entry<String, JsonNode>> overallJsonTreeMap = overallJsonNode.fields();
         final Map.Entry<String, JsonNode> firstElement = overallJsonTreeMap.next();
-        return jsonObjectMapper.asJsonString(ImmutableMap.of(firstElement.getKey(), firstElement.getValue()));
+        return jsonObjectMapper.asJsonString(Map.of(firstElement.getKey(), firstElement.getValue()));
     }
 }
