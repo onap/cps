@@ -20,7 +20,6 @@
 
 package org.onap.cps.ncmp.api.impl
 
-import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.ncmp.api.NetworkCmProxyCmHandlerQueryService
 import org.onap.cps.spi.CpsAdminPersistenceService
 import org.onap.cps.spi.CpsDataPersistenceService
@@ -28,7 +27,6 @@ import org.onap.cps.spi.model.Anchor
 import org.onap.cps.spi.model.CmHandleQueryServiceParameters
 import org.onap.cps.spi.model.ConditionProperties
 import org.onap.cps.spi.model.DataNode
-import org.onap.cps.utils.JsonObjectMapper
 import spock.lang.Specification
 
 import java.util.stream.Collectors
@@ -39,8 +37,7 @@ class NetworkCmProxyCmHandlerQueryServiceSpec extends Specification {
     def cpsAdminPersistenceService = Mock(CpsAdminPersistenceService)
 
     NetworkCmProxyCmHandlerQueryService objectUnderTest = new NetworkCmProxyCmHandlerQueryServiceImpl(
-        cpsDataPersistenceService, cpsAdminPersistenceService, new JsonObjectMapper(new ObjectMapper())
-    )
+        cpsDataPersistenceService, cpsAdminPersistenceService)
 
     def 'Retrieve cm handles with public properties when #scenario.'() {
         given: 'a condition property'
@@ -51,16 +48,19 @@ class NetworkCmProxyCmHandlerQueryServiceSpec extends Specification {
             cmHandleQueryParameters.setCmHandleQueryParameters([conditionProperties])
         and: 'mock services'
             mockResponses()
-        when: 'the service is invoked'
-            def returnedCmHandles = objectUnderTest.queryCmHandles(cmHandleQueryParameters)
-        then: 'the correct expected cm handles are returned'
-            returnedCmHandles.stream().map(d -> d.leaves.get('id').toString()).collect(Collectors.toSet()) == expectedCmHandleIds as Set
+        when: 'a query is execute (with and without Data)'
+            def returnedCmHandlesJustIds = objectUnderTest.queryCmHandleIds(cmHandleQueryParameters)
+            def returnedCmHandlesWithData = objectUnderTest.queryCmHandles(cmHandleQueryParameters)
+        then: 'the correct expected cm handles ids are returned'
+            returnedCmHandlesJustIds == expectedCmHandleIds as Set
+        and: 'the correct cm handle data objects are returned'
+            returnedCmHandlesWithData.stream().map(dataNode -> dataNode.cmHandleId).collect(Collectors.toSet()) == expectedCmHandleIds as Set
         where: 'the following data is used'
-            scenario                                       | publicProperties                                                                                  || expectedCmHandleIds
-            'single matching property'                     | [['Contact' : 'newemailforstore@bookstore.com']]                                                  || ['PNFDemo', 'PNFDemo2', 'PNFDemo4']
-            'public property dont match'                   | [['wont_match' : 'wont_match']]                                                                   || []
-            '2 properties, only one match (and)'           | [['Contact' : 'newemailforstore@bookstore.com'], ['Contact2': 'newemailforstore2@bookstore.com']] || ['PNFDemo4']
-            '2 properties, no match (and)'                 | [['Contact' : 'newemailforstore@bookstore.com'], ['Contact2': '']]                                || []
+            scenario                         | publicProperties                                                                                  || expectedCmHandleIds
+            'single property matches'        | [['Contact' : 'newemailforstore@bookstore.com']]                                                  || ['PNFDemo1', 'PNFDemo2', 'PNFDemo4']
+            'public property does not match' | [['wont_match' : 'wont_match']]                                                                   || []
+            '2 properties, only one match'   | [['Contact' : 'newemailforstore@bookstore.com'], ['Contact2': 'newemailforstore2@bookstore.com']] || ['PNFDemo4']
+            '2 properties, no matches'       | [['Contact' : 'newemailforstore@bookstore.com'], ['Contact2': '']]                                || []
     }
 
     def 'Retrieve cm handles with module names when #scenario.'() {
@@ -73,15 +73,17 @@ class NetworkCmProxyCmHandlerQueryServiceSpec extends Specification {
         and: 'mock services'
             mockResponses()
         when: 'the service is invoked'
-            def returnedCmHandles = objectUnderTest.queryCmHandles(cmHandleQueryParameters)
+            def returnedCmHandlesJustIds = objectUnderTest.queryCmHandleIds(cmHandleQueryParameters)
+            def returnedCmHandlesWithData = objectUnderTest.queryCmHandles(cmHandleQueryParameters)
         then: 'the correct expected cm handles are returned'
-            returnedCmHandles.stream().map(d -> d.leaves.get('id').toString()).collect(Collectors.toSet()) == expectedCmHandleIds as Set
+            returnedCmHandlesJustIds == expectedCmHandleIds as Set
+            returnedCmHandlesWithData.stream().map(dataNode -> dataNode.cmHandleId).collect(Collectors.toSet()) == expectedCmHandleIds as Set
         where: 'the following data is used'
-            scenario                               | moduleNames                                                             || expectedCmHandleIds
-            'single matching module name'          | [['moduleName' : 'MODULE-NAME-001']]                                    || ['PNFDemo3', 'PNFDemo', 'PNFDemo2']
-            'module name dont match'               | [['moduleName' : 'MODULE-NAME-004']]                                    || []
-            '2 module names, only one match (and)' | [['moduleName' : 'MODULE-NAME-002'], ['moduleName': 'MODULE-NAME-003']] || ['PNFDemo4']
-            '2 module names, no match (and)'       | [['moduleName' : 'MODULE-NAME-002'], ['moduleName': 'MODULE-NAME-004']] || []
+            scenario                         | moduleNames                                                             || expectedCmHandleIds
+            'single matching module name'    | [['moduleName' : 'MODULE-NAME-001']]                                    || ['PNFDemo3', 'PNFDemo1', 'PNFDemo2']
+            'module name dont match'         | [['moduleName' : 'MODULE-NAME-004']]                                    || []
+            '2 module names, only one match' | [['moduleName' : 'MODULE-NAME-002'], ['moduleName': 'MODULE-NAME-003']] || ['PNFDemo4']
+            '2 module names, no matches'     | [['moduleName' : 'MODULE-NAME-002'], ['moduleName': 'MODULE-NAME-004']] || []
     }
 
     def 'Retrieve cm handles with combined queries when #scenario.'() {
@@ -97,12 +99,14 @@ class NetworkCmProxyCmHandlerQueryServiceSpec extends Specification {
         and: 'mock services'
             mockResponses()
         when: 'the service is invoked'
-            def returnedCmHandles = objectUnderTest.queryCmHandles(cmHandleQueryParameters)
+            def returnedCmHandlesJustIds = objectUnderTest.queryCmHandleIds(cmHandleQueryParameters)
+            def returnedCmHandlesWithData = objectUnderTest.queryCmHandles(cmHandleQueryParameters)
         then: 'the correct expected cm handles are returned'
-            returnedCmHandles.stream().map(d -> d.leaves.get('id').toString()).collect(Collectors.toSet()) == expectedCmHandleIds as Set
+            returnedCmHandlesJustIds == expectedCmHandleIds as Set
+            returnedCmHandlesWithData.stream().map(d -> d.cmHandleId).collect(Collectors.toSet()) == expectedCmHandleIds as Set
         where: 'the following data is used'
             scenario                 | moduleNames                          | publicProperties                                   || expectedCmHandleIds
-            'particularly intersect' | [['moduleName' : 'MODULE-NAME-001']] | [['Contact' : 'newemailforstore@bookstore.com']]   || ['PNFDemo2', 'PNFDemo']
+            'particularly intersect' | [['moduleName' : 'MODULE-NAME-001']] | [['Contact' : 'newemailforstore@bookstore.com']]   || ['PNFDemo1', 'PNFDemo2']
             'empty intersect'        | [['moduleName' : 'MODULE-NAME-004']] | [['Contact' : 'newemailforstore@bookstore.com']]   || []
             'total intersect'        | [['moduleName' : 'MODULE-NAME-002']] | [['Contact2' : 'newemailforstore2@bookstore.com']] || ['PNFDemo4']
     }
@@ -112,38 +116,37 @@ class NetworkCmProxyCmHandlerQueryServiceSpec extends Specification {
             mockResponses()
         when: 'the service is invoked'
             def cmHandleQueryParameters = new CmHandleQueryServiceParameters()
-            def returnedCmHandles = objectUnderTest.queryCmHandles(cmHandleQueryParameters)
+            def returnedCmHandlesJustIds = objectUnderTest.queryCmHandleIds(cmHandleQueryParameters)
+            def returnedCmHandlesWithData = objectUnderTest.queryCmHandles(cmHandleQueryParameters)
         then: 'the correct expected cm handles are returned'
-            returnedCmHandles.stream().map(d -> d.leaves.get('id').toString()).collect(Collectors.toSet()) == ['PNFDemo', 'PNFDemo2', 'PNFDemo3', 'PNFDemo4'] as Set
+            returnedCmHandlesJustIds == ['PNFDemo1', 'PNFDemo2', 'PNFDemo3', 'PNFDemo4'] as Set
+            returnedCmHandlesWithData.stream().map(d -> d.cmHandleId).collect(Collectors.toSet()) == ['PNFDemo1', 'PNFDemo2', 'PNFDemo3', 'PNFDemo4'] as Set
     }
 
     void mockResponses() {
-        def pNFDemo = new DataNode(xpath: 'cmHandle/id[\'PNFDemo\']', leaves: ['id':'PNFDemo'])
-        def pNFDemo2 = new DataNode(xpath: 'cmHandle/id[\'PNFDemo2\']', leaves: ['id':'PNFDemo2'])
-        def pNFDemo3 = new DataNode(xpath: 'cmHandle/id[\'PNFDemo3\']', leaves: ['id':'PNFDemo3'])
-        def pNFDemo4 = new DataNode(xpath: 'cmHandle/id[\'PNFDemo4\']', leaves: ['id':'PNFDemo4'])
+        def pNFDemo1 = new DataNode(xpath: '/dmi-registry/cm-handles[@id=\'PNFDemo1\']', leaves: ['id':'PNFDemo1'])
+        def pNFDemo2 = new DataNode(xpath: '/dmi-registry/cm-handles[@id=\'PNFDemo2\']', leaves: ['id':'PNFDemo2'])
+        def pNFDemo3 = new DataNode(xpath: '/dmi-registry/cm-handles[@id=\'PNFDemo3\']', leaves: ['id':'PNFDemo3'])
+        def pNFDemo4 = new DataNode(xpath: '/dmi-registry/cm-handles[@id=\'PNFDemo4\']', leaves: ['id':'PNFDemo4'])
 
-        cpsDataPersistenceService.queryDataNodes(_, _, '//public-properties[@name=\'Contact\' and @value=\'newemailforstore@bookstore.com\']/ancestor::cm-handles', _)
-                >> [pNFDemo, pNFDemo2, pNFDemo4]
-        cpsDataPersistenceService.queryDataNodes(_, _, '//public-properties[@name=\'wont_match\' and @value=\'wont_match\']/ancestor::cm-handles', _)
-                >> []
-        cpsDataPersistenceService.queryDataNodes(_, _, '//public-properties[@name=\'Contact2\' and @value=\'newemailforstore2@bookstore.com\']/ancestor::cm-handles', _)
-                >> [pNFDemo4]
-        cpsDataPersistenceService.queryDataNodes(_, _, '//public-properties[@name=\'Contact2\' and @value=\'\']/ancestor::cm-handles', _)
-                >> []
-        cpsDataPersistenceService.queryDataNodes(_, _, '//public-properties/ancestor::cm-handles', _)
-                >> [pNFDemo, pNFDemo2, pNFDemo3, pNFDemo4]
-        cpsDataPersistenceService.queryDataNodes(_, _, '//cm-handles[@id=\'PNFDemo\']', _) >> [pNFDemo]
-        cpsDataPersistenceService.queryDataNodes(_, _, '//cm-handles[@id=\'PNFDemo2\']', _) >> [pNFDemo2]
-        cpsDataPersistenceService.queryDataNodes(_, _, '//cm-handles[@id=\'PNFDemo3\']', _) >> [pNFDemo3]
-        cpsDataPersistenceService.queryDataNodes(_, _, '//cm-handles[@id=\'PNFDemo4\']', _) >> [pNFDemo4]
+        cpsDataPersistenceService.queryDataNodes(_, _, '//public-properties[@name=\'Contact\' and @value=\'newemailforstore@bookstore.com\']/ancestor::cm-handles', _) >> [pNFDemo1, pNFDemo2, pNFDemo4]
+        cpsDataPersistenceService.queryDataNodes(_, _, '//public-properties[@name=\'wont_match\' and @value=\'wont_match\']/ancestor::cm-handles', _) >> []
+        cpsDataPersistenceService.queryDataNodes(_, _, '//public-properties[@name=\'Contact2\' and @value=\'newemailforstore2@bookstore.com\']/ancestor::cm-handles', _) >> [pNFDemo4]
+        cpsDataPersistenceService.queryDataNodes(_, _, '//public-properties[@name=\'Contact2\' and @value=\'\']/ancestor::cm-handles', _) >> []
+        cpsDataPersistenceService.queryDataNodes(_, _, '/dmi-registry/cm-handles', _) >> [pNFDemo1, pNFDemo2, pNFDemo3, pNFDemo4]
 
-        cpsAdminPersistenceService.queryAnchors(_, ['MODULE-NAME-001']) >> [new Anchor(name: 'PNFDemo2'), new Anchor(name: 'PNFDemo3'), new Anchor(name: 'PNFDemo')]
+        cpsDataPersistenceService.getDataNode(_, _, '/dmi-registry/cm-handles[@id=\'PNFDemo1\']', _) >> pNFDemo1
+        cpsDataPersistenceService.getDataNode(_, _, '/dmi-registry/cm-handles[@id=\'PNFDemo2\']', _) >> pNFDemo2
+        cpsDataPersistenceService.getDataNode(_, _, '/dmi-registry/cm-handles[@id=\'PNFDemo3\']', _) >> pNFDemo3
+        cpsDataPersistenceService.getDataNode(_, _, '/dmi-registry/cm-handles[@id=\'PNFDemo4\']', _) >> pNFDemo4
+
+        cpsAdminPersistenceService.queryAnchors(_, ['MODULE-NAME-001']) >> [new Anchor(name: 'PNFDemo1'), new Anchor(name: 'PNFDemo2'), new Anchor(name: 'PNFDemo3')]
         cpsAdminPersistenceService.queryAnchors(_, ['MODULE-NAME-004']) >> []
         cpsAdminPersistenceService.queryAnchors(_, ['MODULE-NAME-003', 'MODULE-NAME-002']) >> [new Anchor(name: 'PNFDemo4')]
         cpsAdminPersistenceService.queryAnchors(_, ['MODULE-NAME-002', 'MODULE-NAME-003']) >> [new Anchor(name: 'PNFDemo4')]
         cpsAdminPersistenceService.queryAnchors(_, ['MODULE-NAME-004', 'MODULE-NAME-002']) >> []
         cpsAdminPersistenceService.queryAnchors(_, ['MODULE-NAME-002', 'MODULE-NAME-004']) >> []
         cpsAdminPersistenceService.queryAnchors(_, ['MODULE-NAME-002']) >> [new Anchor(name: 'PNFDemo2'), new Anchor(name: 'PNFDemo4')]
+        cpsAdminPersistenceService.getAnchors(_) >> [new Anchor(name: 'PNFDemo1'), new Anchor(name: 'PNFDemo2'), new Anchor(name: 'PNFDemo3'), new Anchor(name: 'PNFDemo4')]
     }
 }
