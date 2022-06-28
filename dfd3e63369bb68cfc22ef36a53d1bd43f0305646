@@ -71,6 +71,30 @@
     },
     {
       "key": {
+        "uuid": "525961b1_b3c0e30b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-06-28T09:28:49Z",
+      "side": 1,
+      "message": "Currently no. It needs to fetch the descendants to get the lock reason and details though so they can be set.",
+      "parentUuid": "f863c89e_7e693cb2",
+      "range": {
+        "startLine": 103,
+        "startChar": 56,
+        "endLine": 103,
+        "endChar": 107
+      },
+      "revId": "dfd3e63369bb68cfc22ef36a53d1bd43f0305646",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1213a535_f3cc4c9f",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
         "patchSetId": 9
@@ -105,6 +129,30 @@
       "writtenOn": "2022-06-28T09:11:08Z",
       "side": 1,
       "message": "why not just \n\nupdatedCompositeState.setLockReason(updatedCompositeState.getLockReason())\n\nwe (want to) only copy the details?!",
+      "range": {
+        "startLine": 90,
+        "startChar": 8,
+        "endLine": 91,
+        "endChar": 86
+      },
+      "revId": "dfd3e63369bb68cfc22ef36a53d1bd43f0305646",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "535186bb_e290ea9c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-06-28T09:28:49Z",
+      "side": 1,
+      "message": "I thought we wanted to remove the Lock Reason Category. If get just get the full Lock Reason would this not retain the category.",
+      "parentUuid": "b9d95fc1_7fbff8d2",
       "range": {
         "startLine": 90,
         "startChar": 8,
