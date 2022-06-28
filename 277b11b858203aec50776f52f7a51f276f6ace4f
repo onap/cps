@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3115dbab_125ea28e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-28T15:20:10Z",
+      "side": 1,
+      "message": "I think we agreed originally (during analysis with team) to always execute a single getCmHandle with a full path (instead of cpsPath query). using get all will not scale well and result in a slow return even if the result is only a few cm-handles\n\nwe need to time, given an environment with 10,000 cmHandles\n\nA) getAll CMhandles methods\nB) 10,000 individual het cm handle calls\n\nIf B is not much slower than A we should always use the individual approach (preferred)\nif B is much slower we need to find/calculate a threshold to decide which approach to take in the code e.g. 1,000 nodes",
+      "range": {
+        "startLine": 159,
+        "startChar": 12,
+        "endLine": 159,
+        "endChar": 27
+      },
+      "revId": "277b11b858203aec50776f52f7a51f276f6ace4f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
