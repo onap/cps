@@ -1,5 +1,5 @@
 /*
- * ============LICENSE_START=======================================================
+ *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
@@ -61,8 +61,9 @@ public class ModuleSyncWatchdog {
             } catch (final Exception e) {
                 setCompositeStateToLocked().accept(compositeState);
                 syncUtils.updateLockReasonDetailsAndAttempts(compositeState,
-                        LockReasonCategory.LOCKED_MISBEHAVING, e.getMessage());
+                        LockReasonCategory.LOCKED_MODULE_SYNC_FAILED, e.getMessage());
             }
+            compositeState.setLastUpdateTimeNow();
             inventoryPersistence.saveCmHandleState(cmHandleId, compositeState);
             log.debug("{} is now in {} state", cmHandleId, compositeState.getCmHandleState().name());
             advisedCmHandle = syncUtils.getAnAdvisedCmHandle();
@@ -75,14 +76,14 @@ public class ModuleSyncWatchdog {
      */
     @Scheduled(fixedDelayString = "${timers.locked-modules-sync.sleep-time-ms:300000}")
     public void executeLockedCmHandlePoll() {
-        final List<YangModelCmHandle> lockedMisbehavingCmHandles = syncUtils.getLockedMisbehavingYangModelCmHandles();
-        for (final YangModelCmHandle moduleSyncFailedCmHandle : lockedMisbehavingCmHandles) {
-            final CompositeState compositeState = moduleSyncFailedCmHandle.getCompositeState();
+        final List<YangModelCmHandle> lockedCmHandles = syncUtils.getModuleSyncFailedCmHandles();
+        for (final YangModelCmHandle lockedCmHandle : lockedCmHandles) {
+            final CompositeState compositeState = lockedCmHandle.getCompositeState();
             final boolean isReadyForRetry = syncUtils.isReadyForRetry(compositeState);
             if (isReadyForRetry) {
                 setCompositeStateToAdvisedAndRetainOldLockReasonDetails(compositeState);
-                log.debug("Locked misbehaving cm handle {} is being recycled", moduleSyncFailedCmHandle.getId());
-                inventoryPersistence.saveCmHandleState(moduleSyncFailedCmHandle.getId(), compositeState);
+                log.debug("Locked cm handle {} is being resynced", lockedCmHandle.getId());
+                inventoryPersistence.saveCmHandleState(lockedCmHandle.getId(), compositeState);
             }
         }
     }

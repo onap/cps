@@ -28,6 +28,7 @@ import org.mapstruct.NullValuePropertyMappingStrategy;
 import org.onap.cps.ncmp.api.inventory.CompositeState;
 import org.onap.cps.ncmp.rest.model.CmHandleCompositeState;
 import org.onap.cps.ncmp.rest.model.DataStores;
+import org.onap.cps.ncmp.rest.model.LockReason;
 import org.onap.cps.ncmp.rest.model.SyncState;
 
 @Mapper(componentModel = "spring", nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS,
@@ -35,8 +36,8 @@ import org.onap.cps.ncmp.rest.model.SyncState;
 public interface CmHandleStateMapper {
 
     @Mapping(target = "dataSyncState", source = "dataStores", qualifiedByName = "dataStoreToDataSyncState")
-    @Mapping(target = "lockReason.reason", source = "lockReason.lockReasonCategory")
-    CmHandleCompositeState toCmHandleCompositeState(CompositeState compositeState);
+    @Mapping(target = "lockReason", source = "lockReason", qualifiedByName = "toExternalLockReason")
+    CmHandleCompositeState toCmHandleCompositeStateExternalLockReason(CompositeState compositeState);
 
     /**
      * Convert from CompositeState datastore to RestOutput Datastores.
@@ -64,6 +65,23 @@ public interface CmHandleStateMapper {
 
         return dataStores;
 
+    }
+
+    /**
+     * Convert Internal Lock Reason to External Lock Reason.
+     *
+     * @param internalLockReason Internal Lock Reason
+     *
+     * @return externalLockReason
+     */
+    @Named("toExternalLockReason")
+    static LockReason toExternalLockReason(CompositeState.LockReason internalLockReason) {
+        final LockReason externalLockReason = new LockReason();
+        if (internalLockReason.getLockReasonCategory() != null) {
+            externalLockReason.setReason("LOCKED_MISBEHAVING");
+        }
+        externalLockReason.setDetails(internalLockReason.getDetails());
+        return externalLockReason;
     }
 
 }
