@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "21d3b990_2b57a9af",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceImpl.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-06-28T10:58:17Z",
+      "side": 1,
+      "message": "Is it not possible to return the list of cm handle id\u0027s as part of this method as opposed to a boolean? I don\u0027t think it makes sense to define a boolean in the method above, if it is not being used to check anything",
+      "range": {
+        "startLine": 110,
+        "startChar": 12,
+        "endLine": 110,
+        "endChar": 19
+      },
+      "revId": "c112e914f9ccb779f37b0c1c4e61afa3e382df36",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
