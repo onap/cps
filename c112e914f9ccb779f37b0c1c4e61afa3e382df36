@@ -22,6 +22,30 @@
       "revId": "c112e914f9ccb779f37b0c1c4e61afa3e382df36",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "31b0abab_5e70e04c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceImpl.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-06-28T11:06:16Z",
+      "side": 1,
+      "message": "It is being used in moduleNameIdQuery and moduleNameQuery methods",
+      "parentUuid": "21d3b990_2b57a9af",
+      "range": {
+        "startLine": 110,
+        "startChar": 12,
+        "endLine": 110,
+        "endChar": 19
+      },
+      "revId": "c112e914f9ccb779f37b0c1c4e61afa3e382df36",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
