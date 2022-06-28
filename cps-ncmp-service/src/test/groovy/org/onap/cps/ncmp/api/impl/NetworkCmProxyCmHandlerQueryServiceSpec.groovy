@@ -22,6 +22,7 @@ package org.onap.cps.ncmp.api.impl
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.ncmp.api.NetworkCmProxyCmHandlerQueryService
+import org.onap.cps.ncmp.api.inventory.InventoryPersistence
 import org.onap.cps.spi.CpsAdminPersistenceService
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.model.Anchor
@@ -37,9 +38,10 @@ class NetworkCmProxyCmHandlerQueryServiceSpec extends Specification {
 
     def cpsDataPersistenceService = Mock(CpsDataPersistenceService)
     def cpsAdminPersistenceService = Mock(CpsAdminPersistenceService)
+    def inventoryPersistence = Mock(InventoryPersistence)
 
     NetworkCmProxyCmHandlerQueryService objectUnderTest = new NetworkCmProxyCmHandlerQueryServiceImpl(
-        cpsDataPersistenceService, cpsAdminPersistenceService, new JsonObjectMapper(new ObjectMapper())
+        cpsDataPersistenceService, cpsAdminPersistenceService, inventoryPersistence, new JsonObjectMapper(new ObjectMapper())
     )
 
     def 'Retrieve cm handles with public properties when #scenario.'() {
@@ -123,16 +125,22 @@ class NetworkCmProxyCmHandlerQueryServiceSpec extends Specification {
         def pNFDemo3 = new DataNode(xpath: 'cmHandle/id[\'PNFDemo3\']', leaves: ['id':'PNFDemo3'])
         def pNFDemo4 = new DataNode(xpath: 'cmHandle/id[\'PNFDemo4\']', leaves: ['id':'PNFDemo4'])
 
-        cpsDataPersistenceService.queryDataNodes(_, _, '//public-properties[@name=\'Contact\' and @value=\'newemailforstore@bookstore.com\']/ancestor::cm-handles', _)
+        inventoryPersistence.queryDataNodes('//public-properties[@name=\'Contact\' and @value=\'newemailforstore@bookstore.com\']/ancestor::cm-handles')
                 >> [pNFDemo, pNFDemo2, pNFDemo4]
-        cpsDataPersistenceService.queryDataNodes(_, _, '//public-properties[@name=\'wont_match\' and @value=\'wont_match\']/ancestor::cm-handles', _)
+        inventoryPersistence.queryDataNodes('//public-properties[@name=\'wont_match\' and @value=\'wont_match\']/ancestor::cm-handles')
                 >> []
-        cpsDataPersistenceService.queryDataNodes(_, _, '//public-properties[@name=\'Contact2\' and @value=\'newemailforstore2@bookstore.com\']/ancestor::cm-handles', _)
+        inventoryPersistence.queryDataNodes('//public-properties[@name=\'Contact2\' and @value=\'newemailforstore2@bookstore.com\']/ancestor::cm-handles')
                 >> [pNFDemo4]
-        cpsDataPersistenceService.queryDataNodes(_, _, '//public-properties[@name=\'Contact2\' and @value=\'\']/ancestor::cm-handles', _)
+        inventoryPersistence.queryDataNodes('//public-properties[@name=\'Contact2\' and @value=\'\']/ancestor::cm-handles')
                 >> []
-        cpsDataPersistenceService.queryDataNodes(_, _, '//public-properties/ancestor::cm-handles', _)
+        inventoryPersistence.queryDataNodes('//public-properties/ancestor::cm-handles')
                 >> [pNFDemo, pNFDemo2, pNFDemo3, pNFDemo4]
+
+        inventoryPersistence.queryDataNodes('//cm-handles[@id=\'PNFDemo\']') >> [pNFDemo]
+        inventoryPersistence.queryDataNodes('//cm-handles[@id=\'PNFDemo2\']') >> [pNFDemo2]
+        inventoryPersistence.queryDataNodes('//cm-handles[@id=\'PNFDemo3\']') >> [pNFDemo3]
+        inventoryPersistence.queryDataNodes('//cm-handles[@id=\'PNFDemo4\']') >> [pNFDemo4]
+
         cpsDataPersistenceService.queryDataNodes(_, _, '//cm-handles[@id=\'PNFDemo\']', _) >> [pNFDemo]
         cpsDataPersistenceService.queryDataNodes(_, _, '//cm-handles[@id=\'PNFDemo2\']', _) >> [pNFDemo2]
         cpsDataPersistenceService.queryDataNodes(_, _, '//cm-handles[@id=\'PNFDemo3\']', _) >> [pNFDemo3]

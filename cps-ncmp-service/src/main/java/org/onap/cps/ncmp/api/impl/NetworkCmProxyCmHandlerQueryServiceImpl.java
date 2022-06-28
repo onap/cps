@@ -20,9 +20,6 @@
 
 package org.onap.cps.ncmp.api.impl;
 
-import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NCMP_DATASPACE_NAME;
-import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NCMP_DMI_REGISTRY_ANCHOR;
-import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
 import static org.onap.cps.utils.CmHandleQueryRestParametersValidator.validateModuleNameConditionProperties;
 
 import java.util.ArrayList;
@@ -35,6 +32,7 @@ import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.NetworkCmProxyCmHandlerQueryService;
+import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
 import org.onap.cps.spi.CpsAdminPersistenceService;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.model.Anchor;
@@ -54,6 +52,7 @@ public class NetworkCmProxyCmHandlerQueryServiceImpl implements NetworkCmProxyCm
     private static final String MODULE_QUERY_NAME = "hasAllModules";
     private final CpsDataPersistenceService cpsDataPersistenceService;
     private final CpsAdminPersistenceService cpsAdminPersistenceService;
+    private final InventoryPersistence inventoryPersistence;
     private final JsonObjectMapper jsonObjectMapper;
 
     /**
@@ -177,7 +176,6 @@ public class NetworkCmProxyCmHandlerQueryServiceImpl implements NetworkCmProxyCm
     }
 
     private List<DataNode> getDataNodes(final String cmHandlePath) {
-        return cpsDataPersistenceService.queryDataNodes(
-                NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cmHandlePath, INCLUDE_ALL_DESCENDANTS);
+        return inventoryPersistence.queryDataNodes(cmHandlePath);
     }
 }

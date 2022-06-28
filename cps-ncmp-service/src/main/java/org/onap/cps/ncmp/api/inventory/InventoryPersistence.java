@@ -21,15 +21,24 @@
 
 package org.onap.cps.ncmp.api.inventory;
 
+import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NCMP_DMI_REGISTRY_PARENT;
+import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME;
+import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NO_TIMESTAMP;
+import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED;
+import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
+
 import java.time.OffsetDateTime;
+import java.util.Collection;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.CpsDataService;
+import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
+import org.onap.cps.spi.model.ModuleReference;
 import org.onap.cps.utils.CpsValidator;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.stereotype.Component;
@@ -47,6 +56,8 @@ public class InventoryPersistence {
     private final JsonObjectMapper jsonObjectMapper;
 
     private final CpsDataService cpsDataService;
+
+    private final CpsModuleService cpsModuleService;
 
     private final CpsDataPersistenceService cpsDataPersistenceService;
 
@@ -138,11 +149,46 @@ public class InventoryPersistence {
         return YangDataConverter.convertCmHandleToYangModel(getCmHandleDataNode(cmHandleId), cmHandleId);
     }
 
+    /**
+     * Method to return module references by cmHandleId.
+     *
+     * @param cmHandleId cm handle ID
+     * @return a collection of module references (moduleName and revision)
+     */
+    public Collection<ModuleReference> getYangResourcesModuleReferences(final String cmHandleId) {
+        CpsValidator.validateNameCharacters(cmHandleId);
+        return cpsModuleService.getYangResourcesModuleReferences(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId);
+    }
+
+    /**
+     * Register new cmHandle.
+     *
+     * @param cmHandleJsonData cmHandles mapped in JSON
+     */
+    public void saveListElements(final String cmHandleJsonData) {
+        cpsDataService.saveListElements(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NCMP_DMI_REGISTRY_PARENT,
+                cmHandleJsonData, NO_TIMESTAMP);
+    }
+
+    public void deleteListOrListElement(final String listElementXpath) {
+        cpsDataService.deleteListOrListElement(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
+                listElementXpath, NO_TIMESTAMP);
+    }
+
+    public void deleteSchemaSet(final String schemaSetName) {
+        cpsModuleService.deleteSchemaSet(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, schemaSetName,
+                CASCADE_DELETE_ALLOWED);
+    }
+
+    public List<DataNode> queryDataNodes(final String cmHandlePath) {
+        return cpsDataPersistenceService.queryDataNodes(
+                NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cmHandlePath, INCLUDE_ALL_DESCENDANTS);
+    }
+
     private DataNode getCmHandleDataNode(final String cmHandle) {
         return cpsDataService.getDataNode(NCMP_DATASPACE_NAME,
             NCMP_DMI_REGISTRY_ANCHOR,
             String.format(XPATH_TO_CM_HANDLE, cmHandle),
             FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
     }
-
 }

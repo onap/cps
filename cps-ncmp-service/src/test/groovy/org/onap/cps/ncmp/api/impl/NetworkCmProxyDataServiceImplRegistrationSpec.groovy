@@ -23,7 +23,6 @@ package org.onap.cps.ncmp.api.impl
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.ncmp.api.NetworkCmProxyCmHandlerQueryService
-import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.ncmp.api.impl.exception.DmiRequestException
@@ -32,7 +31,6 @@ import org.onap.cps.ncmp.api.inventory.InventoryPersistence
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
-import org.onap.cps.ncmp.api.inventory.sync.ModuleSyncService
 import org.onap.cps.spi.exceptions.AlreadyDefinedException
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.spi.exceptions.DataValidationException
@@ -59,11 +57,9 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     def mockCpsDataService = Mock(CpsDataService)
     def mockCpsModuleService = Mock(CpsModuleService)
     def spiedJsonObjectMapper = Spy(new JsonObjectMapper(new ObjectMapper()))
-    def mockCpsAdminService = Mock(CpsAdminService)
     def mockDmiDataOperations = Mock(DmiDataOperations)
     def mockNetworkCmProxyDataServicePropertyHandler = Mock(NetworkCmProxyDataServicePropertyHandler)
     def mockInventoryPersistence = Mock(InventoryPersistence)
-    def mockModuleSyncService = Mock(ModuleSyncService)
     def stubbedNetworkCmProxyCmHandlerQueryService = Stub(NetworkCmProxyCmHandlerQueryService)
     def noTimestamp = null
     def objectUnderTest = getObjectUnderTest()
@@ -106,8 +102,6 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             response.getRemovedCmHandles() == removeResponses
             response.getCreatedCmHandles() == createdResponses
             response.getUpdatedCmHandles() == updateResponses
-
-
     }
 
     def 'Create CM-handle Validation: Registration with valid Service names: #scenario'() {
@@ -165,8 +159,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
         and: 'save list elements is invoked with the expected parameters'
             interaction {
                 def expectedJsonData = """{"cm-handles":[{"id":"cmhandle","dmi-service-name":"my-server","state":{"cm-handle-state":"ADVISED"},"additional-properties":$expectedDmiProperties,"public-properties":$expectedPublicProperties}]}"""
-                1 * mockCpsDataService.saveListElements('NCMP-Admin', 'ncmp-dmi-registry',
-                    '/dmi-registry', expectedJsonData, noTimestamp)
+                1 * mockInventoryPersistence.saveListElements(expectedJsonData)
             }
         where:
             scenario                          | dmiProperties            | publicProperties               || expectedDmiProperties                      | expectedPublicProperties
@@ -184,7 +177,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
                                    new NcmpServiceCmHandle(cmHandleId: 'cmhandle2'),
                                    new NcmpServiceCmHandle(cmHandleId: 'cmhandle3')])
         and: 'cm-handle creation is successful for 1st and 3rd; failed for 2nd'
-            mockCpsDataService.saveListElements(_, _, _, _, _) >> {} >> { throw new RuntimeException("Failed") } >> {}
+            mockInventoryPersistence.saveListElements(_) >> {} >> { throw new RuntimeException("Failed") } >> {}
         when: 'registration is updated to create cm-handles'
             def response = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'a response is received for all cm-handles'
@@ -212,7 +205,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server')
             dmiPluginRegistration.createdCmHandles = [new NcmpServiceCmHandle(cmHandleId: cmHandleId)]
         and: 'cm-handler registration fails: #scenario'
-            mockCpsDataService.saveListElements(_, _, _, _, _) >> { throw exception }
+            mockInventoryPersistence.saveListElements(_) >> { throw exception }
         when: 'registration is updated'
             def response = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'a failure response is received'
@@ -257,7 +250,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
         when: 'registration is updated to delete cmhandle'
             def response = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'delete list or list element is called'
-            1 * mockCpsDataService.deleteListOrListElement(_, _, _, _)
+            1 * mockInventoryPersistence.deleteListOrListElement(_)
         and: 'successful response is received'
             assert response.getRemovedCmHandles().size() == 1
             with(response.getRemovedCmHandles().get(0)) {
@@ -275,7 +268,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server',
                 removedCmHandles: ['cmhandle1', 'cmhandle2', 'cmhandle3'])
         and: 'cm-handle deletion is successful for 1st and 3rd; failed for 2nd'
-            mockCpsDataService.deleteListOrListElement(_, _, _, _) >> {} >> { throw new RuntimeException("Failed") } >> {}
+            mockInventoryPersistence.deleteListOrListElement(_) >> {} >> { throw new RuntimeException("Failed") } >> {}
         when: 'registration is updated to delete cmhandles'
             def response = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'a response is received for all cm-handles'
@@ -303,13 +296,13 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server',
                 removedCmHandles: ['cmhandle'])
         and: 'schema set deletion failed with unknown error'
-            mockCpsModuleService.deleteSchemaSet(_, _, _) >> { throw new RuntimeException('Failed') }
+            mockInventoryPersistence.deleteSchemaSet(_) >> { throw new RuntimeException('Failed') }
         when: 'registration is updated to delete cmhandle'
             def response = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'no exception is thrown'
             noExceptionThrown()
         and: 'cm-handle is not deleted'
-            0 * mockCpsDataService.deleteListOrListElement(_, _, _, _)
+            0 * mockInventoryPersistence.deleteListOrListElement(_)
         and: 'a failure response is received'
             assert response.getRemovedCmHandles().size() == 1
             with(response.getRemovedCmHandles().get(0)) {
@@ -325,7 +318,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server',
                 removedCmHandles: ['cmhandle'])
         and: 'cm-handle deletion throws exception'
-            mockCpsDataService.deleteListOrListElement(_, _, _, _) >> { throw deleteListElementException }
+            mockInventoryPersistence.deleteListOrListElement(_) >> { throw deleteListElementException }
         when: 'registration is updated to delete cmhandle'
             def response = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'no exception is thrown'
@@ -347,7 +340,6 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
 
     def getObjectUnderTest() {
         return Spy(new NetworkCmProxyDataServiceImpl(mockCpsDataService, spiedJsonObjectMapper, mockDmiDataOperations,
-            mockCpsModuleService, mockCpsAdminService, mockNetworkCmProxyDataServicePropertyHandler, mockInventoryPersistence,
-            mockModuleSyncService, stubbedNetworkCmProxyCmHandlerQueryService))
+            mockCpsModuleService, mockNetworkCmProxyDataServicePropertyHandler, mockInventoryPersistence, stubbedNetworkCmProxyCmHandlerQueryService))
     }
 }

@@ -23,13 +23,7 @@
 
 package org.onap.cps.ncmp.api.impl;
 
-import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NCMP_DATASPACE_NAME;
-import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NCMP_DMI_REGISTRY_ANCHOR;
-import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NCMP_DMI_REGISTRY_PARENT;
-import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME;
-import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NO_TIMESTAMP;
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum;
-import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED;
 import static org.onap.cps.utils.CmHandleQueryRestParametersValidator.validateCmHandleQueryParameters;
 
 import java.util.ArrayList;
@@ -41,7 +35,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.ncmp.api.NetworkCmProxyCmHandlerQueryService;
@@ -52,7 +45,6 @@ import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.inventory.CmHandleState;
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
-import org.onap.cps.ncmp.api.inventory.sync.ModuleSyncService;
 import org.onap.cps.ncmp.api.models.CmHandleQueryApiParameters;
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse;
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationError;
@@ -83,13 +75,9 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     private final CpsModuleService cpsModuleService;
 
-    private final CpsAdminService cpsAdminService;
-
     private final NetworkCmProxyDataServicePropertyHandler networkCmProxyDataServicePropertyHandler;
 
     private final InventoryPersistence inventoryPersistence;
-
-    private final ModuleSyncService moduleSyncService;
 
     private final NetworkCmProxyCmHandlerQueryService networkCmProxyCmHandlerQueryService;
 
@@ -151,11 +139,10 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             requestData, dataType);
     }
 
-
     @Override
     public Collection<ModuleReference> getYangResourcesModuleReferences(final String cmHandleId) {
         CpsValidator.validateNameCharacters(cmHandleId);
-        return cpsModuleService.getYangResourcesModuleReferences(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId);
+        return inventoryPersistence.getYangResourcesModuleReferences(cmHandleId);
     }
 
     /**
@@ -258,8 +245,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             try {
                 CpsValidator.validateNameCharacters(cmHandle);
                 deleteSchemaSetWithCascade(cmHandle);
-                cpsDataService.deleteListOrListElement(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                        "/dmi-registry/cm-handles[@id='" + cmHandle + "']", NO_TIMESTAMP);
+                inventoryPersistence.deleteListOrListElement("/dmi-registry/cm-handles[@id='" + cmHandle + "']");
                 cmHandleRegistrationResponses.add(CmHandleRegistrationResponse.createSuccessResponse(cmHandle));
             } catch (final DataNodeNotFoundException dataNodeNotFoundException) {
                 log.error("Unable to find dataNode for cmHandleId : {} , caused by : {}",
@@ -283,8 +269,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     private void deleteSchemaSetWithCascade(final String schemaSetName) {
         try {
-            cpsModuleService.deleteSchemaSet(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, schemaSetName,
-                    CASCADE_DELETE_ALLOWED);
+            inventoryPersistence.deleteSchemaSet(schemaSetName);
         } catch (final SchemaSetNotFoundException schemaSetNotFoundException) {
             log.warn("Schema set {} does not exist or already deleted", schemaSetName);
         }
@@ -294,8 +279,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         try {
             final String cmHandleJsonData = String.format("{\"cm-handles\":[%s]}",
                     jsonObjectMapper.asJsonString(yangModelCmHandle));
-            cpsDataService.saveListElements(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NCMP_DMI_REGISTRY_PARENT,
-                    cmHandleJsonData, NO_TIMESTAMP);
+            inventoryPersistence.saveListElements(cmHandleJsonData);
             return CmHandleRegistrationResponse.createSuccessResponse(yangModelCmHandle.getId());
         } catch (final AlreadyDefinedException alreadyDefinedException) {
             return CmHandleRegistrationResponse.createFailureResponse(
