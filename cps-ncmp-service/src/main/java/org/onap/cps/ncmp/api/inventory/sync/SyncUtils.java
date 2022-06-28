@@ -106,13 +106,13 @@ public class SyncUtils {
     }
 
     /**
-     * Query data nodes for cm handles with an "LOCKED" cm handle state with reason LOCKED_MISBEHAVING".
+     * Query data nodes for cm handles with an "LOCKED" cm handle state with reason LOCKED_MODULE_SYNC_FAILED".
      *
      * @return a random yang model cm handle with an ADVISED state, return null if not found
      */
     public List<YangModelCmHandle> getLockedMisbehavingYangModelCmHandles() {
         final List<DataNode> lockedCmHandleAsDataNodeList = inventoryPersistence.getCmHandleDataNodesByCpsPath(
-            "//lock-reason[@reason=\"LOCKED_MISBEHAVING\"]/ancestor::cm-handles",
+            "//lock-reason[@reason=\"LOCKED_MODULE_SYNC_FAILED\"]/ancestor::cm-handles",
             FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
         return lockedCmHandleAsDataNodeList.stream()
             .map(cmHandle -> YangDataConverter.convertCmHandleToYangModel(cmHandle,

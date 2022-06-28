@@ -71,9 +71,9 @@ class SyncUtilsSpec extends Specification{
         given: 'A locked state'
            def compositeState = new CompositeState(lockReason: lockReason)
         when: 'update cm handle details and attempts is called'
-            objectUnderTest.updateLockReasonDetailsAndAttempts(compositeState, LockReasonCategory.LOCKED_MISBEHAVING, 'new error message')
+            objectUnderTest.updateLockReasonDetailsAndAttempts(compositeState, LockReasonCategory.LOCKED_MODULE_SYNC_FAILED, 'new error message')
         then: 'the composite state lock reason and details are updated'
-            assert compositeState.lockReason.lockReasonCategory == LockReasonCategory.LOCKED_MISBEHAVING
+            assert compositeState.lockReason.lockReasonCategory == LockReasonCategory.LOCKED_MODULE_SYNC_FAILED
             assert compositeState.lockReason.details == expectedDetails
         where:
             scenario         | lockReason                                                                                   || expectedDetails
@@ -81,10 +81,10 @@ class SyncUtilsSpec extends Specification{
             'exists'         | CompositeState.LockReason.builder().details("Attempt #2 failed: some error message").build() || 'Attempt #3 failed: new error message'
     }
 
-    def 'Get all locked Cm-Handle where Lock Reason is LOCKED_MISBEHAVING cm handle #scenario'() {
+    def 'Get all locked Cm-Handle where Lock Reason is LOCKED_MODULE_SYNC_FAILED cm handle #scenario'() {
         given: 'the cps (persistence service) returns a collection of data nodes'
             mockInventoryPersistence.getCmHandleDataNodesByCpsPath(
-                    '//lock-reason[@reason="LOCKED_MISBEHAVING"]/ancestor::cm-handles',
+                    '//lock-reason[@reason="LOCKED_MODULE_SYNC_FAILED"]/ancestor::cm-handles',
                 FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> [dataNode ]
         when: 'get locked Misbehaving cm handle is called'
             def result = objectUnderTest.getLockedMisbehavingYangModelCmHandles()
