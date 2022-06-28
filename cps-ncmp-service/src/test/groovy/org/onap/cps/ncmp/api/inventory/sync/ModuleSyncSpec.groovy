@@ -84,19 +84,19 @@ class ModuleSyncSpec extends Specification {
         and: 'the composite state cm handle state is now LOCKED'
             assert compositeState.getCmHandleState() == CmHandleState.LOCKED
         and: 'update lock reason, details and attempts is invoked'
-            1 * mockSyncUtils.updateLockReasonDetailsAndAttempts(compositeState, LockReasonCategory.LOCKED_MISBEHAVING ,'some exception')
+            1 * mockSyncUtils.updateLockReasonDetailsAndAttempts(compositeState, LockReasonCategory.LOCKED_MODULE_SYNC_FAILED ,'some exception')
         and: 'the cm handle state is updated'
             1 * mockInventoryPersistence.saveCmHandleState('some-cm-handle', compositeState)
 
     }
 
-    def 'Schedule a Cm-Handle Sync for LOCKED with reason LOCKED_MISBEHAVING Cm-Handles with #scenario'() {
+    def 'Schedule a Cm-Handle Sync with condition #scenario '() {
         given: 'cm handles in an locked state'
             def compositeState = new CompositeStateBuilder().withCmHandleState(CmHandleState.LOCKED)
-                    .withLockReason(LockReasonCategory.LOCKED_MISBEHAVING, '').withLastUpdatedTimeNow().build()
+                    .withLockReason(LockReasonCategory.LOCKED_MODULE_SYNC_FAILED, '').withLastUpdatedTimeNow().build()
             def yangModelCmHandle = new YangModelCmHandle(id: 'some-cm-handle', compositeState: compositeState)
         and: 'sync utilities return a cm handle twice'
-            mockSyncUtils.getLockedMisbehavingYangModelCmHandles() >> [yangModelCmHandle, yangModelCmHandle]
+            mockSyncUtils.getLockedModuleSyncFailedYangModelCmHandles() >> [yangModelCmHandle, yangModelCmHandle]
         and: 'inventory persistence returns the composite state of the cm handle'
             mockInventoryPersistence.getCmHandleState(yangModelCmHandle.getId()) >> compositeState
         and: 'sync utils retry locked cm handle returns #isReadyForRetry'
