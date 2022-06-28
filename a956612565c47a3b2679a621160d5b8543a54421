@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1bac3cc7_164acfca",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NcmpRestInputMapperSpec.groovy",
+        "patchSetId": 16
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-06-28T10:50:09Z",
+      "side": 1,
+      "message": "I think yes to keep it as this is specific for \u0027moduleReference\u0027 and moduleDefinitions need to be checked for the right contents most especially the \u0027content\u0027 attribute not being null  :)",
+      "parentUuid": "14f1cdb5_6668395b",
+      "range": {
+        "startLine": 84,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 5
+      },
+      "revId": "a956612565c47a3b2679a621160d5b8543a54421",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c3887375_4f0ff1f4",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 16
@@ -36,6 +60,30 @@
       "writtenOn": "2022-06-28T10:25:16Z",
       "side": 1,
       "message": "Is the call to inventory persistence necessary?\n\nCan we not just call getModuleReferences directly from the cpsModuleService?",
+      "range": {
+        "startLine": 159,
+        "startChar": 8,
+        "endLine": 159,
+        "endChar": 81
+      },
+      "revId": "a956612565c47a3b2679a621160d5b8543a54421",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "19231699_69bd917d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-06-28T10:50:09Z",
+      "side": 1,
+      "message": "see comments from Toine on patch 8 :) --\u003e https://gerrit.onap.org/r/c/cps/+/129650/8/cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+      "parentUuid": "c3887375_4f0ff1f4",
       "range": {
         "startLine": 159,
         "startChar": 8,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "771aa859_b8d98949",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-06-28T10:50:09Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "73175f27_5d007f24",
+      "range": {
+        "startLine": 148,
+        "startChar": 0,
+        "endLine": 156,
+        "endChar": 5
+      },
+      "revId": "a956612565c47a3b2679a621160d5b8543a54421",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "04f732f7_f493032f",
         "filename": "cps-service/src/main/java/org/onap/cps/api/CpsModuleService.java",
         "patchSetId": 16
@@ -94,6 +166,54 @@
     },
     {
       "key": {
+        "uuid": "2afab6ce_bd1d7985",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsModuleService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-06-28T10:50:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "04f732f7_f493032f",
+      "range": {
+        "startLine": 102,
+        "startChar": 38,
+        "endLine": 102,
+        "endChar": 48
+      },
+      "revId": "a956612565c47a3b2679a621160d5b8543a54421",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e5d0d3dc_9e724b99",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsModuleService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-06-28T10:50:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "04f732f7_f493032f",
+      "range": {
+        "startLine": 102,
+        "startChar": 38,
+        "endLine": 102,
+        "endChar": 48
+      },
+      "revId": "a956612565c47a3b2679a621160d5b8543a54421",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3c8c63ac_6d57115c",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsModulePersistenceService.java",
         "patchSetId": 16
@@ -114,6 +234,30 @@
       "revId": "a956612565c47a3b2679a621160d5b8543a54421",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7f61a506_260878dc",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsModulePersistenceService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-06-28T10:50:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c8c63ac_6d57115c",
+      "range": {
+        "startLine": 102,
+        "startChar": 31,
+        "endLine": 102,
+        "endChar": 47
+      },
+      "revId": "a956612565c47a3b2679a621160d5b8543a54421",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
