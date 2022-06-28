@@ -167,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "3937da57_a615c803",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-28T11:58:46Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "b8e0b8bc_04cdb6c0",
+      "range": {
+        "startLine": 103,
+        "startChar": 56,
+        "endLine": 103,
+        "endChar": 107
+      },
+      "revId": "dfd3e63369bb68cfc22ef36a53d1bd43f0305646",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1213a535_f3cc4c9f",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
         "patchSetId": 9
