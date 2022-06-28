@@ -239,10 +239,10 @@ components:
       properties:
         reason:
           type: string
-          example: LOCKED_OTHER
+          example: LOCKED_MISBEHAVING
         details:
           type: string
-          example: locked due to module sync
+          example: locked due to failure in module sync
 
     dataStores:
       type: object
