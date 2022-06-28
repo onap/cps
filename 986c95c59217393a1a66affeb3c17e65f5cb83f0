@@ -2,6 +2,98 @@
   "comments": [
     {
       "key": {
+        "uuid": "e2954e35_bfb3c1c6",
+        "filename": "cps-ncmp-rest-stub/src/main/java/org/onap/cps/ncmp/rest/stub/controller/NetworkCmProxyStubController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-28T17:04:36Z",
+      "side": 1,
+      "message": "can be defined inside try block",
+      "range": {
+        "startLine": 72,
+        "startChar": 8,
+        "endLine": 72,
+        "endChar": 55
+      },
+      "revId": "986c95c59217393a1a66affeb3c17e65f5cb83f0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "184c3b2a_3578d0b3",
+        "filename": "cps-ncmp-rest-stub/src/main/java/org/onap/cps/ncmp/rest/stub/controller/NetworkCmProxyStubController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-28T17:04:36Z",
+      "side": 1,
+      "message": "objectMapper",
+      "range": {
+        "startLine": 72,
+        "startChar": 27,
+        "endLine": 72,
+        "endChar": 34
+      },
+      "revId": "986c95c59217393a1a66affeb3c17e65f5cb83f0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4523d15_4ef0da3c",
+        "filename": "cps-ncmp-rest-stub/src/main/java/org/onap/cps/ncmp/rest/stub/controller/NetworkCmProxyStubController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-28T17:04:36Z",
+      "side": 1,
+      "message": "NB (suggestion): should we return a 500 error here (at least we got some (eror) behavior then :-)\nif you do move line #73 inside the try block as well!",
+      "range": {
+        "startLine": 80,
+        "startChar": 12,
+        "endLine": 80,
+        "endChar": 60
+      },
+      "revId": "986c95c59217393a1a66affeb3c17e65f5cb83f0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c8ffb7f2_8862293c",
+        "filename": "cps-ncmp-rest-stub/src/main/java/org/onap/cps/ncmp/rest/stub/controller/NetworkCmProxyStubController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-28T17:04:36Z",
+      "side": 1,
+      "message": "NB (sugegstion): should we return a 500 error here (at least we got some (eror) behavior then :-)",
+      "range": {
+        "startLine": 125,
+        "startChar": 12,
+        "endLine": 125,
+        "endChar": 60
+      },
+      "revId": "986c95c59217393a1a66affeb3c17e65f5cb83f0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7827ce07_7642b2c6",
         "filename": "pom.xml",
         "patchSetId": 3
