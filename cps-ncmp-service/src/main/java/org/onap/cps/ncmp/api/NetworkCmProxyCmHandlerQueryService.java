@@ -20,9 +20,9 @@
 
 package org.onap.cps.ncmp.api;
 
-import java.util.Collection;
+import java.util.Set;
+import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.spi.model.CmHandleQueryServiceParameters;
-import org.onap.cps.spi.model.DataNode;
 
 public interface NetworkCmProxyCmHandlerQueryService {
     /**
@@ -31,5 +31,13 @@ public interface NetworkCmProxyCmHandlerQueryService {
      * @param cmHandleQueryServiceParameters the cm handle query parameters
      * @return collection of cm handles
      */
-    Collection<DataNode> queryCmHandles(CmHandleQueryServiceParameters cmHandleQueryServiceParameters);
+    Set<NcmpServiceCmHandle> queryCmHandles(CmHandleQueryServiceParameters cmHandleQueryServiceParameters);
+
+    /**
+     * Query and return cm handles that match the given query parameters.
+     *
+     * @param cmHandleQueryServiceParameters the cm handle query parameters
+     * @return collection of cm handle ids
+     */
+    Set<String> queryCmHandleIds(CmHandleQueryServiceParameters cmHandleQueryServiceParameters);
 }
