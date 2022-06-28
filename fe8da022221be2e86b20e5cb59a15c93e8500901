@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5ffb7e33_94bc9a73",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NcmpRestInputMapper.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-06-28T08:52:00Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6e02a745_a3fcde73",
+      "range": {
+        "startLine": 38,
+        "startChar": 17,
+        "endLine": 38,
+        "endChar": 37
+      },
+      "revId": "fe8da022221be2e86b20e5cb59a15c93e8500901",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "45e7fcc6_c826af14",
         "filename": "cps-service/src/main/java/org/onap/cps/api/CpsModuleService.java",
         "patchSetId": 15
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "748c050e_a7ddc02e",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsModuleService.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-06-28T08:52:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "45e7fcc6_c826af14",
+      "range": {
+        "startLine": 104,
+        "startChar": 33,
+        "endLine": 104,
+        "endChar": 65
+      },
+      "revId": "fe8da022221be2e86b20e5cb59a15c93e8500901",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ea46ab10_9ccb0f1c",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
         "patchSetId": 15
@@ -68,6 +116,30 @@
       "revId": "fe8da022221be2e86b20e5cb59a15c93e8500901",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "deded642_4a5296be",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-06-28T08:52:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ea46ab10_9ccb0f1c",
+      "range": {
+        "startLine": 110,
+        "startChar": 40,
+        "endLine": 110,
+        "endChar": 72
+      },
+      "revId": "fe8da022221be2e86b20e5cb59a15c93e8500901",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
