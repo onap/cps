@@ -20,10 +20,7 @@
 
 package org.onap.cps.ncmp.api.impl;
 
-import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NCMP_DATASPACE_NAME;
-import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NCMP_DMI_REGISTRY_ANCHOR;
 import static org.onap.cps.ncmp.api.impl.utils.YangDataConverter.convertYangModelCmHandleToNcmpServiceCmHandle;
-import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
 import static org.onap.cps.utils.CmHandleQueryRestParametersValidator.validateModuleNameConditionProperties;
 
 import java.util.ArrayList;
@@ -39,9 +36,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.NetworkCmProxyCmHandlerQueryService;
 import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
+import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
-import org.onap.cps.spi.CpsAdminPersistenceService;
-import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.model.Anchor;
 import org.onap.cps.spi.model.CmHandleQueryServiceParameters;
 import org.onap.cps.spi.model.ConditionProperties;
@@ -56,8 +52,7 @@ public class NetworkCmProxyCmHandlerQueryServiceImpl implements NetworkCmProxyCm
     private static final String PROPERTY_QUERY_NAME = "hasAllProperties";
     private static final String MODULE_QUERY_NAME = "hasAllModules";
     private static final Map<String, NcmpServiceCmHandle> NO_QUERY_EXECUTED = null;
-    private final CpsDataPersistenceService cpsDataPersistenceService;
-    private final CpsAdminPersistenceService cpsAdminPersistenceService;
+    private final InventoryPersistence inventoryPersistence;
 
     /**
      * Query and return cm handles that match the given query parameters.
@@ -128,7 +123,7 @@ public class NetworkCmProxyCmHandlerQueryServiceImpl implements NetworkCmProxyCm
             final String cpsPath = "//public-properties[@name='" + entry.getKey() + "' and @value='"
                 + entry.getValue() + "']/ancestor::cm-handles";
 
-            final Collection<DataNode> dataNodes = queryDataNodes(cpsPath);
+            final Collection<DataNode> dataNodes = inventoryPersistence.queryDataNodes(cpsPath);
             if (cmHandleIdToNcmpServiceCmHandles == NO_QUERY_EXECUTED) {
                 cmHandleIdToNcmpServiceCmHandles = collectDataNodesToNcmpServiceCmHandles(dataNodes);
             } else {
@@ -159,7 +154,7 @@ public class NetworkCmProxyCmHandlerQueryServiceImpl implements NetworkCmProxyCm
         if (previousQueryResult == NO_QUERY_EXECUTED) {
             cmHandleIdsByModuleName.forEach(cmHandleId ->
                     queryResult.put(cmHandleId, createNcmpServiceCmHandle(
-                            getDataNode("/dmi-registry/cm-handles[@id='" + cmHandleId + "']")))
+                            inventoryPersistence.getDataNode("/dmi-registry/cm-handles[@id='" + cmHandleId + "']")))
             );
             return queryResult;
         }
@@ -169,8 +164,7 @@ public class NetworkCmProxyCmHandlerQueryServiceImpl implements NetworkCmProxyCm
     }
 
     private Set<String> getNamesOfAnchorsWithGivenModules(final Collection<String> moduleNamesForQuery) {
-        final Collection<Anchor> anchors =
-            cpsAdminPersistenceService.queryAnchors("NFP-Operational", moduleNamesForQuery);
+        final Collection<Anchor> anchors = inventoryPersistence.queryAnchors(moduleNamesForQuery);
         return anchors.parallelStream().map(Anchor::getName).collect(Collectors.toSet());
     }
 
@@ -212,23 +206,12 @@ public class NetworkCmProxyCmHandlerQueryServiceImpl implements NetworkCmProxyCm
     }
 
     private Set<NcmpServiceCmHandle> getAllCmHandles() {
-        return getDataNode("/dmi-registry").getChildDataNodes().stream()
-            .map(this::createNcmpServiceCmHandle).collect(Collectors.toSet());
+        return inventoryPersistence.getDataNode("/dmi-registry")
+            .getChildDataNodes().stream().map(this::createNcmpServiceCmHandle).collect(Collectors.toSet());
     }
 
     private Set<String> getAllCmHandleIds() {
-        return cpsAdminPersistenceService.getAnchors("NFP-Operational")
-            .parallelStream().map(Anchor::getName).collect(Collectors.toSet());
-    }
-
-    private List<DataNode> queryDataNodes(final String cpsPath) {
-        return cpsDataPersistenceService.queryDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                cpsPath, INCLUDE_ALL_DESCENDANTS);
-    }
-
-    private DataNode getDataNode(final String cpsPath) {
-        return cpsDataPersistenceService.getDataNode(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                cpsPath, INCLUDE_ALL_DESCENDANTS);
+        return inventoryPersistence.getAnchors().parallelStream().map(Anchor::getName).collect(Collectors.toSet());
     }
 
     private NcmpServiceCmHandle createNcmpServiceCmHandle(final DataNode dataNode) {
