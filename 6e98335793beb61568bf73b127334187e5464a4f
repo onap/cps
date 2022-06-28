@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "822b9f2e_48fc9967",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-28T17:38:05Z",
+      "side": 1,
+      "message": "I think something should happen between those 2 events, we should be cleaning up our DB content at least... Maybe opart of another (new?) user story",
+      "range": {
+        "startLine": 327,
+        "startChar": 4,
+        "endLine": 330,
+        "endChar": 99
+      },
+      "revId": "6e98335793beb61568bf73b127334187e5464a4f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a35b3d26_b459e990",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/NcmpCmHandleStateTransition.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-28T17:38:05Z",
+      "side": 1,
+      "message": "not 100% sure about this name, some alternatives:\n\nNEW_ADISED\n_TO_ADVISED\nNULL_TO_ADVISED\nDELETED_TO_ADVISED\nNO_EXISTING_TO_ADVISED",
+      "range": {
+        "startLine": 29,
+        "startChar": 4,
+        "endLine": 29,
+        "endChar": 22
+      },
+      "revId": "6e98335793beb61568bf73b127334187e5464a4f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5422c23b_57b7acdd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/NcmpEventsCreator.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-28T17:38:05Z",
+      "side": 1,
+      "message": "since we have so many cm-handle class variations use the full name:\n\n...DeletedOrDeletingNcmpServiceCmHandle()",
+      "range": {
+        "startLine": 106,
+        "startChar": 32,
+        "endLine": 106,
+        "endChar": 60
+      },
+      "revId": "6e98335793beb61568bf73b127334187e5464a4f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "77b99dc8_be6d75ce",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/NcmpEventsCreator.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-28T17:38:05Z",
+      "side": 1,
+      "message": "why is this creating a new object?!, because it is already deleted?!",
+      "range": {
+        "startLine": 108,
+        "startChar": 14,
+        "endLine": 108,
+        "endChar": 82
+      },
+      "revId": "6e98335793beb61568bf73b127334187e5464a4f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "42afab77_a65c8ff5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/NcmpEventsCreator.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-28T17:38:05Z",
+      "side": 1,
+      "message": "createAdvisedNcmpCmHandle",
+      "range": {
+        "startLine": 115,
+        "startChar": 32,
+        "endLine": 115,
+        "endChar": 59
+      },
+      "revId": "6e98335793beb61568bf73b127334187e5464a4f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "474cf474_26ecf7ae",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-28T17:38:05Z",
+      "side": 1,
+      "message": "I think the handler should decide what to do not the caller\nie. ncmpStateHandler.updateState(Object current cmHandle, newState)\nteh teh handler does all:\n-update the composite state\n-persist if needed\n-send event",
+      "range": {
+        "startLine": 70,
+        "startChar": 39,
+        "endLine": 70,
+        "endChar": 73
+      },
+      "revId": "6e98335793beb61568bf73b127334187e5464a4f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
