@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "77ff27c9_417fe1c4",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/mapper/CmHandleStateMapper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-28T16:26:27Z",
+      "side": 1,
+      "message": "should you check for null? as discussed; when it is NOT misbehaving the lockReason enum should be null",
+      "range": {
+        "startLine": 77,
+        "startChar": 22,
+        "endLine": 77,
+        "endChar": 42
+      },
+      "revId": "73279c209c2191dae094826c4cfb3472f43b32d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "17f455c2_74ca96b2",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/mapper/CmHandleStateMapperTest.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-28T16:26:27Z",
+      "side": 1,
+      "message": "1 scenario , no need for where\nbut maybe you need nulls scenario here too?!¬",
+      "range": {
+        "startLine": 77,
+        "startChar": 12,
+        "endLine": 77,
+        "endChar": 109
+      },
+      "revId": "73279c209c2191dae094826c4cfb3472f43b32d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca32d010_a236efa2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-28T16:26:27Z",
+      "side": 1,
+      "message": "remove this part, its contradicting the description of the method too",
+      "range": {
+        "startLine": 111,
+        "startChar": 45,
+        "endLine": 111,
+        "endChar": 66
+      },
+      "revId": "73279c209c2191dae094826c4cfb3472f43b32d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd286722_828d066a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-28T16:26:27Z",
+      "side": 1,
+      "message": "rename method (coordinate with Dylan)",
+      "range": {
+        "startLine": 113,
+        "startChar": 35,
+        "endLine": 113,
+        "endChar": 73
+      },
+      "revId": "73279c209c2191dae094826c4cfb3472f43b32d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a5ab643_563a84d3",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-28T16:26:27Z",
+      "side": 1,
+      "message": "remove this word, just lead to additoanl maintenance already",
+      "range": {
+        "startLine": 175,
+        "startChar": 143,
+        "endLine": 175,
+        "endChar": 155
+      },
+      "revId": "73279c209c2191dae094826c4cfb3472f43b32d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "41d50fc9_4a1024f4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-28T16:26:27Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 233,
+        "startChar": 143,
+        "endLine": 233,
+        "endChar": 155
+      },
+      "revId": "73279c209c2191dae094826c4cfb3472f43b32d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a789488_4cf7ddac",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/CompositeStateSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-28T16:26:27Z",
+      "side": 1,
+      "message": "explain in description that the enum value has changed!",
+      "range": {
+        "startLine": 48,
+        "startChar": 15,
+        "endLine": 48,
+        "endChar": 40
+      },
+      "revId": "73279c209c2191dae094826c4cfb3472f43b32d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cfa98c89_7492ab38",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-28T16:26:27Z",
+      "side": 1,
+      "message": "java to pseudo English :-( not really PO speak\n\nSchedule a sync for CM handles that failed to sync previously\u0027",
+      "range": {
+        "startLine": 93,
+        "startChar": 38,
+        "endLine": 93,
+        "endChar": 83
+      },
+      "revId": "73279c209c2191dae094826c4cfb3472f43b32d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6777ea38_ed1e91c7",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/models/YangModelCmHandleSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-28T16:26:27Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 45,
+        "startChar": 86,
+        "endLine": 45,
+        "endChar": 91
+      },
+      "revId": "73279c209c2191dae094826c4cfb3472f43b32d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
