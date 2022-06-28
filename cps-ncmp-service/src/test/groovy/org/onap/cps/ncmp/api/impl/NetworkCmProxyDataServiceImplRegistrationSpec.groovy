@@ -23,7 +23,6 @@ package org.onap.cps.ncmp.api.impl
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.ncmp.api.NetworkCmProxyCmHandlerQueryService
-import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.ncmp.api.impl.exception.DmiRequestException
@@ -32,7 +31,6 @@ import org.onap.cps.ncmp.api.inventory.InventoryPersistence
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
-import org.onap.cps.ncmp.api.inventory.sync.ModuleSyncService
 import org.onap.cps.spi.exceptions.AlreadyDefinedException
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.spi.exceptions.DataValidationException
@@ -59,11 +57,9 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     def mockCpsDataService = Mock(CpsDataService)
     def mockCpsModuleService = Mock(CpsModuleService)
     def spiedJsonObjectMapper = Spy(new JsonObjectMapper(new ObjectMapper()))
-    def mockCpsAdminService = Mock(CpsAdminService)
     def mockDmiDataOperations = Mock(DmiDataOperations)
     def mockNetworkCmProxyDataServicePropertyHandler = Mock(NetworkCmProxyDataServicePropertyHandler)
     def mockInventoryPersistence = Mock(InventoryPersistence)
-    def mockModuleSyncService = Mock(ModuleSyncService)
     def stubbedNetworkCmProxyCmHandlerQueryService = Stub(NetworkCmProxyCmHandlerQueryService)
     def noTimestamp = null
     def objectUnderTest = getObjectUnderTest()
@@ -106,8 +102,6 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             response.getRemovedCmHandles() == removeResponses
             response.getCreatedCmHandles() == createdResponses
             response.getUpdatedCmHandles() == updateResponses
-
-
     }
 
     def 'Create CM-handle Validation: Registration with valid Service names: #scenario'() {
@@ -347,7 +341,6 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
 
     def getObjectUnderTest() {
         return Spy(new NetworkCmProxyDataServiceImpl(mockCpsDataService, spiedJsonObjectMapper, mockDmiDataOperations,
-            mockCpsModuleService, mockCpsAdminService, mockNetworkCmProxyDataServicePropertyHandler, mockInventoryPersistence,
-            mockModuleSyncService, stubbedNetworkCmProxyCmHandlerQueryService))
+            mockCpsModuleService, mockNetworkCmProxyDataServicePropertyHandler, mockInventoryPersistence, stubbedNetworkCmProxyCmHandlerQueryService))
     }
 }

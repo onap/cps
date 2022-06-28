@@ -58,12 +58,10 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
 
     def mockCpsDataService = Mock(CpsDataService)
     def mockCpsModuleService = Mock(CpsModuleService)
-    def mockCpsAdminService = Mock(CpsAdminService)
     def spiedJsonObjectMapper = Spy(new JsonObjectMapper(new ObjectMapper()))
     def mockDmiDataOperations = Mock(DmiDataOperations)
     def nullNetworkCmProxyDataServicePropertyHandler = null
     def mockInventoryPersistence = Mock(InventoryPersistence)
-    def mockModuleSyncService = Mock(ModuleSyncService)
     def mockDmiPluginRegistration = Mock(DmiPluginRegistration)
     def mockCpsCmHandlerQueryService = Mock(NetworkCmProxyCmHandlerQueryService)
 
@@ -75,8 +73,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: 'some-cm-handle-id')
 
     def objectUnderTest = new NetworkCmProxyDataServiceImpl(mockCpsDataService, spiedJsonObjectMapper, mockDmiDataOperations,
-        mockCpsModuleService, mockCpsAdminService, nullNetworkCmProxyDataServicePropertyHandler, mockInventoryPersistence,
-        mockModuleSyncService, mockCpsCmHandlerQueryService)
+        mockCpsModuleService, nullNetworkCmProxyDataServicePropertyHandler, mockInventoryPersistence, mockCpsCmHandlerQueryService)
 
     def cmHandleXPath = "/dmi-registry/cm-handles[@id='testCmHandle']"
 
@@ -154,7 +151,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
         when: 'yang resources is called'
             objectUnderTest.getYangResourcesModuleReferences('some-cm-handle')
         then: 'CPS module services is invoked for the correct dataspace and cm handle'
-            1 * mockCpsModuleService.getYangResourcesModuleReferences('NFP-Operational','some-cm-handle')
+            1 * mockInventoryPersistence.getYangResourcesModuleReferences('some-cm-handle')
     }
 
     def 'Getting Yang Resources with an invalid #scenario.'() {
@@ -163,7 +160,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
         then: 'a data validation exception is thrown'
             thrown(DataValidationException)
         and: 'CPS module services is not invoked'
-            0 * mockCpsModuleService.getYangResourcesModuleReferences(*_)
+            0 * mockInventoryPersistence.getYangResourcesModuleReferences(*_)
     }
 
     def 'Get a cm handle.'() {

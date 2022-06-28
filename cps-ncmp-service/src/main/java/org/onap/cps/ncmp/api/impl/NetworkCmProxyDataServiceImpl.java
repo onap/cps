@@ -25,7 +25,6 @@ package org.onap.cps.ncmp.api.impl;
 
 import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NCMP_DATASPACE_NAME;
 import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NCMP_DMI_REGISTRY_ANCHOR;
-import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NCMP_DMI_REGISTRY_PARENT;
 import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME;
 import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NO_TIMESTAMP;
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum;
@@ -41,7 +40,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.ncmp.api.NetworkCmProxyCmHandlerQueryService;
@@ -52,7 +50,6 @@ import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.inventory.CmHandleState;
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
-import org.onap.cps.ncmp.api.inventory.sync.ModuleSyncService;
 import org.onap.cps.ncmp.api.models.CmHandleQueryApiParameters;
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse;
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationError;
@@ -83,13 +80,9 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     private final CpsModuleService cpsModuleService;
 
-    private final CpsAdminService cpsAdminService;
-
     private final NetworkCmProxyDataServicePropertyHandler networkCmProxyDataServicePropertyHandler;
 
     private final InventoryPersistence inventoryPersistence;
-
-    private final ModuleSyncService moduleSyncService;
 
     private final NetworkCmProxyCmHandlerQueryService networkCmProxyCmHandlerQueryService;
 
@@ -151,11 +144,10 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             requestData, dataType);
     }
 
-
     @Override
     public Collection<ModuleReference> getYangResourcesModuleReferences(final String cmHandleId) {
         CpsValidator.validateNameCharacters(cmHandleId);
-        return cpsModuleService.getYangResourcesModuleReferences(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId);
+        return inventoryPersistence.getYangResourcesModuleReferences(cmHandleId);
     }
 
     /**
@@ -292,10 +284,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     private CmHandleRegistrationResponse registerNewCmHandle(final YangModelCmHandle yangModelCmHandle) {
         try {
-            final String cmHandleJsonData = String.format("{\"cm-handles\":[%s]}",
-                    jsonObjectMapper.asJsonString(yangModelCmHandle));
-            cpsDataService.saveListElements(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NCMP_DMI_REGISTRY_PARENT,
-                    cmHandleJsonData, NO_TIMESTAMP);
+            inventoryPersistence.registerNewCmHandle(yangModelCmHandle);
             return CmHandleRegistrationResponse.createSuccessResponse(yangModelCmHandle.getId());
         } catch (final AlreadyDefinedException alreadyDefinedException) {
             return CmHandleRegistrationResponse.createFailureResponse(
