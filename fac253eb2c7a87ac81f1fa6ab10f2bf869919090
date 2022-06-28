@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1757ccd3_c2f4ed66",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/NcmpEventsService.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-28T17:44:38Z",
+      "side": 1,
+      "message": "rename to reflect the scope of the parameter: notificationsEnabled",
+      "range": {
+        "startLine": 51,
+        "startChar": 20,
+        "endLine": 51,
+        "endChar": 36
+      },
+      "revId": "fac253eb2c7a87ac81f1fa6ab10f2bf869919090",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "21a2da19_d63b3d4c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/NcmpEventsService.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-28T17:44:38Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 66,
+        "startChar": 22,
+        "endLine": 66,
+        "endChar": 26
+      },
+      "revId": "fac253eb2c7a87ac81f1fa6ab10f2bf869919090",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7ff2f400_136c4a1c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/NcmpEventsService.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-28T17:44:38Z",
+      "side": 1,
+      "message": "debug level (me thinks)",
+      "range": {
+        "startLine": 66,
+        "startChar": 16,
+        "endLine": 66,
+        "endChar": 20
+      },
+      "revId": "fac253eb2c7a87ac81f1fa6ab10f2bf869919090",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8c6391c2_6daf6c9b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/NcmpEventsServiceSpec.groovy",
+        "patchSetId": 29
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-28T17:44:38Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 37,
+        "startChar": 45,
+        "endLine": 37,
+        "endChar": 49
+      },
+      "revId": "fac253eb2c7a87ac81f1fa6ab10f2bf869919090",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6461f922_d9badc4c",
+        "filename": "csit/plans/cps/setup.sh",
+        "patchSetId": 29
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-28T17:44:38Z",
+      "side": 1,
+      "message": "do we need both ?!",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 24
+      },
+      "revId": "fac253eb2c7a87ac81f1fa6ab10f2bf869919090",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c0bd8cf2_8017471d",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 29
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-28T17:44:38Z",
+      "side": 1,
+      "message": "so what is support, is it limited by our enviroments?!\nWhat have we learned?",
+      "range": {
+        "startLine": 19,
+        "startChar": 9,
+        "endLine": 19,
+        "endChar": 14
+      },
+      "revId": "fac253eb2c7a87ac81f1fa6ab10f2bf869919090",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4bcee178_2e5443f8",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 29
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-28T17:44:38Z",
+      "side": 1,
+      "message": "could be described a bit more clearly I hope",
+      "range": {
+        "startLine": 253,
+        "startChar": 69,
+        "endLine": 253,
+        "endChar": 93
+      },
+      "revId": "fac253eb2c7a87ac81f1fa6ab10f2bf869919090",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
