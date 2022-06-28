@@ -58,7 +58,7 @@ public class ModuleSyncWatchdog {
             } catch (final Exception e) {
                 compositeState.setCmHandleState(CmHandleState.LOCKED);
                 syncUtils.updateLockReasonDetailsAndAttempts(compositeState,
-                    LockReasonCategory.LOCKED_MISBEHAVING,
+                    LockReasonCategory.LOCKED_MODULE_SYNC_FAILED,
                     e.getMessage());
             }
             compositeState.setLastUpdateTimeNow();

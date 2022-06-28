@@ -42,7 +42,7 @@ class YangModelCmHandleSpec extends Specification {
             def compositeState = new CompositeStateBuilder()
                 .withCmHandleState(CmHandleState.LOCKED)
                 .withLastUpdatedTime('some-update-time')
-                .withLockReason(LockReasonCategory.LOCKED_MISBEHAVING, 'locked other details')
+                .withLockReason(LockReasonCategory.LOCKED_MODULE_SYNC_FAILED, 'locked other details')
                 .withOperationalDataStores(SyncState.SYNCHRONIZED, 'some-sync-time').build()
             ncmpServiceCmHandle.setCompositeState(compositeState)
         when: 'it is converted to a yang model cm handle'

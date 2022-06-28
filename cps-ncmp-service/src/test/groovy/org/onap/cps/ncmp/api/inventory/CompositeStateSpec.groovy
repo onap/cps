@@ -41,12 +41,13 @@ class CompositeStateSpec extends Specification {
     def "Composite State Specification"() {
         given: "a Composite State"
             def compositeState = new CompositeState(cmHandleState: CmHandleState.ADVISED,
-                lockReason: CompositeState.LockReason.builder().lockReasonCategory(LockReasonCategory.LOCKED_MISBEHAVING).details("lock misbehaving details").build(),
+                lockReason: CompositeState.LockReason.builder().lockReasonCategory(LockReasonCategory.LOCKED_MODULE_SYNC_FAILED).details("lock misbehaving details").build(),
                 lastUpdateTime: formattedDateAndTime.toString(),
                 dataSyncEnabled: false,
                 dataStores: dataStores())
         when: 'it is represented as JSON'
             def jsonStateModelAsString = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(compositeState)
+                .replace('LOCKED_MODULE_SYNC_FAILED', 'LOCKED_MISBEHAVING')
         then: 'it matches expected state model as JSON'
             def expectedStateModelAsjson = getResourceFileContent('expectedStateModel.json')
             assert trimAllWhitespace(expectedStateModelAsjson) == trimAllWhitespace(jsonStateModelAsString)

@@ -37,7 +37,7 @@ class CompositeStateBuilderSpec extends Specification {
     def static cmHandleId = 'myHandle1'
     def static cmHandleXpath = "/dmi-registry/cm-handles[@id='${cmHandleId}/state']"
     def static stateDataNodes = [new DataNodeBuilder().withXpath("/dmi-registry/cm-handles[@id='${cmHandleId}']/state/lock-reason")
-                                         .withLeaves(['reason': 'LOCKED_MISBEHAVING', 'details': 'lock details']).build(),
+                                         .withLeaves(['reason': 'LOCKED_MODULE_SYNC_FAILED', 'details': 'lock details']).build(),
                                  new DataNodeBuilder().withXpath("/dmi-registry/cm-handles[@id='${cmHandleId}']/state/datastores")
                                             .withChildDataNodes(Arrays.asList(new DataNodeBuilder()
                                                     .withXpath("/dmi-registry/cm-handles[@id='${cmHandleId}']/state/datastores/operational")
@@ -47,7 +47,7 @@ class CompositeStateBuilderSpec extends Specification {
     def "Composite State Specification"() {
         when: 'using composite state builder '
             def compositeState = new CompositeStateBuilder().withCmHandleState(CmHandleState.ADVISED)
-                    .withLockReason(LockReasonCategory.LOCKED_MISBEHAVING,"").withOperationalDataStores(SyncState.UNSYNCHRONIZED,
+                    .withLockReason(LockReasonCategory.LOCKED_MODULE_SYNC_FAILED,"").withOperationalDataStores(SyncState.UNSYNCHRONIZED,
                     formattedDateAndTime.toString()).withLastUpdatedTime(formattedDateAndTime).build()
         then: 'it matches expected cm handle state and data store sync state'
             assert compositeState.cmHandleState == CmHandleState.ADVISED
