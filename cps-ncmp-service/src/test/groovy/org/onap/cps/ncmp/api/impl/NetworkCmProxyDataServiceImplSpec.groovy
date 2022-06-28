@@ -172,7 +172,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
         given: 'the system returns a yang modelled cm handle'
             def dmiServiceName = 'some service name'
             def compositeState = new CompositeState(cmHandleState: CmHandleState.ADVISED,
-                lockReason: CompositeState.LockReason.builder().lockReasonCategory(LockReasonCategory.LOCKED_MISBEHAVING).details("lock misbehaving details").build(),
+                lockReason: CompositeState.LockReason.builder().lockReasonCategory(LockReasonCategory.LOCKED_MODULE_SYNC_FAILED).details("lock details").build(),
                 lastUpdateTime: 'some-timestamp',
                 dataSyncEnabled: false,
                 dataStores: dataStores())
@@ -230,7 +230,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     def 'Get cm handle composite state'() {
         given: 'a yang modelled cm handle'
             def compositeState = new CompositeState(cmHandleState: CmHandleState.ADVISED,
-                lockReason: CompositeState.LockReason.builder().lockReasonCategory(LockReasonCategory.LOCKED_MISBEHAVING).details("lock misbehaving details").build(),
+                lockReason: CompositeState.LockReason.builder().lockReasonCategory(LockReasonCategory.LOCKED_MODULE_SYNC_FAILED).details("lock details").build(),
                 lastUpdateTime: 'some-timestamp',
                 dataSyncEnabled: false,
                 dataStores: dataStores())

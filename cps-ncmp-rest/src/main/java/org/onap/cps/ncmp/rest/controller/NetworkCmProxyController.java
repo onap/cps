@@ -285,7 +285,8 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         final CompositeState cmHandleState = networkCmProxyDataService.getCmHandleCompositeState(cmHandleId);
         final RestOutputCmHandleCompositeState restOutputCmHandleCompositeState =
             new RestOutputCmHandleCompositeState();
-        restOutputCmHandleCompositeState.setState(cmHandleStateMapper.toCmHandleCompositeState(cmHandleState));
+        restOutputCmHandleCompositeState.setState(
+            cmHandleStateMapper.toCmHandleCompositeStateExternalLockReason(cmHandleState));
         return ResponseEntity.ok(restOutputCmHandleCompositeState);
     }
 
@@ -309,7 +310,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         restOutputCmHandle.setCmHandle(ncmpServiceCmHandle.getCmHandleId());
         cmHandlePublicProperties.add(ncmpServiceCmHandle.getPublicProperties());
         restOutputCmHandle.setPublicCmHandleProperties(cmHandlePublicProperties);
-        restOutputCmHandle.setState(cmHandleStateMapper.toCmHandleCompositeState(
+        restOutputCmHandle.setState(cmHandleStateMapper.toCmHandleCompositeStateExternalLockReason(
                 ncmpServiceCmHandle.getCompositeState()));
         return restOutputCmHandle;
     }
