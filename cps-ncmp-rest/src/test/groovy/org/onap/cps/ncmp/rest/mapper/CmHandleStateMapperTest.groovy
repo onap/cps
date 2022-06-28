@@ -38,25 +38,40 @@ class CmHandleStateMapperTest extends Specification {
         .format(OffsetDateTime.of(2022, 12, 31, 20, 30, 40, 1, ZoneOffset.UTC))
     def objectUnderTest = Mappers.getMapper(CmHandleStateMapper)
 
-    def 'Composite State to Rest Output CmHandleState'() {
+    def 'Composite State to CmHandleCompositeState'() {
         given: 'a composite state model'
             def compositeState = new CompositeStateBuilder()
                 .withCmHandleState(CmHandleState.ADVISED)
                 .withLastUpdatedTime(formattedDateAndTime.toString())
-                .withLockReason(LockReasonCategory.LOCKED_MISBEHAVING, 'locked other details')
+                .withLockReason(LockReasonCategory.LOCKED_MODULE_SYNC_FAILED, 'locked details')
                 .withOperationalDataStores(DataStoreSyncState.SYNCHRONIZED, formattedDateAndTime).build()
         compositeState.setDataSyncEnabled(false)
         when: 'mapper is called'
-            def result = objectUnderTest.toCmHandleCompositeState(compositeState)
+            def result = objectUnderTest.toCmHandleCompositeStateExternalLockReason(compositeState)
         then: 'result is of the correct type'
             assert result.class == CmHandleCompositeState.class
         and: 'mapped result should have correct values'
             assert !result.dataSyncEnabled
             assert result.lastUpdateTime == formattedDateAndTime
             assert result.lockReason.reason == 'LOCKED_MISBEHAVING'
-            assert result.lockReason.details == 'locked other details'
+            assert result.lockReason.details == 'locked details'
             assert result.cmHandleState == 'ADVISED'
             assert result.dataSyncState.operational.getState() != null
+    }
+
+    def 'Internal to External Lock Reason Mapping of #scenario'() {
+        given: 'a LOCKED composite state with locked reason of #scenario'
+            def compositeState = new CompositeStateBuilder()
+                .withCmHandleState(CmHandleState.LOCKED)
+                .withLockReason(lockReason, '').build()
+        when: 'the composite state is mapped to a CMHandle composite state'
+            def result = objectUnderTest.toCmHandleCompositeStateExternalLockReason(compositeState)
+        then: 'the composite state contains the expected lock Reason and details'
+            result.getLockReason().getReason() == expectedExternalLockReason
+        where:
+            scenario                    | lockReason                                   || expectedExternalLockReason
+            'LOCKED_MODULE_SYNC_FAILED' | LockReasonCategory.LOCKED_MODULE_SYNC_FAILED || 'LOCKED_MISBEHAVING'
+            'null value'                | null                                         || null
     }
 
 }
