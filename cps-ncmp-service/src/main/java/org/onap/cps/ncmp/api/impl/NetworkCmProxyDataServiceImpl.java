@@ -23,13 +23,7 @@
 
 package org.onap.cps.ncmp.api.impl;
 
-import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NCMP_DATASPACE_NAME;
-import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NCMP_DMI_REGISTRY_ANCHOR;
-import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NCMP_DMI_REGISTRY_PARENT;
-import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME;
-import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NO_TIMESTAMP;
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum;
-import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED;
 import static org.onap.cps.utils.CmHandleQueryRestParametersValidator.validateCmHandleQueryParameters;
 
 import java.util.ArrayList;
@@ -42,7 +36,6 @@ import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsDataService;
-import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.ncmp.api.NetworkCmProxyCmHandlerQueryService;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations;
@@ -61,7 +54,6 @@ import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.onap.cps.spi.exceptions.DataValidationException;
-import org.onap.cps.spi.exceptions.SchemaSetNotFoundException;
 import org.onap.cps.spi.model.CmHandleQueryServiceParameters;
 import org.onap.cps.spi.model.ModuleDefinition;
 import org.onap.cps.spi.model.ModuleReference;
@@ -80,8 +72,6 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     private final JsonObjectMapper jsonObjectMapper;
 
     private final DmiDataOperations dmiDataOperations;
-
-    private final CpsModuleService cpsModuleService;
 
     private final NetworkCmProxyDataServicePropertyHandler networkCmProxyDataServicePropertyHandler;
 
@@ -147,11 +137,10 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             requestData, dataType);
     }
 
-
     @Override
     public Collection<ModuleReference> getYangResourcesModuleReferences(final String cmHandleId) {
         CpsValidator.validateNameCharacters(cmHandleId);
-        return cpsModuleService.getYangResourcesModuleReferences(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId);
+        return inventoryPersistence.getYangResourcesModuleReferences(cmHandleId);
     }
 
     @Override
@@ -280,8 +269,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             try {
                 CpsValidator.validateNameCharacters(cmHandle);
                 deleteSchemaSetWithCascade(cmHandle);
-                cpsDataService.deleteListOrListElement(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                        "/dmi-registry/cm-handles[@id='" + cmHandle + "']", NO_TIMESTAMP);
+                inventoryPersistence.deleteListOrListElement("/dmi-registry/cm-handles[@id='" + cmHandle + "']");
                 cmHandleRegistrationResponses.add(CmHandleRegistrationResponse.createSuccessResponse(cmHandle));
             } catch (final DataNodeNotFoundException dataNodeNotFoundException) {
                 log.error("Unable to find dataNode for cmHandleId : {} , caused by : {}",
@@ -304,20 +292,14 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     }
 
     private void deleteSchemaSetWithCascade(final String schemaSetName) {
-        try {
-            cpsModuleService.deleteSchemaSet(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, schemaSetName,
-                    CASCADE_DELETE_ALLOWED);
-        } catch (final SchemaSetNotFoundException schemaSetNotFoundException) {
-            log.warn("Schema set {} does not exist or already deleted", schemaSetName);
-        }
+        inventoryPersistence.deleteSchemaSetWithCascade(schemaSetName);
     }
 
     private CmHandleRegistrationResponse registerNewCmHandle(final YangModelCmHandle yangModelCmHandle) {
         try {
             final String cmHandleJsonData = String.format("{\"cm-handles\":[%s]}",
                     jsonObjectMapper.asJsonString(yangModelCmHandle));
-            cpsDataService.saveListElements(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NCMP_DMI_REGISTRY_PARENT,
-                    cmHandleJsonData, NO_TIMESTAMP);
+            inventoryPersistence.saveListElements(cmHandleJsonData);
             return CmHandleRegistrationResponse.createSuccessResponse(yangModelCmHandle.getId());
         } catch (final AlreadyDefinedException alreadyDefinedException) {
             return CmHandleRegistrationResponse.createFailureResponse(

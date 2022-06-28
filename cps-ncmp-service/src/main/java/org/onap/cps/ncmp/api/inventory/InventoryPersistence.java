@@ -22,23 +22,32 @@
 package org.onap.cps.ncmp.api.inventory;
 
 import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME;
+import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NO_TIMESTAMP;
+import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED;
+import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
 
 import java.time.OffsetDateTime;
 import java.util.Collection;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
+import org.onap.cps.spi.CpsAdminPersistenceService;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.FetchDescendantsOption;
+import org.onap.cps.spi.exceptions.SchemaSetNotFoundException;
+import org.onap.cps.spi.model.Anchor;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.ModuleDefinition;
+import org.onap.cps.spi.model.ModuleReference;
 import org.onap.cps.utils.CpsValidator;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.stereotype.Component;
 
+@Slf4j
 @RequiredArgsConstructor
 @Component
 public class InventoryPersistence {
@@ -47,9 +56,13 @@ public class InventoryPersistence {
 
     private static final String NCMP_DMI_REGISTRY_ANCHOR = "ncmp-dmi-registry";
 
+    private static final String NCMP_DMI_REGISTRY_PARENT = "/dmi-registry";
+
     private String xpathCmHandle = "/dmi-registry/cm-handles[@id='" + "%s" + "']";
 
     private static final String ANCESTOR_CM_HANDLES = "\"]/ancestor::cm-handles";
+
+    private static final String CM_HANDLE_XPATH_TEMPLATE = NCMP_DMI_REGISTRY_PARENT + "/cm-handles[@id='%s']";
 
     private final JsonObjectMapper jsonObjectMapper;
 
@@ -58,6 +71,8 @@ public class InventoryPersistence {
     private final CpsModuleService cpsModuleService;
 
     private final CpsDataPersistenceService cpsDataPersistenceService;
+
+    private final CpsAdminPersistenceService cpsAdminPersistenceService;
 
     /**
      * Get the Cm Handle Composite State from the data node.
@@ -157,6 +172,52 @@ public class InventoryPersistence {
         return cpsModuleService.getModuleDefinitionsByAnchorName(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId);
     }
 
+    /**
+     * Method to return module references by cmHandleId.
+     *
+     * @param cmHandleId cm handle ID
+     * @return a collection of module references (moduleName and revision)
+     */
+    public Collection<ModuleReference> getYangResourcesModuleReferences(final String cmHandleId) {
+        CpsValidator.validateNameCharacters(cmHandleId);
+        return cpsModuleService.getYangResourcesModuleReferences(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId);
+    }
+
+    public void saveListElements(final String cmHandleJsonData) {
+        cpsDataService.saveListElements(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NCMP_DMI_REGISTRY_PARENT,
+                    cmHandleJsonData, NO_TIMESTAMP);
+    }
+
+    public void deleteListOrListElement(final String listElementXpath) {
+        cpsDataService.deleteListOrListElement(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
+                listElementXpath, NO_TIMESTAMP);
+    }
+
+    /**
+     * Method to delete a schema set.
+     *
+     * @param schemaSetName schema set name
+     */
+    public void deleteSchemaSetWithCascade(final String schemaSetName) {
+        try {
+            CpsValidator.validateNameCharacters(schemaSetName);
+            cpsModuleService.deleteSchemaSet(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, schemaSetName,
+                    CASCADE_DELETE_ALLOWED);
+        } catch (final SchemaSetNotFoundException schemaSetNotFoundException) {
+            log.warn("Schema set {} does not exist or already deleted", schemaSetName);
+        }
+    }
+
+    public List<DataNode> queryDataNodes(final String cpsPath) {
+        return cpsDataPersistenceService.queryDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
+                cpsPath, INCLUDE_ALL_DESCENDANTS);
+    }
+
+    public DataNode getDataNode(final String cpsPath) {
+        return cpsDataPersistenceService.getDataNode(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
+                cpsPath, INCLUDE_ALL_DESCENDANTS);
+    }
+
     private DataNode getCmHandleDataNode(final String cmHandle) {
         return cpsDataService.getDataNode(NCMP_DATASPACE_NAME,
             NCMP_DMI_REGISTRY_ANCHOR,
@@ -164,4 +225,11 @@ public class InventoryPersistence {
             FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
     }
 
+    public Collection<Anchor> queryAnchors(final Collection<String> moduleNamesForQuery) {
+        return  cpsAdminPersistenceService.queryAnchors(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, moduleNamesForQuery);
+    }
+
+    public Collection<Anchor> getAnchors() {
+        return cpsAdminPersistenceService.getAnchors(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME);
+    }
 }

@@ -21,6 +21,7 @@
 package org.onap.cps.ncmp.api.impl
 
 import org.onap.cps.ncmp.api.NetworkCmProxyCmHandlerQueryService
+import org.onap.cps.ncmp.api.inventory.InventoryPersistence
 import org.onap.cps.spi.CpsAdminPersistenceService
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.model.Anchor
@@ -33,11 +34,9 @@ import java.util.stream.Collectors
 
 class NetworkCmProxyCmHandlerQueryServiceSpec extends Specification {
 
-    def cpsDataPersistenceService = Mock(CpsDataPersistenceService)
-    def cpsAdminPersistenceService = Mock(CpsAdminPersistenceService)
+    def inventoryPersistence = Mock(InventoryPersistence)
 
-    NetworkCmProxyCmHandlerQueryService objectUnderTest = new NetworkCmProxyCmHandlerQueryServiceImpl(
-        cpsDataPersistenceService, cpsAdminPersistenceService)
+    NetworkCmProxyCmHandlerQueryService objectUnderTest = new NetworkCmProxyCmHandlerQueryServiceImpl(inventoryPersistence)
 
     def 'Retrieve cm handles with public properties when #scenario.'() {
         given: 'a condition property'
@@ -130,25 +129,36 @@ class NetworkCmProxyCmHandlerQueryServiceSpec extends Specification {
         def pNFDemo4 = new DataNode(xpath: '/dmi-registry/cm-handles[@id=\'PNFDemo4\']', leaves: ['id':'PNFDemo4'])
         def dmiRegistry = new DataNode(xpath: '/dmi-registry', childDataNodes: [pNFDemo1, pNFDemo2, pNFDemo3, pNFDemo4])
 
-        cpsDataPersistenceService.queryDataNodes(_, _, '//public-properties[@name=\'Contact\' and @value=\'newemailforstore@bookstore.com\']/ancestor::cm-handles', _) >> [pNFDemo1, pNFDemo2, pNFDemo4]
-        cpsDataPersistenceService.queryDataNodes(_, _, '//public-properties[@name=\'wont_match\' and @value=\'wont_match\']/ancestor::cm-handles', _) >> []
-        cpsDataPersistenceService.queryDataNodes(_, _, '//public-properties[@name=\'Contact2\' and @value=\'newemailforstore2@bookstore.com\']/ancestor::cm-handles', _) >> [pNFDemo4]
-        cpsDataPersistenceService.queryDataNodes(_, _, '//public-properties[@name=\'Contact2\' and @value=\'\']/ancestor::cm-handles', _) >> []
+        inventoryPersistence.queryDataNodes('//public-properties[@name=\'Contact\' and @value=\'newemailforstore@bookstore.com\']/ancestor::cm-handles')
+                >> [pNFDemo1, pNFDemo2, pNFDemo4]
+        inventoryPersistence.queryDataNodes('//public-properties[@name=\'wont_match\' and @value=\'wont_match\']/ancestor::cm-handles')
+                >> []
+        inventoryPersistence.queryDataNodes('//public-properties[@name=\'Contact2\' and @value=\'newemailforstore2@bookstore.com\']/ancestor::cm-handles')
+                >> [pNFDemo4]
+        inventoryPersistence.queryDataNodes('//public-properties[@name=\'Contact2\' and @value=\'\']/ancestor::cm-handles')
+                >> []
+        inventoryPersistence.queryDataNodes('//public-properties/ancestor::cm-handles')
+                >> [pNFDemo1, pNFDemo2, pNFDemo3, pNFDemo4]
 
-        cpsDataPersistenceService.getDataNode(_, _, '/dmi-registry', _) >> dmiRegistry
+        inventoryPersistence.queryDataNodes('//cm-handles[@id=\'PNFDemo\']') >> [pNFDemo1]
+        inventoryPersistence.queryDataNodes('//cm-handles[@id=\'PNFDemo2\']') >> [pNFDemo2]
+        inventoryPersistence.queryDataNodes('//cm-handles[@id=\'PNFDemo3\']') >> [pNFDemo3]
+        inventoryPersistence.queryDataNodes('//cm-handles[@id=\'PNFDemo4\']') >> [pNFDemo4]
 
-        cpsDataPersistenceService.getDataNode(_, _, '/dmi-registry/cm-handles[@id=\'PNFDemo1\']', _) >> pNFDemo1
-        cpsDataPersistenceService.getDataNode(_, _, '/dmi-registry/cm-handles[@id=\'PNFDemo2\']', _) >> pNFDemo2
-        cpsDataPersistenceService.getDataNode(_, _, '/dmi-registry/cm-handles[@id=\'PNFDemo3\']', _) >> pNFDemo3
-        cpsDataPersistenceService.getDataNode(_, _, '/dmi-registry/cm-handles[@id=\'PNFDemo4\']', _) >> pNFDemo4
+        inventoryPersistence.getDataNode('/dmi-registry') >> dmiRegistry
 
-        cpsAdminPersistenceService.queryAnchors(_, ['MODULE-NAME-001']) >> [new Anchor(name: 'PNFDemo1'), new Anchor(name: 'PNFDemo2'), new Anchor(name: 'PNFDemo3')]
-        cpsAdminPersistenceService.queryAnchors(_, ['MODULE-NAME-004']) >> []
-        cpsAdminPersistenceService.queryAnchors(_, ['MODULE-NAME-003', 'MODULE-NAME-002']) >> [new Anchor(name: 'PNFDemo4')]
-        cpsAdminPersistenceService.queryAnchors(_, ['MODULE-NAME-002', 'MODULE-NAME-003']) >> [new Anchor(name: 'PNFDemo4')]
-        cpsAdminPersistenceService.queryAnchors(_, ['MODULE-NAME-004', 'MODULE-NAME-002']) >> []
-        cpsAdminPersistenceService.queryAnchors(_, ['MODULE-NAME-002', 'MODULE-NAME-004']) >> []
-        cpsAdminPersistenceService.queryAnchors(_, ['MODULE-NAME-002']) >> [new Anchor(name: 'PNFDemo2'), new Anchor(name: 'PNFDemo4')]
-        cpsAdminPersistenceService.getAnchors(_) >> [new Anchor(name: 'PNFDemo1'), new Anchor(name: 'PNFDemo2'), new Anchor(name: 'PNFDemo3'), new Anchor(name: 'PNFDemo4')]
+        inventoryPersistence.getDataNode('/dmi-registry/cm-handles[@id=\'PNFDemo1\']') >> pNFDemo1
+        inventoryPersistence.getDataNode('/dmi-registry/cm-handles[@id=\'PNFDemo2\']') >> pNFDemo2
+        inventoryPersistence.getDataNode('/dmi-registry/cm-handles[@id=\'PNFDemo3\']') >> pNFDemo3
+        inventoryPersistence.getDataNode('/dmi-registry/cm-handles[@id=\'PNFDemo4\']') >> pNFDemo4
+
+        inventoryPersistence.queryAnchors(['MODULE-NAME-001']) >> [new Anchor(name: 'PNFDemo1'), new Anchor(name: 'PNFDemo2'), new Anchor(name: 'PNFDemo3')]
+        inventoryPersistence.queryAnchors(['MODULE-NAME-004']) >> []
+        inventoryPersistence.queryAnchors(['MODULE-NAME-003', 'MODULE-NAME-002']) >> [new Anchor(name: 'PNFDemo4')]
+        inventoryPersistence.queryAnchors(['MODULE-NAME-002', 'MODULE-NAME-003']) >> [new Anchor(name: 'PNFDemo4')]
+        inventoryPersistence.queryAnchors(['MODULE-NAME-004', 'MODULE-NAME-002']) >> []
+        inventoryPersistence.queryAnchors(['MODULE-NAME-002', 'MODULE-NAME-004']) >> []
+        inventoryPersistence.queryAnchors(['MODULE-NAME-002']) >> [new Anchor(name: 'PNFDemo2'), new Anchor(name: 'PNFDemo4')]
+        inventoryPersistence.getAnchors() >> [new Anchor(name: 'PNFDemo1'), new Anchor(name: 'PNFDemo2'), new Anchor(name: 'PNFDemo3'), new Anchor(name: 'PNFDemo4')]
     }
 }

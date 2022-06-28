@@ -47,7 +47,6 @@ import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum
 import org.onap.cps.utils.JsonObjectMapper
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.api.CpsDataService
-import org.onap.cps.api.CpsModuleService
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.model.DataNode
@@ -58,7 +57,6 @@ import spock.lang.Specification
 class NetworkCmProxyDataServiceImplSpec extends Specification {
 
     def mockCpsDataService = Mock(CpsDataService)
-    def mockCpsModuleService = Mock(CpsModuleService)
     def spiedJsonObjectMapper = Spy(new JsonObjectMapper(new ObjectMapper()))
     def mockDmiDataOperations = Mock(DmiDataOperations)
     def nullNetworkCmProxyDataServicePropertyHandler = null
@@ -74,7 +72,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: 'some-cm-handle-id')
 
     def objectUnderTest = new NetworkCmProxyDataServiceImpl(mockCpsDataService, spiedJsonObjectMapper, mockDmiDataOperations,
-        mockCpsModuleService, nullNetworkCmProxyDataServicePropertyHandler, mockInventoryPersistence, mockCpsCmHandlerQueryService)
+        nullNetworkCmProxyDataServicePropertyHandler, mockInventoryPersistence, mockCpsCmHandlerQueryService)
 
     def cmHandleXPath = "/dmi-registry/cm-handles[@id='testCmHandle']"
 
@@ -152,7 +150,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
         when: 'yang resources is called'
             objectUnderTest.getYangResourcesModuleReferences('some-cm-handle')
         then: 'CPS module services is invoked for the correct dataspace and cm handle'
-            1 * mockCpsModuleService.getYangResourcesModuleReferences('NFP-Operational','some-cm-handle')
+            1 * mockInventoryPersistence.getYangResourcesModuleReferences('some-cm-handle')
     }
 
     def 'Getting Yang Resources with an invalid #scenario.'() {
@@ -161,7 +159,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
         then: 'a data validation exception is thrown'
             thrown(DataValidationException)
         and: 'CPS module services is not invoked'
-            0 * mockCpsModuleService.getYangResourcesModuleReferences(*_)
+            0 * mockInventoryPersistence.getYangResourcesModuleReferences(*_)
     }
 
     def 'Get a cm handle.'() {
@@ -273,11 +271,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
         when: 'parse and create cm handle in dmi registration then sync module'
             objectUnderTest.parseAndCreateCmHandlesInDmiRegistrationAndSyncModules(mockDmiPluginRegistration)
         then: 'validate params for creating anchor and list elements'
-        1 * mockCpsDataService.saveListElements('NCMP-Admin', 'ncmp-dmi-registry', '/dmi-registry', _, null) >> {
-            args -> {
-                assert args[3].startsWith('{"cm-handles":[{"id":"some-cm-handle-id","state":{"cm-handle-state":"ADVISED","last-update-time":"20')
-            }
-        }
+            1 * mockInventoryPersistence.saveListElements(_)
     }
 
     def 'Execute cm handle id search'() {
