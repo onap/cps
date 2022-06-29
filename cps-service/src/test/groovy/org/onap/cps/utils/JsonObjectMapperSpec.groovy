@@ -22,6 +22,7 @@ package org.onap.cps.utils
 
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.databind.SerializationFeature
 import groovy.json.JsonSlurper
 import org.onap.cps.TestUtils
 import org.onap.cps.spi.exceptions.DataValidationException
@@ -79,10 +80,12 @@ class JsonObjectMapperSpec extends Specification {
     def 'Map a unstructured object to json String.'() {
         given: 'Unstructured object'
             def object = new Object()
+        and: 'disable serialization failure on empty bean'
+            spiedObjectMapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
         when: 'the object is mapped to string'
             jsonObjectMapper.asJsonString(object);
-        then: 'an exception is thrown'
-            thrown(DataValidationException)
+        then: 'no exception is thrown'
+            noExceptionThrown()
     }
 
     def 'Map a structurally compatible json String to JsonNode.'() {
