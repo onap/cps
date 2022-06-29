@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3af3cb03_eba7a902",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-29T14:48:04Z",
+      "side": 0,
+      "message": "can you remove this constants now from DmiRegistryConstants ?!",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 78
+      },
+      "revId": "89c2f729954a4c93bebcd3b7495df8d191ba00b9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
