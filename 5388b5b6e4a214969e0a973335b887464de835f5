@@ -25,6 +25,29 @@
     },
     {
       "key": {
+        "uuid": "bf08cf51_f9662d5b",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 398,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-06-29T11:27:28Z",
+      "side": 1,
+      "message": "can inline url here and remove given block",
+      "range": {
+        "startLine": 398,
+        "startChar": 43,
+        "endLine": 398,
+        "endChar": 49
+      },
+      "revId": "5388b5b6e4a214969e0a973335b887464de835f5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "470db30a_4d34649d",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/SyncState.java",
         "patchSetId": 17
@@ -36,6 +59,30 @@
       "writtenOn": "2022-06-28T16:54:06Z",
       "side": 1,
       "message": "I think we should rename this to DataStoreSyncState for added clarity",
+      "range": {
+        "startLine": 23,
+        "startChar": 12,
+        "endLine": 23,
+        "endChar": 22
+      },
+      "revId": "5388b5b6e4a214969e0a973335b887464de835f5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "457c726e_01f0d2af",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/SyncState.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-06-29T11:27:28Z",
+      "side": 1,
+      "message": "Agreed",
+      "parentUuid": "470db30a_4d34649d",
       "range": {
         "startLine": 23,
         "startChar": 12,
@@ -82,6 +129,29 @@
       "writtenOn": "2022-06-28T16:54:06Z",
       "side": 1,
       "message": "See comment on path #8 I still think this class is not needed, maybe we need to discuss?!\n(another example of you aswering \u0027DOne\u0027 but latest patch is same as #8 ?!)",
+      "revId": "5388b5b6e4a214969e0a973335b887464de835f5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9b95f602_ae85f374",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/YangResourceRepository.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-06-29T11:27:28Z",
+      "side": 1,
+      "message": "Could be restructured slightly to (might be easier to read):\n\n    @Query(value \u003d \"SELECT DISTINCT yang_resource.*\\n\"\n        + \"FROM dataspace\\n\"\n        + \"JOIN anchor ON anchor.dataspace_id \u003d dataspace.id\\n\"\n        + \"JOIN schema_set ON schema_set.id \u003d anchor.schema_set_id\\n\"\n        + \"JOIN schema_set_yang_resources ON schema_set_yang_resources.schema_set_id \u003d schema_set.id\\n\"\n        + \"JOIN yang_resource ON yang_resource.id \u003d schema_set_yang_resources.yang_resource_id\\n\"\n        + \"WHERE dataspace.name \u003d :dataspaceName \" \n        + \"AND anchor.name \u003d:anchorName\", nativeQuery \u003d true)",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 98
+      },
       "revId": "5388b5b6e4a214969e0a973335b887464de835f5",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
