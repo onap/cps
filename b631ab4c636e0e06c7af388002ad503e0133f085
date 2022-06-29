@@ -22,6 +22,53 @@
       "revId": "b631ab4c636e0e06c7af388002ad503e0133f085",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e36cd75_442dfba2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-29T13:41:10Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "37d9b016_b1aadbe0",
+      "range": {
+        "startLine": 160,
+        "startChar": 12,
+        "endLine": 160,
+        "endChar": 76
+      },
+      "revId": "b631ab4c636e0e06c7af388002ad503e0133f085",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e91ff751_45835ccd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-29T13:41:10Z",
+      "side": 1,
+      "message": "as per todays discussion, iterate over cmHandleIdsByModuleName  and retrieve each of them individually using a get-method. We known it will time-out depending on the size of the result but at least it is a best effort approach.\nCan be doen as separate commit",
+      "range": {
+        "startLine": 161,
+        "startChar": 12,
+        "endLine": 161,
+        "endChar": 27
+      },
+      "revId": "b631ab4c636e0e06c7af388002ad503e0133f085",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
