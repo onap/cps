@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "38e0fd8b_77fdbe9d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-06-29T08:25:05Z",
+      "side": 1,
+      "message": "from what I recall from the previous discussions is that \" Yes we can have some cleanup code in between , but for now we dont have. Also DELETING to DELETED is a one way transition \"\nFor now I can split DELETING and DELETED into separate methods , so that we have visible separation.\nLater when we have actual requirement to do something in between that transition , we can do that.",
+      "parentUuid": "822b9f2e_48fc9967",
+      "range": {
+        "startLine": 327,
+        "startChar": 4,
+        "endLine": 330,
+        "endChar": 99
+      },
+      "revId": "6e98335793beb61568bf73b127334187e5464a4f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a35b3d26_b459e990",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/NcmpCmHandleStateTransition.java",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2022-06-28T17:38:05Z",
       "side": 1,
       "message": "not 100% sure about this name, some alternatives:\n\nNEW_ADISED\n_TO_ADVISED\nNULL_TO_ADVISED\nDELETED_TO_ADVISED\nNO_EXISTING_TO_ADVISED",
+      "range": {
+        "startLine": 29,
+        "startChar": 4,
+        "endLine": 29,
+        "endChar": 22
+      },
+      "revId": "6e98335793beb61568bf73b127334187e5464a4f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "056ac642_c01e3c3b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/NcmpCmHandleStateTransition.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-06-29T08:25:05Z",
+      "side": 1,
+      "message": "or NONE_TO_ADVISED ??\nNO_EXISTING_TO_ADVISED/NOT_EXISTING_TO_ADVISED is also a good option.",
+      "parentUuid": "a35b3d26_b459e990",
       "range": {
         "startLine": 29,
         "startChar": 4,
