@@ -23,6 +23,7 @@ import java.util.Collections;
 import java.util.Map;
 import javax.validation.constraints.NotNull;
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
@@ -36,6 +37,7 @@ public class NotificationProperties {
     @NotNull
     private String topic;
     private Map<String, String> filters = Collections.emptyMap();
-    @NotNull
-    private boolean enabled = false;
+
+    @Value("${notification.enabled:true}")
+    private boolean enabled;
 }
