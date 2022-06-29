@@ -30,17 +30,25 @@ class NcmpEventsServiceSpec extends Specification {
 
     def mockInventoryPersistence = Mock(InventoryPersistence)
     def mockNcmpEventsPublisher = Mock(NcmpEventsPublisher)
-    def mockNcmpEventsMapper = Mock(NcmpEventsCreator)
+    def mockNcmpEventsCreator = Mock(NcmpEventsCreator)
 
-    def objectUnderTest = new NcmpEventsService(mockInventoryPersistence, mockNcmpEventsPublisher, mockNcmpEventsMapper)
+    def objectUnderTest = new NcmpEventsService(mockInventoryPersistence, mockNcmpEventsPublisher, mockNcmpEventsCreator)
 
-    def 'Create and Publish event for #operation'() {
+    def 'Create and Publish ncmp event where events are #scenario'() {
         given: 'a cm handle id and operation and responses are mocked'
             mockResponses('test-cm-handle-id', 'test-topic')
+        and: 'lcm notifications are enabled'
+            objectUnderTest.notificationsEnabled = lcmEventsDisbaled
         when: 'service is called to publish ncmp event'
             objectUnderTest.publishNcmpEvent('test-cm-handle-id')
-        then: 'no exception is thrown'
-            noExceptionThrown()
+        then: 'creator is called #expectedTimesMethodCalled times'
+            expectedTimesMethodCalled * mockNcmpEventsCreator.populateNcmpEvent('test-cm-handle-id', _)
+        and: 'publisher is called #expectedTimesMethodCalled times'
+            expectedTimesMethodCalled * mockNcmpEventsPublisher.publishEvent(*_)
+        where: 'the following values are used'
+            scenario   | lcmEventsDisbaled || expectedTimesMethodCalled
+            'enabled'  | true              || 1
+            'disabled' | false             || 0
     }
 
     def mockResponses(cmHandleId, topicName) {
@@ -50,9 +58,8 @@ class NcmpEventsServiceSpec extends Specification {
         def ncmpServiceCmhandle = YangDataConverter.convertYangModelCmHandleToNcmpServiceCmHandle(yangModelCmHandle)
 
         mockInventoryPersistence.getYangModelCmHandle(cmHandleId) >> yangModelCmHandle
-        mockNcmpEventsMapper.populateNcmpEvent(cmHandleId, ncmpServiceCmhandle) >> ncmpEvent
+        mockNcmpEventsCreator.populateNcmpEvent(cmHandleId, ncmpServiceCmhandle) >> ncmpEvent
         mockNcmpEventsPublisher.publishEvent(topicName, cmHandleId, ncmpEvent) >> {}
     }
-
 
 }
