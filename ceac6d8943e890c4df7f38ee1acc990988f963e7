@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "f589eed7_988d07d7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-06-29T12:31:48Z",
+      "side": 1,
+      "message": "Yes, this should only be for modules which failed to sync as far as I am aware. I think Luke will be changing the query as part of his commit.\n\nhttps://gerrit.onap.org/r/c/cps/+/129704/3/cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+      "parentUuid": "205c1da3_ba7f3699",
+      "range": {
+        "startLine": 79,
+        "startChar": 37,
+        "endLine": 79,
+        "endChar": 62
+      },
+      "revId": "ceac6d8943e890c4df7f38ee1acc990988f963e7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f40daddf_60311f78",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
         "patchSetId": 2
@@ -130,6 +154,30 @@
       "writtenOn": "2022-06-29T10:55:43Z",
       "side": 1,
       "message": "Should we include [false, true] to complete all permutations?",
+      "range": {
+        "startLine": 112,
+        "startChar": 46,
+        "endLine": 112,
+        "endChar": 61
+      },
+      "revId": "ceac6d8943e890c4df7f38ee1acc990988f963e7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b531c58_2e319beb",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-06-29T12:31:48Z",
+      "side": 1,
+      "message": "I can add false true, but I don\u0027t think the order is relevant, as much as testing the number of invocations, as each one is handled separately.",
+      "parentUuid": "501a7780_851d9f37",
       "range": {
         "startLine": 112,
         "startChar": 46,
