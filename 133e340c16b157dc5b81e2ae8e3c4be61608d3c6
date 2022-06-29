@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "ceaf2aaf_f46f5184",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-06-29T15:04:04Z",
+      "side": 1,
+      "message": "NB typo",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 9
+      },
+      "revId": "133e340c16b157dc5b81e2ae8e3c4be61608d3c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "de8904a9_3d2ee243",
         "filename": "cps-application/src/main/resources/application.yml",
         "patchSetId": 1
