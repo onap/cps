@@ -304,6 +304,30 @@
       "revId": "fac253eb2c7a87ac81f1fa6ab10f2bf869919090",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6fc97af0_a63e78c3",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 29
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-29T14:15:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4bcee178_2e5443f8",
+      "range": {
+        "startLine": 253,
+        "startChar": 69,
+        "endLine": 253,
+        "endChar": 93
+      },
+      "revId": "fac253eb2c7a87ac81f1fa6ab10f2bf869919090",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
