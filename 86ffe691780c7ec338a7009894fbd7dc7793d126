@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d9d33476_c0129e86",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 431,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-06-29T08:48:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f0fe0cc_8b9ecb96",
+      "range": {
+        "startLine": 431,
+        "startChar": 12,
+        "endLine": 431,
+        "endChar": 26
+      },
+      "revId": "86ffe691780c7ec338a7009894fbd7dc7793d126",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "71e63907_50fb1838",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
         "patchSetId": 8
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "262291c0_b0eb3320",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-06-29T08:48:35Z",
+      "side": 1,
+      "message": "This still returns null, implemented but changed the return for assertContainsAll to void",
+      "parentUuid": "71e63907_50fb1838",
+      "range": {
+        "startLine": 444,
+        "startChar": 8,
+        "endLine": 445,
+        "endChar": 19
+      },
+      "revId": "86ffe691780c7ec338a7009894fbd7dc7793d126",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e82e5589_e0588a19",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
         "patchSetId": 8
@@ -59,6 +107,30 @@
       "writtenOn": "2022-06-28T16:32:57Z",
       "side": 1,
       "message": "refactor\u0027 to\nreturn assertContainsAll(response, expectedContent)",
+      "range": {
+        "startLine": 454,
+        "startChar": 8,
+        "endLine": 455,
+        "endChar": 19
+      },
+      "revId": "86ffe691780c7ec338a7009894fbd7dc7793d126",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3f9b64ba_e55d319a",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 455,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-06-29T08:48:35Z",
+      "side": 1,
+      "message": "This still returns null, implemented but changed the return for assertContainsAll to void",
+      "parentUuid": "e82e5589_e0588a19",
       "range": {
         "startLine": 454,
         "startChar": 8,
