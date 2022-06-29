@@ -22,6 +22,30 @@
       "revId": "722701b8893e0f3c27aa63ab506a32b891dd64d0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a9cabb3f_bf355593",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/SyncUtilsSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-06-29T14:43:27Z",
+      "side": 1,
+      "message": "Ack\n\nWill resolve this as part of a different commit as this one already has 3 +1\u0027s :)",
+      "parentUuid": "b84107c7_14d7be84",
+      "range": {
+        "startLine": 113,
+        "startChar": 13,
+        "endLine": 113,
+        "endChar": 15
+      },
+      "revId": "722701b8893e0f3c27aa63ab506a32b891dd64d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
