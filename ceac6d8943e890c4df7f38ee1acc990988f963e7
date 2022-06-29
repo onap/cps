@@ -167,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "6cb5359e_b6ae23b7",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-29T13:58:45Z",
+      "side": 1,
+      "message": "ah, I knew about that functionality but didn\u0027t think you could use it with a where table too, learned something new every day :-)",
+      "parentUuid": "f6572418_80609b56",
+      "range": {
+        "startLine": 103,
+        "startChar": 60,
+        "endLine": 103,
+        "endChar": 61
+      },
+      "revId": "ceac6d8943e890c4df7f38ee1acc990988f963e7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "501a7780_851d9f37",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncSpec.groovy",
         "patchSetId": 2
