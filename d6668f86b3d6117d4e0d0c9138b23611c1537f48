@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "05730879_1e3ee1a0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 35
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-06-29T14:55:43Z",
+      "side": 1,
+      "message": "NB no longer needed",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 16
+      },
+      "revId": "d6668f86b3d6117d4e0d0c9138b23611c1537f48",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7190f9d6_b546d012",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/NcmpEventsServiceSpec.groovy",
+        "patchSetId": 35
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-06-29T14:55:43Z",
+      "side": 1,
+      "message": "Typo but should not also be lcmEventsEnabled? are events and notifications the same or opposite each other?",
+      "range": {
+        "startLine": 41,
+        "startChar": 51,
+        "endLine": 41,
+        "endChar": 68
+      },
+      "revId": "d6668f86b3d6117d4e0d0c9138b23611c1537f48",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
