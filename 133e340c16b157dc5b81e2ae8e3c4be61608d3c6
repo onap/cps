@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "de8904a9_3d2ee243",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-29T14:36:08Z",
+      "side": 1,
+      "message": "why exactly do we need this now? Can you explain in a little mode detail please. I assume it is related to the no-response scenario",
+      "range": {
+        "startLine": 86,
+        "startChar": 29,
+        "endLine": 86,
+        "endChar": 34
+      },
+      "revId": "133e340c16b157dc5b81e2ae8e3c4be61608d3c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "78ecb1fb_814d9ec6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/DataSyncWatchdog.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-29T14:36:08Z",
+      "side": 1,
+      "message": "never used this pattern before, is nice!",
+      "range": {
+        "startLine": 72,
+        "startChar": 12,
+        "endLine": 73,
+        "endChar": 33
+      },
+      "revId": "133e340c16b157dc5b81e2ae8e3c4be61608d3c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7e119137_25f98fe3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-29T14:36:08Z",
+      "side": 1,
+      "message": "dont like builders inside builders for readability.\nMaybe extract the inner build(result) out",
+      "range": {
+        "startLine": 97,
+        "startChar": 42,
+        "endLine": 100,
+        "endChar": 36
+      },
+      "revId": "133e340c16b157dc5b81e2ae8e3c4be61608d3c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "68fe8c61_817ae843",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-29T14:36:08Z",
+      "side": 1,
+      "message": "I suppose this is the kind of stuff Priyank will move to the new state handler (later)",
+      "range": {
+        "startLine": 86,
+        "startChar": 0,
+        "endLine": 103,
+        "endChar": 5
+      },
+      "revId": "133e340c16b157dc5b81e2ae8e3c4be61608d3c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
