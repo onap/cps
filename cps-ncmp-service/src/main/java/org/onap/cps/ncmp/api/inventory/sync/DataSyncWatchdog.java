@@ -21,6 +21,7 @@
 package org.onap.cps.ncmp.api.inventory.sync;
 
 import java.time.OffsetDateTime;
+import java.util.function.Consumer;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsDataService;
@@ -60,15 +61,21 @@ public class DataSyncWatchdog {
             } else {
                 cpsDataService.saveData("NFP-Operational", cmHandleId,
                         resourceData, OffsetDateTime.now());
+                setSyncStateToSynchronized().accept(compositeState);
+                inventoryPersistence.saveCmHandleState(cmHandleId, compositeState);
             }
+            unSynchronizedReadyCmHandle = syncUtils.getAnUnSynchronizedReadyCmHandle();
+        }
+        log.debug("No Cm-Handles currently found in an READY State and Operational Sync State is UNSYNCHRONIZED");
+    }
+
+    private Consumer<CompositeState> setSyncStateToSynchronized() {
+        return compositeState -> {
             compositeState.setLastUpdateTimeNow();
             compositeState.getDataStores()
                     .setOperationalDataStore(CompositeState.Operational.builder()
                             .dataStoreSyncState(DataStoreSyncState.SYNCHRONIZED)
                             .lastSyncTime(CompositeState.nowInSyncTimeFormat()).build());
-            inventoryPersistence.saveCmHandleState(cmHandleId, compositeState);
-            unSynchronizedReadyCmHandle = syncUtils.getAnUnSynchronizedReadyCmHandle();
-        }
-        log.debug("No Cm-Handles currently found in an READY State and Operational Sync State is UNSYNCHRONIZED");
+        };
     }
 }

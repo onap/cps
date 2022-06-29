@@ -47,7 +47,9 @@ public class InventoryPersistence {
 
     private static final String NCMP_DMI_REGISTRY_ANCHOR = "ncmp-dmi-registry";
 
-    private static final String XPATH_TO_CM_HANDLE = "/dmi-registry/cm-handles[@id='" + "%s" + "']";
+    private String xpathCmHandle = "/dmi-registry/cm-handles[@id='" + "%s" + "']";
+
+    private static final String ANCESTOR_CM_HANDLES = "\"]/ancestor::cm-handles";
 
     private final JsonObjectMapper jsonObjectMapper;
 
@@ -57,8 +59,6 @@ public class InventoryPersistence {
 
     private final CpsDataPersistenceService cpsDataPersistenceService;
 
-    private static final CompositeStateBuilder compositeStateBuilder = new CompositeStateBuilder();
-
     /**
      * Get the Cm Handle Composite State from the data node.
      *
@@ -67,9 +67,9 @@ public class InventoryPersistence {
      */
     public CompositeState getCmHandleState(final String cmHandleId) {
         final DataNode stateAsDataNode = cpsDataService.getDataNode(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-            String.format(XPATH_TO_CM_HANDLE, cmHandleId) + "/state",
+            String.format(xpathCmHandle, cmHandleId) + "/state",
             FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
-        return compositeStateBuilder.fromDataNode(stateAsDataNode).build();
+        return new CompositeStateBuilder().fromDataNode(stateAsDataNode).build();
     }
 
     /**
@@ -82,7 +82,7 @@ public class InventoryPersistence {
         final String cmHandleJsonData = String.format("{\"state\":%s}",
             jsonObjectMapper.asJsonString(compositeState));
         cpsDataService.replaceNodeTree(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-            String.format(XPATH_TO_CM_HANDLE, cmHandleId),
+            String.format(xpathCmHandle, cmHandleId),
             cmHandleJsonData, OffsetDateTime.now());
     }
 
@@ -95,7 +95,7 @@ public class InventoryPersistence {
     public List<DataNode> getCmHandlesByState(final CmHandleState cmHandleState) {
         return cpsDataPersistenceService.queryDataNodes(NCMP_DATASPACE_NAME,
             NCMP_DMI_REGISTRY_ANCHOR, "//state[@cm-handle-state=\""
-                + cmHandleState + "\"]/ancestor::cm-handles",
+                + cmHandleState + ANCESTOR_CM_HANDLES,
             FetchDescendantsOption.OMIT_DESCENDANTS);
     }
 
@@ -121,7 +121,7 @@ public class InventoryPersistence {
     public List<DataNode> getCmHandlesByIdAndState(final String cmHandleId, final CmHandleState cmHandleState) {
         return cpsDataPersistenceService.queryDataNodes(NCMP_DATASPACE_NAME,
             NCMP_DMI_REGISTRY_ANCHOR, "//cm-handles[@id='" + cmHandleId + "']/state[@cm-handle-state=\""
-                + cmHandleState + "\"]/ancestor::cm-handles",
+                + cmHandleState + ANCESTOR_CM_HANDLES,
             FetchDescendantsOption.OMIT_DESCENDANTS);
     }
 
@@ -133,7 +133,7 @@ public class InventoryPersistence {
     public List<DataNode> getCmHandlesByOperationalSyncState(final DataStoreSyncState dataStoreSyncState) {
         return cpsDataPersistenceService.queryDataNodes(NCMP_DATASPACE_NAME,
             NCMP_DMI_REGISTRY_ANCHOR, "//state/datastores"
-                + "/operational[@sync-state=\"" + dataStoreSyncState + "\"]/ancestor::cm-handles",
+                + "/operational[@sync-state=\"" + dataStoreSyncState + ANCESTOR_CM_HANDLES,
             FetchDescendantsOption.OMIT_DESCENDANTS);
     }
 
@@ -160,7 +160,7 @@ public class InventoryPersistence {
     private DataNode getCmHandleDataNode(final String cmHandle) {
         return cpsDataService.getDataNode(NCMP_DATASPACE_NAME,
             NCMP_DMI_REGISTRY_ANCHOR,
-            String.format(XPATH_TO_CM_HANDLE, cmHandle),
+            String.format(xpathCmHandle, cmHandle),
             FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
     }
 

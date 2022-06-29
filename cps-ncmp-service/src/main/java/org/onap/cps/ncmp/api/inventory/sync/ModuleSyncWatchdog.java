@@ -22,11 +22,13 @@
 package org.onap.cps.ncmp.api.inventory.sync;
 
 import java.util.List;
+import java.util.function.Consumer;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.inventory.CmHandleState;
 import org.onap.cps.ncmp.api.inventory.CompositeState;
+import org.onap.cps.ncmp.api.inventory.DataStoreSyncState;
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.api.inventory.LockReasonCategory;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -54,17 +56,14 @@ public class ModuleSyncWatchdog {
             final CompositeState compositeState = inventoryPersistence.getCmHandleState(cmHandleId);
             try {
                 moduleSyncService.syncAndCreateSchemaSetAndAnchor(advisedCmHandle);
-                compositeState.setCmHandleState(CmHandleState.READY);
+                setCompositeStateToReadyWithInitialDataStoreSyncState().accept(compositeState);
             } catch (final Exception e) {
-                compositeState.setCmHandleState(CmHandleState.LOCKED);
+                setCompositeStateToLocked().accept(compositeState);
                 syncUtils.updateLockReasonDetailsAndAttempts(compositeState,
-                    LockReasonCategory.LOCKED_MISBEHAVING,
-                    e.getMessage());
+                        LockReasonCategory.LOCKED_MISBEHAVING, e.getMessage());
             }
-            compositeState.setLastUpdateTimeNow();
             inventoryPersistence.saveCmHandleState(cmHandleId, compositeState);
-            log.info("{} is now in {} state", cmHandleId,
-                advisedCmHandle.getCompositeState().getCmHandleState());
+            log.debug("{} is now in {} state", cmHandleId, compositeState.getCmHandleState().name());
             advisedCmHandle = syncUtils.getAnAdvisedCmHandle();
         }
         log.debug("No Cm-Handles currently found in an ADVISED state");
@@ -87,11 +86,33 @@ public class ModuleSyncWatchdog {
         }
     }
 
+    private Consumer<CompositeState> setCompositeStateToLocked() {
+        return compositeState -> {
+            compositeState.setCmHandleState(CmHandleState.LOCKED);
+            compositeState.setLastUpdateTimeNow();
+        };
+    }
+
+    private Consumer<CompositeState> setCompositeStateToReadyWithInitialDataStoreSyncState() {
+        return compositeState -> {
+            compositeState.setCmHandleState(CmHandleState.READY);
+            final CompositeState.Operational operational = CompositeState.Operational.builder()
+                    .dataStoreSyncState(DataStoreSyncState.UNSYNCHRONIZED)
+                    .lastSyncTime(CompositeState.nowInSyncTimeFormat())
+                    .build();
+            final CompositeState.DataStores dataStores = CompositeState.DataStores.builder()
+                    .operationalDataStore(operational)
+                    .build();
+            compositeState.setDataStores(dataStores);
+        };
+    }
+
     private void setCompositeStateToAdvisedAndRetainOldLockReasonDetails(final CompositeState compositeState) {
         compositeState.setCmHandleState(CmHandleState.ADVISED);
         compositeState.setLastUpdateTimeNow();
         final String oldLockReasonDetails = compositeState.getLockReason().getDetails();
-        compositeState.setLockReason(CompositeState.LockReason.builder()
-                .details(oldLockReasonDetails).build());
+        final CompositeState.LockReason lockReason = CompositeState.LockReason.builder()
+                .details(oldLockReasonDetails).build();
+        compositeState.setLockReason(lockReason);
     }
 }
