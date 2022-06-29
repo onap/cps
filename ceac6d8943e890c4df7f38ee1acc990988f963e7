@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "205c1da3_ba7f3699",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-06-29T10:55:43Z",
+      "side": 1,
+      "message": "Will there only be cm handles here that failed to sync? If not, then misbehavingCmHandle might be better?",
+      "range": {
+        "startLine": 79,
+        "startChar": 37,
+        "endLine": 79,
+        "endChar": 62
+      },
+      "revId": "ceac6d8943e890c4df7f38ee1acc990988f963e7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f40daddf_60311f78",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
         "patchSetId": 2
@@ -40,6 +63,29 @@
         "startLine": 103,
         "startChar": 60,
         "endLine": 103,
+        "endChar": 61
+      },
+      "revId": "ceac6d8943e890c4df7f38ee1acc990988f963e7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "501a7780_851d9f37",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-06-29T10:55:43Z",
+      "side": 1,
+      "message": "Should we include [false, true] to complete all permutations?",
+      "range": {
+        "startLine": 112,
+        "startChar": 46,
+        "endLine": 112,
         "endChar": 61
       },
       "revId": "ceac6d8943e890c4df7f38ee1acc990988f963e7",
