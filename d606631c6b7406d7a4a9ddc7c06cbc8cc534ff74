@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "6463f7b0_8437c9b3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-06-29T09:22:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dec86b84_1a0a58bf",
+      "range": {
+        "startLine": 79,
+        "startChar": 37,
+        "endLine": 79,
+        "endChar": 68
+      },
+      "revId": "d606631c6b7406d7a4a9ddc7c06cbc8cc534ff74",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a5798da_9c788b7d",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
         "patchSetId": 1
@@ -68,6 +92,30 @@
       "revId": "d606631c6b7406d7a4a9ddc7c06cbc8cc534ff74",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e13cbb2_6d3282a5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-06-29T09:22:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a5798da_9c788b7d",
+      "range": {
+        "startLine": 81,
+        "startChar": 58,
+        "endLine": 81,
+        "endChar": 77
+      },
+      "revId": "d606631c6b7406d7a4a9ddc7c06cbc8cc534ff74",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -94,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "27bbe55d_fd5736a5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-06-29T09:22:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e2de28fd_f83bd397",
+      "range": {
+        "startLine": 153,
+        "startChar": 19,
+        "endLine": 153,
+        "endChar": 38
+      },
+      "revId": "d606631c6b7406d7a4a9ddc7c06cbc8cc534ff74",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d9293893_a7955b5a",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
         "patchSetId": 1
@@ -114,6 +186,30 @@
       "revId": "d606631c6b7406d7a4a9ddc7c06cbc8cc534ff74",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16d03429_76a2a684",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-06-29T09:22:59Z",
+      "side": 1,
+      "message": "My bad, just a mistake on my end with the syntax, I will add more detail to the test to, to check that the number is to the power of.",
+      "parentUuid": "d9293893_a7955b5a",
+      "range": {
+        "startLine": 160,
+        "startChar": 50,
+        "endLine": 160,
+        "endChar": 88
+      },
+      "revId": "d606631c6b7406d7a4a9ddc7c06cbc8cc534ff74",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -140,6 +236,30 @@
     },
     {
       "key": {
+        "uuid": "8ffe7da6_2945cc1b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-06-29T09:22:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "43c03f48_408dd9a1",
+      "range": {
+        "startLine": 109,
+        "startChar": 46,
+        "endLine": 109,
+        "endChar": 70
+      },
+      "revId": "d606631c6b7406d7a4a9ddc7c06cbc8cc534ff74",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f7c48fee_1710d8eb",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/SyncUtilsSpec.groovy",
         "patchSetId": 1
@@ -151,6 +271,30 @@
       "writtenOn": "2022-06-28T16:15:14Z",
       "side": 1,
       "message": "Groovy, use \u0027",
+      "range": {
+        "startLine": 56,
+        "startChar": 59,
+        "endLine": 56,
+        "endChar": 60
+      },
+      "revId": "d606631c6b7406d7a4a9ddc7c06cbc8cc534ff74",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "58d64518_704323f0",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/SyncUtilsSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-06-29T09:22:59Z",
+      "side": 1,
+      "message": "I used the double quotes because single quotes are already within the string. I could use escape characters but I think this looks better",
+      "parentUuid": "f7c48fee_1710d8eb",
       "range": {
         "startLine": 56,
         "startChar": 59,
