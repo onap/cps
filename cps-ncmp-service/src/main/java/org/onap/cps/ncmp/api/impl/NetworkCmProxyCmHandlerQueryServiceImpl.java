@@ -55,7 +55,7 @@ public class NetworkCmProxyCmHandlerQueryServiceImpl implements NetworkCmProxyCm
 
     private static final String PROPERTY_QUERY_NAME = "hasAllProperties";
     private static final String MODULE_QUERY_NAME = "hasAllModules";
-    private static final Object NO_QUERY_EXECUTED = null;
+    private static final Map<String, NcmpServiceCmHandle> NO_QUERY_EXECUTED = null;
     private final CpsDataPersistenceService cpsDataPersistenceService;
     private final CpsAdminPersistenceService cpsAdminPersistenceService;
 
@@ -80,7 +80,7 @@ public class NetworkCmProxyCmHandlerQueryServiceImpl implements NetworkCmProxyCm
             combineWithModuleNameQuery(cmHandleQueryServiceParameters, publicPropertyQueryResult);
 
         return combinedQueryResult == NO_QUERY_EXECUTED
-            ? Collections.emptySet() : new HashSet<NcmpServiceCmHandle>(combinedQueryResult.values());
+            ? Collections.emptySet() : new HashSet<>(combinedQueryResult.values());
     }
 
     /**
@@ -121,14 +121,14 @@ public class NetworkCmProxyCmHandlerQueryServiceImpl implements NetworkCmProxyCm
         final Map<String, String> publicPropertyQueryPairs =
             getPublicPropertyPairs(cmHandleQueryServiceParameters.getCmHandleQueryParameters());
         if (publicPropertyQueryPairs.isEmpty()) {
-            return null;
+            return NO_QUERY_EXECUTED;
         }
         Map<String, NcmpServiceCmHandle> cmHandleIdToNcmpServiceCmHandles = null;
         for (final Map.Entry<String, String> entry : publicPropertyQueryPairs.entrySet()) {
-            final String cmHandlePath = "//public-properties[@name='" + entry.getKey() + "' and @value='"
+            final String cpsPath = "//public-properties[@name='" + entry.getKey() + "' and @value='"
                 + entry.getValue() + "']/ancestor::cm-handles";
 
-            final Collection<DataNode> dataNodes = queryDataNodes(cmHandlePath);
+            final Collection<DataNode> dataNodes = queryDataNodes(cpsPath);
             if (cmHandleIdToNcmpServiceCmHandles == NO_QUERY_EXECUTED) {
                 cmHandleIdToNcmpServiceCmHandles = collectDataNodesToNcmpServiceCmHandles(dataNodes);
             } else {
@@ -157,12 +157,10 @@ public class NetworkCmProxyCmHandlerQueryServiceImpl implements NetworkCmProxyCm
         }
         final Map<String, NcmpServiceCmHandle> queryResult = new HashMap<>(cmHandleIdsByModuleName.size());
         if (previousQueryResult == NO_QUERY_EXECUTED) {
-            //TODO Discuss performance/scaling of getting ALL cmHandles here
-            getAllCmHandles().forEach(ncmpServiceCmHandle -> {
-                if (cmHandleIdsByModuleName.contains(ncmpServiceCmHandle.getCmHandleId())) {
-                    queryResult.put(ncmpServiceCmHandle.getCmHandleId(), ncmpServiceCmHandle);
-                }
-            });
+            cmHandleIdsByModuleName.forEach(cmHandleId ->
+                    queryResult.put(cmHandleId, createNcmpServiceCmHandle(
+                            getDataNode("/dmi-registry/cm-handles[@id='" + cmHandleId + "']")))
+            );
             return queryResult;
         }
         previousQueryResult.keySet().retainAll(cmHandleIdsByModuleName);
@@ -223,9 +221,14 @@ public class NetworkCmProxyCmHandlerQueryServiceImpl implements NetworkCmProxyCm
             .parallelStream().map(Anchor::getName).collect(Collectors.toSet());
     }
 
-    private List<DataNode> queryDataNodes(final String cmHandlePath) {
+    private List<DataNode> queryDataNodes(final String cpsPath) {
         return cpsDataPersistenceService.queryDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-            cmHandlePath, INCLUDE_ALL_DESCENDANTS);
+                cpsPath, INCLUDE_ALL_DESCENDANTS);
+    }
+
+    private DataNode getDataNode(final String cpsPath) {
+        return cpsDataPersistenceService.getDataNode(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
+                cpsPath, INCLUDE_ALL_DESCENDANTS);
     }
 
     private NcmpServiceCmHandle createNcmpServiceCmHandle(final DataNode dataNode) {
