@@ -27,6 +27,7 @@ import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations
 import org.onap.cps.ncmp.api.impl.operations.DmiOperations
 import org.onap.cps.ncmp.api.inventory.CmHandleState
 import org.onap.cps.ncmp.api.inventory.CompositeState
+import org.onap.cps.ncmp.api.inventory.CompositeStateBuilder
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence
 import org.onap.cps.ncmp.api.inventory.LockReasonCategory
 import org.onap.cps.ncmp.api.inventory.SyncState
@@ -38,6 +39,9 @@ import org.springframework.http.ResponseEntity
 import spock.lang.Shared
 import spock.lang.Specification
 
+import java.time.OffsetDateTime
+import java.time.format.DateTimeFormatter
+
 class SyncUtilsSpec extends Specification{
 
     def mockInventoryPersistence = Mock(InventoryPersistence)
@@ -47,6 +51,9 @@ class SyncUtilsSpec extends Specification{
     def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
 
     def objectUnderTest = new SyncUtils(mockInventoryPersistence, mockDmiDataOperations, jsonObjectMapper)
+
+    @Shared
+    def formattedDateAndTime = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ").format(OffsetDateTime.now())
 
     @Shared
     def dataNode = new DataNode(leaves: ['id': 'cm-handle-123'])
@@ -93,6 +100,21 @@ class SyncUtilsSpec extends Specification{
         and: 'the correct cm handle is returned'
             result[0].id == 'cm-handle-123'
     }
+
+    def 'Retry Locked Cm-Handle where the last update time is #scenario'() {
+        when: 'retry locked cm handle is invoked'
+            def result = objectUnderTest.isReadyForRetry(new CompositeStateBuilder()
+                .withLockReason(LockReasonCategory.LOCKED_MISBEHAVING, details)
+                .withLastUpdatedTime(lastUpdateTime).build())
+        then: 'result returns #expectedResult'
+            result == expectedResult
+        where:
+            scenario                        | lastUpdateTime                     | details                 || expectedResult
+            'is the first attempt'          | '1900-01-01T00:00:00.000+0100'     | 'First Attempt'         || true
+            'is greater than one minute'    | '1900-01-01T00:00:00.000+0100'     | 'Attempt #1 failed:'    || true
+            'is less than eight minutes'    | formattedDateAndTime               | 'Attempt #3 failed:'    || false
+    }
+
 
     def 'Get a Cm-Handle where Operational Sync state is UnSynchronized and Cm-handle state is READY and #scenario'() {
         given: 'the inventory persistence service returns a collection of data nodes'
