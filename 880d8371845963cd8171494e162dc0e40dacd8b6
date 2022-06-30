@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "60530243_9136f8ee",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-30T15:40:36Z",
+      "side": 1,
+      "message": "ah then that line (103) should just move to inside the try block",
+      "parentUuid": "4b0bdfa1_bff50089",
+      "range": {
+        "startLine": 101,
+        "startChar": 12,
+        "endLine": 101,
+        "endChar": 19
+      },
+      "revId": "880d8371845963cd8171494e162dc0e40dacd8b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0d97cb0e_2d136510",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncService.java",
         "patchSetId": 2
