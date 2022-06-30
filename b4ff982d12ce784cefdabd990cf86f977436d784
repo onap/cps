@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "163a1707_73491667",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-06-30T10:48:40Z",
+      "side": 1,
+      "message": "NB - Just an alternate suggestion for a name\n\ngetModuleSyncFailedCmHandles. We can assume they\u0027re locked from the name of the list, and the method. And the java doc comment in the sync utils also explains that they are locked.\n\nJust cleans up the name and makes it a bit less convoluted, I don\u0027t know what the team thinks.",
+      "range": {
+        "startLine": 78,
+        "startChar": 66,
+        "endLine": 78,
+        "endChar": 109
+      },
+      "revId": "b4ff982d12ce784cefdabd990cf86f977436d784",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cacf3bc6_58c54bc8",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/SyncUtilsSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-06-30T10:48:40Z",
+      "side": 1,
+      "message": "Thanks for cleaning this up!",
+      "range": {
+        "startLine": 113,
+        "startChar": 0,
+        "endLine": 115,
+        "endChar": 112
+      },
+      "revId": "b4ff982d12ce784cefdabd990cf86f977436d784",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
