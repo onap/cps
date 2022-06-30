@@ -157,12 +157,10 @@ public class NetworkCmProxyCmHandlerQueryServiceImpl implements NetworkCmProxyCm
         }
         final Map<String, NcmpServiceCmHandle> queryResult = new HashMap<>(cmHandleIdsByModuleName.size());
         if (previousQueryResult == NO_QUERY_EXECUTED) {
-            //TODO Discuss performance/scaling of getting ALL cmHandles here
-            getAllCmHandles().forEach(ncmpServiceCmHandle -> {
-                if (cmHandleIdsByModuleName.contains(ncmpServiceCmHandle.getCmHandleId())) {
-                    queryResult.put(ncmpServiceCmHandle.getCmHandleId(), ncmpServiceCmHandle);
-                }
-            });
+            cmHandleIdsByModuleName.forEach(cmHandleId ->
+                    queryResult.put(cmHandleId, createNcmpServiceCmHandle(
+                            getDataNode("/dmi-registry/cm-handles[@id='" + cmHandleId + "']")))
+            );
             return queryResult;
         }
         previousQueryResult.keySet().retainAll(cmHandleIdsByModuleName);
@@ -226,6 +224,11 @@ public class NetworkCmProxyCmHandlerQueryServiceImpl implements NetworkCmProxyCm
     private List<DataNode> queryDataNodes(final String cmHandlePath) {
         return cpsDataPersistenceService.queryDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
             cmHandlePath, INCLUDE_ALL_DESCENDANTS);
+    }
+
+    private DataNode getDataNode(final String cmHandlePath) {
+        return cpsDataPersistenceService.getDataNode(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
+                cmHandlePath, INCLUDE_ALL_DESCENDANTS);
     }
 
     private NcmpServiceCmHandle createNcmpServiceCmHandle(final DataNode dataNode) {
