@@ -141,6 +141,30 @@
       "revId": "d6668f86b3d6117d4e0d0c9138b23611c1537f48",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1482fdf4_4af91e3f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/NcmpEventsServiceSpec.groovy",
+        "patchSetId": 35
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-30T08:43:45Z",
+      "side": 1,
+      "message": "yeah, I missed that. if you are changing it it also should really called notificationsEnabled\n(I might try an online edit for this to speed things up)",
+      "parentUuid": "d03d15f9_4fcd3a29",
+      "range": {
+        "startLine": 41,
+        "startChar": 51,
+        "endLine": 41,
+        "endChar": 68
+      },
+      "revId": "d6668f86b3d6117d4e0d0c9138b23611c1537f48",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
