@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "82cbeb69_0c730d3c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-30T15:15:25Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ceaf2aaf_f46f5184",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 9
+      },
+      "revId": "133e340c16b157dc5b81e2ae8e3c4be61608d3c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "de8904a9_3d2ee243",
         "filename": "cps-application/src/main/resources/application.yml",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2022-06-29T14:36:08Z",
       "side": 1,
       "message": "why exactly do we need this now? Can you explain in a little mode detail please. I assume it is related to the no-response scenario",
+      "range": {
+        "startLine": 86,
+        "startChar": 29,
+        "endLine": 86,
+        "endChar": 34
+      },
+      "revId": "133e340c16b157dc5b81e2ae8e3c4be61608d3c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c30360d_6a923a26",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-30T15:15:25Z",
+      "side": 1,
+      "message": "Without disabling serialization on empty bean we were getting DataValidationException while getting resource data from simulator as  there is a empty bean :\n\n\"class\":\"o.s.s.s.TaskUtils$LoggingErrorHandler\",\"exception\":\"\\norg.onap.cps.spi.exceptions.DataValidationException: Parsing error occurred while converting given object to JSON string \n\nTo address above issue we disabled serialization on empty bean failed property.\n\nFixed groovy test : https://gerrit.onap.org/r/c/cps/+/129720/1/cps-service/src/test/groovy/org/onap/cps/utils/JsonObjectMapperSpec.groovy",
+      "parentUuid": "de8904a9_3d2ee243",
       "range": {
         "startLine": 86,
         "startChar": 29,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "be9aff85_e15645f5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-30T15:15:25Z",
+      "side": 1,
+      "message": "Yes to address : \"String literals should not be duplicated\"",
+      "parentUuid": "1f4ff860_d972c1e1",
+      "range": {
+        "startLine": 129,
+        "startChar": 62,
+        "endLine": 129,
+        "endChar": 81
+      },
+      "revId": "133e340c16b157dc5b81e2ae8e3c4be61608d3c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "78ecb1fb_814d9ec6",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/DataSyncWatchdog.java",
         "patchSetId": 1
@@ -82,6 +154,30 @@
       "writtenOn": "2022-06-29T14:36:08Z",
       "side": 1,
       "message": "never used this pattern before, is nice!",
+      "range": {
+        "startLine": 72,
+        "startChar": 12,
+        "endLine": 73,
+        "endChar": 33
+      },
+      "revId": "133e340c16b157dc5b81e2ae8e3c4be61608d3c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b9b7a995_fb831c65",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/DataSyncWatchdog.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-30T15:15:25Z",
+      "side": 1,
+      "message": "It is lambda function parameter from java 8.",
+      "parentUuid": "78ecb1fb_814d9ec6",
       "range": {
         "startLine": 72,
         "startChar": 12,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "54a069da_51aa2fde",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-30T15:15:25Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7e119137_25f98fe3",
+      "range": {
+        "startLine": 97,
+        "startChar": 42,
+        "endLine": 100,
+        "endChar": 36
+      },
+      "revId": "133e340c16b157dc5b81e2ae8e3c4be61608d3c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "68fe8c61_817ae843",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
         "patchSetId": 1
@@ -128,6 +248,30 @@
       "writtenOn": "2022-06-29T14:36:08Z",
       "side": 1,
       "message": "I suppose this is the kind of stuff Priyank will move to the new state handler (later)",
+      "range": {
+        "startLine": 86,
+        "startChar": 0,
+        "endLine": 103,
+        "endChar": 5
+      },
+      "revId": "133e340c16b157dc5b81e2ae8e3c4be61608d3c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ed94e91_1d01157f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-06-30T15:15:25Z",
+      "side": 1,
+      "message": "Yes these responsibility will be moved to new state handler.",
+      "parentUuid": "68fe8c61_817ae843",
       "range": {
         "startLine": 86,
         "startChar": 0,
