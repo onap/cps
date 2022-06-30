@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "62f543e9_0560445c",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-30T15:26:50Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0c30360d_6a923a26",
+      "range": {
+        "startLine": 86,
+        "startChar": 29,
+        "endLine": 86,
+        "endChar": 34
+      },
+      "revId": "133e340c16b157dc5b81e2ae8e3c4be61608d3c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1f4ff860_d972c1e1",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
         "patchSetId": 1
@@ -140,6 +164,30 @@
       "revId": "133e340c16b157dc5b81e2ae8e3c4be61608d3c6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "267688e5_eb0feaea",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-06-30T15:26:50Z",
+      "side": 1,
+      "message": "and in this case it does make it more readable :-) ie, adds a little value",
+      "parentUuid": "be9aff85_e15645f5",
+      "range": {
+        "startLine": 129,
+        "startChar": 62,
+        "endLine": 129,
+        "endChar": 81
+      },
+      "revId": "133e340c16b157dc5b81e2ae8e3c4be61608d3c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
