@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "72130a7c_a177dd59",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-06-30T09:53:32Z",
+      "side": 1,
+      "message": "NB: sometimes these parallel calls are the problem of performance.\nMy thought : parallelstream will use the same threadpool as other streams code (I guess its ForkJoinPool common pool) , and if threads are taking time to complete then other code which also uses Java Streams will get no thread(wait for thread) to execute the code. And overall performance can be effected.\n\nBut lets see how it goes now , I would change this to sequential stream and also try again and compare the result.",
+      "range": {
+        "startLine": 223,
+        "startChar": 12,
+        "endLine": 223,
+        "endChar": 29
+      },
+      "revId": "2321538db22de683c137299b45a6d6fe9e8d52ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
