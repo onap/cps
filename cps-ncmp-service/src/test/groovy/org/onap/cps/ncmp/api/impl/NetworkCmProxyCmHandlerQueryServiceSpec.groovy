@@ -128,12 +128,14 @@ class NetworkCmProxyCmHandlerQueryServiceSpec extends Specification {
         def pNFDemo2 = new DataNode(xpath: '/dmi-registry/cm-handles[@id=\'PNFDemo2\']', leaves: ['id':'PNFDemo2'])
         def pNFDemo3 = new DataNode(xpath: '/dmi-registry/cm-handles[@id=\'PNFDemo3\']', leaves: ['id':'PNFDemo3'])
         def pNFDemo4 = new DataNode(xpath: '/dmi-registry/cm-handles[@id=\'PNFDemo4\']', leaves: ['id':'PNFDemo4'])
+        def dmiRegistry = new DataNode(xpath: '/dmi-registry', childDataNodes: [pNFDemo1, pNFDemo2, pNFDemo3, pNFDemo4])
 
         cpsDataPersistenceService.queryDataNodes(_, _, '//public-properties[@name=\'Contact\' and @value=\'newemailforstore@bookstore.com\']/ancestor::cm-handles', _) >> [pNFDemo1, pNFDemo2, pNFDemo4]
         cpsDataPersistenceService.queryDataNodes(_, _, '//public-properties[@name=\'wont_match\' and @value=\'wont_match\']/ancestor::cm-handles', _) >> []
         cpsDataPersistenceService.queryDataNodes(_, _, '//public-properties[@name=\'Contact2\' and @value=\'newemailforstore2@bookstore.com\']/ancestor::cm-handles', _) >> [pNFDemo4]
         cpsDataPersistenceService.queryDataNodes(_, _, '//public-properties[@name=\'Contact2\' and @value=\'\']/ancestor::cm-handles', _) >> []
-        cpsDataPersistenceService.queryDataNodes(_, _, '/dmi-registry/cm-handles', _) >> [pNFDemo1, pNFDemo2, pNFDemo3, pNFDemo4]
+
+        cpsDataPersistenceService.getDataNode(_, _, '/dmi-registry', _) >> dmiRegistry
 
         cpsDataPersistenceService.getDataNode(_, _, '/dmi-registry/cm-handles[@id=\'PNFDemo1\']', _) >> pNFDemo1
         cpsDataPersistenceService.getDataNode(_, _, '/dmi-registry/cm-handles[@id=\'PNFDemo2\']', _) >> pNFDemo2
