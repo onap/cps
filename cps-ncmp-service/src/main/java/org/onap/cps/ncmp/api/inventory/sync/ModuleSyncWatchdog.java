@@ -55,6 +55,7 @@ public class ModuleSyncWatchdog {
             final String cmHandleId = advisedCmHandle.getId();
             final CompositeState compositeState = inventoryPersistence.getCmHandleState(cmHandleId);
             try {
+                moduleSyncService.deleteSchemaSetIfExists(advisedCmHandle);
                 moduleSyncService.syncAndCreateSchemaSetAndAnchor(advisedCmHandle);
                 setCompositeStateToReadyWithInitialDataStoreSyncState().accept(compositeState);
             } catch (final Exception e) {
