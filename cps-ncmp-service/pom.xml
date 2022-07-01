@@ -57,6 +57,10 @@
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct-processor</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.hazelcast</groupId>
+            <artifactId>hazelcast-all</artifactId>
+        </dependency>
         <!-- T E S T - D E P E N D E N C I E S -->
         <dependency>
             <groupId>org.spockframework</groupId>
