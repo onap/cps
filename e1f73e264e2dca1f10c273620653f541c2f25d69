@@ -48,6 +48,54 @@
     },
     {
       "key": {
+        "uuid": "782863b0_73e32f43",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 20
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-07-01T15:49:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "43326236_43c77bb2",
+      "range": {
+        "startLine": 419,
+        "startChar": 85,
+        "endLine": 419,
+        "endChar": 87
+      },
+      "revId": "e1f73e264e2dca1f10c273620653f541c2f25d69",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b7c7ef91_a186b9fb",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 20
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-07-01T15:49:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b8e3eb0a_d42d87db",
+      "range": {
+        "startLine": 419,
+        "startChar": 60,
+        "endLine": 419,
+        "endChar": 62
+      },
+      "revId": "e1f73e264e2dca1f10c273620653f541c2f25d69",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d584346c_d6238630",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
         "patchSetId": 20
@@ -68,6 +116,30 @@
       "revId": "e1f73e264e2dca1f10c273620653f541c2f25d69",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5583fe75_b29900a5",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 20
+      },
+      "lineNbr": 420,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-07-01T15:49:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d584346c_d6238630",
+      "range": {
+        "startLine": 420,
+        "startChar": 84,
+        "endLine": 420,
+        "endChar": 123
+      },
+      "revId": "e1f73e264e2dca1f10c273620653f541c2f25d69",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -114,6 +186,54 @@
       "revId": "e1f73e264e2dca1f10c273620653f541c2f25d69",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4ea588f7_f6eb7a70",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 20
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-07-01T15:49:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b9f54cce_448527b3",
+      "range": {
+        "startLine": 421,
+        "startChar": 166,
+        "endLine": 421,
+        "endChar": 169
+      },
+      "revId": "e1f73e264e2dca1f10c273620653f541c2f25d69",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "32fe7446_7187221a",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 20
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-07-01T15:49:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a92d5dba_a01a8e7c",
+      "range": {
+        "startLine": 421,
+        "startChar": 140,
+        "endLine": 421,
+        "endChar": 144
+      },
+      "revId": "e1f73e264e2dca1f10c273620653f541c2f25d69",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
