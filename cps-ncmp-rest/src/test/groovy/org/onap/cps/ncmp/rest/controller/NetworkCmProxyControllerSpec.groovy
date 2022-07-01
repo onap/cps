@@ -416,9 +416,9 @@ class NetworkCmProxyControllerSpec extends Specification {
         then: 'ncmp service method to get module definitions is called'
             mockNetworkCmProxyDataService.getModuleDefinitionsByCmHandleId('some-cmhandle')
                     >> [new ModuleDefinition('sampleModuleName', '2021-10-03',
-                    String.format('module sampleModuleName{ %n sample module content %n }'))]
-        and: 'response contains an array with the module name, revision and content where content contains \\n for newlines'
-            response.getContentAsString() == '[{"moduleName":"sampleModuleName","revision":"2021-10-03","content":"module sampleModuleName{ \\n sample module content \\n }"}]'
+                    'module sampleModuleName{ sample module content }')]
+        and: 'response contains an array with the module name, revision and content'
+            response.getContentAsString() == '[{"moduleName":"sampleModuleName","revision":"2021-10-03","content":"module sampleModuleName{ sample module content }"}]'
         and: 'response returns an OK http code'
             response.status == HttpStatus.OK.value()
     }
