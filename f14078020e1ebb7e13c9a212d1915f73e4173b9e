@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dfb8789c_b9335393",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-01T15:54:31Z",
+      "side": 1,
+      "message": "Add Javadocs for all the PUBLIC methods newly moved here.",
+      "revId": "f14078020e1ebb7e13c9a212d1915f73e4173b9e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "77602a7f_10ddd53d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-01T15:54:31Z",
+      "side": 1,
+      "message": "NB: if possible pass the actual parameter. Since we are checking the invocation.",
+      "range": {
+        "startLine": 274,
+        "startChar": 58,
+        "endLine": 274,
+        "endChar": 59
+      },
+      "revId": "f14078020e1ebb7e13c9a212d1915f73e4173b9e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
