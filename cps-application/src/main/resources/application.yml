@@ -164,3 +164,15 @@ timers:
         sleep-time-ms: 300000
     cm-handle-data-sync:
         sleep-time-ms: 30000
+
+hazelcast:
+    cache:
+        modulesync:
+            ttl-sec: 30000
+            cache-backup-count: 3
+            async-backup-count: 3
+        datasync:
+            ttl-sec: 30000
+            cache-backup-count: 3
+            async-backup-count: 3
+
