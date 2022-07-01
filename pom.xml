@@ -4,7 +4,7 @@
   Copyright (c) 2020 Linux Foundation.
   Modifications Copyright (C) 2020-2021 Nordix Foundation
   Modifications Copyright (C) 2020-2021 Pantheon.tech
-  Modifications Copyright (C) 2021 Bell Canada.
+  Modifications Copyright (C) 2021-2022 Bell Canada.
   ================================================================================
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -58,6 +58,7 @@
         <module>cps-ncmp-events</module>
         <module>cps-ncmp-service</module>
         <module>cps-ncmp-rest</module>
+        <module>cps-ncmp-rest-stub</module>
         <module>cps-path-parser</module>
         <module>cps-ri</module>
         <module>checkstyle</module>

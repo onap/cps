@@ -24,6 +24,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,9 +33,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.rest.api.NetworkCmProxyApi;
-import org.onap.cps.ncmp.rest.model.CmHandleQueryRestParameters;
-import org.onap.cps.ncmp.rest.model.CmHandles;
-import org.onap.cps.ncmp.rest.model.Conditions;
+import org.onap.cps.ncmp.rest.model.CmHandleQueryParameters;
 import org.onap.cps.ncmp.rest.model.RestModuleReference;
 import org.onap.cps.ncmp.rest.model.RestOutputCmHandle;
 import org.onap.cps.ncmp.rest.model.RestOutputCmHandlePublicProperties;
@@ -68,18 +67,26 @@ public class NetworkCmProxyStubController implements NetworkCmProxyApi {
     }
 
     @Override
-    public ResponseEntity<CmHandles> executeCmHandleSearch(@Valid final Conditions body) {
-        final ObjectMapper mapper = new ObjectMapper();
-        CmHandles cmHandles = new CmHandles();
+    public ResponseEntity<List<RestOutputCmHandle>> searchCmHandles(
+        final CmHandleQueryParameters cmHandleQueryParameters) {
+        List<RestOutputCmHandle> restOutputCmHandles = null;
         // read JSON file and map/convert to java POJO
         final ClassPathResource resource = new ClassPathResource(pathToResponseFiles + "cmHandlesSearch.json");
         try (InputStream inputStream = resource.getInputStream()) {
             final String string = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
-            cmHandles = mapper.readValue(string, CmHandles.class);
+            final ObjectMapper mapper = new ObjectMapper();
+            restOutputCmHandles = Arrays.asList(mapper.readValue(string, RestOutputCmHandle[].class));
         } catch (final IOException exception) {
             log.error("Error reading the file.", exception);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
-        return ResponseEntity.ok(cmHandles);
+        return ResponseEntity.ok(restOutputCmHandles);
+    }
+
+    @Override
+    public ResponseEntity<List<String>> searchCmHandleIds(
+        final CmHandleQueryParameters cmHandleQueryParameters) {
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
     @Override
@@ -107,16 +114,17 @@ public class NetworkCmProxyStubController implements NetworkCmProxyApi {
         final String resourceIdentifier, final String optionsParamInQuery, final String topicParamInQuery) {
         final ResponseEntity<Map<String, Object>> asyncResponse = populateAsyncResponse(topicParamInQuery);
         final Map<String, Object> asyncResponseData = asyncResponse.getBody();
-        final ObjectMapper mapper = new ObjectMapper();
         Object responseObject = null;
         // read JSON file and map/convert to java POJO
         final ClassPathResource resource = new ClassPathResource(pathToResponseFiles
             + "passthrough-operational-example.json");
         try (InputStream inputStream = resource.getInputStream()) {
             final String string = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
+            final ObjectMapper mapper = new ObjectMapper();
             responseObject = mapper.readValue(string, Object.class);
         } catch (final IOException exception) {
             log.error("Error reading the file.", exception);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
         if (asyncResponseData == null) {
             return ResponseEntity.ok(responseObject);
@@ -134,11 +142,6 @@ public class NetworkCmProxyStubController implements NetworkCmProxyApi {
     @Override
     public ResponseEntity<Object> patchResourceDataRunningForCmHandle(final String resourceIdentifier,
         final String cmHandleId, final Object body, final String contentType) {
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-    }
-
-    @Override
-    public ResponseEntity<List<String>> queryCmHandles(final CmHandleQueryRestParameters body) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
