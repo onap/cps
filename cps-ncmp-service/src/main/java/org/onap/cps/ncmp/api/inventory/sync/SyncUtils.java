@@ -151,18 +151,22 @@ public class SyncUtils {
      * @return if the retry mechanism should be attempted
      */
     public boolean isReadyForRetry(final CompositeState compositeState) {
-        int timeUntilNextAttempt = 1;
+        int timeInMinutesUntilNextAttempt = 1;
         final OffsetDateTime time =
             OffsetDateTime.parse(compositeState.getLastUpdateTime(),
                 DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ"));
         final Matcher matcher = retryAttemptPattern.matcher(compositeState.getLockReason().getDetails());
         if (matcher.find()) {
-            timeUntilNextAttempt = (int) Math.pow(2, Integer.parseInt(matcher.group(1)));
+            timeInMinutesUntilNextAttempt = (int) Math.pow(2, Integer.parseInt(matcher.group(1)));
         } else {
             log.debug("First Attempt: no current attempts found.");
         }
         final int timeSinceLastAttempt = (int) Duration.between(time, OffsetDateTime.now()).toMinutes();
-        return timeSinceLastAttempt > timeUntilNextAttempt;
+        if (timeInMinutesUntilNextAttempt >= timeSinceLastAttempt) {
+            log.info("Time until next attempt is {}: ",
+                timeInMinutesUntilNextAttempt - timeSinceLastAttempt + " minutes");
+        }
+        return timeSinceLastAttempt > timeInMinutesUntilNextAttempt;
     }
 
     /**
