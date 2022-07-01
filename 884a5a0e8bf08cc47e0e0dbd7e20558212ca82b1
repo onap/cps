@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bf506a3b_b7432dcf",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncServiceSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-01T08:08:09Z",
+      "side": 1,
+      "message": "you ar enot checking the instance but the classname is unique enough it must be the same instance :-)",
+      "range": {
+        "startLine": 108,
+        "startChar": 32,
+        "endLine": 108,
+        "endChar": 61
+      },
+      "revId": "884a5a0e8bf08cc47e0e0dbd7e20558212ca82b1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
