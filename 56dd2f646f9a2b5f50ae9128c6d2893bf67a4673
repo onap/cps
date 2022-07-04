@@ -186,6 +186,23 @@
     },
     {
       "key": {
+        "uuid": "3a727ff4_524b79cb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/EmbeddedDataSyncCacheConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-04T11:53:56Z",
+      "side": 1,
+      "message": "mayb create an embedded cache packae (foler) and then have the havezast config files in there with short names",
+      "revId": "56dd2f646f9a2b5f50ae9128c6d2893bf67a4673",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9f835bfb_49b0e9fc",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/EmbeddedDataSyncCacheConfig.java",
         "patchSetId": 2
