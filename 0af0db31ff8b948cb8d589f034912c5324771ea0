@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "19b9eaea_b69b0c26",
+        "filename": "cps-dependencies/pom.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-04T15:14:30Z",
+      "side": 1,
+      "message": "The latest version has known vulnerabilities , Hence sticking to this version for now.\nLatest : https://mvnrepository.com/artifact/com.hazelcast/hazelcast-spring/5.1.2\n\nWe are using https://mvnrepository.com/artifact/com.hazelcast/hazelcast-spring/4.2.5 which looks stable.",
+      "range": {
+        "startLine": 216,
+        "startChar": 16,
+        "endLine": 216,
+        "endChar": 40
+      },
+      "revId": "0af0db31ff8b948cb8d589f034912c5324771ea0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
