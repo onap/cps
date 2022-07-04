@@ -4,6 +4,7 @@
 *.log
 *.log.zip
 
+cps-ncmp-rest-stub/dependency-reduced-pom.xml
 cps-application/archunit_store
 cps-ri/src/main/resources/changelog/db/changes/data/dmi/generated-csv/generated_yang_resource_*
 target/
