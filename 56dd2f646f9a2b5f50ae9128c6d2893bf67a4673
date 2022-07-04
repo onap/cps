@@ -140,6 +140,30 @@
     },
     {
       "key": {
+        "uuid": "5e45542c_1869a9ca",
+        "filename": "cps-dependencies/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-04T15:09:49Z",
+      "side": 1,
+      "message": "Version 5.1.2 comes with known vulnerability. So using 4.2.5 only.\nhazelcast-spring-4.2.5.jar",
+      "parentUuid": "990ecce8_9c0d5568",
+      "range": {
+        "startLine": 215,
+        "startChar": 16,
+        "endLine": 216,
+        "endChar": 40
+      },
+      "revId": "56dd2f646f9a2b5f50ae9128c6d2893bf67a4673",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "432edcdf_752acebe",
         "filename": "cps-ncmp-rest-stub/src/main/java/org/onap/cps/ncmp/rest/stub/controller/NetworkCmProxyStubController.java",
         "patchSetId": 2
@@ -183,6 +207,30 @@
       "revId": "56dd2f646f9a2b5f50ae9128c6d2893bf67a4673",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "53a8b751_4188598e",
+        "filename": "cps-ncmp-service/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-04T15:09:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9b8130ea_17ab8fdf",
+      "range": {
+        "startLine": 62,
+        "startChar": 24,
+        "endLine": 62,
+        "endChar": 37
+      },
+      "revId": "56dd2f646f9a2b5f50ae9128c6d2893bf67a4673",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -319,6 +367,30 @@
     },
     {
       "key": {
+        "uuid": "c0a6df50_46dda974",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/EmbeddedDataSyncCacheConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-04T15:09:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0695932d_3d1d1c55",
+      "range": {
+        "startLine": 37,
+        "startChar": 12,
+        "endLine": 37,
+        "endChar": 20
+      },
+      "revId": "56dd2f646f9a2b5f50ae9128c6d2893bf67a4673",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ef3fdffa_a3c44fff",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/EmbeddedDataSyncCacheConfig.java",
         "patchSetId": 2
@@ -342,6 +414,30 @@
     },
     {
       "key": {
+        "uuid": "a386a2f6_1bb20e74",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/EmbeddedDataSyncCacheConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-04T15:09:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ef3fdffa_a3c44fff",
+      "range": {
+        "startLine": 39,
+        "startChar": 12,
+        "endLine": 39,
+        "endChar": 20
+      },
+      "revId": "56dd2f646f9a2b5f50ae9128c6d2893bf67a4673",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4a39b0bd_87320087",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/EmbeddedDataSyncCacheConfig.java",
         "patchSetId": 2
@@ -362,6 +458,30 @@
       "revId": "56dd2f646f9a2b5f50ae9128c6d2893bf67a4673",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a84ef119_41cbddd3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/EmbeddedDataSyncCacheConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-04T15:09:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4a39b0bd_87320087",
+      "range": {
+        "startLine": 41,
+        "startChar": 12,
+        "endLine": 41,
+        "endChar": 20
+      },
+      "revId": "56dd2f646f9a2b5f50ae9128c6d2893bf67a4673",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -399,6 +519,30 @@
       "writtenOn": "2022-07-04T11:12:53Z",
       "side": 1,
       "message": "Instead of returning Map we can return HazelcastInstance for both data and module sync. and avoid 2 configuration class and keep it common.",
+      "range": {
+        "startLine": 49,
+        "startChar": 11,
+        "endLine": 49,
+        "endChar": 30
+      },
+      "revId": "56dd2f646f9a2b5f50ae9128c6d2893bf67a4673",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a4a6215_e0db7561",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/EmbeddedDataSyncCacheConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-04T15:09:49Z",
+      "side": 1,
+      "message": "Yeah , Even I thought about this but then in the code we need to know the name of the datastore to get the instance of it.\n\nIf we go with the existing approach we just get an instance of distributed map directly.",
+      "parentUuid": "35808559_b5d33f6d",
       "range": {
         "startLine": 49,
         "startChar": 11,
@@ -454,6 +598,30 @@
       "revId": "56dd2f646f9a2b5f50ae9128c6d2893bf67a4673",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3eb209c0_85f65d89",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/EmbeddedDataSyncCacheConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-04T15:09:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "254917c7_79db0fbd",
+      "range": {
+        "startLine": 53,
+        "startChar": 4,
+        "endLine": 65,
+        "endChar": 5
+      },
+      "revId": "56dd2f646f9a2b5f50ae9128c6d2893bf67a4673",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
