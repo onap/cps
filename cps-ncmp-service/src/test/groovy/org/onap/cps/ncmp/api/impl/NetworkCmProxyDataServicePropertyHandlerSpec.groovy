@@ -21,6 +21,7 @@
 
 package org.onap.cps.ncmp.api.impl
 
+import org.onap.cps.ncmp.api.inventory.InventoryPersistence
 import org.onap.cps.spi.exceptions.DataValidationException
 
 import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationError.CM_HANDLE_DOES_NOT_EXIST
@@ -28,9 +29,7 @@ import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.Registra
 import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationError.UNKNOWN_ERROR
 import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.Status
 
-import org.onap.cps.api.CpsDataService
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
-import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.DataNodeBuilder
@@ -38,14 +37,11 @@ import spock.lang.Specification
 
 class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
 
-    def mockCpsDataService = Mock(CpsDataService)
+    def mockInventoryPersistence = Mock(InventoryPersistence)
 
-    def objectUnderTest = new NetworkCmProxyDataServicePropertyHandler(mockCpsDataService)
-    def dataspaceName = 'NCMP-Admin'
-    def anchorName = 'ncmp-dmi-registry'
+    def objectUnderTest = new NetworkCmProxyDataServicePropertyHandler(mockInventoryPersistence)
     def static cmHandleId = 'myHandle1'
     def static cmHandleXpath = "/dmi-registry/cm-handles[@id='${cmHandleId}']"
-    def noTimeStamp = null
 
     def static propertyDataNodes = [new DataNodeBuilder().withXpath("/dmi-registry/cm-handles[@id='${cmHandleId}']/additional-properties[@name='additionalProp1']").withLeaves(['name': 'additionalProp1', 'value': 'additionalValue1']).build(),
                                     new DataNodeBuilder().withXpath("/dmi-registry/cm-handles[@id='${cmHandleId}']/additional-properties[@name='additionalProp2']").withLeaves(['name': 'additionalProp2', 'value': 'additionalValue2']).build(),
@@ -55,16 +51,16 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
 
     def 'Update CM Handle Public Properties: #scenario'() {
         given: 'the CPS service return a CM handle'
-            mockCpsDataService.getDataNode(dataspaceName, anchorName, cmHandleXpath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> cmHandleDataNode
+            mockInventoryPersistence.getDataNode(cmHandleXpath) >> cmHandleDataNode
         and: 'an update cm handle request with public properties updates'
             def cmHandleUpdateRequest = [new NcmpServiceCmHandle(cmHandleId: cmHandleId, publicProperties: updatedPublicProperties)]
         when: 'update data node leaves is called with the update request'
             objectUnderTest.updateCmHandleProperties(cmHandleUpdateRequest)
         then: 'the replace list method is called with correct params'
-            1 * mockCpsDataService.replaceListContent(dataspaceName, anchorName, cmHandleXpath, _, noTimeStamp) >> { args ->
+            1 * mockInventoryPersistence.replaceListContent(cmHandleXpath,_) >> { args ->
                 {
-                    assert args[3].leaves.size() == expectedPropertiesAfterUpdate.size()
-                    assert args[3].leaves.containsAll(convertToProperties(expectedPropertiesAfterUpdate))
+                    assert args[1].leaves.size() == expectedPropertiesAfterUpdate.size()
+                    assert args[1].leaves.containsAll(convertToProperties(expectedPropertiesAfterUpdate))
                 }
             }
         where: 'following public properties updates are made'
@@ -77,16 +73,16 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
 
     def 'Update DMI Properties: #scenario'() {
         given: 'the CPS service return a CM handle'
-            mockCpsDataService.getDataNode(dataspaceName, anchorName, cmHandleXpath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> cmHandleDataNode
+            mockInventoryPersistence.getDataNode(cmHandleXpath) >> cmHandleDataNode
         and: 'an update cm handle request with DMI properties updates'
             def cmHandleUpdateRequest = [new NcmpServiceCmHandle(cmHandleId: cmHandleId, dmiProperties: updatedDmiProperties)]
         when: 'update data node leaves is called with the update request'
             objectUnderTest.updateCmHandleProperties(cmHandleUpdateRequest)
         then: 'replace list method should is called with correct params'
-            expectedCallsToReplaceMethod * mockCpsDataService.replaceListContent(dataspaceName, anchorName, cmHandleXpath, _, noTimeStamp) >> { args ->
+            expectedCallsToReplaceMethod * mockInventoryPersistence.replaceListContent(cmHandleXpath, _) >> { args ->
                 {
-                    assert args[3].leaves.size() == expectedPropertiesAfterUpdate.size()
-                    assert args[3].leaves.containsAll(convertToProperties(expectedPropertiesAfterUpdate))
+                    assert args[1].leaves.size() == expectedPropertiesAfterUpdate.size()
+                    assert args[1].leaves.containsAll(convertToProperties(expectedPropertiesAfterUpdate))
                 }
             }
         where: 'following DMI properties updates are made'
@@ -101,17 +97,17 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
     def 'Update CM Handle Properties, remove all properties: #scenario'() {
         given: 'the CPS service return a CM handle'
             def cmHandleDataNode = new DataNode(xpath: cmHandleXpath, childDataNodes: originalPropertyDataNodes)
-            mockCpsDataService.getDataNode(dataspaceName, anchorName, cmHandleXpath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> cmHandleDataNode
+            mockInventoryPersistence.getDataNode(cmHandleXpath) >> cmHandleDataNode
         and: 'an update cm handle request that removes all public properties(existing and non-existing)'
             def cmHandleUpdateRequest = [new NcmpServiceCmHandle(cmHandleId: cmHandleId, publicProperties: ['publicProp3': null, 'publicProp4': null])]
         when: 'update data node leaves is called with the update request'
             objectUnderTest.updateCmHandleProperties(cmHandleUpdateRequest)
         then: 'the replace list method is not called'
-            0 * mockCpsDataService.replaceListContent(*_)
+            0 * mockInventoryPersistence.replaceListContent(*_)
         then: 'delete data node will be called for any existing property'
-            expectedCallsToDeleteDataNode * mockCpsDataService.deleteDataNode(dataspaceName, anchorName, _, noTimeStamp) >> { arg ->
+            expectedCallsToDeleteDataNode * mockInventoryPersistence.deleteDataNode(_) >> { arg ->
                 {
-                    assert arg[2].contains("@name='publicProp")
+                    assert arg[0].contains("@name='publicProp")
                 }
             }
         where: 'following public properties updates are made'
@@ -124,7 +120,7 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
         given: 'cm handles request'
             def cmHandleUpdateRequest = [new NcmpServiceCmHandle(cmHandleId: cmHandleId, publicProperties: [:], dmiProperties: [:])]
         and: 'data node cannot be found'
-            mockCpsDataService.getDataNode(*_) >> { throw exception }
+            mockInventoryPersistence.getDataNode(*_) >> { throw exception }
         when: 'update data node leaves is called using correct parameters'
             def response = objectUnderTest.updateCmHandleProperties(cmHandleUpdateRequest)
         then: 'one failed registration response'
@@ -149,7 +145,7 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
                                          new NcmpServiceCmHandle(cmHandleId: cmHandleId, publicProperties: ['publicProp1': "value"], dmiProperties: [:]),
                                          new NcmpServiceCmHandle(cmHandleId: cmHandleId, publicProperties: ['publicProp1': "value"], dmiProperties: [:])]
         and: 'data node can be found for 1st and 3rd cm-handle but not for 2nd cm-handle'
-            mockCpsDataService.getDataNode(*_) >> cmHandleDataNode >> { throw new DataNodeNotFoundException('NCMP-Admin', 'ncmp-dmi-registry') } >> cmHandleDataNode
+            mockInventoryPersistence.getDataNode(*_) >> cmHandleDataNode >> { throw new DataNodeNotFoundException('NCMP-Admin', 'ncmp-dmi-registry') } >> cmHandleDataNode
         when: 'update data node leaves is called using correct parameters'
             def cmHandleResponseList = objectUnderTest.updateCmHandleProperties(cmHandleUpdateRequest)
         then: 'response has 3 values'
@@ -171,7 +167,7 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
                 assert it.errorText == "cm-handle does not exist"
             }
         then: 'the replace list method is called twice'
-            2 * mockCpsDataService.replaceListContent(dataspaceName, anchorName, cmHandleXpath, _, noTimeStamp)
+            2 * mockInventoryPersistence.replaceListContent(cmHandleXpath,_)
     }
 
     def convertToProperties(expectedPropertiesAfterUpdateAsMap) {
