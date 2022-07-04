@@ -2,6 +2,512 @@
   "comments": [
     {
       "key": {
+        "uuid": "34294980_40e24bc8",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-04T11:12:53Z",
+      "side": 1,
+      "message": "Break it inot two \"modules-sync\"",
+      "range": {
+        "startLine": 170,
+        "startChar": 8,
+        "endLine": 170,
+        "endChar": 18
+      },
+      "revId": "56dd2f646f9a2b5f50ae9128c6d2893bf67a4673",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "056ffa3a_23224679",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-04T11:12:53Z",
+      "side": 1,
+      "message": "Is it in second? If yes then use \"ttl-time-sec\" else \"ttl-time-ms\" to make it uniform like previous properties.",
+      "range": {
+        "startLine": 171,
+        "startChar": 12,
+        "endLine": 171,
+        "endChar": 19
+      },
+      "revId": "56dd2f646f9a2b5f50ae9128c6d2893bf67a4673",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2567cd13_3d789456",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-04T11:12:53Z",
+      "side": 1,
+      "message": "data-sync",
+      "range": {
+        "startLine": 174,
+        "startChar": 8,
+        "endLine": 174,
+        "endChar": 16
+      },
+      "revId": "56dd2f646f9a2b5f50ae9128c6d2893bf67a4673",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e46e99c_8e838190",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-04T11:12:53Z",
+      "side": 1,
+      "message": "Same as previous comment",
+      "range": {
+        "startLine": 175,
+        "startChar": 12,
+        "endLine": 175,
+        "endChar": 19
+      },
+      "revId": "56dd2f646f9a2b5f50ae9128c6d2893bf67a4673",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "432edcdf_752acebe",
+        "filename": "cps-ncmp-rest-stub/src/main/java/org/onap/cps/ncmp/rest/stub/controller/NetworkCmProxyStubController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-04T11:12:53Z",
+      "side": 1,
+      "message": "NB : CompositeState",
+      "range": {
+        "startLine": 101,
+        "startChar": 71,
+        "endLine": 101,
+        "endChar": 76
+      },
+      "revId": "56dd2f646f9a2b5f50ae9128c6d2893bf67a4673",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9f835bfb_49b0e9fc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/EmbeddedDataSyncCacheConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-04T11:12:53Z",
+      "side": 1,
+      "message": "NB : align with line no 4 and 18",
+      "range": {
+        "startLine": 2,
+        "startChar": 82,
+        "endLine": 2,
+        "endChar": 83
+      },
+      "revId": "56dd2f646f9a2b5f50ae9128c6d2893bf67a4673",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "335f11ef_8ae114ff",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/EmbeddedDataSyncCacheConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-04T11:12:53Z",
+      "side": 1,
+      "message": "Make it private. \nNB : I prefer to avoid defining new constant but use string literal at line no 50 \ngetMap(\"dataSyncEmbeddedCache\")",
+      "range": {
+        "startLine": 34,
+        "startChar": 4,
+        "endLine": 34,
+        "endChar": 11
+      },
+      "revId": "56dd2f646f9a2b5f50ae9128c6d2893bf67a4673",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0695932d_3d1d1c55",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/EmbeddedDataSyncCacheConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-04T11:12:53Z",
+      "side": 1,
+      "message": "Avoid unnecessary auto-boxing and unboxing :\n\nInteger class is used where we need to treat an int variable like an object. \nHere I can\u0027t see any reason to wrapper class as it is overhread at  \"mapConfig.setTimeToLiveSeconds(timeToLive);\" (Line no 61).\n\npublic MapConfig setTimeToLiveSeconds(int timeToLiveSeconds)",
+      "range": {
+        "startLine": 37,
+        "startChar": 12,
+        "endLine": 37,
+        "endChar": 20
+      },
+      "revId": "56dd2f646f9a2b5f50ae9128c6d2893bf67a4673",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef3fdffa_a3c44fff",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/EmbeddedDataSyncCacheConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-04T11:12:53Z",
+      "side": 1,
+      "message": "Same as above",
+      "range": {
+        "startLine": 39,
+        "startChar": 12,
+        "endLine": 39,
+        "endChar": 20
+      },
+      "revId": "56dd2f646f9a2b5f50ae9128c6d2893bf67a4673",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4a39b0bd_87320087",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/EmbeddedDataSyncCacheConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-04T11:12:53Z",
+      "side": 1,
+      "message": "Same as above",
+      "range": {
+        "startLine": 41,
+        "startChar": 12,
+        "endLine": 41,
+        "endChar": 20
+      },
+      "revId": "56dd2f646f9a2b5f50ae9128c6d2893bf67a4673",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e538e02_42ba58d2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/EmbeddedDataSyncCacheConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-04T11:12:53Z",
+      "side": 1,
+      "message": "Remove name attribute :\n\nname attribute of @Bean annotation is used, when we want to change the default bean name. The default bean name is @Bean annotated method name. Here method name is itself is \"dataSyncCache\".",
+      "range": {
+        "startLine": 48,
+        "startChar": 9,
+        "endLine": 48,
+        "endChar": 33
+      },
+      "revId": "56dd2f646f9a2b5f50ae9128c6d2893bf67a4673",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35808559_b5d33f6d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/EmbeddedDataSyncCacheConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-04T11:12:53Z",
+      "side": 1,
+      "message": "Instead of returning Map we can return HazelcastInstance for both data and module sync. and avoid 2 configuration class and keep it common.",
+      "range": {
+        "startLine": 49,
+        "startChar": 11,
+        "endLine": 49,
+        "endChar": 30
+      },
+      "revId": "56dd2f646f9a2b5f50ae9128c6d2893bf67a4673",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b2fde96_704fe238",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/EmbeddedDataSyncCacheConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-04T11:12:53Z",
+      "side": 1,
+      "message": "initializeDefaultMapConfig",
+      "range": {
+        "startLine": 50,
+        "startChar": 46,
+        "endLine": 50,
+        "endChar": 52
+      },
+      "revId": "56dd2f646f9a2b5f50ae9128c6d2893bf67a4673",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "254917c7_79db0fbd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/EmbeddedDataSyncCacheConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-04T11:12:53Z",
+      "side": 1,
+      "message": "can be merged :\n\n  private Config initializeDefaultMapConfig() {\n        final Config config \u003d new Config();\n        final MapConfig mapConfig \u003d new MapConfig(DATA_SYNC_CM_HANDLE_MAP);\n        mapConfig.setTimeToLiveSeconds(timeToLive);\n        mapConfig.setBackupCount(cacheBackupCount);\n        mapConfig.setAsyncBackupCount(cacheAsyncBackupCount);\n        config.addMapConfig(mapConfig);\n        return config;\n    }",
+      "range": {
+        "startLine": 53,
+        "startChar": 4,
+        "endLine": 65,
+        "endChar": 5
+      },
+      "revId": "56dd2f646f9a2b5f50ae9128c6d2893bf67a4673",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7f92aab9_04330f85",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/EmbeddedModuleSyncCacheConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-04T11:12:53Z",
+      "side": 1,
+      "message": "Same a previous",
+      "range": {
+        "startLine": 2,
+        "startChar": 82,
+        "endLine": 2,
+        "endChar": 83
+      },
+      "revId": "56dd2f646f9a2b5f50ae9128c6d2893bf67a4673",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b041c4f7_22faaf34",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/EmbeddedModuleSyncCacheConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-04T11:12:53Z",
+      "side": 1,
+      "message": "We can avoid 2 configuration and create a common CacheConfig for both data and module.",
+      "range": {
+        "startLine": 32,
+        "startChar": 13,
+        "endLine": 32,
+        "endChar": 43
+      },
+      "revId": "56dd2f646f9a2b5f50ae9128c6d2893bf67a4673",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88bf6583_f8028b8e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/EmbeddedModuleSyncCacheConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-04T11:12:53Z",
+      "side": 1,
+      "message": "Make it private. \nNB : I prefer to avoid defining new constant but use string literal at line no 50 \ngetMap(\"dataSyncEmbeddedCache\")",
+      "range": {
+        "startLine": 37,
+        "startChar": 12,
+        "endLine": 37,
+        "endChar": 20
+      },
+      "revId": "56dd2f646f9a2b5f50ae9128c6d2893bf67a4673",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a52a05c_d8e7d765",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/EmbeddedModuleSyncCacheConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-04T11:12:53Z",
+      "side": 1,
+      "message": "Same a previous",
+      "range": {
+        "startLine": 39,
+        "startChar": 12,
+        "endLine": 39,
+        "endChar": 20
+      },
+      "revId": "56dd2f646f9a2b5f50ae9128c6d2893bf67a4673",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c99f7e33_92b71287",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/EmbeddedModuleSyncCacheConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-04T11:12:53Z",
+      "side": 1,
+      "message": "Same a previous",
+      "range": {
+        "startLine": 41,
+        "startChar": 12,
+        "endLine": 41,
+        "endChar": 20
+      },
+      "revId": "56dd2f646f9a2b5f50ae9128c6d2893bf67a4673",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "64a71f0f_499d2233",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/EmbeddedModuleSyncCacheConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-04T11:12:53Z",
+      "side": 1,
+      "message": "Same a previous",
+      "range": {
+        "startLine": 43,
+        "startChar": 4,
+        "endLine": 65,
+        "endChar": 5
+      },
+      "revId": "56dd2f646f9a2b5f50ae9128c6d2893bf67a4673",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a85d908b_c528b2e9",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/EmbeddedDataSyncCacheConfigSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-04T11:12:53Z",
+      "side": 1,
+      "message": "Same a previous",
+      "range": {
+        "startLine": 2,
+        "startChar": 82,
+        "endLine": 2,
+        "endChar": 83
+      },
+      "revId": "56dd2f646f9a2b5f50ae9128c6d2893bf67a4673",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "678afc3f_3f689f03",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/EmbeddedDataSyncCacheConfigSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-04T11:12:53Z",
+      "side": 1,
+      "message": "As we write a common configuration it would be merged with module sync.",
+      "range": {
+        "startLine": 31,
+        "startChar": 6,
+        "endLine": 31,
+        "endChar": 38
+      },
+      "revId": "56dd2f646f9a2b5f50ae9128c6d2893bf67a4673",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b48c0958_e0974234",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/EmbeddedModuleSyncCacheConfigSpec.groovy",
         "patchSetId": 2
@@ -42,6 +548,29 @@
         "startChar": 6,
         "endLine": 31,
         "endChar": 40
+      },
+      "revId": "56dd2f646f9a2b5f50ae9128c6d2893bf67a4673",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3bd1e7d3_b1f60a76",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/EmbeddedModuleSyncCacheConfigSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-04T11:12:53Z",
+      "side": 1,
+      "message": "Can be avoided duplicate/identical (except the Distributed map key) by merging both data and module sync with common configuration.",
+      "range": {
+        "startLine": 33,
+        "startChar": 4,
+        "endLine": 40,
+        "endChar": 5
       },
       "revId": "56dd2f646f9a2b5f50ae9128c6d2893bf67a4673",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
