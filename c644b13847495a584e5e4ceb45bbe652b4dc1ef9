@@ -140,6 +140,30 @@
     },
     {
       "key": {
+        "uuid": "d6bc7260_bdcb9c49",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-04T10:41:46Z",
+      "side": 1,
+      "message": "I will create a Tech Debt Jira for this, you can leave it a is for now",
+      "parentUuid": "8ed84271_b37f3cc2",
+      "range": {
+        "startLine": 193,
+        "startChar": 38,
+        "endLine": 193,
+        "endChar": 50
+      },
+      "revId": "c644b13847495a584e5e4ceb45bbe652b4dc1ef9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cf8a4c6a_512f0d8c",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
         "patchSetId": 4
@@ -206,6 +230,54 @@
       "revId": "c644b13847495a584e5e4ceb45bbe652b4dc1ef9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8d404a1a_baf096ac",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-04T10:41:46Z",
+      "side": 1,
+      "message": "was Guavem, now done by Java",
+      "parentUuid": "5031ff81_cc6dfd50",
+      "range": {
+        "startLine": 188,
+        "startChar": 45,
+        "endLine": 188,
+        "endChar": 48
+      },
+      "revId": "c644b13847495a584e5e4ceb45bbe652b4dc1ef9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f622e624_9baf9147",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-04T10:41:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "416dc79e_987718fc",
+      "range": {
+        "startLine": 188,
+        "startChar": 45,
+        "endLine": 188,
+        "endChar": 51
+      },
+      "revId": "c644b13847495a584e5e4ceb45bbe652b4dc1ef9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -294,6 +366,52 @@
         "startChar": 44,
         "endLine": 261,
         "endChar": 62
+      },
+      "revId": "c644b13847495a584e5e4ceb45bbe652b4dc1ef9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3cbca9fb_648bd6b4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/InventoryPersistenceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-04T10:41:46Z",
+      "side": 1,
+      "message": "sample xpath",
+      "range": {
+        "startLine": 268,
+        "startChar": 41,
+        "endLine": 268,
+        "endChar": 59
+      },
+      "revId": "c644b13847495a584e5e4ceb45bbe652b4dc1ef9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d7d9e015_fffde0b9",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/InventoryPersistenceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-04T10:41:46Z",
+      "side": 1,
+      "message": "why sudden uppercase",
+      "range": {
+        "startLine": 275,
+        "startChar": 43,
+        "endLine": 275,
+        "endChar": 61
       },
       "revId": "c644b13847495a584e5e4ceb45bbe652b4dc1ef9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
