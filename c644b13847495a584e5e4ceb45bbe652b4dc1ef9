@@ -237,6 +237,29 @@
     },
     {
       "key": {
+        "uuid": "be53eb9e_587cd254",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-04T12:14:45Z",
+      "side": 1,
+      "message": "i was wondering about this one, so it was unused, good!",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 110
+      },
+      "revId": "c644b13847495a584e5e4ceb45bbe652b4dc1ef9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ed84271_b37f3cc2",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
         "patchSetId": 4
@@ -532,6 +555,30 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "52f40ca9_a5fe0cf9",
+      "range": {
+        "startLine": 64,
+        "startChar": 8,
+        "endLine": 64,
+        "endChar": 20
+      },
+      "revId": "c644b13847495a584e5e4ceb45bbe652b4dc1ef9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "18ceeb04_dfc3aa19",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-04T12:14:45Z",
+      "side": 1,
+      "message": "ah it was unused too?",
+      "parentUuid": "3721de63_d75bddaa",
       "range": {
         "startLine": 64,
         "startChar": 8,
