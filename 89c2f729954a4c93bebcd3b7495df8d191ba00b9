@@ -22,6 +22,30 @@
       "revId": "89c2f729954a4c93bebcd3b7495df8d191ba00b9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d5bc965a_8c7632d4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-07-04T09:48:41Z",
+      "side": 0,
+      "message": "not at the moment as another class is still using this constants, will be pushing a new patch for that refactoring",
+      "parentUuid": "3af3cb03_eba7a902",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 78
+      },
+      "revId": "89c2f729954a4c93bebcd3b7495df8d191ba00b9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }

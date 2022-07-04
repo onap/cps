@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d47a9aad_c6814987",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-07-04T09:48:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8aa55586_d3774cdc",
+      "range": {
+        "startLine": 269,
+        "startChar": 0,
+        "endLine": 276,
+        "endChar": 5
+      },
+      "revId": "998212fdb4c3db16a06f9c1175e450fb5687d9e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3b8c2038_900edbe9",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 2
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "8f9cc1c9_b9bddc67",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-07-04T09:48:41Z",
+      "side": 1,
+      "message": "Done - only moving the persistence related method , not the whole try block.",
+      "parentUuid": "3b8c2038_900edbe9",
+      "range": {
+        "startLine": 278,
+        "startChar": 0,
+        "endLine": 290,
+        "endChar": 5
+      },
+      "revId": "998212fdb4c3db16a06f9c1175e450fb5687d9e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9374ebf2_daf12ade",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/InventoryPersistenceSpec.groovy",
         "patchSetId": 2
@@ -68,6 +116,30 @@
       "revId": "998212fdb4c3db16a06f9c1175e450fb5687d9e2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "02a00584_36d9222b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/InventoryPersistenceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-07-04T09:48:41Z",
+      "side": 1,
+      "message": "yes inventory persistence is covered",
+      "parentUuid": "9374ebf2_daf12ade",
+      "range": {
+        "startLine": 214,
+        "startChar": 0,
+        "endLine": 216,
+        "endChar": 5
+      },
+      "revId": "998212fdb4c3db16a06f9c1175e450fb5687d9e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
