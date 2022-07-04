@@ -22,6 +22,30 @@
       "revId": "56dd2f646f9a2b5f50ae9128c6d2893bf67a4673",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "950b2691_5e1fd16d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/EmbeddedModuleSyncCacheConfigSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-04T09:43:13Z",
+      "side": 1,
+      "message": "I had to write the test for the config class as the coverage check was failing.\nWe might even exclude the *Config from the coverage check.\nWhat do you say guys??",
+      "parentUuid": "b48c0958_e0974234",
+      "range": {
+        "startLine": 31,
+        "startChar": 6,
+        "endLine": 31,
+        "endChar": 40
+      },
+      "revId": "56dd2f646f9a2b5f50ae9128c6d2893bf67a4673",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
