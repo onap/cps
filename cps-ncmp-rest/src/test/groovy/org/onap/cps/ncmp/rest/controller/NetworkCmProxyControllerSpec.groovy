@@ -432,7 +432,7 @@ class NetworkCmProxyControllerSpec extends Specification {
 
     def compositeStateTestObject() {
         new CompositeState(cmHandleState: CmHandleState.ADVISED,
-            lockReason: CompositeState.LockReason.builder().lockReasonCategory(LockReasonCategory.LOCKED_MISBEHAVING).details("lock misbehaving details").build(),
+            lockReason: CompositeState.LockReason.builder().lockReasonCategory(LockReasonCategory.LOCKED_MODULE_SYNC_FAILED).details("lock details").build(),
             lastUpdateTime: formattedDateAndTime.toString(),
             dataSyncEnabled: false,
             dataStores: dataStores())
@@ -448,7 +448,7 @@ class NetworkCmProxyControllerSpec extends Specification {
             '"state":',
             '"cmHandleState":"ADVISED"',
             '"reason":"LOCKED_MISBEHAVING"',
-            '"details":"lock misbehaving details"',
+            '"details":"lock details"',
             '"lastUpdateTime":"2022-12-31T20:30:40.000+0000"',
             '"dataSyncEnabled":false',
             '"dataSyncState":',
