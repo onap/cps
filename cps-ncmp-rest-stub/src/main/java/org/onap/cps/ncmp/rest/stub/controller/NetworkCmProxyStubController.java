@@ -34,8 +34,10 @@ import javax.validation.constraints.NotNull;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.rest.api.NetworkCmProxyApi;
 import org.onap.cps.ncmp.rest.model.CmHandleQueryParameters;
+import org.onap.cps.ncmp.rest.model.RestModuleDefinition;
 import org.onap.cps.ncmp.rest.model.RestModuleReference;
 import org.onap.cps.ncmp.rest.model.RestOutputCmHandle;
+import org.onap.cps.ncmp.rest.model.RestOutputCmHandleCompositeState;
 import org.onap.cps.ncmp.rest.model.RestOutputCmHandlePublicProperties;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
@@ -92,6 +94,16 @@ public class NetworkCmProxyStubController implements NetworkCmProxyApi {
     @Override
     public ResponseEntity<RestOutputCmHandlePublicProperties> getCmHandlePublicPropertiesByCmHandleId(
         final String cmHandleId) {
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+    }
+
+    @Override
+    public ResponseEntity<RestOutputCmHandleCompositeState> getCmHandleStateByCmHandleId(final String cmHandle) {
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+    }
+
+    @Override
+    public ResponseEntity<List<RestModuleDefinition>> getModuleDefinitionsByCmHandleId(final String cmHandle) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
