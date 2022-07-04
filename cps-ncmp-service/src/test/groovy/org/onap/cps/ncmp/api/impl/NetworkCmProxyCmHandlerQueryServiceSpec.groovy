@@ -22,8 +22,6 @@ package org.onap.cps.ncmp.api.impl
 
 import org.onap.cps.ncmp.api.NetworkCmProxyCmHandlerQueryService
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence
-import org.onap.cps.spi.CpsAdminPersistenceService
-import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.model.Anchor
 import org.onap.cps.spi.model.CmHandleQueryServiceParameters
 import org.onap.cps.spi.model.ConditionProperties

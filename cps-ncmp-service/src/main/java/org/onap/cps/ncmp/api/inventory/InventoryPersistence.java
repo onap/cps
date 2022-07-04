@@ -241,14 +241,11 @@ public class InventoryPersistence {
     /**
      * Get data node of given cm handle.
      *
-     * @param cmHandle cm handle
+     * @param cmHandleId cmHandle ID
      * @return data node
      */
-    private DataNode getCmHandleDataNode(final String cmHandle) {
-        return cpsDataService.getDataNode(NCMP_DATASPACE_NAME,
-            NCMP_DMI_REGISTRY_ANCHOR,
-            String.format(xpathCmHandle, cmHandle),
-            FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
+    public DataNode getCmHandleDataNode(final String cmHandleId) {
+        return this.getDataNode(String.format(xpathCmHandle, cmHandleId));
     }
 
     /**
@@ -268,5 +265,26 @@ public class InventoryPersistence {
      */
     public Collection<Anchor> getAnchors() {
         return cpsAdminPersistenceService.getAnchors(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME);
+    }
+
+    /**
+     * Replaces list content by removing all existing elements and inserting the given new elements as data nodes.
+     *
+     * @param parentNodeXpath   parent node xpath
+     * @param dataNodes         datanodes representing the updated data
+     */
+    public void replaceListContent(final String parentNodeXpath, final Collection<DataNode> dataNodes) {
+        cpsDataService.replaceListContent(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
+                parentNodeXpath, dataNodes, NO_TIMESTAMP);
+    }
+
+    /**
+     * Deletes data node for given anchor and dataspace.
+     *
+     * @param dataNodeXpath data node xpath
+     */
+    public void deleteDataNode(final String dataNodeXpath) {
+        cpsDataService.deleteDataNode(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, dataNodeXpath,
+                NO_TIMESTAMP);
     }
 }
