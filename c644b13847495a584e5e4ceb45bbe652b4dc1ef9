@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b63d7e30_2c935f8e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-04T10:16:28Z",
+      "side": 1,
+      "message": "This dependency is no longer used now.",
+      "range": {
+        "startLine": 70,
+        "startChar": 4,
+        "endLine": 70,
+        "endChar": 48
+      },
+      "revId": "c644b13847495a584e5e4ceb45bbe652b4dc1ef9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cbaad550_a27c3317",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-04T10:16:28Z",
+      "side": 1,
+      "message": "Now that it is used at only one place , you can make an implicit call.",
+      "range": {
+        "startLine": 294,
+        "startChar": 4,
+        "endLine": 296,
+        "endChar": 5
+      },
+      "revId": "c644b13847495a584e5e4ceb45bbe652b4dc1ef9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "416dc79e_987718fc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-04T10:16:28Z",
+      "side": 1,
+      "message": "Is this for fixing that Sonar issue we had??",
+      "range": {
+        "startLine": 188,
+        "startChar": 45,
+        "endLine": 188,
+        "endChar": 51
+      },
+      "revId": "c644b13847495a584e5e4ceb45bbe652b4dc1ef9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
