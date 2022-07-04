@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b48c0958_e0974234",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/EmbeddedModuleSyncCacheConfigSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-07-04T09:32:28Z",
+      "side": 1,
+      "message": "I would debate if these tests are required but if so they can be combined into one test class as they are very small?",
+      "range": {
+        "startLine": 31,
+        "startChar": 6,
+        "endLine": 31,
+        "endChar": 40
+      },
+      "revId": "56dd2f646f9a2b5f50ae9128c6d2893bf67a4673",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
