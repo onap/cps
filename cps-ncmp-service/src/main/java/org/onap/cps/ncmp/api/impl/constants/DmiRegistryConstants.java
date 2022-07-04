@@ -32,11 +32,5 @@ public final class DmiRegistryConstants {
 
     public static final String NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME = "NFP-Operational";
 
-    public static final String NCMP_DATASPACE_NAME = "NCMP-Admin";
-
-    public static final String NCMP_DMI_REGISTRY_ANCHOR = "ncmp-dmi-registry";
-
-    public static final String NCMP_DMI_REGISTRY_PARENT = "/dmi-registry";
-
     public static final OffsetDateTime NO_TIMESTAMP = null;
 }

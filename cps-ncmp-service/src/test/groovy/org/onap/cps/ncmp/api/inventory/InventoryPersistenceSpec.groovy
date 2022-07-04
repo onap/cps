@@ -41,6 +41,7 @@ import java.time.OffsetDateTime
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 
+import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NO_TIMESTAMP
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
 
@@ -283,4 +284,21 @@ class InventoryPersistenceSpec extends Specification {
         then: 'the admin persistence service method to query anchors is invoked once with a specific dataspace name'
             1 * mockCpsAdminPersistenceService.getAnchors('NFP-Operational')
     }
+
+    def 'Replace list content'() {
+        when: 'replace list content method is called with xpath and data nodes collection'
+            objectUnderTest.replaceListContent('sample xpath', [new DataNode()])
+        then: 'the cps data service method to replace list content is invoked once with same parameters'
+            1 * mockCpsDataService.replaceListContent('NCMP-Admin', 'ncmp-dmi-registry',
+                    'sample xpath', [new DataNode()], NO_TIMESTAMP);
+    }
+
+    def 'Delete data node via xPath'() {
+        when: 'Delete data node method is called with xpath as parameter'
+            objectUnderTest.deleteDataNode('sample dataNode xpath')
+        then: 'the cps data service method to delete data node is invoked once with the same xPath'
+            1 * mockCpsDataService.deleteDataNode('NCMP-Admin', 'ncmp-dmi-registry',
+                    'sample dataNode xpath', NO_TIMESTAMP);
+    }
+
 }

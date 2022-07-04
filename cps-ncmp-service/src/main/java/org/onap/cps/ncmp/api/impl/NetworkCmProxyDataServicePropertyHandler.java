@@ -23,10 +23,7 @@ package org.onap.cps.ncmp.api.impl;
 
 import static org.onap.cps.ncmp.api.impl.NetworkCmProxyDataServicePropertyHandler.PropertyType.DMI_PROPERTY;
 import static org.onap.cps.ncmp.api.impl.NetworkCmProxyDataServicePropertyHandler.PropertyType.PUBLIC_PROPERTY;
-import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NCMP_DATASPACE_NAME;
-import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NCMP_DMI_REGISTRY_ANCHOR;
-import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NCMP_DMI_REGISTRY_PARENT;
-import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NO_TIMESTAMP;
+import static org.onap.cps.ncmp.api.inventory.InventoryPersistence.CM_HANDLE_XPATH_TEMPLATE;
 
 import com.google.common.collect.ImmutableMap;
 import java.util.ArrayList;
@@ -39,11 +36,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.api.CpsDataService;
+import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse;
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationError;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
-import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.spi.model.DataNode;
@@ -58,9 +54,7 @@ import org.springframework.stereotype.Service;
 @SuppressWarnings("squid:S5852")
 public class NetworkCmProxyDataServicePropertyHandler {
 
-    private static final String CM_HANDLE_XPATH_TEMPLATE = NCMP_DMI_REGISTRY_PARENT + "/cm-handles[@id='%s']";
-
-    private final CpsDataService cpsDataService;
+    private final InventoryPersistence inventoryPersistence;
 
     /**
      * Iterates over incoming ncmpServiceCmHandles and update the dataNodes based on the updated attributes.
@@ -77,8 +71,7 @@ public class NetworkCmProxyDataServicePropertyHandler {
                 CpsValidator.validateNameCharacters(cmHandle);
                 final String cmHandleXpath = String.format(CM_HANDLE_XPATH_TEMPLATE, cmHandle);
                 final DataNode existingCmHandleDataNode =
-                        cpsDataService.getDataNode(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cmHandleXpath,
-                                FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
+                        inventoryPersistence.getDataNode(cmHandleXpath);
                 processUpdates(existingCmHandleDataNode, ncmpServiceCmHandle);
                 cmHandleRegistrationResponses.add(CmHandleRegistrationResponse.createSuccessResponse(cmHandle));
             } catch (final DataNodeNotFoundException e) {
@@ -120,8 +113,7 @@ public class NetworkCmProxyDataServicePropertyHandler {
         if (replacementPropertyDataNodes.isEmpty()) {
             removeAllProperties(existingCmHandleDataNode, propertyType);
         } else {
-            cpsDataService.replaceListContent(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                    existingCmHandleDataNode.getXpath(), replacementPropertyDataNodes, NO_TIMESTAMP);
+            inventoryPersistence.replaceListContent(existingCmHandleDataNode.getXpath(), replacementPropertyDataNodes);
         }
     }
 
@@ -130,8 +122,7 @@ public class NetworkCmProxyDataServicePropertyHandler {
             final Matcher matcher = propertyType.propertyXpathPattern.matcher(dataNode.getXpath());
             if (matcher.find()) {
                 log.info("Deleting dataNode with xpath : [{}]", dataNode.getXpath());
-                cpsDataService.deleteDataNode(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, dataNode.getXpath(),
-                        NO_TIMESTAMP);
+                inventoryPersistence.deleteDataNode(dataNode.getXpath());
             }
         });
     }
