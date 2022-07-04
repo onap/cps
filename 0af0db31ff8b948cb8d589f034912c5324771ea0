@@ -22,6 +22,145 @@
       "revId": "0af0db31ff8b948cb8d589f034912c5324771ea0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d7bfd2b0_c283b13e",
+        "filename": "cps-dependencies/pom.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-04T15:57:41Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "19b9eaea_b69b0c26",
+      "range": {
+        "startLine": 216,
+        "startChar": 16,
+        "endLine": 216,
+        "endChar": 40
+      },
+      "revId": "0af0db31ff8b948cb8d589f034912c5324771ea0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "149a9417_6e1232ec",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/DataSyncDataStoreConfig.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-04T15:57:41Z",
+      "side": 1,
+      "message": "not sure why you us the word DataStore\n\nI stil prefer DatSyncSemaphores or similar to indicate the purpose of the values we want to share between the Services instances. \n(maybe be goot to talk in office tomorrow about this :-))",
+      "range": {
+        "startLine": 32,
+        "startChar": 21,
+        "endLine": 32,
+        "endChar": 30
+      },
+      "revId": "0af0db31ff8b948cb8d589f034912c5324771ea0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "68a6807c_29b6c734",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/DataSyncDataStoreConfig.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-04T15:57:41Z",
+      "side": 1,
+      "message": "can you explain the function of these in a small walkthrough tomorrow\nI also want to question the need to expose (adn possible document) them or will defaults suffice?!",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 38
+      },
+      "revId": "0af0db31ff8b948cb8d589f034912c5324771ea0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "29c96020_df649ceb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/ModuleSyncDataStoreConfig.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-04T15:57:41Z",
+      "side": 1,
+      "message": "remove \u0027cache\u0027, not consistent with setter below (line #55)",
+      "range": {
+        "startLine": 37,
+        "startChar": 16,
+        "endLine": 37,
+        "endChar": 21
+      },
+      "revId": "0af0db31ff8b948cb8d589f034912c5324771ea0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4bc0cf55_2b75bf4b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/ModuleSyncDataStoreConfig.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-04T15:57:41Z",
+      "side": 1,
+      "message": "common method could be extracted out in a abstract superclass : Abstract...Config\n(not sure if it is worth it, you can decide)\n\n   abstract String getConfigName();\n   abstract int getBackupCount();\n   abstract int getAsynchCacheBackupCount();\n\n\n    private Config initializeDefaultMapConfig() {\n        final Config config \u003d new Config();\n        final MapConfig mapConfig \u003d new MapConfig(getConfigName());\n        mapConfig.setTimeToLiveSeconds(timeToLiveSeconds);\n        mapConfig.setBackupCount(getBackupCount());\n        mapConfig.setAsyncBackupCount(getAsyncBackupCount());\n        config.addMapConfig(mapConfig);\n        return config;\n    }",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 5
+      },
+      "revId": "0af0db31ff8b948cb8d589f034912c5324771ea0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0257bd4d_f65dea30",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/DataStoreConfigSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-04T15:57:41Z",
+      "side": 1,
+      "message": "prefer 2 separate tests!",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 5
+      },
+      "revId": "0af0db31ff8b948cb8d589f034912c5324771ea0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
