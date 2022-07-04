@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "01e5742b_c708a5cb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/DataSyncDataStoreConfig.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-04T17:18:15Z",
+      "side": 1,
+      "message": "😊\nI just had this definition in my mind.\n\"A distributed data store is a system that stores and processes data on multiple machines.\"\nTerm datastore comes from the technology itself.\nBut I am open to name it differently.",
+      "parentUuid": "149a9417_6e1232ec",
+      "range": {
+        "startLine": 32,
+        "startChar": 21,
+        "endLine": 32,
+        "endChar": 30
+      },
+      "revId": "0af0db31ff8b948cb8d589f034912c5324771ea0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "68a6807c_29b6c734",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/DataSyncDataStoreConfig.java",
         "patchSetId": 4
@@ -83,6 +107,30 @@
       "writtenOn": "2022-07-04T15:57:41Z",
       "side": 1,
       "message": "can you explain the function of these in a small walkthrough tomorrow\nI also want to question the need to expose (adn possible document) them or will defaults suffice?!",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 38
+      },
+      "revId": "0af0db31ff8b948cb8d589f034912c5324771ea0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "79a37028_bed6dd78",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/DataSyncDataStoreConfig.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-04T17:18:15Z",
+      "side": 1,
+      "message": "yeah..I can do a code walkthrough with the team.\n\nbackupCount : number of backups we want to make.\nasyncBackupCount : out of the defined backupCount , how much backups should be made asynchronously.",
+      "parentUuid": "68a6807c_29b6c734",
       "range": {
         "startLine": 36,
         "startChar": 0,
@@ -118,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "f6c99999_bbd467df",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/ModuleSyncDataStoreConfig.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-04T17:18:15Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "29c96020_df649ceb",
+      "range": {
+        "startLine": 37,
+        "startChar": 16,
+        "endLine": 37,
+        "endChar": 21
+      },
+      "revId": "0af0db31ff8b948cb8d589f034912c5324771ea0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4bc0cf55_2b75bf4b",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/ModuleSyncDataStoreConfig.java",
         "patchSetId": 4
@@ -129,6 +201,30 @@
       "writtenOn": "2022-07-04T15:57:41Z",
       "side": 1,
       "message": "common method could be extracted out in a abstract superclass : Abstract...Config\n(not sure if it is worth it, you can decide)\n\n   abstract String getConfigName();\n   abstract int getBackupCount();\n   abstract int getAsynchCacheBackupCount();\n\n\n    private Config initializeDefaultMapConfig() {\n        final Config config \u003d new Config();\n        final MapConfig mapConfig \u003d new MapConfig(getConfigName());\n        mapConfig.setTimeToLiveSeconds(timeToLiveSeconds);\n        mapConfig.setBackupCount(getBackupCount());\n        mapConfig.setAsyncBackupCount(getAsyncBackupCount());\n        config.addMapConfig(mapConfig);\n        return config;\n    }",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 5
+      },
+      "revId": "0af0db31ff8b948cb8d589f034912c5324771ea0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e59fed6_340dfed0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/ModuleSyncDataStoreConfig.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-04T17:18:15Z",
+      "side": 1,
+      "message": "The reason I am not going this way (at the moment) is I want to keep the configs for Module sync and Data Sync separate.\nWe are not sure how both of these things will behave.\nWe might need to tune them separately at a later point in time.\nBoth stores can need different tuning params.\n\nI know there is little duplication and can be easily extracted out.\nBut I have this reason for not doing at the moment..",
+      "parentUuid": "4bc0cf55_2b75bf4b",
       "range": {
         "startLine": 51,
         "startChar": 0,
