@@ -48,6 +48,29 @@
     },
     {
       "key": {
+        "uuid": "5537c67c_8cfd769e",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-04T11:32:58Z",
+      "side": 1,
+      "message": "what does this do?",
+      "range": {
+        "startLine": 172,
+        "startChar": 12,
+        "endLine": 172,
+        "endChar": 30
+      },
+      "revId": "56dd2f646f9a2b5f50ae9128c6d2893bf67a4673",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2567cd13_3d789456",
         "filename": "cps-application/src/main/resources/application.yml",
         "patchSetId": 2
@@ -163,6 +186,29 @@
     },
     {
       "key": {
+        "uuid": "788e2ff0_02ac3bd6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/EmbeddedDataSyncCacheConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-04T11:32:58Z",
+      "side": 1,
+      "message": "wil there be different config classes for each cache or one for all, this might impact the name.\nI am unsure of teh scope of you user story it might need a little groom still? even jsut to agree the scope ie. wich cache are we implementing as part of this first US, do we need to create more US?",
+      "range": {
+        "startLine": 32,
+        "startChar": 13,
+        "endLine": 32,
+        "endChar": 41
+      },
+      "revId": "56dd2f646f9a2b5f50ae9128c6d2893bf67a4673",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "335f11ef_8ae114ff",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/EmbeddedDataSyncCacheConfig.java",
         "patchSetId": 2
@@ -174,6 +220,30 @@
       "writtenOn": "2022-07-04T11:12:53Z",
       "side": 1,
       "message": "Make it private. \nNB : I prefer to avoid defining new constant but use string literal at line no 50 \ngetMap(\"dataSyncEmbeddedCache\")",
+      "range": {
+        "startLine": 34,
+        "startChar": 4,
+        "endLine": 34,
+        "endChar": 11
+      },
+      "revId": "56dd2f646f9a2b5f50ae9128c6d2893bf67a4673",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "93812c21_5bc33dc5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/EmbeddedDataSyncCacheConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-04T11:32:58Z",
+      "side": 1,
+      "message": "agreed, you basically have 2 names for the same thing. A well names string literal should do\ne.g. dataSyncSemaphors  (is the scope dat sync and/or module sync?!)",
+      "parentUuid": "335f11ef_8ae114ff",
       "range": {
         "startLine": 34,
         "startChar": 4,
