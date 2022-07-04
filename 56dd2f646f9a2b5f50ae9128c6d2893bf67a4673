@@ -94,6 +94,29 @@
     },
     {
       "key": {
+        "uuid": "990ecce8_9c0d5568",
+        "filename": "cps-dependencies/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-04T11:18:15Z",
+      "side": 1,
+      "message": "Can\u0027t we use hazelcast-spring as below :\n\n\u003cartifactId\u003ehazelcast-spring\u003c/artifactId\u003e\n\u003cversion\u003e5.1.2\u003c/version\u003e \n\nhazelcast-spring–5.1.2.jar — This is the library to integrate Hazelcast with Spring based applications.",
+      "range": {
+        "startLine": 215,
+        "startChar": 16,
+        "endLine": 216,
+        "endChar": 40
+      },
+      "revId": "56dd2f646f9a2b5f50ae9128c6d2893bf67a4673",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "432edcdf_752acebe",
         "filename": "cps-ncmp-rest-stub/src/main/java/org/onap/cps/ncmp/rest/stub/controller/NetworkCmProxyStubController.java",
         "patchSetId": 2
