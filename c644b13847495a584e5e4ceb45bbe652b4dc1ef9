@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "09903fdb_41969416",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-04T10:20:33Z",
+      "side": 1,
+      "message": "no need for private method here anymore, just use inventoryPersistence.queryDataNodes directly instead",
+      "range": {
+        "startLine": 217,
+        "startChar": 27,
+        "endLine": 217,
+        "endChar": 41
+      },
+      "revId": "c644b13847495a584e5e4ceb45bbe652b4dc1ef9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c6eb30bf_60f490b2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-04T10:20:33Z",
+      "side": 1,
+      "message": "no need for private method here anymore, just use inventoryPersistence.getDataNode directly instead",
+      "range": {
+        "startLine": 221,
+        "startChar": 21,
+        "endLine": 221,
+        "endChar": 32
+      },
+      "revId": "c644b13847495a584e5e4ceb45bbe652b4dc1ef9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b63d7e30_2c935f8e",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 4
@@ -18,6 +64,29 @@
         "startChar": 4,
         "endLine": 70,
         "endChar": 48
+      },
+      "revId": "c644b13847495a584e5e4ceb45bbe652b4dc1ef9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a192544_bd8e02ef",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-04T10:20:33Z",
+      "side": 1,
+      "message": "no need for private method here anymore, just use inventoryPersistence.deleteSchemaSetWithCascade directly instead",
+      "range": {
+        "startLine": 294,
+        "startChar": 17,
+        "endLine": 294,
+        "endChar": 43
       },
       "revId": "c644b13847495a584e5e4ceb45bbe652b4dc1ef9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
@@ -48,6 +117,52 @@
     },
     {
       "key": {
+        "uuid": "8ed84271_b37f3cc2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-04T10:20:33Z",
+      "side": 1,
+      "message": "think we need to discuss this :-(",
+      "range": {
+        "startLine": 193,
+        "startChar": 38,
+        "endLine": 193,
+        "endChar": 50
+      },
+      "revId": "c644b13847495a584e5e4ceb45bbe652b4dc1ef9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cf8a4c6a_512f0d8c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-04T10:20:33Z",
+      "side": 1,
+      "message": "cpsPath is for queries for \u0027get\u0027 is should be called cpath (all lower case, following convention in cpsDataPersistenceService)",
+      "range": {
+        "startLine": 238,
+        "startChar": 45,
+        "endLine": 238,
+        "endChar": 52
+      },
+      "revId": "c644b13847495a584e5e4ceb45bbe652b4dc1ef9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "416dc79e_987718fc",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
         "patchSetId": 4
@@ -64,6 +179,121 @@
         "startChar": 45,
         "endLine": 188,
         "endChar": 51
+      },
+      "revId": "c644b13847495a584e5e4ceb45bbe652b4dc1ef9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5031ff81_cc6dfd50",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-04T10:20:33Z",
+      "side": 1,
+      "message": "why did you remove immutable?!",
+      "range": {
+        "startLine": 188,
+        "startChar": 45,
+        "endLine": 188,
+        "endChar": 48
+      },
+      "revId": "c644b13847495a584e5e4ceb45bbe652b4dc1ef9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "52f40ca9_a5fe0cf9",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-04T10:20:33Z",
+      "side": 1,
+      "message": "NB: I googled it and timestamp is actually one word dso NO capital S",
+      "range": {
+        "startLine": 64,
+        "startChar": 8,
+        "endLine": 64,
+        "endChar": 20
+      },
+      "revId": "c644b13847495a584e5e4ceb45bbe652b4dc1ef9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "56c9c363_54c3908c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-04T10:20:33Z",
+      "side": 1,
+      "message": "you are no longer checking ANY parameter you should be able to reuse some of what was there!",
+      "range": {
+        "startLine": 160,
+        "startChar": 62,
+        "endLine": 160,
+        "endChar": 63
+      },
+      "revId": "c644b13847495a584e5e4ceb45bbe652b4dc1ef9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6cb122b1_feadee73",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/InventoryPersistenceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-04T10:20:33Z",
+      "side": 1,
+      "message": "NB: you can actually use space in all those samples (to improve readability)\n\u0027sample json data\u0027",
+      "range": {
+        "startLine": 231,
+        "startChar": 46,
+        "endLine": 231,
+        "endChar": 60
+      },
+      "revId": "c644b13847495a584e5e4ceb45bbe652b4dc1ef9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "99e07e4f_e39c84b7",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/InventoryPersistenceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-04T10:20:33Z",
+      "side": 1,
+      "message": "sample cpsPath",
+      "range": {
+        "startLine": 261,
+        "startChar": 44,
+        "endLine": 261,
+        "endChar": 62
       },
       "revId": "c644b13847495a584e5e4ceb45bbe652b4dc1ef9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
