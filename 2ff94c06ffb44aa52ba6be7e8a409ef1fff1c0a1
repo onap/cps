@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "1246338b_5b114e40",
+        "filename": "cps-ncmp-rest-stub/dependency-reduced-pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-07-05T15:17:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7318c250_dd56e6f8",
+      "revId": "2ff94c06ffb44aa52ba6be7e8a409ef1fff1c0a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ecc40240_6d085e33",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
         "patchSetId": 2
@@ -39,6 +57,30 @@
       "revId": "2ff94c06ffb44aa52ba6be7e8a409ef1fff1c0a1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a4c52c6b_e134c996",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-07-05T15:17:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ecc40240_6d085e33",
+      "range": {
+        "startLine": 69,
+        "startChar": 25,
+        "endLine": 69,
+        "endChar": 34
+      },
+      "revId": "2ff94c06ffb44aa52ba6be7e8a409ef1fff1c0a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "52379e02_43bfc892",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-07-05T15:17:17Z",
+      "side": 1,
+      "message": "Done - moved and method already existed",
+      "parentUuid": "6c1c27ba_d7062c36",
+      "range": {
+        "startLine": 72,
+        "startChar": 16,
+        "endLine": 74,
+        "endChar": 72
+      },
+      "revId": "2ff94c06ffb44aa52ba6be7e8a409ef1fff1c0a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1e359fc1_e86ed9b4",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
         "patchSetId": 2
@@ -85,6 +151,30 @@
       "revId": "2ff94c06ffb44aa52ba6be7e8a409ef1fff1c0a1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a4ef3901_7a11dffc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-07-05T15:17:17Z",
+      "side": 1,
+      "message": "Done- deleted as same as line 61 \u0027xpathCmHandle\u0027",
+      "parentUuid": "1e359fc1_e86ed9b4",
+      "range": {
+        "startLine": 75,
+        "startChar": 4,
+        "endLine": 75,
+        "endChar": 11
+      },
+      "revId": "2ff94c06ffb44aa52ba6be7e8a409ef1fff1c0a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
