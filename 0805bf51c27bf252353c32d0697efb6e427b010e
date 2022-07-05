@@ -22,6 +22,167 @@
       "revId": "0805bf51c27bf252353c32d0697efb6e427b010e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c26c7fd_f12d6835",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationSemaphoresConfig.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-05T12:20:19Z",
+      "side": 1,
+      "message": "I suspect here if we get any value into Map ever but always null as .getMap takes \"mapConfigName\" as key. Here the mapConfigName that we are supliying into initializeDefaultMapConfig method is \"moduleSyncSemaphoreConfig\" but while accessing using .getMap we are supplied \"moduleSyncSemaphore\" that never been populated. Please correct my understanding if I missed anything.",
+      "range": {
+        "startLine": 44,
+        "startChar": 46,
+        "endLine": 45,
+        "endChar": 46
+      },
+      "revId": "0805bf51c27bf252353c32d0697efb6e427b010e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e644a5ab_35c248ca",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationSemaphoresConfig.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-05T12:20:19Z",
+      "side": 1,
+      "message": "same as above",
+      "range": {
+        "startLine": 50,
+        "startChar": 46,
+        "endLine": 51,
+        "endChar": 44
+      },
+      "revId": "0805bf51c27bf252353c32d0697efb6e427b010e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7427745e_ced6a89e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationSemaphoresConfig.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-05T12:20:19Z",
+      "side": 1,
+      "message": "Here we should give hazelcast instance name as well to get a logical seperation otherwise hazelcast gives some randon name from MobyNames class that is weird. like awesome_austin, boring_jackson etc.",
+      "range": {
+        "startLine": 55,
+        "startChar": 34,
+        "endLine": 55,
+        "endChar": 42
+      },
+      "revId": "0805bf51c27bf252353c32d0697efb6e427b010e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5095be22_4c98d96e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationSemaphoresConfig.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-05T12:20:19Z",
+      "side": 1,
+      "message": "Please set/override clusterName as well before return.\n\nconfig.setClusterName( \"name of cluster that would be suitable here in our case\" );\n\nprivate String clusterName \u003d \"dev\"; // This is default cluster name that is not incorrect.",
+      "range": {
+        "startLine": 61,
+        "startChar": 15,
+        "endLine": 61,
+        "endChar": 21
+      },
+      "revId": "0805bf51c27bf252353c32d0697efb6e427b010e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb4d50a9_805131c8",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationSemaphoresConfigSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-05T12:20:19Z",
+      "side": 1,
+      "message": "Remove Qualifier it\u0027s redundant here as by default bean name is \"moduleSyncSemaphore\" only it would able to wired here without it.",
+      "range": {
+        "startLine": 34,
+        "startChar": 4,
+        "endLine": 34,
+        "endChar": 45
+      },
+      "revId": "0805bf51c27bf252353c32d0697efb6e427b010e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d508ff30_ebf9e445",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationSemaphoresConfigSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-05T12:20:19Z",
+      "side": 1,
+      "message": "same as above.",
+      "range": {
+        "startLine": 38,
+        "startChar": 4,
+        "endLine": 38,
+        "endChar": 43
+      },
+      "revId": "0805bf51c27bf252353c32d0697efb6e427b010e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "942dc70f_150e9f41",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationSemaphoresConfigSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-05T12:20:19Z",
+      "side": 1,
+      "message": "We should assert total number of hazelcast instance here by \n\ncom.hazelcast.core.Hazelcast.getAllHazelcastInstances()\u003d\u003d2 and to be more specific we should give name of hazelcast instance while creating sothat same instance name can be also asserted with size .",
+      "range": {
+        "startLine": 41,
+        "startChar": 9,
+        "endLine": 41,
+        "endChar": 33
+      },
+      "revId": "0805bf51c27bf252353c32d0697efb6e427b010e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
