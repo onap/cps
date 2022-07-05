@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a2eeb4b9_fe512a48",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationSemaphoresConfig.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-05T12:55:15Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1b0ea50e_591c71a4",
+      "range": {
+        "startLine": 36,
+        "startChar": 29,
+        "endLine": 36,
+        "endChar": 50
+      },
+      "revId": "0805bf51c27bf252353c32d0697efb6e427b010e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3c26c7fd_f12d6835",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationSemaphoresConfig.java",
         "patchSetId": 8
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "de5cb7a9_dced9959",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationSemaphoresConfig.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-05T12:55:15Z",
+      "side": 1,
+      "message": "The configuration name and actual map name can be different.\nBut for simplicity I can make them same.",
+      "parentUuid": "3c26c7fd_f12d6835",
+      "range": {
+        "startLine": 44,
+        "startChar": 46,
+        "endLine": 45,
+        "endChar": 46
+      },
+      "revId": "0805bf51c27bf252353c32d0697efb6e427b010e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e644a5ab_35c248ca",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationSemaphoresConfig.java",
         "patchSetId": 8
@@ -68,6 +116,30 @@
       "revId": "0805bf51c27bf252353c32d0697efb6e427b010e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9f36f7a8_c2180329",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationSemaphoresConfig.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-05T12:55:15Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e644a5ab_35c248ca",
+      "range": {
+        "startLine": 50,
+        "startChar": 46,
+        "endLine": 51,
+        "endChar": 44
+      },
+      "revId": "0805bf51c27bf252353c32d0697efb6e427b010e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -141,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "34cd2752_0f1194fb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationSemaphoresConfig.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-05T12:55:15Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7c3126ef_91c9949c",
+      "range": {
+        "startLine": 61,
+        "startChar": 15,
+        "endLine": 61,
+        "endChar": 21
+      },
+      "revId": "0805bf51c27bf252353c32d0697efb6e427b010e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "eb4d50a9_805131c8",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationSemaphoresConfigSpec.groovy",
         "patchSetId": 8
@@ -161,6 +257,30 @@
       "revId": "0805bf51c27bf252353c32d0697efb6e427b010e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fcb07ae8_8c643357",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationSemaphoresConfigSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-05T12:55:15Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "eb4d50a9_805131c8",
+      "range": {
+        "startLine": 34,
+        "startChar": 4,
+        "endLine": 34,
+        "endChar": 45
+      },
+      "revId": "0805bf51c27bf252353c32d0697efb6e427b010e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -187,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "9cc902a1_e1871d8e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationSemaphoresConfigSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-05T12:55:15Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d508ff30_ebf9e445",
+      "range": {
+        "startLine": 38,
+        "startChar": 4,
+        "endLine": 38,
+        "endChar": 43
+      },
+      "revId": "0805bf51c27bf252353c32d0697efb6e427b010e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "942dc70f_150e9f41",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationSemaphoresConfigSpec.groovy",
         "patchSetId": 8
@@ -207,6 +351,30 @@
       "revId": "0805bf51c27bf252353c32d0697efb6e427b010e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "89828b08_3d12c4e0",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationSemaphoresConfigSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-05T12:55:15Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "942dc70f_150e9f41",
+      "range": {
+        "startLine": 41,
+        "startChar": 9,
+        "endLine": 41,
+        "endChar": 33
+      },
+      "revId": "0805bf51c27bf252353c32d0697efb6e427b010e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
