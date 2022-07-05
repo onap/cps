@@ -68,6 +68,30 @@
       "revId": "fb811ddcf6051783bb880c5b0c66c74b8cb12708",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "69774f15_97862b18",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationSemaphoresConfig.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-05T16:56:48Z",
+      "side": 1,
+      "message": "It is invoked at line no 58 and 47 initializeDefaultMapConfig(...)",
+      "parentUuid": "7d42b954_81578c42",
+      "range": {
+        "startLine": 62,
+        "startChar": 3,
+        "endLine": 62,
+        "endChar": 45
+      },
+      "revId": "fb811ddcf6051783bb880c5b0c66c74b8cb12708",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
