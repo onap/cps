@@ -46,6 +46,30 @@
       "revId": "6651b3e97f5bfe0014b4abbfd76c7a9c34871b7c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d22280ea_9cdd4194",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationErrorHandlerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-05T15:15:56Z",
+      "side": 1,
+      "message": "does that work ? I presumed the @sl4j annotation would only work when it was autowired?!\ngood to know",
+      "parentUuid": "bcd250aa_501c7cab",
+      "range": {
+        "startLine": 27,
+        "startChar": 4,
+        "endLine": 28,
+        "endChar": 77
+      },
+      "revId": "6651b3e97f5bfe0014b4abbfd76c7a9c34871b7c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
