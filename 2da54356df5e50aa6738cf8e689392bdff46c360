@@ -2,6 +2,213 @@
   "comments": [
     {
       "key": {
+        "uuid": "4a6d532b_86ae81ec",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-05T09:17:51Z",
+      "side": 1,
+      "message": "1. Break it inot two \"modules-sync\" as we are doing for others.\n2. Introduce \"cluster-name\" as well sothat we can override the default name that is \"dev\" right now.\n\nmodules-sync:\n    cluster-name: NameOfCluster",
+      "range": {
+        "startLine": 169,
+        "startChar": 4,
+        "endLine": 169,
+        "endChar": 14
+      },
+      "revId": "2da54356df5e50aa6738cf8e689392bdff46c360",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3f8bb32b_70d942ef",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-05T09:17:51Z",
+      "side": 1,
+      "message": "We should use \"time-to-live-seconds\" as it is already defined into MapConfig of hazelcast",
+      "range": {
+        "startLine": 170,
+        "startChar": 7,
+        "endLine": 170,
+        "endChar": 15
+      },
+      "revId": "2da54356df5e50aa6738cf8e689392bdff46c360",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "236aab14_4a25b87f",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-05T09:17:51Z",
+      "side": 1,
+      "message": "Same as modules-sync we should introduce \"cluster-name\" and rename ttl-sec to  \"time-to-live-seconds\" sothat it can be autowired with MapConfig",
+      "range": {
+        "startLine": 173,
+        "startChar": 4,
+        "endLine": 173,
+        "endChar": 12
+      },
+      "revId": "2da54356df5e50aa6738cf8e689392bdff46c360",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "58e983a7_348d88db",
+        "filename": "cps-ncmp-rest-stub/src/main/java/org/onap/cps/ncmp/rest/stub/controller/NetworkCmProxyStubController.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-05T09:17:51Z",
+      "side": 1,
+      "message": "NB : CompositeState",
+      "range": {
+        "startLine": 101,
+        "startChar": 71,
+        "endLine": 101,
+        "endChar": 76
+      },
+      "revId": "2da54356df5e50aa6738cf8e689392bdff46c360",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f08d4903_54919ff6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/DataSyncDataStoreConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-05T09:17:51Z",
+      "side": 1,
+      "message": "@Configuration\n@RequiredArgsConstructor",
+      "range": {
+        "startLine": 31,
+        "startChar": 1,
+        "endLine": 31,
+        "endChar": 14
+      },
+      "revId": "2da54356df5e50aa6738cf8e689392bdff46c360",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "58769943_7fd6558f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/DataSyncDataStoreConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-05T09:17:51Z",
+      "side": 1,
+      "message": "NB : we can merge both ModuleSyncDataStoreConfig and DataSyncDataStoreConfig and give name say \"EmbeddedCacheDataStoreConfig\" or anything that is more suitable.",
+      "range": {
+        "startLine": 32,
+        "startChar": 13,
+        "endLine": 32,
+        "endChar": 37
+      },
+      "revId": "2da54356df5e50aa6738cf8e689392bdff46c360",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "39851196_bafe6a35",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/DataSyncDataStoreConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-05T09:17:51Z",
+      "side": 1,
+      "message": "We can load these properties for both module and data sync as below :\n\n1. Create a new class and use here : final MapConfigProperties mapConfigProperties;\n2. As we are using MapConfig and Config from hazelcast lib. it would autowire properties directly from application.yml that are :\n\nhazelcast:\n    cache:\n        modules-sync:\n            cluster-name: modulesSyncCluster or can give somthing more appropriate\n            time-to-live-seconds: 60000\n            backup-count: 3\n            async-backup-count: 3\n        data-sync:\n            cluster-name: dataSyncCluster or can give somthing more appropriate\n            time-to-live-seconds: 60000\n            backup-count: 3\n            async-backup-count: 3\n--------------------------------------------------------------\n\n@Configuration\n@NoArgsConstructor(access \u003d AccessLevel.PROTECTED)\npublic class MapConfigProperties {\n\n    @Bean\n    @ConfigurationProperties(prefix \u003d \"hazelcast.cache.modules-sync\")\n    public Config modulesSyncMapConfig() {\n        PartitionAware\u003cConfig\u003e configPartitionAware \u003d getConfigPartitionAware(loadModulesSyncMapConfig(),\n                \"moduleSyncEmbeddedDataStore\", \"moduleSyncEmbeddedDataStoreInstance\");\n        return configPartitionAware.getPartitionKey();\n    }\n\n    @Bean\n    @ConfigurationProperties(prefix \u003d \"hazelcast.cache.modules-sync\")\n    public MapConfig loadModulesSyncMapConfig() {\n        return new MapConfig();\n    }\n\n    @Bean\n    @ConfigurationProperties(prefix \u003d \"hazelcast.cache.data-sync\")\n    public Config dataSyncMapConfig() {\n        PartitionAware\u003cConfig\u003e configPartitionAware \u003d getConfigPartitionAware(loadDataSyncMapConfig(),\n                \"dataSyncEmbeddedDataStore\", \"dataSyncEmbeddedDataStoreInstance\");\n        return configPartitionAware.getPartitionKey();\n    }\n\n    @Bean\n    @ConfigurationProperties(prefix \u003d \"hazelcast.cache.data-sync\")\n    public MapConfig loadDataSyncMapConfig() {\n        return new MapConfig();\n    }\n    private PartitionAware\u003cConfig\u003e getConfigPartitionAware(final MapConfig mapConfig,\n                                                           final String mapConfigName,\n                                                           final String configInstanceName) {\n        return () -\u003e {\n            mapConfig.setName(mapConfigName);\n            return new Config(configInstanceName).addMapConfig(mapConfig);\n        };\n    }\n\n}",
+      "range": {
+        "startLine": 34,
+        "startChar": 4,
+        "endLine": 39,
+        "endChar": 33
+      },
+      "revId": "2da54356df5e50aa6738cf8e689392bdff46c360",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "10f2fcd2_b5ea81ba",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/DataSyncDataStoreConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-05T09:17:51Z",
+      "side": 1,
+      "message": "We can define both dataSyncDataStore and moduleSyncDataStore here as below :\n\n1. moduleSyncDataStore bean can be autowired to get module sync cache.\n2. dataSyncDataStore bean can be autowired to get data sync cache.\n\nLater we can define more cache here if needed.\n\n/**\n     * Module Sync Watchdog Map.\n     *\n     * @return Distributed map which contains the cmHandleIds for ModuleSync which are worked upon.\n     */\n    @Bean\n    public Map\u003cString, String\u003e moduleSyncDataStore() {\n        final Config mapConfigAttribute \u003d mapConfigProperties.modulesSyncMapConfig();\n        final String hazelcastInstanceName \u003d mapConfigAttribute.getInstanceName();\n        final MapConfig mapConfig \u003d mapConfigAttribute.getMapConfig(\"moduleSyncEmbeddedDataStore\");\n        final Map\u003cString, String\u003e moduleSyncEmbeddedDataStoreMap \u003d getOrCreateHazelcastInstance(hazelcastInstanceName,\n                mapConfigAttribute).getMap(mapConfig.getName());\n        return moduleSyncEmbeddedDataStoreMap;\n    }\n\n    /**\n     * Data Sync Watchdog Map.\n     *\n     * @return Distributed map which contains the cmHandleIds for DataSync which are worked upon.\n     */\n    @Bean\n    public Map\u003cString, String\u003e dataSyncDataStore() {\n        final Config mapConfigAttribute \u003d mapConfigProperties.dataSyncMapConfig();\n        final String hazelcastInstanceName \u003d mapConfigAttribute.getInstanceName();\n        final MapConfig mapConfig \u003d mapConfigAttribute.getMapConfig(\"dataSyncEmbeddedDataStore\");\n        final Map\u003cString, String\u003e dataSyncEmbeddedDataStoreMap \u003d getOrCreateHazelcastInstance(hazelcastInstanceName,\n                mapConfigAttribute).getMap(mapConfig.getName());\n        return dataSyncEmbeddedDataStoreMap;\n    }\n\n    public HazelcastInstance getOrCreateHazelcastInstance(final String hazelcastInstanceName, final Config config) {\n        HazelcastInstance hazelcastInstance \u003d Hazelcast.getHazelcastInstanceByName(hazelcastInstanceName);\n        if (hazelcastInstance \u003d\u003d null) {\n            return Hazelcast.newHazelcastInstance(config);\n        }\n        return hazelcastInstance;\n    }",
+      "range": {
+        "startLine": 41,
+        "startChar": 4,
+        "endLine": 59,
+        "endChar": 5
+      },
+      "revId": "2da54356df5e50aa6738cf8e689392bdff46c360",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d074956_e7379e12",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/ModuleSyncDataStoreConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-05T09:17:51Z",
+      "side": 1,
+      "message": "As we already defined common configuration into previous it is no more needed.",
+      "range": {
+        "startLine": 32,
+        "startChar": 13,
+        "endLine": 32,
+        "endChar": 39
+      },
+      "revId": "2da54356df5e50aa6738cf8e689392bdff46c360",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "445e7730_9c65c182",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/DataSyncDataStoreConfigSpec.groovy",
         "patchSetId": 6
