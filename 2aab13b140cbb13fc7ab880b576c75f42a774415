@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9c8deba6_404d5dff",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/constants/DmiRegistryConstants.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-05T13:25:33Z",
+      "side": 0,
+      "message": "great!",
+      "range": {
+        "startLine": 35,
+        "startChar": 3,
+        "endLine": 40,
+        "endChar": 0
+      },
+      "revId": "2aab13b140cbb13fc7ab880b576c75f42a774415",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}

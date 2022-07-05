@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7318c250_dd56e6f8",
+        "filename": "cps-ncmp-rest-stub/dependency-reduced-pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-05T13:25:33Z",
+      "side": 1,
+      "message": "this is a generated file, delete locally and add to .gitignore in root",
+      "revId": "2ff94c06ffb44aa52ba6be7e8a409ef1fff1c0a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ecc40240_6d085e33",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-05T13:25:33Z",
+      "side": 1,
+      "message": "cmHnadleId",
+      "range": {
+        "startLine": 69,
+        "startChar": 25,
+        "endLine": 69,
+        "endChar": 34
+      },
+      "revId": "2ff94c06ffb44aa52ba6be7e8a409ef1fff1c0a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6c1c27ba_d7062c36",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-05T13:25:33Z",
+      "side": 1,
+      "message": "combine this into a new method for inventoryPersistence: getCmHandleDatNode(string cmHandleId)",
+      "range": {
+        "startLine": 72,
+        "startChar": 16,
+        "endLine": 74,
+        "endChar": 72
+      },
+      "revId": "2ff94c06ffb44aa52ba6be7e8a409ef1fff1c0a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e359fc1_e86ed9b4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-05T13:25:33Z",
+      "side": 1,
+      "message": "make private and create new method using this instead, see prev. comment",
+      "range": {
+        "startLine": 75,
+        "startChar": 4,
+        "endLine": 75,
+        "endChar": 11
+      },
+      "revId": "2ff94c06ffb44aa52ba6be7e8a409ef1fff1c0a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
