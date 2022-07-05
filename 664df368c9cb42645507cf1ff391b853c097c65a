@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "96027efb_4d0290da",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-05T16:26:59Z",
+      "side": 1,
+      "message": "this is just a format string so I think it should be something like\n\nprivate static final CM_HANDLE_XPATH_TEMPLATE  or \nprivate static final CM_HANDLE_XPATH_FROMAT",
+      "range": {
+        "startLine": 61,
+        "startChar": 4,
+        "endLine": 61,
+        "endChar": 32
+      },
+      "revId": "664df368c9cb42645507cf1ff391b853c097c65a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
