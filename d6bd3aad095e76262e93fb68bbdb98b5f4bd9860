@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "99a50da3_0adead8f",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationErrorHandlerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-05T15:59:13Z",
+      "side": 1,
+      "message": "Modify it as below :\n\n@SpringBean\nNotificationErrorHandler objectUnderTest\u003dSpy(NotificationErrorHandler)",
+      "range": {
+        "startLine": 26,
+        "startChar": 4,
+        "endLine": 26,
+        "endChar": 62
+      },
+      "revId": "d6bd3aad095e76262e93fb68bbdb98b5f4bd9860",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "275e8b8a_93b36e0b",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationErrorHandlerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-05T15:59:13Z",
+      "side": 1,
+      "message": "Avoid stream :\n\ndef mockLogWatcher \u003d Spy(ListAppender\u003cILoggingEvent\u003e)\n\n    @BeforeEach\n    void setup() {\n        ((Logger) LoggerFactory.getLogger(NotificationErrorHandler.class)).addAppender(mockLogWatcher);\n    }\n\n    @AfterEach\n    void teardown() {\n        ((Logger) LoggerFactory.getLogger(NotificationErrorHandler.class)).detachAndStopAllAppenders();\n    }\n\n    def \u0027Logging exception via notification error handler\u0027() {\n        given: \u0027create and start a ListAppender\u0027\n            mockLogWatcher.start();\n        when: \u0027some exception occurs\u0027\n            objectUnderTest.onException(new Exception(\u0027sample exception\u0027), \u0027some context\u0027)\n        then: \u0027log output results contains the correct error details\u0027\n            List\u003cILoggingEvent\u003e logsList \u003d mockLogWatcher.list;\n            logsList.get(0).getLevel() \u003d\u003d Level.ERROR;\n            logsList.get(0).getFormattedMessage()\n                    .contains(\"Failed to process \\n\" +\n                    \" Error cause: sample exception \\n\" +\n                    \" Error context: [some context]\")\n    }",
+      "range": {
+        "startLine": 30,
+        "startChar": 11,
+        "endLine": 31,
+        "endChar": 59
+      },
+      "revId": "d6bd3aad095e76262e93fb68bbdb98b5f4bd9860",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}

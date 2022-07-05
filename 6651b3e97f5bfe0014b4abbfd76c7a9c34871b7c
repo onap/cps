@@ -70,6 +70,30 @@
       "revId": "6651b3e97f5bfe0014b4abbfd76c7a9c34871b7c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bb8711a4_2de6c5a8",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationErrorHandlerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-05T15:59:13Z",
+      "side": 1,
+      "message": "Modify it as below :\n\n@SpringBean\nNotificationErrorHandler objectUnderTest\u003dSpy(NotificationErrorHandler)",
+      "parentUuid": "18320160_9252da34",
+      "range": {
+        "startLine": 27,
+        "startChar": 4,
+        "endLine": 28,
+        "endChar": 77
+      },
+      "revId": "6651b3e97f5bfe0014b4abbfd76c7a9c34871b7c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
