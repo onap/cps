@@ -166,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "1e29afe0_734bd818",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationSemaphoresConfig.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-05T12:55:35Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7427745e_ced6a89e",
+      "range": {
+        "startLine": 55,
+        "startChar": 34,
+        "endLine": 55,
+        "endChar": 42
+      },
+      "revId": "0805bf51c27bf252353c32d0697efb6e427b010e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5095be22_4c98d96e",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationSemaphoresConfig.java",
         "patchSetId": 8
