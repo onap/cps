@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "445e7730_9c65c182",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/DataSyncDataStoreConfigSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-07-05T08:15:35Z",
+      "side": 1,
+      "message": "Is this test necessary?",
+      "revId": "2da54356df5e50aa6738cf8e689392bdff46c360",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ce31105e_7fcce5b7",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/DataSyncDataStoreConfigSpec.groovy",
         "patchSetId": 6
