@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "90bb0fd2_b9f4515b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/DataSyncDataStoreConfigSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-05T08:55:32Z",
+      "side": 1,
+      "message": "In terms of coverage it is required , otherwise the check fails.",
+      "parentUuid": "445e7730_9c65c182",
+      "revId": "2da54356df5e50aa6738cf8e689392bdff46c360",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ce31105e_7fcce5b7",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/DataSyncDataStoreConfigSpec.groovy",
         "patchSetId": 6
