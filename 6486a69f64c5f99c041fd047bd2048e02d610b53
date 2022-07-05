@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "cae867e4_b3ebe097",
+        "filename": "cps-ncmp-rest-stub/dependency-reduced-pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-07-05T08:33:14Z",
+      "side": 1,
+      "message": "actually this was from rebasing and it showed as added file on my commit, should i keep it ?",
+      "parentUuid": "9430a330_dd02926b",
+      "revId": "6486a69f64c5f99c041fd047bd2048e02d610b53",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "81378b8b_4a51639a",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/InventoryPersistenceSpec.groovy",
         "patchSetId": 1
