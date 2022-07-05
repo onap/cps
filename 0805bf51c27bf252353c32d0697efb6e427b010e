@@ -117,6 +117,30 @@
     },
     {
       "key": {
+        "uuid": "7c3126ef_91c9949c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationSemaphoresConfig.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-05T12:28:35Z",
+      "side": 1,
+      "message": "Please read it as *// This is default cluster name that is incorrect.",
+      "parentUuid": "5095be22_4c98d96e",
+      "range": {
+        "startLine": 61,
+        "startChar": 15,
+        "endLine": 61,
+        "endChar": 21
+      },
+      "revId": "0805bf51c27bf252353c32d0697efb6e427b010e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "eb4d50a9_805131c8",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationSemaphoresConfigSpec.groovy",
         "patchSetId": 8
