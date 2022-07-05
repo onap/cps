@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9430a330_dd02926b",
+        "filename": "cps-ncmp-rest-stub/dependency-reduced-pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-07-05T08:12:23Z",
+      "side": 1,
+      "message": "Missing copyright",
+      "revId": "6486a69f64c5f99c041fd047bd2048e02d610b53",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "81378b8b_4a51639a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/InventoryPersistenceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-07-05T08:12:23Z",
+      "side": 1,
+      "message": "NB: Could inline [new DataNode()] and remove given block",
+      "range": {
+        "startLine": 292,
+        "startChar": 63,
+        "endLine": 292,
+        "endChar": 72
+      },
+      "revId": "6486a69f64c5f99c041fd047bd2048e02d610b53",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
