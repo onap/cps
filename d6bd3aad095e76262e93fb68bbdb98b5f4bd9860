@@ -45,6 +45,30 @@
       "revId": "d6bd3aad095e76262e93fb68bbdb98b5f4bd9860",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3f5e6d8f_88e5b8bb",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationErrorHandlerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-05T16:16:25Z",
+      "side": 1,
+      "message": "as discussed although the above approach would be more powerful the current approach is nice and simpel and good enough for this particular test",
+      "parentUuid": "275e8b8a_93b36e0b",
+      "range": {
+        "startLine": 30,
+        "startChar": 11,
+        "endLine": 31,
+        "endChar": 59
+      },
+      "revId": "d6bd3aad095e76262e93fb68bbdb98b5f4bd9860",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
