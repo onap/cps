@@ -22,6 +22,30 @@
       "revId": "43c8d0fee7a900af2b7ca6adcb42037243a47a5a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0314a42c_1653e471",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-06T09:34:22Z",
+      "side": 1,
+      "message": "In our further discussion we agreed to change it to static and final as we not storing the result after formatting that could have beed afected the cm handle state. By this change we are sharing a single copy of template that is very much valid and accepted.",
+      "parentUuid": "d128037a_3260fd81",
+      "range": {
+        "startLine": 61,
+        "startChar": 12,
+        "endLine": 61,
+        "endChar": 24
+      },
+      "revId": "43c8d0fee7a900af2b7ca6adcb42037243a47a5a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
