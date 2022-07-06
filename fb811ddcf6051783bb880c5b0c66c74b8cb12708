@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c1abe096_e07a979e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationSemaphoresConfig.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-06T08:05:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9196a4d8_a55e7406",
+      "range": {
+        "startLine": 36,
+        "startChar": 32,
+        "endLine": 36,
+        "endChar": 78
+      },
+      "revId": "fb811ddcf6051783bb880c5b0c66c74b8cb12708",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba79a4ae_f3ae32c2",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationSemaphoresConfig.java",
         "patchSetId": 12
@@ -45,6 +69,30 @@
       "revId": "fb811ddcf6051783bb880c5b0c66c74b8cb12708",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "32115ffa_ff4f81b7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationSemaphoresConfig.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-06T08:05:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba79a4ae_f3ae32c2",
+      "range": {
+        "startLine": 38,
+        "startChar": 32,
+        "endLine": 38,
+        "endChar": 74
+      },
+      "revId": "fb811ddcf6051783bb880c5b0c66c74b8cb12708",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -92,6 +140,30 @@
       "revId": "fb811ddcf6051783bb880c5b0c66c74b8cb12708",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "24269c78_13614f14",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationSemaphoresConfig.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-06T08:05:37Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "69774f15_97862b18",
+      "range": {
+        "startLine": 62,
+        "startChar": 3,
+        "endLine": 62,
+        "endChar": 45
+      },
+      "revId": "fb811ddcf6051783bb880c5b0c66c74b8cb12708",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
