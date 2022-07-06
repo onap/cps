@@ -22,15 +22,12 @@ package org.onap.cps.ncmp.api.impl.event;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
-import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
-import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.ncmp.cmhandle.lcm.event.NcmpEvent;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 /**
- * NcmpEventService to map the event correctly and publish to the public topic.
+ * NcmpEventService to call the publisher and publish on the dedicated topic.
  */
 
 @Slf4j
@@ -38,11 +35,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class NcmpEventsService {
 
-    private final InventoryPersistence inventoryPersistence;
-
     private final NcmpEventsPublisher ncmpEventsPublisher;
-
-    private final NcmpEventsCreator ncmpEventsCreator;
 
     @Value("${app.ncmp.events.topic:ncmp-events}")
     private String topicName;
@@ -54,13 +47,10 @@ public class NcmpEventsService {
      * Publish the NcmpEvent to the public topic.
      *
      * @param cmHandleId Cm Handle Id
+     * @param ncmpEvent  Ncmp Event
      */
-    public void publishNcmpEvent(final String cmHandleId) {
+    public void publishNcmpEvent(final String cmHandleId, final NcmpEvent ncmpEvent) {
         if (notificationsEnabled) {
-            final NcmpServiceCmHandle ncmpServiceCmHandle =
-                YangDataConverter.convertYangModelCmHandleToNcmpServiceCmHandle(
-                    inventoryPersistence.getYangModelCmHandle(cmHandleId));
-            final NcmpEvent ncmpEvent = ncmpEventsCreator.populateNcmpEvent(cmHandleId, ncmpServiceCmHandle);
             ncmpEventsPublisher.publishEvent(topicName, cmHandleId, ncmpEvent);
         } else {
             log.debug("Notifications disabled.");
