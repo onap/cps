@@ -58,7 +58,7 @@ public class InventoryPersistence {
 
     private static final String NCMP_DMI_REGISTRY_PARENT = "/dmi-registry";
 
-    private String xpathCmHandle = "/dmi-registry/cm-handles[@id='" + "%s" + "']";
+    private static final String CM_HANDLE_XPATH_TEMPLATE = "/dmi-registry/cm-handles[@id='" + "%s" + "']";
 
     private static final String ANCESTOR_CM_HANDLES = "\"]/ancestor::cm-handles";
 
@@ -80,7 +80,7 @@ public class InventoryPersistence {
      */
     public CompositeState getCmHandleState(final String cmHandleId) {
         final DataNode stateAsDataNode = cpsDataService.getDataNode(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-            String.format(xpathCmHandle, cmHandleId) + "/state",
+            String.format(CM_HANDLE_XPATH_TEMPLATE, cmHandleId) + "/state",
             FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
         return new CompositeStateBuilder().fromDataNode(stateAsDataNode).build();
     }
@@ -95,7 +95,7 @@ public class InventoryPersistence {
         final String cmHandleJsonData = String.format("{\"state\":%s}",
             jsonObjectMapper.asJsonString(compositeState));
         cpsDataService.replaceNodeTree(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-            String.format(xpathCmHandle, cmHandleId),
+            String.format(CM_HANDLE_XPATH_TEMPLATE, cmHandleId),
             cmHandleJsonData, OffsetDateTime.now());
     }
 
@@ -241,14 +241,11 @@ public class InventoryPersistence {
     /**
      * Get data node of given cm handle.
      *
-     * @param cmHandle cm handle
+     * @param cmHandleId cmHandle ID
      * @return data node
      */
-    private DataNode getCmHandleDataNode(final String cmHandle) {
-        return cpsDataService.getDataNode(NCMP_DATASPACE_NAME,
-            NCMP_DMI_REGISTRY_ANCHOR,
-            String.format(xpathCmHandle, cmHandle),
-            FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
+    public DataNode getCmHandleDataNode(final String cmHandleId) {
+        return this.getDataNode(String.format(CM_HANDLE_XPATH_TEMPLATE, cmHandleId));
     }
 
     /**
@@ -268,5 +265,26 @@ public class InventoryPersistence {
      */
     public Collection<Anchor> getAnchors() {
         return cpsAdminPersistenceService.getAnchors(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME);
+    }
+
+    /**
+     * Replaces list content by removing all existing elements and inserting the given new elements as data nodes.
+     *
+     * @param parentNodeXpath   parent node xpath
+     * @param dataNodes         datanodes representing the updated data
+     */
+    public void replaceListContent(final String parentNodeXpath, final Collection<DataNode> dataNodes) {
+        cpsDataService.replaceListContent(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
+                parentNodeXpath, dataNodes, NO_TIMESTAMP);
+    }
+
+    /**
+     * Deletes data node for given anchor and dataspace.
+     *
+     * @param dataNodeXpath data node xpath
+     */
+    public void deleteDataNode(final String dataNodeXpath) {
+        cpsDataService.deleteDataNode(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, dataNodeXpath,
+                NO_TIMESTAMP);
     }
 }
