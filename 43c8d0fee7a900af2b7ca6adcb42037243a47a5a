@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d128037a_3260fd81",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-06T08:27:31Z",
+      "side": 1,
+      "message": "1. Just we need to remove static and final from \"CM_HANDLE_XPATH_TEMPLATE\" as it need to be used as simple var.\n2. It could have been used as string literal at multiple places but I created it at class level to avoid sonar warning.\n3. And as now it is not constant any more we named it as \"xpathCmHandle\".\n4. we don\u0027t want it to be static as if we do so a single copy of this var. will be shared among multiple watchdog and ch-handle state transition is affected globally for all.",
+      "range": {
+        "startLine": 61,
+        "startChar": 12,
+        "endLine": 61,
+        "endChar": 24
+      },
+      "revId": "43c8d0fee7a900af2b7ca6adcb42037243a47a5a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
