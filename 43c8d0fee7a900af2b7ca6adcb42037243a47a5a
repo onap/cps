@@ -46,6 +46,30 @@
       "revId": "43c8d0fee7a900af2b7ca6adcb42037243a47a5a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "412b913f_e1c0c1fa",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-06T16:00:31Z",
+      "side": 1,
+      "message": "further discuses in we agreed the format string can be static",
+      "parentUuid": "d128037a_3260fd81",
+      "range": {
+        "startLine": 61,
+        "startChar": 12,
+        "endLine": 61,
+        "endChar": 24
+      },
+      "revId": "43c8d0fee7a900af2b7ca6adcb42037243a47a5a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
