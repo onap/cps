@@ -31,6 +31,7 @@ import org.onap.cps.ncmp.api.inventory.CompositeState;
 import org.onap.cps.ncmp.api.inventory.DataStoreSyncState;
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.api.inventory.LockReasonCategory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -44,6 +45,9 @@ public class ModuleSyncWatchdog {
     private final SyncUtils syncUtils;
 
     private final ModuleSyncService moduleSyncService;
+
+    @Value("${data-sync.cache.enabled}")
+    private boolean isGlobalCacheConfigured;
 
     /**
      * Execute Cm Handle poll which changes the cm handle state from 'ADVISED' to 'READY'.
@@ -96,11 +100,9 @@ public class ModuleSyncWatchdog {
 
     private Consumer<CompositeState> setCompositeStateToReadyWithInitialDataStoreSyncState() {
         return compositeState -> {
+            compositeState.setDataSyncEnabled(isGlobalCacheConfigured);
             compositeState.setCmHandleState(CmHandleState.READY);
-            final CompositeState.Operational operational = CompositeState.Operational.builder()
-                    .dataStoreSyncState(DataStoreSyncState.UNSYNCHRONIZED)
-                    .lastSyncTime(CompositeState.nowInSyncTimeFormat())
-                    .build();
+            final CompositeState.Operational operational = getDataStoreSyncState(compositeState.getDataSyncEnabled());
             final CompositeState.DataStores dataStores = CompositeState.DataStores.builder()
                     .operationalDataStore(operational)
                     .build();
@@ -116,4 +118,13 @@ public class ModuleSyncWatchdog {
                 .details(oldLockReasonDetails).build();
         compositeState.setLockReason(lockReason);
     }
+
+    private CompositeState.Operational getDataStoreSyncState(final boolean dataSyncEnabled) {
+        return dataSyncEnabled
+            ? CompositeState.Operational.builder().dataStoreSyncState(DataStoreSyncState.UNSYNCHRONIZED)
+            .lastSyncTime(CompositeState.nowInSyncTimeFormat()).build()
+            : CompositeState.Operational.builder().dataStoreSyncState(DataStoreSyncState.NONE_REQUESTED)
+            .lastSyncTime(CompositeState.nowInSyncTimeFormat()).build();
+    }
+
 }
