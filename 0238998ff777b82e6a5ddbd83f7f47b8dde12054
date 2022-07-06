@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "0467c6f8_5ca19394",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationSemaphoresConfigSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-06T10:28:02Z",
+      "side": 1,
+      "message": "I dont mind either way stsm/hazelcast both ar OK",
+      "parentUuid": "3bd36631_fb1d5235",
+      "range": {
+        "startLine": 40,
+        "startChar": 45,
+        "endLine": 40,
+        "endChar": 56
+      },
+      "revId": "0238998ff777b82e6a5ddbd83f7f47b8dde12054",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "af619115_15afb901",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationSemaphoresConfigSpec.groovy",
         "patchSetId": 14
