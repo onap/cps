@@ -20,46 +20,30 @@
 
 package org.onap.cps.ncmp.api.impl.event
 
-import org.onap.cps.ncmp.api.impl.utils.YangDataConverter
-import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
-import org.onap.cps.ncmp.api.inventory.InventoryPersistence
+
 import org.onap.ncmp.cmhandle.lcm.event.NcmpEvent
 import spock.lang.Specification
 
 class NcmpEventsServiceSpec extends Specification {
 
-    def mockInventoryPersistence = Mock(InventoryPersistence)
     def mockNcmpEventsPublisher = Mock(NcmpEventsPublisher)
-    def mockNcmpEventsCreator = Mock(NcmpEventsCreator)
 
-    def objectUnderTest = new NcmpEventsService(mockInventoryPersistence, mockNcmpEventsPublisher, mockNcmpEventsCreator)
+    def objectUnderTest = new NcmpEventsService(mockNcmpEventsPublisher)
 
     def 'Create and Publish ncmp event where events are #scenario'() {
-        given: 'a cm handle id and operation and responses are mocked'
-            mockResponses('test-cm-handle-id', 'test-topic')
+        given: 'a cm handle id and Ncmp Event'
+            def cmHandleId = 'test-cm-handle-id'
+            def ncmpEvent = new NcmpEvent(eventId: UUID.randomUUID().toString(), eventCorrelationId: cmHandleId)
         and: 'notifications enabled is #notificationsEnabled'
             objectUnderTest.notificationsEnabled = notificationsEnabled
         when: 'service is called to publish ncmp event'
-            objectUnderTest.publishNcmpEvent('test-cm-handle-id')
-        then: 'creator is called #expectedTimesMethodCalled times'
-            expectedTimesMethodCalled * mockNcmpEventsCreator.populateNcmpEvent('test-cm-handle-id', _)
-        and: 'publisher is called #expectedTimesMethodCalled times'
-            expectedTimesMethodCalled * mockNcmpEventsPublisher.publishEvent(*_)
+            objectUnderTest.publishNcmpEvent('test-cm-handle-id', ncmpEvent)
+        then: 'publisher is called #expectedTimesMethodCalled times'
+            expectedTimesMethodCalled * mockNcmpEventsPublisher.publishEvent(_, cmHandleId, ncmpEvent)
         where: 'the following values are used'
-            scenario   | notificationsEnabled|| expectedTimesMethodCalled
-            'enabled'  | true                || 1
-            'disabled' | false               || 0
-    }
-
-    def mockResponses(cmHandleId, topicName) {
-
-        def yangModelCmHandle = new YangModelCmHandle(id: cmHandleId, publicProperties: [new YangModelCmHandle.Property('publicProperty1', 'value1')], dmiProperties: [])
-        def ncmpEvent = new NcmpEvent(eventId: UUID.randomUUID().toString(), eventCorrelationId: cmHandleId)
-        def ncmpServiceCmhandle = YangDataConverter.convertYangModelCmHandleToNcmpServiceCmHandle(yangModelCmHandle)
-
-        mockInventoryPersistence.getYangModelCmHandle(cmHandleId) >> yangModelCmHandle
-        mockNcmpEventsCreator.populateNcmpEvent(cmHandleId, ncmpServiceCmhandle) >> ncmpEvent
-        mockNcmpEventsPublisher.publishEvent(topicName, cmHandleId, ncmpEvent) >> {}
+            scenario   | notificationsEnabled || expectedTimesMethodCalled
+            'enabled'  | true                 || 1
+            'disabled' | false                || 0
     }
 
 }
