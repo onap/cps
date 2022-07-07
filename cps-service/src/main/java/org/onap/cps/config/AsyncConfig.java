@@ -23,6 +23,7 @@ package org.onap.cps.config;
 
 import javax.validation.constraints.Min;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -31,6 +32,7 @@ import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.validation.annotation.Validated;
+import java.util.concurrent.ThreadPoolExecutor;
 
 @EnableAsync
 @Configuration
@@ -38,6 +40,7 @@ import org.springframework.validation.annotation.Validated;
 @ConfigurationProperties("notification.async.executor")
 @Validated
 @Setter
+@Slf4j
 public class AsyncConfig {
 
     @Min(0)
@@ -61,7 +64,21 @@ public class AsyncConfig {
         executor.setMaxPoolSize(maxPoolSize);
         executor.setQueueCapacity(queueCapacity);
         executor.setWaitForTasksToCompleteOnShutdown(waitForTasksToCompleteOnShutdown);
+        executor.setKeepAliveSeconds(60);
         executor.setThreadNamePrefix(threadNamePrefix);
+        executor.setRejectedExecutionHandler((Runnable runnable, ThreadPoolExecutor threadPoolExecutor) -> {
+            if (!threadPoolExecutor.isShutdown()) {
+                try {
+                    Thread.sleep(300);
+                    threadPoolExecutor.getQueue().put(runnable);
+                } catch (InterruptedException interruptedException) {
+                    log.error("Notification executor thread interrupted: {}", interruptedException.getMessage());
+                    Thread.currentThread().interrupt();
+                }
+            }
+        }
+        );
+        executor.initialize();
         return executor;
     }
 
