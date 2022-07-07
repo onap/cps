@@ -54,8 +54,7 @@ public class ModuleSyncWatchdog {
      */
     @Scheduled(fixedDelayString = "${timers.advised-modules-sync.sleep-time-ms:30000}")
     public void executeAdvisedCmHandlePoll() {
-        YangModelCmHandle advisedCmHandle = syncUtils.getAnAdvisedCmHandle();
-        while (advisedCmHandle != null) {
+        syncUtils.getAdvisedCmHandles().stream().forEach(advisedCmHandle -> {
             final String cmHandleId = advisedCmHandle.getId();
             final CompositeState compositeState = inventoryPersistence.getCmHandleState(cmHandleId);
             try {
@@ -69,8 +68,7 @@ public class ModuleSyncWatchdog {
             }
             inventoryPersistence.saveCmHandleState(cmHandleId, compositeState);
             log.debug("{} is now in {} state", cmHandleId, compositeState.getCmHandleState().name());
-            advisedCmHandle = syncUtils.getAnAdvisedCmHandle();
-        }
+        });
         log.debug("No Cm-Handles currently found in an ADVISED state");
     }
 
@@ -85,7 +83,7 @@ public class ModuleSyncWatchdog {
             final boolean isReadyForRetry = syncUtils.isReadyForRetry(compositeState);
             if (isReadyForRetry) {
                 setCompositeStateToAdvisedAndRetainOldLockReasonDetails(compositeState);
-                log.debug("Locked cm handle {} is being resynced", lockedCmHandle.getId());
+                log.debug("Locked cm handle {} is being re-synced", lockedCmHandle.getId());
                 inventoryPersistence.saveCmHandleState(lockedCmHandle.getId(), compositeState);
             }
         }

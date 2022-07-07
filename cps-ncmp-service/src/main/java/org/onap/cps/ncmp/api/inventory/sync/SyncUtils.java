@@ -22,10 +22,10 @@
 package org.onap.cps.ncmp.api.inventory.sync;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import java.security.SecureRandom;
 import java.time.Duration;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -55,9 +55,6 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class SyncUtils {
-
-    private static final SecureRandom secureRandom = new SecureRandom();
-
     private final InventoryPersistence inventoryPersistence;
 
     private final DmiDataOperations dmiDataOperations;
@@ -69,17 +66,17 @@ public class SyncUtils {
     /**
      * Query data nodes for cm handles with an "ADVISED" cm handle state, and select a random entry for processing.
      *
-     * @return a random yang model cm handle with an ADVISED state, return null if not found
+     * @return a randomized yang model cm handle list with ADVISED state, return empty list if not found
      */
-    public YangModelCmHandle getAnAdvisedCmHandle() {
-        final List<DataNode> advisedCmHandles = inventoryPersistence.getCmHandlesByState(CmHandleState.ADVISED);
-        if (advisedCmHandles.isEmpty()) {
-            return null;
+    public List<YangModelCmHandle> getAdvisedCmHandles() {
+        final List<DataNode> advisedCmHandlesAsDataNodeList = new ArrayList<>(
+                inventoryPersistence.getCmHandlesByState(CmHandleState.ADVISED));
+        log.info("Total number of fetched advised cm handle is {}", advisedCmHandlesAsDataNodeList.size());
+        if (advisedCmHandlesAsDataNodeList.isEmpty()) {
+            return Collections.emptyList();
         }
-        final int randomElementIndex = secureRandom.nextInt(advisedCmHandles.size());
-        final String cmHandleId = advisedCmHandles.get(randomElementIndex).getLeaves()
-            .get("id").toString();
-        return inventoryPersistence.getYangModelCmHandle(cmHandleId);
+        Collections.shuffle(advisedCmHandlesAsDataNodeList);
+        return convertCmHandlesDataNodesToYangModelCmHandles(advisedCmHandlesAsDataNodeList);
     }
 
     /**
@@ -113,12 +110,10 @@ public class SyncUtils {
      * @return a random LOCKED yang model cm handle, return null if not found
      */
     public List<YangModelCmHandle> getModuleSyncFailedCmHandles() {
-        final List<DataNode> lockedCmHandleAsDataNodeList = inventoryPersistence.getCmHandleDataNodesByCpsPath(
+        final List<DataNode> lockedCmHandlesAsDataNodeList = inventoryPersistence.getCmHandleDataNodesByCpsPath(
             "//lock-reason[@reason=\"LOCKED_MODULE_SYNC_FAILED\"]/ancestor::cm-handles",
             FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
-        return lockedCmHandleAsDataNodeList.stream()
-            .map(cmHandle -> YangDataConverter.convertCmHandleToYangModel(cmHandle,
-                cmHandle.getLeaves().get("id").toString())).collect(Collectors.toList());
+        return convertCmHandlesDataNodesToYangModelCmHandles(lockedCmHandlesAsDataNodeList);
     }
 
     /**
@@ -190,5 +185,11 @@ public class SyncUtils {
         final Iterator<Map.Entry<String, JsonNode>> overallJsonTreeMap = overallJsonNode.fields();
         final Map.Entry<String, JsonNode> firstElement = overallJsonTreeMap.next();
         return jsonObjectMapper.asJsonString(Map.of(firstElement.getKey(), firstElement.getValue()));
+    }
+
+    private List<YangModelCmHandle> convertCmHandlesDataNodesToYangModelCmHandles(
+            final List<DataNode> cmHandlesAsDataNodeList) {
+        return cmHandlesAsDataNodeList.stream().map(dataNode -> YangDataConverter.convertCmHandleToYangModel(dataNode,
+                dataNode.getLeaves().get("id").toString())).collect(Collectors.toList());
     }
 }
