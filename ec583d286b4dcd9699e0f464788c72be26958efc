@@ -49,6 +49,29 @@
     },
     {
       "key": {
+        "uuid": "e1ef412c_cd1f06d9",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-07T15:31:39Z",
+      "side": 1,
+      "message": "Can\u0027t we merge it and keep it simple like below :\n\n\ndata-sync:\n    timers:\n        cm-handle-data-sync:\n            sleep-time-ms: 30000\n    cache:\n        enabled: false\n\nmodules-sync:\n    timers:\n        advised-modules-sync:\n            sleep-time-ms: 30000\n        locked-modules-sync:\n            sleep-time-ms: 300000",
+      "range": {
+        "startLine": 160,
+        "startChar": 0,
+        "endLine": 170,
+        "endChar": 22
+      },
+      "revId": "ec583d286b4dcd9699e0f464788c72be26958efc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9524346e_54feb70d",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
         "patchSetId": 2
