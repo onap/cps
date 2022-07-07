@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "19cdb1c1_abf5c9d0",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-07-07T07:25:38Z",
+      "side": 1,
+      "message": "NB: Do we want this disabled by default?",
+      "range": {
+        "startLine": 170,
+        "startChar": 17,
+        "endLine": 170,
+        "endChar": 22
+      },
+      "revId": "f6521846b5f0ea3e214efb7772f692fa0452ca64",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e512df5_7ad174c2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-07-07T07:25:38Z",
+      "side": 1,
+      "message": "Perhaps isGlobalDataSyncCacheEnabled would be more descriptive?",
+      "range": {
+        "startLine": 50,
+        "startChar": 20,
+        "endLine": 50,
+        "endChar": 43
+      },
+      "revId": "f6521846b5f0ea3e214efb7772f692fa0452ca64",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e73c61d_0d6c6265",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdogSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-07-07T07:25:38Z",
+      "side": 1,
+      "message": "I think the naming is inconsistent. There is dataSyncEnabled and elsewhere a cache is referenced in the name.",
+      "range": {
+        "startLine": 78,
+        "startChar": 41,
+        "endLine": 78,
+        "endChar": 58
+      },
+      "revId": "f6521846b5f0ea3e214efb7772f692fa0452ca64",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
