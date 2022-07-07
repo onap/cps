@@ -31,6 +31,7 @@ import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.validation.annotation.Validated;
+import java.util.concurrent.ThreadPoolExecutor;
 
 @EnableAsync
 @Configuration
@@ -61,7 +62,10 @@ public class AsyncConfig {
         executor.setMaxPoolSize(maxPoolSize);
         executor.setQueueCapacity(queueCapacity);
         executor.setWaitForTasksToCompleteOnShutdown(waitForTasksToCompleteOnShutdown);
+        executor.setKeepAliveSeconds(60);
         executor.setThreadNamePrefix(threadNamePrefix);
+        executor.setRejectedExecutionHandler(new ThreadPoolExecutor.DiscardPolicy());
+        executor.initialize();
         return executor;
     }
 
