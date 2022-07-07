@@ -1,5 +1,5 @@
 # ============LICENSE_START=======================================================
-# Copyright (C) 2021 Nordix Foundation.
+# Copyright (C) 2021-2022 Nordix Foundation.
 # ================================================================================
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -52,11 +52,6 @@ committers:
       company: 'Ericsson Software Technology'
       id: 'toinesiebelink'
       timezone: 'Europe/Dublin'
-    - name: 'Bruno Sakoto'
-      email: 'bruno.sakoto@bell.ca'
-      company: 'Bell Canada'
-      id: 'brusak'
-      timezone: 'America/Toronto'
     - name: 'Aditya Puthuparambil'
       email: 'aditya.puthuparambil@bell.ca'
       company: 'Bell Canada'
