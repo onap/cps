@@ -21,6 +21,7 @@
 
 package org.onap.cps.config;
 
+import java.util.concurrent.ThreadPoolExecutor;
 import javax.validation.constraints.Min;
 import lombok.Setter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -61,7 +62,10 @@ public class AsyncConfig {
         executor.setMaxPoolSize(maxPoolSize);
         executor.setQueueCapacity(queueCapacity);
         executor.setWaitForTasksToCompleteOnShutdown(waitForTasksToCompleteOnShutdown);
+        executor.setKeepAliveSeconds(60);
         executor.setThreadNamePrefix(threadNamePrefix);
+        executor.setRejectedExecutionHandler(new ThreadPoolExecutor.DiscardPolicy());
+        executor.initialize();
         return executor;
     }
 
