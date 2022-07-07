@@ -225,6 +225,24 @@
     },
     {
       "key": {
+        "uuid": "49a82ccf_2c0ecb3d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CompositeStateUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-07-07T13:59:36Z",
+      "side": 1,
+      "message": "agree with priyank",
+      "parentUuid": "6b97d3c8_968be80b",
+      "revId": "83107c921c9306971ecfbd68012744a9338caf0b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "17e009a1_d2963565",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CompositeStateUtils.java",
         "patchSetId": 1
