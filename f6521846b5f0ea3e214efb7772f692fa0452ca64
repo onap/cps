@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b36da81a_77d44954",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-07T08:01:57Z",
+      "side": 1,
+      "message": "ys it was even supposed to be a hidden parameter, any issues around this wil be resolved once we implement WI #8 about triggering initial dastasync with a REST endpoint",
+      "parentUuid": "19cdb1c1_abf5c9d0",
+      "range": {
+        "startLine": 170,
+        "startChar": 17,
+        "endLine": 170,
+        "endChar": 22
+      },
+      "revId": "f6521846b5f0ea3e214efb7772f692fa0452ca64",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0e512df5_7ad174c2",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
         "patchSetId": 1
@@ -41,6 +65,53 @@
         "startChar": 20,
         "endLine": 50,
         "endChar": 43
+      },
+      "revId": "f6521846b5f0ea3e214efb7772f692fa0452ca64",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c830e0e1_e638949a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-07T08:01:57Z",
+      "side": 1,
+      "message": "agreed",
+      "parentUuid": "0e512df5_7ad174c2",
+      "range": {
+        "startLine": 50,
+        "startChar": 20,
+        "endLine": 50,
+        "endChar": 43
+      },
+      "revId": "f6521846b5f0ea3e214efb7772f692fa0452ca64",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8c43841d_fc32cfd4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-07T08:01:57Z",
+      "side": 1,
+      "message": "a lot of duplication. refactor to\n\nDataStoreSyncState dataStoreSyncState \u003d dataSyncEnabled ? DataStoreSyncState.UNSYNCHRONIZED : DataStoreSyncState.NONE_REQUESTED\n\nreturn CompositeState.Operational.builder().dataStoreSyncState(dataStoreSyncState)\n            .lastSyncTime(CompositeState.nowInSyncTimeFormat()).build()",
+      "range": {
+        "startLine": 123,
+        "startChar": 5,
+        "endLine": 127,
+        "endChar": 72
       },
       "revId": "f6521846b5f0ea3e214efb7772f692fa0452ca64",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
