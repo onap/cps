@@ -1,0 +1,245 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "543fd6b4_99b42742",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/NcmpEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-07T07:56:37Z",
+      "side": 1,
+      "message": "I would import static method because of readability, it looks like a private method when used in this class\ne.g. on line #74 \n\nsetCompositeStateToAdvised().accept(yangModelCmHandle.getCompositeState());\n\ni would prefer to see \n\nCompositeStateUtils.setCompositeStateToAdvised.accept(yangModelCmHandle.getCompositeState());",
+      "range": {
+        "startLine": 26,
+        "startChar": 47,
+        "endLine": 26,
+        "endChar": 93
+      },
+      "revId": "83107c921c9306971ecfbd68012744a9338caf0b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2785b75d_5defd4f3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/NcmpEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-07T07:56:37Z",
+      "side": 1,
+      "message": "should we create a (or refactor this) method in inventoryPersistence call saveCmHandle taht just takes a yangModelCmHanlde as input",
+      "range": {
+        "startLine": 75,
+        "startChar": 37,
+        "endLine": 76,
+        "endChar": 61
+      },
+      "revId": "83107c921c9306971ecfbd68012744a9338caf0b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f0b87dc6_ae4c6afb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/NcmpEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-07T07:56:37Z",
+      "side": 1,
+      "message": "I stil don\u0027t see a reason to check the old state a this stage, we should accept any transition (this class shouldn\u0027t\u0027 care, the business logic to decide on the transition resides outside this class)\n\nI can see ADVISED need special handling but this last block can just be an else for the ADVISED if then",
+      "range": {
+        "startLine": 83,
+        "startChar": 9,
+        "endLine": 85,
+        "endChar": 44
+      },
+      "revId": "83107c921c9306971ecfbd68012744a9338caf0b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d1ce23ec_f76cb23e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/NcmpEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-07T07:56:37Z",
+      "side": 1,
+      "message": "to be able to use else you need oen comment method here, see comment in utils class you created)",
+      "range": {
+        "startLine": 86,
+        "startChar": 29,
+        "endLine": 86,
+        "endChar": 39
+      },
+      "revId": "83107c921c9306971ecfbd68012744a9338caf0b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f3da2df_feb8b534",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CompositeStateUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-07T07:56:37Z",
+      "side": 1,
+      "message": "suggestion: instead of a Utils Class my preference to had this static methods to CompositeState class itself.\nBut thats is my preference I know some other developers don\u0027t like that",
+      "revId": "83107c921c9306971ecfbd68012744a9338caf0b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "17e009a1_d2963565",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CompositeStateUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-07T07:56:37Z",
+      "side": 1,
+      "message": "why not one common method:\n\n    public static Consumer\u003cCompositeState\u003e setCompositeState(CmHandleState targetCmHandleState) {\n        return compositeState -\u003e {\n            compositeState.setCmHandleState(targetCmHandleState);\n            compositeState.setLastUpdateTimeNow();\n        };\n    }",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 0
+      },
+      "revId": "83107c921c9306971ecfbd68012744a9338caf0b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3f181945_196eb820",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/NcmpEventsCmHandleStateHandlerImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-07T07:56:37Z",
+      "side": 1,
+      "message": "I don\u0027t see test/assert related to this you probably can remove it form tets but I do think you need  a separate test to proof lockdetails are retained when \u0027unlocking\u0027 a cmhandle",
+      "range": {
+        "startLine": 48,
+        "startChar": 16,
+        "endLine": 48,
+        "endChar": 147
+      },
+      "revId": "83107c921c9306971ecfbd68012744a9338caf0b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "72815aa3_96db2fe9",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/NcmpEventsCmHandleStateHandlerImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-07T07:56:37Z",
+      "side": 1,
+      "message": "this \u0027smells\u0027 like you need a separate test for this\n\nIt always better to have separate test for \u0027special\u0027 scenarios so you can use the test slogan and labels effectively to desrcibe that special scenario\n\n\nAny duplication between the tests can be moved into common setup or even common assert methods...",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 98
+      },
+      "revId": "83107c921c9306971ecfbd68012744a9338caf0b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "962b12bf_bd1980a9",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/CompositeStateUtilsSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-07T07:56:37Z",
+      "side": 1,
+      "message": "sometimes a simple helpe class can be covered by good testing in the class that uses the helper (without mocking it)\n\nI think you have done so in NcmpEventsCmHandleStateHandlerImplSpec.groovy.\n\nBut then again it is good unit-tets practice to have such tests, I am sitting on the fence as there is a cost like these reviews and future maintenance\n\nMaybe the last test can be retained here to proof the point I asked about in that other Spec the choice is with you...",
+      "revId": "83107c921c9306971ecfbd68012744a9338caf0b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f37aba46_55e9bc33",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/CompositeStateUtilsSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-07T07:56:37Z",
+      "side": 1,
+      "message": "see my comment above if you want to tets this here or in  NcmpEventsCmHandleStateHandlerImplSpec.groovy",
+      "range": {
+        "startLine": 65,
+        "startChar": 10,
+        "endLine": 65,
+        "endChar": 89
+      },
+      "revId": "83107c921c9306971ecfbd68012744a9338caf0b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "208753b0_587bcebf",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/CompositeStateUtilsSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-07T07:56:37Z",
+      "side": 1,
+      "message": "add \u0027and: \u0027the lock details are retained\u0027  to describe the most important aspect of this method!",
+      "range": {
+        "startLine": 74,
+        "startChar": 8,
+        "endLine": 74,
+        "endChar": 67
+      },
+      "revId": "83107c921c9306971ecfbd68012744a9338caf0b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
