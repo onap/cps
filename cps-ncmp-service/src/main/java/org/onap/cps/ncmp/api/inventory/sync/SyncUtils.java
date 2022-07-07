@@ -26,7 +26,6 @@ import java.security.SecureRandom;
 import java.time.Duration;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -95,7 +94,6 @@ public class SyncUtils {
         if (unSynchronizedCmHandles.isEmpty()) {
             return null;
         }
-        Collections.shuffle(unSynchronizedCmHandles);
         for (final DataNode cmHandle : unSynchronizedCmHandles) {
             final String cmHandleId = cmHandle.getLeaves().get("id").toString();
             final List<DataNode> readyCmHandles = inventoryPersistence
