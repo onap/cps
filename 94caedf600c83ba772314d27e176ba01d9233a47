@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d84566db_002ea0e0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/NcmpEventsCmHandleStateHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-07-07T13:41:21Z",
+      "side": 1,
+      "message": "I\u0027m not sure what this class does based on the name. Can you add some javadoc or rename?",
+      "range": {
+        "startLine": 26,
+        "startChar": 17,
+        "endLine": 26,
+        "endChar": 48
+      },
+      "revId": "94caedf600c83ba772314d27e176ba01d9233a47",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88276589_15a99fe2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/NcmpEventsCmHandleStateHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-07-07T13:41:21Z",
+      "side": 1,
+      "message": "of?",
+      "range": {
+        "startLine": 29,
+        "startChar": 34,
+        "endLine": 29,
+        "endChar": 35
+      },
+      "revId": "94caedf600c83ba772314d27e176ba01d9233a47",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "56c69d29_4161e92d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/NcmpEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-07-07T13:41:21Z",
+      "side": 1,
+      "message": "Not sure update is best. maybe setCmHandleToGivenState? What does th team think?",
+      "range": {
+        "startLine": 62,
+        "startChar": 17,
+        "endLine": 62,
+        "endChar": 47
+      },
+      "revId": "94caedf600c83ba772314d27e176ba01d9233a47",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3419c55e_2cbd0b47",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/NcmpEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-07-07T13:41:21Z",
+      "side": 1,
+      "message": "Could be extracted out to a method for readability",
+      "range": {
+        "startLine": 70,
+        "startChar": 10,
+        "endLine": 80,
+        "endChar": 13
+      },
+      "revId": "94caedf600c83ba772314d27e176ba01d9233a47",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c85f2dab_db3ac34c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/NcmpEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-07-07T13:41:21Z",
+      "side": 1,
+      "message": "This method is not required in my opinion as line 96 can be used instead at line 89.",
+      "range": {
+        "startLine": 95,
+        "startChar": 4,
+        "endLine": 97,
+        "endChar": 5
+      },
+      "revId": "94caedf600c83ba772314d27e176ba01d9233a47",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "17b24284_e2dc0056",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CompositeStateUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-07-07T13:41:21Z",
+      "side": 1,
+      "message": "The current name is too long and if this is used in retry scenarios I would reflect that in the name.",
+      "range": {
+        "startLine": 69,
+        "startChar": 43,
+        "endLine": 69,
+        "endChar": 98
+      },
+      "revId": "94caedf600c83ba772314d27e176ba01d9233a47",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b41670a0_88821b15",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/NcmpEventsCmHandleStateHandlerImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-07-07T13:41:21Z",
+      "side": 1,
+      "message": "move bracket up to line 88",
+      "range": {
+        "startLine": 89,
+        "startChar": 20,
+        "endLine": 89,
+        "endChar": 21
+      },
+      "revId": "94caedf600c83ba772314d27e176ba01d9233a47",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
