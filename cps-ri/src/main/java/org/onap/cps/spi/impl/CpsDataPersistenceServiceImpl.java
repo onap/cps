@@ -211,7 +211,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         }
         return fragmentEntities.stream()
                 .map(fragmentEntity -> toDataNode(fragmentEntity, fetchDescendantsOption))
-                .collect(Collectors.toUnmodifiableList());
+                .collect(Collectors.toList());
     }
 
     @Override
