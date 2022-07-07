@@ -16,7 +16,7 @@
 # limitations under the License.
 # ============LICENSE_END=========================================================
 
-version: '3.3'
+version: '3.8'
 
 services:
 
