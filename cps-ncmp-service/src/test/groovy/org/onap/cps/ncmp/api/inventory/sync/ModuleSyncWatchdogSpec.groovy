@@ -24,6 +24,7 @@ package org.onap.cps.ncmp.api.inventory.sync
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.inventory.CmHandleState
 import org.onap.cps.ncmp.api.inventory.CompositeState
+import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence
 import org.onap.cps.ncmp.api.inventory.LockReasonCategory
 import org.onap.cps.ncmp.api.inventory.CompositeStateBuilder
@@ -41,12 +42,13 @@ class ModuleSyncWatchdogSpec extends Specification {
 
     def objectUnderTest = new ModuleSyncWatchdog(mockInventoryPersistence, mockSyncUtils, mockModuleSyncService)
 
-    def 'Schedule a Cm-Handle Sync for ADVISED Cm-Handles'() {
-        given: 'cm handles in an advised state'
+    def 'Schedule a Cm-Handle Sync for ADVISED Cm-Handles where #scenario'() {
+        given: 'cm handles in an advised state and a data sync state'
             def compositeState1 = new CompositeState(cmHandleState: cmHandleState)
             def compositeState2 = new CompositeState(cmHandleState: cmHandleState)
             def yangModelCmHandle1 = new YangModelCmHandle(id: 'some-cm-handle', compositeState: compositeState1)
             def yangModelCmHandle2 = new YangModelCmHandle(id: 'some-cm-handle-2', compositeState: compositeState2)
+            objectUnderTest.isGlobalDataSyncCacheEnabled = dataSyncCacheEnabled
         and: 'sync utilities return a cm handle twice'
             mockSyncUtils.getAnAdvisedCmHandle() >>> [yangModelCmHandle1, yangModelCmHandle2, null]
         when: 'module sync poll is executed'
@@ -57,8 +59,10 @@ class ModuleSyncWatchdogSpec extends Specification {
             1 * mockModuleSyncService.deleteSchemaSetIfExists(yangModelCmHandle1)
         and: 'module sync service syncs the first cm handle and creates a schema set'
             1 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(yangModelCmHandle1)
-        and: 'the composite state cm handle state is now READY'
+        then: 'the composite state cm handle state is now READY'
             assert compositeState1.getCmHandleState() == CmHandleState.READY
+        and: 'the data store sync state returns the expected state'
+            compositeState1.getDataStores().operationalDataStore.dataStoreSyncState == expectedDataStoreSyncState
         and: 'the first cm handle state is updated'
             1 * mockInventoryPersistence.saveCmHandleState('some-cm-handle', compositeState1)
         then: 'the inventory persistence cm handle returns a composite state for the second cm handle'
@@ -69,6 +73,10 @@ class ModuleSyncWatchdogSpec extends Specification {
             assert compositeState2.getCmHandleState() == CmHandleState.READY
         and: 'the second cm handle state is updated'
             1 * mockInventoryPersistence.saveCmHandleState('some-cm-handle-2', compositeState2)
+        where:
+            scenario                         | dataSyncCacheEnabled  || expectedDataStoreSyncState
+            'data sync cache enabled'        | true                  || DataStoreSyncState.UNSYNCHRONIZED
+            'data sync cache is not enabled' | false                 || DataStoreSyncState.NONE_REQUESTED
     }
 
     def 'Schedule a Cm-Handle Sync for ADVISED Cm-Handle with failure'() {
