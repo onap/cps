@@ -119,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "0f06f81b_ac0dc3ce",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/NcmpEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-07T11:55:09Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f0b87dc6_ae4c6afb",
+      "range": {
+        "startLine": 83,
+        "startChar": 9,
+        "endLine": 85,
+        "endChar": 44
+      },
+      "revId": "83107c921c9306971ecfbd68012744a9338caf0b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d1ce23ec_f76cb23e",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/NcmpEventsCmHandleStateHandlerImpl.java",
         "patchSetId": 1
@@ -359,6 +383,24 @@
     },
     {
       "key": {
+        "uuid": "88ecf641_7d8822aa",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/CompositeStateUtilsSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-07T11:55:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "962b12bf_bd1980a9",
+      "revId": "83107c921c9306971ecfbd68012744a9338caf0b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f37aba46_55e9bc33",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/CompositeStateUtilsSpec.groovy",
         "patchSetId": 1
@@ -402,6 +444,30 @@
       "revId": "83107c921c9306971ecfbd68012744a9338caf0b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3aa4b60c_a74a49f4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/CompositeStateUtilsSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-07T11:55:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "208753b0_587bcebf",
+      "range": {
+        "startLine": 74,
+        "startChar": 8,
+        "endLine": 74,
+        "endChar": 67
+      },
+      "revId": "83107c921c9306971ecfbd68012744a9338caf0b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
