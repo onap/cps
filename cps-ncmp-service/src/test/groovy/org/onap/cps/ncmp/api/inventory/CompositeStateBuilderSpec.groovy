@@ -23,6 +23,7 @@ package org.onap.cps.ncmp.api.inventory
 
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.DataNodeBuilder
+import org.onap.cps.ncmp.api.inventory.CompositeStateBuilder
 import spock.lang.Specification
 
 import java.time.OffsetDateTime
@@ -61,6 +62,27 @@ class CompositeStateBuilderSpec extends Specification {
             def compositeState = new CompositeStateBuilder().fromDataNode(cmHandleDataNode).build()
         then: 'it matches expected state model as JSON'
             assert compositeState.cmHandleState == CmHandleState.ADVISED
+    }
+
+    def 'CompositeStateBuilder build'() {
+        given: 'A CompositeStateBuilder with all private fields set'
+            def finalCompositeStateBuilder = new CompositeStateBuilder()
+                .withCmHandleState(CmHandleState.ADVISED)
+                .withLastUpdatedTime(formattedDateAndTime.toString())
+                .withLockReason(LockReasonCategory.LOCKED_MODULE_SYNC_FAILED, 'locked details')
+                .withOperationalDataStores(DataStoreSyncState.SYNCHRONIZED, formattedDateAndTime)
+        when: 'build is called'
+            def result = finalCompositeStateBuilder.build()
+        then: 'result is of the correct type'
+            assert result.class == CompositeState.class
+        and: 'built result should have correct values'
+            assert !result.getDataSyncEnabled()
+            assert result.getLastUpdateTime() == formattedDateAndTime
+            assert result.getLockReason().getLockReasonCategory() == LockReasonCategory.LOCKED_MODULE_SYNC_FAILED
+            assert result.getLockReason().getDetails() == 'locked details'
+            assert result.getCmHandleState() == CmHandleState.ADVISED
+            assert result.getDataStores().getOperationalDataStore().getDataStoreSyncState() == DataStoreSyncState.SYNCHRONIZED
+            assert result.getDataStores().getOperationalDataStore().getLastSyncTime() == formattedDateAndTime
     }
 
 }
