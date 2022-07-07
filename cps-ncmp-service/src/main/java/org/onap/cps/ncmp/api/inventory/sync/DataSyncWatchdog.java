@@ -56,9 +56,7 @@ public class DataSyncWatchdog {
             final CompositeState compositeState = inventoryPersistence
                     .getCmHandleState(cmHandleId);
             final String resourceData = syncUtils.getResourceData(cmHandleId);
-            if (resourceData == null) {
-                log.debug("Error accessing the node for Cm-Handle: {}", cmHandleId);
-            } else {
+            if (resourceData != null) {
                 cpsDataService.saveData("NFP-Operational", cmHandleId,
                         resourceData, OffsetDateTime.now());
                 setSyncStateToSynchronized().accept(compositeState);

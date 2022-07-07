@@ -21,6 +21,8 @@
 
 package org.onap.cps.ncmp.api.inventory.sync;
 
+import java.time.Duration;
+import java.time.Instant;
 import java.util.List;
 import java.util.function.Consumer;
 import lombok.RequiredArgsConstructor;
@@ -54,24 +56,38 @@ public class ModuleSyncWatchdog {
      */
     @Scheduled(fixedDelayString = "${timers.advised-modules-sync.sleep-time-ms:30000}")
     public void executeAdvisedCmHandlePoll() {
-        YangModelCmHandle advisedCmHandle = syncUtils.getAnAdvisedCmHandle();
-        while (advisedCmHandle != null) {
+        syncUtils.getAdvisedCmHandles().stream().forEach(advisedCmHandle -> {
             final String cmHandleId = advisedCmHandle.getId();
+            Instant start = Instant.now();
             final CompositeState compositeState = inventoryPersistence.getCmHandleState(cmHandleId);
+            Instant end = Instant.now();
+            log.info("Time elapsed to get cm handle state with id {} is : {} ms",
+                    cmHandleId, Duration.between(start, end).toMillis());
             try {
+                Instant start1 = Instant.now();
                 moduleSyncService.deleteSchemaSetIfExists(advisedCmHandle);
+                Instant end1 = Instant.now();
+                log.info("Time elapsed to deleteSchemaSetIfExists with id {} is : {} ms",
+                        advisedCmHandle.getId(), Duration.between(start1, end1).toMillis());
+                Instant start2 = Instant.now();
                 moduleSyncService.syncAndCreateSchemaSetAndAnchor(advisedCmHandle);
+                Instant end2 = Instant.now();
+                log.info("Time elapsed to syncAndCreateSchemaSetAndAnchor with id {} is : {} ms",
+                        advisedCmHandle.getId(), Duration.between(start2, end2).toMillis());
                 setCompositeStateToReadyWithInitialDataStoreSyncState().accept(compositeState);
             } catch (final Exception e) {
                 setCompositeStateToLocked().accept(compositeState);
                 syncUtils.updateLockReasonDetailsAndAttempts(compositeState,
                         LockReasonCategory.LOCKED_MODULE_SYNC_FAILED, e.getMessage());
             }
+            Instant start4 = Instant.now();
             inventoryPersistence.saveCmHandleState(cmHandleId, compositeState);
-            log.debug("{} is now in {} state", cmHandleId, compositeState.getCmHandleState().name());
-            advisedCmHandle = syncUtils.getAnAdvisedCmHandle();
-        }
-        log.debug("No Cm-Handles currently found in an ADVISED state");
+            Instant end4 = Instant.now();
+            log.info("Time elapsed to executeAdvisedCmHandlePoll saveCmHandleState with id {} is : {} ms",
+                    cmHandleId, Duration.between(start4, end4).toMillis());
+            log.info("{} is now in {} state", cmHandleId, compositeState.getCmHandleState().name());
+        });
+        log.info("No Cm-Handles currently found in an ADVISED state");
     }
 
     /**
@@ -79,14 +95,22 @@ public class ModuleSyncWatchdog {
      */
     @Scheduled(fixedDelayString = "${timers.locked-modules-sync.sleep-time-ms:300000}")
     public void executeLockedCmHandlePoll() {
+        Instant start = Instant.now();
         final List<YangModelCmHandle> lockedCmHandles = syncUtils.getModuleSyncFailedCmHandles();
+        Instant end = Instant.now();
+        log.info("Time elapsed to getModuleSyncFailedCmHandles with size {} is : {} ms",
+                lockedCmHandles.size(), Duration.between(start, end).toMillis());
         for (final YangModelCmHandle lockedCmHandle : lockedCmHandles) {
             final CompositeState compositeState = lockedCmHandle.getCompositeState();
             final boolean isReadyForRetry = syncUtils.isReadyForRetry(compositeState);
             if (isReadyForRetry) {
                 setCompositeStateToAdvisedAndRetainOldLockReasonDetails(compositeState);
-                log.debug("Locked cm handle {} is being resynced", lockedCmHandle.getId());
+                log.info("Locked cm handle {} is being resynced", lockedCmHandle.getId());
+                Instant start1 = Instant.now();
                 inventoryPersistence.saveCmHandleState(lockedCmHandle.getId(), compositeState);
+                Instant end1 = Instant.now();
+                log.info("Time elapsed to executeLockedCmHandlePoll saveCmHandleState with size {} is : {} ms",
+                        lockedCmHandles.size(), Duration.between(start1, end1).toMillis());
             }
         }
     }
