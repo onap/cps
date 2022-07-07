@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "59a4df93_2186b1bf",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-07T15:32:54Z",
+      "side": 1,
+      "message": "Can\u0027t we merge it and keep it simple like below :\n\n\ndata-sync:\n\n    timers:\n        cm-handle-data-sync:\n            sleep-time-ms: 30000\n    cache:\n        enabled: false\nmodules-sync:\n\n    timers:\n        advised-modules-sync:\n            sleep-time-ms: 30000\n        locked-modules-sync:\n            sleep-time-ms: 300000",
+      "range": {
+        "startLine": 160,
+        "startChar": 0,
+        "endLine": 170,
+        "endChar": 22
+      },
+      "revId": "520dc2cf66a6355217ee0cff7505f6bfd3621d44",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
