@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "563f7bfd_c7cd4505",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/NcmpEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-07T14:48:45Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9e998d10_47008040",
+      "range": {
+        "startLine": 75,
+        "startChar": 37,
+        "endLine": 76,
+        "endChar": 61
+      },
+      "revId": "83107c921c9306971ecfbd68012744a9338caf0b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f0b87dc6_ae4c6afb",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/NcmpEventsCmHandleStateHandlerImpl.java",
         "patchSetId": 1
@@ -240,6 +264,24 @@
       "revId": "83107c921c9306971ecfbd68012744a9338caf0b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0de272b6_f3f50a1b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CompositeStateUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-07T14:48:45Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "49a82ccf_2c0ecb3d",
+      "revId": "83107c921c9306971ecfbd68012744a9338caf0b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
