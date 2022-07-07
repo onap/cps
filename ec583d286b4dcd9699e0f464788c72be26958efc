@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "9524346e_54feb70d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 3813
+      },
+      "writtenOn": "2022-07-07T12:47:33Z",
+      "side": 1,
+      "message": "default value?",
+      "revId": "ec583d286b4dcd9699e0f464788c72be26958efc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9701c9ed_9ab1824c",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdogSpec.groovy",
         "patchSetId": 2
