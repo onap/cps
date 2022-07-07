@@ -24,13 +24,18 @@ import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
+
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.task.TaskExecutor;
 import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class CpsNcmpTaskExecutor {
 
+    private final TaskExecutor notificationExecutor;
     /**
      * Execute task asynchronously and publish response to supplied topic.
      *
@@ -38,7 +43,7 @@ public class CpsNcmpTaskExecutor {
      * @param timeOutInMillis the time out value in milliseconds
      */
     public void executeTask(final Supplier<Object> taskSupplier, final int timeOutInMillis) {
-        CompletableFuture.supplyAsync(taskSupplier::get)
+        CompletableFuture.supplyAsync(taskSupplier::get, notificationExecutor)
             .orTimeout(timeOutInMillis, MILLISECONDS)
             .whenCompleteAsync((responseAsJson, throwable) -> handleTaskCompletion(throwable));
     }

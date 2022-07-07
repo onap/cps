@@ -32,6 +32,7 @@ import org.onap.cps.ncmp.api.inventory.DataStoreSyncState;
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.api.inventory.LockReasonCategory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -53,6 +54,7 @@ public class ModuleSyncWatchdog {
      * Execute Cm Handle poll which changes the cm handle state from 'ADVISED' to 'READY'.
      */
     @Scheduled(fixedDelayString = "${timers.advised-modules-sync.sleep-time-ms:30000}")
+    @Async
     public void executeAdvisedCmHandlePoll() {
         YangModelCmHandle advisedCmHandle = syncUtils.getAnAdvisedCmHandle();
         while (advisedCmHandle != null) {
@@ -78,6 +80,7 @@ public class ModuleSyncWatchdog {
      * Execute Cm Handle poll which changes the cm handle state from 'LOCKED' to 'ADVISED'.
      */
     @Scheduled(fixedDelayString = "${timers.locked-modules-sync.sleep-time-ms:300000}")
+    @Async
     public void executeLockedCmHandlePoll() {
         final List<YangModelCmHandle> lockedCmHandles = syncUtils.getModuleSyncFailedCmHandles();
         for (final YangModelCmHandle lockedCmHandle : lockedCmHandles) {
