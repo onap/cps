@@ -22,6 +22,8 @@ package org.onap.cps.ncmp.api.inventory.sync;
 
 import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME;
 
+import java.time.Duration;
+import java.time.Instant;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -69,8 +71,13 @@ public class ModuleSyncService {
         if (identifiedNewModuleReferencesFromCmHandle.isEmpty()) {
             newModuleNameToContentMap = new HashMap<>();
         } else {
+            Instant start = Instant.now();
             newModuleNameToContentMap = dmiModelOperations.getNewYangResourcesFromDmi(yangModelCmHandle,
                     identifiedNewModuleReferencesFromCmHandle);
+            Instant end = Instant.now();
+            log.info("Time elapsed to getNewYangResourcesFromDmi is {} ms for YangModelCmHandle is : {} " +
+                            "and IdentifiedNewModuleReferencesFromCmHandle : {}",
+                    Duration.between(start, end).toMillis(), yangModelCmHandle, identifiedNewModuleReferencesFromCmHandle);
         }
         createSchemaSetAndAnchor(yangModelCmHandle, newModuleNameToContentMap, existingModuleReferencesFromCmHandle);
     }

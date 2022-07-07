@@ -33,6 +33,7 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import org.onap.cps.ncmp.api.impl.operations.RequiredDmiService;
 import org.onap.cps.ncmp.api.inventory.CompositeState;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
@@ -46,6 +47,7 @@ import org.onap.cps.utils.CpsValidator;
 @Setter
 @NoArgsConstructor
 @JsonInclude(Include.NON_NULL)
+@ToString
 public class YangModelCmHandle {
 
     private String id;
@@ -124,6 +126,7 @@ public class YangModelCmHandle {
 
     @AllArgsConstructor
     @Data
+    @ToString
     public static class Property {
 
         @JsonProperty()

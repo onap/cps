@@ -29,6 +29,7 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  * State Model to store state corresponding to the Yang resource dmi-registry model.
@@ -37,6 +38,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@ToString
 public class CompositeState {
 
     @JsonProperty("cm-handle-state")
@@ -69,6 +71,7 @@ public class CompositeState {
     @Data
     @Builder
     @JsonInclude(JsonInclude.Include.NON_NULL)
+    @ToString
     public static class LockReason {
 
         @JsonProperty("reason")

@@ -24,8 +24,10 @@ package org.onap.cps.ncmp.api.inventory.sync;
 import com.fasterxml.jackson.databind.JsonNode;
 import java.security.SecureRandom;
 import java.time.Duration;
+import java.time.Instant;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -69,17 +71,30 @@ public class SyncUtils {
     /**
      * Query data nodes for cm handles with an "ADVISED" cm handle state, and select a random entry for processing.
      *
-     * @return a random yang model cm handle with an ADVISED state, return null if not found
+     * @return a randomized yang model cm handle list with ADVISED state, return empty list if not found
      */
-    public YangModelCmHandle getAnAdvisedCmHandle() {
+    public List<YangModelCmHandle> getAdvisedCmHandles() {
+        Instant start = Instant.now();
         final List<DataNode> advisedCmHandles = inventoryPersistence.getCmHandlesByState(CmHandleState.ADVISED);
+        Instant end = Instant.now();
+        log.info("Time elapsed to get cm handles by state ADVISED is : {} ms | Fetched data node size is {}",
+                Duration.between(start, end).toMillis(), advisedCmHandles.size());
         if (advisedCmHandles.isEmpty()) {
-            return null;
+            return Collections.EMPTY_LIST;
         }
-        final int randomElementIndex = secureRandom.nextInt(advisedCmHandles.size());
-        final String cmHandleId = advisedCmHandles.get(randomElementIndex).getLeaves()
-            .get("id").toString();
-        return inventoryPersistence.getYangModelCmHandle(cmHandleId);
+        Instant start2 = Instant.now();
+        Collections.shuffle(advisedCmHandles);
+        Instant end2 = Instant.now();
+        log.info("Time elapsed to shuffle  advisedCmHandles list of size : {} is {} ms",
+                advisedCmHandles.size(), Duration.between(start2, end2).toMillis());
+        Instant start1 = Instant.now();
+        List<YangModelCmHandle> yangModelCmHandles = advisedCmHandles.stream()
+                .map(dataNode -> dataNode.getLeaves().get("id").toString())
+                .map(inventoryPersistence::getYangModelCmHandle).collect(Collectors.toList());
+        Instant end1 = Instant.now();
+        log.info("Time elapsed to get yang model cm handles is : {} ms",
+                Duration.between(start1, end1).toMillis());
+        return yangModelCmHandles;
     }
 
     /**
