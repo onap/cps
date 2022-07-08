@@ -69,6 +69,30 @@
       "revId": "2ed7097713a77e69718428ad1790ba28556c0395",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0fe4e2ad_4d3ad935",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/CompositeStateUtilsSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-08T08:25:09Z",
+      "side": 1,
+      "message": "Yup.Agreed.\nI will remove this altogether.",
+      "parentUuid": "c8819681_401a8c5e",
+      "range": {
+        "startLine": 30,
+        "startChar": 9,
+        "endLine": 30,
+        "endChar": 90
+      },
+      "revId": "2ed7097713a77e69718428ad1790ba28556c0395",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
