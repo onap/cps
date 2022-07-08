@@ -140,6 +140,30 @@
       "revId": "b163645c4b9acc6bbcf3b7e7d72b29eafbb2a045",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e7012def_0a332be9",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/NcmpEventsCmHandleStateHandlerImplSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-08T10:56:47Z",
+      "side": 1,
+      "message": "Ideally I need to check for intial(not existing) to ADVISED state.",
+      "parentUuid": "54731ee0_79e6cece",
+      "range": {
+        "startLine": 65,
+        "startChar": 9,
+        "endLine": 65,
+        "endChar": 72
+      },
+      "revId": "b163645c4b9acc6bbcf3b7e7d72b29eafbb2a045",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
