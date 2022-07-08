@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6bf4dd1a_5581160b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/NcmpEventsCmHandleStateHandler.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-08T14:42:52Z",
+      "side": 1,
+      "message": "maybe remove the term \u0027NcmpEvents\u0027 altogether to avoid ambiguity and also becasu ethe impl. responsibilities go beyond events now!",
+      "parentUuid": "af58f96b_f170bc5c",
+      "range": {
+        "startLine": 30,
+        "startChar": 17,
+        "endLine": 30,
+        "endChar": 27
+      },
+      "revId": "46af1eef41ccb4c73c35b6e6982cd5e9693dabdb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2b8bd8a5_b568c4a7",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/NcmpEventsCmHandleStateHandlerImpl.java",
         "patchSetId": 6
@@ -94,6 +118,29 @@
     },
     {
       "key": {
+        "uuid": "31f753c4_c6d18b00",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CompositeStateUtils.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-08T14:42:52Z",
+      "side": 1,
+      "message": "sugegtsion: getInitialDataStoreSyncState",
+      "range": {
+        "startLine": 64,
+        "startChar": 46,
+        "endLine": 64,
+        "endChar": 67
+      },
+      "revId": "46af1eef41ccb4c73c35b6e6982cd5e9693dabdb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3486aa1d_a091ddad",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CompositeStateUtils.java",
         "patchSetId": 6
@@ -105,6 +152,30 @@
       "writtenOn": "2022-07-08T10:59:45Z",
       "side": 1,
       "message": "See comment https://gerrit.onap.org/r/c/cps/+/129808/2/cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CompositeStateUtils.java#69",
+      "range": {
+        "startLine": 75,
+        "startChar": 43,
+        "endLine": 75,
+        "endChar": 98
+      },
+      "revId": "46af1eef41ccb4c73c35b6e6982cd5e9693dabdb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b829a91a_f6bd9511",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CompositeStateUtils.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-08T14:42:52Z",
+      "side": 1,
+      "message": "I do like Joe\u0027s suggestion: setCompositeStateForRetry",
+      "parentUuid": "3486aa1d_a091ddad",
       "range": {
         "startLine": 75,
         "startChar": 43,
