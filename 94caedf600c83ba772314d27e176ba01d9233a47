@@ -355,6 +355,30 @@
     },
     {
       "key": {
+        "uuid": "4a6b2e7a_1262baed",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CompositeStateUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-08T13:59:46Z",
+      "side": 1,
+      "message": "4. Or leave the way as is because the method is related to CompositeState( ADVISED and LockReasonDetails being the attribute of it ) on the contrary \"Retry\" is a scenario where this method is used at the moment (but there can be other scenarios as well , other than retry).",
+      "parentUuid": "f5f8b2c8_5e447ad3",
+      "range": {
+        "startLine": 69,
+        "startChar": 43,
+        "endLine": 69,
+        "endChar": 98
+      },
+      "revId": "94caedf600c83ba772314d27e176ba01d9233a47",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b41670a0_88821b15",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/NcmpEventsCmHandleStateHandlerImplSpec.groovy",
         "patchSetId": 2
