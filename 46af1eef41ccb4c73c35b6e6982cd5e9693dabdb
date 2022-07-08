@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "026f590c_56ab448f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/NcmpEventsCmHandleStateHandler.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-08T15:03:55Z",
+      "side": 1,
+      "message": "Yes. I will handle this as part of my next patch all related to refactoring/renaming just after this one merges.\nhttps://jira.onap.org/browse/CPS-1137",
+      "parentUuid": "6bf4dd1a_5581160b",
+      "range": {
+        "startLine": 30,
+        "startChar": 17,
+        "endLine": 30,
+        "endChar": 27
+      },
+      "revId": "46af1eef41ccb4c73c35b6e6982cd5e9693dabdb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2b8bd8a5_b568c4a7",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/NcmpEventsCmHandleStateHandlerImpl.java",
         "patchSetId": 6
@@ -60,6 +84,30 @@
       "writtenOn": "2022-07-08T10:59:45Z",
       "side": 1,
       "message": "same",
+      "range": {
+        "startLine": 43,
+        "startChar": 13,
+        "endLine": 43,
+        "endChar": 22
+      },
+      "revId": "46af1eef41ccb4c73c35b6e6982cd5e9693dabdb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a538b32_d02f7a6a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/NcmpEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-08T15:03:55Z",
+      "side": 1,
+      "message": "will be handled as part of https://jira.onap.org/browse/CPS-1137",
+      "parentUuid": "2b8bd8a5_b568c4a7",
       "range": {
         "startLine": 43,
         "startChar": 13,
@@ -95,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "3d15127d_32526e47",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/NcmpEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-08T15:03:55Z",
+      "side": 1,
+      "message": "will be handled as part of https://jira.onap.org/browse/CPS-1137",
+      "parentUuid": "1eee7d6e_084909f1",
+      "range": {
+        "startLine": 62,
+        "startChar": 12,
+        "endLine": 62,
+        "endChar": 28
+      },
+      "revId": "46af1eef41ccb4c73c35b6e6982cd5e9693dabdb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e7bdf6c0_99f7f998",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/NcmpEventsService.java",
         "patchSetId": 6
@@ -106,6 +178,30 @@
       "writtenOn": "2022-07-08T10:59:45Z",
       "side": 1,
       "message": "lcmEvent?",
+      "range": {
+        "startLine": 50,
+        "startChar": 25,
+        "endLine": 50,
+        "endChar": 35
+      },
+      "revId": "46af1eef41ccb4c73c35b6e6982cd5e9693dabdb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e9faa9a_1019828b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/NcmpEventsService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-08T15:03:55Z",
+      "side": 1,
+      "message": "will be handled when Miklos generates a new schema and then we will get rid-off the old one.",
+      "parentUuid": "e7bdf6c0_99f7f998",
       "range": {
         "startLine": 50,
         "startChar": 25,
@@ -138,6 +234,30 @@
       "revId": "46af1eef41ccb4c73c35b6e6982cd5e9693dabdb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16b7fb93_926f750f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CompositeStateUtils.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-08T15:03:55Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "31f753c4_c6d18b00",
+      "range": {
+        "startLine": 64,
+        "startChar": 46,
+        "endLine": 64,
+        "endChar": 67
+      },
+      "revId": "46af1eef41ccb4c73c35b6e6982cd5e9693dabdb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -185,6 +305,30 @@
       "revId": "46af1eef41ccb4c73c35b6e6982cd5e9693dabdb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "19a509f2_b4dc5079",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CompositeStateUtils.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-08T15:03:55Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b829a91a_f6bd9511",
+      "range": {
+        "startLine": 75,
+        "startChar": 43,
+        "endLine": 75,
+        "endChar": 98
+      },
+      "revId": "46af1eef41ccb4c73c35b6e6982cd5e9693dabdb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
