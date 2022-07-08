@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "601b5e38_3c317363",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-08T08:14:02Z",
+      "side": 1,
+      "message": "are we happy this is large enough now?",
+      "range": {
+        "startLine": 104,
+        "startChar": 28,
+        "endLine": 104,
+        "endChar": 32
+      },
+      "revId": "e9447c4e18b460e43f6231da4d2e56718b5d85af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "de8b7044_df8f187a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/DataSyncWatchdog.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-08T08:14:02Z",
+      "side": 1,
+      "message": "I have been thinking about this; and now think it is better that the watchdogs use their OWN pool which cannot be flooded by notifications task... We can discuss",
+      "range": {
+        "startLine": 52,
+        "startChar": 4,
+        "endLine": 52,
+        "endChar": 10
+      },
+      "revId": "e9447c4e18b460e43f6231da4d2e56718b5d85af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0555ccb6_68ff7f28",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-08T08:14:02Z",
+      "side": 1,
+      "message": "I have been thinking about this; and now think it is better that the watchdogs use their OWN pool which cannot be flooded by notifications task... We can discuss",
+      "range": {
+        "startLine": 57,
+        "startChar": 5,
+        "endLine": 57,
+        "endChar": 10
+      },
+      "revId": "e9447c4e18b460e43f6231da4d2e56718b5d85af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
