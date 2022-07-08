@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d224d869_08f39616",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/NcmpEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-08T08:21:09Z",
+      "side": 1,
+      "message": "NB: you stil plan extracting this in this commit?",
+      "range": {
+        "startLine": 90,
+        "startChar": 28,
+        "endLine": 91,
+        "endChar": 52
+      },
+      "revId": "2ed7097713a77e69718428ad1790ba28556c0395",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c8819681_401a8c5e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/CompositeStateUtilsSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-08T08:21:09Z",
+      "side": 1,
+      "message": "NB: since you have a similar test in NcmpEventsCmHandleStateHandlerImplSpec.groovy covering that and this class this whole spec is not really necessary anymore...",
+      "range": {
+        "startLine": 30,
+        "startChar": 9,
+        "endLine": 30,
+        "endChar": 90
+      },
+      "revId": "2ed7097713a77e69718428ad1790ba28556c0395",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
