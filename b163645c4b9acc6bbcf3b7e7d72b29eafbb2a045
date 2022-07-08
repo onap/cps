@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "608d6117_0f6aadc4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CompositeStateUtils.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-07-08T09:52:27Z",
+      "side": 1,
+      "message": "The initial data store sync state can vary depending on if data sync is enabled.\n\nI would change this code to reflect that by rebasing to the latest commit.",
+      "range": {
+        "startLine": 56,
+        "startChar": 20,
+        "endLine": 56,
+        "endChar": 109
+      },
+      "revId": "b163645c4b9acc6bbcf3b7e7d72b29eafbb2a045",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca57b475_df7abca3",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/NcmpEventsCmHandleStateHandlerImplSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-07-08T09:52:27Z",
+      "side": 1,
+      "message": "I\u0027m confused about these scenarios. How can you send events when the state doesn\u0027t change?\n\nOr why are we testing these scenarios?",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 113
+      },
+      "revId": "b163645c4b9acc6bbcf3b7e7d72b29eafbb2a045",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3824ec7b_aff8fa4c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/NcmpEventsCmHandleStateHandlerImplSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-07-08T09:52:27Z",
+      "side": 1,
+      "message": "Can states go from READY to ADVISED?",
+      "range": {
+        "startLine": 65,
+        "startChar": 9,
+        "endLine": 65,
+        "endChar": 72
+      },
+      "revId": "b163645c4b9acc6bbcf3b7e7d72b29eafbb2a045",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
