@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "e19fc34e_f2c8d6f3",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-11T15:58:05Z",
+      "side": 1,
+      "message": "Added #7 on this https://wiki.onap.org/display/DW/CPS-1104+Agree+LCM+Event+schemas",
+      "parentUuid": "f0f524cc_48c56dca",
+      "range": {
+        "startLine": 93,
+        "startChar": 38,
+        "endLine": 93,
+        "endChar": 49
+      },
+      "revId": "8a45cbc8f1c207d80adb657a58c086d0f6d00803",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "43369480_0cd7d620",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
         "patchSetId": 1
