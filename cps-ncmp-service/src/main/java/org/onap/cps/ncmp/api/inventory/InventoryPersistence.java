@@ -28,7 +28,6 @@ import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
 
 import java.time.OffsetDateTime;
 import java.util.Collection;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsDataService;
@@ -59,8 +58,6 @@ public class InventoryPersistence {
     private static final String NCMP_DMI_REGISTRY_PARENT = "/dmi-registry";
 
     private static final String CM_HANDLE_XPATH_TEMPLATE = "/dmi-registry/cm-handles[@id='" + "%s" + "']";
-
-    private static final String ANCESTOR_CM_HANDLES = "\"]/ancestor::cm-handles";
 
     private final JsonObjectMapper jsonObjectMapper;
 
@@ -97,57 +94,6 @@ public class InventoryPersistence {
         cpsDataService.replaceNodeTree(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
             String.format(CM_HANDLE_XPATH_TEMPLATE, cmHandleId),
             cmHandleJsonData, OffsetDateTime.now());
-    }
-
-    /**
-     * Method which returns cm handles by the cm handles state.
-     *
-     * @param cmHandleState cm handle state
-     * @return a list of cm handles
-     */
-    public List<DataNode> getCmHandlesByState(final CmHandleState cmHandleState) {
-        return cpsDataPersistenceService.queryDataNodes(NCMP_DATASPACE_NAME,
-            NCMP_DMI_REGISTRY_ANCHOR, "//state[@cm-handle-state=\""
-                + cmHandleState + ANCESTOR_CM_HANDLES,
-            FetchDescendantsOption.OMIT_DESCENDANTS);
-    }
-
-    /**
-     * Method to return data nodes representing the cm handles.
-     *
-     * @param cpsPath cps path for which the cmHandle is requested
-     * @param fetchDescendantsOption defines the scope of data to fetch: either single node or all the descendant nodes
-     * @return a list of data nodes representing the cm handles.
-     */
-    public List<DataNode> getCmHandleDataNodesByCpsPath(final String cpsPath,
-                                                        final FetchDescendantsOption fetchDescendantsOption) {
-        return cpsDataPersistenceService.queryDataNodes(
-            NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cpsPath, fetchDescendantsOption);
-    }
-
-    /**
-     * Method which returns cm handles by the cm handle id and state.
-     * @param cmHandleId cm handle id
-     * @param cmHandleState cm handle state
-     * @return a list of cm handles
-     */
-    public List<DataNode> getCmHandlesByIdAndState(final String cmHandleId, final CmHandleState cmHandleState) {
-        return cpsDataPersistenceService.queryDataNodes(NCMP_DATASPACE_NAME,
-            NCMP_DMI_REGISTRY_ANCHOR, "//cm-handles[@id='" + cmHandleId + "']/state[@cm-handle-state=\""
-                + cmHandleState + ANCESTOR_CM_HANDLES,
-            FetchDescendantsOption.OMIT_DESCENDANTS);
-    }
-
-    /**
-     * Method which returns cm handles by the operational sync state of cm handle.
-     * @param dataStoreSyncState sync state
-     * @return a list of cm handles
-     */
-    public List<DataNode> getCmHandlesByOperationalSyncState(final DataStoreSyncState dataStoreSyncState) {
-        return cpsDataPersistenceService.queryDataNodes(NCMP_DATASPACE_NAME,
-            NCMP_DMI_REGISTRY_ANCHOR, "//state/datastores"
-                + "/operational[@sync-state=\"" + dataStoreSyncState + ANCESTOR_CM_HANDLES,
-            FetchDescendantsOption.OMIT_DESCENDANTS);
     }
 
     /**
@@ -216,17 +162,6 @@ public class InventoryPersistence {
         } catch (final SchemaSetNotFoundException schemaSetNotFoundException) {
             log.warn("Schema set {} does not exist or already deleted", schemaSetName);
         }
-    }
-
-    /**
-     * Query data nodes via cps path.
-     *
-     * @param cpsPath cps path
-     * @return List of data nodes
-     */
-    public List<DataNode> queryDataNodes(final String cpsPath) {
-        return cpsDataPersistenceService.queryDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                cpsPath, INCLUDE_ALL_DESCENDANTS);
     }
 
     /**
