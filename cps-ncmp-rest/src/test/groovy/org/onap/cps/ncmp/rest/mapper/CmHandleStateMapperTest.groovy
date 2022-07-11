@@ -56,7 +56,7 @@ class CmHandleStateMapperTest extends Specification {
             assert result.lockReason.reason == 'LOCKED_MISBEHAVING'
             assert result.lockReason.details == 'locked details'
             assert result.cmHandleState == 'ADVISED'
-            assert result.dataSyncState.operational.getState() != null
+            assert result.dataSyncState.operational.getSyncState() != null
     }
 
     def 'Internal to External Lock Reason Mapping of #scenario'() {
