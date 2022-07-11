@@ -197,6 +197,9 @@ components:
               - { "Color": "yellow" }
               - { "Shape": "circle" }
               - { "Size": "small" }
+          - conditionName: cmHandleWithCpsPath
+            conditionParameters:
+              - { "cpsPath": "//state[@cm-handle-state='ADVISED']"}
     ConditionProperties:
       properties:
         conditionName:
