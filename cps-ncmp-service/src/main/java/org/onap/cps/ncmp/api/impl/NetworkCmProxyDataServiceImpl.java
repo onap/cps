@@ -290,9 +290,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     private CmHandleRegistrationResponse registerNewCmHandle(final YangModelCmHandle yangModelCmHandle) {
         try {
-            final String cmHandleJsonData = String.format("{\"cm-handles\":[%s]}",
-                    jsonObjectMapper.asJsonString(yangModelCmHandle));
-            inventoryPersistence.saveListElements(cmHandleJsonData);
+            inventoryPersistence.saveCmHandle(yangModelCmHandle);
             return CmHandleRegistrationResponse.createSuccessResponse(yangModelCmHandle.getId());
         } catch (final AlreadyDefinedException alreadyDefinedException) {
             return CmHandleRegistrationResponse.createFailureResponse(

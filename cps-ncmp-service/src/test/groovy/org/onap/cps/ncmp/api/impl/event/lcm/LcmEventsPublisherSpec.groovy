@@ -18,10 +18,11 @@
  * ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.event
+package org.onap.cps.ncmp.api.impl.event.lcm
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.apache.kafka.clients.consumer.KafkaConsumer
+import org.onap.cps.ncmp.api.impl.event.lcm.LcmEventsPublisher
 import org.onap.cps.ncmp.api.utils.MessagingSpec
 import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.utils.JsonObjectMapper
@@ -35,17 +36,17 @@ import org.testcontainers.spock.Testcontainers
 
 import java.time.Duration
 
-@SpringBootTest(classes = [NcmpEventsPublisher, ObjectMapper, JsonObjectMapper])
+@SpringBootTest(classes = [LcmEventsPublisher, ObjectMapper, JsonObjectMapper])
 @Testcontainers
 @DirtiesContext
-class NcmpEventsPublisherSpec extends MessagingSpec {
+class LcmEventsPublisherSpec extends MessagingSpec {
 
     def kafkaConsumer = new KafkaConsumer<>(consumerConfigProperties('ncmp-group'))
 
     def testTopic = 'ncmp-events-test'
 
     @SpringBean
-    NcmpEventsPublisher ncmpEventsPublisher = new NcmpEventsPublisher(kafkaTemplate)
+    LcmEventsPublisher ncmpEventsPublisher = new LcmEventsPublisher(kafkaTemplate)
 
     @Autowired
     JsonObjectMapper jsonObjectMapper

@@ -18,7 +18,7 @@
  * ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.event;
+package org.onap.cps.ncmp.api.impl.event.lcm;
 
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
@@ -32,11 +32,11 @@ import org.springframework.stereotype.Component;
 
 
 /**
- * NcmpEventsCreator to create NcmpEvent based on relevant operation.
+ * LcmEventsCreator to create LcmEvent based on relevant operation.
  */
 @Slf4j
 @Component
-public class NcmpEventsCreator {
+public class LcmEventsCreator {
 
 
     /**
@@ -46,17 +46,17 @@ public class NcmpEventsCreator {
      * @param ncmpServiceCmHandle Ncmp CmHandle Data
      * @return Populated NcmpEvent
      */
-    public NcmpEvent populateNcmpEvent(final String cmHandleId, final NcmpServiceCmHandle ncmpServiceCmHandle) {
-        return createNcmpEvent(cmHandleId, ncmpServiceCmHandle);
+    public NcmpEvent populateLcmEvent(final String cmHandleId, final NcmpServiceCmHandle ncmpServiceCmHandle) {
+        return createLcmEvent(cmHandleId, ncmpServiceCmHandle);
     }
 
-    private NcmpEvent createNcmpEvent(final String cmHandleId, final NcmpServiceCmHandle ncmpServiceCmHandle) {
-        final NcmpEvent ncmpEvent = ncmpEventHeader(cmHandleId);
-        ncmpEvent.setEvent(ncmpEventPayload(cmHandleId, ncmpServiceCmHandle));
+    private NcmpEvent createLcmEvent(final String cmHandleId, final NcmpServiceCmHandle ncmpServiceCmHandle) {
+        final NcmpEvent ncmpEvent = lcmEventHeader(cmHandleId);
+        ncmpEvent.setEvent(lcmEventPayload(cmHandleId, ncmpServiceCmHandle));
         return ncmpEvent;
     }
 
-    private Event ncmpEventPayload(final String eventCorrelationId, final NcmpServiceCmHandle ncmpServiceCmHandle) {
+    private Event lcmEventPayload(final String eventCorrelationId, final NcmpServiceCmHandle ncmpServiceCmHandle) {
         final Event event = new Event();
         event.setCmHandleId(eventCorrelationId);
         event.setCmhandleState(
@@ -65,7 +65,7 @@ public class NcmpEventsCreator {
         return event;
     }
 
-    private NcmpEvent ncmpEventHeader(final String eventCorrelationId) {
+    private NcmpEvent lcmEventHeader(final String eventCorrelationId) {
         final NcmpEvent ncmpEvent = new NcmpEvent();
         ncmpEvent.setEventId(UUID.randomUUID().toString());
         ncmpEvent.setEventCorrelationId(eventCorrelationId);

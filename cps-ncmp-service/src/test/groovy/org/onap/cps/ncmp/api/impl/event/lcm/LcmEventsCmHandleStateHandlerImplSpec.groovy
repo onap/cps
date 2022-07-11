@@ -18,14 +18,12 @@
  * ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.event
+package org.onap.cps.ncmp.api.impl.event.lcm
 
-import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.inventory.CompositeState
 import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence
-import org.onap.cps.utils.JsonObjectMapper
 import spock.lang.Specification
 
 import static org.onap.cps.ncmp.api.inventory.CmHandleState.ADVISED
@@ -33,14 +31,13 @@ import static org.onap.cps.ncmp.api.inventory.CmHandleState.LOCKED
 import static org.onap.cps.ncmp.api.inventory.CmHandleState.READY
 import static org.onap.cps.ncmp.api.inventory.LockReasonCategory.LOCKED_MODULE_SYNC_FAILED
 
-class NcmpEventsCmHandleStateHandlerImplSpec extends Specification {
+class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
 
     def mockInventoryPersistence = Mock(InventoryPersistence)
-    def mockNcmpEventsCreator = Mock(NcmpEventsCreator)
-    def spiedJsonObjectMapper = Spy(new JsonObjectMapper(new ObjectMapper()))
-    def mockNcmpEventsService = Mock(NcmpEventsService)
+    def mockLcmEventsCreator = Mock(LcmEventsCreator)
+    def mockLcmEventsService = Mock(LcmEventsService)
 
-    def objectUnderTest = new NcmpEventsCmHandleStateHandlerImpl(mockInventoryPersistence, mockNcmpEventsCreator, spiedJsonObjectMapper, mockNcmpEventsService)
+    def objectUnderTest = new LcmEventsCmHandleStateHandlerImpl(mockInventoryPersistence, mockLcmEventsCreator, mockLcmEventsService)
 
     def 'Update and Publish Events on State Change #stateChange'() {
         given: 'Cm Handle represented as YangModelCmHandle'
@@ -52,7 +49,7 @@ class NcmpEventsCmHandleStateHandlerImplSpec extends Specification {
         then: 'state is saved using inventory persistence'
             expectedCallsToInventoryPersistence * mockInventoryPersistence.saveCmHandleState(cmHandleId, _)
         and: 'event service is called to publish event'
-            expectedCallsToEventService * mockNcmpEventsService.publishNcmpEvent(cmHandleId, _)
+            expectedCallsToEventService * mockLcmEventsService.publishLcmEvent(cmHandleId, _)
         where: 'state change parameters are provided'
             stateChange          | fromCmHandleState | toCmHandleState || expectedCallsToInventoryPersistence | expectedCallsToEventService
             'ADVISED to READY'   | ADVISED           | READY           || 1                                   | 1
@@ -71,9 +68,9 @@ class NcmpEventsCmHandleStateHandlerImplSpec extends Specification {
         when: 'update state is invoked'
             objectUnderTest.updateCmHandleState(yangModelCmHandle, ADVISED)
         then: 'state is saved using inventory persistence'
-            1 * mockInventoryPersistence.saveListElements(_)
+            1 * mockInventoryPersistence.saveCmHandle(yangModelCmHandle)
         and: 'event service is called to publish event'
-            1 * mockNcmpEventsService.publishNcmpEvent(cmHandleId, _)
+            1 * mockLcmEventsService.publishLcmEvent(cmHandleId, _)
     }
 
     def 'Update and Publish Events on State Change from LOCKED to ADVISED'() {
@@ -91,7 +88,7 @@ class NcmpEventsCmHandleStateHandlerImplSpec extends Specification {
                     }
             }
         and: 'event service is called to publish event'
-            1 * mockNcmpEventsService.publishNcmpEvent(cmHandleId, _)
+            1 * mockLcmEventsService.publishLcmEvent(cmHandleId, _)
     }
 
     def 'Update and Publish Events on State Change to READY with #scenario'() {
@@ -106,13 +103,14 @@ class NcmpEventsCmHandleStateHandlerImplSpec extends Specification {
         then: 'state is saved using inventory persistence with expected dataSyncState'
             1 * mockInventoryPersistence.saveCmHandleState(cmHandleId, _) >> {
                 args-> {
-                    assert (args[1] as CompositeState).dataSyncEnabled == dataSyncCacheEnabled
-                    assert (args[1] as CompositeState).dataStores.operationalDataStore.dataStoreSyncState == expectedDataStoreSyncState
+                    def result = (args[1] as CompositeState)
+                    assert result.dataSyncEnabled == dataSyncCacheEnabled
+                    assert result.dataStores.operationalDataStore.dataStoreSyncState == expectedDataStoreSyncState
 
                 }
             }
         and: 'event service is called to publish event'
-            1 * mockNcmpEventsService.publishNcmpEvent(cmHandleId, _)
+            1 * mockLcmEventsService.publishLcmEvent(cmHandleId, _)
         where:
             scenario                         | dataSyncCacheEnabled || expectedDataStoreSyncState
             'data sync cache enabled'        | true                 || DataStoreSyncState.UNSYNCHRONIZED
