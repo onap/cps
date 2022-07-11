@@ -1,0 +1,96 @@
+{
+
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "urn:cps:org.onap.ncmp.cmhandle.lcm-event:v1",
+
+  "$ref": "#/definitions/LcmEvent",
+
+  "definitions": {
+
+    "Values": {
+      "description": "Values that represents the state of the system",
+      "type": "object",
+      "properties": {
+        "cmHandleState": {
+          "description": "State of cmHandle",
+          "type": "string",
+          "enum": ["ADVISED", "READY", "LOCKED", "DELETING", "DELETED"]
+        },
+        "cmHandleProperties": {
+          "description": "cmHandle properties as json object",
+          "type": "object",
+          "default": null,
+          "existingJavaType": "java.util.List<java.util.Map<String,String>>",
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "EventObj": {
+      "description": "The Payload of an event",
+      "type": "object",
+      "properties": {
+        "cmHandleId": {
+          "description": "cmHandle id",
+          "type": "string"
+        },
+        "oldValues": {
+          "$ref": "#/definitions/Values"
+        },
+        "newValues": {
+          "$ref": "#/definitions/Values"
+        }
+      },
+      "required": [
+        "cmHandleId"
+      ],
+      "additionalProperties": false
+    },
+
+    "LcmEvent": {
+      "description": "The payload for NCMP event",
+      "type": "object",
+      "javaType" : "org.onap.ncmp.cmhandle.lcm.event.LcmEvent",
+      "properties": {
+        "eventId": {
+          "description": "The unique id identifying the event for the specified source",
+          "type": "string"
+        },
+        "eventCorrelationId": {
+          "description": "The id identifying the event for the specified source",
+          "type": "string"
+        },
+        "eventTime": {
+          "description": "The timestamp when the data has been observed",
+          "type": "string"
+        },
+        "eventSource": {
+          "description": "The source of the event",
+          "type": "string"
+        },
+        "eventType": {
+          "description": "The type of the event.",
+          "type": "string"
+        },
+        "eventSchema": {
+          "description": "The schema, including its version, that this event adheres to",
+          "type": "string"
+        },
+        "event": {
+          "$ref": "#/definitions/EventObj"
+        }
+      },
+      "required": [
+        "eventId",
+        "eventTime",
+        "eventSource",
+        "eventType",
+        "eventSchema",
+        "event"
+      ],
+      "additionalProperties": false
+    }
+
+  }
+}
