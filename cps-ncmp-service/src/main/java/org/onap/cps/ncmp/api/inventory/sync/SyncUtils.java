@@ -40,6 +40,7 @@ import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations;
 import org.onap.cps.ncmp.api.impl.operations.DmiOperations;
 import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
+import org.onap.cps.ncmp.api.inventory.CmHandleQueries;
 import org.onap.cps.ncmp.api.inventory.CmHandleState;
 import org.onap.cps.ncmp.api.inventory.CompositeState;
 import org.onap.cps.ncmp.api.inventory.DataStoreSyncState;
@@ -57,6 +58,8 @@ import org.springframework.stereotype.Service;
 public class SyncUtils {
     private final InventoryPersistence inventoryPersistence;
 
+    private final CmHandleQueries cmHandleQueries;
+
     private final DmiDataOperations dmiDataOperations;
 
     private final JsonObjectMapper jsonObjectMapper;
@@ -70,7 +73,7 @@ public class SyncUtils {
      */
     public List<YangModelCmHandle> getAdvisedCmHandles() {
         final List<DataNode> advisedCmHandlesAsDataNodeList = new ArrayList<>(
-                inventoryPersistence.getCmHandlesByState(CmHandleState.ADVISED));
+            cmHandleQueries.getCmHandlesByState(CmHandleState.ADVISED));
         log.info("Total number of fetched advised cm handle(s) is (are) {}", advisedCmHandlesAsDataNodeList.size());
         if (advisedCmHandlesAsDataNodeList.isEmpty()) {
             return Collections.emptyList();
@@ -87,16 +90,16 @@ public class SyncUtils {
      *         return null if not found
      */
     public YangModelCmHandle getAnUnSynchronizedReadyCmHandle() {
-        final List<DataNode> unSynchronizedCmHandles = inventoryPersistence
-                .getCmHandlesByOperationalSyncState(DataStoreSyncState.UNSYNCHRONIZED);
+        final List<DataNode> unSynchronizedCmHandles = cmHandleQueries
+            .getCmHandlesByOperationalSyncState(DataStoreSyncState.UNSYNCHRONIZED);
         if (unSynchronizedCmHandles.isEmpty()) {
             return null;
         }
         Collections.shuffle(unSynchronizedCmHandles);
         for (final DataNode cmHandle : unSynchronizedCmHandles) {
             final String cmHandleId = cmHandle.getLeaves().get("id").toString();
-            final List<DataNode> readyCmHandles = inventoryPersistence
-                    .getCmHandlesByIdAndState(cmHandleId, CmHandleState.READY);
+            final List<DataNode> readyCmHandles = cmHandleQueries
+                .getCmHandlesByIdAndState(cmHandleId, CmHandleState.READY);
             if (!readyCmHandles.isEmpty()) {
                 return inventoryPersistence.getYangModelCmHandle(cmHandleId);
             }
@@ -110,8 +113,8 @@ public class SyncUtils {
      * @return a random LOCKED yang model cm handle, return null if not found
      */
     public List<YangModelCmHandle> getModuleSyncFailedCmHandles() {
-        final List<DataNode> lockedCmHandlesAsDataNodeList = inventoryPersistence.getCmHandleDataNodesByCpsPath(
-            "//lock-reason[@reason=\"LOCKED_MODULE_SYNC_FAILED\"]/ancestor::cm-handles",
+        final List<DataNode> lockedCmHandlesAsDataNodeList = cmHandleQueries.getCmHandleDataNodesByCpsPath(
+            "//lock-reason[@reason=\"LOCKED_MODULE_SYNC_FAILED\"]",
             FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
         return convertCmHandlesDataNodesToYangModelCmHandles(lockedCmHandlesAsDataNodeList);
     }
@@ -171,8 +174,8 @@ public class SyncUtils {
      */
     public String getResourceData(final String cmHandleId) {
         final ResponseEntity<Object> resourceDataResponseEntity = dmiDataOperations.getResourceDataFromDmi(
-                cmHandleId, DmiOperations.DataStoreEnum.PASSTHROUGH_OPERATIONAL,
-                UUID.randomUUID().toString());
+            cmHandleId, DmiOperations.DataStoreEnum.PASSTHROUGH_OPERATIONAL,
+            UUID.randomUUID().toString());
         if (resourceDataResponseEntity.getStatusCode().is2xxSuccessful()) {
             return getFirstResource(resourceDataResponseEntity.getBody());
         }
@@ -188,8 +191,8 @@ public class SyncUtils {
     }
 
     private List<YangModelCmHandle> convertCmHandlesDataNodesToYangModelCmHandles(
-            final List<DataNode> cmHandlesAsDataNodeList) {
+        final List<DataNode> cmHandlesAsDataNodeList) {
         return cmHandlesAsDataNodeList.stream().map(dataNode -> YangDataConverter.convertCmHandleToYangModel(dataNode,
-                dataNode.getLeaves().get("id").toString())).collect(Collectors.toList());
+            dataNode.getLeaves().get("id").toString())).collect(Collectors.toList());
     }
 }
