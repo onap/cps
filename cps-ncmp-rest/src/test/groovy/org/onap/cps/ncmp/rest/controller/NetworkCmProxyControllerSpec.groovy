@@ -453,7 +453,7 @@ class NetworkCmProxyControllerSpec extends Specification {
             '"dataSyncEnabled":false',
             '"dataSyncState":',
             '"operational":',
-            '"state":"NONE_REQUESTED"',
+            '"syncState":"NONE_REQUESTED"',
             '"lastSyncTime":"2022-12-31T20:30:40.000+0000"',
             '"running":null'
         ]

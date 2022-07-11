@@ -271,7 +271,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                 final YangModelCmHandle yangModelCmHandle = inventoryPersistence.getYangModelCmHandle(cmHandleId);
                 lcmEventsCmHandleStateHandler.updateCmHandleState(yangModelCmHandle,
                         CmHandleState.DELETING);
-                deleteSchemaSetAndListElementByCmHandleId(cmHandleId);
+                deleteCmHandleByCmHandleId(cmHandleId);
                 cmHandleRegistrationResponses.add(CmHandleRegistrationResponse.createSuccessResponse(cmHandleId));
                 lcmEventsCmHandleStateHandler.updateCmHandleState(yangModelCmHandle,
                         CmHandleState.DELETED);
@@ -295,7 +295,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         return cmHandleRegistrationResponses;
     }
 
-    private void deleteSchemaSetAndListElementByCmHandleId(final String cmHandleId) {
+    private void deleteCmHandleByCmHandleId(final String cmHandleId) {
         inventoryPersistence.deleteSchemaSetWithCascade(cmHandleId);
         inventoryPersistence.deleteListOrListElement("/dmi-registry/cm-handles[@id='" + cmHandleId + "']");
     }
