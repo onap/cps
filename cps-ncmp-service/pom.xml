@@ -3,7 +3,7 @@
   ============LICENSE_START=======================================================
   Copyright (C) 2021-2022 Nordix Foundation
   Modifications Copyright (C) 2021 Pantheon.tech
- Modifications Copyright (C) 2022 Bell Canada
+  Modifications Copyright (C) 2022 Bell Canada
   ================================================================================
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -44,6 +44,10 @@
         <dependency>
             <groupId>org.onap.cps</groupId>
             <artifactId>cps-ncmp-events</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>cps-path-parser</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>

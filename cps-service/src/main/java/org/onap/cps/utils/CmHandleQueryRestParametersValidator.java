@@ -22,17 +22,16 @@ package org.onap.cps.utils;
 
 import com.google.common.base.Strings;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.spi.model.CmHandleQueryServiceParameters;
 
+@Slf4j
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class CmHandleQueryRestParametersValidator {
-
-    private static final List<String> VALID_PROPERTY_NAMES = Arrays.asList("hasAllProperties", "hasAllModules");
 
     /**
      * Validate cm handle query parameters.
@@ -45,7 +44,8 @@ public class CmHandleQueryRestParametersValidator {
                     if (Strings.isNullOrEmpty(conditionApiProperty.getConditionName())) {
                         throwDataValidationException("Missing 'conditionName' - please supply a valid name.");
                     }
-                    if (!VALID_PROPERTY_NAMES.contains(conditionApiProperty.getConditionName())) {
+                    if (Arrays.stream(ValidQueryProperties.values()).noneMatch(validQueryProperty ->
+                        validQueryProperty.getQueryProperty().equals(conditionApiProperty.getConditionName()))) {
                         throwDataValidationException(
                                 String.format("Wrong 'conditionName': %s - please supply a valid name.",
                                 conditionApiProperty.getConditionName()));
@@ -87,6 +87,34 @@ public class CmHandleQueryRestParametersValidator {
             return;
         }
         throwDataValidationException("Wrong module condition property. - please supply a valid condition property.");
+    }
+
+    /**
+     * Validate CPS path condition properties.
+     * @param conditionProperty name of data to be validated
+     */
+    public static boolean validateCpsPathConditionProperties(final Map<String, String> conditionProperty) {
+        if (conditionProperty.isEmpty()) {
+            return true;
+        }
+        if (conditionProperty.size() > 1) {
+            throwDataValidationException("Only one condition property is allowed for the CPS path query.");
+        }
+        if (!conditionProperty.containsKey("cpsPath")) {
+            throwDataValidationException(
+                "Wrong CPS path condition property. - expecting \"cpsPath\" as the condition property.");
+        }
+        final String cpsPath = conditionProperty.get("cpsPath");
+        if (cpsPath.isBlank()) {
+            throwDataValidationException(
+                "Wrong CPS path. - please supply a valid CPS path.");
+        }
+        if (cpsPath.contains("/additional-properties")) {
+            log.debug("{} - Private metadata cannot be queried. Nothing to be returned",
+                cpsPath);
+            return false;
+        }
+        return true;
     }
 
     private static void throwDataValidationException(final String details) {

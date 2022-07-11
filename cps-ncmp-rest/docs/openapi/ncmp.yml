@@ -273,7 +273,7 @@ fetchModuleDefinitionsByCmHandle:
 
 searchCmHandles:
   post:
-    description: Execute cm handle query search, to be included in the result a cm-handle must fulfill ALL the conditions listed here, if one of the given module names does not exists, return with an empty collection.
+    description: Execute cm handle query search and return a list of cm handle details. Any number of conditions can be applied. To be included in the result a cm-handle must fulfill ALL the conditions. An empty collection will be returned in the case that the cm handle does not match a condition. For more on cm handle query search please refer to <a href="RTD page to be created in separate task">cm handle query search Read the Docs</a>.<br/>By supplying a CPS Path it is possible to query on any data related to the cm handle. For more on CPS Path please refer to <a href="https://docs.onap.org/projects/onap-cps/en/latest/cps-path.html">CPS Path Read the Docs</a>. The cm handle ancestor is automatically returned for this query.
     tags:
       - network-cm-proxy
     summary: Execute cm handle search using the available conditions
@@ -284,6 +284,17 @@ searchCmHandles:
         application/json:
           schema:
             $ref: 'components.yaml#/components/schemas/CmHandleQueryParameters'
+          examples:
+            Cm handle properties query:
+              $ref: 'components.yaml#/components/examples/pubPropCmHandleQueryParameters'
+            Cm handle modules query:
+              $ref: 'components.yaml#/components/examples/modulesCmHandleQueryParameters'
+            All cm handle query parameters:
+              $ref: 'components.yaml#/components/examples/allCmHandleQueryParameters'
+            Cm handle with CPS path state query:
+              $ref: 'components.yaml#/components/examples/cpsPathCmHandleStateQueryParameters'
+            Cm handle with data sync flag query:
+              $ref: 'components.yaml#/components/examples/cpsPathCmHandleDataSyncQueryParameters'
     responses:
       200:
         description: OK
@@ -379,7 +390,7 @@ getCmHandleStateById:
 
 searchCmHandleIds:
   post:
-    description: Execute cm handle query search, to be included in the result a cm-handle must fulfill ALL the conditions listed here, if one of the given module names does not exists, return with an empty collection.
+    description: Execute cm handle query search and return a list of cm handle ids. Any number of conditions can be applied. To be included in the result a cm-handle must fulfill ALL the conditions. An empty collection will be returned in the case that the cm handle does not match a condition. For more on cm handle query search please refer to <a href="RTD page to be created in separate task">cm handle query search Read the Docs</a>.<br/>By supplying a CPS Path it is possible to query on any data related to the cm handle. For more on CPS Path please refer to <a href="https://docs.onap.org/projects/onap-cps/en/latest/cps-path.html">CPS Path Read the Docs</a>. The cm handle ancestor is automatically returned for this query.
     tags:
       - network-cm-proxy
     summary: Execute cm handle query upon a given set of query parameters
@@ -390,6 +401,17 @@ searchCmHandleIds:
         application/json:
           schema:
             $ref: 'components.yaml#/components/schemas/CmHandleQueryParameters'
+          examples:
+            Cm handle properties query:
+              $ref: 'components.yaml#/components/examples/pubPropCmHandleQueryParameters'
+            Cm handle modules query:
+              $ref: 'components.yaml#/components/examples/modulesCmHandleQueryParameters'
+            All cm handle query parameters:
+              $ref: 'components.yaml#/components/examples/allCmHandleQueryParameters'
+            Cm handle with CPS path state query:
+              $ref: 'components.yaml#/components/examples/cpsPathCmHandleStateQueryParameters'
+            Cm handle with data sync flag query:
+              $ref: 'components.yaml#/components/examples/cpsPathCmHandleDataSyncQueryParameters'
     responses:
       200:
         description: OK

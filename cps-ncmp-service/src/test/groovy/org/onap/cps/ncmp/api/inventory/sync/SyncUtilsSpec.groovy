@@ -25,6 +25,7 @@ import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations
 import org.onap.cps.ncmp.api.impl.operations.DmiOperations
+import org.onap.cps.ncmp.api.inventory.CmHandleQueries
 import org.onap.cps.ncmp.api.inventory.CmHandleState
 import org.onap.cps.ncmp.api.inventory.CompositeState
 import org.onap.cps.ncmp.api.inventory.CompositeStateBuilder
@@ -47,11 +48,13 @@ class SyncUtilsSpec extends Specification{
 
     def mockInventoryPersistence = Mock(InventoryPersistence)
 
+    def mockCmHandleQueries = Mock(CmHandleQueries)
+
     def mockDmiDataOperations = Mock(DmiDataOperations)
 
     def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
 
-    def objectUnderTest = new SyncUtils(mockInventoryPersistence, mockDmiDataOperations, jsonObjectMapper)
+    def objectUnderTest = new SyncUtils(mockInventoryPersistence, mockCmHandleQueries, mockDmiDataOperations, jsonObjectMapper)
 
     @Shared
     def formattedDateAndTime = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ").format(OffsetDateTime.now())
@@ -61,14 +64,14 @@ class SyncUtilsSpec extends Specification{
 
     def 'Get an advised Cm-Handle where ADVISED cm handle #scenario'() {
         given: 'the inventory persistence service returns a collection of data nodes'
-            mockInventoryPersistence.getCmHandlesByState(CmHandleState.ADVISED) >> dataNodeCollection
+            mockCmHandleQueries.getCmHandlesByState(CmHandleState.ADVISED) >> dataNodeCollection
         when: 'get advised cm handles are fetched'
             def yangModelCmHandles = objectUnderTest.getAdvisedCmHandles()
         then: 'the returned data node collection is the correct size'
             yangModelCmHandles.size() == expectedDataNodeSize
         and: 'yang model collection contains the correct data'
             yangModelCmHandles.stream().map(yangModel -> yangModel.id).collect(Collectors.toSet()) ==
-                    dataNodeCollection.stream().map(dataNode -> dataNode.leaves.get("id")).collect(Collectors.toSet())
+                dataNodeCollection.stream().map(dataNode -> dataNode.leaves.get("id")).collect(Collectors.toSet())
         where: 'the following scenarios are used'
             scenario         | dataNodeCollection || expectedCallsToGetYangModelCmHandle | expectedDataNodeSize
             'exists'         | [dataNode]         || 1                                   | 1
@@ -77,7 +80,7 @@ class SyncUtilsSpec extends Specification{
 
     def 'Update Lock Reason, Details and Attempts where lock reason #scenario'() {
         given: 'A locked state'
-           def compositeState = new CompositeState(lockReason: lockReason)
+            def compositeState = new CompositeState(lockReason: lockReason)
         when: 'update cm handle details and attempts is called'
             objectUnderTest.updateLockReasonDetailsAndAttempts(compositeState, LockReasonCategory.LOCKED_MODULE_SYNC_FAILED, 'new error message')
         then: 'the composite state lock reason and details are updated'
@@ -91,9 +94,9 @@ class SyncUtilsSpec extends Specification{
 
     def 'Get all locked Cm-Handle where Lock Reason is LOCKED_MODULE_SYNC_FAILED cm handle #scenario'() {
         given: 'the cps (persistence service) returns a collection of data nodes'
-            mockInventoryPersistence.getCmHandleDataNodesByCpsPath(
-                    '//lock-reason[@reason="LOCKED_MODULE_SYNC_FAILED"]/ancestor::cm-handles',
-                FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> [dataNode ]
+            mockCmHandleQueries.getCmHandleDataNodesByCpsPath(
+                '//lock-reason[@reason="LOCKED_MODULE_SYNC_FAILED"]',
+                FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> [dataNode]
         when: 'get locked Misbehaving cm handle is called'
             def result = objectUnderTest.getModuleSyncFailedCmHandles()
         then: 'the returned cm handle collection is the correct size'
@@ -119,8 +122,8 @@ class SyncUtilsSpec extends Specification{
 
     def 'Get a Cm-Handle where Operational Sync state is UnSynchronized and Cm-handle state is READY and #scenario'() {
         given: 'the inventory persistence service returns a collection of data nodes'
-            mockInventoryPersistence.getCmHandlesByOperationalSyncState(DataStoreSyncState.UNSYNCHRONIZED) >> unSynchronizedDataNodes
-            mockInventoryPersistence.getCmHandlesByIdAndState("cm-handle-123", CmHandleState.READY) >> readyDataNodes
+            mockCmHandleQueries.getCmHandlesByOperationalSyncState(DataStoreSyncState.UNSYNCHRONIZED) >> unSynchronizedDataNodes
+            mockCmHandleQueries.getCmHandlesByIdAndState("cm-handle-123", CmHandleState.READY) >> readyDataNodes
         when: 'get advised cm handles are fetched'
             objectUnderTest.getAnUnSynchronizedReadyCmHandle()
         then: 'the returned data node collection is the correct size'
