@@ -117,6 +117,30 @@
     },
     {
       "key": {
+        "uuid": "39977836_5fc7016c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-11T14:28:34Z",
+      "side": 1,
+      "message": "Yeah. This needs to be discussed with Kieran again.\nBut Toine has suggestion for this as : ncmp-lcm-events.\nLet me confirm though :)",
+      "parentUuid": "24eb2c81_21fce566",
+      "range": {
+        "startLine": 40,
+        "startChar": 35,
+        "endLine": 40,
+        "endChar": 39
+      },
+      "revId": "8a45cbc8f1c207d80adb657a58c086d0f6d00803",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1fc9d79c_8d05f5f6",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImplSpec.groovy",
         "patchSetId": 1
@@ -137,6 +161,30 @@
       "revId": "8a45cbc8f1c207d80adb657a58c086d0f6d00803",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "85495b80_fbbdc6b1",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-11T14:28:34Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1fc9d79c_8d05f5f6",
+      "range": {
+        "startLine": 71,
+        "startChar": 54,
+        "endLine": 71,
+        "endChar": 55
+      },
+      "revId": "8a45cbc8f1c207d80adb657a58c086d0f6d00803",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
