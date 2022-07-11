@@ -80,9 +80,6 @@ class InventoryPersistenceSpec extends Specification {
     @Shared
     def childDataNodesForCmHandleWithState = [new DataNode(xpath: "/dmi-registry/cm-handles[@id='some-cm-handle']/state", leaves: ['cm-handle-state': 'ADVISED'])]
 
-    @Shared
-    def static sampleDataNodes = [new DataNode()]
-
     def "Retrieve CmHandle using datanode with #scenario."() {
         given: 'the cps data service returns a data node from the DMI registry'
             def dataNode = new DataNode(childDataNodes:childDataNodes, leaves: leaves)
@@ -157,56 +154,6 @@ class InventoryPersistenceSpec extends Specification {
             'DELETING'  | CmHandleState.DELETING || '{"state":{"cm-handle-state":"DELETING","last-update-time":"2022-12-31T20:30:40.000+0000"}}'
     }
 
-    def 'Get Cm Handles By State'() {
-        given: 'a cm handle state to query'
-            def cmHandleState = CmHandleState.ADVISED
-        and: 'cps data service returns a list of data nodes'
-            mockCpsDataPersistenceService.queryDataNodes('NCMP-Admin', 'ncmp-dmi-registry',
-                    '//state[@cm-handle-state="ADVISED"]/ancestor::cm-handles', OMIT_DESCENDANTS) >> sampleDataNodes
-        when: 'get cm handles by state is invoked'
-            def result = objectUnderTest.getCmHandlesByState(cmHandleState)
-        then: 'the returned result is a list of data nodes returned by cps data service'
-            assert result == sampleDataNodes
-    }
-
-    def 'Get Cm Handles By State and Cm-Handle Id'() {
-        given: 'a cm handle state to query'
-            def cmHandleState = CmHandleState.READY
-        and: 'cps data service returns a list of data nodes'
-            mockCpsDataPersistenceService.queryDataNodes('NCMP-Admin', 'ncmp-dmi-registry',
-                    '//cm-handles[@id=\'some-cm-handle\']/state[@cm-handle-state="'+ 'READY'+'"]/ancestor::cm-handles', OMIT_DESCENDANTS) >> sampleDataNodes
-        when: 'get cm handles by state and id is invoked'
-            def result = objectUnderTest.getCmHandlesByIdAndState(cmHandleId, cmHandleState)
-        then: 'the returned result is a list of data nodes returned by cps data service'
-            assert result == sampleDataNodes
-    }
-
-    def 'Get Cm Handles By Operational Sync State : UNSYNCHRONIZED'() {
-        given: 'a cm handle state to query'
-            def cmHandleState = CmHandleState.READY
-        and: 'cps data service returns a list of data nodes'
-            mockCpsDataPersistenceService.queryDataNodes('NCMP-Admin', 'ncmp-dmi-registry',
-                    '//state/datastores/operational[@sync-state="'+'UNSYNCHRONIZED'+'"]/ancestor::cm-handles', OMIT_DESCENDANTS) >> sampleDataNodes
-        when: 'get cm handles by operational sync state as UNSYNCHRONIZED is invoked'
-            def result = objectUnderTest.getCmHandlesByOperationalSyncState(DataStoreSyncState.UNSYNCHRONIZED)
-        then: 'the returned result is a list of data nodes returned by cps data service'
-            assert result == sampleDataNodes
-    }
-
-    def 'Retrieve cm handle by cps path '() {
-        given: 'a cm handle state to query based on the cps path'
-            def cmHandleDataNode = new DataNode(xpath: 'xpath', leaves: ['cm-handle-state': 'LOCKED'])
-            def cpsPath = '//cps-path'
-        and: 'cps data service returns a valid data node'
-            mockCpsDataPersistenceService.queryDataNodes('NCMP-Admin', 'ncmp-dmi-registry',
-                    cpsPath, INCLUDE_ALL_DESCENDANTS)
-                    >> Arrays.asList(cmHandleDataNode)
-        when: 'get cm handles by cps path is invoked'
-            def result = objectUnderTest.getCmHandleDataNodesByCpsPath(cpsPath, INCLUDE_ALL_DESCENDANTS)
-        then: 'the returned result is a list of data nodes returned by cps data service'
-            assert result.contains(cmHandleDataNode)
-    }
-
     def 'Get module definitions'() {
         given: 'cps module service returns a collection of module definitions'
             def moduleDefinitions = [new ModuleDefinition('moduleName','revision','content')]
@@ -261,13 +208,6 @@ class InventoryPersistenceSpec extends Specification {
             thrown(DataValidationException)
         and: 'the module service to delete schemaSet is not called'
             0 * mockCpsModuleService.deleteSchemaSet('NFP-Operational', 'sampleSchemaSetName', CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED)
-    }
-
-    def 'Query data nodes via cpsPath'() {
-        when: 'the method to query data nodes is called'
-            objectUnderTest.queryDataNodes('sample cpsPath')
-        then: 'the data persistence service method to query data nodes is invoked once'
-            1 * mockCpsDataPersistenceService.queryDataNodes('NCMP-Admin','ncmp-dmi-registry','sample cpsPath', INCLUDE_ALL_DESCENDANTS)
     }
 
     def 'Get data node via xPath'() {

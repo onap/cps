@@ -88,4 +88,29 @@ class CmHandleQueryRestParametersValidatorSpec extends Specification {
             'invalid value' | [moduleName: '']
             'invalid name'  | [wrongName: 'value']
     }
+
+    def 'Validate CmHandle where an exception is thrown due to #scenario.'() {
+        when: 'the validator is called on a cps path condition property'
+            CmHandleQueryRestParametersValidator.validateCpsPathConditionProperties(conditionProperty)
+        then: 'a data validation exception is thrown'
+            def e = thrown(DataValidationException)
+        and: 'exception message matches the expected message'
+            e.details.contains(exceptionMessage)
+        where:
+            scenario                              | conditionProperty                               || exceptionMessage
+            'more than one condition is supplied' | ['cpsPath':'some-path', 'cpsPath2':'some-path'] || 'Only one condition property is allowed for the CPS path query.'
+            'cpsPath key not supplied'            | ['wrong-key':'some-path']                       || 'Wrong CPS path condition property. - expecting "cpsPath" as the condition property.'
+            'cpsPath not supplied'                | ['cpsPath':'']                                  || 'Wrong CPS path. - please supply a valid CPS path.'
+    }
+
+    def 'Validate CmHandle where #scenario.'() {
+        when: 'the validator is called on a cps path condition property'
+            def result = CmHandleQueryRestParametersValidator.validateCpsPathConditionProperties(['cpsPath':cpsPath])
+        then: 'the expected boolean value is returned'
+            result == expectedBoolean
+        where:
+            scenario                                       | cpsPath                                                || expectedBoolean
+            'cpsPath is valid'                             | '/some/valid/path'                                     || true
+            'cpsPath attempts to query private properties' | "//additional-properties[@some-property='some-value']" || false
+    }
 }

@@ -185,18 +185,7 @@ components:
             type: object
             $ref: '#/components/schemas/OldConditionProperties'
           description: not necessary, it is just for backward compatibility
-      example:
-        cmHandleQueryParameters:
-          - conditionName: hasAllModules
-            conditionParameters:
-              - { "moduleName": "my-module-1" }
-              - { "moduleName": "my-module-2" }
-              - { "moduleName": "my-module-3" }
-          - conditionName: hasAllProperties
-            conditionParameters:
-              - { "Color": "yellow" }
-              - { "Shape": "circle" }
-              - { "Size": "small" }
+
     ConditionProperties:
       properties:
         conditionName:
@@ -279,7 +268,7 @@ components:
     sync-state:
       type: object
       properties:
-        state:
+        syncState:
           type: string
           example: NONE_REQUESTED
         lastSyncTime:
@@ -379,6 +368,51 @@ components:
                   - authors:
                       - Philip Pullman
                 name: kids
+
+    allCmHandleQueryParameters:
+      value:
+        cmHandleQueryParameters:
+          - conditionName: hasAllModules
+            conditionParameters:
+              - { "moduleName": "my-module-1" }
+              - { "moduleName": "my-module-2" }
+              - { "moduleName": "my-module-3" }
+          - conditionName: hasAllProperties
+            conditionParameters:
+              - { "Color": "yellow" }
+              - { "Shape": "circle" }
+              - { "Size": "small" }
+          - conditionName: cmHandleWithCpsPath
+            conditionParameters:
+              - { "cpsPath": "//state[@cm-handle-state='ADVISED']" }
+    pubPropCmHandleQueryParameters:
+      value:
+        cmHandleQueryParameters:
+          - conditionName: hasAllProperties
+            conditionParameters:
+              - { "Color": "yellow" }
+              - { "Shape": "circle" }
+              - { "Size": "small" }
+    modulesCmHandleQueryParameters:
+      value:
+        cmHandleQueryParameters:
+          - conditionName: hasAllModules
+            conditionParameters:
+              - { "moduleName": "my-module-1" }
+              - { "moduleName": "my-module-2" }
+              - { "moduleName": "my-module-3" }
+    cpsPathCmHandleStateQueryParameters:
+      value:
+        cmHandleQueryParameters:
+          - conditionName: cmHandleWithCpsPath
+            conditionParameters:
+              - { "cpsPath": "//state[@cm-handle-state='LOCKED']" }
+    cpsPathCmHandleDataSyncQueryParameters:
+      value:
+        cmHandleQueryParameters:
+          - conditionName: cmHandleWithCpsPath
+            conditionParameters:
+              - { "cpsPath": "//state[@data-sync-enabled='true']" }
 
   parameters:
     cmHandleInPath:
