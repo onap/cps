@@ -271,9 +271,10 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
         when: 'parse and create cm handle in dmi registration then sync module'
             objectUnderTest.parseAndCreateCmHandlesInDmiRegistrationAndSyncModules(mockDmiPluginRegistration)
         then: 'validate params for creating anchor and list elements'
-            1 * mockInventoryPersistence.saveListElements(_) >> {
+            1 * mockInventoryPersistence.saveCmHandle(_) >> {
                 args -> {
-                    assert args[0].startsWith('{"cm-handles":[{"id":"some-cm-handle-id","state":{"cm-handle-state":"ADVISED","last-update-time":"20')
+                    assert (args[0] as YangModelCmHandle).id == 'some-cm-handle-id'
+                    assert (args[0] as YangModelCmHandle).compositeState.cmHandleState == CmHandleState.ADVISED
                 }
             }
     }

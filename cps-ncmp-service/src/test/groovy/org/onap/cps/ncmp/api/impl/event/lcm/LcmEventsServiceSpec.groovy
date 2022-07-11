@@ -18,28 +18,27 @@
  * ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.event
-
+package org.onap.cps.ncmp.api.impl.event.lcm
 
 import org.onap.ncmp.cmhandle.lcm.event.NcmpEvent
 import spock.lang.Specification
 
-class NcmpEventsServiceSpec extends Specification {
+class LcmEventsServiceSpec extends Specification {
 
-    def mockNcmpEventsPublisher = Mock(NcmpEventsPublisher)
+    def mockLcmEventsPublisher = Mock(LcmEventsPublisher)
 
-    def objectUnderTest = new NcmpEventsService(mockNcmpEventsPublisher)
+    def objectUnderTest = new LcmEventsService(mockLcmEventsPublisher)
 
-    def 'Create and Publish ncmp event where events are #scenario'() {
+    def 'Create and Publish lcm event where events are #scenario'() {
         given: 'a cm handle id and Ncmp Event'
             def cmHandleId = 'test-cm-handle-id'
             def ncmpEvent = new NcmpEvent(eventId: UUID.randomUUID().toString(), eventCorrelationId: cmHandleId)
         and: 'notifications enabled is #notificationsEnabled'
             objectUnderTest.notificationsEnabled = notificationsEnabled
-        when: 'service is called to publish ncmp event'
-            objectUnderTest.publishNcmpEvent('test-cm-handle-id', ncmpEvent)
+        when: 'service is called to publish lcm event'
+            objectUnderTest.publishLcmEvent('test-cm-handle-id', ncmpEvent)
         then: 'publisher is called #expectedTimesMethodCalled times'
-            expectedTimesMethodCalled * mockNcmpEventsPublisher.publishEvent(_, cmHandleId, ncmpEvent)
+            expectedTimesMethodCalled * mockLcmEventsPublisher.publishEvent(_, cmHandleId, ncmpEvent)
         where: 'the following values are used'
             scenario   | notificationsEnabled || expectedTimesMethodCalled
             'enabled'  | true                 || 1
