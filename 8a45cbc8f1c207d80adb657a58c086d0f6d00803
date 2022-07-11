@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "f0f524cc_48c56dca",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-11T15:52:58Z",
+      "side": 1,
+      "message": "Need to check with Kieran. But since this is configurable , we can keep this at the moment and once we do another round of refactoring when Miklos introduces the LcmEvent schema we can handle this as part of that patch.\nI will check with Kieran meanwhile.",
+      "parentUuid": "f5c73520_56c638a6",
+      "range": {
+        "startLine": 93,
+        "startChar": 38,
+        "endLine": 93,
+        "endChar": 49
+      },
+      "revId": "8a45cbc8f1c207d80adb657a58c086d0f6d00803",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "43369480_0cd7d620",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
         "patchSetId": 1
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "16c0c377_bcedc937",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-11T15:52:58Z",
+      "side": 1,
+      "message": "No No..\nThese are generated code.\nNow Miklos is working on the same and it will be called LcmEvent after the new schema change.",
+      "parentUuid": "43369480_0cd7d620",
+      "range": {
+        "startLine": 99,
+        "startChar": 14,
+        "endLine": 99,
+        "endChar": 24
+      },
+      "revId": "8a45cbc8f1c207d80adb657a58c086d0f6d00803",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "69d94a35_057fa53c",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreator.java",
         "patchSetId": 1
@@ -59,6 +107,30 @@
       "writtenOn": "2022-07-11T13:23:07Z",
       "side": 1,
       "message": "Maybe we should have an LcmEvent class that extends the (abstract?) NcmpEvent or implement the NCMPEvent interface?!",
+      "range": {
+        "startLine": 53,
+        "startChar": 12,
+        "endLine": 53,
+        "endChar": 36
+      },
+      "revId": "8a45cbc8f1c207d80adb657a58c086d0f6d00803",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "53bb2c6f_90c5c8f0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-11T15:52:58Z",
+      "side": 1,
+      "message": "At the moment we are using generated code for all this.\nNeed to explore more if we can do this way.",
+      "parentUuid": "69d94a35_057fa53c",
       "range": {
         "startLine": 53,
         "startChar": 12,
