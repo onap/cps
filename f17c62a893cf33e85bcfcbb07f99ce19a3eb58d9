@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "857e79b9_a0c5ebab",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/lcm-event-schema-v1.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-12T09:19:30Z",
+      "side": 1,
+      "message": "of a cmHandle",
+      "range": {
+        "startLine": 11,
+        "startChar": 55,
+        "endLine": 11,
+        "endChar": 56
+      },
+      "revId": "f17c62a893cf33e85bcfcbb07f99ce19a3eb58d9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ea73c8bd_b4dd702c",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/lcm-event-schema-v1.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-12T09:19:30Z",
+      "side": 1,
+      "message": "org.onap.ncmp.cmhandle.event.lcm.LcmEvent and rename the class EventObj to Event.\nThis should solve your issue.",
+      "range": {
+        "startLine": 58,
+        "startChar": 20,
+        "endLine": 58,
+        "endChar": 61
+      },
+      "revId": "f17c62a893cf33e85bcfcbb07f99ce19a3eb58d9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
