@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a48ab5b1_c7b88ef6",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/lcm-event-schema-v1.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-07-12T11:51:49Z",
+      "side": 1,
+      "message": "event",
+      "range": {
+        "startLine": 61,
+        "startChar": 80,
+        "endLine": 61,
+        "endChar": 86
+      },
+      "revId": "82bbc7701dc3a570f908c42464f5c9d1a7e81bbc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c7b543f7_8f55340a",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/lcm-event-schema-v1.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-07-12T11:51:49Z",
+      "side": 1,
+      "message": "event",
+      "range": {
+        "startLine": 65,
+        "startChar": 73,
+        "endLine": 65,
+        "endChar": 79
+      },
+      "revId": "82bbc7701dc3a570f908c42464f5c9d1a7e81bbc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
