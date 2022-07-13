@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "af27e92e_7ff125c5",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationErrorHandlerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-07-13T16:57:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "27c4fdd7_9c7a88d4",
+      "range": {
+        "startLine": 34,
+        "startChar": 8,
+        "endLine": 34,
+        "endChar": 23
+      },
+      "revId": "e705ee81a9da4cf72e8a4d18cd64d22f66505f4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4339f86f_86a6b648",
         "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationErrorHandlerSpec.groovy",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "e705ee81a9da4cf72e8a4d18cd64d22f66505f4a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fccd79a9_f2df5c26",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationErrorHandlerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-07-13T16:57:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4339f86f_86a6b648",
+      "range": {
+        "startLine": 52,
+        "startChar": 16,
+        "endLine": 52,
+        "endChar": 31
+      },
+      "revId": "e705ee81a9da4cf72e8a4d18cd64d22f66505f4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
