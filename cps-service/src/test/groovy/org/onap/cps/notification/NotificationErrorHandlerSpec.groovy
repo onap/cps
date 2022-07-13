@@ -19,23 +19,43 @@
 
 package org.onap.cps.notification
 
+import ch.qos.logback.classic.Logger;
+import org.slf4j.LoggerFactory;
+import ch.qos.logback.classic.spi.ILoggingEvent
+import ch.qos.logback.core.read.ListAppender
+import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.BeforeEach
+
 import spock.lang.Specification
 
 class NotificationErrorHandlerSpec extends Specification{
 
     NotificationErrorHandler objectUnderTest = new NotificationErrorHandler()
+    def mockLogWatcher = Spy(ListAppender<ILoggingEvent>)
+
+    @BeforeEach
+    void setup() {
+        ((Logger) LoggerFactory.getLogger(NotificationErrorHandler.class)).addAppender(mockLogWatcher);
+        mockLogWatcher.start();
+
+    }
+
+    @AfterEach
+    void teardown() {
+        ((Logger) LoggerFactory.getLogger(NotificationErrorHandler.class)).detachAndStopAllAppenders();
+    }
 
     def 'Logging exception via notification error handler'() {
-        given: 'redirect system.out to a readable stream'
-            def systemOutAsStream = new ByteArrayOutputStream()
-            System.out = new PrintStream(systemOutAsStream)
         when: 'some exception occurs'
             objectUnderTest.onException(new Exception('sample exception'), 'some context')
         then: 'log output results contains the correct error details'
-            def systemOutAsString = systemOutAsStream.toString()
-            systemOutAsString.contains('Failed to process')
-            systemOutAsString.contains('Error cause: sample exception')
-            systemOutAsString.contains('Error context: [some context]')
+            def outputResponse = mockLogWatcher.list.get(0).getFormattedMessage()
+            outputResponse.contains(
+                    "Failed to process \n" +
+                    " Error cause: sample exception \n" +
+                    " Error context: [some context]"
+            )
+
     }
 }
 
