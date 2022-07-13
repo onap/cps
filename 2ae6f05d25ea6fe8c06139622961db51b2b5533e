@@ -22,6 +22,30 @@
       "revId": "2ae6f05d25ea6fe8c06139622961db51b2b5533e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "92b2041d_a0daca7b",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-13T09:18:35Z",
+      "side": 1,
+      "message": "Its been discussed.\nOnce we have the agreement I will update to the new one.\nIn another patch. 😊",
+      "parentUuid": "657f5fcb_8bdb5caa",
+      "range": {
+        "startLine": 93,
+        "startChar": 38,
+        "endLine": 93,
+        "endChar": 49
+      },
+      "revId": "2ae6f05d25ea6fe8c06139622961db51b2b5533e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
