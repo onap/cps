@@ -94,6 +94,29 @@
       "revId": "2ae6f05d25ea6fe8c06139622961db51b2b5533e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a4748af4_4f87b37e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-07-13T11:28:00Z",
+      "side": 1,
+      "message": "Do we not also want to rename these packages too?",
+      "range": {
+        "startLine": 21,
+        "startChar": 21,
+        "endLine": 21,
+        "endChar": 25
+      },
+      "revId": "2ae6f05d25ea6fe8c06139622961db51b2b5533e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
