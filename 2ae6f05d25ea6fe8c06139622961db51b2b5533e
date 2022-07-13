@@ -117,6 +117,30 @@
       "revId": "2ae6f05d25ea6fe8c06139622961db51b2b5533e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fccb05c3_d4e3c780",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-13T11:47:45Z",
+      "side": 1,
+      "message": "This Lcm event is also a type of Ncmp Event based on my understanding and Lcm related code is now in its own package.\nIn my opinion base package will remain the same.\n\nFuture events will have their own package. \neg : for cm-data-change notification we will be creating a different package.\n\norg.onap.cps.ncmp.api.impl.event.cmdatachange (or something of this sorts :) )",
+      "parentUuid": "a4748af4_4f87b37e",
+      "range": {
+        "startLine": 21,
+        "startChar": 21,
+        "endLine": 21,
+        "endChar": 25
+      },
+      "revId": "2ae6f05d25ea6fe8c06139622961db51b2b5533e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
