@@ -20,6 +20,7 @@
 
 package org.onap.cps.ncmp.api.impl.event.lcm
 
+import org.onap.ncmp.cmhandle.event.lcm.LcmEvent
 import org.onap.ncmp.cmhandle.lcm.event.NcmpEvent
 import spock.lang.Specification
 
@@ -32,13 +33,13 @@ class LcmEventsServiceSpec extends Specification {
     def 'Create and Publish lcm event where events are #scenario'() {
         given: 'a cm handle id and Ncmp Event'
             def cmHandleId = 'test-cm-handle-id'
-            def ncmpEvent = new NcmpEvent(eventId: UUID.randomUUID().toString(), eventCorrelationId: cmHandleId)
+            def lcmEvent = new LcmEvent(eventId: UUID.randomUUID().toString(), eventCorrelationId: cmHandleId)
         and: 'notifications enabled is #notificationsEnabled'
             objectUnderTest.notificationsEnabled = notificationsEnabled
         when: 'service is called to publish lcm event'
-            objectUnderTest.publishLcmEvent('test-cm-handle-id', ncmpEvent)
+            objectUnderTest.publishLcmEvent('test-cm-handle-id', lcmEvent)
         then: 'publisher is called #expectedTimesMethodCalled times'
-            expectedTimesMethodCalled * mockLcmEventsPublisher.publishEvent(_, cmHandleId, ncmpEvent)
+            expectedTimesMethodCalled * mockLcmEventsPublisher.publishEvent(_, cmHandleId, lcmEvent)
         where: 'the following values are used'
             scenario   | notificationsEnabled || expectedTimesMethodCalled
             'enabled'  | true                 || 1
