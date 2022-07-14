@@ -30,6 +30,8 @@ import org.onap.cps.ncmp.api.inventory.LockReasonCategory
 import org.onap.cps.ncmp.api.inventory.CompositeStateBuilder
 import spock.lang.Specification
 
+import java.util.concurrent.ConcurrentHashMap
+
 class ModuleSyncWatchdogSpec extends Specification {
 
     def mockInventoryPersistence = Mock(InventoryPersistence)
@@ -49,6 +51,8 @@ class ModuleSyncWatchdogSpec extends Specification {
             def yangModelCmHandle1 = new YangModelCmHandle(id: 'some-cm-handle', compositeState: compositeState1)
             def yangModelCmHandle2 = new YangModelCmHandle(id: 'some-cm-handle-2', compositeState: compositeState2)
             objectUnderTest.isGlobalDataSyncCacheEnabled = dataSyncCacheEnabled
+        and: 'an empty sync map'
+            objectUnderTest.moduleSyncSemaphoreMap = new ConcurrentHashMap<>()
         and: 'sync utilities return a cm handle twice'
             mockSyncUtils.getAdvisedCmHandles() >> [yangModelCmHandle1, yangModelCmHandle2]
         when: 'module sync poll is executed'
@@ -83,6 +87,8 @@ class ModuleSyncWatchdogSpec extends Specification {
         given: 'cm handles in an advised state'
             def compositeState = new CompositeState(cmHandleState: cmHandleState)
             def yangModelCmHandle = new YangModelCmHandle(id: 'some-cm-handle', compositeState: compositeState)
+        and: 'an empty sync map'
+            objectUnderTest.moduleSyncSemaphoreMap = new ConcurrentHashMap<>()
         and: 'sync utilities return a cm handle'
             mockSyncUtils.getAdvisedCmHandles() >> [yangModelCmHandle]
         when: 'module sync poll is executed'
