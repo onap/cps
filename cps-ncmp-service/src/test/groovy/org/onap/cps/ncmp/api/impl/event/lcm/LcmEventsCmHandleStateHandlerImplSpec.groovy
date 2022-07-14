@@ -27,6 +27,8 @@ import org.onap.cps.ncmp.api.inventory.InventoryPersistence
 import spock.lang.Specification
 
 import static org.onap.cps.ncmp.api.inventory.CmHandleState.ADVISED
+import static org.onap.cps.ncmp.api.inventory.CmHandleState.DELETED
+import static org.onap.cps.ncmp.api.inventory.CmHandleState.DELETING
 import static org.onap.cps.ncmp.api.inventory.CmHandleState.LOCKED
 import static org.onap.cps.ncmp.api.inventory.CmHandleState.READY
 import static org.onap.cps.ncmp.api.inventory.LockReasonCategory.LOCKED_MODULE_SYNC_FAILED
@@ -115,6 +117,34 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
             scenario                         | dataSyncCacheEnabled || expectedDataStoreSyncState
             'data sync cache enabled'        | true                 || DataStoreSyncState.UNSYNCHRONIZED
             'data sync cache is not enabled' | false                || DataStoreSyncState.NONE_REQUESTED
+    }
 
+    def 'Update cmHandle state to "DELETING"' (){
+        given: 'Cm Handle represented as YangModelCmHandle'
+            def cmHandleId = 'cmhandle-id-1'
+            def compositeState = new CompositeState(cmHandleState: READY)
+            def yangModelCmHandle = new YangModelCmHandle(id: cmHandleId, dmiProperties: [], publicProperties: [], compositeState: compositeState)
+        when: 'updating cm handle state to "DELETING"'
+            objectUnderTest.updateCmHandleState(yangModelCmHandle, DELETING)
+        then: 'method to persist cm handle state is called once'
+            1 * mockInventoryPersistence.saveCmHandleState(yangModelCmHandle.getId(), yangModelCmHandle.getCompositeState())
+        and: 'methods to delete relevant schema set and list or list element is called once'
+            1 * mockInventoryPersistence.deleteSchemaSetWithCascade(cmHandleId)
+            1 * mockInventoryPersistence.deleteListOrListElement("/dmi-registry/cm-handles[@id='" + cmHandleId + "']")
+        and: 'the method to publish Lcm event is called once'
+            1 * mockLcmEventsService.publishLcmEvent(cmHandleId, _)
+    }
+
+    def 'Update cmHandle state to "DELETED"' (){
+        given: 'Cm Handle with state "DELETING" as YangModelCmHandle'
+            def cmHandleId = 'cmhandle-id-1'
+            def compositeState = new CompositeState(cmHandleState: DELETING)
+            def yangModelCmHandle = new YangModelCmHandle(id: cmHandleId, dmiProperties: [], publicProperties: [], compositeState: compositeState)
+        when: 'updating cm handle state to "DELETED"'
+            objectUnderTest.updateCmHandleState(yangModelCmHandle, DELETED)
+        then: 'no exception is thrown'
+            noExceptionThrown()
+        and: 'the method to publish Lcm event is called once'
+            1 * mockLcmEventsService.publishLcmEvent(cmHandleId, _)
     }
 }
