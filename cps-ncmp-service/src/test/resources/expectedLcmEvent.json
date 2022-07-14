@@ -6,15 +6,6 @@
   "eventType": "org.onap.ncmp.cmhandle.lcm.event",
   "eventSchema": "org.onap.ncmp.cmhandle.lcm.event:v1",
   "event": {
-    "cmHandleId": "cmhandle-test",
-    "cmhandle-state": "READY",
-    "cmhandle-properties": [
-      {
-        "publicProperty1": "value1"
-      },
-      {
-        "publicProperty2": "value2"
-      }
-    ]
+    "cmHandleId": "cmhandle-test"
   }
 }
