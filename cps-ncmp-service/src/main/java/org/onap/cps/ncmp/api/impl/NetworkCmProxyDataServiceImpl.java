@@ -37,6 +37,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.NetworkCmProxyCmHandlerQueryService;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
+import org.onap.cps.ncmp.api.impl.event.lcm.LcmEventsCmHandleStateHandler;
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations;
 import org.onap.cps.ncmp.api.impl.operations.DmiOperations;
 import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
@@ -75,6 +76,8 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     private final InventoryPersistence inventoryPersistence;
 
     private final NetworkCmProxyCmHandlerQueryService networkCmProxyCmHandlerQueryService;
+
+    private final LcmEventsCmHandleStateHandler lcmEventsCmHandleStateHandler;
 
     @Override
     public DmiPluginRegistrationResponse updateDmiRegistrationAndSyncModule(
@@ -262,30 +265,39 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             final List<String> tobeRemovedCmHandles) {
         final List<CmHandleRegistrationResponse> cmHandleRegistrationResponses =
                 new ArrayList<>(tobeRemovedCmHandles.size());
-        for (final String cmHandle : tobeRemovedCmHandles) {
+        for (final String cmHandleId : tobeRemovedCmHandles) {
             try {
-                CpsValidator.validateNameCharacters(cmHandle);
-                inventoryPersistence.deleteSchemaSetWithCascade(cmHandle);
-                inventoryPersistence.deleteListOrListElement("/dmi-registry/cm-handles[@id='" + cmHandle + "']");
-                cmHandleRegistrationResponses.add(CmHandleRegistrationResponse.createSuccessResponse(cmHandle));
+                CpsValidator.validateNameCharacters(cmHandleId);
+                final YangModelCmHandle yangModelCmHandle = inventoryPersistence.getYangModelCmHandle(cmHandleId);
+                lcmEventsCmHandleStateHandler.updateCmHandleState(yangModelCmHandle,
+                        CmHandleState.DELETING);
+                deleteSchemaSetAndListElementByCmHandleId(cmHandleId);
+                cmHandleRegistrationResponses.add(CmHandleRegistrationResponse.createSuccessResponse(cmHandleId));
+                lcmEventsCmHandleStateHandler.updateCmHandleState(yangModelCmHandle,
+                        CmHandleState.DELETED);
             } catch (final DataNodeNotFoundException dataNodeNotFoundException) {
                 log.error("Unable to find dataNode for cmHandleId : {} , caused by : {}",
-                        cmHandle, dataNodeNotFoundException.getMessage());
+                        cmHandleId, dataNodeNotFoundException.getMessage());
                 cmHandleRegistrationResponses.add(CmHandleRegistrationResponse
-                        .createFailureResponse(cmHandle, RegistrationError.CM_HANDLE_DOES_NOT_EXIST));
+                        .createFailureResponse(cmHandleId, RegistrationError.CM_HANDLE_DOES_NOT_EXIST));
             } catch (final DataValidationException dataValidationException) {
                 log.error("Unable to de-register cm-handle id: {}, caused by: {}",
-                        cmHandle, dataValidationException.getMessage());
+                        cmHandleId, dataValidationException.getMessage());
                 cmHandleRegistrationResponses.add(CmHandleRegistrationResponse
-                        .createFailureResponse(cmHandle, RegistrationError.CM_HANDLE_INVALID_ID));
+                        .createFailureResponse(cmHandleId, RegistrationError.CM_HANDLE_INVALID_ID));
             } catch (final Exception exception) {
                 log.error("Unable to de-register cm-handle id : {} , caused by : {}",
-                        cmHandle, exception.getMessage());
+                        cmHandleId, exception.getMessage());
                 cmHandleRegistrationResponses.add(
-                        CmHandleRegistrationResponse.createFailureResponse(cmHandle, exception));
+                        CmHandleRegistrationResponse.createFailureResponse(cmHandleId, exception));
             }
         }
         return cmHandleRegistrationResponses;
+    }
+
+    private void deleteSchemaSetAndListElementByCmHandleId(final String cmHandleId) {
+        inventoryPersistence.deleteSchemaSetWithCascade(cmHandleId);
+        inventoryPersistence.deleteListOrListElement("/dmi-registry/cm-handles[@id='" + cmHandleId + "']");
     }
 
     private CmHandleRegistrationResponse registerNewCmHandle(final YangModelCmHandle yangModelCmHandle) {
