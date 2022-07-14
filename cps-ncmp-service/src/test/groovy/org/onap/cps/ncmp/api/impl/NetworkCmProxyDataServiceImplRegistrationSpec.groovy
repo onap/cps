@@ -26,6 +26,8 @@ import org.onap.cps.api.CpsModuleService
 import org.onap.cps.ncmp.api.NetworkCmProxyCmHandlerQueryService
 import org.onap.cps.ncmp.api.impl.exception.DmiRequestException
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations
+import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
+import org.onap.cps.ncmp.api.inventory.CmHandleState
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration
@@ -150,10 +152,13 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
                 assert it.status == Status.SUCCESS
                 assert it.cmHandle == 'cmhandle'
             }
-        and: 'save list elements is invoked once with the expected parameters'
-                1 * mockInventoryPersistence.saveListElements(_) >> {
+        and: 'save cmhandle is invoked once with the expected parameters'
+                1 * mockInventoryPersistence.saveCmHandle(_) >> {
                     args -> {
-                        assert args[0].startsWith('{"cm-handles":[{"id":"cmhandle","dmi-service-name":"my-server","state":{"cm-handle-state":"ADVISED","last-update-time":"20')
+                        def result = (args[0] as YangModelCmHandle)
+                        assert result.id == 'cmhandle'
+                        assert result.dmiServiceName == 'my-server'
+                        assert result.compositeState.cmHandleState == CmHandleState.ADVISED
                     }
                 }
         where:
@@ -172,7 +177,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
                                    new NcmpServiceCmHandle(cmHandleId: 'cmhandle2'),
                                    new NcmpServiceCmHandle(cmHandleId: 'cmhandle3')])
         and: 'cm-handle creation is successful for 1st and 3rd; failed for 2nd'
-            mockInventoryPersistence.saveListElements(_) >> {} >> { throw new RuntimeException("Failed") } >> {}
+            mockInventoryPersistence.saveCmHandle(_) >> {} >> { throw new RuntimeException("Failed") } >> {}
         when: 'registration is updated to create cm-handles'
             def response = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'a response is received for all cm-handles'
@@ -200,7 +205,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server')
             dmiPluginRegistration.createdCmHandles = [new NcmpServiceCmHandle(cmHandleId: cmHandleId)]
         and: 'cm-handler registration fails: #scenario'
-            mockInventoryPersistence.saveListElements(_) >> { throw exception }
+            mockInventoryPersistence.saveCmHandle(_) >> { throw exception }
         when: 'registration is updated'
             def response = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'a failure response is received'

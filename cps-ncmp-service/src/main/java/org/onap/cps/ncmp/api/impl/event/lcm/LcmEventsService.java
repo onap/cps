@@ -18,7 +18,7 @@
  * ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.event;
+package org.onap.cps.ncmp.api.impl.event.lcm;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -33,11 +33,11 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class NcmpEventsService {
+public class LcmEventsService {
 
-    private final NcmpEventsPublisher ncmpEventsPublisher;
+    private final LcmEventsPublisher lcmEventsPublisher;
 
-    @Value("${app.ncmp.events.topic:ncmp-events}")
+    @Value("${app.lcm.events.topic:ncmp-events}")
     private String topicName;
 
     @Value("${notification.enabled:true}")
@@ -49,9 +49,9 @@ public class NcmpEventsService {
      * @param cmHandleId Cm Handle Id
      * @param ncmpEvent  Ncmp Event
      */
-    public void publishNcmpEvent(final String cmHandleId, final NcmpEvent ncmpEvent) {
+    public void publishLcmEvent(final String cmHandleId, final NcmpEvent ncmpEvent) {
         if (notificationsEnabled) {
-            ncmpEventsPublisher.publishEvent(topicName, cmHandleId, ncmpEvent);
+            lcmEventsPublisher.publishEvent(topicName, cmHandleId, ncmpEvent);
         } else {
             log.debug("Notifications disabled.");
         }

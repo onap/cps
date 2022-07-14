@@ -69,7 +69,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     @Shared
     def OPTIONS_PARAM = '(a=1,b=2)'
     @Shared
-    def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: 'some-cm-handle-id')
+    def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: 'test-cm-handle-id')
 
     def objectUnderTest = new NetworkCmProxyDataServiceImpl(spiedJsonObjectMapper, mockDmiDataOperations,
         nullNetworkCmProxyDataServicePropertyHandler, mockInventoryPersistence, mockCpsCmHandlerQueryService)
@@ -270,10 +270,12 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             mockDmiPluginRegistration.getCreatedCmHandles() >> [ncmpServiceCmHandle]
         when: 'parse and create cm handle in dmi registration then sync module'
             objectUnderTest.parseAndCreateCmHandlesInDmiRegistrationAndSyncModules(mockDmiPluginRegistration)
-        then: 'validate params for creating anchor and list elements'
-            1 * mockInventoryPersistence.saveListElements(_) >> {
+        then: 'system persists the cm handle state'
+            1 * mockInventoryPersistence.saveCmHandle(_) >> {
                 args -> {
-                    assert args[0].startsWith('{"cm-handles":[{"id":"some-cm-handle-id","state":{"cm-handle-state":"ADVISED","last-update-time":"20')
+                    def result = (args[0] as YangModelCmHandle)
+                    assert result.id == 'test-cm-handle-id'
+                    assert result.compositeState.cmHandleState == CmHandleState.ADVISED
                 }
             }
     }

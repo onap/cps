@@ -227,11 +227,17 @@ class InventoryPersistenceSpec extends Specification {
             assert result == moduleReferences
     }
 
-    def 'Save list elements'() {
-        when: 'the method to save list elements is called'
-            objectUnderTest.saveListElements('sample Json data')
+    def 'Save Cmhandle'() {
+        given: 'cmHandle represented as Yang Model'
+            def yangModelCmHandle = new YangModelCmHandle(id: 'cmhandle', dmiProperties: [], publicProperties: [])
+        when: 'the method to save cmhandle is called'
+            objectUnderTest.saveCmHandle(yangModelCmHandle)
         then: 'the data service method to save list elements is called once'
-            1 * mockCpsDataService.saveListElements('NCMP-Admin','ncmp-dmi-registry','/dmi-registry','sample Json data',null)
+            1 * mockCpsDataService.saveListElements('NCMP-Admin','ncmp-dmi-registry','/dmi-registry',_,null) >> {
+                args -> {
+                    assert args[3].startsWith('{"cm-handles":[{"id":"cmhandle","additional-properties":[],"public-properties":[]}]}')
+                }
+            }
     }
 
     def 'Delete list or list elements'() {

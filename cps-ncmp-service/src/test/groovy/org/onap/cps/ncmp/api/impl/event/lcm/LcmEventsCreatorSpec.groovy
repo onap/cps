@@ -18,24 +18,25 @@
  * ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.event
+package org.onap.cps.ncmp.api.impl.event.lcm
 
+import org.onap.cps.ncmp.api.impl.event.lcm.LcmEventsCreator
 import org.onap.cps.ncmp.api.inventory.CmHandleState
 import org.onap.cps.ncmp.api.inventory.CompositeStateBuilder
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import spock.lang.Specification
 
-class NcmpEventsCreatorSpec extends Specification {
+class LcmEventsCreatorSpec extends Specification {
 
-    def objectUnderTest = new NcmpEventsCreator()
+    def objectUnderTest = new LcmEventsCreator()
     def cmHandleId = 'test-cm-handle'
 
-    def 'Map the NcmpEvent for operation #operation'() {
+    def 'Map the LcmEvent for operation #operation'() {
         given: 'NCMP cm handle details'
             def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, compositeState: new CompositeStateBuilder().withCmHandleState(CmHandleState.READY).build(),
                 publicProperties: ['publicProperty1': 'value1', 'publicProperty2': 'value2'])
         when: 'the event is populated'
-            def result = objectUnderTest.populateNcmpEvent(cmHandleId, ncmpServiceCmHandle)
+            def result = objectUnderTest.populateLcmEvent(cmHandleId, ncmpServiceCmHandle)
         then: 'event header is mapped correctly'
             assert result.eventSource == 'org.onap.ncmp'
             assert result.eventCorrelationId == cmHandleId

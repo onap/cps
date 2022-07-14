@@ -18,16 +18,16 @@
  * ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.event;
+package org.onap.cps.ncmp.api.impl.event.lcm;
 
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.inventory.CmHandleState;
 
 /**
  * The implementation of it should handle the persisting of composite state and delegate the request to publish the
- * corresponding ncmp event.
+ * corresponding lcm event.
  */
-public interface NcmpEventsCmHandleStateHandler {
+public interface LcmEventsCmHandleStateHandler {
 
     /**
      * Updates the composite state of cmHandle based on cmHandleState.

@@ -18,7 +18,7 @@
  * ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.event;
+package org.onap.cps.ncmp.api.impl.event.lcm;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -30,28 +30,28 @@ import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 
 /**
- * NcmpEventsPublisher to publish the NcmpEvents on event of CREATE, UPDATE and DELETE.
+ * LcmEventsPublisher to publish the LcmEvents on event of CREATE, UPDATE and DELETE.
  */
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class NcmpEventsPublisher {
+public class LcmEventsPublisher {
 
-    private final KafkaTemplate<String, NcmpEvent> ncmpEventKafkaTemplate;
+    private final KafkaTemplate<String, NcmpEvent> lcmEventKafkaTemplate;
 
     /**
-     * NCMP Event publisher.
+     * LCM Event publisher.
      *
      * @param topicName valid topic name
      * @param eventKey  message key
      * @param ncmpEvent message payload
      */
     public void publishEvent(final String topicName, final String eventKey, final NcmpEvent ncmpEvent) {
-        final ListenableFuture<SendResult<String, NcmpEvent>> ncmpEventFuture =
-                ncmpEventKafkaTemplate.send(topicName, eventKey, ncmpEvent);
+        final ListenableFuture<SendResult<String, NcmpEvent>> lcmEventFuture =
+                lcmEventKafkaTemplate.send(topicName, eventKey, ncmpEvent);
 
-        ncmpEventFuture.addCallback(new ListenableFutureCallback<>() {
+        lcmEventFuture.addCallback(new ListenableFutureCallback<>() {
             @Override
             public void onFailure(final Throwable throwable) {
                 log.error("Unable to publish event to topic : {} due to {}", topicName, throwable.getMessage());

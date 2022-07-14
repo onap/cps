@@ -18,7 +18,7 @@
  * ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.event;
+package org.onap.cps.ncmp.api.impl.event.lcm;
 
 import static org.onap.cps.ncmp.api.inventory.CmHandleState.ADVISED;
 import static org.onap.cps.ncmp.api.inventory.CmHandleState.LOCKED;
@@ -32,7 +32,6 @@ import org.onap.cps.ncmp.api.inventory.CmHandleState;
 import org.onap.cps.ncmp.api.inventory.CompositeStateUtils;
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
-import org.onap.cps.utils.JsonObjectMapper;
 import org.onap.ncmp.cmhandle.lcm.event.NcmpEvent;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -40,12 +39,11 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class NcmpEventsCmHandleStateHandlerImpl implements NcmpEventsCmHandleStateHandler {
+public class LcmEventsCmHandleStateHandlerImpl implements LcmEventsCmHandleStateHandler {
 
     private final InventoryPersistence inventoryPersistence;
-    private final NcmpEventsCreator ncmpEventsCreator;
-    private final JsonObjectMapper jsonObjectMapper;
-    private final NcmpEventsService ncmpEventsService;
+    private final LcmEventsCreator lcmEventsCreator;
+    private final LcmEventsService lcmEventsService;
 
     @Value("${data-sync.cache.enabled:false}")
     private boolean isGlobalDataSyncCacheEnabled;
@@ -59,7 +57,7 @@ public class NcmpEventsCmHandleStateHandlerImpl implements NcmpEventsCmHandleSta
             log.debug("CmHandle with id : {} already in state : {}", yangModelCmHandle.getId(), targetCmHandleState);
         } else {
             updateToSpecifiedCmHandleState(yangModelCmHandle, targetCmHandleState);
-            publishNcmpEvent(yangModelCmHandle);
+            publishLcmEvent(yangModelCmHandle);
         }
 
     }
@@ -85,22 +83,20 @@ public class NcmpEventsCmHandleStateHandlerImpl implements NcmpEventsCmHandleSta
     }
 
     private void retryCmHandle(final YangModelCmHandle yangModelCmHandle) {
-        CompositeStateUtils.setCompositeStateForRetry()
-                .accept(yangModelCmHandle.getCompositeState());
+        CompositeStateUtils.setCompositeStateForRetry().accept(yangModelCmHandle.getCompositeState());
         inventoryPersistence.saveCmHandleState(yangModelCmHandle.getId(), yangModelCmHandle.getCompositeState());
     }
 
     private void registerNewCmHandle(final YangModelCmHandle yangModelCmHandle) {
         CompositeStateUtils.setCompositeState(ADVISED).accept(yangModelCmHandle.getCompositeState());
-        inventoryPersistence.saveListElements(
-                String.format("{\"cm-handles\":[%s]}", jsonObjectMapper.asJsonString(yangModelCmHandle)));
+        inventoryPersistence.saveCmHandle(yangModelCmHandle);
     }
 
-    private void publishNcmpEvent(final YangModelCmHandle yangModelCmHandle) {
+    private void publishLcmEvent(final YangModelCmHandle yangModelCmHandle) {
         final NcmpServiceCmHandle ncmpServiceCmHandle =
                 YangDataConverter.convertYangModelCmHandleToNcmpServiceCmHandle(yangModelCmHandle);
         final String cmHandleId = ncmpServiceCmHandle.getCmHandleId();
-        final NcmpEvent ncmpEvent = ncmpEventsCreator.populateNcmpEvent(cmHandleId, ncmpServiceCmHandle);
-        ncmpEventsService.publishNcmpEvent(cmHandleId, ncmpEvent);
+        final NcmpEvent ncmpEvent = lcmEventsCreator.populateLcmEvent(cmHandleId, ncmpServiceCmHandle);
+        lcmEventsService.publishLcmEvent(cmHandleId, ncmpEvent);
     }
 }
