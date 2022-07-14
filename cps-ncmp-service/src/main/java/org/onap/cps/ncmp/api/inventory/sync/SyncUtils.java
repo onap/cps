@@ -69,17 +69,20 @@ public class SyncUtils {
     /**
      * Query data nodes for cm handles with an "ADVISED" cm handle state, and select a random entry for processing.
      *
-     * @return a random yang model cm handle with an ADVISED state, return null if not found
+     * @return a randomized yang model cm handle list with ADVISED state, return empty list if not found
      */
-    public YangModelCmHandle getAnAdvisedCmHandle() {
+    @SuppressWarnings("unchecked")
+    public List<YangModelCmHandle> getAdvisedCmHandles() {
         final List<DataNode> advisedCmHandles = inventoryPersistence.getCmHandlesByState(CmHandleState.ADVISED);
         if (advisedCmHandles.isEmpty()) {
-            return null;
+            return Collections.EMPTY_LIST;
         }
-        final int randomElementIndex = secureRandom.nextInt(advisedCmHandles.size());
-        final String cmHandleId = advisedCmHandles.get(randomElementIndex).getLeaves()
-            .get("id").toString();
-        return inventoryPersistence.getYangModelCmHandle(cmHandleId);
+
+        Collections.shuffle(advisedCmHandles);
+
+        return advisedCmHandles.stream()
+                .map(dataNode -> dataNode.getLeaves().get("id").toString())
+                .map(inventoryPersistence::getYangModelCmHandle).collect(Collectors.toList());
     }
 
     /**

@@ -62,7 +62,7 @@ class SyncUtilsSpec extends Specification{
         given: 'the inventory persistence service returns a collection of data nodes'
             mockInventoryPersistence.getCmHandlesByState(CmHandleState.ADVISED) >> dataNodeCollection
         when: 'get advised cm handle is called'
-            objectUnderTest.getAnAdvisedCmHandle()
+            objectUnderTest.getAdvisedCmHandles()
         then: 'the returned data node collection is the correct size'
             dataNodeCollection.size() == expectedDataNodeSize
         and: 'get yang model cm handles is invoked the correct number of times'
