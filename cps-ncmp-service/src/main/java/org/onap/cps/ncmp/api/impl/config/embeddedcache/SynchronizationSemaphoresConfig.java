@@ -24,6 +24,7 @@ import com.hazelcast.config.Config;
 import com.hazelcast.config.MapConfig;
 import com.hazelcast.core.Hazelcast;
 import java.util.Map;
+import java.util.concurrent.ConcurrentMap;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -33,15 +34,18 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SynchronizationSemaphoresConfig {
 
+    private static final String MODULE_SYNC_SEMAPHORE = "moduleSyncSemaphore";
+
     /**
      * Module Sync Distributed Map Instance.
      * @return  Instance of Map
      */
     @Bean
-    public Map<String, String> moduleSyncSemaphore() {
+    public ConcurrentMap<String, Boolean> moduleSyncSemaphore() {
         return Hazelcast.newHazelcastInstance(
-                initializeDefaultMapConfig("moduleSyncSemaphore", "moduleSyncSemaphoreConfig"))
-                .getMap("moduleSyncSemaphore");
+                initializeDefaultMapConfig(MODULE_SYNC_SEMAPHORE, "moduleSyncSemaphoreConfig")
+                        .addMapConfig(new MapConfig(MODULE_SYNC_SEMAPHORE).setTimeToLiveSeconds(30 * 60)))
+                .getMap(MODULE_SYNC_SEMAPHORE);
     }
 
     /**

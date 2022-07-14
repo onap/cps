@@ -30,6 +30,9 @@ import org.onap.cps.ncmp.api.inventory.LockReasonCategory
 import org.onap.cps.ncmp.api.inventory.CompositeStateBuilder
 import spock.lang.Specification
 
+import java.util.concurrent.ConcurrentHashMap
+import java.util.concurrent.ConcurrentMap
+
 class ModuleSyncWatchdogSpec extends Specification {
 
     def mockInventoryPersistence = Mock(InventoryPersistence)
@@ -49,8 +52,10 @@ class ModuleSyncWatchdogSpec extends Specification {
             def yangModelCmHandle1 = new YangModelCmHandle(id: 'some-cm-handle', compositeState: compositeState1)
             def yangModelCmHandle2 = new YangModelCmHandle(id: 'some-cm-handle-2', compositeState: compositeState2)
             objectUnderTest.isGlobalDataSyncCacheEnabled = dataSyncCacheEnabled
+        and: 'sync map is empty'
+            objectUnderTest.moduleSyncSemaphore = new ConcurrentHashMap<>()
         and: 'sync utilities return a cm handle twice'
-            mockSyncUtils.getAnAdvisedCmHandle() >>> [yangModelCmHandle1, yangModelCmHandle2, null]
+            mockSyncUtils.getAdvisedCmHandles() >> [yangModelCmHandle1, yangModelCmHandle2]
         when: 'module sync poll is executed'
             objectUnderTest.executeAdvisedCmHandlePoll()
         then: 'the inventory persistence cm handle returns a composite state for the first cm handle'
@@ -83,8 +88,10 @@ class ModuleSyncWatchdogSpec extends Specification {
         given: 'cm handles in an advised state'
             def compositeState = new CompositeState(cmHandleState: cmHandleState)
             def yangModelCmHandle = new YangModelCmHandle(id: 'some-cm-handle', compositeState: compositeState)
+        and: 'sync map is empty'
+            objectUnderTest.moduleSyncSemaphore = new ConcurrentHashMap<>()
         and: 'sync utilities return a cm handle'
-            mockSyncUtils.getAnAdvisedCmHandle() >>> [yangModelCmHandle, null]
+            mockSyncUtils.getAdvisedCmHandles() >> [yangModelCmHandle]
         when: 'module sync poll is executed'
             objectUnderTest.executeAdvisedCmHandlePoll()
         then: 'the inventory persistence cm handle returns a composite state for the cm handle'
