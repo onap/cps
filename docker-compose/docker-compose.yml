@@ -16,8 +16,6 @@
 # limitations under the License.
 # ============LICENSE_END=========================================================
 
-version: '3.8'
-
 services:
 
   ### docker-compose up -d -> run ALL services ###
