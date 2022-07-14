@@ -22,6 +22,7 @@
 package org.onap.cps.ncmp.api.inventory.sync;
 
 import java.util.List;
+import java.util.concurrent.ConcurrentMap;
 import java.util.function.Consumer;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,6 +32,7 @@ import org.onap.cps.ncmp.api.inventory.CompositeState;
 import org.onap.cps.ncmp.api.inventory.DataStoreSyncState;
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.api.inventory.LockReasonCategory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -49,28 +51,35 @@ public class ModuleSyncWatchdog {
     @Value("${data-sync.cache.enabled:false}")
     private boolean isGlobalDataSyncCacheEnabled;
 
+    @Autowired
+    private ConcurrentMap<String, Boolean> moduleSyncSemaphore;
+
     /**
      * Execute Cm Handle poll which changes the cm handle state from 'ADVISED' to 'READY'.
      */
     @Scheduled(fixedDelayString = "${timers.advised-modules-sync.sleep-time-ms:30000}")
     public void executeAdvisedCmHandlePoll() {
-        YangModelCmHandle advisedCmHandle = syncUtils.getAnAdvisedCmHandle();
-        while (advisedCmHandle != null) {
+        syncUtils.getAdvisedCmHandles().forEach(advisedCmHandle -> {
             final String cmHandleId = advisedCmHandle.getId();
-            final CompositeState compositeState = inventoryPersistence.getCmHandleState(cmHandleId);
-            try {
-                moduleSyncService.deleteSchemaSetIfExists(advisedCmHandle);
-                moduleSyncService.syncAndCreateSchemaSetAndAnchor(advisedCmHandle);
-                setCompositeStateToReadyWithInitialDataStoreSyncState().accept(compositeState);
-            } catch (final Exception e) {
-                setCompositeStateToLocked().accept(compositeState);
-                syncUtils.updateLockReasonDetailsAndAttempts(compositeState,
-                        LockReasonCategory.LOCKED_MODULE_SYNC_FAILED, e.getMessage());
+            if (moduleSyncSemaphore.putIfAbsent(cmHandleId, false) == null) {
+                log.debug("executing module sync on {}", cmHandleId);
+                final CompositeState compositeState = inventoryPersistence.getCmHandleState(cmHandleId);
+                try {
+                    moduleSyncService.deleteSchemaSetIfExists(advisedCmHandle);
+                    moduleSyncService.syncAndCreateSchemaSetAndAnchor(advisedCmHandle);
+                    setCompositeStateToReadyWithInitialDataStoreSyncState().accept(compositeState);
+                } catch (final Exception e) {
+                    setCompositeStateToLocked().accept(compositeState);
+                    syncUtils.updateLockReasonDetailsAndAttempts(compositeState,
+                            LockReasonCategory.LOCKED_MODULE_SYNC_FAILED, e.getMessage());
+                }
+                inventoryPersistence.saveCmHandleState(cmHandleId, compositeState);
+                moduleSyncSemaphore.put(cmHandleId, true);
+                log.debug("{} is now in {} state", cmHandleId, compositeState.getCmHandleState().name());
+            } else {
+                log.debug("{} already processed by other instance", cmHandleId);
             }
-            inventoryPersistence.saveCmHandleState(cmHandleId, compositeState);
-            log.debug("{} is now in {} state", cmHandleId, compositeState.getCmHandleState().name());
-            advisedCmHandle = syncUtils.getAnAdvisedCmHandle();
-        }
+        });
         log.debug("No Cm-Handles currently found in an ADVISED state");
     }
 
