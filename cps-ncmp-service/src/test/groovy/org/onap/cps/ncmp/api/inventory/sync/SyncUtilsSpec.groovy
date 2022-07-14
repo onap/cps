@@ -25,6 +25,7 @@ import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations
 import org.onap.cps.ncmp.api.impl.operations.DmiOperations
+import org.onap.cps.ncmp.api.impl.utils.YangDataConverter
 import org.onap.cps.ncmp.api.inventory.CmHandleState
 import org.onap.cps.ncmp.api.inventory.CompositeState
 import org.onap.cps.ncmp.api.inventory.CompositeStateBuilder
@@ -62,15 +63,13 @@ class SyncUtilsSpec extends Specification{
         given: 'the inventory persistence service returns a collection of data nodes'
             mockInventoryPersistence.getCmHandlesByState(CmHandleState.ADVISED) >> dataNodeCollection
         when: 'get advised cm handle is called'
-            objectUnderTest.getAnAdvisedCmHandle()
+            objectUnderTest.getAdvisedCmHandles()
         then: 'the returned data node collection is the correct size'
             dataNodeCollection.size() == expectedDataNodeSize
-        and: 'get yang model cm handles is invoked the correct number of times'
-           expectedCallsToGetYangModelCmHandle * mockInventoryPersistence.getYangModelCmHandle('cm-handle-123')
         where: 'the following scenarios are used'
-            scenario         | dataNodeCollection || expectedCallsToGetYangModelCmHandle | expectedDataNodeSize
-            'exists'         | [ dataNode ]       || 1                                   | 1
-            'does not exist' | [ ]                || 0                                   | 0
+            scenario         | dataNodeCollection || expectedDataNodeSize
+            'exists'         | [ dataNode ]       || 1
+            'does not exist' | [ ]                || 0
 
     }
 
