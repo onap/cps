@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f4da267_97ca5783",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationErrorHandlerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-14T08:42:27Z",
+      "side": 1,
+      "message": "NB : Both the occurrences (Line no 38 and 44) can be replaced with single use of\n\nClass NotificationErrorHandlerClazz \u003d NotificationErrorHandler.class;",
+      "range": {
+        "startLine": 38,
+        "startChar": 42,
+        "endLine": 38,
+        "endChar": 72
+      },
+      "revId": "e338a80e47aede5374d0127e844f915b12242776",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "503412a9_37b361d7",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationErrorHandlerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-14T08:42:27Z",
+      "side": 1,
+      "message": "NB : NotificationErrorHandlerClazz",
+      "range": {
+        "startLine": 44,
+        "startChar": 42,
+        "endLine": 44,
+        "endChar": 72
+      },
+      "revId": "e338a80e47aede5374d0127e844f915b12242776",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
