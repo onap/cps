@@ -22,7 +22,7 @@ package org.onap.cps.ncmp.api.impl.event.lcm;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.onap.ncmp.cmhandle.lcm.event.NcmpEvent;
+import org.onap.ncmp.cmhandle.event.lcm.LcmEvent;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Service;
@@ -38,18 +38,18 @@ import org.springframework.util.concurrent.ListenableFutureCallback;
 @RequiredArgsConstructor
 public class LcmEventsPublisher {
 
-    private final KafkaTemplate<String, NcmpEvent> lcmEventKafkaTemplate;
+    private final KafkaTemplate<String, LcmEvent> lcmEventKafkaTemplate;
 
     /**
      * LCM Event publisher.
      *
      * @param topicName valid topic name
      * @param eventKey  message key
-     * @param ncmpEvent message payload
+     * @param lcmEvent message payload
      */
-    public void publishEvent(final String topicName, final String eventKey, final NcmpEvent ncmpEvent) {
-        final ListenableFuture<SendResult<String, NcmpEvent>> lcmEventFuture =
-                lcmEventKafkaTemplate.send(topicName, eventKey, ncmpEvent);
+    public void publishEvent(final String topicName, final String eventKey, final LcmEvent lcmEvent) {
+        final ListenableFuture<SendResult<String, LcmEvent>> lcmEventFuture =
+                lcmEventKafkaTemplate.send(topicName, eventKey, lcmEvent);
 
         lcmEventFuture.addCallback(new ListenableFutureCallback<>() {
             @Override
@@ -58,9 +58,9 @@ public class LcmEventsPublisher {
             }
 
             @Override
-            public void onSuccess(final SendResult<String, NcmpEvent> result) {
-                log.debug("Successfully published event to topic : {} , NcmpEvent : {}",
-                        result.getRecordMetadata().topic(), result.getProducerRecord().value());
+            public void onSuccess(final SendResult<String, LcmEvent> sendResult) {
+                log.debug("Successfully published event to topic : {} , LcmEvent : {}",
+                        sendResult.getRecordMetadata().topic(), sendResult.getProducerRecord().value());
             }
         });
     }

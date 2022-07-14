@@ -32,7 +32,7 @@ import org.onap.cps.ncmp.api.inventory.CmHandleState;
 import org.onap.cps.ncmp.api.inventory.CompositeStateUtils;
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
-import org.onap.ncmp.cmhandle.lcm.event.NcmpEvent;
+import org.onap.ncmp.cmhandle.event.lcm.LcmEvent;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -96,7 +96,7 @@ public class LcmEventsCmHandleStateHandlerImpl implements LcmEventsCmHandleState
         final NcmpServiceCmHandle ncmpServiceCmHandle =
                 YangDataConverter.convertYangModelCmHandleToNcmpServiceCmHandle(yangModelCmHandle);
         final String cmHandleId = ncmpServiceCmHandle.getCmHandleId();
-        final NcmpEvent ncmpEvent = lcmEventsCreator.populateLcmEvent(cmHandleId, ncmpServiceCmHandle);
-        lcmEventsService.publishLcmEvent(cmHandleId, ncmpEvent);
+        final LcmEvent lcmEvent = lcmEventsCreator.populateLcmEvent(cmHandleId);
+        lcmEventsService.publishLcmEvent(cmHandleId, lcmEvent);
     }
 }

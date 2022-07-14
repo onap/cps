@@ -18,25 +18,25 @@
  * ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.event.lcm
+package org.onap.cps.ncmp.api.impl.utils;
 
-import spock.lang.Specification
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
-class LcmEventsCreatorSpec extends Specification {
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+public class EventDateTimeFormatter {
 
-    def objectUnderTest = new LcmEventsCreator()
-    def cmHandleId = 'test-cm-handle'
+    private static final String DATE_TIME_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
 
-    def 'Map the LcmEvent'() {
-        when: 'the event is populated'
-            def result = objectUnderTest.populateLcmEvent(cmHandleId)
-        then: 'event header is mapped correctly'
-            assert result.eventSource == 'org.onap.ncmp'
-            assert result.eventCorrelationId == cmHandleId
-        and: 'the result has the correct cm handle id'
-            assert result.event.cmHandleId == cmHandleId
-        and: 'the old and new values are not set yet'
-            assert result.event.oldValues == null
-            assert result.event.newValues == null
+    /**
+     * Gets current date time.
+     *
+     * @return the current date time
+     */
+    public static String getCurrentDateTime() {
+        return ZonedDateTime.now()
+                .format(DateTimeFormatter.ofPattern(DATE_TIME_FORMAT));
     }
 }
