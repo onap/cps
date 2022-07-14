@@ -22,12 +22,12 @@ package org.onap.cps.ncmp.api.impl.event.lcm;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.onap.ncmp.cmhandle.lcm.event.NcmpEvent;
+import org.onap.ncmp.cmhandle.event.lcm.LcmEvent;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 /**
- * NcmpEventService to call the publisher and publish on the dedicated topic.
+ * LcmEventsService to call the publisher and publish on the dedicated topic.
  */
 
 @Slf4j
@@ -44,14 +44,14 @@ public class LcmEventsService {
     private boolean notificationsEnabled;
 
     /**
-     * Publish the NcmpEvent to the public topic.
+     * Publish the LcmEvent to the public topic.
      *
      * @param cmHandleId Cm Handle Id
-     * @param ncmpEvent  Ncmp Event
+     * @param lcmEvent  Lcm Event
      */
-    public void publishLcmEvent(final String cmHandleId, final NcmpEvent ncmpEvent) {
+    public void publishLcmEvent(final String cmHandleId, final LcmEvent lcmEvent) {
         if (notificationsEnabled) {
-            lcmEventsPublisher.publishEvent(topicName, cmHandleId, ncmpEvent);
+            lcmEventsPublisher.publishEvent(topicName, cmHandleId, lcmEvent);
         } else {
             log.debug("Notifications disabled.");
         }
