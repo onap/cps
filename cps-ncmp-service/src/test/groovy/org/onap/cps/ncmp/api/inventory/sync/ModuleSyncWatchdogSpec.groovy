@@ -49,6 +49,8 @@ class ModuleSyncWatchdogSpec extends Specification {
             def yangModelCmHandle1 = new YangModelCmHandle(id: 'some-cm-handle', compositeState: compositeState1)
             def yangModelCmHandle2 = new YangModelCmHandle(id: 'some-cm-handle-2', compositeState: compositeState2)
             objectUnderTest.isGlobalDataSyncCacheEnabled = dataSyncCacheEnabled
+        and: 'sync map empty'
+            objectUnderTest.moduleSyncSemaphore = [:]
         and: 'sync utilities return a cm handle twice'
             mockSyncUtils.getAnAdvisedCmHandle() >>> [yangModelCmHandle1, yangModelCmHandle2, null]
         when: 'module sync poll is executed'
@@ -83,6 +85,8 @@ class ModuleSyncWatchdogSpec extends Specification {
         given: 'cm handles in an advised state'
             def compositeState = new CompositeState(cmHandleState: cmHandleState)
             def yangModelCmHandle = new YangModelCmHandle(id: 'some-cm-handle', compositeState: compositeState)
+        and: 'sync map empty'
+            objectUnderTest.moduleSyncSemaphore = [:]
         and: 'sync utilities return a cm handle'
             mockSyncUtils.getAnAdvisedCmHandle() >>> [yangModelCmHandle, null]
         when: 'module sync poll is executed'

@@ -38,9 +38,10 @@ public class SynchronizationSemaphoresConfig {
      * @return  Instance of Map
      */
     @Bean
-    public Map<String, String> moduleSyncSemaphore() {
+    public Map<String, Boolean> moduleSyncSemaphore() {
         return Hazelcast.newHazelcastInstance(
-                initializeDefaultMapConfig("moduleSyncSemaphore", "moduleSyncSemaphoreConfig"))
+                initializeDefaultMapConfig("moduleSyncSemaphore", "moduleSyncSemaphoreConfig")
+                        .addMapConfig(new MapConfig("moduleSyncSemaphore").setTimeToLiveSeconds(30 * 60)))
                 .getMap("moduleSyncSemaphore");
     }
 
