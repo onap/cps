@@ -50,6 +50,38 @@ getResourceDataForPassthroughOperational:
       502:
         $ref: 'components.yaml#/components/responses/BadGateway'
 
+getResourceDataOperational:
+  get:
+    tags:
+      - network-cm-proxy
+    summary: Get resource data from pass-through operational for cm handle
+    description: Get resource data from pass-through operational for given cm handle
+    operationId: getResourceDataOperational
+    parameters:
+      - $ref: 'components.yaml#/components/parameters/cmHandleInPath'
+      - $ref: 'components.yaml#/components/parameters/resourceIdentifier'
+      - $ref: 'components.yaml#/components/parameters/includeDescendantsOptionInQuery'
+    responses:
+      200:
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: object
+            examples:
+              dataSampleResponse:
+                $ref: 'components.yaml#/components/examples/dataSampleResponse'
+      400:
+        $ref: 'components.yaml#/components/responses/BadRequest'
+      401:
+        $ref: 'components.yaml#/components/responses/Unauthorized'
+      403:
+        $ref: 'components.yaml#/components/responses/Forbidden'
+      500:
+        $ref: 'components.yaml#/components/responses/InternalServerError'
+      502:
+        $ref: 'components.yaml#/components/responses/BadGateway'
+
 resourceDataForPassthroughRunning:
   get:
     tags:

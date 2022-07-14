@@ -112,6 +112,13 @@ public class NetworkCmProxyStubController implements NetworkCmProxyApi {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
+
+    @Override
+    public ResponseEntity<Object> getResourceDataOperational(final String cmHandle, final String resourceIdentifier,
+                                                             final Boolean includeDescendants) {
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
     /**
      * Get resource data from operational datastore.
      *

@@ -53,6 +53,7 @@ import org.onap.cps.ncmp.rest.model.RestOutputCmHandle;
 import org.onap.cps.ncmp.rest.model.RestOutputCmHandleCompositeState;
 import org.onap.cps.ncmp.rest.model.RestOutputCmHandlePublicProperties;
 import org.onap.cps.ncmp.rest.util.DeprecationHelper;
+import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.utils.CpsValidator;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
@@ -318,6 +319,23 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
             .map(ncmpRestInputMapper::toRestModuleReference)
                 .collect(Collectors.toList());
         return new ResponseEntity<>(restModuleReferences, HttpStatus.OK);
+    }
+
+    /**
+     * Get resource data for operational.
+     *
+     * @param cmHandle cm handle identifier
+     * @param resourceIdentifier resource identifier
+     * @param includeDescendants fetch descendants option
+     * @return resource data
+     */
+    @Override
+    public ResponseEntity<Object> getResourceDataOperational(final String cmHandle, final String resourceIdentifier,
+                                                             final Boolean includeDescendants) {
+        final FetchDescendantsOption fetchDescendantsOption = Boolean.TRUE.equals(includeDescendants)
+                ? FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS : FetchDescendantsOption.OMIT_DESCENDANTS;
+        return new ResponseEntity<>(networkCmProxyDataService.getResourceDataOperational(cmHandle, resourceIdentifier,
+                fetchDescendantsOption), HttpStatus.OK);
     }
 
     private RestOutputCmHandle toRestOutputCmHandle(final NcmpServiceCmHandle ncmpServiceCmHandle) {

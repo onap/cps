@@ -33,6 +33,7 @@ import org.onap.cps.ncmp.api.models.CmHandleQueryApiParameters;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistrationResponse;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
+import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.ModuleDefinition;
 import org.onap.cps.spi.model.ModuleReference;
 
@@ -65,6 +66,18 @@ public interface NetworkCmProxyDataService {
                                                  String optionsParamInQuery,
                                                  String topicParamInQuery,
                                                  String requestId);
+
+    /**
+     * Get resource data for operational.
+     *
+     * @param cmHandleId cm handle identifier
+     * @param resourceIdentifier resource identifier
+     * @Link FetchDescendantsOption fetch descendants option
+     * @return {@code Object} resource data
+     */
+    Object getResourceDataOperational(String cmHandleId,
+                                      String resourceIdentifier,
+                                      FetchDescendantsOption fetchDescendantsOption);
 
     /**
      * Get resource data for data store pass-through running

@@ -35,6 +35,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.api.CpsDataService;
 import org.onap.cps.ncmp.api.NetworkCmProxyCmHandlerQueryService;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations;
@@ -50,6 +51,7 @@ import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationErr
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistrationResponse;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
+import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.onap.cps.spi.exceptions.DataValidationException;
@@ -75,6 +77,8 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     private final InventoryPersistence inventoryPersistence;
 
     private final NetworkCmProxyCmHandlerQueryService networkCmProxyCmHandlerQueryService;
+
+    private final CpsDataService cpsDataService;
 
     @Override
     public DmiPluginRegistrationResponse updateDmiRegistrationAndSyncModule(
@@ -107,6 +111,14 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             DmiOperations.DataStoreEnum.PASSTHROUGH_OPERATIONAL,
             requestId, topicParamInQuery);
         return responseEntity.getBody();
+    }
+
+    @Override
+    public Object getResourceDataOperational(final String cmHandleId,
+                                             final String resourceIdentifier,
+                                             final FetchDescendantsOption fetchDescendantsOption) {
+        return cpsDataService.getDataNode("NFP-Operational", cmHandleId, resourceIdentifier,
+                fetchDescendantsOption);
     }
 
     @Override
