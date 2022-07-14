@@ -24,6 +24,7 @@ package org.onap.cps.ncmp.api.impl
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.ncmp.api.NetworkCmProxyCmHandlerQueryService
+import org.onap.cps.ncmp.api.impl.event.lcm.LcmEventsCmHandleStateHandler
 import org.onap.cps.ncmp.api.impl.exception.DmiRequestException
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
@@ -58,6 +59,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     def mockNetworkCmProxyDataServicePropertyHandler = Mock(NetworkCmProxyDataServicePropertyHandler)
     def mockInventoryPersistence = Mock(InventoryPersistence)
     def stubbedNetworkCmProxyCmHandlerQueryService = Stub(NetworkCmProxyCmHandlerQueryService)
+    def mockLcmEventsCmHandleStateHandler = Mock(LcmEventsCmHandleStateHandler)
     def objectUnderTest = getObjectUnderTest()
 
     def 'DMI Registration: Create, Update & Delete operations are processed in the right order'() {
@@ -249,14 +251,16 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
                 { if (!schemaSetExist) { throw new SchemaSetNotFoundException("", "") } }
         when: 'registration is updated to delete cmhandle'
             def response = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
-        then: 'delete list or list element is called'
-            1 * mockInventoryPersistence.deleteListOrListElement(_)
+        then: 'an event is called for DELETING and delete list or list element method is called'
+            1 * mockLcmEventsCmHandleStateHandler.updateCmHandleState(_, CmHandleState.DELETING)
         and: 'successful response is received'
             assert response.getRemovedCmHandles().size() == 1
             with(response.getRemovedCmHandles().get(0)) {
                 assert it.status == Status.SUCCESS
                 assert it.cmHandle == 'cmhandle'
             }
+        and: 'an event is created that specifies cm handle is DELETED'
+            1 * mockLcmEventsCmHandleStateHandler.updateCmHandleState(_, CmHandleState.DELETED)
         where:
             scenario                                            | schemaSetExist
             'schema-set exists and can be deleted successfully' | true
@@ -268,7 +272,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server',
                 removedCmHandles: ['cmhandle1', 'cmhandle2', 'cmhandle3'])
         and: 'cm-handle deletion is successful for 1st and 3rd; failed for 2nd'
-            mockInventoryPersistence.deleteListOrListElement(_) >> {} >> { throw new RuntimeException("Failed") } >> {}
+            mockLcmEventsCmHandleStateHandler.updateCmHandleState(_,CmHandleState.DELETING) >> {} >> { throw new RuntimeException("Failed") } >> {}
         when: 'registration is updated to delete cmhandles'
             def response = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'a response is received for all cm-handles'
@@ -296,13 +300,14 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server',
                 removedCmHandles: ['cmhandle'])
         and: 'schema set deletion failed with unknown error'
-            mockInventoryPersistence.deleteSchemaSetWithCascade(_) >> { throw new RuntimeException('Failed') }
+            mockLcmEventsCmHandleStateHandler.updateCmHandleState(_,CmHandleState.DELETING) >> { throw new RuntimeException('Failed') }
         when: 'registration is updated to delete cmhandle'
             def response = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'no exception is thrown'
             noExceptionThrown()
-        and: 'cm-handle is not deleted'
+        and: 'cm-handle is not deleted and no event is sent'
             0 * mockInventoryPersistence.deleteListOrListElement(_)
+            0 * mockLcmEventsCmHandleStateHandler.updateCmHandleState(_, CmHandleState.DELETED)
         and: 'a failure response is received'
             assert response.getRemovedCmHandles().size() == 1
             with(response.getRemovedCmHandles().get(0)) {
@@ -318,7 +323,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server',
                 removedCmHandles: ['cmhandle'])
         and: 'cm-handle deletion throws exception'
-            mockInventoryPersistence.deleteListOrListElement(_) >> { throw deleteListElementException }
+            mockLcmEventsCmHandleStateHandler.updateCmHandleState(_,CmHandleState.DELETING) >> { throw deleteListElementException }
         when: 'registration is updated to delete cmhandle'
             def response = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'no exception is thrown'
@@ -340,6 +345,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
 
     def getObjectUnderTest() {
         return Spy(new NetworkCmProxyDataServiceImpl(spiedJsonObjectMapper, mockDmiDataOperations,
-            mockNetworkCmProxyDataServicePropertyHandler, mockInventoryPersistence, stubbedNetworkCmProxyCmHandlerQueryService))
+            mockNetworkCmProxyDataServicePropertyHandler, mockInventoryPersistence, stubbedNetworkCmProxyCmHandlerQueryService,
+                mockLcmEventsCmHandleStateHandler))
     }
 }
