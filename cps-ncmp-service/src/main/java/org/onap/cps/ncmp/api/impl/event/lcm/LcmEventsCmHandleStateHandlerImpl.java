@@ -21,6 +21,8 @@
 package org.onap.cps.ncmp.api.impl.event.lcm;
 
 import static org.onap.cps.ncmp.api.inventory.CmHandleState.ADVISED;
+import static org.onap.cps.ncmp.api.inventory.CmHandleState.DELETED;
+import static org.onap.cps.ncmp.api.inventory.CmHandleState.DELETING;
 import static org.onap.cps.ncmp.api.inventory.CmHandleState.LOCKED;
 import static org.onap.cps.ncmp.api.inventory.CmHandleState.READY;
 
@@ -75,11 +77,14 @@ public class LcmEventsCmHandleStateHandlerImpl implements LcmEventsCmHandleState
             } else {
                 registerNewCmHandle(yangModelCmHandle);
             }
-        } else {
+        } else if (DELETING == targetCmHandleState) {
+            updateAndSaveCmHandleState(yangModelCmHandle, targetCmHandleState);
+            removeCmHandle(yangModelCmHandle.getId());
+        } else if (DELETED == targetCmHandleState) {
             CompositeStateUtils.setCompositeState(targetCmHandleState).accept(yangModelCmHandle.getCompositeState());
-            inventoryPersistence.saveCmHandleState(yangModelCmHandle.getId(), yangModelCmHandle.getCompositeState());
+        } else {
+            updateAndSaveCmHandleState(yangModelCmHandle, targetCmHandleState);
         }
-
     }
 
     private void retryCmHandle(final YangModelCmHandle yangModelCmHandle) {
@@ -98,5 +103,16 @@ public class LcmEventsCmHandleStateHandlerImpl implements LcmEventsCmHandleState
         final String cmHandleId = ncmpServiceCmHandle.getCmHandleId();
         final NcmpEvent ncmpEvent = lcmEventsCreator.populateLcmEvent(cmHandleId, ncmpServiceCmHandle);
         lcmEventsService.publishLcmEvent(cmHandleId, ncmpEvent);
+    }
+
+    private void updateAndSaveCmHandleState(final YangModelCmHandle yangModelCmHandle,
+                                            final CmHandleState targetCmHandleState) {
+        CompositeStateUtils.setCompositeState(targetCmHandleState).accept(yangModelCmHandle.getCompositeState());
+        inventoryPersistence.saveCmHandleState(yangModelCmHandle.getId(), yangModelCmHandle.getCompositeState());
+    }
+
+    private void removeCmHandle(final String cmHandle) {
+        inventoryPersistence.deleteSchemaSetWithCascade(cmHandle);
+        inventoryPersistence.deleteListOrListElement("/dmi-registry/cm-handles[@id='" + cmHandle + "']");
     }
 }
