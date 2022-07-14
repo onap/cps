@@ -37,6 +37,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.NetworkCmProxyCmHandlerQueryService;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
+import org.onap.cps.ncmp.api.impl.event.lcm.LcmEventsCmHandleStateHandler;
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations;
 import org.onap.cps.ncmp.api.impl.operations.DmiOperations;
 import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
@@ -75,6 +76,8 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     private final InventoryPersistence inventoryPersistence;
 
     private final NetworkCmProxyCmHandlerQueryService networkCmProxyCmHandlerQueryService;
+
+    private final LcmEventsCmHandleStateHandler lcmEventsCmHandleStateHandler;
 
     @Override
     public DmiPluginRegistrationResponse updateDmiRegistrationAndSyncModule(
@@ -265,9 +268,14 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         for (final String cmHandle : tobeRemovedCmHandles) {
             try {
                 CpsValidator.validateNameCharacters(cmHandle);
+                final YangModelCmHandle yangModelCmHandle = inventoryPersistence.getYangModelCmHandle(cmHandle);
+                lcmEventsCmHandleStateHandler.updateCmHandleState(yangModelCmHandle,
+                        CmHandleState.DELETING);
                 inventoryPersistence.deleteSchemaSetWithCascade(cmHandle);
                 inventoryPersistence.deleteListOrListElement("/dmi-registry/cm-handles[@id='" + cmHandle + "']");
                 cmHandleRegistrationResponses.add(CmHandleRegistrationResponse.createSuccessResponse(cmHandle));
+                lcmEventsCmHandleStateHandler.updateCmHandleState(yangModelCmHandle,
+                        CmHandleState.DELETED);
             } catch (final DataNodeNotFoundException dataNodeNotFoundException) {
                 log.error("Unable to find dataNode for cmHandleId : {} , caused by : {}",
                         cmHandle, dataNodeNotFoundException.getMessage());
