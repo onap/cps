@@ -20,10 +20,6 @@
 
 package org.onap.cps.ncmp.api.impl.event.lcm;
 
-import static org.onap.cps.ncmp.api.inventory.CmHandleState.ADVISED;
-import static org.onap.cps.ncmp.api.inventory.CmHandleState.LOCKED;
-import static org.onap.cps.ncmp.api.inventory.CmHandleState.READY;
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
@@ -35,6 +31,8 @@ import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.ncmp.cmhandle.lcm.event.NcmpEvent;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+
+import static org.onap.cps.ncmp.api.inventory.CmHandleState.*;
 
 @Slf4j
 @Service
@@ -75,6 +73,8 @@ public class LcmEventsCmHandleStateHandlerImpl implements LcmEventsCmHandleState
             } else {
                 registerNewCmHandle(yangModelCmHandle);
             }
+        } else if (DELETED == targetCmHandleState) {
+            CompositeStateUtils.setCompositeState(targetCmHandleState).accept(yangModelCmHandle.getCompositeState());
         } else {
             CompositeStateUtils.setCompositeState(targetCmHandleState).accept(yangModelCmHandle.getCompositeState());
             inventoryPersistence.saveCmHandleState(yangModelCmHandle.getId(), yangModelCmHandle.getCompositeState());
