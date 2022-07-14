@@ -191,6 +191,30 @@
     },
     {
       "key": {
+        "uuid": "541e501f_a9fbef64",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-14T08:18:04Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "08f1f2dd_d45fc81e",
+      "range": {
+        "startLine": 72,
+        "startChar": 67,
+        "endLine": 72,
+        "endChar": 84
+      },
+      "revId": "2ae6f05d25ea6fe8c06139622961db51b2b5533e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ae42d1e8_ab4b07c5",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
         "patchSetId": 2
@@ -214,6 +238,30 @@
     },
     {
       "key": {
+        "uuid": "5d0edbea_5638ae2e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-14T08:18:04Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ae42d1e8_ab4b07c5",
+      "range": {
+        "startLine": 273,
+        "startChar": 15,
+        "endLine": 273,
+        "endChar": 67
+      },
+      "revId": "2ae6f05d25ea6fe8c06139622961db51b2b5533e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "789dd0e8_de3ecfb8",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImplSpec.groovy",
         "patchSetId": 2
@@ -234,6 +282,30 @@
       "revId": "2ae6f05d25ea6fe8c06139622961db51b2b5533e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "146f9894_3cb0d46d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-14T08:18:04Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "789dd0e8_de3ecfb8",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 77,
+        "endChar": 13
+      },
+      "revId": "2ae6f05d25ea6fe8c06139622961db51b2b5533e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
