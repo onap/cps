@@ -1,0 +1,12 @@
+{
+  "eventId": "test-uuid",
+  "eventCorrelationId": "cmhandle-as-correlationid",
+  "eventTime": "2022-12-31T20:30:40.000+0000",
+  "eventSource": "org.onap.ncmp",
+  "eventType": "org.onap.ncmp.cmhandle.lcm.event",
+  "eventSchema": "org.onap.ncmp.cmhandle.lcm.event",
+  "eventSchemaVersion": "v1",
+  "event": {
+    "cmHandleId": "cmhandle-test"
+  }
+}
