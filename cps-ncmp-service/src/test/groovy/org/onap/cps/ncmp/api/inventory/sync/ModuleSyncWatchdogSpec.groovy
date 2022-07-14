@@ -30,6 +30,8 @@ import org.onap.cps.ncmp.api.inventory.LockReasonCategory
 import org.onap.cps.ncmp.api.inventory.CompositeStateBuilder
 import spock.lang.Specification
 
+import java.util.concurrent.ConcurrentHashMap
+
 class ModuleSyncWatchdogSpec extends Specification {
 
     def mockInventoryPersistence = Mock(InventoryPersistence)
@@ -40,7 +42,7 @@ class ModuleSyncWatchdogSpec extends Specification {
 
     def cmHandleState = CmHandleState.ADVISED
 
-    def objectUnderTest = new ModuleSyncWatchdog(mockInventoryPersistence, mockSyncUtils, mockModuleSyncService)
+    def objectUnderTest = new ModuleSyncWatchdog(mockInventoryPersistence, mockSyncUtils, mockModuleSyncService,  new ConcurrentHashMap<>())
 
     def 'Schedule a Cm-Handle Sync for ADVISED Cm-Handles where #scenario'() {
         given: 'cm handles in an advised state and a data sync state'

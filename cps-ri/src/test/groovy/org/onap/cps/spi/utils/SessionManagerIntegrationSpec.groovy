@@ -37,7 +37,7 @@ class SessionManagerIntegrationSpec extends CpsPersistenceSpecBase{
     CpsSessionFactory cpsSessionFactory
 
     def sessionId
-    def shortTimeoutForTesting = 200L
+    def shortTimeoutForTesting = 300L
 
     def setup(){
         sessionId = objectUnderTest.startSession()

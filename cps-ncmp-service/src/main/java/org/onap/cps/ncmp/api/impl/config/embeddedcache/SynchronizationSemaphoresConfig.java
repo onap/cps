@@ -23,7 +23,10 @@ package org.onap.cps.ncmp.api.impl.config.embeddedcache;
 import com.hazelcast.config.Config;
 import com.hazelcast.config.MapConfig;
 import com.hazelcast.core.Hazelcast;
+import com.hazelcast.core.HazelcastInstance;
 import java.util.Map;
+import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.TimeUnit;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -35,30 +38,36 @@ public class SynchronizationSemaphoresConfig {
 
     /**
      * Module Sync Distributed Map Instance.
-     * @return  Instance of Map
+     *
+     * @return Instance of Map
      */
     @Bean
-    public Map<String, String> moduleSyncSemaphore() {
-        return Hazelcast.newHazelcastInstance(
-                initializeDefaultMapConfig("moduleSyncSemaphore", "moduleSyncSemaphoreConfig"))
+    public ConcurrentMap<String, Boolean> moduleSyncSemaphoreMap() {
+        return createHazelcastInstance("moduleSyncSemaphore", "moduleSyncSemaphoreConfig")
                 .getMap("moduleSyncSemaphore");
     }
 
     /**
      * Data Sync Distributed Map Instance.
-     * @return  Instance of Map
+     *
+     * @return Instance of Map
      */
     @Bean
-    public Map<String, String> dataSyncSemaphore() {
-        return Hazelcast.newHazelcastInstance(
-                initializeDefaultMapConfig("dataSyncSemaphore", "dataSyncSemaphoreConfig"))
+    public Map<String, String> dataSyncSemaphoreMap() {
+        return createHazelcastInstance("dataSyncSemaphore", "dataSyncSemaphoreConfig")
                 .getMap("dataSyncSemaphore");
+    }
+
+    private HazelcastInstance createHazelcastInstance(
+            final String hazelcastInstanceName, final String configMapName) {
+        return Hazelcast.newHazelcastInstance(
+                initializeDefaultMapConfig(hazelcastInstanceName, configMapName));
     }
 
     private Config initializeDefaultMapConfig(final String instanceName, final String configName) {
         final Config config = new Config(instanceName);
         final MapConfig mapConfig = new MapConfig(configName);
-        mapConfig.setTimeToLiveSeconds(30);
+        mapConfig.setTimeToLiveSeconds((int) TimeUnit.MINUTES.toSeconds(30));
         mapConfig.setBackupCount(3);
         mapConfig.setAsyncBackupCount(3);
         config.addMapConfig(mapConfig);
