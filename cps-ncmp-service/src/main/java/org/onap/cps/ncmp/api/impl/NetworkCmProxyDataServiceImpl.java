@@ -37,6 +37,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.NetworkCmProxyCmHandlerQueryService;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
+import org.onap.cps.ncmp.api.impl.event.lcm.LcmEventsCmHandleStateHandler;
+import org.onap.cps.ncmp.api.impl.event.lcm.LcmEventsCreator;
+import org.onap.cps.ncmp.api.impl.event.lcm.LcmEventsService;
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations;
 import org.onap.cps.ncmp.api.impl.operations.DmiOperations;
 import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
@@ -75,6 +78,10 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     private final InventoryPersistence inventoryPersistence;
 
     private final NetworkCmProxyCmHandlerQueryService networkCmProxyCmHandlerQueryService;
+
+    private final LcmEventsCmHandleStateHandler lcmEventsCmHandleStateHandler;
+
+    private final LcmEventsService lcmEventsService;
 
     @Override
     public DmiPluginRegistrationResponse updateDmiRegistrationAndSyncModule(
@@ -265,9 +272,12 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         for (final String cmHandle : tobeRemovedCmHandles) {
             try {
                 CpsValidator.validateNameCharacters(cmHandle);
+                lcmEventsCmHandleStateHandler.updateCmHandleState(inventoryPersistence.getYangModelCmHandle(cmHandle),
+                        CmHandleState.DELETING);
                 inventoryPersistence.deleteSchemaSetWithCascade(cmHandle);
                 inventoryPersistence.deleteListOrListElement("/dmi-registry/cm-handles[@id='" + cmHandle + "']");
                 cmHandleRegistrationResponses.add(CmHandleRegistrationResponse.createSuccessResponse(cmHandle));
+                sendEventForDeletedCmHandle(cmHandle);
             } catch (final DataNodeNotFoundException dataNodeNotFoundException) {
                 log.error("Unable to find dataNode for cmHandleId : {} , caused by : {}",
                         cmHandle, dataNodeNotFoundException.getMessage());
@@ -298,5 +308,10 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         } catch (final Exception exception) {
             return CmHandleRegistrationResponse.createFailureResponse(yangModelCmHandle.getId(), exception);
         }
+    }
+
+    private void sendEventForDeletedCmHandle(final String cmHandleId) {
+        final LcmEventsCreator lcmEventsCreator = new LcmEventsCreator();
+        lcmEventsService.publishLcmEvent(cmHandleId, lcmEventsCreator.populateLcmEventForDeleteState(cmHandleId));
     }
 }

@@ -44,4 +44,14 @@ class LcmEventsCreatorSpec extends Specification {
             assert result.event.cmhandleProperties.size() == 1
             assert result.event.cmhandleProperties[0] == ['publicProperty1': 'value1', 'publicProperty2': 'value2']
     }
+
+    def 'Populate LcmEvent with Deleted cmHandle'() {
+        when: 'the event is populated with the deleted cmHandleId'
+            def result = objectUnderTest.populateLcmEventForDeleteState(cmHandleId)
+        then: 'event header is mapped correctly'
+            assert result.eventSource == 'org.onap.ncmp'
+            assert result.eventCorrelationId == cmHandleId
+        and: 'event payload is empty'
+            assert result.event.cmhandleProperties == null
+    }
 }

@@ -50,6 +50,20 @@ public class LcmEventsCreator {
         return createLcmEvent(cmHandleId, ncmpServiceCmHandle);
     }
 
+    /**
+     * Populate NcmpEvent for delete state.
+     *
+     * @param cmHandleId          Deleted CmHandle ID
+     * @return Populated NcmpEvent
+     */
+    public NcmpEvent populateLcmEventForDeleteState(final String cmHandleId) {
+        final Event deleteEvent = new Event();
+        final NcmpEvent ncmpEvent = lcmEventHeader(cmHandleId);
+        deleteEvent.setCmHandleId(cmHandleId);
+        ncmpEvent.setEvent(deleteEvent);
+        return ncmpEvent;
+    }
+
     private NcmpEvent createLcmEvent(final String cmHandleId, final NcmpServiceCmHandle ncmpServiceCmHandle) {
         final NcmpEvent ncmpEvent = lcmEventHeader(cmHandleId);
         ncmpEvent.setEvent(lcmEventPayload(cmHandleId, ncmpServiceCmHandle));
