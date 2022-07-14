@@ -20,14 +20,12 @@
 
 package org.onap.cps.ncmp.api.impl.event.lcm;
 
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
 import java.util.UUID;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.ncmp.api.impl.utils.DateBuilder;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
-import org.onap.ncmp.cmhandle.lcm.event.Event;
-import org.onap.ncmp.cmhandle.lcm.event.NcmpEvent;
+import org.onap.ncmp.cmhandle.event.lcm.Event;
+import org.onap.ncmp.cmhandle.event.lcm.LcmEvent;
 import org.springframework.stereotype.Component;
 
 
@@ -38,42 +36,39 @@ import org.springframework.stereotype.Component;
 @Component
 public class LcmEventsCreator {
 
-
     /**
-     * Populate NcmpEvent.
+     * Populate LcmEvent.
      *
      * @param cmHandleId          Cm Handle Identifier
      * @param ncmpServiceCmHandle Ncmp CmHandle Data
-     * @return Populated NcmpEvent
+     * @return Populated LcmEvent
      */
-    public NcmpEvent populateLcmEvent(final String cmHandleId, final NcmpServiceCmHandle ncmpServiceCmHandle) {
+    public LcmEvent populateLcmEvent(final String cmHandleId, final NcmpServiceCmHandle ncmpServiceCmHandle) {
         return createLcmEvent(cmHandleId, ncmpServiceCmHandle);
     }
 
-    private NcmpEvent createLcmEvent(final String cmHandleId, final NcmpServiceCmHandle ncmpServiceCmHandle) {
-        final NcmpEvent ncmpEvent = lcmEventHeader(cmHandleId);
-        ncmpEvent.setEvent(lcmEventPayload(cmHandleId, ncmpServiceCmHandle));
-        return ncmpEvent;
+    private LcmEvent createLcmEvent(final String cmHandleId, final NcmpServiceCmHandle ncmpServiceCmHandle) {
+        final LcmEvent lcmEvent = lcmEventHeader(cmHandleId);
+        lcmEvent.setEvent(lcmEventPayload(cmHandleId, ncmpServiceCmHandle));
+        return lcmEvent;
     }
 
     private Event lcmEventPayload(final String eventCorrelationId, final NcmpServiceCmHandle ncmpServiceCmHandle) {
         final Event event = new Event();
         event.setCmHandleId(eventCorrelationId);
-        event.setCmhandleState(
-                Event.CmhandleState.fromValue(ncmpServiceCmHandle.getCompositeState().getCmHandleState().toString()));
-        event.setCmhandleProperties(List.of(ncmpServiceCmHandle.getPublicProperties()));
         return event;
     }
 
-    private NcmpEvent lcmEventHeader(final String eventCorrelationId) {
-        final NcmpEvent ncmpEvent = new NcmpEvent();
-        ncmpEvent.setEventId(UUID.randomUUID().toString());
-        ncmpEvent.setEventCorrelationId(eventCorrelationId);
-        ncmpEvent.setEventTime(ZonedDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ")));
-        ncmpEvent.setEventSource("org.onap.ncmp");
-        ncmpEvent.setEventType("org.onap.ncmp.cmhandle-lcm-event");
-        ncmpEvent.setEventSchema("org.onap.ncmp:cmhandle-lcm-event:v1");
-        return ncmpEvent;
+    private LcmEvent lcmEventHeader(final String eventCorrelationId) {
+        final LcmEvent lcmEvent = new LcmEvent();
+        lcmEvent.setEventId(UUID.randomUUID().toString());
+        lcmEvent.setEventCorrelationId(eventCorrelationId);
+        lcmEvent.setEventTime(DateBuilder.getFormattedDate());
+        lcmEvent.setEventSource("org.onap.ncmp");
+        lcmEvent.setEventType("org.onap.ncmp.cmhandle-lcm-event");
+        lcmEvent.setEventSchema("org.onap.ncmp:cmhandle-lcm-event");
+        lcmEvent.setEventSchemaVersion("v1");
+        return lcmEvent;
     }
 
 }

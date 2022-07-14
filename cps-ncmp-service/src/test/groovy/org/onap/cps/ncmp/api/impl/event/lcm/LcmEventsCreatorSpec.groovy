@@ -41,7 +41,8 @@ class LcmEventsCreatorSpec extends Specification {
             assert result.eventSource == 'org.onap.ncmp'
             assert result.eventCorrelationId == cmHandleId
         and: 'event payload is mapped correctly'
-            assert result.event.cmhandleProperties.size() == 1
-            assert result.event.cmhandleProperties[0] == ['publicProperty1': 'value1', 'publicProperty2': 'value2']
+            assert result.event.cmHandleId == cmHandleId
+            assert !result.event.oldValues
+            assert !result.event.newValues
     }
 }
