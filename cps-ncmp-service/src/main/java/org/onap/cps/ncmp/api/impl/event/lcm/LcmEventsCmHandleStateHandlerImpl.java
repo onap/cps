@@ -21,6 +21,7 @@
 package org.onap.cps.ncmp.api.impl.event.lcm;
 
 import static org.onap.cps.ncmp.api.inventory.CmHandleState.ADVISED;
+import static org.onap.cps.ncmp.api.inventory.CmHandleState.DELETED;
 import static org.onap.cps.ncmp.api.inventory.CmHandleState.LOCKED;
 import static org.onap.cps.ncmp.api.inventory.CmHandleState.READY;
 
@@ -75,6 +76,8 @@ public class LcmEventsCmHandleStateHandlerImpl implements LcmEventsCmHandleState
             } else {
                 registerNewCmHandle(yangModelCmHandle);
             }
+        } else if (DELETED == targetCmHandleState) {
+            CompositeStateUtils.setCompositeState(targetCmHandleState).accept(yangModelCmHandle.getCompositeState());
         } else {
             CompositeStateUtils.setCompositeState(targetCmHandleState).accept(yangModelCmHandle.getCompositeState());
             inventoryPersistence.saveCmHandleState(yangModelCmHandle.getId(), yangModelCmHandle.getCompositeState());
