@@ -26,8 +26,8 @@ import org.onap.cps.ncmp.api.impl.event.lcm.LcmEventsPublisher
 import org.onap.cps.ncmp.api.utils.MessagingSpec
 import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.utils.JsonObjectMapper
-import org.onap.ncmp.cmhandle.lcm.event.Event
-import org.onap.ncmp.cmhandle.lcm.event.NcmpEvent
+import org.onap.ncmp.cmhandle.event.lcm.Event
+import org.onap.ncmp.cmhandle.event.lcm.LcmEvent
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -52,19 +52,19 @@ class LcmEventsPublisherSpec extends MessagingSpec {
     JsonObjectMapper jsonObjectMapper
 
 
-    def 'Produce and Consume Ncmp Event'() {
+    def 'Produce and Consume Lcm Event'() {
         given: 'event key and event data'
-            def eventKey = 'ncmp'
-            def eventData = new NcmpEvent(eventId: 'test-uuid',
+            def eventKey = 'lcm'
+            def eventData = new LcmEvent(eventId: 'test-uuid',
                 eventCorrelationId: 'cmhandle-as-correlationid',
                 eventSchema: URI.create('org.onap.ncmp.cmhandle.lcm.event:v1'),
                 eventSource: URI.create('org.onap.ncmp'),
                 eventTime: '2022-12-31T20:30:40.000+0000',
                 eventType: 'org.onap.ncmp.cmhandle.lcm.event',
-                event: new Event(cmHandleId: 'cmhandle-test', cmhandleState: 'READY', cmhandleProperties: [['publicProperty1': 'value1'], ['publicProperty2': 'value2']]))
-        and: 'we have an expected NcmpEvent'
-            def expectedJsonString = TestUtils.getResourceFileContent('expectedNcmpEvent.json')
-            def expectedNcmpEvent = jsonObjectMapper.convertJsonString(expectedJsonString, NcmpEvent.class)
+                event: new Event(cmHandleId: 'cmhandle-test'))
+        and: 'we have an expected LcmEvent'
+            def expectedJsonString = TestUtils.getResourceFileContent('expectedLcmEvent.json')
+            def expectedNcmpEvent = jsonObjectMapper.convertJsonString(expectedJsonString, LcmEvent.class)
         and: 'consumer has a subscription'
             kafkaConsumer.subscribe([testTopic] as List<String>)
         when: 'an event is published'
@@ -79,7 +79,6 @@ class LcmEventsPublisherSpec extends MessagingSpec {
             def record = records.iterator().next()
             assert eventKey == record.key
         and: 'record matches the expected event'
-            assert expectedNcmpEvent == jsonObjectMapper.convertJsonString(record.value, NcmpEvent.class)
-
+            assert expectedNcmpEvent == jsonObjectMapper.convertJsonString(record.value, LcmEvent.class)
     }
 }
