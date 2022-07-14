@@ -14,8 +14,6 @@
 # limitations under the License.
 # ============LICENSE_END=========================================================
 
-version: '3'
-
 services:
   mariadb:
     image: mariadb:10.5
