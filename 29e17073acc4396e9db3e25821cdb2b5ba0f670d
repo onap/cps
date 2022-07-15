@@ -68,6 +68,23 @@
       "revId": "29e17073acc4396e9db3e25821cdb2b5ba0f670d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "357958e8_34271168",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/InventoryQuerySpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-07-15T15:53:37Z",
+      "side": 1,
+      "message": "Missing copyrights",
+      "revId": "29e17073acc4396e9db3e25821cdb2b5ba0f670d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
