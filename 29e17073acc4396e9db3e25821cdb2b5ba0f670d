@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cb55688a_f856dd78",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryQuery.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-07-15T15:38:41Z",
+      "side": 1,
+      "message": "maybe \u0027publicProperty\u0027 ?",
+      "range": {
+        "startLine": 59,
+        "startChar": 45,
+        "endLine": 59,
+        "endChar": 50
+      },
+      "revId": "29e17073acc4396e9db3e25821cdb2b5ba0f670d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "04b1838b_6cdb819d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryQuery.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-07-15T15:38:41Z",
+      "side": 1,
+      "message": "so publicProperty.getKey() / publicProperty.getValue()",
+      "range": {
+        "startLine": 60,
+        "startChar": 67,
+        "endLine": 61,
+        "endChar": 34
+      },
+      "revId": "29e17073acc4396e9db3e25821cdb2b5ba0f670d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "060c6bd0_21656d52",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryQuery.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-07-15T15:38:41Z",
+      "side": 1,
+      "message": "from line 58 will this always be true?",
+      "range": {
+        "startLine": 64,
+        "startChar": 16,
+        "endLine": 64,
+        "endChar": 56
+      },
+      "revId": "29e17073acc4396e9db3e25821cdb2b5ba0f670d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
