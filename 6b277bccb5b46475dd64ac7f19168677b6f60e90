@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "c878d41b_4465d13f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsPublisher.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-07-15T09:30:48Z",
+      "side": 1,
+      "message": "should this not be \u0027LcmEvent\u0027 ?",
+      "range": {
+        "startLine": 62,
+        "startChar": 71,
+        "endLine": 62,
+        "endChar": 77
+      },
+      "revId": "6b277bccb5b46475dd64ac7f19168677b6f60e90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "74ba74cd_8be1675c",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsService.java",
         "patchSetId": 2
