@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae14c146_2b86ac43",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsPublisherSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-15T08:41:03Z",
+      "side": 0,
+      "message": "We should not remove this.\nRefactor the sample expectedNcmpEvent.json (rename to expectedLcmEvent.json) with the correct event as of now and then we can change the event as per our progress.",
+      "range": {
+        "startLine": 66,
+        "startChar": 12,
+        "endLine": 67,
+        "endChar": 107
+      },
+      "revId": "50f206ecba2e93cb06ed1eb4556b4b9ff5c8806b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d6b44c3d_ac12ce63",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsPublisherSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-15T08:41:03Z",
+      "side": 0,
+      "message": "need this..\ndont remove.",
+      "range": {
+        "startLine": 81,
+        "startChar": 8,
+        "endLine": 82,
+        "endChar": 105
+      },
+      "revId": "50f206ecba2e93cb06ed1eb4556b4b9ff5c8806b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
