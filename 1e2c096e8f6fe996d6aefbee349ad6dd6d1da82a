@@ -180,6 +180,30 @@
     },
     {
       "key": {
+        "uuid": "620699a2_a272976f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryQuery.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-07-18T10:11:38Z",
+      "side": 1,
+      "message": "space*",
+      "parentUuid": "0d23720d_acf73e37",
+      "range": {
+        "startLine": 85,
+        "startChar": 66,
+        "endLine": 85,
+        "endChar": 67
+      },
+      "revId": "1e2c096e8f6fe996d6aefbee349ad6dd6d1da82a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fbc5eb9f_9573123e",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceSpec.groovy",
         "patchSetId": 2
