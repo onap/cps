@@ -94,6 +94,29 @@
     },
     {
       "key": {
+        "uuid": "234d6f0b_ac88dc53",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-18T15:06:37Z",
+      "side": 1,
+      "message": "Just for this oldValues and newValues. \nFor now Miklos wont be able to test the values inside the oldValues and newValues as the logic to create the new event is been handled by me.\nI can handle this comment in my patch if you dont mind 😊",
+      "range": {
+        "startLine": 45,
+        "startChar": 12,
+        "endLine": 46,
+        "endChar": 42
+      },
+      "revId": "aff3f3bd1bbdfd6554e61d01663a50da2ece5c0d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ade17ed6_0ad6e186",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsServiceSpec.groovy",
         "patchSetId": 5
