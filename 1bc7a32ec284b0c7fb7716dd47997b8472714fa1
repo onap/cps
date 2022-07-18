@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a6829e9e_7c3ceccc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationSemaphoresConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-18T15:06:40Z",
+      "side": 1,
+      "message": "NB: a real nice (readable alternative) for this is to extract out a constant using TimeUnit for the conversion\ne..g \nfinal static int TIME_TO_LIVE_IN_SECONDS \u003d TimeUnit.MINUTES.toSeconds(30)l",
+      "range": {
+        "startLine": 44,
+        "startChar": 96,
+        "endLine": 44,
+        "endChar": 103
+      },
+      "revId": "1bc7a32ec284b0c7fb7716dd47997b8472714fa1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}

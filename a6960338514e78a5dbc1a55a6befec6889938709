@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "f304a027_c19c5373",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationSemaphoresConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-18T15:06:40Z",
+      "side": 1,
+      "message": "Did my comment about using TimeUnit get lost?! (did you abandon a pev patch or did I do something wrong)\nin any case you can extract out something like this final int TIME_TO_LIVE_IN_SEC \u003d TimeUnit.MINUTES.toSeconds(30)",
+      "range": {
+        "startLine": 47,
+        "startChar": 96,
+        "endLine": 47,
+        "endChar": 103
+      },
+      "revId": "a6960338514e78a5dbc1a55a6befec6889938709",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1325c599_6917885e",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
         "patchSetId": 3
@@ -18,6 +41,52 @@
         "startChar": 4,
         "endLine": 55,
         "endChar": 63
+      },
+      "revId": "a6960338514e78a5dbc1a55a6befec6889938709",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e023b48_eacd1643",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-18T15:06:40Z",
+      "side": 1,
+      "message": "what wil this return if already present?!\nI thihnk we shoudl log (debug) infor for the other case\n\n\nif ((moduleSyncSemaphore.putIfAbsent(cmHandleId, false) \u003d\u003d null) {\n   :\n   :\n} else {\n  log.debug(\"%s already processed by other instance\u0027,cmGandleId)\n\n}",
+      "range": {
+        "startLine": 64,
+        "startChar": 67,
+        "endLine": 64,
+        "endChar": 74
+      },
+      "revId": "a6960338514e78a5dbc1a55a6befec6889938709",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dd4c5b6e_ecbf0bf3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-18T15:06:40Z",
+      "side": 1,
+      "message": "PERFORMANCE ISSUE?!\n\nwhy are we going back to the DB for ach CM Handle?!\ninstead just convert the advisedCmHandles  colletion!",
+      "range": {
+        "startLine": 85,
+        "startChar": 7,
+        "endLine": 87,
+        "endChar": 94
       },
       "revId": "a6960338514e78a5dbc1a55a6befec6889938709",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
