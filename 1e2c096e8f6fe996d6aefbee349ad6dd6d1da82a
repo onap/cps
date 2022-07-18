@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "747afa05_f150acd4",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-18T08:02:00Z",
+      "side": 1,
+      "message": "can you add several examples?",
+      "range": {
+        "startLine": 202,
+        "startChar": 29,
+        "endLine": 202,
+        "endChar": 67
+      },
+      "revId": "1e2c096e8f6fe996d6aefbee349ad6dd6d1da82a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6af99376_ce97b355",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-18T08:02:00Z",
+      "side": 1,
+      "message": "suggestions:\nexecuteInventoryQueries\nexecuteInventoryModelQueries",
+      "range": {
+        "startLine": 142,
+        "startChar": 45,
+        "endLine": 142,
+        "endChar": 85
+      },
+      "revId": "1e2c096e8f6fe996d6aefbee349ad6dd6d1da82a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "97ea1bd8_e514a277",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryQuery.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-18T08:02:00Z",
+      "side": 1,
+      "message": "re-use constants from org.onap.cps.ncmp.api.inventory.InventoryPersistence (you can make them packageproteted)",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 79
+      },
+      "revId": "1e2c096e8f6fe996d6aefbee349ad6dd6d1da82a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c39b06d0_a30278cd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryQuery.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-18T08:02:00Z",
+      "side": 1,
+      "message": "should re-use whatever you use to execute a user-defined cpsPtah query ie. should not have to add ancestor here...",
+      "range": {
+        "startLine": 61,
+        "startChar": 37,
+        "endLine": 61,
+        "endChar": 63
+      },
+      "revId": "1e2c096e8f6fe996d6aefbee349ad6dd6d1da82a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6fda333c_8fd74f90",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/CmHandleQueryRestParametersValidator.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-18T08:02:00Z",
+      "side": 1,
+      "message": "this can be more sepcific, you can mention you expect \"cpsPath\"",
+      "range": {
+        "startLine": 105,
+        "startChar": 70,
+        "endLine": 105,
+        "endChar": 84
+      },
+      "revId": "1e2c096e8f6fe996d6aefbee349ad6dd6d1da82a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f84ea409_03f93014",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/CmHandleQueryRestParametersValidator.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-18T08:02:00Z",
+      "side": 1,
+      "message": "you get retrieve it 3 times, maybe store teh value in a local var after line 106",
+      "range": {
+        "startLine": 107,
+        "startChar": 12,
+        "endLine": 107,
+        "endChar": 44
+      },
+      "revId": "1e2c096e8f6fe996d6aefbee349ad6dd6d1da82a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
