@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "221b5b26_e3755b09",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-07-18T14:54:02Z",
+      "side": 1,
+      "message": "I\u0027d also agree with extracting this code for readability purposes",
+      "parentUuid": "a962024d_dfc7a0f6",
+      "range": {
+        "startLine": 274,
+        "startChar": 16,
+        "endLine": 275,
+        "endChar": 113
+      },
+      "revId": "94742da84ca52647e28a2a091180217289151e70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9cffbca5_8aa00a7d",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
         "patchSetId": 4
