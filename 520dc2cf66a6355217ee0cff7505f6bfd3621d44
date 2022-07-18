@@ -22,6 +22,30 @@
       "revId": "520dc2cf66a6355217ee0cff7505f6bfd3621d44",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ddc63d9_08665cf6",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-07-18T16:30:20Z",
+      "side": 1,
+      "message": "This commit has now been merged, but this will be taken out as part of CPS-1133.",
+      "parentUuid": "59a4df93_2186b1bf",
+      "range": {
+        "startLine": 160,
+        "startChar": 0,
+        "endLine": 170,
+        "endChar": 22
+      },
+      "revId": "520dc2cf66a6355217ee0cff7505f6bfd3621d44",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
