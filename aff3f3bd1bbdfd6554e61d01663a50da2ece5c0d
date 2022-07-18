@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ade17ed6_0ad6e186",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsServiceSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-07-18T14:44:52Z",
+      "side": 1,
+      "message": "maybe just \u0027notification is #notificationsEnabled\u0027",
+      "range": {
+        "startLine": 36,
+        "startChar": 14,
+        "endLine": 36,
+        "endChar": 61
+      },
+      "revId": "aff3f3bd1bbdfd6554e61d01663a50da2ece5c0d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
