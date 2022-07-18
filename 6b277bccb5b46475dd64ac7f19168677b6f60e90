@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "d908f884_d717beb2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreator.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-18T08:09:41Z",
+      "side": 1,
+      "message": "I think we have something similar in a few places now, can we extract out a common String EventTimeForammert.now() (static) callas  \u0026 method",
+      "range": {
+        "startLine": 68,
+        "startChar": 57,
+        "endLine": 68,
+        "endChar": 114
+      },
+      "revId": "6b277bccb5b46475dd64ac7f19168677b6f60e90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c878d41b_4465d13f",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsPublisher.java",
         "patchSetId": 2
@@ -13,6 +36,30 @@
       "writtenOn": "2022-07-15T09:30:48Z",
       "side": 1,
       "message": "should this not be \u0027LcmEvent\u0027 ?",
+      "range": {
+        "startLine": 62,
+        "startChar": 71,
+        "endLine": 62,
+        "endChar": 77
+      },
+      "revId": "6b277bccb5b46475dd64ac7f19168677b6f60e90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "56d64467_dabdbab7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsPublisher.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-18T08:09:41Z",
+      "side": 1,
+      "message": "agreed",
+      "parentUuid": "c878d41b_4465d13f",
       "range": {
         "startLine": 62,
         "startChar": 71,
@@ -64,6 +111,29 @@
         "startChar": 19,
         "endLine": 47,
         "endChar": 28
+      },
+      "revId": "6b277bccb5b46475dd64ac7f19168677b6f60e90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "87122a50_094d5059",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-18T08:09:41Z",
+      "side": 1,
+      "message": "I dont understand these asserts, are they correct? If so please add a more descriptive and:-label for each",
+      "range": {
+        "startLine": 44,
+        "startChar": 9,
+        "endLine": 45,
+        "endChar": 42
       },
       "revId": "6b277bccb5b46475dd64ac7f19168677b6f60e90",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",

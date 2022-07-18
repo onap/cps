@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ea56b7a4_11961b27",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsPublisherSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-18T08:09:41Z",
+      "side": 0,
+      "message": "agreed, never take away checks from testware unless you really have to (or it is duplicated in other test)",
+      "parentUuid": "ae14c146_2b86ac43",
+      "range": {
+        "startLine": 66,
+        "startChar": 12,
+        "endLine": 67,
+        "endChar": 107
+      },
+      "revId": "50f206ecba2e93cb06ed1eb4556b4b9ff5c8806b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d6b44c3d_ac12ce63",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsPublisherSpec.groovy",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2022-07-15T08:41:03Z",
       "side": 0,
       "message": "need this..\ndont remove.",
+      "range": {
+        "startLine": 81,
+        "startChar": 8,
+        "endLine": 82,
+        "endChar": 105
+      },
+      "revId": "50f206ecba2e93cb06ed1eb4556b4b9ff5c8806b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6b6d4d57_8ec76b17",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsPublisherSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-18T08:09:41Z",
+      "side": 0,
+      "message": "agreed",
+      "parentUuid": "d6b44c3d_ac12ce63",
       "range": {
         "startLine": 81,
         "startChar": 8,
