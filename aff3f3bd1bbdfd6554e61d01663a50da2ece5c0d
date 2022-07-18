@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "0797fd52_fde22ac2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 8111
+      },
+      "writtenOn": "2022-07-18T15:49:01Z",
+      "side": 1,
+      "message": "Okay, i will be more specific next time",
+      "parentUuid": "e05e734c_ba793e5f",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 10
+      },
+      "revId": "aff3f3bd1bbdfd6554e61d01663a50da2ece5c0d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4d0eb91e_5bb2190a",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/DateBuilder.java",
         "patchSetId": 5
