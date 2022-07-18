@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "c3a1819e_607e6383",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/DateBuilder.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 8111
+      },
+      "writtenOn": "2022-07-18T15:46:30Z",
+      "side": 1,
+      "message": "It will have a kind of name conflict with java.time.format.DateTimeFormatter\nit has similar name but doing totally different thing",
+      "parentUuid": "4d0eb91e_5bb2190a",
+      "range": {
+        "startLine": 26,
+        "startChar": 13,
+        "endLine": 26,
+        "endChar": 25
+      },
+      "revId": "aff3f3bd1bbdfd6554e61d01663a50da2ece5c0d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fb9abef9_89eb2c05",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/DateBuilder.java",
         "patchSetId": 5
@@ -83,6 +107,30 @@
       "side": 1,
       "message": "Just as another alternate name \"getCurrentDateTime\".",
       "parentUuid": "fb9abef9_89eb2c05",
+      "range": {
+        "startLine": 30,
+        "startChar": 25,
+        "endLine": 30,
+        "endChar": 41
+      },
+      "revId": "aff3f3bd1bbdfd6554e61d01663a50da2ece5c0d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "74afe26b_f3de07b1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/DateBuilder.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 8111
+      },
+      "writtenOn": "2022-07-18T15:46:30Z",
+      "side": 1,
+      "message": "Yeah i think it is the better one",
+      "parentUuid": "6c0dfd78_ee31bd7d",
       "range": {
         "startLine": 30,
         "startChar": 25,
