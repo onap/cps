@@ -141,6 +141,30 @@
     },
     {
       "key": {
+        "uuid": "289c1e36_24e650c1",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 8111
+      },
+      "writtenOn": "2022-07-18T11:18:13Z",
+      "side": 1,
+      "message": "Right now just cmHandle is used when the LcmEvent is populated so the Values part should be empty",
+      "parentUuid": "87122a50_094d5059",
+      "range": {
+        "startLine": 44,
+        "startChar": 9,
+        "endLine": 45,
+        "endChar": 42
+      },
+      "revId": "6b277bccb5b46475dd64ac7f19168677b6f60e90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2e16c898_9f75bec9",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsPublisherSpec.groovy",
         "patchSetId": 2
