@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "8b6148fe_ee52d7ab",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-18T11:27:17Z",
+      "side": 1,
+      "message": "yes you are right Toine it is inconvenient to analyze logs in json format. it\u0027s temporary.",
+      "parentUuid": "fe3a35b1_cfa20462",
+      "range": {
+        "startLine": 147,
+        "startChar": 12,
+        "endLine": 147,
+        "endChar": 17
+      },
+      "revId": "c3596fe3a85381668598c75a1ffee4bf973a8518",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4b1cce62_d2d5da23",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/DataSyncWatchdog.java",
         "patchSetId": 5
@@ -71,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "82f0f3af_4e2af5dd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-18T11:27:17Z",
+      "side": 1,
+      "message": "Yes, By adding these info logs to calculate timings for eatch operations. like below :\n\n1: Average time elapsed to get/ fetch cm handles by state ADVISED is (Total time elapsed in ms / total number of cm handles): Batch 1: (19404/601) \u003d 32.28618968386023 and Batch 2: (3485/857) \u003d 4.066511085180863\n32.28618968386023 +4.066511085180863 \u003d 36.35270076904109/2 \u003d 18.17635038452055 / iteration\n\n2: Average time elapsed to shuffle cm handle list of size : 601 is 0 ms and 857 is 0 ms \u003d ~ 0 ms / iteration\n\n3: Average time elapsed to get yang model cm handles is: 63107/601\u003d 105.0033277870216 and 37337/857 \u003d 43.56709451575263 \n105.0033277870216 +43.56709451575263 \u003d148.5704223027742/2\u003d 74.28521115138711 ms / iteration \n\n4: Average time elapsed to get cm handle state with id is: First Batch (first iteration: 83 + second iteration: 7) \u003d 90 + Second Batch (first iteration: 10 + second iteration: 12) \u003d 22 \n\t(90+22)/ 2 \u003d 56 ms /cm handle\n\n5: Average time elapsed to delete schema set If exists with id is: First Batch (first iteration: 17 + second iteration: 2) \u003d 19 + Second Batch (first iteration: 2 + second iteration: 2) \u003d 4 \n(19+4)/ 2 \u003d 11.5 ms /cm handle\n\n6: Average Time elapsed to sync., create schema set and anchor with id is: First Batch (first iteration: 38393 + second iteration: 599) \u003d 38992 + Second Batch (first iteration: 237 + second iteration: 122) \u003d 359\n(38992 +359)/ 2 \u003d 19675.5 ms /cm handle\n\n7: Average Time elapsed to save cm handle state with id is: First Batch (first iteration: 293 + second iteration: 84) \u003d 377 + Second Batch (first iteration: 14 + second iteration: 8) \u003d 22\n\t(84 + 22) / 2 \u003d 53 ms /cm handle",
+      "parentUuid": "adcf2a04_2e621403",
+      "range": {
+        "startLine": 61,
+        "startChar": 12,
+        "endLine": 61,
+        "endChar": 40
+      },
+      "revId": "c3596fe3a85381668598c75a1ffee4bf973a8518",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "64e40e37_cb9fd340",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
         "patchSetId": 5
@@ -91,6 +139,30 @@
       "revId": "c3596fe3a85381668598c75a1ffee4bf973a8518",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d66a9890_914f798d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-18T11:27:17Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "64e40e37_cb9fd340",
+      "range": {
+        "startLine": 89,
+        "startChar": 8,
+        "endLine": 89,
+        "endChar": 11
+      },
+      "revId": "c3596fe3a85381668598c75a1ffee4bf973a8518",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +189,30 @@
     },
     {
       "key": {
+        "uuid": "d00bb61b_ca964d61",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-18T11:27:17Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9e88d751_acc51244",
+      "range": {
+        "startLine": 115,
+        "startChar": 8,
+        "endLine": 116,
+        "endChar": 5
+      },
+      "revId": "c3596fe3a85381668598c75a1ffee4bf973a8518",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ad57a933_86029fa1",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
         "patchSetId": 5
@@ -128,6 +224,30 @@
       "writtenOn": "2022-07-14T14:35:39Z",
       "side": 1,
       "message": "I presume this can be removed once you have the required measurements",
+      "range": {
+        "startLine": 77,
+        "startChar": 8,
+        "endLine": 77,
+        "endChar": 38
+      },
+      "revId": "c3596fe3a85381668598c75a1ffee4bf973a8518",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e7627970_2d1f0fbe",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-18T11:27:17Z",
+      "side": 1,
+      "message": "Yes all these info logs would be removed from final commit.",
+      "parentUuid": "ad57a933_86029fa1",
       "range": {
         "startLine": 77,
         "startChar": 8,
