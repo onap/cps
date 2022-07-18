@@ -2,6 +2,98 @@
   "comments": [
     {
       "key": {
+        "uuid": "e05e734c_ba793e5f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-18T14:55:17Z",
+      "side": 1,
+      "message": "typically the commit message should reflect all the updates ie the current patch compared to the baseline not just compared to prev. patch. Nof need to go too details or add very genric thins like \u0027more fixes\u0027 or \u0027fixed comments\u0027\n\nMaybe  something like \n\n- Old schema deleted\n- applied \u0027lcm\u0027 isnetad of ncmp for LCM event related code\n- added data formatter utility",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 10
+      },
+      "revId": "aff3f3bd1bbdfd6554e61d01663a50da2ece5c0d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4d0eb91e_5bb2190a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/DateBuilder.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-18T14:55:17Z",
+      "side": 1,
+      "message": "EventDateTimeFormatter",
+      "range": {
+        "startLine": 26,
+        "startChar": 13,
+        "endLine": 26,
+        "endChar": 25
+      },
+      "revId": "aff3f3bd1bbdfd6554e61d01663a50da2ece5c0d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fb9abef9_89eb2c05",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/DateBuilder.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-18T14:55:17Z",
+      "side": 1,
+      "message": "getCurrentTimeFormatted",
+      "range": {
+        "startLine": 30,
+        "startChar": 25,
+        "endLine": 30,
+        "endChar": 41
+      },
+      "revId": "aff3f3bd1bbdfd6554e61d01663a50da2ece5c0d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "84c709ac_c6e76c64",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-18T14:55:17Z",
+      "side": 1,
+      "message": "pleas describe more clearly what is being asserted here\nusing different and-labels\n\nI really don\u0027t understand what is being asserted?!",
+      "range": {
+        "startLine": 43,
+        "startChar": 7,
+        "endLine": 46,
+        "endChar": 42
+      },
+      "revId": "aff3f3bd1bbdfd6554e61d01663a50da2ece5c0d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ade17ed6_0ad6e186",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsServiceSpec.groovy",
         "patchSetId": 5
