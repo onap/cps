@@ -116,6 +116,30 @@
       "revId": "94742da84ca52647e28a2a091180217289151e70",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "22dc9b11_8abce8b2",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-07-18T10:43:59Z",
+      "side": 1,
+      "message": "this is for number of invocation as the method above is called but not directly invoking it , i think ill separate this on next patch so its clearer",
+      "parentUuid": "2beea7c5_8d31934a",
+      "range": {
+        "startLine": 255,
+        "startChar": 12,
+        "endLine": 255,
+        "endChar": 16
+      },
+      "revId": "94742da84ca52647e28a2a091180217289151e70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
