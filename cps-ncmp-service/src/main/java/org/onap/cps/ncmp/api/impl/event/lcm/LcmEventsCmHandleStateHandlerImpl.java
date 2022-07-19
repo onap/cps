@@ -34,7 +34,6 @@ import org.onap.cps.ncmp.api.inventory.CompositeStateUtils;
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.ncmp.cmhandle.event.lcm.LcmEvent;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -46,14 +45,10 @@ public class LcmEventsCmHandleStateHandlerImpl implements LcmEventsCmHandleState
     private final LcmEventsCreator lcmEventsCreator;
     private final LcmEventsService lcmEventsService;
 
-    @Value("${data-sync.cache.enabled:false}")
-    private boolean isGlobalDataSyncCacheEnabled;
-
 
     @Override
     public void updateCmHandleState(final YangModelCmHandle yangModelCmHandle,
             final CmHandleState targetCmHandleState) {
-
         if (yangModelCmHandle.getCompositeState().getCmHandleState() == targetCmHandleState) {
             log.debug("CmHandle with id : {} already in state : {}", yangModelCmHandle.getId(), targetCmHandleState);
         } else {
@@ -67,7 +62,7 @@ public class LcmEventsCmHandleStateHandlerImpl implements LcmEventsCmHandleState
             final CmHandleState targetCmHandleState) {
 
         if (READY == targetCmHandleState) {
-            CompositeStateUtils.setCompositeStateToReadyWithInitialDataStoreSyncState(isGlobalDataSyncCacheEnabled)
+            CompositeStateUtils.setCompositeStateToReadyWithInitialDataStoreSyncState()
                     .accept(yangModelCmHandle.getCompositeState());
             inventoryPersistence.saveCmHandleState(yangModelCmHandle.getId(), yangModelCmHandle.getCompositeState());
         } else if (ADVISED == targetCmHandleState) {

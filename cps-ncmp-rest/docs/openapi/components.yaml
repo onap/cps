@@ -389,6 +389,14 @@ components:
       schema:
         type: string
         example: my-cm-handle
+    dataSyncEnabled:
+      name: dataSyncEnabled
+      in: query
+      description: Is used to enable or disable the data synchronization flag
+      required: true
+      schema:
+        type: boolean
+        example: true
     xpathInQuery:
       name: xpath
       in: query
