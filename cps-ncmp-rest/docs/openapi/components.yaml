@@ -389,6 +389,14 @@ components:
       schema:
         type: string
         example: my-cm-handle
+    enabled:
+      name: enabled
+      in: query
+      description: The flag to set the data sync enabled flag to
+      required: true
+      schema:
+        type: boolean
+        example: true
     xpathInQuery:
       name: xpath
       in: query
