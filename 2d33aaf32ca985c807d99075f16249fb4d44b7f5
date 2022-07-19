@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "216d9e23_d1fda72c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-07-19T11:12:32Z",
+      "side": 1,
+      "message": "but there will be no more actual cmhandle state because cm handle is already deleted?",
+      "parentUuid": "530dd5f4_975ba0c1",
+      "range": {
+        "startLine": 262,
+        "startChar": 14,
+        "endLine": 262,
+        "endChar": 69
+      },
+      "revId": "2d33aaf32ca985c807d99075f16249fb4d44b7f5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "73f7b7ff_9f23b9d1",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
         "patchSetId": 7
