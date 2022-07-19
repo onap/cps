@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e5cb13f5_a6222910",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreator.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-19T09:39:34Z",
+      "side": 1,
+      "message": "agreed",
+      "parentUuid": "21039ed7_695e67e7",
+      "range": {
+        "startLine": 56,
+        "startChar": 65,
+        "endLine": 56,
+        "endChar": 112
+      },
+      "revId": "48289d508f279c0194711edfcd7241c6c7c506db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9acfd07a_449c5eb5",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/DateBuilder.java",
         "patchSetId": 6
@@ -36,6 +60,30 @@
       "writtenOn": "2022-07-19T05:40:18Z",
       "side": 1,
       "message": "1. Give some suitable class name : like \"EventTimeFormatter\"\n\nYou are not using any builder pattern here except getting current formatted date. In my openion class name should not end with *Builder it\u0027s misleading.\n\n2. Sonar code smell : Utility classes, which are collections of static members, are not meant to be instantiated. Even abstract utility classes, which can be extended, should not have public constructors.\n\nSuggestion: Go ahead with interface and define \"now\" method static only at line no. 30.",
+      "range": {
+        "startLine": 26,
+        "startChar": 13,
+        "endLine": 26,
+        "endChar": 25
+      },
+      "revId": "48289d508f279c0194711edfcd7241c6c7c506db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a1c5f5f_d5ee1ef7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/DateBuilder.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-19T09:39:34Z",
+      "side": 1,
+      "message": "options \n1) EventDateTimeFormatter\n2) EventTimeFormatter\n3) DateTimeUtil\n\nTeam agreed option 1",
+      "parentUuid": "9acfd07a_449c5eb5",
       "range": {
         "startLine": 26,
         "startChar": 13,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "c3a18149_89485466",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/DateBuilder.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-19T09:39:34Z",
+      "side": 1,
+      "message": "in this case the name adds value so it can be kept\nbut if it not used somewhere else and it should be private",
+      "parentUuid": "e3f482e9_a71f8d99",
+      "range": {
+        "startLine": 28,
+        "startChar": 4,
+        "endLine": 28,
+        "endChar": 11
+      },
+      "revId": "48289d508f279c0194711edfcd7241c6c7c506db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e1408466_71d87570",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/DateBuilder.java",
         "patchSetId": 6
@@ -82,6 +154,30 @@
       "writtenOn": "2022-07-19T05:40:18Z",
       "side": 1,
       "message": "static String now\n\nand can be used like : lcmEvent.setEventTime(EventTimeFormatter.now());",
+      "range": {
+        "startLine": 30,
+        "startChar": 4,
+        "endLine": 30,
+        "endChar": 41
+      },
+      "revId": "48289d508f279c0194711edfcd7241c6c7c506db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e9789c1a_d969ae49",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/DateBuilder.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-19T09:39:34Z",
+      "side": 1,
+      "message": "given the suggested name of the class : EventDateTimeFormatter\nthe method name can be getCurrentDateTime\n\nEventDateTimeFormatter.getCurrentDateTime()",
+      "parentUuid": "e1408466_71d87570",
       "range": {
         "startLine": 30,
         "startChar": 4,
@@ -154,6 +250,29 @@
       "range": {
         "startLine": 45,
         "startChar": 11,
+        "endLine": 46,
+        "endChar": 42
+      },
+      "revId": "48289d508f279c0194711edfcd7241c6c7c506db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "254d4dfc_278055a4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-19T09:39:34Z",
+      "side": 1,
+      "message": "make it more clear  using additional labels and null check\n\nand: \u0027the result has the correct cm handle id\u0027\n      assert result.event.cmHandleId \u003d\u003d cmHandleId\nand: \u0027the old and new values are not set yet\u0027\n       assert result.event.oldValues \u003d\u003d null\n       assert result.event.newValues \u003d\u003d null",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
         "endLine": 46,
         "endChar": 42
       },
