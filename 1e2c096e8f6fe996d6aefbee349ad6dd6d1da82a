@@ -25,6 +25,29 @@
     },
     {
       "key": {
+        "uuid": "cc9701ed_6e8316cf",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-07-19T13:08:46Z",
+      "side": 1,
+      "message": "for this and below, you also try can add line breaks so easier to read (https://www.baeldung.com/swagger-format-descriptions#1-line-breaks-and-paragraphs) i.e.\n\ndescription: |\n  Execute cm handle query search, to be included in the result a cm-handle must fulfill ALL the conditions listed here, if one of the given module names does not exists, return with an empty collection.\n  By supplying a CPS Path it is possible to query on any data related to the cm handle.\n  \n  For more on CPS Path please refer to documentation https://docs.onap.org/projects/onap-cps/en/latest/cps-path.html. The cm handle ancestor is automatically returned for this query.",
+      "range": {
+        "startLine": 276,
+        "startChar": 0,
+        "endLine": 276,
+        "endChar": 484
+      },
+      "revId": "1e2c096e8f6fe996d6aefbee349ad6dd6d1da82a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ecb52d3c_5bcf18f1",
         "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
         "patchSetId": 2
