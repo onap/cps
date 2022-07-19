@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e7c49aa1_7dcd8b83",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationSemaphoresConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-07-19T09:41:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f304a027_c19c5373",
+      "range": {
+        "startLine": 47,
+        "startChar": 96,
+        "endLine": 47,
+        "endChar": 103
+      },
+      "revId": "a6960338514e78a5dbc1a55a6befec6889938709",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1325c599_6917885e",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2022-07-18T14:09:36Z",
       "side": 1,
       "message": "Is there any specific reason to use Autowired here??\nYou can also use the existing constructor injection provided by lombok.",
+      "range": {
+        "startLine": 54,
+        "startChar": 4,
+        "endLine": 55,
+        "endChar": 63
+      },
+      "revId": "a6960338514e78a5dbc1a55a6befec6889938709",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "635128b9_a92500d4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-07-19T09:41:08Z",
+      "side": 1,
+      "message": "Yes, the @Bean annotation and the haselcast don\u0027t work with constructor injection",
+      "parentUuid": "1325c599_6917885e",
       "range": {
         "startLine": 54,
         "startChar": 4,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "9a3cdbf4_8b512198",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-07-19T09:41:08Z",
+      "side": 1,
+      "message": "When it is already present, this return with the value (true or false)",
+      "parentUuid": "0e023b48_eacd1643",
+      "range": {
+        "startLine": 64,
+        "startChar": 67,
+        "endLine": 64,
+        "endChar": 74
+      },
+      "revId": "a6960338514e78a5dbc1a55a6befec6889938709",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dd4c5b6e_ecbf0bf3",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
         "patchSetId": 3
@@ -91,6 +163,30 @@
       "revId": "a6960338514e78a5dbc1a55a6befec6889938709",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "db9207d1_51cfdb97",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-07-19T09:41:08Z",
+      "side": 1,
+      "message": "Sourabh works on performance issue, it\u0027s just a temporally solution to return with a list of cm handles.",
+      "parentUuid": "dd4c5b6e_ecbf0bf3",
+      "range": {
+        "startLine": 85,
+        "startChar": 7,
+        "endLine": 87,
+        "endChar": 94
+      },
+      "revId": "a6960338514e78a5dbc1a55a6befec6889938709",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
