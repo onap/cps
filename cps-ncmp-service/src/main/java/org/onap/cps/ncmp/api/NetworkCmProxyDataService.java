@@ -154,4 +154,6 @@ public interface NetworkCmProxyDataService {
      * @return collection of cm handle ids
      */
     Set<String> executeCmHandleIdSearch(CmHandleQueryApiParameters cmHandleQueryApiParameters);
+
+    void setDataSyncEnabled(String cmHandleId, boolean dataSyncEnabled);
 }
