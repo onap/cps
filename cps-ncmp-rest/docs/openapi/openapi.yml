@@ -52,3 +52,6 @@ paths:
 
   /v1/ch/{cm-handle}/state:
     $ref: 'ncmp.yml#/getCmHandleStateById'
+
+  /v1/ch/{cm-handle}/data-sync:
+    $ref: 'ncmp.yml#/setDataSyncEnabledFlag'

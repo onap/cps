@@ -49,10 +49,9 @@ public class CompositeStateUtils {
      *
      * @return Updated CompositeState
      */
-    public static Consumer<CompositeState> setCompositeStateToReadyWithInitialDataStoreSyncState(
-            final boolean isGlobalDataSyncCacheEnabled) {
+    public static Consumer<CompositeState> setCompositeStateToReadyWithInitialDataStoreSyncState() {
         return compositeState -> {
-            compositeState.setDataSyncEnabled(isGlobalDataSyncCacheEnabled);
+            compositeState.setDataSyncEnabled(false);
             compositeState.setCmHandleState(CmHandleState.READY);
             final CompositeState.Operational operational =
                     getInitialDataStoreSyncState(compositeState.getDataSyncEnabled());
@@ -62,6 +61,27 @@ public class CompositeStateUtils {
         };
     }
 
+    /**
+     * Set the data sync enabled flag, along with the data store sync state based on this flag.
+     *
+     * @param dataSyncEnabled data sync enabled flag
+     * @param compositeState cm handle composite state
+     */
+    public static void setDataSyncEnabledFlagWithDataSyncState(final boolean dataSyncEnabled,
+                                                               final CompositeState compositeState) {
+        compositeState.setDataSyncEnabled(dataSyncEnabled);
+        final CompositeState.Operational operational = getInitialDataStoreSyncState(dataSyncEnabled);
+        final CompositeState.DataStores dataStores =
+            CompositeState.DataStores.builder().operationalDataStore(operational).build();
+        compositeState.setDataStores(dataStores);
+    }
+
+    /**
+     * Get initial data sync state based on data sync enabled boolean flag.
+     *
+     * @param dataSyncEnabled data sync enabled boolean flag
+     * @return the data store sync state
+     */
     private static CompositeState.Operational getInitialDataStoreSyncState(final boolean dataSyncEnabled) {
         final DataStoreSyncState dataStoreSyncState =
                 dataSyncEnabled ? DataStoreSyncState.UNSYNCHRONIZED : DataStoreSyncState.NONE_REQUESTED;
