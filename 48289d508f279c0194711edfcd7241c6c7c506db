@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "21039ed7_695e67e7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreator.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-19T05:41:51Z",
+      "side": 1,
+      "message": "Remove it as it is unused.",
+      "range": {
+        "startLine": 56,
+        "startChar": 65,
+        "endLine": 56,
+        "endChar": 112
+      },
+      "revId": "48289d508f279c0194711edfcd7241c6c7c506db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9acfd07a_449c5eb5",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/DateBuilder.java",
         "patchSetId": 6
