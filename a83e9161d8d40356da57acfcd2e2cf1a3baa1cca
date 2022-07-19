@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b57b2246_09bdd8c5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-19T17:52:41Z",
+      "side": 1,
+      "message": "I realize now this method actually does the deletion too. I presume that is what we want but is it clear from the name of this method, maybe need some discussion involving Priyank too.",
+      "range": {
+        "startLine": 272,
+        "startChar": 46,
+        "endLine": 272,
+        "endChar": 65
+      },
+      "revId": "a83e9161d8d40356da57acfcd2e2cf1a3baa1cca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab1cccb1_7ab4daa1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-19T17:52:41Z",
+      "side": 1,
+      "message": "suggestion: extract out small method to improve readability",
+      "range": {
+        "startLine": 84,
+        "startChar": 0,
+        "endLine": 84,
+        "endChar": 117
+      },
+      "revId": "a83e9161d8d40356da57acfcd2e2cf1a3baa1cca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5818e917_79e93673",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-19T17:52:41Z",
+      "side": 1,
+      "message": "NB: improve up alignment, probably each parameter on its own line",
+      "range": {
+        "startLine": 76,
+        "startChar": 60,
+        "endLine": 78,
+        "endChar": 45
+      },
+      "revId": "a83e9161d8d40356da57acfcd2e2cf1a3baa1cca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9b5fd83c_2b4ea6a1",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImplSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-19T17:52:41Z",
+      "side": 1,
+      "message": "if nothing else is being assert it is OK but since we have tah assert in teh next block this is redundant..",
+      "range": {
+        "startLine": 145,
+        "startChar": 0,
+        "endLine": 146,
+        "endChar": 31
+      },
+      "revId": "a83e9161d8d40356da57acfcd2e2cf1a3baa1cca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
