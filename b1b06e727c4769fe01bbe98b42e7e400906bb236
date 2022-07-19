@@ -91,6 +91,52 @@
       "revId": "b1b06e727c4769fe01bbe98b42e7e400906bb236",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b991ae45_25c14204",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-19T10:35:11Z",
+      "side": 1,
+      "message": "Need suggestion here : should this call be made via InventoryPersistence only. [introduce this getDataNode in inventory persistence and make the call accordingly.]\n\nThen we wont need to inject cpsDataService dependency.",
+      "range": {
+        "startLine": 120,
+        "startChar": 8,
+        "endLine": 121,
+        "endChar": 40
+      },
+      "revId": "b1b06e727c4769fe01bbe98b42e7e400906bb236",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9cb5d808_bdfeb62b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-19T10:35:11Z",
+      "side": 1,
+      "message": "this wont be required if my other comment is been agreed. 😊",
+      "range": {
+        "startLine": 345,
+        "startChar": 128,
+        "endLine": 345,
+        "endChar": 146
+      },
+      "revId": "b1b06e727c4769fe01bbe98b42e7e400906bb236",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
