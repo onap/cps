@@ -32,6 +32,7 @@ public class CompositeStateBuilder {
     private LockReason lockReason;
     private DataStores datastores;
     private String lastUpdatedTime;
+    private Boolean dataSyncEnabled;
 
     /**
      * To create the {@link CompositeState}.
@@ -44,6 +45,7 @@ public class CompositeStateBuilder {
         compositeState.setLockReason(lockReason);
         compositeState.setDataStores(datastores);
         compositeState.setLastUpdateTime(lastUpdatedTime);
+        compositeState.setDataSyncEnabled(dataSyncEnabled);
         return compositeState;
     }
 
@@ -115,6 +117,9 @@ public class CompositeStateBuilder {
         this.cmHandleState = CmHandleState.valueOf((String) dataNode.getLeaves()
             .get("cm-handle-state"));
         this.lastUpdatedTime = (String) dataNode.getLeaves().get("last-update-time");
+        if (this.cmHandleState == CmHandleState.READY) {
+            this.dataSyncEnabled = (Boolean) dataNode.getLeaves().get("data-sync-enabled");
+        }
         for (final DataNode stateChildNode : dataNode.getChildDataNodes()) {
             if (stateChildNode.getXpath().endsWith("/lock-reason")) {
                 this.lockReason = getLockReason(stateChildNode);

@@ -22,6 +22,7 @@
 package org.onap.cps.ncmp.api.impl
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.ncmp.api.NetworkCmProxyCmHandlerQueryService
 import org.onap.cps.ncmp.api.impl.event.lcm.LcmEventsCmHandleStateHandler
@@ -60,6 +61,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     def mockInventoryPersistence = Mock(InventoryPersistence)
     def stubbedNetworkCmProxyCmHandlerQueryService = Stub(NetworkCmProxyCmHandlerQueryService)
     def mockLcmEventsCmHandleStateHandler = Mock(LcmEventsCmHandleStateHandler)
+    def mockCpsDataService = Mock(CpsDataService)
     def objectUnderTest = getObjectUnderTest()
 
     def 'DMI Registration: Create, Update & Delete operations are processed in the right order'() {
@@ -351,6 +353,6 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     def getObjectUnderTest() {
         return Spy(new NetworkCmProxyDataServiceImpl(spiedJsonObjectMapper, mockDmiDataOperations,
             mockNetworkCmProxyDataServicePropertyHandler, mockInventoryPersistence, stubbedNetworkCmProxyCmHandlerQueryService,
-                mockLcmEventsCmHandleStateHandler))
+                mockLcmEventsCmHandleStateHandler, mockCpsDataService))
     }
 }
