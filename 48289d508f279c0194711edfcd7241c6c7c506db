@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9acfd07a_449c5eb5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/DateBuilder.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-19T05:40:18Z",
+      "side": 1,
+      "message": "1. Give some suitable class name : like \"EventTimeFormatter\"\n\nYou are not using any builder pattern here except getting current formatted date. In my openion class name should not end with *Builder it\u0027s misleading.\n\n2. Sonar code smell : Utility classes, which are collections of static members, are not meant to be instantiated. Even abstract utility classes, which can be extended, should not have public constructors.\n\nSuggestion: Go ahead with interface and define \"now\" method static only at line no. 30.",
+      "range": {
+        "startLine": 26,
+        "startChar": 13,
+        "endLine": 26,
+        "endChar": 25
+      },
+      "revId": "48289d508f279c0194711edfcd7241c6c7c506db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e3f482e9_a71f8d99",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/DateBuilder.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-19T05:40:18Z",
+      "side": 1,
+      "message": "string literal can be used at line number 32. no need to define this here.",
+      "range": {
+        "startLine": 28,
+        "startChar": 4,
+        "endLine": 28,
+        "endChar": 11
+      },
+      "revId": "48289d508f279c0194711edfcd7241c6c7c506db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e1408466_71d87570",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/DateBuilder.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-19T05:40:18Z",
+      "side": 1,
+      "message": "static String now\n\nand can be used like : lcmEvent.setEventTime(EventTimeFormatter.now());",
+      "range": {
+        "startLine": 30,
+        "startChar": 4,
+        "endLine": 30,
+        "endChar": 41
+      },
+      "revId": "48289d508f279c0194711edfcd7241c6c7c506db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4e3f8f7_c4d259a5",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-19T05:40:18Z",
+      "side": 1,
+      "message": "Unused into populateLcmEvent.",
+      "range": {
+        "startLine": 36,
+        "startChar": 12,
+        "endLine": 36,
+        "endChar": 177
+      },
+      "revId": "48289d508f279c0194711edfcd7241c6c7c506db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e4f13942_cf366671",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-19T05:40:18Z",
+      "side": 1,
+      "message": "You never used \"ncmpServiceCmHandle\" into populateLcmEvent. remove this if not required.",
+      "range": {
+        "startLine": 39,
+        "startChar": 41,
+        "endLine": 39,
+        "endChar": 90
+      },
+      "revId": "48289d508f279c0194711edfcd7241c6c7c506db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3d46d959_406a3dc0",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-19T05:40:18Z",
+      "side": 1,
+      "message": "Unnecessary as it is never populated while mapping.\n\nWe can assert EventCorrelationId and EventTime instead of:\n\nlcmEvent.setEventCorrelationId(eventCorrelationId);\nlcmEvent.setEventTime(EventTimeFormatter.now());",
+      "range": {
+        "startLine": 45,
+        "startChar": 11,
+        "endLine": 46,
+        "endChar": 42
+      },
+      "revId": "48289d508f279c0194711edfcd7241c6c7c506db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
