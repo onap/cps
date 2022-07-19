@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "e5bccf92_613b2509",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-07-19T10:09:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3246eb25_56c68a1e",
+      "revId": "94742da84ca52647e28a2a091180217289151e70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3867a9b2_9fe6cb87",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 4
@@ -114,6 +132,30 @@
     },
     {
       "key": {
+        "uuid": "aef34dd8_f2e80f86",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-07-19T10:09:40Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "221b5b26_e3755b09",
+      "range": {
+        "startLine": 274,
+        "startChar": 16,
+        "endLine": 275,
+        "endChar": 113
+      },
+      "revId": "94742da84ca52647e28a2a091180217289151e70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9cffbca5_8aa00a7d",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
         "patchSetId": 4
@@ -181,6 +223,30 @@
       "revId": "94742da84ca52647e28a2a091180217289151e70",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1278d464_0c142d61",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-07-19T10:09:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "22dc9b11_8abce8b2",
+      "range": {
+        "startLine": 255,
+        "startChar": 12,
+        "endLine": 255,
+        "endChar": 16
+      },
+      "revId": "94742da84ca52647e28a2a091180217289151e70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
