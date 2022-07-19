@@ -316,4 +316,12 @@ class InventoryPersistenceSpec extends Specification {
                     'sample dataNode xpath', NO_TIMESTAMP);
     }
 
+    def 'Update node leaves and existing descendant leaves'() {
+        when: 'update node leaves is invoked with correct parameters'
+            objectUnderTest.updateNodeLeaves('some-x-path', 'some json data')
+        then: 'the cps data service is invoked with the correct xpath and json data'
+            1 * mockCpsDataService.updateNodeLeavesAndExistingDescendantLeaves('NCMP-Admin', 'ncmp-dmi-registry',
+                'some-x-path', 'some json data' ,NO_TIMESTAMP)
+    }
+
 }
