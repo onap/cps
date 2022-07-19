@@ -117,6 +117,30 @@
     },
     {
       "key": {
+        "uuid": "fdbfd3b2_ba8d0033",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-07-19T12:07:52Z",
+      "side": 1,
+      "message": "yes this should be in InventoryPersistence where there\u0027s access to the DMI registry constant \u0027NFP-Operational\u0027and so it is not exposed here\n\nAlso, there\u0027s already a getDataNode method but for NCMP dataspace name",
+      "parentUuid": "b991ae45_25c14204",
+      "range": {
+        "startLine": 120,
+        "startChar": 8,
+        "endLine": 121,
+        "endChar": 40
+      },
+      "revId": "b1b06e727c4769fe01bbe98b42e7e400906bb236",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9cb5d808_bdfeb62b",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
         "patchSetId": 1
