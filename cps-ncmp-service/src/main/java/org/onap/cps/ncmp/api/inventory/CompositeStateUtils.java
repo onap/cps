@@ -49,10 +49,9 @@ public class CompositeStateUtils {
      *
      * @return Updated CompositeState
      */
-    public static Consumer<CompositeState> setCompositeStateToReadyWithInitialDataStoreSyncState(
-            final boolean isGlobalDataSyncCacheEnabled) {
+    public static Consumer<CompositeState> setCompositeStateToReadyWithInitialDataStoreSyncState() {
         return compositeState -> {
-            compositeState.setDataSyncEnabled(isGlobalDataSyncCacheEnabled);
+            compositeState.setDataSyncEnabled(false);
             compositeState.setCmHandleState(CmHandleState.READY);
             final CompositeState.Operational operational =
                     getInitialDataStoreSyncState(compositeState.getDataSyncEnabled());
@@ -62,7 +61,13 @@ public class CompositeStateUtils {
         };
     }
 
-    private static CompositeState.Operational getInitialDataStoreSyncState(final boolean dataSyncEnabled) {
+    /**
+     * Set the initial data sync based on data sync enabled boolean flag.
+     *
+     * @param dataSyncEnabled data sync enabled boolean flag
+     * @return the data store sync state
+     */
+    public static CompositeState.Operational getInitialDataStoreSyncState(final boolean dataSyncEnabled) {
         final DataStoreSyncState dataStoreSyncState =
                 dataSyncEnabled ? DataStoreSyncState.UNSYNCHRONIZED : DataStoreSyncState.NONE_REQUESTED;
         return CompositeState.Operational.builder().dataStoreSyncState(dataStoreSyncState).build();

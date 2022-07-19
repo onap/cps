@@ -33,6 +33,7 @@ import org.onap.cps.ncmp.api.models.CmHandleQueryApiParameters
 import org.onap.cps.ncmp.api.models.ConditionApiProperties
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
+import org.onap.cps.spi.exceptions.CpsException
 import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.model.CmHandleQueryServiceParameters
 import spock.lang.Shared
@@ -304,14 +305,6 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             1 * mockInventoryPersistence.getModuleDefinitionsByCmHandleId('some-cm-handle')
     }
 
-
-    def dataStores() {
-        CompositeState.DataStores.builder()
-                .operationalDataStore(CompositeState.Operational.builder()
-                        .dataStoreSyncState(DataStoreSyncState.NONE_REQUESTED)
-                        .lastSyncTime('some-timestamp').build()).build()
-    }
-
     def 'Execute cm handle search'() {
         given: 'valid CmHandleQueryApiParameters input'
             def cmHandleQueryApiParameters = new CmHandleQueryApiParameters()
@@ -327,5 +320,56 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             def result = objectUnderTest.executeCmHandleSearch(cmHandleQueryApiParameters)
         then: 'result is the same collection as returned by the CPS Data Service'
             assert result.stream().map(d -> d.cmHandleId).collect(Collectors.toSet()) == ['cm-handle-id-1'] as Set
+    }
+
+    def 'Set Cm Handle Data Sync Enabled Flag with #scenario'() {
+        given: 'a cm handle composite state'
+            def compositeState = new CompositeState(cmHandleState: CmHandleState.READY,
+                dataStores: CompositeState.DataStores.builder()
+                    .operationalDataStore(CompositeState.Operational.builder()
+                        .dataStoreSyncState(initialDataSyncState)
+                        .build()).build())
+        and: 'get cm handle state returns the composite state for the given cm handle id'
+            mockInventoryPersistence.getCmHandleState('some-cm-handle-id') >> compositeState
+        when: 'set data sync enabled is called with the data sync enabled flag set to true'
+            objectUnderTest.setDataSyncEnabled('some-cm-handle-id', dataSyncEnabled)
+        then: 'the composite state is set to true'
+            compositeState.dataSyncEnabled == dataSyncEnabled
+        and: 'the data store sync state is set to UNSYNCHRONIZED'
+            compositeState.dataStores.operationalDataStore.dataStoreSyncState == expectedDataStoreSyncState
+        and: 'the inventory persistence service to update node leaves is called with the correct values'
+            1 * mockInventoryPersistence.updateNodeLeaves('/dmi-registry/cm-handles[@id=\'some-cm-handle-id\']',
+                '{"state":{"cm-handle-state":"READY","data-sync-enabled":' +
+                    dataSyncEnabled + ',"datastores":{"operational":{"sync-state":"' +
+                    expectedDataStoreSyncState.toString() + '"}}}}')
+        where: 'the following data sync enabled flag is used'
+            scenario                                                        | dataSyncEnabled | initialDataSyncState               || expectedDataStoreSyncState
+            'data sync enabled'                                             | true            | DataStoreSyncState.NONE_REQUESTED  || DataStoreSyncState.UNSYNCHRONIZED
+            'data sync disabled'                                            | false           | DataStoreSyncState.UNSYNCHRONIZED  || DataStoreSyncState.NONE_REQUESTED
+            'data sync disabled where sync-state is currently SYNCHRONIZED' | false           | DataStoreSyncState.SYNCHRONIZED    || DataStoreSyncState.NONE_REQUESTED
+    }
+
+    def 'Set cm Handle Data Sync Enabled flag with following #scenario exception' () {
+        given: 'a cm handle composite state'
+            def compositeState = new CompositeState(cmHandleState: cmHandleState, dataSyncEnabled: false)
+        and: 'get cm handle state returns the composite state for the given cm handle id'
+            mockInventoryPersistence.getCmHandleState('some-cm-handle-id') >> compositeState
+        when: 'set data sync enabled is called with the data sync enabled flag set to true'
+            objectUnderTest.setDataSyncEnabled('some-cm-handle-id', dataSyncEnabled)
+        then: 'the expected exception is thrown'
+            thrown(expectedExceptionThrown)
+        and: 'the inventory persistence service to update node leaves is not invoked'
+            0 * mockInventoryPersistence.updateNodeLeaves(_, _)
+        where: 'the following data sync enabled flag is used'
+            scenario                       | dataSyncEnabled || cmHandleState         || expectedExceptionThrown
+            'data dync flag already set'   | false           || CmHandleState.READY   || DataValidationException
+            'cm handle not in ready state' | true            || CmHandleState.ADVISED || CpsException
+    }
+
+    def dataStores() {
+        CompositeState.DataStores.builder()
+            .operationalDataStore(CompositeState.Operational.builder()
+                .dataStoreSyncState(DataStoreSyncState.NONE_REQUESTED)
+                .lastSyncTime('some-timestamp').build()).build()
     }
 }
