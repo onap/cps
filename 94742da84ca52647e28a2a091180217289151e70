@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "3246eb25_56c68a1e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-07-19T08:14:19Z",
+      "side": 1,
+      "message": "I would include a more descriptive commit message here too",
+      "revId": "94742da84ca52647e28a2a091180217289151e70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3867a9b2_9fe6cb87",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 4
