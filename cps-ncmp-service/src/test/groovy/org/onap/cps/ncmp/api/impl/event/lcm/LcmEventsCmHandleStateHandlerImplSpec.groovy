@@ -42,7 +42,7 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
     def 'Update and Publish Events on State Change #stateChange'() {
         given: 'Cm Handle represented as YangModelCmHandle'
             def cmHandleId = 'cmhandle-id-1'
-            def compositeState = new CompositeState(cmHandleState: fromCmHandleState)
+            def compositeState = new CompositeState(cmHandleState: fromCmHandleState, dataSyncEnabled: true)
             def yangModelCmHandle = new YangModelCmHandle(id: cmHandleId, dmiProperties: [], publicProperties: [], compositeState: compositeState)
         when: 'update state is invoked'
             objectUnderTest.updateCmHandleState(yangModelCmHandle, toCmHandleState)
@@ -91,30 +91,25 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
             1 * mockLcmEventsService.publishLcmEvent(cmHandleId, _)
     }
 
-    def 'Update and Publish Events on State Change to READY with #scenario'() {
+    def 'Update and Publish Events on State Change to READY'() {
         given: 'Cm Handle represented as YangModelCmHandle'
             def cmHandleId = 'cmhandle-id-1'
             def compositeState = new CompositeState(cmHandleState: ADVISED)
             def yangModelCmHandle = new YangModelCmHandle(id: cmHandleId, dmiProperties: [], publicProperties: [], compositeState: compositeState)
         and: 'global sync flag is set'
-            objectUnderTest.isGlobalDataSyncCacheEnabled = dataSyncCacheEnabled
+            compositeState.setDataSyncEnabled(false)
         when: 'update cmhandle state is invoked'
             objectUnderTest.updateCmHandleState(yangModelCmHandle, READY)
         then: 'state is saved using inventory persistence with expected dataSyncState'
             1 * mockInventoryPersistence.saveCmHandleState(cmHandleId, _) >> {
                 args-> {
                     def result = (args[1] as CompositeState)
-                    assert result.dataSyncEnabled == dataSyncCacheEnabled
-                    assert result.dataStores.operationalDataStore.dataStoreSyncState == expectedDataStoreSyncState
+                    assert result.dataSyncEnabled == false
+                    assert result.dataStores.operationalDataStore.dataStoreSyncState == DataStoreSyncState.NONE_REQUESTED
 
                 }
             }
         and: 'event service is called to publish event'
             1 * mockLcmEventsService.publishLcmEvent(cmHandleId, _)
-        where:
-            scenario                         | dataSyncCacheEnabled || expectedDataStoreSyncState
-            'data sync cache enabled'        | true                 || DataStoreSyncState.UNSYNCHRONIZED
-            'data sync cache is not enabled' | false                || DataStoreSyncState.NONE_REQUESTED
-
     }
 }

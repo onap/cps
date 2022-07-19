@@ -320,6 +320,13 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         return new ResponseEntity<>(restModuleReferences, HttpStatus.OK);
     }
 
+    @Override
+    public ResponseEntity<Object> setDataSyncEnabledForCmHandle(final String cmHandleId,
+                                                                final Boolean dataSyncEnabledFlag) {
+        networkCmProxyDataService.setDataSyncEnabled(cmHandleId, dataSyncEnabledFlag);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
     private RestOutputCmHandle toRestOutputCmHandle(final NcmpServiceCmHandle ncmpServiceCmHandle) {
         final RestOutputCmHandle restOutputCmHandle = new RestOutputCmHandle();
         final CmHandlePublicProperties cmHandlePublicProperties = new CmHandlePublicProperties();
