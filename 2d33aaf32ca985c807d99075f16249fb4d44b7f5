@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "530dd5f4_975ba0c1",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-19T10:22:31Z",
+      "side": 1,
+      "message": "the cmHandle state is updated to \"DELETED\" ??",
+      "range": {
+        "startLine": 262,
+        "startChar": 14,
+        "endLine": 262,
+        "endChar": 69
+      },
+      "revId": "2d33aaf32ca985c807d99075f16249fb4d44b7f5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "73f7b7ff_9f23b9d1",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-19T10:22:31Z",
+      "side": 1,
+      "message": "change the description.. say something about cm handle state only and not about event 😊",
+      "range": {
+        "startLine": 310,
+        "startChar": 14,
+        "endLine": 310,
+        "endChar": 62
+      },
+      "revId": "2d33aaf32ca985c807d99075f16249fb4d44b7f5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "32c9be37_e73986ad",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImplSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-19T10:22:31Z",
+      "side": 1,
+      "message": "and can also check if the event is published.",
+      "revId": "2d33aaf32ca985c807d99075f16249fb4d44b7f5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
