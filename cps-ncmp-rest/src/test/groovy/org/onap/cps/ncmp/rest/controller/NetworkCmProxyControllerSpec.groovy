@@ -423,6 +423,20 @@ class NetworkCmProxyControllerSpec extends Specification {
             response.status == HttpStatus.OK.value()
     }
 
+    def 'Set the data sync enabled based on the cm handle id and the data sync flag is #scenario' () {
+        when: 'the set data sync enabled request is invoked'
+            def response = mvc.perform(put("$ncmpBasePathV1/ch/some-cm-handle-id/data-sync?dataSyncEnabled=" + dataSyncEnabledFlag))
+                    .andReturn().response
+        then: 'method to set data sync enabled is called'
+            1 * mockNetworkCmProxyDataService.setDataSyncEnabled('some-cm-handle-id', dataSyncEnabledFlag)
+        and: 'the response returns an OK http code'
+            response.status == HttpStatus.OK.value()
+        where: 'the following parameters are used'
+        scenario     |  dataSyncEnabledFlag
+        'enabled'    |  true
+        'disabled'   |  false
+    }
+
     def dataStores() {
         DataStores.builder()
             .operationalDataStore(Operational.builder()

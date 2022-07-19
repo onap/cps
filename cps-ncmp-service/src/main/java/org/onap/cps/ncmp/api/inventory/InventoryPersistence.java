@@ -289,4 +289,15 @@ public class InventoryPersistence {
         cpsDataService.deleteDataNode(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, dataNodeXpath,
                 NO_TIMESTAMP);
     }
+
+    /**
+     * Update Node Leaves and Descendant leaves for given xpath with json data provided.
+     *
+     * @param parentNodeXpath parent node x path
+     * @param cmHandleJsonData cm handle json data which should be updated
+     */
+    public void updateNodeLeaves(final String parentNodeXpath, final String cmHandleJsonData) {
+        cpsDataService.updateNodeLeavesAndExistingDescendantLeaves(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
+            parentNodeXpath, cmHandleJsonData, NO_TIMESTAMP);
+    }
 }

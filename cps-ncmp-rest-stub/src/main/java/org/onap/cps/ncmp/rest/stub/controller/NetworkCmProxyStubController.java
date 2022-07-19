@@ -86,6 +86,12 @@ public class NetworkCmProxyStubController implements NetworkCmProxyApi {
     }
 
     @Override
+    public ResponseEntity<Object> setDataSyncEnabledFlagForCmHandle(final String cmHandleId,
+                                                                final Boolean dataSyncEnabled) {
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+    }
+
+    @Override
     public ResponseEntity<List<String>> searchCmHandleIds(
         final CmHandleQueryParameters cmHandleQueryParameters) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
