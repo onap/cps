@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "f25147b2_99c6a2ea",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationSemaphoresConfig.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-19T17:41:36Z",
+      "side": 1,
+      "message": "I know this is controversial but I think I asked before to remove this. The general rules is NOT to create string constants that dont add value ie where the names is the same as the content of the string. In such cases we prefer to use the String literal in teh code.\nsee rule #3 here: https://wiki.onap.org/display/DW/CPS+Code+Review+Check+List",
+      "range": {
+        "startLine": 38,
+        "startChar": 32,
+        "endLine": 38,
+        "endChar": 78
+      },
+      "revId": "258fe854a4a6890935381946fe14162945c6a621",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "81ed25a8_6dd5464c",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationSemaphoresConfig.java",
         "patchSetId": 5
@@ -18,6 +41,122 @@
         "startChar": 25,
         "endLine": 40,
         "endChar": 29
+      },
+      "revId": "258fe854a4a6890935381946fe14162945c6a621",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f58d848d_446c8d26",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationSemaphoresConfig.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-19T17:41:36Z",
+      "side": 1,
+      "message": "agrreed",
+      "parentUuid": "81ed25a8_6dd5464c",
+      "range": {
+        "startLine": 40,
+        "startChar": 25,
+        "endLine": 40,
+        "endChar": 29
+      },
+      "revId": "258fe854a4a6890935381946fe14162945c6a621",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ff2dfd3_3d072449",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-19T17:41:36Z",
+      "side": 1,
+      "message": "executing module sync",
+      "range": {
+        "startLine": 65,
+        "startChar": 27,
+        "endLine": 65,
+        "endChar": 32
+      },
+      "revId": "258fe854a4a6890935381946fe14162945c6a621",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "09fe883e_95874908",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-19T17:41:36Z",
+      "side": 1,
+      "message": "NB: for readability i would like to extract this into a well-named method\n\nbut most importantly my performance concern has been resolved :-D",
+      "range": {
+        "startLine": 84,
+        "startChar": 15,
+        "endLine": 86,
+        "endChar": 97
+      },
+      "revId": "258fe854a4a6890935381946fe14162945c6a621",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d4d4cbb6_4f4ca4e4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdogSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-19T17:41:36Z",
+      "side": 1,
+      "message": "are you using both? I can only see ConcurrentHashMap below but maybe I missed one...",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 41
+      },
+      "revId": "258fe854a4a6890935381946fe14162945c6a621",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fa45b59e_6bcc5a63",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/SyncUtilsSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-19T17:41:36Z",
+      "side": 1,
+      "message": "I prefer to check a bit more to prevent future false-positives:\ncheck that the converted YangModelCmHandle has the correct ID",
+      "range": {
+        "startLine": 67,
+        "startChar": 8,
+        "endLine": 68,
+        "endChar": 61
       },
       "revId": "258fe854a4a6890935381946fe14162945c6a621",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
