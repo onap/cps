@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "a411ca30_9ab7522d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/EventDateTimeFormatter.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 8111
+      },
+      "writtenOn": "2022-07-19T15:14:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "38703e82_e2e247b1",
+      "revId": "656fd7acbd951291a745f3618a921a9e5c72a6a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7f85ee70_a67e9ab2",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/EventDateTimeFormatter.java",
         "patchSetId": 8
@@ -33,6 +51,24 @@
       "revId": "656fd7acbd951291a745f3618a921a9e5c72a6a1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc8cc0fb_0187b38a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/EventDateTimeFormatter.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 8111
+      },
+      "writtenOn": "2022-07-19T15:14:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7f85ee70_a67e9ab2",
+      "revId": "656fd7acbd951291a745f3618a921a9e5c72a6a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
