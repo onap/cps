@@ -283,10 +283,12 @@ public class InventoryPersistence {
     /**
      * Deletes data node for given anchor and dataspace.
      *
+     * @param dataspaceName data space name
+     * @param anchorName anchor name
      * @param dataNodeXpath data node xpath
      */
-    public void deleteDataNode(final String dataNodeXpath) {
-        cpsDataService.deleteDataNode(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, dataNodeXpath,
+    public void deleteDataNode(final String dataspaceName, final String anchorName, final String dataNodeXpath) {
+        cpsDataService.deleteDataNode(dataspaceName, anchorName, dataNodeXpath,
                 NO_TIMESTAMP);
     }
 }

@@ -44,6 +44,8 @@ import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.inventory.CmHandleState;
 import org.onap.cps.ncmp.api.inventory.CompositeState;
+import org.onap.cps.ncmp.api.inventory.CompositeStateUtils;
+import org.onap.cps.ncmp.api.inventory.DataStoreSyncState;
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.api.models.CmHandleQueryApiParameters;
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse;
@@ -52,6 +54,7 @@ import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistrationResponse;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
+import org.onap.cps.spi.exceptions.CpsException;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.spi.model.CmHandleQueryServiceParameters;
@@ -179,6 +182,36 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         validateCmHandleQueryParameters(cmHandleQueryServiceParameters);
 
         return networkCmProxyCmHandlerQueryService.queryCmHandleIds(cmHandleQueryServiceParameters);
+    }
+
+    /**
+     * Set the data sync enabled flag, along with the data sync state
+     * based on the data sync enabled boolean for the cm handle id provided.
+     *
+     * @param cmHandleId cm handle id
+     * @param dataSyncEnabled data sync enabled flag
+     */
+    @Override
+    public void setDataSyncEnabled(final String cmHandleId, final boolean dataSyncEnabled) {
+        CpsValidator.validateNameCharacters(cmHandleId);
+        final CompositeState compositeState = inventoryPersistence
+            .getCmHandleState(cmHandleId);
+        if (compositeState.getDataSyncEnabled().equals(dataSyncEnabled)) {
+            log.info("Data-Sync Enabled flag is already: {} ", dataSyncEnabled);
+        } else if (compositeState.getCmHandleState() != CmHandleState.READY) {
+            throw new CpsException("State mismatch exception.", "Cm-Handle not in READY state. Cm handle state is: "
+                + compositeState.getCmHandleState());
+        } else {
+            final DataStoreSyncState dataStoreSyncState = compositeState.getDataStores()
+                .getOperationalDataStore().getDataStoreSyncState();
+            if (!dataSyncEnabled && dataStoreSyncState == DataStoreSyncState.SYNCHRONIZED) {
+                inventoryPersistence.deleteDataNode("NFP-Operational", cmHandleId,
+                    "/netconf-state");
+            }
+            CompositeStateUtils.setDataSyncEnabledFlagWithDataSyncState(dataSyncEnabled, compositeState);
+            inventoryPersistence.saveCmHandleState(cmHandleId,
+                compositeState);
+        }
     }
 
     /**

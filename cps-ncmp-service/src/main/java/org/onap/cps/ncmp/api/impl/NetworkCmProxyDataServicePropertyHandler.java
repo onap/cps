@@ -119,7 +119,8 @@ public class NetworkCmProxyDataServicePropertyHandler {
             final Matcher matcher = propertyType.propertyXpathPattern.matcher(dataNode.getXpath());
             if (matcher.find()) {
                 log.info("Deleting dataNode with xpath : [{}]", dataNode.getXpath());
-                inventoryPersistence.deleteDataNode(dataNode.getXpath());
+                inventoryPersistence.deleteDataNode("NCMP-Admin", "ncmp-dmi-registry",
+                    dataNode.getXpath());
             }
         });
     }

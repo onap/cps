@@ -105,9 +105,11 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
         then: 'the replace list method is not called'
             0 * mockInventoryPersistence.replaceListContent(*_)
         then: 'delete data node will be called for any existing property'
-            expectedCallsToDeleteDataNode * mockInventoryPersistence.deleteDataNode(_) >> { arg ->
+            expectedCallsToDeleteDataNode * mockInventoryPersistence.deleteDataNode(_,_,_) >> { arg ->
                 {
-                    assert arg[0].contains("@name='publicProp")
+                    assert arg[0].contains("NCMP-Admin")
+                    assert arg[1].contains("ncmp-dmi-registry")
+                    assert arg[2].contains("@name='publicProp")
                 }
             }
         where: 'following public properties updates are made'
