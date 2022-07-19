@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "48a4e5ff_d31d5923",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-19T15:39:47Z",
+      "side": 1,
+      "message": "Follow this format of commit message.\nhttps://wiki.onap.org/display/DW/Commit+Messages#CommitMessages-CommitStructure",
+      "revId": "c292102f4f4fa48e258fd0c8bdbd15376de5b478",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
