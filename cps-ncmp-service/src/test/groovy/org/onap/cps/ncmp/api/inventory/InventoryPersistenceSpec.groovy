@@ -315,5 +315,4 @@ class InventoryPersistenceSpec extends Specification {
             1 * mockCpsDataService.deleteDataNode('NCMP-Admin', 'ncmp-dmi-registry',
                     'sample dataNode xpath', NO_TIMESTAMP);
     }
-
 }

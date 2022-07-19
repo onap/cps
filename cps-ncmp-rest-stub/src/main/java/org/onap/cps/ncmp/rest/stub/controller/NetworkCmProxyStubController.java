@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Bell Canada
+ *  Modifications Copyright (c) 2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -83,6 +84,12 @@ public class NetworkCmProxyStubController implements NetworkCmProxyApi {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
         return ResponseEntity.ok(restOutputCmHandles);
+    }
+
+    @Override
+    public ResponseEntity<Object> setDataSyncEnabledFlagForCmHandle(final String cmHandleId,
+                                                                final Boolean dataSyncEnabled) {
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
     @Override

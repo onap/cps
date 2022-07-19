@@ -58,6 +58,9 @@ public class DataSyncWatchdog {
             final String resourceData = syncUtils.getResourceData(cmHandleId);
             if (resourceData == null) {
                 log.debug("Error accessing the node for Cm-Handle: {}", cmHandleId);
+            } else if (!unSynchronizedReadyCmHandle.getCompositeState().getDataSyncEnabled().equals(true)) {
+                log.debug("Error: data sync enabled for {} must be true."
+                    + "Data sync enabled is currently set to false", cmHandleId);
             } else {
                 cpsDataService.saveData("NFP-Operational", cmHandleId,
                         resourceData, OffsetDateTime.now());
