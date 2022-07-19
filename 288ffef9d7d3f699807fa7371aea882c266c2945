@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5758d55c_cd203400",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-19T17:22:35Z",
+      "side": 1,
+      "message": "perfect!",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 0
+      },
+      "revId": "288ffef9d7d3f699807fa7371aea882c266c2945",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3fbffbb9_c3586de3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsPublisher.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-19T17:22:35Z",
+      "side": 1,
+      "message": "NB (\u003dNon-Blocking comment): in most cases instant names should be same as classnames ie. do not shorten\nso here \u0027sendResult\u0027 would be preferred",
+      "range": {
+        "startLine": 61,
+        "startChar": 69,
+        "endLine": 61,
+        "endChar": 75
+      },
+      "revId": "288ffef9d7d3f699807fa7371aea882c266c2945",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ff672055_8d411a97",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/EventDateTimeFormatter.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-19T17:22:35Z",
+      "side": 1,
+      "message": "NB: for consistency with the classname DATE_TIME_FORMAT would be better",
+      "range": {
+        "startLine": 31,
+        "startChar": 32,
+        "endLine": 31,
+        "endChar": 36
+      },
+      "revId": "288ffef9d7d3f699807fa7371aea882c266c2945",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd104835_0c7755b0",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsPublisherSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-19T17:22:35Z",
+      "side": 1,
+      "message": "according to my INtelliJ this import is not used (possible because of line #39)\n I don\u0027t fully understand but in any case this test wont run for me locally which is the bigger issue. I would like to see it running (on some else machine)",
+      "range": {
+        "startLine": 25,
+        "startChar": 44,
+        "endLine": 25,
+        "endChar": 62
+      },
+      "revId": "288ffef9d7d3f699807fa7371aea882c266c2945",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "874e72df_eaece3e4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsPublisherSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-19T17:22:35Z",
+      "side": 1,
+      "message": "lcm :-)",
+      "range": {
+        "startLine": 49,
+        "startChar": 23,
+        "endLine": 49,
+        "endChar": 27
+      },
+      "revId": "288ffef9d7d3f699807fa7371aea882c266c2945",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "619c13d2_15961f8c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsPublisherSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-19T17:22:35Z",
+      "side": 1,
+      "message": "legacy issue: I think there might have been a issue to define this as part of the \u0027given\u0027 block but I would like to try again move it to the then: block ie. just before what is now line #84\n(I wanted to try but as ai mentioned above this test wont run for me locally)",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 105
+      },
+      "revId": "288ffef9d7d3f699807fa7371aea882c266c2945",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
