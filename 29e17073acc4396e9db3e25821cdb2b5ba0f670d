@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7d4ac933_fd32076c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryQuery.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-07-20T10:47:40Z",
+      "side": 1,
+      "message": "Changed to publicPropertyQueryPair",
+      "parentUuid": "cb55688a_f856dd78",
+      "range": {
+        "startLine": 59,
+        "startChar": 45,
+        "endLine": 59,
+        "endChar": 50
+      },
+      "revId": "29e17073acc4396e9db3e25821cdb2b5ba0f670d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "04b1838b_6cdb819d",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryQuery.java",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "29e17073acc4396e9db3e25821cdb2b5ba0f670d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fb99a813_177a62cf",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryQuery.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-07-20T10:47:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "04b1838b_6cdb819d",
+      "range": {
+        "startLine": 60,
+        "startChar": 67,
+        "endLine": 61,
+        "endChar": 34
+      },
+      "revId": "29e17073acc4396e9db3e25821cdb2b5ba0f670d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "37f71e5c_9a0daeb8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryQuery.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-07-20T10:47:40Z",
+      "side": 1,
+      "message": "I think because it is in the for loop it will be null on the first iteration. This isn\u0027t my code though, I\u0027ve refactored it from the service class :)",
+      "parentUuid": "060c6bd0_21656d52",
+      "range": {
+        "startLine": 64,
+        "startChar": 16,
+        "endLine": 64,
+        "endChar": 56
+      },
+      "revId": "29e17073acc4396e9db3e25821cdb2b5ba0f670d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "357958e8_34271168",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/InventoryQuerySpec.groovy",
         "patchSetId": 1
@@ -85,6 +157,24 @@
       "revId": "29e17073acc4396e9db3e25821cdb2b5ba0f670d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5aeb89f1_0cbdea32",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/InventoryQuerySpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-07-20T10:47:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "357958e8_34271168",
+      "revId": "29e17073acc4396e9db3e25821cdb2b5ba0f670d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
