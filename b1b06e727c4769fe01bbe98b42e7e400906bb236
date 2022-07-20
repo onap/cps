@@ -2,6 +2,75 @@
   "comments": [
     {
       "key": {
+        "uuid": "70e3b189_946f6778",
+        "filename": "cps-ncmp-rest-stub/src/main/java/org/onap/cps/ncmp/rest/stub/controller/NetworkCmProxyStubController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-20T09:03:56Z",
+      "side": 1,
+      "message": "NOT_IMPLEMENTED",
+      "range": {
+        "startLine": 119,
+        "startChar": 47,
+        "endLine": 119,
+        "endChar": 49
+      },
+      "revId": "b1b06e727c4769fe01bbe98b42e7e400906bb236",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6fc66d48_e1cad0b4",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 480,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-20T09:03:56Z",
+      "side": 1,
+      "message": "I presume this wil be used by the passthrough endpoint too (it has the same parameter)",
+      "range": {
+        "startLine": 480,
+        "startChar": 4,
+        "endLine": 480,
+        "endChar": 23
+      },
+      "revId": "b1b06e727c4769fe01bbe98b42e7e400906bb236",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d8c36cac_88893e70",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 483,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-20T09:03:56Z",
+      "side": 1,
+      "message": "mapping to xpath is only the case for NCMP-Operational datastore (cache). NOT for pass-through use-case, in that case it can be anything NCMP doesn\u0027t know and doesn\u0027t care that is why it has this more generic name.\nSee related comments on next file...",
+      "range": {
+        "startLine": 483,
+        "startChar": 48,
+        "endLine": 483,
+        "endChar": 63
+      },
+      "revId": "b1b06e727c4769fe01bbe98b42e7e400906bb236",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "70da49fd_e77adc7f",
         "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
         "patchSetId": 1
@@ -18,6 +87,99 @@
         "startChar": 35,
         "endLine": 57,
         "endChar": 48
+      },
+      "revId": "b1b06e727c4769fe01bbe98b42e7e400906bb236",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9919550f_9cb059aa",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-20T09:03:56Z",
+      "side": 1,
+      "message": "agreed, should just be \u0027operational\u0027 has defined on teh wiki page https://wiki.onap.org/display/DW/CPS-391Spike%3A+Define+and+Agree+NCMP+REST+Interface#CPS391Spike:DefineandAgreeNCMPRESTInterface-Datastores",
+      "parentUuid": "70da49fd_e77adc7f",
+      "range": {
+        "startLine": 57,
+        "startChar": 35,
+        "endLine": 57,
+        "endChar": 48
+      },
+      "revId": "b1b06e727c4769fe01bbe98b42e7e400906bb236",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c83c685e_0f6ee348",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-20T09:03:56Z",
+      "side": 1,
+      "message": "I think we need to double check with Tony/Kieran. If we DO define different endpoints (as we have started doing) maybe for this endpoint it should be called xpath as that is all it can be because we accessing cached data.\nin any case have a components called resourceIdentifierInQuery and resourceIdentifier is confusing for both CPS developers and developer exploring/using this API.\n\nI veer towards calling this one xpath. Lets ask in this afternoons meeting with Tony",
+      "range": {
+        "startLine": 62,
+        "startChar": 54,
+        "endLine": 62,
+        "endChar": 72
+      },
+      "revId": "b1b06e727c4769fe01bbe98b42e7e400906bb236",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "37daccda_0cdcb0ec",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-20T09:03:56Z",
+      "side": 1,
+      "message": "add optionsParamInQuery  it needs to be accepted even if ignored ie. it should not return bad-request if user adds options",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 64,
+        "endChar": 13
+      },
+      "revId": "b1b06e727c4769fe01bbe98b42e7e400906bb236",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b7c9c50_76dfaa9b",
+        "filename": "cps-ncmp-rest/docs/openapi/openapi.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-20T09:03:56Z",
+      "side": 1,
+      "message": "for consistency insert \u0027for\u0027 getResourceDataForOperational",
+      "range": {
+        "startLine": 33,
+        "startChar": 21,
+        "endLine": 33,
+        "endChar": 47
       },
       "revId": "b1b06e727c4769fe01bbe98b42e7e400906bb236",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
@@ -48,6 +210,30 @@
     },
     {
       "key": {
+        "uuid": "cde1ac3f_28f5ba4d",
+        "filename": "cps-ncmp-rest/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-20T09:03:56Z",
+      "side": 1,
+      "message": "is not a problem it just to pass teh buidl unitl relevant test have been added",
+      "parentUuid": "e0a19e92_d3a5bc1d",
+      "range": {
+        "startLine": 37,
+        "startChar": 26,
+        "endLine": 37,
+        "endChar": 30
+      },
+      "revId": "b1b06e727c4769fe01bbe98b42e7e400906bb236",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "95ae3f9b_cd213927",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
         "patchSetId": 1
@@ -64,6 +250,53 @@
         "startChar": 29,
         "endLine": 325,
         "endChar": 41
+      },
+      "revId": "b1b06e727c4769fe01bbe98b42e7e400906bb236",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3aeea462_d01da6bb",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-20T09:03:56Z",
+      "side": 1,
+      "message": "sorry Joe this IS just \u0027operational\u0027",
+      "parentUuid": "95ae3f9b_cd213927",
+      "range": {
+        "startLine": 325,
+        "startChar": 29,
+        "endLine": 325,
+        "endChar": 41
+      },
+      "revId": "b1b06e727c4769fe01bbe98b42e7e400906bb236",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb631a32_aecc2c65",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-20T09:03:56Z",
+      "side": 1,
+      "message": "see prev discussion I think me coudl call this xpath...",
+      "range": {
+        "startLine": 333,
+        "startChar": 97,
+        "endLine": 333,
+        "endChar": 115
       },
       "revId": "b1b06e727c4769fe01bbe98b42e7e400906bb236",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
@@ -94,6 +327,30 @@
     },
     {
       "key": {
+        "uuid": "976e3848_61c3dce1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/NetworkCmProxyDataService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-20T09:03:56Z",
+      "side": 1,
+      "message": "no, it is correct but maybe change it like so:\n Get resource data for datastore operational (cached data).",
+      "parentUuid": "82826fa2_6eca2909",
+      "range": {
+        "startLine": 71,
+        "startChar": 29,
+        "endLine": 71,
+        "endChar": 41
+      },
+      "revId": "b1b06e727c4769fe01bbe98b42e7e400906bb236",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f2b6ec32_6b53f613",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/NetworkCmProxyDataService.java",
         "patchSetId": 1
@@ -105,6 +362,30 @@
       "writtenOn": "2022-07-18T09:40:18Z",
       "side": 1,
       "message": "Is this necessary?",
+      "range": {
+        "startLine": 76,
+        "startChar": 15,
+        "endLine": 76,
+        "endChar": 29
+      },
+      "revId": "b1b06e727c4769fe01bbe98b42e7e400906bb236",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b5191a58_771f0c2a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/NetworkCmProxyDataService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-20T09:03:56Z",
+      "side": 1,
+      "message": "I think it is OK and consistent with other methods\n(probably not that useful but technically correct)",
+      "parentUuid": "f2b6ec32_6b53f613",
       "range": {
         "startLine": 76,
         "startChar": 15,
@@ -164,6 +445,30 @@
     },
     {
       "key": {
+        "uuid": "e95cc859_3d23165e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-20T09:03:56Z",
+      "side": 1,
+      "message": "sorry guys this is network-data from cps-core and not inventory meta data. using cpsDataService is correct.\nAlternatively we coudl introuce a ncmpDataServcei taht froward simply all relevant calls to cpsDataServcei and the constant for the dataspace can be ome private to  that class. I t might be better ie. classes with more fine-grained responsibility and I assume this is only the first call in NCMP to cpsDatServcie with teh NFP_operational",
+      "parentUuid": "fdbfd3b2_ba8d0033",
+      "range": {
+        "startLine": 120,
+        "startChar": 8,
+        "endLine": 121,
+        "endChar": 40
+      },
+      "revId": "b1b06e727c4769fe01bbe98b42e7e400906bb236",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9cb5d808_bdfeb62b",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
         "patchSetId": 1
@@ -175,6 +480,30 @@
       "writtenOn": "2022-07-19T10:35:11Z",
       "side": 1,
       "message": "this wont be required if my other comment is been agreed. 😊",
+      "range": {
+        "startLine": 345,
+        "startChar": 128,
+        "endLine": 345,
+        "endChar": 146
+      },
+      "revId": "b1b06e727c4769fe01bbe98b42e7e400906bb236",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "04d1c4a9_21825e37",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-07-20T09:03:56Z",
+      "side": 1,
+      "message": "maybe a new ncmpDataServce iusntead, see prev. comemnts",
+      "parentUuid": "9cb5d808_bdfeb62b",
       "range": {
         "startLine": 345,
         "startChar": 128,
