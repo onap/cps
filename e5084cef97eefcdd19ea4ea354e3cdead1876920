@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "0bb7fc99_81b11ee7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationSemaphoresConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-07-20T16:04:45Z",
+      "side": 1,
+      "message": "It cause a sonare issue, because here are more than two usage.",
+      "parentUuid": "6591145d_a1dbe8b3",
+      "range": {
+        "startLine": 49,
+        "startChar": 43,
+        "endLine": 49,
+        "endChar": 73
+      },
+      "revId": "e5084cef97eefcdd19ea4ea354e3cdead1876920",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3ca85b29_23f55b00",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationSemaphoresConfig.java",
         "patchSetId": 6
@@ -45,6 +69,30 @@
       "revId": "e5084cef97eefcdd19ea4ea354e3cdead1876920",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a1f4d1ad_9b5cca07",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationSemaphoresConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-07-20T16:04:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3ca85b29_23f55b00",
+      "range": {
+        "startLine": 51,
+        "startChar": 54,
+        "endLine": 51,
+        "endChar": 73
+      },
+      "revId": "e5084cef97eefcdd19ea4ea354e3cdead1876920",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "f4a2e865_ba477f47",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-07-20T16:04:45Z",
+      "side": 1,
+      "message": "There is no difference, false means work on it, true means done, but we do not use this values.",
+      "parentUuid": "fc1aa978_76ea972e",
+      "range": {
+        "startLine": 64,
+        "startChar": 60,
+        "endLine": 64,
+        "endChar": 65
+      },
+      "revId": "e5084cef97eefcdd19ea4ea354e3cdead1876920",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1b3db302_7d823b42",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdogSpec.groovy",
         "patchSetId": 6
@@ -91,6 +163,30 @@
       "revId": "e5084cef97eefcdd19ea4ea354e3cdead1876920",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6996e66d_1a4b490e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdogSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-07-20T16:04:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1b3db302_7d823b42",
+      "range": {
+        "startLine": 54,
+        "startChar": 14,
+        "endLine": 54,
+        "endChar": 31
+      },
+      "revId": "e5084cef97eefcdd19ea4ea354e3cdead1876920",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
