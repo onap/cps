@@ -1,5 +1,5 @@
 /*
- * ============LICENSE_START=======================================================
+ *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,11 +21,11 @@
 package org.onap.cps.ncmp.api.inventory.sync;
 
 import java.time.OffsetDateTime;
+import java.util.concurrent.ConcurrentMap;
 import java.util.function.Consumer;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsDataService;
-import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.inventory.CompositeState;
 import org.onap.cps.ncmp.api.inventory.DataStoreSyncState;
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
@@ -43,33 +43,35 @@ public class DataSyncWatchdog {
 
     private final SyncUtils syncUtils;
 
+    private final ConcurrentMap<String, Boolean> dataSyncSemaphore;
+
     /**
      * Execute Cm Handle poll which queries the cm handle state in 'READY' and Operational Datastore Sync State in
      * 'UNSYNCHRONIZED'.
      */
     @Scheduled(fixedDelayString = "${timers.cm-handle-data-sync.sleep-time-ms:30000}")
     public void executeUnSynchronizedReadyCmHandlePoll() {
-        YangModelCmHandle unSynchronizedReadyCmHandle = syncUtils.getAnUnSynchronizedReadyCmHandle();
-        while (unSynchronizedReadyCmHandle != null) {
+        syncUtils.getAnUnSynchronizedReadyCmHandle().forEach(unSynchronizedReadyCmHandle -> {
             final String cmHandleId = unSynchronizedReadyCmHandle.getId();
-            log.debug("Cm-Handles found in READY and UNSYNCHRONIZED state: {}", cmHandleId);
-            final CompositeState compositeState = inventoryPersistence
-                    .getCmHandleState(cmHandleId);
-            final String resourceData = syncUtils.getResourceData(cmHandleId);
-            if (resourceData == null) {
-                log.debug("Error accessing the node for Cm-Handle: {}", cmHandleId);
-            } else if (unSynchronizedReadyCmHandle.getCompositeState().getDataSyncEnabled().equals(false)) {
-                log.debug("Error: data sync enabled for {} must be true."
-                    + "Data sync enabled is currently set to false", cmHandleId);
+            if (hasPushedIntoSemaphoreMap(cmHandleId)) {
+                log.debug("Executing data sync on {}", cmHandleId);
+                final CompositeState compositeState = inventoryPersistence
+                        .getCmHandleState(cmHandleId);
+                final String resourceData = syncUtils.getResourceData(cmHandleId);
+                if (resourceData == null) {
+                    log.debug("Error retrieving resource data for Cm-Handle: {}", cmHandleId);
+                } else {
+                    cpsDataService.saveData("NFP-Operational", cmHandleId,
+                            resourceData, OffsetDateTime.now());
+                    setSyncStateToSynchronized().accept(compositeState);
+                    inventoryPersistence.saveCmHandleState(cmHandleId, compositeState);
+                    updateDataSyncSemaphoreMap(cmHandleId);
+                }
             } else {
-                cpsDataService.saveData("NFP-Operational", cmHandleId,
-                        resourceData, OffsetDateTime.now());
-                setSyncStateToSynchronized().accept(compositeState);
-                inventoryPersistence.saveCmHandleState(cmHandleId, compositeState);
+                log.debug("{} already processed by another instance", cmHandleId);
             }
-            unSynchronizedReadyCmHandle = syncUtils.getAnUnSynchronizedReadyCmHandle();
-        }
-        log.debug("No Cm-Handles currently found in an READY State and Operational Sync State is UNSYNCHRONIZED");
+        });
+        log.debug("No Cm-Handles currently found in READY State and Operational Sync State is UNSYNCHRONIZED");
     }
 
     private Consumer<CompositeState> setSyncStateToSynchronized() {
@@ -80,5 +82,13 @@ public class DataSyncWatchdog {
                             .dataStoreSyncState(DataStoreSyncState.SYNCHRONIZED)
                             .lastSyncTime(CompositeState.nowInSyncTimeFormat()).build());
         };
+    }
+
+    private void updateDataSyncSemaphoreMap(final String cmHandleId) {
+        dataSyncSemaphore.replace(cmHandleId, true);
+    }
+
+    private boolean hasPushedIntoSemaphoreMap(final String cmHandleId) {
+        return dataSyncSemaphore.putIfAbsent(cmHandleId, false) == null;
     }
 }
