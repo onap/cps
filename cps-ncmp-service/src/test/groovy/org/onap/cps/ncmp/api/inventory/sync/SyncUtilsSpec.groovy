@@ -26,6 +26,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations
 import org.onap.cps.ncmp.api.impl.operations.DmiOperations
 import org.onap.cps.ncmp.api.inventory.CmHandleQueries
+import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.inventory.CmHandleState
 import org.onap.cps.ncmp.api.inventory.CompositeState
 import org.onap.cps.ncmp.api.inventory.CompositeStateBuilder
@@ -69,6 +70,8 @@ class SyncUtilsSpec extends Specification{
             def yangModelCmHandles = objectUnderTest.getAdvisedCmHandles()
         then: 'the returned data node collection is the correct size'
             yangModelCmHandles.size() == expectedDataNodeSize
+        and: 'get yang model cm handles is invoked the correct number of times'
+            expectedCallsToGetYangModelCmHandle * mockInventoryPersistence.getYangModelCmHandle('cm-handle-123') >> new YangModelCmHandle(id:'cm-handle-123')
         and: 'yang model collection contains the correct data'
             yangModelCmHandles.stream().map(yangModel -> yangModel.id).collect(Collectors.toSet()) ==
                 dataNodeCollection.stream().map(dataNode -> dataNode.leaves.get("id")).collect(Collectors.toSet())
@@ -120,21 +123,22 @@ class SyncUtilsSpec extends Specification{
     }
 
 
-    def 'Get a Cm-Handle where Operational Sync state is UnSynchronized and Cm-handle state is READY and #scenario'() {
+    def 'Get a Cm-Handle where #scenario'() {
         given: 'the inventory persistence service returns a collection of data nodes'
             mockCmHandleQueries.getCmHandlesByOperationalSyncState(DataStoreSyncState.UNSYNCHRONIZED) >> unSynchronizedDataNodes
             mockCmHandleQueries.getCmHandlesByIdAndState("cm-handle-123", CmHandleState.READY) >> readyDataNodes
         when: 'get advised cm handles are fetched'
-            objectUnderTest.getAnUnSynchronizedReadyCmHandle()
+            def yangModelCollection = objectUnderTest.getAnUnSynchronizedReadyCmHandle()
         then: 'the returned data node collection is the correct size'
             readyDataNodes.size() == expectedDataNodeSize
-        and: 'get yang model cm handles is invoked the correct number of times'
-            expectedCallsToGetYangModelCmHandle * mockInventoryPersistence.getYangModelCmHandle('cm-handle-123')
+        and: 'the result contains the correct data'
+            yangModelCollection.stream().map(yangModel -> yangModel.id).collect(Collectors.toSet()) ==
+            readyDataNodes.stream().map(dataNode -> dataNode.leaves.get("id")).collect(Collectors.toSet())
         where: 'the following scenarios are used'
-            scenario                             | unSynchronizedDataNodes | readyDataNodes || expectedCallsToGetYangModelCmHandle | expectedDataNodeSize
-            'exists'                             | [dataNode]              | [dataNode]     || 1                                   | 1
-            'unsynchronized exist but not ready' | [dataNode]              | []             || 0                                   | 0
-            'does not exist'                     | []                      | []             || 0                                   | 0
+            scenario                             | unSynchronizedDataNodes | readyDataNodes || expectedDataNodeSize
+            'the data node exists'               | [dataNode]              | [dataNode]     || 1
+            'unsynchronized exist but not ready' | [dataNode]              | []             || 0
+            'does not exist'                     | []                      | []             || 0
     }
 
     def 'Get resource data through DMI Operations #scenario'() {

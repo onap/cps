@@ -1,5 +1,5 @@
 /*
- * ============LICENSE_START========================================================
+ *  ===========LICENSE_START========================================================
  *  Copyright (C) 2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,7 +24,6 @@ import com.hazelcast.config.Config;
 import com.hazelcast.config.MapConfig;
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
-import java.util.Map;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.TimeUnit;
 import org.springframework.context.annotation.Bean;
@@ -55,7 +54,7 @@ public class SynchronizationSemaphoresConfig {
      * @return configured map of data sync semaphore
      */
     @Bean
-    public Map<String, String> dataSyncSemaphoreMap() {
+    public ConcurrentMap<String, Boolean> dataSyncSemaphoreMap() {
         return createHazelcastInstance("dataSyncSemaphore", "dataSyncSemaphoreConfig")
                 .getMap("dataSyncSemaphore");
     }
