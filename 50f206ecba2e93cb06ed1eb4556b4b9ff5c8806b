@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "262f0cc6_c8f5a5aa",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-07-21T10:01:29Z",
+      "side": 0,
+      "message": "Needs a descriptive commit message",
+      "revId": "50f206ecba2e93cb06ed1eb4556b4b9ff5c8806b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4dc00479_c088e8b8",
         "filename": "cps-ncmp-rest-stub/src/main/java/org/onap/cps/ncmp/rest/stub/controller/NetworkCmProxyStubController.java",
         "patchSetId": 1
