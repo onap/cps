@@ -92,21 +92,21 @@ class CmHandleQueriesSpec extends Specification {
             cpsDataPersistenceService.queryDataNodes('NCMP-Admin', 'ncmp-dmi-registry',
                 '//state[@cm-handle-state="ADVISED"]/ancestor::cm-handles', INCLUDE_ALL_DESCENDANTS) >> sampleDataNodes
         when: 'cm handles are fetched by state'
-            def result = objectUnderTest.getCmHandlesByState(cmHandleState)
+            def result = objectUnderTest.queryCmHandlesByState(cmHandleState)
         then: 'the returned result matches the result from the persistence service'
             assert result == sampleDataNodes
     }
 
-    def 'Get Cm Handles By State and Cm-Handle Id'() {
+    def 'Get Cm Handles state by Cm-Handle Id'() {
         given: 'a cm handle state to query'
             def cmHandleState = CmHandleState.READY
         and: 'cps data service returns a list of data nodes'
-            cpsDataPersistenceService.queryDataNodes('NCMP-Admin', 'ncmp-dmi-registry',
-                '//cm-handles[@id=\'some-cm-handle\']/state[@cm-handle-state="'+ 'READY'+'"]/ancestor::cm-handles', OMIT_DESCENDANTS) >> sampleDataNodes
+            cpsDataPersistenceService.getDataNode('NCMP-Admin', 'ncmp-dmi-registry',
+                '/dmi-registry/cm-handles[@id=\'some-cm-handle\']/state', OMIT_DESCENDANTS) >> new DataNode(leaves: ['cm-handle-state': 'READY'])
         when: 'cm handles are fetched by state and id'
-            def result = objectUnderTest.getCmHandlesByIdAndState('some-cm-handle', cmHandleState)
+            def result = objectUnderTest.getCmHandleState('some-cm-handle')
         then: 'the returned result is a list of data nodes returned by cps data service'
-            assert result == sampleDataNodes
+            assert result == new DataNode(leaves: ['cm-handle-state': 'READY'])
     }
 
     def 'Get Cm Handles By Operational Sync State : UNSYNCHRONIZED'() {
@@ -116,7 +116,7 @@ class CmHandleQueriesSpec extends Specification {
             cpsDataPersistenceService.queryDataNodes('NCMP-Admin', 'ncmp-dmi-registry',
                 '//state/datastores/operational[@sync-state="'+'UNSYNCHRONIZED'+'"]/ancestor::cm-handles', OMIT_DESCENDANTS) >> sampleDataNodes
         when: 'cm handles are fetched by the UNSYNCHRONIZED operational sync state'
-            def result = objectUnderTest.getCmHandlesByOperationalSyncState(DataStoreSyncState.UNSYNCHRONIZED)
+            def result = objectUnderTest.queryCmHandlesByOperationalSyncState(DataStoreSyncState.UNSYNCHRONIZED)
         then: 'the returned result is a list of data nodes returned by cps data service'
             assert result == sampleDataNodes
     }
@@ -130,7 +130,7 @@ class CmHandleQueriesSpec extends Specification {
                 cpsPath + '/ancestor::cm-handles', INCLUDE_ALL_DESCENDANTS)
                 >> Arrays.asList(cmHandleDataNode)
         when: 'get cm handles by cps path is invoked'
-            def result = objectUnderTest.getCmHandleDataNodesByCpsPath(cpsPath, INCLUDE_ALL_DESCENDANTS)
+            def result = objectUnderTest.queryCmHandleDataNodesByCpsPath(cpsPath, INCLUDE_ALL_DESCENDANTS)
         then: 'the returned result is a list of data nodes returned by cps data service'
             assert result.contains(cmHandleDataNode)
     }
