@@ -136,6 +136,11 @@ public class CmHandleQueries {
                 + cmHandleState + "\"]", FetchDescendantsOption.OMIT_DESCENDANTS);
     }
 
+    public boolean cmHandleHasState(final String cmHandleId, final CmHandleState cmHandleState) {
+        final List<DataNode> readyCmHandles = getCmHandlesByIdAndState(cmHandleId, cmHandleState);
+        return !readyCmHandles.isEmpty();
+    }
+
     /**
      * Method which returns cm handles by the operational sync state of cm handle.
      * @param dataStoreSyncState sync state

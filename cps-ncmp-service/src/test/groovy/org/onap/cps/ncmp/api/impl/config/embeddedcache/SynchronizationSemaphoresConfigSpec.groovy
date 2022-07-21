@@ -31,10 +31,10 @@ import spock.lang.Specification
 class SynchronizationSemaphoresConfigSpec extends Specification {
 
     @Autowired
-    private Map<String, String> moduleSyncSemaphore;
+    private Map<String, Boolean> moduleSyncSemaphore;
 
     @Autowired
-    private Map<String, String> dataSyncSemaphore;
+    private Map<String, Boolean> dataSyncSemaphore;
 
     def 'Embedded Sync Semaphores'() {
         expect: 'system is able to create an instance of ModuleSyncSemaphore'
