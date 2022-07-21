@@ -20,10 +20,14 @@
 
 package org.onap.cps.ncmp.api.impl.event.lcm
 
+import com.fasterxml.jackson.databind.ObjectMapper
+import org.onap.cps.ncmp.api.impl.utils.YangDataConverter
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.inventory.CompositeState
 import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence
+import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
+import org.onap.cps.utils.JsonObjectMapper
 import spock.lang.Specification
 
 import static org.onap.cps.ncmp.api.inventory.CmHandleState.ADVISED
@@ -36,8 +40,9 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
     def mockInventoryPersistence = Mock(InventoryPersistence)
     def mockLcmEventsCreator = Mock(LcmEventsCreator)
     def mockLcmEventsService = Mock(LcmEventsService)
+    def spiedJsonObjectMapper = Spy(new JsonObjectMapper(new ObjectMapper()))
 
-    def objectUnderTest = new LcmEventsCmHandleStateHandlerImpl(mockInventoryPersistence, mockLcmEventsCreator, mockLcmEventsService)
+    def objectUnderTest = new LcmEventsCmHandleStateHandlerImpl(mockInventoryPersistence, mockLcmEventsCreator, mockLcmEventsService, spiedJsonObjectMapper)
 
     def 'Update and Publish Events on State Change #stateChange'() {
         given: 'Cm Handle represented as YangModelCmHandle'
@@ -63,8 +68,7 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
     def 'Update and Publish Events on State Change from NO_EXISTING state to ADVISED'() {
         given: 'Cm Handle represented as YangModelCmHandle in READY state'
             def cmHandleId = 'cmhandle-id-1'
-            def compositeState = new CompositeState()
-            def yangModelCmHandle = new YangModelCmHandle(id: cmHandleId, dmiProperties: [], publicProperties: [], compositeState: compositeState)
+            def yangModelCmHandle = new YangModelCmHandle(id: cmHandleId, dmiProperties: [], publicProperties: [])
         when: 'update state is invoked'
             objectUnderTest.updateCmHandleState(yangModelCmHandle, ADVISED)
         then: 'state is saved using inventory persistence'
@@ -79,13 +83,17 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
             def compositeState = new CompositeState(cmHandleState: LOCKED,
                 lockReason: CompositeState.LockReason.builder().lockReasonCategory(LOCKED_MODULE_SYNC_FAILED).details('some lock details').build())
             def yangModelCmHandle = new YangModelCmHandle(id: cmHandleId, dmiProperties: [], publicProperties: [], compositeState: compositeState)
+        and: 'when we create a deep copy of existing yangModelCmHandle'
+            spiedJsonObjectMapper.convertJsonString(spiedJsonObjectMapper.asJsonString(YangDataConverter.convertYangModelCmHandleToNcmpServiceCmHandle(yangModelCmHandle)), NcmpServiceCmHandle.class) >> {
+                return new NcmpServiceCmHandle(cmHandleId: cmHandleId, dmiProperties: [:] as Map, publicProperties: [:] as Map, compositeState: compositeState)
+            }
         when: 'update state is invoked'
             objectUnderTest.updateCmHandleState(yangModelCmHandle, ADVISED)
         then: 'state is saved using inventory persistence and old lock reason details are retained'
             1 * mockInventoryPersistence.saveCmHandleState(cmHandleId, _) >> {
                 args -> {
-                        assert (args[1] as CompositeState).lockReason.details == 'some lock details'
-                    }
+                    assert (args[1] as CompositeState).lockReason.details == 'some lock details'
+                }
             }
         and: 'event service is called to publish event'
             1 * mockLcmEventsService.publishLcmEvent(cmHandleId, _)
