@@ -32,6 +32,7 @@ import org.onap.cps.ncmp.api.inventory.CompositeState;
 import org.onap.cps.ncmp.api.inventory.DataStoreSyncState;
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.api.inventory.LockReasonCategory;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -46,6 +47,7 @@ public class ModuleSyncWatchdog {
 
     private final ModuleSyncService moduleSyncService;
 
+    @Qualifier("moduleSyncSemaphoreMap")
     private final ConcurrentMap<String, Boolean> moduleSyncSemaphoreMap;
 
     /**

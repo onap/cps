@@ -31,16 +31,16 @@ import spock.lang.Specification
 class SynchronizationSemaphoresConfigSpec extends Specification {
 
     @Autowired
-    private Map<String, String> moduleSyncSemaphore;
+    private Map<String, Boolean> moduleSyncSemaphoreMap;
 
     @Autowired
-    private Map<String, String> dataSyncSemaphore;
+    private Map<String, Boolean> dataSyncSemaphoreMap;
 
     def 'Embedded Sync Semaphores'() {
         expect: 'system is able to create an instance of ModuleSyncSemaphore'
-            assert null != moduleSyncSemaphore
+            assert null != moduleSyncSemaphoreMap
         and: 'system is able to create an instance of DataSyncSemaphore'
-            assert null != dataSyncSemaphore
+            assert null != dataSyncSemaphoreMap
         and: 'we have 2 instances'
             assert Hazelcast.allHazelcastInstances.size() == 2
         and: 'the names match'
