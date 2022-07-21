@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "4336ee36_144754f5",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 418,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-07-21T11:08:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dc26d478_b2dcc3fd",
+      "range": {
+        "startLine": 418,
+        "startChar": 48,
+        "endLine": 418,
+        "endChar": 69
+      },
+      "revId": "8b5a67f950b45875d5b8e91296ac48ad7c071dfd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c51eda29_a106a38b",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
         "patchSetId": 2
@@ -45,6 +69,30 @@
       "revId": "8b5a67f950b45875d5b8e91296ac48ad7c071dfd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f6095fe2_4765dfd2",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 430,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-07-21T11:08:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c51eda29_a106a38b",
+      "range": {
+        "startLine": 430,
+        "startChar": 15,
+        "endLine": 430,
+        "endChar": 28
+      },
+      "revId": "8b5a67f950b45875d5b8e91296ac48ad7c071dfd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "83961753_7857a830",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CompositeStateUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-07-21T11:08:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dc4103a9_ddc00a96",
+      "range": {
+        "startLine": 65,
+        "startChar": 32,
+        "endLine": 65,
+        "endChar": 33
+      },
+      "revId": "8b5a67f950b45875d5b8e91296ac48ad7c071dfd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "42175160_0ee1e58a",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/DataSyncWatchdog.java",
         "patchSetId": 2
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "77b1db3d_fedf8354",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/DataSyncWatchdog.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-07-21T11:08:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "42175160_0ee1e58a",
+      "range": {
+        "startLine": 62,
+        "startChar": 71,
+        "endLine": 62,
+        "endChar": 91
+      },
+      "revId": "8b5a67f950b45875d5b8e91296ac48ad7c071dfd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3df4fda6_58524151",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
         "patchSetId": 2
@@ -105,6 +201,30 @@
       "writtenOn": "2022-07-20T16:34:24Z",
       "side": 1,
       "message": "process returns current state for a cm handle",
+      "range": {
+        "startLine": 326,
+        "startChar": 16,
+        "endLine": 326,
+        "endChar": 43
+      },
+      "revId": "8b5a67f950b45875d5b8e91296ac48ad7c071dfd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e04aa1ab_f154b44c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-07-21T11:08:10Z",
+      "side": 1,
+      "message": "I think we should keep this comment, as we\u0027re using an already existing composite state. Will modify to an existing cm handle composite state.",
+      "parentUuid": "3df4fda6_58524151",
       "range": {
         "startLine": 326,
         "startChar": 16,
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "f345f153_419e160e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-07-21T11:08:10Z",
+      "side": 1,
+      "message": "I prefer to keep both of these in separate sections. What does the team think?",
+      "parentUuid": "56f64a22_1d788555",
+      "range": {
+        "startLine": 332,
+        "startChar": 8,
+        "endLine": 332,
+        "endChar": 89
+      },
+      "revId": "8b5a67f950b45875d5b8e91296ac48ad7c071dfd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "742c6dc2_3885f242",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
         "patchSetId": 2
@@ -151,6 +295,30 @@
       "writtenOn": "2022-07-20T16:34:24Z",
       "side": 1,
       "message": "the data sync enabled flag is set to true",
+      "range": {
+        "startLine": 334,
+        "startChar": 15,
+        "endLine": 334,
+        "endChar": 90
+      },
+      "revId": "8b5a67f950b45875d5b8e91296ac48ad7c071dfd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0542d1ee_9bd83c88",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-07-21T11:08:10Z",
+      "side": 1,
+      "message": "This is very similar to the comment below. Will modify the comment below with this suggestion.",
+      "parentUuid": "742c6dc2_3885f242",
       "range": {
         "startLine": 334,
         "startChar": 15,
@@ -186,6 +354,30 @@
     },
     {
       "key": {
+        "uuid": "43f42a40_8b8404c9",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-07-21T11:08:10Z",
+      "side": 1,
+      "message": "See comments above",
+      "parentUuid": "8b970cb3_91b950ef",
+      "range": {
+        "startLine": 355,
+        "startChar": 14,
+        "endLine": 355,
+        "endChar": 88
+      },
+      "revId": "8b5a67f950b45875d5b8e91296ac48ad7c071dfd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "88a7df42_b2bba3fa",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
         "patchSetId": 2
@@ -197,6 +389,30 @@
       "writtenOn": "2022-07-20T16:34:24Z",
       "side": 1,
       "message": "the data sync enabled flag is set to true",
+      "range": {
+        "startLine": 357,
+        "startChar": 16,
+        "endLine": 357,
+        "endChar": 90
+      },
+      "revId": "8b5a67f950b45875d5b8e91296ac48ad7c071dfd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7f7c1a8a_e4980831",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-07-21T11:08:10Z",
+      "side": 1,
+      "message": "Data sync enabled isn\u0027t set to true here, due to the exception being thrown.",
+      "parentUuid": "88a7df42_b2bba3fa",
       "range": {
         "startLine": 357,
         "startChar": 16,
@@ -232,6 +448,30 @@
     },
     {
       "key": {
+        "uuid": "73f0aa57_7846fc19",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-07-21T11:08:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9b2e4a37_145dad74",
+      "range": {
+        "startLine": 365,
+        "startChar": 17,
+        "endLine": 365,
+        "endChar": 22
+      },
+      "revId": "8b5a67f950b45875d5b8e91296ac48ad7c071dfd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f4b59d8b_464a5be9",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/DataSyncSpec.groovy",
         "patchSetId": 2
@@ -243,6 +483,30 @@
       "writtenOn": "2022-07-20T16:34:24Z",
       "side": 1,
       "message": "😊 im not familiar with this, is this the \u0027twice\u0027 mentioned in the label?",
+      "range": {
+        "startLine": 80,
+        "startChar": 61,
+        "endLine": 80,
+        "endChar": 90
+      },
+      "revId": "8b5a67f950b45875d5b8e91296ac48ad7c071dfd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe17f2e1_c5b664c9",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/DataSyncSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-07-21T11:08:10Z",
+      "side": 1,
+      "message": "Good question, this is legacy code, and I think the label came from copying and pasting from the test above.\nWill modify the label now, as it only returns on cm handle.\nBut I know that these  were put in here to test the multiple cm handles which the watchdog would detect and what it would do with each cm handle until it detected no new cm handles to be worked on(as represented by null here).\nHopefully that makes sense.",
+      "parentUuid": "f4b59d8b_464a5be9",
       "range": {
         "startLine": 80,
         "startChar": 61,
