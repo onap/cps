@@ -24,6 +24,7 @@ import com.hazelcast.config.Config;
 import com.hazelcast.config.MapConfig;
 import com.hazelcast.core.Hazelcast;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -32,6 +33,8 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class SynchronizationSemaphoresConfig {
+
+    private static final String DATA_SEMAPHORE_INSTANCE_NAME = "dataSyncSemaphore";
 
     /**
      * Module Sync Distributed Map Instance.
@@ -49,10 +52,12 @@ public class SynchronizationSemaphoresConfig {
      * @return  Instance of Map
      */
     @Bean
-    public Map<String, String> dataSyncSemaphore() {
+    public Map<String, Boolean> dataSyncSemaphore() {
         return Hazelcast.newHazelcastInstance(
-                initializeDefaultMapConfig("dataSyncSemaphore", "dataSyncSemaphoreConfig"))
-                .getMap("dataSyncSemaphore");
+                initializeDefaultMapConfig(DATA_SEMAPHORE_INSTANCE_NAME, "dataSyncSemaphoreConfig")
+                .addMapConfig(new MapConfig(DATA_SEMAPHORE_INSTANCE_NAME)
+                        .setTimeToLiveSeconds((int) TimeUnit.MINUTES.toSeconds(30))))
+                .getMap(DATA_SEMAPHORE_INSTANCE_NAME);
     }
 
     private Config initializeDefaultMapConfig(final String instanceName, final String configName) {

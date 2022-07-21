@@ -26,6 +26,7 @@ import java.security.SecureRandom;
 import java.time.Duration;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -78,7 +79,7 @@ public class SyncUtils {
         }
         final int randomElementIndex = secureRandom.nextInt(advisedCmHandles.size());
         final String cmHandleId = advisedCmHandles.get(randomElementIndex).getLeaves()
-            .get("id").toString();
+                .get("id").toString();
         return inventoryPersistence.getYangModelCmHandle(cmHandleId);
     }
 
@@ -86,25 +87,31 @@ public class SyncUtils {
      * First query data nodes for cm handles with CM Handle Operational Sync State in "UNSYNCHRONIZED" and
      * randomly select a CM Handle and query the data nodes for CM Handle State in "READY".
      *
-     * @return a random yang model cm handle with State in READY and Operation Sync State in "UNSYNCHRONIZED",
-     *         return null if not found
+     * @return a randomized yang model cm handle list with State in READY and Operation Sync State in "UNSYNCHRONIZED",
+     *         return empty list if not found
      */
-    public YangModelCmHandle getAnUnSynchronizedReadyCmHandle() {
+    public List<YangModelCmHandle> getAnUnSynchronizedReadyCmHandle() {
         final List<DataNode> unSynchronizedCmHandles = inventoryPersistence
                 .getCmHandlesByOperationalSyncState(DataStoreSyncState.UNSYNCHRONIZED);
-        if (unSynchronizedCmHandles.isEmpty()) {
-            return null;
-        }
-        Collections.shuffle(unSynchronizedCmHandles);
+
+        final List<YangModelCmHandle> yangModelCmHandles = new ArrayList<>();
         for (final DataNode cmHandle : unSynchronizedCmHandles) {
             final String cmHandleId = cmHandle.getLeaves().get("id").toString();
             final List<DataNode> readyCmHandles = inventoryPersistence
                     .getCmHandlesByIdAndState(cmHandleId, CmHandleState.READY);
             if (!readyCmHandles.isEmpty()) {
-                return inventoryPersistence.getYangModelCmHandle(cmHandleId);
+                yangModelCmHandles.add(YangDataConverter.convertCmHandleToYangModel(cmHandle,
+                        cmHandle.getLeaves().get("id").toString()));
             }
         }
-        return null;
+
+        if (yangModelCmHandles.isEmpty()) {
+            return Collections.emptyList();
+        }
+
+        Collections.shuffle(yangModelCmHandles);
+
+        return yangModelCmHandles;
     }
 
     /**
@@ -114,11 +121,11 @@ public class SyncUtils {
      */
     public List<YangModelCmHandle> getModuleSyncFailedCmHandles() {
         final List<DataNode> lockedCmHandleAsDataNodeList = inventoryPersistence.getCmHandleDataNodesByCpsPath(
-            "//lock-reason[@reason=\"LOCKED_MODULE_SYNC_FAILED\"]/ancestor::cm-handles",
-            FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
+                "//lock-reason[@reason=\"LOCKED_MODULE_SYNC_FAILED\"]/ancestor::cm-handles",
+                FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
         return lockedCmHandleAsDataNodeList.stream()
-            .map(cmHandle -> YangDataConverter.convertCmHandleToYangModel(cmHandle,
-                cmHandle.getLeaves().get("id").toString())).collect(Collectors.toList());
+                .map(cmHandle -> YangDataConverter.convertCmHandleToYangModel(cmHandle,
+                        cmHandle.getLeaves().get("id").toString())).collect(Collectors.toList());
     }
 
     /**
@@ -138,8 +145,8 @@ public class SyncUtils {
             }
         }
         compositeState.setLockReason(CompositeState.LockReason.builder()
-            .details(String.format("Attempt #%d failed: %s", attempt, errorMessage))
-            .lockReasonCategory(lockReasonCategory).build());
+                .details(String.format("Attempt #%d failed: %s", attempt, errorMessage))
+                .lockReasonCategory(lockReasonCategory).build());
     }
 
 
@@ -152,8 +159,8 @@ public class SyncUtils {
     public boolean isReadyForRetry(final CompositeState compositeState) {
         int timeInMinutesUntilNextAttempt = 1;
         final OffsetDateTime time =
-            OffsetDateTime.parse(compositeState.getLastUpdateTime(),
-                DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ"));
+                OffsetDateTime.parse(compositeState.getLastUpdateTime(),
+                        DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ"));
         final Matcher matcher = retryAttemptPattern.matcher(compositeState.getLockReason().getDetails());
         if (matcher.find()) {
             timeInMinutesUntilNextAttempt = (int) Math.pow(2, Integer.parseInt(matcher.group(1)));
@@ -163,7 +170,7 @@ public class SyncUtils {
         final int timeSinceLastAttempt = (int) Duration.between(time, OffsetDateTime.now()).toMinutes();
         if (timeInMinutesUntilNextAttempt >= timeSinceLastAttempt) {
             log.info("Time until next attempt is {} minutes: ",
-                timeInMinutesUntilNextAttempt - timeSinceLastAttempt);
+                    timeInMinutesUntilNextAttempt - timeSinceLastAttempt);
         }
         return timeSinceLastAttempt > timeInMinutesUntilNextAttempt;
     }
