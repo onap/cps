@@ -57,8 +57,21 @@ public class CompositeState {
     /**
      * Date and Time in the format of yyyy-MM-dd'T'HH:mm:ss.SSSZ
      */
-    private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter
-            .ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+    private static final DateTimeFormatter dateTimeFormatter =
+            DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+
+    /**
+     * Composite State copy constructor.
+     *
+     * @param compositeState Composite State
+     */
+    public CompositeState(final CompositeState compositeState) {
+        this.cmHandleState = compositeState.getCmHandleState();
+        this.lockReason = compositeState.getLockReason();
+        this.lastUpdateTime = compositeState.getLastUpdateTime();
+        this.dataSyncEnabled = compositeState.getDataSyncEnabled();
+        this.dataStores = compositeState.getDataStores();
+    }
 
 
     /**
