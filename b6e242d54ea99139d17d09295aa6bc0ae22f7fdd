@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8f6c08ba_5bc10726",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImplSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-21T15:03:25Z",
+      "side": 1,
+      "message": "NB: do you think this can be moved up ?? 😄 \nwe can write it in the same way the operations happen.",
+      "range": {
+        "startLine": 132,
+        "startChar": 8,
+        "endLine": 133,
+        "endChar": 80
+      },
+      "revId": "b6e242d54ea99139d17d09295aa6bc0ae22f7fdd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "126a4ef3_5a7ab5c3",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImplSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-21T15:03:25Z",
+      "side": 1,
+      "message": "NB : same comment as above.",
+      "range": {
+        "startLine": 144,
+        "startChar": 8,
+        "endLine": 145,
+        "endChar": 79
+      },
+      "revId": "b6e242d54ea99139d17d09295aa6bc0ae22f7fdd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
