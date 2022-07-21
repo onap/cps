@@ -101,12 +101,12 @@ class CmHandleQueriesSpec extends Specification {
         given: 'a cm handle state to query'
             def cmHandleState = CmHandleState.READY
         and: 'cps data service returns a list of data nodes'
-            cpsDataPersistenceService.queryDataNodes('NCMP-Admin', 'ncmp-dmi-registry',
-                '//cm-handles[@id=\'some-cm-handle\']/state[@cm-handle-state="'+ 'READY'+'"]/ancestor::cm-handles', OMIT_DESCENDANTS) >> sampleDataNodes
+            cpsDataPersistenceService.getDataNode('NCMP-Admin', 'ncmp-dmi-registry',
+                '/dmi-registry/cm-handles[@id=\'some-cm-handle\']/state[@cm-handle-state="'+ 'READY'+'"]/ancestor::cm-handles', OMIT_DESCENDANTS) >> new DataNode(leaves: [id: 'testId1'])
         when: 'cm handles are fetched by state and id'
             def result = objectUnderTest.getCmHandlesByIdAndState('some-cm-handle', cmHandleState)
         then: 'the returned result is a list of data nodes returned by cps data service'
-            assert result == sampleDataNodes
+            assert result == new DataNode(leaves: [id: 'testId1'])
     }
 
     def 'Get Cm Handles By Operational Sync State : UNSYNCHRONIZED'() {

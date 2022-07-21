@@ -126,14 +126,31 @@ public class CmHandleQueries {
     }
 
     /**
-     * Method which returns cm handles by the cm handle id and state.
+     * Method to return data node representing the cm handle.
+     *
+     * @param cpsPath cps path for which the cmHandle is requested
+     * @return a data node representing the cm handle.
+     */
+    public DataNode getCmHandleDataNodeByCpsPath(final String cpsPath,
+                                                        final FetchDescendantsOption fetchDescendantsOption) {
+        return cpsDataPersistenceService.getDataNode(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
+                cpsPath + ANCESTOR_CM_HANDLES, fetchDescendantsOption);
+    }
+
+    /**
+     * Method which returns cm handle by the cm handle id and state.
      * @param cmHandleId cm handle id
      * @param cmHandleState cm handle state
-     * @return a list of cm handles
+     * @return a cm handle
      */
-    public List<DataNode> getCmHandlesByIdAndState(final String cmHandleId, final CmHandleState cmHandleState) {
-        return getCmHandleDataNodesByCpsPath("//cm-handles[@id='" + cmHandleId + "']/state[@cm-handle-state=\""
-                + cmHandleState + "\"]", FetchDescendantsOption.OMIT_DESCENDANTS);
+    public DataNode getCmHandlesByIdAndState(final String cmHandleId, final CmHandleState cmHandleState) {
+        return getCmHandleDataNodeByCpsPath("/dmi-registry/cm-handles[@id='" + cmHandleId
+                + "']/state[@cm-handle-state=\"" + cmHandleState + "\"]", FetchDescendantsOption.OMIT_DESCENDANTS);
+    }
+
+    public boolean cmHandleHasState(final String cmHandleId, final CmHandleState cmHandleState) {
+        final DataNode cmHandlesWithGivenState = getCmHandlesByIdAndState(cmHandleId, cmHandleState);
+        return cmHandlesWithGivenState != null;
     }
 
     /**

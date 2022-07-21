@@ -1,5 +1,5 @@
 /*
- * ============LICENSE_START========================================================
+ *  ===========LICENSE_START========================================================
  *  Copyright (C) 2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,7 +24,6 @@ import com.hazelcast.config.Config;
 import com.hazelcast.config.MapConfig;
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
-import java.util.Map;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.TimeUnit;
 import org.springframework.context.annotation.Bean;
@@ -41,23 +40,23 @@ public class SynchronizationSemaphoresConfig {
     /**
      * Module Sync Distributed Map Instance.
      *
-     * @return configured map of module sync semaphore
+     * @return configured map of module sync semaphores
      */
     @Bean
-    public ConcurrentMap<String, Boolean> moduleSyncSemaphoreMap() {
-        return createHazelcastInstance("moduleSyncSemaphore", "moduleSyncSemaphoreConfig")
-                .getMap("moduleSyncSemaphore");
+    public ConcurrentMap<String, Boolean> moduleSyncSemaphores() {
+        return createHazelcastInstance("moduleSyncSemaphores", "moduleSyncSemaphoresConfig")
+                .getMap("moduleSyncSemaphores");
     }
 
     /**
      * Data Sync Distributed Map Instance.
      *
-     * @return configured map of data sync semaphore
+     * @return configured map of data sync semaphores
      */
     @Bean
-    public Map<String, String> dataSyncSemaphoreMap() {
-        return createHazelcastInstance("dataSyncSemaphore", "dataSyncSemaphoreConfig")
-                .getMap("dataSyncSemaphore");
+    public ConcurrentMap<String, Boolean> dataSyncSemaphores() {
+        return createHazelcastInstance("dataSyncSemaphores", "dataSyncSemaphoresConfig")
+                .getMap("dataSyncSemaphores");
     }
 
     private HazelcastInstance createHazelcastInstance(

@@ -26,10 +26,11 @@ import org.onap.cps.ncmp.api.inventory.CmHandleState
 import org.onap.cps.ncmp.api.inventory.CompositeState
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence
 import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
-import spock.lang.Shared
 import spock.lang.Specification
+import java.util.concurrent.ConcurrentHashMap
+import java.util.concurrent.ConcurrentMap
 
-class DataSyncSpec extends Specification {
+class DataSyncWatchdogSpec extends Specification {
 
     def mockInventoryPersistence = Mock(InventoryPersistence)
 
@@ -37,10 +38,11 @@ class DataSyncSpec extends Specification {
 
     def mockSyncUtils = Mock(SyncUtils)
 
-    @Shared
+    def stubbedMap = Stub(ConcurrentMap)
+
     def jsonString = '{"stores:bookstore":{"categories":[{"code":"01"}]}}'
 
-    def objectUnderTest = new DataSyncWatchdog(mockInventoryPersistence, mockCpsDataService, mockSyncUtils)
+    def objectUnderTest = new DataSyncWatchdog(mockInventoryPersistence, mockCpsDataService, mockSyncUtils, stubbedMap as ConcurrentHashMap)
 
     def compositeState = getCompositeState()
 
@@ -52,7 +54,7 @@ class DataSyncSpec extends Specification {
         given: 'sample resource data'
             def resourceData = jsonString
         and: 'sync utilities return a cm handle twice'
-            mockSyncUtils.getAnUnSynchronizedReadyCmHandle() >>> [yangModelCmHandle1, yangModelCmHandle2, null]
+            mockSyncUtils.getUnsynchronizedReadyCmHandles() >> [yangModelCmHandle1, yangModelCmHandle2]
         when: 'data sync poll is executed'
             objectUnderTest.executeUnSynchronizedReadyCmHandlePoll()
         then: 'the inventory persistence cm handle returns a composite state for the first cm handle'
@@ -73,24 +75,18 @@ class DataSyncSpec extends Specification {
             1 * mockInventoryPersistence.saveCmHandleState('some-cm-handle-2', compositeState)
     }
 
-    def 'Schedule Data Sync for Cm Handle State in READY and Operational Sync State in UNSYNCHRONIZED which return empty data from Node because #scenario'() {
-        given: 'a yang model cm handle'
-            def yangModelCmHandle = new YangModelCmHandle(id: 'some-cm-handle', compositeState: new CompositeState(dataSyncEnabled: dataSyncEnabled))
-        and: 'sync utilities returns a single cm handle'
-            mockSyncUtils.getAnUnSynchronizedReadyCmHandle() >>> [yangModelCmHandle, null]
+    def 'Schedule Data Sync for Cm Handle State in READY and Operational Sync State in UNSYNCHRONIZED which return empty data from Node'() {
+        given: 'cm handles in an ready state and operational sync state in unsynchronized'
+        and: 'sync utilities return a cm handle twice'
+            mockSyncUtils.getUnsynchronizedReadyCmHandles() >> [yangModelCmHandle1]
         when: 'data sync poll is executed'
             objectUnderTest.executeUnSynchronizedReadyCmHandlePoll()
         then: 'the inventory persistence cm handle returns a composite state for the first cm handle'
-            1 * mockInventoryPersistence.getCmHandleState('some-cm-handle') >> compositeState
+            1 * mockInventoryPersistence.getCmHandleState('some-cm-handle-1') >> compositeState
         and: 'the sync util returns first resource data'
-            1 * mockSyncUtils.getResourceData('some-cm-handle') >> resourceData
+            1 * mockSyncUtils.getResourceData('some-cm-handle-1') >> null
         and: 'the cm-handle data is not saved'
             0 * mockCpsDataService.saveData('NFP-Operational', 'some-cm-handle-1', jsonString, _)
-        where:
-            scenario                                             | dataSyncEnabled | resourceData
-            'data sync is not enabled'                           | false           | jsonString
-            'resource data is null'                              | true            | null
-            'data sync is not enabled and resource data is null' | false           | null
     }
 
     def createSampleYangModelCmHandle(cmHandleId) {
@@ -100,7 +96,7 @@ class DataSyncSpec extends Specification {
 
     def getCompositeState() {
         def cmHandleState = CmHandleState.READY
-        def compositeState = new CompositeState(cmHandleState: cmHandleState, dataSyncEnabled: true)
+        def compositeState = new CompositeState(cmHandleState: cmHandleState)
         compositeState.setDataStores(CompositeState.DataStores.builder()
             .operationalDataStore(CompositeState.Operational.builder().dataStoreSyncState(DataStoreSyncState.SYNCHRONIZED)
                 .build()).build())
