@@ -30,6 +30,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.inventory.CmHandleState;
+import org.onap.cps.ncmp.api.inventory.CompositeState;
 import org.onap.cps.ncmp.api.inventory.CompositeStateUtils;
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
@@ -54,11 +55,15 @@ public class LcmEventsCmHandleStateHandlerImpl implements LcmEventsCmHandleState
     public void updateCmHandleState(final YangModelCmHandle yangModelCmHandle,
             final CmHandleState targetCmHandleState) {
 
-        if (yangModelCmHandle.getCompositeState().getCmHandleState() == targetCmHandleState) {
+        final CompositeState compositeState = yangModelCmHandle.getCompositeState();
+
+        if (compositeState != null && compositeState.getCmHandleState() == targetCmHandleState) {
             log.debug("CmHandle with id : {} already in state : {}", yangModelCmHandle.getId(), targetCmHandleState);
         } else {
+            final NcmpServiceCmHandle existingNcmpServiceCmHandle = toNcmpServiceCmHandle(yangModelCmHandle);
             updateToSpecifiedCmHandleState(yangModelCmHandle, targetCmHandleState);
-            publishLcmEvent(yangModelCmHandle);
+            final NcmpServiceCmHandle targetNcmpServiceCmHandle = toNcmpServiceCmHandle(yangModelCmHandle);
+            publishLcmEvent(targetNcmpServiceCmHandle, existingNcmpServiceCmHandle);
         }
 
     }
@@ -71,10 +76,10 @@ public class LcmEventsCmHandleStateHandlerImpl implements LcmEventsCmHandleState
                     .accept(yangModelCmHandle.getCompositeState());
             inventoryPersistence.saveCmHandleState(yangModelCmHandle.getId(), yangModelCmHandle.getCompositeState());
         } else if (ADVISED == targetCmHandleState) {
-            if (yangModelCmHandle.getCompositeState().getCmHandleState() == LOCKED) {
-                retryCmHandle(yangModelCmHandle);
-            } else {
+            if (yangModelCmHandle.getCompositeState() == null) {
                 registerNewCmHandle(yangModelCmHandle);
+            } else if (yangModelCmHandle.getCompositeState().getCmHandleState() == LOCKED) {
+                retryCmHandle(yangModelCmHandle);
             }
         } else if (DELETED == targetCmHandleState) {
             setCmHandleState(yangModelCmHandle, targetCmHandleState);
@@ -89,25 +94,30 @@ public class LcmEventsCmHandleStateHandlerImpl implements LcmEventsCmHandleState
     }
 
     private void registerNewCmHandle(final YangModelCmHandle yangModelCmHandle) {
+        yangModelCmHandle.setCompositeState(new CompositeState());
         setCmHandleState(yangModelCmHandle, ADVISED);
         inventoryPersistence.saveCmHandle(yangModelCmHandle);
     }
 
-    private void publishLcmEvent(final YangModelCmHandle yangModelCmHandle) {
-        final NcmpServiceCmHandle ncmpServiceCmHandle =
-                YangDataConverter.convertYangModelCmHandleToNcmpServiceCmHandle(yangModelCmHandle);
-        final String cmHandleId = ncmpServiceCmHandle.getCmHandleId();
-        final LcmEvent lcmEvent = lcmEventsCreator.populateLcmEvent(cmHandleId);
+    private void publishLcmEvent(final NcmpServiceCmHandle targetNcmpServiceCmHandle,
+            final NcmpServiceCmHandle existingNcmpServiceCmHandle) {
+        final String cmHandleId = targetNcmpServiceCmHandle.getCmHandleId();
+        final LcmEvent lcmEvent =
+                lcmEventsCreator.populateLcmEvent(cmHandleId, targetNcmpServiceCmHandle, existingNcmpServiceCmHandle);
         lcmEventsService.publishLcmEvent(cmHandleId, lcmEvent);
     }
 
     private void updateAndSaveCmHandleState(final YangModelCmHandle yangModelCmHandle,
-                                            final CmHandleState targetCmHandleState) {
+            final CmHandleState targetCmHandleState) {
         setCmHandleState(yangModelCmHandle, targetCmHandleState);
         inventoryPersistence.saveCmHandleState(yangModelCmHandle.getId(), yangModelCmHandle.getCompositeState());
     }
 
     private void setCmHandleState(final YangModelCmHandle yangModelCmHandle, final CmHandleState targetCmHandleState) {
         CompositeStateUtils.setCompositeState(targetCmHandleState).accept(yangModelCmHandle.getCompositeState());
+    }
+
+    private NcmpServiceCmHandle toNcmpServiceCmHandle(final YangModelCmHandle yangModelCmHandle) {
+        return YangDataConverter.convertYangModelCmHandleToNcmpServiceCmHandle(yangModelCmHandle);
     }
 }
