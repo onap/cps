@@ -23,6 +23,7 @@ package org.onap.cps.ncmp.api.models;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -51,4 +52,18 @@ public class NcmpServiceCmHandle {
     @JsonSetter(nulls = Nulls.AS_EMPTY)
     private CompositeState compositeState;
 
+    /**
+     * NcmpServiceCmHandle copy constructor.
+     *
+     * @param ncmpServiceCmHandle Ncmp Service CmHandle
+     */
+    public NcmpServiceCmHandle(final NcmpServiceCmHandle ncmpServiceCmHandle) {
+        this.cmHandleId = ncmpServiceCmHandle.getCmHandleId();
+        this.dmiProperties = ncmpServiceCmHandle.getDmiProperties() != null ? new LinkedHashMap<>(
+                ncmpServiceCmHandle.getDmiProperties()) : null;
+        this.publicProperties = ncmpServiceCmHandle.getPublicProperties() != null ? new LinkedHashMap<>(
+                ncmpServiceCmHandle.getPublicProperties()) : null;
+        this.compositeState = ncmpServiceCmHandle.getCompositeState() != null ? new CompositeState(
+                ncmpServiceCmHandle.getCompositeState()) : null;
+    }
 }
