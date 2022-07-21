@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "61567186_386d343b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-21T11:20:37Z",
+      "side": 1,
+      "message": "In my opinion doing it here is just fine.\nReason : \n - As we are raising DELETING event from here only so it would make sense to send the deleted event from here only.\n - One less dependency to be injected in InventoryPersistence 😊",
+      "parentUuid": "4c55b1eb_82c3b850",
+      "range": {
+        "startLine": 277,
+        "startChar": 16,
+        "endLine": 278,
+        "endChar": 47
+      },
+      "revId": "e4a9e24d5009db396cdd8cf3495108465e905b23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3a65503f_89f453ca",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
         "patchSetId": 11
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "Are we setting a new state with the \u0027target\u0027? If so, perhaps setCmHandleStateToTargetState? But I am fine with setCmHandleState also :)",
       "parentUuid": "92004e09_76c0dcbe",
+      "range": {
+        "startLine": 86,
+        "startChar": 17,
+        "endLine": 86,
+        "endChar": 33
+      },
+      "revId": "e4a9e24d5009db396cdd8cf3495108465e905b23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "daa98985_1cb76098",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-21T11:20:37Z",
+      "side": 1,
+      "message": "even I am fine with setCmHandleState.",
+      "parentUuid": "72928a48_dd59a876",
       "range": {
         "startLine": 86,
         "startChar": 17,
