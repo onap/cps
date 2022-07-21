@@ -66,9 +66,8 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
     }
 
     def 'Update and Publish Events on State Change from NO_EXISTING state to ADVISED'() {
-        given: 'Cm Handle represented as YangModelCmHandle in READY state'
-            compositeState = new CompositeState()
-            yangModelCmHandle = new YangModelCmHandle(id: cmHandleId, dmiProperties: [], publicProperties: [], compositeState: compositeState)
+        given: 'Cm Handle represented as YangModelCmHandle'
+            yangModelCmHandle = new YangModelCmHandle(id: cmHandleId, dmiProperties: [], publicProperties: [])
         when: 'update state is invoked'
             objectUnderTest.updateCmHandleState(yangModelCmHandle, ADVISED)
         then: 'state is saved using inventory persistence'
@@ -87,8 +86,8 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
         then: 'state is saved using inventory persistence and old lock reason details are retained'
             1 * mockInventoryPersistence.saveCmHandleState(cmHandleId, _) >> {
                 args -> {
-                        assert (args[1] as CompositeState).lockReason.details == 'some lock details'
-                    }
+                    assert (args[1] as CompositeState).lockReason.details == 'some lock details'
+                }
             }
         and: 'event service is called to publish event'
             1 * mockLcmEventsService.publishLcmEvent(cmHandleId, _)
