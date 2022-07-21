@@ -31,19 +31,19 @@ import spock.lang.Specification
 class SynchronizationSemaphoresConfigSpec extends Specification {
 
     @Autowired
-    private Map<String, String> moduleSyncSemaphore;
+    private Map<String, Boolean> moduleSyncSemaphores;
 
     @Autowired
-    private Map<String, String> dataSyncSemaphore;
+    private Map<String, Boolean> dataSyncSemaphores;
 
     def 'Embedded Sync Semaphores'() {
-        expect: 'system is able to create an instance of ModuleSyncSemaphore'
-            assert null != moduleSyncSemaphore
-        and: 'system is able to create an instance of DataSyncSemaphore'
-            assert null != dataSyncSemaphore
+        expect: 'system is able to create an instance of ModuleSyncSemaphores'
+            assert null != moduleSyncSemaphores
+        and: 'system is able to create an instance of DataSyncSemaphores'
+            assert null != dataSyncSemaphores
         and: 'we have 2 instances'
             assert Hazelcast.allHazelcastInstances.size() == 2
         and: 'the names match'
-            assert Hazelcast.allHazelcastInstances.name == ['moduleSyncSemaphore', 'dataSyncSemaphore']
+            assert Hazelcast.allHazelcastInstances.name == ['moduleSyncSemaphores', 'dataSyncSemaphores']
     }
 }

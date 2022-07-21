@@ -31,6 +31,7 @@ import org.onap.cps.ncmp.api.inventory.CmHandleState;
 import org.onap.cps.ncmp.api.inventory.CompositeState;
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.api.inventory.LockReasonCategory;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -39,13 +40,17 @@ import org.springframework.stereotype.Component;
 @Component
 public class ModuleSyncWatchdog {
 
+    private static final boolean MODEL_SYNC_IN_PROGRESS = false;
+    private static final boolean MODEL_SYNC_DONE = true;
+
     private final InventoryPersistence inventoryPersistence;
 
     private final SyncUtils syncUtils;
 
     private final ModuleSyncService moduleSyncService;
 
-    private final ConcurrentMap<String, Boolean> moduleSyncSemaphoreMap;
+    @Qualifier("moduleSyncSemaphores")
+    private final ConcurrentMap<String, Boolean> moduleSyncSemaphores;
 
     private final LcmEventsCmHandleStateHandler lcmEventsCmHandleStateHandler;
 
@@ -100,10 +105,10 @@ public class ModuleSyncWatchdog {
     }
 
     private void updateModuleSyncSemaphoreMap(final String cmHandleId) {
-        moduleSyncSemaphoreMap.replace(cmHandleId, true);
+        moduleSyncSemaphores.replace(cmHandleId, MODEL_SYNC_DONE);
     }
 
     private boolean hasPushedIntoSemaphoreMap(final String cmHandleId) {
-        return moduleSyncSemaphoreMap.putIfAbsent(cmHandleId, false) == null;
+        return moduleSyncSemaphores.putIfAbsent(cmHandleId, MODEL_SYNC_IN_PROGRESS) == null;
     }
 }

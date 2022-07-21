@@ -148,7 +148,7 @@ public class NetworkCmProxyCmHandlerQueryServiceImpl implements NetworkCmProxyCm
             cpsPathQueryResult = NO_QUERY_TO_EXECUTE;
         } else {
             try {
-                cpsPathQueryResult = cmHandleQueries.getCmHandleDataNodesByCpsPath(
+                cpsPathQueryResult = cmHandleQueries.queryCmHandleDataNodesByCpsPath(
                     cpsPath.get("cpsPath"), INCLUDE_ALL_DESCENDANTS)
                     .stream().map(this::createNcmpServiceCmHandle)
                     .collect(Collectors.toMap(NcmpServiceCmHandle::getCmHandleId,
