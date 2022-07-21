@@ -27,8 +27,10 @@ import org.onap.cps.ncmp.api.inventory.CompositeState
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence
 import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
 import spock.lang.Specification
+import java.util.concurrent.ConcurrentHashMap
+import java.util.concurrent.ConcurrentMap
 
-class DataSyncSpec extends Specification {
+class DataSyncWatchdogSpec extends Specification {
 
     def mockInventoryPersistence = Mock(InventoryPersistence)
 
@@ -36,9 +38,11 @@ class DataSyncSpec extends Specification {
 
     def mockSyncUtils = Mock(SyncUtils)
 
+    def stubbedMap = Stub(ConcurrentMap)
+
     def jsonString = '{"stores:bookstore":{"categories":[{"code":"01"}]}}'
 
-    def objectUnderTest = new DataSyncWatchdog(mockInventoryPersistence, mockCpsDataService, mockSyncUtils)
+    def objectUnderTest = new DataSyncWatchdog(mockInventoryPersistence, mockCpsDataService, mockSyncUtils, stubbedMap as ConcurrentHashMap)
 
     def compositeState = getCompositeState()
 
@@ -50,7 +54,7 @@ class DataSyncSpec extends Specification {
         given: 'sample resource data'
             def resourceData = jsonString;
         and: 'sync utilities return a cm handle twice'
-            mockSyncUtils.getAnUnSynchronizedReadyCmHandle() >>> [yangModelCmHandle1, yangModelCmHandle2, null]
+            mockSyncUtils.getAnUnSynchronizedReadyCmHandle() >> [yangModelCmHandle1, yangModelCmHandle2]
         when: 'data sync poll is executed'
             objectUnderTest.executeUnSynchronizedReadyCmHandlePoll()
         then: 'the inventory persistence cm handle returns a composite state for the first cm handle'
@@ -74,7 +78,7 @@ class DataSyncSpec extends Specification {
     def 'Schedule Data Sync for Cm Handle State in READY and Operational Sync State in UNSYNCHRONIZED which return empty data from Node'() {
         given: 'cm handles in an ready state and operational sync state in unsynchronized'
         and: 'sync utilities return a cm handle twice'
-            mockSyncUtils.getAnUnSynchronizedReadyCmHandle() >>> [yangModelCmHandle1, null]
+            mockSyncUtils.getAnUnSynchronizedReadyCmHandle() >> [yangModelCmHandle1]
         when: 'data sync poll is executed'
             objectUnderTest.executeUnSynchronizedReadyCmHandlePoll()
         then: 'the inventory persistence cm handle returns a composite state for the first cm handle'
