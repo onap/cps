@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "180aff92_e3b1e07e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/NetworkCmProxyDataService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-21T12:01:07Z",
+      "side": 1,
+      "message": "Javadocs??",
+      "revId": "8b889599e6011110c4d0557e362859f598a26f3f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b540490_7adc68c5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-21T12:01:07Z",
+      "side": 1,
+      "message": "NB: do we throw the exception here or silently ignore.\nSorry..Remind me if there was already a discussion around it.",
+      "range": {
+        "startLine": 190,
+        "startChar": 12,
+        "endLine": 190,
+        "endChar": 119
+      },
+      "revId": "8b889599e6011110c4d0557e362859f598a26f3f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a107d0e_19c6b04a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-21T12:01:07Z",
+      "side": 1,
+      "message": "I think there is a method in CompositeStateUtils which you can make use of for this bit.\nIf not we can create one.",
+      "range": {
+        "startLine": 196,
+        "startChar": 12,
+        "endLine": 201,
+        "endChar": 53
+      },
+      "revId": "8b889599e6011110c4d0557e362859f598a26f3f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e1532693_bba90f73",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/DataSyncWatchdog.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-21T12:01:07Z",
+      "side": 1,
+      "message": "NB: do you want to use log.error here ??",
+      "range": {
+        "startLine": 62,
+        "startChar": 16,
+        "endLine": 62,
+        "endChar": 33
+      },
+      "revId": "8b889599e6011110c4d0557e362859f598a26f3f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4516cd5b_baf02737",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-21T12:01:07Z",
+      "side": 1,
+      "message": "FYI : in the upcoming patches , we intend to use all this using the state handler.\ni.e when state moves from ADVISED to READY  OR ADVISED to LOCKED..",
+      "range": {
+        "startLine": 97,
+        "startChar": 4,
+        "endLine": 116,
+        "endChar": 5
+      },
+      "revId": "8b889599e6011110c4d0557e362859f598a26f3f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
