@@ -651,6 +651,30 @@
     },
     {
       "key": {
+        "uuid": "06c4a0c8_b9c81597",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-22T15:44:59Z",
+      "side": 1,
+      "message": "how about CmHandleValueDifferencePair ??\nTeam : what do you think?",
+      "parentUuid": "4bafc6df_10cc3487",
+      "range": {
+        "startLine": 92,
+        "startChar": 17,
+        "endLine": 92,
+        "endChar": 37
+      },
+      "revId": "bf3821dcf42ea9a2e2e3f461fd6f67d9a91d51b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9b063623_4af65b65",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreator.java",
         "patchSetId": 1
