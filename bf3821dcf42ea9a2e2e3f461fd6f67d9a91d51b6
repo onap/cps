@@ -1,0 +1,763 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c226e25f_ba20c982",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-22T14:24:53Z",
+      "side": 1,
+      "message": "NB : newCmHandleState",
+      "range": {
+        "startLine": 59,
+        "startChar": 32,
+        "endLine": 59,
+        "endChar": 51
+      },
+      "revId": "bf3821dcf42ea9a2e2e3f461fd6f67d9a91d51b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b9d98b12_e3327e06",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-22T14:24:53Z",
+      "side": 1,
+      "message": "NB : {} state.",
+      "range": {
+        "startLine": 63,
+        "startChar": 56,
+        "endLine": 63,
+        "endChar": 66
+      },
+      "revId": "bf3821dcf42ea9a2e2e3f461fd6f67d9a91d51b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6384d268_191d573c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-22T14:24:53Z",
+      "side": 1,
+      "message": "NB : handleCmHandleStateTransitionAndGetUpdatedPair",
+      "range": {
+        "startLine": 66,
+        "startChar": 20,
+        "endLine": 66,
+        "endChar": 61
+      },
+      "revId": "bf3821dcf42ea9a2e2e3f461fd6f67d9a91d51b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d4ea923f_9888f2da",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-22T14:24:53Z",
+      "side": 1,
+      "message": "NB : handleCmHandleStateTransitionAndGetUpdatedPair",
+      "range": {
+        "startLine": 72,
+        "startChar": 37,
+        "endLine": 72,
+        "endChar": 78
+      },
+      "revId": "bf3821dcf42ea9a2e2e3f461fd6f67d9a91d51b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c001854_70d14049",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-22T14:24:53Z",
+      "side": 1,
+      "message": "More readable and meaningful : ncmpServiceCmHandlerState.setCurrentNcmpServiceCmHandleState",
+      "range": {
+        "startLine": 75,
+        "startChar": 33,
+        "endLine": 75,
+        "endChar": 63
+      },
+      "revId": "bf3821dcf42ea9a2e2e3f461fd6f67d9a91d51b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "34cd71e2_4ca7b4c6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-22T14:24:53Z",
+      "side": 1,
+      "message": "NB : It is very close to language specific technique.\n\ncan be named as : mapYangModelCmHandleToNcmpServiceCmHandle for redability.",
+      "range": {
+        "startLine": 75,
+        "startChar": 64,
+        "endLine": 75,
+        "endChar": 91
+      },
+      "revId": "bf3821dcf42ea9a2e2e3f461fd6f67d9a91d51b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "56bdd02b_c73536b7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-22T14:24:53Z",
+      "side": 1,
+      "message": "NB : processStateTransitionsAndPersist",
+      "range": {
+        "startLine": 77,
+        "startChar": 8,
+        "endLine": 77,
+        "endChar": 38
+      },
+      "revId": "bf3821dcf42ea9a2e2e3f461fd6f67d9a91d51b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "50409cf1_c5c2858d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-22T14:24:53Z",
+      "side": 1,
+      "message": "More readable and meaningful : ncmpServiceCmHandlerState.setNewNcmpServiceCmHandleState",
+      "range": {
+        "startLine": 79,
+        "startChar": 33,
+        "endLine": 79,
+        "endChar": 61
+      },
+      "revId": "bf3821dcf42ea9a2e2e3f461fd6f67d9a91d51b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b70d95f7_06dff06d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-22T14:24:53Z",
+      "side": 1,
+      "message": "Methid name is very close to lanuage specific technique  \n that can be renamed as \"mapYangModelCmHandleToNcmpServiceCmHandle\" for consistency",
+      "range": {
+        "startLine": 125,
+        "startChar": 32,
+        "endLine": 125,
+        "endChar": 59
+      },
+      "revId": "bf3821dcf42ea9a2e2e3f461fd6f67d9a91d51b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "38b13ddf_e7862bd8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-22T14:24:53Z",
+      "side": 1,
+      "message": "Avoid it : @Data \n\nThis annotation is a compilation of the @Getter, @Setter, @RequiredArgsConstructor, @ToString and@EqualsAndHashCode annotations all together now. I believe it’s better if we put them all explicitly. First, because it helps code to not expose unnecessary things, second reading and third, because it gives you the flexibility to add and remove annotations when needed.",
+      "range": {
+        "startLine": 132,
+        "startChar": 4,
+        "endLine": 132,
+        "endChar": 9
+      },
+      "revId": "bf3821dcf42ea9a2e2e3f461fd6f67d9a91d51b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "51a31094_d66d4ae8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-22T14:24:53Z",
+      "side": 1,
+      "message": "Class name can be NcmpServiceCmHandlerState or more suitable as the main idea is to maintain the state of  NcmpServiceCmHandler to allow the object for changing its behavior without changing its class.",
+      "range": {
+        "startLine": 134,
+        "startChar": 17,
+        "endLine": 134,
+        "endChar": 42
+      },
+      "revId": "bf3821dcf42ea9a2e2e3f461fd6f67d9a91d51b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa2f0509_fee8f6a0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-22T14:24:53Z",
+      "side": 1,
+      "message": "NB : currentNcmpServiceCmHandleState\n\nStill we can give more suitable name",
+      "range": {
+        "startLine": 136,
+        "startChar": 36,
+        "endLine": 136,
+        "endChar": 63
+      },
+      "revId": "bf3821dcf42ea9a2e2e3f461fd6f67d9a91d51b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7db79555_1cd6d0f0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-22T14:24:53Z",
+      "side": 1,
+      "message": "NB : newNcmpServiceCmHandleState\n\nStill we can give more suitable name",
+      "range": {
+        "startLine": 137,
+        "startChar": 36,
+        "endLine": 137,
+        "endChar": 61
+      },
+      "revId": "bf3821dcf42ea9a2e2e3f461fd6f67d9a91d51b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1dac3409_2687bf12",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-22T14:24:53Z",
+      "side": 1,
+      "message": "cm handle identifier",
+      "range": {
+        "startLine": 45,
+        "startChar": 41,
+        "endLine": 45,
+        "endChar": 53
+      },
+      "revId": "bf3821dcf42ea9a2e2e3f461fd6f67d9a91d51b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1a0f346b_38ed60da",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-22T14:24:53Z",
+      "side": 1,
+      "message": "NB : new ncmp cm handle state",
+      "range": {
+        "startLine": 46,
+        "startChar": 42,
+        "endLine": 46,
+        "endChar": 70
+      },
+      "revId": "bf3821dcf42ea9a2e2e3f461fd6f67d9a91d51b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4593f3e_5d048d63",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-22T14:24:53Z",
+      "side": 1,
+      "message": "NB : current ncmp cm handle state",
+      "range": {
+        "startLine": 47,
+        "startChar": 42,
+        "endLine": 47,
+        "endChar": 72
+      },
+      "revId": "bf3821dcf42ea9a2e2e3f461fd6f67d9a91d51b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a8d5cf1_be89e4de",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-22T14:24:53Z",
+      "side": 1,
+      "message": "NB : newNcmpServiceCmHandle",
+      "range": {
+        "startLine": 50,
+        "startChar": 88,
+        "endLine": 50,
+        "endChar": 113
+      },
+      "revId": "bf3821dcf42ea9a2e2e3f461fd6f67d9a91d51b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "99e89bef_03e78c80",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-22T14:24:53Z",
+      "side": 1,
+      "message": "NB : currentNcmpServiceCmHandle",
+      "range": {
+        "startLine": 51,
+        "startChar": 38,
+        "endLine": 51,
+        "endChar": 65
+      },
+      "revId": "bf3821dcf42ea9a2e2e3f461fd6f67d9a91d51b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9376a649_d3a6b666",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-22T14:24:53Z",
+      "side": 1,
+      "message": "NB :  As suggested previously : newNcmpServiceCmHandle and currentNcmpServiceCmHandle",
+      "range": {
+        "startLine": 55,
+        "startChar": 61,
+        "endLine": 56,
+        "endChar": 65
+      },
+      "revId": "bf3821dcf42ea9a2e2e3f461fd6f67d9a91d51b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a833a61_60756aa6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-22T14:24:53Z",
+      "side": 1,
+      "message": "In my views it is more readable and meaningful :\n\ncmHandleStateValues.getCurrentCmHandleStateValues();\ncmHandleStateValues.getNewCmHandleStateValues();\n\nStill we can have more suitable name here.",
+      "range": {
+        "startLine": 72,
+        "startChar": 8,
+        "endLine": 73,
+        "endChar": 63
+      },
+      "revId": "bf3821dcf42ea9a2e2e3f461fd6f67d9a91d51b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dceb8e88_5df1fc81",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-22T14:24:53Z",
+      "side": 1,
+      "message": "We used \"v1\" as EventSchemaVersion all the places. Please correct me if it is different or we should be consistent.",
+      "range": {
+        "startLine": 86,
+        "startChar": 40,
+        "endLine": 86,
+        "endChar": 44
+      },
+      "revId": "bf3821dcf42ea9a2e2e3f461fd6f67d9a91d51b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1706bfac_f9f7daa4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-22T14:24:53Z",
+      "side": 1,
+      "message": "Avoid it : @Data \n\nThis annotation is a compilation of the @Getter, @Setter, @RequiredArgsConstructor, @ToString and@EqualsAndHashCode annotations all together now. I believe it’s better if we put them all explicitly. First, because it helps code to not expose unnecessary things, second reading and third, because it gives you the flexibility to add and remove annotations when needed.",
+      "range": {
+        "startLine": 91,
+        "startChar": 5,
+        "endLine": 91,
+        "endChar": 9
+      },
+      "revId": "bf3821dcf42ea9a2e2e3f461fd6f67d9a91d51b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8e04deeb_56a24be5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-22T14:24:53Z",
+      "side": 1,
+      "message": "CmHandleStateValues",
+      "range": {
+        "startLine": 92,
+        "startChar": 17,
+        "endLine": 92,
+        "endChar": 37
+      },
+      "revId": "bf3821dcf42ea9a2e2e3f461fd6f67d9a91d51b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9b063623_4af65b65",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-22T14:24:53Z",
+      "side": 1,
+      "message": "currentCmHandleStateValues",
+      "range": {
+        "startLine": 94,
+        "startChar": 23,
+        "endLine": 94,
+        "endChar": 32
+      },
+      "revId": "bf3821dcf42ea9a2e2e3f461fd6f67d9a91d51b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "47b69f96_1073875d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-22T14:24:53Z",
+      "side": 1,
+      "message": "newCmHandleStateValues",
+      "range": {
+        "startLine": 95,
+        "startChar": 23,
+        "endLine": 95,
+        "endChar": 32
+      },
+      "revId": "bf3821dcf42ea9a2e2e3f461fd6f67d9a91d51b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "51a9cef3_bcd45552",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorHelper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-22T14:24:53Z",
+      "side": 1,
+      "message": "NB : newNcmpServiceCmHandle and currentNcmpServiceCmHandle\n\nor any other more appropriate",
+      "range": {
+        "startLine": 53,
+        "startChar": 76,
+        "endLine": 54,
+        "endChar": 65
+      },
+      "revId": "bf3821dcf42ea9a2e2e3f461fd6f67d9a91d51b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7fd3fcc3_1d647ac0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorHelper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-22T14:24:53Z",
+      "side": 1,
+      "message": "else can be avoided : just return UPDATE; by default.\n\nor at first check if it is UPDATE and return CREATE by default.",
+      "range": {
+        "startLine": 60,
+        "startChar": 10,
+        "endLine": 62,
+        "endChar": 9
+      },
+      "revId": "bf3821dcf42ea9a2e2e3f461fd6f67d9a91d51b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb1efae5_c266e000",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorHelper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-22T14:24:53Z",
+      "side": 1,
+      "message": "It is vague here give some better name or use like :\n\nLcmEventsCreator.CmHandleStateValues",
+      "range": {
+        "startLine": 73,
+        "startChar": 18,
+        "endLine": 73,
+        "endChar": 54
+      },
+      "revId": "bf3821dcf42ea9a2e2e3f461fd6f67d9a91d51b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07a9c8a3_d3011fc9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorHelper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-22T14:24:53Z",
+      "side": 1,
+      "message": "Same as prevoius comments.",
+      "range": {
+        "startLine": 74,
+        "startChar": 38,
+        "endLine": 74,
+        "endChar": 119
+      },
+      "revId": "bf3821dcf42ea9a2e2e3f461fd6f67d9a91d51b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9c9ba0ee_f170352b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorHelper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-22T14:24:53Z",
+      "side": 1,
+      "message": "by returning default else can be removed from here.",
+      "range": {
+        "startLine": 81,
+        "startChar": 8,
+        "endLine": 83,
+        "endChar": 9
+      },
+      "revId": "bf3821dcf42ea9a2e2e3f461fd6f67d9a91d51b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c9011551_64b835fd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorHelper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-22T14:24:53Z",
+      "side": 1,
+      "message": "Sonar code smell : Unused assignments should be removed",
+      "range": {
+        "startLine": 121,
+        "startChar": 11,
+        "endLine": 123,
+        "endChar": 79
+      },
+      "revId": "bf3821dcf42ea9a2e2e3f461fd6f67d9a91d51b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "249f1cc5_1d681f49",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorHelper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-22T14:24:53Z",
+      "side": 1,
+      "message": "Lot of duplicate codes are here that can be extracted into common method.",
+      "range": {
+        "startLine": 87,
+        "startChar": 4,
+        "endLine": 134,
+        "endChar": 5
+      },
+      "revId": "bf3821dcf42ea9a2e2e3f461fd6f67d9a91d51b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "204a5c81_50c5c620",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorHelper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-22T14:24:53Z",
+      "side": 1,
+      "message": "Sonar code smell : Unused assignments should be removed",
+      "range": {
+        "startLine": 163,
+        "startChar": 8,
+        "endLine": 164,
+        "endChar": 62
+      },
+      "revId": "bf3821dcf42ea9a2e2e3f461fd6f67d9a91d51b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
