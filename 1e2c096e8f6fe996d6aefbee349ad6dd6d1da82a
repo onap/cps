@@ -178,6 +178,30 @@
     },
     {
       "key": {
+        "uuid": "0323de93_665a3504",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-07-22T18:33:56Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b1e4b560_6ced437a",
+      "range": {
+        "startLine": 382,
+        "startChar": 17,
+        "endLine": 382,
+        "endChar": 484
+      },
+      "revId": "1e2c096e8f6fe996d6aefbee349ad6dd6d1da82a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "49298b5a_71ead71f",
         "filename": "cps-ncmp-service/pom.xml",
         "patchSetId": 2
@@ -599,6 +623,30 @@
       "revId": "1e2c096e8f6fe996d6aefbee349ad6dd6d1da82a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9edc220c_cfdc3674",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryQuery.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-07-22T18:33:56Z",
+      "side": 1,
+      "message": "Ack - I think it could maybe be done as a future improvement then. As opposed to using two conversions to achieve the same think.",
+      "parentUuid": "2e372e17_6b32954f",
+      "range": {
+        "startLine": 116,
+        "startChar": 0,
+        "endLine": 119,
+        "endChar": 5
+      },
+      "revId": "1e2c096e8f6fe996d6aefbee349ad6dd6d1da82a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
