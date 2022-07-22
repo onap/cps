@@ -361,6 +361,30 @@
     },
     {
       "key": {
+        "uuid": "375c7039_b7d512d6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-07-22T11:46:45Z",
+      "side": 1,
+      "message": "After looking into this, if we set the state to true after already going through the data sync process it will reset the data sync state. So I feel this is the best approach to combat this",
+      "parentUuid": "15eda389_34f84210",
+      "range": {
+        "startLine": 190,
+        "startChar": 12,
+        "endLine": 190,
+        "endChar": 119
+      },
+      "revId": "8b889599e6011110c4d0557e362859f598a26f3f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2a107d0e_19c6b04a",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 3
@@ -396,6 +420,30 @@
       "side": 1,
       "message": "There is a similar one, but that is to set the composite state to READY, along with setting the initial sync state. This is being used after that process. I can look into creating a similar method within compositeStateUtils for this process.",
       "parentUuid": "2a107d0e_19c6b04a",
+      "range": {
+        "startLine": 196,
+        "startChar": 12,
+        "endLine": 201,
+        "endChar": 53
+      },
+      "revId": "8b889599e6011110c4d0557e362859f598a26f3f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d978691_b984de50",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-07-22T11:46:45Z",
+      "side": 1,
+      "message": "Have extracted a new method into composite state utils",
+      "parentUuid": "0adadb9a_d2d6a5c4",
       "range": {
         "startLine": 196,
         "startChar": 12,
