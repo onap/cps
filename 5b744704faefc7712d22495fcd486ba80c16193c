@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5eb53983_af531285",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/config/WatchdogSchedulingConfigurerSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-22T14:09:47Z",
+      "side": 1,
+      "message": "NB: def ?? groovy way.",
+      "range": {
+        "startLine": 38,
+        "startChar": 4,
+        "endLine": 38,
+        "endChar": 11
+      },
+      "revId": "5b744704faefc7712d22495fcd486ba80c16193c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "55bd1c4c_2a71cb97",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/config/WatchdogSchedulingConfigurerSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-22T14:09:47Z",
+      "side": 1,
+      "message": "NB: can use single quotes. just the groovy way.\nsame for the right hand part.",
+      "range": {
+        "startLine": 56,
+        "startChar": 33,
+        "endLine": 56,
+        "endChar": 51
+      },
+      "revId": "5b744704faefc7712d22495fcd486ba80c16193c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
