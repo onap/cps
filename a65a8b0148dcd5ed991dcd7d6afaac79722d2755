@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cb15cc65_6a8715aa",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-07-22T15:41:14Z",
+      "side": 1,
+      "message": "Just wondering why saveCmHandleState isnt used here? Seems to do same thing and saves a new method being created",
+      "range": {
+        "startLine": 206,
+        "startChar": 33,
+        "endLine": 206,
+        "endChar": 49
+      },
+      "revId": "a65a8b0148dcd5ed991dcd7d6afaac79722d2755",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "beeb3c64_1bb6a213",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CompositeStateUtils.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-07-22T15:41:14Z",
+      "side": 1,
+      "message": "nb capitalise",
+      "range": {
+        "startLine": 80,
+        "startChar": 7,
+        "endLine": 80,
+        "endChar": 8
+      },
+      "revId": "a65a8b0148dcd5ed991dcd7d6afaac79722d2755",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad94b9e2_39a4661a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/DataSyncWatchdog.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-07-22T15:41:14Z",
+      "side": 1,
+      "message": "Don\u0027t think this is needed",
+      "range": {
+        "startLine": 61,
+        "startChar": 92,
+        "endLine": 61,
+        "endChar": 105
+      },
+      "revId": "a65a8b0148dcd5ed991dcd7d6afaac79722d2755",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "166fff99_e6a4d5a3",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-07-22T15:41:14Z",
+      "side": 1,
+      "message": "Think this needs to be #dataSyncEnabled",
+      "range": {
+        "startLine": 336,
+        "startChar": 52,
+        "endLine": 336,
+        "endChar": 56
+      },
+      "revId": "a65a8b0148dcd5ed991dcd7d6afaac79722d2755",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd83ebca_c57a7e1d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-07-22T15:41:14Z",
+      "side": 1,
+      "message": "#expectedDataStoreSyncState",
+      "range": {
+        "startLine": 338,
+        "startChar": 50,
+        "endLine": 338,
+        "endChar": 64
+      },
+      "revId": "a65a8b0148dcd5ed991dcd7d6afaac79722d2755",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d04bec7e_22be5684",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-07-22T15:41:14Z",
+      "side": 1,
+      "message": "think should be single piping",
+      "range": {
+        "startLine": 364,
+        "startChar": 61,
+        "endLine": 364,
+        "endChar": 62
+      },
+      "revId": "a65a8b0148dcd5ed991dcd7d6afaac79722d2755",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "13a528bb_a7d39ee8",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/DataSyncSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-07-22T15:41:14Z",
+      "side": 1,
+      "message": "I think not needed if context is changed to single cm handle?",
+      "range": {
+        "startLine": 80,
+        "startChar": 83,
+        "endLine": 80,
+        "endChar": 89
+      },
+      "revId": "a65a8b0148dcd5ed991dcd7d6afaac79722d2755",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "90e9083b_19e09c82",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/DataSyncSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-07-22T15:41:14Z",
+      "side": 1,
+      "message": "NB swap column with resourceData to match order used in test",
+      "range": {
+        "startLine": 90,
+        "startChar": 85,
+        "endLine": 90,
+        "endChar": 100
+      },
+      "revId": "a65a8b0148dcd5ed991dcd7d6afaac79722d2755",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
