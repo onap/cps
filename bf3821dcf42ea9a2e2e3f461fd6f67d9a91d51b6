@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "54a7b8f3_a597ddcd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-22T14:56:12Z",
+      "side": 1,
+      "message": "this was agreed before. Not introducing new in this patch.",
+      "parentUuid": "c226e25f_ba20c982",
+      "range": {
+        "startLine": 59,
+        "startChar": 32,
+        "endLine": 59,
+        "endChar": 51
+      },
+      "revId": "bf3821dcf42ea9a2e2e3f461fd6f67d9a91d51b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b9d98b12_e3327e06",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
         "patchSetId": 1
@@ -163,6 +187,30 @@
     },
     {
       "key": {
+        "uuid": "838eb818_fc149205",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-22T14:56:12Z",
+      "side": 1,
+      "message": "Was agreed before.",
+      "parentUuid": "56bdd02b_c73536b7",
+      "range": {
+        "startLine": 77,
+        "startChar": 8,
+        "endLine": 77,
+        "endChar": 38
+      },
+      "revId": "bf3821dcf42ea9a2e2e3f461fd6f67d9a91d51b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "50409cf1_c5c2858d",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
         "patchSetId": 1
@@ -232,6 +280,30 @@
     },
     {
       "key": {
+        "uuid": "a5e9aa2f_2292cffa",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-22T14:56:12Z",
+      "side": 1,
+      "message": "will handle.",
+      "parentUuid": "38b13ddf_e7862bd8",
+      "range": {
+        "startLine": 132,
+        "startChar": 4,
+        "endLine": 132,
+        "endChar": 9
+      },
+      "revId": "bf3821dcf42ea9a2e2e3f461fd6f67d9a91d51b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "51a31094_d66d4ae8",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
         "patchSetId": 1
@@ -266,6 +338,30 @@
       "writtenOn": "2022-07-22T14:24:53Z",
       "side": 1,
       "message": "NB : currentNcmpServiceCmHandleState\n\nStill we can give more suitable name",
+      "range": {
+        "startLine": 136,
+        "startChar": 36,
+        "endLine": 136,
+        "endChar": 63
+      },
+      "revId": "bf3821dcf42ea9a2e2e3f461fd6f67d9a91d51b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e93a56e2_9aa41b07",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-22T14:56:12Z",
+      "side": 1,
+      "message": "in my opinion existing and target are just fine.\nin line with the existing approved naming we chose.\neg : targetCmHandleState. ( we are already using these prefixes )",
+      "parentUuid": "aa2f0509_fee8f6a0",
       "range": {
         "startLine": 136,
         "startChar": 36,
@@ -519,6 +615,30 @@
       "writtenOn": "2022-07-22T14:24:53Z",
       "side": 1,
       "message": "CmHandleStateValues",
+      "range": {
+        "startLine": 92,
+        "startChar": 17,
+        "endLine": 92,
+        "endChar": 37
+      },
+      "revId": "bf3821dcf42ea9a2e2e3f461fd6f67d9a91d51b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4bafc6df_10cc3487",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-22T14:56:12Z",
+      "side": 1,
+      "message": "Actually its not just the cmHandleState , hence I didn\u0027t named as CmHandleStateValues.\nIt is much more than that.\nIt can contain difference of dataSyncEnabledFlag , cmHandleState and cmHandleProperties at the moment as per current Lcm schema.",
+      "parentUuid": "8e04deeb_56a24be5",
       "range": {
         "startLine": 92,
         "startChar": 17,
