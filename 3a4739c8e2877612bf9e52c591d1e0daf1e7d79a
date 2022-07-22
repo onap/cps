@@ -68,6 +68,30 @@
       "revId": "3a4739c8e2877612bf9e52c591d1e0daf1e7d79a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "37bb32b2_c02aedad",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-22T14:46:59Z",
+      "side": 1,
+      "message": "Need to keep it as in case if delete it would break",
+      "parentUuid": "b5fa078e_81c37182",
+      "range": {
+        "startLine": 81,
+        "startChar": 9,
+        "endLine": 83,
+        "endChar": 9
+      },
+      "revId": "3a4739c8e2877612bf9e52c591d1e0daf1e7d79a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
