@@ -84,6 +84,30 @@
     },
     {
       "key": {
+        "uuid": "15eda389_34f84210",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-22T09:13:11Z",
+      "side": 1,
+      "message": "Cool. As we all discussed , we will keep throwing the exception and in parallel we can check with stakeholders on this.",
+      "parentUuid": "eeced929_ef842b2f",
+      "range": {
+        "startLine": 190,
+        "startChar": 12,
+        "endLine": 190,
+        "endChar": 119
+      },
+      "revId": "8b889599e6011110c4d0557e362859f598a26f3f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2a107d0e_19c6b04a",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 3
@@ -166,6 +190,30 @@
       "side": 1,
       "message": "Log.debug is used above too. Which is why I used it here for consistency.",
       "parentUuid": "e1532693_bba90f73",
+      "range": {
+        "startLine": 62,
+        "startChar": 16,
+        "endLine": 62,
+        "endChar": 33
+      },
+      "revId": "8b889599e6011110c4d0557e362859f598a26f3f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "03a92570_d0245c49",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/DataSyncWatchdog.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-22T09:13:11Z",
+      "side": 1,
+      "message": "okkz..",
+      "parentUuid": "2ba52b2e_384fdcc4",
       "range": {
         "startLine": 62,
         "startChar": 16,
