@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "98dfb23e_34bb5b57",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-22T14:38:15Z",
+      "side": 1,
+      "message": "extract into another method",
+      "range": {
+        "startLine": 274,
+        "startChar": 14,
+        "endLine": 276,
+        "endChar": 112
+      },
+      "revId": "3a4739c8e2877612bf9e52c591d1e0daf1e7d79a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f1d49c90_6638de4d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-22T14:38:15Z",
+      "side": 1,
+      "message": "NB : newCmHandleState",
+      "range": {
+        "startLine": 67,
+        "startChar": 32,
+        "endLine": 67,
+        "endChar": 51
+      },
+      "revId": "3a4739c8e2877612bf9e52c591d1e0daf1e7d79a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b5fa078e_81c37182",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-22T14:38:15Z",
+      "side": 1,
+      "message": "If newCmHandleState does not mach than by default we can call \"updateAndSaveCmHandleState\" and avoid else block here.",
+      "range": {
+        "startLine": 81,
+        "startChar": 9,
+        "endLine": 83,
+        "endChar": 9
+      },
+      "revId": "3a4739c8e2877612bf9e52c591d1e0daf1e7d79a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
