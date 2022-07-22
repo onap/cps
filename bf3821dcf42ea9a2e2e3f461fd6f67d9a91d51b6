@@ -674,6 +674,30 @@
     },
     {
       "key": {
+        "uuid": "7b987ea2_dbdb5cc9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-22T15:28:10Z",
+      "side": 1,
+      "message": "oldValues and newValues is the terminology used in the LcmEvent only.",
+      "parentUuid": "9b063623_4af65b65",
+      "range": {
+        "startLine": 94,
+        "startChar": 23,
+        "endLine": 94,
+        "endChar": 32
+      },
+      "revId": "bf3821dcf42ea9a2e2e3f461fd6f67d9a91d51b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "47b69f96_1073875d",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreator.java",
         "patchSetId": 1
@@ -685,6 +709,30 @@
       "writtenOn": "2022-07-22T14:24:53Z",
       "side": 1,
       "message": "newCmHandleStateValues",
+      "range": {
+        "startLine": 95,
+        "startChar": 23,
+        "endLine": 95,
+        "endChar": 32
+      },
+      "revId": "bf3821dcf42ea9a2e2e3f461fd6f67d9a91d51b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "131d415f_47525163",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-22T15:28:10Z",
+      "side": 1,
+      "message": "see above reply.",
+      "parentUuid": "47b69f96_1073875d",
       "range": {
         "startLine": 95,
         "startChar": 23,
