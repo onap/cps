@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5d04ed0e_4340e08a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationSemaphoresConfig.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-22T17:29:54Z",
+      "side": 1,
+      "message": "It is good to have as this adds value.\nSame as we should add and use:\n  \n    private static final String DATA_SEMAPHORE_INSTANCE_NAME \u003d \"dataSyncSemaphore\";\n    private static final String MODULE_SEMAPHORE_CONFIG_NAME \u003d \"moduleSyncSemaphoreConfig\";\n    private static final String DATA_SEMAPHORE_CONFIG_NAME \u003d \"dataSyncSemaphoreConfig\";",
+      "range": {
+        "startLine": 38,
+        "startChar": 4,
+        "endLine": 38,
+        "endChar": 87
+      },
+      "revId": "2eb760f5fe5266031e60b04d8a9713b061cfec13",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "374be193_05ca77c6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationSemaphoresConfig.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-22T17:29:54Z",
+      "side": 1,
+      "message": "We can extract a separate method to getHazelcastInstance with diff. instance name.\n\n   private HazelcastInstance getOrCreateHazelcastInstance(final String instanceName, final String configName) {\n        return Hazelcast.newHazelcastInstance(initializeDefaultMapConfig(instanceName, configName));\n    }",
+      "range": {
+        "startLine": 46,
+        "startChar": 8,
+        "endLine": 47,
+        "endChar": 103
+      },
+      "revId": "2eb760f5fe5266031e60b04d8a9713b061cfec13",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "96c89686_3ed2f15d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationSemaphoresConfig.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-22T17:29:54Z",
+      "side": 1,
+      "message": "It is redundent as mapConfig.setTimeToLiveSeconds(30); at line no. 67",
+      "range": {
+        "startLine": 48,
+        "startChar": 23,
+        "endLine": 49,
+        "endChar": 93
+      },
+      "revId": "2eb760f5fe5266031e60b04d8a9713b061cfec13",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1027f138_73f17625",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationSemaphoresConfig.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-22T17:29:54Z",
+      "side": 1,
+      "message": "return getOrCreateHazelcastInstance(MODULE_SEMAPHORE_INSTANCE_NAME,\n                MODULE_SEMAPHORE_CONFIG_NAME).getMap(MODULE_SEMAPHORE_INSTANCE_NAME);",
+      "range": {
+        "startLine": 50,
+        "startChar": 16,
+        "endLine": 50,
+        "endChar": 56
+      },
+      "revId": "2eb760f5fe5266031e60b04d8a9713b061cfec13",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "637f5e5e_0a29a3eb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationSemaphoresConfig.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-22T17:29:54Z",
+      "side": 1,
+      "message": "return getOrCreateHazelcastInstance(DATA_SEMAPHORE_INSTANCE_NAME,\n                DATA_SEMAPHORE_CONFIG_NAME).getMap(DATA_SEMAPHORE_INSTANCE_NAME);",
+      "range": {
+        "startLine": 59,
+        "startChar": 7,
+        "endLine": 61,
+        "endChar": 45
+      },
+      "revId": "2eb760f5fe5266031e60b04d8a9713b061cfec13",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9b9fe611_690c37b7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-22T17:29:54Z",
+      "side": 1,
+      "message": "private final ConcurrentMap\u003cString, Boolean\u003e moduleSyncSemaphore;",
+      "range": {
+        "startLine": 54,
+        "startChar": 4,
+        "endLine": 55,
+        "endChar": 63
+      },
+      "revId": "2eb760f5fe5266031e60b04d8a9713b061cfec13",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "561a1852_e68e6bca",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-22T17:29:54Z",
+      "side": 1,
+      "message": "What if there would be any exception occurred while \"saveCmHandleState\" operation? \nIf I am correct it would be removed once TTL time got over.",
+      "range": {
+        "startLine": 77,
+        "startChar": 16,
+        "endLine": 77,
+        "endChar": 58
+      },
+      "revId": "2eb760f5fe5266031e60b04d8a9713b061cfec13",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
