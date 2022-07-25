@@ -1,6 +1,7 @@
 .. This work is licensed under a Creative Commons Attribution 4.0 International License.
 .. http://creativecommons.org/licenses/by/4.0
 .. Copyright (C) 2021 Pantheon.tech
+.. Modifications Copyright (C) 2021-2022 Nordix Foundation
 .. _modeling:
 
 .. toctree::
@@ -71,7 +72,9 @@ Data Model
 
 NCMP stores DMI-Plugin and CM Handle relations using a data model described as per this Yang module.
 
-:download:`DMI Yang Module <api/yang/dmiYangResource.yang>`
+:download:`DMI Yang Module <api/yang/dmi-registry@2022-05-10.yang>`
+
+Note: Although additional-properties are present in the model of the dmi-registry, these are considered private metadata and as such are not queryable.
 
 Basic Concepts
 --------------
@@ -91,3 +94,11 @@ Basic Concepts
     +--------------------------------+-------------------------------------+-------------------------+
     | Passthrough-running            | config-true                         | read-write              |
     +--------------------------------+-------------------------------------+-------------------------+
+
+Querying CM Handles
+
+- **CM Handle Searches Endpoints** are used to query CM Handles.
+.. toctree::
+   :maxdepth: 1
+
+   ncmp-cmhandle-querying.rst
