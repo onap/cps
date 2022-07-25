@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "77c2775a_421c2c05",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/DataSyncWatchdog.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-07-25T13:09:07Z",
+      "side": 1,
+      "message": "Just commenting here so doesn\u0027t get lost in previous patch, I just meant the equals true bit isnt needed since unSynchronizedReadyCmHandle.getCompositeState().getDataSyncEnabled() returns a boolean anyway, otherwise its true.equals(true) returns true if ye get me, not big deal either way :)",
+      "range": {
+        "startLine": 61,
+        "startChar": 23,
+        "endLine": 61,
+        "endChar": 105
+      },
+      "revId": "5aedb5eb1e793383009d53229e280d14c8d674da",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "92c57293_78ab9880",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-07-25T13:09:07Z",
+      "side": 1,
+      "message": "nb typo initial",
+      "range": {
+        "startLine": 334,
+        "startChar": 105,
+        "endLine": 334,
+        "endChar": 130
+      },
+      "revId": "5aedb5eb1e793383009d53229e280d14c8d674da",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
