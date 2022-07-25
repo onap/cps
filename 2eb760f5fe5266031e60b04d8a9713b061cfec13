@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "4346c3d9_8f775135",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationSemaphoresConfig.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-25T11:59:18Z",
+      "side": 1,
+      "message": "Ignore this comment and use string litral all the places as previous.",
+      "parentUuid": "5d04ed0e_4340e08a",
+      "range": {
+        "startLine": 38,
+        "startChar": 4,
+        "endLine": 38,
+        "endChar": 87
+      },
+      "revId": "2eb760f5fe5266031e60b04d8a9713b061cfec13",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "374be193_05ca77c6",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationSemaphoresConfig.java",
         "patchSetId": 8
