@@ -71,3 +71,9 @@ CPS Path
 
 Several CPS APIs use the cps-path (or cpsPath in Java API) parameter.
 The CPS Path is described in detail in :doc:`cps-path`.
+
+NCMP CMHandle Querying
+======================
+
+The CM Handle searches endpoints can be used to query for CM Handles or CM Handle IDs.
+This endpoint is described in detail in :doc:`ncmp-cmhandle-querying`.
