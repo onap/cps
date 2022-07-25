@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "76a19e65_db0fbfa0",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/config/WatchdogSchedulingConfigurerSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-25T12:17:02Z",
+      "side": 1,
+      "message": "Agreed it should be like : def watchdogSchedulingConfigurer;",
+      "parentUuid": "5eb53983_af531285",
+      "range": {
+        "startLine": 38,
+        "startChar": 4,
+        "endLine": 38,
+        "endChar": 11
+      },
+      "revId": "5b744704faefc7712d22495fcd486ba80c16193c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bf0e6031_be39792c",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/config/WatchdogSchedulingConfigurerSpec.groovy",
         "patchSetId": 8
@@ -91,6 +115,30 @@
       "revId": "5b744704faefc7712d22495fcd486ba80c16193c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "44ffe702_c02fe96e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/config/WatchdogSchedulingConfigurerSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-25T12:17:02Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "55bd1c4c_2a71cb97",
+      "range": {
+        "startLine": 56,
+        "startChar": 33,
+        "endLine": 56,
+        "endChar": 51
+      },
+      "revId": "5b744704faefc7712d22495fcd486ba80c16193c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
