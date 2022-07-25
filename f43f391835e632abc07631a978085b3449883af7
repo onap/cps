@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2f8108fe_0b87f6a6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-07-25T15:03:43Z",
+      "side": 1,
+      "message": "Wouldn\u0027t make combinedQueryResult equal to a method which passes in combinedQueryResult. It\u0027s kind of confusing.\n\nYou could just directly return the values of combineWithModuleNameQuery.\n\nreturn new HashSet\u003c\u003e(combineWithModuleNameQuery(cmHandleQueryServiceParameters, combinedQueryResult).values());",
+      "range": {
+        "startLine": 80,
+        "startChar": 8,
+        "endLine": 80,
+        "endChar": 27
+      },
+      "revId": "f43f391835e632abc07631a978085b3449883af7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c9f7e4e_87b96361",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-07-25T15:03:43Z",
+      "side": 1,
+      "message": "Would move this beneath the methods that reference it.",
+      "range": {
+        "startLine": 180,
+        "startChar": 0,
+        "endLine": 188,
+        "endChar": 5
+      },
+      "revId": "f43f391835e632abc07631a978085b3449883af7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "af059d9e_3109d643",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CmHandleQueries.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-07-25T15:03:43Z",
+      "side": 1,
+      "message": "What is the difference between null(the default value of the map) and empty here with this map? How can it be null in one situation, and empty in another? Could we not just initialize it as an empty map, and then it makes the null check irrelevant.",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 13
+      },
+      "revId": "f43f391835e632abc07631a978085b3449883af7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "51fd6188_9bbc754a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-07-25T15:03:43Z",
+      "side": 1,
+      "message": "Should be pnfDemo I think?",
+      "range": {
+        "startLine": 45,
+        "startChar": 15,
+        "endLine": 45,
+        "endChar": 23
+      },
+      "revId": "f43f391835e632abc07631a978085b3449883af7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "57b1347a_f52f39f0",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/cmHandleQueriesSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-07-25T15:03:43Z",
+      "side": 1,
+      "message": "CmHandleQueriesSpec",
+      "range": {
+        "startLine": 32,
+        "startChar": 6,
+        "endLine": 32,
+        "endChar": 25
+      },
+      "revId": "f43f391835e632abc07631a978085b3449883af7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
