@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "8ab3ebd2_37451d26",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/DataSyncWatchdog.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-07-25T13:27:49Z",
+      "side": 1,
+      "message": "👍",
+      "parentUuid": "d1684700_58ab9b72",
+      "range": {
+        "startLine": 61,
+        "startChar": 23,
+        "endLine": 61,
+        "endChar": 105
+      },
+      "revId": "5aedb5eb1e793383009d53229e280d14c8d674da",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "92c57293_78ab9880",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
         "patchSetId": 7
