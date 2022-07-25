@@ -23,6 +23,7 @@ CPS Core
    design.rst
    modeling.rst
    deployment.rst
+   ncmp-cmhandle-querying.rst
    release-notes.rst
 
 DMI-Plugin
