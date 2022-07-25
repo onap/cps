@@ -22,6 +22,23 @@
       "revId": "054873c7c52bdb9fae718a0d7651d57b1a995dfc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b006c9d6_9051a7b5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/config/WatchdogSchedulingConfigurer.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-25T13:19:09Z",
+      "side": 1,
+      "message": "So this thread pool will be used for all the scheduling use cases.\nModuleSync , ModuleSync-Retry and DataSync.\nCorrect??",
+      "revId": "054873c7c52bdb9fae718a0d7651d57b1a995dfc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
