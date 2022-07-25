@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "642a1c2f_4b37ddf0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-07-25T09:20:46Z",
+      "side": 1,
+      "message": "I think could be named deleteCmHandleByCmHandleId instead or InventoryPersistence methods could even be extracted out into separate deleteCmHandleByCmHandleId method then wouldn\u0027t need private method here and adds more context to operation, happy to let pass though if rest of team happy way it is now",
+      "range": {
+        "startLine": 298,
+        "startChar": 17,
+        "endLine": 298,
+        "endChar": 58
+      },
+      "revId": "9fdaf6c0f472cad13ade1469458822d468fd2d6d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
