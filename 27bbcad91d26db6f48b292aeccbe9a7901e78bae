@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "72c26174_e416c693",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationSemaphoresConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-07-25T13:37:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fdee5df9_c92c7e38",
+      "range": {
+        "startLine": 2,
+        "startChar": 2,
+        "endLine": 2,
+        "endChar": 3
+      },
+      "revId": "27bbcad91d26db6f48b292aeccbe9a7901e78bae",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "049f4d16_bbfed4ab",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/DataSyncWatchdog.java",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "27bbcad91d26db6f48b292aeccbe9a7901e78bae",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dbb2f8f0_d4758a2f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/DataSyncWatchdog.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-07-25T13:37:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "049f4d16_bbfed4ab",
+      "range": {
+        "startLine": 2,
+        "startChar": 2,
+        "endLine": 2,
+        "endChar": 4
+      },
+      "revId": "27bbcad91d26db6f48b292aeccbe9a7901e78bae",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -92,6 +140,30 @@
       "revId": "27bbcad91d26db6f48b292aeccbe9a7901e78bae",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df6b4a1f_6d1c5a41",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/DataSyncWatchdog.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-07-25T13:37:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "48fc66ff_0c6429a4",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 96
+      },
+      "revId": "27bbcad91d26db6f48b292aeccbe9a7901e78bae",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
