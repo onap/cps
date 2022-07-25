@@ -71,7 +71,9 @@ Data Model
 
 NCMP stores DMI-Plugin and CM Handle relations using a data model described as per this Yang module.
 
-:download:`DMI Yang Module <api/yang/dmiYangResource.yang>`
+:download:`DMI Yang Module <api/yang/dmi-registry@2022-05-10.yang>`
+
+Note: Although additional-properties are present in the model of the dmi-registry, these are considered private metadata and as such are not queryable.
 
 Basic Concepts
 --------------
