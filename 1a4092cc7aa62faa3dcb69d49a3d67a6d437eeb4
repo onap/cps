@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "52713a58_deefa171",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationSemaphoresConfig.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-07-26T13:33:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dda6f495_d435a642",
+      "range": {
+        "startLine": 45,
+        "startChar": 42,
+        "endLine": 45,
+        "endChar": 61
+      },
+      "revId": "1a4092cc7aa62faa3dcb69d49a3d67a6d437eeb4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0fc808ca_93f119bc",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationSemaphoresConfig.java",
         "patchSetId": 11
@@ -45,6 +69,30 @@
       "revId": "1a4092cc7aa62faa3dcb69d49a3d67a6d437eeb4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "12fd272e_11f9b67a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationSemaphoresConfig.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-07-26T13:33:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0fc808ca_93f119bc",
+      "range": {
+        "startLine": 56,
+        "startChar": 31,
+        "endLine": 56,
+        "endChar": 48
+      },
+      "revId": "1a4092cc7aa62faa3dcb69d49a3d67a6d437eeb4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "e533be38_37e93a89",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-07-26T13:33:38Z",
+      "side": 1,
+      "message": "It is not working, when you test it with multiple instance you can see, each instance has a local haselcast map, and not one global haselcast map for all.",
+      "parentUuid": "34fce14b_3432c24b",
+      "range": {
+        "startLine": 54,
+        "startChar": 4,
+        "endLine": 55,
+        "endChar": 63
+      },
+      "revId": "1a4092cc7aa62faa3dcb69d49a3d67a6d437eeb4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4ce50983_556f245a",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
         "patchSetId": 11
@@ -91,6 +163,30 @@
       "revId": "1a4092cc7aa62faa3dcb69d49a3d67a6d437eeb4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "38a94bc3_d2ec26d9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-07-26T13:33:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ce50983_556f245a",
+      "range": {
+        "startLine": 64,
+        "startChar": 16,
+        "endLine": 64,
+        "endChar": 27
+      },
+      "revId": "1a4092cc7aa62faa3dcb69d49a3d67a6d437eeb4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "d384e01d_3d04ff36",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-07-26T13:33:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ebe13503_6b7d79d4",
+      "range": {
+        "startLine": 71,
+        "startChar": 20,
+        "endLine": 71,
+        "endChar": 62
+      },
+      "revId": "1a4092cc7aa62faa3dcb69d49a3d67a6d437eeb4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c71fd29d_c7a34ff8",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
         "patchSetId": 11
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "2e592dc0_2dbecf64",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-07-26T13:33:38Z",
+      "side": 1,
+      "message": "I want to keep semaphoreMap parameter, because I going to use it in my other commit.",
+      "parentUuid": "c71fd29d_c7a34ff8",
+      "range": {
+        "startLine": 137,
+        "startChar": 20,
+        "endLine": 137,
+        "endChar": 31
+      },
+      "revId": "1a4092cc7aa62faa3dcb69d49a3d67a6d437eeb4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b5cfd355_1c015a27",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/utils/SessionManagerIntegrationSpec.groovy",
         "patchSetId": 11
@@ -160,6 +304,30 @@
       "revId": "1a4092cc7aa62faa3dcb69d49a3d67a6d437eeb4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1c1f6d87_320dda3c",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/utils/SessionManagerIntegrationSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-07-26T13:33:38Z",
+      "side": 1,
+      "message": "The haselcast start slowly, so the first request need more time.",
+      "parentUuid": "b5cfd355_1c015a27",
+      "range": {
+        "startLine": 40,
+        "startChar": 33,
+        "endLine": 40,
+        "endChar": 37
+      },
+      "revId": "1a4092cc7aa62faa3dcb69d49a3d67a6d437eeb4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
