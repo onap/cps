@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "06f8bb50_fcad9896",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-26T10:45:58Z",
+      "side": 1,
+      "message": "NB: this will be addressed in the next patch??",
+      "range": {
+        "startLine": 276,
+        "startChar": 359,
+        "endLine": 276,
+        "endChar": 398
+      },
+      "revId": "a81857013584e3f2a0154a8876c53dbca7d9455f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "335e9376_47ba9d54",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-26T10:45:58Z",
+      "side": 1,
+      "message": "NB: same comment as above.",
+      "range": {
+        "startLine": 393,
+        "startChar": 355,
+        "endLine": 393,
+        "endChar": 394
+      },
+      "revId": "a81857013584e3f2a0154a8876c53dbca7d9455f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "837ed8d9_9bfe75d6",
+        "filename": "cps-ncmp-service/pom.xml",
+        "patchSetId": 6
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-26T10:45:58Z",
+      "side": 1,
+      "message": "is this required here ?? \nOr we introduce cps-path-parser in cps-bom and then use it here.\nWhat do others think??",
+      "range": {
+        "startLine": 51,
+        "startChar": 12,
+        "endLine": 51,
+        "endChar": 49
+      },
+      "revId": "a81857013584e3f2a0154a8876c53dbca7d9455f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
