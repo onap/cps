@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "3685d158_e3d38ce4",
+        "filename": "cps-ncmp-rest-stub/src/main/java/org/onap/cps/ncmp/rest/stub/controller/NetworkCmProxyStubController.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-07-26T15:53:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "000b7a26_ea730cee",
+      "range": {
+        "startLine": 89,
+        "startChar": 34,
+        "endLine": 89,
+        "endChar": 67
+      },
+      "revId": "5aedb5eb1e793383009d53229e280d14c8d674da",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7800448b_ce4d842a",
         "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
         "patchSetId": 7
@@ -143,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "f2e1acfc_1848ba8c",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-07-26T15:53:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f1e39516_4fe3b0ee",
+      "range": {
+        "startLine": 395,
+        "startChar": 73,
+        "endLine": 395,
+        "endChar": 77
+      },
+      "revId": "5aedb5eb1e793383009d53229e280d14c8d674da",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5e4042ef_baa971f8",
         "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
         "patchSetId": 7
@@ -187,6 +235,30 @@
       "revId": "5aedb5eb1e793383009d53229e280d14c8d674da",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b6c97f34_a83cfb95",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 418,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-07-26T15:53:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d3c72ec5_055bc20b",
+      "range": {
+        "startLine": 418,
+        "startChar": 92,
+        "endLine": 418,
+        "endChar": 142
+      },
+      "revId": "5aedb5eb1e793383009d53229e280d14c8d674da",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
