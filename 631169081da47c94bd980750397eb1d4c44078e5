@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1fd550a7_fa2a7f14",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-26T14:49:03Z",
+      "side": 1,
+      "message": "private final ConcurrentMap\u003cString, Boolean\u003e moduleSyncSemaphoreMap;",
+      "range": {
+        "startLine": 54,
+        "startChar": 4,
+        "endLine": 55,
+        "endChar": 66
+      },
+      "revId": "631169081da47c94bd980750397eb1d4c44078e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f0b5a4f0_a346ef36",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-26T14:49:03Z",
+      "side": 1,
+      "message": "private boolean hasPushedIntoSemaphoreMap(final String cmHandleId) {\n        return moduleSyncSemaphoreMap.putIfAbsent(cmHandleId, false) \u003d\u003d null;\n    }\n\nSince the map is available globally u can directly use it. (Agreed Sourabh and Priyank)",
+      "range": {
+        "startLine": 137,
+        "startChar": 4,
+        "endLine": 140,
+        "endChar": 5
+      },
+      "revId": "631169081da47c94bd980750397eb1d4c44078e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
