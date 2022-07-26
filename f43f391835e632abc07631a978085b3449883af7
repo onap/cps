@@ -167,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "9f223eb8_1b4ad9a6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CmHandleQueries.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-07-26T13:13:17Z",
+      "side": 1,
+      "message": "Its to do with efficiency, we don\u0027t want to convert cmhandles on every iteration of the loop because it is expensive, so we convert once and then remove from the list using the ids",
+      "parentUuid": "4495962f_2af91264",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 13
+      },
+      "revId": "f43f391835e632abc07631a978085b3449883af7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "51fd6188_9bbc754a",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceSpec.groovy",
         "patchSetId": 5
