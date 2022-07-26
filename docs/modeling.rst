@@ -80,6 +80,16 @@ Basic Concepts
 
     These are stored as Anchors within CPS-Core.
 
+    - **Data-sync state** is the state of the synchronization process of the CM-Handle
+
+        This enum can represent 3 states: NONE_REQUESTED, UNSYNCHRONIZED, SYNCHRONIZED
+
+        The **NONE_REQUESTED** means that the data sync is not requested by the user
+
+        **UNSYNCHRONIZED** means the cm-handle is waiting for the data sync watchdog operation to carry out the sync process
+
+        **SYNCHRONIZED** means the watchdog process has finished the synchronization successfully
+
 - **Datastores** represent different views of the cm data.
 
     Datastores are defined for NCMP to access the CPS running or operational datastores. Currently supported datastores are:
