@@ -2,6 +2,98 @@
   "comments": [
     {
       "key": {
+        "uuid": "a1956331_2d28ad2a",
+        "filename": "cps-ncmp-rest-stub/src/main/java/org/onap/cps/ncmp/rest/stub/controller/NetworkCmProxyStubController.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-07-26T13:10:30Z",
+      "side": 1,
+      "message": "Add modifications copyright",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 2
+      },
+      "revId": "5aedb5eb1e793383009d53229e280d14c8d674da",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b0f4f491_01586ba6",
+        "filename": "cps-ncmp-rest-stub/src/main/java/org/onap/cps/ncmp/rest/stub/controller/NetworkCmProxyStubController.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-07-26T13:10:30Z",
+      "side": 1,
+      "message": "NB: Perhaps just setDataSyncEnableForCmHandle(...)",
+      "range": {
+        "startLine": 89,
+        "startChar": 34,
+        "endLine": 89,
+        "endChar": 67
+      },
+      "revId": "5aedb5eb1e793383009d53229e280d14c8d674da",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7800448b_ce4d842a",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-07-26T13:10:30Z",
+      "side": 1,
+      "message": "NB: Do we need flag in the description?",
+      "range": {
+        "startLine": 395,
+        "startChar": 73,
+        "endLine": 395,
+        "endChar": 77
+      },
+      "revId": "5aedb5eb1e793383009d53229e280d14c8d674da",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e4042ef_baa971f8",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 418,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-07-26T13:10:30Z",
+      "side": 1,
+      "message": "NB: Any examples we could add?",
+      "range": {
+        "startLine": 418,
+        "startChar": 92,
+        "endLine": 418,
+        "endChar": 142
+      },
+      "revId": "5aedb5eb1e793383009d53229e280d14c8d674da",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "77c2775a_421c2c05",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/DataSyncWatchdog.java",
         "patchSetId": 7
