@@ -143,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "4495962f_2af91264",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CmHandleQueries.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-07-26T10:54:19Z",
+      "side": 1,
+      "message": "If it is done the way I mentioned above, all the tests still pass, I also did some manual tests around it and it seems to work. I think maybe the tests don\u0027t cover enough scenarios if you don\u0027t think this should work?",
+      "parentUuid": "fe0d8c71_5516bc95",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 13
+      },
+      "revId": "f43f391835e632abc07631a978085b3449883af7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "51fd6188_9bbc754a",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceSpec.groovy",
         "patchSetId": 5
