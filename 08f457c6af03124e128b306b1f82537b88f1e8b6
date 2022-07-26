@@ -49,6 +49,52 @@
     },
     {
       "key": {
+        "uuid": "ff10dbeb_3b1d315b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationSemaphoresConfig.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-26T12:24:43Z",
+      "side": 1,
+      "message": "final String hazelcastInstanceName, final String configMapName",
+      "range": {
+        "startLine": 62,
+        "startChar": 12,
+        "endLine": 62,
+        "endChar": 84
+      },
+      "revId": "08f457c6af03124e128b306b1f82537b88f1e8b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c445e144_5f5803af",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationSemaphoresConfig.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-26T12:24:43Z",
+      "side": 1,
+      "message": "NB : In my view we should supply TTL as \"30\" here as \"setTimeToLiveSeconds\" itself it descriptive enough. Avoid unnecessary conversion from minutes to Seconds.",
+      "range": {
+        "startLine": 70,
+        "startChar": 39,
+        "endLine": 70,
+        "endChar": 75
+      },
+      "revId": "08f457c6af03124e128b306b1f82537b88f1e8b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d4cdce77_1b28acc3",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
         "patchSetId": 10
@@ -93,6 +139,29 @@
       "revId": "08f457c6af03124e128b306b1f82537b88f1e8b6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "64c49619_30580e9b",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/utils/SessionManagerIntegrationSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-26T12:24:43Z",
+      "side": 1,
+      "message": "NB : Any specific reason to increase it?",
+      "range": {
+        "startLine": 40,
+        "startChar": 33,
+        "endLine": 40,
+        "endChar": 37
+      },
+      "revId": "08f457c6af03124e128b306b1f82537b88f1e8b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
