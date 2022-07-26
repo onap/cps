@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "833f3b6f_7a768240",
+        "filename": "docs/ncmp-cmhandle-querying.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-07-26T15:46:21Z",
+      "side": 1,
+      "message": "Personally, I don\u0027t think code formatting should be put in the headers of the docs. It should just be \u0027Has All Models\u0027 etc.",
+      "range": {
+        "startLine": 85,
+        "startChar": 0,
+        "endLine": 85,
+        "endChar": 13
+      },
+      "revId": "5a67fc673c6e92ae176dd7eaec6c27160b281f41",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "832b33ab_96f515fa",
+        "filename": "docs/ncmp-cmhandle-querying.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-07-26T15:46:21Z",
+      "side": 1,
+      "message": "Same as above",
+      "range": {
+        "startLine": 111,
+        "startChar": 0,
+        "endLine": 111,
+        "endChar": 16
+      },
+      "revId": "5a67fc673c6e92ae176dd7eaec6c27160b281f41",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
