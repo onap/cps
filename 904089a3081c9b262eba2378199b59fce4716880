@@ -1,0 +1,303 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "544c22fe_a21a869c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-26T08:37:01Z",
+      "side": 1,
+      "message": "NB : We should extract out into variable from if block for more readability as same can be used for target cm handle state match.",
+      "range": {
+        "startLine": 63,
+        "startChar": 12,
+        "endLine": 63,
+        "endChar": 49
+      },
+      "revId": "904089a3081c9b262eba2378199b59fce4716880",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "635cd236_404e01c7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-26T08:37:01Z",
+      "side": 1,
+      "message": "method name can be more appropriate\nlike : updateAndGetCmHandleState or other",
+      "range": {
+        "startLine": 74,
+        "startChar": 37,
+        "endLine": 74,
+        "endChar": 78
+      },
+      "revId": "904089a3081c9b262eba2378199b59fce4716880",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4df761cf_1632eb3c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-26T08:37:01Z",
+      "side": 1,
+      "message": "Class name can be more suitable as the main idea is to maintain the state of  NcmpServiceCmHandler to allow the object for changing its behavior without changing it\u0027s class that does not reflect from this class name.",
+      "range": {
+        "startLine": 148,
+        "startChar": 17,
+        "endLine": 148,
+        "endChar": 42
+      },
+      "revId": "904089a3081c9b262eba2378199b59fce4716880",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "143444df_4bb62e54",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreator.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-26T08:37:01Z",
+      "side": 1,
+      "message": "Choosing informative class names\n\nClass name can be more suitable as it contain dataSyncEnabledFlag , cmHandleState with cmHandleProperties and same applies for Values class name at line no 96/97.\n\nMay be we can decide with team.",
+      "range": {
+        "startLine": 94,
+        "startChar": 30,
+        "endLine": 94,
+        "endChar": 44
+      },
+      "revId": "904089a3081c9b262eba2378199b59fce4716880",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a4b2b229_b565ef7e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorHelper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-26T08:37:01Z",
+      "side": 1,
+      "message": "Let\u0027s have a quick call with team as there are multiple thing to decide into it.",
+      "range": {
+        "startLine": 44,
+        "startChar": 13,
+        "endLine": 44,
+        "endChar": 35
+      },
+      "revId": "904089a3081c9b262eba2378199b59fce4716880",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c0ae5075_9a20042e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorHelper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-26T08:37:01Z",
+      "side": 1,
+      "message": "else can be avoided : just return UPDATE; by default.",
+      "range": {
+        "startLine": 60,
+        "startChar": 10,
+        "endLine": 62,
+        "endChar": 9
+      },
+      "revId": "904089a3081c9b262eba2378199b59fce4716880",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5ca89b17_753000d2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorHelper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-26T08:37:01Z",
+      "side": 1,
+      "message": "It is vague here give some better name like CmHandleStateValues or something else.",
+      "range": {
+        "startLine": 73,
+        "startChar": 35,
+        "endLine": 73,
+        "endChar": 63
+      },
+      "revId": "904089a3081c9b262eba2378199b59fce4716880",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "39137822_bcfa5e7c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorHelper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-26T08:37:01Z",
+      "side": 1,
+      "message": "else can be avoided",
+      "range": {
+        "startLine": 81,
+        "startChar": 10,
+        "endLine": 83,
+        "endChar": 9
+      },
+      "revId": "904089a3081c9b262eba2378199b59fce4716880",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07862e2b_461b3303",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorHelper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-26T08:37:01Z",
+      "side": 1,
+      "message": "isPublicCmHandlePropertiesAreEqual",
+      "range": {
+        "startLine": 187,
+        "startChar": 27,
+        "endLine": 187,
+        "endChar": 59
+      },
+      "revId": "904089a3081c9b262eba2378199b59fce4716880",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "98cc4f0b_4ce8b9ef",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorHelper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-26T08:37:01Z",
+      "side": 1,
+      "message": "Map.equals() works by comparing each key and value using Object.equals(), which implies that both the keys and values need to properly implement the equals() method.",
+      "range": {
+        "startLine": 189,
+        "startChar": 8,
+        "endLine": 194,
+        "endChar": 108
+      },
+      "revId": "904089a3081c9b262eba2378199b59fce4716880",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ba60536_1b61128d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorHelper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-26T08:37:01Z",
+      "side": 1,
+      "message": "Very difficult to understand if we can break it into more readable with informative variable name  sothat we can relate it easly. Right now it takes time to understand. Need teams view here as I mentioned in my early comment at begning.",
+      "range": {
+        "startLine": 197,
+        "startChar": 52,
+        "endLine": 197,
+        "endChar": 86
+      },
+      "revId": "904089a3081c9b262eba2378199b59fce4716880",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc1408a9_8b5ff23d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorHelper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-26T08:37:01Z",
+      "side": 1,
+      "message": "Need to give more suitable name",
+      "range": {
+        "startLine": 199,
+        "startChar": 47,
+        "endLine": 199,
+        "endChar": 61
+      },
+      "revId": "904089a3081c9b262eba2378199b59fce4716880",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4a6c8a5a_19708793",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorHelper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-26T08:37:01Z",
+      "side": 1,
+      "message": "If I am correct you are trying to add value difference here into differenceMap. \n\nFor example :\n\nMap\u003cString, String\u003e targetCmHandleProperties \u003d new HashMap\u003cString, String\u003e();\ntargetCmHandleProperties.put(\"name1\", \"value1\");\ntargetCmHandleProperties.put(\"name2\", \"value2\");\ntargetCmHandleProperties.put(\"name3\", \"value3\");\n\nMap\u003cString, String\u003e existingCmHandleProperties \u003d new HashMap\u003cString, String\u003e();\nexistingCmHandleProperties.put(\"name1\", \"value1\");\nexistingCmHandleProperties.put(\"name5\", \"value5\");\nexistingCmHandleProperties.put(\"name3\", \"value4\");\n\nif \"difference\" at line no 203 : not equal: only on left\u003d{name2\u003dvalue2}: only on right\u003d{name5\u003dvalue5}: value differences\u003d{name3\u003d(value3, value4)}\n\nthen \"differenceMap\" will be \n\n{newValues\u003d{name3\u003dvalue3}, oldValues\u003d{name3\u003dvalue4}}\n\nplease correct me if I am wrong.",
+      "range": {
+        "startLine": 203,
+        "startChar": 8,
+        "endLine": 209,
+        "endChar": 11
+      },
+      "revId": "904089a3081c9b262eba2378199b59fce4716880",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}

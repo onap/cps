@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "882e85f2_90e46daa",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-26T08:37:01Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "54a7b8f3_a597ddcd",
+      "range": {
+        "startLine": 59,
+        "startChar": 32,
+        "endLine": 59,
+        "endChar": 51
+      },
+      "revId": "bf3821dcf42ea9a2e2e3f461fd6f67d9a91d51b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b9d98b12_e3327e06",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
         "patchSetId": 1
