@@ -143,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "2caa75e9_a8877b1c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-26T14:00:14Z",
+      "side": 1,
+      "message": "Ideally it should work.\nMaybe we can jump on a quick call and check.",
+      "parentUuid": "e533be38_37e93a89",
+      "range": {
+        "startLine": 54,
+        "startChar": 4,
+        "endLine": 55,
+        "endChar": 63
+      },
+      "revId": "1a4092cc7aa62faa3dcb69d49a3d67a6d437eeb4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4ce50983_556f245a",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
         "patchSetId": 11
