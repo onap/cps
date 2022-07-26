@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1c3f0f05_3ec5d5e7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationSemaphoresConfig.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-07-26T09:53:39Z",
+      "side": 1,
+      "message": "get or create ? based on the return is it not just create ?",
+      "range": {
+        "startLine": 61,
+        "startChar": 30,
+        "endLine": 61,
+        "endChar": 58
+      },
+      "revId": "08f457c6af03124e128b306b1f82537b88f1e8b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d4cdce77_1b28acc3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-07-26T09:53:39Z",
+      "side": 1,
+      "message": "extract maybe for readability ?",
+      "range": {
+        "startLine": 64,
+        "startChar": 16,
+        "endLine": 64,
+        "endChar": 67
+      },
+      "revId": "08f457c6af03124e128b306b1f82537b88f1e8b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
