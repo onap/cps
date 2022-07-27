@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "deee6c50_b7d93f82",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-27T09:49:14Z",
+      "side": 1,
+      "message": "So the requirement is :\n\n1. If we are trying to set the flag as it is before then ignore it.\n2. we are not allowed to set the flag of a cmHandle if it is not in READY state.\n\nCorrect?",
+      "range": {
+        "startLine": 193,
+        "startChar": 4,
+        "endLine": 209,
+        "endChar": 5
+      },
+      "revId": "7c5b780ff8f419014fdac33f7e9c1f824a90e8d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c8bde99d_410448ae",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-27T09:49:14Z",
+      "side": 1,
+      "message": "here it takes in other values as well.",
+      "range": {
+        "startLine": 341,
+        "startChar": 74,
+        "endLine": 341,
+        "endChar": 90
+      },
+      "revId": "7c5b780ff8f419014fdac33f7e9c1f824a90e8d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
