@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "bb29ece2_368863d4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationSemaphoresConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-07-27T07:50:39Z",
+      "side": 1,
+      "message": "Initialized Module Sync Hazelcast Instance",
+      "range": {
+        "startLine": 40,
+        "startChar": 15,
+        "endLine": 40,
+        "endChar": 30
+      },
+      "revId": "e17ca20873af2438f842d5f62f818c260021fb61",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1503372d_c12a30f9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationSemaphoresConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-07-27T07:50:39Z",
+      "side": 1,
+      "message": "Initialized Data Sync Hazelcast Instance",
+      "range": {
+        "startLine": 52,
+        "startChar": 15,
+        "endLine": 52,
+        "endChar": 30
+      },
+      "revId": "e17ca20873af2438f842d5f62f818c260021fb61",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "74401a90_ac2d52e9",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/DataSyncWatchdog.java",
         "patchSetId": 3
@@ -18,6 +64,52 @@
         "startChar": 16,
         "endLine": 58,
         "endChar": 64
+      },
+      "revId": "e17ca20873af2438f842d5f62f818c260021fb61",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "04a2ab56_1c9e510e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/DataSyncWatchdog.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-07-27T07:50:39Z",
+      "side": 1,
+      "message": "Error retrieving resource data for cm handle:",
+      "range": {
+        "startLine": 64,
+        "startChar": 31,
+        "endLine": 64,
+        "endChar": 71
+      },
+      "revId": "e17ca20873af2438f842d5f62f818c260021fb61",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7f356feb_071bf30d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/DataSyncWatchdog.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-07-27T07:50:39Z",
+      "side": 1,
+      "message": "another",
+      "range": {
+        "startLine": 73,
+        "startChar": 51,
+        "endLine": 73,
+        "endChar": 57
       },
       "revId": "e17ca20873af2438f842d5f62f818c260021fb61",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
@@ -64,6 +156,75 @@
         "startChar": 14,
         "endLine": 128,
         "endChar": 35
+      },
+      "revId": "e17ca20873af2438f842d5f62f818c260021fb61",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b05a9093_dd171af5",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/SyncUtilsSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-07-27T07:50:39Z",
+      "side": 1,
+      "message": "the data node exists",
+      "range": {
+        "startLine": 133,
+        "startChar": 12,
+        "endLine": 133,
+        "endChar": 20
+      },
+      "revId": "e17ca20873af2438f842d5f62f818c260021fb61",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "94e2de91_86f4cdfa",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/SyncUtilsSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-07-27T07:50:39Z",
+      "side": 1,
+      "message": "The heading of this test says that it is UNSYNCHRONISED and READY. \nEither change the heading or add a variable and edit the heading accordingly",
+      "range": {
+        "startLine": 134,
+        "startChar": 12,
+        "endLine": 134,
+        "endChar": 49
+      },
+      "revId": "e17ca20873af2438f842d5f62f818c260021fb61",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f72f491_7e866ebf",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/utils/SessionManagerIntegrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-07-27T07:50:39Z",
+      "side": 1,
+      "message": "Why was this increased?",
+      "range": {
+        "startLine": 40,
+        "startChar": 33,
+        "endLine": 40,
+        "endChar": 37
       },
       "revId": "e17ca20873af2438f842d5f62f818c260021fb61",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
