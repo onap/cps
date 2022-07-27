@@ -92,6 +92,29 @@
       "revId": "8d550e30524f9450a811a5abab068263c2b42d32",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e98f9d6e_1f5afe17",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdogSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-27T09:33:29Z",
+      "side": 1,
+      "message": "dont pass in the real object.\nAs you are not doing anything with it so better to pass Stubbed object.\n\ndef stubbedMap \u003d Stub(ConcurrentMap)\n\nand then you can use it as \n\ndef objectUnderTest \u003d new ModuleSyncWatchdog(mockInventoryPersistence, mockSyncUtils, mockModuleSyncService,  stubbedMap as ConcurrentHashMap)",
+      "range": {
+        "startLine": 45,
+        "startChar": 114,
+        "endLine": 45,
+        "endChar": 139
+      },
+      "revId": "8d550e30524f9450a811a5abab068263c2b42d32",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
