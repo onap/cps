@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "545b4abc_b9d41477",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-07-27T09:56:38Z",
+      "side": 1,
+      "message": "Exactly, in line with the A/C of the story, we will do both of these.\nThe silently ignoring the data sync enabled was brought up in the CPS meeting last Friday, instead of throwing a data validation exception.\n\nhttps://jira.onap.org/browse/CPS-1133",
+      "parentUuid": "deee6c50_b7d93f82",
+      "range": {
+        "startLine": 193,
+        "startChar": 4,
+        "endLine": 209,
+        "endChar": 5
+      },
+      "revId": "7c5b780ff8f419014fdac33f7e9c1f824a90e8d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c8bde99d_410448ae",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
         "patchSetId": 8
@@ -45,6 +69,30 @@
       "revId": "7c5b780ff8f419014fdac33f7e9c1f824a90e8d8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "61ca9bf2_18f46bda",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-07-27T09:56:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c8bde99d_410448ae",
+      "range": {
+        "startLine": 341,
+        "startChar": 74,
+        "endLine": 341,
+        "endChar": 90
+      },
+      "revId": "7c5b780ff8f419014fdac33f7e9c1f824a90e8d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
