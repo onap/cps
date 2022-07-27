@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6d399ee9_0c023e27",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-27T11:10:38Z",
+      "side": 1,
+      "message": "NB : extract as variable.",
+      "range": {
+        "startLine": 198,
+        "startChar": 13,
+        "endLine": 199,
+        "endChar": 51
+      },
+      "revId": "ee843209a6c561252536a4b50005ec23caf1d31c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
