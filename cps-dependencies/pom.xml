@@ -33,14 +33,6 @@
     <name>${project.groupId}:${project.artifactId}</name>
     <description>This artifact contains dependencyManagement declarations of upstream versions.</description>
 
-    <repositories>
-        <repository>
-            <id>nordix-liquibase-repo</id>
-            <name>liquibase</name>
-            <url>https://artifactory.nordix.org/artifactory/liquibase</url>
-        </repository>
-    </repositories>
-
     <properties>
         <groovy.version>3.0.8</groovy.version>
         <nexusproxy>https://nexus.onap.org</nexusproxy>
@@ -182,7 +174,7 @@
             <dependency>
                 <groupId>org.liquibase</groupId>
                 <artifactId>liquibase-core</artifactId>
-                <version>4.4.2-nordix</version>
+                <version>4.14.0</version>
             </dependency>
             <dependency>
                 <groupId>com.tngtech.archunit</groupId>
