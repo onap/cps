@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d3732907_3cc1ed87",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CmHandleQueries.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-27T15:46:58Z",
+      "side": 1,
+      "message": "queryDataNodes from InventoryPersistence is renamed to this method.",
+      "range": {
+        "startLine": 120,
+        "startChar": 26,
+        "endLine": 120,
+        "endChar": 55
+      },
+      "revId": "19b7e17dc370d69301dce863dfd0760e2d50f78a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
