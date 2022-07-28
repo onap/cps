@@ -76,7 +76,9 @@ public class SyncUtils {
             return Collections.emptyList();
         }
         Collections.shuffle(advisedCmHandlesAsDataNodeList);
-        return convertCmHandlesDataNodesToYangModelCmHandles(advisedCmHandlesAsDataNodeList);
+        return advisedCmHandlesAsDataNodeList.stream()
+                .map(dataNode -> dataNode.getLeaves().get("id").toString())
+                .map(inventoryPersistence::getYangModelCmHandle).collect(Collectors.toList());
     }
 
     /**
@@ -111,9 +113,11 @@ public class SyncUtils {
      */
     public List<YangModelCmHandle> getModuleSyncFailedCmHandles() {
         final List<DataNode> lockedCmHandlesAsDataNodeList = inventoryPersistence.getCmHandleDataNodesByCpsPath(
-            "//lock-reason[@reason=\"LOCKED_MODULE_SYNC_FAILED\"]/ancestor::cm-handles",
-            FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
-        return convertCmHandlesDataNodesToYangModelCmHandles(lockedCmHandlesAsDataNodeList);
+                "//lock-reason[@reason=\"LOCKED_MODULE_SYNC_FAILED\"]/ancestor::cm-handles",
+                FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
+        return lockedCmHandlesAsDataNodeList.stream()
+                .map(cmHandle -> YangDataConverter.convertCmHandleToYangModel(cmHandle,
+                        cmHandle.getLeaves().get("id").toString())).collect(Collectors.toList());
     }
 
     /**
@@ -187,9 +191,4 @@ public class SyncUtils {
         return jsonObjectMapper.asJsonString(Map.of(firstElement.getKey(), firstElement.getValue()));
     }
 
-    private List<YangModelCmHandle> convertCmHandlesDataNodesToYangModelCmHandles(
-            final List<DataNode> cmHandlesAsDataNodeList) {
-        return cmHandlesAsDataNodeList.stream().map(dataNode -> YangDataConverter.convertCmHandleToYangModel(dataNode,
-                dataNode.getLeaves().get("id").toString())).collect(Collectors.toList());
-    }
 }
