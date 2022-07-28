@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "8a99ab99_aa5daf38",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-07-28T14:36:22Z",
+      "side": 1,
+      "message": "Have now just directly invoked the cpsDataService method for deleting data nodes",
+      "parentUuid": "890910eb_7636aa55",
+      "range": {
+        "startLine": 208,
+        "startChar": 15,
+        "endLine": 209,
+        "endChar": 38
+      },
+      "revId": "7ba5f52649ea01a35eca6fbfe2846e462e399d5a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ae626aa3_3e375db2",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
         "patchSetId": 10
@@ -39,6 +63,24 @@
       "revId": "7ba5f52649ea01a35eca6fbfe2846e462e399d5a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ac3757ad_ad2e3a75",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-07-28T14:36:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ae626aa3_3e375db2",
+      "revId": "7ba5f52649ea01a35eca6fbfe2846e462e399d5a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "8999bb20_b562c9a2",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-07-28T14:36:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c795ca3a_e863f88b",
+      "range": {
+        "startLine": 352,
+        "startChar": 194,
+        "endLine": 352,
+        "endChar": 235
+      },
+      "revId": "7ba5f52649ea01a35eca6fbfe2846e462e399d5a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e7a644df_0f0758bf",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandlerSpec.groovy",
         "patchSetId": 10
@@ -76,6 +142,30 @@
       "writtenOn": "2022-07-28T14:29:25Z",
       "side": 1,
       "message": "Suggest these first two could be put in instead of (_,_ \nthe publicprop one needs to use contains but the first two can match completely",
+      "range": {
+        "startLine": 110,
+        "startChar": 44,
+        "endLine": 110,
+        "endChar": 54
+      },
+      "revId": "7ba5f52649ea01a35eca6fbfe2846e462e399d5a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "adfe8942_2a36974c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandlerSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-07-28T14:36:22Z",
+      "side": 1,
+      "message": "Have removed in accordance with Lee Anjellas comment :)",
+      "parentUuid": "e7a644df_0f0758bf",
       "range": {
         "startLine": 110,
         "startChar": 44,
