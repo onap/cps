@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse;
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.Status;
@@ -41,6 +42,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("${rest.api.ncmp-inventory-base-path}")
 @RequiredArgsConstructor
+@Slf4j
 public class NetworkCmProxyInventoryController implements NetworkCmProxyInventoryApi {
 
     private final NetworkCmProxyDataService networkCmProxyDataService;
@@ -54,6 +56,7 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
     @Override
     public ResponseEntity updateDmiPluginRegistration(
         final @Valid RestDmiPluginRegistration restDmiPluginRegistration) {
+        log.info("RestDmiPluginRegistration : {} ", restDmiPluginRegistration.toString());
         final DmiPluginRegistrationResponse dmiPluginRegistrationResponse =
             networkCmProxyDataService.updateDmiRegistrationAndSyncModule(
                 ncmpRestInputMapper.toDmiPluginRegistration(restDmiPluginRegistration));
