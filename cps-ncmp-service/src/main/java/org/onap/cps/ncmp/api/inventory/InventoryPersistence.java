@@ -27,6 +27,7 @@ import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED;
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
 
 import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -96,7 +97,8 @@ public class InventoryPersistence {
             jsonObjectMapper.asJsonString(compositeState));
         cpsDataService.replaceNodeTree(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
             String.format(CM_HANDLE_XPATH_TEMPLATE, cmHandleId),
-            cmHandleJsonData, OffsetDateTime.now());
+            cmHandleJsonData, OffsetDateTime.parse(DateTimeFormatter
+                        .ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ").format(OffsetDateTime.now())));
     }
 
     /**
