@@ -22,6 +22,7 @@ CPS Core
    admin-guide.rst
    design.rst
    modeling.rst
+   cps-events.rst
    deployment.rst
    release-notes.rst
 
