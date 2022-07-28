@@ -241,6 +241,30 @@
     },
     {
       "key": {
+        "uuid": "4bd5344f_c7bbf8c2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-07-28T15:53:31Z",
+      "side": 1,
+      "message": "I think they are related since they are acting on the same data, reason why CmHandlesQueries was created is because it uses cpspath queries to get cmhandle data, but we can see InventoryPersistence still has saveCmHandleState, getYangModelCmHandle etc",
+      "parentUuid": "95057aee_16c3d295",
+      "range": {
+        "startLine": 54,
+        "startChar": 4,
+        "endLine": 56,
+        "endChar": 81
+      },
+      "revId": "19b7e17dc370d69301dce863dfd0760e2d50f78a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e25fe2b9_aff0b47e",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceSpec.groovy",
         "patchSetId": 7
