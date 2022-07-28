@@ -55,6 +55,98 @@
     },
     {
       "key": {
+        "uuid": "919ee4c6_aeabff42",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-28T15:06:09Z",
+      "side": 1,
+      "message": "NB: Collections.emptyMap()",
+      "range": {
+        "startLine": 144,
+        "startChar": 12,
+        "endLine": 144,
+        "endChar": 35
+      },
+      "revId": "19b7e17dc370d69301dce863dfd0760e2d50f78a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b584035_ba59f6d8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-28T15:06:09Z",
+      "side": 1,
+      "message": "same as above.",
+      "range": {
+        "startLine": 161,
+        "startChar": 16,
+        "endLine": 161,
+        "endChar": 39
+      },
+      "revId": "19b7e17dc370d69301dce863dfd0760e2d50f78a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "73ce709d_b1df80d7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CmHandleQueries.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-28T15:06:09Z",
+      "side": 1,
+      "message": "NB: Collections.emptyMap to be uniform.",
+      "range": {
+        "startLine": 59,
+        "startChar": 12,
+        "endLine": 59,
+        "endChar": 35
+      },
+      "revId": "19b7e17dc370d69301dce863dfd0760e2d50f78a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "73020df6_21f6ddbd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CmHandleQueries.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-28T15:06:09Z",
+      "side": 1,
+      "message": "NB: Collections.emptyMap for uniformity.",
+      "range": {
+        "startLine": 92,
+        "startChar": 12,
+        "endLine": 92,
+        "endChar": 35
+      },
+      "revId": "19b7e17dc370d69301dce863dfd0760e2d50f78a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d3732907_3cc1ed87",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CmHandleQueries.java",
         "patchSetId": 7
@@ -119,6 +211,75 @@
         "startChar": 26,
         "endLine": 120,
         "endChar": 55
+      },
+      "revId": "19b7e17dc370d69301dce863dfd0760e2d50f78a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "95057aee_16c3d295",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-28T15:06:09Z",
+      "side": 1,
+      "message": "NB: Is there any concrete relation between CmHandleQueries and InventoryPersistence?\nSince both classes are in the same package then you can go with the default package level scope.\n\nOTHERWISE\n\nkeep them separate in both the classes as private.\n\nSuggestions??",
+      "range": {
+        "startLine": 54,
+        "startChar": 4,
+        "endLine": 56,
+        "endChar": 81
+      },
+      "revId": "19b7e17dc370d69301dce863dfd0760e2d50f78a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e25fe2b9_aff0b47e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-28T15:06:09Z",
+      "side": 1,
+      "message": "NB: can create a simple one liner utility method .",
+      "range": {
+        "startLine": 44,
+        "startChar": 4,
+        "endLine": 49,
+        "endChar": 116
+      },
+      "revId": "19b7e17dc370d69301dce863dfd0760e2d50f78a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "42440608_064a024a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-28T15:06:09Z",
+      "side": 1,
+      "message": "NB: can use \"def\" to look like groovy way.",
+      "range": {
+        "startLine": 51,
+        "startChar": 4,
+        "endLine": 51,
+        "endChar": 39
       },
       "revId": "19b7e17dc370d69301dce863dfd0760e2d50f78a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
