@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "f5e9da14_e52a3ab6",
+        "filename": "cps-ncmp-service/pom.xml",
+        "patchSetId": 7
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-07-28T11:11:07Z",
+      "side": 1,
+      "message": "It is on line 4 2020 - 2022",
+      "parentUuid": "4de72757_005cb3aa",
+      "revId": "19b7e17dc370d69301dce863dfd0760e2d50f78a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d3732907_3cc1ed87",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CmHandleQueries.java",
         "patchSetId": 7
