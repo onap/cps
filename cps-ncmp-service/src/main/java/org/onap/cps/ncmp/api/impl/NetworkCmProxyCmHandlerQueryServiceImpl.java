@@ -217,7 +217,9 @@ public class NetworkCmProxyCmHandlerQueryServiceImpl implements NetworkCmProxyCm
     }
 
     private Set<String> getAllCmHandleIds() {
-        return inventoryPersistence.getAnchors().parallelStream().map(Anchor::getName).collect(Collectors.toSet());
+        return inventoryPersistence.getDataNode("/dmi-registry")
+            .getChildDataNodes().stream().map(dataNode -> dataNode.getLeaves().get("id").toString())
+            .collect(Collectors.toSet());
     }
 
     private NcmpServiceCmHandle createNcmpServiceCmHandle(final DataNode dataNode) {
