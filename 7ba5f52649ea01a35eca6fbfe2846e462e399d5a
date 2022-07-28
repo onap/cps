@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "890910eb_7636aa55",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-07-28T13:50:50Z",
+      "side": 1,
+      "message": "i see why you needed to refactor deleteDataNode method in inventory class but i thought the point of the inventory class was so the names are not exposed esp for NCMP dataspace name , however for NFP operational rather than going through inventory maybe you can just call cpsDataservice for NFP operational ? see Toine\u0027s correction comment I think similar for https://gerrit.onap.org/r/c/cps/+/129925/1/cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java#121",
+      "range": {
+        "startLine": 208,
+        "startChar": 15,
+        "endLine": 209,
+        "endChar": 38
+      },
+      "revId": "7ba5f52649ea01a35eca6fbfe2846e462e399d5a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
