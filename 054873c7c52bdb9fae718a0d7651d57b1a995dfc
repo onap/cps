@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "038bcb8a_45d28827",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/InventoryPersistenceSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-28T14:13:08Z",
+      "side": 0,
+      "message": "FYI. Test cases are removed due to refactoring of the methods from InventoryPersistence to CmHandleQueries.",
+      "revId": "054873c7c52bdb9fae718a0d7651d57b1a995dfc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
