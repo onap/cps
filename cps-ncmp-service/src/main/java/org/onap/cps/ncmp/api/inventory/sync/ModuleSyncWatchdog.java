@@ -33,6 +33,7 @@ import org.onap.cps.ncmp.api.inventory.DataStoreSyncState;
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.api.inventory.LockReasonCategory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -56,6 +57,7 @@ public class ModuleSyncWatchdog {
      * Execute Cm Handle poll which changes the cm handle state from 'ADVISED' to 'READY'.
      */
     @Scheduled(fixedDelayString = "${timers.advised-modules-sync.sleep-time-ms:30000}")
+    @Async
     public void executeAdvisedCmHandlePoll() {
         syncUtils.getAdvisedCmHandles().forEach(advisedCmHandle -> {
             final String cmHandleId = advisedCmHandle.getId();
@@ -66,19 +68,21 @@ public class ModuleSyncWatchdog {
                     moduleSyncService.deleteSchemaSetIfExists(advisedCmHandle);
                     moduleSyncService.syncAndCreateSchemaSetAndAnchor(advisedCmHandle);
                     setCompositeStateToReadyWithInitialDataStoreSyncState().accept(compositeState);
-                    updateModuleSyncSemaphoreMap(cmHandleId);
                 } catch (final Exception e) {
                     setCompositeStateToLocked().accept(compositeState);
                     syncUtils.updateLockReasonDetailsAndAttempts(compositeState,
                             LockReasonCategory.LOCKED_MODULE_SYNC_FAILED, e.getMessage());
+                    removeFromModuleSyncSemaphoreMap(cmHandleId);
                 }
                 inventoryPersistence.saveCmHandleState(cmHandleId, compositeState);
+                updateModuleSyncSemaphoreMap(cmHandleId);
                 log.debug("{} is now in {} state", cmHandleId, compositeState.getCmHandleState().name());
             } else {
                 log.debug("{} already processed by another instance", cmHandleId);
             }
+            log.info("Finished moving ADVISED->READY for cmHandleId: {}", cmHandleId);
         });
-        log.debug("No Cm-Handles currently found in an ADVISED state");
+        log.info("No Cm-Handles currently found in an ADVISED state");
     }
 
     /**
@@ -92,7 +96,7 @@ public class ModuleSyncWatchdog {
             final boolean isReadyForRetry = syncUtils.isReadyForRetry(compositeState);
             if (isReadyForRetry) {
                 setCompositeStateToAdvisedAndRetainOldLockReasonDetails(compositeState);
-                log.debug("Locked cm handle {} is being re-synced", lockedCmHandle.getId());
+                log.info("Locked cm handle {} is being re-synced", lockedCmHandle.getId());
                 inventoryPersistence.saveCmHandleState(lockedCmHandle.getId(), compositeState);
             }
         }
@@ -139,4 +143,9 @@ public class ModuleSyncWatchdog {
     private boolean hasPushedIntoSemaphoreMap(final String cmHandleId) {
         return moduleSyncSemaphoreMap.putIfAbsent(cmHandleId, false) == null;
     }
+
+    private void removeFromModuleSyncSemaphoreMap(final String cmHandleId) {
+        moduleSyncSemaphoreMap.remove(cmHandleId);
+    }
+
 }
