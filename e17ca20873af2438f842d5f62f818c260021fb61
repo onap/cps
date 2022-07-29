@@ -469,6 +469,30 @@
       "revId": "e17ca20873af2438f842d5f62f818c260021fb61",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "593689fb_3b0f1cbf",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/utils/SessionManagerIntegrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-07-29T11:12:40Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "949bacba_f085e02d",
+      "range": {
+        "startLine": 40,
+        "startChar": 33,
+        "endLine": 40,
+        "endChar": 37
+      },
+      "revId": "e17ca20873af2438f842d5f62f818c260021fb61",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
