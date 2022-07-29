@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "4baba509_bd3996ea",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryQuery.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-07-29T14:28:33Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7d4ac933_fd32076c",
+      "range": {
+        "startLine": 59,
+        "startChar": 45,
+        "endLine": 59,
+        "endChar": 50
+      },
+      "revId": "29e17073acc4396e9db3e25821cdb2b5ba0f670d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "04b1838b_6cdb819d",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryQuery.java",
         "patchSetId": 1
@@ -140,6 +164,30 @@
       "revId": "29e17073acc4396e9db3e25821cdb2b5ba0f670d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1c2bd003_813beb4f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryQuery.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-07-29T14:28:33Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "37f71e5c_9a0daeb8",
+      "range": {
+        "startLine": 64,
+        "startChar": 16,
+        "endLine": 64,
+        "endChar": 56
+      },
+      "revId": "29e17073acc4396e9db3e25821cdb2b5ba0f670d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
