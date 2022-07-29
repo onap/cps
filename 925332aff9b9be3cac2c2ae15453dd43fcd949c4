@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ea88acac_d82217d5",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-07-29T09:27:23Z",
+      "side": 1,
+      "message": "supply id\u0027s into createDataNodeList method and create DataNodes",
+      "range": {
+        "startLine": 174,
+        "startChar": 7,
+        "endLine": 179,
+        "endChar": 9
+      },
+      "revId": "925332aff9b9be3cac2c2ae15453dd43fcd949c4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
