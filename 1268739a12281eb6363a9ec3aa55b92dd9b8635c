@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "9e8c01a7_8453c2e0",
+        "filename": "docs/cps-events.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-29T13:39:54Z",
+      "side": 1,
+      "message": "target",
+      "range": {
+        "startLine": 26,
+        "startChar": 56,
+        "endLine": 26,
+        "endChar": 63
+      },
+      "revId": "1268739a12281eb6363a9ec3aa55b92dd9b8635c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d94a3c45_e916d443",
         "filename": "docs/cps-events.rst",
         "patchSetId": 2
@@ -18,6 +41,53 @@
         "startChar": 65,
         "endLine": 58,
         "endChar": 87
+      },
+      "revId": "1268739a12281eb6363a9ec3aa55b92dd9b8635c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "af21d278_88e5e07e",
+        "filename": "docs/cps-events.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-29T13:39:54Z",
+      "side": 1,
+      "message": "thnx 😊",
+      "parentUuid": "d94a3c45_e916d443",
+      "range": {
+        "startLine": 58,
+        "startChar": 65,
+        "endLine": 58,
+        "endChar": 87
+      },
+      "revId": "1268739a12281eb6363a9ec3aa55b92dd9b8635c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5b74f02c_fc5b0c1d",
+        "filename": "docs/cps-events.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-07-29T13:39:54Z",
+      "side": 1,
+      "message": "How about.\n\nEvent payload for this event contains the difference in state and properties of the cm handle.??",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 92,
+        "endChar": 104
       },
       "revId": "1268739a12281eb6363a9ec3aa55b92dd9b8635c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
