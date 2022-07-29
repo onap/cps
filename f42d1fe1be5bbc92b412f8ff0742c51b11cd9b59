@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "31f78a40_cded8674",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-07-29T11:24:46Z",
+      "side": 1,
+      "message": "why was the format changed",
+      "range": {
+        "startLine": 147,
+        "startChar": 4,
+        "endLine": 147,
+        "endChar": 16
+      },
+      "revId": "f42d1fe1be5bbc92b412f8ff0742c51b11cd9b59",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
