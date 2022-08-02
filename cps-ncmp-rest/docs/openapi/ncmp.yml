@@ -17,18 +17,121 @@
 #
 #  SPDX-License-Identifier: Apache-2.0
 #  ============LICENSE_END=========================================================
+
+getNcmpDatastore:
+  get:
+    tags:
+      - network-cm-proxy
+    summary: Get resource data for cm handle
+    description: Get resource data for given cm handle
+    operationId: getNcmpDatastore
+    parameters:
+      - $ref: 'components.yaml#/components/parameters/dataStoreName'
+      - $ref: 'components.yaml#/components/parameters/cmHandleInPath'
+      - $ref: 'components.yaml#/components/parameters/resourceIdentifierInQuery'
+      - $ref: 'components.yaml#/components/parameters/optionsParamInQuery'
+      - $ref: 'components.yaml#/components/parameters/topicParamInQuery'
+      - $ref: 'components.yaml#/components/parameters/includeDescendantsOptionInQuery'
+    responses:
+      200:
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: object
+            examples:
+              dataSampleResponse:
+                $ref: 'components.yaml#/components/examples/dataSampleResponse'
+      400:
+        $ref: 'components.yaml#/components/responses/BadRequest'
+      401:
+        $ref: 'components.yaml#/components/responses/Unauthorized'
+      403:
+        $ref: 'components.yaml#/components/responses/Forbidden'
+      500:
+        $ref: 'components.yaml#/components/responses/InternalServerError'
+      502:
+        $ref: 'components.yaml#/components/responses/BadGateway'
+
 getResourceDataForPassthroughOperational:
   get:
     tags:
       - network-cm-proxy
     summary: Get resource data from pass-through operational for cm handle
     description: Get resource data from pass-through operational for given cm handle
-    operationId: getResourceDataOperationalForCmHandle
+    operationId: getResourceDataForPassthroughOperational
+    deprecated: true
     parameters:
       - $ref: 'components.yaml#/components/parameters/cmHandleInPath'
       - $ref: 'components.yaml#/components/parameters/resourceIdentifierInQuery'
       - $ref: 'components.yaml#/components/parameters/optionsParamInQuery'
       - $ref: 'components.yaml#/components/parameters/topicParamInQuery'
+    responses:
+      200:
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: object
+            examples:
+              dataSampleResponse:
+                $ref: 'components.yaml#/components/examples/dataSampleResponse'
+      400:
+        $ref: 'components.yaml#/components/responses/BadRequest'
+      401:
+        $ref: 'components.yaml#/components/responses/Unauthorized'
+      403:
+        $ref: 'components.yaml#/components/responses/Forbidden'
+      500:
+        $ref: 'components.yaml#/components/responses/InternalServerError'
+      502:
+        $ref: 'components.yaml#/components/responses/BadGateway'
+
+getResourceDataOperational:
+  get:
+    tags:
+      - network-cm-proxy
+    summary: Get resource data from pass-through operational for cm handle
+    description: Get resource data from pass-through operational for given cm handle
+    operationId: getResourceDataOperational
+    deprecated: true
+    parameters:
+      - $ref: 'components.yaml#/components/parameters/cmHandleInPath'
+      - $ref: 'components.yaml#/components/parameters/resourceIdentifier'
+      - $ref: 'components.yaml#/components/parameters/includeDescendantsOptionInQuery'
+    responses:
+      200:
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: object
+            examples:
+              dataSampleResponse:
+                $ref: 'components.yaml#/components/examples/dataSampleResponse'
+      400:
+        $ref: 'components.yaml#/components/responses/BadRequest'
+      401:
+        $ref: 'components.yaml#/components/responses/Unauthorized'
+      403:
+        $ref: 'components.yaml#/components/responses/Forbidden'
+      500:
+        $ref: 'components.yaml#/components/responses/InternalServerError'
+      502:
+        $ref: 'components.yaml#/components/responses/BadGateway'
+
+getResourceDataOperational:
+  get:
+    tags:
+      - network-cm-proxy
+    summary: Get resource data from pass-through operational for cm handle
+    description: Get resource data from pass-through operational for given cm handle
+    operationId: getResourceDataOperational
+    deprecated: true
+    parameters:
+      - $ref: 'components.yaml#/components/parameters/cmHandleInPath'
+      - $ref: 'components.yaml#/components/parameters/resourceIdentifier'
+      - $ref: 'components.yaml#/components/parameters/includeDescendantsOptionInQuery'
     responses:
       200:
         description: OK
@@ -57,6 +160,7 @@ resourceDataForPassthroughRunning:
     summary: Get resource data from pass-through running for cm handle
     description: Get resource data from pass-through running for given cm handle
     operationId: getResourceDataRunningForCmHandle
+    deprecated: true
     parameters:
       - $ref: 'components.yaml#/components/parameters/cmHandleInPath'
       - $ref: 'components.yaml#/components/parameters/resourceIdentifierInQuery'
