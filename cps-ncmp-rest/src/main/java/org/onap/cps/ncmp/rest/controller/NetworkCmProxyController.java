@@ -29,16 +29,13 @@ import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.UPDATE;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
-import java.util.UUID;
 import java.util.stream.Collectors;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
-import org.onap.cps.ncmp.api.impl.exception.InvalidTopicException;
 import org.onap.cps.ncmp.api.inventory.CompositeState;
 import org.onap.cps.ncmp.api.models.CmHandleQueryApiParameters;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
@@ -53,7 +50,6 @@ import org.onap.cps.ncmp.rest.model.RestOutputCmHandle;
 import org.onap.cps.ncmp.rest.model.RestOutputCmHandleCompositeState;
 import org.onap.cps.ncmp.rest.model.RestOutputCmHandlePublicProperties;
 import org.onap.cps.ncmp.rest.util.DeprecationHelper;
-import org.onap.cps.utils.CpsValidator;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -83,6 +79,34 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     private boolean asyncEnabled;
 
     /**
+     * Get resource data from datastore.
+     *
+     * @param cmHandle cm handle identifier
+     * @param resourceIdentifier resource identifier
+     * @param optionsParamInQuery options query parameter
+     * @param topicParamInQuery topic query parameter
+     * @return {@code ResponseEntity} response from dmi plugin
+     */
+
+    @Override
+    public ResponseEntity<Object> getNcmpDatastore(final String dataStoreType,
+                                                   final String cmHandle,
+                                                   final String resourceIdentifier,
+                                                   final String optionsParamInQuery,
+                                                   final String topicParamInQuery,
+                                                   final Boolean includeDescendants) {
+
+        final NcmpDataStoreHandlerFactory ncmpDataStoreHandlerFactory =
+                new NcmpDataStoreHandlerFactory(networkCmProxyDataService, cpsNcmpTaskExecutor,
+                        timeOutInMilliSeconds, asyncEnabled);
+
+        final NcmpDataStoreHandler ncmpDataStoreHandler = ncmpDataStoreHandlerFactory.getHandler(dataStoreType);
+
+        return ncmpDataStoreHandler.handle(cmHandle, resourceIdentifier,
+                optionsParamInQuery, topicParamInQuery, includeDescendants);
+    }
+
+    /**
      * Get resource data from operational datastore.
      *
      * @param cmHandle cm handle identifier
@@ -91,29 +115,14 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
      * @param topicParamInQuery topic query parameter
      * @return {@code ResponseEntity} response from dmi plugin
      */
+
     @Override
-    public ResponseEntity<Object> getResourceDataOperationalForCmHandle(final String cmHandle,
+    public ResponseEntity<Object> getResourceDataForPassthroughOperational(final String cmHandle,
                                                                         final @NotNull @Valid String resourceIdentifier,
                                                                         final @Valid String optionsParamInQuery,
                                                                         final @Valid String topicParamInQuery) {
-        if (asyncEnabled && isValidTopic(topicParamInQuery)) {
-            final String requestId = UUID.randomUUID().toString();
-            log.info("Received Async passthrough-operational request with id {}", requestId);
-            cpsNcmpTaskExecutor.executeTask(() ->
-                    networkCmProxyDataService.getResourceDataOperationalForCmHandle(
-                        cmHandle, resourceIdentifier, optionsParamInQuery, topicParamInQuery, requestId
-                    ), timeOutInMilliSeconds
-            );
-            return ResponseEntity.ok(Map.of("requestId", requestId));
-        } else {
-            log.warn("Asynchronous messaging is currently disabled for passthrough-operational."
-                + " Will use synchronous operation.");
-        }
-
-        final Object responseObject = networkCmProxyDataService.getResourceDataOperationalForCmHandle(
-            cmHandle, resourceIdentifier, optionsParamInQuery, NO_TOPIC, NO_REQUEST_ID);
-
-        return ResponseEntity.ok(responseObject);
+        return getNcmpDatastore("passthrough-operational",
+                cmHandle, resourceIdentifier, optionsParamInQuery, topicParamInQuery, false);
     }
 
     /**
@@ -130,24 +139,8 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
                                                                     final @NotNull @Valid String resourceIdentifier,
                                                                     final @Valid String optionsParamInQuery,
                                                                     final @Valid String topicParamInQuery) {
-        if (asyncEnabled && isValidTopic(topicParamInQuery)) {
-            final String requestId = UUID.randomUUID().toString();
-            log.info("Received Async passthrough-running request with id {}", requestId);
-            cpsNcmpTaskExecutor.executeTask(() ->
-                networkCmProxyDataService.getResourceDataPassThroughRunningForCmHandle(
-                    cmHandle, resourceIdentifier, optionsParamInQuery, topicParamInQuery, requestId
-                ), timeOutInMilliSeconds
-            );
-            return ResponseEntity.ok(Map.of("requestId", requestId));
-        } else {
-            log.warn("Asynchronous messaging is currently disabled for passthrough-running."
-                + " Will use synchronous operation.");
-        }
-
-        final Object responseObject = networkCmProxyDataService.getResourceDataPassThroughRunningForCmHandle(
-            cmHandle, resourceIdentifier, optionsParamInQuery, NO_TOPIC, NO_REQUEST_ID);
-
-        return ResponseEntity.ok(responseObject);
+        return getNcmpDatastore("running-operational",
+                cmHandle, resourceIdentifier, optionsParamInQuery, topicParamInQuery, false);
     }
 
     @Override
@@ -329,9 +322,24 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
      */
     @Override
     public ResponseEntity<Object> setDataSyncEnabledFlagForCmHandle(final String cmHandleId,
-                                                                final Boolean dataSyncEnabledFlag) {
+                                                                    final Boolean dataSyncEnabledFlag) {
         networkCmProxyDataService.setDataSyncEnabled(cmHandleId, dataSyncEnabledFlag);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    /**
+     * Get resource data for operational.
+     *
+     * @param cmHandle cm handle identifier
+     * @param resourceIdentifier resource identifier
+     * @param includeDescendants fetch descendants option
+     * @return resource data
+     */
+    @Override
+    public ResponseEntity<Object> getResourceDataOperational(final String cmHandle, final String resourceIdentifier,
+                                                             final Boolean includeDescendants) {
+        return getNcmpDatastore("operational",
+                cmHandle, resourceIdentifier, null, null, includeDescendants);
     }
 
     private RestOutputCmHandle toRestOutputCmHandle(final NcmpServiceCmHandle ncmpServiceCmHandle) {
@@ -345,15 +353,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         return restOutputCmHandle;
     }
 
-    private static boolean isValidTopic(final String topicName) {
-        if (topicName == null) {
-            return false;
-        }
-        if (CpsValidator.validateTopicName(topicName)) {
-            return true;
-        }
-        throw new InvalidTopicException("Topic name " + topicName + " is invalid", "invalid topic");
-    }
+
 
 }
 

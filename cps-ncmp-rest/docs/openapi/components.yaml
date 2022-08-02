@@ -519,6 +519,22 @@ components:
         type: string
         default: application/json
         example: application/yang-data+json
+    resourceIdentifier:
+      name: resourceIdentifier
+      in: path
+      description: The identifier that would be mapped to xpath
+      required: true
+      schema:
+        type: string
+        example: my-cm-handle
+    dataStoreName:
+      name: ncmp-datastore-name
+      in: path
+      description: The type of the requested data
+      required: true
+      schema:
+        type: string
+        example: operational
 
   responses:
     NotFound:

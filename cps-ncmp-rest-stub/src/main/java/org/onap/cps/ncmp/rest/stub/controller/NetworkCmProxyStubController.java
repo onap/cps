@@ -58,6 +58,16 @@ public class NetworkCmProxyStubController implements NetworkCmProxyApi {
     private String pathToResponseFiles;
 
     @Override
+    public ResponseEntity<Object> getNcmpDatastore(final String dataStoreType,
+                                                   final String cmHandle,
+                                                   final @NotNull @Valid String resourceIdentifier,
+                                                   final @Valid String optionsParamInQuery,
+                                                   final @Valid String topicParamInQuery,
+                                                   final Boolean includeDescendants) {
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+    }
+
+    @Override
     public ResponseEntity<Void> createResourceDataRunningForCmHandle(@NotNull @Valid final String resourceIdentifier,
         final String cmHandleId, @Valid final Object body, final String contentType) {
         return new ResponseEntity<>(HttpStatus.CREATED);
@@ -88,7 +98,7 @@ public class NetworkCmProxyStubController implements NetworkCmProxyApi {
 
     @Override
     public ResponseEntity<Object> setDataSyncEnabledFlagForCmHandle(final String cmHandleId,
-                                                                final Boolean dataSyncEnabled) {
+                                                                    final Boolean dataSyncEnabled) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
@@ -119,6 +129,13 @@ public class NetworkCmProxyStubController implements NetworkCmProxyApi {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
+
+    @Override
+    public ResponseEntity<Object> getResourceDataOperational(final String cmHandle, final String resourceIdentifier,
+                                                             final Boolean includeDescendants) {
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
     /**
      * Get resource data from operational datastore.
      *
@@ -129,7 +146,7 @@ public class NetworkCmProxyStubController implements NetworkCmProxyApi {
      * @return {@code ResponseEntity} response from dmi plugin
      */
     @Override
-    public ResponseEntity<Object> getResourceDataOperationalForCmHandle(final String cmHandleId,
+    public ResponseEntity<Object> getResourceDataForPassthroughOperational(final String cmHandleId,
         final String resourceIdentifier, final String optionsParamInQuery, final String topicParamInQuery) {
         final ResponseEntity<Map<String, Object>> asyncResponse = populateAsyncResponse(topicParamInQuery);
         final Map<String, Object> asyncResponseData = asyncResponse.getBody();
