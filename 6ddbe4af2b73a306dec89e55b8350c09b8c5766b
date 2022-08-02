@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "16738d91_72bab551",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 11
+      },
+      "lineNbr": 435,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-08-02T11:05:08Z",
+      "side": 1,
+      "message": "do we really need all these error scenarios ?",
+      "range": {
+        "startLine": 428,
+        "startChar": 0,
+        "endLine": 435,
+        "endChar": 64
+      },
+      "revId": "6ddbe4af2b73a306dec89e55b8350c09b8c5766b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "76b46814_ccc93418",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-08-02T11:05:08Z",
+      "side": 1,
+      "message": "I dont think we are setting the data sync state here for a cm handle. If so we can remove this.",
+      "range": {
+        "startLine": 324,
+        "startChar": 39,
+        "endLine": 324,
+        "endChar": 97
+      },
+      "revId": "6ddbe4af2b73a306dec89e55b8350c09b8c5766b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b9ec10bb_5780799b",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
         "patchSetId": 11
