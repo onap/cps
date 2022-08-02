@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "d4782276_0b6472f9",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-08-02T12:59:02Z",
+      "side": 1,
+      "message": "for a cm handle",
+      "range": {
+        "startLine": 395,
+        "startChar": 76,
+        "endLine": 395,
+        "endChar": 77
+      },
+      "revId": "6ddbe4af2b73a306dec89e55b8350c09b8c5766b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce943902_6cbff467",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 11
+      },
+      "lineNbr": 413,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-08-02T12:59:02Z",
+      "side": 1,
+      "message": "ForACmHandle",
+      "range": {
+        "startLine": 413,
+        "startChar": 22,
+        "endLine": 413,
+        "endChar": 23
+      },
+      "revId": "6ddbe4af2b73a306dec89e55b8350c09b8c5766b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "16738d91_72bab551",
         "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
         "patchSetId": 11
@@ -73,6 +119,29 @@
     },
     {
       "key": {
+        "uuid": "29bd5780_4f409603",
+        "filename": "cps-ncmp-rest/docs/openapi/openapi.yml",
+        "patchSetId": 11
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-08-02T12:59:02Z",
+      "side": 1,
+      "message": "ForACmHandle",
+      "range": {
+        "startLine": 57,
+        "startChar": 43,
+        "endLine": 57,
+        "endChar": 44
+      },
+      "revId": "6ddbe4af2b73a306dec89e55b8350c09b8c5766b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "76b46814_ccc93418",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
         "patchSetId": 11
@@ -113,6 +182,144 @@
         "startChar": 39,
         "endLine": 324,
         "endChar": 97
+      },
+      "revId": "6ddbe4af2b73a306dec89e55b8350c09b8c5766b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d2dedbe6_7654b0b2",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 426,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-08-02T12:59:02Z",
+      "side": 1,
+      "message": "#dataSyncEnabledFlag",
+      "range": {
+        "startLine": 426,
+        "startChar": 87,
+        "endLine": 426,
+        "endChar": 96
+      },
+      "revId": "6ddbe4af2b73a306dec89e55b8350c09b8c5766b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "02cee83a_b3e337b2",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 426,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-08-02T12:59:02Z",
+      "side": 1,
+      "message": "#scenario",
+      "range": {
+        "startLine": 426,
+        "startChar": 27,
+        "endLine": 426,
+        "endChar": 34
+      },
+      "revId": "6ddbe4af2b73a306dec89e55b8350c09b8c5766b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "82f2574b_17b78203",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 427,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-08-02T12:59:02Z",
+      "side": 1,
+      "message": "Same",
+      "range": {
+        "startLine": 427,
+        "startChar": 33,
+        "endLine": 427,
+        "endChar": 40
+      },
+      "revId": "6ddbe4af2b73a306dec89e55b8350c09b8c5766b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "48eb301c_855841b8",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 433,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-08-02T12:59:02Z",
+      "side": 1,
+      "message": "Is the value returned in the response? If so, can we assert it\u0027s value?",
+      "range": {
+        "startLine": 433,
+        "startChar": 12,
+        "endLine": 433,
+        "endChar": 52
+      },
+      "revId": "6ddbe4af2b73a306dec89e55b8350c09b8c5766b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8261cf52_2bd41f26",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-08-02T12:59:02Z",
+      "side": 1,
+      "message": "setDataSyncAndSataSyncEnabled(...) as it is doing both",
+      "range": {
+        "startLine": 199,
+        "startChar": 16,
+        "endLine": 199,
+        "endChar": 34
+      },
+      "revId": "6ddbe4af2b73a306dec89e55b8350c09b8c5766b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8d62194b_7b000155",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/DataSyncWatchdog.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-08-02T12:59:02Z",
+      "side": 1,
+      "message": "log.debug(\"Error: data sync is currently disabled for {}\", cmHandleId);",
+      "range": {
+        "startLine": 62,
+        "startChar": 16,
+        "endLine": 63,
+        "endChar": 81
       },
       "revId": "6ddbe4af2b73a306dec89e55b8350c09b8c5766b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
