@@ -156,8 +156,6 @@ class NetworkCmProxyCmHandlerQueryServiceSpec extends Specification {
             def cmHandleQueryParameters = new CmHandleQueryServiceParameters()
         and: 'the inventory persistence returns the dmi registry datanode'
             inventoryPersistence.getDataNode("/dmi-registry") >> dmiRegistry
-        and: 'the inventory persistence returns anchors for get anchors'
-            inventoryPersistence.getAnchors() >> [new Anchor(name: 'PNFDemo1'), new Anchor(name: 'PNFDemo2'), new Anchor(name: 'PNFDemo3'), new Anchor(name: 'PNFDemo4')]
         when: 'the query is executed for both cm handle ids and details'
             def returnedCmHandlesJustIds = objectUnderTest.queryCmHandleIds(cmHandleQueryParameters)
             def returnedCmHandlesWithData = objectUnderTest.queryCmHandles(cmHandleQueryParameters)
