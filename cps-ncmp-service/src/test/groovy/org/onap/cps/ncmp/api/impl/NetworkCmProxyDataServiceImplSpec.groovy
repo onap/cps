@@ -34,6 +34,7 @@ import org.onap.cps.ncmp.api.models.CmHandleQueryApiParameters
 import org.onap.cps.ncmp.api.models.ConditionApiProperties
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
+import org.onap.cps.spi.exceptions.CpsException
 import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.model.CmHandleQueryServiceParameters
 import spock.lang.Shared
@@ -79,7 +80,8 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             nullNetworkCmProxyDataServicePropertyHandler,
             mockInventoryPersistence,
             mockCpsCmHandlerQueryService,
-            mockLcmEventsCmHandleStateHandler)
+            mockLcmEventsCmHandleStateHandler,
+            mockCpsDataService)
 
     def cmHandleXPath = "/dmi-registry/cm-handles[@id='testCmHandle']"
 
@@ -311,14 +313,6 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             1 * mockInventoryPersistence.getModuleDefinitionsByCmHandleId('some-cm-handle')
     }
 
-
-    def dataStores() {
-        CompositeState.DataStores.builder()
-                .operationalDataStore(CompositeState.Operational.builder()
-                        .dataStoreSyncState(DataStoreSyncState.NONE_REQUESTED)
-                        .lastSyncTime('some-timestamp').build()).build()
-    }
-
     def 'Execute cm handle search'() {
         given: 'valid CmHandleQueryApiParameters input'
             def cmHandleQueryApiParameters = new CmHandleQueryApiParameters()
@@ -334,5 +328,52 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             def result = objectUnderTest.executeCmHandleSearch(cmHandleQueryApiParameters)
         then: 'result is the same collection as returned by the CPS Data Service'
             assert result.stream().map(d -> d.cmHandleId).collect(Collectors.toSet()) == ['cm-handle-id-1'] as Set
+    }
+
+    def 'Set Cm Handle Data Sync Enabled Flag where data sync flag is  #scenario'() {
+        given: 'an existing cm handle composite state'
+            def compositeState = new CompositeState(cmHandleState: CmHandleState.READY, dataSyncEnabled: initialDataSyncEnabledFlag,
+                dataStores: CompositeState.DataStores.builder()
+                    .operationalDataStore(CompositeState.Operational.builder()
+                        .dataStoreSyncState(initialDataSyncState)
+                        .build()).build())
+        and: 'get cm handle state returns the composite state for the given cm handle id'
+            mockInventoryPersistence.getCmHandleState('some-cm-handle-id') >> compositeState
+        when: 'set data sync enabled is called with the data sync enabled flag set to #dataSyncEnabledFlag'
+            objectUnderTest.setDataSyncEnabled('some-cm-handle-id', dataSyncEnabledFlag)
+        then: 'the data sync enabled flag is set to #dataSyncEnabled'
+            compositeState.dataSyncEnabled == dataSyncEnabledFlag
+        and: 'the data store sync state is set to #expectedDataStoreSyncState'
+            compositeState.dataStores.operationalDataStore.dataStoreSyncState == expectedDataStoreSyncState
+        and: 'the cps data service to delete data nodes is invoked the expected number of times'
+            deleteDataNodeExpectedNumberOfInvocation * mockCpsDataService.deleteDataNode('NFP-Operational', 'some-cm-handle-id', '/netconf-state', _)
+        and: 'the inventory persistence service to update node leaves is called with the correct values'
+            saveCmHandleStateExpectedNumberOfInvocations * mockInventoryPersistence.saveCmHandleState('some-cm-handle-id', compositeState)
+        where: 'the following data sync enabled flag is used'
+            scenario                                              | dataSyncEnabledFlag | initialDataSyncEnabledFlag | initialDataSyncState               || expectedDataStoreSyncState         | deleteDataNodeExpectedNumberOfInvocation | saveCmHandleStateExpectedNumberOfInvocations
+            'enabled'                                             | true                | false                      | DataStoreSyncState.NONE_REQUESTED  || DataStoreSyncState.UNSYNCHRONIZED  | 0                                        | 1
+            'disabled'                                            | false               | true                       | DataStoreSyncState.UNSYNCHRONIZED  || DataStoreSyncState.NONE_REQUESTED  | 0                                        | 1
+            'disabled where sync-state is currently SYNCHRONIZED' | false               | true                       | DataStoreSyncState.SYNCHRONIZED    || DataStoreSyncState.NONE_REQUESTED  | 1                                        | 1
+            'is set to existing flag state'                       | true                | true                       | DataStoreSyncState.UNSYNCHRONIZED  || DataStoreSyncState.UNSYNCHRONIZED  | 0                                        | 0
+    }
+
+    def 'Set cm Handle Data Sync Enabled flag with following cm handle not in ready state exception' () {
+        given: 'a cm handle composite state'
+            def compositeState = new CompositeState(cmHandleState: CmHandleState.ADVISED, dataSyncEnabled: false)
+        and: 'get cm handle state returns the composite state for the given cm handle id'
+            mockInventoryPersistence.getCmHandleState('some-cm-handle-id') >> compositeState
+        when: 'set data sync enabled is called with the data sync enabled flag set to true'
+            objectUnderTest.setDataSyncEnabled('some-cm-handle-id', true)
+        then: 'the expected exception is thrown'
+            thrown(CpsException)
+        and: 'the inventory persistence service to update node leaves is not invoked'
+            0 * mockInventoryPersistence.saveCmHandleState(_, _)
+    }
+
+    def dataStores() {
+        CompositeState.DataStores.builder()
+            .operationalDataStore(CompositeState.Operational.builder()
+                .dataStoreSyncState(DataStoreSyncState.NONE_REQUESTED)
+                .lastSyncTime('some-timestamp').build()).build()
     }
 }

@@ -431,3 +431,27 @@ searchCmHandleIds:
         $ref: 'components.yaml#/components/responses/NotFound'
       500:
         $ref: 'components.yaml#/components/responses/InternalServerError'
+
+setDataSyncEnabledFlag:
+  put:
+    tags:
+      - network-cm-proxy
+    summary: Set the Data Sync Enabled Flag
+    description: Set the data sync enabled flag to true or false for a specified Cm-Handle. This will in turn set the data sync state to UNSYNCHRONIZED and NONE_REQUESTED respectfully.
+    operationId: setDataSyncEnabledFlagForCmHandle
+    parameters:
+      - $ref: 'components.yaml#/components/parameters/cmHandleInPath'
+      - $ref: 'components.yaml#/components/parameters/dataSyncEnabled'
+    responses:
+      200:
+        $ref: 'components.yaml#/components/responses/Ok'
+      400:
+        $ref: 'components.yaml#/components/responses/BadRequest'
+      401:
+        $ref: 'components.yaml#/components/responses/Unauthorized'
+      403:
+        $ref: 'components.yaml#/components/responses/Forbidden'
+      500:
+        $ref: 'components.yaml#/components/responses/InternalServerError'
+      502:
+        $ref: 'components.yaml#/components/responses/BadGateway'

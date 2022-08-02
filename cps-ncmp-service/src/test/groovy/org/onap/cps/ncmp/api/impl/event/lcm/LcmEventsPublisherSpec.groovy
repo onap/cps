@@ -22,7 +22,6 @@ package org.onap.cps.ncmp.api.impl.event.lcm
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.apache.kafka.clients.consumer.KafkaConsumer
-import org.onap.cps.ncmp.api.impl.event.lcm.LcmEventsPublisher
 import org.onap.cps.ncmp.api.utils.MessagingSpec
 import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.utils.JsonObjectMapper

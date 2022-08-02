@@ -32,7 +32,6 @@ import org.onap.cps.ncmp.api.inventory.CompositeState;
 import org.onap.cps.ncmp.api.inventory.DataStoreSyncState;
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.api.inventory.LockReasonCategory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -46,9 +45,6 @@ public class ModuleSyncWatchdog {
     private final SyncUtils syncUtils;
 
     private final ModuleSyncService moduleSyncService;
-
-    @Value("${data-sync.cache.enabled:false}")
-    private boolean isGlobalDataSyncCacheEnabled;
 
     private final ConcurrentMap<String, Boolean> moduleSyncSemaphoreMap;
 
@@ -107,9 +103,9 @@ public class ModuleSyncWatchdog {
 
     private Consumer<CompositeState> setCompositeStateToReadyWithInitialDataStoreSyncState() {
         return compositeState -> {
-            compositeState.setDataSyncEnabled(isGlobalDataSyncCacheEnabled);
+            compositeState.setDataSyncEnabled(false);
             compositeState.setCmHandleState(CmHandleState.READY);
-            final CompositeState.Operational operational = getDataStoreSyncState(compositeState.getDataSyncEnabled());
+            final CompositeState.Operational operational = getDataStoreSyncState();
             final CompositeState.DataStores dataStores = CompositeState.DataStores.builder()
                     .operationalDataStore(operational)
                     .build();
@@ -126,9 +122,8 @@ public class ModuleSyncWatchdog {
         compositeState.setLockReason(lockReason);
     }
 
-    private CompositeState.Operational getDataStoreSyncState(final boolean dataSyncEnabled) {
-        final DataStoreSyncState dataStoreSyncState = dataSyncEnabled
-                ? DataStoreSyncState.UNSYNCHRONIZED : DataStoreSyncState.NONE_REQUESTED;
+    private CompositeState.Operational getDataStoreSyncState() {
+        final DataStoreSyncState dataStoreSyncState = DataStoreSyncState.NONE_REQUESTED;
         return CompositeState.Operational.builder().dataStoreSyncState(dataStoreSyncState).build();
     }
 
