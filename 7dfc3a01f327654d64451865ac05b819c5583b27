@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d8afa45f_cf4ea94c",
+        "filename": "docs/modeling.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-08-03T11:11:20Z",
+      "side": 0,
+      "message": "Add Nordix modifications copyright",
+      "revId": "7dfc3a01f327654d64451865ac05b819c5583b27",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
