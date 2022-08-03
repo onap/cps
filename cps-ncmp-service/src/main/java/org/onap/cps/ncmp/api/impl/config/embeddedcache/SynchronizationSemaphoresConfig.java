@@ -27,6 +27,7 @@ import com.hazelcast.core.HazelcastInstance;
 import java.util.Map;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.TimeUnit;
+import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -44,7 +45,7 @@ public class SynchronizationSemaphoresConfig {
      * @return configured map of module sync semaphore
      */
     @Bean
-    public ConcurrentMap<String, Boolean> moduleSyncSemaphoreMap() {
+    public ConcurrentMap<YangModelCmHandle, Boolean> moduleSyncSemaphoreMap() {
         return createHazelcastInstance("moduleSyncSemaphore", "moduleSyncSemaphoreConfig")
                 .getMap("moduleSyncSemaphore");
     }
