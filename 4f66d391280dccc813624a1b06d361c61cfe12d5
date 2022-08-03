@@ -1,0 +1,205 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "44410088_ed7074a0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventType.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-08-03T16:51:54Z",
+      "side": 1,
+      "message": "final",
+      "range": {
+        "startLine": 27,
+        "startChar": 4,
+        "endLine": 27,
+        "endChar": 29
+      },
+      "revId": "4f66d391280dccc813624a1b06d361c61cfe12d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "60584f2f_19922d58",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventType.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-08-03T16:51:54Z",
+      "side": 1,
+      "message": "final",
+      "range": {
+        "startLine": 29,
+        "startChar": 4,
+        "endLine": 29,
+        "endChar": 77
+      },
+      "revId": "4f66d391280dccc813624a1b06d361c61cfe12d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "77b99f23_c042d2f6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-08-03T16:51:54Z",
+      "side": 1,
+      "message": "NB - Blank line here",
+      "revId": "4f66d391280dccc813624a1b06d361c61cfe12d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5d30783d_6898c2bc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-08-03T16:51:54Z",
+      "side": 1,
+      "message": "Do you need to define the new NcmpServiceCmHandle here? I don\u0027t think you do.",
+      "range": {
+        "startLine": 58,
+        "startChar": 20,
+        "endLine": 58,
+        "endChar": 43
+      },
+      "revId": "4f66d391280dccc813624a1b06d361c61cfe12d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "43d254eb_ccd10e27",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorHelper.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-08-03T16:51:54Z",
+      "side": 1,
+      "message": "Can this be simplified further? It is very difficult to make out what this if statement is checking for.\n\nMaybe extract all 3 booleans into their own variables.",
+      "range": {
+        "startLine": 104,
+        "startChar": 11,
+        "endLine": 107,
+        "endChar": 69
+      },
+      "revId": "4f66d391280dccc813624a1b06d361c61cfe12d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1085cea2_4c4bef81",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorHelper.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-08-03T16:51:54Z",
+      "side": 1,
+      "message": "Is it necessary to set the initial capacity?",
+      "range": {
+        "startLine": 199,
+        "startChar": 96,
+        "endLine": 199,
+        "endChar": 97
+      },
+      "revId": "4f66d391280dccc813624a1b06d361c61cfe12d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6b736826_484cec20",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorHelper.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-08-03T16:51:54Z",
+      "side": 1,
+      "message": "stream isn\u0027t needed.",
+      "range": {
+        "startLine": 207,
+        "startChar": 65,
+        "endLine": 207,
+        "endChar": 73
+      },
+      "revId": "4f66d391280dccc813624a1b06d361c61cfe12d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c3a253f7_dfea74b3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/NcmpServiceCmHandle.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-08-03T16:51:54Z",
+      "side": 1,
+      "message": "Can these ever be null? I thought they were defaulted to be empty maps/objects",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 64
+      },
+      "revId": "4f66d391280dccc813624a1b06d361c61cfe12d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d137ca6c_c1bf3be7",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-08-03T16:51:54Z",
+      "side": 1,
+      "message": "I would extract this into a static variable, to make it more readable.",
+      "range": {
+        "startLine": 49,
+        "startChar": 39,
+        "endLine": 49,
+        "endChar": 80
+      },
+      "revId": "4f66d391280dccc813624a1b06d361c61cfe12d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
