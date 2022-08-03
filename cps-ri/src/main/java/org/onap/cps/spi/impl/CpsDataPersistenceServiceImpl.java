@@ -26,6 +26,7 @@ import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ImmutableSet.Builder;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -101,17 +102,19 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     }
 
     private void addChildDataNodes(final String dataspaceName, final String anchorName, final String parentNodeXpath,
-                                   final Collection<DataNode> newChildren) {
+                                  final Collection<DataNode> newChildren) {
         final FragmentEntity parentFragmentEntity = getFragmentByXpath(dataspaceName, anchorName, parentNodeXpath);
         try {
-            for (final DataNode newChildAsDataNode : newChildren) {
+            final List<FragmentEntity> fragmentEntities = new ArrayList<>();
+            newChildren.stream().forEach(newChildAsDataNode -> {
                 final FragmentEntity newChildAsFragmentEntity = convertToFragmentWithAllDescendants(
                         parentFragmentEntity.getDataspace(),
                         parentFragmentEntity.getAnchor(),
                         newChildAsDataNode);
                 newChildAsFragmentEntity.setParentId(parentFragmentEntity.getId());
-                fragmentRepository.save(newChildAsFragmentEntity);
-            }
+                fragmentEntities.add(newChildAsFragmentEntity);
+            });
+            fragmentRepository.saveAll(fragmentEntities);
         } catch (final DataIntegrityViolationException exception) {
             final List<String> conflictXpaths = newChildren.stream()
                     .map(DataNode::getXpath)

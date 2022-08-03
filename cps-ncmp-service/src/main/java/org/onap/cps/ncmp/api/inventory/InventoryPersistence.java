@@ -132,11 +132,12 @@ public class InventoryPersistence {
      *
      * @param yangModelCmHandle cmHandle represented as Yang Model
      */
-    public void saveCmHandle(final YangModelCmHandle yangModelCmHandle) {
+    public boolean saveCmHandle(final YangModelCmHandle yangModelCmHandle) {
         final String cmHandleJsonData =
                 String.format("{\"cm-handles\":[%s]}", jsonObjectMapper.asJsonString(yangModelCmHandle));
         cpsDataService.saveListElements(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NCMP_DMI_REGISTRY_PARENT,
                 cmHandleJsonData, NO_TIMESTAMP);
+        return true;
     }
 
     /**
