@@ -20,12 +20,15 @@
 
 package org.onap.cps.spi.repository;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
+
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.cpspath.parser.CpsPathPrefixType;
 import org.onap.cps.cpspath.parser.CpsPathQuery;
@@ -43,9 +46,11 @@ public class FragmentRepositoryCpsPathQueryImpl implements FragmentRepositoryCps
     private final JsonObjectMapper jsonObjectMapper;
 
     @Override
+    @Transactional
     public List<FragmentEntity> findByAnchorAndCpsPath(final int anchorId, final CpsPathQuery cpsPathQuery) {
         final var sqlStringBuilder = new StringBuilder("SELECT * FROM FRAGMENT WHERE anchor_id = :anchorId");
         final Map<String, Object> queryParameters = new HashMap<>();
+        final List<FragmentEntity> fragmentEntities=new ArrayList<>();
         queryParameters.put("anchorId", anchorId);
         sqlStringBuilder.append(" AND xpath SIMILAR TO :xpathRegex");
         final String xpathRegex = getSimilarToXpathSqlRegex(cpsPathQuery);
@@ -59,9 +64,16 @@ public class FragmentRepositoryCpsPathQueryImpl implements FragmentRepositoryCps
         addTextFunctionCondition(cpsPathQuery, sqlStringBuilder, queryParameters);
         final var query = entityManager.createNativeQuery(sqlStringBuilder.toString(), FragmentEntity.class);
         setQueryParameters(query, queryParameters);
-        return query.getResultList();
+        getFragmentEntitiesAsStreamAndStore(fragmentEntities, query);
+        return fragmentEntities;
     }
 
+    private void getFragmentEntitiesAsStreamAndStore(List<FragmentEntity> fragmentEntities, Query query) {
+        query.getResultStream().forEach(fragmentEntity -> {
+            fragmentEntities.add((FragmentEntity) fragmentEntity);
+            entityManager.detach(fragmentEntity);
+        });
+    }
     private static String getSimilarToXpathSqlRegex(final CpsPathQuery cpsPathQuery) {
         final var xpathRegexBuilder = new StringBuilder();
         if (CpsPathPrefixType.ABSOLUTE.equals(cpsPathQuery.getCpsPathPrefixType())) {

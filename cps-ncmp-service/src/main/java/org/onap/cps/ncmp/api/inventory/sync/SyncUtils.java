@@ -23,6 +23,7 @@ package org.onap.cps.ncmp.api.inventory.sync;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import java.time.Duration;
+import java.time.Instant;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -69,17 +71,19 @@ public class SyncUtils {
     /**
      * Query data nodes for cm handles with an "ADVISED" cm handle state, and select a random entry for processing.
      *
-     * @return a randomized yang model cm handle list with ADVISED state, return empty list if not found
      */
-    public List<YangModelCmHandle> getAdvisedCmHandles() {
+    public void getAdvisedCmHandles(final ConcurrentMap<YangModelCmHandle, Boolean> moduleSyncSemaphoreMap) {
+        final Instant startTime = Instant.now();
         final List<DataNode> advisedCmHandlesAsDataNodeList = new ArrayList<>(
-            cmHandleQueries.getCmHandlesByState(CmHandleState.ADVISED));
-        log.info("Total number of fetched advised cm handle(s) is (are) {}", advisedCmHandlesAsDataNodeList.size());
-        if (advisedCmHandlesAsDataNodeList.isEmpty()) {
-            return Collections.emptyList();
-        }
+                cmHandleQueries.getCmHandlesByState(CmHandleState.ADVISED));
         Collections.shuffle(advisedCmHandlesAsDataNodeList);
-        return convertCmHandlesDataNodesToYangModelCmHandles(advisedCmHandlesAsDataNodeList);
+        advisedCmHandlesAsDataNodeList.stream()
+                .map(dataNode -> dataNode.getLeaves().get("id").toString())
+                .map(inventoryPersistence::getYangModelCmHandle)
+                .forEach(yangModelCmHandle -> moduleSyncSemaphoreMap.putIfAbsent(yangModelCmHandle, false));
+        final Instant endTime = Instant.now();
+        log.info("Time elapsed to get cm handles by state ADVISED is : {} ms | Fetched data node size is {}",
+                Duration.between(startTime, endTime).toMillis(), advisedCmHandlesAsDataNodeList.size());
     }
 
     /**
@@ -116,7 +120,9 @@ public class SyncUtils {
         final List<DataNode> lockedCmHandlesAsDataNodeList = cmHandleQueries.getCmHandleDataNodesByCpsPath(
             "//lock-reason[@reason=\"LOCKED_MODULE_SYNC_FAILED\"]",
             FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
-        return convertCmHandlesDataNodesToYangModelCmHandles(lockedCmHandlesAsDataNodeList);
+        return lockedCmHandlesAsDataNodeList.stream()
+                .map(cmHandle -> YangDataConverter.convertCmHandleToYangModel(cmHandle,
+                        cmHandle.getLeaves().get("id").toString())).collect(Collectors.toList());
     }
 
     /**
@@ -188,11 +194,5 @@ public class SyncUtils {
         final Iterator<Map.Entry<String, JsonNode>> overallJsonTreeMap = overallJsonNode.fields();
         final Map.Entry<String, JsonNode> firstElement = overallJsonTreeMap.next();
         return jsonObjectMapper.asJsonString(Map.of(firstElement.getKey(), firstElement.getValue()));
-    }
-
-    private List<YangModelCmHandle> convertCmHandlesDataNodesToYangModelCmHandles(
-        final List<DataNode> cmHandlesAsDataNodeList) {
-        return cmHandlesAsDataNodeList.stream().map(dataNode -> YangDataConverter.convertCmHandleToYangModel(dataNode,
-            dataNode.getLeaves().get("id").toString())).collect(Collectors.toList());
     }
 }

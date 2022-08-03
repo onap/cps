@@ -33,6 +33,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentMap;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -72,19 +73,15 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService {
 
+    private static final boolean IS_WATCHDOG_MODULE_STATE_TRANSITION_DONE = false;
     private final JsonObjectMapper jsonObjectMapper;
-
     private final DmiDataOperations dmiDataOperations;
-
     private final NetworkCmProxyDataServicePropertyHandler networkCmProxyDataServicePropertyHandler;
-
     private final InventoryPersistence inventoryPersistence;
-
     private final NetworkCmProxyCmHandlerQueryService networkCmProxyCmHandlerQueryService;
-
     private final LcmEventsCmHandleStateHandler lcmEventsCmHandleStateHandler;
-
     private final CpsDataService cpsDataService;
+    private final ConcurrentMap<YangModelCmHandle, Boolean> moduleSyncSemaphoreMap;
 
     @Override
     public DmiPluginRegistrationResponse updateDmiRegistrationAndSyncModule(
@@ -270,7 +267,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             final DmiPluginRegistration dmiPluginRegistration) {
         List<CmHandleRegistrationResponse> cmHandleRegistrationResponses = new ArrayList<>();
         try {
-            cmHandleRegistrationResponses = dmiPluginRegistration.getCreatedCmHandles().stream()
+            cmHandleRegistrationResponses = dmiPluginRegistration.getCreatedCmHandles().parallelStream()
                 .map(cmHandle -> {
                     setCompositeStateToAdvised(cmHandle);
                     return YangModelCmHandle.toYangModelCmHandle(
@@ -340,6 +337,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     private CmHandleRegistrationResponse registerNewCmHandle(final YangModelCmHandle yangModelCmHandle) {
         try {
             inventoryPersistence.saveCmHandle(yangModelCmHandle);
+            moduleSyncSemaphoreMap.putIfAbsent(yangModelCmHandle, IS_WATCHDOG_MODULE_STATE_TRANSITION_DONE);
             return CmHandleRegistrationResponse.createSuccessResponse(yangModelCmHandle.getId());
         } catch (final AlreadyDefinedException alreadyDefinedException) {
             return CmHandleRegistrationResponse.createFailureResponse(
