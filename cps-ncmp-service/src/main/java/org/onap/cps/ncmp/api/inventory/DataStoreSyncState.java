@@ -20,6 +20,8 @@
 
 package org.onap.cps.ncmp.api.inventory;
 
-public enum DataStoreSyncState {
+import java.io.Serializable;
+
+public enum DataStoreSyncState implements Serializable {
     SYNCHRONIZED, UNSYNCHRONIZED, NONE_REQUESTED
 }
