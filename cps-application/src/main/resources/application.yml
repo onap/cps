@@ -46,6 +46,13 @@ spring:
         password: ${DB_PASSWORD}
         driverClassName: org.postgresql.Driver
         initialization-mode: always
+        hikari:
+            minimumIdle: 5
+            maximumPoolSize: 80
+            idleTimeout: 120000
+            connectionTimeout: 300000
+            leakDetectionThreshold: 300000
+            pool-name: CpsDatabasePool
 
     cache:
         type: caffeine
@@ -100,8 +107,8 @@ notification:
             enabled-dataspaces: ${NOTIFICATION_DATASPACE_FILTER_PATTERNS:""}
     async:
         executor:
-            core-pool-size: 10
-            max-pool-size: 100
+            core-pool-size: 2
+            max-pool-size: 10
             queue-capacity: 500
             wait-for-tasks-to-complete-on-shutdown: true
             thread-name-prefix: Async-
@@ -144,8 +151,11 @@ management:
                 enabled: true
 
 logging:
-    format: json
+    format: text
     level:
+        com:
+            zaxxer:
+                hikari: TRACE
         org:
             springframework: INFO
             onap:
@@ -162,6 +172,6 @@ timers:
     advised-modules-sync:
         sleep-time-ms: 30000
     locked-modules-sync:
-        sleep-time-ms: 300000
+        sleep-time-ms: 30000
     cm-handle-data-sync:
         sleep-time-ms: 30000
