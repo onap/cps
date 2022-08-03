@@ -21,9 +21,12 @@
 
 package org.onap.cps.ncmp.api.inventory.sync;
 
+import java.time.Duration;
+import java.time.Instant;
 import java.util.List;
 import java.util.concurrent.ConcurrentMap;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
@@ -32,6 +35,7 @@ import org.onap.cps.ncmp.api.inventory.CompositeState;
 import org.onap.cps.ncmp.api.inventory.DataStoreSyncState;
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.api.inventory.LockReasonCategory;
+import org.onap.cps.ncmp.api.inventory.sync.executor.ScheduledWatchdogTaskExecutor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -46,35 +50,51 @@ public class ModuleSyncWatchdog {
 
     private final ModuleSyncService moduleSyncService;
 
-    private final ConcurrentMap<String, Boolean> moduleSyncSemaphoreMap;
+    private final ConcurrentMap<YangModelCmHandle, Boolean> moduleSyncSemaphoreMap;
+
+    private final ScheduledWatchdogTaskExecutor scheduledWatchdogTaskExecutor;
 
     /**
      * Execute Cm Handle poll which changes the cm handle state from 'ADVISED' to 'READY'.
      */
     @Scheduled(fixedDelayString = "${timers.advised-modules-sync.sleep-time-ms:30000}")
     public void executeAdvisedCmHandlePoll() {
-        syncUtils.getAdvisedCmHandles().forEach(advisedCmHandle -> {
-            final String cmHandleId = advisedCmHandle.getId();
-            if (hasPushedIntoSemaphoreMap(cmHandleId)) {
-                log.debug("executing module sync on {}", cmHandleId);
-                final CompositeState compositeState = inventoryPersistence.getCmHandleState(cmHandleId);
-                try {
-                    moduleSyncService.deleteSchemaSetIfExists(advisedCmHandle);
-                    moduleSyncService.syncAndCreateSchemaSetAndAnchor(advisedCmHandle);
-                    setCompositeStateToReadyWithInitialDataStoreSyncState().accept(compositeState);
-                    updateModuleSyncSemaphoreMap(cmHandleId);
-                } catch (final Exception e) {
-                    setCompositeStateToLocked().accept(compositeState);
-                    syncUtils.updateLockReasonDetailsAndAttempts(compositeState,
-                            LockReasonCategory.LOCKED_MODULE_SYNC_FAILED, e.getMessage());
-                }
-                inventoryPersistence.saveCmHandleState(cmHandleId, compositeState);
-                log.debug("{} is now in {} state", cmHandleId, compositeState.getCmHandleState().name());
-            } else {
-                log.debug("{} already processed by another instance", cmHandleId);
-            }
-        });
+        List<YangModelCmHandle> unProcessedYangModelCmHandles = getUnProcessedCmHandles();
+        while (!unProcessedYangModelCmHandles.isEmpty()) {
+            List<YangModelCmHandle> yangModelCmHandles = unProcessedYangModelCmHandles;
+            log.info("Found cm handle(s) of size {}  for processing", unProcessedYangModelCmHandles.size());
+            scheduledWatchdogTaskExecutor.executeTask(() ->
+                    performModuleStateTransition(yangModelCmHandles), 120000
+            );
+            unProcessedYangModelCmHandles = getUnProcessedCmHandles();
+        }
         log.debug("No Cm-Handles currently found in an ADVISED state");
+    }
+
+    private String performModuleStateTransition(List<YangModelCmHandle> yangModelCmHandles) {
+        yangModelCmHandles.parallelStream().forEach(advisedCmHandle -> {
+            Instant start = Instant.now();
+            log.info("Started processing cm handle with id: {} into thread: {}", advisedCmHandle.getId(),
+                    Thread.currentThread().getName());
+            final String cmHandleId = advisedCmHandle.getId();
+            final CompositeState compositeState = inventoryPersistence.getCmHandleState(cmHandleId);
+            try {
+                moduleSyncService.deleteSchemaSetIfExists(advisedCmHandle);
+                moduleSyncService.syncAndCreateSchemaSetAndAnchor(advisedCmHandle);
+                setCompositeStateToReadyWithInitialDataStoreSyncState().accept(compositeState);
+            } catch (final Exception e) {
+                setCompositeStateToLocked().accept(compositeState);
+                syncUtils.updateLockReasonDetailsAndAttempts(compositeState,
+                        LockReasonCategory.LOCKED_MODULE_SYNC_FAILED, e.getMessage());
+            }
+            inventoryPersistence.saveCmHandleState(cmHandleId, compositeState);
+            Instant end = Instant.now();
+            log.info("Finished processing of cm handle with id: {} in {} ms into thread: {}", advisedCmHandle.getId(),
+                    Duration.between(start, end).toMillis(), Thread.currentThread().getName());
+            log.debug("{} is now in {} state", cmHandleId, compositeState.getCmHandleState().name());
+            removeFromModuleSyncSemaphoreMap(advisedCmHandle);
+        });
+        return "Async batch of module sync watchdog of size of size " + yangModelCmHandles.size() + " is done.";
     }
 
     /**
@@ -104,6 +124,7 @@ public class ModuleSyncWatchdog {
     private Consumer<CompositeState> setCompositeStateToReadyWithInitialDataStoreSyncState() {
         return compositeState -> {
             compositeState.setDataSyncEnabled(false);
+            compositeState.setLastUpdateTimeNow();
             compositeState.setCmHandleState(CmHandleState.READY);
             final CompositeState.Operational operational = getDataStoreSyncState();
             final CompositeState.DataStores dataStores = CompositeState.DataStores.builder()
@@ -127,11 +148,30 @@ public class ModuleSyncWatchdog {
         return CompositeState.Operational.builder().dataStoreSyncState(dataStoreSyncState).build();
     }
 
-    private void updateModuleSyncSemaphoreMap(final String cmHandleId) {
-        moduleSyncSemaphoreMap.replace(cmHandleId, true);
+    private void updateModuleSyncSemaphoreMap(final YangModelCmHandle yangModelCmHandle) {
+        moduleSyncSemaphoreMap.replace(yangModelCmHandle, true);
     }
 
-    private boolean hasPushedIntoSemaphoreMap(final String cmHandleId) {
-        return moduleSyncSemaphoreMap.putIfAbsent(cmHandleId, false) == null;
+    private void removeFromModuleSyncSemaphoreMap(final YangModelCmHandle yangModelCmHandle) {
+        moduleSyncSemaphoreMap.remove(yangModelCmHandle);
+    }
+
+    private List<YangModelCmHandle> getUnProcessedCmHandles() {
+        if (moduleSyncSemaphoreMap.isEmpty()) {
+            syncUtils.getAdvisedCmHandles(moduleSyncSemaphoreMap);
+        }
+        List<YangModelCmHandle> yangModelCmHandles= moduleSyncSemaphoreMap.keySet().stream()
+                .filter(cmHandle -> moduleSyncSemaphoreMap.get(cmHandle)!=null
+                        && !moduleSyncSemaphoreMap.get(cmHandle))
+                .limit(100)
+                .collect(Collectors.toList());
+        Consumer<List<YangModelCmHandle>> listConsumer = markAsBeingPickedByWatchdog();
+        listConsumer.accept(yangModelCmHandles);
+        return yangModelCmHandles;
+    }
+
+    private Consumer<List<YangModelCmHandle>> markAsBeingPickedByWatchdog() {
+        return yangModelCmHandles -> yangModelCmHandles.stream()
+                .forEach(this::updateModuleSyncSemaphoreMap);
     }
 }
