@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "40f34af4_a5d8a705",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/DataSyncWatchdog.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-08-03T10:21:31Z",
+      "side": 1,
+      "message": "Is it possible to make any updates to the Map here ? if this method only sets the boolean to true, it would be better to rename the method to something that depicts the expected change.\nAlso I was wondering why do we want to add it with a false flag first(line 92) and then come and update here. Why not add it here with a true flag?",
+      "range": {
+        "startLine": 87,
+        "startChar": 17,
+        "endLine": 87,
+        "endChar": 43
+      },
+      "revId": "9c035397dd497b28400918f2de6f9fdb8a040db8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd85306d_d9a3a6b9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-08-03T10:21:31Z",
+      "side": 1,
+      "message": "Do we need the returned list to be immutable?\nIf not then we could just check for non emptiness of te list and then shuffle the collection.\nreturn yangModelCmHandles at the end as done in LNo 112.",
+      "range": {
+        "startLine": 107,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 43
+      },
+      "revId": "9c035397dd497b28400918f2de6f9fdb8a040db8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "11ec6a6b_6af121cd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-08-03T10:21:31Z",
+      "side": 1,
+      "message": "Query : why do we need to shuffle?",
+      "range": {
+        "startLine": 110,
+        "startChar": 0,
+        "endLine": 110,
+        "endChar": 48
+      },
+      "revId": "9c035397dd497b28400918f2de6f9fdb8a040db8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
