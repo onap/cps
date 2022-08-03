@@ -1,6 +1,6 @@
 /*-
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Nordix Foundation.
+ *  Modifications Copyright (c) 2022 Nordix Foundation
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,26 +20,44 @@
 
 package org.onap.cps.spi.repository;
 
-import java.util.List;
+import lombok.extern.slf4j.Slf4j;
+import org.hibernate.Session;
+import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import org.springframework.transaction.annotation.Transactional;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.List;
 
 @Transactional
+@Slf4j
 public class SchemaSetYangResourceRepositoryImpl implements SchemaSetYangResourceRepository {
 
     @PersistenceContext
     private EntityManager entityManager;
 
     @Override
-    public void insertSchemaSetIdYangResourceId(final Integer schemaSetId, final List<Long> yangResourceId) {
-        final var query = "INSERT INTO SCHEMA_SET_YANG_RESOURCES (SCHEMA_SET_ID, YANG_RESOURCE_ID) "
-                + "VALUES ( :schemaSetId, :yangResourceId)";
-        yangResourceId.forEach(id ->
-                entityManager.createNativeQuery(query)
-                        .setParameter("schemaSetId", schemaSetId)
-                        .setParameter("yangResourceId", id)
-                        .executeUpdate()
-        );
+    public void insertSchemaSetIdYangResourceId(final Integer schemaSetId, final List<Long> yangResourceIds) {
+        Session hibernateSession = entityManager.unwrap(Session.class);
+        final var sqlQuery = "INSERT INTO SCHEMA_SET_YANG_RESOURCES (SCHEMA_SET_ID, YANG_RESOURCE_ID) "
+                + "VALUES ( ?, ?)";
+        hibernateSession.doWork(connection -> {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
+                int sqlQueryCount = 1;
+                for (long resourceId : yangResourceIds) {
+                    preparedStatement.setInt(1, schemaSetId);
+                    preparedStatement.setLong(2, resourceId);
+                    preparedStatement.addBatch();
+                    //Batch size: 100
+                    if (sqlQueryCount % 100 == 0 || sqlQueryCount == yangResourceIds.size()) {
+                        preparedStatement.executeBatch();
+                    }
+                    sqlQueryCount++;
+                }
+            } catch (SQLException e) {
+                log.error("An exception while performing bulk insertion into schema set yang resource." +
+                        " error code : {} error message: {}", e.getErrorCode(), e.getMessage());
+            }
+        });
     }
 }

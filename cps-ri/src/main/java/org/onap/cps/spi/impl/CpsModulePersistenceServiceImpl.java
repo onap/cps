@@ -30,6 +30,8 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -40,7 +42,7 @@ import java.util.Set;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import javax.transaction.Transactional;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -58,6 +60,7 @@ import org.onap.cps.spi.model.ModuleReference;
 import org.onap.cps.spi.repository.DataspaceRepository;
 import org.onap.cps.spi.repository.ModuleReferenceRepository;
 import org.onap.cps.spi.repository.SchemaSetRepository;
+import org.onap.cps.spi.repository.YangResourceNativeRepository;
 import org.onap.cps.spi.repository.YangResourceRepository;
 import org.opendaylight.yangtools.yang.common.Revision;
 import org.opendaylight.yangtools.yang.model.parser.api.YangSyntaxErrorException;
@@ -72,7 +75,7 @@ import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceService {
 
     private static final String YANG_RESOURCE_CHECKSUM_CONSTRAINT_NAME = "yang_resource_checksum_key";
@@ -80,15 +83,17 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
     private static final Pattern RFC6020_RECOMMENDED_FILENAME_PATTERN = Pattern
             .compile("([\\w-]+)@(\\d{4}-\\d{2}-\\d{2})(?:\\.yang)?", Pattern.CASE_INSENSITIVE);
 
-    private YangResourceRepository yangResourceRepository;
+    private final YangResourceRepository yangResourceRepository;
 
-    private SchemaSetRepository schemaSetRepository;
+    private final SchemaSetRepository schemaSetRepository;
 
-    private DataspaceRepository dataspaceRepository;
+    private final DataspaceRepository dataspaceRepository;
 
-    private CpsAdminPersistenceService cpsAdminPersistenceService;
+    private final CpsAdminPersistenceService cpsAdminPersistenceService;
 
-    private ModuleReferenceRepository moduleReferenceRepository;
+    private final ModuleReferenceRepository moduleReferenceRepository;
+
+    private final YangResourceNativeRepository yangResourceNativeRepository;
 
     @Override
     public Map<String, String> getYangSchemaResources(final String dataspaceName, final String schemaSetName) {
@@ -167,11 +172,16 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
         final var dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         final var schemaSetEntity =
                 schemaSetRepository.getByDataspaceAndName(dataspaceEntity, schemaSetName);
-        final List<Long> listOfYangResourceIds = new ArrayList<>();
-        moduleReferences.forEach(moduleReference ->
-                listOfYangResourceIds.add(yangResourceRepository.getIdByModuleNameAndRevision(
-                        moduleReference.getModuleName(), moduleReference.getRevision())));
+        final Instant startTime = Instant.now();
+        final List<Long> listOfYangResourceIds = yangResourceNativeRepository.getResourceIdsByModuleNameAndRevision(moduleReferences);
+        final Instant endTime = Instant.now();
+        log.info("Finished processing of getResourceIdsByModuleNameAndRevision with dataspaceName: {} in {} ms into thread: {}", dataspaceName,
+                Duration.between(startTime, endTime).toMillis(), Thread.currentThread().getName());
+        final Instant startTime1 = Instant.now();
         yangResourceRepository.insertSchemaSetIdYangResourceId(schemaSetEntity.getId(), listOfYangResourceIds);
+        final Instant endTime1 = Instant.now();
+        log.info("Finished processing of insertSchemaSetIdYangResourceId with dataspaceName: {} in {} ms into thread: {}", dataspaceName,
+                Duration.between(startTime1, endTime1).toMillis(), Thread.currentThread().getName());
     }
 
     @Override
