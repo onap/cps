@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "64a343ef_71868acd",
+        "filename": "docs/design.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-08-03T10:59:13Z",
+      "side": 1,
+      "message": "2021 - 2022",
+      "range": {
+        "startLine": 3,
+        "startChar": 17,
+        "endLine": 3,
+        "endChar": 22
+      },
+      "revId": "8253350399262d5764d5986453ffe740546db495",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d04a9345_bd864a9e",
+        "filename": "docs/ncmp-cmhandle-querying.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-08-03T10:59:13Z",
+      "side": 1,
+      "message": "CM Handle IDs",
+      "range": {
+        "startLine": 22,
+        "startChar": 37,
+        "endLine": 22,
+        "endChar": 48
+      },
+      "revId": "8253350399262d5764d5986453ffe740546db495",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "65290a25_918cf3fb",
+        "filename": "docs/ncmp-cmhandle-querying.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-08-03T10:59:13Z",
+      "side": 1,
+      "message": "/searches returns whole object (data) whereas /id-searches returns only id",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 63
+      },
+      "revId": "8253350399262d5764d5986453ffe740546db495",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a520679d_32dde9fb",
+        "filename": "docs/ncmp-cmhandle-querying.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-08-03T10:59:13Z",
+      "side": 1,
+      "message": "We could explain what the following JSON will return. e.g. all cm handles that are in ADVISED and have ALL the modules and properties mentioned",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 20
+      },
+      "revId": "8253350399262d5764d5986453ffe740546db495",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9aecd892_ccb14432",
+        "filename": "docs/ncmp-cmhandle-querying.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-08-03T10:59:13Z",
+      "side": 1,
+      "message": "I would leave the heading as Dylan suggested but when mentioning the actual condition I would use hasAllModules here... but that\u0027s just my preference :)\n\nIf others agree the same could be done for the other conditions",
+      "range": {
+        "startLine": 88,
+        "startChar": 9,
+        "endLine": 88,
+        "endChar": 23
+      },
+      "revId": "8253350399262d5764d5986453ffe740546db495",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
