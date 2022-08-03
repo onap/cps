@@ -144,7 +144,7 @@ management:
                 enabled: true
 
 logging:
-    format: json
+    format: text
     level:
         org:
             springframework: INFO
@@ -162,6 +162,6 @@ timers:
     advised-modules-sync:
         sleep-time-ms: 30000
     locked-modules-sync:
-        sleep-time-ms: 300000
+        sleep-time-ms: 30000
     cm-handle-data-sync:
         sleep-time-ms: 30000
