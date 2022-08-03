@@ -22,6 +22,7 @@ package org.onap.cps.ncmp.api.inventory;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.Serializable;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 import lombok.Builder;
@@ -37,8 +38,9 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class CompositeState {
+public class CompositeState implements Serializable {
 
+    private static final long serialVersionUID = 4L;
     @JsonProperty("cm-handle-state")
     private CmHandleState cmHandleState;
 
@@ -69,8 +71,9 @@ public class CompositeState {
     @Data
     @Builder
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public static class LockReason {
+    public static class LockReason implements Serializable {
 
+        private static final long serialVersionUID = 4L;
         @JsonProperty("reason")
         private LockReasonCategory lockReasonCategory;
 
@@ -82,8 +85,9 @@ public class CompositeState {
     @Data
     @Builder
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public static class DataStores {
+    public static class DataStores implements Serializable {
 
+        private static final long serialVersionUID = 4L;
         @JsonProperty("operational")
         private Operational operationalDataStore;
     }
@@ -91,8 +95,9 @@ public class CompositeState {
     @Data
     @Builder
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public static class Operational {
+    public static class Operational implements Serializable {
 
+        private static final long serialVersionUID = 4L;
         @JsonProperty("sync-state")
         private DataStoreSyncState dataStoreSyncState;
 
