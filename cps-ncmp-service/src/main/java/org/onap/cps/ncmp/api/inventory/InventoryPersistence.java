@@ -26,8 +26,12 @@ import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NO_TIMES
 import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED;
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
 
+import java.time.Duration;
+import java.time.Instant;
 import java.time.OffsetDateTime;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsDataService;
@@ -94,6 +98,26 @@ public class InventoryPersistence {
         cpsDataService.replaceNodeTree(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
             String.format(CM_HANDLE_XPATH_TEMPLATE, cmHandleId),
             cmHandleJsonData, OffsetDateTime.now());
+    }
+
+    /**
+     * Save all cm handles states in batch.
+     *
+     * @param cmHandleStates contains cm handle id and updated state
+     */
+    public void saveCmHandleStates(final Map<String, CompositeState> cmHandleStates) {
+        final Instant startTime = Instant.now();
+        final Map<String, String> cmHandlesJsonDataMap = new HashMap<>();
+        cmHandleStates.entrySet().stream().forEach(cmHandleEntry ->
+                cmHandlesJsonDataMap.put(String.format(CM_HANDLE_XPATH_TEMPLATE, cmHandleEntry.getKey()),
+                        String.format("{\"state\":%s}",
+                                jsonObjectMapper.asJsonString(cmHandleEntry.getValue()))));
+        cpsDataService.replaceNodesTree(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cmHandlesJsonDataMap,
+                OffsetDateTime.now());
+        final Instant endTime = Instant.now();
+        log.info("Finished saveCmHandleStates cmHandleStates : {} in {} ms into thread: {}",
+                cmHandleStates.size(),
+                Duration.between(startTime, endTime).toMillis(), Thread.currentThread().getName());
     }
 
     /**
