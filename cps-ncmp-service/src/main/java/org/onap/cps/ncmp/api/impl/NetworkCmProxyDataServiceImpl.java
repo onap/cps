@@ -33,6 +33,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -49,6 +50,7 @@ import org.onap.cps.ncmp.api.inventory.CompositeState;
 import org.onap.cps.ncmp.api.inventory.CompositeStateUtils;
 import org.onap.cps.ncmp.api.inventory.DataStoreSyncState;
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
+import org.onap.cps.ncmp.api.inventory.sync.executor.AsyncTaskExecutor;
 import org.onap.cps.ncmp.api.models.CmHandleQueryApiParameters;
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse;
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationError;
@@ -72,6 +74,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService {
 
+    private static final int ASYNC_TASK_TIMEOUT_IN_MILLISECONDS = (int) TimeUnit.MINUTES.toMillis(120000);
     private final JsonObjectMapper jsonObjectMapper;
 
     private final DmiDataOperations dmiDataOperations;
@@ -85,6 +88,8 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     private final LcmEventsCmHandleStateHandler lcmEventsCmHandleStateHandler;
 
     private final CpsDataService cpsDataService;
+
+    private final AsyncTaskExecutor asyncTaskExecutor;
 
     @Override
     public DmiPluginRegistrationResponse updateDmiRegistrationAndSyncModule(
@@ -339,7 +344,9 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     private CmHandleRegistrationResponse registerNewCmHandle(final YangModelCmHandle yangModelCmHandle) {
         try {
-            inventoryPersistence.saveCmHandle(yangModelCmHandle);
+            asyncTaskExecutor.executeTask(() ->
+                    inventoryPersistence.saveCmHandle(yangModelCmHandle), ASYNC_TASK_TIMEOUT_IN_MILLISECONDS
+            );
             return CmHandleRegistrationResponse.createSuccessResponse(yangModelCmHandle.getId());
         } catch (final AlreadyDefinedException alreadyDefinedException) {
             return CmHandleRegistrationResponse.createFailureResponse(
