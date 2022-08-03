@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "4c95f06b_bf484277",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventType.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-03T20:47:49Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "44410088_ed7074a0",
+      "range": {
+        "startLine": 27,
+        "startChar": 4,
+        "endLine": 27,
+        "endChar": 29
+      },
+      "revId": "4f66d391280dccc813624a1b06d361c61cfe12d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "60584f2f_19922d58",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventType.java",
         "patchSetId": 11
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "ed1b805a_7d1ec909",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventType.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-03T20:47:49Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "60584f2f_19922d58",
+      "range": {
+        "startLine": 29,
+        "startChar": 4,
+        "endLine": 29,
+        "endChar": 77
+      },
+      "revId": "4f66d391280dccc813624a1b06d361c61cfe12d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "77b99f23_c042d2f6",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
         "patchSetId": 11
@@ -65,6 +113,24 @@
     },
     {
       "key": {
+        "uuid": "aa1d14c7_f10de992",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-03T20:47:49Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "77b99f23_c042d2f6",
+      "revId": "4f66d391280dccc813624a1b06d361c61cfe12d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5d30783d_6898c2bc",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
         "patchSetId": 11
@@ -76,6 +142,30 @@
       "writtenOn": "2022-08-03T16:51:54Z",
       "side": 1,
       "message": "Do you need to define the new NcmpServiceCmHandle here? I don\u0027t think you do.",
+      "range": {
+        "startLine": 58,
+        "startChar": 20,
+        "endLine": 58,
+        "endChar": 43
+      },
+      "revId": "4f66d391280dccc813624a1b06d361c61cfe12d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5415d2e7_989c12a6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-03T20:47:49Z",
+      "side": 1,
+      "message": "Yes. This is needed here to create a deep copy. (thats why I introduced a copy constructor)\nI am keeping a copy to compare the current state with the target state(after handling the update)",
+      "parentUuid": "5d30783d_6898c2bc",
       "range": {
         "startLine": 58,
         "startChar": 20,
@@ -111,6 +201,30 @@
     },
     {
       "key": {
+        "uuid": "37b898d4_2ca8e48a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorHelper.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-03T20:47:49Z",
+      "side": 1,
+      "message": "okzz..let me do that.",
+      "parentUuid": "43d254eb_ccd10e27",
+      "range": {
+        "startLine": 104,
+        "startChar": 11,
+        "endLine": 107,
+        "endChar": 69
+      },
+      "revId": "4f66d391280dccc813624a1b06d361c61cfe12d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1085cea2_4c4bef81",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorHelper.java",
         "patchSetId": 11
@@ -122,6 +236,30 @@
       "writtenOn": "2022-08-03T16:51:54Z",
       "side": 1,
       "message": "Is it necessary to set the initial capacity?",
+      "range": {
+        "startLine": 199,
+        "startChar": 96,
+        "endLine": 199,
+        "endChar": 97
+      },
+      "revId": "4f66d391280dccc813624a1b06d361c61cfe12d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "715af4b7_9a11d20f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorHelper.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-03T20:47:49Z",
+      "side": 1,
+      "message": "I know it will have just 2 entries.\nSo why to leave it as blank and go with default intial capacity of 16.",
+      "parentUuid": "1085cea2_4c4bef81",
       "range": {
         "startLine": 199,
         "startChar": 96,
@@ -157,6 +295,30 @@
     },
     {
       "key": {
+        "uuid": "7b3d30bb_f7aef26f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorHelper.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-03T20:47:49Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6b736826_484cec20",
+      "range": {
+        "startLine": 207,
+        "startChar": 65,
+        "endLine": 207,
+        "endChar": 73
+      },
+      "revId": "4f66d391280dccc813624a1b06d361c61cfe12d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c3a253f7_dfea74b3",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/NcmpServiceCmHandle.java",
         "patchSetId": 11
@@ -168,6 +330,30 @@
       "writtenOn": "2022-08-03T16:51:54Z",
       "side": 1,
       "message": "Can these ever be null? I thought they were defaulted to be empty maps/objects",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 64
+      },
+      "revId": "4f66d391280dccc813624a1b06d361c61cfe12d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5b5e3201_7e41e225",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/NcmpServiceCmHandle.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-03T20:47:49Z",
+      "side": 1,
+      "message": "Yes.. I can remove null check from dmiProperties and publicProperties.\nBut compositeState can be null when the cmHandle is first registered to ADVISED state. So keeping it as is.",
+      "parentUuid": "c3a253f7_dfea74b3",
       "range": {
         "startLine": 61,
         "startChar": 0,
