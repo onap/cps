@@ -26,6 +26,7 @@ import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ImmutableSet.Builder;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -101,17 +102,19 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     }
 
     private void addChildDataNodes(final String dataspaceName, final String anchorName, final String parentNodeXpath,
-                                   final Collection<DataNode> newChildren) {
+                                  final Collection<DataNode> newChildren) {
         final FragmentEntity parentFragmentEntity = getFragmentByXpath(dataspaceName, anchorName, parentNodeXpath);
         try {
-            for (final DataNode newChildAsDataNode : newChildren) {
+            final List<FragmentEntity> fragmentEntities = new ArrayList<>();
+            newChildren.forEach(newChildAsDataNode -> {
                 final FragmentEntity newChildAsFragmentEntity = convertToFragmentWithAllDescendants(
                         parentFragmentEntity.getDataspace(),
                         parentFragmentEntity.getAnchor(),
                         newChildAsDataNode);
                 newChildAsFragmentEntity.setParentId(parentFragmentEntity.getId());
-                fragmentRepository.save(newChildAsFragmentEntity);
-            }
+                fragmentEntities.add(newChildAsFragmentEntity);
+            });
+            fragmentRepository.saveAll(fragmentEntities);
         } catch (final DataIntegrityViolationException exception) {
             final List<String> conflictXpaths = newChildren.stream()
                     .map(DataNode::getXpath)
@@ -289,8 +292,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
 
     @Override
     public void replaceDataNodeTree(final String dataspaceName, final String anchorName, final DataNode dataNode) {
-        final FragmentEntity fragmentEntity = getFragmentByXpath(dataspaceName, anchorName, dataNode.getXpath());
-        replaceDataNodeTree(fragmentEntity, dataNode);
+        final FragmentEntity fragmentEntity = getFragmentEntity(dataspaceName, anchorName, dataNode);
         try {
             fragmentRepository.save(fragmentEntity);
         } catch (final StaleStateException staleStateException) {
@@ -299,6 +301,22 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
                             dataspaceName, anchorName, dataNode.getXpath()),
                     staleStateException);
         }
+    }
+
+    private FragmentEntity getFragmentEntity(String dataspaceName, String anchorName, DataNode dataNode) {
+        final FragmentEntity fragmentEntity = getFragmentByXpath(dataspaceName, anchorName, dataNode.getXpath());
+        replaceDataNodeTree(fragmentEntity, dataNode);
+        return fragmentEntity;
+    }
+
+    @Override
+    public void replaceDataNodeTree(final String dataspaceName,
+                                    final String anchorName,
+                                    final List<DataNode> dataNodes) {
+        List<FragmentEntity> fragmentEntities = dataNodes.stream()
+                .map(dataNode -> getFragmentEntity(dataspaceName, anchorName, dataNode))
+                .collect(Collectors.toList());
+        fragmentRepository.saveAll(fragmentEntities);
     }
 
     private void replaceDataNodeTree(final FragmentEntity existingFragmentEntity,

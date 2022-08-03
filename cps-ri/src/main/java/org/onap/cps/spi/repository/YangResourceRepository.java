@@ -91,10 +91,6 @@ public interface YangResourceRepository extends JpaRepository<YangResourceEntity
     Set<YangResourceModuleReference> findAllModuleReferencesByDataspaceAndModuleNames(
             @Param("dataspaceName") String dataspaceName, @Param("moduleNames") Collection<String> moduleNames);
 
-
-    @Query(value = "SELECT id FROM yang_resource WHERE module_name=:name and revision=:revision", nativeQuery = true)
-    Long getIdByModuleNameAndRevision(@Param("name") String moduleName, @Param("revision") String revision);
-
     @Modifying
     @Query(value = "DELETE FROM yang_resource yr WHERE NOT EXISTS "
         + "(SELECT 1 FROM schema_set_yang_resources ssyr WHERE ssyr.yang_resource_id = yr.id)", nativeQuery = true)
