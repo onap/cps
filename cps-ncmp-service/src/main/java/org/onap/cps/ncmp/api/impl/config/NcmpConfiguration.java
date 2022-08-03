@@ -20,6 +20,7 @@
 
 package org.onap.cps.ncmp.api.impl.config;
 
+import java.time.Duration;
 import java.util.Arrays;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -38,6 +39,9 @@ import org.springframework.web.client.RestTemplate;
 @Configuration
 @RequiredArgsConstructor(access = AccessLevel.PROTECTED)
 public class NcmpConfiguration {
+
+    private static final Duration CONNECTION_TIMEOUT_MILLISECONDS = Duration.ofMillis(180000);
+    private static final Duration READ_TIMEOUT_MILLISECONDS = Duration.ofMillis(180000);
 
     @Getter
     @Component
@@ -59,7 +63,10 @@ public class NcmpConfiguration {
     @Bean
     @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
     public static RestTemplate restTemplate(final RestTemplateBuilder restTemplateBuilder) {
-        final RestTemplate restTemplate = restTemplateBuilder.build();
+        final RestTemplate restTemplate = restTemplateBuilder
+                .setConnectTimeout(CONNECTION_TIMEOUT_MILLISECONDS)
+                .setReadTimeout(READ_TIMEOUT_MILLISECONDS)
+                .build();
         setRestTemplateMessageConverters(restTemplate);
         return restTemplate;
     }
