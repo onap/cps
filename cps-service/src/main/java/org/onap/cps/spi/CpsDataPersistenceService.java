@@ -98,6 +98,8 @@ public interface CpsDataPersistenceService {
      */
     void replaceDataNodeTree(String dataspaceName, String anchorName, DataNode dataNode);
 
+    void replaceDataNodeTree(final String dataspaceName, final String anchorName, final List<DataNode> dataNodes);
+
     /**
      * Replaces list content by removing all existing elements and inserting the given new elements
      * under given parent, anchor and dataspace.

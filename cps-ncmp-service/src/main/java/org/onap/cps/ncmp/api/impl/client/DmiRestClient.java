@@ -22,6 +22,7 @@
 package org.onap.cps.ncmp.api.impl.client;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration.DmiProperties;
 import org.onap.cps.ncmp.api.impl.exception.HttpClientRequestException;
 import org.onap.cps.ncmp.api.impl.operations.DmiRequestBody;
@@ -35,6 +36,7 @@ import org.springframework.web.client.RestTemplate;
 
 @Component
 @AllArgsConstructor
+@Slf4j
 public class DmiRestClient {
 
     private RestTemplate restTemplate;
@@ -52,9 +54,18 @@ public class DmiRestClient {
                                                             final DmiRequestBody.OperationEnum operation) {
         final var httpEntity = new HttpEntity<>(jsonData, configureHttpHeaders(new HttpHeaders()));
         try {
-            return restTemplate.postForEntity(dmiResourceUrl, httpEntity, Object.class);
+            log.info("Started postOperationWithJsonData for {} into thread: {}", dmiResourceUrl,
+                    Thread.currentThread().getName());
+            final ResponseEntity<Object> objectResponseEntity = restTemplate.postForEntity(dmiResourceUrl,
+                    httpEntity, Object.class);
+            log.info("Finished postOperationWithJsonData for {} into thread: {}", dmiResourceUrl,
+                    Thread.currentThread().getName());
+            return objectResponseEntity;
         } catch (final HttpStatusCodeException httpStatusCodeException) {
             final String exceptionMessage = "Unable to " + operation.toString() + " resource data.";
+            log.info("ExceptionMessage: {}, ResponseBody: {}, RawStatusCode: {}", exceptionMessage,
+                    httpStatusCodeException.getResponseBodyAsString(),
+                    httpStatusCodeException.getRawStatusCode());
             throw new HttpClientRequestException(exceptionMessage, httpStatusCodeException.getResponseBodyAsString(),
                 httpStatusCodeException.getRawStatusCode());
         }
