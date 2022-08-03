@@ -25,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.Strings;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -46,8 +47,9 @@ import org.onap.cps.utils.CpsValidator;
 @Setter
 @NoArgsConstructor
 @JsonInclude(Include.NON_NULL)
-public class YangModelCmHandle {
+public class YangModelCmHandle implements Serializable {
 
+    private static final long serialVersionUID = 4L;
     private String id;
 
     @JsonProperty("dmi-service-name")
@@ -124,8 +126,9 @@ public class YangModelCmHandle {
 
     @AllArgsConstructor
     @Data
-    public static class Property {
+    public static class Property implements Serializable {
 
+        private static final long serialVersionUID = 4L;
         @JsonProperty()
         private final String name;
 
