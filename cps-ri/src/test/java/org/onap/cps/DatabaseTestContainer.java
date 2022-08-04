@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Pantheon.tech
+ *  Modifications Copyright (C) 2022 Nordix Foundation.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -29,7 +30,7 @@ import org.testcontainers.containers.PostgreSQLContainer;
  *  psql -d test -U test
  */
 public class DatabaseTestContainer extends PostgreSQLContainer<DatabaseTestContainer> {
-    private static final String IMAGE_VERSION = "postgres:13.2";
+    private static final String IMAGE_VERSION = "postgres:14.1";
     private static DatabaseTestContainer databaseTestContainer;
 
     private DatabaseTestContainer() {
