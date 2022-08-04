@@ -263,7 +263,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         final SchemaSetEntity schemaSetEntity = fragmentEntity.getAnchor().getSchemaSet();
         final Map<String, String> yangResourceNameToContent =
                 schemaSetEntity.getYangResources().stream().collect(
-                        Collectors.toMap(YangResourceEntity::getName, YangResourceEntity::getContent));
+                        Collectors.toMap(YangResourceEntity::getFileName, YangResourceEntity::getContent));
         final SchemaContext schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent)
                 .getSchemaContext();
         return schemaContext.getModules().iterator().next().getName();

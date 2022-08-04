@@ -56,7 +56,7 @@ public class YangResourceEntity implements Serializable {
 
     @NotNull
     @Column
-    private String name;
+    private String fileName;
 
     @NotNull
     @Column

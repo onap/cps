@@ -23,7 +23,6 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import org.hibernate.StaleStateException
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.entities.AnchorEntity
-import org.onap.cps.spi.entities.DataspaceEntity
 import org.onap.cps.spi.entities.FragmentEntity
 import org.onap.cps.spi.entities.SchemaSetEntity
 import org.onap.cps.spi.entities.YangResourceEntity
@@ -35,9 +34,6 @@ import org.onap.cps.spi.repository.DataspaceRepository
 import org.onap.cps.spi.repository.FragmentRepository
 import org.onap.cps.spi.utils.SessionManager
 import org.onap.cps.utils.JsonObjectMapper
-import org.onap.cps.yang.YangTextSchemaSourceSet
-import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
-import org.opendaylight.yangtools.yang.model.api.SchemaContext
 import spock.lang.Shared
 import spock.lang.Specification
 
@@ -67,7 +63,7 @@ class CpsDataPersistenceServiceSpec extends Specification {
 
     @Shared
     def yangResourceSet = [new YangResourceEntity(moduleName: 'moduleName', content: NEW_RESOURCE_CONTENT,
-            name: 'sampleYangResource'
+            fileName: 'sampleYangResource'
     )] as Set
 
 
