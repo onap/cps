@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1274c51c_70f97006",
+        "filename": "docs/modeling.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-08-04T13:24:12Z",
+      "side": 1,
+      "message": "NB has *been* deleted successfully",
+      "range": {
+        "startLine": 98,
+        "startChar": 48,
+        "endLine": 98,
+        "endChar": 49
+      },
+      "revId": "506472ae7290d314d95b11ad5f6714fd6612fe28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
