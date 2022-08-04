@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "cf250113_06f1bcc4",
+        "filename": "docs/modeling.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-08-04T14:01:26Z",
+      "side": 1,
+      "message": "Good question. I think we should have it. But I don\u0027t know if it should go in this section. What does the team think?",
+      "parentUuid": "d28c676f_05edce46",
+      "range": {
+        "startLine": 90,
+        "startChar": 77,
+        "endLine": 90,
+        "endChar": 153
+      },
+      "revId": "506472ae7290d314d95b11ad5f6714fd6612fe28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fe60b60a_1adf2c7d",
         "filename": "docs/modeling.rst",
         "patchSetId": 1
@@ -83,6 +107,30 @@
       "writtenOn": "2022-08-04T13:26:47Z",
       "side": 1,
       "message": "also do we write about that lock reason somewhere?",
+      "range": {
+        "startLine": 94,
+        "startChar": 6,
+        "endLine": 94,
+        "endChar": 12
+      },
+      "revId": "506472ae7290d314d95b11ad5f6714fd6612fe28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9b9ea740_b6e309a1",
+        "filename": "docs/modeling.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-08-04T14:01:26Z",
+      "side": 1,
+      "message": "I don\u0027t think it\u0027s completely necessary to write about Lock reason write now, as we only have LOCKED_MISBEHAVING, and I don\u0027t think any other lock reasons have been outlined currently.\n\nWe could have a discussion about this with the team though",
+      "parentUuid": "fe60b60a_1adf2c7d",
       "range": {
         "startLine": 94,
         "startChar": 6,
@@ -115,6 +163,30 @@
       "revId": "506472ae7290d314d95b11ad5f6714fd6612fe28",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b8e7f28_387dbd55",
+        "filename": "docs/modeling.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-08-04T14:01:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1274c51c_70f97006",
+      "range": {
+        "startLine": 98,
+        "startChar": 48,
+        "endLine": 98,
+        "endChar": 49
+      },
+      "revId": "506472ae7290d314d95b11ad5f6714fd6612fe28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
