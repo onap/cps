@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f80a027e_3d9f3292",
+        "filename": "docs/modeling.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-08-04T14:39:54Z",
+      "side": 1,
+      "message": "just wondering if we need to specify sync state here",
+      "range": {
+        "startLine": 86,
+        "startChar": 63,
+        "endLine": 86,
+        "endChar": 70
+      },
+      "revId": "33ead2e90bcd34aa2222530194ca04d72343cec9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
