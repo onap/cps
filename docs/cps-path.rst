@@ -203,8 +203,6 @@ absolute-path
 **Limitations**
   - Absolute paths must start with the top element (data node) as per the model tree.
   - Each list reference must include a valid instance reference to the key for that list. Except when it is the last element.
-  - The Absolute path to list with integer key will not work. It needs to be surrounded with a single quote ([@code='1'])
-    as if it is a string. This will be fixed in `CPS-961 <https://jira.onap.org/browse/CPS-961>`_
 
 descendant-path
 ---------------

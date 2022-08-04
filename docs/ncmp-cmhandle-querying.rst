@@ -1,0 +1,155 @@
+.. This work is licensed under a Creative Commons Attribution 4.0 International License.
+.. http://creativecommons.org/licenses/by/4.0
+.. Copyright (C) 2022 Nordix Foundation
+
+.. DO NOT CHANGE THIS LABEL FOR RELEASE NOTES - EVEN THOUGH IT GIVES A WARNING
+.. _cmhandlequerying:
+
+
+CM Handle Query Endpoints
+#########################
+
+.. toctree::
+   :maxdepth: 1
+
+Introduction
+============
+
+For querying CM Handles we have two Post endpoints:
+
+- ncmp/v1/ch/searches Returns all CM Handles which match the query properties provided. Gives a JSON payload of the **details** of all matching CM Handles.
+
+- ncmp/v1/ch/id-searches Returns all CM Handles IDs which match the query properties provided. Gives a JSON payload of the **ids** of all matching CM Handles.
+
+/searches returns whole CM Handle object (data) whereas /id-searches returns only CM Handle IDs. Otherwise these endpoints are intended to be functionally identical so both can be queried with the same request body. If no matching CM Handles are found an empty array is returned.
+
+Request Body
+============
+
+Currently this endpoint allows three criteria to be query on:
+
+- *hasAllModules* returns CM Handles which have the module names provided.
+
+- *hasAllProperties* returns CM Handles which have the properties (key and value) provided.
+
+- *cmHandleWithCpsPath* returns CM Handles which match the CPS Path provided.
+
+Not all request body combinations have been validated and as such request bodies which do not conform to the structure as documented here can produce results in which all CM Handles are returned.
+
+Request Body example using all available query criteria. This query would return all CM Handles which have the specified modules my-module-(1-3), have the specified properties of Color yellow, Shape circle, Size small and are in a sync state of ADVISED:
+
+.. code-block:: json
+
+    {
+      "cmHandleQueryParameters": [
+        {
+          "conditionName": "hasAllModules",
+          "conditionParameters": [
+            {
+              "moduleName": "my-module-1"
+            },
+            {
+              "moduleName": "my-module-2"
+            },
+            {
+              "moduleName": "my-module-3"
+            }
+          ]
+        },
+        {
+          "conditionName": "hasAllProperties",
+          "conditionParameters": [
+            {
+              "Color": "yellow"
+            },
+            {
+              "Shape": "circle"
+            },
+            {
+              "Size": "small"
+            }
+          ]
+        },
+        {
+          "conditionName": "cmHandleWithCpsPath",
+          "conditionParameters": [
+            {
+              "cpsPath": "//state[@cm-handle-state='ADVISED']"
+            }
+          ]
+        }
+      ]
+    }
+
+
+Has all Modules
+---------------
+
+With the *hasAllModules* condition, we can provide a list of module names. The CM Handles returned will have these module names. The parameter names must be as below with the key of each of the module names being "moduleName" where "my-module-X" is to be replaced with the name of the module to query with. The returned CM Handle must have all supplied modules. For the example request, a CM Handle will be returned if it has "my-module-1", "my-module-2" and "my-module-3".
+
+.. code-block:: json
+
+    {
+      "cmHandleQueryParameters": [
+        {
+          "conditionName": "hasAllModules",
+          "conditionParameters": [
+            {
+              "moduleName": "my-module-1"
+            },
+            {
+              "moduleName": "my-module-2"
+            },
+            {
+              "moduleName": "my-module-3"
+            }
+          ]
+        }
+      ]
+    }
+
+Has all Properties
+------------------
+
+With the *hasAllProperties* condition, we can provide a list of property keys and values. The CM Handles returned will have these properties. The parameter names must be as below with key and value for each property. The returned CM Handle must have all supplied properties. For the example request, a CM Handle will be returned if it has properties where there is a key of "Color" with value "yellow", a key of "Shape" with value "circle" and a key of "Size" with value "small".
+
+.. code-block:: json
+
+    {
+      "cmHandleQueryParameters": [
+        {
+          "conditionName": "hasAllProperties",
+          "conditionParameters": [
+            {
+              "Color": "yellow"
+            },
+            {
+              "Shape": "circle"
+            },
+            {
+              "Size": "small"
+            }
+          ]
+        }
+      ]
+    }
+
+CM Handle with CPS Path
+-----------------------
+
+The *cmHandleWithCpsPath* condition allows any data of the CM Handle to be queried as long as it is accessible by CPS path. CPS path is described in detail in :doc:`cps-path`. For this endpoint, the ancestor of CM Handles is appended automatically so that a CM Handle is always returned. For example ``//state[@cm-handle-state='LOCKED']`` will become ``//state[@cm-handle-state='LOCKED']/ancestor::cm-handles``. The yang model for the dmi-registry can be found in :doc:`modeling` under the NCMP Modeling Section. Please note that although CM Handle additional-properties are shown in the dmi-registry yang model, these are considered private properties and cannot be used to query CM Handles. Any attempt to use the additional-properties to query will return an empty array.
+
+.. code-block:: json
+
+    {
+      "cmHandleQueryParameters": [
+        {
+          "conditionName": "cmHandleWithCpsPath",
+          "conditionParameters": [
+            {
+              "cpsPath": "//state[@cm-handle-state='LOCKED']"
+            }
+          ]
+        }
+      ]
+    }
