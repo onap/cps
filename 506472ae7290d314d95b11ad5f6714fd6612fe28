@@ -25,6 +25,29 @@
     },
     {
       "key": {
+        "uuid": "d28c676f_05edce46",
+        "filename": "docs/modeling.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-08-04T13:28:11Z",
+      "side": 1,
+      "message": "do we also need to add a brief decription about what module sync process is ?",
+      "range": {
+        "startLine": 90,
+        "startChar": 77,
+        "endLine": 90,
+        "endChar": 153
+      },
+      "revId": "506472ae7290d314d95b11ad5f6714fd6612fe28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fe60b60a_1adf2c7d",
         "filename": "docs/modeling.rst",
         "patchSetId": 1
