@@ -83,6 +83,20 @@ Basic Concepts
 
     These are stored as Anchors within CPS-Core.
 
+    - **CM-Handle States** are used to represent the potential states in which a CM-Handle can transition between.
+
+        The 5 possible CM-Handle states are: ADVISED, READY, LOCKED, DELETING, DELETED
+
+    **ADVISED** indicates that a CM-Handle has been registered successfully, and is waiting for the module synchronization process to sync the CM-Handle.
+
+    **READY** indicates that the CM-Handle has been synced successfully.
+
+    **LOCKED** indicates that the CM-Handle has not synced successfully. This then will wait for the retry mechanism within CPS to set the state back to ADVISED.
+
+    **DELETING** indicates that the CM-Handle is currently being deleted.
+
+    **DELETED** indicates that the CM-Handle has been deleted successfully.
+
 - **Datastores** represent different views of the cm data.
 
     Datastores are defined for NCMP to access the CPS running or operational datastores. Currently supported datastores are:
