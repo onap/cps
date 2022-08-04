@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0c8fd322_8a6a7414",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/models/NcmpServiceCmHandleSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-08-04T08:17:55Z",
+      "side": 1,
+      "message": "i think this is too \u0027programmer\u0027 language - i suggest to remove",
+      "range": {
+        "startLine": 36,
+        "startChar": 36,
+        "endLine": 36,
+        "endChar": 59
+      },
+      "revId": "de713afa00dcccdd5419ae648a2b2cf166136226",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
