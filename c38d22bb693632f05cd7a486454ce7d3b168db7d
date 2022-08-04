@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ba78202_71952aac",
+        "filename": "cps-ncmp-service/lombok.config",
+        "patchSetId": 8
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-08-04T10:52:07Z",
+      "side": 1,
+      "message": "2021-2022",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 22
+      },
+      "revId": "c38d22bb693632f05cd7a486454ce7d3b168db7d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8722c9e9_92ce0053",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-08-04T10:52:07Z",
+      "side": 1,
+      "message": "the getCmHandleDataNodesByCpsPath has been updated to include /ancestor::cm-handles",
+      "range": {
+        "startLine": 125,
+        "startChar": 69,
+        "endLine": 125,
+        "endChar": 90
+      },
+      "revId": "c38d22bb693632f05cd7a486454ce7d3b168db7d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "97b6b712_32d9817b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/SyncUtilsSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-08-04T10:52:07Z",
+      "side": 1,
+      "message": "Same here, needs to be removed, creating false positive",
+      "range": {
+        "startLine": 101,
+        "startChar": 67,
+        "endLine": 101,
+        "endChar": 88
+      },
+      "revId": "c38d22bb693632f05cd7a486454ce7d3b168db7d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
