@@ -29,7 +29,7 @@ import org.testcontainers.containers.PostgreSQLContainer;
  *  psql -d test -U test
  */
 public class DatabaseTestContainer extends PostgreSQLContainer<DatabaseTestContainer> {
-    private static final String IMAGE_VERSION = "postgres:13.2";
+    private static final String IMAGE_VERSION = "postgres:14.1";
     private static DatabaseTestContainer databaseTestContainer;
 
     private DatabaseTestContainer() {
