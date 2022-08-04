@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "fe60b60a_1adf2c7d",
+        "filename": "docs/modeling.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-04T13:26:47Z",
+      "side": 1,
+      "message": "also do we write about that lock reason somewhere?",
+      "range": {
+        "startLine": 94,
+        "startChar": 6,
+        "endLine": 94,
+        "endChar": 12
+      },
+      "revId": "506472ae7290d314d95b11ad5f6714fd6612fe28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1274c51c_70f97006",
         "filename": "docs/modeling.rst",
         "patchSetId": 1
