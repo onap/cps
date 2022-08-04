@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c867c14d_bc8cfafc",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/15-rename-column-yang-resource-table.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-08-04T17:53:49Z",
+      "side": 1,
+      "message": "why is this necessary ? :o",
+      "range": {
+        "startLine": 10,
+        "startChar": 8,
+        "endLine": 11,
+        "endChar": 36
+      },
+      "revId": "f1e5e39d4824690ac105d5d2f39b184f084c792d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
