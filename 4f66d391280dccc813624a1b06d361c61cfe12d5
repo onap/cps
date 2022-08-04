@@ -434,6 +434,30 @@
       "revId": "4f66d391280dccc813624a1b06d361c61cfe12d5",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "01668aad_15956b5a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-04T09:34:25Z",
+      "side": 1,
+      "message": "I used the check using LcmEventType enum.",
+      "parentUuid": "d137ca6c_c1bf3be7",
+      "range": {
+        "startLine": 49,
+        "startChar": 39,
+        "endLine": 49,
+        "endChar": 80
+      },
+      "revId": "4f66d391280dccc813624a1b06d361c61cfe12d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
