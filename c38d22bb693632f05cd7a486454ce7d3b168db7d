@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "a0179127_b5efe4b4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-08-05T06:22:13Z",
+      "side": 1,
+      "message": "List out some of the changes you made or what you would like to be highlighted from this commit",
+      "parentUuid": "5e9c7806_b14431a2",
+      "revId": "c38d22bb693632f05cd7a486454ce7d3b168db7d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9ba78202_71952aac",
         "filename": "cps-ncmp-service/lombok.config",
         "patchSetId": 8
