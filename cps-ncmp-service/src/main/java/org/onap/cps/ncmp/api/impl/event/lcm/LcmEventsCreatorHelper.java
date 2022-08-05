@@ -99,32 +99,32 @@ public class LcmEventsCreatorHelper {
             final NcmpServiceCmHandle targetNcmpServiceCmHandle,
             final NcmpServiceCmHandle existingNcmpServiceCmHandle) {
 
-        final boolean isDataSyncFlagEnabledChanged =
-                isDataSyncEnabledFlagChanged(targetNcmpServiceCmHandle, existingNcmpServiceCmHandle);
-        final boolean isCmHandleStateChanged =
-                isCmHandleStateChanged(targetNcmpServiceCmHandle, existingNcmpServiceCmHandle);
-        final boolean isPublicCmHandlePropertiesEqual =
-                isPublicCmHandlePropertiesEqual(targetNcmpServiceCmHandle.getPublicProperties(),
+        final boolean hasDataSyncFlagEnabledChanged =
+                hasDataSyncEnabledFlagChanged(targetNcmpServiceCmHandle, existingNcmpServiceCmHandle);
+        final boolean hasCmHandleStateChanged =
+                hasCmHandleStateChanged(targetNcmpServiceCmHandle, existingNcmpServiceCmHandle);
+        final boolean arePublicCmHandlePropertiesEqual =
+                arePublicCmHandlePropertiesEqual(targetNcmpServiceCmHandle.getPublicProperties(),
                         existingNcmpServiceCmHandle.getPublicProperties());
 
         final LcmEventsCreator.CmHandleValuesHolder cmHandleValuesHolder = new LcmEventsCreator.CmHandleValuesHolder();
 
-        if (isDataSyncFlagEnabledChanged || isCmHandleStateChanged || (!isPublicCmHandlePropertiesEqual)) {
+        if (hasDataSyncFlagEnabledChanged || hasCmHandleStateChanged || (!arePublicCmHandlePropertiesEqual)) {
             cmHandleValuesHolder.setOldValues(new Values());
             cmHandleValuesHolder.setNewValues(new Values());
         } else {
             return cmHandleValuesHolder;
         }
 
-        if (isDataSyncFlagEnabledChanged) {
+        if (hasDataSyncFlagEnabledChanged) {
             setDataSyncEnabledFlag(targetNcmpServiceCmHandle, existingNcmpServiceCmHandle, cmHandleValuesHolder);
         }
 
-        if (isCmHandleStateChanged) {
+        if (hasCmHandleStateChanged) {
             setCmHandleStateChange(targetNcmpServiceCmHandle, existingNcmpServiceCmHandle, cmHandleValuesHolder);
         }
 
-        if (!isPublicCmHandlePropertiesEqual) {
+        if (!arePublicCmHandlePropertiesEqual) {
             setPublicCmHandlePropertiesChange(targetNcmpServiceCmHandle, existingNcmpServiceCmHandle,
                     cmHandleValuesHolder);
         }
@@ -174,21 +174,29 @@ public class LcmEventsCreatorHelper {
         return ncmpServiceCmHandle.getCompositeState().getDataSyncEnabled();
     }
 
-    private static boolean isDataSyncEnabledFlagChanged(final NcmpServiceCmHandle targetNcmpServiceCmHandle,
+    private static boolean hasDataSyncEnabledFlagChanged(final NcmpServiceCmHandle targetNcmpServiceCmHandle,
             final NcmpServiceCmHandle existingNcmpServiceCmHandle) {
 
-        return !targetNcmpServiceCmHandle.getCompositeState().getDataSyncEnabled()
-                .equals(existingNcmpServiceCmHandle.getCompositeState().getDataSyncEnabled());
+        final Boolean targetDataSyncFlag = targetNcmpServiceCmHandle.getCompositeState() != null
+                                          ? targetNcmpServiceCmHandle.getCompositeState().getDataSyncEnabled() : null;
+        final Boolean existingDataSyncFlag = existingNcmpServiceCmHandle.getCompositeState() != null
+                                          ? existingNcmpServiceCmHandle.getCompositeState().getDataSyncEnabled() : null;
+
+        if (targetDataSyncFlag != null && existingDataSyncFlag != null) {
+            return !targetDataSyncFlag.equals(existingDataSyncFlag);
+        }
+
+        return !(targetDataSyncFlag == null && existingDataSyncFlag == null);
     }
 
-    private static boolean isCmHandleStateChanged(final NcmpServiceCmHandle targetNcmpServiceCmHandle,
+    private static boolean hasCmHandleStateChanged(final NcmpServiceCmHandle targetNcmpServiceCmHandle,
             final NcmpServiceCmHandle existingNcmpServiceCmHandle) {
 
         return targetNcmpServiceCmHandle.getCompositeState().getCmHandleState()
                        != existingNcmpServiceCmHandle.getCompositeState().getCmHandleState();
     }
 
-    private static boolean isPublicCmHandlePropertiesEqual(final Map<String, String> targetCmHandleProperties,
+    private static boolean arePublicCmHandlePropertiesEqual(final Map<String, String> targetCmHandleProperties,
             final Map<String, String> existingCmHandleProperties) {
         if (targetCmHandleProperties.size() != existingCmHandleProperties.size()) {
             return false;
