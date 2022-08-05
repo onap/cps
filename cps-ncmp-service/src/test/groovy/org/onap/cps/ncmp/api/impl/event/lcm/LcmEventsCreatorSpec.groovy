@@ -103,4 +103,36 @@ class LcmEventsCreatorSpec extends Specification {
             assert result.event.oldValues == null
             assert result.event.newValues == null
     }
+
+    def 'Map the LcmEvent for datasync flag transition from #operation'() {
+        given: 'NCMP cm handle details with current and old details'
+            def existingNcmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, compositeState: new CompositeState(dataSyncEnabled: existingDataSyncEnableFlag, cmHandleState: ADVISED))
+            def targetNcmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, compositeState: new CompositeState(dataSyncEnabled: targetDataSyncEnableFlag, cmHandleState: READY))
+        when: 'the event is populated'
+            def result = objectUnderTest.populateLcmEvent(cmHandleId, targetNcmpServiceCmHandle, existingNcmpServiceCmHandle)
+        then: 'event header is mapped correctly'
+            assert result.eventSource == 'org.onap.ncmp'
+            assert result.eventCorrelationId == cmHandleId
+            assert result.eventType == LcmEventType.UPDATE.eventType
+        and: 'event payload is mapped correctly with correct cmhandle id'
+            assert result.event.cmHandleId == cmHandleId
+        and: 'it should have correct old values'
+            assert result.event.oldValues.cmHandleState == Values.CmHandleState.ADVISED
+            assert result.event.oldValues.dataSyncEnabled == expectedExistingDataSyncEnableFlag
+        and: 'the correct new values'
+            assert result.event.newValues.cmHandleState == Values.CmHandleState.READY
+            assert result.event.newValues.dataSyncEnabled == expectedTargetDataSyncEnableFlag
+        where: 'following parameters are provided'
+            operation        | existingDataSyncEnableFlag | targetDataSyncEnableFlag || expectedExistingDataSyncEnableFlag | expectedTargetDataSyncEnableFlag
+            'false to true'  | false                      | true                     || false                              | true
+            'false to false' | false                      | false                    || null                               | null
+            'false to null'  | false                      | null                     || false                              | null
+            'true to false'  | true                       | false                    || true                               | false
+            'true to true'   | true                       | true                     || null                               | null
+            'true to null'   | true                       | null                     || true                               | null
+            'null to true'   | null                       | true                     || null                               | true
+            'null to false'  | null                       | false                    || null                               | false
+            'null to null'   | null                       | null                     || null                               | null
+
+    }
 }
