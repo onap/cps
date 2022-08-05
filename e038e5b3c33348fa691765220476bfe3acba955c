@@ -46,6 +46,30 @@
       "revId": "e038e5b3c33348fa691765220476bfe3acba955c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f39dd64_ff032777",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/15-rename-column-yang-resource-table.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-08-05T13:59:01Z",
+      "side": 1,
+      "message": "I followed the documentation outlined online for altering column names within liquibase,\n\nFor the rollback, I followed the CPS standard convention which seems to be used for rollbacks throughout",
+      "parentUuid": "c6d5eba8_abd5d263",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 36
+      },
+      "revId": "e038e5b3c33348fa691765220476bfe3acba955c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
