@@ -271,17 +271,12 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         List<CmHandleRegistrationResponse> cmHandleRegistrationResponses = new ArrayList<>();
         try {
             cmHandleRegistrationResponses = dmiPluginRegistration.getCreatedCmHandles().stream()
-                .map(cmHandle -> {
-                    setCompositeStateToAdvised(cmHandle);
-                    return YangModelCmHandle.toYangModelCmHandle(
+                .map(cmHandle ->
+                    YangModelCmHandle.toYangModelCmHandle(
                         dmiPluginRegistration.getDmiPlugin(),
                         dmiPluginRegistration.getDmiDataPlugin(),
                         dmiPluginRegistration.getDmiModelPlugin(),
-                        cmHandle);
-                    }
-                )
-                .map(this::registerNewCmHandle)
-                .collect(Collectors.toList());
+                        cmHandle)).map(this::registerNewCmHandle).collect(Collectors.toList());
         } catch (final DataValidationException dataValidationException) {
             cmHandleRegistrationResponses.add(CmHandleRegistrationResponse.createFailureResponse(dmiPluginRegistration
                             .getCreatedCmHandles().stream()
@@ -289,13 +284,6 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                     RegistrationError.CM_HANDLE_INVALID_ID));
         }
         return cmHandleRegistrationResponses;
-    }
-
-    private void setCompositeStateToAdvised(final NcmpServiceCmHandle ncmpServiceCmHandle) {
-        final CompositeState compositeState = new CompositeState();
-        compositeState.setCmHandleState(CmHandleState.ADVISED);
-        compositeState.setLastUpdateTimeNow();
-        ncmpServiceCmHandle.setCompositeState(compositeState);
     }
 
     protected List<CmHandleRegistrationResponse> parseAndRemoveCmHandlesInDmiRegistration(
@@ -339,7 +327,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     private CmHandleRegistrationResponse registerNewCmHandle(final YangModelCmHandle yangModelCmHandle) {
         try {
-            inventoryPersistence.saveCmHandle(yangModelCmHandle);
+            lcmEventsCmHandleStateHandler.updateCmHandleState(yangModelCmHandle, CmHandleState.ADVISED);
             return CmHandleRegistrationResponse.createSuccessResponse(yangModelCmHandle.getId());
         } catch (final AlreadyDefinedException alreadyDefinedException) {
             return CmHandleRegistrationResponse.createFailureResponse(
