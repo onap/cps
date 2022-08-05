@@ -52,6 +52,7 @@ public class CompositeStateUtils {
     public static Consumer<CompositeState> setCompositeStateToReadyWithInitialDataStoreSyncState() {
         return compositeState -> {
             compositeState.setDataSyncEnabled(false);
+            compositeState.setLastUpdateTimeNow();
             compositeState.setCmHandleState(CmHandleState.READY);
             final CompositeState.Operational operational =
                     getInitialDataStoreSyncState(compositeState.getDataSyncEnabled());
@@ -70,6 +71,7 @@ public class CompositeStateUtils {
     public static void setDataSyncEnabledFlagWithDataSyncState(final boolean dataSyncEnabled,
                                                                final CompositeState compositeState) {
         compositeState.setDataSyncEnabled(dataSyncEnabled);
+        compositeState.setLastUpdateTimeNow();
         final CompositeState.Operational operational = getInitialDataStoreSyncState(dataSyncEnabled);
         final CompositeState.DataStores dataStores =
             CompositeState.DataStores.builder().operationalDataStore(operational).build();

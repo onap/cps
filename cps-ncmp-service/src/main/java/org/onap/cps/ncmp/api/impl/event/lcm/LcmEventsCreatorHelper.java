@@ -30,6 +30,7 @@ import com.google.common.collect.Maps;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -177,8 +178,17 @@ public class LcmEventsCreatorHelper {
     private static boolean isDataSyncEnabledFlagChanged(final NcmpServiceCmHandle targetNcmpServiceCmHandle,
             final NcmpServiceCmHandle existingNcmpServiceCmHandle) {
 
-        return !targetNcmpServiceCmHandle.getCompositeState().getDataSyncEnabled()
-                .equals(existingNcmpServiceCmHandle.getCompositeState().getDataSyncEnabled());
+        final Boolean targetDataSyncFlag = Objects.nonNull(targetNcmpServiceCmHandle.getCompositeState())
+                                           ? targetNcmpServiceCmHandle.getCompositeState().getDataSyncEnabled() : null;
+        final Boolean existingDataSyncFlag = Objects.nonNull(existingNcmpServiceCmHandle.getCompositeState())
+                                             ? existingNcmpServiceCmHandle.getCompositeState().getDataSyncEnabled()
+                                             : null;
+
+        if (targetDataSyncFlag != null && existingDataSyncFlag != null) {
+            return !targetDataSyncFlag.equals(existingDataSyncFlag);
+        }
+
+        return !(Objects.isNull(targetDataSyncFlag) && Objects.isNull(existingDataSyncFlag));
     }
 
     private static boolean isCmHandleStateChanged(final NcmpServiceCmHandle targetNcmpServiceCmHandle,
