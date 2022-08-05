@@ -23,13 +23,12 @@ package org.onap.cps.ncmp.api.inventory.sync;
 
 import java.util.List;
 import java.util.concurrent.ConcurrentMap;
-import java.util.function.Consumer;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.ncmp.api.impl.event.lcm.LcmEventsCmHandleStateHandler;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.inventory.CmHandleState;
 import org.onap.cps.ncmp.api.inventory.CompositeState;
-import org.onap.cps.ncmp.api.inventory.DataStoreSyncState;
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.api.inventory.LockReasonCategory;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -48,6 +47,8 @@ public class ModuleSyncWatchdog {
 
     private final ConcurrentMap<String, Boolean> moduleSyncSemaphoreMap;
 
+    private final LcmEventsCmHandleStateHandler lcmEventsCmHandleStateHandler;
+
     /**
      * Execute Cm Handle poll which changes the cm handle state from 'ADVISED' to 'READY'.
      */
@@ -61,14 +62,13 @@ public class ModuleSyncWatchdog {
                 try {
                     moduleSyncService.deleteSchemaSetIfExists(advisedCmHandle);
                     moduleSyncService.syncAndCreateSchemaSetAndAnchor(advisedCmHandle);
-                    setCompositeStateToReadyWithInitialDataStoreSyncState().accept(compositeState);
+                    lcmEventsCmHandleStateHandler.updateCmHandleState(advisedCmHandle, CmHandleState.READY);
                     updateModuleSyncSemaphoreMap(cmHandleId);
                 } catch (final Exception e) {
-                    setCompositeStateToLocked().accept(compositeState);
                     syncUtils.updateLockReasonDetailsAndAttempts(compositeState,
                             LockReasonCategory.LOCKED_MODULE_SYNC_FAILED, e.getMessage());
+                    setCmHandleStateLocked(advisedCmHandle, compositeState.getLockReason());
                 }
-                inventoryPersistence.saveCmHandleState(cmHandleId, compositeState);
                 log.debug("{} is now in {} state", cmHandleId, compositeState.getCmHandleState().name());
             } else {
                 log.debug("{} already processed by another instance", cmHandleId);
@@ -87,44 +87,16 @@ public class ModuleSyncWatchdog {
             final CompositeState compositeState = lockedCmHandle.getCompositeState();
             final boolean isReadyForRetry = syncUtils.isReadyForRetry(compositeState);
             if (isReadyForRetry) {
-                setCompositeStateToAdvisedAndRetainOldLockReasonDetails(compositeState);
-                log.debug("Locked cm handle {} is being re-synced", lockedCmHandle.getId());
-                inventoryPersistence.saveCmHandleState(lockedCmHandle.getId(), compositeState);
+                log.debug("Reset cm handle {} state to ADVISED to re-attempt module-sync", lockedCmHandle.getId());
+                lcmEventsCmHandleStateHandler.updateCmHandleState(lockedCmHandle, CmHandleState.ADVISED);
             }
         }
     }
 
-    private Consumer<CompositeState> setCompositeStateToLocked() {
-        return compositeState -> {
-            compositeState.setCmHandleState(CmHandleState.LOCKED);
-            compositeState.setLastUpdateTimeNow();
-        };
-    }
-
-    private Consumer<CompositeState> setCompositeStateToReadyWithInitialDataStoreSyncState() {
-        return compositeState -> {
-            compositeState.setDataSyncEnabled(false);
-            compositeState.setCmHandleState(CmHandleState.READY);
-            final CompositeState.Operational operational = getDataStoreSyncState();
-            final CompositeState.DataStores dataStores = CompositeState.DataStores.builder()
-                    .operationalDataStore(operational)
-                    .build();
-            compositeState.setDataStores(dataStores);
-        };
-    }
-
-    private void setCompositeStateToAdvisedAndRetainOldLockReasonDetails(final CompositeState compositeState) {
-        compositeState.setCmHandleState(CmHandleState.ADVISED);
-        compositeState.setLastUpdateTimeNow();
-        final String oldLockReasonDetails = compositeState.getLockReason().getDetails();
-        final CompositeState.LockReason lockReason = CompositeState.LockReason.builder()
-                .details(oldLockReasonDetails).build();
-        compositeState.setLockReason(lockReason);
-    }
-
-    private CompositeState.Operational getDataStoreSyncState() {
-        final DataStoreSyncState dataStoreSyncState = DataStoreSyncState.NONE_REQUESTED;
-        return CompositeState.Operational.builder().dataStoreSyncState(dataStoreSyncState).build();
+    private void setCmHandleStateLocked(final YangModelCmHandle advisedCmHandle,
+            final CompositeState.LockReason lockReason) {
+        advisedCmHandle.getCompositeState().setLockReason(lockReason);
+        lcmEventsCmHandleStateHandler.updateCmHandleState(advisedCmHandle, CmHandleState.LOCKED);
     }
 
     private void updateModuleSyncSemaphoreMap(final String cmHandleId) {
