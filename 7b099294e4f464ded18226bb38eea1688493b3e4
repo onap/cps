@@ -22,6 +22,30 @@
       "revId": "7b099294e4f464ded18226bb38eea1688493b3e4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9526b1f9_f962f4cf",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-08-05T10:23:11Z",
+      "side": 1,
+      "message": "Yes, it is true, it is not necessary any more.",
+      "parentUuid": "56f18f1e_c374490b",
+      "range": {
+        "startLine": 109,
+        "startChar": 0,
+        "endLine": 111,
+        "endChar": 9
+      },
+      "revId": "7b099294e4f464ded18226bb38eea1688493b3e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
