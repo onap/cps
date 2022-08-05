@@ -156,15 +156,15 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
                 assert it.status == Status.SUCCESS
                 assert it.cmHandle == 'cmhandle'
             }
-        and: 'save cmhandle is invoked once with the expected parameters'
-                1 * mockInventoryPersistence.saveCmHandle(_) >> {
-                    args -> {
+        and: 'state handler is invoked with the expected parameters'
+            1 * mockLcmEventsCmHandleStateHandler.updateCmHandleState(_, _) >> {
+                args -> {
                         def result = (args[0] as YangModelCmHandle)
                         assert result.id == 'cmhandle'
                         assert result.dmiServiceName == 'my-server'
-                        assert result.compositeState.cmHandleState == CmHandleState.ADVISED
+                        assert CmHandleState.ADVISED == (args[1] as CmHandleState)
                     }
-                }
+            }
         where:
             scenario                          | dmiProperties            | publicProperties               || expectedDmiProperties                      | expectedPublicProperties
             'with dmi & public properties'    | ['dmi-key': 'dmi-value'] | ['public-key': 'public-value'] || '[{"name":"dmi-key","value":"dmi-value"}]' | '[{"name":"public-key","value":"public-value"}]'
@@ -181,7 +181,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
                                    new NcmpServiceCmHandle(cmHandleId: 'cmhandle2'),
                                    new NcmpServiceCmHandle(cmHandleId: 'cmhandle3')])
         and: 'cm-handle creation is successful for 1st and 3rd; failed for 2nd'
-            mockInventoryPersistence.saveCmHandle(_) >> {} >> { throw new RuntimeException("Failed") } >> {}
+            mockLcmEventsCmHandleStateHandler.updateCmHandleState(_, _) >> {} >> { throw new RuntimeException("Failed") } >> {}
         when: 'registration is updated to create cm-handles'
             def response = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'a response is received for all cm-handles'
@@ -209,7 +209,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server')
             dmiPluginRegistration.createdCmHandles = [new NcmpServiceCmHandle(cmHandleId: cmHandleId)]
         and: 'cm-handler registration fails: #scenario'
-            mockInventoryPersistence.saveCmHandle(_) >> { throw exception }
+            mockLcmEventsCmHandleStateHandler.updateCmHandleState(_, _) >> { throw exception }
         when: 'registration is updated'
             def response = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'a failure response is received'
