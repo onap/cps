@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c6d88072_ae870a80",
+        "filename": "docs/modeling.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-08-05T06:19:07Z",
+      "side": 1,
+      "message": "Suggestion: A retry mechanism within CPS will set the CM-Handle state back to ADVISED after a set time (default Xs).",
+      "range": {
+        "startLine": 94,
+        "startChar": 77,
+        "endLine": 94,
+        "endChar": 165
+      },
+      "revId": "ad3b4b408ec90da0ce41092837f6461b71e05dcf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
