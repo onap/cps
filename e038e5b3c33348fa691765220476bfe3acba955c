@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c6d5eba8_abd5d263",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/15-rename-column-yang-resource-table.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-08-05T13:28:43Z",
+      "side": 1,
+      "message": "just wondering why Liquibase way one way and sql the other, they could both be the same:\nsql: alter table yang_resource rename column name to file_name",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 36
+      },
+      "revId": "e038e5b3c33348fa691765220476bfe3acba955c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
