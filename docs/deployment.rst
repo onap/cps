@@ -1,6 +1,6 @@
 .. This work is licensed under a Creative Commons Attribution 4.0 International License.
 .. http://creativecommons.org/licenses/by/4.0
-.. Copyright (C) 2021 Nordix Foundation
+.. Copyright (C) 2021-2022 Nordix Foundation
 .. Modifications Copyright (C) 2021 Bell Canada.
 
 .. DO NOT CHANGE THIS LABEL FOR RELEASE NOTES - EVEN THOUGH IT GIVES A WARNING
@@ -278,6 +278,8 @@ Any spring supported property can be configured by providing in ``config.additio
 | maximumPoolSize                       | including both idle and in-use connections.                                                             |                               |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
 
+.. _additional-cps-ncmp-customizations:
+
 Additional CPS-NCMP Customizations
 ==================================
 +---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
@@ -290,6 +292,15 @@ Additional CPS-NCMP Customizations
 |                                       | See also :ref:`cps_common_credentials_retrieval`.                                                       |                               |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
 | config.timers.advised-modules-sync    | Specifies the delay in milliseconds in which the module sync watch dog will wake again after finishing. | ``30000``                     |
+| .sleep-time-ms                        |                                                                                                         |                               |
+|                                       |                                                                                                         |                               |
++---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| config.timers.locked-modules-sync     | Specifies the delay in milliseconds in which the retry mechanism watch dog                              |                               |
+|                                       | will wake again after finishing.                                                                        | ``300000``                    |
+| .sleep-time-ms                        |                                                                                                         |                               |
+|                                       |                                                                                                         |                               |
++---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| config.timers.cm-handle-data-sync     | Specifies the delay in milliseconds in which the data sync watch dog will wake again after finishing.   | ``30000``                     |
 | .sleep-time-ms                        |                                                                                                         |                               |
 |                                       |                                                                                                         |                               |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
