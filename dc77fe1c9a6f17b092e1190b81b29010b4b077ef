@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "87e0b54e_f9c6b19e",
+        "filename": "docs/cps-processes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-08T15:53:23Z",
+      "side": 1,
+      "message": "I assume have we (already) update the configuration rst page with those timers, maybe link to that page form here and provide the name of the relevant config parameters",
+      "range": {
+        "startLine": 22,
+        "startChar": 21,
+        "endLine": 22,
+        "endChar": 38
+      },
+      "revId": "dc77fe1c9a6f17b092e1190b81b29010b4b077ef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f98e0486_7d845efa",
+        "filename": "docs/cps-processes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-08T15:53:23Z",
+      "side": 1,
+      "message": "as above",
+      "range": {
+        "startLine": 30,
+        "startChar": 19,
+        "endLine": 30,
+        "endChar": 36
+      },
+      "revId": "dc77fe1c9a6f17b092e1190b81b29010b4b077ef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a653869b_df5571c7",
+        "filename": "docs/cps-processes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-08T15:53:23Z",
+      "side": 1,
+      "message": "as above.",
+      "range": {
+        "startLine": 38,
+        "startChar": 25,
+        "endLine": 38,
+        "endChar": 42
+      },
+      "revId": "dc77fe1c9a6f17b092e1190b81b29010b4b077ef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
