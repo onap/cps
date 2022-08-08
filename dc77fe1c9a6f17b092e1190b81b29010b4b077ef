@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "fe9598b5_ab0b6137",
+        "filename": "docs/cps-processes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-08-08T15:57:55Z",
+      "side": 1,
+      "message": "It is only the module sync configurable timer that is documented.\nhttps://docs.onap.org/projects/onap-cps/en/latest/deployment.html\nI will add the others as part of this commit.",
+      "parentUuid": "87e0b54e_f9c6b19e",
+      "range": {
+        "startLine": 22,
+        "startChar": 21,
+        "endLine": 22,
+        "endChar": 38
+      },
+      "revId": "dc77fe1c9a6f17b092e1190b81b29010b4b077ef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f98e0486_7d845efa",
         "filename": "docs/cps-processes.rst",
         "patchSetId": 2
