@@ -11,8 +11,8 @@
 CPS Documentation
 #################
 
-CPS Core
-========
+CPS
+===
 
 .. toctree::
    :maxdepth: 1
