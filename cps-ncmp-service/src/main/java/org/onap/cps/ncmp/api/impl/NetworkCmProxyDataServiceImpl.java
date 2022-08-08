@@ -55,6 +55,7 @@ import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationErr
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistrationResponse;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
+import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
 import org.onap.cps.spi.exceptions.CpsException;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
@@ -117,6 +118,14 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             DmiOperations.DataStoreEnum.PASSTHROUGH_OPERATIONAL,
             requestId, topicParamInQuery);
         return responseEntity.getBody();
+    }
+
+    @Override
+    public Object getResourceDataOperational(final String cmHandleId,
+                                             final String resourceIdentifier,
+                                             final FetchDescendantsOption fetchDescendantsOption) {
+        return cpsDataService.getDataNode("NFP-Operational", cmHandleId, resourceIdentifier,
+                fetchDescendantsOption);
     }
 
     @Override

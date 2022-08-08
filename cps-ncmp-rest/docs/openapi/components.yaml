@@ -449,7 +449,7 @@ components:
     includeDescendantsOptionInQuery:
       name: include-descendants
       in: query
-      description: include-descendants
+      description: Whether include descendants
       required: false
       schema:
         type: boolean
@@ -519,6 +519,14 @@ components:
         type: string
         default: application/json
         example: application/yang-data+json
+    datastoreName:
+      name: ncmp-datastore-name
+      in: path
+      description: The type of the requested data
+      required: true
+      schema:
+        type: string
+        example: operational
 
   responses:
     NotFound:
