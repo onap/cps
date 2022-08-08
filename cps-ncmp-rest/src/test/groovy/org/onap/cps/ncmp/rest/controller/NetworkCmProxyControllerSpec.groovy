@@ -32,6 +32,7 @@ import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.rest.mapper.CmHandleStateMapper
 import org.onap.cps.ncmp.rest.executor.CpsNcmpTaskExecutor
 import org.onap.cps.ncmp.rest.util.DeprecationHelper
+import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.model.ModuleDefinition
 import spock.lang.Shared
 
@@ -435,6 +436,41 @@ class NetworkCmProxyControllerSpec extends Specification {
         scenario     |  dataSyncEnabledFlag
         'enabled'    |  true
         'disabled'   |  false
+    }
+
+    def 'Get Resource Data from operational.'() {
+        given: 'resource data url'
+            def getUrl = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:operational" +
+                "?resourceIdentifier=parent/child"
+        when: 'get data resource request is performed'
+            def response = mvc.perform(
+                get(getUrl)
+                    .contentType(MediaType.APPLICATION_JSON)
+            ).andReturn().response
+        then: 'the NCMP data service is called with getResourceDataOperational'
+            1 * mockNetworkCmProxyDataService.getResourceDataOperational('testCmHandle',
+                'parent/child',
+                FetchDescendantsOption.OMIT_DESCENDANTS)
+        and: 'response status is Ok'
+            response.status == HttpStatus.OK.value()
+    }
+
+    def 'Get Resource Data from operational using getNcmpDatastore.'() {
+        given: 'resource data url'
+            def getUrl = "$ncmpBasePathV1/ch/testCmHandle/data/ds/new/ncmp-datastore:operational" +
+                "?resourceIdentifier=parent/child&options=(a=1,b=2)&topic=my-topic-name" +
+                "&include-descendants=false"
+        when: 'get data resource request is performed'
+            def response = mvc.perform(
+                get(getUrl)
+                    .contentType(MediaType.APPLICATION_JSON)
+            ).andReturn().response
+        then: 'the NCMP data service is called with getResourceDataOperational'
+            1 * mockNetworkCmProxyDataService.getResourceDataOperational('testCmHandle',
+                'parent/child',
+                FetchDescendantsOption.OMIT_DESCENDANTS)
+        and: 'response status is Ok'
+            response.status == HttpStatus.OK.value()
     }
 
     def dataStores() {
