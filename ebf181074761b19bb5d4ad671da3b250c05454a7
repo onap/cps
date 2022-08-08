@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "297dbd25_f6301f4f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/DataSyncWatchdog.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-08-08T10:30:28Z",
+      "side": 1,
+      "message": "NB : 1. As per current implementation if resource data is null then cm handle entry would be there into dataSyncSemaphoreMap till 30 mins (TTL) and once it would be removed from map then only this watchdog try it again. If it correct behaviour? \n\n2. or, we want to re-try in each cycle of watchdog that is 30 seconds. If yes then we need to remove cm handle from map here by calling :\n\n    private void removeFromDataSyncSemaphoreMap(final String cmHandleId) {\n       dataSyncSemaphoreMap.remove(cmHandleId);\n    }",
+      "revId": "ebf181074761b19bb5d4ad671da3b250c05454a7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5279df81_6f1c65a1",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/DataSyncWatchdog.java",
         "patchSetId": 12
