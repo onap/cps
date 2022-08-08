@@ -1,6 +1,6 @@
 /*
    ============LICENSE_START=======================================================
-    Copyright (C) 2021 Nordix Foundation.
+    Copyright (C) 2021-2022 Nordix Foundation.
    ================================================================================
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ INSERT INTO SCHEMA_SET (ID, NAME, DATASPACE_ID) VALUES
     (2003, 'schema-set-3', 1001),
     (2004, 'schema-set-4', 1002);
 
-INSERT INTO YANG_RESOURCE (ID, NAME, CONTENT, CHECKSUM, MODULE_NAME, REVISION) VALUES
+INSERT INTO YANG_RESOURCE (ID, FILE_NAME, CONTENT, CHECKSUM, MODULE_NAME, REVISION) VALUES
     (3001, 'module1@revA.yang', 'some-content', 'checksum1','module-name-1','revA'),
     (3002, 'module2@revA.yang', 'some-content', 'checksum2','module-name-2','revA'),
     (3003, 'module2@revB.yang', 'some-content', 'checksum3','module-name-2','revB'),

@@ -30,7 +30,6 @@ import org.onap.cps.spi.model.ModuleDefinition
 import org.onap.cps.spi.model.ModuleReference
 import org.onap.cps.spi.repository.AnchorRepository
 import org.onap.cps.spi.repository.SchemaSetRepository
-import org.onap.cps.spi.repository.YangResourceRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.jdbc.Sql
 
@@ -244,7 +243,7 @@ class CpsModulePersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase 
         // assert the attached yang resource content
         YangResourceEntity yangResourceEntity = yangResourceEntities.iterator().next()
         assert yangResourceEntity.id != null
-        yangResourceEntity.name == expectedYangResourceName
+        yangResourceEntity.fileName == expectedYangResourceName
         yangResourceEntity.content == expectedYangResourceContent
         yangResourceEntity.checksum == expectedYangResourceChecksum
         yangResourceEntity.moduleName == expectedYangResourceModuleName

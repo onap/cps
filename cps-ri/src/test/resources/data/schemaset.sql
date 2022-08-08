@@ -1,7 +1,7 @@
 /*
    ============LICENSE_START=======================================================
     Copyright (C) 2020-2021 Pantheon.tech
-    Modifications Copyright (C) 2020 Nordix Foundation.
+    Modifications Copyright (C) 2020-2022 Nordix Foundation.
     Modifications Copyright (C) 2020-2021 Bell Canada.
    ================================================================================
    Licensed under the Apache License, Version 2.0 (the "License");
@@ -32,7 +32,7 @@ INSERT INTO SCHEMA_SET (ID, NAME, DATASPACE_ID) VALUES
     (2004, 'SCHEMA-SET-004', 1002),
     (2005, 'SCHEMA-SET-005', 1001);
 
-INSERT INTO YANG_RESOURCE (ID, NAME, CONTENT, CHECKSUM, MODULE_NAME, REVISION) VALUES
+INSERT INTO YANG_RESOURCE (ID, FILE_NAME, CONTENT, CHECKSUM, MODULE_NAME, REVISION) VALUES
     (3001, 'module1@2020-02-02.yang', 'CONTENT-001', 'e8bdda931099310de66532e08c3fafec391db29f55c81927b168f6aa8f81b73b',null,null),
     (3002, 'module2@2020-02-02.yang', 'CONTENT-002', '7e7d48afbe066ed0a890a09081859046d3dde52300dfcdb13be5b20780353a11','MODULE-NAME-002','REVISION-002'),
     (3003, 'module3@2020-02-02.yang', 'CONTENT-003', 'ca20c45fec8547633f05ff8905c48ffa7b02b94ec3ad4ed79922e6ba40779df3','MODULE-NAME-003','REVISION-002'),

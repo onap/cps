@@ -96,7 +96,7 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
         final var schemaSetEntity =
             schemaSetRepository.getByDataspaceAndName(dataspaceEntity, schemaSetName);
         return schemaSetEntity.getYangResources().stream().collect(
-            Collectors.toMap(YangResourceEntity::getName, YangResourceEntity::getContent));
+            Collectors.toMap(YangResourceEntity::getFileName, YangResourceEntity::getContent));
     }
 
     @Override
@@ -203,7 +203,7 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
                 final Map<String, String> moduleNameAndRevisionMap = createModuleNameAndRevisionMap(entry.getKey(),
                             entry.getValue());
                 final var yangResourceEntity = new YangResourceEntity();
-                yangResourceEntity.setName(entry.getKey());
+                yangResourceEntity.setFileName(entry.getKey());
                 yangResourceEntity.setContent(entry.getValue());
                 yangResourceEntity.setModuleName(moduleNameAndRevisionMap.get("moduleName"));
                 yangResourceEntity.setRevision(moduleNameAndRevisionMap.get("revision"));
@@ -328,7 +328,7 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
                 yangResourceEntities.stream()
                         .filter(entity -> StringUtils.equals(checksum, (entity.getChecksum())))
                         .findFirst()
-                        .map(YangResourceEntity::getName)
+                        .map(YangResourceEntity::getFileName)
                         .orElse(null);
     }
 
