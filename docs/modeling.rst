@@ -126,3 +126,4 @@ Querying CM Handles
    :maxdepth: 1
 
    ncmp-cmhandle-querying.rst
+   cps-processes.rst
