@@ -203,6 +203,30 @@
     },
     {
       "key": {
+        "uuid": "8ece42fa_d5e88442",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-08T13:00:01Z",
+      "side": 1,
+      "message": "use a get for performance?",
+      "parentUuid": "16b12aa6_2104c4f0",
+      "range": {
+        "startLine": 102,
+        "startChar": 17,
+        "endLine": 102,
+        "endChar": 41
+      },
+      "revId": "ebf181074761b19bb5d4ad671da3b250c05454a7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9f57b5a8_31e80097",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
         "patchSetId": 12
@@ -219,6 +243,29 @@
         "startChar": 12,
         "endLine": 103,
         "endChar": 44
+      },
+      "revId": "ebf181074761b19bb5d4ad671da3b250c05454a7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b8ed0263_d3165239",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-08T13:00:01Z",
+      "side": 1,
+      "message": "same conversion as on line #2 so restore using private method",
+      "range": {
+        "startLine": 123,
+        "startChar": 15,
+        "endLine": 125,
+        "endChar": 97
       },
       "revId": "ebf181074761b19bb5d4ad671da3b250c05454a7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
@@ -288,6 +335,29 @@
         "startChar": 41,
         "endLine": 55,
         "endChar": 42
+      },
+      "revId": "ebf181074761b19bb5d4ad671da3b250c05454a7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "73934f4d_1185b55b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/SyncUtilsSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-08T13:00:01Z",
+      "side": 1,
+      "message": "see proposed scenario strings above comment",
+      "range": {
+        "startLine": 141,
+        "startChar": 13,
+        "endLine": 141,
+        "endChar": 18
       },
       "revId": "ebf181074761b19bb5d4ad671da3b250c05454a7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
