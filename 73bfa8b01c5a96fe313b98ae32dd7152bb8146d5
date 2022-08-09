@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "481c7c92_dd6ef496",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-08-09T12:08:02Z",
+      "side": 1,
+      "message": "Added temporarily for analyzing logs.",
+      "range": {
+        "startLine": 154,
+        "startChar": 12,
+        "endLine": 154,
+        "endChar": 17
+      },
+      "revId": "73bfa8b01c5a96fe313b98ae32dd7152bb8146d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c938c6cd_4deeab5c",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-08-09T12:08:02Z",
+      "side": 1,
+      "message": "Added temporarily for analyzing logs.",
+      "range": {
+        "startLine": 158,
+        "startChar": 16,
+        "endLine": 158,
+        "endChar": 29
+      },
+      "revId": "73bfa8b01c5a96fe313b98ae32dd7152bb8146d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4a8b93ed_f595fd70",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-08-09T12:08:02Z",
+      "side": 1,
+      "message": "Added temporarily for analyzing logs. (for testing it is reduced later will be reverted back to 5 min.)",
+      "range": {
+        "startLine": 175,
+        "startChar": 23,
+        "endLine": 175,
+        "endChar": 29
+      },
+      "revId": "73bfa8b01c5a96fe313b98ae32dd7152bb8146d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a49e999_bd15ed33",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationSemaphoresConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-08-09T12:08:02Z",
+      "side": 1,
+      "message": "Modified it to hold YangModelCmHandle as we need it :\nIn module sync watchdog while \"syncAndCreateSchemaSetAndAnchor\" multiple places to retrive private/public properties as well as  to resolve module. It\u0027s not possible with only cm handle Id as previous map with String.",
+      "range": {
+        "startLine": 48,
+        "startChar": 25,
+        "endLine": 48,
+        "endChar": 42
+      },
+      "revId": "73bfa8b01c5a96fe313b98ae32dd7152bb8146d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6bdb0696_5d53d6b8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-08-09T12:08:02Z",
+      "side": 1,
+      "message": "Added temporarily for analyzing logs.",
+      "range": {
+        "startLine": 68,
+        "startChar": 12,
+        "endLine": 68,
+        "endChar": 117
+      },
+      "revId": "73bfa8b01c5a96fe313b98ae32dd7152bb8146d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "09d66cff_bf987206",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-08-09T12:08:02Z",
+      "side": 1,
+      "message": "Added temporarily for analyzing logs.",
+      "range": {
+        "startLine": 80,
+        "startChar": 12,
+        "endLine": 81,
+        "endChar": 54
+      },
+      "revId": "73bfa8b01c5a96fe313b98ae32dd7152bb8146d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dde394ba_2396e9d3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-08-09T12:08:02Z",
+      "side": 1,
+      "message": "Added temporarily for analyzing logs.",
+      "range": {
+        "startLine": 95,
+        "startChar": 11,
+        "endLine": 96,
+        "endChar": 95
+      },
+      "revId": "73bfa8b01c5a96fe313b98ae32dd7152bb8146d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "95d859c8_7098a10b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-08-09T12:08:02Z",
+      "side": 1,
+      "message": "Added temporarily for analyzing logs.",
+      "range": {
+        "startLine": 85,
+        "startChar": 7,
+        "endLine": 86,
+        "endChar": 96
+      },
+      "revId": "73bfa8b01c5a96fe313b98ae32dd7152bb8146d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a20b5495_7ddd7613",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/executor/AsyncTaskExecutor.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-08-09T12:08:02Z",
+      "side": 1,
+      "message": "Added temporarily for analyzing logs.",
+      "range": {
+        "startLine": 53,
+        "startChar": 12,
+        "endLine": 53,
+        "endChar": 40
+      },
+      "revId": "73bfa8b01c5a96fe313b98ae32dd7152bb8146d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
