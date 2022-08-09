@@ -426,6 +426,30 @@
     },
     {
       "key": {
+        "uuid": "88b2e557_01d357a2",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-09T10:15:44Z",
+      "side": 1,
+      "message": "no big deal but, wake sounds better to me too",
+      "parentUuid": "18b0e028_f976f742",
+      "range": {
+        "startLine": 298,
+        "startChar": 41,
+        "endLine": 299,
+        "endChar": 76
+      },
+      "revId": "1eac7619ba61ac47db6085b54d974ff0a755b3c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "dac8f18a_28219a74",
         "filename": "docs/index.rst",
         "patchSetId": 3
@@ -437,6 +461,30 @@
       "writtenOn": "2022-08-09T08:04:36Z",
       "side": 1,
       "message": "CPS-NCMP?",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 3
+      },
+      "revId": "1eac7619ba61ac47db6085b54d974ff0a755b3c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "84e3416d_ee32592f",
+        "filename": "docs/index.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-09T10:15:44Z",
+      "side": 1,
+      "message": "i think it is important this stays just CPS",
+      "parentUuid": "dac8f18a_28219a74",
       "range": {
         "startLine": 14,
         "startChar": 0,
