@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "11dbbe06_dc662088",
+        "filename": "docs/cps-processes.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-08-09T09:57:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bbbe8adc_82289a36",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 13
+      },
+      "revId": "1eac7619ba61ac47db6085b54d974ff0a755b3c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "17de58bf_a2f21559",
         "filename": "docs/cps-processes.rst",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2022-08-09T08:04:36Z",
       "side": 1,
       "message": "Should we have a sub-section for schedules?",
+      "range": {
+        "startLine": 18,
+        "startChar": 47,
+        "endLine": 18,
+        "endChar": 57
+      },
+      "revId": "1eac7619ba61ac47db6085b54d974ff0a755b3c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e94e8dd_b9915f12",
+        "filename": "docs/cps-processes.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-08-09T09:57:47Z",
+      "side": 1,
+      "message": "I don\u0027t think so, as in addressing Toine\u0027s comment above, the file is now called cps-scheduled-processes, along with changing the header to represent that",
+      "parentUuid": "17de58bf_a2f21559",
       "range": {
         "startLine": 18,
         "startChar": 47,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "b45bf165_9dee45dd",
+        "filename": "docs/cps-processes.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-08-09T09:57:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "95c0d80c_f36d418e",
+      "range": {
+        "startLine": 23,
+        "startChar": 36,
+        "endLine": 23,
+        "endChar": 94
+      },
+      "revId": "1eac7619ba61ac47db6085b54d974ff0a755b3c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "89f72318_8af4a159",
         "filename": "docs/cps-processes.rst",
         "patchSetId": 3
@@ -91,6 +163,30 @@
       "revId": "1eac7619ba61ac47db6085b54d974ff0a755b3c6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3cf8405b_c41334eb",
+        "filename": "docs/cps-processes.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-08-09T09:57:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "89f72318_8af4a159",
+      "range": {
+        "startLine": 31,
+        "startChar": 47,
+        "endLine": 31,
+        "endChar": 78
+      },
+      "revId": "1eac7619ba61ac47db6085b54d974ff0a755b3c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "c1488f53_31b5a079",
+        "filename": "docs/cps-processes.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-08-09T09:57:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "08503f15_17e2c50d",
+      "range": {
+        "startLine": 40,
+        "startChar": 38,
+        "endLine": 40,
+        "endChar": 81
+      },
+      "revId": "1eac7619ba61ac47db6085b54d974ff0a755b3c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c1cce4ec_6ff2b31e",
         "filename": "docs/cps-processes.rst",
         "patchSetId": 3
@@ -128,6 +248,30 @@
       "writtenOn": "2022-08-09T08:04:36Z",
       "side": 1,
       "message": "double of? We should mention the time I believe when talking about retries.",
+      "range": {
+        "startLine": 44,
+        "startChar": 49,
+        "endLine": 44,
+        "endChar": 60
+      },
+      "revId": "1eac7619ba61ac47db6085b54d974ff0a755b3c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a410795_8e18ceaa",
+        "filename": "docs/cps-processes.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-08-09T09:57:47Z",
+      "side": 1,
+      "message": "I\u0027m confused, the time is mentioned in this sentence.",
+      "parentUuid": "c1cce4ec_6ff2b31e",
       "range": {
         "startLine": 44,
         "startChar": 49,
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "5e81105d_56ae194d",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-08-09T09:57:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6a4a3f99_672323af",
+      "range": {
+        "startLine": 3,
+        "startChar": 17,
+        "endLine": 3,
+        "endChar": 22
+      },
+      "revId": "1eac7619ba61ac47db6085b54d974ff0a755b3c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b6f81200_d30f998b",
         "filename": "docs/deployment.rst",
         "patchSetId": 3
@@ -174,6 +342,30 @@
       "writtenOn": "2022-08-09T08:04:36Z",
       "side": 1,
       "message": "Suggestion: Specifies the time in milliseconds in which the module sync process will sleep after finishing.",
+      "range": {
+        "startLine": 298,
+        "startChar": 41,
+        "endLine": 299,
+        "endChar": 76
+      },
+      "revId": "1eac7619ba61ac47db6085b54d974ff0a755b3c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "18b0e028_f976f742",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-08-09T09:57:47Z",
+      "side": 1,
+      "message": "I personally prefer using the term wake in referring to the processes. I don\u0027t know what the team thinks?",
+      "parentUuid": "b6f81200_d30f998b",
       "range": {
         "startLine": 298,
         "startChar": 41,
