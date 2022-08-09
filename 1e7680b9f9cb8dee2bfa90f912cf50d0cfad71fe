@@ -159,6 +159,30 @@
     },
     {
       "key": {
+        "uuid": "af96f59b_af5e96ce",
+        "filename": "csit/tests/cps-data-sync/cps-data-sync.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-09T15:39:29Z",
+      "side": 1,
+      "message": "So I was checking the CSIT\u0027s present in cps-model-sync and we are not checking the composite state attributes. In my opinion having a test checking the attributes would be ok.",
+      "parentUuid": "a12d494a_c32ceefd",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 89
+      },
+      "revId": "1e7680b9f9cb8dee2bfa90f912cf50d0cfad71fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ef1d09ad_a1c64ab0",
         "filename": "csit/tests/cps-data-sync/cps-data-sync.robot",
         "patchSetId": 2
