@@ -71,6 +71,29 @@
     },
     {
       "key": {
+        "uuid": "5dbc9712_afd7c56a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-08-09T12:46:10Z",
+      "side": 1,
+      "message": "Would extract this out into a static variable similar to the previous file.",
+      "range": {
+        "startLine": 346,
+        "startChar": 74,
+        "endLine": 346,
+        "endChar": 80
+      },
+      "revId": "73bfa8b01c5a96fe313b98ae32dd7152bb8146d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9a49e999_bd15ed33",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationSemaphoresConfig.java",
         "patchSetId": 6
@@ -87,6 +110,52 @@
         "startChar": 25,
         "endLine": 48,
         "endChar": 42
+      },
+      "revId": "73bfa8b01c5a96fe313b98ae32dd7152bb8146d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "edda10c7_b50ad5e3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-08-09T12:46:10Z",
+      "side": 1,
+      "message": "Should this comment be removed",
+      "range": {
+        "startLine": 139,
+        "startChar": 49,
+        "endLine": 139,
+        "endChar": 59
+      },
+      "revId": "73bfa8b01c5a96fe313b98ae32dd7152bb8146d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce98ce6f_18d9252b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-08-09T12:46:10Z",
+      "side": 1,
+      "message": "Does this need to be casted. Can we not just long here",
+      "range": {
+        "startLine": 58,
+        "startChar": 67,
+        "endLine": 58,
+        "endChar": 73
       },
       "revId": "73bfa8b01c5a96fe313b98ae32dd7152bb8146d5",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
@@ -117,6 +186,29 @@
     },
     {
       "key": {
+        "uuid": "ada948f1_d1e9bb6a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-08-09T12:46:10Z",
+      "side": 1,
+      "message": "Give a small bit more detail to this name.\n\nMaybe startTime",
+      "range": {
+        "startLine": 79,
+        "startChar": 26,
+        "endLine": 79,
+        "endChar": 31
+      },
+      "revId": "73bfa8b01c5a96fe313b98ae32dd7152bb8146d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "09d66cff_bf987206",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
         "patchSetId": 6
@@ -140,6 +232,75 @@
     },
     {
       "key": {
+        "uuid": "53f0df99_0ef614d2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-08-09T12:46:10Z",
+      "side": 1,
+      "message": "Wouldn\u0027t declare a String here.\n\nJust pass advisedCmHandle.getId() directly into getCmHandleState.\n\nBut that\u0027s a personal preference, don\u0027t know what the team thinks",
+      "range": {
+        "startLine": 82,
+        "startChar": 12,
+        "endLine": 82,
+        "endChar": 62
+      },
+      "revId": "73bfa8b01c5a96fe313b98ae32dd7152bb8146d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "96692611_7fd84226",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-08-09T12:46:10Z",
+      "side": 1,
+      "message": "endTime",
+      "range": {
+        "startLine": 94,
+        "startChar": 26,
+        "endLine": 94,
+        "endChar": 30
+      },
+      "revId": "73bfa8b01c5a96fe313b98ae32dd7152bb8146d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c163794_075225e9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-08-09T12:46:10Z",
+      "side": 1,
+      "message": "Use of object is inconsistent here too. Use advisedCmHandle.getId here, but pass in cmHandleId above.",
+      "range": {
+        "startLine": 95,
+        "startChar": 94,
+        "endLine": 95,
+        "endChar": 117
+      },
+      "revId": "73bfa8b01c5a96fe313b98ae32dd7152bb8146d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "dde394ba_2396e9d3",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
         "patchSetId": 6
@@ -156,6 +317,121 @@
         "startChar": 11,
         "endLine": 96,
         "endChar": 95
+      },
+      "revId": "73bfa8b01c5a96fe313b98ae32dd7152bb8146d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "13c87af1_9765b08b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-08-09T12:46:10Z",
+      "side": 1,
+      "message": "unprocessed is one word. Don\u0027t need to capitalize the P.",
+      "range": {
+        "startLine": 170,
+        "startChar": 36,
+        "endLine": 170,
+        "endChar": 59
+      },
+      "revId": "73bfa8b01c5a96fe313b98ae32dd7152bb8146d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "237fe7f6_6883e00e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-08-09T12:46:10Z",
+      "side": 1,
+      "message": "yangModelsForWatchdog.",
+      "range": {
+        "startLine": 183,
+        "startChar": 46,
+        "endLine": 183,
+        "endChar": 75
+      },
+      "revId": "73bfa8b01c5a96fe313b98ae32dd7152bb8146d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "244d7445_da393616",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-08-09T12:46:10Z",
+      "side": 1,
+      "message": "stream() not needed here.",
+      "range": {
+        "startLine": 184,
+        "startChar": 56,
+        "endLine": 184,
+        "endChar": 64
+      },
+      "revId": "73bfa8b01c5a96fe313b98ae32dd7152bb8146d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e4ae6c7_5bfdab01",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-08-09T12:46:10Z",
+      "side": 1,
+      "message": "startTime",
+      "range": {
+        "startLine": 76,
+        "startChar": 22,
+        "endLine": 76,
+        "endChar": 27
+      },
+      "revId": "73bfa8b01c5a96fe313b98ae32dd7152bb8146d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c4938a5_da711190",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-08-09T12:46:10Z",
+      "side": 1,
+      "message": "endTime",
+      "range": {
+        "startLine": 84,
+        "startChar": 22,
+        "endLine": 84,
+        "endChar": 25
       },
       "revId": "73bfa8b01c5a96fe313b98ae32dd7152bb8146d5",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
@@ -202,6 +478,52 @@
         "startChar": 12,
         "endLine": 53,
         "endChar": 40
+      },
+      "revId": "73bfa8b01c5a96fe313b98ae32dd7152bb8146d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a29eb6b0_abe14ca9",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-08-09T12:46:10Z",
+      "side": 1,
+      "message": "Can this still be void? I don\u0027t think the return value is being used",
+      "range": {
+        "startLine": 104,
+        "startChar": 12,
+        "endLine": 104,
+        "endChar": 15
+      },
+      "revId": "73bfa8b01c5a96fe313b98ae32dd7152bb8146d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "51e76b69_83046af7",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-08-09T12:46:10Z",
+      "side": 1,
+      "message": "stream not needed",
+      "range": {
+        "startLine": 109,
+        "startChar": 24,
+        "endLine": 109,
+        "endChar": 32
       },
       "revId": "73bfa8b01c5a96fe313b98ae32dd7152bb8146d5",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
