@@ -111,6 +111,30 @@
     },
     {
       "key": {
+        "uuid": "07cecc39_8e85b3d8",
+        "filename": "csit/tests/cps-data-sync/cps-data-sync.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-08-09T10:55:16Z",
+      "side": 1,
+      "message": "I would agree. Not all test cases need to be catered for in CSIT. I am also in agreement it can be left if there is a valid reason to test this but I would assume it is tested lower in the stack",
+      "parentUuid": "b8ca6ceb_ce910b1a",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 89
+      },
+      "revId": "1e7680b9f9cb8dee2bfa90f912cf50d0cfad71fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ef1d09ad_a1c64ab0",
         "filename": "csit/tests/cps-data-sync/cps-data-sync.robot",
         "patchSetId": 2
