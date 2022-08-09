@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "86a7ef4a_518ecf11",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorHelper.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-09T12:49:50Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9e94e097_79627afe",
+      "range": {
+        "startLine": 178,
+        "startChar": 27,
+        "endLine": 178,
+        "endChar": 29
+      },
+      "revId": "b45259f5c83dadc396e22271c007911fa5a58f67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a550990_8f38c42a",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorHelper.java",
         "patchSetId": 3
@@ -71,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "83c60901_696afb70",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorHelper.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-09T12:49:50Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "3a550990_8f38c42a",
+      "range": {
+        "startLine": 181,
+        "startChar": 43,
+        "endLine": 181,
+        "endChar": 58
+      },
+      "revId": "b45259f5c83dadc396e22271c007911fa5a58f67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b59c26ca_7875adb0",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorHelper.java",
         "patchSetId": 3
@@ -82,6 +130,30 @@
       "writtenOn": "2022-08-09T08:13:39Z",
       "side": 1,
       "message": "I don\u0027t think you need to check both, just targetDataSyncFlag\nalso can it really be null?",
+      "range": {
+        "startLine": 187,
+        "startChar": 12,
+        "endLine": 187,
+        "endChar": 70
+      },
+      "revId": "b45259f5c83dadc396e22271c007911fa5a58f67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "494458e8_2f4437bd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorHelper.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-09T12:49:50Z",
+      "side": 1,
+      "message": "dataSyncEnableFlag can be null when initially registered in the ADVISED state.\nThe flag being a non-primitive need to be checked.",
+      "parentUuid": "b59c26ca_7875adb0",
       "range": {
         "startLine": 187,
         "startChar": 12,
@@ -117,6 +189,30 @@
     },
     {
       "key": {
+        "uuid": "a63fb756_a7add22e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorHelper.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-09T12:49:50Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f6a9f019_fc2686d2",
+      "range": {
+        "startLine": 191,
+        "startChar": 15,
+        "endLine": 191,
+        "endChar": 93
+      },
+      "revId": "b45259f5c83dadc396e22271c007911fa5a58f67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d347cad8_e9ab809e",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
         "patchSetId": 3
@@ -128,6 +224,30 @@
       "writtenOn": "2022-08-09T08:13:39Z",
       "side": 1,
       "message": "consider a (convenience) method like this:\nLcmEventsCmHandleStateHandler.setCmHandleSateLocked(lockReason)",
+      "range": {
+        "startLine": 70,
+        "startChar": 17,
+        "endLine": 71,
+        "endChar": 109
+      },
+      "revId": "b45259f5c83dadc396e22271c007911fa5a58f67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1d1260e_40b0d106",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-09T12:49:50Z",
+      "side": 1,
+      "message": "introducing a private method in this case.",
+      "parentUuid": "d347cad8_e9ab809e",
       "range": {
         "startLine": 70,
         "startChar": 17,
@@ -163,6 +283,30 @@
     },
     {
       "key": {
+        "uuid": "8bf5ec30_ac1d96e2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-09T12:49:50Z",
+      "side": 1,
+      "message": "\"Reset cm handle {} state to ADVISED to re-attempt module-sync\u0027",
+      "parentUuid": "4ca340b4_ff53a0af",
+      "range": {
+        "startLine": 91,
+        "startChar": 46,
+        "endLine": 91,
+        "endChar": 65
+      },
+      "revId": "b45259f5c83dadc396e22271c007911fa5a58f67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fc2821ab_1e27e5bc",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
         "patchSetId": 3
@@ -183,6 +327,30 @@
       "revId": "b45259f5c83dadc396e22271c007911fa5a58f67",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b554793_dfae2413",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-09T12:49:50Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "fc2821ab_1e27e5bc",
+      "range": {
+        "startLine": 184,
+        "startChar": 66,
+        "endLine": 184,
+        "endChar": 70
+      },
+      "revId": "b45259f5c83dadc396e22271c007911fa5a58f67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -209,6 +377,30 @@
     },
     {
       "key": {
+        "uuid": "a9c8e51e_bb96d830",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-09T12:49:50Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b9138186_27219590",
+      "range": {
+        "startLine": 212,
+        "startChar": 65,
+        "endLine": 212,
+        "endChar": 70
+      },
+      "revId": "b45259f5c83dadc396e22271c007911fa5a58f67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c487b144_da55badd",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorSpec.groovy",
         "patchSetId": 3
@@ -232,6 +424,30 @@
     },
     {
       "key": {
+        "uuid": "49cac903_adeb0f4e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-09T12:49:50Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c487b144_da55badd",
+      "range": {
+        "startLine": 108,
+        "startChar": 44,
+        "endLine": 108,
+        "endChar": 59
+      },
+      "revId": "b45259f5c83dadc396e22271c007911fa5a58f67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "35987d18_203c61cf",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorSpec.groovy",
         "patchSetId": 3
@@ -252,6 +468,30 @@
       "revId": "b45259f5c83dadc396e22271c007911fa5a58f67",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9bd5fe12_7079fce6",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-09T12:49:50Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "35987d18_203c61cf",
+      "range": {
+        "startLine": 125,
+        "startChar": 0,
+        "endLine": 131,
+        "endChar": 45
+      },
+      "revId": "b45259f5c83dadc396e22271c007911fa5a58f67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
