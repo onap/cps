@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b0e4e36e_b52b6e9a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 7744
+      },
+      "writtenOn": "2022-08-09T13:06:12Z",
+      "side": 1,
+      "message": "Would add tag explaining the scenario here.",
+      "range": {
+        "startLine": 126,
+        "startChar": 0,
+        "endLine": 131,
+        "endChar": 45
+      },
+      "revId": "15003a6197a5cd52104b68d092c0f62293758ed3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
