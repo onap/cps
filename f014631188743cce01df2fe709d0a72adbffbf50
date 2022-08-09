@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1fe3ae4c_3ed67a5a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorHelper.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-09T13:48:40Z",
+      "side": 1,
+      "message": "use \u003d\u003d null and swap arguments after ?",
+      "range": {
+        "startLine": 180,
+        "startChar": 89,
+        "endLine": 180,
+        "endChar": 91
+      },
+      "revId": "f014631188743cce01df2fe709d0a72adbffbf50",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b466ef44_d2e6edad",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorHelper.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-09T13:48:40Z",
+      "side": 1,
+      "message": "use \u003d\u003d null and swap arguments after ?",
+      "range": {
+        "startLine": 182,
+        "startChar": 93,
+        "endLine": 182,
+        "endChar": 95
+      },
+      "revId": "f014631188743cce01df2fe709d0a72adbffbf50",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a8df96c1_6061dd05",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorHelper.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-09T13:48:40Z",
+      "side": 1,
+      "message": "can be simplified to:\n\n        if (targetDataSyncFlag \u003d\u003d null) {\n            return  existingDataSyncFlag !\u003d null;\n        }\n\n       return !targetDataSyncFlag.equals(existingDataSyncFlag);",
+      "range": {
+        "startLine": 185,
+        "startChar": 0,
+        "endLine": 189,
+        "endChar": 77
+      },
+      "revId": "f014631188743cce01df2fe709d0a72adbffbf50",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb948deb_f6501a9b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-09T13:48:40Z",
+      "side": 1,
+      "message": "just pass in LockReason (and make that the 2nd argument)",
+      "range": {
+        "startLine": 96,
+        "startChar": 40,
+        "endLine": 96,
+        "endChar": 75
+      },
+      "revId": "f014631188743cce01df2fe709d0a72adbffbf50",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
