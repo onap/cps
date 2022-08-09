@@ -1,0 +1,234 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c99a8cf1_a61208f1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-09T08:13:39Z",
+      "side": 1,
+      "message": "excellent example of how to use the commit message!",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 68
+      },
+      "revId": "b45259f5c83dadc396e22271c007911fa5a58f67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9e94e097_79627afe",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorHelper.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-09T08:13:39Z",
+      "side": 1,
+      "message": "NB: use \u0027has\u0027 instead of \u0027is\u0027\n(some developer think boolean method convention is to always start with \u0027is\u0027 but that is not the case, it just has to be \u0027correct\u0027 english question?  e.g\n\nhasExperied(bestBeforeDate)\ncontainsElement(myElement)\n\netc.",
+      "range": {
+        "startLine": 178,
+        "startChar": 27,
+        "endLine": 178,
+        "endChar": 29
+      },
+      "revId": "b45259f5c83dadc396e22271c007911fa5a58f67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b59c26ca_7875adb0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorHelper.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-09T08:13:39Z",
+      "side": 1,
+      "message": "I don\u0027t think you need to check both, just targetDataSyncFlag\nalso can it really be null?",
+      "range": {
+        "startLine": 187,
+        "startChar": 12,
+        "endLine": 187,
+        "endChar": 70
+      },
+      "revId": "b45259f5c83dadc396e22271c007911fa5a58f67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f6a9f019_fc2686d2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorHelper.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-09T08:13:39Z",
+      "side": 1,
+      "message": "I think this can be simplified if above comment is implemented",
+      "range": {
+        "startLine": 191,
+        "startChar": 15,
+        "endLine": 191,
+        "endChar": 93
+      },
+      "revId": "b45259f5c83dadc396e22271c007911fa5a58f67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d347cad8_e9ab809e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-09T08:13:39Z",
+      "side": 1,
+      "message": "consider a (convenience) method like this:\nLcmEventsCmHandleStateHandler.setCmHandleSateLocked(lockReason)",
+      "range": {
+        "startLine": 70,
+        "startChar": 17,
+        "endLine": 71,
+        "endChar": 109
+      },
+      "revId": "b45259f5c83dadc396e22271c007911fa5a58f67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4ca340b4_ff53a0af",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-09T08:13:39Z",
+      "side": 1,
+      "message": "legacy: not 100% correct\nsuggestion: \"Reset cm handle {} state to READY to re-attempt module-sync\u0027",
+      "range": {
+        "startLine": 91,
+        "startChar": 46,
+        "endLine": 91,
+        "endChar": 65
+      },
+      "revId": "b45259f5c83dadc396e22271c007911fa5a58f67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fc2821ab_1e27e5bc",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-09T08:13:39Z",
+      "side": 1,
+      "message": "use *_  (for exception throwing we can be very lenient and this might prevent refactoring of this test if you ever add anoterh paarameter)",
+      "range": {
+        "startLine": 184,
+        "startChar": 66,
+        "endLine": 184,
+        "endChar": 70
+      },
+      "revId": "b45259f5c83dadc396e22271c007911fa5a58f67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b9138186_27219590",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-09T08:13:39Z",
+      "side": 1,
+      "message": "*_",
+      "range": {
+        "startLine": 212,
+        "startChar": 65,
+        "endLine": 212,
+        "endChar": 70
+      },
+      "revId": "b45259f5c83dadc396e22271c007911fa5a58f67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c487b144_da55badd",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-09T08:13:39Z",
+      "side": 1,
+      "message": "use the paarmeters below: ..existing flag value: #existingDataSyncEnableFlag and target value: #targetDataSyncEnableFlag",
+      "range": {
+        "startLine": 108,
+        "startChar": 44,
+        "endLine": 108,
+        "endChar": 59
+      },
+      "revId": "b45259f5c83dadc396e22271c007911fa5a58f67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35987d18_203c61cf",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-09T08:13:39Z",
+      "side": 1,
+      "message": "good test but I stil want to discuss the possibility or not of null values....",
+      "range": {
+        "startLine": 125,
+        "startChar": 0,
+        "endLine": 131,
+        "endChar": 45
+      },
+      "revId": "b45259f5c83dadc396e22271c007911fa5a58f67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
