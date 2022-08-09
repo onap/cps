@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d3c83926_2c613545",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-09T17:14:07Z",
+      "side": 1,
+      "message": "i ment to move this method to be provided by lcmEventsCmHandleStateHandler but is not so important...",
+      "range": {
+        "startLine": 96,
+        "startChar": 17,
+        "endLine": 96,
+        "endChar": 39
+      },
+      "revId": "18ecb8eebb05f452da24ff02944898363786d486",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cfbef78b_86a5a945",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-09T17:14:07Z",
+      "side": 1,
+      "message": "instead of combining it with the existing test and increasing teh table rows and column count I think it would be better to have a seperate these for the 3 sencarios where the value doens\u0027t change. YOu might not need all teh same assert/setup either...",
+      "range": {
+        "startLine": 128,
+        "startChar": 12,
+        "endLine": 128,
+        "endChar": 28
+      },
+      "revId": "18ecb8eebb05f452da24ff02944898363786d486",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
