@@ -20,5 +20,6 @@ actuator
 cps-admin
 cps-data
 cps-model-sync
+cps-data-sync
 ncmp-passthrough
 cm-handle-query
