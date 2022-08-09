@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "40ec6b71_d9fb2fe7",
+        "filename": "csit/tests/cps-data-sync/cps-data-sync.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-08-09T08:56:20Z",
+      "side": 1,
+      "message": "this is still a failing test",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 75
+      },
+      "revId": "54db289d1fa8bf07b03f69ee6256f86535868a3e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
