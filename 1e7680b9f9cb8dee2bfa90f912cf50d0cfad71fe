@@ -135,6 +135,30 @@
     },
     {
       "key": {
+        "uuid": "a12d494a_c32ceefd",
+        "filename": "csit/tests/cps-data-sync/cps-data-sync.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-08-09T12:19:45Z",
+      "side": 1,
+      "message": "agreed",
+      "parentUuid": "07cecc39_8e85b3d8",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 89
+      },
+      "revId": "1e7680b9f9cb8dee2bfa90f912cf50d0cfad71fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ef1d09ad_a1c64ab0",
         "filename": "csit/tests/cps-data-sync/cps-data-sync.robot",
         "patchSetId": 2
@@ -174,6 +198,29 @@
         "startChar": 0,
         "endLine": 67,
         "endChar": 75
+      },
+      "revId": "1e7680b9f9cb8dee2bfa90f912cf50d0cfad71fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a10efd0_31aae777",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-08-09T12:19:45Z",
+      "side": 1,
+      "message": "Broader issue than this commit but I\u0027m still kind of against having these small default values in the docker compose, I think they should be set to environment variables using the csit setup script. We have documentation stating the default values are 30000 and then offer this compose file as a way of running cps. Could be a tech debt task if team agree",
+      "range": {
+        "startLine": 53,
+        "startChar": 48,
+        "endLine": 53,
+        "endChar": 52
       },
       "revId": "1e7680b9f9cb8dee2bfa90f912cf50d0cfad71fe",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
