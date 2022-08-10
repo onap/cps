@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a775c20d_18bb4fca",
+        "filename": "csit/tests/cps-data-sync/cps-data-sync.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-08-10T09:57:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f93d3133_bfaec46e",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 40
+      },
+      "revId": "5236407c282ea9d3e69b25d15892527db22d6668",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4e310184_ed8888a8",
         "filename": "csit/tests/cps-data-sync/cps-data-sync.robot",
         "patchSetId": 3
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "ce39106e_e664dcb0",
+        "filename": "csit/tests/cps-data-sync/cps-data-sync.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-08-10T09:57:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e310184_ed8888a8",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 56
+      },
+      "revId": "5236407c282ea9d3e69b25d15892527db22d6668",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2e4a3e79_f71a84c6",
         "filename": "csit/tests/cps-data-sync/cps-data-sync.robot",
         "patchSetId": 3
@@ -68,6 +116,30 @@
       "revId": "5236407c282ea9d3e69b25d15892527db22d6668",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a9a2731_e9e8d12c",
+        "filename": "csit/tests/cps-data-sync/cps-data-sync.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-08-10T09:57:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2e4a3e79_f71a84c6",
+      "range": {
+        "startLine": 52,
+        "startChar": 39,
+        "endLine": 52,
+        "endChar": 54
+      },
+      "revId": "5236407c282ea9d3e69b25d15892527db22d6668",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
