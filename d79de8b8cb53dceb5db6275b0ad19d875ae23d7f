@@ -25,6 +25,75 @@
     },
     {
       "key": {
+        "uuid": "7e71a598_f7f1f740",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-10T14:02:05Z",
+      "side": 1,
+      "message": "this is all assertert in prev tets no need to repeat!",
+      "range": {
+        "startLine": 143,
+        "startChar": 0,
+        "endLine": 149,
+        "endChar": 87
+      },
+      "revId": "d79de8b8cb53dceb5db6275b0ad19d875ae23d7f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a3008622_6f38bec4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-10T14:02:05Z",
+      "side": 1,
+      "message": "then: the data sync flag is not present in the event\n  assert result.event.oldValues.dataSyncEnabled \u003d\u003d null\n  assert result.event.newValues.dataSyncEnabled \u003d\u003d null",
+      "range": {
+        "startLine": 150,
+        "startChar": 11,
+        "endLine": 150,
+        "endChar": 87
+      },
+      "revId": "d79de8b8cb53dceb5db6275b0ad19d875ae23d7f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aaf9cbe3_400cce65",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-10T14:02:05Z",
+      "side": 1,
+      "message": "no need to assert again",
+      "range": {
+        "startLine": 152,
+        "startChar": 12,
+        "endLine": 152,
+        "endChar": 85
+      },
+      "revId": "d79de8b8cb53dceb5db6275b0ad19d875ae23d7f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bc196b1f_95aed981",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorSpec.groovy",
         "patchSetId": 7
