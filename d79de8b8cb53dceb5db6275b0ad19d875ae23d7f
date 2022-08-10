@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6dcc4e86_5a47e186",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-10T13:08:45Z",
+      "side": 1,
+      "message": "if you are doing one more edit I would like you to move tis method (see comment on patch #6 too)",
+      "range": {
+        "startLine": 96,
+        "startChar": 17,
+        "endLine": 96,
+        "endChar": 39
+      },
+      "revId": "d79de8b8cb53dceb5db6275b0ad19d875ae23d7f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc196b1f_95aed981",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-10T13:08:45Z",
+      "side": 1,
+      "message": "technically you font need 2 columns as both value are always the same but maybe for readability and symmetry with previous test it might be good to have to column, you can decide...",
+      "range": {
+        "startLine": 155,
+        "startChar": 31,
+        "endLine": 155,
+        "endChar": 84
+      },
+      "revId": "d79de8b8cb53dceb5db6275b0ad19d875ae23d7f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9ce52ed5_73200374",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-10T13:08:45Z",
+      "side": 1,
+      "message": "always same value no need for column",
+      "range": {
+        "startLine": 155,
+        "startChar": 88,
+        "endLine": 155,
+        "endChar": 114
+      },
+      "revId": "d79de8b8cb53dceb5db6275b0ad19d875ae23d7f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
