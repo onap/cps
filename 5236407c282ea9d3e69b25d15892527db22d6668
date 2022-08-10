@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e4a3e79_f71a84c6",
+        "filename": "csit/tests/cps-data-sync/cps-data-sync.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-10T09:23:14Z",
+      "side": 1,
+      "message": "NB: As this is parameterized in the docker compose file , in my opinion we should not hardcode it here.\nSuggestion: \"Operational state goes to SYNCHRONIZED after sometime when data sync (flag) is enabled\"",
+      "range": {
+        "startLine": 52,
+        "startChar": 39,
+        "endLine": 52,
+        "endChar": 54
+      },
+      "revId": "5236407c282ea9d3e69b25d15892527db22d6668",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
