@@ -411,6 +411,30 @@
       "revId": "1e7680b9f9cb8dee2bfa90f912cf50d0cfad71fe",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e2fc1c49_641c1ae3",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-10T13:03:59Z",
+      "side": 1,
+      "message": "i think these are CSIT tets specific values i.e not the defaults...",
+      "parentUuid": "5a10efd0_31aae777",
+      "range": {
+        "startLine": 53,
+        "startChar": 48,
+        "endLine": 53,
+        "endChar": 52
+      },
+      "revId": "1e7680b9f9cb8dee2bfa90f912cf50d0cfad71fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
