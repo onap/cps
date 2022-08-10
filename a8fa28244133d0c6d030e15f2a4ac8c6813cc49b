@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dd8010f4_c638e67f",
+        "filename": "cps-ncmp-rest/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-10T16:12:51Z",
+      "side": 1,
+      "message": "I hope this is intentional and to be removed in the next patch?",
+      "range": {
+        "startLine": 36,
+        "startChar": 4,
+        "endLine": 38,
+        "endChar": 17
+      },
+      "revId": "a8fa28244133d0c6d030e15f2a4ac8c6813cc49b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef9597e2_b55856ef",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/DatastoreName.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-10T16:12:51Z",
+      "side": 1,
+      "message": "DataStore",
+      "range": {
+        "startLine": 23,
+        "startChar": 12,
+        "endLine": 23,
+        "endChar": 21
+      },
+      "revId": "a8fa28244133d0c6d030e15f2a4ac8c6813cc49b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a1f2d999_87c4ccf4",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/DatastoreName.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-10T16:12:51Z",
+      "side": 1,
+      "message": "can be like \nPASSTHROUGH_RUNNING(\"passthrough-running\") and make use of a method to return the lowercased value based on the enum value.\nSee related comment in your builder class.",
+      "range": {
+        "startLine": 25,
+        "startChar": 4,
+        "endLine": 25,
+        "endChar": 23
+      },
+      "revId": "a8fa28244133d0c6d030e15f2a4ac8c6813cc49b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f9e7d4f_ac7fa069",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NcmpDataStoreHandlerBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-10T16:12:51Z",
+      "side": 1,
+      "message": "check DataStoreName enum for an alternate solution.",
+      "range": {
+        "startLine": 97,
+        "startChar": 4,
+        "endLine": 103,
+        "endChar": 5
+      },
+      "revId": "a8fa28244133d0c6d030e15f2a4ac8c6813cc49b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b7959972_cf83e26b",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NcmpDataStoreHandlerBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-10T16:12:51Z",
+      "side": 1,
+      "message": "do we need to throw some specialized exception here??",
+      "range": {
+        "startLine": 125,
+        "startChar": 26,
+        "endLine": 125,
+        "endChar": 42
+      },
+      "revId": "a8fa28244133d0c6d030e15f2a4ac8c6813cc49b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e4bc2e2b_e004f72b",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NcmpDataStoreOperationalHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-10T16:12:51Z",
+      "side": 1,
+      "message": "use the lombok way to instantiate.\nWe use constructor injection to inject our dependencies.\n\nSimilar comments for all the handlers.",
+      "range": {
+        "startLine": 35,
+        "startChar": 4,
+        "endLine": 36,
+        "endChar": 52
+      },
+      "revId": "a8fa28244133d0c6d030e15f2a4ac8c6813cc49b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cbd0c486_7ac2af55",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NcmpDataStorePassthroughOperationalHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-10T16:12:51Z",
+      "side": 1,
+      "message": "same as before.",
+      "range": {
+        "startLine": 37,
+        "startChar": 4,
+        "endLine": 38,
+        "endChar": 52
+      },
+      "revId": "a8fa28244133d0c6d030e15f2a4ac8c6813cc49b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91aa4006_64a77d6d",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NcmpDataStorePassthroughRunningHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-10T16:12:51Z",
+      "side": 1,
+      "message": "same as before.",
+      "range": {
+        "startLine": 35,
+        "startChar": 4,
+        "endLine": 36,
+        "endChar": 52
+      },
+      "revId": "a8fa28244133d0c6d030e15f2a4ac8c6813cc49b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
