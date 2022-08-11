@@ -30,7 +30,7 @@ class DataMapUtilsSpec extends Specification {
 
     def dataNode = buildDataNode(
             "/parent",[parentLeaf:'parentLeafValue', parentLeafList:['parentLeafListEntry1','parentLeafListEntry2']],[
-            buildDataNode('/parent/child-list[@id=1]',[listElementLeaf:'listElement1leafValue'],noChildren),
+            buildDataNode('/parent/child-list[@id=1/2]',[listElementLeaf:'listElement1leafValue'],noChildren),
             buildDataNode('/parent/child-list[@id=2]',[listElementLeaf:'listElement2leafValue'],noChildren),
             buildDataNode('/parent/child-object',[childLeaf:'childLeafValue'],
                     [buildDataNode('/parent/child-object/grand-child-object',[grandChildLeaf:'grandChildLeafValue'],noChildren)]
@@ -88,9 +88,11 @@ class DataMapUtilsSpec extends Specification {
         then: 'the correct modified node identifier is given'
             assert result == expectedNodeIdentifier
         where: 'the following parameters are used'
-            scenario                        | xPath                                       | expectedNodeIdentifier
-            'container xpath'               | '/bookstore'                                | 'sampleModuleName:bookstore'
-            'xpath contains list attribute' | '/bookstore/categories[@code=1]'            | 'sampleModuleName:categories'
+            scenario                                | xPath                                     | expectedNodeIdentifier
+            'container xpath'                       | '/bookstore'                              | 'sampleModuleName:bookstore'
+            'xpath contains list attribute'         | '/bookstore/categories[@code=1]'          | 'sampleModuleName:categories'
+            'xpath contains list attributes with /' | '/bookstore/categories[@code=1/2]'        | 'sampleModuleName:categories'
+
     }
 }
 
