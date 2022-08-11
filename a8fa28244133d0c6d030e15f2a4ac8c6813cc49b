@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "00d3f8d6_0b4f453e",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/DatastoreName.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 8111
+      },
+      "writtenOn": "2022-08-11T08:33:15Z",
+      "side": 1,
+      "message": "Toine asked to use that version",
+      "parentUuid": "ef9597e2_b55856ef",
+      "range": {
+        "startLine": 23,
+        "startChar": 12,
+        "endLine": 23,
+        "endChar": 21
+      },
+      "revId": "a8fa28244133d0c6d030e15f2a4ac8c6813cc49b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a1f2d999_87c4ccf4",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/DatastoreName.java",
         "patchSetId": 1
@@ -59,6 +83,30 @@
       "writtenOn": "2022-08-10T16:12:51Z",
       "side": 1,
       "message": "can be like \nPASSTHROUGH_RUNNING(\"passthrough-running\") and make use of a method to return the lowercased value based on the enum value.\nSee related comment in your builder class.",
+      "range": {
+        "startLine": 25,
+        "startChar": 4,
+        "endLine": 25,
+        "endChar": 23
+      },
+      "revId": "a8fa28244133d0c6d030e15f2a4ac8c6813cc49b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7d3d89e7_a368555b",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/DatastoreName.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 8111
+      },
+      "writtenOn": "2022-08-11T08:33:15Z",
+      "side": 1,
+      "message": "okay",
+      "parentUuid": "a1f2d999_87c4ccf4",
       "range": {
         "startLine": 25,
         "startChar": 4,
