@@ -90,10 +90,12 @@ public class DataMapUtils {
                 ));
     }
 
-    private static String getNodeIdentifier(final String xpath) {
-        final int fromIndex = xpath.lastIndexOf("/") + 1;
-        final int toIndex = xpath.indexOf("[", fromIndex);
-        return toIndex > 0 ? xpath.substring(fromIndex, toIndex) : xpath.substring(fromIndex);
+    private static String getNodeIdentifier(String xpath) {
+        if (xpath.endsWith("]")) {
+            xpath = xpath.substring(0, xpath.lastIndexOf('['));
+        }
+        final int fromIndex = xpath.lastIndexOf('/') + 1;
+        return xpath.substring(fromIndex);
     }
 
     private static String getNodeIdentifierWithPrefix(final String xpath, final String moduleNamePrefix) {
