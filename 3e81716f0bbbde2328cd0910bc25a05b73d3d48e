@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4f655bc2_dd53e796",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-11T15:45:22Z",
+      "side": 1,
+      "message": "NB: explain a  bit more about what the fix actually is",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 16
+      },
+      "revId": "3e81716f0bbbde2328cd0910bc25a05b73d3d48e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c53be872_0a9f05c2",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/DataMapUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-11T15:45:22Z",
+      "side": 1,
+      "message": "NB: no longer final, i don\u0027t like manipulating incommign variables unless its clearly intended. It is probably OK because strings arre immutable but maybe you could assign xpath to a new local variable for this method...",
+      "range": {
+        "startLine": 94,
+        "startChar": 44,
+        "endLine": 94,
+        "endChar": 51
+      },
+      "revId": "3e81716f0bbbde2328cd0910bc25a05b73d3d48e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
