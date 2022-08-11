@@ -213,6 +213,53 @@
     },
     {
       "key": {
+        "uuid": "124b4994_89c84a3c",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/DatastoreName.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-11T15:32:26Z",
+      "side": 1,
+      "message": "good idea",
+      "parentUuid": "7d3d89e7_a368555b",
+      "range": {
+        "startLine": 25,
+        "startChar": 4,
+        "endLine": 25,
+        "endChar": 23
+      },
+      "revId": "a8fa28244133d0c6d030e15f2a4ac8c6813cc49b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9c1b43d4_8ff9958b",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NcmpDataStoreHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-11T15:32:26Z",
+      "side": 1,
+      "message": "the order of these parametres to be in line with the order in teh URL if possible",
+      "range": {
+        "startLine": 36,
+        "startChar": 41,
+        "endLine": 40,
+        "endChar": 60
+      },
+      "revId": "a8fa28244133d0c6d030e15f2a4ac8c6813cc49b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "dd50778a_cefcf4dc",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NcmpDataStoreHandlerBuilder.java",
         "patchSetId": 1
@@ -224,6 +271,30 @@
       "writtenOn": "2022-08-11T12:55:05Z",
       "side": 1,
       "message": "I think this is a util/builder class and hence should not be residing inside controller package",
+      "range": {
+        "startLine": 27,
+        "startChar": 13,
+        "endLine": 27,
+        "endChar": 40
+      },
+      "revId": "a8fa28244133d0c6d030e15f2a4ac8c6813cc49b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f9e4ef5_53dab6f0",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NcmpDataStoreHandlerBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-11T15:32:26Z",
+      "side": 1,
+      "message": "subpackage or sibling package woudl be good",
+      "parentUuid": "dd50778a_cefcf4dc",
       "range": {
         "startLine": 27,
         "startChar": 13,
@@ -271,6 +342,30 @@
       "side": 1,
       "message": "agree to the comment",
       "parentUuid": "0f9e7d4f_ac7fa069",
+      "range": {
+        "startLine": 97,
+        "startChar": 4,
+        "endLine": 103,
+        "endChar": 5
+      },
+      "revId": "a8fa28244133d0c6d030e15f2a4ac8c6813cc49b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "89c6ec0f_d9735e15",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NcmpDataStoreHandlerBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-11T15:32:26Z",
+      "side": 1,
+      "message": "agreed use enum constructuror to store private property with correct name",
+      "parentUuid": "66f83257_997384f3",
       "range": {
         "startLine": 97,
         "startChar": 4,
@@ -354,6 +449,30 @@
     },
     {
       "key": {
+        "uuid": "0fbfbde3_934b17d0",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NcmpDataStoreHandlerBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-11T15:32:26Z",
+      "side": 1,
+      "message": "this is an enum this line impossible for some annoying reason SonarQube (used to) enforce to add a default even if all possible values are handled. For this reason I sometimes use a map but then we would get the same instance each time, is that OK?, is there instance data/state? If not then we would need only one static instance of each handler anyway...",
+      "parentUuid": "422e2f76_8749f558",
+      "range": {
+        "startLine": 125,
+        "startChar": 26,
+        "endLine": 125,
+        "endChar": 42
+      },
+      "revId": "a8fa28244133d0c6d030e15f2a4ac8c6813cc49b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e4bc2e2b_e004f72b",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NcmpDataStoreOperationalHandler.java",
         "patchSetId": 1
@@ -389,6 +508,30 @@
       "side": 1,
       "message": "Its not lombok complient builder",
       "parentUuid": "e4bc2e2b_e004f72b",
+      "range": {
+        "startLine": 35,
+        "startChar": 4,
+        "endLine": 36,
+        "endChar": 52
+      },
+      "revId": "a8fa28244133d0c6d030e15f2a4ac8c6813cc49b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7b86715e_fd1e0a32",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NcmpDataStoreOperationalHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-11T15:32:26Z",
+      "side": 1,
+      "message": "can stil use lombok type injection even if not using (lombok) builder pattern...\nsee lombok.RequiredArgsConstructor; (it is used in quite a few files)",
+      "parentUuid": "ec87edc9_301e2fb6",
       "range": {
         "startLine": 35,
         "startChar": 4,
@@ -440,6 +583,52 @@
         "startChar": 4,
         "endLine": 36,
         "endChar": 52
+      },
+      "revId": "a8fa28244133d0c6d030e15f2a4ac8c6813cc49b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4417e548_11b02ff6",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/utils/NcmpDataStoreHandlerUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-11T15:32:26Z",
+      "side": 1,
+      "message": "this method seems an unnecessary wrapper for CpsValidator.validateTopicName(topicName),\ncan it not used directly does it need to be modified or do we need another variation in CpsValidator\n\n\nI suspect it is because you want to throw an exception, maybe just add a 2nd method to Cps Validator liek so\n\n\n:\nvoid validateTopicNameUsingException(String topicName) {\n  if not(validateTopicName(topicName)) {\n      throw new InvalidTopicException(\"Topic name \" + topicName + \" is invalid\", \"invalid topic\");\n  }",
+      "range": {
+        "startLine": 34,
+        "startChar": 26,
+        "endLine": 34,
+        "endChar": 38
+      },
+      "revId": "a8fa28244133d0c6d030e15f2a4ac8c6813cc49b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "50fbefb9_d045cb65",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/utils/NcmpDataStoreHandlerUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-11T15:32:26Z",
+      "side": 1,
+      "message": "this definitely happens inside CpsValidator.validateTopicName already",
+      "range": {
+        "startLine": 35,
+        "startChar": 2,
+        "endLine": 37,
+        "endChar": 9
       },
       "revId": "a8fa28244133d0c6d030e15f2a4ac8c6813cc49b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
