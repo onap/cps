@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "111d2ca7_d0cdb75b",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 529,
+      "author": {
+        "id": 8111
+      },
+      "writtenOn": "2022-08-11T15:39:37Z",
+      "side": 1,
+      "message": "Yeah, that was confusing, but we agreed on proposal that ncmp-datastore:operational will be used so i have to update samples as well",
+      "parentUuid": "6f43e09f_d0951924",
+      "range": {
+        "startLine": 529,
+        "startChar": 17,
+        "endLine": 529,
+        "endChar": 28
+      },
+      "revId": "a8fa28244133d0c6d030e15f2a4ac8c6813cc49b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a1776b52_6f6d1887",
         "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2022-08-11T12:55:05Z",
       "side": 1,
       "message": "I suppose this is to be removed as a part of this jira",
+      "range": {
+        "startLine": 90,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 26
+      },
+      "revId": "a8fa28244133d0c6d030e15f2a4ac8c6813cc49b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "63adf696_4b3e157c",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 8111
+      },
+      "writtenOn": "2022-08-11T15:39:37Z",
+      "side": 1,
+      "message": "yes, that\u0027s why is sat to deprecated for now but i commented on the paths that it will removed",
+      "parentUuid": "a1776b52_6f6d1887",
       "range": {
         "startLine": 90,
         "startChar": 0,
@@ -307,6 +355,30 @@
     },
     {
       "key": {
+        "uuid": "2018e9ab_7b8f1a9f",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NcmpDataStoreHandlerBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 8111
+      },
+      "writtenOn": "2022-08-11T15:39:37Z",
+      "side": 1,
+      "message": "okay then, should be under controller/builders?",
+      "parentUuid": "1f9e4ef5_53dab6f0",
+      "range": {
+        "startLine": 27,
+        "startChar": 13,
+        "endLine": 27,
+        "endChar": 40
+      },
+      "revId": "a8fa28244133d0c6d030e15f2a4ac8c6813cc49b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0f9e7d4f_ac7fa069",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NcmpDataStoreHandlerBuilder.java",
         "patchSetId": 1
@@ -366,6 +438,30 @@
       "side": 1,
       "message": "agreed use enum constructuror to store private property with correct name",
       "parentUuid": "66f83257_997384f3",
+      "range": {
+        "startLine": 97,
+        "startChar": 4,
+        "endLine": 103,
+        "endChar": 5
+      },
+      "revId": "a8fa28244133d0c6d030e15f2a4ac8c6813cc49b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "06e186d0_acec9297",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NcmpDataStoreHandlerBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 8111
+      },
+      "writtenOn": "2022-08-11T15:39:37Z",
+      "side": 1,
+      "message": "It is already discussed in the enum file",
+      "parentUuid": "89c6ec0f_d9735e15",
       "range": {
         "startLine": 97,
         "startChar": 4,
@@ -544,6 +640,30 @@
     },
     {
       "key": {
+        "uuid": "b3ea8d6b_878d61e4",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NcmpDataStoreOperationalHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 8111
+      },
+      "writtenOn": "2022-08-11T15:39:37Z",
+      "side": 1,
+      "message": "Okay, but how can i redefine the build method?",
+      "parentUuid": "7b86715e_fd1e0a32",
+      "range": {
+        "startLine": 35,
+        "startChar": 4,
+        "endLine": 36,
+        "endChar": 52
+      },
+      "revId": "a8fa28244133d0c6d030e15f2a4ac8c6813cc49b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cbd0c486_7ac2af55",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NcmpDataStorePassthroughOperationalHandler.java",
         "patchSetId": 1
@@ -624,6 +744,30 @@
       "writtenOn": "2022-08-11T15:32:26Z",
       "side": 1,
       "message": "this definitely happens inside CpsValidator.validateTopicName already",
+      "range": {
+        "startLine": 35,
+        "startChar": 2,
+        "endLine": 37,
+        "endChar": 9
+      },
+      "revId": "a8fa28244133d0c6d030e15f2a4ac8c6813cc49b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e4a61aad_7091c0c8",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/utils/NcmpDataStoreHandlerUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 8111
+      },
+      "writtenOn": "2022-08-11T15:39:37Z",
+      "side": 1,
+      "message": "Okay, i was not aware of that so  i will use just validator then",
+      "parentUuid": "50fbefb9_d045cb65",
       "range": {
         "startLine": 35,
         "startChar": 2,
