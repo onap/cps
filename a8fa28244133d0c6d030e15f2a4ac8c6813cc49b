@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "6f43e09f_d0951924",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 529,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-08-11T12:55:05Z",
+      "side": 1,
+      "message": "is this going to be operational or ncmp-datastore:operational",
+      "range": {
+        "startLine": 529,
+        "startChar": 17,
+        "endLine": 529,
+        "endChar": 28
+      },
+      "revId": "a8fa28244133d0c6d030e15f2a4ac8c6813cc49b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a1776b52_6f6d1887",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-08-11T12:55:05Z",
+      "side": 1,
+      "message": "I suppose this is to be removed as a part of this jira",
+      "range": {
+        "startLine": 90,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 26
+      },
+      "revId": "a8fa28244133d0c6d030e15f2a4ac8c6813cc49b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "dd8010f4_c638e67f",
         "filename": "cps-ncmp-rest/pom.xml",
         "patchSetId": 1
@@ -167,6 +213,29 @@
     },
     {
       "key": {
+        "uuid": "dd50778a_cefcf4dc",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NcmpDataStoreHandlerBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-08-11T12:55:05Z",
+      "side": 1,
+      "message": "I think this is a util/builder class and hence should not be residing inside controller package",
+      "range": {
+        "startLine": 27,
+        "startChar": 13,
+        "endLine": 27,
+        "endChar": 40
+      },
+      "revId": "a8fa28244133d0c6d030e15f2a4ac8c6813cc49b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0f9e7d4f_ac7fa069",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NcmpDataStoreHandlerBuilder.java",
         "patchSetId": 1
@@ -178,6 +247,30 @@
       "writtenOn": "2022-08-10T16:12:51Z",
       "side": 1,
       "message": "check DataStoreName enum for an alternate solution.",
+      "range": {
+        "startLine": 97,
+        "startChar": 4,
+        "endLine": 103,
+        "endChar": 5
+      },
+      "revId": "a8fa28244133d0c6d030e15f2a4ac8c6813cc49b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "66f83257_997384f3",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NcmpDataStoreHandlerBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-08-11T12:55:05Z",
+      "side": 1,
+      "message": "agree to the comment",
+      "parentUuid": "0f9e7d4f_ac7fa069",
       "range": {
         "startLine": 97,
         "startChar": 4,
@@ -225,6 +318,30 @@
       "side": 1,
       "message": "Not sure",
       "parentUuid": "b7959972_cf83e26b",
+      "range": {
+        "startLine": 125,
+        "startChar": 26,
+        "endLine": 125,
+        "endChar": 42
+      },
+      "revId": "a8fa28244133d0c6d030e15f2a4ac8c6813cc49b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "422e2f76_8749f558",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NcmpDataStoreHandlerBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-08-11T12:55:05Z",
+      "side": 1,
+      "message": "agree, I think this qualifies for a 404 NOT FOUND ... if this doesnt exist we can create an exception DataStoreNotFound",
+      "parentUuid": "2a232c02_f5128370",
       "range": {
         "startLine": 125,
         "startChar": 26,
