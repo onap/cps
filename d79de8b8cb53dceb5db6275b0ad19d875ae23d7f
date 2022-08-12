@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "fc412ba4_65731154",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-12T13:41:12Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "208da92b_5766b823",
+      "range": {
+        "startLine": 96,
+        "startChar": 17,
+        "endLine": 96,
+        "endChar": 39
+      },
+      "revId": "d79de8b8cb53dceb5db6275b0ad19d875ae23d7f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7e71a598_f7f1f740",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorSpec.groovy",
         "patchSetId": 7
