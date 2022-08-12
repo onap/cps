@@ -46,6 +46,30 @@
       "revId": "feb9fb0c0a47f6ccf9e28ea7474def605c6e6a4b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c97e1184_43ebb61d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-08-12T08:26:59Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1c0144e0_884a1253",
+      "range": {
+        "startLine": 147,
+        "startChar": 13,
+        "endLine": 149,
+        "endChar": 64
+      },
+      "revId": "feb9fb0c0a47f6ccf9e28ea7474def605c6e6a4b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
