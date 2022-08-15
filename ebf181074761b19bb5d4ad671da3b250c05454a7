@@ -131,6 +131,24 @@
     },
     {
       "key": {
+        "uuid": "06956a36_a3c869c5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/DataSyncWatchdog.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-15T08:22:51Z",
+      "side": 1,
+      "message": "agreed the next time the watchdog will wake up this entry wil be attempted again.\nI think it is a rare edge case and no need for complex code to speed this scenario up",
+      "parentUuid": "f59b1a2a_5b28e8f5",
+      "revId": "ebf181074761b19bb5d4ad671da3b250c05454a7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5279df81_6f1c65a1",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/DataSyncWatchdog.java",
         "patchSetId": 12
