@@ -873,6 +873,30 @@
     },
     {
       "key": {
+        "uuid": "79f139f4_e27f96c3",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NcmpDataStoreOperationalHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 8111
+      },
+      "writtenOn": "2022-08-15T08:35:34Z",
+      "side": 1,
+      "message": "I know, it was in the original code",
+      "parentUuid": "4b566c44_7f6c24a0",
+      "range": {
+        "startLine": 79,
+        "startChar": 62,
+        "endLine": 79,
+        "endChar": 106
+      },
+      "revId": "a8fa28244133d0c6d030e15f2a4ac8c6813cc49b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cbd0c486_7ac2af55",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NcmpDataStorePassthroughOperationalHandler.java",
         "patchSetId": 1
