@@ -1219,6 +1219,30 @@
       "revId": "a8fa28244133d0c6d030e15f2a4ac8c6813cc49b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8707b593_5d7641bc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 8111
+      },
+      "writtenOn": "2022-08-15T10:55:30Z",
+      "side": 1,
+      "message": "yeah, it would better come as enum maybe from DataService?",
+      "parentUuid": "f2959e21_10d1c4b6",
+      "range": {
+        "startLine": 127,
+        "startChar": 43,
+        "endLine": 127,
+        "endChar": 58
+      },
+      "revId": "a8fa28244133d0c6d030e15f2a4ac8c6813cc49b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
