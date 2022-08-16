@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "bdc87de8_1127f97e",
+        "filename": "docs/cps-events.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-08-16T14:02:33Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 8
+      },
+      "revId": "411219850b4866715c472dc1a64eaf61be795346",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "166c9822_5f685dd6",
         "filename": "docs/cps-events.rst",
         "patchSetId": 5
