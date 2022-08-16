@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "166c9822_5f685dd6",
+        "filename": "docs/cps-events.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-08-16T14:01:08Z",
+      "side": 1,
+      "message": "LCM events are triggered by a change in state...",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 94
+      },
+      "revId": "411219850b4866715c472dc1a64eaf61be795346",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
