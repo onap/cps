@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "99b0e4e9_63fa0af8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CmHandleQueries.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-16T16:59:20Z",
+      "side": 1,
+      "message": "in this case as it is a get it should be xpath instead of cpspath",
+      "range": {
+        "startLine": 134,
+        "startChar": 62,
+        "endLine": 134,
+        "endChar": 69
+      },
+      "revId": "23898ebc742ac549674a1f6d52ce13648b77c654",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6b26fdb2_4960b633",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CmHandleQueries.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-16T16:59:20Z",
+      "side": 1,
+      "message": "this shoudl not be there",
+      "range": {
+        "startLine": 137,
+        "startChar": 26,
+        "endLine": 137,
+        "endChar": 45
+      },
+      "revId": "23898ebc742ac549674a1f6d52ce13648b77c654",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0c2118ef_cd58dd05",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CmHandleQueries.java",
         "patchSetId": 14
