@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "38dbf43a_126b0492",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-16T11:03:34Z",
+      "side": 1,
+      "message": "as discussed discussed: only store thet reference in hazelcast. introducing state caching is to risky.",
+      "range": {
+        "startLine": 340,
+        "startChar": 47,
+        "endLine": 340,
+        "endChar": 64
+      },
+      "revId": "e482e74e2dab8455d0642829005c03212936b73d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8c224a4c_e1fe3f66",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationSemaphoresConfig.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-16T11:03:34Z",
+      "side": 1,
+      "message": "use hazelcast priority queue",
+      "range": {
+        "startLine": 48,
+        "startChar": 11,
+        "endLine": 48,
+        "endChar": 24
+      },
+      "revId": "e482e74e2dab8455d0642829005c03212936b73d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
