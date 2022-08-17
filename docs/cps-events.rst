@@ -8,12 +8,6 @@
 CPS Events
 ##########
 
-CPS Core
-********
-..
-   Cps core events yet to be written
-
-
 CPS-NCMP
 ********
 
@@ -28,11 +22,11 @@ Lifecycle management events are published as cm handle state transitions from on
 
 LCM events and state handler
 ----------------------------
-The LCM events are triggered under the state handler which has the following responsibilities:
+LCM events are triggered by a change in cm handle state. It has the following responsibilities:
 
 #. Updating and persisting cm handle state based on the target state of the cm handle
 
-#. Create and calls to publish the LCM event based on the cm handle state transition that occured
+#. Create and calls to publish the LCM event based on the cm handle state transition that occurred
 
 	**3 possible event types:**
 
