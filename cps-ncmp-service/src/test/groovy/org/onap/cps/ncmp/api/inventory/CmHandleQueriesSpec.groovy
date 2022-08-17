@@ -82,7 +82,7 @@ class CmHandleQueriesSpec extends Specification {
             'the first query contains entries and second query is null'  | ['PNFDemo': pnfDemoCmHandle, 'PNFDemo2': pnfDemo2CmHandle] | null                                                       || ['PNFDemo': pnfDemoCmHandle, 'PNFDemo2': pnfDemo2CmHandle]
             'the second query contains entries and first query is null'  | null                                                       | ['PNFDemo': pnfDemoCmHandle, 'PNFDemo3': pnfDemo3CmHandle] || ['PNFDemo': pnfDemoCmHandle, 'PNFDemo3': pnfDemo3CmHandle]
             'both queries are empty'                                     | [:]                                                        | [:]                                                        || [:]
-            'both queries are null'                                      | null                                                       | null                                                       || [:]
+            'both queries are null'                                      | null                                                       | null                                                       || null
     }
 
     def 'Get Cm Handles By State'() {

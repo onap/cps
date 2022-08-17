@@ -99,7 +99,7 @@ public class NetworkCmProxyCmHandlerQueryServiceImpl implements NetworkCmProxyCm
 
         final Collection<String> moduleNamesForQuery =
             getModuleNamesForQuery(cmHandleQueryServiceParameters.getCmHandleQueryParameters());
-        if (moduleNamesForQuery.isEmpty()) {
+        if (moduleNamesForQuery.isEmpty() && combinedQueryResult != NO_QUERY_TO_EXECUTE) {
             return combinedQueryResult.keySet();
         }
         final Set<String> moduleNameQueryResult = getNamesOfAnchorsWithGivenModules(moduleNamesForQuery);

@@ -91,7 +91,7 @@ public class CmHandleQueries {
         final Map<String, NcmpServiceCmHandle> firstQuery,
         final Map<String, NcmpServiceCmHandle> secondQuery) {
         if (firstQuery == NO_QUERY_TO_EXECUTE && secondQuery == NO_QUERY_TO_EXECUTE) {
-            return Collections.emptyMap();
+            return NO_QUERY_TO_EXECUTE;
         } else if (firstQuery == NO_QUERY_TO_EXECUTE) {
             return secondQuery;
         } else if (secondQuery == NO_QUERY_TO_EXECUTE) {
