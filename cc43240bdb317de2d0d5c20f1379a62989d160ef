@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d929c096_c3a92ac0",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-08-17T09:16:58Z",
+      "side": 1,
+      "message": "Should this be 2000?",
+      "range": {
+        "startLine": 52,
+        "startChar": 87,
+        "endLine": 52,
+        "endChar": 92
+      },
+      "revId": "cc43240bdb317de2d0d5c20f1379a62989d160ef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6d04fe44_eab86e06",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-08-17T09:16:58Z",
+      "side": 1,
+      "message": "Same",
+      "range": {
+        "startLine": 53,
+        "startChar": 84,
+        "endLine": 53,
+        "endChar": 89
+      },
+      "revId": "cc43240bdb317de2d0d5c20f1379a62989d160ef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
