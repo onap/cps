@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "65b185ef_588570f1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CmHandleQueries.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-08-17T08:10:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "99b0e4e9_63fa0af8",
+      "range": {
+        "startLine": 134,
+        "startChar": 62,
+        "endLine": 134,
+        "endChar": 69
+      },
+      "revId": "23898ebc742ac549674a1f6d52ce13648b77c654",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6b26fdb2_4960b633",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CmHandleQueries.java",
         "patchSetId": 14
@@ -45,6 +69,30 @@
       "revId": "23898ebc742ac549674a1f6d52ce13648b77c654",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e64c9a2c_1252c59a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CmHandleQueries.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-08-17T08:10:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6b26fdb2_4960b633",
+      "range": {
+        "startLine": 137,
+        "startChar": 26,
+        "endLine": 137,
+        "endChar": 45
+      },
+      "revId": "23898ebc742ac549674a1f6d52ce13648b77c654",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "df76f09c_b0ce7aeb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CmHandleQueries.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-08-17T08:10:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c2118ef_cd58dd05",
+      "range": {
+        "startLine": 141,
+        "startChar": 26,
+        "endLine": 141,
+        "endChar": 28
+      },
+      "revId": "23898ebc742ac549674a1f6d52ce13648b77c654",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a51bd2e2_44aabcfc",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CmHandleQueries.java",
         "patchSetId": 14
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "477ce044_2cd49254",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CmHandleQueries.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-08-17T08:10:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a51bd2e2_44aabcfc",
+      "range": {
+        "startLine": 144,
+        "startChar": 15,
+        "endLine": 144,
+        "endChar": 26
+      },
+      "revId": "23898ebc742ac549674a1f6d52ce13648b77c654",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "05e73080_a246adde",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CmHandleQueries.java",
         "patchSetId": 14
@@ -114,6 +210,30 @@
       "revId": "23898ebc742ac549674a1f6d52ce13648b77c654",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a3e3472_b94a69a4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CmHandleQueries.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-08-17T08:10:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "05e73080_a246adde",
+      "range": {
+        "startLine": 152,
+        "startChar": 23,
+        "endLine": 152,
+        "endChar": 46
+      },
+      "revId": "23898ebc742ac549674a1f6d52ce13648b77c654",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
