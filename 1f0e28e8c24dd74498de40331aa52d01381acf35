@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3e9fcdf9_e3f2319d",
+        "filename": "docs/cps-events.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-08-17T09:26:51Z",
+      "side": 1,
+      "message": "Should this not be removed also if removing the heading?",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 36
+      },
+      "revId": "1f0e28e8c24dd74498de40331aa52d01381acf35",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
