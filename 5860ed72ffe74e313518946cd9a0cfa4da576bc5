@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "25d468f6_8d171036",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-18T15:23:31Z",
+      "side": 1,
+      "message": "need to discuss this, I see that in some method below you still DO paa an anchor object...",
+      "range": {
+        "startLine": 69,
+        "startChar": 52,
+        "endLine": 69,
+        "endChar": 75
+      },
+      "revId": "5860ed72ffe74e313518946cd9a0cfa4da576bc5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c917d717_070fbc44",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-18T15:23:31Z",
+      "side": 1,
+      "message": "why is this need, ah because it is being deleted right...\nMaybe we can just change the order in teh delete use case?!\nI know the delete could theoritcally fail so we might sent an event incorrectly\n\nBut I deem that less import as it is an edge case which can deal with if a customer find that necessary if it ever really happens",
+      "range": {
+        "startLine": 190,
+        "startChar": 9,
+        "endLine": 190,
+        "endChar": 83
+      },
+      "revId": "5860ed72ffe74e313518946cd9a0cfa4da576bc5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
