@@ -38,15 +38,17 @@ public final class CpsValidator {
 
     /**
      * Validate characters in names within cps.
+     *
      * @param names names of data to be validated
      */
     public static void validateNameCharacters(final String... names) {
         for (final String name : names) {
-            final  Collection<Character> charactersOfName = Lists.charactersOf(name);
+            final Collection<Character> charactersOfName = Lists.charactersOf(name);
             for (final char unsupportedCharacter : UNSUPPORTED_NAME_CHARACTERS) {
                 if (charactersOfName.contains(unsupportedCharacter)) {
                     throw new DataValidationException("Name or ID Validation Error.",
-                        name + " invalid token encountered at position " + (name.indexOf(unsupportedCharacter) + 1));
+                            name + " invalid token encountered at position "
+                                    + (name.indexOf(unsupportedCharacter) + 1));
                 }
             }
         }
@@ -54,9 +56,27 @@ public final class CpsValidator {
 
     /**
      * Validate kafka topic name pattern.
+     *
      * @param topicName name of the topic to be validated
      */
     public static boolean validateTopicName(final String topicName) {
         return topicName != null && TOPIC_NAME_PATTERN.matcher(topicName).matches();
+    }
+
+    /**
+     * Validate topic name using exception boolean.
+     *
+     * @param topicName the topic name
+     * @return the boolean
+     */
+    public static boolean validateTopicNameUsingException(final String topicName) {
+        if (topicName == null) {
+            return false;
+        }
+        if (TOPIC_NAME_PATTERN.matcher(topicName).matches()) {
+            return true;
+        }
+
+        throw new DataValidationException("Topic name " + topicName + " is invalid", "invalid topic");
     }
 }
