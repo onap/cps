@@ -23,6 +23,7 @@
 
 package org.onap.cps.ncmp.api.impl;
 
+import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME;
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum;
 import static org.onap.cps.utils.CmHandleQueryRestParametersValidator.validateCmHandleQueryParameters;
 
@@ -55,6 +56,7 @@ import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationErr
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistrationResponse;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
+import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
 import org.onap.cps.spi.exceptions.CpsException;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
@@ -72,6 +74,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService {
 
+    public static final String NFP_DATA_NODE = "NFP-Operational";
     private final JsonObjectMapper jsonObjectMapper;
 
     private final DmiDataOperations dmiDataOperations;
@@ -112,11 +115,19 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                                                         final String topicParamInQuery,
                                                         final String requestId) {
         final ResponseEntity<?> responseEntity = dmiDataOperations.getResourceDataFromDmi(cmHandleId,
-            resourceIdentifier,
-            optionsParamInQuery,
-            DmiOperations.DataStoreEnum.PASSTHROUGH_OPERATIONAL,
-            requestId, topicParamInQuery);
+                resourceIdentifier,
+                optionsParamInQuery,
+                DmiOperations.DataStoreEnum.PASSTHROUGH_OPERATIONAL,
+                requestId, topicParamInQuery);
         return responseEntity.getBody();
+    }
+
+    @Override
+    public Object getResourceDataOperational(final String cmHandleId,
+                                             final String resourceIdentifier,
+                                             final FetchDescendantsOption fetchDescendantsOption) {
+        return cpsDataService.getDataNode(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId, resourceIdentifier,
+                fetchDescendantsOption);
     }
 
     @Override
@@ -126,10 +137,10 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                                                                final String topicParamInQuery,
                                                                final String requestId) {
         final ResponseEntity<?> responseEntity = dmiDataOperations.getResourceDataFromDmi(cmHandleId,
-            resourceIdentifier,
-            optionsParamInQuery,
-            DmiOperations.DataStoreEnum.PASSTHROUGH_RUNNING,
-            requestId, topicParamInQuery);
+                resourceIdentifier,
+                optionsParamInQuery,
+                DmiOperations.DataStoreEnum.PASSTHROUGH_RUNNING,
+                requestId, topicParamInQuery);
         return responseEntity.getBody();
     }
 
@@ -141,7 +152,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                                                                  final String dataType) {
         CpsValidator.validateNameCharacters(cmHandleId);
         return dmiDataOperations.writeResourceDataPassThroughRunningFromDmi(cmHandleId, resourceIdentifier, operation,
-            requestData, dataType);
+                requestData, dataType);
     }
 
     @Override
@@ -192,29 +203,29 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
      * Set the data sync enabled flag, along with the data sync state
      * based on the data sync enabled boolean for the cm handle id provided.
      *
-     * @param cmHandleId cm handle id
+     * @param cmHandleId      cm handle id
      * @param dataSyncEnabled data sync enabled flag
      */
     @Override
     public void setDataSyncEnabled(final String cmHandleId, final boolean dataSyncEnabled) {
         CpsValidator.validateNameCharacters(cmHandleId);
         final CompositeState compositeState = inventoryPersistence
-            .getCmHandleState(cmHandleId);
+                .getCmHandleState(cmHandleId);
         if (compositeState.getDataSyncEnabled().equals(dataSyncEnabled)) {
             log.info("Data-Sync Enabled flag is already: {} ", dataSyncEnabled);
         } else if (compositeState.getCmHandleState() != CmHandleState.READY) {
             throw new CpsException("State mismatch exception.", "Cm-Handle not in READY state. Cm handle state is: "
-                + compositeState.getCmHandleState());
+                    + compositeState.getCmHandleState());
         } else {
             final DataStoreSyncState dataStoreSyncState = compositeState.getDataStores()
-                .getOperationalDataStore().getDataStoreSyncState();
+                    .getOperationalDataStore().getDataStoreSyncState();
             if (!dataSyncEnabled && dataStoreSyncState == DataStoreSyncState.SYNCHRONIZED) {
-                cpsDataService.deleteDataNode("NFP-Operational", cmHandleId,
-                    "/netconf-state", OffsetDateTime.now());
+                cpsDataService.deleteDataNode(NFP_DATA_NODE, cmHandleId,
+                        "/netconf-state", OffsetDateTime.now());
             }
             CompositeStateUtils.setDataSyncEnabledFlagWithDataSyncState(dataSyncEnabled, compositeState);
             inventoryPersistence.saveCmHandleState(cmHandleId,
-                compositeState);
+                    compositeState);
         }
     }
 
@@ -241,7 +252,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     public Map<String, String> getCmHandlePublicProperties(final String cmHandleId) {
         CpsValidator.validateNameCharacters(cmHandleId);
         final YangModelCmHandle yangModelCmHandle =
-            inventoryPersistence.getYangModelCmHandle(cmHandleId);
+                inventoryPersistence.getYangModelCmHandle(cmHandleId);
         final List<YangModelCmHandle.Property> yangModelPublicProperties = yangModelCmHandle.getPublicProperties();
         final Map<String, String> cmHandlePublicProperties = new HashMap<>();
         YangDataConverter.asPropertiesMap(yangModelPublicProperties, cmHandlePublicProperties);
@@ -271,12 +282,12 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         List<CmHandleRegistrationResponse> cmHandleRegistrationResponses = new ArrayList<>();
         try {
             cmHandleRegistrationResponses = dmiPluginRegistration.getCreatedCmHandles().stream()
-                .map(cmHandle ->
-                    YangModelCmHandle.toYangModelCmHandle(
-                        dmiPluginRegistration.getDmiPlugin(),
-                        dmiPluginRegistration.getDmiDataPlugin(),
-                        dmiPluginRegistration.getDmiModelPlugin(),
-                        cmHandle)).map(this::registerNewCmHandle).collect(Collectors.toList());
+                    .map(cmHandle ->
+                            YangModelCmHandle.toYangModelCmHandle(
+                                    dmiPluginRegistration.getDmiPlugin(),
+                                    dmiPluginRegistration.getDmiDataPlugin(),
+                                    dmiPluginRegistration.getDmiModelPlugin(),
+                                    cmHandle)).map(this::registerNewCmHandle).collect(Collectors.toList());
         } catch (final DataValidationException dataValidationException) {
             cmHandleRegistrationResponses.add(CmHandleRegistrationResponse.createFailureResponse(dmiPluginRegistration
                             .getCreatedCmHandles().stream()
