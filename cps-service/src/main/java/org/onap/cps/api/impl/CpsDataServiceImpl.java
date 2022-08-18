@@ -179,9 +179,8 @@ public class CpsDataServiceImpl implements CpsDataService {
     public void deleteDataNodes(final String dataspaceName, final String anchorName,
         final OffsetDateTime observedTimestamp) {
         CpsValidator.validateNameCharacters(dataspaceName, anchorName);
-        final Anchor anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
+        processDataUpdatedEventAsync(dataspaceName, anchorName, observedTimestamp, ROOT_NODE_XPATH, DELETE);
         cpsDataPersistenceService.deleteDataNodes(dataspaceName, anchorName);
-        processDataUpdatedEventAsync(anchor, ROOT_NODE_XPATH, DELETE, observedTimestamp);
     }
 
     @Override
@@ -233,17 +232,8 @@ public class CpsDataServiceImpl implements CpsDataService {
     private void processDataUpdatedEventAsync(final String dataspaceName, final String anchorName,
                                               final OffsetDateTime observedTimestamp, final String xpath,
                                               final Operation operation) {
-        final Anchor anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
-        this.processDataUpdatedEventAsync(anchor, xpath, operation, observedTimestamp);
-    }
-
-    private void processDataUpdatedEventAsync(final Anchor anchor,
-                                              final String xpath,
-                                              final Operation operation,
-        final OffsetDateTime observedTimestamp) {
         try {
-            notificationService.processDataUpdatedEvent(anchor, observedTimestamp, xpath,
-                operation);
+            notificationService.processDataUpdatedEvent(dataspaceName, anchorName, observedTimestamp, xpath, operation);
         } catch (final Exception exception) {
             //If async message can't be queued for notification service, the initial request should not failed.
             log.error("Failed to send message to notification service", exception);

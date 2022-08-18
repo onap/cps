@@ -32,6 +32,7 @@ import java.util.stream.Collectors;
 import javax.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.spi.model.Anchor;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -45,6 +46,7 @@ public class NotificationService {
     private final NotificationPublisher notificationPublisher;
     private final CpsDataUpdatedEventFactory cpsDataUpdatedEventFactory;
     private final NotificationErrorHandler notificationErrorHandler;
+    private final CpsAdminService cpsAdminService;
     private List<Pattern> dataspacePatterns;
 
     @PostConstruct
@@ -68,21 +70,24 @@ public class NotificationService {
     /**
      * Process Data Updated Event and publishes the notification.
      *
-     * @param anchor            anchor
+     * @param dataspaceName     dataspaceName
+     * @param anchorName        anchorName
      * @param observedTimestamp observedTimestamp
      * @param xpath             xpath of changed data node
      * @param operation         operation
      * @return future
      */
     @Async("notificationExecutor")
-    public Future<Void> processDataUpdatedEvent(final Anchor anchor, final OffsetDateTime observedTimestamp,
-                                                final String xpath, final Operation operation) {
+    public Future<Void> processDataUpdatedEvent(final String dataspaceName, final String anchorName,
+            final OffsetDateTime observedTimestamp, final String xpath, final Operation operation) {
+
+        final Anchor anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
         log.debug("process data updated event for anchor '{}'", anchor);
         try {
-            if (shouldSendNotification(anchor.getDataspaceName())) {
+            if (shouldSendNotification(dataspaceName)) {
                 final var cpsDataUpdatedEvent =
-                    cpsDataUpdatedEventFactory.createCpsDataUpdatedEvent(anchor,
-                        observedTimestamp, getRootNodeOperation(xpath, operation));
+                        cpsDataUpdatedEventFactory.createCpsDataUpdatedEvent(anchor,
+                                observedTimestamp, getRootNodeOperation(xpath, operation));
                 log.debug("data updated event to be published {}", cpsDataUpdatedEvent);
                 notificationPublisher.sendNotification(cpsDataUpdatedEvent);
             }
@@ -91,7 +96,7 @@ public class NotificationService {
                CPS operation should not fail if sending event fails for any reason.
              */
             notificationErrorHandler.onException("Failed to process cps-data-updated-event.",
-                exception, anchor, xpath, operation);
+                    exception, anchor, xpath, operation);
         }
         return CompletableFuture.completedFuture(null);
     }
