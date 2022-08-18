@@ -32,6 +32,7 @@ import java.util.stream.Collectors;
 import javax.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.spi.model.Anchor;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -45,6 +46,7 @@ public class NotificationService {
     private final NotificationPublisher notificationPublisher;
     private final CpsDataUpdatedEventFactory cpsDataUpdatedEventFactory;
     private final NotificationErrorHandler notificationErrorHandler;
+    private final CpsAdminService cpsAdminService;
     private List<Pattern> dataspacePatterns;
 
     @PostConstruct
@@ -68,6 +70,8 @@ public class NotificationService {
     /**
      * Process Data Updated Event and publishes the notification.
      *
+     * @param dataspaceName     dataspaceName
+     * @param anchorName        anchorName
      * @param anchor            anchor
      * @param observedTimestamp observedTimestamp
      * @param xpath             xpath of changed data node
@@ -75,14 +79,23 @@ public class NotificationService {
      * @return future
      */
     @Async("notificationExecutor")
-    public Future<Void> processDataUpdatedEvent(final Anchor anchor, final OffsetDateTime observedTimestamp,
-                                                final String xpath, final Operation operation) {
-        log.debug("process data updated event for anchor '{}'", anchor);
+    public Future<Void> processDataUpdatedEvent(final String dataspaceName, final String anchorName,
+            final Anchor anchor, final OffsetDateTime observedTimestamp, final String xpath,
+            final Operation operation) {
+
+        Anchor persistedAnchor = null;
+        if (Operation.DELETE == operation && anchor != null) {
+            persistedAnchor = anchor;
+        } else {
+            persistedAnchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
+        }
+
+        log.debug("process data updated event for anchor '{}'", persistedAnchor);
         try {
-            if (shouldSendNotification(anchor.getDataspaceName())) {
+            if (shouldSendNotification(dataspaceName)) {
                 final var cpsDataUpdatedEvent =
-                    cpsDataUpdatedEventFactory.createCpsDataUpdatedEvent(anchor,
-                        observedTimestamp, getRootNodeOperation(xpath, operation));
+                        cpsDataUpdatedEventFactory.createCpsDataUpdatedEvent(persistedAnchor,
+                                observedTimestamp, getRootNodeOperation(xpath, operation));
                 log.debug("data updated event to be published {}", cpsDataUpdatedEvent);
                 notificationPublisher.sendNotification(cpsDataUpdatedEvent);
             }
@@ -91,7 +104,7 @@ public class NotificationService {
                CPS operation should not fail if sending event fails for any reason.
              */
             notificationErrorHandler.onException("Failed to process cps-data-updated-event.",
-                exception, anchor, xpath, operation);
+                    exception, persistedAnchor, xpath, operation);
         }
         return CompletableFuture.completedFuture(null);
     }

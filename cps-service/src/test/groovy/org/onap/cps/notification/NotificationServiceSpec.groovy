@@ -20,6 +20,7 @@
 
 package org.onap.cps.notification
 
+import org.onap.cps.api.CpsAdminService
 import java.time.OffsetDateTime
 import org.onap.cps.config.AsyncConfig
 import org.onap.cps.event.model.CpsDataUpdatedEvent
@@ -48,6 +49,8 @@ class NotificationServiceSpec extends Specification {
     NotificationErrorHandler spyNotificationErrorHandler
     @SpringSpy
     NotificationProperties spyNotificationProperties
+    @SpringBean
+    CpsAdminService mockCpsAdminService = Mock()
 
     @Autowired
     NotificationService objectUnderTest
@@ -55,12 +58,13 @@ class NotificationServiceSpec extends Specification {
     @Shared
     def anchor = new Anchor('my-anchorname', 'my-dataspace-published', 'my-schemaset-name')
     def myObservedTimestamp = OffsetDateTime.now()
+    def static NULL_ANCHOR = null
 
     def 'Skip sending notification when disabled.'() {
         given: 'notification is disabled'
             spyNotificationProperties.isEnabled() >> false
         when: 'dataUpdatedEvent is received'
-            objectUnderTest.processDataUpdatedEvent(anchor, myObservedTimestamp, '/', Operation.CREATE)
+            objectUnderTest.processDataUpdatedEvent('my-dataspace-published', 'my-anchorname', anchor, myObservedTimestamp, '/', Operation.CREATE)
         then: 'the notification is not sent'
             0 * mockNotificationPublisher.sendNotification(_)
     }
@@ -70,12 +74,14 @@ class NotificationServiceSpec extends Specification {
             spyNotificationProperties.isEnabled() >> true
         and: 'an anchor is in dataspace where #scenario'
             def anchor = new Anchor('my-anchorname', dataspaceName, 'my-schemaset-name')
+        and: 'admin service is called to get the anchor'
+            mockCpsAdminService.getAnchor(dataspaceName, 'my-anchorname') >> anchor
         and: 'event factory can create event successfully'
             def cpsDataUpdatedEvent = new CpsDataUpdatedEvent()
             mockCpsDataUpdatedEventFactory.createCpsDataUpdatedEvent(anchor, myObservedTimestamp, Operation.CREATE) >>
                     cpsDataUpdatedEvent
         when: 'dataUpdatedEvent is received'
-            def future = objectUnderTest.processDataUpdatedEvent(anchor, myObservedTimestamp,
+            def future = objectUnderTest.processDataUpdatedEvent(dataspaceName, 'my-anchorname', anchor, myObservedTimestamp,
                     '/', Operation.CREATE)
         and: 'wait for async processing to complete'
             future.get(10, TimeUnit.SECONDS)
@@ -96,8 +102,10 @@ class NotificationServiceSpec extends Specification {
             def cpsDataUpdatedEvent = new CpsDataUpdatedEvent()
             mockCpsDataUpdatedEventFactory.createCpsDataUpdatedEvent(anchor, myObservedTimestamp, expectedOperationInEvent) >>
                     cpsDataUpdatedEvent
+        and: 'admin service is called to get the anchor'
+            mockCpsAdminService.getAnchor('my-dataspace-published', 'my-anchorname') >> anchor
         when: 'dataUpdatedEvent is received for #xpath'
-            def future = objectUnderTest.processDataUpdatedEvent(anchor, myObservedTimestamp, xpath, operation)
+            def future = objectUnderTest.processDataUpdatedEvent('my-dataspace-published', 'my-anchorname', anchor, myObservedTimestamp, xpath, operation)
         and: 'wait for async processing to complete'
             future.get(10, TimeUnit.SECONDS)
         then: 'async process completed successfully'
@@ -126,8 +134,10 @@ class NotificationServiceSpec extends Specification {
         and: 'event factory can not create event successfully'
             mockCpsDataUpdatedEventFactory.createCpsDataUpdatedEvent(anchor, myObservedTimestamp, Operation.CREATE) >>
                     { throw new Exception("Could not create event") }
+        and: 'admin service is called to get the anchor'
+            mockCpsAdminService.getAnchor('my-dataspace-published', 'my-anchorname') >> anchor
         when: 'event is sent for processing'
-            def future = objectUnderTest.processDataUpdatedEvent(anchor, myObservedTimestamp, '/', Operation.CREATE)
+            def future = objectUnderTest.processDataUpdatedEvent('my-dataspace-published', 'my-anchorname', NULL_ANCHOR, myObservedTimestamp, '/', Operation.CREATE)
         and: 'wait for async processing to complete'
             future.get(10, TimeUnit.SECONDS)
         then: 'async process completed successfully'
