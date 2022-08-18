@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b2de9371_d0ae1157",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-18T09:07:40Z",
+      "side": 1,
+      "message": "Also I read somewhere that the text might get trimmed if we have more than 50 chars in the heading..\n\nMay be we can put all this in the description section.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 82
+      },
+      "revId": "7ffdb12004ed449cacdf0036d03a33d63d8cf94a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd4e8bed_3531e06f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-18T09:07:40Z",
+      "side": 1,
+      "message": "NB: extra line.",
+      "revId": "7ffdb12004ed449cacdf0036d03a33d63d8cf94a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
