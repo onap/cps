@@ -46,6 +46,13 @@ spring:
         password: ${DB_PASSWORD}
         driverClassName: org.postgresql.Driver
         initialization-mode: always
+        hikari:
+            minimumIdle: 5
+            maximumPoolSize: 80
+            idleTimeout: 120000
+            connectionTimeout: 300000
+            leakDetectionThreshold: 300000
+            pool-name: CpsDatabasePool
 
     cache:
         type: caffeine
