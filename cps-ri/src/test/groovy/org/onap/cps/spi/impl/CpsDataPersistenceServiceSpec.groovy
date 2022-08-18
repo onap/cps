@@ -28,6 +28,7 @@ import org.onap.cps.spi.entities.SchemaSetEntity
 import org.onap.cps.spi.entities.YangResourceEntity
 import org.onap.cps.spi.exceptions.ConcurrencyException
 import org.onap.cps.spi.exceptions.DataValidationException
+import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.DataNodeBuilder
 import org.onap.cps.spi.repository.AnchorRepository
 import org.onap.cps.spi.repository.DataspaceRepository
@@ -67,35 +68,35 @@ class CpsDataPersistenceServiceSpec extends Specification {
     )] as Set
 
 
-    def 'Handling of StaleStateException (caused by concurrent updates) during data node tree update.'() {
-
-        def parentXpath = '/parent-01'
-        def myDataspaceName = 'my-dataspace'
-        def myAnchorName = 'my-anchor'
-
-        given: 'data node object'
-            def submittedDataNode = new DataNodeBuilder()
-                    .withXpath(parentXpath)
-                    .withLeaves(['leaf-name': 'leaf-value'])
-                    .build()
-        and: 'fragment to be updated'
+    def 'Handling of StaleStateException (caused by concurrent updates) during data node tree update using a singular data node.'() {
+        given: 'the fragment repository returns a fragment entity'
             mockFragmentRepository.getByDataspaceAndAnchorAndXpath(_, _, _) >> {
                 def fragmentEntity = new FragmentEntity()
-                fragmentEntity.setXpath(parentXpath)
-                fragmentEntity.setChildFragments(Collections.emptySet())
+                fragmentEntity.setChildFragments([new FragmentEntity()] as Set<FragmentEntity>)
                 return fragmentEntity
             }
-        and: 'data node is concurrently updated by another transaction'
+        and: 'a data node is concurrently updated by another transaction'
             mockFragmentRepository.save(_) >> { throw new StaleStateException("concurrent updates") }
-
-        when: 'attempt to update data node'
-            objectUnderTest.replaceDataNodeTree(myDataspaceName, myAnchorName, submittedDataNode)
-
+        when: 'attempt to update data node with submitted data nodes'
+            objectUnderTest.replaceDataNodeTree('some-dataspace', 'some-anchor', new DataNodeBuilder().withXpath('/some/xpath').build())
         then: 'concurrency exception is thrown'
             def concurrencyException = thrown(ConcurrencyException)
-            assert concurrencyException.getDetails().contains(myDataspaceName)
-            assert concurrencyException.getDetails().contains(myAnchorName)
-            assert concurrencyException.getDetails().contains(parentXpath)
+            assert concurrencyException.getDetails().contains('some-dataspace')
+            assert concurrencyException.getDetails().contains('some-anchor')
+            assert concurrencyException.getDetails().contains('/some/xpath')
+    }
+
+    def 'Handling of StaleStateException (caused by concurrent updates) during data node tree update using multiple data nodes.'() {
+        given: 'the fragment repository returns a list of fragment entities'
+            mockFragmentRepository.getByDataspaceAndAnchorAndXpath(_, _, _) >> new FragmentEntity()
+        and: 'a data node is concurrently updated by another transaction'
+            mockFragmentRepository.saveAll(_) >> { throw new StaleStateException("concurrent updates") }
+        when: 'attempt to update data node with submitted data nodes'
+            objectUnderTest.replaceDataNodeTree('some-dataspace', 'some-anchor', [])
+        then: 'concurrency exception is thrown'
+            def concurrencyException = thrown(ConcurrencyException)
+            assert concurrencyException.getDetails().contains('some-dataspace')
+            assert concurrencyException.getDetails().contains('some-anchor')
     }
 
     def 'Retrieving a data node with a property JSON value of #scenario'() {

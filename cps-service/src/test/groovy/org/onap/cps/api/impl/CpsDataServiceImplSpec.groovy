@@ -262,7 +262,7 @@ class CpsDataServiceImplSpec extends Specification {
     }
 
 
-    def 'Replace data node: #scenario.'() {
+    def 'Replace data node using singular data node: #scenario.'() {
         given: 'schema set for given anchor and dataspace references test-tree model'
             setupSchemaSetMocks('test-tree.yang')
         when: 'replace data method is invoked with json data #jsonData and parent node xpath #parentNodeXpath'
@@ -278,9 +278,42 @@ class CpsDataServiceImplSpec extends Specification {
             'level 2 node'   | '/test-tree'    | '{"branch": [{"name":"Name"}]}' || '/test-tree/branch[@name=\'Name\']'
     }
 
-    def 'Replace data node with invalid #scenario.'() {
+    def 'Replace data node using multiple data nodes: #scenario.'() {
+        given: 'schema set for given anchor and dataspace references test-tree model'
+            setupSchemaSetMocks('test-tree.yang')
+        when: 'replace data method is invoked with a map of xpaths and json data'
+            objectUnderTest.replaceNodeTree(dataspaceName, anchorName, nodesJsonData, observedTimestamp)
+        then: 'the persistence service method is invoked with correct parameters'
+            1 * mockCpsDataPersistenceService.replaceDataNodeTree(dataspaceName, anchorName,
+                { dataNode -> dataNode.xpath == expectedNodeXpath})
+        and: 'data updated event is sent to notification service'
+            1 * mockNotificationService.processDataUpdatedEvent(anchor, observedTimestamp, nodesJsonData.keySet()[0], Operation.UPDATE)
+            1 * mockNotificationService.processDataUpdatedEvent(anchor, observedTimestamp, nodesJsonData.keySet()[1], Operation.UPDATE)
+        where: 'following parameters were used'
+            scenario         | nodesJsonData                                                                                                        || expectedNodeXpath
+            'top level node' | ['/' : '{"test-tree": {"branch": []}}', '/test-tree' : '{"branch": [{"name":"Name"}]}']                              || ["/test-tree", "/test-tree/branch[@name='Name']"]
+            'level 2 node'   | ['/test-tree' : '{"branch": [{"name":"Name"}]}', '/test-tree/branch[@name=\'Name\']':'{"nest":{"name":"nestName"}}'] || ["/test-tree/branch[@name='Name']", "/test-tree/branch[@name='Name']/nest"]
+    }
+
+    def 'Replace data node using singular data node with invalid #scenario.'() {
         when: 'replace data method is invoked with invalid #scenario'
             objectUnderTest.replaceNodeTree(dataspaceName, anchorName, '/', _ as String, observedTimestamp)
+        then: 'a data validation exception is thrown'
+            thrown(DataValidationException)
+        and: 'the persistence service method is not invoked'
+            0 * mockCpsDataPersistenceService.replaceDataNodeTree(_, _,_)
+        and: 'data updated event is not sent to notification service'
+            0 * mockNotificationService.processDataUpdatedEvent(_, _, _, _)
+        where: 'the following parameters are used'
+            scenario                    | dataspaceName                 | anchorName
+            'dataspace name'            | 'dataspace names with spaces' | 'anchorName'
+            'anchor name'               | 'dataspaceName'               | 'anchor name with spaces'
+            'dataspace and anchor name' | 'dataspace name with spaces'  | 'anchor name with spaces'
+    }
+
+    def 'Replace data node using mutiple data nodes with invalid #scenario.'() {
+        when: 'replace data method is invoked with invalid #scenario'
+            objectUnderTest.replaceNodeTree(dataspaceName, anchorName, ['/' : _ as String], observedTimestamp)
         then: 'a data validation exception is thrown'
             thrown(DataValidationException)
         and: 'the persistence service method is not invoked'

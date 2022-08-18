@@ -85,7 +85,7 @@ INSERT INTO FRAGMENT (ID, DATASPACE_ID, ANCHOR_ID, PARENT_ID, XPATH, ATTRIBUTES)
     (4218, 1001, 3003, 4217, '/parent-203/child-204[@key=''B'']/grand-child-204[@key2=''Y'']', '{"key": "B", "key2": "Y"}'),
     (4226, 1001, 3003, null, '/parent-206', '{"leaf-value": "original"}'),
     (4227, 1001, 3003, 4226, '/parent-206/child-206', '{}'),
-    (4228, 1001, 3003, 4227, '/parent-206/child-206/grand-child-206', '{}'),
+    (4228, 1001, 3003, 4227, '/parent-206/child-206/grand-child-206', '{"leaf-value": "original"}'),
     (4229, 1001, 3003, 4227, '/parent-206/child-206/grand-child-206[@key=''A'']', '{"key": "A"}'),
     (4230, 1001, 3003, 4227, '/parent-206/child-206/grand-child-206[@key=''X'']', '{"key": "X"}'),
     (4231, 1001, 3003, null, '/parent-206[@key=''A'']', '{"key": "A"}'),

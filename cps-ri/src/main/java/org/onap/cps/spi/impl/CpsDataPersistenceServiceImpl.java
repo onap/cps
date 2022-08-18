@@ -287,10 +287,18 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         fragmentRepository.save(fragmentEntity);
     }
 
+    private FragmentEntity getFragmentEntity(final String dataspaceName, final String anchorName,
+                                             final DataNode dataNode) {
+        final FragmentEntity fragmentEntity = getFragmentByXpath(dataspaceName, anchorName, dataNode.getXpath());
+        replaceDataNodeTree(fragmentEntity, dataNode);
+        return fragmentEntity;
+    }
+
     @Override
     public void replaceDataNodeTree(final String dataspaceName, final String anchorName, final DataNode dataNode) {
         final FragmentEntity fragmentEntity = getFragmentByXpath(dataspaceName, anchorName, dataNode.getXpath());
         replaceDataNodeTree(fragmentEntity, dataNode);
+        System.out.println("NODES TO SAVE:");
         try {
             fragmentRepository.save(fragmentEntity);
         } catch (final StaleStateException staleStateException) {
@@ -298,6 +306,25 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
                     String.format("dataspace :'%s', Anchor : '%s' and xpath: '%s' is updated by another transaction.",
                             dataspaceName, anchorName, dataNode.getXpath()),
                     staleStateException);
+        }
+    }
+
+    @Override
+    public void replaceDataNodeTree(final String dataspaceName,
+                                    final String anchorName,
+                                    final List<DataNode> dataNodes) {
+        final List<FragmentEntity> fragmentEntities = dataNodes.stream()
+            .map(dataNode -> getFragmentEntity(dataspaceName, anchorName, dataNode))
+            .collect(Collectors.toList());
+        System.out.println("NODES TO SAVE:");
+        fragmentEntities.forEach(System.out::println);
+        try {
+            fragmentRepository.saveAll(fragmentEntities);
+        } catch (final StaleStateException staleStateException) {
+            throw new ConcurrencyException("Concurrent Transactions",
+                String.format("An xpath with dataspace :'%s', Anchor : '%s' is updated by another transaction.",
+                    dataspaceName, anchorName),
+                staleStateException);
         }
     }
 
@@ -322,6 +349,11 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             }
             updatedChildFragments.add(childFragment);
         }
+
+        updatedChildFragments.forEach(System.out::println);
+        System.out.println();
+        existingFragmentEntity.getChildFragments().forEach(System.out::println);
+        System.out.println(existingFragmentEntity.getChildFragments().isEmpty());
         existingFragmentEntity.getChildFragments().clear();
         existingFragmentEntity.getChildFragments().addAll(updatedChildFragments);
     }
