@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "cfcce95a_22a3df10",
+        "filename": "cps-ncmp-rest-stub/src/main/java/org/onap/cps/ncmp/rest/stub/controller/NetworkCmProxyStubController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-18T15:00:55Z",
+      "side": 1,
+      "message": "yes, this is a legacy thing we agreed to remove the annotations if and when we modify methods that have them",
+      "parentUuid": "6e24a30a_eb9c12e0",
+      "range": {
+        "startLine": 63,
+        "startChar": 57,
+        "endLine": 63,
+        "endChar": 72
+      },
+      "revId": "a8fa28244133d0c6d030e15f2a4ac8c6813cc49b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4bab20a9_6756fff0",
         "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
         "patchSetId": 1
@@ -41,6 +65,53 @@
         "startChar": 19,
         "endLine": 452,
         "endChar": 46
+      },
+      "revId": "a8fa28244133d0c6d030e15f2a4ac8c6813cc49b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "44c0581e_bc77319e",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 452,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-18T15:00:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4bab20a9_6756fff0",
+      "range": {
+        "startLine": 452,
+        "startChar": 19,
+        "endLine": 452,
+        "endChar": 46
+      },
+      "revId": "a8fa28244133d0c6d030e15f2a4ac8c6813cc49b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b86c9513_5f9dbaea",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 523,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-18T15:00:55Z",
+      "side": 1,
+      "message": "we need a guideline on this at the moment we mix camelcase and kebab-case\n@Luke, can you follow up please (does not affect java generated code)",
+      "range": {
+        "startLine": 523,
+        "startChar": 12,
+        "endLine": 523,
+        "endChar": 31
       },
       "revId": "a8fa28244133d0c6d030e15f2a4ac8c6813cc49b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
@@ -95,6 +166,53 @@
     },
     {
       "key": {
+        "uuid": "230ba14f_4e55e977",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 529,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-18T15:00:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "111d2ca7_d0cdb75b",
+      "range": {
+        "startLine": 529,
+        "startChar": 17,
+        "endLine": 529,
+        "endChar": 28
+      },
+      "revId": "a8fa28244133d0c6d030e15f2a4ac8c6813cc49b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "46168b07_26c025f5",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-18T15:00:55Z",
+      "side": 1,
+      "message": "we still seem to have DataStore in some classes and other (64 occurrences according to IntelliJ) this can be dealt with later maybe as a small tech debt task",
+      "range": {
+        "startLine": 21,
+        "startChar": 7,
+        "endLine": 21,
+        "endChar": 16
+      },
+      "revId": "a8fa28244133d0c6d030e15f2a4ac8c6813cc49b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a1776b52_6f6d1887",
         "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
         "patchSetId": 1
@@ -134,6 +252,52 @@
         "startLine": 90,
         "startChar": 0,
         "endLine": 90,
+        "endChar": 26
+      },
+      "revId": "a8fa28244133d0c6d030e15f2a4ac8c6813cc49b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ee4a2278_733e36c0",
+        "filename": "cps-ncmp-rest/docs/openapi/openapi.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-18T15:00:55Z",
+      "side": 1,
+      "message": "wil be changed",
+      "range": {
+        "startLine": 30,
+        "startChar": 29,
+        "endLine": 30,
+        "endChar": 32
+      },
+      "revId": "a8fa28244133d0c6d030e15f2a4ac8c6813cc49b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7000999e_b9d00321",
+        "filename": "cps-ncmp-rest/docs/openapi/openapi.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-18T15:00:55Z",
+      "side": 1,
+      "message": "this wil be delated once testing has been completed and cover new code (probably now)",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 41,
         "endChar": 26
       },
       "revId": "a8fa28244133d0c6d030e15f2a4ac8c6813cc49b",
@@ -260,6 +424,30 @@
     },
     {
       "key": {
+        "uuid": "9d1c54ca_5743ec89",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/DatastoreName.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-18T15:00:55Z",
+      "side": 1,
+      "message": "agrred to use Datastore in new code but noyt handle all legacy occurences",
+      "parentUuid": "f595c9e7_f97f4664",
+      "range": {
+        "startLine": 23,
+        "startChar": 12,
+        "endLine": 23,
+        "endChar": 21
+      },
+      "revId": "a8fa28244133d0c6d030e15f2a4ac8c6813cc49b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a1f2d999_87c4ccf4",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/DatastoreName.java",
         "patchSetId": 1
@@ -331,6 +519,30 @@
     },
     {
       "key": {
+        "uuid": "b68cf6f6_e6655b0e",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/DatastoreName.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-18T15:00:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "124b4994_89c84a3c",
+      "range": {
+        "startLine": 25,
+        "startChar": 4,
+        "endLine": 25,
+        "endChar": 23
+      },
+      "revId": "a8fa28244133d0c6d030e15f2a4ac8c6813cc49b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c576629f_339aef82",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NcmpDataStoreHandler.java",
         "patchSetId": 1
@@ -374,6 +586,30 @@
       "revId": "a8fa28244133d0c6d030e15f2a4ac8c6813cc49b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f1c9c4bc_cb37d0ac",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NcmpDataStoreHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-18T15:00:55Z",
+      "side": 1,
+      "message": "ok, have checked and it correct order",
+      "parentUuid": "9c1b43d4_8ff9958b",
+      "range": {
+        "startLine": 36,
+        "startChar": 41,
+        "endLine": 40,
+        "endChar": 60
+      },
+      "revId": "a8fa28244133d0c6d030e15f2a4ac8c6813cc49b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -472,6 +708,30 @@
     },
     {
       "key": {
+        "uuid": "7409c022_9ff39656",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NcmpDataStoreHandlerBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-18T15:00:55Z",
+      "side": 1,
+      "message": "agreed to create a handlers subpackage",
+      "parentUuid": "fc3d157a_01445057",
+      "range": {
+        "startLine": 27,
+        "startChar": 13,
+        "endLine": 27,
+        "endChar": 40
+      },
+      "revId": "a8fa28244133d0c6d030e15f2a4ac8c6813cc49b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3696cf8b_59ee3b51",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NcmpDataStoreHandlerBuilder.java",
         "patchSetId": 1
@@ -483,6 +743,30 @@
       "writtenOn": "2022-08-12T09:53:28Z",
       "side": 1,
       "message": "to be consistent with builder pattern used below should we have a no-arguments constructor and instead add a method like this\n\n  public NcmpDataStoreHandlerBuilder datstoreName(\n            final String datastoreName) {\n        this.datsattoreName \u003d datastoreName;\n        return this;\n    }",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 5
+      },
+      "revId": "a8fa28244133d0c6d030e15f2a4ac8c6813cc49b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6bc842b3_b9c2a1e7",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NcmpDataStoreHandlerBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-18T15:00:55Z",
+      "side": 1,
+      "message": "change to using lombok with and ended up using constructor and factory pattern",
+      "parentUuid": "3696cf8b_59ee3b51",
       "range": {
         "startLine": 41,
         "startChar": 0,
@@ -590,6 +874,30 @@
     },
     {
       "key": {
+        "uuid": "5ba99ca6_eaf6daa2",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NcmpDataStoreHandlerBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-18T15:00:55Z",
+      "side": 1,
+      "message": "done now, see DatastoreType",
+      "parentUuid": "06e186d0_acec9297",
+      "range": {
+        "startLine": 97,
+        "startChar": 4,
+        "endLine": 103,
+        "endChar": 5
+      },
+      "revId": "a8fa28244133d0c6d030e15f2a4ac8c6813cc49b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b7959972_cf83e26b",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NcmpDataStoreHandlerBuilder.java",
         "patchSetId": 1
@@ -682,6 +990,30 @@
       "revId": "a8fa28244133d0c6d030e15f2a4ac8c6813cc49b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "587ea6b1_2b7721bc",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NcmpDataStoreHandlerBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-18T15:00:55Z",
+      "side": 1,
+      "message": "for now let\u0027s return null\n(PTL can flag as false-positive in DB)",
+      "parentUuid": "0fbfbde3_934b17d0",
+      "range": {
+        "startLine": 125,
+        "startChar": 26,
+        "endLine": 125,
+        "endChar": 42
+      },
+      "revId": "a8fa28244133d0c6d030e15f2a4ac8c6813cc49b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
