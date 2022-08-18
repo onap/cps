@@ -1,7 +1,7 @@
 /*
    ============LICENSE_START=======================================================
     Copyright (C) 2020-2021 Pantheon.tech
-    Modifications Copyright (C) 2020 Nordix Foundation.
+    Modifications Copyright (C) 2020,2022 Nordix Foundation.
     Modifications Copyright (C) 2020 Bell Canada.
    ================================================================================
    Licensed under the Apache License, Version 2.0 (the "License");
@@ -23,7 +23,6 @@
 DELETE FROM FRAGMENT;
 DELETE FROM ANCHOR;
 DELETE FROM DATASPACE;
--- following tables are cleared by CASCADE constraint:
--- SCHEMA_SET
--- SCHEMA_SET_YANG_RESOURCES
-DELETE FROM YANG_RESOURCE;
+DELETE FROM YANG_RESOURCE
+-- following tables are cleared by CASCADE constraint: SCHEMA_SET, SCHEMA_SET_YANG_RESOURCES
+
