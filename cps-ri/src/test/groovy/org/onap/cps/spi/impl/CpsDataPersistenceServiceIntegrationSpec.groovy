@@ -55,8 +55,8 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     static final long ID_DATA_NODE_WITH_DESCENDANTS = 4001
     static final String XPATH_DATA_NODE_WITH_DESCENDANTS = '/parent-1'
     static final String XPATH_DATA_NODE_WITH_LEAVES = '/parent-100'
-    static final long UPDATE_DATA_NODE_FRAGMENT_ID = 4202L
-    static final long UPDATE_DATA_NODE_SUB_FRAGMENT_ID = 4203L
+    static final long DATA_NODE_202_FRAGMENT_ID = 4202L
+    static final long CHILD_OF_DATA_NODE_202_FRAGMENT_ID = 4203L
     static final long LIST_DATA_NODE_PARENT201_FRAGMENT_ID = 4206L
     static final long LIST_DATA_NODE_PARENT203_FRAGMENT_ID = 4214L
     static final long LIST_DATA_NODE_PARENT202_FRAGMENT_ID = 4211L
@@ -258,14 +258,14 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             objectUnderTest.updateDataLeaves(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES,
                     "/parent-200/child-201", ['leaf-value': 'new'])
         then: 'leaves are updated for selected data node'
-            def updatedFragment = fragmentRepository.getById(UPDATE_DATA_NODE_FRAGMENT_ID)
+            def updatedFragment = fragmentRepository.getById(DATA_NODE_202_FRAGMENT_ID)
             def updatedLeaves = getLeavesMap(updatedFragment)
             assert updatedLeaves.size() == 1
             assert updatedLeaves.'leaf-value' == 'new'
         and: 'existing child entry remains as is'
             def childFragment = updatedFragment.childFragments.iterator().next()
             def childLeaves = getLeavesMap(childFragment)
-            assert childFragment.id == UPDATE_DATA_NODE_SUB_FRAGMENT_ID
+            assert childFragment.id == CHILD_OF_DATA_NODE_202_FRAGMENT_ID
             assert childLeaves.'leaf-value' == 'original'
     }
 
@@ -283,32 +283,32 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
-    def 'Replace data node tree with descendants removal.'() {
+    def 'Update data node and descendants by removing descendants.'() {
         given: 'data node object with leaves updated, no children'
             def submittedDataNode = buildDataNode("/parent-200/child-201", ['leaf-value': 'new'], [])
-        when: 'replace data node tree is performed'
-            objectUnderTest.replaceDataNodeTree(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, submittedDataNode)
+        when: 'update data nodes and descendants is performed'
+            objectUnderTest.updateDataNodeAndDescendants(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, submittedDataNode)
         then: 'leaves have been updated for selected data node'
-            def updatedFragment = fragmentRepository.getById(UPDATE_DATA_NODE_FRAGMENT_ID)
+            def updatedFragment = fragmentRepository.getById(DATA_NODE_202_FRAGMENT_ID)
             def updatedLeaves = getLeavesMap(updatedFragment)
             assert updatedLeaves.size() == 1
             assert updatedLeaves.'leaf-value' == 'new'
         and: 'updated entry has no children'
             updatedFragment.childFragments.isEmpty()
         and: 'previously attached child entry is removed from database'
-            fragmentRepository.findById(UPDATE_DATA_NODE_SUB_FRAGMENT_ID).isEmpty()
+            fragmentRepository.findById(CHILD_OF_DATA_NODE_202_FRAGMENT_ID).isEmpty()
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
-    def 'Replace data node tree with descendants.'() {
+    def 'Update data node and descendants with new descendants'() {
         given: 'data node object with leaves updated, having child with old content'
             def submittedDataNode = buildDataNode("/parent-200/child-201", ['leaf-value': 'new'], [
                   buildDataNode("/parent-200/child-201/grand-child", ['leaf-value': 'original'], [])
             ])
         when: 'update is performed including descendants'
-            objectUnderTest.replaceDataNodeTree(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, submittedDataNode)
+            objectUnderTest.updateDataNodeAndDescendants(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, submittedDataNode)
         then: 'leaves have been updated for selected data node'
-            def updatedFragment = fragmentRepository.getById(UPDATE_DATA_NODE_FRAGMENT_ID)
+            def updatedFragment = fragmentRepository.getById(DATA_NODE_202_FRAGMENT_ID)
             def updatedLeaves = getLeavesMap(updatedFragment)
             assert updatedLeaves.size() == 1
             assert updatedLeaves.'leaf-value' == 'new'
@@ -320,15 +320,15 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
-    def 'Replace data node tree with same descendants but changed leaf value.'() {
+    def 'Update data node and descendants with same descendants but changed leaf value.'() {
         given: 'data node object with leaves updated, having child with old content'
             def submittedDataNode = buildDataNode("/parent-200/child-201", ['leaf-value': 'new'], [
                     buildDataNode("/parent-200/child-201/grand-child", ['leaf-value': 'new'], [])
             ])
         when: 'update is performed including descendants'
-            objectUnderTest.replaceDataNodeTree(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, submittedDataNode)
+            objectUnderTest.updateDataNodeAndDescendants(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, submittedDataNode)
         then: 'leaves have been updated for selected data node'
-            def updatedFragment = fragmentRepository.getById(UPDATE_DATA_NODE_FRAGMENT_ID)
+            def updatedFragment = fragmentRepository.getById(DATA_NODE_202_FRAGMENT_ID)
             def updatedLeaves = getLeavesMap(updatedFragment)
             assert updatedLeaves.size() == 1
             assert updatedLeaves.'leaf-value' == 'new'
@@ -340,20 +340,20 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
-    def 'Replace data node tree with different descendants xpath'() {
+    def 'Update data node and descendants with different descendants xpath'() {
         given: 'data node object with leaves updated, having child with old content'
             def submittedDataNode = buildDataNode("/parent-200/child-201", ['leaf-value': 'new'], [
                     buildDataNode("/parent-200/child-201/grand-child-new", ['leaf-value': 'new'], [])
             ])
         when: 'update is performed including descendants'
-            objectUnderTest.replaceDataNodeTree(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, submittedDataNode)
+            objectUnderTest.updateDataNodeAndDescendants(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, submittedDataNode)
         then: 'leaves have been updated for selected data node'
-            def updatedFragment = fragmentRepository.getById(UPDATE_DATA_NODE_FRAGMENT_ID)
+            def updatedFragment = fragmentRepository.getById(DATA_NODE_202_FRAGMENT_ID)
             def updatedLeaves = getLeavesMap(updatedFragment)
             assert updatedLeaves.size() == 1
             assert updatedLeaves.'leaf-value' == 'new'
         and: 'previously attached child entry is removed from database'
-            fragmentRepository.findById(UPDATE_DATA_NODE_SUB_FRAGMENT_ID).isEmpty()
+            fragmentRepository.findById(CHILD_OF_DATA_NODE_202_FRAGMENT_ID).isEmpty()
         and: 'new child entry is persisted'
             def childFragment = updatedFragment.childFragments.iterator().next()
             childFragment.xpath == '/parent-200/child-201/grand-child-new'
@@ -362,11 +362,11 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
-    def 'Replace data node tree error scenario: #scenario.'() {
+    def 'Update data node and descendants error scenario: #scenario.'() {
         given: 'data node object'
             def submittedDataNode = buildDataNode(xpath, ['leaf-name': 'leaf-value'], [])
         when: 'attempt to update data node for #scenario'
-            objectUnderTest.replaceDataNodeTree(dataspaceName, anchorName, submittedDataNode)
+            objectUnderTest.updateDataNodeAndDescendants(dataspaceName, anchorName, submittedDataNode)
         then: 'a #expectedException is thrown'
             thrown(expectedException)
         where: 'the following data is used'

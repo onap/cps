@@ -28,6 +28,8 @@ import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
 
 import java.time.OffsetDateTime;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsDataService;
@@ -91,9 +93,24 @@ public class InventoryPersistence {
     public void saveCmHandleState(final String cmHandleId, final CompositeState compositeState) {
         final String cmHandleJsonData = String.format("{\"state\":%s}",
             jsonObjectMapper.asJsonString(compositeState));
-        cpsDataService.replaceNodeTree(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
+        cpsDataService.updateDataNodeAndDescendants(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
             String.format(CM_HANDLE_XPATH_TEMPLATE, cmHandleId),
             cmHandleJsonData, OffsetDateTime.now());
+    }
+
+    /**
+     * Save all cm handles states in batch.
+     *
+     * @param cmHandleStates contains cm handle id and updated state
+     */
+    public void saveCmHandleStates(final Map<String, CompositeState> cmHandleStates) {
+        final Map<String, String> cmHandlesJsonDataMap = new HashMap<>();
+        cmHandleStates.entrySet().stream().forEach(cmHandleEntry ->
+            cmHandlesJsonDataMap.put(String.format(CM_HANDLE_XPATH_TEMPLATE, cmHandleEntry.getKey()),
+                String.format("{\"state\":%s}",
+                    jsonObjectMapper.asJsonString(cmHandleEntry.getValue()))));
+        cpsDataService.updateDataNodesAndDescendants(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
+            cmHandlesJsonDataMap, OffsetDateTime.now());
     }
 
     /**
