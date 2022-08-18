@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6fb4ad4e_78cb32b1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-18T08:11:24Z",
+      "side": 1,
+      "message": "NB: extra line.",
+      "revId": "8bc84d8bd186dbb4150871a610cc032beae7fcad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
