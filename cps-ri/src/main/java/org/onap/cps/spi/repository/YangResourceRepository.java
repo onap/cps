@@ -34,7 +34,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface YangResourceRepository extends JpaRepository<YangResourceEntity, Long>,
-        SchemaSetYangResourceRepository {
+    YangResourceNativeRepository, SchemaSetYangResourceRepository {
 
     List<YangResourceEntity> findAllByChecksumIn(@NotNull Set<String> checksum);
 
@@ -90,10 +90,6 @@ public interface YangResourceRepository extends JpaRepository<YangResourceEntity
         + "dataspace.name = :dataspaceName and yang_resource.module_Name IN (:moduleNames)", nativeQuery = true)
     Set<YangResourceModuleReference> findAllModuleReferencesByDataspaceAndModuleNames(
             @Param("dataspaceName") String dataspaceName, @Param("moduleNames") Collection<String> moduleNames);
-
-
-    @Query(value = "SELECT id FROM yang_resource WHERE module_name=:name and revision=:revision", nativeQuery = true)
-    Long getIdByModuleNameAndRevision(@Param("name") String moduleName, @Param("revision") String revision);
 
     @Modifying
     @Query(value = "DELETE FROM yang_resource yr WHERE NOT EXISTS "
