@@ -28,6 +28,7 @@ import org.onap.cps.spi.entities.SchemaSetEntity
 import org.onap.cps.spi.entities.YangResourceEntity
 import org.onap.cps.spi.exceptions.ConcurrencyException
 import org.onap.cps.spi.exceptions.DataValidationException
+import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.DataNodeBuilder
 import org.onap.cps.spi.repository.AnchorRepository
 import org.onap.cps.spi.repository.DataspaceRepository
@@ -67,40 +68,40 @@ class CpsDataPersistenceServiceSpec extends Specification {
     )] as Set
 
 
-    def 'Handling of StaleStateException (caused by concurrent updates) during data node tree update.'() {
-
-        def parentXpath = '/parent-01'
-        def myDataspaceName = 'my-dataspace'
-        def myAnchorName = 'my-anchor'
-
-        given: 'data node object'
-            def submittedDataNode = new DataNodeBuilder()
-                    .withXpath(parentXpath)
-                    .withLeaves(['leaf-name': 'leaf-value'])
-                    .build()
-        and: 'fragment to be updated'
-            mockFragmentRepository.getByDataspaceAndAnchorAndXpath(_, _, _) >> {
+    def 'Handling of StaleStateException (caused by concurrent updates) during update data node and descendants.'() {
+        given: 'the fragment repository returns a fragment entity'
+            mockFragmentRepository.getByDataspaceAndAnchorAndXpath(*_) >> {
                 def fragmentEntity = new FragmentEntity()
-                fragmentEntity.setXpath(parentXpath)
-                fragmentEntity.setChildFragments(Collections.emptySet())
+                fragmentEntity.setChildFragments([new FragmentEntity()] as Set<FragmentEntity>)
                 return fragmentEntity
             }
-        and: 'data node is concurrently updated by another transaction'
+        and: 'a data node is concurrently updated by another transaction'
             mockFragmentRepository.save(_) >> { throw new StaleStateException("concurrent updates") }
-
-        when: 'attempt to update data node'
-            objectUnderTest.replaceDataNodeTree(myDataspaceName, myAnchorName, submittedDataNode)
-
+        when: 'attempt to update data node with submitted data nodes'
+            objectUnderTest.updateDataNodeAndDescendants('some-dataspace', 'some-anchor', new DataNodeBuilder().withXpath('/some/xpath').build())
         then: 'concurrency exception is thrown'
             def concurrencyException = thrown(ConcurrencyException)
-            assert concurrencyException.getDetails().contains(myDataspaceName)
-            assert concurrencyException.getDetails().contains(myAnchorName)
-            assert concurrencyException.getDetails().contains(parentXpath)
+            assert concurrencyException.getDetails().contains('some-dataspace')
+            assert concurrencyException.getDetails().contains('some-anchor')
+            assert concurrencyException.getDetails().contains('/some/xpath')
+    }
+
+    def 'Handling of StaleStateException (caused by concurrent updates) during  update data nodes and descendants.'() {
+        given: 'the fragment repository returns a list of fragment entities'
+            mockFragmentRepository.getByDataspaceAndAnchorAndXpath(*_) >> new FragmentEntity()
+        and: 'a data node is concurrently updated by another transaction'
+            mockFragmentRepository.saveAll(*_) >> { throw new StaleStateException("concurrent updates") }
+        when: 'attempt to update data node with submitted data nodes'
+            objectUnderTest.updateDataNodesAndDescendants('some-dataspace', 'some-anchor', [])
+        then: 'concurrency exception is thrown'
+            def concurrencyException = thrown(ConcurrencyException)
+            assert concurrencyException.getDetails().contains('some-dataspace')
+            assert concurrencyException.getDetails().contains('some-anchor')
     }
 
     def 'Retrieving a data node with a property JSON value of #scenario'() {
         given: 'a fragment with a property JSON value of #scenario'
-        mockFragmentRepository.getByDataspaceAndAnchorAndXpath(_, _, _) >> {
+        mockFragmentRepository.getByDataspaceAndAnchorAndXpath(*_) >> {
             new FragmentEntity(childFragments: Collections.emptySet(),
                     attributes: "{\"some attribute\": ${dataString}}",
                     anchor: new AnchorEntity(schemaSet: new SchemaSetEntity(yangResources: yangResourceSet )))
@@ -128,11 +129,11 @@ class CpsDataPersistenceServiceSpec extends Specification {
 
     def 'Retrieving a data node with invalid JSON'() {
         given: 'a fragment with invalid JSON'
-            mockFragmentRepository.getByDataspaceAndAnchorAndXpath(_, _, _) >> {
+            mockFragmentRepository.getByDataspaceAndAnchorAndXpath(*_) >> {
                 new FragmentEntity(childFragments: Collections.emptySet(), attributes: '{invalid json')
             }
         when: 'getting the data node represented by this fragment'
-            def dataNode = objectUnderTest.getDataNode('my-dataspace', 'my-anchor',
+            objectUnderTest.getDataNode('my-dataspace', 'my-anchor',
                     '/parent-01', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
         then: 'a data validation exception is thrown'
             thrown(DataValidationException)
@@ -159,5 +160,37 @@ class CpsDataPersistenceServiceSpec extends Specification {
             objectUnderTest.lockAnchor('mySessionId', 'myDataspaceName', 'myAnchorName', 123L)
         then: 'the session manager method to lock anchor is invoked with same parameters'
             1 * mockSessionManager.lockAnchor('mySessionId', 'myDataspaceName', 'myAnchorName', 123L)
+    }
+
+    def 'update data node and descendants: #scenario'(){
+        given: 'mocked responses'
+            mockFragmentRepository.getByDataspaceAndAnchorAndXpath(_, _, '/test/xpath') >> new FragmentEntity(xpath: '/test/xpath', childFragments: [])
+        when: 'replace data node tree'
+            objectUnderTest.updateDataNodesAndDescendants('dataspaceName', 'anchorName', dataNodes)
+        then: 'call fragment repository save all method'
+            1 * mockFragmentRepository.saveAll({fragmentEntities -> assert fragmentEntities as List == expectedFragmentEntities})
+        where: 'the following Data Type is passed'
+            scenario                         | dataNodes                                                                          || expectedFragmentEntities
+            'empty data node list'           | []                                                                                 || []
+            'one data node in list'          | [new DataNode(xpath: '/test/xpath', leaves: ['id': 'testId'], childDataNodes: [])] || [new FragmentEntity(xpath: '/test/xpath', attributes: '{"id":"testId"}', childFragments: [])]
+    }
+
+    def 'update data nodes and descendants'() {
+        given: 'the fragment repository returns a fragment entity related to the xpath input'
+            mockFragmentRepository.getByDataspaceAndAnchorAndXpath(_, _, '/test/xpath1') >> new FragmentEntity(xpath: '/test/xpath1', childFragments: [])
+            mockFragmentRepository.getByDataspaceAndAnchorAndXpath(_, _, '/test/xpath2') >> new FragmentEntity(xpath: '/test/xpath2', childFragments: [])
+        and: 'some data nodes with descendants'
+            def dataNode1 = new DataNode(xpath: '/test/xpath1', leaves: ['id': 'testId1'], childDataNodes: [new DataNode(xpath: '/test/xpath1/child', leaves: ['id': 'childTestId1'])])
+            def dataNode2 = new DataNode(xpath: '/test/xpath2', leaves: ['id': 'testId2'], childDataNodes: [new DataNode(xpath: '/test/xpath2/child', leaves: ['id': 'childTestId2'])])
+        when: 'the fragment entities are update by the data nodes'
+            objectUnderTest.updateDataNodesAndDescendants('dataspaceName', 'anchorName', [dataNode1, dataNode2])
+        then: 'call fragment repository save all method is called with the updated fragments'
+            1 * mockFragmentRepository.saveAll({fragmentEntities -> {
+                fragmentEntities.containsAll([
+                    new FragmentEntity(xpath: '/test/xpath1', attributes: '{"id":"testId1"}', childFragments: [new FragmentEntity(xpath: '/test/xpath1/child', attributes: '{"id":"childTestId1"}', childFragments: [])]),
+                    new FragmentEntity(xpath: '/test/xpath2', attributes: '{"id":"testId2"}', childFragments: [new FragmentEntity(xpath: '/test/xpath2/child', attributes: '{"id":"childTestId2"}', childFragments: [])])
+                ])
+                assert fragmentEntities.size() == 2
+            }})
     }
 }

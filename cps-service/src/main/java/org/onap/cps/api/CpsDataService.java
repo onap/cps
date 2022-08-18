@@ -24,6 +24,7 @@ package org.onap.cps.api;
 
 import java.time.OffsetDateTime;
 import java.util.Collection;
+import java.util.Map;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
 
@@ -93,7 +94,7 @@ public interface CpsDataService {
         OffsetDateTime observedTimestamp);
 
     /**
-     * Replaces existing data node content including descendants.
+     * Replaces an existing data node's content including descendants.
      *
      * @param dataspaceName   dataspace name
      * @param anchorName      anchor name
@@ -101,8 +102,19 @@ public interface CpsDataService {
      * @param jsonData        json data
      * @param observedTimestamp observedTimestamp
      */
-    void replaceNodeTree(String dataspaceName, String anchorName, String parentNodeXpath, String jsonData,
-        OffsetDateTime observedTimestamp);
+    void updateDataNodeAndDescendants(String dataspaceName, String anchorName, String parentNodeXpath, String jsonData,
+                                       OffsetDateTime observedTimestamp);
+
+    /**
+     * Replaces multiple existing data nodes' content including descendants in a batch operation.
+     *
+     * @param dataspaceName   dataspace name
+     * @param anchorName      anchor name
+     * @param nodesJsonData   map of xpath and node JSON data
+     * @param observedTimestamp observedTimestamp
+     */
+    void updateDataNodesAndDescendants(String dataspaceName, String anchorName, Map<String, String> nodesJsonData,
+                                       OffsetDateTime observedTimestamp);
 
     /**
      * Replaces list content by removing all existing elements and inserting the given new elements as json

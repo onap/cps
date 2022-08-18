@@ -101,7 +101,7 @@ public class DataRestController implements CpsDataApi {
     public ResponseEntity<Object> replaceNode(final String dataspaceName, final String anchorName,
         final Object jsonData, final String parentNodeXpath, final String observedTimestamp) {
         cpsDataService
-                .replaceNodeTree(dataspaceName, anchorName, parentNodeXpath,
+                .updateDataNodeAndDescendants(dataspaceName, anchorName, parentNodeXpath,
                         jsonObjectMapper.asJsonString(jsonData), toOffsetDateTime(observedTimestamp));
         return new ResponseEntity<>(HttpStatus.OK);
     }
