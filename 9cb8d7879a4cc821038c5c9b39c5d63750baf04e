@@ -118,6 +118,30 @@
     },
     {
       "key": {
+        "uuid": "39ce1048_58b16185",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-18T14:55:10Z",
+      "side": 1,
+      "message": "this should be reverted to convertCmHandlesDataNodesToYangModelCmHandles(advisedCmHandlesAsDataNodeList);\n(make sure https://gerrit.onap.org/r/c/cps/+/130350)",
+      "parentUuid": "12cd62cd_5530ebf7",
+      "range": {
+        "startLine": 82,
+        "startChar": 8,
+        "endLine": 84,
+        "endChar": 94
+      },
+      "revId": "9cb8d7879a4cc821038c5c9b39c5d63750baf04e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7ed28add_c4b14ab8",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/CmHandleQueriesSpec.groovy",
         "patchSetId": 15
