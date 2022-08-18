@@ -45,6 +45,30 @@
       "revId": "896cc066e44f56020e5d09890b94b18dc2f94795",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16cd96da_91e7be29",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/YangResourceNativeRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-18T14:32:16Z",
+      "side": 1,
+      "message": "Usually I have seen this annotation on the implementation class only.",
+      "parentUuid": "205cdb2c_0807f579",
+      "range": {
+        "startLine": 30,
+        "startChar": 4,
+        "endLine": 30,
+        "endChar": 18
+      },
+      "revId": "896cc066e44f56020e5d09890b94b18dc2f94795",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
