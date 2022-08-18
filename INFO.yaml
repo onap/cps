@@ -62,6 +62,11 @@ committers:
       company: 'Ericsson Software Technology'
       id: 'JosephKeenan'
       timezone: 'Europe/Dublin'
+    - name: 'Sourabh Sharma'
+      email: 'sourabh.sourabh@est.tech'
+      company: 'Ericsson Software Technology'
+      id: 'sourabh_sourabh'
+      timezone: 'Europe/Dublin'
 repositories:
     - cps
 tsc:
