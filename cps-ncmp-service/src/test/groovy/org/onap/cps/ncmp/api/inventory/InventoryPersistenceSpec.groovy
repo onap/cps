@@ -43,7 +43,6 @@ import java.time.format.DateTimeFormatter
 
 import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NO_TIMESTAMP
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
-import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
 
 class InventoryPersistenceSpec extends Specification {
 
@@ -146,12 +145,28 @@ class InventoryPersistenceSpec extends Specification {
         when: 'update cm handle state is invoked with the #scenario state'
             objectUnderTest.saveCmHandleState(cmHandleId, compositeState)
         then: 'update node leaves is invoked with the correct params'
-            1 * mockCpsDataService.replaceNodeTree('NCMP-Admin', 'ncmp-dmi-registry', '/dmi-registry/cm-handles[@id=\'Some-Cm-Handle\']', expectedJsonData, _ as OffsetDateTime)
+            1 * mockCpsDataService.updateDataNodeAndDescendants('NCMP-Admin', 'ncmp-dmi-registry', '/dmi-registry/cm-handles[@id=\'Some-Cm-Handle\']', expectedJsonData, _ as OffsetDateTime)
         where: 'the following states are used'
             scenario    | cmHandleState          || expectedJsonData
             'READY'     | CmHandleState.READY    || '{"state":{"cm-handle-state":"READY","last-update-time":"2022-12-31T20:30:40.000+0000"}}'
             'LOCKED'    | CmHandleState.LOCKED   || '{"state":{"cm-handle-state":"LOCKED","last-update-time":"2022-12-31T20:30:40.000+0000"}}'
             'DELETING'  | CmHandleState.DELETING || '{"state":{"cm-handle-state":"DELETING","last-update-time":"2022-12-31T20:30:40.000+0000"}}'
+    }
+
+    def 'Update Cm Handles with #scenario States'() {
+        given: 'a map of cm handles composite states'
+            def compositeState1 = new CompositeState(cmHandleState: cmHandleState, lastUpdateTime: formattedDateAndTime)
+            def compositeState2 = new CompositeState(cmHandleState: cmHandleState, lastUpdateTime: formattedDateAndTime)
+        when: 'update cm handle state is invoked with the #scenario state'
+            def cmHandleStateMap = ['Some-Cm-Handle1' : compositeState1, 'Some-Cm-Handle2' : compositeState2]
+            objectUnderTest.saveCmHandleStates(cmHandleStateMap)
+        then: 'update node leaves is invoked with the correct params'
+            1 * mockCpsDataService.updateDataNodesAndDescendants('NCMP-Admin', 'ncmp-dmi-registry', cmHandlesJsonDataMap, _ as OffsetDateTime)
+        where: 'the following states are used'
+            scenario    | cmHandleState          || cmHandlesJsonDataMap
+            'READY'     | CmHandleState.READY    || ['/dmi-registry/cm-handles[@id=\'Some-Cm-Handle1\']':'{"state":{"cm-handle-state":"READY","last-update-time":"2022-12-31T20:30:40.000+0000"}}', '/dmi-registry/cm-handles[@id=\'Some-Cm-Handle2\']':'{"state":{"cm-handle-state":"READY","last-update-time":"2022-12-31T20:30:40.000+0000"}}']
+            'LOCKED'    | CmHandleState.LOCKED   || ['/dmi-registry/cm-handles[@id=\'Some-Cm-Handle1\']':'{"state":{"cm-handle-state":"LOCKED","last-update-time":"2022-12-31T20:30:40.000+0000"}}', '/dmi-registry/cm-handles[@id=\'Some-Cm-Handle2\']':'{"state":{"cm-handle-state":"LOCKED","last-update-time":"2022-12-31T20:30:40.000+0000"}}']
+            'DELETING'  | CmHandleState.DELETING || ['/dmi-registry/cm-handles[@id=\'Some-Cm-Handle1\']':'{"state":{"cm-handle-state":"DELETING","last-update-time":"2022-12-31T20:30:40.000+0000"}}', '/dmi-registry/cm-handles[@id=\'Some-Cm-Handle2\']':'{"state":{"cm-handle-state":"DELETING","last-update-time":"2022-12-31T20:30:40.000+0000"}}']
     }
 
     def 'Get module definitions'() {
