@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "334080b5_67ee29bf",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-18T15:58:37Z",
+      "side": 1,
+      "message": "new methods that should be deleted?! \nI don\u0027t understand",
+      "range": {
+        "startLine": 354,
+        "startChar": 4,
+        "endLine": 354,
+        "endChar": 29
+      },
+      "revId": "6fcc902f28dcd88fededb69b0c4065f908a8fbbd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f327b8b8_4a78262f",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/DatastoreType.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-18T15:58:37Z",
+      "side": 1,
+      "message": "1) I am not sure about uppercase mostly this is only used for primitive or string constants more complex constats are usually camelCase\nfor maps we use use something like\ndatastoreTypePerDatastoreName\nor\ndatastoreNameToDatastoreType",
+      "range": {
+        "startLine": 41,
+        "startChar": 52,
+        "endLine": 41,
+        "endChar": 69
+      },
+      "revId": "6fcc902f28dcd88fededb69b0c4065f908a8fbbd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a67ce71_a81b301c",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/DatastoreType.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-18T15:58:37Z",
+      "side": 1,
+      "message": "prefer: fromDatastoreName",
+      "range": {
+        "startLine": 47,
+        "startChar": 32,
+        "endLine": 47,
+        "endChar": 48
+      },
+      "revId": "6fcc902f28dcd88fededb69b0c4065f908a8fbbd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "648c0c87_1e15756e",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreHandler.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-18T15:58:37Z",
+      "side": 1,
+      "message": "can be (package) protected",
+      "range": {
+        "startLine": 45,
+        "startChar": 4,
+        "endLine": 45,
+        "endChar": 11
+      },
+      "revId": "6fcc902f28dcd88fededb69b0c4065f908a8fbbd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8c54f55c_7527bdcd",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreHandlerFactory.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-18T15:58:37Z",
+      "side": 1,
+      "message": "I think this makes more sense as a parameter for the method on line 41",
+      "range": {
+        "startLine": 30,
+        "startChar": 4,
+        "endLine": 30,
+        "endChar": 46
+      },
+      "revId": "6fcc902f28dcd88fededb69b0c4065f908a8fbbd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ec5b179_9ab64130",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/utils/NcmpDatastoreHandlerUtils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-18T15:58:37Z",
+      "side": 1,
+      "message": "as I commented this class should not be needed\nadd another method to CpsValidator to throw an exception it already has all other logic",
+      "range": {
+        "startLine": 26,
+        "startChar": 13,
+        "endLine": 26,
+        "endChar": 39
+      },
+      "revId": "6fcc902f28dcd88fededb69b0c4065f908a8fbbd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e5fa6af_2c170a8c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-18T15:58:37Z",
+      "side": 1,
+      "message": "this is a name of a datsapce not a datanode\nwe already have org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants#NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME\nwhich is in a bad place I think:it shoudl be move to org.onap.cps.ncmp.api.inventory.InventoryPersistence and use from there ( I want to get rid of DmiRegistryConstants)",
+      "range": {
+        "startLine": 76,
+        "startChar": 31,
+        "endLine": 76,
+        "endChar": 64
+      },
+      "revId": "6fcc902f28dcd88fededb69b0c4065f908a8fbbd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
