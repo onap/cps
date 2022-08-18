@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4bfa899c_e7011d81",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceImpl.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-18T09:16:54Z",
+      "side": 1,
+      "message": "note from Toine. I decided to rename all get-operations that are using cpsPath QUERIES to be prefixed with \u0027query\u0027 so it is more obvious that this is a more costly query then a simple (index using) xpath get operation in the DB!",
+      "range": {
+        "startLine": 151,
+        "startChar": 53,
+        "endLine": 151,
+        "endChar": 57
+      },
+      "revId": "9cb8d7879a4cc821038c5c9b39c5d63750baf04e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e95b3f0_aec5ec86",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CmHandleQueries.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-18T09:16:54Z",
+      "side": 1,
+      "message": "NB: Private method should come after all public methods",
+      "range": {
+        "startLine": 129,
+        "startChar": 0,
+        "endLine": 132,
+        "endChar": 41
+      },
+      "revId": "9cb8d7879a4cc821038c5c9b39c5d63750baf04e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0941e6d1_5c1ede1d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CmHandleQueries.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-18T09:16:54Z",
+      "side": 1,
+      "message": "NB: (my?) typo",
+      "range": {
+        "startLine": 139,
+        "startChar": 36,
+        "endLine": 139,
+        "endChar": 39
+      },
+      "revId": "9cb8d7879a4cc821038c5c9b39c5d63750baf04e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7ed28add_c4b14ab8",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/CmHandleQueriesSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-18T09:16:54Z",
+      "side": 1,
+      "message": "NB: update the label of test that are now testing \u0027query\u0027-methods\nie. start label with \u0027Query\u0027 instead \u0027Get\u0027\n(p.s. a nice more generic word is used below on line #124 \u0027Retrieve\u0027 :-)\nwhatever you prefer it is Non-Blocking comment anyway)",
+      "range": {
+        "startLine": 112,
+        "startChar": 9,
+        "endLine": 112,
+        "endChar": 12
+      },
+      "revId": "9cb8d7879a4cc821038c5c9b39c5d63750baf04e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
