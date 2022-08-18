@@ -61,7 +61,6 @@ class CpsPersistenceSpecBase extends Specification {
     static final String CLEAR_DATA = '/data/clear-all.sql'
 
     static final String DATASPACE_NAME = 'DATASPACE-001'
-    static final String DATASPACE_NAME2 = 'DATASPACE-002'
     static final String SCHEMA_SET_NAME1 = 'SCHEMA-SET-001'
     static final String SCHEMA_SET_NAME2 = 'SCHEMA-SET-002'
     static final String ANCHOR_NAME1 = 'ANCHOR-001'
