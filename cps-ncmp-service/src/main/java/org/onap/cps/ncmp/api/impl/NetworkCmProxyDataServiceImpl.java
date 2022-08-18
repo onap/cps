@@ -55,6 +55,7 @@ import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationErr
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistrationResponse;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
+import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
 import org.onap.cps.spi.exceptions.CpsException;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
@@ -72,6 +73,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService {
 
+    public static final String NFP_DATA_NODE = "NFP-Operational";
     private final JsonObjectMapper jsonObjectMapper;
 
     private final DmiDataOperations dmiDataOperations;
@@ -117,6 +119,14 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             DmiOperations.DataStoreEnum.PASSTHROUGH_OPERATIONAL,
             requestId, topicParamInQuery);
         return responseEntity.getBody();
+    }
+
+    @Override
+    public Object getResourceDataOperational(final String cmHandleId,
+                                             final String resourceIdentifier,
+                                             final FetchDescendantsOption fetchDescendantsOption) {
+        return cpsDataService.getDataNode(NFP_DATA_NODE, cmHandleId, resourceIdentifier,
+                fetchDescendantsOption);
     }
 
     @Override
@@ -209,7 +219,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             final DataStoreSyncState dataStoreSyncState = compositeState.getDataStores()
                 .getOperationalDataStore().getDataStoreSyncState();
             if (!dataSyncEnabled && dataStoreSyncState == DataStoreSyncState.SYNCHRONIZED) {
-                cpsDataService.deleteDataNode("NFP-Operational", cmHandleId,
+                cpsDataService.deleteDataNode(NFP_DATA_NODE, cmHandleId,
                     "/netconf-state", OffsetDateTime.now());
             }
             CompositeStateUtils.setDataSyncEnabledFlagWithDataSyncState(dataSyncEnabled, compositeState);
