@@ -168,7 +168,6 @@ components:
               }
             }
 
-
     CmHandleQueryParameters:
       type: object
       title: Cm Handle query parameters for executing cm handle search
@@ -462,6 +461,14 @@ components:
       schema:
         type: string
         default: /
+    dmiPluginIdentifierInQuery:
+      name: dmi-plugin-identifier
+      in: query
+      description: dmi-plugin-identifier
+      required: true
+      schema:
+        type: string
+        example: my-dmi-plugin
     resourceIdentifierInQuery:
       name: resourceIdentifier
       in: query

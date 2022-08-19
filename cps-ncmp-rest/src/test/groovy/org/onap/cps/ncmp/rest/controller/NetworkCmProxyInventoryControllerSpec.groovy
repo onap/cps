@@ -27,6 +27,7 @@ import org.onap.cps.ncmp.api.NetworkCmProxyDataService
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.models.DmiPluginRegistrationResponse
+import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.rest.model.CmHandlerRegistrationErrorResponse
 import org.onap.cps.ncmp.rest.model.DmiPluginRegistrationErrorResponse
 import org.onap.cps.ncmp.rest.model.RestDmiPluginRegistration
@@ -41,6 +42,7 @@ import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import spock.lang.Specification
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 
 @WebMvcTest(NetworkCmProxyInventoryController)
@@ -156,6 +158,23 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
             'create update failed' | failedResponse('cm-handle-1')  | failedResponse('cm-handle-2')  | successResponse('cm-handle-3') || [failedRestResponse('cm-handle-1')] | [failedRestResponse('cm-handle-2')] | []
             'create delete failed' | failedResponse('cm-handle-1')  | successResponse('cm-handle-2') | failedResponse('cm-handle-3')  || [failedRestResponse('cm-handle-1')] | []                                  | [failedRestResponse('cm-handle-3')]
             'update delete failed' | successResponse('cm-handle-1') | failedResponse('cm-handle-2')  | failedResponse('cm-handle-3')  || []                                  | [failedRestResponse('cm-handle-2')] | [failedRestResponse('cm-handle-3')]
+    }
+
+    def 'Get all cm handle IDs by DMI plugin identifier.'() {
+        given: 'an endpoint for returning cm handle IDs for a registered dmi plugin'
+            def getUrl = "$ncmpBasePathV1/ch/cmHandles?dmi-plugin-identifier=some-dmi-plugin-identifier"
+        and: 'a collection of cm handle IDs are returned'
+            1 * mockNetworkCmProxyDataService.getAllCmHandleIdsByDmiPluginIdentifier('some-dmi-plugin-identifier')
+                    >> ['cm-handle-id-1','cm-handle-id-2']
+        when: 'the endpoint is invoked'
+            def response = mvc.perform(
+                    get(getUrl)
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .accept(MediaType.APPLICATION_JSON_VALUE)
+            ).andReturn().response
+        then: 'the response matches the result returned by the service layer'
+            assert response.contentAsString.contains('cm-handle-id-1')
+            assert response.contentAsString.contains('cm-handle-id-2')
     }
 
     def failedRestResponse(cmHandle) {
