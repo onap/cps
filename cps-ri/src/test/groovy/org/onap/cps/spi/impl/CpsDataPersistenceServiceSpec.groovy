@@ -23,11 +23,13 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import org.hibernate.StaleStateException
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.entities.AnchorEntity
+import org.onap.cps.spi.entities.DataspaceEntity
 import org.onap.cps.spi.entities.FragmentEntity
 import org.onap.cps.spi.entities.SchemaSetEntity
 import org.onap.cps.spi.entities.YangResourceEntity
 import org.onap.cps.spi.exceptions.ConcurrencyException
 import org.onap.cps.spi.exceptions.DataValidationException
+import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.DataNodeBuilder
 import org.onap.cps.spi.repository.AnchorRepository
 import org.onap.cps.spi.repository.DataspaceRepository
@@ -159,5 +161,20 @@ class CpsDataPersistenceServiceSpec extends Specification {
             objectUnderTest.lockAnchor('mySessionId', 'myDataspaceName', 'myAnchorName', 123L)
         then: 'the session manager method to lock anchor is invoked with same parameters'
             1 * mockSessionManager.lockAnchor('mySessionId', 'myDataspaceName', 'myAnchorName', 123L)
+    }
+
+    def 'replace data node tree: #scenario'(){
+        given: 'mocked responses'
+            mockDataspaceRepository.getByName('dataspaceName') >> new DataspaceEntity(name: 'dataspaceName')
+            mockAnchorRepository.getByDataspaceAndName(new DataspaceEntity(name: 'dataspaceName'), 'anchorName') >> new AnchorEntity(name: 'anchorName')
+            mockFragmentRepository.getByDataspaceAndAnchorAndXpath(_, _, '/test/xpath') >> new FragmentEntity(xpath: '/test/xpath', childFragments: [])
+        when: 'replace data node tree'
+            objectUnderTest.replaceDataNodeTree('dataspaceName', 'anchorName', dataNodes)
+        then: 'call fragment repository save all method'
+            1 * mockFragmentRepository.saveAll(fragmentEntities)
+        where: 'the following Data Type is passed'
+        scenario                         | dataNodes                                                                          || fragmentEntities
+            'empty data node list'       | []                                                                                 || []
+            'one data node in list'      | [new DataNode(xpath: '/test/xpath', leaves: ['id': 'testId'], childDataNodes: [])] || [new FragmentEntity(xpath: '/test/xpath', attributes: '{"id":"testId"}', childFragments: [])]
     }
 }

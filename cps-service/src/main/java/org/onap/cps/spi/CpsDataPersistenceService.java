@@ -63,7 +63,7 @@ public interface CpsDataPersistenceService {
      */
 
     void addListElements(String dataspaceName, String anchorName, String parentNodeXpath,
-        Collection<DataNode> listElementsCollection);
+                         Collection<DataNode> listElementsCollection);
 
     /**
      * Retrieves datanode by XPath for given dataspace and anchor.
@@ -76,7 +76,7 @@ public interface CpsDataPersistenceService {
      * @return data node object
      */
     DataNode getDataNode(String dataspaceName, String anchorName, String xpath,
-        FetchDescendantsOption fetchDescendantsOption);
+                         FetchDescendantsOption fetchDescendantsOption);
 
 
     /**
@@ -98,6 +98,8 @@ public interface CpsDataPersistenceService {
      */
     void replaceDataNodeTree(String dataspaceName, String anchorName, DataNode dataNode);
 
+    void replaceDataNodeTree(final String dataspaceName, final String anchorName, final List<DataNode> dataNodes);
+
     /**
      * Replaces list content by removing all existing elements and inserting the given new elements
      * under given parent, anchor and dataspace.
@@ -113,26 +115,26 @@ public interface CpsDataPersistenceService {
     /**
      * Deletes any dataNode, yang container or yang list or yang list element.
      *
-     * @param dataspaceName   dataspace name
-     * @param anchorName      anchor name
-     * @param targetXpath     xpath to list or list element (include [@key=value] to delete a single list element)
+     * @param dataspaceName dataspace name
+     * @param anchorName    anchor name
+     * @param targetXpath   xpath to list or list element (include [@key=value] to delete a single list element)
      */
     void deleteDataNode(String dataspaceName, String anchorName, String targetXpath);
 
     /**
      * Deletes all dataNodes in a given anchor.
      *
-     * @param dataspaceName   dataspace name
-     * @param anchorName      anchor name
+     * @param dataspaceName dataspace name
+     * @param anchorName    anchor name
      */
     void deleteDataNodes(String dataspaceName, String anchorName);
 
     /**
      * Deletes existing a single list element or the whole list.
      *
-     * @param dataspaceName   dataspace name
-     * @param anchorName      anchor name
-     * @param targetXpath     xpath to list or list element (include [@key=value] to delete a single list element)
+     * @param dataspaceName dataspace name
+     * @param anchorName    anchor name
+     * @param targetXpath   xpath to list or list element (include [@key=value] to delete a single list element)
      */
     void deleteListDataNode(String dataspaceName, String anchorName, String targetXpath);
 
@@ -167,9 +169,9 @@ public interface CpsDataPersistenceService {
      * Lock anchor.
      * To release locks(s), the session holding the lock(s) must be closed.
      *
-     * @param sessionID session ID
-     * @param dataspaceName dataspace name
-     * @param anchorName anchor name
+     * @param sessionID             session ID
+     * @param dataspaceName         dataspace name
+     * @param anchorName            anchor name
      * @param timeoutInMilliseconds lock attempt timeout in milliseconds
      */
     void lockAnchor(String sessionID, String dataspaceName, String anchorName, Long timeoutInMilliseconds);
