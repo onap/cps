@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "18bac34e_8488c264",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-19T08:06:23Z",
+      "side": 1,
+      "message": "Note Toine: I agreed to change the order in this one case to prevent unnecessary changes to handle an unlikely edge-case see my comment on path #1",
+      "range": {
+        "startLine": 182,
+        "startChar": 8,
+        "endLine": 182,
+        "endChar": 108
+      },
+      "revId": "20187e1c78c07ea9c2d80be05b01d9c3670b134d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "61a4064e_e603a17c",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/NotificationService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-19T08:06:23Z",
+      "side": 1,
+      "message": "NB: the logical order to me would be\n1) dataspaceName\n2) anchorName\n3) xpath\n4) operation\n5) observedTimestamp",
+      "range": {
+        "startLine": 82,
+        "startChar": 52,
+        "endLine": 82,
+        "endChar": 70
+      },
+      "revId": "20187e1c78c07ea9c2d80be05b01d9c3670b134d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
