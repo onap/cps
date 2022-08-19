@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "efc9e690_a7887883",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-08-19T11:25:50Z",
+      "side": 1,
+      "message": "Please throw an exception like save \n\ncatch (final StaleStateException staleStateException) {\n            throw new ConcurrencyException(\"Concurrent Transactions\",\n                    String.format(\"dataspace :\u0027%s\u0027, Anchor : \u0027%s\u0027 and xpath: \u0027%s\u0027 is updated by another transaction.\",\n                            dataspaceName, anchorName, dataNode.getXpath()),\n                    staleStateException);\n        }",
+      "range": {
+        "startLine": 314,
+        "startChar": 9,
+        "endLine": 314,
+        "endChar": 53
+      },
+      "revId": "249ba22cb75ad38716106b2b7022d6e88bcdbb2a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
