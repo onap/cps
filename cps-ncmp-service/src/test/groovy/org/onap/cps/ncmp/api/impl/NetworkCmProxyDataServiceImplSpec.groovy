@@ -25,6 +25,7 @@ package org.onap.cps.ncmp.api.impl
 import org.onap.cps.ncmp.api.NetworkCmProxyCmHandlerQueryService
 import org.onap.cps.ncmp.api.impl.event.lcm.LcmEventsCmHandleStateHandler
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
+import org.onap.cps.ncmp.api.inventory.CmHandleQueries
 import org.onap.cps.ncmp.api.inventory.CmHandleState
 import org.onap.cps.ncmp.api.inventory.CompositeState
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence
@@ -63,6 +64,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     def mockDmiDataOperations = Mock(DmiDataOperations)
     def nullNetworkCmProxyDataServicePropertyHandler = null
     def mockInventoryPersistence = Mock(InventoryPersistence)
+    def mockCmHandleQueries = Mock(CmHandleQueries)
     def mockDmiPluginRegistration = Mock(DmiPluginRegistration)
     def mockCpsCmHandlerQueryService = Mock(NetworkCmProxyCmHandlerQueryService)
     def mockLcmEventsCmHandleStateHandler = Mock(LcmEventsCmHandleStateHandler)
@@ -79,6 +81,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             mockDmiDataOperations,
             nullNetworkCmProxyDataServicePropertyHandler,
             mockInventoryPersistence,
+            mockCmHandleQueries,
             mockCpsCmHandlerQueryService,
             mockLcmEventsCmHandleStateHandler,
             mockCpsDataService)
@@ -368,6 +371,13 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             thrown(CpsException)
         and: 'the inventory persistence service to update node leaves is not invoked'
             0 * mockInventoryPersistence.saveCmHandleState(_, _)
+    }
+
+    def 'Get all cm handles by DMI plugin identifier.' () {
+        when: 'cm handle Ids are requested with dmi plugin identifier'
+            objectUnderTest.getAllCmHandlesByDmiPluginIdentifier('some-dmi-plugin-identifier')
+        then: 'Cm handle queries service is called'
+            1 * mockCmHandleQueries.getCmHandlesByDmiPluginIdentifier('some-dmi-plugin-identifier')
     }
 
     def dataStores() {
