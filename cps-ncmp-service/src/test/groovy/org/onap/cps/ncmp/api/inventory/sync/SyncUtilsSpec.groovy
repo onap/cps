@@ -62,13 +62,25 @@ class SyncUtilsSpec extends Specification{
     @Shared
     def dataNode = new DataNode(leaves: ['id': 'cm-handle-123'])
 
+    @Shared
+    def dataNodeAdditionalProperties = new DataNode(leaves: ['name': 'dmiProp1', 'value': 'dmiValue1'])
+
+
     def 'Get an advised Cm-Handle where ADVISED cm handle #scenario'() {
         given: 'the inventory persistence service returns a collection of data nodes'
             mockCmHandleQueries.getCmHandlesByState(CmHandleState.ADVISED) >> dataNodeCollection
+        and: 'we have some additional (dmi, private) properties'
+            dataNodeAdditionalProperties.xpath = dataNode.xpath + '/additional-properties[@name="dmiProp1"]'
+            dataNode.childDataNodes = [dataNodeAdditionalProperties]
         when: 'get advised cm handles are fetched'
             def yangModelCmHandles = objectUnderTest.getAdvisedCmHandles()
         then: 'the returned data node collection is the correct size'
             yangModelCmHandles.size() == expectedDataNodeSize
+        and: 'if there is a data node the additional (dmi, private) properties are included'
+            if (expectedDataNodeSize > 0) {
+                assert yangModelCmHandles[0].dmiProperties[0].name == 'dmiProp1'
+                assert yangModelCmHandles[0].dmiProperties[0].value == 'dmiValue1'
+            }
         and: 'yang model collection contains the correct data'
             yangModelCmHandles.stream().map(yangModel -> yangModel.id).collect(Collectors.toSet()) ==
                 dataNodeCollection.stream().map(dataNode -> dataNode.leaves.get("id")).collect(Collectors.toSet())
