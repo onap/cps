@@ -22,6 +22,7 @@
 package org.onap.cps.ncmp.rest.controller;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -47,6 +48,18 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
     private final NcmpRestInputMapper ncmpRestInputMapper;
 
     /**
+     * Get all cm-handles under a registered DMI plugin.
+     *
+     * @param dmiPluginIdentifier DMI plugin identifier
+     * @return list of cm handles
+     */
+    @Override
+    public ResponseEntity<List<String>> getAllCmHandlesForRegisteredDmi(final String dmiPluginIdentifier) {
+        Set<String> cmHandleIds = networkCmProxyDataService.getAllCmHandlesByDmiPluginIdentifier(dmiPluginIdentifier);
+        return new ResponseEntity<>(List.copyOf(cmHandleIds), HttpStatus.OK);
+    }
+
+    /**
      * Update DMI Plugin Registration (used for first registration also).
      *
      * @param restDmiPluginRegistration the registration data
@@ -69,7 +82,6 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
         return dmiPluginRegistrationErrorResponse.getFailedCreatedCmHandles().isEmpty()
             && dmiPluginRegistrationErrorResponse.getFailedUpdatedCmHandles().isEmpty()
             && dmiPluginRegistrationErrorResponse.getFailedRemovedCmHandles().isEmpty();
-
     }
 
     private DmiPluginRegistrationErrorResponse getFailureRegistrationResponse(
@@ -103,5 +115,3 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
     }
 
 }
-
-

@@ -42,7 +42,7 @@ class CmHandleQueriesSpec extends Specification {
     def static pnfDemo3 = createDataNode('PNFDemo3')
     def static pnfDemo4 = createDataNode('PNFDemo4')
 
-    def static pnfDemoCmHandle = new NcmpServiceCmHandle(cmHandleId: 'PNFDemo')
+    def static pnfDemoCmHandle = new NcmpServiceCmHandle(cmHandleId: 'PNFDemo',dmiProperties: ['dmi-service-name':'myDmi'])
     def static pnfDemo2CmHandle = new NcmpServiceCmHandle(cmHandleId: 'PNFDemo2')
     def static pnfDemo3CmHandle = new NcmpServiceCmHandle(cmHandleId: 'PNFDemo3')
 
@@ -135,6 +135,18 @@ class CmHandleQueriesSpec extends Specification {
             assert result.contains(cmHandleDataNode)
     }
 
+    def 'Get all cm handles by dmi plugin identifier'() {
+        given: 'the DataNodes queried for a given cpsPath are returned from the persistence service.'
+            mockResponses()
+        when: 'cm Handle Ids are fetched for a given dmi plugin identifier'
+            def result = objectUnderTest.getCmHandleIdsByDmiPluginIdentifier('my-dmi-plugin-identifier')
+        then: 'result contains the correct cm handle Ids'
+            assert result.contains('PNFDemo')
+            assert result.contains('PNFDemo2')
+            assert result.contains('PNFDemo3')
+
+    }
+
     void mockResponses() {
         cpsDataPersistenceService.queryDataNodes(_, _, '//public-properties[@name=\"Contact\" and @value=\"newemailforstore@bookstore.com\"]/ancestor::cm-handles', _) >> [pnfDemo, pnfDemo2, pnfDemo4]
         cpsDataPersistenceService.queryDataNodes(_, _, '//public-properties[@name=\"wont_match\" and @value=\"wont_match\"]/ancestor::cm-handles', _) >> []
@@ -142,6 +154,9 @@ class CmHandleQueriesSpec extends Specification {
         cpsDataPersistenceService.queryDataNodes(_, _, '//public-properties[@name=\"Contact2\" and @value=\"\"]/ancestor::cm-handles', _) >> []
         cpsDataPersistenceService.queryDataNodes(_, _, '//state[@cm-handle-state=\"READY\"]/ancestor::cm-handles', _) >> [pnfDemo, pnfDemo3]
         cpsDataPersistenceService.queryDataNodes(_, _, '//state[@cm-handle-state=\"LOCKED\"]/ancestor::cm-handles', _) >> [pnfDemo2, pnfDemo4]
+        cpsDataPersistenceService.queryDataNodes('NCMP-Admin','ncmp-dmi-registry','/dmi-registry/cm-handles[@dmi-service-name=\'my-dmi-plugin-identifier\']',OMIT_DESCENDANTS) >> [pnfDemo,pnfDemo2]
+        cpsDataPersistenceService.queryDataNodes('NCMP-Admin','ncmp-dmi-registry','/dmi-registry/cm-handles[@dmi-data-service-name=\'my-dmi-plugin-identifier\']',OMIT_DESCENDANTS) >> [pnfDemo3, pnfDemo4]
+        cpsDataPersistenceService.queryDataNodes('NCMP-Admin','ncmp-dmi-registry','/dmi-registry/cm-handles[@dmi-model-service-name=\'my-dmi-plugin-identifier\']',OMIT_DESCENDANTS) >> [pnfDemo4]
     }
 
     def static createDataNode(dataNodeId) {

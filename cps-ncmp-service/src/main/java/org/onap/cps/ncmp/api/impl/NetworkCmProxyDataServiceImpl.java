@@ -44,11 +44,7 @@ import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations;
 import org.onap.cps.ncmp.api.impl.operations.DmiOperations;
 import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
-import org.onap.cps.ncmp.api.inventory.CmHandleState;
-import org.onap.cps.ncmp.api.inventory.CompositeState;
-import org.onap.cps.ncmp.api.inventory.CompositeStateUtils;
-import org.onap.cps.ncmp.api.inventory.DataStoreSyncState;
-import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
+import org.onap.cps.ncmp.api.inventory.*;
 import org.onap.cps.ncmp.api.models.CmHandleQueryApiParameters;
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse;
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationError;
@@ -79,6 +75,8 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     private final NetworkCmProxyDataServicePropertyHandler networkCmProxyDataServicePropertyHandler;
 
     private final InventoryPersistence inventoryPersistence;
+
+    private final CmHandleQueries cmHandleQueries;
 
     private final NetworkCmProxyCmHandlerQueryService networkCmProxyCmHandlerQueryService;
 
@@ -216,6 +214,17 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             inventoryPersistence.saveCmHandleState(cmHandleId,
                 compositeState);
         }
+    }
+
+    /**
+     * Get all cm handles by DMI plugin identifier
+     *
+     * @param dmiPluginIdentifier DMI plugin identifier
+     * @return collection of cm handle ids
+     */
+    @Override
+    public Set<String> getAllCmHandlesByDmiPluginIdentifier(final String dmiPluginIdentifier) {
+        return cmHandleQueries.getCmHandleIdsByDmiPluginIdentifier(dmiPluginIdentifier);
     }
 
     /**
