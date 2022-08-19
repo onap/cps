@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fb2749dd_bd52662b",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-08-19T14:03:50Z",
+      "side": 1,
+      "message": "Please use Collectors.joining(\", \", \"[\", \"] \u0026 quot;) \n\nsothat it would be easy to read ass xpaths\u0027s: [xpath1, xpath2, ...]",
+      "range": {
+        "startLine": 320,
+        "startChar": 75,
+        "endLine": 320,
+        "endChar": 95
+      },
+      "revId": "b8ab2d89a12a054afa00cbccb4d98a19260e5d1c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "27c3babb_0fa96cfc",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-08-19T14:03:50Z",
+      "side": 1,
+      "message": "No need to duplicate a new test we can have  \"where\" clouse and define both the scenario 1. with single data node and 2. another for collection of data nodes. Let \"objectUnderTest.replaceDataNodeTree\" decide the invocation based on scenarios.",
+      "range": {
+        "startLine": 72,
+        "startChar": 3,
+        "endLine": 132,
+        "endChar": 5
+      },
+      "revId": "b8ab2d89a12a054afa00cbccb4d98a19260e5d1c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4d36b324_9e309bca",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-08-19T14:03:50Z",
+      "side": 1,
+      "message": "add javadoc for this method",
+      "range": {
+        "startLine": 101,
+        "startChar": 4,
+        "endLine": 101,
+        "endChar": 114
+      },
+      "revId": "b8ab2d89a12a054afa00cbccb4d98a19260e5d1c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
