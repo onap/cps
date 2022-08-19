@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "6fa91090_b266213e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-19T14:46:30Z",
+      "side": 1,
+      "message": "Heading to be less than 50 chars.\nMove the details to the description section.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 22
+      },
+      "revId": "b8ab2d89a12a054afa00cbccb4d98a19260e5d1c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6fad21f7_62013cc9",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-19T14:46:30Z",
+      "side": 1,
+      "message": "so basically from now, we will be saving the whole batch or none in case of an exception as we are defining transaction boundaries.\nCorrect?",
+      "range": {
+        "startLine": 117,
+        "startChar": 12,
+        "endLine": 117,
+        "endChar": 57
+      },
+      "revId": "b8ab2d89a12a054afa00cbccb4d98a19260e5d1c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fb2749dd_bd52662b",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 2
