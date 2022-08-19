@@ -30,6 +30,7 @@ import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -44,6 +45,7 @@ import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations;
 import org.onap.cps.ncmp.api.impl.operations.DmiOperations;
 import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
+import org.onap.cps.ncmp.api.inventory.CmHandleQueries;
 import org.onap.cps.ncmp.api.inventory.CmHandleState;
 import org.onap.cps.ncmp.api.inventory.CompositeState;
 import org.onap.cps.ncmp.api.inventory.CompositeStateUtils;
@@ -79,6 +81,8 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     private final NetworkCmProxyDataServicePropertyHandler networkCmProxyDataServicePropertyHandler;
 
     private final InventoryPersistence inventoryPersistence;
+
+    private final CmHandleQueries cmHandleQueries;
 
     private final NetworkCmProxyCmHandlerQueryService networkCmProxyCmHandlerQueryService;
 
@@ -216,6 +220,23 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             inventoryPersistence.saveCmHandleState(cmHandleId,
                 compositeState);
         }
+    }
+
+    /**
+     * Get all cm handles by DMI plugin identifier.
+     *
+     * @param dmiPluginIdentifier DMI plugin identifier
+     * @return set of cm handle IDs
+     */
+    @Override
+    public Set<String> getAllCmHandleIdsByDmiPluginIdentifier(final String dmiPluginIdentifier) {
+        final Set<NcmpServiceCmHandle> ncmpServiceCmHandles =
+                cmHandleQueries.getCmHandlesByDmiPluginIdentifier(dmiPluginIdentifier);
+        final Set<String> cmHandleIds = new HashSet<>(ncmpServiceCmHandles.size());
+        ncmpServiceCmHandles.forEach(cmHandle -> {
+            cmHandleIds.add(cmHandle.getCmHandleId());
+        });
+        return cmHandleIds;
     }
 
     /**
