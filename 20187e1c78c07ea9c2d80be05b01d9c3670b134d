@@ -45,6 +45,30 @@
       "revId": "20187e1c78c07ea9c2d80be05b01d9c3670b134d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16da7942_0a9f072e",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/NotificationService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-19T08:18:09Z",
+      "side": 1,
+      "message": "Yup..I agree.\nArguments related to same functionality can be put side by side.\nAlso it looks good to my eyes 😊\nI will do this.",
+      "parentUuid": "61a4064e_e603a17c",
+      "range": {
+        "startLine": 82,
+        "startChar": 52,
+        "endLine": 82,
+        "endChar": 70
+      },
+      "revId": "20187e1c78c07ea9c2d80be05b01d9c3670b134d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
