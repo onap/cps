@@ -23,11 +23,13 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import org.hibernate.StaleStateException
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.entities.AnchorEntity
+import org.onap.cps.spi.entities.DataspaceEntity
 import org.onap.cps.spi.entities.FragmentEntity
 import org.onap.cps.spi.entities.SchemaSetEntity
 import org.onap.cps.spi.entities.YangResourceEntity
 import org.onap.cps.spi.exceptions.ConcurrencyException
 import org.onap.cps.spi.exceptions.DataValidationException
+import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.DataNodeBuilder
 import org.onap.cps.spi.repository.AnchorRepository
 import org.onap.cps.spi.repository.DataspaceRepository
@@ -67,7 +69,7 @@ class CpsDataPersistenceServiceSpec extends Specification {
     )] as Set
 
 
-    def 'Handling of StaleStateException (caused by concurrent updates) during data node tree update.'() {
+    def 'Handling of StaleStateException (caused by concurrent updates) during data node tree update, single data node.'() {
 
         def parentXpath = '/parent-01'
         def myDataspaceName = 'my-dataspace'
@@ -86,7 +88,7 @@ class CpsDataPersistenceServiceSpec extends Specification {
                 return fragmentEntity
             }
         and: 'data node is concurrently updated by another transaction'
-            mockFragmentRepository.save(_) >> { throw new StaleStateException("concurrent updates") }
+            1 * mockFragmentRepository.save(_) >> { throw new StaleStateException("concurrent updates") }
 
         when: 'attempt to update data node'
             objectUnderTest.replaceDataNodeTree(myDataspaceName, myAnchorName, submittedDataNode)
@@ -96,6 +98,37 @@ class CpsDataPersistenceServiceSpec extends Specification {
             assert concurrencyException.getDetails().contains(myDataspaceName)
             assert concurrencyException.getDetails().contains(myAnchorName)
             assert concurrencyException.getDetails().contains(parentXpath)
+    }
+
+    def 'Handling of StaleStateException (caused by concurrent updates) during data node tree update, data node list.'() {
+
+        def parentXpath = '/parent-01'
+        def myDataspaceName = 'my-dataspace'
+        def myAnchorName = 'my-anchor'
+
+        given: 'data node object'
+        def submittedDataNode = new DataNodeBuilder()
+                .withXpath(parentXpath)
+                .withLeaves(['leaf-name': 'leaf-value'])
+                .build()
+        and: 'fragment to be updated'
+        mockFragmentRepository.getByDataspaceAndAnchorAndXpath(_, _, _) >> {
+            def fragmentEntity = new FragmentEntity()
+            fragmentEntity.setXpath(parentXpath)
+            fragmentEntity.setChildFragments(Collections.emptySet())
+            return fragmentEntity
+        }
+        and: 'data node is concurrently updated by another transaction'
+        1 * mockFragmentRepository.saveAll(_) >> { throw new StaleStateException("concurrent updates") }
+
+        when: 'attempt to update data node'
+        objectUnderTest.replaceDataNodeTree(myDataspaceName, myAnchorName, [submittedDataNode])
+
+        then: 'concurrency exception is thrown'
+        def concurrencyException = thrown(ConcurrencyException)
+        assert concurrencyException.getDetails().contains(myDataspaceName)
+        assert concurrencyException.getDetails().contains(myAnchorName)
+        assert concurrencyException.getDetails().contains(parentXpath)
     }
 
     def 'Retrieving a data node with a property JSON value of #scenario'() {
@@ -159,5 +192,20 @@ class CpsDataPersistenceServiceSpec extends Specification {
             objectUnderTest.lockAnchor('mySessionId', 'myDataspaceName', 'myAnchorName', 123L)
         then: 'the session manager method to lock anchor is invoked with same parameters'
             1 * mockSessionManager.lockAnchor('mySessionId', 'myDataspaceName', 'myAnchorName', 123L)
+    }
+
+    def 'replace data node tree: #scenario'(){
+        given: 'mocked responses'
+            mockDataspaceRepository.getByName('dataspaceName') >> new DataspaceEntity(name: 'dataspaceName')
+            mockAnchorRepository.getByDataspaceAndName(new DataspaceEntity(name: 'dataspaceName'), 'anchorName') >> new AnchorEntity(name: 'anchorName')
+            mockFragmentRepository.getByDataspaceAndAnchorAndXpath(_, _, '/test/xpath') >> new FragmentEntity(xpath: '/test/xpath', childFragments: [])
+        when: 'replace data node tree'
+            objectUnderTest.replaceDataNodeTree('dataspaceName', 'anchorName', dataNodes)
+        then: 'call fragment repository save all method'
+            1 * mockFragmentRepository.saveAll(fragmentEntities)
+        where: 'the following Data Type is passed'
+        scenario                         | dataNodes                                                                          || fragmentEntities
+            'empty data node list'       | []                                                                                 || []
+            'one data node in list'      | [new DataNode(xpath: '/test/xpath', leaves: ['id': 'testId'], childDataNodes: [])] || [new FragmentEntity(xpath: '/test/xpath', attributes: '{"id":"testId"}', childFragments: [])]
     }
 }

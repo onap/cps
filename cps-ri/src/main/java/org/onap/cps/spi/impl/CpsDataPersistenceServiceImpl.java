@@ -26,6 +26,7 @@ import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ImmutableSet.Builder;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -104,14 +105,16 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
                                    final Collection<DataNode> newChildren) {
         final FragmentEntity parentFragmentEntity = getFragmentByXpath(dataspaceName, anchorName, parentNodeXpath);
         try {
-            for (final DataNode newChildAsDataNode : newChildren) {
+            final List<FragmentEntity> fragmentEntities = new ArrayList<>();
+            newChildren.forEach(newChildAsDataNode -> {
                 final FragmentEntity newChildAsFragmentEntity = convertToFragmentWithAllDescendants(
                         parentFragmentEntity.getDataspace(),
                         parentFragmentEntity.getAnchor(),
                         newChildAsDataNode);
                 newChildAsFragmentEntity.setParentId(parentFragmentEntity.getId());
-                fragmentRepository.save(newChildAsFragmentEntity);
-            }
+                fragmentEntities.add(newChildAsFragmentEntity);
+            });
+            fragmentRepository.saveAll(fragmentEntities);
         } catch (final DataIntegrityViolationException exception) {
             final List<String> conflictXpaths = newChildren.stream()
                     .map(DataNode::getXpath)
@@ -143,7 +146,8 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
      * @return a Fragment built from current DataNode
      */
     private FragmentEntity convertToFragmentWithAllDescendants(final DataspaceEntity dataspaceEntity,
-                             final AnchorEntity anchorEntity, final DataNode dataNodeToBeConverted) {
+                                                               final AnchorEntity anchorEntity,
+                                                               final DataNode dataNodeToBeConverted) {
         final FragmentEntity parentFragment = toFragmentEntity(dataspaceEntity, anchorEntity, dataNodeToBeConverted);
         final Builder<FragmentEntity> childFragmentsImmutableSetBuilder = ImmutableSet.builder();
         for (final DataNode childDataNode : dataNodeToBeConverted.getChildDataNodes()) {
@@ -289,8 +293,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
 
     @Override
     public void replaceDataNodeTree(final String dataspaceName, final String anchorName, final DataNode dataNode) {
-        final FragmentEntity fragmentEntity = getFragmentByXpath(dataspaceName, anchorName, dataNode.getXpath());
-        replaceDataNodeTree(fragmentEntity, dataNode);
+        final FragmentEntity fragmentEntity = getFragmentEntity(dataspaceName, anchorName, dataNode);
         try {
             fragmentRepository.save(fragmentEntity);
         } catch (final StaleStateException staleStateException) {
@@ -298,6 +301,24 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
                     String.format("dataspace :'%s', Anchor : '%s' and xpath: '%s' is updated by another transaction.",
                             dataspaceName, anchorName, dataNode.getXpath()),
                     staleStateException);
+        }
+    }
+
+    @Override
+    public void replaceDataNodeTree(final String dataspaceName,
+                                    final String anchorName,
+                                    final List<DataNode> dataNodes) {
+        final List<FragmentEntity> fragmentEntities = dataNodes.stream()
+                .map(dataNode -> getFragmentEntity(dataspaceName, anchorName, dataNode))
+                .collect(Collectors.toList());
+        try {
+            fragmentRepository.saveAll(fragmentEntities);
+        } catch (final StaleStateException staleStateException) {
+            throw new ConcurrencyException("Concurrent Transactions",
+                String.format("dataspace :'%s', Anchor : '%s' and xpath's: '%s' are updated by another transaction.",
+                        dataspaceName, anchorName,
+                        dataNodes.stream().map(DataNode::getXpath).collect(Collectors.joining(", ", "[", "]"))),
+                staleStateException);
         }
     }
 
@@ -418,6 +439,13 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             return true;
         }
         return false;
+    }
+
+    private FragmentEntity getFragmentEntity(final String dataspaceName, final String anchorName,
+                                             final DataNode dataNode) {
+        final FragmentEntity fragmentEntity = getFragmentByXpath(dataspaceName, anchorName, dataNode.getXpath());
+        replaceDataNodeTree(fragmentEntity, dataNode);
+        return fragmentEntity;
     }
 
     private boolean deleteAllListElements(final FragmentEntity parentFragmentEntity, final String listXpath) {
