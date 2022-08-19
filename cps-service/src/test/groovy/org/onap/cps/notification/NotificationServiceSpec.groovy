@@ -1,6 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (c) 2021-2022 Bell Canada.
+ *  Modifications Copyright (C) 2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,7 +21,7 @@
 
 package org.onap.cps.notification
 
-import java.time.OffsetDateTime
+import org.onap.cps.api.CpsAdminService
 import org.onap.cps.config.AsyncConfig
 import org.onap.cps.event.model.CpsDataUpdatedEvent
 import org.onap.cps.spi.model.Anchor
@@ -33,6 +34,7 @@ import org.springframework.test.context.ContextConfiguration
 import spock.lang.Shared
 import spock.lang.Specification
 
+import java.time.OffsetDateTime
 import java.util.concurrent.TimeUnit
 
 @SpringBootTest
@@ -48,19 +50,29 @@ class NotificationServiceSpec extends Specification {
     NotificationErrorHandler spyNotificationErrorHandler
     @SpringSpy
     NotificationProperties spyNotificationProperties
+    @SpringBean
+    CpsAdminService mockCpsAdminService = Mock()
 
     @Autowired
     NotificationService objectUnderTest
 
     @Shared
+    def dataspaceName = 'my-dataspace-published'
+    @Shared
+    def anchorName = 'my-anchorname'
+    @Shared
     def anchor = new Anchor('my-anchorname', 'my-dataspace-published', 'my-schemaset-name')
     def myObservedTimestamp = OffsetDateTime.now()
+
+    def setup() {
+        mockCpsAdminService.getAnchor(dataspaceName, anchorName) >> anchor
+    }
 
     def 'Skip sending notification when disabled.'() {
         given: 'notification is disabled'
             spyNotificationProperties.isEnabled() >> false
         when: 'dataUpdatedEvent is received'
-            objectUnderTest.processDataUpdatedEvent(anchor, myObservedTimestamp, '/', Operation.CREATE)
+            objectUnderTest.processDataUpdatedEvent(dataspaceName, anchorName, '/', Operation.CREATE, myObservedTimestamp)
         then: 'the notification is not sent'
             0 * mockNotificationPublisher.sendNotification(_)
     }
@@ -75,8 +87,8 @@ class NotificationServiceSpec extends Specification {
             mockCpsDataUpdatedEventFactory.createCpsDataUpdatedEvent(anchor, myObservedTimestamp, Operation.CREATE) >>
                     cpsDataUpdatedEvent
         when: 'dataUpdatedEvent is received'
-            def future = objectUnderTest.processDataUpdatedEvent(anchor, myObservedTimestamp,
-                    '/', Operation.CREATE)
+            def future = objectUnderTest.processDataUpdatedEvent(dataspaceName, anchorName,
+                '/', Operation.CREATE, myObservedTimestamp)
         and: 'wait for async processing to complete'
             future.get(10, TimeUnit.SECONDS)
         then: 'async process completed successfully'
@@ -97,7 +109,7 @@ class NotificationServiceSpec extends Specification {
             mockCpsDataUpdatedEventFactory.createCpsDataUpdatedEvent(anchor, myObservedTimestamp, expectedOperationInEvent) >>
                     cpsDataUpdatedEvent
         when: 'dataUpdatedEvent is received for #xpath'
-            def future = objectUnderTest.processDataUpdatedEvent(anchor, myObservedTimestamp, xpath, operation)
+            def future = objectUnderTest.processDataUpdatedEvent(dataspaceName, anchorName, xpath, operation, myObservedTimestamp)
         and: 'wait for async processing to complete'
             future.get(10, TimeUnit.SECONDS)
         then: 'async process completed successfully'
@@ -127,7 +139,7 @@ class NotificationServiceSpec extends Specification {
             mockCpsDataUpdatedEventFactory.createCpsDataUpdatedEvent(anchor, myObservedTimestamp, Operation.CREATE) >>
                     { throw new Exception("Could not create event") }
         when: 'event is sent for processing'
-            def future = objectUnderTest.processDataUpdatedEvent(anchor, myObservedTimestamp, '/', Operation.CREATE)
+            def future = objectUnderTest.processDataUpdatedEvent(dataspaceName, anchorName, '/', Operation.CREATE, myObservedTimestamp)
         and: 'wait for async processing to complete'
             future.get(10, TimeUnit.SECONDS)
         then: 'async process completed successfully'
