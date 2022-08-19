@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c87d108d_eca76260",
+        "filename": "docs/cps-events.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-19T10:07:52Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 28
+      },
+      "revId": "5a94cd8f3aeee54672260d007d4559808ad27be3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "50a518a2_574957fe",
+        "filename": "docs/cps-events.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-19T10:07:52Z",
+      "side": 1,
+      "message": "LCM events for CM Handles are published when a CM Handle is created, deleted or another change in the cm handle state occurs.",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 55
+      },
+      "revId": "5a94cd8f3aeee54672260d007d4559808ad27be3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f6a17bfd_ddf834c4",
+        "filename": "docs/cps-events.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-19T10:07:52Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 25,
+        "startChar": 57,
+        "endLine": 29,
+        "endChar": 98
+      },
+      "revId": "5a94cd8f3aeee54672260d007d4559808ad27be3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
