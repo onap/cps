@@ -20,12 +20,14 @@
 
 package org.onap.cps.spi.repository;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.cpspath.parser.CpsPathPrefixType;
 import org.onap.cps.cpspath.parser.CpsPathQuery;
@@ -43,8 +45,9 @@ public class FragmentRepositoryCpsPathQueryImpl implements FragmentRepositoryCps
     private final JsonObjectMapper jsonObjectMapper;
 
     @Override
+    @Transactional
     public List<FragmentEntity> findByAnchorAndCpsPath(final int anchorId, final CpsPathQuery cpsPathQuery) {
-        final var sqlStringBuilder = new StringBuilder("SELECT * FROM FRAGMENT WHERE anchor_id = :anchorId");
+        final StringBuilder sqlStringBuilder = new StringBuilder("SELECT * FROM FRAGMENT WHERE anchor_id = :anchorId");
         final Map<String, Object> queryParameters = new HashMap<>();
         queryParameters.put("anchorId", anchorId);
         sqlStringBuilder.append(" AND xpath SIMILAR TO :xpathRegex");
@@ -57,13 +60,23 @@ public class FragmentRepositoryCpsPathQueryImpl implements FragmentRepositoryCps
         }
 
         addTextFunctionCondition(cpsPathQuery, sqlStringBuilder, queryParameters);
-        final var query = entityManager.createNativeQuery(sqlStringBuilder.toString(), FragmentEntity.class);
+        final Query query = entityManager.createNativeQuery(sqlStringBuilder.toString(), FragmentEntity.class);
         setQueryParameters(query, queryParameters);
-        return query.getResultList();
+        return getFragmentEntitiesAsStream(query);
+    }
+
+    private List<FragmentEntity> getFragmentEntitiesAsStream(final Query query) {
+        final List<FragmentEntity> fragmentEntities = new ArrayList<>();
+        query.getResultStream().forEach(fragmentEntity -> {
+            fragmentEntities.add((FragmentEntity) fragmentEntity);
+            entityManager.detach(fragmentEntity);
+        });
+
+        return fragmentEntities;
     }
 
     private static String getSimilarToXpathSqlRegex(final CpsPathQuery cpsPathQuery) {
-        final var xpathRegexBuilder = new StringBuilder();
+        final StringBuilder xpathRegexBuilder = new StringBuilder();
         if (CpsPathPrefixType.ABSOLUTE.equals(cpsPathQuery.getCpsPathPrefixType())) {
             xpathRegexBuilder.append(escapeXpath(cpsPathQuery.getXpathPrefix()));
         } else {
@@ -96,7 +109,7 @@ public class FragmentRepositoryCpsPathQueryImpl implements FragmentRepositoryCps
                 .append(" OR attributes @> jsonb_build_object(:textLeafName, json_build_array(:textValue))");
             queryParameters.put("textLeafName", cpsPathQuery.getTextFunctionConditionLeafName());
             queryParameters.put("textValue", cpsPathQuery.getTextFunctionConditionValue());
-            final var textValueAsInt = getTextValueAsInt(cpsPathQuery);
+            final Integer textValueAsInt = getTextValueAsInt(cpsPathQuery);
             if (textValueAsInt != null) {
                 sqlStringBuilder.append(" OR attributes @> jsonb_build_object(:textLeafName, :textValueAsInt)");
                 sqlStringBuilder
