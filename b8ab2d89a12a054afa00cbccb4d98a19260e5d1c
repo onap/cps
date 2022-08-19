@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "ebc94c42_bd2fc461",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-08-19T15:08:18Z",
+      "side": 1,
+      "message": "Your concern is valid, as transaction boundaries are wide it would be caughe by org.onap.cps.ncmp.api.inventory.InventoryPersistence#saveCmHandleStates and retried later iterations.",
+      "parentUuid": "6fad21f7_62013cc9",
+      "range": {
+        "startLine": 117,
+        "startChar": 12,
+        "endLine": 117,
+        "endChar": 57
+      },
+      "revId": "b8ab2d89a12a054afa00cbccb4d98a19260e5d1c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fb2749dd_bd52662b",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 2
