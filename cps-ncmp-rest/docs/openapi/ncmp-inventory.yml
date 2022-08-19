@@ -97,3 +97,28 @@ updateDmiRegistration:
                   "errorText": "cm-handle has an invalid character(s) in id"
                 }
               ]
+
+getAllCmHandlesForRegisteredDmi:
+  get:
+    description: Get all cm handles for a registered DMI plugin
+    tags:
+      - network-cm-proxy-inventory
+    summary: Get all cm handles for a registered DMI plugin (DMI plugin, DMI data plugin, DMI model plugin)
+    operationId: getAllCmHandlesForRegisteredDmi
+    parameters:
+      - $ref: 'components.yaml#/components/parameters/dmiPluginIdentifierInQuery'
+    responses:
+      200:
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+      401:
+        $ref: 'components.yaml#/components/responses/Unauthorized'
+      403:
+        $ref: 'components.yaml#/components/responses/Forbidden'
+      500:
+        $ref: 'components.yaml#/components/responses/InternalServerError'

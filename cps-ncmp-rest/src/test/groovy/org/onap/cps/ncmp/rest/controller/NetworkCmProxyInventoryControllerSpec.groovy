@@ -41,6 +41,7 @@ import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import spock.lang.Specification
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 
 @WebMvcTest(NetworkCmProxyInventoryController)
@@ -156,6 +157,24 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
             'create update failed' | failedResponse('cm-handle-1')  | failedResponse('cm-handle-2')  | successResponse('cm-handle-3') || [failedRestResponse('cm-handle-1')] | [failedRestResponse('cm-handle-2')] | []
             'create delete failed' | failedResponse('cm-handle-1')  | successResponse('cm-handle-2') | failedResponse('cm-handle-3')  || [failedRestResponse('cm-handle-1')] | []                                  | [failedRestResponse('cm-handle-3')]
             'update delete failed' | successResponse('cm-handle-1') | failedResponse('cm-handle-2')  | failedResponse('cm-handle-3')  || []                                  | [failedRestResponse('cm-handle-2')] | [failedRestResponse('cm-handle-3')]
+    }
+
+    def 'Get all cm handles by DMI plugin identifier.'() {
+        given: 'an endpoint'
+            def getUrl = "$ncmpBasePathV1/ch/cmHandles?dmi-plugin-identifier=some-dmi-plugin-identifier"
+        and: 'the service layer returns a collection of cm handle IDs'
+            1 * mockNetworkCmProxyDataService.getAllCmHandlesByDmiPluginIdentifier('some-dmi-plugin-identifier')
+                    >> ['cm-handle-1,cm-handle-2']
+        when: 'the request is performed'
+            def response = mvc.perform(
+                    get(getUrl)
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .accept(MediaType.APPLICATION_JSON_VALUE)
+            ).andReturn().response
+            println(response)
+        then: 'then response matches the result returned by the service layer'
+            assert response.contentAsString == '["cm-handle-1,cm-handle-2"]'
+
     }
 
     def failedRestResponse(cmHandle) {
