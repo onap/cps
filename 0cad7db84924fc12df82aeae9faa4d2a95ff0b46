@@ -48,6 +48,54 @@
     },
     {
       "key": {
+        "uuid": "cf72ed04_c2fec2e9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-19T10:23:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e823da95_7123c416",
+      "range": {
+        "startLine": 18,
+        "startChar": 5,
+        "endLine": 18,
+        "endChar": 6
+      },
+      "revId": "0cad7db84924fc12df82aeae9faa4d2a95ff0b46",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7cd6ed4a_bc1b362d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-19T10:23:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c190777_4d013c41",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 19
+      },
+      "revId": "0cad7db84924fc12df82aeae9faa4d2a95ff0b46",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "52f57abb_a01b1536",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
         "patchSetId": 3
@@ -68,6 +116,30 @@
       "revId": "0cad7db84924fc12df82aeae9faa4d2a95ff0b46",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d3fc1958_9925f870",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-19T10:23:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "52f57abb_a01b1536",
+      "range": {
+        "startLine": 361,
+        "startChar": 65,
+        "endLine": 361,
+        "endChar": 72
+      },
+      "revId": "0cad7db84924fc12df82aeae9faa4d2a95ff0b46",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "ab5ce424_643b0b99",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 403,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-19T10:23:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1245b938_5d7cbeeb",
+      "range": {
+        "startLine": 403,
+        "startChar": 58,
+        "endLine": 403,
+        "endChar": 65
+      },
+      "revId": "0cad7db84924fc12df82aeae9faa4d2a95ff0b46",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a32df260_045a9298",
         "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationServiceSpec.groovy",
         "patchSetId": 3
@@ -114,6 +210,30 @@
       "revId": "0cad7db84924fc12df82aeae9faa4d2a95ff0b46",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f3dc2f6_e02ee1fe",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationServiceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-19T10:23:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a32df260_045a9298",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 78
+      },
+      "revId": "0cad7db84924fc12df82aeae9faa4d2a95ff0b46",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
