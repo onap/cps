@@ -22,12 +22,16 @@ package org.onap.cps.ncmp.api.inventory;
 
 import static org.onap.cps.ncmp.api.impl.utils.YangDataConverter.convertYangModelCmHandleToNcmpServiceCmHandle;
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
+import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
@@ -133,7 +137,7 @@ public class CmHandleQueries {
      */
     public List<DataNode> getCmHandlesByIdAndState(final String cmHandleId, final CmHandleState cmHandleState) {
         return getCmHandleDataNodesByCpsPath("//cm-handles[@id='" + cmHandleId + "']/state[@cm-handle-state=\""
-                + cmHandleState + "\"]", FetchDescendantsOption.OMIT_DESCENDANTS);
+                + cmHandleState + "\"]", OMIT_DESCENDANTS);
     }
 
     /**
@@ -143,7 +147,7 @@ public class CmHandleQueries {
      */
     public List<DataNode> getCmHandlesByOperationalSyncState(final DataStoreSyncState dataStoreSyncState) {
         return getCmHandleDataNodesByCpsPath("//state/datastores" + "/operational[@sync-state=\""
-                + dataStoreSyncState + "\"]", FetchDescendantsOption.OMIT_DESCENDANTS);
+                + dataStoreSyncState + "\"]", OMIT_DESCENDANTS);
     }
 
     private Map<String, NcmpServiceCmHandle> collectDataNodesToNcmpServiceCmHandles(
@@ -159,6 +163,37 @@ public class CmHandleQueries {
     private NcmpServiceCmHandle createNcmpServiceCmHandle(final DataNode dataNode) {
         return convertYangModelCmHandleToNcmpServiceCmHandle(YangDataConverter
             .convertCmHandleToYangModel(dataNode, dataNode.getLeaves().get("id").toString()));
+    }
+
+    /**
+     * Get all cm handle IDs by DMI plugin identifier
+     *
+     * @param dmiPluginIdentifier DMI plugin identifier
+     * @return collection of cm handle IDs
+     */
+    public Set<String> getCmHandleIdsByDmiPluginIdentifier(final String dmiPluginIdentifier) {
+        final List<DataNode> dataNodes = new ArrayList<>();
+        final Set<String> cmHandleIds = new HashSet<>();
+
+        for(DmiProperty dmiProperty : DmiProperty.values())
+        {
+            dataNodes.addAll(getCmHandlesByDmiPluginIdentifier(
+                    dmiPluginIdentifier,
+                    dmiProperty.getDmiPropertyKey()));
+        }
+
+         dataNodes.forEach(item-> {
+            cmHandleIds.add((item.getLeaves().get("id").toString()));
+        });
+
+        return cmHandleIds;
+    }
+
+    private List<DataNode> getCmHandlesByDmiPluginIdentifier(final String dmiPluginIdentifier,
+                                                             final String dmiProperty){
+        return cpsDataPersistenceService.queryDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
+                "/dmi-registry/cm-handles[@" + dmiProperty + "='" + dmiPluginIdentifier + "']",
+                OMIT_DESCENDANTS);
     }
 }
 
