@@ -162,4 +162,12 @@ public interface NetworkCmProxyDataService {
      * @param dataSyncEnabled data sync enabled flag
      */
     void setDataSyncEnabled(String cmHandleId, boolean dataSyncEnabled);
+
+    /**
+     * Get all cm handles by DMI plugin identifier.
+     *
+     * @param dmiPluginIdentifier DMI plugin identifier
+     * @return collection of cm handles
+     */
+    Set<NcmpServiceCmHandle> getAllCmHandlesByDmiPluginIdentifier(String dmiPluginIdentifier);
 }

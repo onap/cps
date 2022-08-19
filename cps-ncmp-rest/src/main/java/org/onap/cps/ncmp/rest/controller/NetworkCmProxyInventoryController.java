@@ -22,6 +22,7 @@
 package org.onap.cps.ncmp.rest.controller;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -29,10 +30,12 @@ import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse;
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.Status;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistrationResponse;
+import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.ncmp.rest.api.NetworkCmProxyInventoryApi;
 import org.onap.cps.ncmp.rest.model.CmHandlerRegistrationErrorResponse;
 import org.onap.cps.ncmp.rest.model.DmiPluginRegistrationErrorResponse;
 import org.onap.cps.ncmp.rest.model.RestDmiPluginRegistration;
+import org.onap.cps.ncmp.rest.model.RestOutputCmHandle;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,6 +48,25 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
 
     private final NetworkCmProxyDataService networkCmProxyDataService;
     private final NcmpRestInputMapper ncmpRestInputMapper;
+
+    /**
+     * Get all cm-handles under a registered DMI plugin.
+     *
+     * @param dmiPluginIdentifier DMI plugin identifier
+     * @return list of cm handles
+     */
+    @Override
+    public ResponseEntity<List<RestOutputCmHandle>> getAllCmHandlesForRegisteredDmi(final String dmiPluginIdentifier) {
+        final Set<NcmpServiceCmHandle> cmHandles =
+                networkCmProxyDataService.getAllCmHandlesByDmiPluginIdentifier(dmiPluginIdentifier);
+        final RestOutputCmHandle restOutputCmHandle = new RestOutputCmHandle();
+        final List<RestOutputCmHandle> outputCmHandles =
+                cmHandles.stream().map(cmHandle -> {
+                    restOutputCmHandle.setCmHandle(cmHandle.getCmHandleId());
+                    return restOutputCmHandle;
+                }).collect(Collectors.toList());
+        return ResponseEntity.ok(outputCmHandles);
+    }
 
     /**
      * Update DMI Plugin Registration (used for first registration also).
@@ -69,7 +91,6 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
         return dmiPluginRegistrationErrorResponse.getFailedCreatedCmHandles().isEmpty()
             && dmiPluginRegistrationErrorResponse.getFailedUpdatedCmHandles().isEmpty()
             && dmiPluginRegistrationErrorResponse.getFailedRemovedCmHandles().isEmpty();
-
     }
 
     private DmiPluginRegistrationErrorResponse getFailureRegistrationResponse(
@@ -103,5 +124,3 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
     }
 
 }
-
-
