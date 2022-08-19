@@ -69,6 +69,30 @@
       "revId": "20187e1c78c07ea9c2d80be05b01d9c3670b134d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "79c26bd3_53b879b4",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/NotificationService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-19T09:10:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "16da7942_0a9f072e",
+      "range": {
+        "startLine": 82,
+        "startChar": 52,
+        "endLine": 82,
+        "endChar": 70
+      },
+      "revId": "20187e1c78c07ea9c2d80be05b01d9c3670b134d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
