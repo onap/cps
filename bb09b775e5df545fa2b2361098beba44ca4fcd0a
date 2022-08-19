@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6969212c_b8e9711e",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-08-19T10:34:12Z",
+      "side": 1,
+      "message": "Add Nordix modification copyright",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 40
+      },
+      "revId": "bb09b775e5df545fa2b2361098beba44ca4fcd0a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
