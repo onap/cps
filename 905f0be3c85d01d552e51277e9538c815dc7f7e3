@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "69025d67_953de7d4",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/SchemaSetYangResourceRepositoryImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-22T12:27:46Z",
+      "side": 1,
+      "message": "yeah is fine, this is how prepared statemnets work. sometime if there are many variabel I use constants to clarify them but since there are only 2 here I think it is OK",
+      "parentUuid": "2bb89738_8d0964e9",
+      "range": {
+        "startLine": 47,
+        "startChar": 20,
+        "endLine": 48,
+        "endChar": 65
+      },
+      "revId": "905f0be3c85d01d552e51277e9538c815dc7f7e3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "97603575_169fb4e1",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceIntegrationSpec.groovy",
         "patchSetId": 5
@@ -68,6 +92,30 @@
       "revId": "905f0be3c85d01d552e51277e9538c815dc7f7e3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "555f2ad5_86914f16",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-22T12:27:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97603575_169fb4e1",
+      "range": {
+        "startLine": 93,
+        "startChar": 15,
+        "endLine": 93,
+        "endChar": 19
+      },
+      "revId": "905f0be3c85d01d552e51277e9538c815dc7f7e3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -94,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "12b6bacc_eab3aae0",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-22T12:27:46Z",
+      "side": 1,
+      "message": "nope, it is validated somehwere needs to be a date!",
+      "parentUuid": "5da303ab_668b5f87",
+      "range": {
+        "startLine": 107,
+        "startChar": 37,
+        "endLine": 107,
+        "endChar": 73
+      },
+      "revId": "905f0be3c85d01d552e51277e9538c815dc7f7e3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c869d61c_58835cae",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceIntegrationSpec.groovy",
         "patchSetId": 5
@@ -114,6 +186,30 @@
       "revId": "905f0be3c85d01d552e51277e9538c815dc7f7e3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aeda40e7_29f99d2b",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-22T12:27:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c869d61c_58835cae",
+      "range": {
+        "startLine": 121,
+        "startChar": 14,
+        "endLine": 121,
+        "endChar": 67
+      },
+      "revId": "905f0be3c85d01d552e51277e9538c815dc7f7e3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
