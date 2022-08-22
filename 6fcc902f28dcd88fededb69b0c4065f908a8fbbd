@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "b2f7b51e_fce73e45",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-08-22T10:52:54Z",
+      "side": 1,
+      "message": "I think this jira needs to be added to release-notes.rst as it is an API change.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 51
+      },
+      "revId": "6fcc902f28dcd88fededb69b0c4065f908a8fbbd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "334080b5_67ee29bf",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
         "patchSetId": 3
