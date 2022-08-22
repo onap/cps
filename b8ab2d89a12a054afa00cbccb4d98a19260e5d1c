@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "34cb33c0_d1a4823c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-08-22T08:21:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6fa91090_b266213e",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 22
+      },
+      "revId": "b8ab2d89a12a054afa00cbccb4d98a19260e5d1c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6fad21f7_62013cc9",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 2
@@ -95,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "95df9ebf_9045cafd",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-08-22T08:21:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fb2749dd_bd52662b",
+      "range": {
+        "startLine": 320,
+        "startChar": 75,
+        "endLine": 320,
+        "endChar": 95
+      },
+      "revId": "b8ab2d89a12a054afa00cbccb4d98a19260e5d1c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "27c3babb_0fa96cfc",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
         "patchSetId": 2
@@ -106,6 +154,30 @@
       "writtenOn": "2022-08-19T14:03:50Z",
       "side": 1,
       "message": "No need to duplicate a new test we can have  \"where\" clouse and define both the scenario 1. with single data node and 2. another for collection of data nodes. Let \"objectUnderTest.replaceDataNodeTree\" decide the invocation based on scenarios.",
+      "range": {
+        "startLine": 72,
+        "startChar": 3,
+        "endLine": 132,
+        "endChar": 5
+      },
+      "revId": "b8ab2d89a12a054afa00cbccb4d98a19260e5d1c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9cda4d7e_f3835366",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-08-22T08:21:09Z",
+      "side": 1,
+      "message": "We call different \"overloaded\" methods from this test, I\u0027m not sure it, can work.",
+      "parentUuid": "27c3babb_0fa96cfc",
       "range": {
         "startLine": 72,
         "startChar": 3,
@@ -138,6 +210,30 @@
       "revId": "b8ab2d89a12a054afa00cbccb4d98a19260e5d1c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e3eae1c6_39abe10a",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-08-22T08:21:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4d36b324_9e309bca",
+      "range": {
+        "startLine": 101,
+        "startChar": 4,
+        "endLine": 101,
+        "endChar": 114
+      },
+      "revId": "b8ab2d89a12a054afa00cbccb4d98a19260e5d1c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
