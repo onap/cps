@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d8a11ae2_1b8876a1",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/SchemaSetYangResourceRepositoryImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-08-22T10:13:45Z",
+      "side": 1,
+      "message": "Extra space. Will it affect values being inserted or are values trimmed?",
+      "range": {
+        "startLine": 44,
+        "startChar": 97,
+        "endLine": 44,
+        "endChar": 98
+      },
+      "revId": "905f0be3c85d01d552e51277e9538c815dc7f7e3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2bb89738_8d0964e9",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/SchemaSetYangResourceRepositoryImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-08-22T10:13:45Z",
+      "side": 1,
+      "message": "Should we be hardcoding these values?",
+      "range": {
+        "startLine": 47,
+        "startChar": 20,
+        "endLine": 48,
+        "endChar": 65
+      },
+      "revId": "905f0be3c85d01d552e51277e9538c815dc7f7e3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "97603575_169fb4e1",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-08-22T10:13:45Z",
+      "side": 1,
+      "message": "a new",
+      "range": {
+        "startLine": 93,
+        "startChar": 15,
+        "endLine": 93,
+        "endChar": 19
+      },
+      "revId": "905f0be3c85d01d552e51277e9538c815dc7f7e3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5da303ab_668b5f87",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-08-22T10:13:45Z",
+      "side": 1,
+      "message": "NB: Could used UUID",
+      "range": {
+        "startLine": 107,
+        "startChar": 37,
+        "endLine": 107,
+        "endChar": 73
+      },
+      "revId": "905f0be3c85d01d552e51277e9538c815dc7f7e3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c869d61c_58835cae",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-08-22T10:13:45Z",
+      "side": 1,
+      "message": "there are more existing modules in the db than batch size (100)",
+      "range": {
+        "startLine": 121,
+        "startChar": 14,
+        "endLine": 121,
+        "endChar": 67
+      },
+      "revId": "905f0be3c85d01d552e51277e9538c815dc7f7e3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
