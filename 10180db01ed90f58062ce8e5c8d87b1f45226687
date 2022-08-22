@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1462fd29_2e01deeb",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 464,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-22T16:58:32Z",
+      "side": 1,
+      "message": "add an example please",
+      "range": {
+        "startLine": 464,
+        "startChar": 4,
+        "endLine": 464,
+        "endChar": 30
+      },
+      "revId": "10180db01ed90f58062ce8e5c8d87b1f45226687",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "42864855_a1133e08",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp-inventory.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-22T16:58:32Z",
+      "side": 1,
+      "message": "no need to put this s in brackets",
+      "range": {
+        "startLine": 103,
+        "startChar": 34,
+        "endLine": 103,
+        "endChar": 37
+      },
+      "revId": "10180db01ed90f58062ce8e5c8d87b1f45226687",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
