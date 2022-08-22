@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "af2d7402_a7e03995",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-22T11:26:42Z",
+      "side": 1,
+      "message": "NB: can be replaced with actual type as we are touching this file.",
+      "range": {
+        "startLine": 166,
+        "startChar": 14,
+        "endLine": 166,
+        "endChar": 17
+      },
+      "revId": "f2dad933f393ddc9cb038aec7e80b50e0717ed79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "05c8a217_3c8f1696",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-22T11:26:42Z",
+      "side": 1,
+      "message": "NB: same as above.",
+      "range": {
+        "startLine": 167,
+        "startChar": 14,
+        "endLine": 167,
+        "endChar": 17
+      },
+      "revId": "f2dad933f393ddc9cb038aec7e80b50e0717ed79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eee42ca6_2d3c674c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/YangResourceNativeRepositoryImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-22T11:26:42Z",
+      "side": 1,
+      "message": "NB: I think we can as well mark this as @Repository for the spring container to act accordingly.",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 8
+      },
+      "revId": "f2dad933f393ddc9cb038aec7e80b50e0717ed79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a981242_286e90e1",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/YangResourceNativeRepositoryImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-22T11:26:42Z",
+      "side": 1,
+      "message": "NB: does it need to be getResourceIdsByModuleReference(s) ?? \nas the input param is plural/collection.",
+      "range": {
+        "startLine": 42,
+        "startChar": 22,
+        "endLine": 42,
+        "endChar": 53
+      },
+      "revId": "f2dad933f393ddc9cb038aec7e80b50e0717ed79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
