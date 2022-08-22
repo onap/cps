@@ -22,6 +22,30 @@
       "revId": "0477db96626e1bfdc64d14ab1a2a3084b40f805a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5d861367_b0ec43c7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CmHandleQueries.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-08-22T08:54:26Z",
+      "side": 1,
+      "message": "I see what you mean, it can\u0027t right now because the condition where there is no query to execute has been handled on line 93 but I think I should add an extra check anyway",
+      "parentUuid": "4c57b9e7_c6a4f73e",
+      "range": {
+        "startLine": 94,
+        "startChar": 19,
+        "endLine": 94,
+        "endChar": 38
+      },
+      "revId": "0477db96626e1bfdc64d14ab1a2a3084b40f805a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
