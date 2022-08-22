@@ -46,6 +46,30 @@
       "revId": "0477db96626e1bfdc64d14ab1a2a3084b40f805a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "021925d6_d2741baf",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CmHandleQueries.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-22T08:55:44Z",
+      "side": 1,
+      "message": "I see this in NetworkCmProxyCmHandlerQueryServiceImpl.java:\n        if (combinedQueryResult \u003d\u003d NO_QUERY_TO_EXECUTE) {\n            return moduleNameQueryResult;\n        }\n\nso it loosk OK to me, just focus on the testwar and check all branches are covered, if so I am 99.9% it is OK",
+      "parentUuid": "4c57b9e7_c6a4f73e",
+      "range": {
+        "startLine": 94,
+        "startChar": 19,
+        "endLine": 94,
+        "endChar": 38
+      },
+      "revId": "0477db96626e1bfdc64d14ab1a2a3084b40f805a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
