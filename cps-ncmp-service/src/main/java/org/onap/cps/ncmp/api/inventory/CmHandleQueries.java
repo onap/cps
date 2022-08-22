@@ -22,6 +22,7 @@ package org.onap.cps.ncmp.api.inventory;
 
 import static org.onap.cps.ncmp.api.impl.utils.YangDataConverter.convertYangModelCmHandleToNcmpServiceCmHandle;
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
+import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -65,7 +66,7 @@ public class CmHandleQueries {
             final String cpsPath = "//public-properties[@name=\"" + publicPropertyQueryPair.getKey()
                 + "\" and @value=\"" + publicPropertyQueryPair.getValue() + "\"]";
 
-            final Collection<DataNode> dataNodes = getCmHandleDataNodesByCpsPath(cpsPath, INCLUDE_ALL_DESCENDANTS);
+            final Collection<DataNode> dataNodes = queryCmHandleDataNodesByCpsPath(cpsPath, INCLUDE_ALL_DESCENDANTS);
             if (cmHandleIdToNcmpServiceCmHandles == null) {
                 cmHandleIdToNcmpServiceCmHandles = collectDataNodesToNcmpServiceCmHandles(dataNodes);
             } else {
@@ -108,8 +109,8 @@ public class CmHandleQueries {
      * @param cmHandleState cm handle state
      * @return a list of cm handles
      */
-    public List<DataNode> getCmHandlesByState(final CmHandleState cmHandleState) {
-        return getCmHandleDataNodesByCpsPath("//state[@cm-handle-state=\"" + cmHandleState + "\"]",
+    public List<DataNode> queryCmHandlesByState(final CmHandleState cmHandleState) {
+        return queryCmHandleDataNodesByCpsPath("//state[@cm-handle-state=\"" + cmHandleState + "\"]",
             INCLUDE_ALL_DESCENDANTS);
     }
 
@@ -119,21 +120,23 @@ public class CmHandleQueries {
      * @param cpsPath cps path for which the cmHandle is requested
      * @return a list of data nodes representing the cm handles.
      */
-    public List<DataNode> getCmHandleDataNodesByCpsPath(final String cpsPath,
-                                                        final FetchDescendantsOption fetchDescendantsOption) {
+    public List<DataNode> queryCmHandleDataNodesByCpsPath(final String cpsPath,
+                                                          final FetchDescendantsOption fetchDescendantsOption) {
         return cpsDataPersistenceService.queryDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
             cpsPath + ANCESTOR_CM_HANDLES, fetchDescendantsOption);
     }
 
     /**
-     * Method which returns cm handles by the cm handle id and state.
+     * Method to check the state of a cm handle with given id.
+     *
      * @param cmHandleId cm handle id
-     * @param cmHandleState cm handle state
-     * @return a list of cm handles
+     * @param requiredCmHandleState the required state of the cm handle
+     * @return a boolean, true if the state is equal to the required state
      */
-    public List<DataNode> getCmHandlesByIdAndState(final String cmHandleId, final CmHandleState cmHandleState) {
-        return getCmHandleDataNodesByCpsPath("//cm-handles[@id='" + cmHandleId + "']/state[@cm-handle-state=\""
-                + cmHandleState + "\"]", FetchDescendantsOption.OMIT_DESCENDANTS);
+    public boolean cmHandleHasState(final String cmHandleId, final CmHandleState requiredCmHandleState) {
+        final DataNode stateDataNode = getCmHandleState(cmHandleId);
+        final String cmHandleStateAsString = (String) stateDataNode.getLeaves().get("cm-handle-state");
+        return CmHandleState.valueOf(cmHandleStateAsString).equals(requiredCmHandleState);
     }
 
     /**
@@ -141,8 +144,8 @@ public class CmHandleQueries {
      * @param dataStoreSyncState sync state
      * @return a list of cm handles
      */
-    public List<DataNode> getCmHandlesByOperationalSyncState(final DataStoreSyncState dataStoreSyncState) {
-        return getCmHandleDataNodesByCpsPath("//state/datastores" + "/operational[@sync-state=\""
+    public List<DataNode> queryCmHandlesByOperationalSyncState(final DataStoreSyncState dataStoreSyncState) {
+        return queryCmHandleDataNodesByCpsPath("//state/datastores" + "/operational[@sync-state=\""
                 + dataStoreSyncState + "\"]", FetchDescendantsOption.OMIT_DESCENDANTS);
     }
 
@@ -159,6 +162,12 @@ public class CmHandleQueries {
     private NcmpServiceCmHandle createNcmpServiceCmHandle(final DataNode dataNode) {
         return convertYangModelCmHandleToNcmpServiceCmHandle(YangDataConverter
             .convertCmHandleToYangModel(dataNode, dataNode.getLeaves().get("id").toString()));
+    }
+
+    private DataNode getCmHandleState(final String cmHandleId) {
+        final String xpath = "/dmi-registry/cm-handles[@id='" + cmHandleId + "']/state";
+        return cpsDataPersistenceService.getDataNode(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
+                xpath, OMIT_DESCENDANTS);
     }
 }
 

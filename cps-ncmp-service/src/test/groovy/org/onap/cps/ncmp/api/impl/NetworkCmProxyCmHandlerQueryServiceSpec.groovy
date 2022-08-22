@@ -21,7 +21,6 @@
 package org.onap.cps.ncmp.api.impl
 
 import org.onap.cps.cpspath.parser.PathParsingException
-import org.onap.cps.ncmp.api.NetworkCmProxyCmHandlerQueryService
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence
 import org.onap.cps.ncmp.api.inventory.CmHandleQueries
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
@@ -52,7 +51,7 @@ class NetworkCmProxyCmHandlerQueryServiceSpec extends Specification {
             def conditionProperties = createConditionProperties('cmHandleWithCpsPath', [['cpsPath' : '/some/cps/path']])
             cmHandleQueryParameters.setCmHandleQueryParameters([conditionProperties])
         and: 'cmHandleQueries returns a non null query result'
-            cmHandleQueries.getCmHandleDataNodesByCpsPath('/some/cps/path', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> [new DataNode(leaves: ['id':'some-cmhandle-id'])]
+            cmHandleQueries.queryCmHandleDataNodesByCpsPath('/some/cps/path', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> [new DataNode(leaves: ['id':'some-cmhandle-id'])]
         and: 'CmHandleQueries returns cmHandles with the relevant query result'
             cmHandleQueries.combineCmHandleQueries(*_) >> ['PNFDemo1': new NcmpServiceCmHandle(cmHandleId: 'PNFDemo1'), 'PNFDemo3': new NcmpServiceCmHandle(cmHandleId: 'PNFDemo3')]
         when: 'the query is executed for both cm handle ids and details'
@@ -70,7 +69,7 @@ class NetworkCmProxyCmHandlerQueryServiceSpec extends Specification {
             def conditionProperties = createConditionProperties('cmHandleWithCpsPath', [['cpsPath' : '/some/cps/path']])
             cmHandleQueryParameters.setCmHandleQueryParameters([conditionProperties])
         and: 'cmHandleQueries throws a path parsing exception'
-            cmHandleQueries.getCmHandleDataNodesByCpsPath('/some/cps/path', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> { throw thrownException }
+            cmHandleQueries.queryCmHandleDataNodesByCpsPath('/some/cps/path', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> { throw thrownException }
         when: 'the query is executed for both cm handle ids and details'
             objectUnderTest.queryCmHandleIds(cmHandleQueryParameters)
             objectUnderTest.queryCmHandles(cmHandleQueryParameters)
@@ -134,7 +133,7 @@ class NetworkCmProxyCmHandlerQueryServiceSpec extends Specification {
         and: 'cmHandles are returned from the module names query'
             inventoryPersistence.queryAnchors(['some-module-name']) >> anchorsForModuleQuery
         and: 'cmHandleQueries returns a datanode result'
-            2 * cmHandleQueries.getCmHandleDataNodesByCpsPath(*_) >> [someCmHandleDataNode]
+            2 * cmHandleQueries.queryCmHandleDataNodesByCpsPath(*_) >> [someCmHandleDataNode]
         when: 'the query is executed for both cm handle ids and details'
             def returnedCmHandlesJustIds = objectUnderTest.queryCmHandleIds(cmHandleQueryParameters)
             def returnedCmHandlesWithData = objectUnderTest.queryCmHandles(cmHandleQueryParameters)
