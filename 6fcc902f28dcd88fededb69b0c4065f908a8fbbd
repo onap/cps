@@ -71,6 +71,30 @@
     },
     {
       "key": {
+        "uuid": "c490b228_2d791649",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/DatastoreType.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 8111
+      },
+      "writtenOn": "2022-08-22T12:20:18Z",
+      "side": 1,
+      "message": "Then it will be change to datastoreNameToDatastoreType",
+      "parentUuid": "f327b8b8_4a78262f",
+      "range": {
+        "startLine": 41,
+        "startChar": 52,
+        "endLine": 41,
+        "endChar": 69
+      },
+      "revId": "6fcc902f28dcd88fededb69b0c4065f908a8fbbd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a67ce71_a81b301c",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/DatastoreType.java",
         "patchSetId": 3
@@ -91,6 +115,30 @@
       "revId": "6fcc902f28dcd88fededb69b0c4065f908a8fbbd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6aa2f042_3d8b49aa",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/DatastoreType.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 8111
+      },
+      "writtenOn": "2022-08-22T12:20:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a67ce71_a81b301c",
+      "range": {
+        "startLine": 47,
+        "startChar": 32,
+        "endLine": 47,
+        "endChar": 48
+      },
+      "revId": "6fcc902f28dcd88fededb69b0c4065f908a8fbbd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -283,6 +331,30 @@
     },
     {
       "key": {
+        "uuid": "d4bf9a81_77715b21",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/utils/NcmpDatastoreHandlerUtils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 8111
+      },
+      "writtenOn": "2022-08-22T12:20:18Z",
+      "side": 1,
+      "message": "I mean the check is there but its not throwing an exception as it is tested, am also not sure it is needed?",
+      "parentUuid": "2a576cb5_0d029dee",
+      "range": {
+        "startLine": 26,
+        "startChar": 13,
+        "endLine": 26,
+        "endChar": 39
+      },
+      "revId": "6fcc902f28dcd88fededb69b0c4065f908a8fbbd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "80f77def_0b2c3322",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
         "patchSetId": 3
@@ -350,6 +422,30 @@
       "revId": "6fcc902f28dcd88fededb69b0c4065f908a8fbbd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dae86c42_31be7c01",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 8111
+      },
+      "writtenOn": "2022-08-22T12:20:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e5fa6af_2c170a8c",
+      "range": {
+        "startLine": 76,
+        "startChar": 31,
+        "endLine": 76,
+        "endChar": 64
+      },
+      "revId": "6fcc902f28dcd88fededb69b0c4065f908a8fbbd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
