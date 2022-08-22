@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9aeb3695_aba31a61",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-22T12:14:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "af2d7402_a7e03995",
+      "range": {
+        "startLine": 166,
+        "startChar": 14,
+        "endLine": 166,
+        "endChar": 17
+      },
+      "revId": "f2dad933f393ddc9cb038aec7e80b50e0717ed79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "05c8a217_3c8f1696",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
         "patchSetId": 6
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "4d0f19bc_4611727e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-22T12:14:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "05c8a217_3c8f1696",
+      "range": {
+        "startLine": 167,
+        "startChar": 14,
+        "endLine": 167,
+        "endChar": 17
+      },
+      "revId": "f2dad933f393ddc9cb038aec7e80b50e0717ed79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "eee42ca6_2d3c674c",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/YangResourceNativeRepositoryImpl.java",
         "patchSetId": 6
@@ -68,6 +116,30 @@
       "revId": "f2dad933f393ddc9cb038aec7e80b50e0717ed79",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0d075800_25e8918a",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/YangResourceNativeRepositoryImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-22T12:14:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eee42ca6_2d3c674c",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 8
+      },
+      "revId": "f2dad933f393ddc9cb038aec7e80b50e0717ed79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -106,6 +178,30 @@
       "side": 1,
       "message": "i meant getResourceIdsByModuleReferences",
       "parentUuid": "7a981242_286e90e1",
+      "range": {
+        "startLine": 42,
+        "startChar": 22,
+        "endLine": 42,
+        "endChar": 53
+      },
+      "revId": "f2dad933f393ddc9cb038aec7e80b50e0717ed79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "708b0847_f25961df",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/YangResourceNativeRepositoryImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-22T12:14:44Z",
+      "side": 1,
+      "message": "i though about that before but wasn\u0027t sure, will do now",
+      "parentUuid": "ae4711b3_18b4db24",
       "range": {
         "startLine": 42,
         "startChar": 22,
