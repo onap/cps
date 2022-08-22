@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5af385e7_72a72ea7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-22T12:55:00Z",
+      "side": 1,
+      "message": "NB: extra line. can be removed.",
+      "revId": "a6633c02eefedcf85639c7d756661f3e756c6634",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
