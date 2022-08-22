@@ -91,6 +91,30 @@
       "revId": "f2dad933f393ddc9cb038aec7e80b50e0717ed79",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae4711b3_18b4db24",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/YangResourceNativeRepositoryImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-22T11:41:32Z",
+      "side": 1,
+      "message": "i meant getResourceIdsByModuleReferences",
+      "parentUuid": "7a981242_286e90e1",
+      "range": {
+        "startLine": 42,
+        "startChar": 22,
+        "endLine": 42,
+        "endChar": 53
+      },
+      "revId": "f2dad933f393ddc9cb038aec7e80b50e0717ed79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
