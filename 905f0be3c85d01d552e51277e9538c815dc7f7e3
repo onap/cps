@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "997147f5_1cc33463",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/SchemaSetYangResourceRepositoryImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-08-22T12:29:05Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "69025d67_953de7d4",
+      "range": {
+        "startLine": 47,
+        "startChar": 20,
+        "endLine": 48,
+        "endChar": 65
+      },
+      "revId": "905f0be3c85d01d552e51277e9538c815dc7f7e3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "97603575_169fb4e1",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceIntegrationSpec.groovy",
         "patchSetId": 5
