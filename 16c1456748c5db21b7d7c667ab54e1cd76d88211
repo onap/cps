@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bdc6a3e3_fef7036e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-08-22T09:58:18Z",
+      "side": 1,
+      "message": "What scenarios would this exception to occur?",
+      "range": {
+        "startLine": 316,
+        "startChar": 9,
+        "endLine": 322,
+        "endChar": 9
+      },
+      "revId": "16c1456748c5db21b7d7c667ab54e1cd76d88211",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
