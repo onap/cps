@@ -258,6 +258,30 @@
     },
     {
       "key": {
+        "uuid": "aa90f57d_79f434cb",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 8111
+      },
+      "writtenOn": "2022-08-22T11:18:09Z",
+      "side": 1,
+      "message": "I think now the code for matter takes cares of these",
+      "parentUuid": "80f77def_0b2c3322",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 82
+      },
+      "revId": "6fcc902f28dcd88fededb69b0c4065f908a8fbbd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4e5fa6af_2c170a8c",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 3
