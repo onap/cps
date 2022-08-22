@@ -94,6 +94,30 @@
     },
     {
       "key": {
+        "uuid": "ba92e73d_27185fb8",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreHandler.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 8111
+      },
+      "writtenOn": "2022-08-22T08:56:12Z",
+      "side": 1,
+      "message": "Okay",
+      "parentUuid": "648c0c87_1e15756e",
+      "range": {
+        "startLine": 45,
+        "startChar": 4,
+        "endLine": 45,
+        "endChar": 11
+      },
+      "revId": "6fcc902f28dcd88fededb69b0c4065f908a8fbbd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8c54f55c_7527bdcd",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreHandlerFactory.java",
         "patchSetId": 3
@@ -117,6 +141,30 @@
     },
     {
       "key": {
+        "uuid": "463de8e8_1d949ed1",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreHandlerFactory.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 8111
+      },
+      "writtenOn": "2022-08-22T08:56:12Z",
+      "side": 1,
+      "message": "Okay",
+      "parentUuid": "8c54f55c_7527bdcd",
+      "range": {
+        "startLine": 30,
+        "startChar": 4,
+        "endLine": 30,
+        "endChar": 46
+      },
+      "revId": "6fcc902f28dcd88fededb69b0c4065f908a8fbbd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1ec5b179_9ab64130",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/utils/NcmpDatastoreHandlerUtils.java",
         "patchSetId": 3
@@ -128,6 +176,30 @@
       "writtenOn": "2022-08-18T15:58:37Z",
       "side": 1,
       "message": "as I commented this class should not be needed\nadd another method to CpsValidator to throw an exception it already has all other logic",
+      "range": {
+        "startLine": 26,
+        "startChar": 13,
+        "endLine": 26,
+        "endChar": 39
+      },
+      "revId": "6fcc902f28dcd88fededb69b0c4065f908a8fbbd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a576cb5_0d029dee",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/utils/NcmpDatastoreHandlerUtils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 8111
+      },
+      "writtenOn": "2022-08-22T08:56:12Z",
+      "side": 1,
+      "message": "Then should i modify the CpsValidator itself for adding the missing check?",
+      "parentUuid": "1ec5b179_9ab64130",
       "range": {
         "startLine": 26,
         "startChar": 13,
