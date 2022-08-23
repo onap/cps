@@ -48,6 +48,47 @@
     },
     {
       "key": {
+        "uuid": "0b7a3a3d_516e1e41",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreHandler.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-23T15:25:59Z",
+      "side": 1,
+      "message": "Yes.isAsyncResponseRequested sounds better.",
+      "parentUuid": "95375348_eb425eb9",
+      "range": {
+        "startLine": 59,
+        "startChar": 22,
+        "endLine": 59,
+        "endChar": 46
+      },
+      "revId": "de56f7bacc69457098965ff045dca25a2641c563",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "608c58ce_fe763b83",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreHandler.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-23T15:25:59Z",
+      "side": 1,
+      "message": "extra space.",
+      "revId": "de56f7bacc69457098965ff045dca25a2641c563",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7eb64a69_c81efdc8",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastorePassthroughRunningHandler.java",
         "patchSetId": 7
