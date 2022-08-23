@@ -35,6 +35,7 @@ import org.onap.cps.ncmp.api.inventory.CompositeStateUtils;
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.ncmp.cmhandle.event.lcm.LcmEvent;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -62,6 +63,16 @@ public class LcmEventsCmHandleStateHandlerImpl implements LcmEventsCmHandleState
             publishLcmEvent(targetNcmpServiceCmHandle, existingNcmpServiceCmHandle);
         }
 
+    }
+
+    @Async("notificationExecutor")
+    @Override
+    public void publishLcmEvent(final NcmpServiceCmHandle targetNcmpServiceCmHandle,
+            final NcmpServiceCmHandle existingNcmpServiceCmHandle) {
+        final String cmHandleId = targetNcmpServiceCmHandle.getCmHandleId();
+        final LcmEvent lcmEvent =
+                lcmEventsCreator.populateLcmEvent(cmHandleId, targetNcmpServiceCmHandle, existingNcmpServiceCmHandle);
+        lcmEventsService.publishLcmEvent(cmHandleId, lcmEvent);
     }
 
     private void updateToSpecifiedCmHandleState(final YangModelCmHandle yangModelCmHandle,
@@ -93,14 +104,6 @@ public class LcmEventsCmHandleStateHandlerImpl implements LcmEventsCmHandleState
         yangModelCmHandle.setCompositeState(new CompositeState());
         setCmHandleState(yangModelCmHandle, ADVISED);
         inventoryPersistence.saveCmHandle(yangModelCmHandle);
-    }
-
-    private void publishLcmEvent(final NcmpServiceCmHandle targetNcmpServiceCmHandle,
-            final NcmpServiceCmHandle existingNcmpServiceCmHandle) {
-        final String cmHandleId = targetNcmpServiceCmHandle.getCmHandleId();
-        final LcmEvent lcmEvent =
-                lcmEventsCreator.populateLcmEvent(cmHandleId, targetNcmpServiceCmHandle, existingNcmpServiceCmHandle);
-        lcmEventsService.publishLcmEvent(cmHandleId, lcmEvent);
     }
 
     private void updateAndSaveCmHandleState(final YangModelCmHandle yangModelCmHandle,

@@ -22,6 +22,7 @@ package org.onap.cps.ncmp.api.impl.event.lcm;
 
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.inventory.CmHandleState;
+import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 
 /**
  * The implementation of it should handle the persisting of composite state and delegate the request to publish the
@@ -36,4 +37,13 @@ public interface LcmEventsCmHandleStateHandler {
      * @param targetCmHandleState target cm handle state
      */
     void updateCmHandleState(final YangModelCmHandle yangModelCmHandle, final CmHandleState targetCmHandleState);
+
+    /**
+     * Publish LCM Event.
+     *
+     * @param targetNcmpServiceCmHandle   target NcmpServiceCmHandle
+     * @param existingNcmpServiceCmHandle existing NcmpServiceCmHandle
+     */
+    void publishLcmEvent(final NcmpServiceCmHandle targetNcmpServiceCmHandle,
+            final NcmpServiceCmHandle existingNcmpServiceCmHandle);
 }
