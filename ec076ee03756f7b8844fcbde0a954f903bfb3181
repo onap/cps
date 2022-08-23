@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "8e035c63_df7d558b",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp-inventory.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-08-23T14:18:33Z",
+      "side": 1,
+      "message": "In the Jira it says its supposed to be all the cm handle details. Did this scope change? If not it should probably be an array of RestOutputCmHandles. If its just the ids I think it should just be a list of strings and the object can always be extended after",
+      "parentUuid": "3c725e0a_729c15ff",
+      "range": {
+        "startLine": 118,
+        "startChar": 22,
+        "endLine": 118,
+        "endChar": 28
+      },
+      "revId": "ec076ee03756f7b8844fcbde0a954f903bfb3181",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7cebbcf6_57329083",
         "filename": "cps-ncmp-rest/docs/openapi/openapi-inventory.yml",
         "patchSetId": 7
@@ -163,6 +187,29 @@
     },
     {
       "key": {
+        "uuid": "90399167_2d11a925",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryControllerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-08-23T14:18:33Z",
+      "side": 1,
+      "message": "I don\u0027t think this output is correct? should be:\n[\"cm-handle-1\", \"cm-handle2\"]",
+      "range": {
+        "startLine": 176,
+        "startChar": 49,
+        "endLine": 176,
+        "endChar": 74
+      },
+      "revId": "ec076ee03756f7b8844fcbde0a954f903bfb3181",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "79e26da1_d2970637",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/DmiProperty.java",
         "patchSetId": 7
@@ -179,6 +226,29 @@
         "startChar": 12,
         "endLine": 23,
         "endChar": 24
+      },
+      "revId": "ec076ee03756f7b8844fcbde0a954f903bfb3181",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7c6c0762_d2673f92",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/CmHandleQueriesSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-08-23T14:18:33Z",
+      "side": 1,
+      "message": "should this check for PNFDemo4 as well?",
+      "range": {
+        "startLine": 147,
+        "startChar": 0,
+        "endLine": 147,
+        "endChar": 0
       },
       "revId": "ec076ee03756f7b8844fcbde0a954f903bfb3181",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
