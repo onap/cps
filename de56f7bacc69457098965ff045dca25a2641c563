@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5e7277dd_115bd3dc",
+        "filename": "cps-ncmp-rest/pom.xml",
+        "patchSetId": 7
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 8111
+      },
+      "writtenOn": "2022-08-23T16:12:19Z",
+      "side": 1,
+      "message": "It is changed by the auto format of IntelliJ",
+      "parentUuid": "1300febc_bef5f747",
+      "range": {
+        "startLine": 188,
+        "startChar": 28,
+        "endLine": 189,
+        "endChar": 46
+      },
+      "revId": "de56f7bacc69457098965ff045dca25a2641c563",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "95375348_eb425eb9",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreHandler.java",
         "patchSetId": 7
@@ -72,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "6337bb28_2f735f11",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreHandler.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 8111
+      },
+      "writtenOn": "2022-08-23T16:12:19Z",
+      "side": 1,
+      "message": "I also prefer that one it was coming from a variable created by Toine that\u0027s why i not changed that",
+      "parentUuid": "0b7a3a3d_516e1e41",
+      "range": {
+        "startLine": 59,
+        "startChar": 22,
+        "endLine": 59,
+        "endChar": 46
+      },
+      "revId": "de56f7bacc69457098965ff045dca25a2641c563",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "608c58ce_fe763b83",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreHandler.java",
         "patchSetId": 7
@@ -86,6 +134,24 @@
       "revId": "de56f7bacc69457098965ff045dca25a2641c563",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9b2b9250_04568c0e",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreHandler.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 8111
+      },
+      "writtenOn": "2022-08-23T16:12:19Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "608c58ce_fe763b83",
+      "revId": "de56f7bacc69457098965ff045dca25a2641c563",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -112,6 +178,30 @@
     },
     {
       "key": {
+        "uuid": "fcf197ca_a069ce60",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastorePassthroughRunningHandler.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 8111
+      },
+      "writtenOn": "2022-08-23T16:12:19Z",
+      "side": 1,
+      "message": "It was info originally, i am also not sure why, Pryank and i, we also prefer debug instead",
+      "parentUuid": "7eb64a69_c81efdc8",
+      "range": {
+        "startLine": 47,
+        "startChar": 16,
+        "endLine": 47,
+        "endChar": 20
+      },
+      "revId": "de56f7bacc69457098965ff045dca25a2641c563",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "44a4f9aa_601aea7a",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
         "patchSetId": 7
@@ -123,6 +213,30 @@
       "writtenOn": "2022-08-23T15:16:56Z",
       "side": 1,
       "message": "NB: These could the same test with #scenario of with/without descendants",
+      "range": {
+        "startLine": 444,
+        "startChar": 0,
+        "endLine": 477,
+        "endChar": 5
+      },
+      "revId": "de56f7bacc69457098965ff045dca25a2641c563",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "31f28c56_c5dbe2f5",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 8111
+      },
+      "writtenOn": "2022-08-23T16:12:19Z",
+      "side": 1,
+      "message": "I aware of that it is not the best solution but these tests will be refactored fully after the new functionality for the other cases on the same endpoint will be added",
+      "parentUuid": "44a4f9aa_601aea7a",
       "range": {
         "startLine": 444,
         "startChar": 0,
