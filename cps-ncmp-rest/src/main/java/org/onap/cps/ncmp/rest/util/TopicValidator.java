@@ -15,26 +15,30 @@
  *  limitations under the License.
  *
  *  SPDX-License-Identifier: Apache-2.0
- * ============LICENSE_END=========================================================
+ *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.exception;
+package org.onap.cps.ncmp.rest.util;
 
-import lombok.Getter;
+import java.util.regex.Pattern;
+import org.onap.cps.ncmp.rest.exceptions.InvalidTopicException;
 
-public class InvalidTopicException extends RuntimeException {
+public class TopicValidator {
 
-    @Getter
-    final String details;
+    private static final Pattern TOPIC_NAME_PATTERN = Pattern.compile("^[a-zA-Z0-9]([._-](?![._-])|"
+        + "[a-zA-Z0-9]){0,120}[a-zA-Z0-9]$");
 
     /**
-     * Constructor.
+     * Validate kafka topic name pattern.
      *
-     * @param message the error message
-     * @param details the error details
+     * @param topicName name of the topic to be validated
+     *
+     * @throws InvalidTopicException if the topic is not valid
      */
-    public InvalidTopicException(final String message, final String details) {
-        super(message);
-        this.details = details;
+    public static void validateTopicName(final String topicName) {
+        if (!TOPIC_NAME_PATTERN.matcher(topicName).matches()) {
+            throw new InvalidTopicException("Topic name " + topicName + " is invalid", "invalid topic");
+        }
     }
+
 }
