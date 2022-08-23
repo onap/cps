@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "3c725e0a_729c15ff",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp-inventory.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-23T10:48:14Z",
+      "side": 1,
+      "message": "NB: I was wondering , instead of returning an array of string , what if we create an object and return that instead.\nSo for the moment we can have just cmhandleId as an attribute but it will be easily extendable  without caring about the backward compatibility later on. Just thinking..\n\nTeam , what do you think??",
+      "range": {
+        "startLine": 118,
+        "startChar": 22,
+        "endLine": 118,
+        "endChar": 28
+      },
+      "revId": "ec076ee03756f7b8844fcbde0a954f903bfb3181",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7cebbcf6_57329083",
         "filename": "cps-ncmp-rest/docs/openapi/openapi-inventory.yml",
         "patchSetId": 7
@@ -87,6 +110,29 @@
         "startChar": 15,
         "endLine": 168,
         "endChar": 38
+      },
+      "revId": "ec076ee03756f7b8844fcbde0a954f903bfb3181",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "667d35c5_1b317c95",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryControllerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-23T10:48:14Z",
+      "side": 1,
+      "message": "to be removed.",
+      "range": {
+        "startLine": 174,
+        "startChar": 12,
+        "endLine": 174,
+        "endChar": 29
       },
       "revId": "ec076ee03756f7b8844fcbde0a954f903bfb3181",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
