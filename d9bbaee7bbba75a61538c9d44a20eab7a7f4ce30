@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "249fb71b_9efa2cad",
+        "filename": "cps-ncmp-rest/docs/openapi/openapi.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-23T10:21:39Z",
+      "side": 1,
+      "message": "to be removed.",
+      "range": {
+        "startLine": 30,
+        "startChar": 29,
+        "endLine": 30,
+        "endChar": 32
+      },
+      "revId": "d9bbaee7bbba75a61538c9d44a20eab7a7f4ce30",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2d25b5f3_91d880aa",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreHandler.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-23T10:21:39Z",
+      "side": 1,
+      "message": "Make it generic as we have a common handler to handle requests based on the datastoreName",
+      "range": {
+        "startLine": 76,
+        "startChar": 26,
+        "endLine": 76,
+        "endChar": 80
+      },
+      "revId": "d9bbaee7bbba75a61538c9d44a20eab7a7f4ce30",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "08fa5855_537d6839",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreHandler.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-23T10:21:39Z",
+      "side": 1,
+      "message": "same as above.",
+      "range": {
+        "startLine": 82,
+        "startChar": 75,
+        "endLine": 82,
+        "endChar": 99
+      },
+      "revId": "d9bbaee7bbba75a61538c9d44a20eab7a7f4ce30",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "add049fd_f9916cc8",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreHandlerFactory.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-23T10:21:39Z",
+      "side": 1,
+      "message": "to be updated.",
+      "range": {
+        "startLine": 35,
+        "startChar": 4,
+        "endLine": 39,
+        "endChar": 7
+      },
+      "revId": "d9bbaee7bbba75a61538c9d44a20eab7a7f4ce30",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "491fcdc2_eeeb5299",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 463,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-23T10:21:39Z",
+      "side": 1,
+      "message": "to be updated when you change the contract in yaml file",
+      "range": {
+        "startLine": 463,
+        "startChar": 66,
+        "endLine": 463,
+        "endChar": 69
+      },
+      "revId": "d9bbaee7bbba75a61538c9d44a20eab7a7f4ce30",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e05e028_f6e028e3",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 481,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-23T10:21:39Z",
+      "side": 1,
+      "message": "same as above.",
+      "range": {
+        "startLine": 481,
+        "startChar": 66,
+        "endLine": 481,
+        "endChar": 69
+      },
+      "revId": "d9bbaee7bbba75a61538c9d44a20eab7a7f4ce30",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
