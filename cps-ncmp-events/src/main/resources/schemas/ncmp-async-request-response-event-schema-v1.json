@@ -31,6 +31,10 @@
           "description": "The event schema for async request response events.",
           "type": "string"
         },
+        "eventSchemaVersion": {
+          "description": "The event schema version for async request response events.",
+          "type": "string"
+        },
         "event": {
         "$ref": "#/definitions/Event"
         },
@@ -44,7 +48,8 @@
         "eventTime",
         "eventTarget",
         "eventType",
-        "eventSchema"
+        "eventSchema",
+        "eventSchemaVersion"
       ]
     },
     "Forwarded-Event": {
@@ -73,6 +78,10 @@
         },
         "eventSchema": {
           "description": "The event schema for async request response events.",
+          "type": "string"
+        },
+        "eventSchemaVersion": {
+          "description": "The event schema version for async request response events.",
           "type": "string"
         },
         "eventSource": {
@@ -107,6 +116,7 @@
           "eventTarget",
           "eventType",
           "eventSchema",
+          "eventSchemaVersion",
           "eventSource",
           "response-data-schema",
           "response-status",

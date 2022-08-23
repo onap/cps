@@ -42,6 +42,7 @@ public interface NcmpAsyncRequestResponseEventMapper {
     @Mapping(source = "eventId", target = "forwardedEvent.eventId")
     @Mapping(source = "eventCorrelationId", target = "forwardedEvent.eventCorrelationId")
     @Mapping(source = "eventSchema", target = "forwardedEvent.eventSchema")
+    @Mapping(source = "eventSchemaVersion", target = "forwardedEvent.eventSchemaVersion")
     @Mapping(source = "eventSource", target = "forwardedEvent.eventSource")
     @Mapping(source = "eventTarget", target = "forwardedEvent.eventTarget")
     @Mapping(source = "eventTime", target = "forwardedEvent.eventTime")
