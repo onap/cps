@@ -71,7 +71,7 @@ public class SyncUtils {
     public List<YangModelCmHandle> getAdvisedCmHandles() {
         final List<DataNode> advisedCmHandlesAsDataNodeList = new ArrayList<>(
                 cmHandleQueries.queryCmHandlesByState(CmHandleState.ADVISED));
-        log.info("Total number of fetched advised cm handle(s) is (are) {}", advisedCmHandlesAsDataNodeList.size());
+        log.debug("Total number of fetched advised cm handle(s) is (are) {}", advisedCmHandlesAsDataNodeList.size());
         if (advisedCmHandlesAsDataNodeList.isEmpty()) {
             return Collections.emptyList();
         }
