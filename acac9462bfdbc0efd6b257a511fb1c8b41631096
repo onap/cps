@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "977ffbc7_650bf3cd",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-23T17:42:26Z",
+      "side": 1,
+      "message": "is this version of the test for multiple nodes really needed?",
+      "range": {
+        "startLine": 314,
+        "startChar": 0,
+        "endLine": 329,
+        "endChar": 0
+      },
+      "revId": "acac9462bfdbc0efd6b257a511fb1c8b41631096",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
