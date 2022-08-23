@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e659cd93_44cb895c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-08-23T15:17:49Z",
+      "side": 1,
+      "message": "Sorry draft from a while ago, ignore",
+      "parentUuid": "18689f6a_534d4af8",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 18
+      },
+      "revId": "a8fa28244133d0c6d030e15f2a4ac8c6813cc49b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e24a30a_eb9c12e0",
         "filename": "cps-ncmp-rest-stub/src/main/java/org/onap/cps/ncmp/rest/stub/controller/NetworkCmProxyStubController.java",
         "patchSetId": 1
