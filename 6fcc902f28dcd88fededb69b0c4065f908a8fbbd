@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "ad65234a_8016c95b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 8111
+      },
+      "writtenOn": "2022-08-25T14:05:13Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0b52fe5a_2a9a7da3",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 51
+      },
+      "revId": "6fcc902f28dcd88fededb69b0c4065f908a8fbbd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "334080b5_67ee29bf",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
         "patchSetId": 3
