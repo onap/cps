@@ -56,6 +56,7 @@ Data
 Querying
 
 - **CPS Path** is used to query data nodes.
+
 .. toctree::
    :maxdepth: 1
 
@@ -122,6 +123,7 @@ Basic Concepts
 Querying CM Handles
 
 - **CM Handle Searches Endpoints** are used to query CM Handles.
+
 .. toctree::
    :maxdepth: 1
 
