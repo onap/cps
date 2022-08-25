@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f73be335_0eb0c08b",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-08-25T15:27:02Z",
+      "side": 1,
+      "message": "I think it has been commented before but this line is confusing and should be removed or clarified",
+      "range": {
+        "startLine": 122,
+        "startChar": 4,
+        "endLine": 122,
+        "endChar": 29
+      },
+      "revId": "64fadf5c8ef2cd348eb579ef63d58dd5f8fbc85f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "49f39a3d_e29b8a9f",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-08-25T15:27:02Z",
+      "side": 1,
+      "message": "same",
+      "range": {
+        "startLine": 142,
+        "startChar": 4,
+        "endLine": 142,
+        "endChar": 29
+      },
+      "revId": "64fadf5c8ef2cd348eb579ef63d58dd5f8fbc85f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca7c1d8b_cd3a882c",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-08-25T15:27:02Z",
+      "side": 1,
+      "message": "same as above",
+      "range": {
+        "startLine": 353,
+        "startChar": 4,
+        "endLine": 353,
+        "endChar": 29
+      },
+      "revId": "64fadf5c8ef2cd348eb579ef63d58dd5f8fbc85f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "57525cdf_0ebd146c",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreOperationalHandler.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-08-25T15:27:02Z",
+      "side": 1,
+      "message": "I\u0027m not sure about this name. I think \"shouldHandleAsynchronously\" would be more concise",
+      "range": {
+        "startLine": 51,
+        "startChar": 12,
+        "endLine": 51,
+        "endChar": 36
+      },
+      "revId": "64fadf5c8ef2cd348eb579ef63d58dd5f8fbc85f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
