@@ -17,18 +17,21 @@
 #
 #  SPDX-License-Identifier: Apache-2.0
 #  ============LICENSE_END=========================================================
-getResourceDataForPassthroughOperational:
+
+getResourceDataForCmHandle:
   get:
     tags:
       - network-cm-proxy
-    summary: Get resource data from pass-through operational for cm handle
-    description: Get resource data from pass-through operational for given cm handle
-    operationId: getResourceDataOperationalForCmHandle
+    summary: Get resource data for cm handle
+    description: Get resource data for given cm handle
+    operationId: getResourceDataForCmHandle
     parameters:
+      - $ref: 'components.yaml#/components/parameters/datastoreName'
       - $ref: 'components.yaml#/components/parameters/cmHandleInPath'
       - $ref: 'components.yaml#/components/parameters/resourceIdentifierInQuery'
       - $ref: 'components.yaml#/components/parameters/optionsParamInQuery'
       - $ref: 'components.yaml#/components/parameters/topicParamInQuery'
+      - $ref: 'components.yaml#/components/parameters/includeDescendantsOptionInQuery'
     responses:
       200:
         description: OK
@@ -51,37 +54,6 @@ getResourceDataForPassthroughOperational:
         $ref: 'components.yaml#/components/responses/BadGateway'
 
 resourceDataForPassthroughRunning:
-  get:
-    tags:
-      - network-cm-proxy
-    summary: Get resource data from pass-through running for cm handle
-    description: Get resource data from pass-through running for given cm handle
-    operationId: getResourceDataRunningForCmHandle
-    parameters:
-      - $ref: 'components.yaml#/components/parameters/cmHandleInPath'
-      - $ref: 'components.yaml#/components/parameters/resourceIdentifierInQuery'
-      - $ref: 'components.yaml#/components/parameters/optionsParamInQuery'
-      - $ref: 'components.yaml#/components/parameters/topicParamInQuery'
-    responses:
-      200:
-        description: OK
-        content:
-          application/json:
-            schema:
-              type: object
-            examples:
-              dataSampleResponse:
-                $ref: 'components.yaml#/components/examples/dataSampleResponse'
-      400:
-        $ref: 'components.yaml#/components/responses/BadRequest'
-      401:
-        $ref: 'components.yaml#/components/responses/Unauthorized'
-      403:
-        $ref: 'components.yaml#/components/responses/Forbidden'
-      500:
-        $ref: 'components.yaml#/components/responses/InternalServerError'
-      502:
-        $ref: 'components.yaml#/components/responses/BadGateway'
   post:
     tags:
       - network-cm-proxy
