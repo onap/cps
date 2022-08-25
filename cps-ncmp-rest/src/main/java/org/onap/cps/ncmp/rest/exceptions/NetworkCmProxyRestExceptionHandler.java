@@ -25,7 +25,6 @@ import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.impl.exception.DmiRequestException;
 import org.onap.cps.ncmp.api.impl.exception.HttpClientRequestException;
-import org.onap.cps.ncmp.api.impl.exception.InvalidTopicException;
 import org.onap.cps.ncmp.api.impl.exception.NcmpException;
 import org.onap.cps.ncmp.api.impl.exception.ServerNcmpException;
 import org.onap.cps.ncmp.rest.controller.NetworkCmProxyController;
