@@ -19,9 +19,9 @@ This chart includes different cps components referred as <cps-component-name> fu
 
 .. container:: ulist
 
-  - `cps-core <https://github.com/onap/oom/tree/master/kubernetes/cps/components/cps-core>`_
-  - `cps-temporal <https://github.com/onap/oom/tree/master/kubernetes/cps/components/cps-temporal>`_
-  - `ncmp-dmi-plugin <https://github.com/onap/oom/tree/master/kubernetes/cps/components/ncmp-dmi-plugin>`_
+  - `cps-core <https://github.com/onap/oom/tree/master/kubernetes/cps/components/cps-core>`__
+  - `cps-temporal <https://github.com/onap/oom/tree/master/kubernetes/cps/components/cps-temporal>`__
+  - `ncmp-dmi-plugin <https://github.com/onap/oom/tree/master/kubernetes/cps/components/ncmp-dmi-plugin>`__
 
 Please refer to the `OOM documentation <https://docs.onap.org/projects/onap-oom/en/latest/oom_user_guide.html>`_ on how to install and deploy ONAP.
 

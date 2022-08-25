@@ -30,10 +30,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.rest.api.NetworkCmProxyApi;
+import org.onap.cps.ncmp.rest.controller.handlers.DatastoreType;
 import org.onap.cps.ncmp.rest.model.CmHandleQueryParameters;
 import org.onap.cps.ncmp.rest.model.RestModuleDefinition;
 import org.onap.cps.ncmp.rest.model.RestModuleReference;
@@ -58,20 +57,53 @@ public class NetworkCmProxyStubController implements NetworkCmProxyApi {
     private String pathToResponseFiles;
 
     @Override
-    public ResponseEntity<Void> createResourceDataRunningForCmHandle(@NotNull @Valid final String resourceIdentifier,
-        final String cmHandleId, @Valid final Object body, final String contentType) {
+    public ResponseEntity<Object> getResourceDataForCmHandle(final String dataStoreType,
+                                                             final String cmHandle,
+                                                             final String resourceIdentifier,
+                                                             final String optionsParamInQuery,
+                                                             final String topicParamInQuery,
+                                                             final Boolean includeDescendants) {
+        if (DatastoreType.PASSTHROUGH_OPERATIONAL == DatastoreType.fromDatastoreName(dataStoreType)) {
+            final ResponseEntity<Map<String, Object>> asyncResponse = populateAsyncResponse(topicParamInQuery);
+            final Map<String, Object> asyncResponseData = asyncResponse.getBody();
+            Object responseObject = null;
+            // read JSON file and map/convert to java POJO
+            final ClassPathResource resource =
+                    new ClassPathResource(pathToResponseFiles + "passthrough-operational-example.json");
+            try (InputStream inputStream = resource.getInputStream()) {
+                final String string = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
+                final ObjectMapper mapper = new ObjectMapper();
+                responseObject = mapper.readValue(string, Object.class);
+            } catch (final IOException exception) {
+                log.error("Error reading the file.", exception);
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            }
+            if (asyncResponseData == null) {
+                return ResponseEntity.ok(responseObject);
+            }
+            return ResponseEntity.ok(asyncResponse);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+    }
+
+    @Override
+    public ResponseEntity<Void> createResourceDataRunningForCmHandle(final String resourceIdentifier,
+                                                                     final String cmHandleId,
+                                                                     final Object body,
+                                                                     final String contentType) {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @Override
     public ResponseEntity<Void> deleteResourceDataRunningForCmHandle(final String cmHandleId,
-        @NotNull @Valid final String resourceIdentifier, final String contentType) {
+                                                                     final String resourceIdentifier,
+                                                                     final String contentType) {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @Override
     public ResponseEntity<List<RestOutputCmHandle>> searchCmHandles(
-        final CmHandleQueryParameters cmHandleQueryParameters) {
+            final CmHandleQueryParameters cmHandleQueryParameters) {
         List<RestOutputCmHandle> restOutputCmHandles = null;
         // read JSON file and map/convert to java POJO
         final ClassPathResource resource = new ClassPathResource(pathToResponseFiles + "cmHandlesSearch.json");
@@ -88,19 +120,19 @@ public class NetworkCmProxyStubController implements NetworkCmProxyApi {
 
     @Override
     public ResponseEntity<Object> setDataSyncEnabledFlagForCmHandle(final String cmHandleId,
-                                                                final Boolean dataSyncEnabled) {
+                                                                    final Boolean dataSyncEnabled) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
     @Override
     public ResponseEntity<List<String>> searchCmHandleIds(
-        final CmHandleQueryParameters cmHandleQueryParameters) {
+            final CmHandleQueryParameters cmHandleQueryParameters) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
     @Override
     public ResponseEntity<RestOutputCmHandlePublicProperties> getCmHandlePublicPropertiesByCmHandleId(
-        final String cmHandleId) {
+            final String cmHandleId) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
@@ -119,48 +151,11 @@ public class NetworkCmProxyStubController implements NetworkCmProxyApi {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    /**
-     * Get resource data from operational datastore.
-     *
-     * @param cmHandleId cm handle identifier
-     * @param resourceIdentifier resource identifier
-     * @param optionsParamInQuery options query parameter
-     * @param topicParamInQuery topic query parameter
-     * @return {@code ResponseEntity} response from dmi plugin
-     */
-    @Override
-    public ResponseEntity<Object> getResourceDataOperationalForCmHandle(final String cmHandleId,
-        final String resourceIdentifier, final String optionsParamInQuery, final String topicParamInQuery) {
-        final ResponseEntity<Map<String, Object>> asyncResponse = populateAsyncResponse(topicParamInQuery);
-        final Map<String, Object> asyncResponseData = asyncResponse.getBody();
-        Object responseObject = null;
-        // read JSON file and map/convert to java POJO
-        final ClassPathResource resource = new ClassPathResource(pathToResponseFiles
-            + "passthrough-operational-example.json");
-        try (InputStream inputStream = resource.getInputStream()) {
-            final String string = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
-            final ObjectMapper mapper = new ObjectMapper();
-            responseObject = mapper.readValue(string, Object.class);
-        } catch (final IOException exception) {
-            log.error("Error reading the file.", exception);
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
-        if (asyncResponseData == null) {
-            return ResponseEntity.ok(responseObject);
-        }
-        return ResponseEntity.ok(asyncResponse);
-
-    }
-
-    @Override
-    public ResponseEntity<Object> getResourceDataRunningForCmHandle(final String cmHandleId,
-        final String resourceIdentifier, final String options, final String topic) {
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-    }
-
     @Override
     public ResponseEntity<Object> patchResourceDataRunningForCmHandle(final String resourceIdentifier,
-        final String cmHandleId, final Object body, final String contentType) {
+                                                                      final String cmHandleId,
+                                                                      final Object body,
+                                                                      final String contentType) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
@@ -170,8 +165,10 @@ public class NetworkCmProxyStubController implements NetworkCmProxyApi {
     }
 
     @Override
-    public ResponseEntity<Object> updateResourceDataRunningForCmHandle(@NotNull @Valid final String resourceIdentifier,
-        final String cmHandleId, @Valid final Object body, final String contentType) {
+    public ResponseEntity<Object> updateResourceDataRunningForCmHandle(final String resourceIdentifier,
+                                                                       final String cmHandleId,
+                                                                       final Object body,
+                                                                       final String contentType) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 

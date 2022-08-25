@@ -86,7 +86,7 @@ components:
           type: array
           items:
             type: string
-          example: [my-cm-handle1, my-cm-handle2, my-cm-handle3]
+          example: [ my-cm-handle1, my-cm-handle2, my-cm-handle3 ]
     DmiPluginRegistrationErrorResponse:
       type: object
       properties:
@@ -124,14 +124,14 @@ components:
           type: string
           example: my-cm-handle
         cmHandleProperties:
-            $ref: '#/components/schemas/RestCmHandleProperties'
+          $ref: '#/components/schemas/RestCmHandleProperties'
         publicCmHandleProperties:
-            $ref: '#/components/schemas/RestCmHandleProperties'
+          $ref: '#/components/schemas/RestCmHandleProperties'
     RestCmHandleProperties:
-        type: object
-        additionalProperties:
-            type: string
-            example: my-property
+      type: object
+      additionalProperties:
+        type: string
+        example: my-property
 
     #Response Schemas
     RestModuleReference:
@@ -289,21 +289,21 @@ components:
 
   examples:
     dataSampleRequest:
-        summary: Sample request
-        description: Sample request body
-        value:
-          test:bookstore:
-            bookstore-name: Chapters
-            categories:
-              - code: '01'
-                name: SciFi
-                books:
+      summary: Sample request
+      description: Sample request body
+      value:
+        test:bookstore:
+          bookstore-name: Chapters
+          categories:
+            - code: '01'
+              name: SciFi
+              books:
                 - authors:
                     - Iain M. Banks
                     - Ursula K. Le Guin
-              - code: '02'
-                name: kids
-                books:
+            - code: '02'
+              name: kids
+              books:
                 - authors:
                     - Philip Pullman
 
@@ -352,22 +352,22 @@ components:
                             - Philip Pullman
 
     dataSampleResponse:
-        summary: Sample response
-        description: Sample response for selecting 'sample 1'.
-        value:
-          bookstore:
-            categories:
-              - code: '01'
-                books:
-                  - authors:
-                      - Iain M. Banks
-                      - Ursula K. Le Guin
-                name: SciFi
-              - code: '02'
-                books:
-                  - authors:
-                      - Philip Pullman
-                name: kids
+      summary: Sample response
+      description: Sample response for selecting 'sample 1'.
+      value:
+        bookstore:
+          categories:
+            - code: '01'
+              books:
+                - authors:
+                    - Iain M. Banks
+                    - Ursula K. Le Guin
+              name: SciFi
+            - code: '02'
+              books:
+                - authors:
+                    - Philip Pullman
+              name: kids
 
     allCmHandleQueryParameters:
       value:
@@ -449,7 +449,7 @@ components:
     includeDescendantsOptionInQuery:
       name: include-descendants
       in: query
-      description: include-descendants
+      description: Determines if descendants are included in response
       required: false
       schema:
         type: boolean
@@ -519,6 +519,14 @@ components:
         type: string
         default: application/json
         example: application/yang-data+json
+    datastoreName:
+      name: ncmp-datastore-name
+      in: path
+      description: The type of the requested data
+      required: true
+      schema:
+        type: string
+        example: ncmp-datastore:operational
 
   responses:
     NotFound:
@@ -548,9 +556,9 @@ components:
           schema:
             $ref: '#/components/schemas/ErrorMessage'
           example:
-           status: 403
-           message: Forbidden error message
-           details: Forbidden error details
+            status: 403
+            message: Forbidden error message
+            details: Forbidden error details
     BadRequest:
       description: Bad Request
       content:
@@ -558,9 +566,9 @@ components:
           schema:
             $ref: '#/components/schemas/ErrorMessage'
           example:
-           status: 400 BAD_REQUEST
-           message: Bad request error message
-           details: Bad request error details
+            status: 400 BAD_REQUEST
+            message: Bad request error message
+            details: Bad request error details
     Conflict:
       description: Conflict
       content:
@@ -568,9 +576,9 @@ components:
           schema:
             $ref: '#/components/schemas/ErrorMessage'
           example:
-           status: 409 CONFLICT
-           message: Conflict error message
-           details: Conflict error details
+            status: 409 CONFLICT
+            message: Conflict error message
+            details: Conflict error details
     NotImplemented:
       description: The given path has not been implemented
       content:
@@ -578,9 +586,9 @@ components:
           schema:
             $ref: '#/components/schemas/ErrorMessage'
           example:
-           status: 501
-           message: Not implemented error message
-           details: Not implemented error details
+            status: 501
+            message: Not implemented error message
+            details: Not implemented error details
     Ok:
       description: OK
       content:
@@ -589,10 +597,10 @@ components:
             type: object
     Created:
       description: Created
-      content: {}
+      content: { }
     NoContent:
       description: No Content
-      content: {}
+      content: { }
     InternalServerError:
       description: Internal Server Error
       content:
