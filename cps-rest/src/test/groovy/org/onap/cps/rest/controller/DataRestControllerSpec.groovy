@@ -273,7 +273,7 @@ class DataRestControllerSpec extends Specification {
                         .param('xpath', inputXpath))
                     .andReturn().response
         then: 'the service method is invoked with expected parameters'
-            1 * mockCpsDataService.replaceNodeTree(dataspaceName, anchorName, xpathServiceParameter, expectedJsonData, noTimestamp)
+            1 * mockCpsDataService.updateDataNodeAndDescendants(dataspaceName, anchorName, xpathServiceParameter, expectedJsonData, noTimestamp)
         and: 'response status indicates success'
             response.status == HttpStatus.OK.value()
         where:
@@ -283,7 +283,7 @@ class DataRestControllerSpec extends Specification {
             'some xpath by parent' | '/some/xpath' || '/some/xpath'
     }
 
-    def 'Replace data node tree with observedTimestamp.'() {
+    def 'Update data node and descendants with observedTimestamp.'() {
         given: 'endpoint to replace node'
             def endpoint = "$dataNodeBaseEndpoint/anchors/$anchorName/nodes"
         when: 'put request is performed'
@@ -296,7 +296,7 @@ class DataRestControllerSpec extends Specification {
                         .param('observed-timestamp', observedTimestamp))
                     .andReturn().response
         then: 'the service method is invoked with expected parameters'
-            expectedApiCount * mockCpsDataService.replaceNodeTree(dataspaceName, anchorName, '/', expectedJsonData,
+            expectedApiCount * mockCpsDataService.updateDataNodeAndDescendants(dataspaceName, anchorName, '/', expectedJsonData,
                 { it == DateTimeUtility.toOffsetDateTime(observedTimestamp) })
         and: 'response status indicates success'
             response.status == expectedHttpStatus.value()

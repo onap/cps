@@ -28,6 +28,9 @@ import static org.onap.cps.notification.Operation.UPDATE;
 
 import java.time.OffsetDateTime;
 import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsAdminService;
@@ -142,12 +145,25 @@ public class CpsDataServiceImpl implements CpsDataService {
     }
 
     @Override
-    public void replaceNodeTree(final String dataspaceName, final String anchorName, final String parentNodeXpath,
-        final String jsonData, final OffsetDateTime observedTimestamp) {
+    public void updateDataNodeAndDescendants(final String dataspaceName, final String anchorName,
+                                             final String parentNodeXpath, final String jsonData,
+                                             final OffsetDateTime observedTimestamp) {
         CpsValidator.validateNameCharacters(dataspaceName, anchorName);
         final DataNode dataNode = buildDataNode(dataspaceName, anchorName, parentNodeXpath, jsonData);
-        cpsDataPersistenceService.replaceDataNodeTree(dataspaceName, anchorName, dataNode);
+        cpsDataPersistenceService.updateDataNodeAndDescendants(dataspaceName, anchorName, dataNode);
         processDataUpdatedEventAsync(dataspaceName, anchorName, parentNodeXpath, UPDATE, observedTimestamp);
+    }
+
+    @Override
+    public void updateDataNodesAndDescendants(final String dataspaceName, final String anchorName,
+                                              final Map<String, String> nodesJsonData,
+                                              final OffsetDateTime observedTimestamp) {
+        CpsValidator.validateNameCharacters(dataspaceName, anchorName);
+        final List<DataNode> dataNodes = buildDataNodes(dataspaceName, anchorName, nodesJsonData);
+        cpsDataPersistenceService.updateDataNodesAndDescendants(dataspaceName, anchorName, dataNodes);
+        nodesJsonData.keySet().forEach(nodeXpath ->
+            processDataUpdatedEventAsync(dataspaceName, anchorName, nodeXpath,
+                UPDATE, observedTimestamp));
     }
 
     @Override
@@ -207,6 +223,13 @@ public class CpsDataServiceImpl implements CpsDataService {
             .withParentNodeXpath(parentNodeXpath)
             .withNormalizedNodeTree(normalizedNode)
             .build();
+    }
+
+    private List<DataNode> buildDataNodes(final String dataspaceName, final String anchorName,
+                                          final Map<String, String> nodesJsonData) {
+        return nodesJsonData.entrySet().stream().map(nodeJsonData ->
+            buildDataNode(dataspaceName, anchorName, nodeJsonData.getKey(),
+                nodeJsonData.getValue())).collect(Collectors.toList());
     }
 
     private Collection<DataNode> buildDataNodes(final String dataspaceName,
