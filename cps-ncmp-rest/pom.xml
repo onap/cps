@@ -185,7 +185,8 @@
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${project.basedir}/target/classes/static/api-docs/cps-ncmp</outputDirectory>
+                            <outputDirectory>${project.basedir}/target/classes/static/api-docs/cps-ncmp
+                            </outputDirectory>
                             <resources>
                                 <resource>
                                     <directory>${project.basedir}/target/generated-sources/swagger/</directory>
