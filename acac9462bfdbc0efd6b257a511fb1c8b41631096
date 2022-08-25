@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "8c0afd7e_96cabfc6",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-08-25T08:50:59Z",
+      "side": 1,
+      "message": "NB : Why we are creating new ArrayList Object?",
+      "range": {
+        "startLine": 317,
+        "startChar": 7,
+        "endLine": 317,
+        "endChar": 78
+      },
+      "revId": "acac9462bfdbc0efd6b257a511fb1c8b41631096",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "977ffbc7_650bf3cd",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
         "patchSetId": 3
