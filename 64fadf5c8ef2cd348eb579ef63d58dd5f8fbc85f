@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ea3b2b62_f871af46",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 8111
+      },
+      "writtenOn": "2022-08-25T16:38:28Z",
+      "side": 1,
+      "message": "This comment is asked by Toine but as now it is not needed it is removed along with function where i was able to that for now",
+      "parentUuid": "f73be335_0eb0c08b",
+      "range": {
+        "startLine": 122,
+        "startChar": 4,
+        "endLine": 122,
+        "endChar": 29
+      },
+      "revId": "64fadf5c8ef2cd348eb579ef63d58dd5f8fbc85f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "49f39a3d_e29b8a9f",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
         "patchSetId": 9
@@ -82,6 +106,30 @@
       "writtenOn": "2022-08-25T15:27:02Z",
       "side": 1,
       "message": "I\u0027m not sure about this name. I think \"shouldHandleAsynchronously\" would be more concise",
+      "range": {
+        "startLine": 51,
+        "startChar": 12,
+        "endLine": 51,
+        "endChar": 36
+      },
+      "revId": "64fadf5c8ef2cd348eb579ef63d58dd5f8fbc85f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6d1c9d4a_46c08e45",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreOperationalHandler.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 8111
+      },
+      "writtenOn": "2022-08-25T16:38:28Z",
+      "side": 1,
+      "message": "It is already renamed according to the comments for that before",
+      "parentUuid": "57525cdf_0ebd146c",
       "range": {
         "startLine": 51,
         "startChar": 12,
