@@ -18,31 +18,30 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.utils
+package org.onap.cps.ncmp.rest.util
 
-import org.onap.cps.spi.exceptions.DataValidationException
+import org.onap.cps.ncmp.rest.exceptions.InvalidTopicException
 import spock.lang.Specification
 
-class CpsValidatorSpec extends Specification {
+class TopicValidatorSpec extends Specification {
 
-    def 'Validating a valid string.'() {
-        when: 'the string is validated using a valid name'
-            CpsValidator.validateNameCharacters('name-with-no-spaces')
+    def 'Valid topic name validation.'() {
+        when: 'a valid topic name is validated'
+            TopicValidator.validateTopicName('my-valid-topic')
         then: 'no exception is thrown'
             noExceptionThrown()
     }
 
-    def 'Validating an invalid string.'() {
-        when: 'the string is validated using an invalid name'
-            CpsValidator.validateNameCharacters(name)
-        then: 'a data validation exception is thrown'
-            def exceptionThrown = thrown(DataValidationException)
-        and: 'the error was encountered at the following index in #scenario'
-            assert exceptionThrown.getDetails().contains(expectedErrorMessage)
+    def 'Validating invalid topic names.'() {
+        when: 'the invalid topic name is validated'
+            TopicValidator.validateTopicName(topicName)
+        then: 'boolean response will be returned for #scenario'
+            thrown(InvalidTopicException)
         where: 'the following names are used'
-            scenario     | name               || expectedErrorMessage
-            'position 5' | 'name with spaces' || 'name with spaces invalid token encountered at position 5'
-            'position 9' | 'nameWith Space'   || 'nameWith Space invalid token encountered at position 9'
+            scenario                  | topicName
+            'empty topic'             | ''
+            'blank topic'             | ' '
+            'invalid non empty topic' | '1_5_*_#'
     }
 
 }
