@@ -214,6 +214,30 @@
     },
     {
       "key": {
+        "uuid": "34907e69_5e76859f",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-25T17:03:08Z",
+      "side": 1,
+      "message": "Since the Factory class is not managed by Spring , we cannot just do a @Value with the properties to inject it.\nIt will need some manual way to do so (may be use the Class loader).\n\nAnother way is to think if it actually makes sense to make the factory class managed by Spring. i.e annotate with some spring stereotype annotation.",
+      "parentUuid": "c3eb11c9_07c7772c",
+      "range": {
+        "startLine": 76,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 33
+      },
+      "revId": "0e19a02647d63e70b39a3dfe483718e567c72ff0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d0427a79_a44e9a45",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreHandler.java",
         "patchSetId": 8
