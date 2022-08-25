@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d75dea86_8723f694",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-08-25T13:09:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8c0afd7e_96cabfc6",
+      "range": {
+        "startLine": 317,
+        "startChar": 7,
+        "endLine": 317,
+        "endChar": 78
+      },
+      "revId": "acac9462bfdbc0efd6b257a511fb1c8b41631096",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "977ffbc7_650bf3cd",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
         "patchSetId": 3
@@ -69,6 +93,30 @@
       "revId": "acac9462bfdbc0efd6b257a511fb1c8b41631096",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a5d7e103_07a60462",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-08-25T13:09:21Z",
+      "side": 1,
+      "message": "Tech debt issue, addressing in separate task https://jira.onap.org/browse/CPS-1228",
+      "parentUuid": "e667f0c6_df83eb01",
+      "range": {
+        "startLine": 314,
+        "startChar": 0,
+        "endLine": 329,
+        "endChar": 0
+      },
+      "revId": "acac9462bfdbc0efd6b257a511fb1c8b41631096",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
