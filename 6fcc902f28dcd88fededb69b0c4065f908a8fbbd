@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "0b52fe5a_2a9a7da3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-25T12:32:36Z",
+      "side": 1,
+      "message": "I suggested to do release notes as part of a separate commit but for small user story, ie. don\u0027t close user story until release notes are review and merged",
+      "parentUuid": "b2f7b51e_fce73e45",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 51
+      },
+      "revId": "6fcc902f28dcd88fededb69b0c4065f908a8fbbd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "334080b5_67ee29bf",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
         "patchSetId": 3

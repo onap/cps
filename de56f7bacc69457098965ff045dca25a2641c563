@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "fd14ac96_9c7b1d46",
+        "filename": "cps-ncmp-rest/pom.xml",
+        "patchSetId": 7
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-25T12:32:36Z",
+      "side": 1,
+      "message": "its OK to leave it but best practice is to remove functionally unchanged files from the git commit (you git checkout \u003cfile\u003e to get the masterbranch version to do that)",
+      "parentUuid": "5e7277dd_115bd3dc",
+      "range": {
+        "startLine": 188,
+        "startChar": 28,
+        "endLine": 189,
+        "endChar": 46
+      },
+      "revId": "de56f7bacc69457098965ff045dca25a2641c563",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "95375348_eb425eb9",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreHandler.java",
         "patchSetId": 7
@@ -132,6 +156,30 @@
       "side": 1,
       "message": "I also prefer that one it was coming from a variable created by Toine that\u0027s why i not changed that",
       "parentUuid": "0b7a3a3d_516e1e41",
+      "range": {
+        "startLine": 59,
+        "startChar": 22,
+        "endLine": 59,
+        "endChar": 46
+      },
+      "revId": "de56f7bacc69457098965ff045dca25a2641c563",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8d7b427d_c9eadb2e",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreHandler.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-25T12:32:36Z",
+      "side": 1,
+      "message": "the method name I wrote was called \u0027userWantsAsyncResponse\u0027 \nI think you added \u0027is\u0027 you dont always need \u0027is\u0027 in for of boolean methods\u0027 as long as the method names read like a question you can answer with yes or no!\nie contains() instead of isContains()\n\nBU in any case team can always improve on suggested names no matter if i or someone else wrote the orginal!\n\u0027isAsyncResponseRequested\u0027 sounds good to me",
+      "parentUuid": "6337bb28_2f735f11",
       "range": {
         "startLine": 59,
         "startChar": 22,
@@ -238,6 +286,30 @@
       "side": 1,
       "message": "I think we should change to debug then, we already had bug reported on us because we had too many ncmp info logs. Realize its not your implementation but would be good to update the old implementation",
       "parentUuid": "fcf197ca_a069ce60",
+      "range": {
+        "startLine": 47,
+        "startChar": 16,
+        "endLine": 47,
+        "endChar": 20
+      },
+      "revId": "de56f7bacc69457098965ff045dca25a2641c563",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b9765cab_df1efc6c",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastorePassthroughRunningHandler.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-25T12:32:36Z",
+      "side": 1,
+      "message": "I prefer debug too",
+      "parentUuid": "dfe4e048_b62aa8ee",
       "range": {
         "startLine": 47,
         "startChar": 16,
