@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "53906208_88e86c92",
+        "filename": "cps-ncmp-rest/pom.xml",
+        "patchSetId": 7
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-08-25T09:06:20Z",
+      "side": 1,
+      "message": "Yeah I realized that but it probably shouldn\u0027t be included in the commit",
+      "parentUuid": "5e7277dd_115bd3dc",
+      "range": {
+        "startLine": 188,
+        "startChar": 28,
+        "endLine": 189,
+        "endChar": 46
+      },
+      "revId": "de56f7bacc69457098965ff045dca25a2641c563",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "95375348_eb425eb9",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreHandler.java",
         "patchSetId": 7
@@ -202,6 +226,30 @@
     },
     {
       "key": {
+        "uuid": "dfe4e048_b62aa8ee",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastorePassthroughRunningHandler.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-08-25T09:06:20Z",
+      "side": 1,
+      "message": "I think we should change to debug then, we already had bug reported on us because we had too many ncmp info logs. Realize its not your implementation but would be good to update the old implementation",
+      "parentUuid": "fcf197ca_a069ce60",
+      "range": {
+        "startLine": 47,
+        "startChar": 16,
+        "endLine": 47,
+        "endChar": 20
+      },
+      "revId": "de56f7bacc69457098965ff045dca25a2641c563",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "44a4f9aa_601aea7a",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
         "patchSetId": 7
@@ -246,6 +294,30 @@
       "revId": "de56f7bacc69457098965ff045dca25a2641c563",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "515b637f_5611be68",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-08-25T09:06:20Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "31f28c56_c5dbe2f5",
+      "range": {
+        "startLine": 444,
+        "startChar": 0,
+        "endLine": 477,
+        "endChar": 5
+      },
+      "revId": "de56f7bacc69457098965ff045dca25a2641c563",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
