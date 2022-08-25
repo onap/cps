@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0427e777_99edb1a8",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/dmi-async-request-response-event-schema-v1.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-08-25T11:38:31Z",
+      "side": 1,
+      "message": "NB: Should these files have copyright notices also?",
+      "revId": "3689a920e17f6e88967ebf5eb453d10642d659d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
