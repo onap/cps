@@ -19,11 +19,11 @@ Overview
 --------
 LCM events for CM Handles are published when a CM Handle is created, deleted or another change in the cm handle state occurs.
 
-	**3 possible event types:**
+  **3 possible event types:**
 
-	* Create
-	* Update
-	* Delete
+  * Create
+  * Update
+  * Delete
 
 LCM Event Schema
 ----------------
@@ -40,16 +40,16 @@ Events header
 
 .. code-block:: json
 
-	{
-  		"eventId"                : "00001",
-  		"eventCorrelationId      : "cmhandle-001",
-  		"eventTime"              : "2021-11-16T16:42:25-04:00",
-  		"eventSource"            : "org.onap.ncmp",
-  		"eventType"              : "org.onap.ncmp.cmhandle-lcm-event.create",
-  		"eventSchema"            : "org.onap.ncmp:cmhandle-lcm-event",
-  		"eventSchemaVersion"	   : "1.0"
-  		"event": ....
-	}
+  {
+      "eventId"                : "00001",
+      "eventCorrelationId      : "cmhandle-001",
+      "eventTime"              : "2021-11-16T16:42:25-04:00",
+      "eventSource"            : "org.onap.ncmp",
+      "eventType"              : "org.onap.ncmp.cmhandle-lcm-event.create",
+      "eventSchema"            : "org.onap.ncmp:cmhandle-lcm-event",
+      "eventSchemaVersion"	   : "1.0"
+      "event": ....
+  }
 
 Events payload
 ^^^^^^^^^^^^^^

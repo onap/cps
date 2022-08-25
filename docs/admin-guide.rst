@@ -30,20 +30,20 @@ Logging Configuration
 CPS Log pattern
 ---------------
 
-.. code-block:: java
+.. code-block::
 
    <pattern>
-	   {
-	     "timestamp" : "%timestamp", // 2022-01-28 18:39:17.768
-	     "severity": "%level",   // DEBUG
-	     "service": "${springAppName}",  // cps-application
-	     "trace": "${TraceId}", // e17da1571e518c59
-	     "span": "${SpanId}", // e17da1571e518c59
-	     "pid": "${PID}", //11128
-	     "thread": "%thread", //tp1901272535-29
-	     "class": "%logger{40}", .// o.onap.cps.aop.CpsLoggingAspectService
-	     "rest": "%message" // Execution time ...
-	   }
+       {
+         "timestamp" : "%timestamp", // 2022-01-28 18:39:17.768
+         "severity": "%level",   // DEBUG
+         "service": "${springAppName}",  // cps-application
+         "trace": "${TraceId}", // e17da1571e518c59
+         "span": "${SpanId}", // e17da1571e518c59
+         "pid": "${PID}", //11128
+         "thread": "%thread", //tp1901272535-29
+         "class": "%logger{40}", .// o.onap.cps.aop.CpsLoggingAspectService
+         "rest": "%message" // Execution time ...
+       }
    </pattern>
 
 Change logging level
@@ -51,7 +51,7 @@ Change logging level
 
 - Curl command 1. Check current log level of "logging.level.org.onap.cps" if it is set to it's default value (INFO)
 
-.. code-block:: java
+.. code-block::
 
     curl --location --request GET 'http://{cps-service-name:cps-management-port}/manage/loggers/org.onap.cps' \
     --header 'Content-Type: application/json; charset=utf-8'
@@ -63,12 +63,13 @@ Change logging level
         "effectiveLevel": "INFO"
     }
 
+
 - Curl command 2. Change logging level of "logging.level.org.onap.cps" to "DEBUG"
 
 .. note::
    Below-mentioned endpoint  will change the log level at runtime. After executing the curl command "effectiveLevel" will set and applied immediately without restarting CPS service.
 
-.. code-block:: java
+.. code-block::
 
     curl --location --request POST 'http://{cps-service-name:cps-management-port}/manage/loggers/org.onap.cps' \
     --header 'Content-Type: application/json; charset=utf-8' \
@@ -80,7 +81,7 @@ Change logging level
 
 - Curl command 3. Verify if log level of "logging.level.org.onap.cps" is changed from 'INFO' to 'DEBUG'
 
-.. code-block:: java
+.. code-block::
 
     curl --location --request GET 'http://{cps-service-name:cps-management-port}/manage/loggers/org.onap.cps' \
     --header 'Content-Type: application/json; charset=utf-8'
@@ -91,6 +92,7 @@ Change logging level
     "configuredLevel": "DEBUG",
     "effectiveLevel": "DEBUG"
     }
+
 
 Location of log files
 ---------------------
@@ -135,6 +137,7 @@ Logging & Diagnostics
 
 General Guidelines
 ------------------
+
 CPS-Core logs are sent to `STDOUT` in order to leverage the Kubernetes logging architecture.
 
 These logs are available using the following command:
@@ -152,15 +155,15 @@ loggers log level
 
 Logger configuration is provided as a chart resource :
 
-    +--------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-    | cps-component-service-name     | logback.xml location                                                                                                            |
-    +================================+=================================================================================================================================+
-    | cps-core                       | `logback.xml <https://github.com/onap/oom/blob/master/kubernetes/cps/components/cps-core/resources/config/logback.xml>`_        |
-    +--------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-    | cps-temporal                   | `logback.xml <https://github.com/onap/oom/blob/master/kubernetes/cps/components/cps-temporal/resources/config/logback.xml>`_    |
-    +--------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-    | ncmp-dmi-plugin                | Not yet applicable to DMI-Plugin                                                                                                |
-    +--------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+    +--------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
+    | cps-component-service-name     | logback.xml location                                                                                                             |
+    +================================+==================================================================================================================================+
+    | cps-core                       | `cps-core <https://github.com/onap/oom/blob/master/kubernetes/cps/components/cps-core/resources/config/logback.xml>`__           |
+    +--------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
+    | cps-temporal                   | `cps-temporal <https://github.com/onap/oom/blob/master/kubernetes/cps/components/cps-temporal/resources/config/logback.xml>`__   |
+    +--------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
+    | ncmp-dmi-plugin                | Not yet applicable to DMI-Plugin                                                                                                 |
+    +--------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
 
 .. Below Label is used by documentation for other CPS components to link here, do not remove even if it gives a warning
 .. _cps_common_monitoring:
