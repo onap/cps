@@ -29,8 +29,9 @@ import org.onap.cps.ncmp.api.impl.exception.DmiRequestException
 import org.onap.cps.ncmp.api.impl.exception.HttpClientRequestException
 import org.onap.cps.ncmp.api.impl.exception.ServerNcmpException
 import org.onap.cps.ncmp.rest.controller.NcmpRestInputMapper
-import org.onap.cps.ncmp.rest.mapper.CmHandleStateMapper
+import org.onap.cps.ncmp.rest.controller.handlers.NcmpDatastoreResourceRequestHandlerFactory
 import org.onap.cps.ncmp.rest.executor.CpsNcmpTaskExecutor
+import org.onap.cps.ncmp.rest.mapper.CmHandleStateMapper
 import org.onap.cps.ncmp.rest.util.DeprecationHelper
 import org.onap.cps.spi.exceptions.CpsException
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException
@@ -48,9 +49,7 @@ import spock.lang.Specification
 
 import static org.onap.cps.ncmp.rest.exceptions.NetworkCmProxyRestExceptionHandlerSpec.ApiType.NCMP
 import static org.onap.cps.ncmp.rest.exceptions.NetworkCmProxyRestExceptionHandlerSpec.ApiType.NCMPINVENTORY
-import static org.springframework.http.HttpStatus.BAD_REQUEST
-import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR
-import static org.springframework.http.HttpStatus.NOT_FOUND
+import static org.springframework.http.HttpStatus.*
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 
@@ -77,6 +76,9 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
 
     @SpringBean
     DeprecationHelper stubbedDeprecationHelper = Stub()
+
+    @SpringBean
+    NcmpDatastoreResourceRequestHandlerFactory mockedNcmpDatastoreResourceRequestHandlerFactory = Mock()
 
     @Value('${rest.api.ncmp-base-path}')
     def basePathNcmp
@@ -125,7 +127,7 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
 
     def 'Failing DMI Request - passthrough scenario'() {
         given: 'failing DMI request'
-            setupTestException(new HttpClientRequestException('Error Message Details NCMP', 'Bad Request from DMI', 400) , NCMP)
+            setupTestException(new HttpClientRequestException('Error Message Details NCMP', 'Bad Request from DMI', 400), NCMP)
         when: 'the DMI request is executed'
             def response = performTestRequest(NCMP)
         then: 'NCMP service responds with 502 Bad Gateway status'
@@ -150,7 +152,7 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
         return mvc.perform(post("$dataNodeBaseEndpointNcmpInventory/ch").contentType(MediaType.APPLICATION_JSON).content(jsonData)).andReturn().response
     }
 
-    static void assertTestResponse(response, expectedStatus , expectedErrorMessage , expectedErrorDetails) {
+    static void assertTestResponse(response, expectedStatus, expectedErrorMessage, expectedErrorDetails) {
         assert response.status == expectedStatus.value()
         def content = new JsonSlurper().parseText(response.contentAsString)
         assert content['status'].toString().contains(expectedStatus.toString())

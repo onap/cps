@@ -26,9 +26,11 @@ info:
 servers:
   - url: /ncmp
 paths:
-  /v1/ch/{cm-handle}/data/ds/ncmp-datastore:passthrough-operational:
-    $ref: 'ncmp.yml#/getResourceDataForPassthroughOperational'
+  # New endpoint
+  /v1/ch/{cm-handle}/data/ds/{ncmp-datastore-name}:
+    $ref: 'ncmp.yml#/getResourceDataForCmHandle'
 
+  # This should be deleted when the above can handle its use cases
   /v1/ch/{cm-handle}/data/ds/ncmp-datastore:passthrough-running:
     $ref: 'ncmp.yml#/resourceDataForPassthroughRunning'
 
