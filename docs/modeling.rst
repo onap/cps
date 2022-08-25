@@ -56,6 +56,7 @@ Data
 Querying
 
 - **CPS Path** is used to query data nodes.
+
 .. toctree::
    :maxdepth: 1
 
