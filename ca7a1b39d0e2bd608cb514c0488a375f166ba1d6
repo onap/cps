@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "daeffd1a_452bbf8d",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-26T15:12:40Z",
+      "side": 1,
+      "message": "Amm..may be addMultipleListElements ?? \nor addListElementsCollection ?? \nor something better??",
+      "parentUuid": "e8035928_073a00fd",
+      "range": {
+        "startLine": 168,
+        "startChar": 35,
+        "endLine": 168,
+        "endChar": 36
+      },
+      "revId": "ca7a1b39d0e2bd608cb514c0488a375f166ba1d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e4926069_f559f697",
         "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
         "patchSetId": 1
