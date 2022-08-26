@@ -1,7 +1,8 @@
 /*
- * ============LICENSE_START=======================================================
+ *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2022 Bell Canada
+ *  Modifications Copyright (C) 2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -23,11 +24,11 @@ package org.onap.cps.api.impl;
 
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.util.Map;
+import lombok.RequiredArgsConstructor;
 import org.onap.cps.spi.CpsModulePersistenceService;
 import org.onap.cps.utils.CpsValidator;
 import org.onap.cps.yang.YangTextSchemaSourceSet;
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
@@ -39,10 +40,11 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @CacheConfig(cacheNames = {"yangSchema"})
+@RequiredArgsConstructor
 public class YangTextSchemaSourceSetCache {
 
-    @Autowired
-    private CpsModulePersistenceService cpsModulePersistenceService;
+    private final CpsModulePersistenceService cpsModulePersistenceService;
+    private final CpsValidator cpsValidator;
 
     /**
      * Cache YangTextSchemaSourceSet.
@@ -53,7 +55,7 @@ public class YangTextSchemaSourceSetCache {
      */
     @Cacheable(key = "#p0.concat('-').concat(#p1)")
     public YangTextSchemaSourceSet get(final String dataspaceName, final String schemaSetName) {
-        CpsValidator.validateNameCharacters(dataspaceName, schemaSetName);
+        cpsValidator.validateNameCharacters(dataspaceName, schemaSetName);
         final Map<String, String> yangResourceNameToContent =
                 cpsModulePersistenceService.getYangSchemaResources(dataspaceName, schemaSetName);
         return YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent);
@@ -71,7 +73,7 @@ public class YangTextSchemaSourceSetCache {
     @CanIgnoreReturnValue
     public YangTextSchemaSourceSet updateCache(final String dataspaceName, final String schemaSetName,
             final YangTextSchemaSourceSet yangTextSchemaSourceSet) {
-        CpsValidator.validateNameCharacters(dataspaceName, schemaSetName);
+        cpsValidator.validateNameCharacters(dataspaceName, schemaSetName);
         return yangTextSchemaSourceSet;
     }
 
@@ -84,7 +86,7 @@ public class YangTextSchemaSourceSetCache {
      */
     @CacheEvict(key = "#p0.concat('-').concat(#p1)")
     public void removeFromCache(final String dataspaceName, final String schemaSetName) {
-        CpsValidator.validateNameCharacters(dataspaceName, schemaSetName);
+        cpsValidator.validateNameCharacters(dataspaceName, schemaSetName);
         // Spring provides implementation for removing object from cache
     }
 

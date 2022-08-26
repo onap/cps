@@ -33,10 +33,12 @@ import org.onap.cps.ncmp.api.inventory.InventoryPersistence
 import org.onap.cps.ncmp.api.inventory.LockReasonCategory
 import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
 import org.onap.cps.ncmp.api.models.CmHandleQueryApiParameters
+import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse
 import org.onap.cps.ncmp.api.models.ConditionApiProperties
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import org.onap.cps.spi.exceptions.CpsException
+import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.model.CmHandleQueryServiceParameters
 import spock.lang.Shared
@@ -55,6 +57,10 @@ import static org.onap.cps.ncmp.api.impl.operations.DmiOperations.DataStoreEnum.
 import static org.onap.cps.ncmp.api.impl.operations.DmiOperations.DataStoreEnum.PASSTHROUGH_RUNNING
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.CREATE
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.UPDATE
+import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationError.CM_HANDLE_DOES_NOT_EXIST
+import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationError.CM_HANDLE_INVALID_ID
+import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationError.UNKNOWN_ERROR
+
 
 class NetworkCmProxyDataServiceImplSpec extends Specification {
 
@@ -103,17 +109,6 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             1 * mockDmiDataOperations.writeResourceDataPassThroughRunningFromDmi('testCmHandle', 'testResourceId',
                 CREATE, '{some-json}', 'application/json')
                 >> { new ResponseEntity<>(HttpStatus.CREATED) }
-    }
-
-    def 'Write resource data for pass-through running from DMI using an invalid id.'() {
-        when: 'write resource data is called'
-            objectUnderTest.writeResourceDataPassThroughRunningForCmHandle('invalid cm handle name',
-                'testResourceId', CREATE,
-                '{some-json}', 'application/json')
-        then: 'exception is thrown'
-            thrown(DataValidationException.class)
-        and: 'DMI is not invoked'
-            0 * mockDmiDataOperations.writeResourceDataPassThroughRunningFromDmi(_, _, _, _, _)
     }
 
     def 'Get resource data for pass-through operational from DMI.'() {
@@ -166,15 +161,6 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             1 * mockInventoryPersistence.getYangResourcesModuleReferences('some-cm-handle')
     }
 
-    def 'Getting Yang Resources with an invalid #scenario.'() {
-        when: 'yang resources is called'
-            objectUnderTest.getYangResourcesModuleReferences('invalid cm handle with spaces')
-        then: 'a data validation exception is thrown'
-            thrown(DataValidationException)
-        and: 'CPS module services is not invoked'
-            0 * mockInventoryPersistence.getYangResourcesModuleReferences(*_)
-    }
-
     def 'Get a cm handle.'() {
         given: 'the system returns a yang modelled cm handle'
             def dmiServiceName = 'some service name'
@@ -203,15 +189,6 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
 
     }
 
-    def 'Get a cm handle with an invalid id.'() {
-        when: 'getting cm handle details for a given cm handle id with an invalid name'
-            objectUnderTest.getNcmpServiceCmHandle('invalid cm handle with spaces')
-        then: 'an exception is thrown'
-            thrown(DataValidationException)
-        and: 'the yang model cm handle retriever is not invoked'
-            0 * mockInventoryPersistence.getYangModelCmHandle(*_)
-    }
-
     def 'Get cm handle public properties'() {
         given: 'a yang modelled cm handle'
             def dmiProperties = [new YangModelCmHandle.Property('prop', 'some DMI property')]
@@ -223,15 +200,6 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             def result = objectUnderTest.getCmHandlePublicProperties('some-cm-handle')
         then: 'the result returns the correct data'
             result == [ 'public prop' : 'some public prop' ]
-    }
-
-    def 'Get cm handle public properties with an invalid id.'() {
-        when: 'getting cm handle public properties for a given cm handle id with an invalid name'
-            objectUnderTest.getCmHandlePublicProperties('invalid cm handle with spaces')
-        then: 'an exception is thrown'
-            thrown(DataValidationException)
-        and: 'the yang model cm handle retriever is not invoked'
-            0 * mockInventoryPersistence.getYangModelCmHandle(*_)
     }
 
     def 'Get cm handle composite state'() {
@@ -250,15 +218,6 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             def result = objectUnderTest.getCmHandleCompositeState('some-cm-handle')
         then: 'the result returns the correct data'
             result == compositeState
-    }
-
-    def 'Get cm handle composite state with an invalid id.'() {
-        when: 'getting cm handle composite state for a given cm handle id with an invalid name'
-            objectUnderTest.getCmHandleCompositeState('invalid cm handle with spaces')
-        then: 'an exception is thrown'
-            thrown(DataValidationException)
-        and: 'the yang model cm handle retriever is not invoked'
-            0 * mockInventoryPersistence.getYangModelCmHandle(_)
     }
 
     def 'Update resource data for pass-through running from dmi using POST #scenario DMI properties.'() {
@@ -388,6 +347,29 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             assert result.size() == 2
         and: 'the result returns the correct details'
             assert result.containsAll('cm-handle-1','cm-handle-2')
+    }
+
+    def 'Create CM-Handle Error Handling: Registration fails as: #scenario'() {
+        given: 'a registration without cm-handle properties'
+            def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server')
+            dmiPluginRegistration.createdCmHandles = [new NcmpServiceCmHandle(cmHandleId: cmHandleId)]
+        and: 'cm-handler registration fails: #scenario'
+            mockInventoryPersistence.getYangModelCmHandle(*_) >> { throw exception }
+        when: 'registration is updated'
+            def response = objectUnderTest.parseAndRemoveCmHandlesInDmiRegistration([cmHandleId])
+        then: 'a failure response is received'
+            response.size() == 1
+            with(response.get(0)) {
+                assert it.status == CmHandleRegistrationResponse.Status.FAILURE
+                assert it.cmHandle ==  cmHandleId
+                assert it.registrationError == expectedError
+                assert it.errorText == expectedErrorText
+            }
+        where:
+            scenario                     | cmHandleId             | exception                                                        || expectedError            | expectedErrorText
+            'Cm Handle does not exist'   | 'cmHandleId'           | new DataNodeNotFoundException('NCMP-Admin', 'ncmp-dmi-registry') || CM_HANDLE_DOES_NOT_EXIST | 'cm-handle does not exist'
+            'Cm Handle is unknown'       | 'cmHandleId'           | new RuntimeException('Failed')                                   || UNKNOWN_ERROR            | 'Failed'
+            'cm-handle has invalid name' | 'cm handle with space' | new DataValidationException("", "")                              || CM_HANDLE_INVALID_ID     | 'cm-handle has an invalid character(s) in id'
     }
 
     def dataStores() {

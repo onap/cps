@@ -1,5 +1,5 @@
 /*
- * ============LICENSE_START=======================================================
+ *  ============LICENSE_START=======================================================
  *  Copyright (C) 2020-2022 Nordix Foundation
  *  Modifications Copyright (C) 2020-2021 Pantheon.tech
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
@@ -28,6 +28,7 @@ import org.onap.cps.spi.CpsModulePersistenceService
 import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.exceptions.ModelValidationException
 import org.onap.cps.spi.exceptions.SchemaSetInUseException
+import org.onap.cps.utils.CpsValidator
 import org.onap.cps.spi.model.Anchor
 import org.onap.cps.spi.model.ModuleReference
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
@@ -40,8 +41,9 @@ class CpsModuleServiceImplSpec extends Specification {
     def mockCpsModulePersistenceService = Mock(CpsModulePersistenceService)
     def mockCpsAdminService = Mock(CpsAdminService)
     def mockYangTextSchemaSourceSetCache = Mock(YangTextSchemaSourceSetCache)
+    def mockCpsValidator = Mock(CpsValidator)
 
-    def objectUnderTest = new CpsModuleServiceImpl(mockCpsModulePersistenceService, mockYangTextSchemaSourceSetCache, mockCpsAdminService)
+    def objectUnderTest = new CpsModuleServiceImpl(mockCpsModulePersistenceService, mockYangTextSchemaSourceSetCache, mockCpsAdminService, mockCpsValidator)
 
     def 'Create schema set.'() {
         given: 'Valid yang resource as name-to-content map'
@@ -50,20 +52,8 @@ class CpsModuleServiceImplSpec extends Specification {
             objectUnderTest.createSchemaSet('someDataspace', 'someSchemaSet', yangResourcesNameToContentMap)
         then: 'Parameters are validated and processing is delegated to persistence service'
             1 * mockCpsModulePersistenceService.storeSchemaSet('someDataspace', 'someSchemaSet', yangResourcesNameToContentMap)
-    }
-
-    def 'Create a schema set with an invalid #scenario.'() {
-        when: 'create dataspace method is invoked with incorrectly named dataspace'
-            objectUnderTest.createSchemaSet(dataspaceName, schemaSetName, _ as Map<String, String>)
-        then: 'a data validation exception is thrown'
-            thrown(DataValidationException)
-        and: 'the persistence service method is not invoked'
-            0 * mockCpsModulePersistenceService.storeSchemaSet(_, _, _)
-        where: 'the following parameters are used'
-            scenario                         | dataspaceName                 | schemaSetName
-            'dataspace name'                 | 'dataspace names with spaces' | 'schemaSetName'
-            'schema set name name'           | 'dataspaceName'               | 'schema set name with spaces'
-            'dataspace and schema set name'  | 'dataspace name with spaces'  | 'schema set name with spaces'
+        and: 'the CpsValidator is called on the dataspaceName and schemaSetName'
+            1 * mockCpsValidator.validateNameCharacters('someDataspace', 'someSchemaSet')
     }
 
     def 'Create schema set from new modules and existing modules.'() {
@@ -74,20 +64,8 @@ class CpsModuleServiceImplSpec extends Specification {
             objectUnderTest.createSchemaSetFromModules("someDataspaceName", "someSchemaSetName", [newModule: "newContent"], listOfExistingModulesModuleReference)
         then: 'processing is delegated to persistence service'
             1 * mockCpsModulePersistenceService.storeSchemaSetFromModules("someDataspaceName", "someSchemaSetName", [newModule: "newContent"], listOfExistingModulesModuleReference)
-    }
-
-    def 'Create schema set from new modules and existing modules with invalid #scenario.'() {
-        when: 'create dataspace method is invoked with incorrectly named dataspace'
-            objectUnderTest.createSchemaSetFromModules(dataspaceName, schemaSetName, _ as Map<String, String>, _ as Collection<ModuleReference>)
-        then: 'a data validation exception is thrown'
-            thrown(DataValidationException)
-        and: 'the persistence service method is not invoked'
-            0 * mockCpsModulePersistenceService.storeSchemaSetFromModules(_, _, _)
-        where: 'the following parameters are used'
-            scenario                         | dataspaceName                 | schemaSetName
-            'dataspace name'                 | 'dataspace names with spaces' | 'schemaSetName'
-            'schema set name name'           | 'dataspaceName'               | 'schema set name with spaces'
-            'dataspace and schema set name'  | 'dataspace name with spaces'  | 'schema set name with spaces'
+        and: 'the CpsValidator is called on the dataspaceName and schemaSetName'
+            1 * mockCpsValidator.validateNameCharacters('someDataspaceName', 'someSchemaSetName')
     }
 
     def 'Create schema set from invalid resources'() {
@@ -110,20 +88,8 @@ class CpsModuleServiceImplSpec extends Specification {
             result.getName().contains('someSchemaSet')
             result.getDataspaceName().contains('someDataspace')
             result.getModuleReferences().contains(new ModuleReference('stores', '2020-09-15', 'org:onap:ccsdk:sample'))
-    }
-
-    def 'Get a schema set with an invalid #scenario'() {
-        when: 'create dataspace method is invoked with incorrectly named dataspace'
-            objectUnderTest.getSchemaSet(dataspaceName, schemaSetName)
-        then: 'a data validation exception is thrown'
-            thrown(DataValidationException)
-        and: 'the yang resource cache is not invoked'
-            0 * mockYangTextSchemaSourceSetCache.get(_, _)
-        where: 'the following parameters are used'
-            scenario                        | dataspaceName                 | schemaSetName
-            'dataspace name'                | 'dataspace names with spaces' | 'schemaSetName'
-            'schema set name'               | 'dataspaceName'               | 'schema set name with spaces'
-            'dataspace and schema set name' | 'dataspace name with spaces'  | 'schema set name with spaces'
+        and: 'the CpsValidator is called on the dataspaceName and schemaSetName'
+            1 * mockCpsValidator.validateNameCharacters('someDataspace', 'someSchemaSet')
     }
 
     def 'Delete schema-set when cascade is allowed.'() {
@@ -140,6 +106,8 @@ class CpsModuleServiceImplSpec extends Specification {
             1 * mockYangTextSchemaSourceSetCache.removeFromCache('my-dataspace', 'my-schemaset')
         and: 'orphan yang resources are deleted'
             1 * mockCpsModulePersistenceService.deleteUnusedYangResourceModules()
+        and: 'the CpsValidator is called on the dataspaceName and schemaSetName'
+            1 * mockCpsValidator.validateNameCharacters('my-dataspace', _)
         where: 'following parameters are used'
             numberOfAnchors << [0, 3]
     }
@@ -157,6 +125,8 @@ class CpsModuleServiceImplSpec extends Specification {
             1 * mockYangTextSchemaSourceSetCache.removeFromCache('my-dataspace', 'my-schemaset')
         and: 'orphan yang resources are deleted'
             1 * mockCpsModulePersistenceService.deleteUnusedYangResourceModules()
+        and: 'the CpsValidator is called on the dataspaceName and schemaSetName'
+            1 * mockCpsValidator.validateNameCharacters('my-dataspace', 'my-schemaset')
     }
 
     def 'Delete schema-set when cascade is prohibited and schema-set has anchors.'() {
@@ -166,26 +136,6 @@ class CpsModuleServiceImplSpec extends Specification {
             objectUnderTest.deleteSchemaSet('my-dataspace', 'my-schemaset', CASCADE_DELETE_PROHIBITED)
         then: 'Schema-Set in Use exception is thrown'
             thrown(SchemaSetInUseException)
-    }
-
-    def 'Delete a schema set with an invalid #scenario.'() {
-        when: 'create dataspace method is invoked with incorrectly named dataspace'
-            objectUnderTest.deleteSchemaSet(dataspaceName, schemaSetName, CASCADE_DELETE_ALLOWED)
-        then: 'a data validation exception is thrown'
-            thrown(DataValidationException)
-        and: 'anchor deletion is called 0 times'
-            0 * mockCpsAdminService.deleteAnchor(_, _)
-        and: 'the delete schema set persistence service method is not invoked'
-            0 * mockCpsModulePersistenceService.deleteSchemaSet(_, _, _)
-        and: 'schema set will be removed from the cache is not invoked'
-            0 * mockYangTextSchemaSourceSetCache.removeFromCache(_, _)
-        and: 'orphan yang resources are deleted is not invoked'
-            0 * mockCpsModulePersistenceService.deleteUnusedYangResourceModules()
-        where: 'the following parameters are used'
-            scenario                         | dataspaceName                 | schemaSetName
-            'dataspace name'                 | 'dataspace names with spaces' | 'schemaSetName'
-            'schema set name name'           | 'dataspaceName'               | 'schema set name with spaces'
-            'dataspace and schema set name'  | 'dataspace name with spaces'  | 'schema set name with spaces'
     }
 
     def createAnchors(int anchorCount) {
@@ -198,40 +148,24 @@ class CpsModuleServiceImplSpec extends Specification {
         given: 'an already present module reference'
             def moduleReferences = [new ModuleReference('some module name','some revision name')]
             mockCpsModulePersistenceService.getYangResourceModuleReferences('someDataspaceName') >> moduleReferences
-        expect: 'the list provided by persistence service is returned as result'
-            objectUnderTest.getYangResourceModuleReferences('someDataspaceName') == moduleReferences
+        when: 'get yang resource module references is called'
+            def result = objectUnderTest.getYangResourceModuleReferences('someDataspaceName')
+        then: 'the list provided by persistence service is returned as result'
+            result == moduleReferences
+        and: 'the CpsValidator is called on the dataspaceName and schemaSetName'
+            1 * mockCpsValidator.validateNameCharacters('someDataspaceName')
     }
-
-    def 'Get all yang resources module references given an invalid dataspace name.'() {
-        when: 'the get yang resources module references method is invoked with an invalid dataspace name'
-            objectUnderTest.getYangResourceModuleReferences('dataspace name with spaces')
-        then: 'a data validation exception is thrown'
-            thrown(DataValidationException)
-        and: 'the persistence service method is not invoked'
-            0 * mockCpsModulePersistenceService.getYangResourceModuleReferences(_)
-    }
-
 
     def 'Get all yang resources module references for the given dataspace name and anchor name.'() {
         given: 'the module store service service returns a list module references'
             def moduleReferences = [new ModuleReference()]
             mockCpsModulePersistenceService.getYangResourceModuleReferences('someDataspaceName', 'someAnchorName') >> moduleReferences
-        expect: 'the list provided by persistence service is returned as result'
-            objectUnderTest.getYangResourcesModuleReferences('someDataspaceName', 'someAnchorName') == moduleReferences
-    }
-
-    def 'Get all yang resources module references given an invalid #scenario.'() {
-        when: 'the get yang resources module references method is invoked with invalid #scenario'
-            objectUnderTest.getYangResourcesModuleReferences(dataspaceName, anchorName)
-        then: 'a data validation exception is thrown'
-            thrown(DataValidationException)
-        and: 'the persistence service method is not invoked'
-            0 * mockCpsModulePersistenceService.getYangResourceModuleReferences(_, _)
-        where: 'the following parameters are used'
-            scenario                     | dataspaceName                 | anchorName
-            'dataspace name'             | 'dataspace names with spaces' | 'anchorName'
-            'anchor name'                | 'dataspaceName'               | 'anchor name with spaces'
-            'dataspace and anchor name'  | 'dataspace name with spaces'  | 'anchor name with spaces'
+        when: 'get yang resource module references is called for dataspace name and anchor name'
+            def result = objectUnderTest.getYangResourcesModuleReferences('someDataspaceName', 'someAnchorName')
+        then: 'the list provided by persistence service is returned as result'
+            result == moduleReferences
+        and: 'the CpsValidator is called on the dataspaceName and schemaSetName'
+            1 * mockCpsValidator.validateNameCharacters('someDataspaceName', 'someAnchorName')
     }
 
     def 'Identifying new module references'(){
@@ -248,5 +182,7 @@ class CpsModuleServiceImplSpec extends Specification {
             objectUnderTest.getModuleDefinitionsByAnchorName('some-dataspace-name', 'some-anchor-name')
         then: 'CPS module persistence service is invoked the correct number of times'
             1 * mockCpsModulePersistenceService.getYangResourceDefinitions('some-dataspace-name', 'some-anchor-name')
+        and: 'the CpsValidator is called on the dataspaceName and schemaSetName'
+            1 * mockCpsValidator.validateNameCharacters('some-dataspace-name', 'some-anchor-name')
     }
 }

@@ -15,7 +15,7 @@
  *  limitations under the License.
  *
  *  SPDX-License-Identifier: Apache-2.0
- * ============LICENSE_END=========================================================
+ *  ============LICENSE_END=========================================================
  */
 
 package org.onap.cps.ncmp.api.impl.operations
@@ -28,6 +28,7 @@ import org.onap.cps.ncmp.api.impl.utils.DmiServiceUrlBuilder
 import org.onap.cps.ncmp.api.inventory.CmHandleState
 import org.onap.cps.ncmp.api.inventory.CompositeState
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence
+import org.onap.cps.utils.CpsValidator
 import org.spockframework.spring.SpringBean
 import spock.lang.Shared
 import spock.lang.Specification
@@ -43,11 +44,13 @@ abstract class DmiOperationsBaseSpec extends Specification {
     @SpringBean
     InventoryPersistence mockInventoryPersistence = Mock()
 
+    def mockCpsValidator = Mock(CpsValidator)
+
     @SpringBean
     ObjectMapper spyObjectMapper = Spy()
 
     @SpringBean
-    DmiServiceUrlBuilder dmiServiceUrlBuilder = new DmiServiceUrlBuilder(new NcmpConfiguration.DmiProperties())
+    DmiServiceUrlBuilder dmiServiceUrlBuilder = new DmiServiceUrlBuilder(new NcmpConfiguration.DmiProperties(), mockCpsValidator)
 
     def yangModelCmHandle = new YangModelCmHandle()
     def static dmiServiceName = 'some service name'

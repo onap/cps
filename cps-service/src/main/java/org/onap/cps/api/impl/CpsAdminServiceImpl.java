@@ -41,53 +41,54 @@ public class CpsAdminServiceImpl implements CpsAdminService {
     private final CpsAdminPersistenceService cpsAdminPersistenceService;
     @Lazy
     private final CpsDataService cpsDataService;
+    private final CpsValidator cpsValidator;
 
     @Override
     public void createDataspace(final String dataspaceName) {
-        CpsValidator.validateNameCharacters(dataspaceName);
+        cpsValidator.validateNameCharacters(dataspaceName);
         cpsAdminPersistenceService.createDataspace(dataspaceName);
     }
 
     @Override
     public void deleteDataspace(final String dataspaceName) {
-        CpsValidator.validateNameCharacters(dataspaceName);
+        cpsValidator.validateNameCharacters(dataspaceName);
         cpsAdminPersistenceService.deleteDataspace(dataspaceName);
     }
 
     @Override
     public void createAnchor(final String dataspaceName, final String schemaSetName, final String anchorName) {
-        CpsValidator.validateNameCharacters(dataspaceName, schemaSetName, anchorName);
+        cpsValidator.validateNameCharacters(dataspaceName, schemaSetName, anchorName);
         cpsAdminPersistenceService.createAnchor(dataspaceName, schemaSetName, anchorName);
     }
 
     @Override
     public Collection<Anchor> getAnchors(final String dataspaceName) {
-        CpsValidator.validateNameCharacters(dataspaceName);
+        cpsValidator.validateNameCharacters(dataspaceName);
         return cpsAdminPersistenceService.getAnchors(dataspaceName);
     }
 
     @Override
     public Collection<Anchor> getAnchors(final String dataspaceName, final String schemaSetName) {
-        CpsValidator.validateNameCharacters(dataspaceName, schemaSetName);
+        cpsValidator.validateNameCharacters(dataspaceName, schemaSetName);
         return cpsAdminPersistenceService.getAnchors(dataspaceName, schemaSetName);
     }
 
     @Override
     public Anchor getAnchor(final String dataspaceName, final String anchorName) {
-        CpsValidator.validateNameCharacters(dataspaceName, anchorName);
+        cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         return cpsAdminPersistenceService.getAnchor(dataspaceName, anchorName);
     }
 
     @Override
     public void deleteAnchor(final String dataspaceName, final String anchorName) {
-        CpsValidator.validateNameCharacters(dataspaceName, anchorName);
+        cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         cpsDataService.deleteDataNodes(dataspaceName, anchorName, OffsetDateTime.now());
         cpsAdminPersistenceService.deleteAnchor(dataspaceName, anchorName);
     }
 
     @Override
     public Collection<String> queryAnchorNames(final String dataspaceName, final Collection<String> moduleNames) {
-        CpsValidator.validateNameCharacters(dataspaceName);
+        cpsValidator.validateNameCharacters(dataspaceName);
         final Collection<Anchor> anchors = cpsAdminPersistenceService.queryAnchors(dataspaceName, moduleNames);
         return anchors.stream().map(Anchor::getName).collect(Collectors.toList());
     }

@@ -221,7 +221,7 @@ def CheckCopyrightFormat(copyrightInFile, templateCopyright, filePath):
     for copyrightInFileKey, templateLine in zip(copyrightInFile, templateCopyright):
         if copyrightInFile[copyrightInFileKey] != templateLine:
             issueCounter += 1
-            errorWithComparison += filePath + ' | line ' + '{:2}'.format(copyrightInFileKey) + ' read \t  ' + repr(copyrightInFile[copyrightInFileKey]) + '\n'
+            errorWithComparison += filePath + ' | line ' + '{:2}'.format(copyrightInFileKey) + ' read \t ' + repr(copyrightInFile[copyrightInFileKey]) + '\n'
             errorWithComparison += filePath + ' | line ' + '{:2}'.format(copyrightInFileKey) + ' expected ' + repr(templateLine) + '\n'
     if errorWithComparison != '':
         print(errorWithComparison.rstrip('\n'))
