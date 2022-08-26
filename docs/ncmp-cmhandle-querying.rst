@@ -36,6 +36,8 @@ Currently this endpoint allows three criteria to be query on:
 
 Not all request body combinations have been validated and as such request bodies which do not conform to the structure as documented here can produce results in which all CM Handles are returned.
 
+Please note that the CM Handle details JSON return body is given in camelCasing while it is stored in the database in kebab-casing set by the dmi-registry yang model. This is relevant in using the *cmHandleWithCpsPath* condition as the CPS path is going to be based on the dmi-registry which is stored in kebab-casing. Therefore the dmi-registry should be referenced when using the *cmHandleWithCpsPath* condition: :doc:`modeling`
+
 Request Body example using all available query criteria. This query would return all CM Handles which have the specified modules my-module-(1-3), have the specified properties of Color yellow, Shape circle, Size small and are in a sync state of ADVISED:
 
 .. code-block:: json
