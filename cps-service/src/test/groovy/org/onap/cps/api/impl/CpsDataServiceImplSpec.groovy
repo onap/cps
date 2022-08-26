@@ -35,6 +35,7 @@ import org.onap.cps.spi.model.DataNodeBuilder
 import org.onap.cps.yang.YangTextSchemaSourceSet
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
 import spock.lang.Specification
+import org.onap.cps.utils.CpsValidator;
 
 import java.time.OffsetDateTime
 
@@ -43,9 +44,10 @@ class CpsDataServiceImplSpec extends Specification {
     def mockCpsAdminService = Mock(CpsAdminService)
     def mockYangTextSchemaSourceSetCache = Mock(YangTextSchemaSourceSetCache)
     def mockNotificationService = Mock(NotificationService)
+    def mockCpsValidator = Mock(CpsValidator)
 
     def objectUnderTest = new CpsDataServiceImpl(mockCpsDataPersistenceService, mockCpsAdminService,
-            mockYangTextSchemaSourceSetCache, mockNotificationService)
+            mockYangTextSchemaSourceSetCache, mockNotificationService, mockCpsValidator)
 
     def setup() {
         mockCpsAdminService.getAnchor(dataspaceName, anchorName) >> anchor
@@ -66,24 +68,10 @@ class CpsDataServiceImplSpec extends Specification {
         then: 'the persistence service method is invoked with correct parameters'
             1 * mockCpsDataPersistenceService.storeDataNode(dataspaceName, anchorName,
                 { dataNode -> dataNode.xpath == '/test-tree' })
+        and: 'the CpsValidator is called on the dataspaceName and AnchorName'
+            1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
         and: 'data updated event is sent to notification service'
             1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, '/', Operation.CREATE, observedTimestamp)
-    }
-
-    def 'Saving json data with invalid #scenario.'() {
-        when: 'save data method is invoked with invalid #scenario'
-            objectUnderTest.saveData(dataspaceName, anchorName, _ as String, observedTimestamp)
-        then: 'a data validation exception is thrown'
-            thrown(DataValidationException)
-        and: 'the persistence service method is not invoked'
-            0 * mockCpsDataPersistenceService.storeDataNode(*_)
-        and: 'data updated event is not sent to notification service'
-            0 * mockNotificationService.processDataUpdatedEvent(*_)
-        where: 'the following parameters are used'
-            scenario                    | dataspaceName                 | anchorName
-            'dataspace name'            | 'dataspace names with spaces' | 'anchorName'
-            'anchor name'               | 'dataspaceName'               | 'anchor name with spaces'
-            'dataspace and anchor name' | 'dataspace name with spaces'  | 'anchor name with spaces'
     }
 
     def 'Saving child data fragment under existing node.'() {
@@ -95,24 +83,10 @@ class CpsDataServiceImplSpec extends Specification {
         then: 'the persistence service method is invoked with correct parameters'
             1 * mockCpsDataPersistenceService.addChildDataNode(dataspaceName, anchorName, '/test-tree',
                 { dataNode -> dataNode.xpath == '/test-tree/branch[@name=\'New\']' })
+        and: 'the CpsValidator is called on the dataspaceName and AnchorName'
+            1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
         and: 'data updated event is sent to notification service'
             1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, '/test-tree', Operation.CREATE, observedTimestamp)
-    }
-
-    def 'Saving child data fragment under existing node with invalid #scenario.'() {
-        when: 'save data method is invoked with test-tree and an invalid #scenario'
-            objectUnderTest.saveData(dataspaceName, anchorName, '/test-tree', _ as String, observedTimestamp)
-        then: 'a data validation exception is thrown'
-            thrown(DataValidationException)
-        and: 'the persistence service method is not invoked'
-            0 * mockCpsDataPersistenceService.addChildDataNode(*_)
-        and: 'data updated event is not sent to notification service'
-            0 * mockNotificationService.processDataUpdatedEvent(*_)
-        where: 'the following parameters are used'
-            scenario                    | dataspaceName                 | anchorName
-            'dataspace name'            | 'dataspace names with spaces' | 'anchorName'
-            'anchor name'               | 'dataspaceName'               | 'anchor name with spaces'
-            'dataspace and anchor name' | 'dataspace name with spaces'  | 'anchor name with spaces'
     }
 
     def 'Saving list element data fragment under existing node.'() {
@@ -131,6 +105,8 @@ class CpsDataServiceImplSpec extends Specification {
                     }
                 }
             )
+        and: 'the CpsValidator is called on the dataspaceName and AnchorName'
+            1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
         and: 'data updated event is sent to notification service'
             1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, '/test-tree', Operation.UPDATE, observedTimestamp)
     }
@@ -145,20 +121,6 @@ class CpsDataServiceImplSpec extends Specification {
             thrown(DataValidationException)
     }
 
-    def 'Saving list element data fragment with invalid #scenario.'() {
-        when: 'save data method is invoked with an invalid #scenario'
-            objectUnderTest.saveListElements(dataspaceName, anchorName, '/test-tree', _ as String, observedTimestamp)
-        then: 'a data validation exception is thrown'
-            thrown(DataValidationException)
-        and: 'add list elements persistence method is not invoked'
-            0 * mockCpsDataPersistenceService.addListElements(*_)
-        where: 'the following parameters are used'
-            scenario                    | dataspaceName                 | anchorName
-            'dataspace name'            | 'dataspace names with spaces' | 'anchorName'
-            'anchor name'               | 'dataspaceName'               | 'anchor name with spaces'
-            'dataspace and anchor name' | 'dataspace name with spaces'  | 'anchor name with spaces'
-    }
-
     def 'Get data node with option #fetchDescendantsOption.'() {
         def xpath = '/xpath'
         def dataNode = new DataNodeBuilder().withXpath(xpath).build()
@@ -170,20 +132,6 @@ class CpsDataServiceImplSpec extends Specification {
             fetchDescendantsOption << FetchDescendantsOption.values()
     }
 
-    def 'Get data node with option invalid #scenario.'() {
-        when: 'get data node is invoked with #scenario'
-            objectUnderTest.getDataNode(dataspaceName, anchorName, '/test-tree', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
-        then: 'a data validation exception is thrown'
-            thrown(DataValidationException)
-        and: 'get data node persistence service is not invoked'
-            0 * mockCpsDataPersistenceService.getDataNode(*_)
-        where: 'the following parameters are used'
-            scenario                    | dataspaceName                 | anchorName
-            'dataspace name'            | 'dataspace names with spaces' | 'anchorName'
-            'anchor name'               | 'dataspaceName'               | 'anchor name with spaces'
-            'dataspace and anchor name' | 'dataspace name with spaces'  | 'anchor name with spaces'
-    }
-
     def 'Update data node leaves: #scenario.'() {
         given: 'schema set for given anchor and dataspace references test-tree model'
             setupSchemaSetMocks('test-tree.yang')
@@ -191,28 +139,14 @@ class CpsDataServiceImplSpec extends Specification {
             objectUnderTest.updateNodeLeaves(dataspaceName, anchorName, parentNodeXpath, jsonData, observedTimestamp)
         then: 'the persistence service method is invoked with correct parameters'
             1 * mockCpsDataPersistenceService.updateDataLeaves(dataspaceName, anchorName, expectedNodeXpath, leaves)
+        and: 'the CpsValidator is called on the dataspaceName and AnchorName'
+            1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
         and: 'data updated event is sent to notification service'
             1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, parentNodeXpath, Operation.UPDATE, observedTimestamp)
         where: 'following parameters were used'
             scenario         | parentNodeXpath | jsonData                        || expectedNodeXpath                   | leaves
             'top level node' | '/'             | '{"test-tree": {"branch": []}}' || '/test-tree'                        | Collections.emptyMap()
             'level 2 node'   | '/test-tree'    | '{"branch": [{"name":"Name"}]}' || '/test-tree/branch[@name=\'Name\']' | ['name': 'Name']
-    }
-
-    def 'Update data node with invalid #scenario.'() {
-        when: 'update data method is invoked with json data #jsonData and parent node xpath #parentNodeXpath'
-            objectUnderTest.updateNodeLeaves(dataspaceName, anchorName, '/', '{"test-tree": {"branch": []}}', observedTimestamp)
-        then: 'a data validation exception is thrown'
-            thrown(DataValidationException)
-        and: 'the persistence service method is not invoked'
-            0 * mockCpsDataPersistenceService.updateDataLeaves(*_)
-        and: 'data updated event is not sent to notification service'
-            0 * mockNotificationService.processDataUpdatedEvent(*_)
-        where: 'the following parameters are used'
-            scenario                    | dataspaceName                 | anchorName
-            'dataspace name'            | 'dataspace names with spaces' | 'anchorName'
-            'anchor name'               | 'dataspaceName'               | 'anchor name with spaces'
-            'dataspace and anchor name' | 'dataspace name with spaces'  | 'anchor name with spaces'
     }
 
     def 'Update list-element data node with : #scenario.'() {
@@ -240,27 +174,11 @@ class CpsDataServiceImplSpec extends Specification {
         then: 'the persistence service method is invoked with correct parameters'
             1 * mockCpsDataPersistenceService.updateDataLeaves(dataspaceName, anchorName,
                 "/bookstore/categories[@code='01']", ['name':'Romance', 'code': '01'])
+        and: 'the CpsValidator is called on the dataspaceName and AnchorName'
+            1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
         and: 'the data updated event is sent to the notification service'
             1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, '/bookstore', Operation.UPDATE, observedTimestamp)
     }
-
-    def 'Update Bookstore node leaves with invalid #scenario' () {
-        when: 'update data method is invoked with an invalid #scenario'
-            objectUnderTest.updateNodeLeavesAndExistingDescendantLeaves(dataspaceName, anchorName,
-                '/bookstore', _ as String, observedTimestamp)
-        then: 'a data validation exception is thrown'
-            thrown(DataValidationException)
-        and: 'the persistence service method is not invoked'
-            0 * mockCpsDataPersistenceService.updateDataLeaves(*_)
-        and: 'the data updated event is not sent to the notification service'
-            0 * mockNotificationService.processDataUpdatedEvent(*_)
-        where: 'the following parameters are used'
-            scenario                    | dataspaceName                 | anchorName
-            'dataspace name'            | 'dataspace names with spaces' | 'anchorName'
-            'anchor name'               | 'dataspaceName'               | 'anchor name with spaces'
-            'dataspace and anchor name' | 'dataspace name with spaces'  | 'anchor name with spaces'
-    }
-
 
     def 'Replace data node using singular data node: #scenario.'() {
         given: 'schema set for given anchor and dataspace references test-tree model'
@@ -272,6 +190,8 @@ class CpsDataServiceImplSpec extends Specification {
                 { dataNode -> dataNode.xpath == expectedNodeXpath })
         and: 'data updated event is sent to notification service'
             1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, parentNodeXpath, Operation.UPDATE, observedTimestamp)
+        and: 'the CpsValidator is called on the dataspaceName and AnchorName'
+            1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
         where: 'following parameters were used'
             scenario         | parentNodeXpath | jsonData                        || expectedNodeXpath
             'top level node' | '/'             | '{"test-tree": {"branch": []}}' || '/test-tree'
@@ -289,42 +209,12 @@ class CpsDataServiceImplSpec extends Specification {
         and: 'data updated event is sent to notification service'
             1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, nodesJsonData.keySet()[0], Operation.UPDATE, observedTimestamp)
             1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, nodesJsonData.keySet()[1], Operation.UPDATE, observedTimestamp)
+        and: 'the CpsValidator is called on the dataspaceName and AnchorName'
+            1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
         where: 'following parameters were used'
             scenario         | nodesJsonData                                                                                                        || expectedNodeXpath
             'top level node' | ['/' : '{"test-tree": {"branch": []}}', '/test-tree' : '{"branch": [{"name":"Name"}]}']                              || ["/test-tree", "/test-tree/branch[@name='Name']"]
             'level 2 node'   | ['/test-tree' : '{"branch": [{"name":"Name"}]}', '/test-tree/branch[@name=\'Name\']':'{"nest":{"name":"nestName"}}'] || ["/test-tree/branch[@name='Name']", "/test-tree/branch[@name='Name']/nest"]
-    }
-
-    def 'Replace data node using singular data node with invalid #scenario.'() {
-        when: 'replace data method is invoked with invalid #scenario'
-            objectUnderTest.updateDataNodeAndDescendants(dataspaceName, anchorName, '/', _ as String, observedTimestamp)
-        then: 'a data validation exception is thrown'
-            thrown(DataValidationException)
-        and: 'the persistence service method is not invoked'
-            0 * mockCpsDataPersistenceService.updateDataNodeAndDescendants(*_)
-        and: 'data updated event is not sent to notification service'
-            0 * mockNotificationService.processDataUpdatedEvent(*_)
-        where: 'the following parameters are used'
-            scenario                    | dataspaceName                 | anchorName
-            'dataspace name'            | 'dataspace names with spaces' | 'anchorName'
-            'anchor name'               | 'dataspaceName'               | 'anchor name with spaces'
-            'dataspace and anchor name' | 'dataspace name with spaces'  | 'anchor name with spaces'
-    }
-
-    def 'Replace data node using multiple data nodes with invalid #scenario.'() {
-        when: 'replace data method is invoked with invalid #scenario'
-            objectUnderTest.updateDataNodesAndDescendants(dataspaceName, anchorName, ['/': _ as String], observedTimestamp)
-        then: 'a data validation exception is thrown'
-            thrown(DataValidationException)
-        and: 'the persistence service method is not invoked'
-            0 * mockCpsDataPersistenceService.updateDataNodesAndDescendants(*_)
-        and: 'data updated event is not sent to notification service'
-            0 * mockNotificationService.processDataUpdatedEvent(*_)
-        where: 'the following parameters are used'
-            scenario                    | dataspaceName                 | anchorName
-            'dataspace name'            | 'dataspace names with spaces' | 'anchorName'
-            'anchor name'               | 'dataspaceName'               | 'anchor name with spaces'
-            'dataspace and anchor name' | 'dataspace name with spaces'  | 'anchor name with spaces'
     }
 
     def 'Replace list content data fragment under parent node.'() {
@@ -343,6 +233,8 @@ class CpsDataServiceImplSpec extends Specification {
                     }
                 }
             )
+        and: 'the CpsValidator is called on the dataspaceName and AnchorName twice'
+            2 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
         and: 'data updated event is sent to notification service'
             1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, '/test-tree', Operation.UPDATE, observedTimestamp)
     }
@@ -357,22 +249,6 @@ class CpsDataServiceImplSpec extends Specification {
             thrown(DataValidationException)
     }
 
-    def 'Replace whole list content with an invalid #scenario.'() {
-        when: 'replace list data method is invoked with invalid #scenario'
-            objectUnderTest.replaceListContent(dataspaceName, anchorName, '/test-tree', _ as Collection<DataNode>, observedTimestamp)
-        then: 'a data validation exception is thrown'
-            thrown(DataValidationException)
-        and: 'the persistence service method is not invoked'
-            0 * mockCpsDataPersistenceService.replaceListContent(*_)
-        and: 'data updated event is not sent to notification service'
-            0 * mockNotificationService.processDataUpdatedEvent(*_)
-        where: 'the following parameters are used'
-            scenario                    | dataspaceName                 | anchorName
-            'dataspace name'            | 'dataspace names with spaces' | 'anchorName'
-            'anchor name'               | 'dataspaceName'               | 'anchor name with spaces'
-            'dataspace and anchor name' | 'dataspace name with spaces'  | 'anchor name with spaces'
-    }
-
     def 'Delete list element under existing node.'() {
         given: 'schema set for given anchor and dataspace references test-tree model'
             setupSchemaSetMocks('test-tree.yang')
@@ -380,25 +256,10 @@ class CpsDataServiceImplSpec extends Specification {
             objectUnderTest.deleteListOrListElement(dataspaceName, anchorName, '/test-tree/branch', observedTimestamp)
         then: 'the persistence service method is invoked with correct parameters'
             1 * mockCpsDataPersistenceService.deleteListDataNode(dataspaceName, anchorName, '/test-tree/branch')
+        and: 'the CpsValidator is called on the dataspaceName and AnchorName'
+            1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
         and: 'data updated event is sent to notification service'
             1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, '/test-tree/branch', Operation.DELETE, observedTimestamp)
-    }
-
-
-    def 'Delete list element with an invalid #scenario.'() {
-        when: 'delete list data method is invoked with with invalid #scenario'
-            objectUnderTest.deleteDataNode(dataspaceName, anchorName, '/data-node', observedTimestamp)
-        then: 'a data validation exception is thrown'
-            thrown(DataValidationException)
-        and: 'the persistence service method is not invoked'
-            0 * mockCpsDataPersistenceService.deleteListDataNode(*_)
-        and: 'data updated event is not sent to notification service'
-            0 * mockNotificationService.processDataUpdatedEvent(*_)
-        where: 'the following parameters are used'
-            scenario                    | dataspaceName                 | anchorName
-            'dataspace name'            | 'dataspace names with spaces' | 'anchorName'
-            'anchor name'               | 'dataspaceName'               | 'anchor name with spaces'
-            'dataspace and anchor name' | 'dataspace name with spaces'  | 'anchor name with spaces'
     }
 
     def 'Delete data node under anchor and dataspace.'() {
@@ -408,24 +269,10 @@ class CpsDataServiceImplSpec extends Specification {
             objectUnderTest.deleteDataNode(dataspaceName, anchorName, '/data-node', observedTimestamp)
         then: 'the persistence service method is invoked with the correct parameters'
             1 * mockCpsDataPersistenceService.deleteDataNode(dataspaceName, anchorName, '/data-node')
+        and: 'the CpsValidator is called on the dataspaceName and AnchorName'
+            1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
         and: 'data updated event is sent to notification service'
             1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, '/data-node', Operation.DELETE, observedTimestamp)
-    }
-
-    def 'Delete data node with an invalid #scenario.'() {
-        when: 'delete data node method is invoked with invalid #scenario'
-            objectUnderTest.deleteDataNode(dataspaceName, anchorName, '/data-node', observedTimestamp)
-        then: 'a data validation exception is thrown'
-            thrown(DataValidationException)
-        and: 'the persistence service method is not invoked'
-            0 * mockCpsDataPersistenceService.deleteDataNode(*_)
-        and: 'data updated event is not sent to notification service'
-            0 * mockNotificationService.processDataUpdatedEvent(*_)
-        where: 'the following parameters are used'
-            scenario                    | dataspaceName                 | anchorName
-            'dataspace name'            | 'dataspace names with spaces' | 'anchorName'
-            'anchor name'               | 'dataspaceName'               | 'anchor name with spaces'
-            'dataspace and anchor name' | 'dataspace name with spaces'  | 'anchor name with spaces'
     }
 
     def 'Delete all data nodes for a given anchor and dataspace.'() {
@@ -435,6 +282,8 @@ class CpsDataServiceImplSpec extends Specification {
             objectUnderTest.deleteDataNodes(dataspaceName, anchorName, observedTimestamp)
         then: 'data updated event is sent to notification service before the delete'
             1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, '/', Operation.DELETE, observedTimestamp)
+        and: 'the CpsValidator is called on the dataspaceName and AnchorName'
+            1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
         and: 'the persistence service method is invoked with the correct parameters'
             1 * mockCpsDataPersistenceService.deleteDataNodes(dataspaceName, anchorName)
     }

@@ -81,6 +81,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     private int timeOutInMilliSeconds;
     @Value("${notification.enabled:true}")
     private boolean asyncEnabled;
+    private final CpsValidator cpsValidator;
 
     /**
      * Get resource data from operational datastore.
@@ -345,11 +346,11 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         return restOutputCmHandle;
     }
 
-    private static boolean isValidTopic(final String topicName) {
+    private boolean isValidTopic(final String topicName) {
         if (topicName == null) {
             return false;
         }
-        if (CpsValidator.validateTopicName(topicName)) {
+        if (cpsValidator.validateTopicName(topicName)) {
             return true;
         }
         throw new InvalidTopicException("Topic name " + topicName + " is invalid", "invalid topic");

@@ -25,17 +25,18 @@ import spock.lang.Specification
 
 class CpsValidatorSpec extends Specification {
 
+    def objectUnderTest = new CpsValidator();
 
     def 'Validating a valid string.'() {
         when: 'the string is validated using a valid name'
-            CpsValidator.validateNameCharacters('name-with-no-spaces')
+            objectUnderTest.validateNameCharacters('name-with-no-spaces')
         then: 'no exception is thrown'
             noExceptionThrown()
     }
 
     def 'Validating an invalid string.'() {
         when: 'the string is validated using an invalid name'
-            CpsValidator.validateNameCharacters(name)
+            objectUnderTest.validateNameCharacters(name)
         then: 'a data validation exception is thrown'
             def exceptionThrown = thrown(DataValidationException)
         and: 'the error was encountered at the following index in #scenario'
@@ -48,7 +49,7 @@ class CpsValidatorSpec extends Specification {
 
     def 'Validating topic names.'() {
         when: 'the topic name is validated'
-            def isValidTopicName = CpsValidator.validateTopicName(topicName)
+            def isValidTopicName = objectUnderTest.validateTopicName(topicName)
         then: 'boolean response will be returned for #scenario'
             assert isValidTopicName == booleanResponse
         where: 'the following names are used'

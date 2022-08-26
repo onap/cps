@@ -33,7 +33,6 @@ import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.inventory.CmHandleState;
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
 import org.onap.cps.spi.exceptions.CpsException;
-import org.onap.cps.utils.CpsValidator;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -131,7 +130,6 @@ public class DmiDataOperations extends DmiOperations {
     }
 
     private YangModelCmHandle getYangModelCmHandle(final String cmHandleId) {
-        CpsValidator.validateNameCharacters(cmHandleId);
         return inventoryPersistence.getYangModelCmHandle(cmHandleId);
     }
 
