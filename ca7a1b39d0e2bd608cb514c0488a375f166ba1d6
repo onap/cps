@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "dba5588d_895e9efb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-26T15:12:59Z",
+      "side": 1,
+      "message": "yup..will do.",
+      "parentUuid": "b46db2d0_e0ce6ebd",
+      "range": {
+        "startLine": 166,
+        "startChar": 36,
+        "endLine": 166,
+        "endChar": 40
+      },
+      "revId": "ca7a1b39d0e2bd608cb514c0488a375f166ba1d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e8035928_073a00fd",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
         "patchSetId": 1
