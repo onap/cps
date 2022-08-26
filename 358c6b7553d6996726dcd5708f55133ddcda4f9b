@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "dcbd13df_66441d36",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationCacheConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-26T14:42:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "675936db_8e1093ff",
+      "range": {
+        "startLine": 96,
+        "startChar": 4,
+        "endLine": 101,
+        "endChar": 25
+      },
+      "revId": "358c6b7553d6996726dcd5708f55133ddcda4f9b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "12ff749e_d0402c3c",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2022-08-26T10:54:05Z",
       "side": 1,
       "message": "NB : Should we log any error message here and then interrupt() or we just want to ignore it.",
+      "range": {
+        "startLine": 78,
+        "startChar": 44,
+        "endLine": 78,
+        "endChar": 45
+      },
+      "revId": "358c6b7553d6996726dcd5708f55133ddcda4f9b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "27e98e79_e897dbd1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-26T14:42:53Z",
+      "side": 1,
+      "message": "just ignore it, system will continue",
+      "parentUuid": "12ff749e_d0402c3c",
       "range": {
         "startLine": 78,
         "startChar": 44,

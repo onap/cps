@@ -94,6 +94,30 @@
     },
     {
       "key": {
+        "uuid": "099dfac2_4c753b4c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationCacheConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-26T14:42:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8fe64853_73a78365",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 41
+      },
+      "revId": "ee9837c7320c3228e978905a1a356f3a305fbbfd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3891fbfc_ffa8f35c",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncTasks.java",
         "patchSetId": 1
@@ -105,6 +129,30 @@
       "writtenOn": "2022-08-26T10:00:36Z",
       "side": 1,
       "message": "ModuleSyncTaskExecutor",
+      "range": {
+        "startLine": 43,
+        "startChar": 13,
+        "endLine": 43,
+        "endChar": 28
+      },
+      "revId": "ee9837c7320c3228e978905a1a356f3a305fbbfd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b6cc0d4_86705d12",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncTasks.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-26T14:42:53Z",
+      "side": 1,
+      "message": "I dont like what that name implies, this is NOT the executor (not a runnabel or somthignliek that) ist just the definition of these tasks...",
+      "parentUuid": "3891fbfc_ffa8f35c",
       "range": {
         "startLine": 43,
         "startChar": 13,
