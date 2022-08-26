@@ -22,6 +22,7 @@
 
 package org.onap.cps.spi.model;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
@@ -33,7 +34,9 @@ import lombok.Setter;
 @Setter(AccessLevel.PROTECTED)
 @Getter
 @EqualsAndHashCode
-public class DataNode {
+public class DataNode implements Serializable {
+
+    private static final long serialVersionUID = 1482619410918597467L;
 
     DataNode() {    }
 
