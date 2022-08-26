@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2d4ea032_65509981",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationCacheConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-08-26T09:04:53Z",
+      "side": 1,
+      "message": "working queue",
+      "range": {
+        "startLine": 36,
+        "startChar": 52,
+        "endLine": 36,
+        "endChar": 56
+      },
+      "revId": "ee9837c7320c3228e978905a1a356f3a305fbbfd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f284b95c_61f69c18",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationCacheConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-08-26T09:04:53Z",
+      "side": 1,
+      "message": "data nodes",
+      "range": {
+        "startLine": 52,
+        "startChar": 24,
+        "endLine": 52,
+        "endChar": 40
+      },
+      "revId": "ee9837c7320c3228e978905a1a356f3a305fbbfd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "60a14935_bf15a1db",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncTasks.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-08-26T09:04:53Z",
+      "side": 1,
+      "message": "NB :batch",
+      "range": {
+        "startLine": 52,
+        "startChar": 32,
+        "endLine": 52,
+        "endChar": 38
+      },
+      "revId": "ee9837c7320c3228e978905a1a356f3a305fbbfd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e0dc8fb8_e06fc41f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-08-26T09:04:53Z",
+      "side": 1,
+      "message": "NB : Should we throw exception here or log a error message and try again?",
+      "range": {
+        "startLine": 78,
+        "startChar": 11,
+        "endLine": 78,
+        "endChar": 42
+      },
+      "revId": "ee9837c7320c3228e978905a1a356f3a305fbbfd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "55af5308_cdd02543",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-08-26T09:04:53Z",
+      "side": 1,
+      "message": "NB : debug level",
+      "range": {
+        "startLine": 97,
+        "startChar": 12,
+        "endLine": 97,
+        "endChar": 16
+      },
+      "revId": "ee9837c7320c3228e978905a1a356f3a305fbbfd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d0be10c8_53d3db07",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-08-26T09:04:53Z",
+      "side": 1,
+      "message": "NB : debug level",
+      "range": {
+        "startLine": 103,
+        "startChar": 20,
+        "endLine": 103,
+        "endChar": 24
+      },
+      "revId": "ee9837c7320c3228e978905a1a356f3a305fbbfd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "89f1a2df_25f93659",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-08-26T09:04:53Z",
+      "side": 1,
+      "message": "NB : debug level",
+      "range": {
+        "startLine": 108,
+        "startChar": 12,
+        "endLine": 108,
+        "endChar": 16
+      },
+      "revId": "ee9837c7320c3228e978905a1a356f3a305fbbfd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "19a9a58d_d9118feb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-08-26T09:04:53Z",
+      "side": 1,
+      "message": "data nodes",
+      "range": {
+        "startLine": 69,
+        "startChar": 15,
+        "endLine": 69,
+        "endChar": 31
+      },
+      "revId": "ee9837c7320c3228e978905a1a356f3a305fbbfd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
