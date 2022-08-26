@@ -71,6 +71,29 @@
     },
     {
       "key": {
+        "uuid": "62123f2e_b8d9cf57",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncTasks.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-08-26T09:16:27Z",
+      "side": 1,
+      "message": "batch?",
+      "range": {
+        "startLine": 52,
+        "startChar": 32,
+        "endLine": 52,
+        "endChar": 37
+      },
+      "revId": "ee9837c7320c3228e978905a1a356f3a305fbbfd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e0dc8fb8_e06fc41f",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
         "patchSetId": 1
@@ -179,6 +202,52 @@
         "startChar": 15,
         "endLine": 69,
         "endChar": 31
+      },
+      "revId": "ee9837c7320c3228e978905a1a356f3a305fbbfd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8180b529_218458db",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncTasksSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-08-26T09:16:27Z",
+      "side": 1,
+      "message": "repeated",
+      "range": {
+        "startLine": 89,
+        "startChar": 77,
+        "endLine": 89,
+        "endChar": 87
+      },
+      "revId": "ee9837c7320c3228e978905a1a356f3a305fbbfd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8909bc5c_ec262ecb",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdogSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-08-26T09:16:27Z",
+      "side": 1,
+      "message": "this is all thats needed for this ?",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 5
       },
       "revId": "ee9837c7320c3228e978905a1a356f3a305fbbfd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
