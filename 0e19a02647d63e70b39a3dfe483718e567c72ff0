@@ -238,6 +238,30 @@
     },
     {
       "key": {
+        "uuid": "5809276b_f928c648",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-26T11:07:37Z",
+      "side": 1,
+      "message": "yep, make factory a bean :-)",
+      "parentUuid": "34907e69_5e76859f",
+      "range": {
+        "startLine": 76,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 33
+      },
+      "revId": "0e19a02647d63e70b39a3dfe483718e567c72ff0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d0427a79_a44e9a45",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreHandler.java",
         "patchSetId": 8
@@ -496,6 +520,30 @@
     },
     {
       "key": {
+        "uuid": "db3e1895_5f8dc8b6",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreResourceRequestHandler.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-26T11:07:37Z",
+      "side": 1,
+      "message": "ok....",
+      "parentUuid": "ed3e6513_bf36cd48",
+      "range": {
+        "startLine": 81,
+        "startChar": 12,
+        "endLine": 81,
+        "endChar": 36
+      },
+      "revId": "0e19a02647d63e70b39a3dfe483718e567c72ff0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b35a2b12_721624c1",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
         "patchSetId": 8
@@ -531,6 +579,30 @@
       "side": 1,
       "message": "I have to use * or that other case the IntelliJ will complain for me",
       "parentUuid": "b35a2b12_721624c1",
+      "range": {
+        "startLine": 106,
+        "startChar": 16,
+        "endLine": 106,
+        "endChar": 38
+      },
+      "revId": "0e19a02647d63e70b39a3dfe483718e567c72ff0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "64c137e8_3ec48abd",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-26T11:07:37Z",
+      "side": 1,
+      "message": "fix your INtelliJ setup! We should not have to modify code because of YOUR ide setup\nit works for everybody else",
+      "parentUuid": "02e5e025_27f11712",
       "range": {
         "startLine": 106,
         "startChar": 16,
