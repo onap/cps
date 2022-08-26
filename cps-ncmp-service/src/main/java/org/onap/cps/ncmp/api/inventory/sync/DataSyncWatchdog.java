@@ -21,7 +21,7 @@
 package org.onap.cps.ncmp.api.inventory.sync;
 
 import java.time.OffsetDateTime;
-import java.util.concurrent.ConcurrentMap;
+import java.util.Map;
 import java.util.function.Consumer;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,7 +29,6 @@ import org.onap.cps.api.CpsDataService;
 import org.onap.cps.ncmp.api.inventory.CompositeState;
 import org.onap.cps.ncmp.api.inventory.DataStoreSyncState;
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -47,8 +46,7 @@ public class DataSyncWatchdog {
 
     private final SyncUtils syncUtils;
 
-    @Qualifier("dataSyncSemaphores")
-    private final ConcurrentMap<String, Boolean> dataSyncSemaphores;
+    private final Map<String, Boolean> dataSyncSemaphores;
 
     /**
      * Execute Cm Handle poll which queries the cm handle state in 'READY' and Operational Datastore Sync State in
