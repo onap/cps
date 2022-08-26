@@ -37,6 +37,7 @@ import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
 import spock.lang.Specification
 
 import java.time.OffsetDateTime
+import java.util.stream.Collectors
 
 class CpsDataServiceImplSpec extends Specification {
     def mockCpsDataPersistenceService = Mock(CpsDataPersistenceService)
@@ -131,6 +132,26 @@ class CpsDataServiceImplSpec extends Specification {
                     }
                 }
             )
+        and: 'data updated event is sent to notification service'
+            1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, '/test-tree', Operation.UPDATE, observedTimestamp)
+    }
+
+    def 'Saving collection of a batch with data fragment under existing node.'() {
+        given: 'schema set for given anchor and dataspace references test-tree model'
+            setupSchemaSetMocks('test-tree.yang')
+        when: 'save data method is invoked with list element json data'
+            def jsonData = '{"branch": [{"name": "A"}, {"name": "B"}]}'
+            objectUnderTest.saveListElementsBatch(dataspaceName, anchorName, '/test-tree', [jsonData], observedTimestamp)
+        then: 'the persistence service method is invoked with correct parameters'
+            1 * mockCpsDataPersistenceService.addListElementsBatch(dataspaceName, anchorName, '/test-tree',_) >> {
+                args -> {
+                    def listElementsCollection = args[3] as Collection<Collection<DataNode>>
+                    assert listElementsCollection.size() == 1
+                    def listOfXpaths = listElementsCollection.stream().flatMap(x -> x.stream()).map(it-> it.xpath).collect(Collectors.toList())
+                    assert listOfXpaths.size() == 2
+                    assert listOfXpaths.containsAll(['/test-tree/branch[@name=\'B\']','/test-tree/branch[@name=\'A\']'])
+                }
+            }
         and: 'data updated event is sent to notification service'
             1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, '/test-tree', Operation.UPDATE, observedTimestamp)
     }

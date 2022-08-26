@@ -92,6 +92,17 @@ public class CpsDataServiceImpl implements CpsDataService {
     }
 
     @Override
+    public void saveListElementsBatch(final String dataspaceName, final String anchorName, final String parentNodeXpath,
+            final Collection<String> jsonDataList, final OffsetDateTime observedTimestamp) {
+        CpsValidator.validateNameCharacters(dataspaceName, anchorName);
+        final Collection<Collection<DataNode>> listElementDataNodeCollections =
+                buildDataNodes(dataspaceName, anchorName, parentNodeXpath, jsonDataList);
+        cpsDataPersistenceService.addListElementsBatch(dataspaceName, anchorName, parentNodeXpath,
+                listElementDataNodeCollections);
+        processDataUpdatedEventAsync(dataspaceName, anchorName, parentNodeXpath, UPDATE, observedTimestamp);
+    }
+
+    @Override
     public DataNode getDataNode(final String dataspaceName, final String anchorName, final String xpath,
         final FetchDescendantsOption fetchDescendantsOption) {
         CpsValidator.validateNameCharacters(dataspaceName, anchorName);
@@ -250,6 +261,13 @@ public class CpsDataServiceImpl implements CpsDataService {
         }
         return dataNodes;
 
+    }
+
+    private Collection<Collection<DataNode>> buildDataNodes(final String dataspaceName, final String anchorName,
+            final String parentNodeXpath, final Collection<String> jsonDataList) {
+        return jsonDataList.stream()
+                .map(jsonData -> buildDataNodes(dataspaceName, anchorName, parentNodeXpath, jsonData))
+                .collect(Collectors.toList());
     }
 
     private void processDataUpdatedEventAsync(final String dataspaceName, final String anchorName, final String xpath,
