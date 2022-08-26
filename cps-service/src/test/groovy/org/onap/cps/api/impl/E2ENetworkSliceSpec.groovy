@@ -28,6 +28,7 @@ import org.onap.cps.notification.NotificationService
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.CpsModulePersistenceService
 import org.onap.cps.spi.model.Anchor
+import org.onap.cps.utils.CpsValidator
 import org.onap.cps.utils.YangUtils
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
 import spock.lang.Specification
@@ -38,10 +39,11 @@ class E2ENetworkSliceSpec extends Specification {
     def mockCpsAdminService = Mock(CpsAdminService)
     def mockNotificationService = Mock(NotificationService)
     def mockYangTextSchemaSourceSetCache = Mock(YangTextSchemaSourceSetCache)
+    def mockCpsValidator = Mock(CpsValidator)
     def cpsModuleServiceImpl = new CpsModuleServiceImpl(mockModuleStoreService,
-            mockYangTextSchemaSourceSetCache,mockCpsAdminService )
+            mockYangTextSchemaSourceSetCache, mockCpsAdminService, mockCpsValidator)
     def cpsDataServiceImpl = new CpsDataServiceImpl(mockDataStoreService, mockCpsAdminService,
-            mockYangTextSchemaSourceSetCache, mockNotificationService)
+            mockYangTextSchemaSourceSetCache, mockNotificationService, mockCpsValidator)
 
     def dataspaceName = 'someDataspace'
     def anchorName = 'someAnchor'

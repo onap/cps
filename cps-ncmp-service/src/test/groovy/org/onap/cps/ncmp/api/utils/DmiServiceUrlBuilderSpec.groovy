@@ -20,6 +20,7 @@
 
 package org.onap.cps.ncmp.api.utils
 
+import org.onap.cps.utils.CpsValidator
 
 import static org.onap.cps.ncmp.api.impl.operations.DmiOperations.DataStoreEnum.PASSTHROUGH_RUNNING
 
@@ -38,7 +39,9 @@ class DmiServiceUrlBuilderSpec extends Specification {
 
     NcmpConfiguration.DmiProperties dmiProperties = new NcmpConfiguration.DmiProperties()
 
-    def objectUnderTest = new DmiServiceUrlBuilder(dmiProperties)
+    def mockCpsValidator = Mock(CpsValidator)
+
+    def objectUnderTest = new DmiServiceUrlBuilder(dmiProperties, mockCpsValidator)
 
     def 'Create the dmi service url with #scenario.'() {
         given: 'uri variables'

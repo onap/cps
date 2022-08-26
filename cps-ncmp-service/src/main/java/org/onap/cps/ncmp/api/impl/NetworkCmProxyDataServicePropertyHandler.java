@@ -43,7 +43,6 @@ import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.DataNodeBuilder;
-import org.onap.cps.utils.CpsValidator;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -67,7 +66,6 @@ public class NetworkCmProxyDataServicePropertyHandler {
         for (final NcmpServiceCmHandle ncmpServiceCmHandle : ncmpServiceCmHandles) {
             final String cmHandleId = ncmpServiceCmHandle.getCmHandleId();
             try {
-                CpsValidator.validateNameCharacters(cmHandleId);
                 final DataNode existingCmHandleDataNode = inventoryPersistence.getCmHandleDataNode(cmHandleId);
                 processUpdates(existingCmHandleDataNode, ncmpServiceCmHandle);
                 cmHandleRegistrationResponses.add(CmHandleRegistrationResponse.createSuccessResponse(cmHandleId));
