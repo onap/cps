@@ -64,19 +64,14 @@ public class SyncUtils {
     private static final Pattern retryAttemptPattern = Pattern.compile("^Attempt #(\\d+) failed:");
 
     /**
-     * Query data nodes for cm handles with an "ADVISED" cm handle state, and select a random entry for processing.
+     * Query data nodes for cm handles with an "ADVISED" cm handle state.
      *
-     * @return a randomized yang model cm handle list with ADVISED state, return empty list if not found
+     * @return cm handles (data nodes) in ADVISED state (empty list if none found)
      */
-    public List<YangModelCmHandle> getAdvisedCmHandles() {
-        final List<DataNode> advisedCmHandlesAsDataNodeList = new ArrayList<>(
-                cmHandleQueries.queryCmHandlesByState(CmHandleState.ADVISED));
-        log.debug("Total number of fetched advised cm handle(s) is (are) {}", advisedCmHandlesAsDataNodeList.size());
-        if (advisedCmHandlesAsDataNodeList.isEmpty()) {
-            return Collections.emptyList();
-        }
-        Collections.shuffle(advisedCmHandlesAsDataNodeList);
-        return convertCmHandlesDataNodesToYangModelCmHandles(advisedCmHandlesAsDataNodeList);
+    public List<DataNode> getAdvisedCmHandles() {
+        final List<DataNode> advisedCmHandlesAsDataNodes = cmHandleQueries.queryCmHandlesByState(CmHandleState.ADVISED);
+        log.debug("Total number of fetched advised cm handle(s) is (are) {}", advisedCmHandlesAsDataNodes.size());
+        return advisedCmHandlesAsDataNodes;
     }
 
     /**
