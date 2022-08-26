@@ -34,7 +34,6 @@ import spock.lang.Specification
 
 class ModuleSyncServiceSpec extends Specification {
 
-
     def mockCpsModuleService = Mock(CpsModuleService)
     def mockDmiModelOperations = Mock(DmiModelOperations)
     def mockCpsAdminService = Mock(CpsAdminService)
@@ -72,38 +71,29 @@ class ModuleSyncServiceSpec extends Specification {
     }
 
     def 'Delete Schema Set for CmHandle' () {
-        given: 'a CmHandle in the advised state'
-            def cmHandle = new YangModelCmHandle(id: 'some-cmhandle-id', compositeState: new CompositeState(cmHandleState: CmHandleState.ADVISED))
-        and: 'the Schema Set exists for the CmHandle'
-            1 * mockCpsModuleService.deleteSchemaSet(_ as String, 'some-cmhandle-id',
-                CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED)
         when: 'delete schema set if exists is called'
-            objectUnderTest.deleteSchemaSetIfExists(cmHandle)
-        then: 'there are no exceptions'
-            noExceptionThrown()
+            objectUnderTest.deleteSchemaSetIfExists('some-cmhandle-id')
+        then: 'the module service is invoked to delete the correct schema set'
+            1 * mockCpsModuleService.deleteSchemaSet(_, 'some-cmhandle-id', CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED)
     }
 
     def 'Delete a non-existing Schema Set for CmHandle' () {
-        given: 'a CmHandle in the advised state'
-            def cmHandle = new YangModelCmHandle(id: 'some-cmhandle-id', compositeState: new CompositeState(cmHandleState: CmHandleState.ADVISED))
-        and: 'the DB throws an exception because its Schema Set does not exist'
-            1 * mockCpsModuleService.deleteSchemaSet(_ as String, 'some-cmhandle-id',
+        given: 'the DB throws an exception because its Schema Set does not exist'
+            1 * mockCpsModuleService.deleteSchemaSet(_, 'some-cmhandle-id',
                 CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED) >> { throw new SchemaSetNotFoundException('some-dataspace-name', 'some-cmhandle-id') }
         when: 'delete schema set if exists is called'
-            objectUnderTest.deleteSchemaSetIfExists(cmHandle)
-        then: 'there are no exceptions'
+            objectUnderTest.deleteSchemaSetIfExists('some-cmhandle-id')
+        then: 'the exception from the DB is ignored; there are no exceptions'
             noExceptionThrown()
     }
 
     def 'Delete Schema Set for CmHandle with other exception' () {
-        given: 'a CmHandle in the advised state'
-            def cmHandle = new YangModelCmHandle(id: 'some-cmhandle-id', compositeState: new CompositeState(cmHandleState: CmHandleState.ADVISED))
-        and: 'an exception other than SchemaSetNotFoundException is thrown'
+        given: 'an exception other than SchemaSetNotFoundException is thrown'
             UnsupportedOperationException unsupportedOperationException = new UnsupportedOperationException();
             1 * mockCpsModuleService.deleteSchemaSet(_ as String, 'some-cmhandle-id',
                 CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED) >> { throw unsupportedOperationException }
         when: 'delete schema set if exists is called'
-            objectUnderTest.deleteSchemaSetIfExists(cmHandle)
+            objectUnderTest.deleteSchemaSetIfExists('some-cmhandle-id')
         then: 'an exception is thrown'
             def result = thrown(UnsupportedOperationException)
             result == unsupportedOperationException
