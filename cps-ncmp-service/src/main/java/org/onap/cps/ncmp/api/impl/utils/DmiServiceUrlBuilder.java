@@ -15,7 +15,7 @@
  *  limitations under the License.
  *
  *  SPDX-License-Identifier: Apache-2.0
- * ============LICENSE_END=========================================================
+ *  ============LICENSE_END=========================================================
  */
 
 package org.onap.cps.ncmp.api.impl.utils;
@@ -30,7 +30,7 @@ import org.apache.logging.log4j.util.TriConsumer;
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration;
 import org.onap.cps.ncmp.api.impl.operations.DmiOperations;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
-import org.onap.cps.utils.CpsValidator;
+import org.onap.cps.spi.utils.CpsValidator;
 import org.springframework.stereotype.Component;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -41,6 +41,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 public class DmiServiceUrlBuilder {
 
     private final NcmpConfiguration.DmiProperties dmiProperties;
+    private final CpsValidator cpsValidator;
 
     /**
      * This method creates the dmi service url.
@@ -84,7 +85,7 @@ public class DmiServiceUrlBuilder {
     public Map<String, Object> populateUriVariables(final YangModelCmHandle yangModelCmHandle,
                                                     final String cmHandleId,
                                                     final DmiOperations.DataStoreEnum dataStore) {
-        CpsValidator.validateNameCharacters(cmHandleId);
+        cpsValidator.validateNameCharacters(cmHandleId);
         final Map<String, Object> uriVariables = new HashMap<>();
         final String dmiBasePath = dmiProperties.getDmiBasePath();
         uriVariables.put("dmiServiceName",

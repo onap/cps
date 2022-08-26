@@ -18,27 +18,24 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.utils;
+package org.onap.cps.spi.utils;
 
 import com.google.common.collect.Lists;
 import java.util.Collection;
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.spi.exceptions.DataValidationException;
+import org.springframework.stereotype.Component;
 
 @Slf4j
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
-public final class CpsValidator {
+@Component
+@RequiredArgsConstructor
+public class CpsValidatorImpl implements CpsValidator {
 
     private static final char[] UNSUPPORTED_NAME_CHARACTERS = "!\" #$%&'()*+,./\\:;<=>?@[]^`{|}~".toCharArray();
 
-    /**
-     * Validate characters in names within cps.
-     *
-     * @param names names of data to be validated
-     */
-    public static void validateNameCharacters(final String... names) {
+    @Override
+    public void validateNameCharacters(final String... names) {
         for (final String name : names) {
             final Collection<Character> charactersOfName = Lists.charactersOf(name);
             for (final char unsupportedCharacter : UNSUPPORTED_NAME_CHARACTERS) {
@@ -50,7 +47,4 @@ public final class CpsValidator {
             }
         }
     }
-
-
-
 }
