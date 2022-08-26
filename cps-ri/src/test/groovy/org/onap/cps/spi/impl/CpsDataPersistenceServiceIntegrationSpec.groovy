@@ -157,7 +157,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
-    def 'Add multiple new list elements including an element with a child datanode.'() {
+    def 'Add collection of multiple new list elements including an element with a child datanode.'() {
         given: 'two new child list elements for an existing parent'
             def listElementXpaths = ['/parent-201/child-204[@key="NEW1"]', '/parent-201/child-204[@key="NEW2"]']
             def listElements = toDataNodes(listElementXpaths)
@@ -165,7 +165,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             def grandChild = buildDataNode('/parent-201/child-204[@key="NEW1"]/grand-child-204[@key2="NEW1-CHILD"]', [leave:'value'], [])
             listElements[0].childDataNodes = [grandChild]
         when: 'the new data node (list elements) are added to an existing parent node'
-            objectUnderTest.addListElements(DATASPACE_NAME, ANCHOR_NAME3, '/parent-201', listElements)
+            objectUnderTest.addListElementsCollection(DATASPACE_NAME, ANCHOR_NAME3, '/parent-201', [listElements])
         then: 'new entries are successfully persisted, parent node now contains 5 children (2 new + 3 existing before)'
             def parentFragment = fragmentRepository.getById(LIST_DATA_NODE_PARENT201_FRAGMENT_ID)
             def allChildXpaths = parentFragment.childFragments.collect { it.xpath }

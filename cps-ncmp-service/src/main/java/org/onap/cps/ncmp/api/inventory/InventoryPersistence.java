@@ -27,8 +27,10 @@ import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED;
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
 
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -154,6 +156,19 @@ public class InventoryPersistence {
                 String.format("{\"cm-handles\":[%s]}", jsonObjectMapper.asJsonString(yangModelCmHandle));
         cpsDataService.saveListElements(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NCMP_DMI_REGISTRY_PARENT,
                 cmHandleJsonData, NO_TIMESTAMP);
+    }
+
+    /**
+     * Method to save list of cmHandles.
+     *
+     * @param yangModelCmHandles cmHandle represented as Yang Models
+     */
+    public void saveCmHandles(final Collection<YangModelCmHandle> yangModelCmHandles) {
+        final List<String> cmHandlesJsonData = new ArrayList<>();
+        yangModelCmHandles.forEach(yangModelCmHandle -> cmHandlesJsonData.add(
+                String.format("{\"cm-handles\":[%s]}", jsonObjectMapper.asJsonString(yangModelCmHandle))));
+        cpsDataService.saveListElementsCollection(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
+                NCMP_DMI_REGISTRY_PARENT, cmHandlesJsonData, NO_TIMESTAMP);
     }
 
     /**

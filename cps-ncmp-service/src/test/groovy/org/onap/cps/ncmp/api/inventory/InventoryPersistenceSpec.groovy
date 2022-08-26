@@ -202,6 +202,22 @@ class InventoryPersistenceSpec extends Specification {
             }
     }
 
+    def 'Save Multiple Cmhandles'() {
+        given: 'cmHandle represented as Yang Model'
+            def yangModelCmHandle1 = new YangModelCmHandle(id: 'cmhandle1', dmiProperties: [], publicProperties: [])
+            def yangModelCmHandle2 = new YangModelCmHandle(id: 'cmhandle2', dmiProperties: [], publicProperties: [])
+        when: 'the method to save cmhandle is called'
+            objectUnderTest.saveCmHandles([yangModelCmHandle1, yangModelCmHandle2])
+        then: 'the data service method to save list elements is called once'
+            1 * mockCpsDataService.saveListElementsCollection('NCMP-Admin','ncmp-dmi-registry','/dmi-registry',_,null) >> {
+                args -> {
+                    def jsonDataList = (args[3] as List)
+                    (jsonDataList[0] as String).contains('cmhandle1')
+                    (jsonDataList[0] as String).contains('cmhandle2')
+                }
+            }
+    }
+
     def 'Delete list or list elements'() {
         when: 'the method to delete list or list elements is called'
             objectUnderTest.deleteListOrListElement('sample xPath')
