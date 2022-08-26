@@ -101,6 +101,16 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         addChildDataNodes(dataspaceName, anchorName, parentNodeXpath, newListElements);
     }
 
+    @Override
+    @Transactional
+    public void addListsElements(final String dataspaceName, final String anchorName, final String parentNodeXpath,
+            final List<Collection<DataNode>> newListsElements) {
+
+        newListsElements.forEach(
+                newListElement -> addListElements(dataspaceName, anchorName, parentNodeXpath, newListElement));
+
+    }
+
     private void addChildDataNodes(final String dataspaceName, final String anchorName, final String parentNodeXpath,
                                    final Collection<DataNode> newChildren) {
         final FragmentEntity parentFragmentEntity = getFragmentByXpath(dataspaceName, anchorName, parentNodeXpath);
