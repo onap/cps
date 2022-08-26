@@ -18,23 +18,26 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.utils
+package org.onap.cps.spi.utils
 
 import org.onap.cps.spi.exceptions.DataValidationException
+import org.onap.cps.spi.impl.utils.CpsValidatorImpl
 import spock.lang.Specification
 
 class CpsValidatorSpec extends Specification {
 
+    CpsValidator objectUnderTest = new CpsValidatorImpl()
+
     def 'Validating a valid string.'() {
         when: 'the string is validated using a valid name'
-            CpsValidator.validateNameCharacters('name-with-no-spaces')
+            objectUnderTest.validateNameCharacters('name-with-no-spaces')
         then: 'no exception is thrown'
             noExceptionThrown()
     }
 
     def 'Validating an invalid string.'() {
         when: 'the string is validated using an invalid name'
-            CpsValidator.validateNameCharacters(name)
+            objectUnderTest.validateNameCharacters(name)
         then: 'a data validation exception is thrown'
             def exceptionThrown = thrown(DataValidationException)
         and: 'the error was encountered at the following index in #scenario'
@@ -44,5 +47,4 @@ class CpsValidatorSpec extends Specification {
             'position 5' | 'name with spaces' || 'name with spaces invalid token encountered at position 5'
             'position 9' | 'nameWith Space'   || 'nameWith Space invalid token encountered at position 9'
     }
-
 }
