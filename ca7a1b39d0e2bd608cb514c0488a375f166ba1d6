@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b46db2d0_e0ce6ebd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-26T14:52:54Z",
+      "side": 1,
+      "message": "NB: Collection ?(as discussed in other meeting hightest interface is alwasy preferred)",
+      "range": {
+        "startLine": 166,
+        "startChar": 36,
+        "endLine": 166,
+        "endChar": 40
+      },
+      "revId": "ca7a1b39d0e2bd608cb514c0488a375f166ba1d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e8035928_073a00fd",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-26T14:52:54Z",
+      "side": 1,
+      "message": "NB: maybe the method name should be more obvious instead of just a little extra \u0027s\u0027 ?",
+      "range": {
+        "startLine": 168,
+        "startChar": 35,
+        "endLine": 168,
+        "endChar": 36
+      },
+      "revId": "ca7a1b39d0e2bd608cb514c0488a375f166ba1d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e4926069_f559f697",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-26T14:52:54Z",
+      "side": 1,
+      "message": "as before, too smal a difference with above method",
+      "range": {
+        "startLine": 82,
+        "startChar": 17,
+        "endLine": 82,
+        "endChar": 18
+      },
+      "revId": "ca7a1b39d0e2bd608cb514c0488a375f166ba1d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "85c83af2_05093090",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-26T14:52:54Z",
+      "side": 1,
+      "message": "lists with",
+      "range": {
+        "startLine": 139,
+        "startChar": 29,
+        "endLine": 139,
+        "endChar": 44
+      },
+      "revId": "ca7a1b39d0e2bd608cb514c0488a375f166ba1d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
