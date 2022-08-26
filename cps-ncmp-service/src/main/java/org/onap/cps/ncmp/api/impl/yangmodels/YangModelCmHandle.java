@@ -37,7 +37,6 @@ import lombok.Setter;
 import org.onap.cps.ncmp.api.impl.operations.RequiredDmiService;
 import org.onap.cps.ncmp.api.inventory.CompositeState;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
-import org.onap.cps.utils.CpsValidator;
 
 /**
  * Cm Handle which follows the Yang resource dmi registry model when persisting data to DMI or the DB.
@@ -104,7 +103,6 @@ public class YangModelCmHandle {
                                                         final String dmiDataServiceName,
                                                         final String dmiModelServiceName,
                                                         final NcmpServiceCmHandle ncmpServiceCmHandle) {
-        CpsValidator.validateNameCharacters(ncmpServiceCmHandle.getCmHandleId());
         final YangModelCmHandle yangModelCmHandle = new YangModelCmHandle();
         yangModelCmHandle.setId(ncmpServiceCmHandle.getCmHandleId());
         yangModelCmHandle.setDmiServiceName(dmiServiceName);
