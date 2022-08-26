@@ -29,7 +29,7 @@ import org.onap.cps.spi.exceptions.DataValidationException;
 
 @Slf4j
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public final class CpsValidator {
+public class CpsValidator {
 
     private static final char[] UNSUPPORTED_NAME_CHARACTERS = "!\" #$%&'()*+,./\\:;<=>?@[]^`{|}~".toCharArray();
 
@@ -38,7 +38,7 @@ public final class CpsValidator {
      *
      * @param names names of data to be validated
      */
-    public static void validateNameCharacters(final String... names) {
+    public void validateNameCharacters(final String... names) {
         for (final String name : names) {
             final Collection<Character> charactersOfName = Lists.charactersOf(name);
             for (final char unsupportedCharacter : UNSUPPORTED_NAME_CHARACTERS) {
