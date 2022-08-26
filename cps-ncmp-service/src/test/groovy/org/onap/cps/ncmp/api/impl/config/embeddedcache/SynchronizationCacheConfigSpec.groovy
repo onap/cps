@@ -17,33 +17,35 @@
  *  SPDX-License-Identifier: Apache-2.0
  *  ============LICENSE_END=========================================================
  */
-
 package org.onap.cps.ncmp.api.impl.config.embeddedcache
-
 import com.hazelcast.core.Hazelcast
+import org.onap.cps.spi.model.DataNode
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ContextConfiguration
 import spock.lang.Specification
+import java.util.concurrent.BlockingQueue
 
 @SpringBootTest
-@ContextConfiguration(classes = [SynchronizationSemaphoresConfig])
-class SynchronizationSemaphoresConfigSpec extends Specification {
-
+@ContextConfiguration(classes = [SynchronizationCacheConfig])
+class SynchronizationCacheConfigSpec extends Specification {
     @Autowired
-    private Map<String, Boolean> moduleSyncSemaphores;
-
+    private BlockingQueue<DataNode> moduleSyncWorkQueue;
     @Autowired
-    private Map<String, Boolean> dataSyncSemaphores;
+    private Map<String, Object> moduleSyncStartedOnCmHandles;
+    @Autowired
+    private Map<String, String> dataSyncSemaphores;
 
-    def 'Embedded Sync Semaphores'() {
-        expect: 'system is able to create an instance of ModuleSyncSemaphores'
-            assert null != moduleSyncSemaphores
-        and: 'system is able to create an instance of DataSyncSemaphores'
+    def 'Embedded (hazelcast) Caches for Module and Data Sync.'() {
+        expect: 'system is able to create an instance of the Module Sync Work Queue'
+            assert null != moduleSyncWorkQueue
+        and: 'system is able to create an instance of a map to hold cm handles which have started (and maybe finished) module sync'
+            assert null != moduleSyncStartedOnCmHandles
+        and: 'system is able to create an instance of a map to hold data sync semaphores'
             assert null != dataSyncSemaphores
-        and: 'we have 2 instances'
-            assert Hazelcast.allHazelcastInstances.size() == 2
-        and: 'the names match'
-            assert Hazelcast.allHazelcastInstances.name == ['moduleSyncSemaphores', 'dataSyncSemaphores']
+        and: 'there 3 instances'
+            assert Hazelcast.allHazelcastInstances.size() == 3
+        and: 'they have the correct names (in any order)'
+            assert Hazelcast.allHazelcastInstances.name.containsAll('moduleSyncWorkQueue', 'moduleSyncStartedOnCmHandles', 'dataSyncSemaphores' )
     }
 }
