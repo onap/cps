@@ -69,6 +69,19 @@ public interface CpsDataService {
         OffsetDateTime observedTimestamp);
 
     /**
+     * Persists child data fragment representing one or more list elements under existing data node for the
+     * given anchor and dataspace.
+     *
+     * @param dataspaceName     dataspace name
+     * @param anchorName        anchor name
+     * @param parentNodeXpath   parent node xpath
+     * @param jsonDataList      collection of json data representing list element(s)
+     * @param observedTimestamp observedTimestamp
+     */
+    void saveListElementsBatch(String dataspaceName, String anchorName, String parentNodeXpath,
+            Collection<String> jsonDataList, OffsetDateTime observedTimestamp);
+
+    /**
      * Retrieves datanode by XPath for given dataspace and anchor.
      *
      * @param dataspaceName          dataspace name
