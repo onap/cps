@@ -61,11 +61,12 @@ public class CpsDataServiceImpl implements CpsDataService {
     private final CpsAdminService cpsAdminService;
     private final YangTextSchemaSourceSetCache yangTextSchemaSourceSetCache;
     private final NotificationService notificationService;
+    private final CpsValidator cpsValidator;
 
     @Override
     public void saveData(final String dataspaceName, final String anchorName, final String jsonData,
         final OffsetDateTime observedTimestamp) {
-        CpsValidator.validateNameCharacters(dataspaceName, anchorName);
+        cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         final DataNode dataNode = buildDataNode(dataspaceName, anchorName, ROOT_NODE_XPATH, jsonData);
         cpsDataPersistenceService.storeDataNode(dataspaceName, anchorName, dataNode);
         processDataUpdatedEventAsync(dataspaceName, anchorName, ROOT_NODE_XPATH, CREATE, observedTimestamp);
@@ -74,7 +75,7 @@ public class CpsDataServiceImpl implements CpsDataService {
     @Override
     public void saveData(final String dataspaceName, final String anchorName, final String parentNodeXpath,
         final String jsonData, final OffsetDateTime observedTimestamp) {
-        CpsValidator.validateNameCharacters(dataspaceName, anchorName);
+        cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         final DataNode dataNode = buildDataNode(dataspaceName, anchorName, parentNodeXpath, jsonData);
         cpsDataPersistenceService.addChildDataNode(dataspaceName, anchorName, parentNodeXpath, dataNode);
         processDataUpdatedEventAsync(dataspaceName, anchorName, parentNodeXpath, CREATE, observedTimestamp);
@@ -83,7 +84,7 @@ public class CpsDataServiceImpl implements CpsDataService {
     @Override
     public void saveListElements(final String dataspaceName, final String anchorName,
         final String parentNodeXpath, final String jsonData, final OffsetDateTime observedTimestamp) {
-        CpsValidator.validateNameCharacters(dataspaceName, anchorName);
+        cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         final Collection<DataNode> listElementDataNodeCollection =
             buildDataNodes(dataspaceName, anchorName, parentNodeXpath, jsonData);
         cpsDataPersistenceService.addListElements(dataspaceName, anchorName, parentNodeXpath,
@@ -94,7 +95,7 @@ public class CpsDataServiceImpl implements CpsDataService {
     @Override
     public void saveListElementsBatch(final String dataspaceName, final String anchorName, final String parentNodeXpath,
             final Collection<String> jsonDataList, final OffsetDateTime observedTimestamp) {
-        CpsValidator.validateNameCharacters(dataspaceName, anchorName);
+        cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         final Collection<Collection<DataNode>> listElementDataNodeCollections =
                 buildDataNodes(dataspaceName, anchorName, parentNodeXpath, jsonDataList);
         cpsDataPersistenceService.addMultipleLists(dataspaceName, anchorName, parentNodeXpath,
@@ -105,14 +106,14 @@ public class CpsDataServiceImpl implements CpsDataService {
     @Override
     public DataNode getDataNode(final String dataspaceName, final String anchorName, final String xpath,
         final FetchDescendantsOption fetchDescendantsOption) {
-        CpsValidator.validateNameCharacters(dataspaceName, anchorName);
+        cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         return cpsDataPersistenceService.getDataNode(dataspaceName, anchorName, xpath, fetchDescendantsOption);
     }
 
     @Override
     public void updateNodeLeaves(final String dataspaceName, final String anchorName, final String parentNodeXpath,
         final String jsonData, final OffsetDateTime observedTimestamp) {
-        CpsValidator.validateNameCharacters(dataspaceName, anchorName);
+        cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         final DataNode dataNode = buildDataNode(dataspaceName, anchorName, parentNodeXpath, jsonData);
         cpsDataPersistenceService
             .updateDataLeaves(dataspaceName, anchorName, dataNode.getXpath(), dataNode.getLeaves());
@@ -124,7 +125,7 @@ public class CpsDataServiceImpl implements CpsDataService {
         final String parentNodeXpath,
         final String dataNodeUpdatesAsJson,
         final OffsetDateTime observedTimestamp) {
-        CpsValidator.validateNameCharacters(dataspaceName, anchorName);
+        cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         final Collection<DataNode> dataNodeUpdates =
             buildDataNodes(dataspaceName, anchorName,
                 parentNodeXpath, dataNodeUpdatesAsJson);
@@ -159,7 +160,7 @@ public class CpsDataServiceImpl implements CpsDataService {
     public void updateDataNodeAndDescendants(final String dataspaceName, final String anchorName,
                                              final String parentNodeXpath, final String jsonData,
                                              final OffsetDateTime observedTimestamp) {
-        CpsValidator.validateNameCharacters(dataspaceName, anchorName);
+        cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         final DataNode dataNode = buildDataNode(dataspaceName, anchorName, parentNodeXpath, jsonData);
         cpsDataPersistenceService.updateDataNodeAndDescendants(dataspaceName, anchorName, dataNode);
         processDataUpdatedEventAsync(dataspaceName, anchorName, parentNodeXpath, UPDATE, observedTimestamp);
@@ -169,7 +170,7 @@ public class CpsDataServiceImpl implements CpsDataService {
     public void updateDataNodesAndDescendants(final String dataspaceName, final String anchorName,
                                               final Map<String, String> nodesJsonData,
                                               final OffsetDateTime observedTimestamp) {
-        CpsValidator.validateNameCharacters(dataspaceName, anchorName);
+        cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         final List<DataNode> dataNodes = buildDataNodes(dataspaceName, anchorName, nodesJsonData);
         cpsDataPersistenceService.updateDataNodesAndDescendants(dataspaceName, anchorName, dataNodes);
         nodesJsonData.keySet().forEach(nodeXpath ->
@@ -180,7 +181,7 @@ public class CpsDataServiceImpl implements CpsDataService {
     @Override
     public void replaceListContent(final String dataspaceName, final String anchorName, final String parentNodeXpath,
             final String jsonData, final OffsetDateTime observedTimestamp) {
-        CpsValidator.validateNameCharacters(dataspaceName, anchorName);
+        cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         final Collection<DataNode> newListElements =
                 buildDataNodes(dataspaceName, anchorName, parentNodeXpath, jsonData);
         replaceListContent(dataspaceName, anchorName, parentNodeXpath, newListElements, observedTimestamp);
@@ -189,7 +190,7 @@ public class CpsDataServiceImpl implements CpsDataService {
     @Override
     public void replaceListContent(final String dataspaceName, final String anchorName, final String parentNodeXpath,
             final Collection<DataNode> dataNodes, final OffsetDateTime observedTimestamp) {
-        CpsValidator.validateNameCharacters(dataspaceName, anchorName);
+        cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         cpsDataPersistenceService.replaceListContent(dataspaceName, anchorName, parentNodeXpath, dataNodes);
         processDataUpdatedEventAsync(dataspaceName, anchorName, parentNodeXpath, UPDATE, observedTimestamp);
     }
@@ -197,7 +198,7 @@ public class CpsDataServiceImpl implements CpsDataService {
     @Override
     public void deleteDataNode(final String dataspaceName, final String anchorName, final String dataNodeXpath,
                                final OffsetDateTime observedTimestamp) {
-        CpsValidator.validateNameCharacters(dataspaceName, anchorName);
+        cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         cpsDataPersistenceService.deleteDataNode(dataspaceName, anchorName, dataNodeXpath);
         processDataUpdatedEventAsync(dataspaceName, anchorName, dataNodeXpath, DELETE, observedTimestamp);
     }
@@ -205,7 +206,7 @@ public class CpsDataServiceImpl implements CpsDataService {
     @Override
     public void deleteDataNodes(final String dataspaceName, final String anchorName,
         final OffsetDateTime observedTimestamp) {
-        CpsValidator.validateNameCharacters(dataspaceName, anchorName);
+        cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         processDataUpdatedEventAsync(dataspaceName, anchorName, ROOT_NODE_XPATH, DELETE, observedTimestamp);
         cpsDataPersistenceService.deleteDataNodes(dataspaceName, anchorName);
     }
@@ -213,7 +214,7 @@ public class CpsDataServiceImpl implements CpsDataService {
     @Override
     public void deleteListOrListElement(final String dataspaceName, final String anchorName, final String listNodeXpath,
         final OffsetDateTime observedTimestamp) {
-        CpsValidator.validateNameCharacters(dataspaceName, anchorName);
+        cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         cpsDataPersistenceService.deleteListDataNode(dataspaceName, anchorName, listNodeXpath);
         processDataUpdatedEventAsync(dataspaceName, anchorName, listNodeXpath, DELETE, observedTimestamp);
     }

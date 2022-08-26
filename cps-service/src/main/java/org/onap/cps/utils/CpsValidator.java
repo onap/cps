@@ -20,37 +20,12 @@
 
 package org.onap.cps.utils;
 
-import com.google.common.collect.Lists;
-import java.util.Collection;
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.spi.exceptions.DataValidationException;
-
-@Slf4j
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
-public final class CpsValidator {
-
-    private static final char[] UNSUPPORTED_NAME_CHARACTERS = "!\" #$%&'()*+,./\\:;<=>?@[]^`{|}~".toCharArray();
+public interface CpsValidator {
 
     /**
      * Validate characters in names within cps.
      *
      * @param names names of data to be validated
      */
-    public static void validateNameCharacters(final String... names) {
-        for (final String name : names) {
-            final Collection<Character> charactersOfName = Lists.charactersOf(name);
-            for (final char unsupportedCharacter : UNSUPPORTED_NAME_CHARACTERS) {
-                if (charactersOfName.contains(unsupportedCharacter)) {
-                    throw new DataValidationException("Name or ID Validation Error.",
-                            name + " invalid token encountered at position "
-                                    + (name.indexOf(unsupportedCharacter) + 1));
-                }
-            }
-        }
-    }
-
-
-
+    void validateNameCharacters(final String... names);
 }

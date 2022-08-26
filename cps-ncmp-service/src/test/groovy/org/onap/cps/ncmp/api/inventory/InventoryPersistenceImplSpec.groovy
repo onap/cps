@@ -29,11 +29,11 @@ import org.onap.cps.spi.CascadeDeleteAllowed
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.CpsAdminPersistenceService
 import org.onap.cps.spi.FetchDescendantsOption
-import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.ModuleDefinition
 import org.onap.cps.spi.model.ModuleReference
 import org.onap.cps.utils.JsonObjectMapper
+import org.onap.cps.utils.CpsValidator
 import spock.lang.Shared
 import spock.lang.Specification
 
@@ -56,8 +56,10 @@ class InventoryPersistenceImplSpec extends Specification {
 
     def mockCpsAdminPersistenceService = Mock(CpsAdminPersistenceService)
 
+    def mockCpsValidator = Mock(CpsValidator)
+
     def objectUnderTest = new InventoryPersistenceImpl(spiedJsonObjectMapper, mockCpsDataService, mockCpsModuleService,
-            mockCpsDataPersistenceService, mockCpsAdminPersistenceService)
+            mockCpsDataPersistenceService, mockCpsAdminPersistenceService, mockCpsValidator)
 
     def formattedDateAndTime = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
             .format(OffsetDateTime.of(2022, 12, 31, 20, 30, 40, 1, ZoneOffset.UTC))
@@ -95,34 +97,29 @@ class InventoryPersistenceImplSpec extends Specification {
             result.publicProperties == expectedPublicProperties
         and: 'the state details are returned'
             result.compositeState.cmHandleState == expectedCompositeState
+        and: 'the CM Handle ID is validated'
+            1 * mockCpsValidator.validateNameCharacters(cmHandleId)
         where: 'the following parameters are used'
             scenario                    | childDataNodes                                || expectedDmiProperties                               || expectedPublicProperties                              || expectedCompositeState
             'no properties'             | []                                            || []                                                  || []                                                    || null
-            'DMI and public properties' | childDataNodesForCmHandleWithAllProperties    || [new YangModelCmHandle.Property("name1", "value1")] || [new YangModelCmHandle.Property("name2", "value2")] || null
+            'DMI and public properties' | childDataNodesForCmHandleWithAllProperties    || [new YangModelCmHandle.Property("name1", "value1")] || [new YangModelCmHandle.Property("name2", "value2")]   || null
             'just DMI properties'       | childDataNodesForCmHandleWithDMIProperties    || [new YangModelCmHandle.Property("name1", "value1")] || []                                                    || null
             'just public properties'    | childDataNodesForCmHandleWithPublicProperties || []                                                  || [new YangModelCmHandle.Property("name2", "value2")]   || null
             'with state details'        | childDataNodesForCmHandleWithState            || []                                                  || []                                                    || CmHandleState.ADVISED
     }
 
-    def "Retrieve CmHandle using datanode with invalid CmHandle id."() {
-        when: 'retrieving the yang modelled cm handle with an invalid id'
-            def result = objectUnderTest.getYangModelCmHandle('cm handle id with spaces')
-        then: 'a data validation exception is thrown'
-            thrown(DataValidationException)
-        and: 'the result is not returned'
-            result == null
-    }
-
-    def "Handling missing service names as null CPS-1043."() {
+    def "Handling missing service names as null."() {
         given: 'the cps data service returns a data node from the DMI registry with empty child and leaf attributes'
             def dataNode = new DataNode(childDataNodes:[], leaves: [:])
             mockCpsDataPersistenceService.getDataNode('NCMP-Admin', 'ncmp-dmi-registry', xpath, INCLUDE_ALL_DESCENDANTS) >> dataNode
         when: 'retrieving the yang modelled cm handle'
             def result = objectUnderTest.getYangModelCmHandle(cmHandleId)
-        then: 'the service names ae returned as null'
+        then: 'the service names are returned as null'
             result.dmiServiceName == null
             result.dmiDataServiceName == null
             result.dmiModelServiceName == null
+        and: 'the CM Handle ID is validated'
+            1 * mockCpsValidator.validateNameCharacters(cmHandleId)
     }
 
     def 'Get a Cm Handle Composite State'() {
@@ -136,6 +133,8 @@ class InventoryPersistenceImplSpec extends Specification {
             def result = objectUnderTest.getCmHandleState(cmHandleId)
         then: 'result has returned the correct cm handle state'
             result.cmHandleState == CmHandleState.ADVISED
+        and: 'the CM Handle ID is validated'
+            1 * mockCpsValidator.validateNameCharacters(cmHandleId)
     }
 
     def 'Update Cm Handle with #scenario State'() {
@@ -187,6 +186,8 @@ class InventoryPersistenceImplSpec extends Specification {
             def result = objectUnderTest.getYangResourcesModuleReferences('some-cmHandle-Id')
         then: 'the returned result is a collection of module definitions'
             assert result == moduleReferences
+        and: 'the CM Handle ID is validated'
+            1 * mockCpsValidator.validateNameCharacters('some-cmHandle-Id')
     }
 
     def 'Save Cmhandle'() {
@@ -230,15 +231,8 @@ class InventoryPersistenceImplSpec extends Specification {
             objectUnderTest.deleteSchemaSetWithCascade('validSchemaSetName')
         then: 'the module service to delete schemaSet is invoked once'
             1 * mockCpsModuleService.deleteSchemaSet('NFP-Operational', 'validSchemaSetName', CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED)
-    }
-
-    def 'Delete schema set with an invalid schema set name'() {
-        when: 'the method to delete schema set is called with an invalid schema set name'
-            objectUnderTest.deleteSchemaSetWithCascade('invalid SchemaSet name')
-        then: 'a data validation exception is thrown'
-            thrown(DataValidationException)
-        and: 'the module service to delete schemaSet is not called'
-            0 * mockCpsModuleService.deleteSchemaSet('NFP-Operational', 'sampleSchemaSetName', CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED)
+        and: 'the CM Handle ID is validated'
+            1 * mockCpsValidator.validateNameCharacters('validSchemaSetName')
     }
 
     def 'Get data node via xPath'() {
