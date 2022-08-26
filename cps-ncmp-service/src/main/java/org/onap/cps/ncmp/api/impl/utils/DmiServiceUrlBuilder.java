@@ -41,6 +41,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 public class DmiServiceUrlBuilder {
 
     private final NcmpConfiguration.DmiProperties dmiProperties;
+    private final CpsValidator cpsValidator;
 
     /**
      * This method creates the dmi service url.
@@ -84,7 +85,7 @@ public class DmiServiceUrlBuilder {
     public Map<String, Object> populateUriVariables(final YangModelCmHandle yangModelCmHandle,
                                                     final String cmHandleId,
                                                     final DmiOperations.DataStoreEnum dataStore) {
-        CpsValidator.validateNameCharacters(cmHandleId);
+        cpsValidator.validateNameCharacters(cmHandleId);
         final Map<String, Object> uriVariables = new HashMap<>();
         final String dmiBasePath = dmiProperties.getDmiBasePath();
         uriVariables.put("dmiServiceName",

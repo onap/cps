@@ -162,15 +162,6 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             1 * mockInventoryPersistence.getYangResourcesModuleReferences('some-cm-handle')
     }
 
-    def 'Getting Yang Resources with an invalid #scenario.'() {
-        when: 'yang resources is called'
-            objectUnderTest.getYangResourcesModuleReferences('invalid cm handle with spaces')
-        then: 'a data validation exception is thrown'
-            thrown(DataValidationException)
-        and: 'CPS module services is not invoked'
-            0 * mockInventoryPersistence.getYangResourcesModuleReferences(*_)
-    }
-
     def 'Get a cm handle.'() {
         given: 'the system returns a yang modelled cm handle'
             def dmiServiceName = 'some service name'
@@ -199,15 +190,6 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
 
     }
 
-    def 'Get a cm handle with an invalid id.'() {
-        when: 'getting cm handle details for a given cm handle id with an invalid name'
-            objectUnderTest.getNcmpServiceCmHandle('invalid cm handle with spaces')
-        then: 'an exception is thrown'
-            thrown(DataValidationException)
-        and: 'the yang model cm handle retriever is not invoked'
-            0 * mockInventoryPersistence.getYangModelCmHandle(*_)
-    }
-
     def 'Get cm handle public properties'() {
         given: 'a yang modelled cm handle'
             def dmiProperties = [new YangModelCmHandle.Property('prop', 'some DMI property')]
@@ -219,15 +201,6 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             def result = objectUnderTest.getCmHandlePublicProperties('some-cm-handle')
         then: 'the result returns the correct data'
             result == [ 'public prop' : 'some public prop' ]
-    }
-
-    def 'Get cm handle public properties with an invalid id.'() {
-        when: 'getting cm handle public properties for a given cm handle id with an invalid name'
-            objectUnderTest.getCmHandlePublicProperties('invalid cm handle with spaces')
-        then: 'an exception is thrown'
-            thrown(DataValidationException)
-        and: 'the yang model cm handle retriever is not invoked'
-            0 * mockInventoryPersistence.getYangModelCmHandle(*_)
     }
 
     def 'Get cm handle composite state'() {
@@ -246,15 +219,6 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             def result = objectUnderTest.getCmHandleCompositeState('some-cm-handle')
         then: 'the result returns the correct data'
             result == compositeState
-    }
-
-    def 'Get cm handle composite state with an invalid id.'() {
-        when: 'getting cm handle composite state for a given cm handle id with an invalid name'
-            objectUnderTest.getCmHandleCompositeState('invalid cm handle with spaces')
-        then: 'an exception is thrown'
-            thrown(DataValidationException)
-        and: 'the yang model cm handle retriever is not invoked'
-            0 * mockInventoryPersistence.getYangModelCmHandle(_)
     }
 
     def 'Update resource data for pass-through running from dmi using POST #scenario DMI properties.'() {

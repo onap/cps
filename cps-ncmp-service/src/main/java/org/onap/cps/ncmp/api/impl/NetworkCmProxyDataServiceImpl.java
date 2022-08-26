@@ -62,7 +62,6 @@ import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.spi.model.CmHandleQueryServiceParameters;
 import org.onap.cps.spi.model.ModuleDefinition;
 import org.onap.cps.spi.model.ModuleReference;
-import org.onap.cps.utils.CpsValidator;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -139,20 +138,17 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                                                                  final OperationEnum operation,
                                                                  final String requestData,
                                                                  final String dataType) {
-        CpsValidator.validateNameCharacters(cmHandleId);
         return dmiDataOperations.writeResourceDataPassThroughRunningFromDmi(cmHandleId, resourceIdentifier, operation,
             requestData, dataType);
     }
 
     @Override
     public Collection<ModuleReference> getYangResourcesModuleReferences(final String cmHandleId) {
-        CpsValidator.validateNameCharacters(cmHandleId);
         return inventoryPersistence.getYangResourcesModuleReferences(cmHandleId);
     }
 
     @Override
     public Collection<ModuleDefinition> getModuleDefinitionsByCmHandleId(final String cmHandleId) {
-        CpsValidator.validateNameCharacters(cmHandleId);
         return inventoryPersistence.getModuleDefinitionsByCmHandleId(cmHandleId);
     }
 
@@ -197,7 +193,6 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
      */
     @Override
     public void setDataSyncEnabled(final String cmHandleId, final boolean dataSyncEnabled) {
-        CpsValidator.validateNameCharacters(cmHandleId);
         final CompositeState compositeState = inventoryPersistence
             .getCmHandleState(cmHandleId);
         if (compositeState.getDataSyncEnabled().equals(dataSyncEnabled)) {
@@ -226,7 +221,6 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
      */
     @Override
     public NcmpServiceCmHandle getNcmpServiceCmHandle(final String cmHandleId) {
-        CpsValidator.validateNameCharacters(cmHandleId);
         return YangDataConverter.convertYangModelCmHandleToNcmpServiceCmHandle(
                 inventoryPersistence.getYangModelCmHandle(cmHandleId));
     }
@@ -239,7 +233,6 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
      */
     @Override
     public Map<String, String> getCmHandlePublicProperties(final String cmHandleId) {
-        CpsValidator.validateNameCharacters(cmHandleId);
         final YangModelCmHandle yangModelCmHandle =
             inventoryPersistence.getYangModelCmHandle(cmHandleId);
         final List<YangModelCmHandle.Property> yangModelPublicProperties = yangModelCmHandle.getPublicProperties();
@@ -256,7 +249,6 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
      */
     @Override
     public CompositeState getCmHandleCompositeState(final String cmHandleId) {
-        CpsValidator.validateNameCharacters(cmHandleId);
         return inventoryPersistence.getYangModelCmHandle(cmHandleId).getCompositeState();
     }
 
@@ -292,7 +284,6 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                 new ArrayList<>(tobeRemovedCmHandles.size());
         for (final String cmHandleId : tobeRemovedCmHandles) {
             try {
-                CpsValidator.validateNameCharacters(cmHandleId);
                 final YangModelCmHandle yangModelCmHandle = inventoryPersistence.getYangModelCmHandle(cmHandleId);
                 lcmEventsCmHandleStateHandler.updateCmHandleState(yangModelCmHandle,
                         CmHandleState.DELETING);

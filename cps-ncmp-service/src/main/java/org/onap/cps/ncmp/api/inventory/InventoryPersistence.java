@@ -71,6 +71,8 @@ public class InventoryPersistence {
 
     private final CpsAdminPersistenceService cpsAdminPersistenceService;
 
+    private final CpsValidator cpsValidator;
+
     /**
      * Get the Cm Handle Composite State from the data node.
      *
@@ -119,7 +121,7 @@ public class InventoryPersistence {
      * @return yang model cm handle
      */
     public YangModelCmHandle getYangModelCmHandle(final String cmHandleId) {
-        CpsValidator.validateNameCharacters(cmHandleId);
+        cpsValidator.validateNameCharacters(cmHandleId);
         return YangDataConverter.convertCmHandleToYangModel(getCmHandleDataNode(cmHandleId), cmHandleId);
     }
 
@@ -130,6 +132,7 @@ public class InventoryPersistence {
      * @return a collection of module definitions (moduleName, revision and yang resource content)
      */
     public Collection<ModuleDefinition> getModuleDefinitionsByCmHandleId(final String cmHandleId) {
+        cpsValidator.validateNameCharacters(cmHandleId);
         return cpsModuleService.getModuleDefinitionsByAnchorName(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId);
     }
 
@@ -140,7 +143,7 @@ public class InventoryPersistence {
      * @return a collection of module references (moduleName and revision)
      */
     public Collection<ModuleReference> getYangResourcesModuleReferences(final String cmHandleId) {
-        CpsValidator.validateNameCharacters(cmHandleId);
+        cpsValidator.validateNameCharacters(cmHandleId);
         return cpsModuleService.getYangResourcesModuleReferences(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId);
     }
 
@@ -173,7 +176,7 @@ public class InventoryPersistence {
      */
     public void deleteSchemaSetWithCascade(final String schemaSetName) {
         try {
-            CpsValidator.validateNameCharacters(schemaSetName);
+            cpsValidator.validateNameCharacters(schemaSetName);
             cpsModuleService.deleteSchemaSet(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, schemaSetName,
                     CASCADE_DELETE_ALLOWED);
         } catch (final SchemaSetNotFoundException schemaSetNotFoundException) {
