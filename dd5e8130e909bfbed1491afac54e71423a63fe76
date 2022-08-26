@@ -25,6 +25,76 @@
     },
     {
       "key": {
+        "uuid": "824bc5b0_9b68bc33",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp-inventory.yml",
+        "patchSetId": 9
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-26T10:21:25Z",
+      "side": 1,
+      "message": "I would have expected to get a json like {[\"cm-handl-id1\",\"cm-handl-id2\"]\nCompare with serachCmHandleIds\nas implemented in see also org.onap.cps.ncmp.rest.controller.NetworkCmProxyController#searchCmHandleIds \n(check the corresponding yml)",
+      "parentUuid": "8cf7a2b2_00c4bffb",
+      "range": {
+        "startLine": 118,
+        "startChar": 59,
+        "endLine": 118,
+        "endChar": 78
+      },
+      "revId": "dd5e8130e909bfbed1491afac54e71423a63fe76",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "44c29652_1a745c85",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-26T10:21:25Z",
+      "side": 1,
+      "message": "String",
+      "range": {
+        "startLine": 60,
+        "startChar": 31,
+        "endLine": 60,
+        "endChar": 49
+      },
+      "revId": "dd5e8130e909bfbed1491afac54e71423a63fe76",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "014a24ca_6d095394",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-26T10:21:25Z",
+      "side": 1,
+      "message": "Note follow same patter as for org.onap.cps.ncmp.rest.controller.NetworkCmProxyController#searchCmHandleIds to decide where to convert from full object to just ID (it can be doen in several layers)",
+      "range": {
+        "startLine": 231,
+        "startChar": 15,
+        "endLine": 231,
+        "endChar": 34
+      },
+      "revId": "dd5e8130e909bfbed1491afac54e71423a63fe76",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3eb8003c_05ca9219",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CmHandleQueries.java",
         "patchSetId": 9
@@ -41,6 +111,29 @@
         "startChar": 3,
         "endLine": 176,
         "endChar": 105
+      },
+      "revId": "dd5e8130e909bfbed1491afac54e71423a63fe76",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f063d6ee_2c531572",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CmHandleQueries.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-26T10:21:25Z",
+      "side": 1,
+      "message": "can you not re-use existing conversion method (see lien #159 above)\nIf tht misses teh private porpeties add an option to do taht or not...",
+      "range": {
+        "startLine": 177,
+        "startChar": 4,
+        "endLine": 190,
+        "endChar": 36
       },
       "revId": "dd5e8130e909bfbed1491afac54e71423a63fe76",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
@@ -71,6 +164,29 @@
     },
     {
       "key": {
+        "uuid": "5c1d76fd_d238277e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CmHandleQueries.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-26T10:21:25Z",
+      "side": 1,
+      "message": "note suer if this is needed (here)",
+      "range": {
+        "startLine": 200,
+        "startChar": 0,
+        "endLine": 206,
+        "endChar": 5
+      },
+      "revId": "dd5e8130e909bfbed1491afac54e71423a63fe76",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ff033aa8_b95ded63",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/DmiProperty.java",
         "patchSetId": 9
@@ -82,6 +198,30 @@
       "writtenOn": "2022-08-26T08:53:21Z",
       "side": 1,
       "message": "name?",
+      "range": {
+        "startLine": 23,
+        "startChar": 12,
+        "endLine": 23,
+        "endChar": 23
+      },
+      "revId": "dd5e8130e909bfbed1491afac54e71423a63fe76",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b7489508_a9bf5f84",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/DmiProperty.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-26T10:21:25Z",
+      "side": 1,
+      "message": "not suer what you are using this for, maybe quick call about this",
+      "parentUuid": "ff033aa8_b95ded63",
       "range": {
         "startLine": 23,
         "startChar": 12,
