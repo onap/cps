@@ -3,7 +3,8 @@
   "eventCorrelationId": "122ca20b-4f8c-4759-a2b4-f0b9456df204",
   "eventTime": "2022-05-09T13:34:50.466+0000",
   "eventSource": "org.onap.ncmp",
-  "eventSchema": "urn:cps:org.onap.cps:async-request-response-event-schema:v1",
+  "eventSchema": "urn:cps:org.onap.cps:async-request-response-event-schema",
+  "eventSchemaVersion": "v1",
   "eventTarget": "test-topic",
   "eventContent": {
     "response-data-schema": "urn:cps:org.onap.cps:async-request-response-event-schema:v1",

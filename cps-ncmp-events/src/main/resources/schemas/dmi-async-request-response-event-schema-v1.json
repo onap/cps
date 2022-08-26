@@ -31,6 +31,10 @@
           "description": "The event schema for async request response events.",
           "type": "string"
         },
+        "eventSchemaVersion": {
+          "description": "The event schema version for async request response events.",
+          "type": "string"
+        },
         "eventSource": {
           "description": "The source of the event.",
           "type": "string"
@@ -46,6 +50,7 @@
         "eventTarget",
         "eventType",
         "eventSchema",
+        "eventSchemaVersion",
         "eventSource",
         "eventContent"
       ]
