@@ -115,6 +115,102 @@
       "revId": "6be40f83b1d93ce41b5aae3c4c27ac770013ba7e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7ac55065_84326738",
+        "filename": "docs/ncmp-cmhandle-querying.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-08-29T14:23:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d60df2ff_812adde2",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 11
+      },
+      "revId": "6be40f83b1d93ce41b5aae3c4c27ac770013ba7e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f4a63522_e259ea49",
+        "filename": "docs/ncmp-cmhandle-querying.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-08-29T14:23:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3fa1b629_46d94f43",
+      "range": {
+        "startLine": 39,
+        "startChar": 273,
+        "endLine": 39,
+        "endChar": 285
+      },
+      "revId": "6be40f83b1d93ce41b5aae3c4c27ac770013ba7e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9cd2a4e7_f6b6f967",
+        "filename": "docs/ncmp-cmhandle-querying.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-08-29T14:23:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "616e8a24_896f1a6a",
+      "range": {
+        "startLine": 39,
+        "startChar": 245,
+        "endLine": 39,
+        "endChar": 265
+      },
+      "revId": "6be40f83b1d93ce41b5aae3c4c27ac770013ba7e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7b868188_3e2fc35c",
+        "filename": "docs/ncmp-cmhandle-querying.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-08-29T14:23:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bc0eb8b0_fa16a31e",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 165
+      },
+      "revId": "6be40f83b1d93ce41b5aae3c4c27ac770013ba7e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
