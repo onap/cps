@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "750b160b_bda4ad2a",
+        "filename": "docs/ncmp-cmhandle-querying.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-29T09:00:49Z",
+      "side": 1,
+      "message": "make more generic before referring to the dmi-registry specifics.\n\nCasing Conventions: camelCase and kebab-case\n\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\n\nPlease note any JSON return body from a REST interface by convention uses \u0027camelCasing\u0027 while data-fields stored in CPS are defined by yang models using \u0027kebab-casing\u0027. This might lead to some \u0027inconsistencies\u0027 when dealing with yang-modelled data in a json request.",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 165
+      },
+      "revId": "6be40f83b1d93ce41b5aae3c4c27ac770013ba7e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
