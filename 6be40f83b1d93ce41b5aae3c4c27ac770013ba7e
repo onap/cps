@@ -22,6 +22,75 @@
       "revId": "6be40f83b1d93ce41b5aae3c4c27ac770013ba7e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "616e8a24_896f1a6a",
+        "filename": "docs/ncmp-cmhandle-querying.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-29T11:21:47Z",
+      "side": 1,
+      "message": "is based on",
+      "range": {
+        "startLine": 39,
+        "startChar": 245,
+        "endLine": 39,
+        "endChar": 265
+      },
+      "revId": "6be40f83b1d93ce41b5aae3c4c27ac770013ba7e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3fa1b629_46d94f43",
+        "filename": "docs/ncmp-cmhandle-querying.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-29T11:21:47Z",
+      "side": 1,
+      "message": "dmi-registry yang model",
+      "range": {
+        "startLine": 39,
+        "startChar": 273,
+        "endLine": 39,
+        "endChar": 285
+      },
+      "revId": "6be40f83b1d93ce41b5aae3c4c27ac770013ba7e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d60df2ff_812adde2",
+        "filename": "docs/ncmp-cmhandle-querying.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-29T11:21:47Z",
+      "side": 1,
+      "message": "Can be in a NOTE block.",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 11
+      },
+      "revId": "6be40f83b1d93ce41b5aae3c4c27ac770013ba7e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
