@@ -3,6 +3,7 @@
  *  Copyright (C) 2020-2021 Pantheon.tech
  *  Modifications Copyright (C) 2020-2021 Bell Canada.
  *  Modifications Copyright (C) 2021-2022 Nordix Foundation
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -70,9 +71,7 @@ class AdminRestControllerSpec extends Specification {
     def schemaSetName = 'my_schema_set'
     def anchor = new Anchor(name: anchorName, dataspaceName: dataspaceName, schemaSetName: schemaSetName)
 
-    def 'Create new dataspace.'() {
-        given: 'an endpoint'
-            def createDataspaceEndpoint = "$basePath/v1/dataspaces"
+    def 'Create new dataspace using #caseDescriptor.'() {
         when: 'post is invoked'
             def response =
                     mvc.perform(
@@ -82,7 +81,12 @@ class AdminRestControllerSpec extends Specification {
         then: 'service method is invoked with expected parameters'
             1 * mockCpsAdminService.createDataspace(dataspaceName)
         and: 'dataspace is create successfully'
-            response.status == HttpStatus.CREATED.value()
+            assert response.status == HttpStatus.CREATED.value()
+            assert response.getContentAsString() == responseBody
+        where: 'following cases are tested'
+            caseDescriptor | createDataspaceEndpoint  | responseBody
+            'V1 API'       | '/cps/api/v1/dataspaces' | 'my_dataspace'
+            'V2 API'       | '/cps/api/v2/dataspaces' | ''
     }
 
     def 'Create dataspace over existing with same name.'() {
@@ -101,12 +105,10 @@ class AdminRestControllerSpec extends Specification {
             response.status == HttpStatus.CONFLICT.value()
     }
 
-    def 'Create schema set from yang file.'() {
+    def 'Create schema set from yang file using #caseDescriptor.'() {
         def yangResourceMapCapture
         given: 'single yang file'
             def multipartFile = createMultipartFile("filename.yang", "content")
-        and: 'an endpoint'
-            def schemaSetEndpoint = "$basePath/v1/dataspaces/$dataspaceName/schema-sets"
         when: 'file uploaded with schema set create request'
             def response =
                     mvc.perform(
@@ -119,15 +121,18 @@ class AdminRestControllerSpec extends Specification {
                     { args -> yangResourceMapCapture = args[2] }
             yangResourceMapCapture['filename.yang'] == 'content'
         and: 'response code indicates success'
-            response.status == HttpStatus.CREATED.value()
+            assert response.status == HttpStatus.CREATED.value()
+            assert response.getContentAsString() == responseBody
+        where: 'following cases are tested'
+            caseDescriptor | schemaSetEndpoint                                  | responseBody
+            'V1 API'       | '/cps/api/v1/dataspaces/my_dataspace/schema-sets'  | 'my_schema_set'
+            'V2 API'       | '/cps/api/v2/dataspaces/my_dataspace/schema-sets'  | ''
     }
 
     def 'Create schema set from zip archive.'() {
         def yangResourceMapCapture
         given: 'zip archive with multiple .yang files inside'
             def multipartFile = createZipMultipartFileFromResource("/yang-files-set.zip")
-        and: 'an endpoint'
-            def schemaSetEndpoint = "$basePath/v1/dataspaces/$dataspaceName/schema-sets"
         when: 'file uploaded with schema set create request'
             def response =
                     mvc.perform(
@@ -141,14 +146,17 @@ class AdminRestControllerSpec extends Specification {
             yangResourceMapCapture['assembly.yang'] == "fake assembly content 1\n"
             yangResourceMapCapture['component.yang'] == "fake component content 1\n"
         and: 'response code indicates success'
-            response.status == HttpStatus.CREATED.value()
+            assert response.status == HttpStatus.CREATED.value()
+            assert response.getContentAsString() == responseBody
+        where: 'following cases are tested'
+            caseDescriptor | schemaSetEndpoint                                 | responseBody
+            'V1 API'       | '/cps/api/v1/dataspaces/my_dataspace/schema-sets' | 'my_schema_set'
+            'V2 API'       | '/cps/api/v2/dataspaces/my_dataspace/schema-sets' | ''
     }
 
-    def 'Create a schema set from a yang file that is greater than 1MB.'() {
+    def 'Create a schema set from a yang file that is greater than 1MB using #caseDescriptor.'() {
         given: 'a yang file greater than 1MB'
             def multipartFile = createMultipartFileFromResource("/model-over-1mb.yang")
-        and: 'an endpoint'
-            def schemaSetEndpoint = "$basePath/v1/dataspaces/$dataspaceName/schema-sets"
         when: 'a file is uploaded to the create schema set endpoint'
             def response =
                     mvc.perform(
@@ -159,7 +167,12 @@ class AdminRestControllerSpec extends Specification {
         then: 'the associated service method is invoked'
             1 * mockCpsModuleService.createSchemaSet(dataspaceName, schemaSetName, _)
         and: 'the response code indicates success'
-            response.status == HttpStatus.CREATED.value()
+            assert response.status == HttpStatus.CREATED.value()
+            assert response.getContentAsString() == responseBody
+        where: 'following cases are tested'
+            caseDescriptor | schemaSetEndpoint                                 | responseBody
+            'V1 API'       | '/cps/api/v1/dataspaces/my_dataspace/schema-sets' | 'my_schema_set'
+            'V2 API'       | '/cps/api/v2/dataspaces/my_dataspace/schema-sets' | ''
     }
 
     def 'Create schema set from zip archive having #caseDescriptor.'() {
@@ -213,15 +226,17 @@ class AdminRestControllerSpec extends Specification {
             fileType << ['YANG', 'ZIP']
     }
 
-    def 'Delete schema set.'() {
-        given: 'an endpoint'
-            def schemaSetEndpoint = "$basePath/v1/dataspaces/$dataspaceName/schema-sets/$schemaSetName"
+    def 'Delete schema set using #caseDescriptor.'() {
         when: 'delete schema set endpoint is invoked'
             def response = mvc.perform(delete(schemaSetEndpoint)).andReturn().response
         then: 'associated service method is invoked with expected parameters'
             1 * mockCpsModuleService.deleteSchemaSet(dataspaceName, schemaSetName, CASCADE_DELETE_PROHIBITED)
         and: 'response code indicates success'
             response.status == HttpStatus.NO_CONTENT.value()
+        where: 'following cases are tested'
+            caseDescriptor | schemaSetEndpoint
+            'V1 API'       | '/cps/api/v1/dataspaces/my_dataspace/schema-sets/my_schema_set'
+            'V2 API'       | '/cps/api/v2/dataspaces/my_dataspace/schema-sets/my_schema_set'
     }
 
     def 'Delete schema set which is in use.'() {
@@ -237,26 +252,26 @@ class AdminRestControllerSpec extends Specification {
             response.status == HttpStatus.CONFLICT.value()
     }
 
-    def 'Get existing schema set.'() {
+    def 'Get existing schema set using #caseDescriptor.'() {
         given: 'service method returns a new schema set'
             mockCpsModuleService.getSchemaSet(dataspaceName, schemaSetName) >>
                     new SchemaSet(name: schemaSetName, dataspaceName: dataspaceName)
-        and: 'an endpoint'
-            def schemaSetEndpoint = "$basePath/v1/dataspaces/$dataspaceName/schema-sets/$schemaSetName"
         when: 'get schema set API is invoked'
             def response = mvc.perform(get(schemaSetEndpoint)).andReturn().response
         then: 'the correct schema set is returned'
             response.status == HttpStatus.OK.value()
             response.getContentAsString().contains(schemaSetName)
+        where: 'following cases are tested'
+            caseDescriptor | schemaSetEndpoint
+            'V1 API'       | '/cps/api/v1/dataspaces/my_dataspace/schema-sets/my_schema_set'
+            'V2 API'       | '/cps/api/v2/dataspaces/my_dataspace/schema-sets/my_schema_set'
     }
 
-    def 'Create Anchor.'() {
+    def 'Create Anchor using #caseDescriptor.'() {
         given: 'request parameters'
             def requestParams = new LinkedMultiValueMap<>()
             requestParams.add('schema-set-name', schemaSetName)
             requestParams.add('anchor-name', anchorName)
-        and: 'an endpoint'
-            def anchorEndpoint = "$basePath/v1/dataspaces/$dataspaceName/anchors"
         when: 'post is invoked'
             def response =
                     mvc.perform(
@@ -265,20 +280,26 @@ class AdminRestControllerSpec extends Specification {
                             .andReturn().response
         then: 'anchor is created successfully'
             1 * mockCpsAdminService.createAnchor(dataspaceName, schemaSetName, anchorName)
-            response.status == HttpStatus.CREATED.value()
-            response.getContentAsString().contains(anchorName)
+            assert response.status == HttpStatus.CREATED.value()
+            assert response.getContentAsString() == responseBody
+        where: 'following cases are tested'
+            caseDescriptor | anchorEndpoint                                | responseBody
+            'V1 API'       | '/cps/api/v1/dataspaces/my_dataspace/anchors' | 'my_anchor'
+            'V2 API'       | '/cps/api/v2/dataspaces/my_dataspace/anchors' | ''
     }
 
-    def 'Get existing anchor.'() {
+    def 'Get existing anchor using #caseDescriptor.'() {
         given: 'service method returns a list of anchors'
             mockCpsAdminService.getAnchors(dataspaceName) >> [anchor]
-        and: 'an endpoint'
-            def anchorEndpoint = "$basePath/v1/dataspaces/$dataspaceName/anchors"
         when: 'get all anchors API is invoked'
             def response = mvc.perform(get(anchorEndpoint)).andReturn().response
         then: 'the correct anchor is returned'
             response.status == HttpStatus.OK.value()
             response.getContentAsString().contains(anchorName)
+        where: 'following cases are tested'
+            caseDescriptor | anchorEndpoint
+            'V1 API'       | '/cps/api/v1/dataspaces/my_dataspace/anchors'
+            'V2 API'       | '/cps/api/v2/dataspaces/my_dataspace/anchors'
     }
 
     def 'Get existing anchor by dataspace and anchor name.'() {
@@ -297,20 +318,20 @@ class AdminRestControllerSpec extends Specification {
             responseContent.contains(schemaSetName)
     }
 
-    def 'Delete anchor.'() {
-        given: 'an endpoint'
-            def anchorEndpoint = "$basePath/v1/dataspaces/$dataspaceName/anchors/$anchorName"
+    def 'Delete anchor using #caseDescriptor.'() {
         when: 'delete method is invoked on anchor endpoint'
             def response = mvc.perform(delete(anchorEndpoint)).andReturn().response
         then: 'associated service method is invoked with expected parameters'
             1 * mockCpsAdminService.deleteAnchor(dataspaceName, anchorName)
         and: 'response code indicates success'
             response.status == HttpStatus.NO_CONTENT.value()
+        where: 'following cases are tested'
+            caseDescriptor | anchorEndpoint
+            'V1 API'       | '/cps/api/v1/dataspaces/my_dataspace/anchors/my_anchor'
+            'V2 API'       | '/cps/api/v2/dataspaces/my_dataspace/anchors/my_anchor'  
     }
 
-    def 'Delete dataspace.'() {
-        given: 'an endpoint'
-            def dataspaceEndpoint = "$basePath/v1/dataspaces"
+    def 'Delete dataspace using #caseDescriptor.'() {
         when: 'delete dataspace endpoint is invoked'
             def response = mvc.perform(delete(dataspaceEndpoint)
                 .param('dataspace-name', dataspaceName))
@@ -319,6 +340,10 @@ class AdminRestControllerSpec extends Specification {
             1 * mockCpsAdminService.deleteDataspace(dataspaceName)
         and: 'response code indicates success'
             response.status == HttpStatus.NO_CONTENT.value()
+        where: 'following cases are tested'
+            caseDescriptor | dataspaceEndpoint
+            'V1 API'       | '/cps/api/v1/dataspaces'
+            'V2 API'       | '/cps/api/v2/dataspaces'
     }
 
     def createMultipartFile(filename, content) {
@@ -342,5 +367,4 @@ class AdminRestControllerSpec extends Specification {
         multipartFile.getInputStream() >> { throw new IOException() }
         return multipartFile
     }
-
 }

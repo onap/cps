@@ -24,6 +24,7 @@ tags:
 paths:
   /v1/dataspaces:
     post:
+      deprecated: true
       tags:
       - cps-admin
       summary: Create a dataspace
@@ -163,6 +164,74 @@ paths:
                 status: 500
                 message: Internal Server Error
                 details: Internal Server Error occurred
+  /v2/dataspaces:
+    post:
+      tags:
+      - cps-admin
+      summary: Create a dataspace
+      description: Create a new dataspace
+      operationId: createDataspaceV2
+      parameters:
+      - name: dataspace-name
+        in: query
+        description: dataspace-name
+        required: true
+        schema:
+          type: string
+          example: my-dataspace
+      responses:
+        "201":
+          description: Created
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 400
+                message: Bad Request
+                details: The provided request is not valid
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 401
+                message: Unauthorized request
+                details: This request is unauthorized
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 403
+                message: Request Forbidden
+                details: This request is forbidden
+        "409":
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 409
+                message: Conflicting request
+                details: The request cannot be processed as the resource is in use.
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 500
+                message: Internal Server Error
+                details: Internal Server Error occurred
   /v1/dataspaces/{dataspace-name}/anchors:
     get:
       tags:
@@ -228,6 +297,7 @@ paths:
                 message: Internal Server Error
                 details: Internal Server Error occurred
     post:
+      deprecated: true
       tags:
       - cps-admin
       summary: Create an anchor
@@ -263,6 +333,88 @@ paths:
               schema:
                 type: string
                 example: my-resource
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 400
+                message: Bad Request
+                details: The provided request is not valid
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 401
+                message: Unauthorized request
+                details: This request is unauthorized
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 403
+                message: Request Forbidden
+                details: This request is forbidden
+        "409":
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 409
+                message: Conflicting request
+                details: The request cannot be processed as the resource is in use.
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 500
+                message: Internal Server Error
+                details: Internal Server Error occurred
+  /v2/dataspaces/{dataspace-name}/anchors:
+    post:
+      tags:
+      - cps-admin
+      summary: Create an anchor
+      description: Create a new anchor in the given dataspace
+      operationId: createAnchorV2
+      parameters:
+      - name: dataspace-name
+        in: path
+        description: dataspace-name
+        required: true
+        schema:
+          type: string
+          example: my-dataspace
+      - name: schema-set-name
+        in: query
+        description: schema-set-name
+        required: true
+        schema:
+          type: string
+          example: my-schema-set
+      - name: anchor-name
+        in: query
+        description: anchor-name
+        required: true
+        schema:
+          type: string
+          example: my-anchor
+      responses:
+        "201":
+          description: Created
         "400":
           description: Bad Request
           content:
@@ -449,6 +601,7 @@ paths:
                 details: Internal Server Error occurred
   /v1/dataspaces/{dataspace-name}/schema-sets:
     post:
+      deprecated: true
       tags:
       - cps-admin
       summary: Create a schema set
@@ -483,6 +636,87 @@ paths:
               schema:
                 type: string
                 example: my-resource
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 400
+                message: Bad Request
+                details: The provided request is not valid
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 401
+                message: Unauthorized request
+                details: This request is unauthorized
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 403
+                message: Request Forbidden
+                details: This request is forbidden
+        "409":
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 409
+                message: Conflicting request
+                details: The request cannot be processed as the resource is in use.
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 500
+                message: Internal Server Error
+                details: Internal Server Error occurred
+  /v2/dataspaces/{dataspace-name}/schema-sets:
+    post:
+      tags:
+      - cps-admin
+      summary: Create a schema set
+      description: Create a new schema set in the given dataspace
+      operationId: createSchemaSetV2
+      parameters:
+      - name: dataspace-name
+        in: path
+        description: dataspace-name
+        required: true
+        schema:
+          type: string
+          example: my-dataspace
+      - name: schema-set-name
+        in: query
+        description: schema-set-name
+        required: true
+        schema:
+          type: string
+          example: my-schema-set
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/MultipartFile'
+        required: true
+      responses:
+        "201":
+          description: Created
         "400":
           description: Bad Request
           content:
@@ -1613,6 +1847,7 @@ components:
             name: SciFi
           - code: 2
             name: kids
+
 
 security:
   - basicAuth: []
