@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "26b3cdc4_efd167b5",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp-inventory.yml",
+        "patchSetId": 11
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-08-29T12:33:13Z",
+      "side": 1,
+      "message": "response now appears like this:\n\n[\n  \"test2\",\n  \"test3\",\n  \"test\"\n]",
+      "range": {
+        "startLine": 115,
+        "startChar": 0,
+        "endLine": 118,
+        "endChar": 28
+      },
+      "revId": "9bccaeb4b3713511161d4b97ad6ce6d8afbbaccb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
