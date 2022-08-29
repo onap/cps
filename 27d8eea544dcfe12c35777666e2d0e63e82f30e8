@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "47559693_61223d86",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-08-29T11:10:43Z",
+      "side": 1,
+      "message": "NB: I think top 4 methods could be ordered better",
+      "range": {
+        "startLine": 92,
+        "startChar": 16,
+        "endLine": 92,
+        "endChar": 32
+      },
+      "revId": "27d8eea544dcfe12c35777666e2d0e63e82f30e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b7749a60_bb37769f",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
         "patchSetId": 3
