@@ -36,6 +36,11 @@ Currently this endpoint allows three criteria to be query on:
 
 Not all request body combinations have been validated and as such request bodies which do not conform to the structure as documented here can produce results in which all CM Handles are returned.
 
+Casing conventions: 'camelCasing' and 'kebab-casing'
+--------------------------------------------------
+.. note::
+    By convention REST JSON return bodies use 'camelCasing'. By convention field names in yang modelled data use 'kebab-casing'. Therefore some inconsistencies can be seen in the JSON use in CPS REST interfaces. For CM Handle related endpoints we return data in 'camelCasing'. But for *cmHandleWithCpsPath*, the query is accessing yang modelled field names and as such needs to use 'kebab-casing'. Therefore the dmi-registry field names should be referenced when using the *cmHandleWithCpsPath* condition: :doc:`modeling`
+
 Request Body example using all available query criteria. This query would return all CM Handles which have the specified modules my-module-(1-3), have the specified properties of Color yellow, Shape circle, Size small and are in a sync state of ADVISED:
 
 .. code-block:: json
