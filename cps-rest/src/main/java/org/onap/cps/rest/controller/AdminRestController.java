@@ -3,6 +3,7 @@
  *  Copyright (C) 2020-2022 Nordix Foundation
  *  Modifications Copyright (C) 2020-2021 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -66,6 +67,18 @@ public class AdminRestController implements CpsAdminApi {
     }
 
     /**
+     * Create a dataspace without returning any response body.
+     *
+     * @param dataspaceName dataspace name
+     * @return a {@Link ResponseEntity} of created dataspace name & {@link HttpStatus} CREATED
+     */
+    @Override
+    public ResponseEntity<Void> createDataspaceV2(@NotNull @Valid final String dataspaceName) {
+        cpsAdminService.createDataspace(dataspaceName);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    /**
      * Delete a dataspace.
      *
      * @param dataspaceName name of dataspace to be deleted
@@ -90,6 +103,21 @@ public class AdminRestController implements CpsAdminApi {
         final String dataspaceName, @Valid final MultipartFile multipartFile) {
         cpsModuleService.createSchemaSet(dataspaceName, schemaSetName, extractYangResourcesMap(multipartFile));
         return new ResponseEntity<>(schemaSetName, HttpStatus.CREATED);
+    }
+
+    /**
+     * Create a {@link SchemaSet}.
+     *
+     * @param multipartFile multipart file
+     * @param schemaSetName schemaset name
+     * @param dataspaceName dataspace name
+     * @return a {@Link ResponseEntity} of created schema set without any response body & {@link HttpStatus} CREATED
+     */
+    @Override
+    public ResponseEntity<Void> createSchemaSetV2(@NotNull @Valid final String schemaSetName,
+        final String dataspaceName, @Valid final MultipartFile multipartFile) {
+        cpsModuleService.createSchemaSet(dataspaceName, schemaSetName, extractYangResourcesMap(multipartFile));
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     /**
@@ -132,6 +160,21 @@ public class AdminRestController implements CpsAdminApi {
         @NotNull @Valid final String anchorName) {
         cpsAdminService.createAnchor(dataspaceName, schemaSetName, anchorName);
         return new ResponseEntity<>(anchorName, HttpStatus.CREATED);
+    }
+
+    /**
+     * Create an anchor.
+     *
+     * @param dataspaceName dataspace name
+     * @param schemaSetName schema set name
+     * @param anchorName    anchorName
+     * @return a ResponseEntity without response body & {@link HttpStatus} CREATED
+     */
+    @Override
+    public ResponseEntity<Void> createAnchorV2(final String dataspaceName, @NotNull @Valid final String schemaSetName,
+        @NotNull @Valid final String anchorName) {
+        cpsAdminService.createAnchor(dataspaceName, schemaSetName, anchorName);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     /**
