@@ -2,6 +2,144 @@
   "comments": [
     {
       "key": {
+        "uuid": "fa8bd583_3ac3d903",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-29T11:21:39Z",
+      "side": 1,
+      "message": "batch",
+      "range": {
+        "startLine": 162,
+        "startChar": 22,
+        "endLine": 162,
+        "endChar": 26
+      },
+      "revId": "27d8eea544dcfe12c35777666e2d0e63e82f30e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cdabfc99_ff45b8df",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-29T11:21:39Z",
+      "side": 1,
+      "message": "NB: saveCmHandleBatch",
+      "range": {
+        "startLine": 166,
+        "startChar": 16,
+        "endLine": 166,
+        "endChar": 29
+      },
+      "revId": "27d8eea544dcfe12c35777666e2d0e63e82f30e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4bbf7530_91a7b156",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/InventoryPersistenceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-29T11:21:39Z",
+      "side": 1,
+      "message": "NB: cm handles",
+      "range": {
+        "startLine": 206,
+        "startChar": 16,
+        "endLine": 206,
+        "endChar": 24
+      },
+      "revId": "27d8eea544dcfe12c35777666e2d0e63e82f30e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8c59941b_2aacda5d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/InventoryPersistenceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-29T11:21:39Z",
+      "side": 1,
+      "message": "NB: recheck if actually required.",
+      "range": {
+        "startLine": 207,
+        "startChar": 76,
+        "endLine": 207,
+        "endChar": 93
+      },
+      "revId": "27d8eea544dcfe12c35777666e2d0e63e82f30e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e6b3190_c6ec16ad",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/InventoryPersistenceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-29T11:21:39Z",
+      "side": 1,
+      "message": "the cm handles are saved",
+      "range": {
+        "startLine": 209,
+        "startChar": 15,
+        "endLine": 209,
+        "endChar": 52
+      },
+      "revId": "27d8eea544dcfe12c35777666e2d0e63e82f30e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "59e21ced_e384d0d0",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/InventoryPersistenceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-29T11:21:39Z",
+      "side": 1,
+      "message": "NB: generic **",
+      "range": {
+        "startLine": 211,
+        "startChar": 15,
+        "endLine": 211,
+        "endChar": 75
+      },
+      "revId": "27d8eea544dcfe12c35777666e2d0e63e82f30e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "47559693_61223d86",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 3
