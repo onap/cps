@@ -22,28 +22,29 @@ package org.onap.cps.ncmp.api.inventory.sync.executor;
 
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
-import lombok.Getter;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
-import javax.annotation.PostConstruct;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.function.Supplier;
+import javax.annotation.PostConstruct;
+import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
 public class AsyncTaskExecutor {
-
     @Value("${modules-sync-watchdog.async-executor.parallelism-level:10}")
     @Getter
     private int asyncTaskParallelismLevel;
     private ExecutorService executorService;
+    private static final int DEFAULT_PARALLELISM_LEVEL = 10;
 
     @PostConstruct
-    public void setup() {
-        executorService = Executors.newWorkStealingPool(asyncTaskParallelismLevel);
+    public void setupThreadPool() {
+        executorService = Executors.newWorkStealingPool(
+                asyncTaskParallelismLevel == 0 ? DEFAULT_PARALLELISM_LEVEL : asyncTaskParallelismLevel);
     }
 
     /**
@@ -59,11 +60,6 @@ public class AsyncTaskExecutor {
     }
 
     private void handleTaskCompletion(final Object response, final Throwable throwable) {
-        if (throwable != null) {
-            log.debug("Watchdog async batch failed. caused by : {}", throwable.getMessage());
-        }
+        log.debug("Watchdog async batch failed. caused by : {}", throwable.getMessage());
     }
 }
-
-
-

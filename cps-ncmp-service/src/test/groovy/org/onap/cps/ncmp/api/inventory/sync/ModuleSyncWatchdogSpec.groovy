@@ -22,7 +22,7 @@
 package org.onap.cps.ncmp.api.inventory.sync
 
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
-
+import org.onap.cps.ncmp.api.inventory.sync.executor.AsyncTaskExecutor
 import java.util.concurrent.ArrayBlockingQueue
 import java.util.concurrent.BlockingQueue
 import org.onap.cps.spi.model.DataNode
@@ -40,7 +40,15 @@ class ModuleSyncWatchdogSpec extends Specification {
 
     def mockModuleSyncTasks = Mock(ModuleSyncTasks)
 
-    def objectUnderTest = new ModuleSyncWatchdog(mockSyncUtils, moduleSyncWorkQueue , moduleSyncStartedOnCmHandles, mockModuleSyncTasks)
+    def asyncTaskExecutor = new AsyncTaskExecutor()
+
+    def objectUnderTest = new ModuleSyncWatchdog(mockSyncUtils, moduleSyncWorkQueue , moduleSyncStartedOnCmHandles,
+            mockModuleSyncTasks, asyncTaskExecutor)
+
+    void setup() {
+        asyncTaskExecutor.asyncTaskParallelismLevel = 3;
+        asyncTaskExecutor.setupThreadPool();
+    }
 
     def 'Module sync #scenario , #numberOfAdvisedCmHandles advised cm handles.'() {
         given: 'sync utilities returns #numberOfAdvisedCmHandles advised cm handles'
@@ -48,7 +56,7 @@ class ModuleSyncWatchdogSpec extends Specification {
         when: ' module sync is started'
             objectUnderTest.moduleSyncAdvisedCmHandles()
         then: 'it performs #expectedNumberOfTaskExecutions tasks'
-            expectedNumberOfTaskExecutions * mockModuleSyncTasks.performModuleSync(_)
+            expectedNumberOfTaskExecutions * mockModuleSyncTasks.performModuleSync(*_)
         where:
             scenario              |  numberOfAdvisedCmHandles                                         || expectedNumberOfTaskExecutions
             'less then 1 batch'   | 1                                                                 || 1
@@ -64,6 +72,7 @@ class ModuleSyncWatchdogSpec extends Specification {
             mockSyncUtils.getModuleSyncFailedCmHandles() >> failedCmHandles
         when: ' reset failed cm handles is started'
             objectUnderTest.resetPreviouslyFailedCmHandles()
+            Thread.sleep(1000)
         then: 'it is delegated to the module sync task (service)'
             1 * mockModuleSyncTasks.resetFailedCmHandles(failedCmHandles)
     }

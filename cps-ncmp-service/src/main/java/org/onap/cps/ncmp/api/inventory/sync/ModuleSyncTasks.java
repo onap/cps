@@ -25,6 +25,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.atomic.AtomicInteger;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.impl.event.lcm.LcmEventsCmHandleStateHandler;
@@ -54,7 +55,8 @@ public class ModuleSyncTasks {
      * @param cmHandlesAsDataNodes a batch of Data nodes representing cm handles to perform module sync on
      * @return completed future to handle post-processing
      */
-    public CompletableFuture<Void> performModuleSync(final Collection<DataNode> cmHandlesAsDataNodes) {
+    public CompletableFuture<Void> performModuleSync(final Collection<DataNode> cmHandlesAsDataNodes,
+                                                     final AtomicInteger batchCounter) {
         final Map<YangModelCmHandle, CmHandleState> cmHandelStatePerCmHandle = new HashMap<>();
         for (final DataNode cmHandleAsDataNode : cmHandlesAsDataNodes) {
             final String cmHandleId = String.valueOf(cmHandleAsDataNode.getLeaves().get("id"));
@@ -74,6 +76,7 @@ public class ModuleSyncTasks {
             log.debug("{} is now in {} state", cmHandleId, compositeState.getCmHandleState().name());
         }
         updateCmHandlesStateBatch(cmHandelStatePerCmHandle);
+        batchCounter.getAndDecrement();
         return COMPLETED_FUTURE;
     }
 
