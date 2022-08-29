@@ -3,6 +3,7 @@
  *  Copyright (C) 2020-2021 Pantheon.tech
  *  Modifications Copyright (C) 2020-2021 Bell Canada.
  *  Modifications Copyright (C) 2021-2022 Nordix Foundation
+ *  Modifications Copyright (C) 2022-2023 TechMahindra Ltd
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -341,6 +342,60 @@ class AdminRestControllerSpec extends Specification {
         multipartFile.getBytes() >> { throw new IOException() }
         multipartFile.getInputStream() >> { throw new IOException() }
         return multipartFile
+    }
+
+    def 'Create new dataspace using v2 API.'() {
+        given: 'an endpoint'
+            def createDataspaceEndpointV2 = "$basePath/v2/dataspaces"
+        when: 'post is invoked'
+            def response =
+                    mvc.perform(
+                            post(createDataspaceEndpointV2)
+                                    .param('dataspace-name', dataspaceName))
+                            .andReturn().response
+        then: 'service method is invoked with expected parameters'
+            1 * mockCpsAdminService.createDataspaceV2(dataspaceName)
+        and: 'dataspace is create successfully'
+            response.status == HttpStatus.CREATED.value()
+    }
+
+    def 'Create schema set from yang file using V2.'() {
+        def yangResourceMapCapture
+        given: 'single yang file'
+            def multipartFile = createMultipartFile("filename.yang", "content")
+        and: 'an endpoint'
+            def schemaSetEndpoint = "$basePath/v2/dataspaces/$dataspaceName/schema-sets"
+        when: 'file uploaded with schema set create request'
+            def response =
+                    mvc.perform(
+                            multipart(schemaSetEndpoint)
+                                    .file(multipartFile)
+                                    .param('schema-set-name', schemaSetName))
+                            .andReturn().response
+        then: 'associated service method is invoked with expected parameters'
+            1 * mockCpsModuleService.createSchemaSetV2(dataspaceName, schemaSetName, _) >>
+                    { args -> yangResourceMapCapture = args[2] }
+            yangResourceMapCapture['filename.yang'] == 'content'
+        and: 'response code indicates success'
+            response.status == HttpStatus.CREATED.value()
+    }
+
+    def 'Create Anchor using V2 API.'() {
+        given: 'request parameters'
+            def requestParams = new LinkedMultiValueMap<>()
+            requestParams.add('schema-set-name', schemaSetName)
+            requestParams.add('anchor-name', anchorName)
+        and: 'an endpoint'
+            def anchorEndpoint = "$basePath/v2/dataspaces/$dataspaceName/anchors"
+        when: 'post is invoked'
+            def response =
+                    mvc.perform(
+                            post(anchorEndpoint).contentType(MediaType.APPLICATION_JSON)
+                                    .params(requestParams as MultiValueMap))
+                            .andReturn().response
+        then: 'anchor is created successfully'
+            1 * mockCpsAdminService.createAnchorV2(dataspaceName, schemaSetName, anchorName)
+            response.status == HttpStatus.CREATED.value()
     }
 
 }
