@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "0d6505b0_3036d33d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-29T12:35:31Z",
+      "side": 1,
+      "message": "no longer true?\nTEAM FYI: I discussed with Lee-Anjella and decided that this new method should follow the same pattern as we used for cm handle queries: have one URL that returns just an Array oF (string) IDs and a (furre) URL/method that returns object with more data. The code in this commit is semi-prepared for the additional option",
+      "range": {
+        "startLine": 10,
+        "startChar": 29,
+        "endLine": 10,
+        "endChar": 62
+      },
+      "revId": "dd5e8130e909bfbed1491afac54e71423a63fe76",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8cf7a2b2_00c4bffb",
         "filename": "cps-ncmp-rest/docs/openapi/ncmp-inventory.yml",
         "patchSetId": 9

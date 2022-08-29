@@ -2,6 +2,75 @@
   "comments": [
     {
       "key": {
+        "uuid": "1f99c0b3_fb2325b8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-29T12:35:31Z",
+      "side": 1,
+      "message": "to collection of Strings (cm handle ids):\n\nno longer true?\nTEAM FYI: I discussed with Lee-Anjella and decided that this new method should follow the same pattern as we used for cm handle queries: have one URL that returns just an Array oF (string) IDs and a (furre) URL/method that returns object with more data. The code in this commit is semi-prepared for the additional option",
+      "range": {
+        "startLine": 10,
+        "startChar": 2,
+        "endLine": 10,
+        "endChar": 62
+      },
+      "revId": "9bccaeb4b3713511161d4b97ad6ce6d8afbbaccb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4411a279_e49a8c9b",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp-inventory.yml",
+        "patchSetId": 11
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-29T12:35:31Z",
+      "side": 1,
+      "message": "handle ids",
+      "range": {
+        "startLine": 103,
+        "startChar": 28,
+        "endLine": 103,
+        "endChar": 36
+      },
+      "revId": "9bccaeb4b3713511161d4b97ad6ce6d8afbbaccb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d1b34f92_1289a08d",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp-inventory.yml",
+        "patchSetId": 11
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-29T12:35:31Z",
+      "side": 1,
+      "message": "handles ids",
+      "range": {
+        "startLine": 106,
+        "startChar": 24,
+        "endLine": 106,
+        "endChar": 33
+      },
+      "revId": "9bccaeb4b3713511161d4b97ad6ce6d8afbbaccb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "26b3cdc4_efd167b5",
         "filename": "cps-ncmp-rest/docs/openapi/ncmp-inventory.yml",
         "patchSetId": 11
@@ -18,6 +87,190 @@
         "startChar": 0,
         "endLine": 118,
         "endChar": 28
+      },
+      "revId": "9bccaeb4b3713511161d4b97ad6ce6d8afbbaccb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f8a641b8_d7b6bd4c",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryControllerSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-29T12:35:31Z",
+      "side": 1,
+      "message": "be careful, the underlying impl. a set (which you convert to list in tejh controller)\n#taht means order is not guaranteed and theis test might unexpectedly fail!\nthe original methods of testing 2 contains is better (the extract structure is part of the contract and not so relevant for this test)",
+      "range": {
+        "startLine": 176,
+        "startChar": 47,
+        "endLine": 176,
+        "endChar": 84
+      },
+      "revId": "9bccaeb4b3713511161d4b97ad6ce6d8afbbaccb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f30318c4_36e7c841",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/NetworkCmProxyDataService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-29T12:35:31Z",
+      "side": 1,
+      "message": "javadoc must be correct, this is a \u0027set\u0027 !",
+      "range": {
+        "startLine": 170,
+        "startChar": 15,
+        "endLine": 170,
+        "endChar": 26
+      },
+      "revId": "9bccaeb4b3713511161d4b97ad6ce6d8afbbaccb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "48c72426_7d4e23d3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-29T12:35:31Z",
+      "side": 1,
+      "message": "as your are converting/extracting us eteh full class name i.e. ncmpServiceCmHandles",
+      "range": {
+        "startLine": 233,
+        "startChar": 39,
+        "endLine": 233,
+        "endChar": 49
+      },
+      "revId": "9bccaeb4b3713511161d4b97ad6ce6d8afbbaccb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c005db2b_aabff127",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-29T12:35:31Z",
+      "side": 1,
+      "message": "good prtactice to initialise it with teh known size if you do knwo it i.e cmHandles.size()",
+      "range": {
+        "startLine": 235,
+        "startChar": 53,
+        "endLine": 235,
+        "endChar": 56
+      },
+      "revId": "9bccaeb4b3713511161d4b97ad6ce6d8afbbaccb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f72fb98b_8923cf19",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CmHandleQueries.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-29T12:35:31Z",
+      "side": 1,
+      "message": "modelledDmiServiceLeaf\n\n(note how I dropped \u0027name\u0027 too, see comment in Enum class)",
+      "range": {
+        "startLine": 179,
+        "startChar": 47,
+        "endLine": 179,
+        "endChar": 59
+      },
+      "revId": "9bccaeb4b3713511161d4b97ad6ce6d8afbbaccb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "34b20b05_9b58c3ca",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/ModelledDmiServiceLeafNames.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-29T12:35:31Z",
+      "side": 1,
+      "message": "the \u0027name\u0027 is field of this enum so rename to \n\n ModelledDmiServiceLeaves",
+      "range": {
+        "startLine": 23,
+        "startChar": 34,
+        "endLine": 23,
+        "endChar": 39
+      },
+      "revId": "9bccaeb4b3713511161d4b97ad6ce6d8afbbaccb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae5b7719_52c49301",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-29T12:35:31Z",
+      "side": 1,
+      "message": "I assume you wanted to test a duplicate doesn\u0027t get inserted twice but there is no really need to do that (aslo the test descriptions don\u0027t mention it) , you are testing the Java \u0027Set\u0027 functionality...\nJust remove it",
+      "range": {
+        "startLine": 381,
+        "startChar": 24,
+        "endLine": 381,
+        "endChar": 72
+      },
+      "revId": "9bccaeb4b3713511161d4b97ad6ce6d8afbbaccb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c926947_dfcabdff",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/CmHandleQueriesSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-29T12:35:31Z",
+      "side": 1,
+      "message": "why 6?! \nAdn on line 146 you only check 3?!",
+      "range": {
+        "startLine": 144,
+        "startChar": 36,
+        "endLine": 144,
+        "endChar": 37
       },
       "revId": "9bccaeb4b3713511161d4b97ad6ce6d8afbbaccb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
