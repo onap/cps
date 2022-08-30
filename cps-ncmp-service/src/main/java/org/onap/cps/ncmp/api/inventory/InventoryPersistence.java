@@ -105,14 +105,13 @@ public class InventoryPersistence {
      *
      * @param cmHandleStates contains cm handle id and updated state
      */
-    public void saveCmHandleStates(final Map<String, CompositeState> cmHandleStates) {
+    public void saveCmHandleStateBatch(final Map<String, CompositeState> cmHandleStates) {
         final Map<String, String> cmHandlesJsonDataMap = new HashMap<>();
-        cmHandleStates.entrySet().stream().forEach(cmHandleEntry ->
-            cmHandlesJsonDataMap.put(String.format(CM_HANDLE_XPATH_TEMPLATE, cmHandleEntry.getKey()),
-                String.format("{\"state\":%s}",
-                    jsonObjectMapper.asJsonString(cmHandleEntry.getValue()))));
+        cmHandleStates.forEach((cmHandleId, compositeState) -> cmHandlesJsonDataMap.put(
+                String.format(CM_HANDLE_XPATH_TEMPLATE, cmHandleId),
+                String.format("{\"state\":%s}", jsonObjectMapper.asJsonString(compositeState))));
         cpsDataService.updateDataNodesAndDescendants(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-            cmHandlesJsonDataMap, OffsetDateTime.now());
+                cmHandlesJsonDataMap, OffsetDateTime.now());
     }
 
     /**
