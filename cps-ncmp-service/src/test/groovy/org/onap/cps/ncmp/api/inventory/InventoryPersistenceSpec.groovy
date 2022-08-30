@@ -159,7 +159,7 @@ class InventoryPersistenceSpec extends Specification {
             def compositeState2 = new CompositeState(cmHandleState: cmHandleState, lastUpdateTime: formattedDateAndTime)
         when: 'update cm handle state is invoked with the #scenario state'
             def cmHandleStateMap = ['Some-Cm-Handle1' : compositeState1, 'Some-Cm-Handle2' : compositeState2]
-            objectUnderTest.saveCmHandleStates(cmHandleStateMap)
+            objectUnderTest.saveCmHandleStateBatch(cmHandleStateMap)
         then: 'update node leaves is invoked with the correct params'
             1 * mockCpsDataService.updateDataNodesAndDescendants('NCMP-Admin', 'ncmp-dmi-registry', cmHandlesJsonDataMap, _ as OffsetDateTime)
         where: 'the following states are used'

@@ -139,4 +139,52 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
         and: 'the method to publish Lcm event is called once'
             1 * mockLcmEventsService.publishLcmEvent(cmHandleId, _)
     }
+
+    def 'No state change and no event to be published'() {
+        given: 'Cm Handle batch with same state transition as before'
+            def yangModelCmHandle1 = new YangModelCmHandle(id: 'cmhandle1', compositeState: new CompositeState(cmHandleState: ADVISED), dmiProperties: [], publicProperties: [])
+            def yangModelCmHandle2 = new YangModelCmHandle(id: 'cmhandle2', compositeState: new CompositeState(cmHandleState: READY), dmiProperties: [], publicProperties: [])
+            def cmHandleStateMap = new HashMap()
+            cmHandleStateMap.put(yangModelCmHandle1, ADVISED)
+            cmHandleStateMap.put(yangModelCmHandle2, READY)
+        when: 'update state is invoked'
+            objectUnderTest.updateCmHandleStateBatch(cmHandleStateMap)
+        then: 'no update will happen'
+            0 * mockInventoryPersistence.saveCmHandleBatch(*_)
+        and: 'no event will be published'
+            0 * mockLcmEventsService.publishLcmEvent(*_)
+    }
+
+    def 'Update and Publish Events on State Change in Batch'() {
+        given: 'Cm Handle Batch represented as Map of YangModelCmHandle and target cm handle state'
+            def cmHandleStateMap = setupBatch()
+        when: 'update state is invoked'
+            objectUnderTest.updateCmHandleStateBatch(cmHandleStateMap)
+        then: 'new cm handle is saved using inventory persistence'
+            1 * mockInventoryPersistence.saveCmHandleBatch(_) >> {
+                args -> {
+                    assert (args[0] as Collection<YangModelCmHandle>)[0].id == 'cmhandle3'
+                }
+            }
+        and : 'existing cm handles composite state is persisted'
+            1 * mockInventoryPersistence.saveCmHandleStateBatch(_) >> {
+                args -> {
+                    assert (args[0] as Map<String, CompositeState>).keySet().containsAll(['cmhandle1','cmhandle2'])
+                }
+            }
+        and: 'event service is called to publish event'
+            3 * mockLcmEventsService.publishLcmEvent(_, _)
+
+    }
+
+    def setupBatch(){
+        def yangModelCmHandle1 = new YangModelCmHandle(id: 'cmhandle1', compositeState: new CompositeState(cmHandleState: ADVISED), dmiProperties: [], publicProperties: [])
+        def yangModelCmHandle2 = new YangModelCmHandle(id: 'cmhandle2', compositeState: new CompositeState(cmHandleState: READY), dmiProperties: [], publicProperties: [])
+        def yangModelCmHandle3 = new YangModelCmHandle(id: 'cmhandle3', dmiProperties: [], publicProperties: [])
+        def cmHandleStateMap = new HashMap();
+        cmHandleStateMap.put(yangModelCmHandle1, READY)
+        cmHandleStateMap.put(yangModelCmHandle2, DELETING)
+        cmHandleStateMap.put(yangModelCmHandle3, ADVISED)
+        return cmHandleStateMap
+    }
 }
