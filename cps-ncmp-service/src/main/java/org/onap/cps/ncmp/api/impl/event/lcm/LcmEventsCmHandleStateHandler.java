@@ -20,6 +20,7 @@
 
 package org.onap.cps.ncmp.api.impl.event.lcm;
 
+import java.util.Map;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.inventory.CmHandleState;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
@@ -39,11 +40,19 @@ public interface LcmEventsCmHandleStateHandler {
     void updateCmHandleState(final YangModelCmHandle yangModelCmHandle, final CmHandleState targetCmHandleState);
 
     /**
+     * Updates the composite state of cmHandle based on cmHandleState in batch.
+     *
+     * @param cmHandleStatePerCmHandle Map of Yang Model Cm Handle and corresponding cm handle state.
+     */
+    void updateCmHandleStateBatch(final Map<YangModelCmHandle, CmHandleState> cmHandleStatePerCmHandle);
+
+    /**
      * Publish LCM Event.
      *
-     * @param targetNcmpServiceCmHandle   target NcmpServiceCmHandle
-     * @param existingNcmpServiceCmHandle existing NcmpServiceCmHandle
+     * @param targetNcmpServiceCmHandle  target NcmpServiceCmHandle
+     * @param currentNcmpServiceCmHandle current NcmpServiceCmHandle
      */
-    void publishLcmEvent(final NcmpServiceCmHandle targetNcmpServiceCmHandle,
-            final NcmpServiceCmHandle existingNcmpServiceCmHandle);
+    void publishLcmEventAsynchronously(final NcmpServiceCmHandle targetNcmpServiceCmHandle,
+            final NcmpServiceCmHandle currentNcmpServiceCmHandle);
+
 }

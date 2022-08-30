@@ -69,6 +69,26 @@ public class YangModelCmHandle {
     private List<Property> publicProperties;
 
     /**
+     * Creates a deep copy of Yang Model Cm Handle.
+     *
+     * @param original Yang Model Cm Handle
+     * @return instance of yangModelCmHandle
+     */
+    public static YangModelCmHandle deepCopyOf(final YangModelCmHandle original) {
+        final YangModelCmHandle copy = new YangModelCmHandle();
+        copy.id = original.getId();
+        copy.dmiServiceName = original.getDmiServiceName();
+        copy.dmiDataServiceName = original.getDmiDataServiceName();
+        copy.dmiModelServiceName = original.getDmiModelServiceName();
+        copy.compositeState =
+                original.getCompositeState() == null ? null : new CompositeState(original.getCompositeState());
+        copy.dmiProperties = original.getDmiProperties() == null ? null : new ArrayList<>(original.getDmiProperties());
+        copy.publicProperties =
+                original.getPublicProperties() == null ? null : new ArrayList<>(original.getPublicProperties());
+        return copy;
+    }
+
+    /**
      * Create a yangModelCmHandle.
      *
      * @param dmiServiceName      dmi service name
