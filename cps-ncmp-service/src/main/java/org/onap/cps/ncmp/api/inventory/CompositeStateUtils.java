@@ -45,15 +45,14 @@ public class CompositeStateUtils {
     }
 
     /**
-     * Sets the cmHandleState to READY and operational datastore sync state based on the global flag.
+     * Set the Operational datastore sync state based on the global flag.
      *
      * @return Updated CompositeState
      */
-    public static Consumer<CompositeState> setCompositeStateToReadyWithInitialDataStoreSyncState() {
+    public static Consumer<CompositeState> setInitialDataStoreSyncState() {
+
         return compositeState -> {
             compositeState.setDataSyncEnabled(false);
-            compositeState.setLastUpdateTimeNow();
-            compositeState.setCmHandleState(CmHandleState.READY);
             final CompositeState.Operational operational =
                     getInitialDataStoreSyncState(compositeState.getDataSyncEnabled());
             final CompositeState.DataStores dataStores =
@@ -66,15 +65,15 @@ public class CompositeStateUtils {
      * Set the data sync enabled flag, along with the data store sync state based on this flag.
      *
      * @param dataSyncEnabled data sync enabled flag
-     * @param compositeState cm handle composite state
+     * @param compositeState  cm handle composite state
      */
     public static void setDataSyncEnabledFlagWithDataSyncState(final boolean dataSyncEnabled,
-                                                               final CompositeState compositeState) {
+            final CompositeState compositeState) {
         compositeState.setDataSyncEnabled(dataSyncEnabled);
         compositeState.setLastUpdateTimeNow();
         final CompositeState.Operational operational = getInitialDataStoreSyncState(dataSyncEnabled);
         final CompositeState.DataStores dataStores =
-            CompositeState.DataStores.builder().operationalDataStore(operational).build();
+                CompositeState.DataStores.builder().operationalDataStore(operational).build();
         compositeState.setDataStores(dataStores);
     }
 
