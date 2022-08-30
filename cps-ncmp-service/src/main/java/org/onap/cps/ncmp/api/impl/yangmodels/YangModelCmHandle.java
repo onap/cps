@@ -69,6 +69,25 @@ public class YangModelCmHandle {
     private List<Property> publicProperties;
 
     /**
+     * Copy constructor for Yang Model Cm Handle.
+     *
+     * @param yangModelCmHandle Yang Model Cm Handle
+     */
+    public YangModelCmHandle(final YangModelCmHandle yangModelCmHandle) {
+        this.id = yangModelCmHandle.getId();
+        this.dmiServiceName = yangModelCmHandle.getDmiServiceName();
+        this.dmiDataServiceName = yangModelCmHandle.getDmiDataServiceName();
+        this.dmiModelServiceName = yangModelCmHandle.getDmiModelServiceName();
+        this.compositeState = yangModelCmHandle.getCompositeState() != null ? new CompositeState(
+                yangModelCmHandle.getCompositeState()) : null;
+        this.dmiProperties =
+                yangModelCmHandle.getDmiProperties() != null ? new ArrayList<>(yangModelCmHandle.getDmiProperties())
+                        : null;
+        this.publicProperties = yangModelCmHandle.getPublicProperties() != null ? new ArrayList<>(
+                yangModelCmHandle.getPublicProperties()) : null;
+    }
+
+    /**
      * Create a yangModelCmHandle.
      *
      * @param dmiServiceName      dmi service name
