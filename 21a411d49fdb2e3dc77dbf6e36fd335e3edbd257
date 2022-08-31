@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "19d17666_4244c065",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-08-31T13:48:18Z",
+      "side": 1,
+      "message": "NB: can include CPS-1126 as we were doing in others.",
+      "revId": "21a411d49fdb2e3dc77dbf6e36fd335e3edbd257",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
