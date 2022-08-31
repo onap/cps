@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "edac4a44_4128db6b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/executor/AsyncTaskExecutor.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-08-31T10:14:49Z",
+      "side": 1,
+      "message": "NB maybe rephrase? does not seem straightforward to me",
+      "range": {
+        "startLine": 58,
+        "startChar": 30,
+        "endLine": 58,
+        "endChar": 79
+      },
+      "revId": "5165b3e6379e5d9b8c86bfde70a218c259bf466b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c01e6c11_e23c73fa",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncTasksSpec.groovy",
         "patchSetId": 1
