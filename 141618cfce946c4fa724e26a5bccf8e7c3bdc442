@@ -94,6 +94,52 @@
     },
     {
       "key": {
+        "uuid": "98a5e0ff_67b1903e",
+        "filename": "cps-rest/docs/openapi/cpsAdminV2.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-08-31T09:27:00Z",
+      "side": 1,
+      "message": "NB Suggestion: \u0027Fetch all dataspaces\u0027",
+      "range": {
+        "startLine": 45,
+        "startChar": 16,
+        "endLine": 45,
+        "endChar": 20
+      },
+      "revId": "141618cfce946c4fa724e26a5bccf8e7c3bdc442",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e322783c_b7a5bbb4",
+        "filename": "cps-rest/docs/openapi/cpsAdminV2.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-08-31T09:27:00Z",
+      "side": 1,
+      "message": "NB suggestion: Fetch or Get",
+      "range": {
+        "startLine": 68,
+        "startChar": 16,
+        "endLine": 68,
+        "endChar": 22
+      },
+      "revId": "141618cfce946c4fa724e26a5bccf8e7c3bdc442",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "13d13ed2_00d34bf9",
         "filename": "cps-rest/docs/openapi/cpsAdminV2.yml",
         "patchSetId": 1
