@@ -30,6 +30,7 @@ import org.onap.cps.ncmp.api.inventory.InventoryPersistence
 import org.onap.cps.ncmp.api.inventory.LockReasonCategory
 import org.onap.cps.spi.model.DataNode
 import spock.lang.Specification
+import java.util.concurrent.atomic.AtomicInteger
 
 class ModuleSyncTasksSpec extends Specification {
 
@@ -41,6 +42,8 @@ class ModuleSyncTasksSpec extends Specification {
 
     def mockLcmEventsCmHandleStateHandler = Mock(LcmEventsCmHandleStateHandler)
 
+    def batchCount = new AtomicInteger(5)
+
     def objectUnderTest = new ModuleSyncTasks(mockInventoryPersistence, mockSyncUtils, mockModuleSyncService, mockLcmEventsCmHandleStateHandler)
 
     def 'Module Sync ADVISED cm handles.'() {
@@ -50,15 +53,17 @@ class ModuleSyncTasksSpec extends Specification {
         and: 'the inventory persistence cm handle returns a ADVISED state for the any handle'
             mockInventoryPersistence.getCmHandleState(_) >> new CompositeState(cmHandleState: CmHandleState.ADVISED)
         when: 'module sync poll is executed'
-            objectUnderTest.performModuleSync([cmHandle1, cmHandle2])
+            objectUnderTest.performModuleSync([cmHandle1, cmHandle2], batchCount)
         then: 'module sync service deletes schemas set of each cm handle if it already exists'
             1 * mockModuleSyncService.deleteSchemaSetIfExists('cm-handle-1')
             1 * mockModuleSyncService.deleteSchemaSetIfExists('cm-handle-2')
         and: 'module sync service is invoked for each cm handle'
-            1 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(_) >> { args -> assertYamgModelCmHandleArgument(args,'cm-handle-1') }
-            1 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(_) >> { args -> assertYamgModelCmHandleArgument(args,'cm-handle-2') }
+            1 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(_) >> { args -> assertYamgModelCmHandleArgument(args, 'cm-handle-1') }
+            1 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(_) >> { args -> assertYamgModelCmHandleArgument(args, 'cm-handle-2') }
         and: 'the state handler is called for the both cm handles'
             2 * mockLcmEventsCmHandleStateHandler.updateCmHandleState(_, CmHandleState.READY)
+        and: 'batch count is decremented by one'
+            assert batchCount.get() == 4
     }
 
     def 'Module Sync ADVISED cm handle with failure during sync.'() {
@@ -70,11 +75,13 @@ class ModuleSyncTasksSpec extends Specification {
         and: 'module sync service attempts to sync the cm handle and throws an exception'
             1 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(*_) >> { throw new Exception('some exception') }
         when: 'module sync is executed'
-            objectUnderTest.performModuleSync([cmHandle])
+            objectUnderTest.performModuleSync([cmHandle], batchCount)
         then: 'update lock reason, details and attempts is invoked'
-            1 * mockSyncUtils.updateLockReasonDetailsAndAttempts(cmHandleState, LockReasonCategory.LOCKED_MODULE_SYNC_FAILED ,'some exception')
+            1 * mockSyncUtils.updateLockReasonDetailsAndAttempts(cmHandleState, LockReasonCategory.LOCKED_MODULE_SYNC_FAILED, 'some exception')
         and: 'the state handler is called to update the state to LOCKED'
             1 * mockLcmEventsCmHandleStateHandler.updateCmHandleState(_, CmHandleState.LOCKED)
+        and: 'batch count is decremented by one'
+            assert batchCount.get() == 4
     }
 
     def 'Reset failed CM Handles #scenario.'() {
@@ -90,14 +97,14 @@ class ModuleSyncTasksSpec extends Specification {
         then: 'updated to state "ADVISED" from "READY" is called as often as there are cm handles ready for retry'
             expectedNumberOfInvocationsToSaveCmHandleState * mockLcmEventsCmHandleStateHandler.updateCmHandleState(_, CmHandleState.ADVISED)
         where:
-            scenario                        | isReadyForRetry         || expectedNumberOfInvocationsToSaveCmHandleState
-            'retry locked cm handle once'   | [true, false]           || 1
-            'retry locked cm handle twice'  | [true, true]            || 2
-            'do not retry locked cm handle' | [false, false]          || 0
+            scenario                        | isReadyForRetry || expectedNumberOfInvocationsToSaveCmHandleState
+            'retry locked cm handle once'   | [true, false]   || 1
+            'retry locked cm handle twice'  | [true, true]    || 2
+            'do not retry locked cm handle' | [false, false]  || 0
     }
 
     def advisedCmHandleAsDataNode(cmHandleId) {
-        return new DataNode(anchorName:cmHandleId, leaves:['id':cmHandleId, 'cm-handle-state':'ADVISED'])
+        return new DataNode(anchorName: cmHandleId, leaves: ['id': cmHandleId, 'cm-handle-state': 'ADVISED'])
     }
 
     def assertYamgModelCmHandleArgument(args, expectedCmHandleId) {

@@ -22,7 +22,7 @@
 package org.onap.cps.ncmp.api.inventory.sync
 
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
-
+import org.onap.cps.ncmp.api.inventory.sync.executor.AsyncTaskExecutor
 import java.util.concurrent.ArrayBlockingQueue
 import java.util.concurrent.BlockingQueue
 import org.onap.cps.spi.model.DataNode
@@ -34,28 +34,38 @@ class ModuleSyncWatchdogSpec extends Specification {
 
     def static testQueueCapacity = 50 + 2 * ModuleSyncWatchdog.MODULE_SYNC_BATCH_SIZE
 
-    BlockingQueue<DataNode> moduleSyncWorkQueue = new ArrayBlockingQueue(testQueueCapacity)
+    def moduleSyncWorkQueue = new ArrayBlockingQueue(testQueueCapacity)
 
     def moduleSyncStartedOnCmHandles = [:]
 
     def mockModuleSyncTasks = Mock(ModuleSyncTasks)
 
-    def objectUnderTest = new ModuleSyncWatchdog(mockSyncUtils, moduleSyncWorkQueue , moduleSyncStartedOnCmHandles, mockModuleSyncTasks)
+    def spiedAsyncTaskExecutor = Spy(AsyncTaskExecutor)
 
-    def 'Module sync #scenario , #numberOfAdvisedCmHandles advised cm handles.'() {
+    def objectUnderTest = new ModuleSyncWatchdog(mockSyncUtils, moduleSyncWorkQueue , moduleSyncStartedOnCmHandles,
+            mockModuleSyncTasks, spiedAsyncTaskExecutor)
+
+    void setup() {
+        spiedAsyncTaskExecutor.setupThreadPool();
+    }
+
+    def 'Module sync advised cm handles with #scenario.'() {
         given: 'sync utilities returns #numberOfAdvisedCmHandles advised cm handles'
             mockSyncUtils.getAdvisedCmHandles() >> createDataNodes(numberOfAdvisedCmHandles)
+        and: 'the executor has #parallelismLevel available threads'
+            spiedAsyncTaskExecutor.getAsyncTaskParallelismLevel() >> parallelismLevel
         when: ' module sync is started'
             objectUnderTest.moduleSyncAdvisedCmHandles()
         then: 'it performs #expectedNumberOfTaskExecutions tasks'
-            expectedNumberOfTaskExecutions * mockModuleSyncTasks.performModuleSync(_)
-        where:
-            scenario              |  numberOfAdvisedCmHandles                                         || expectedNumberOfTaskExecutions
-            'less then 1 batch'   | 1                                                                 || 1
-            'exactly 1 batch'     | ModuleSyncWatchdog.MODULE_SYNC_BATCH_SIZE                         || 1
-            '2 batches'           | 2 * ModuleSyncWatchdog.MODULE_SYNC_BATCH_SIZE                     || 2
-            'queue capacity'      | testQueueCapacity                                                 || 3
-            'over queue capacity' | testQueueCapacity + 2 * ModuleSyncWatchdog.MODULE_SYNC_BATCH_SIZE || 3
+            expectedNumberOfTaskExecutions * spiedAsyncTaskExecutor.executeTask(*_)
+        where: ' the following parameter are used'
+            scenario              | parallelismLevel | numberOfAdvisedCmHandles                                          || expectedNumberOfTaskExecutions
+            'less then 1 batch'   | 9                | 1                                                                 || 1
+            'exactly 1 batch'     | 9                | ModuleSyncWatchdog.MODULE_SYNC_BATCH_SIZE                         || 1
+            '2 batches'           | 9                | 2 * ModuleSyncWatchdog.MODULE_SYNC_BATCH_SIZE                     || 2
+            'queue capacity'      | 9                | testQueueCapacity                                                 || 3
+            'over queue capacity' | 9                | testQueueCapacity + 2 * ModuleSyncWatchdog.MODULE_SYNC_BATCH_SIZE || 3
+            'not enough threads'  | 2                | testQueueCapacity                                                 || 2
     }
 
     def 'Reset failed cm handles.'() {
