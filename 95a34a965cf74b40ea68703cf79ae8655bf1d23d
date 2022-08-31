@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e515c6c_25b6725a",
+        "filename": "docs/admin-guide.rst",
+        "patchSetId": 29
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-31T14:53:19Z",
+      "side": 1,
+      "message": "tsh second _ is crucial to allow 2 link in the same document having the same \u0027text\u0027 (name ie. logback.xml",
+      "range": {
+        "startLine": 161,
+        "startChar": 156,
+        "endLine": 161,
+        "endChar": 158
+      },
+      "revId": "95a34a965cf74b40ea68703cf79ae8655bf1d23d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d3f54dd1_0ec64b00",
+        "filename": "docs/admin-guide.rst",
+        "patchSetId": 29
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-31T14:53:19Z",
+      "side": 1,
+      "message": "this can be reverted to logback.xml (Thomas Kulik jhas confirmed)",
+      "range": {
+        "startLine": 161,
+        "startChar": 40,
+        "endLine": 161,
+        "endChar": 48
+      },
+      "revId": "95a34a965cf74b40ea68703cf79ae8655bf1d23d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8c80da8f_32185eb1",
+        "filename": "docs/admin-guide.rst",
+        "patchSetId": 29
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-08-31T14:53:19Z",
+      "side": 1,
+      "message": "this can be reverted to logback.xml (Thomas Kulik jhas confirmed)",
+      "range": {
+        "startLine": 163,
+        "startChar": 40,
+        "endLine": 163,
+        "endChar": 52
+      },
+      "revId": "95a34a965cf74b40ea68703cf79ae8655bf1d23d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
