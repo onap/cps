@@ -23,3 +23,6 @@ dmi:
     api:
         base-path: dmi
 
+modules-sync-watchdog:
+    async-executor:
+        parallelism-level: 3
