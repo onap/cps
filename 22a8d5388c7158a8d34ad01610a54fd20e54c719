@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "add06552_3d893f12",
+        "filename": "docs/conf.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1201
+      },
+      "writtenOn": "2022-08-31T12:01:07Z",
+      "side": 1,
+      "message": "I don\u0027t see why you need this import",
+      "revId": "22a8d5388c7158a8d34ad01610a54fd20e54c719",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c068d411_9ea386ef",
+        "filename": "docs/conf.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1201
+      },
+      "writtenOn": "2022-08-31T12:01:07Z",
+      "side": 1,
+      "message": "I would rather suggest to remove this line.\nI fully second to remove lfdocs_conf. Great!",
+      "revId": "22a8d5388c7158a8d34ad01610a54fd20e54c719",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
