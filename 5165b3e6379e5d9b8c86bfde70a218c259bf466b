@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c01e6c11_e23c73fa",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncTasksSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-08-31T09:54:34Z",
+      "side": 1,
+      "message": "batchCount\nReal AtomicInteger with lets say 5 and should be asserted to 4",
+      "range": {
+        "startLine": 45,
+        "startChar": 8,
+        "endLine": 45,
+        "endChar": 25
+      },
+      "revId": "5165b3e6379e5d9b8c86bfde70a218c259bf466b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f353644d_cebfd163",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncTasksSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-08-31T09:54:34Z",
+      "side": 1,
+      "message": "Assert batch current count",
+      "revId": "5165b3e6379e5d9b8c86bfde70a218c259bf466b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7f8f0c5b_9846ca71",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncTasksSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-08-31T09:54:34Z",
+      "side": 1,
+      "message": "Assert batch current count",
+      "revId": "5165b3e6379e5d9b8c86bfde70a218c259bf466b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
