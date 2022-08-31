@@ -30,6 +30,7 @@ import org.onap.cps.ncmp.api.inventory.InventoryPersistence
 import org.onap.cps.ncmp.api.inventory.LockReasonCategory
 import org.onap.cps.spi.model.DataNode
 import spock.lang.Specification
+import java.util.concurrent.atomic.AtomicInteger
 
 class ModuleSyncTasksSpec extends Specification {
 
@@ -41,6 +42,8 @@ class ModuleSyncTasksSpec extends Specification {
 
     def mockLcmEventsCmHandleStateHandler = Mock(LcmEventsCmHandleStateHandler)
 
+    def stubAtomicInteger= Stub(AtomicInteger)
+
     def objectUnderTest = new ModuleSyncTasks(mockInventoryPersistence, mockSyncUtils, mockModuleSyncService, mockLcmEventsCmHandleStateHandler)
 
     def 'Module Sync ADVISED cm handles.'() {
@@ -50,7 +53,7 @@ class ModuleSyncTasksSpec extends Specification {
         and: 'the inventory persistence cm handle returns a ADVISED state for the any handle'
             mockInventoryPersistence.getCmHandleState(_) >> new CompositeState(cmHandleState: CmHandleState.ADVISED)
         when: 'module sync poll is executed'
-            objectUnderTest.performModuleSync([cmHandle1, cmHandle2])
+            objectUnderTest.performModuleSync([cmHandle1, cmHandle2], stubAtomicInteger)
         then: 'module sync service deletes schemas set of each cm handle if it already exists'
             1 * mockModuleSyncService.deleteSchemaSetIfExists('cm-handle-1')
             1 * mockModuleSyncService.deleteSchemaSetIfExists('cm-handle-2')
@@ -70,7 +73,7 @@ class ModuleSyncTasksSpec extends Specification {
         and: 'module sync service attempts to sync the cm handle and throws an exception'
             1 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(*_) >> { throw new Exception('some exception') }
         when: 'module sync is executed'
-            objectUnderTest.performModuleSync([cmHandle])
+            objectUnderTest.performModuleSync([cmHandle], stubAtomicInteger)
         then: 'update lock reason, details and attempts is invoked'
             1 * mockSyncUtils.updateLockReasonDetailsAndAttempts(cmHandleState, LockReasonCategory.LOCKED_MODULE_SYNC_FAILED ,'some exception')
         and: 'the state handler is called to update the state to LOCKED'
