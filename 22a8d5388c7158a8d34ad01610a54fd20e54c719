@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9ba9db82_185cc7d5",
+        "filename": "docs/conf.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 3091
+      },
+      "writtenOn": "2022-08-31T12:07:24Z",
+      "side": 1,
+      "message": "removed",
+      "parentUuid": "add06552_3d893f12",
+      "revId": "22a8d5388c7158a8d34ad01610a54fd20e54c719",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c068d411_9ea386ef",
         "filename": "docs/conf.py",
         "patchSetId": 22
@@ -33,6 +51,24 @@
       "revId": "22a8d5388c7158a8d34ad01610a54fd20e54c719",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "103fe08b_5976e02a",
+        "filename": "docs/conf.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 3091
+      },
+      "writtenOn": "2022-08-31T12:07:24Z",
+      "side": 1,
+      "message": "removed",
+      "parentUuid": "c068d411_9ea386ef",
+      "revId": "22a8d5388c7158a8d34ad01610a54fd20e54c719",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
