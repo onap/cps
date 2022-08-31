@@ -33,17 +33,17 @@ CPS Log pattern
 .. code-block:: java
 
    <pattern>
-	   {
-	     "timestamp" : "%timestamp", // 2022-01-28 18:39:17.768
-	     "severity": "%level",   // DEBUG
-	     "service": "${springAppName}",  // cps-application
-	     "trace": "${TraceId}", // e17da1571e518c59
-	     "span": "${SpanId}", // e17da1571e518c59
-	     "pid": "${PID}", //11128
-	     "thread": "%thread", //tp1901272535-29
-	     "class": "%logger{40}", .// o.onap.cps.aop.CpsLoggingAspectService
-	     "rest": "%message" // Execution time ...
-	   }
+       {
+         "timestamp" : "%timestamp", // 2022-01-28 18:39:17.768
+         "severity": "%level",   // DEBUG
+         "service": "${springAppName}",  // cps-application
+         "trace": "${TraceId}", // e17da1571e518c59
+         "span": "${SpanId}", // e17da1571e518c59
+         "pid": "${PID}", //11128
+         "thread": "%thread", //tp1901272535-29
+         "class": "%logger{40}", .// o.onap.cps.aop.CpsLoggingAspectService
+         "rest": "%message" // Execution time ...
+       }
    </pattern>
 
 Change logging level
@@ -62,6 +62,7 @@ Change logging level
         "configuredLevel": "INFO",
         "effectiveLevel": "INFO"
     }
+
 
 - Curl command 2. Change logging level of "logging.level.org.onap.cps" to "DEBUG"
 
@@ -91,6 +92,7 @@ Change logging level
     "configuredLevel": "DEBUG",
     "effectiveLevel": "DEBUG"
     }
+
 
 Location of log files
 ---------------------
@@ -135,6 +137,7 @@ Logging & Diagnostics
 
 General Guidelines
 ------------------
+
 CPS-Core logs are sent to `STDOUT` in order to leverage the Kubernetes logging architecture.
 
 These logs are available using the following command:
@@ -152,15 +155,15 @@ loggers log level
 
 Logger configuration is provided as a chart resource :
 
-    +--------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-    | cps-component-service-name     | logback.xml location                                                                                                            |
-    +================================+=================================================================================================================================+
-    | cps-core                       | `logback.xml <https://github.com/onap/oom/blob/master/kubernetes/cps/components/cps-core/resources/config/logback.xml>`_        |
-    +--------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-    | cps-temporal                   | `logback.xml <https://github.com/onap/oom/blob/master/kubernetes/cps/components/cps-temporal/resources/config/logback.xml>`_    |
-    +--------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-    | ncmp-dmi-plugin                | Not yet applicable to DMI-Plugin                                                                                                |
-    +--------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+    +--------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
+    | cps-component-service-name     | logback.xml location                                                                                                             |
+    +================================+==================================================================================================================================+
+    | cps-core                       | `logback.xml <https://github.com/onap/oom/blob/master/kubernetes/cps/components/cps-core/resources/config/logback.xml>`__           |
+    +--------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
+    | cps-temporal                   | `logback.xml <https://github.com/onap/oom/blob/master/kubernetes/cps/components/cps-temporal/resources/config/logback.xml>`__   |
+    +--------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
+    | ncmp-dmi-plugin                | Not yet applicable to DMI-Plugin                                                                                                 |
+    +--------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
 
 .. Below Label is used by documentation for other CPS components to link here, do not remove even if it gives a warning
 .. _cps_common_monitoring:

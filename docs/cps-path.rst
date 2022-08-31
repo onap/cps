@@ -3,7 +3,7 @@
 .. Copyright (C) 2021-2022 Nordix Foundation
 
 .. DO NOT CHANGE THIS LABEL FOR RELEASE NOTES - EVEN THOUGH IT GIVES A WARNING
-.. _design:
+.. _path:
 
 
 CPS Path
