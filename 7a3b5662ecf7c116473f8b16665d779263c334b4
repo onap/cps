@@ -120,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "5e1628aa_3d55f86b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CmHandleQueries.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 8111
+      },
+      "writtenOn": "2022-09-01T10:17:06Z",
+      "side": 1,
+      "message": "I thought could be utility in general for cpsPath generation but not needed now, just an idea",
+      "parentUuid": "e819d41e_bc8fd146",
+      "range": {
+        "startLine": 68,
+        "startChar": 25,
+        "endLine": 68,
+        "endChar": 32
+      },
+      "revId": "7a3b5662ecf7c116473f8b16665d779263c334b4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f2e406d0_400bec59",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CmHandleQueries.java",
         "patchSetId": 15
