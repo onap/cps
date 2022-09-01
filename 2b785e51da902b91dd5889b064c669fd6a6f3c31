@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "d4333ac4_af5117f4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/yangmodels/YangModelCmHandle.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-09-01T12:37:27Z",
+      "side": 1,
+      "message": "YangModelCmHandle was not in the correct test package hence i moved it.\nAlso wrote test scenario for deepCopyOf operation.",
+      "parentUuid": "13ddb5c4_3d4dd8bc",
+      "revId": "2b785e51da902b91dd5889b064c669fd6a6f3c31",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9c3d50cc_9cd91672",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImplSpec.groovy",
         "patchSetId": 5
