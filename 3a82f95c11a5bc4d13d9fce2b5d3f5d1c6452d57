@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a593befc_2ea8acae",
+        "filename": "docs/tox.ini",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 3091
+      },
+      "writtenOn": "2022-09-01T14:03:32Z",
+      "side": 1,
+      "message": "yes",
+      "parentUuid": "53044b82_7368b1e3",
+      "range": {
+        "startLine": 32,
+        "startChar": 13,
+        "endLine": 32,
+        "endChar": 20
+      },
+      "revId": "3a82f95c11a5bc4d13d9fce2b5d3f5d1c6452d57",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cd171838_9c424588",
         "filename": "docs/tox.ini",
         "patchSetId": 4
@@ -36,6 +60,30 @@
       "writtenOn": "2022-09-01T13:57:14Z",
       "side": 1,
       "message": "shoudl this be /raw.githubusercontent.com/openstack/requirements/stable/yoga/upper-constraints.txt (copy from line 43) \n@Thomas, can you confirm please",
+      "range": {
+        "startLine": 35,
+        "startChar": 12,
+        "endLine": 35,
+        "endChar": 74
+      },
+      "revId": "3a82f95c11a5bc4d13d9fce2b5d3f5d1c6452d57",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b60b1b7b_47c71ec0",
+        "filename": "docs/tox.ini",
+        "patchSetId": 4
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 3091
+      },
+      "writtenOn": "2022-09-01T14:03:32Z",
+      "side": 1,
+      "message": "yes",
+      "parentUuid": "cd171838_9c424588",
       "range": {
         "startLine": 35,
         "startChar": 12,
