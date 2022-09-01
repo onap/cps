@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a9d56c74_93feeb8d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-09-01T11:12:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a47cb46c_52973adf",
+      "range": {
+        "startLine": 67,
+        "startChar": 36,
+        "endLine": 67,
+        "endChar": 44
+      },
+      "revId": "c1ec62d57674bdefdf4bd069f6db1a68cf9c7bfd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b13bf868_d9163d7c",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
         "patchSetId": 4
@@ -45,6 +69,30 @@
       "revId": "c1ec62d57674bdefdf4bd069f6db1a68cf9c7bfd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a11bbafb_0ccb0633",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-09-01T11:12:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b13bf868_d9163d7c",
+      "range": {
+        "startLine": 69,
+        "startChar": 28,
+        "endLine": 69,
+        "endChar": 45
+      },
+      "revId": "c1ec62d57674bdefdf4bd069f6db1a68cf9c7bfd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "023fc697_4be1c9f1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-09-01T11:12:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f254ac49_1328143c",
+      "range": {
+        "startLine": 77,
+        "startChar": 31,
+        "endLine": 77,
+        "endChar": 36
+      },
+      "revId": "c1ec62d57674bdefdf4bd069f6db1a68cf9c7bfd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b53ce006_2736aa4a",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
         "patchSetId": 4
@@ -91,6 +163,30 @@
       "revId": "c1ec62d57674bdefdf4bd069f6db1a68cf9c7bfd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88a006f8_ee859ece",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-09-01T11:12:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b53ce006_2736aa4a",
+      "range": {
+        "startLine": 78,
+        "startChar": 38,
+        "endLine": 78,
+        "endChar": 65
+      },
+      "revId": "c1ec62d57674bdefdf4bd069f6db1a68cf9c7bfd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "10b758fb_39cbac94",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-09-01T11:12:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d2ca6a17_7d776aaf",
+      "range": {
+        "startLine": 85,
+        "startChar": 84,
+        "endLine": 85,
+        "endChar": 86
+      },
+      "revId": "c1ec62d57674bdefdf4bd069f6db1a68cf9c7bfd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "28c101e3_2d36eaea",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
         "patchSetId": 4
@@ -137,6 +257,30 @@
       "revId": "c1ec62d57674bdefdf4bd069f6db1a68cf9c7bfd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9af3e1ec_d6100510",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-09-01T11:12:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "28c101e3_2d36eaea",
+      "range": {
+        "startLine": 84,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 11
+      },
+      "revId": "c1ec62d57674bdefdf4bd069f6db1a68cf9c7bfd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "bb883da9_263b5807",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-09-01T11:12:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e2c495e_af43abf4",
+      "range": {
+        "startLine": 112,
+        "startChar": 16,
+        "endLine": 112,
+        "endChar": 36
+      },
+      "revId": "c1ec62d57674bdefdf4bd069f6db1a68cf9c7bfd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8edc27de_843925fa",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
         "patchSetId": 4
@@ -183,6 +351,30 @@
       "revId": "c1ec62d57674bdefdf4bd069f6db1a68cf9c7bfd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "db401300_dc7e3d99",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-09-01T11:12:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8edc27de_843925fa",
+      "range": {
+        "startLine": 128,
+        "startChar": 36,
+        "endLine": 128,
+        "endChar": 61
+      },
+      "revId": "c1ec62d57674bdefdf4bd069f6db1a68cf9c7bfd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -209,6 +401,30 @@
     },
     {
       "key": {
+        "uuid": "1dfa4e33_44742b7b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-09-01T11:12:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f9b5fc44_a6a37ba2",
+      "range": {
+        "startLine": 132,
+        "startChar": 19,
+        "endLine": 132,
+        "endChar": 20
+      },
+      "revId": "c1ec62d57674bdefdf4bd069f6db1a68cf9c7bfd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e5eacd8b_8a0f5777",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
         "patchSetId": 4
@@ -232,6 +448,30 @@
     },
     {
       "key": {
+        "uuid": "c06c196c_a6e787fd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-09-01T11:12:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e5eacd8b_8a0f5777",
+      "range": {
+        "startLine": 138,
+        "startChar": 101,
+        "endLine": 138,
+        "endChar": 111
+      },
+      "revId": "c1ec62d57674bdefdf4bd069f6db1a68cf9c7bfd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9fde1f13_cc21e07a",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
         "patchSetId": 4
@@ -243,6 +483,30 @@
       "writtenOn": "2022-09-01T09:56:47Z",
       "side": 1,
       "message": "StatePerCmHandleId",
+      "range": {
+        "startLine": 141,
+        "startChar": 42,
+        "endLine": 141,
+        "endChar": 59
+      },
+      "revId": "c1ec62d57674bdefdf4bd069f6db1a68cf9c7bfd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "10639eea_853c5535",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-09-01T11:12:07Z",
+      "side": 1,
+      "message": "compositeStatePerCmHandleId",
+      "parentUuid": "9fde1f13_cc21e07a",
       "range": {
         "startLine": 141,
         "startChar": 42,
@@ -278,6 +542,30 @@
     },
     {
       "key": {
+        "uuid": "993fe01a_82def1b8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-09-01T11:12:07Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "54867ad4_c5cb7b7d",
+      "range": {
+        "startLine": 147,
+        "startChar": 23,
+        "endLine": 147,
+        "endChar": 24
+      },
+      "revId": "c1ec62d57674bdefdf4bd069f6db1a68cf9c7bfd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d4cb6dfc_1d647f19",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
         "patchSetId": 4
@@ -298,6 +586,30 @@
       "revId": "c1ec62d57674bdefdf4bd069f6db1a68cf9c7bfd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6891c993_d3f343e4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-09-01T11:12:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d4cb6dfc_1d647f19",
+      "range": {
+        "startLine": 153,
+        "startChar": 8,
+        "endLine": 153,
+        "endChar": 38
+      },
+      "revId": "c1ec62d57674bdefdf4bd069f6db1a68cf9c7bfd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -324,6 +636,30 @@
     },
     {
       "key": {
+        "uuid": "b5221ae1_5a950b50",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-09-01T11:12:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d56cd634_a1ee52b7",
+      "range": {
+        "startLine": 157,
+        "startChar": 3,
+        "endLine": 157,
+        "endChar": 42
+      },
+      "revId": "c1ec62d57674bdefdf4bd069f6db1a68cf9c7bfd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e98e4320_cef0458c",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
         "patchSetId": 4
@@ -335,6 +671,30 @@
       "writtenOn": "2022-09-01T09:56:47Z",
       "side": 1,
       "message": "NB: setInitialStates  (part of https://jira.onap.org/browse/CPS-1238)",
+      "range": {
+        "startLine": 167,
+        "startChar": 12,
+        "endLine": 167,
+        "endChar": 25
+      },
+      "revId": "c1ec62d57674bdefdf4bd069f6db1a68cf9c7bfd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4364c3ba_7527030c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-09-01T11:12:07Z",
+      "side": 1,
+      "message": "renamed in this patch itself.",
+      "parentUuid": "e98e4320_cef0458c",
       "range": {
         "startLine": 167,
         "startChar": 12,
@@ -370,6 +730,30 @@
     },
     {
       "key": {
+        "uuid": "b0b09feb_38c80e39",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-09-01T11:12:07Z",
+      "side": 1,
+      "message": "to be done",
+      "parentUuid": "d1410661_746d7def",
+      "range": {
+        "startLine": 179,
+        "startChar": 55,
+        "endLine": 179,
+        "endChar": 72
+      },
+      "revId": "c1ec62d57674bdefdf4bd069f6db1a68cf9c7bfd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b1c5e3b5_b9706dec",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
         "patchSetId": 4
@@ -381,6 +765,30 @@
       "writtenOn": "2022-09-01T09:56:47Z",
       "side": 1,
       "message": "please refactor, maybe as separate task\n(part of https://jira.onap.org/browse/CPS-1238)",
+      "range": {
+        "startLine": 180,
+        "startChar": 59,
+        "endLine": 180,
+        "endChar": 65
+      },
+      "revId": "c1ec62d57674bdefdf4bd069f6db1a68cf9c7bfd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3905a949_464ccd48",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-09-01T11:12:07Z",
+      "side": 1,
+      "message": "to be done",
+      "parentUuid": "b1c5e3b5_b9706dec",
       "range": {
         "startLine": 180,
         "startChar": 59,
@@ -416,6 +824,30 @@
     },
     {
       "key": {
+        "uuid": "52c0261c_62cb8a15",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-09-01T11:12:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "978cedf5_bc510378",
+      "range": {
+        "startLine": 197,
+        "startChar": 25,
+        "endLine": 197,
+        "endChar": 33
+      },
+      "revId": "c1ec62d57674bdefdf4bd069f6db1a68cf9c7bfd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "94a83e40_deeb4e2a",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
         "patchSetId": 4
@@ -436,6 +868,30 @@
       "revId": "c1ec62d57674bdefdf4bd069f6db1a68cf9c7bfd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "03950eae_847fe906",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-09-01T11:12:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "94a83e40_deeb4e2a",
+      "range": {
+        "startLine": 219,
+        "startChar": 34,
+        "endLine": 219,
+        "endChar": 42
+      },
+      "revId": "c1ec62d57674bdefdf4bd069f6db1a68cf9c7bfd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -462,6 +918,30 @@
     },
     {
       "key": {
+        "uuid": "e079e7f4_cd99f077",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/yangmodels/YangModelCmHandle.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-09-01T11:12:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "96bb2645_1353dff3",
+      "range": {
+        "startLine": 76,
+        "startChar": 11,
+        "endLine": 76,
+        "endChar": 71
+      },
+      "revId": "c1ec62d57674bdefdf4bd069f6db1a68cf9c7bfd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8be20516_c60d2f55",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/yangmodels/YangModelCmHandle.java",
         "patchSetId": 4
@@ -485,6 +965,30 @@
     },
     {
       "key": {
+        "uuid": "1abc49eb_167e4d0b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/yangmodels/YangModelCmHandle.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-09-01T11:12:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8be20516_c60d2f55",
+      "range": {
+        "startLine": 81,
+        "startChar": 68,
+        "endLine": 81,
+        "endChar": 70
+      },
+      "revId": "c1ec62d57674bdefdf4bd069f6db1a68cf9c7bfd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bc1f951e_bdba8f10",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
         "patchSetId": 4
@@ -505,6 +1009,30 @@
       "revId": "c1ec62d57674bdefdf4bd069f6db1a68cf9c7bfd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "406a4088_c0be57c9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-09-01T11:12:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bc1f951e_bdba8f10",
+      "range": {
+        "startLine": 108,
+        "startChar": 73,
+        "endLine": 108,
+        "endChar": 87
+      },
+      "revId": "c1ec62d57674bdefdf4bd069f6db1a68cf9c7bfd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
