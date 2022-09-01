@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a0b8ef79_679f580f",
+        "filename": "docs/tox.ini",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-09-01T11:45:22Z",
+      "side": 1,
+      "message": "are ew ready to add -W (maybe in a a separate patch, I think we ave no warnings anymore)",
+      "range": {
+        "startLine": 20,
+        "startChar": 16,
+        "endLine": 20,
+        "endChar": 19
+      },
+      "revId": "66fa674bd75fcf1b2f4ae3d663686121efb92833",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
