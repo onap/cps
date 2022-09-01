@@ -18,13 +18,14 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.models
+package org.onap.cps.ncmp.api.impl.yangmodels
 
-import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.inventory.CmHandleState
+import org.onap.cps.ncmp.api.inventory.CompositeState
 import org.onap.cps.ncmp.api.inventory.CompositeStateBuilder
 import org.onap.cps.ncmp.api.inventory.LockReasonCategory
 import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
+import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import spock.lang.Specification
 
 import static org.onap.cps.ncmp.api.impl.operations.RequiredDmiService.DATA
@@ -78,5 +79,32 @@ class YangModelCmHandleSpec extends Specification {
             'only model service registered' | null               | null               | 'does not matter'   | DATA            || null
             'only data service registered'  | null               | 'does not matter'  | null                | MODEL           || null
     }
+
+    def 'Yang Model Cm Handle Deep Copy'() {
+        given: 'a yang model cm handle'
+            def currentYangModelCmHandle = new YangModelCmHandle(id: 'cmhandle',
+                publicProperties: [new YangModelCmHandle.Property('publicProperty1', 'value1')],
+                dmiProperties: [new YangModelCmHandle.Property('dmiProperty1', 'value1')],
+                compositeState: new CompositeState(cmHandleState: CmHandleState.ADVISED, dataSyncEnabled: false))
+        when: 'a deep copy is created'
+            def yangModelCmhandleDeepCopy = YangModelCmHandle.deepCopyOf(currentYangModelCmHandle)
+        and: 'we try to mutate current yang model cm handle'
+            currentYangModelCmHandle.id = 'cmhandle-changed'
+            currentYangModelCmHandle.dmiProperties = [new YangModelCmHandle.Property('updatedPublicProperty1', 'value1')]
+            currentYangModelCmHandle.publicProperties = [new YangModelCmHandle.Property('updatedDmiProperty1', 'value1')]
+            currentYangModelCmHandle.compositeState.cmHandleState = CmHandleState.READY
+            currentYangModelCmHandle.compositeState.dataSyncEnabled = true
+        then: 'there is no change in the deep copied object'
+            assert yangModelCmhandleDeepCopy.id == 'cmhandle'
+            assert yangModelCmhandleDeepCopy.dmiProperties == [new YangModelCmHandle.Property('dmiProperty1', 'value1')]
+            assert yangModelCmhandleDeepCopy.publicProperties == [new YangModelCmHandle.Property('publicProperty1', 'value1')]
+            assert yangModelCmhandleDeepCopy.compositeState.cmHandleState == CmHandleState.ADVISED
+            assert yangModelCmhandleDeepCopy.compositeState.dataSyncEnabled == false
+        and: 'equality on reference and hashcode behave as expected'
+            assert currentYangModelCmHandle.hashCode() != yangModelCmhandleDeepCopy.hashCode()
+            assert currentYangModelCmHandle != yangModelCmhandleDeepCopy
+
+    }
+
 
 }
