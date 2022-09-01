@@ -42,6 +42,30 @@
     },
     {
       "key": {
+        "uuid": "87bf4e70_4d714691",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImplSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-09-01T12:36:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9c3d50cc_9cd91672",
+      "range": {
+        "startLine": 146,
+        "startChar": 15,
+        "endLine": 146,
+        "endChar": 38
+      },
+      "revId": "2b785e51da902b91dd5889b064c669fd6a6f3c31",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "112824f0_6c80365d",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImplSpec.groovy",
         "patchSetId": 5
@@ -62,6 +86,30 @@
       "revId": "2b785e51da902b91dd5889b064c669fd6a6f3c31",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "14287db6_5a8752eb",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImplSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-09-01T12:36:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "112824f0_6c80365d",
+      "range": {
+        "startLine": 159,
+        "startChar": 17,
+        "endLine": 159,
+        "endChar": 98
+      },
+      "revId": "2b785e51da902b91dd5889b064c669fd6a6f3c31",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -88,6 +136,30 @@
     },
     {
       "key": {
+        "uuid": "4bd6233e_90be665b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImplSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-09-01T12:36:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cd62a904_e3fb8a27",
+      "range": {
+        "startLine": 161,
+        "startChar": 15,
+        "endLine": 161,
+        "endChar": 38
+      },
+      "revId": "2b785e51da902b91dd5889b064c669fd6a6f3c31",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1236956c_56740c0c",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImplSpec.groovy",
         "patchSetId": 5
@@ -108,6 +180,30 @@
       "revId": "2b785e51da902b91dd5889b064c669fd6a6f3c31",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f0bb8613_e145549f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImplSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-09-01T12:36:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1236956c_56740c0c",
+      "range": {
+        "startLine": 163,
+        "startChar": 27,
+        "endLine": 163,
+        "endChar": 38
+      },
+      "revId": "2b785e51da902b91dd5889b064c669fd6a6f3c31",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -134,6 +230,30 @@
     },
     {
       "key": {
+        "uuid": "34dd46b6_38607e25",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImplSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-09-01T12:36:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa32abe3_523b0fbc",
+      "range": {
+        "startLine": 175,
+        "startChar": 16,
+        "endLine": 175,
+        "endChar": 98
+      },
+      "revId": "2b785e51da902b91dd5889b064c669fd6a6f3c31",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "af789293_e4e9fdab",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImplSpec.groovy",
         "patchSetId": 5
@@ -154,6 +274,30 @@
       "revId": "2b785e51da902b91dd5889b064c669fd6a6f3c31",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0d7e12ae_2c3ddd2d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCmHandleStateHandlerImplSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-09-01T12:36:06Z",
+      "side": 1,
+      "message": "Yeah..I like this..Will do it.",
+      "parentUuid": "af789293_e4e9fdab",
+      "range": {
+        "startLine": 196,
+        "startChar": 0,
+        "endLine": 197,
+        "endChar": 112
+      },
+      "revId": "2b785e51da902b91dd5889b064c669fd6a6f3c31",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
