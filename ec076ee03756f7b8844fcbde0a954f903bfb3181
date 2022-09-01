@@ -120,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "99b2c3a3_80a6128a",
+        "filename": "cps-ncmp-rest/docs/openapi/openapi-inventory.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-09-01T09:59:10Z",
+      "side": 1,
+      "message": "Ack - discussed with team and no need for now to change this",
+      "parentUuid": "57e44f88_70c289ff",
+      "range": {
+        "startLine": 24,
+        "startChar": 2,
+        "endLine": 24,
+        "endChar": 16
+      },
+      "revId": "ec076ee03756f7b8844fcbde0a954f903bfb3181",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8499a959_91e2466a",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryControllerSpec.groovy",
         "patchSetId": 7
@@ -446,6 +470,30 @@
       "revId": "ec076ee03756f7b8844fcbde0a954f903bfb3181",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "62f23a0e_a11a687c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/DmiProperty.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-09-01T09:59:10Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1ce01d86_2bf6162b",
+      "range": {
+        "startLine": 23,
+        "startChar": 12,
+        "endLine": 23,
+        "endChar": 24
+      },
+      "revId": "ec076ee03756f7b8844fcbde0a954f903bfb3181",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
