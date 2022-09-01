@@ -25,7 +25,7 @@ package org.onap.cps.ncmp.api.impl
 import org.onap.cps.ncmp.api.NetworkCmProxyCmHandlerQueryService
 import org.onap.cps.ncmp.api.impl.event.lcm.LcmEventsCmHandleStateHandler
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
-import org.onap.cps.ncmp.api.inventory.CmHandleQueries
+import org.onap.cps.ncmp.api.inventory.CmHandleQueriesImpl
 import org.onap.cps.ncmp.api.inventory.CmHandleState
 import org.onap.cps.ncmp.api.inventory.CompositeState
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence
@@ -64,7 +64,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     def mockDmiDataOperations = Mock(DmiDataOperations)
     def nullNetworkCmProxyDataServicePropertyHandler = null
     def mockInventoryPersistence = Mock(InventoryPersistence)
-    def mockCmHandleQueries = Mock(CmHandleQueries)
+    def mockCmHandleQueries = Mock(CmHandleQueriesImpl)
     def mockDmiPluginRegistration = Mock(DmiPluginRegistration)
     def mockCpsCmHandlerQueryService = Mock(NetworkCmProxyCmHandlerQueryService)
     def mockLcmEventsCmHandleStateHandler = Mock(LcmEventsCmHandleStateHandler)

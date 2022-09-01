@@ -22,7 +22,7 @@ package org.onap.cps.ncmp.api.impl
 
 import org.onap.cps.cpspath.parser.PathParsingException
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence
-import org.onap.cps.ncmp.api.inventory.CmHandleQueries
+import org.onap.cps.ncmp.api.inventory.CmHandleQueriesImpl
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.exceptions.DataInUseException
@@ -37,7 +37,7 @@ import java.util.stream.Collectors
 
 class NetworkCmProxyCmHandlerQueryServiceSpec extends Specification {
 
-    def cmHandleQueries = Mock(CmHandleQueries)
+    def cmHandleQueries = Mock(CmHandleQueriesImpl)
     def inventoryPersistence = Mock(InventoryPersistence)
 
     def static someCmHandleDataNode = new DataNode(xpath: '/dmi-registry/cm-handles[@id=\'some-cmhandle-id\']', leaves: ['id':'some-cmhandle-id'])
