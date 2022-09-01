@@ -71,6 +71,144 @@
     },
     {
       "key": {
+        "uuid": "aa6bf97c_8dafd558",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreResourceRequestHandlerFactorySpec.groovy",
+        "patchSetId": 32
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-09-01T08:01:02Z",
+      "side": 1,
+      "message": "good tets but can be simplified using groovy corretlky",
+      "range": {
+        "startLine": 8,
+        "startChar": 6,
+        "endLine": 8,
+        "endChar": 53
+      },
+      "revId": "5b776baa463ca2f018778eb39a0e0fe6fbe879bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da772844_51402119",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreResourceRequestHandlerFactorySpec.groovy",
+        "patchSetId": 32
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-09-01T08:01:02Z",
+      "side": 1,
+      "message": "for Future ref: just use \u0027def\u0027 in Groovy",
+      "range": {
+        "startLine": 10,
+        "startChar": 4,
+        "endLine": 10,
+        "endChar": 27
+      },
+      "revId": "5b776baa463ca2f018778eb39a0e0fe6fbe879bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c09ac878_d615d91a",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreResourceRequestHandlerFactorySpec.groovy",
+        "patchSetId": 32
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-09-01T08:01:02Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 0
+      },
+      "revId": "5b776baa463ca2f018778eb39a0e0fe6fbe879bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd610af5_eb19578e",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreResourceRequestHandlerFactorySpec.groovy",
+        "patchSetId": 32
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-09-01T08:01:02Z",
+      "side": 1,
+      "message": "proably not needed",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 0
+      },
+      "revId": "5b776baa463ca2f018778eb39a0e0fe6fbe879bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c670641_f43c10ee",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreResourceRequestHandlerFactorySpec.groovy",
+        "patchSetId": 32
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-09-01T08:01:02Z",
+      "side": 1,
+      "message": "use short scenario e.g. \u0027Create NCMP datastore resource request handlers\u0027",
+      "range": {
+        "startLine": 22,
+        "startChar": 9,
+        "endLine": 22,
+        "endChar": 90
+      },
+      "revId": "5b776baa463ca2f018778eb39a0e0fe6fbe879bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "54527972_a6be72ae",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreResourceRequestHandlerFactorySpec.groovy",
+        "patchSetId": 32
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-09-01T08:01:02Z",
+      "side": 1,
+      "message": "don\u0027t repeat \u0027when\u0027 in label",
+      "range": {
+        "startLine": 23,
+        "startChar": 15,
+        "endLine": 23,
+        "endChar": 18
+      },
+      "revId": "5b776baa463ca2f018778eb39a0e0fe6fbe879bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1ec01da0_ac51264e",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreResourceRequestHandlerFactorySpec.groovy",
         "patchSetId": 32
@@ -87,6 +225,98 @@
         "startChar": 4,
         "endLine": 28,
         "endChar": 55
+      },
+      "revId": "5b776baa463ca2f018778eb39a0e0fe6fbe879bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "90464b40_54630dfa",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreResourceRequestHandlerFactorySpec.groovy",
+        "patchSetId": 32
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-09-01T08:01:02Z",
+      "side": 1,
+      "message": "use || to seperate input parameter from output (expected values)",
+      "range": {
+        "startLine": 31,
+        "startChar": 50,
+        "endLine": 31,
+        "endChar": 51
+      },
+      "revId": "5b776baa463ca2f018778eb39a0e0fe6fbe879bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5832e37d_5f9767b7",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreResourceRequestHandlerFactorySpec.groovy",
+        "patchSetId": 32
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-09-01T08:01:02Z",
+      "side": 1,
+      "message": "use \u0027expected\u0027\n\nexpectedHandler",
+      "range": {
+        "startLine": 31,
+        "startChar": 52,
+        "endLine": 31,
+        "endChar": 59
+      },
+      "revId": "5b776baa463ca2f018778eb39a0e0fe6fbe879bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ea5699da_8469da48",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreResourceRequestHandlerFactorySpec.groovy",
+        "patchSetId": 32
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-09-01T08:01:02Z",
+      "side": 1,
+      "message": "only a class is needed ,no instance!",
+      "range": {
+        "startLine": 32,
+        "startChar": 56,
+        "endLine": 32,
+        "endChar": 102
+      },
+      "revId": "5b776baa463ca2f018778eb39a0e0fe6fbe879bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "701cff03_c54544a0",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreResourceRequestHandlerFactorySpec.groovy",
+        "patchSetId": 32
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-09-01T08:01:02Z",
+      "side": 1,
+      "message": ".groovy files do NOT have linelngthlimitations (make sure you IDE is setup correctly on how to handle .groovy files)\nTable row should  never be broken into several lines",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 104
       },
       "revId": "5b776baa463ca2f018778eb39a0e0fe6fbe879bd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
