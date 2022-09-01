@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "15eb9cf0_f988fe20",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-09-01T09:42:41Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0d6505b0_3036d33d",
+      "range": {
+        "startLine": 10,
+        "startChar": 29,
+        "endLine": 10,
+        "endChar": 62
+      },
+      "revId": "dd5e8130e909bfbed1491afac54e71423a63fe76",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8cf7a2b2_00c4bffb",
         "filename": "cps-ncmp-rest/docs/openapi/ncmp-inventory.yml",
         "patchSetId": 9
