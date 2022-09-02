@@ -4,12 +4,12 @@ info:
   description: NCMP Inventory API
   version: "1.0"
 servers:
-- url: /ncmpInventory
+  - url: /ncmpInventory
 paths:
   /v1/ch:
     post:
       tags:
-      - network-cm-proxy-inventory
+        - network-cm-proxy-inventory
       summary: DMI notifies NCMP of new CM Handles
       description: "Register a DMI Plugin with any new, updated or removed CM Handles."
       operationId: updateDmiPluginRegistration
@@ -20,7 +20,7 @@ paths:
               $ref: '#/components/schemas/RestDmiPluginRegistration'
         required: true
       responses:
-        "204":
+        "200":
           description: No Content
           content: {}
         "400":
@@ -33,6 +33,90 @@ paths:
                 status: 400 BAD_REQUEST
                 message: Bad request error message
                 details: Bad request error details
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 401
+                message: Unauthorized error message
+                details: Unauthorized error details
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 403
+                message: Forbidden error message
+                details: Forbidden error details
+        "500":
+          description: Partial or Complete failure. The error details are provided
+            in the response body and all supported error codes are documented in the
+            example.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DmiPluginRegistrationErrorResponse'
+              example:
+                failedCreatedCmHandles:
+                  - cmHandle: my-cm-handle-01
+                    errorCode: "00"
+                    errorText: Unknown error. <error-details>
+                  - cmHandle: my-cm-handle-02
+                    errorCode: "01"
+                    errorText: cm-handle already exists
+                  - cmHandle: my-cm-handle-03
+                    errorCode: "03"
+                    errorText: cm-handle has an invalid character(s) in id
+                failedUpdatedCmHandles:
+                  - cmHandle: my-cm-handle-01
+                    errorCode: "00"
+                    errorText: Unknown error. <error-details>
+                  - cmHandle: my-cm-handle-02
+                    errorCode: "02"
+                    errorText: cm-handle does not exist
+                  - cmHandle: my-cm-handle-03
+                    errorCode: "03"
+                    errorText: cm-handle has an invalid character(s) in id
+                failedRemovedCmHandles:
+                  - cmHandle: my-cm-handle-01
+                    errorCode: "00"
+                    errorText: Unknown error. <error-details>
+                  - cmHandle: my-cm-handle-02
+                    errorCode: "02"
+                    errorText: cm-handle does not exists
+                  - cmHandle: my-cm-handle-03
+                    errorCode: "03"
+                    errorText: cm-handle has an invalid character(s) in id
+  /v1/ch/cmHandles:
+    get:
+      tags:
+        - network-cm-proxy-inventory
+      summary: "Get all cm handle IDs for a registered DMI plugin (DMI plugin, DMI\
+        \ data plugin, DMI model plugin)"
+      description: Get all cm handle IDs for a registered DMI plugin
+      operationId: getAllCmHandleIdsForRegisteredDmi
+      parameters:
+        - name: dmi-plugin-identifier
+          in: query
+          description: dmi-plugin-identifier
+          required: true
+          schema:
+            type: string
+            example: my-dmi-plugin
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
         "401":
           description: Unauthorized
           content:
@@ -91,14 +175,14 @@ components:
         removedCmHandles:
           type: array
           example:
-          - my-cm-handle1
-          - my-cm-handle2
-          - my-cm-handle3
+            - my-cm-handle1
+            - my-cm-handle2
+            - my-cm-handle3
           items:
             type: string
     RestInputCmHandle:
       required:
-      - cmHandle
+        - cmHandle
       type: object
       properties:
         cmHandle:
@@ -123,3 +207,30 @@ components:
           type: string
         details:
           type: string
+    DmiPluginRegistrationErrorResponse:
+      type: object
+      properties:
+        failedCreatedCmHandles:
+          type: array
+          items:
+            $ref: '#/components/schemas/CmHandlerRegistrationErrorResponse'
+        failedUpdatedCmHandles:
+          type: array
+          items:
+            $ref: '#/components/schemas/CmHandlerRegistrationErrorResponse'
+        failedRemovedCmHandles:
+          type: array
+          items:
+            $ref: '#/components/schemas/CmHandlerRegistrationErrorResponse'
+    CmHandlerRegistrationErrorResponse:
+      type: object
+      properties:
+        cmHandle:
+          type: string
+          example: my-cm-handle
+        errorCode:
+          type: string
+          example: "00"
+        errorText:
+          type: string
+          example: Unknown error. <error-details>
