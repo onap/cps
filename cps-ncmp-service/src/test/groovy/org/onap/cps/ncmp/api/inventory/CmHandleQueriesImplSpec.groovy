@@ -29,10 +29,10 @@ import spock.lang.Specification
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
 
-class CmHandleQueriesSpec extends Specification {
+class CmHandleQueriesImplSpec extends Specification {
     def cpsDataPersistenceService = Mock(CpsDataPersistenceService)
 
-    def objectUnderTest = new CmHandleQueries(cpsDataPersistenceService)
+    def objectUnderTest = new CmHandleQueriesImpl(cpsDataPersistenceService)
 
     @Shared
     def static sampleDataNodes = [new DataNode()]
