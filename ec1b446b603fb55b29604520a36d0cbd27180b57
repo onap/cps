@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e4e64c4f_d5498e2c",
+        "filename": "docs/api/swagger/ncmp/openapi-inventory.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-09-02T14:54:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f5fa174_2456866d",
+      "range": {
+        "startLine": 67,
+        "startChar": 2,
+        "endLine": 67,
+        "endChar": 19
+      },
+      "revId": "ec1b446b603fb55b29604520a36d0cbd27180b57",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "568510cb_a679b438",
         "filename": "docs/release-notes.rst",
         "patchSetId": 3
@@ -45,6 +69,30 @@
       "revId": "ec1b446b603fb55b29604520a36d0cbd27180b57",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eeb21098_7e2ed85e",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-09-02T14:54:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "568510cb_a679b438",
+      "range": {
+        "startLine": 104,
+        "startChar": 4,
+        "endLine": 104,
+        "endChar": 15
+      },
+      "revId": "ec1b446b603fb55b29604520a36d0cbd27180b57",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
