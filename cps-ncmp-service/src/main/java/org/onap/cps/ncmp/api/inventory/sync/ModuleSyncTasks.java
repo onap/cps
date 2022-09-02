@@ -78,7 +78,7 @@ public class ModuleSyncTasks {
                 }
                 log.debug("{} is now in {} state", cmHandleId, compositeState.getCmHandleState().name());
             }
-            updateCmHandlesStateBatch(cmHandelStatePerCmHandle);
+            lcmEventsCmHandleStateHandler.updateCmHandleStateBatch(cmHandelStatePerCmHandle);
         } finally {
             batchCounter.getAndDecrement();
         }
@@ -98,24 +98,17 @@ public class ModuleSyncTasks {
             final boolean isReadyForRetry = syncUtils.isReadyForRetry(compositeState);
             if (isReadyForRetry) {
                 log.debug("Reset cm handle {} state to ADVISED to be re-attempted by module-sync watchdog",
-                    failedCmHandle.getId());
+                        failedCmHandle.getId());
                 cmHandleStatePerCmHandle.put(failedCmHandle, CmHandleState.ADVISED);
             }
         }
-        updateCmHandlesStateBatch(cmHandleStatePerCmHandle);
+        lcmEventsCmHandleStateHandler.updateCmHandleStateBatch(cmHandleStatePerCmHandle);
         return COMPLETED_FUTURE;
     }
 
     private void setCmHandleStateLocked(final YangModelCmHandle advisedCmHandle,
                                         final CompositeState.LockReason lockReason) {
         advisedCmHandle.getCompositeState().setLockReason(lockReason);
-    }
-
-    private void updateCmHandlesStateBatch(final Map<YangModelCmHandle, CmHandleState> cmHandleStatePerCmHandle) {
-        // To be refactored as part of CPS-1231; Use state-save-batch capability (depends sub-task12, 13)
-        for (final Map.Entry<YangModelCmHandle, CmHandleState> entry : cmHandleStatePerCmHandle.entrySet()) {
-            lcmEventsCmHandleStateHandler.updateCmHandleState(entry.getKey(), entry.getValue());
-        }
     }
 
 }

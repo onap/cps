@@ -21,6 +21,8 @@
 
 package org.onap.cps.ncmp.api.models;
 
+import java.util.List;
+import java.util.stream.Collectors;
 import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -68,6 +70,11 @@ public class CmHandleRegistrationResponse {
     public static CmHandleRegistrationResponse createSuccessResponse(final String cmHandle) {
         return CmHandleRegistrationResponse.builder().cmHandle(cmHandle)
             .status(Status.SUCCESS).build();
+    }
+
+    public static List<CmHandleRegistrationResponse> createSuccessResponses(final List<String> cmHandleIds) {
+        return cmHandleIds.stream().map(CmHandleRegistrationResponse::createSuccessResponse)
+                .collect(Collectors.toList());
     }
 
     public enum Status {
