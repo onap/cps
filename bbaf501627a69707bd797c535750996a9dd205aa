@@ -22,6 +22,30 @@
       "revId": "bbaf501627a69707bd797c535750996a9dd205aa",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dbe24982_fcecd808",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 35
+      },
+      "lineNbr": 488,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-09-02T07:54:16Z",
+      "side": 1,
+      "message": "I think we\u0027ll try to merge this today unless there is no blocking changes. \nChanges like you suggested are good but can be done later",
+      "parentUuid": "ee9d2517_e535a7a9",
+      "range": {
+        "startLine": 488,
+        "startChar": 47,
+        "endLine": 488,
+        "endChar": 78
+      },
+      "revId": "bbaf501627a69707bd797c535750996a9dd205aa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
