@@ -243,9 +243,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         final Set<NcmpServiceCmHandle> ncmpServiceCmHandles =
                 cmHandleQueries.getCmHandlesByDmiPluginIdentifier(dmiPluginIdentifier);
         final Set<String> cmHandleIds = new HashSet<>(ncmpServiceCmHandles.size());
-        ncmpServiceCmHandles.forEach(cmHandle -> {
-            cmHandleIds.add(cmHandle.getCmHandleId());
-        });
+        ncmpServiceCmHandles.forEach(cmHandle -> cmHandleIds.add(cmHandle.getCmHandleId()));
         return cmHandleIds;
     }
 

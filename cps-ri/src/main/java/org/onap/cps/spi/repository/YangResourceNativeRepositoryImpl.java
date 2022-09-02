@@ -26,11 +26,13 @@ import java.util.StringJoiner;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import lombok.extern.slf4j.Slf4j;
 import org.hibernate.type.StandardBasicTypes;
 import org.onap.cps.spi.model.ModuleReference;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+@Slf4j
 @Repository
 public class YangResourceNativeRepositoryImpl implements YangResourceNativeRepository {
 
@@ -43,16 +45,21 @@ public class YangResourceNativeRepositoryImpl implements YangResourceNativeRepos
         final Query query = entityManager.createNativeQuery(getCombinedSelectSqlQuery(moduleReferences))
             .unwrap(org.hibernate.query.NativeQuery.class)
             .addScalar("id", StandardBasicTypes.LONG);
-        return query.getResultList();
+        final List<Long> yangResourceIds = query.getResultList();
+        if (yangResourceIds.size() != moduleReferences.size()) {
+            log.warn("ModuleReferences size : {} and QueryResult size : {}", moduleReferences.size(),
+                    yangResourceIds.size());
+        }
+        return yangResourceIds;
     }
 
     private String getCombinedSelectSqlQuery(final Collection<ModuleReference> moduleReferences) {
         final StringJoiner sqlQueryJoiner = new StringJoiner(" UNION ALL ");
-        moduleReferences.stream().forEach(moduleReference -> {
+        moduleReferences.forEach(moduleReference ->
             sqlQueryJoiner.add(String.format("SELECT id FROM yang_resource WHERE module_name='%s' and revision='%s'",
                 moduleReference.getModuleName(),
-                moduleReference.getRevision()));
-        });
+                moduleReference.getRevision()))
+        );
         return sqlQueryJoiner.toString();
     }
 }
