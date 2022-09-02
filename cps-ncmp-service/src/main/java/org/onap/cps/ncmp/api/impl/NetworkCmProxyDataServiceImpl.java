@@ -300,14 +300,18 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     public List<CmHandleRegistrationResponse> parseAndCreateCmHandlesInDmiRegistrationAndSyncModules(
             final DmiPluginRegistration dmiPluginRegistration) {
         List<CmHandleRegistrationResponse> cmHandleRegistrationResponses = new ArrayList<>();
+        final Map<YangModelCmHandle, CmHandleState> cmHandleStatePerCmHandle = new HashMap<>();
         try {
-            cmHandleRegistrationResponses = dmiPluginRegistration.getCreatedCmHandles().stream()
-                    .map(cmHandle ->
-                            YangModelCmHandle.toYangModelCmHandle(
-                                    dmiPluginRegistration.getDmiPlugin(),
-                                    dmiPluginRegistration.getDmiDataPlugin(),
-                                    dmiPluginRegistration.getDmiModelPlugin(),
-                                    cmHandle)).map(this::registerNewCmHandle).collect(Collectors.toList());
+            dmiPluginRegistration.getCreatedCmHandles()
+                    .forEach(cmHandle -> {
+                        final YangModelCmHandle yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle(
+                                dmiPluginRegistration.getDmiPlugin(),
+                                dmiPluginRegistration.getDmiDataPlugin(),
+                                dmiPluginRegistration.getDmiModelPlugin(),
+                                cmHandle);
+                        cmHandleStatePerCmHandle.put(yangModelCmHandle, CmHandleState.ADVISED);
+                    });
+            cmHandleRegistrationResponses = registerNewCmHandles(cmHandleStatePerCmHandle);
         } catch (final DataValidationException dataValidationException) {
             cmHandleRegistrationResponses.add(CmHandleRegistrationResponse.createFailureResponse(dmiPluginRegistration
                             .getCreatedCmHandles().stream()
@@ -356,15 +360,19 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         inventoryPersistence.deleteListOrListElement("/dmi-registry/cm-handles[@id='" + cmHandleId + "']");
     }
 
-    private CmHandleRegistrationResponse registerNewCmHandle(final YangModelCmHandle yangModelCmHandle) {
+    private List<CmHandleRegistrationResponse> registerNewCmHandles(final Map<YangModelCmHandle, CmHandleState>
+                                                                            cmHandleStatePerCmHandle) {
+        final List<String> cmHandleIds = cmHandleStatePerCmHandle.keySet().stream().map(YangModelCmHandle::getId)
+                .collect(Collectors.toList());
         try {
-            lcmEventsCmHandleStateHandler.updateCmHandleState(yangModelCmHandle, CmHandleState.ADVISED);
-            return CmHandleRegistrationResponse.createSuccessResponse(yangModelCmHandle.getId());
+            lcmEventsCmHandleStateHandler.updateCmHandleStateBatch(cmHandleStatePerCmHandle);
+            return CmHandleRegistrationResponse.createSuccessResponses(cmHandleIds);
         } catch (final AlreadyDefinedException alreadyDefinedException) {
-            return CmHandleRegistrationResponse.createFailureResponse(
-                    yangModelCmHandle.getId(), RegistrationError.CM_HANDLE_ALREADY_EXIST);
+            return List.of(CmHandleRegistrationResponse.createFailureResponse(
+                    String.join(",", cmHandleIds), RegistrationError.CM_HANDLE_ALREADY_EXIST));
         } catch (final Exception exception) {
-            return CmHandleRegistrationResponse.createFailureResponse(yangModelCmHandle.getId(), exception);
+            return List.of(CmHandleRegistrationResponse.createFailureResponse(String.join(",", cmHandleIds),
+                    exception));
         }
     }
 }

@@ -277,17 +277,20 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     def 'Verify modules and create anchor params'() {
         given: 'dmi plugin registration return created cm handles'
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'service1', dmiModelPlugin: 'service1',
-                dmiDataPlugin: 'service2')
+                    dmiDataPlugin: 'service2')
             dmiPluginRegistration.createdCmHandles = [ncmpServiceCmHandle]
             mockDmiPluginRegistration.getCreatedCmHandles() >> [ncmpServiceCmHandle]
         when: 'parse and create cm handle in dmi registration then sync module'
             objectUnderTest.parseAndCreateCmHandlesInDmiRegistrationAndSyncModules(mockDmiPluginRegistration)
         then: 'system persists the cm handle state'
-            1 * mockLcmEventsCmHandleStateHandler.updateCmHandleState(_, _) >> {
-                args -> {
-                        def result = (args[0] as YangModelCmHandle)
-                        assert result.id == 'test-cm-handle-id'
-                        assert CmHandleState.ADVISED == (args[1] as CmHandleState)
+            1 * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(_) >> {
+                args ->
+                    {
+                        def cmHandleStatePerCmHandle = (args[0] as Map)
+                        cmHandleStatePerCmHandle.each {
+                            assert (it.key.id == 'test-cm-handle-id'
+                                    && it.value == CmHandleState.ADVISED)
+                        }
                     }
             }
     }

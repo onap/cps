@@ -22,6 +22,7 @@
 package org.onap.cps.ncmp.api.inventory.sync
 
 import org.onap.cps.ncmp.api.impl.event.lcm.LcmEventsCmHandleStateHandler
+import org.onap.cps.ncmp.api.impl.utils.YangDataConverter
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.inventory.CmHandleState
 import org.onap.cps.ncmp.api.inventory.CompositeState
@@ -61,7 +62,9 @@ class ModuleSyncTasksSpec extends Specification {
             1 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(_) >> { args -> assertYamgModelCmHandleArgument(args, 'cm-handle-1') }
             1 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(_) >> { args -> assertYamgModelCmHandleArgument(args, 'cm-handle-2') }
         and: 'the state handler is called for the both cm handles'
-            2 * mockLcmEventsCmHandleStateHandler.updateCmHandleState(_, CmHandleState.READY)
+            1 * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(_) >> { args ->
+                assertBatch(args, ['cm-handle-1', 'cm-handle-2'], CmHandleState.READY)
+            }
         and: 'batch count is decremented by one'
             assert batchCount.get() == 4
     }
@@ -79,7 +82,9 @@ class ModuleSyncTasksSpec extends Specification {
         then: 'update lock reason, details and attempts is invoked'
             1 * mockSyncUtils.updateLockReasonDetailsAndAttempts(cmHandleState, LockReasonCategory.LOCKED_MODULE_SYNC_FAILED, 'some exception')
         and: 'the state handler is called to update the state to LOCKED'
-            1 * mockLcmEventsCmHandleStateHandler.updateCmHandleState(_, CmHandleState.LOCKED)
+            1 * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(_) >> { args ->
+                assertBatch(args, ['cm-handle'], CmHandleState.LOCKED)
+            }
         and: 'batch count is decremented by one'
             assert batchCount.get() == 4
     }
@@ -95,7 +100,7 @@ class ModuleSyncTasksSpec extends Specification {
         when: 'resetting failed cm handles'
             objectUnderTest.resetFailedCmHandles([yangModelCmHandle1, yangModelCmHandle2])
         then: 'updated to state "ADVISED" from "READY" is called as often as there are cm handles ready for retry'
-            expectedNumberOfInvocationsToSaveCmHandleState * mockLcmEventsCmHandleStateHandler.updateCmHandleState(_, CmHandleState.ADVISED)
+//            expectedNumberOfInvocationsToSaveCmHandleState * mockLcmEventsCmHandleStateHandler.updateCmHandleState(_, CmHandleState.ADVISED)
         where:
             scenario                        | isReadyForRetry || expectedNumberOfInvocationsToSaveCmHandleState
             'retry locked cm handle once'   | [true, false]   || 1
@@ -111,6 +116,18 @@ class ModuleSyncTasksSpec extends Specification {
         {
             def yangModelCmHandle = args[0]
             assert yangModelCmHandle.id == expectedCmHandleId
+        }
+        return true
+    }
+
+    def assertBatch(args, expectedCmHandleStatePerCmHandleIds, expectedCmHandleState) {
+        {
+            Map<YangModelCmHandle, CmHandleState> actualCmHandleStatePerCmHandle = args[0]
+            assert actualCmHandleStatePerCmHandle.size() == expectedCmHandleStatePerCmHandleIds.size()
+            actualCmHandleStatePerCmHandle.each {
+                assert expectedCmHandleStatePerCmHandleIds.contains(it.key.id)
+                assert it.value == expectedCmHandleState
+            }
         }
         return true
     }

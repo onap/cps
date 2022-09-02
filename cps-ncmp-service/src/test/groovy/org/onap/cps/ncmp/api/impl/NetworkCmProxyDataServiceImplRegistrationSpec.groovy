@@ -159,12 +159,15 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
                 assert it.cmHandle == 'cmhandle'
             }
         and: 'state handler is invoked with the expected parameters'
-            1 * mockLcmEventsCmHandleStateHandler.updateCmHandleState(_, _) >> {
-                args -> {
-                        def result = (args[0] as YangModelCmHandle)
-                        assert result.id == 'cmhandle'
-                        assert result.dmiServiceName == 'my-server'
-                        assert CmHandleState.ADVISED == (args[1] as CmHandleState)
+            1 * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(_) >> {
+                args ->
+                    {
+                        def cmHandleStatePerCmHandle = (args[0] as Map)
+                        cmHandleStatePerCmHandle.each {
+                            assert (it.key.id == 'cmhandle'
+                                    && it.key.dmiServiceName == 'my-server'
+                                    && it.value == CmHandleState.ADVISED)
+                        }
                     }
             }
         where:
@@ -173,36 +176,29 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             'with only public properties'     | [:]                      | ['public-key': 'public-value'] || '[]'                                       | '[{"name":"public-key","value":"public-value"}]'
             'with only dmi properties'        | ['dmi-key': 'dmi-value'] | [:]                            || '[{"name":"dmi-key","value":"dmi-value"}]' | '[]'
             'without dmi & public properties' | [:]                      | [:]                            || '[]'                                       | '[]'
-
     }
 
-    def 'Create CM-Handle Multiple Requests: All cm-handles creation requests are processed'() {
+    def 'Create CM-Handle Multiple Requests: All cm-handles creation requests are processed with some failures'() {
         given: 'a registration with three cm-handles to be created'
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server',
-                createdCmHandles: [new NcmpServiceCmHandle(cmHandleId: 'cmhandle1'),
-                                   new NcmpServiceCmHandle(cmHandleId: 'cmhandle2'),
-                                   new NcmpServiceCmHandle(cmHandleId: 'cmhandle3')])
+                    createdCmHandles: [new NcmpServiceCmHandle(cmHandleId: 'cmhandle1'),
+                                       new NcmpServiceCmHandle(cmHandleId: 'cmhandle2'),
+                                       new NcmpServiceCmHandle(cmHandleId: 'cmhandle3')])
         and: 'cm-handle creation is successful for 1st and 3rd; failed for 2nd'
-            mockLcmEventsCmHandleStateHandler.updateCmHandleState(*_) >> {} >> { throw new RuntimeException("Failed") } >> {}
+            mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(*_) >> { throw new RuntimeException("Failed") }
         when: 'registration is updated to create cm-handles'
             def response = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'a response is received for all cm-handles'
-            response.getCreatedCmHandles().size() == 3
-        and: '1st and 3rd cm-handle are created successfully'
+            response.getCreatedCmHandles().size() == 1
+        and: 'all cm-handles creation fails'
             with(response.getCreatedCmHandles().get(0)) {
-                assert it.status == Status.SUCCESS
-                assert it.cmHandle == 'cmhandle1'
-            }
-            with(response.getCreatedCmHandles().get(2)) {
-                assert it.status == Status.SUCCESS
-                assert it.cmHandle == 'cmhandle3'
-            }
-        and: '2nd cm-handle creation fails'
-            with(response.getCreatedCmHandles().get(1)) {
                 assert it.status == Status.FAILURE
                 assert it.registrationError == UNKNOWN_ERROR
                 assert it.errorText == 'Failed'
-                assert it.cmHandle == 'cmhandle2'
+                def sortedCmHandles = it.cmHandle.split(',').sort()
+                assert sortedCmHandles[0] == 'cmhandle1'
+                assert sortedCmHandles[1] == 'cmhandle2'
+                assert sortedCmHandles[2] == 'cmhandle3'
             }
     }
 
@@ -211,7 +207,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server')
             dmiPluginRegistration.createdCmHandles = [new NcmpServiceCmHandle(cmHandleId: cmHandleId)]
         and: 'cm-handler registration fails: #scenario'
-            mockLcmEventsCmHandleStateHandler.updateCmHandleState(*_) >> { throw exception }
+            mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(*_) >> { throw exception }
         when: 'registration is updated'
             def response = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'a failure response is received'
