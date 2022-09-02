@@ -39,6 +39,10 @@ Release Data
 Features
 --------
    - `CPS-322 <https://jira.onap.org/browse/CPS-322>`_  Implement additional validation for names and identifiers
+   - `CPS-1136 <https://jira.onap.org/browse/CPS-1136>`_  Get all cm handles by DMI plugin Identifier
+
+Bug Fixes
+---------
 
 ..      ========================
 ..      * * *   JAKARTA   * * *
