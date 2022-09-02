@@ -63,6 +63,55 @@ paths:
                 status: 500
                 message: Internal Server Error
                 details: Internal Server Error occurred
+
+  /v1/ch/cmHandles:
+    get:
+      description: Get all cm handle IDs for a registered DMI plugin
+      tags:
+        - network-cm-proxy-inventory
+      summary: Get all cm handle IDs for a registered DMI plugin (DMI plugin, DMI data plugin, DMI model plugin)
+      operationId: getAllCmHandleIdsForRegisteredDmi
+      parameters:
+        - $ref: '#/components/parameters/dmiPluginIdentifierInQuery'
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 401
+                message: Unauthorized error message
+                details: Unauthorized error details
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 403
+                message: Forbidden error message
+                details: Forbidden error details
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 500
+                message: Internal Server Error
+                details: Internal Server Error occurred
 components:
   schemas:
     RestDmiPluginRegistration:
@@ -123,3 +172,13 @@ components:
           type: string
         details:
           type: string
+
+  parameters:
+    dmiPluginIdentifierInQuery:
+      name: dmi-plugin-identifier
+      in: query
+      description: dmi-plugin-identifier
+      required: true
+      schema:
+        type: string
+        example: my-dmi-plugin
