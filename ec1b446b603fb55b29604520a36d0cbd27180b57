@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0f5fa174_2456866d",
+        "filename": "docs/api/swagger/ncmp/openapi-inventory.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-09-02T14:21:55Z",
+      "side": 1,
+      "message": "ensure you copy the generated file (mention in commit message taht you did that)\nas instructed here: in step 2 on https://wiki.onap.org/display/DW/CPS+Release+Process\n\nas discuss copy all 3 CPS files to make sur we are up-to-date",
+      "range": {
+        "startLine": 67,
+        "startChar": 2,
+        "endLine": 67,
+        "endChar": 19
+      },
+      "revId": "ec1b446b603fb55b29604520a36d0cbd27180b57",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "568510cb_a679b438",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-09-02T14:21:55Z",
+      "side": 1,
+      "message": "move to Kohn section!",
+      "range": {
+        "startLine": 104,
+        "startChar": 4,
+        "endLine": 104,
+        "endChar": 15
+      },
+      "revId": "ec1b446b603fb55b29604520a36d0cbd27180b57",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
