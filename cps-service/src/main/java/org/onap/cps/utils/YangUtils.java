@@ -1,3 +1,4 @@
+
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2020-2021 Nordix Foundation
@@ -52,7 +53,7 @@ import org.opendaylight.yangtools.yang.model.api.SchemaContext;
 public class YangUtils {
 
     private static final String XPATH_DELIMITER_REGEX = "\\/";
-    private static final String XPATH_NODE_KEY_ATTRIBUTES_REGEX = "\\[.+";
+    private static final String XPATH_NODE_KEY_ATTRIBUTES_REGEX = "\\[.*?]";
 
     /**
      * Parses jsonData into NormalizedNode according to given schema context.
@@ -149,10 +150,11 @@ public class YangUtils {
     }
 
     private static String[] xpathToNodeIdSequence(final String xpath) {
-        final String[] xpathNodeIdSequence = Arrays.stream(xpath.split(XPATH_DELIMITER_REGEX))
-            .map(identifier -> identifier.replaceFirst(XPATH_NODE_KEY_ATTRIBUTES_REGEX, ""))
-            .filter(identifier -> !identifier.isEmpty())
-            .toArray(String[]::new);
+        final String[] xpathNodeIdSequence = Arrays.stream(xpath
+                        .replaceAll(XPATH_NODE_KEY_ATTRIBUTES_REGEX, "")
+                        .split(XPATH_DELIMITER_REGEX))
+                .filter(identifier -> !identifier.isEmpty())
+                .toArray(String[]::new);
         if (xpathNodeIdSequence.length < 1) {
             throw new DataValidationException("Invalid xpath.", "Xpath contains no node identifiers.");
         }
