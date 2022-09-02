@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "73160e34_6af307fb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-09-02T07:26:41Z",
+      "side": 1,
+      "message": "add more details about this commit",
+      "revId": "36d8c2c9bc4c0cdf29a97cdec700e5d799a48649",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f63ff07_c66bba9f",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-09-02T07:26:41Z",
+      "side": 1,
+      "message": "without",
+      "range": {
+        "startLine": 275,
+        "startChar": 27,
+        "endLine": 275,
+        "endChar": 34
+      },
+      "revId": "36d8c2c9bc4c0cdf29a97cdec700e5d799a48649",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "50b66c64_76752161",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-09-02T07:26:41Z",
+      "side": 1,
+      "message": "is this needed yet? i think it should be just 2022",
+      "range": {
+        "startLine": 6,
+        "startChar": 36,
+        "endLine": 6,
+        "endChar": 42
+      },
+      "revId": "36d8c2c9bc4c0cdf29a97cdec700e5d799a48649",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "68dc6f3a_50acc6c7",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-09-02T07:26:41Z",
+      "side": 1,
+      "message": "NB created",
+      "range": {
+        "startLine": 358,
+        "startChar": 27,
+        "endLine": 358,
+        "endChar": 33
+      },
+      "revId": "36d8c2c9bc4c0cdf29a97cdec700e5d799a48649",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
