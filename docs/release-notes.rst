@@ -39,6 +39,10 @@ Release Data
 Features
 --------
    - `CPS-322 <https://jira.onap.org/browse/CPS-322>`_  Implement additional validation for names and identifiers
+   - `CPS-1136 <https://jira.onap.org/browse/CPS-1136>`_  Get all cm handles by DMI plugin Identifier
+
+Bug Fixes
+---------
 
 ..      ========================
 ..      * * *   JAKARTA   * * *
@@ -101,6 +105,7 @@ Features
    - `CPS-791 <https://jira.onap.org/browse/CPS-791>`_ CPS-Core sends delete notification event
    - `CPS-817 <https://jira.onap.org/browse/CPS-817>`_  Create Endpoint For Get Cm Handles (incl. public properties) By Name
    - `CPS-837 <https://jira.onap.org/browse/CPS-837>`_  Add Remove and Update properties (DMI and Public) as part of CM Handle Registration update
+   - `CPS-1136 <https://jira.onap.org/browse/CPS-1136>`_  Get all cm handles by DMI plugin Identifier
 
 Bug Fixes
 ---------
