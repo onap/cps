@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee9d2517_e535a7a9",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 35
+      },
+      "lineNbr": 488,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-09-02T06:50:42Z",
+      "side": 1,
+      "message": "Suggestion : replace with \u0027to get resource data\u0027/\u0027to get resource data for operationa\u0027 to avoid using the actual method name in case of it changing in the future\n\nsame for the tests below",
+      "range": {
+        "startLine": 488,
+        "startChar": 47,
+        "endLine": 488,
+        "endChar": 78
+      },
+      "revId": "bbaf501627a69707bd797c535750996a9dd205aa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
