@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "98fde3a0_647648c0",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-09-02T13:51:42Z",
+      "side": 1,
+      "message": "I was experimenting with a similar regex found that using a reluctant/lazy quantifier should work too/better and might be easier to read: \\[.*?]",
+      "range": {
+        "startLine": 55,
+        "startChar": 66,
+        "endLine": 55,
+        "endChar": 82
+      },
+      "revId": "7f110a21c04c0eea6aff09bd186bf05284eeb850",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4d3310ad_0ea2a4bc",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-09-02T13:51:42Z",
+      "side": 1,
+      "message": "can you add test(s) to yangUtilsSpec that would have failed before the fix and wil pass with the fix please?\n\nalso try test test with a path like this: /abd[@key\u003d\u0027with [square brackets]\u0027\n I suspect that will be another failing test case which wil require a doable but more complex and less performing regex :-(\nbut then we can decide to publish taht as  a limitation (will anybody ever need [ in their key fields?! we can also wait until teh need arises as a bug, I think it will be very unlikely)",
+      "range": {
+        "startLine": 151,
+        "startChar": 0,
+        "endLine": 154,
+        "endChar": 54
+      },
+      "revId": "7f110a21c04c0eea6aff09bd186bf05284eeb850",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
