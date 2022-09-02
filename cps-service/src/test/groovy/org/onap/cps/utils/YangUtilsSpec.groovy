@@ -115,4 +115,17 @@ class YangUtilsSpec extends Specification {
             noExceptionThrown()
     }
 
+    def 'Parsing xPath to nodeId for #scenario.'() {
+        when: 'xPath is parsed'
+            def result = YangUtils.xpathToNodeIdSequence(xPath)
+        then: 'result represents an array of expected identifiers'
+            assert result == expectedNodeIdentifier
+        where: 'the following parameters are used'
+            scenario                                       | xPath                                                               | expectedNodeIdentifier
+            'container xpath'                              | '/test-tree'                                                        | ['test-tree']
+            'xpath contains list attribute'                | '/test-tree/branch[@name=\'Branch\']'                               | ['test-tree','branch']
+            'xpath contains list attributes with /'        | '/test-tree/branch[@name=\'/Branch\']/categories[@id=\'/broken\']'  | ['test-tree','branch','categories']
+            'xpath contains list attributes with / and []' | '/test-tree/branch[@name=\'Branch\']/categories[@id=\'/bro[ke]n\']' | ['test-tree','branch','categories']
+    }
+
 }
