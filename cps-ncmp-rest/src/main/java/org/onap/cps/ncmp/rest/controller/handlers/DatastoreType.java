@@ -25,6 +25,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import lombok.Getter;
+import org.onap.cps.ncmp.rest.exceptions.InvalidDatastoreException;
 
 @Getter
 public enum DatastoreType {
@@ -45,8 +46,21 @@ public enum DatastoreType {
                 type -> datastoreNameToDatastoreType.put(type.getDatastoreName(), type));
     }
 
+    /**
+     * From datastore name get datastore type.
+     *
+     * @param datastoreName the datastore name
+     * @return the datastore type
+     */
     public static DatastoreType fromDatastoreName(final String datastoreName) {
-        return datastoreNameToDatastoreType.get(datastoreName);
+
+        final DatastoreType datastoreType = datastoreNameToDatastoreType.get(datastoreName);
+
+        if (null == datastoreType) {
+            throw new InvalidDatastoreException(datastoreName + " is an invalid datastore name");
+        }
+
+        return datastoreType;
     }
 
 }

@@ -51,6 +51,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
+import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder
 import spock.lang.Shared
 import spock.lang.Specification
 
@@ -242,7 +243,6 @@ class NetworkCmProxyControllerSpec extends Specification {
         given: 'resource data url'
             def url = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:passthrough-running" +
                 "?resourceIdentifier=parent/child"
-            def requestBody = '{"some-key":"some-value"}'
         when: 'create resource request is performed'
             def response = mvc.perform(
                 post(url)
@@ -476,38 +476,63 @@ class NetworkCmProxyControllerSpec extends Specification {
             'disabled' | false
     }
 
-    def 'Get Resource Data from operational without descendants.'() {
-        given: 'resource data url'
+    def 'Get Resource Data from operational with or without descendants'() {
+        given: 'resource data url with descendants #enabled'
             def getUrl = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:operational" +
-                "?resourceIdentifier=parent/child&include-descendants=false"
+                "?resourceIdentifier=parent/child&include-descendants=${enabled}"
         when: 'get data resource request is performed'
             def response = mvc.perform(
                 get(getUrl)
                     .contentType(MediaType.APPLICATION_JSON)
             ).andReturn().response
-        then: 'the NCMP data service is called with getResourceDataOperational'
+        then: 'the NCMP data service is called with getResourceDataOperational with #descendantsOption'
             1 * mockNetworkCmProxyDataService.getResourceDataOperational('testCmHandle',
                 'parent/child',
-                FetchDescendantsOption.OMIT_DESCENDANTS)
+                descendantsOption)
         and: 'response status is Ok'
             response.status == HttpStatus.OK.value()
+        where: 'the following parameters are used'
+            enabled | descendantsOption
+            false   | FetchDescendantsOption.OMIT_DESCENDANTS
+            true    | FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
     }
 
-    def 'Get Resource Data from operational including descendants.'() {
+    def 'Attempt execute #operation rest operation on resource data with #scenario'() {
         given: 'resource data url'
-            def getUrl = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:operational" +
-                "?resourceIdentifier=parent/child&include-descendants=true"
-        when: 'get data resource request is performed'
+            def url = "$ncmpBasePathV1/ch/testCmHandle/data/ds/${datastoreInUrl}?resourceIdentifier=parent/child"
+        when: 'selected request for data resource is performed on url'
             def response = mvc.perform(
-                get(getUrl)
-                    .contentType(MediaType.APPLICATION_JSON)
-            ).andReturn().response
-        then: 'the NCMP data service is called with getResourceDataOperational'
-            1 * mockNetworkCmProxyDataService.getResourceDataOperational('testCmHandle',
-                'parent/child',
-                FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
-        and: 'response status is Ok'
-            response.status == HttpStatus.OK.value()
+                executeRestOperation(operation, url))
+                .andReturn().response
+        then: 'the response status is as expected'
+            assert response.status == HttpStatus.BAD_REQUEST.value()
+        and: 'the response is as expected'
+            assert response.getContentAsString().contains(datastoreInUrl)
+        where: 'the following parameters are used'
+            scenario                | operation | datastoreInUrl
+            'unsupported datastore' | 'POST'    | 'ncmp-datastore:operational'
+            'invalid datastore'     | 'POST'    | 'invalid'
+            'unsupported datastore' | 'PUT'     | 'ncmp-datastore:operational'
+            'invalid datastore'     | 'PUT'     | 'invalid'
+            'unsupported datastore' | 'PATCH'   | 'ncmp-datastore:operational'
+            'invalid datastore'     | 'PATCH'   | 'invalid'
+            'unsupported datastore' | 'DELETE'  | 'ncmp-datastore:operational'
+            'invalid datastore'     | 'DELETE'  | 'invalid'
+    }
+
+    def executeRestOperation(operation, url) {
+        if (operation == 'POST') {
+            return post(url).contentType(MediaType.APPLICATION_JSON_VALUE).content(requestBody)
+        }
+        if (operation == 'PUT') {
+            return put(url).contentType(MediaType.APPLICATION_JSON_VALUE).content(requestBody)
+        }
+        if (operation == 'PATCH') {
+            return patch(url).contentType(MediaType.APPLICATION_JSON_VALUE).content(requestBody)
+        }
+        if (operation == 'DELETE') {
+            return delete(url).contentType(MediaType.APPLICATION_JSON_VALUE)
+        }
     }
 
     def dataStores() {

@@ -41,6 +41,7 @@ import org.onap.cps.ncmp.rest.api.NetworkCmProxyApi;
 import org.onap.cps.ncmp.rest.controller.handlers.DatastoreType;
 import org.onap.cps.ncmp.rest.controller.handlers.NcmpDatastoreResourceRequestHandler;
 import org.onap.cps.ncmp.rest.controller.handlers.NcmpDatastoreResourceRequestHandlerFactory;
+import org.onap.cps.ncmp.rest.exceptions.InvalidDatastoreException;
 import org.onap.cps.ncmp.rest.mapper.CmHandleStateMapper;
 import org.onap.cps.ncmp.rest.model.CmHandlePublicProperties;
 import org.onap.cps.ncmp.rest.model.CmHandleQueryParameters;
@@ -98,11 +99,26 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
                 optionsParamInQuery, topicParamInQuery, includeDescendants);
     }
 
+    /**
+     * Patch resource data from passthrough-running.
+     *
+     * @param resourceIdentifier resource identifier
+     * @param datastoreName      name of the datastore
+     * @param cmHandle           cm handle identifier
+     * @param requestBody        the request body
+     * @param contentType        content type of body
+     * @return {@code ResponseEntity} response from dmi plugin
+     */
+
     @Override
     public ResponseEntity<Object> patchResourceDataRunningForCmHandle(final String resourceIdentifier,
+                                                                      final String datastoreName,
                                                                       final String cmHandle,
                                                                       final Object requestBody,
                                                                       final String contentType) {
+
+        acceptPassthroughRunningOnly(datastoreName);
+
         final Object responseObject = networkCmProxyDataService
                 .writeResourceDataPassThroughRunningForCmHandle(
                         cmHandle, resourceIdentifier, PATCH,
@@ -114,6 +130,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
      * Create resource data in datastore pass-through running for given cm-handle.
      *
      * @param resourceIdentifier resource identifier
+     * @param datastoreName      name of the datastore
      * @param cmHandle           cm handle identifier
      * @param requestBody        the request body
      * @param contentType        content type of body
@@ -121,9 +138,13 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
      */
     @Override
     public ResponseEntity<Void> createResourceDataRunningForCmHandle(final String resourceIdentifier,
+                                                                     final String datastoreName,
                                                                      final String cmHandle,
                                                                      final Object requestBody,
                                                                      final String contentType) {
+
+        acceptPassthroughRunningOnly(datastoreName);
+
         networkCmProxyDataService.writeResourceDataPassThroughRunningForCmHandle(cmHandle,
                 resourceIdentifier, CREATE, jsonObjectMapper.asJsonString(requestBody), contentType);
         return new ResponseEntity<>(HttpStatus.CREATED);
@@ -133,34 +154,43 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
      * Update resource data in datastore pass-through running for given cm-handle.
      *
      * @param resourceIdentifier resource identifier
+     * @param datastoreName      name of the datastore
      * @param cmHandle           cm handle identifier
      * @param requestBody        the request body
      * @param contentType        content type of the body
      * @return response entity
      */
+
     @Override
     public ResponseEntity<Object> updateResourceDataRunningForCmHandle(final String resourceIdentifier,
+                                                                       final String datastoreName,
                                                                        final String cmHandle,
                                                                        final Object requestBody,
                                                                        final String contentType) {
+        acceptPassthroughRunningOnly(datastoreName);
+
         networkCmProxyDataService.writeResourceDataPassThroughRunningForCmHandle(cmHandle,
                 resourceIdentifier, UPDATE, jsonObjectMapper.asJsonString(requestBody), contentType);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-
     /**
      * Delete resource data in datastore pass-through running for a given cm-handle.
      *
-     * @param resourceIdentifier resource identifier
+     * @param datastoreName      name of the datastore
      * @param cmHandle           cm handle identifier
+     * @param resourceIdentifier resource identifier
      * @param contentType        content type of the body
      * @return response entity no content if request is successful
      */
     @Override
-    public ResponseEntity<Void> deleteResourceDataRunningForCmHandle(final String cmHandle,
+    public ResponseEntity<Void> deleteResourceDataRunningForCmHandle(final String datastoreName,
+                                                                     final String cmHandle,
                                                                      final String resourceIdentifier,
                                                                      final String contentType) {
+
+        acceptPassthroughRunningOnly(datastoreName);
+
         networkCmProxyDataService.writeResourceDataPassThroughRunningForCmHandle(cmHandle,
                 resourceIdentifier, DELETE, NO_BODY, contentType);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -290,6 +320,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+
     private RestOutputCmHandle toRestOutputCmHandle(final NcmpServiceCmHandle ncmpServiceCmHandle) {
         final RestOutputCmHandle restOutputCmHandle = new RestOutputCmHandle();
         final CmHandlePublicProperties cmHandlePublicProperties = new CmHandlePublicProperties();
@@ -301,6 +332,12 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         return restOutputCmHandle;
     }
 
+    private void acceptPassthroughRunningOnly(final String datastoreName) {
+        final DatastoreType datastoreType = DatastoreType.fromDatastoreName(datastoreName);
 
+        if (DatastoreType.PASSTHROUGH_RUNNING != datastoreType) {
+            throw new InvalidDatastoreException(datastoreName + " is not supported");
+        }
+    }
 }
 
