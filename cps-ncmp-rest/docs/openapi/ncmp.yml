@@ -18,7 +18,7 @@
 #  SPDX-License-Identifier: Apache-2.0
 #  ============LICENSE_END=========================================================
 
-getResourceDataForCmHandle:
+resourceDataForCmHandle:
   get:
     tags:
       - network-cm-proxy
@@ -53,7 +53,6 @@ getResourceDataForCmHandle:
       502:
         $ref: 'components.yaml#/components/responses/BadGateway'
 
-resourceDataForPassthroughRunning:
   post:
     tags:
       - network-cm-proxy
@@ -61,6 +60,7 @@ resourceDataForPassthroughRunning:
     description: create resource data from pass-through running for given cm handle
     operationId: createResourceDataRunningForCmHandle
     parameters:
+      - $ref: 'components.yaml#/components/parameters/datastoreName'
       - $ref: 'components.yaml#/components/parameters/cmHandleInPath'
       - $ref: 'components.yaml#/components/parameters/resourceIdentifierInQuery'
       - $ref: 'components.yaml#/components/parameters/contentParamInHeader'
@@ -100,6 +100,7 @@ resourceDataForPassthroughRunning:
     description: Update resource data from pass-through running for the given cm handle
     operationId: updateResourceDataRunningForCmHandle
     parameters:
+      - $ref: 'components.yaml#/components/parameters/datastoreName'
       - $ref: 'components.yaml#/components/parameters/cmHandleInPath'
       - $ref: 'components.yaml#/components/parameters/resourceIdentifierInQuery'
       - $ref: 'components.yaml#/components/parameters/contentParamInHeader'
@@ -139,6 +140,7 @@ resourceDataForPassthroughRunning:
     description: Patch resource data from pass-through running for the given cm handle
     operationId: patchResourceDataRunningForCmHandle
     parameters:
+      - $ref: 'components.yaml#/components/parameters/datastoreName'
       - $ref: 'components.yaml#/components/parameters/cmHandleInPath'
       - $ref: 'components.yaml#/components/parameters/resourceIdentifierInQuery'
       - $ref: 'components.yaml#/components/parameters/contentParamInHeader'
@@ -172,6 +174,7 @@ resourceDataForPassthroughRunning:
     description: Delete resource data from pass-through running for a given cm handle
     operationId: deleteResourceDataRunningForCmHandle
     parameters:
+      - $ref: 'components.yaml#/components/parameters/datastoreName'
       - $ref: 'components.yaml#/components/parameters/cmHandleInPath'
       - $ref: 'components.yaml#/components/parameters/resourceIdentifierInQuery'
       - $ref: 'components.yaml#/components/parameters/contentParamInHeader'

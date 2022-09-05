@@ -57,13 +57,13 @@ public class NetworkCmProxyStubController implements NetworkCmProxyApi {
     private String pathToResponseFiles;
 
     @Override
-    public ResponseEntity<Object> getResourceDataForCmHandle(final String dataStoreType,
+    public ResponseEntity<Object> getResourceDataForCmHandle(final String dataStoreName,
                                                              final String cmHandle,
                                                              final String resourceIdentifier,
                                                              final String optionsParamInQuery,
                                                              final String topicParamInQuery,
                                                              final Boolean includeDescendants) {
-        if (DatastoreType.PASSTHROUGH_OPERATIONAL == DatastoreType.fromDatastoreName(dataStoreType)) {
+        if (DatastoreType.PASSTHROUGH_OPERATIONAL == DatastoreType.fromDatastoreName(dataStoreName)) {
             final ResponseEntity<Map<String, Object>> asyncResponse = populateAsyncResponse(topicParamInQuery);
             final Map<String, Object> asyncResponseData = asyncResponse.getBody();
             Object responseObject = null;
@@ -87,7 +87,8 @@ public class NetworkCmProxyStubController implements NetworkCmProxyApi {
     }
 
     @Override
-    public ResponseEntity<Void> createResourceDataRunningForCmHandle(final String resourceIdentifier,
+    public ResponseEntity<Void> createResourceDataRunningForCmHandle(final String datastoreName,
+                                                                     final String resourceIdentifier,
                                                                      final String cmHandleId,
                                                                      final Object body,
                                                                      final String contentType) {
@@ -95,7 +96,8 @@ public class NetworkCmProxyStubController implements NetworkCmProxyApi {
     }
 
     @Override
-    public ResponseEntity<Void> deleteResourceDataRunningForCmHandle(final String cmHandleId,
+    public ResponseEntity<Void> deleteResourceDataRunningForCmHandle(final String datastoreName,
+                                                                     final String cmHandleId,
                                                                      final String resourceIdentifier,
                                                                      final String contentType) {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -152,7 +154,8 @@ public class NetworkCmProxyStubController implements NetworkCmProxyApi {
     }
 
     @Override
-    public ResponseEntity<Object> patchResourceDataRunningForCmHandle(final String resourceIdentifier,
+    public ResponseEntity<Object> patchResourceDataRunningForCmHandle(final String datastoreName,
+                                                                      final String resourceIdentifier,
                                                                       final String cmHandleId,
                                                                       final Object body,
                                                                       final String contentType) {
@@ -165,7 +168,8 @@ public class NetworkCmProxyStubController implements NetworkCmProxyApi {
     }
 
     @Override
-    public ResponseEntity<Object> updateResourceDataRunningForCmHandle(final String resourceIdentifier,
+    public ResponseEntity<Object> updateResourceDataRunningForCmHandle(final String datastoreName,
+                                                                       final String resourceIdentifier,
                                                                        final String cmHandleId,
                                                                        final Object body,
                                                                        final String contentType) {
