@@ -4,73 +4,87 @@ info:
   description: NCMP to CPS Proxy API
   version: "1.0"
 servers:
-- url: /ncmp
+  - url: /ncmp
 paths:
-  /v1/ch/{cm-handle}/data/ds/ncmp-datastore:passthrough-operational:
+  /v1/ch/{cm-handle}/data/ds/{ncmp-datastore-name}:
     get:
       tags:
-      - network-cm-proxy
-      summary: Get resource data from pass-through operational for cm handle
-      description: Get resource data from pass-through operational for given cm handle
-      operationId: getResourceDataOperationalForCmHandle
+        - network-cm-proxy
+      summary: Get resource data for cm handle
+      description: Get resource data for given cm handle
+      operationId: getResourceDataForCmHandle
       parameters:
-      - name: cm-handle
-        in: path
-        description: "The identifier for a network function, network element, subnetwork\
+        - name: ncmp-datastore-name
+          in: path
+          description: The type of the requested data
+          required: true
+          schema:
+            type: string
+            example: ncmp-datastore:operational
+        - name: cm-handle
+          in: path
+          description: "The identifier for a network function, network element, subnetwork\
           \ or any other cm object by managed Network CM Proxy"
-        required: true
-        schema:
-          type: string
-          example: my-cm-handle
-      - name: resourceIdentifier
-        in: query
-        description: The format of resource identifier depend on the associated DMI
-          Plugin implementation. For ONAP DMI Plugin it will be RESTConf paths but
-          it can really be anything.
-        required: true
-        allowReserved: true
-        schema:
-          type: string
-        examples:
-          sample 1:
-            value:
-              resourceIdentifier: \shops\bookstore
-          sample 2:
-            value:
-              resourceIdentifier: "\\shops\\bookstore\\categories[@code=1]"
-          sample 3:
-            value:
-              resourceIdentifier: "parent=shops,child=bookstore"
-      - name: options
-        in: query
-        description: "options parameter in query, it is mandatory to wrap key(s)=value(s)\
+          required: true
+          schema:
+            type: string
+            example: my-cm-handle
+        - name: resourceIdentifier
+          in: query
+          description: The format of resource identifier depend on the associated DMI
+            Plugin implementation. For ONAP DMI Plugin it will be RESTConf paths but
+            it can really be anything.
+          required: true
+          allowReserved: true
+          schema:
+            type: string
+          examples:
+            sample 1:
+              value:
+                resourceIdentifier: \shops\bookstore
+            sample 2:
+              value:
+                resourceIdentifier: "\\shops\\bookstore\\categories[@code=1]"
+            sample 3:
+              value:
+                resourceIdentifier: "parent=shops,child=bookstore"
+        - name: options
+          in: query
+          description: "options parameter in query, it is mandatory to wrap key(s)=value(s)\
           \ in parenthesis'()'. The format of options parameter depend on the associated\
           \ DMI Plugin implementation."
-        required: false
-        allowReserved: true
-        schema:
-          type: string
-        examples:
-          sample 1:
-            value:
-              options: (depth=3)
-          sample 2:
-            value:
-              options: (fields=book)
-          sample 3:
-            value:
-              options: "(depth=2,fields=book/authors)"
-      - name: topic
-        in: query
-        description: topic parameter in query.
-        required: false
-        allowReserved: true
-        schema:
-          type: string
-        examples:
-          sample 1:
-            value:
-              topic: my-topic-name
+          required: false
+          allowReserved: true
+          schema:
+            type: string
+          examples:
+            sample 1:
+              value:
+                options: (depth=3)
+            sample 2:
+              value:
+                options: (fields=book)
+            sample 3:
+              value:
+                options: "(depth=2,fields=book/authors)"
+        - name: topic
+          in: query
+          description: topic parameter in query.
+          required: false
+          allowReserved: true
+          schema:
+            type: string
+          examples:
+            sample 1:
+              value:
+                topic: my-topic-name
+        - name: include-descendants
+          in: query
+          description: Determines if descendants are included in response
+          required: false
+          schema:
+            type: boolean
+            default: false
       responses:
         "200":
           description: OK
@@ -128,181 +142,55 @@ paths:
               schema:
                 $ref: '#/components/schemas/DmiErrorMessage'
               example:
-                message: "Bad Gateway Error Message NCMP"
+                message: Bad Gateway Error Message NCMP
                 dmi-response:
                   http-code: 400
                   body: Bad Request
-
   /v1/ch/{cm-handle}/data/ds/ncmp-datastore:passthrough-running:
-    get:
-      tags:
-      - network-cm-proxy
-      summary: Get resource data from pass-through running for cm handle
-      description: Get resource data from pass-through running for given cm handle
-      operationId: getResourceDataRunningForCmHandle
-      parameters:
-      - name: cm-handle
-        in: path
-        description: "The identifier for a network function, network element, subnetwork\
-          \ or any other cm object by managed Network CM Proxy"
-        required: true
-        schema:
-          type: string
-          example: my-cm-handle
-      - name: resourceIdentifier
-        in: query
-        description: The format of resource identifier depend on the associated DMI
-          Plugin implementation. For ONAP DMI Plugin it will be RESTConf paths but
-          it can really be anything.
-        required: true
-        allowReserved: true
-        schema:
-          type: string
-        examples:
-          sample 1:
-            value:
-              resourceIdentifier: \shops\bookstore
-          sample 2:
-            value:
-              resourceIdentifier: "\\shops\\bookstore\\categories[@code=1]"
-          sample 3:
-            value:
-              resourceIdentifier: "parent=shops,child=bookstore"
-      - name: options
-        in: query
-        description: "options parameter in query, it is mandatory to wrap key(s)=value(s)\
-          \ in parenthesis'()'. The format of options parameter depend on the associated\
-          \ DMI Plugin implementation."
-        required: false
-        allowReserved: true
-        schema:
-          type: string
-        examples:
-          sample 1:
-            value:
-              options: (depth=3)
-          sample 2:
-            value:
-              options: (fields=book)
-          sample 3:
-            value:
-              options: "(depth=2,fields=book/authors)"
-      - name: topic
-        in: query
-        description: topic parameter in query.
-        required: false
-        allowReserved: true
-        schema:
-          type: string
-        examples:
-          sample 1:
-            value:
-              topic: my-topic-name
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-              examples:
-                dataSampleResponse:
-                  $ref: '#/components/examples/dataSampleResponse'
-        "400":
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-              example:
-                status: 400 BAD_REQUEST
-                message: Bad request error message
-                details: Bad request error details
-        "401":
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-              example:
-                status: 401
-                message: Unauthorized error message
-                details: Unauthorized error details
-        "403":
-          description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-              example:
-                status: 403
-                message: Forbidden error message
-                details: Forbidden error details
-        "500":
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-              example:
-                status: 500
-                message: Internal Server Error
-                details: Internal Server Error occurred
-        "502":
-          description: Bad Gateway
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DmiErrorMessage'
-              example:
-                message: "Bad Gateway Error Message NCMP"
-                dmi-response:
-                  http-code: 400
-                  body: Bad Request
     put:
       tags:
-      - network-cm-proxy
+        - network-cm-proxy
       summary: Update resource data from pass-through running for a cm handle
       description: Update resource data from pass-through running for the given cm
         handle
       operationId: updateResourceDataRunningForCmHandle
       parameters:
-      - name: cm-handle
-        in: path
-        description: "The identifier for a network function, network element, subnetwork\
+        - name: cm-handle
+          in: path
+          description: "The identifier for a network function, network element, subnetwork\
           \ or any other cm object by managed Network CM Proxy"
-        required: true
-        schema:
-          type: string
-          example: my-cm-handle
-      - name: resourceIdentifier
-        in: query
-        description: The format of resource identifier depend on the associated DMI
-          Plugin implementation. For ONAP DMI Plugin it will be RESTConf paths but
-          it can really be anything.
-        required: true
-        allowReserved: true
-        schema:
-          type: string
-        examples:
-          sample 1:
-            value:
-              resourceIdentifier: \shops\bookstore
-          sample 2:
-            value:
-              resourceIdentifier: "\\shops\\bookstore\\categories[@code=1]"
-          sample 3:
-            value:
-              resourceIdentifier: "parent=shops,child=bookstore"
-      - name: Content-Type
-        in: header
-        description: "Content parameter for request, if content parameter is null,\
+          required: true
+          schema:
+            type: string
+            example: my-cm-handle
+        - name: resourceIdentifier
+          in: query
+          description: The format of resource identifier depend on the associated DMI
+            Plugin implementation. For ONAP DMI Plugin it will be RESTConf paths but
+            it can really be anything.
+          required: true
+          allowReserved: true
+          schema:
+            type: string
+          examples:
+            sample 1:
+              value:
+                resourceIdentifier: \shops\bookstore
+            sample 2:
+              value:
+                resourceIdentifier: "\\shops\\bookstore\\categories[@code=1]"
+            sample 3:
+              value:
+                resourceIdentifier: "parent=shops,child=bookstore"
+        - name: Content-Type
+          in: header
+          description: "Content parameter for request, if content parameter is null,\
           \ default value is application/json."
-        required: false
-        schema:
-          type: string
-          example: application/yang-data+json
-          default: application/json
+          required: false
+          schema:
+            type: string
+            example: application/yang-data+json
+            default: application/json
       requestBody:
         content:
           application/json:
@@ -372,53 +260,53 @@ paths:
               schema:
                 $ref: '#/components/schemas/DmiErrorMessage'
               example:
-                message: "Bad Gateway Error Message NCMP"
+                message: Bad Gateway Error Message NCMP
                 dmi-response:
                   http-code: 400
                   body: Bad Request
     post:
       tags:
-      - network-cm-proxy
+        - network-cm-proxy
       summary: create resource data from pass-through running for cm handle
       description: create resource data from pass-through running for given cm handle
       operationId: createResourceDataRunningForCmHandle
       parameters:
-      - name: cm-handle
-        in: path
-        description: "The identifier for a network function, network element, subnetwork\
+        - name: cm-handle
+          in: path
+          description: "The identifier for a network function, network element, subnetwork\
           \ or any other cm object by managed Network CM Proxy"
-        required: true
-        schema:
-          type: string
-          example: my-cm-handle
-      - name: resourceIdentifier
-        in: query
-        description: The format of resource identifier depend on the associated DMI
-          Plugin implementation. For ONAP DMI Plugin it will be RESTConf paths but
-          it can really be anything.
-        required: true
-        allowReserved: true
-        schema:
-          type: string
-        examples:
-          sample 1:
-            value:
-              resourceIdentifier: \shops\bookstore
-          sample 2:
-            value:
-              resourceIdentifier: "\\shops\\bookstore\\categories[@code=1]"
-          sample 3:
-            value:
-              resourceIdentifier: "parent=shops,child=bookstore"
-      - name: Content-Type
-        in: header
-        description: "Content parameter for request, if content parameter is null,\
+          required: true
+          schema:
+            type: string
+            example: my-cm-handle
+        - name: resourceIdentifier
+          in: query
+          description: The format of resource identifier depend on the associated DMI
+            Plugin implementation. For ONAP DMI Plugin it will be RESTConf paths but
+            it can really be anything.
+          required: true
+          allowReserved: true
+          schema:
+            type: string
+          examples:
+            sample 1:
+              value:
+                resourceIdentifier: \shops\bookstore
+            sample 2:
+              value:
+                resourceIdentifier: "\\shops\\bookstore\\categories[@code=1]"
+            sample 3:
+              value:
+                resourceIdentifier: "parent=shops,child=bookstore"
+        - name: Content-Type
+          in: header
+          description: "Content parameter for request, if content parameter is null,\
           \ default value is application/json."
-        required: false
-        schema:
-          type: string
-          example: application/yang-data+json
-          default: application/json
+          required: false
+          schema:
+            type: string
+            example: application/yang-data+json
+            default: application/json
       requestBody:
         content:
           application/json:
@@ -485,53 +373,53 @@ paths:
               schema:
                 $ref: '#/components/schemas/DmiErrorMessage'
               example:
-                message: "Bad Gateway Error Message NCMP"
+                message: Bad Gateway Error Message NCMP
                 dmi-response:
                   http-code: 400
                   body: Bad Request
     delete:
       tags:
-      - network-cm-proxy
+        - network-cm-proxy
       summary: Delete resource data
       description: Delete resource data from pass-through running for a given cm handle
       operationId: deleteResourceDataRunningForCmHandle
       parameters:
-      - name: cm-handle
-        in: path
-        description: "The identifier for a network function, network element, subnetwork\
+        - name: cm-handle
+          in: path
+          description: "The identifier for a network function, network element, subnetwork\
           \ or any other cm object by managed Network CM Proxy"
-        required: true
-        schema:
-          type: string
-          example: my-cm-handle
-      - name: resourceIdentifier
-        in: query
-        description: The format of resource identifier depend on the associated DMI
-          Plugin implementation. For ONAP DMI Plugin it will be RESTConf paths but
-          it can really be anything.
-        required: true
-        allowReserved: true
-        schema:
-          type: string
-        examples:
-          sample 1:
-            value:
-              resourceIdentifier: \shops\bookstore
-          sample 2:
-            value:
-              resourceIdentifier: "\\shops\\bookstore\\categories[@code=1]"
-          sample 3:
-            value:
-              resourceIdentifier: "parent=shops,child=bookstore"
-      - name: Content-Type
-        in: header
-        description: "Content parameter for request, if content parameter is null,\
+          required: true
+          schema:
+            type: string
+            example: my-cm-handle
+        - name: resourceIdentifier
+          in: query
+          description: The format of resource identifier depend on the associated DMI
+            Plugin implementation. For ONAP DMI Plugin it will be RESTConf paths but
+            it can really be anything.
+          required: true
+          allowReserved: true
+          schema:
+            type: string
+          examples:
+            sample 1:
+              value:
+                resourceIdentifier: \shops\bookstore
+            sample 2:
+              value:
+                resourceIdentifier: "\\shops\\bookstore\\categories[@code=1]"
+            sample 3:
+              value:
+                resourceIdentifier: "parent=shops,child=bookstore"
+        - name: Content-Type
+          in: header
+          description: "Content parameter for request, if content parameter is null,\
           \ default value is application/json."
-        required: false
-        schema:
-          type: string
-          example: application/yang-data+json
-          default: application/json
+          required: false
+          schema:
+            type: string
+            example: application/yang-data+json
+            default: application/json
       responses:
         "204":
           description: No Content
@@ -593,54 +481,54 @@ paths:
               schema:
                 $ref: '#/components/schemas/DmiErrorMessage'
               example:
-                message: "Bad Gateway Error Message NCMP"
+                message: Bad Gateway Error Message NCMP
                 dmi-response:
                   http-code: 400
                   body: Bad Request
     patch:
       tags:
-      - network-cm-proxy
+        - network-cm-proxy
       summary: Patch resource data from pass-through running
       description: Patch resource data from pass-through running for the given cm
         handle
       operationId: patchResourceDataRunningForCmHandle
       parameters:
-      - name: cm-handle
-        in: path
-        description: "The identifier for a network function, network element, subnetwork\
+        - name: cm-handle
+          in: path
+          description: "The identifier for a network function, network element, subnetwork\
           \ or any other cm object by managed Network CM Proxy"
-        required: true
-        schema:
-          type: string
-          example: my-cm-handle
-      - name: resourceIdentifier
-        in: query
-        description: The format of resource identifier depend on the associated DMI
-          Plugin implementation. For ONAP DMI Plugin it will be RESTConf paths but
-          it can really be anything.
-        required: true
-        allowReserved: true
-        schema:
-          type: string
-        examples:
-          sample 1:
-            value:
-              resourceIdentifier: \shops\bookstore
-          sample 2:
-            value:
-              resourceIdentifier: "\\shops\\bookstore\\categories[@code=1]"
-          sample 3:
-            value:
-              resourceIdentifier: "parent=shops,child=bookstore"
-      - name: Content-Type
-        in: header
-        description: "Content parameter for request, if content parameter is null,\
+          required: true
+          schema:
+            type: string
+            example: my-cm-handle
+        - name: resourceIdentifier
+          in: query
+          description: The format of resource identifier depend on the associated DMI
+            Plugin implementation. For ONAP DMI Plugin it will be RESTConf paths but
+            it can really be anything.
+          required: true
+          allowReserved: true
+          schema:
+            type: string
+          examples:
+            sample 1:
+              value:
+                resourceIdentifier: \shops\bookstore
+            sample 2:
+              value:
+                resourceIdentifier: "\\shops\\bookstore\\categories[@code=1]"
+            sample 3:
+              value:
+                resourceIdentifier: "parent=shops,child=bookstore"
+        - name: Content-Type
+          in: header
+          description: "Content parameter for request, if content parameter is null,\
           \ default value is application/json."
-        required: false
-        schema:
-          type: string
-          example: application/yang-data+json
-          default: application/json
+          required: false
+          schema:
+            type: string
+            example: application/yang-data+json
+            default: application/json
       requestBody:
         content:
           '*/*':
@@ -704,27 +592,27 @@ paths:
               schema:
                 $ref: '#/components/schemas/DmiErrorMessage'
               example:
-                message: "Bad Gateway Error Message NCMP"
+                message: Bad Gateway Error Message NCMP
                 dmi-response:
                   http-code: 400
                   body: Bad Request
   /v1/ch/{cm-handle}/modules:
     get:
       tags:
-      - network-cm-proxy
+        - network-cm-proxy
       summary: Fetch all module references (name and revision) for a given cm handle
       description: fetch all module references (name and revision) for a given cm
         handle
       operationId: getModuleReferencesByCmHandle
       parameters:
-      - name: cm-handle
-        in: path
-        description: "The identifier for a network function, network element, subnetwork\
+        - name: cm-handle
+          in: path
+          description: "The identifier for a network function, network element, subnetwork\
           \ or any other cm object by managed Network CM Proxy"
-        required: true
-        schema:
-          type: string
-          example: my-cm-handle
+          required: true
+          schema:
+            type: string
+            example: my-cm-handle
       responses:
         "200":
           description: OK
@@ -774,19 +662,95 @@ paths:
                 status: 500
                 message: Internal Server Error
                 details: Internal Server Error occurred
+  /v1/ch/{cm-handle}/modules/definitions:
+    get:
+      tags:
+        - network-cm-proxy
+      summary: "Fetch all module definitions (name, revision, yang resource) for a\
+        \ given cm handle"
+      description: "Fetch all module definitions (name, revision, yang resource) for\
+        \ a given cm handle"
+      operationId: getModuleDefinitionsByCmHandleId
+      parameters:
+        - name: cm-handle
+          in: path
+          description: "The identifier for a network function, network element, subnetwork\
+          \ or any other cm object by managed Network CM Proxy"
+          required: true
+          schema:
+            type: string
+            example: my-cm-handle
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RestModuleDefinition'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 401
+                message: Unauthorized error message
+                details: Unauthorized error details
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 403
+                message: Forbidden error message
+                details: Forbidden error details
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 500
+                message: Internal Server Error
+                details: Internal Server Error occurred
   /v1/ch/searches:
     post:
       tags:
-      - network-cm-proxy
+        - network-cm-proxy
       summary: Execute cm handle search using the available conditions
-      description: Execute cm handle searches using 'hasAllModules' condition to get
-        all cm handles for the given module names
-      operationId: executeCmHandleSearch
+      description: Execute cm handle query search and return a list of cm handle details.
+        Any number of conditions can be applied. To be included in the result a cm-handle
+        must fulfill ALL the conditions. An empty collection will be returned in the
+        case that the cm handle does not match a condition. For more on cm handle
+        query search please refer to <a href="https://docs.onap.org/projects/onap-cps/en/latest/ncmp-cmhandle-querying.html">cm
+        handle query search Read the Docs</a>.<br/>By supplying a CPS Path it is possible
+        to query on any data related to the cm handle. For more on CPS Path please
+        refer to <a href="https://docs.onap.org/projects/onap-cps/en/latest/cps-path.html">CPS
+        Path Read the Docs</a>. The cm handle ancestor is automatically returned for
+        this query.
+      operationId: searchCmHandles
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Conditions'
+              $ref: '#/components/schemas/CmHandleQueryParameters'
+            examples:
+              Cm handle properties query:
+                $ref: '#/components/examples/pubPropCmHandleQueryParameters'
+              Cm handle modules query:
+                $ref: '#/components/examples/modulesCmHandleQueryParameters'
+              All cm handle query parameters:
+                $ref: '#/components/examples/allCmHandleQueryParameters'
+              Cm handle with CPS path state query:
+                $ref: '#/components/examples/cpsPathCmHandleStateQueryParameters'
+              Cm handle with data sync flag query:
+                $ref: '#/components/examples/cpsPathCmHandleDataSyncQueryParameters'
         required: true
       responses:
         "200":
@@ -794,7 +758,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CmHandles'
+                type: array
+                items:
+                  $ref: '#/components/schemas/RestOutputCmHandle'
         "400":
           description: Bad Request
           content:
@@ -838,19 +804,19 @@ paths:
   /v1/ch/{cm-handle}:
     get:
       tags:
-      - network-cm-proxy
+        - network-cm-proxy
       summary: Retrieve CM handle details
       description: Retrieve CM handle details and properties by cm handle id
       operationId: retrieveCmHandleDetailsById
       parameters:
-      - name: cm-handle
-        in: path
-        description: "The identifier for a network function, network element, subnetwork\
+        - name: cm-handle
+          in: path
+          description: "The identifier for a network function, network element, subnetwork\
           \ or any other cm object by managed Network CM Proxy"
-        required: true
-        schema:
-          type: string
-          example: my-cm-handle
+          required: true
+          schema:
+            type: string
+            example: my-cm-handle
       responses:
         "200":
           description: OK
@@ -858,6 +824,151 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RestOutputCmHandle'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 400 BAD_REQUEST
+                message: Bad request error message
+                details: Bad request error details
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 401
+                message: Unauthorized error message
+                details: Unauthorized error details
+        "404":
+          description: The specified resource was not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 400
+                message: Not found error message
+                details: Not found error details
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 500
+                message: Internal Server Error
+                details: Internal Server Error occurred
+  /v1/ch/{cm-handle}/properties:
+    get:
+      tags:
+        - network-cm-proxy
+      summary: Get CM handle properties
+      description: Get CM handle properties by cm handle id
+      operationId: getCmHandlePublicPropertiesByCmHandleId
+      parameters:
+        - name: cm-handle
+          in: path
+          description: "The identifier for a network function, network element, subnetwork\
+          \ or any other cm object by managed Network CM Proxy"
+          required: true
+          schema:
+            type: string
+            example: my-cm-handle
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestOutputCmHandlePublicProperties'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 400 BAD_REQUEST
+                message: Bad request error message
+                details: Bad request error details
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 401
+                message: Unauthorized error message
+                details: Unauthorized error details
+        "404":
+          description: The specified resource was not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 400
+                message: Not found error message
+                details: Not found error details
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 500
+                message: Internal Server Error
+                details: Internal Server Error occurred
+  /v1/ch/id-searches:
+    post:
+      tags:
+        - network-cm-proxy
+      summary: Execute cm handle query upon a given set of query parameters
+      description: Execute cm handle query search and return a list of cm handle ids.
+        Any number of conditions can be applied. To be included in the result a cm-handle
+        must fulfill ALL the conditions. An empty collection will be returned in the
+        case that the cm handle does not match a condition. For more on cm handle
+        query search please refer to <a href="https://docs.onap.org/projects/onap-cps/en/latest/ncmp-cmhandle-querying.html">cm
+        handle query search Read the Docs</a>.<br/>By supplying a CPS Path it is possible
+        to query on any data related to the cm handle. For more on CPS Path please
+        refer to <a href="https://docs.onap.org/projects/onap-cps/en/latest/cps-path.html">CPS
+        Path Read the Docs</a>. The cm handle ancestor is automatically returned for
+        this query.
+      operationId: searchCmHandleIds
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CmHandleQueryParameters'
+            examples:
+              Cm handle properties query:
+                $ref: '#/components/examples/pubPropCmHandleQueryParameters'
+              Cm handle modules query:
+                $ref: '#/components/examples/modulesCmHandleQueryParameters'
+              All cm handle query parameters:
+                $ref: '#/components/examples/allCmHandleQueryParameters'
+              Cm handle with CPS path state query:
+                $ref: '#/components/examples/cpsPathCmHandleStateQueryParameters'
+              Cm handle with data sync flag query:
+                $ref: '#/components/examples/cpsPathCmHandleDataSyncQueryParameters'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
         "400":
           description: Bad Request
           content:
@@ -908,6 +1019,152 @@ paths:
                 status: 500
                 message: Internal Server Error
                 details: Internal Server Error occurred
+  /v1/ch/{cm-handle}/state:
+    get:
+      tags:
+        - network-cm-proxy
+      summary: Get CM handle state
+      description: Get CM handle state by cm handle id
+      operationId: getCmHandleStateByCmHandleId
+      parameters:
+        - name: cm-handle
+          in: path
+          description: "The identifier for a network function, network element, subnetwork\
+          \ or any other cm object by managed Network CM Proxy"
+          required: true
+          schema:
+            type: string
+            example: my-cm-handle
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestOutputCmHandleCompositeState'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 400 BAD_REQUEST
+                message: Bad request error message
+                details: Bad request error details
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 401
+                message: Unauthorized error message
+                details: Unauthorized error details
+        "404":
+          description: The specified resource was not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 400
+                message: Not found error message
+                details: Not found error details
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 500
+                message: Internal Server Error
+                details: Internal Server Error occurred
+  /v1/ch/{cm-handle}/data-sync:
+    put:
+      tags:
+        - network-cm-proxy
+      summary: Set the Data Sync Enabled Flag
+      description: Set the data sync enabled flag to true or false for a specified
+        Cm-Handle. This will in turn set the data sync state to UNSYNCHRONIZED and
+        NONE_REQUESTED respectfully.
+      operationId: setDataSyncEnabledFlagForCmHandle
+      parameters:
+        - name: cm-handle
+          in: path
+          description: "The identifier for a network function, network element, subnetwork\
+          \ or any other cm object by managed Network CM Proxy"
+          required: true
+          schema:
+            type: string
+            example: my-cm-handle
+        - name: dataSyncEnabled
+          in: query
+          description: Is used to enable or disable the data synchronization flag
+          required: true
+          schema:
+            type: boolean
+            example: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 400 BAD_REQUEST
+                message: Bad request error message
+                details: Bad request error details
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 401
+                message: Unauthorized error message
+                details: Unauthorized error details
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 403
+                message: Forbidden error message
+                details: Forbidden error details
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 500
+                message: Internal Server Error
+                details: Internal Server Error occurred
+        "502":
+          description: Bad Gateway
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DmiErrorMessage'
+              example:
+                message: Bad Gateway Error Message NCMP
+                dmi-response:
+                  http-code: 400
+                  body: Bad Request
 components:
   schemas:
     ErrorMessage:
@@ -920,23 +1177,15 @@ components:
           type: string
         details:
           type: string
-    # DMI Server Exception Schema
     DmiErrorMessage:
       title: DMI Error Message
       type: object
       properties:
         message:
           type: string
-          example: "Bad Gateway Error Message NCMP"
+          example: Bad Gateway Error Message NCMP
         dmi-response:
-          type: object
-          properties:
-            http-code:
-              type: integer
-              example: 400
-            body:
-              type: string
-              example: Bad Request
+          $ref: '#/components/schemas/DmiErrorMessage_dmiresponse'
     RestModuleReference:
       title: Module reference details
       type: object
@@ -947,45 +1196,59 @@ components:
         revision:
           type: string
           example: my-module-revision
-    Conditions:
+    RestModuleDefinition:
+      title: Module definitions
       type: object
       properties:
+        moduleName:
+          type: string
+          example: my-module-name
+        revision:
+          type: string
+          example: 2020-09-15T00:00:00.000+00:00
+        content:
+          type: string
+          example: "module stores {\n  yang-version 1.1;\n  namespace \"org:onap:ccsdk:sample\"\
+            ;\n  prefix book-store;\n  revision \"2020-09-15\" {\n    description\n\
+            \    \"Sample Model\";\n  }\n}\n"
+    CmHandleQueryParameters:
+      title: Cm Handle query parameters for executing cm handle search
+      type: object
+      properties:
+        cmHandleQueryParameters:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConditionProperties'
         conditions:
-          $ref: '#/components/schemas/ConditionsData'
-    ConditionsData:
-      type: array
-      items:
-        $ref: '#/components/schemas/ConditionProperties'
+          type: array
+          description: "not necessary, it is just for backward compatibility"
+          deprecated: true
+          items:
+            $ref: '#/components/schemas/OldConditionProperties'
     ConditionProperties:
+      properties:
+        conditionName:
+          type: string
+        conditionParameters:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: string
+    OldConditionProperties:
       properties:
         name:
           type: string
-          example: hasAllModules
         conditionParameters:
-          $ref: '#/components/schemas/ModuleNamesAsJsonArray'
-    ModuleNamesAsJsonArray:
-      type: array
-      items:
-        $ref: '#/components/schemas/ModuleNameAsJsonObject'
+          type: array
+          items:
+            $ref: '#/components/schemas/ModuleNameAsJsonObject'
+      deprecated: true
     ModuleNameAsJsonObject:
       properties:
         moduleName:
           type: string
           example: my-module
-    CmHandles:
-      type: object
-      properties:
-        cmHandles:
-          $ref: '#/components/schemas/CmHandleProperties'
-    CmHandleProperties:
-      type: array
-      items:
-        $ref: '#/components/schemas/CmHandleProperty'
-    CmHandleProperty:
-      properties:
-        cmHandleId:
-          type: string
-          example: my-cm-handle-id
     RestOutputCmHandle:
       title: CM handle Details
       type: object
@@ -995,6 +1258,8 @@ components:
           example: my-cm-handle1
         publicCmHandleProperties:
           $ref: '#/components/schemas/CmHandlePublicProperties'
+        state:
+          $ref: '#/components/schemas/CmHandleCompositeState'
     CmHandlePublicProperties:
       type: array
       items:
@@ -1002,6 +1267,66 @@ components:
         additionalProperties:
           type: string
           example: Book Type
+    CmHandleCompositeState:
+      type: object
+      properties:
+        cmHandleState:
+          type: string
+          example: ADVISED
+        lockReason:
+          $ref: '#/components/schemas/lock-reason'
+        lastUpdateTime:
+          type: string
+          example: 2022-12-31T20:30:40.000+0000
+        dataSyncEnabled:
+          type: boolean
+          example: false
+        dataSyncState:
+          $ref: '#/components/schemas/dataStores'
+    lock-reason:
+      type: object
+      properties:
+        reason:
+          type: string
+          example: LOCKED_MISBEHAVING
+        details:
+          type: string
+          example: locked due to failure in module sync
+    dataStores:
+      type: object
+      properties:
+        operational:
+          $ref: '#/components/schemas/sync-state'
+        running:
+          $ref: '#/components/schemas/sync-state'
+    sync-state:
+      type: object
+      properties:
+        syncState:
+          type: string
+          example: NONE_REQUESTED
+        lastSyncTime:
+          type: string
+          example: 2022-12-31T20:30:40.000+0000
+    RestOutputCmHandlePublicProperties:
+      type: object
+      properties:
+        publicCmHandleProperties:
+          $ref: '#/components/schemas/CmHandlePublicProperties'
+    RestOutputCmHandleCompositeState:
+      type: object
+      properties:
+        state:
+          $ref: '#/components/schemas/CmHandleCompositeState'
+    DmiErrorMessage_dmiresponse:
+      type: object
+      properties:
+        http-code:
+          type: integer
+          example: 400
+        body:
+          type: string
+          example: Bad Request
   examples:
     dataSampleResponse:
       summary: Sample response
@@ -1009,17 +1334,17 @@ components:
       value:
         bookstore:
           categories:
-          - code: "01"
-            books:
-            - authors:
-              - Iain M. Banks
-              - Ursula K. Le Guin
-            name: SciFi
-          - code: "02"
-            books:
-            - authors:
-              - Philip Pullman
-            name: kids
+            - code: "01"
+              books:
+                - authors:
+                    - Iain M. Banks
+                    - Ursula K. Le Guin
+              name: SciFi
+            - code: "02"
+              books:
+                - authors:
+                    - Philip Pullman
+              name: kids
     dataSampleRequest:
       summary: Sample request
       description: Sample request body
@@ -1027,17 +1352,17 @@ components:
         test:bookstore:
           bookstore-name: Chapters
           categories:
-          - code: "01"
-            name: SciFi
-            books:
-            - authors:
-              - Iain M. Banks
-              - Ursula K. Le Guin
-          - code: "02"
-            name: kids
-            books:
-            - authors:
-              - Philip Pullman
+            - code: "01"
+              name: SciFi
+              books:
+                - authors:
+                    - Iain M. Banks
+                    - Ursula K. Le Guin
+            - code: "02"
+              name: kids
+              books:
+                - authors:
+                    - Philip Pullman
     dataSamplePatchRequest:
       summary: Sample patch request
       description: Sample patch request body
@@ -1045,39 +1370,83 @@ components:
         ietf-restconf:yang-patch:
           patch-id: patch-1
           edit:
-          - edit-id: edit1
-            operation: merge
-            target: /
-            value:
-              test:bookstore:
-                bookstore-name: Chapters
-                categories:
-                - code: "01"
-                  name: Science
-                  books:
-                  - authors:
-                    - Author1
-                    - Author2
-                - code: "02"
-                  name: Arts
-                  books:
-                  - authors:
-                    - Author3
-          - edit-id: edit2
-            operation: merge
-            target: /
-            value:
-              test:bookstore:
-                bookstore-name: Novels
-                categories:
-                - code: "03"
-                  name: History
-                  books:
-                  - authors:
-                    - Iain M. Banks
-                    - Ursula K. Le Guin
-                - code: "04"
-                  name: Fiction
-                  books:
-                  - authors:
-                    - Philip Pullman
+            - edit-id: edit1
+              operation: merge
+              target: /
+              value:
+                test:bookstore:
+                  bookstore-name: Chapters
+                  categories:
+                    - code: "01"
+                      name: Science
+                      books:
+                        - authors:
+                            - Author1
+                            - Author2
+                    - code: "02"
+                      name: Arts
+                      books:
+                        - authors:
+                            - Author3
+            - edit-id: edit2
+              operation: merge
+              target: /
+              value:
+                test:bookstore:
+                  bookstore-name: Novels
+                  categories:
+                    - code: "03"
+                      name: History
+                      books:
+                        - authors:
+                            - Iain M. Banks
+                            - Ursula K. Le Guin
+                    - code: "04"
+                      name: Fiction
+                      books:
+                        - authors:
+                            - Philip Pullman
+    pubPropCmHandleQueryParameters:
+      value:
+        cmHandleQueryParameters:
+          - conditionName: hasAllProperties
+            conditionParameters:
+              - Color: yellow
+              - Shape: circle
+              - Size: small
+    modulesCmHandleQueryParameters:
+      value:
+        cmHandleQueryParameters:
+          - conditionName: hasAllModules
+            conditionParameters:
+              - moduleName: my-module-1
+              - moduleName: my-module-2
+              - moduleName: my-module-3
+    allCmHandleQueryParameters:
+      value:
+        cmHandleQueryParameters:
+          - conditionName: hasAllModules
+            conditionParameters:
+              - moduleName: my-module-1
+              - moduleName: my-module-2
+              - moduleName: my-module-3
+          - conditionName: hasAllProperties
+            conditionParameters:
+              - Color: yellow
+              - Shape: circle
+              - Size: small
+          - conditionName: cmHandleWithCpsPath
+            conditionParameters:
+              - cpsPath: "//state[@cm-handle-state='ADVISED']"
+    cpsPathCmHandleStateQueryParameters:
+      value:
+        cmHandleQueryParameters:
+          - conditionName: cmHandleWithCpsPath
+            conditionParameters:
+              - cpsPath: "//state[@cm-handle-state='LOCKED']"
+    cpsPathCmHandleDataSyncQueryParameters:
+      value:
+        cmHandleQueryParameters:
+          - conditionName: cmHandleWithCpsPath
+            conditionParameters:
+              - cpsPath: "//state[@data-sync-enabled='true']"
