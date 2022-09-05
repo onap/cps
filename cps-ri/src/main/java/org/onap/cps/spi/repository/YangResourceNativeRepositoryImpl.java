@@ -21,6 +21,7 @@
 package org.onap.cps.spi.repository;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.StringJoiner;
 import javax.persistence.EntityManager;
@@ -42,6 +43,9 @@ public class YangResourceNativeRepositoryImpl implements YangResourceNativeRepos
     @Override
     @Transactional
     public List<Long> getResourceIdsByModuleReferences(final Collection<ModuleReference> moduleReferences) {
+        if (moduleReferences.isEmpty()) {
+            return Collections.emptyList();
+        }
         final Query query = entityManager.createNativeQuery(getCombinedSelectSqlQuery(moduleReferences))
             .unwrap(org.hibernate.query.NativeQuery.class)
             .addScalar("id", StandardBasicTypes.LONG);

@@ -23,9 +23,8 @@ package org.onap.cps.ncmp.api.inventory.sync;
 import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME;
 
 import java.util.Collection;
-import java.util.HashMap;
+import java.util.Collections;
 import java.util.Map;
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsAdminService;
@@ -54,33 +53,28 @@ public class ModuleSyncService {
      */
     public void syncAndCreateSchemaSetAndAnchor(final YangModelCmHandle yangModelCmHandle) {
 
-        final Collection<ModuleReference> moduleReferencesFromCmHandle =
+        final Collection<ModuleReference> allModuleReferencesFromCmHandle =
                 dmiModelOperations.getModuleReferences(yangModelCmHandle);
 
         final Collection<ModuleReference> identifiedNewModuleReferencesFromCmHandle = cpsModuleService
-                .identifyNewModuleReferences(moduleReferencesFromCmHandle);
-
-        final Collection<ModuleReference> existingModuleReferencesFromCmHandle =
-                moduleReferencesFromCmHandle.stream().filter(moduleReferenceFromCmHandle ->
-                        !identifiedNewModuleReferencesFromCmHandle.contains(moduleReferenceFromCmHandle)
-                ).collect(Collectors.toList());
+                .identifyNewModuleReferences(allModuleReferencesFromCmHandle);
 
         final Map<String, String> newModuleNameToContentMap;
         if (identifiedNewModuleReferencesFromCmHandle.isEmpty()) {
-            newModuleNameToContentMap = new HashMap<>();
+            newModuleNameToContentMap = Collections.emptyMap();
         } else {
             newModuleNameToContentMap = dmiModelOperations.getNewYangResourcesFromDmi(yangModelCmHandle,
                     identifiedNewModuleReferencesFromCmHandle);
         }
-        createSchemaSetAndAnchor(yangModelCmHandle, newModuleNameToContentMap, existingModuleReferencesFromCmHandle);
+        createSchemaSetAndAnchor(yangModelCmHandle, newModuleNameToContentMap, allModuleReferencesFromCmHandle);
     }
 
     private void createSchemaSetAndAnchor(final YangModelCmHandle yangModelCmHandle,
                                           final Map<String, String> newModuleNameToContentMap,
-                                          final Collection<ModuleReference> existingModuleReferencesFromCmHandle) {
+                                          final Collection<ModuleReference> allModuleReferencesFromCmHandle) {
         final String schemaSetAndAnchorName = yangModelCmHandle.getId();
         cpsModuleService.createSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, schemaSetAndAnchorName,
-                        newModuleNameToContentMap, existingModuleReferencesFromCmHandle);
+                        newModuleNameToContentMap, allModuleReferencesFromCmHandle);
         cpsAdminService.createAnchor(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, schemaSetAndAnchorName,
             schemaSetAndAnchorName);
     }
