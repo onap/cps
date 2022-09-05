@@ -27,10 +27,7 @@ servers:
   - url: /ncmp
 paths:
   /v1/ch/{cm-handle}/data/ds/{ncmp-datastore-name}:
-    $ref: 'ncmp.yml#/getResourceDataForCmHandle'
-
-  /v1/ch/{cm-handle}/data/ds/ncmp-datastore:passthrough-running:
-    $ref: 'ncmp.yml#/resourceDataForPassthroughRunning'
+    $ref: 'ncmp.yml#/resourceDataForCmHandle'
 
   /v1/ch/{cm-handle}/modules:
     $ref: 'ncmp.yml#/fetchModuleReferencesByCmHandle'
