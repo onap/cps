@@ -37,8 +37,8 @@ import org.onap.cps.utils.JsonObjectMapper;
 @RequiredArgsConstructor
 public class FragmentRepositoryCpsPathQueryImpl implements FragmentRepositoryCpsPathQuery {
 
-    public static final String SIMILAR_TO_ABSOLUTE_PATH_PREFIX = "%/";
-    public static final String SIMILAR_TO_OPTIONAL_LIST_INDEX_POSTFIX = "(\\[[^/]*])?";
+    public static final String SIMILAR_TO_ABSOLUTE_PATH_PREFIX = ".*\\/";
+    public static final String SIMILAR_TO_OPTIONAL_LIST_INDEX_POSTFIX = "(\\[@(?!.*\\[).*?])?$";
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -50,7 +50,7 @@ public class FragmentRepositoryCpsPathQueryImpl implements FragmentRepositoryCps
         final StringBuilder sqlStringBuilder = new StringBuilder("SELECT * FROM FRAGMENT WHERE anchor_id = :anchorId");
         final Map<String, Object> queryParameters = new HashMap<>();
         queryParameters.put("anchorId", anchorId);
-        sqlStringBuilder.append(" AND xpath SIMILAR TO :xpathRegex");
+        sqlStringBuilder.append(" AND xpath ~ :xpathRegex");
         final String xpathRegex = getSimilarToXpathSqlRegex(cpsPathQuery);
         queryParameters.put("xpathRegex", xpathRegex);
         if (cpsPathQuery.hasLeafConditions()) {
