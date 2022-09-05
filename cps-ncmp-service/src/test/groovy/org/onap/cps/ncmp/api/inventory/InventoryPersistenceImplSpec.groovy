@@ -44,7 +44,7 @@ import java.time.format.DateTimeFormatter
 import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NO_TIMESTAMP
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 
-class InventoryPersistenceSpec extends Specification {
+class InventoryPersistenceImplSpec extends Specification {
 
     def spiedJsonObjectMapper = Spy(new JsonObjectMapper(new ObjectMapper()))
 
@@ -56,7 +56,7 @@ class InventoryPersistenceSpec extends Specification {
 
     def mockCpsAdminPersistenceService = Mock(CpsAdminPersistenceService)
 
-    def objectUnderTest = new InventoryPersistence(spiedJsonObjectMapper, mockCpsDataService, mockCpsModuleService,
+    def objectUnderTest = new InventoryPersistenceImpl(spiedJsonObjectMapper, mockCpsDataService, mockCpsModuleService,
             mockCpsDataPersistenceService, mockCpsAdminPersistenceService)
 
     def formattedDateAndTime = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
