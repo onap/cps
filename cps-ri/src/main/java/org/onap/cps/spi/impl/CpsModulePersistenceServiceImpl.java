@@ -162,14 +162,14 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
         @Backoff(random = true, delay = 200, maxDelay = 2000, multiplier = 2))
     public void storeSchemaSetFromModules(final String dataspaceName, final String schemaSetName,
                                           final Map<String, String> newModuleNameToContentMap,
-                                          final Collection<ModuleReference> moduleReferences) {
+                                          final Collection<ModuleReference> allModuleReferences) {
         storeSchemaSet(dataspaceName, schemaSetName, newModuleNameToContentMap);
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         final SchemaSetEntity schemaSetEntity =
                 schemaSetRepository.getByDataspaceAndName(dataspaceEntity, schemaSetName);
-        final List<Long> listOfYangResourceIds =
-            yangResourceRepository.getResourceIdsByModuleReferences(moduleReferences);
-        yangResourceRepository.insertSchemaSetIdYangResourceId(schemaSetEntity.getId(), listOfYangResourceIds);
+        final List<Long> allYangResourceIds =
+            yangResourceRepository.getResourceIdsByModuleReferences(allModuleReferences);
+        yangResourceRepository.insertSchemaSetIdYangResourceId(schemaSetEntity.getId(), allYangResourceIds);
     }
 
     @Override

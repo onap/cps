@@ -47,8 +47,7 @@ class ModuleSyncServiceSpec extends Specification {
             ncmpServiceCmHandle.cmHandleId = 'cmHandleId-1'
             def yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle(dmiServiceName, '', '', ncmpServiceCmHandle)
         and: 'DMI operations returns some module references'
-            def moduleReferences =  [ new ModuleReference(moduleName:'module1',revision:'1'),
-                                                            new ModuleReference(moduleName:'module2',revision:'2') ]
+            def moduleReferences =  [ new ModuleReference('module1','1'), new ModuleReference('module2','2') ]
             mockDmiModelOperations.getModuleReferences(yangModelCmHandle) >> moduleReferences
         and: 'CPS-Core returns list of existing module resources'
             mockCpsModuleService.getYangResourceModuleReferences(expectedDataspaceName) >> toModuleReference(existingModuleResourcesInCps)
@@ -58,14 +57,14 @@ class ModuleSyncServiceSpec extends Specification {
             mockCpsModuleService.identifyNewModuleReferences(moduleReferences) >> toModuleReference(identifiedNewModuleReferences)
             objectUnderTest.syncAndCreateSchemaSetAndAnchor(yangModelCmHandle)
         then: 'create schema set from module is invoked with correct parameters'
-            1 * mockCpsModuleService.createSchemaSetFromModules('NFP-Operational', 'cmHandleId-1', newModuleNameContentToMap, existingModuleReferencesInCps)
+            1 * mockCpsModuleService.createSchemaSetFromModules('NFP-Operational', 'cmHandleId-1', newModuleNameContentToMap, moduleReferences)
         and: 'anchor is created with the correct parameters'
             1 * mockCpsAdminService.createAnchor('NFP-Operational', 'cmHandleId-1', 'cmHandleId-1')
         where: 'the following parameters are used'
-            scenario             | existingModuleResourcesInCps           | identifiedNewModuleReferences | newModuleNameContentToMap       | existingModuleReferencesInCps
-            'one new module'     | [['module2' : '2'], ['module3' : '3']] | [['module1' : '1']]           | [module1: 'some yang source']   | [new ModuleReference(moduleName:'module2',revision:'2')]
-            'no add. properties' | [['module2' : '2'], ['module3' : '3']] | [['module1' : '1']]           | [module1: 'some yang source']   | [new ModuleReference(moduleName:'module2',revision:'2')]
-            'no new module'      | [['module1' : '1'], ['module2' : '2']] | []                            | [:]                             | [new ModuleReference(moduleName:'module1',revision:'1'), new ModuleReference(moduleName:'module2',revision:'2')]
+            scenario             | existingModuleResourcesInCps           | identifiedNewModuleReferences | newModuleNameContentToMap
+            'one new module'     | [['module2' : '2'], ['module3' : '3']] | [['module1' : '1']]           | [module1: 'some yang source']
+            'no add. properties' | [['module2' : '2'], ['module3' : '3']] | [['module1' : '1']]           | [module1: 'some yang source']
+            'no new module'      | [['module1' : '1'], ['module2' : '2']] | []                            | [:]
     }
 
     def 'Delete Schema Set for CmHandle' () {

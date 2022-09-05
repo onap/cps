@@ -31,8 +31,10 @@ import org.onap.cps.spi.model.ModuleReference
 import org.onap.cps.spi.repository.AnchorRepository
 import org.onap.cps.spi.repository.SchemaSetRepository
 import org.onap.cps.spi.repository.SchemaSetYangResourceRepositoryImpl
+import org.onap.cps.spi.repository.YangResourceRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.jdbc.Sql
+import spock.lang.Ignore
 
 class CpsModulePersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
 
@@ -47,6 +49,9 @@ class CpsModulePersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase 
 
     @Autowired
     CpsAdminPersistenceService cpsAdminPersistenceService
+
+    @Autowired
+    YangResourceRepository yangResourceRepository
 
     final static String SET_DATA = '/data/schemaset.sql'
 
@@ -74,6 +79,20 @@ class CpsModulePersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase 
 
     def setup() {
         dataspaceEntity = dataspaceRepository.getByName(DATASPACE_NAME)
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Getting yang resource ids from module references'() {
+        when: 'getting yang resources for #scenario'
+            def result = yangResourceRepository.getResourceIdsByModuleReferences(moduleReferences)
+        then: 'the result contains the expected number entries'
+            assert result.size() == expectedResultSize
+        where: 'the following module references are provided'
+            scenario                                 | moduleReferences                                                                                                 || expectedResultSize
+            '2 valid module references'              | [ new ModuleReference('MODULE-NAME-002','REVISION-002'), new ModuleReference('MODULE-NAME-003','REVISION-002') ] || 2
+            '1 invalid module reference'             | [ new ModuleReference('NOT EXIST','IRRELEVANT') ]                                                                || 0
+            '1 valid and 1 invalid module reference' | [ new ModuleReference('MODULE-NAME-002','REVISION-002'), new ModuleReference('NOT EXIST','IRRELEVANT') ]         || 1
+            'no module references'                   | []                                                                                                               || 0
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
