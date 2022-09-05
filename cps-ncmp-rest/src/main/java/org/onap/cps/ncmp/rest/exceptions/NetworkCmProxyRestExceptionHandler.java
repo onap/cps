@@ -59,7 +59,7 @@ public class NetworkCmProxyRestExceptionHandler {
      */
     @ExceptionHandler
     public static ResponseEntity<Object> handleInternalServerErrorExceptions(
-        final Exception exception) {
+            final Exception exception) {
         return buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, exception);
     }
 
@@ -74,8 +74,8 @@ public class NetworkCmProxyRestExceptionHandler {
         return wrapDmiErrorResponse(HttpStatus.BAD_GATEWAY, httpClientRequestException);
     }
 
-    @ExceptionHandler({DmiRequestException.class, DataValidationException.class, HttpMessageNotReadableException.class,
-            InvalidTopicException.class})
+    @ExceptionHandler({DmiRequestException.class, DataValidationException.class,
+            HttpMessageNotReadableException.class, InvalidTopicException.class, InvalidDatastoreException.class})
     public static ResponseEntity<Object> handleDmiRequestExceptions(final Exception exception) {
         return buildErrorResponse(HttpStatus.BAD_REQUEST, exception);
     }
@@ -104,7 +104,8 @@ public class NetworkCmProxyRestExceptionHandler {
         return new ResponseEntity<>(errorMessage, status);
     }
 
-    private static ResponseEntity<Object> wrapDmiErrorResponse(final HttpStatus httpStatus,
+    private static ResponseEntity<Object> wrapDmiErrorResponse(
+            final HttpStatus httpStatus,
             final HttpClientRequestException httpClientRequestException) {
         final var dmiErrorMessage = new DmiErrorMessage();
         final var dmiErrorResponse = new DmiErrorMessageDmiresponse();

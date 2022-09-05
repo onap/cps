@@ -75,6 +75,9 @@ class NetworkCmProxyControllerSpec extends Specification {
 
     public static final int TIMEOUT_IN_MS = 2000
     public static final boolean NOTIFICATION_ENABLED = true
+    public static final String NOT_SUPPORTED_DATASTORE_MESSAGE =
+        "{\"status\":\"400 BAD_REQUEST\",\"message\":\"DATASTORE_IS_NOT_SUPPORTED\"," +
+            "\"details\":\"Check logs for details.\"}"
 
     @Autowired
     MockMvc mvc
@@ -242,7 +245,6 @@ class NetworkCmProxyControllerSpec extends Specification {
         given: 'resource data url'
             def url = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:passthrough-running" +
                 "?resourceIdentifier=parent/child"
-            def requestBody = '{"some-key":"some-value"}'
         when: 'create resource request is performed'
             def response = mvc.perform(
                 post(url)
@@ -476,38 +478,90 @@ class NetworkCmProxyControllerSpec extends Specification {
             'disabled' | false
     }
 
-    def 'Get Resource Data from operational without descendants.'() {
-        given: 'resource data url'
+    def 'Get Resource Data from operational with or without descendants'() {
+        given: 'resource data url with descendants #enabled'
             def getUrl = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:operational" +
-                "?resourceIdentifier=parent/child&include-descendants=false"
+                "?resourceIdentifier=parent/child&include-descendants=${enabled}"
         when: 'get data resource request is performed'
             def response = mvc.perform(
                 get(getUrl)
                     .contentType(MediaType.APPLICATION_JSON)
             ).andReturn().response
-        then: 'the NCMP data service is called with getResourceDataOperational'
+        then: 'the NCMP data service is called with getResourceDataOperational with #descendantsOption'
             1 * mockNetworkCmProxyDataService.getResourceDataOperational('testCmHandle',
                 'parent/child',
-                FetchDescendantsOption.OMIT_DESCENDANTS)
+                descendantsOption)
         and: 'response status is Ok'
             response.status == HttpStatus.OK.value()
+        where: 'the following parameters are used'
+            enabled | descendantsOption
+            false   | FetchDescendantsOption.OMIT_DESCENDANTS
+            true    | FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
     }
 
-    def 'Get Resource Data from operational including descendants.'() {
-        given: 'resource data url'
-            def getUrl = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:operational" +
-                "?resourceIdentifier=parent/child&include-descendants=true"
-        when: 'get data resource request is performed'
+    def 'Fail to call Post on Resource Data from #datastoreInUrl in #scenario'() {
+        given: 'resource data url and a request body'
+            def postUrl = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:${datastoreInUrl}" +
+                "?resourceIdentifier=parent/child"
+        when: 'selected request for data resource is performed on url'
             def response = mvc.perform(
-                get(getUrl)
-                    .contentType(MediaType.APPLICATION_JSON)
-            ).andReturn().response
-        then: 'the NCMP data service is called with getResourceDataOperational'
-            1 * mockNetworkCmProxyDataService.getResourceDataOperational('testCmHandle',
-                'parent/child',
-                FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
-        and: 'response status is Ok'
-            response.status == HttpStatus.OK.value()
+                post(postUrl).contentType(MediaType.APPLICATION_JSON_VALUE).content(requestBody))
+                .andReturn().response
+        then: 'the message has the right content'
+            response.getContentAsString() == NOT_SUPPORTED_DATASTORE_MESSAGE
+        where: 'the following parameters are used'
+            scenario                              | datastoreInUrl
+            'calling for operational'             | 'operational'
+            'calling for passthrough-operational' | 'passthrough-operational'
+    }
+
+    def 'Fail to call Put on Resource Data from #datastoreInUrl in #scenario'() {
+        given: 'resource data url'
+            def putUrl = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:${datastoreInUrl}" +
+                "?resourceIdentifier=parent/child"
+        when: 'selected request for data resource is performed on url'
+            def response = mvc.perform(
+                put(putUrl).contentType(MediaType.APPLICATION_JSON_VALUE).content(requestBody))
+                .andReturn().response
+        then: 'the message has the right content'
+            response.getContentAsString() == NOT_SUPPORTED_DATASTORE_MESSAGE
+        where: 'the following parameters are used'
+            scenario                              | datastoreInUrl
+            'calling for operational'             | 'operational'
+            'calling for passthrough-operational' | 'passthrough-operational'
+    }
+
+    def 'Fail to call Patch on Resource Data from #datastoreInUrl in #scenario'() {
+        given: 'resource data url'
+            def patchUrl = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:${datastoreInUrl}" +
+                "?resourceIdentifier=parent/child"
+        when: 'selected request for data resource is performed on url'
+            def response = mvc.perform(
+                patch(patchUrl).contentType(MediaType.APPLICATION_JSON_VALUE)
+                    .accept(MediaType.APPLICATION_JSON).content(requestBody))
+                .andReturn().response
+        then: 'the message has the right content'
+            response.getContentAsString() == NOT_SUPPORTED_DATASTORE_MESSAGE
+        where: 'the following parameters are used'
+            scenario                              | datastoreInUrl
+            'calling for operational'             | 'operational'
+            'calling for passthrough-operational' | 'passthrough-operational'
+    }
+
+    def 'Fail to call Delete on Resource Data from #datastoreInUrl in #scenario'() {
+        given: 'resource data url'
+            def deleteUrl = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:${datastoreInUrl}" +
+                "?resourceIdentifier=parent/child"
+        when: 'selected request for data resource is performed on url'
+            def response = mvc.perform(
+                delete(deleteUrl).contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
+                .andReturn().response
+        then: 'the message has the right content'
+            response.getContentAsString() == NOT_SUPPORTED_DATASTORE_MESSAGE
+        where: 'the following parameters are used'
+            scenario                              | datastoreInUrl
+            'calling for operational'             | 'operational'
+            'calling for passthrough-operational' | 'passthrough-operational'
     }
 
     def dataStores() {
