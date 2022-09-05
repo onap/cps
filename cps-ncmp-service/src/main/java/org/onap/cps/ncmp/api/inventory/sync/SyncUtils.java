@@ -25,7 +25,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import java.time.Duration;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -67,19 +66,14 @@ public class SyncUtils {
     private static final Pattern retryAttemptPattern = Pattern.compile("^Attempt #(\\d+) failed:");
 
     /**
-     * Query data nodes for cm handles with an "ADVISED" cm handle state, and select a random entry for processing.
+     * Query data nodes for cm handles with an "ADVISED" cm handle state.
      *
-     * @return a randomized yang model cm handle list with ADVISED state, return empty list if not found
+     * @return cm handles (ids) with ADVISED state, return empty list if not found
      */
-    public List<YangModelCmHandle> getAdvisedCmHandles() {
-        final List<DataNode> advisedCmHandlesAsDataNodeList = new ArrayList<>(
-            cmHandleQueries.getCmHandlesByState(CmHandleState.ADVISED));
-        log.info("Total number of fetched advised cm handle(s) is (are) {}", advisedCmHandlesAsDataNodeList.size());
-        if (advisedCmHandlesAsDataNodeList.isEmpty()) {
-            return Collections.emptyList();
-        }
-        Collections.shuffle(advisedCmHandlesAsDataNodeList);
-        return convertCmHandlesDataNodesToYangModelCmHandles(advisedCmHandlesAsDataNodeList);
+    public List<DataNode> getAdvisedCmHandles() {
+        final List<DataNode> advisedCmHandlesAsDataNodes = cmHandleQueries.getCmHandlesByState(CmHandleState.ADVISED);
+        log.debug("Total number of fetched advised cm handle(s) is (are) {}", advisedCmHandlesAsDataNodes.size());
+        return advisedCmHandlesAsDataNodes;
     }
 
     /**

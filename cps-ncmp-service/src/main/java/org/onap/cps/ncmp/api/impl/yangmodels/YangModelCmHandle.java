@@ -30,6 +30,7 @@ import java.util.List;
 import java.util.Map;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -46,8 +47,10 @@ import org.onap.cps.utils.CpsValidator;
 @Setter
 @NoArgsConstructor
 @JsonInclude(Include.NON_NULL)
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class YangModelCmHandle {
 
+    @EqualsAndHashCode.Include
     private String id;
 
     @JsonProperty("dmi-service-name")

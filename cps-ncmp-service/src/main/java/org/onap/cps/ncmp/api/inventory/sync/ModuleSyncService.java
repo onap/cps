@@ -88,17 +88,16 @@ public class ModuleSyncService {
     /**
      * Deletes the SchemaSet for provided cmHandle if the SchemaSet Exists.
      *
-     * @param yangModelCmHandle the yang model of cm handle.
+     * @param anchorName the yang model of cm handle.
      */
-    public void deleteSchemaSetIfExists(final YangModelCmHandle yangModelCmHandle) {
-        final String schemaSetAndAnchorName = yangModelCmHandle.getId();
+    public void deleteSchemaSetIfExists(final String anchorName) {
         try {
-            cpsModuleService.deleteSchemaSet(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, schemaSetAndAnchorName,
-                CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED);
-            log.debug("SchemaSet for {} has been deleted. Ready to be recreated.", schemaSetAndAnchorName);
+            cpsModuleService.deleteSchemaSet(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, anchorName,
+                    CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED);
+            log.debug("SchemaSet for {} has been deleted. Ready to be recreated.", anchorName);
         } catch (final SchemaSetNotFoundException e) {
             log.debug("No SchemaSet for {}. Assuming CmHandle has not been previously Module Synced.",
-                schemaSetAndAnchorName);
+                    anchorName);
         }
     }
 

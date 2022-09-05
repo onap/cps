@@ -28,7 +28,7 @@ class CmHandleRegistrationResponseSpec extends Specification {
 
     def 'Successful cm-handle Registration Response'() {
         when: 'cm-handle response is created'
-            def cmHandleRegistrationResponse = CmHandleRegistrationResponse.createSuccessResponse('cmHandle')
+            def cmHandleRegistrationResponse = CmHandleRegistrationResponse.createSuccessResponses('cmHandle')
         then: 'a success response is returned'
             with(cmHandleRegistrationResponse) {
                 assert it.cmHandle == 'cmHandle'

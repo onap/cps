@@ -29,26 +29,26 @@ import org.onap.cps.ncmp.api.inventory.CompositeState
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence
 import org.onap.cps.ncmp.api.inventory.LockReasonCategory
 import org.onap.cps.ncmp.api.inventory.CompositeStateBuilder
+import org.onap.cps.ncmp.api.inventory.sync.executor.AsyncTaskExecutor
+import org.onap.cps.spi.model.DataNode
 import spock.lang.Specification
 
 import java.util.concurrent.ConcurrentHashMap
-import java.util.concurrent.ConcurrentMap
+import java.util.concurrent.BlockingQueue
 
 class ModuleSyncWatchdogSpec extends Specification {
 
     def mockInventoryPersistence = Mock(InventoryPersistence)
-
     def mockSyncUtils = Mock(SyncUtils)
-
     def mockModuleSyncService = Mock(ModuleSyncService)
-
-    def stubbedMap = Stub(ConcurrentMap)
-
+    def stubbedMap = Stub(ConcurrentHashMap)
     def mockLcmEventsCmHandleStateHandler = Mock(LcmEventsCmHandleStateHandler)
-
+    def blockingQueue = Mock(BlockingQueue<DataNode>)
+    def asyncTaskExecutor = Mock(AsyncTaskExecutor)
     def cmHandleState = CmHandleState.ADVISED
 
-    def objectUnderTest = new ModuleSyncWatchdog(mockInventoryPersistence, mockSyncUtils, mockModuleSyncService, stubbedMap as ConcurrentHashMap, mockLcmEventsCmHandleStateHandler)
+    def objectUnderTest = new ModuleSyncWatchdog(mockInventoryPersistence,
+        mockSyncUtils, mockModuleSyncService, stubbedMap , mockLcmEventsCmHandleStateHandler, blockingQueue, asyncTaskExecutor)
 
     def 'Schedule a Cm-Handle Sync for ADVISED Cm-Handles'() {
         given: 'cm handles in an advised state and a data sync state'
@@ -57,33 +57,44 @@ class ModuleSyncWatchdogSpec extends Specification {
             def yangModelCmHandle1 = new YangModelCmHandle(id: 'some-cm-handle', compositeState: compositeState1)
             def yangModelCmHandle2 = new YangModelCmHandle(id: 'some-cm-handle-2', compositeState: compositeState2)
         and: 'sync utilities return a cm handle twice'
-            mockSyncUtils.getAdvisedCmHandles() >> [yangModelCmHandle1, yangModelCmHandle2]
+            mockSyncUtils.getAdvisedCmHandles(_) >> [yangModelCmHandle1, yangModelCmHandle2]
         when: 'module sync poll is executed'
-            objectUnderTest.executeAdvisedCmHandlePoll()
-        then: 'the inventory persistence cm handle returns a composite state for the first cm handle'
+            objectUnderTest.moduleSyncAdvisedCmHandles()
+        then: ''
+            1 * asyncTaskExecutor.executeTask(*_)
+        //TODO Add test for actual process
+
+    }
+
+    def 'Perform state transition '() {
+        given: 'cm handles in an advised state and a data sync state'
+            def compositeState1 = new CompositeState(cmHandleState: cmHandleState)
+            def compositeState2 = new CompositeState(cmHandleState: cmHandleState)
+            def yangModelCmHandle1 = new YangModelCmHandle(id: 'some-cm-handle', compositeState: compositeState1)
+            def yangModelCmHandle2 = new YangModelCmHandle(id: 'some-cm-handle-2', compositeState: compositeState2)
+        when: 'module sync poll is executed'
+            objectUnderTest.performModuleStateTransition([yangModelCmHandle1, yangModelCmHandle2])
             1 * mockInventoryPersistence.getCmHandleState('some-cm-handle') >> compositeState1
         and: 'module sync service deletes schema set of cm handle if it exists'
             1 * mockModuleSyncService.deleteSchemaSetIfExists(yangModelCmHandle1)
         and: 'module sync service syncs the first cm handle and creates a schema set'
             1 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(yangModelCmHandle1)
         then: 'the state handler is called for the first cm handle'
-            1 * mockLcmEventsCmHandleStateHandler.updateCmHandleState(yangModelCmHandle1, CmHandleState.READY)
+            1 * mockLcmEventsCmHandleStateHandler.updateCmHandlesStateBatch(yangModelCmHandle1, CmHandleState.READY)
         and: 'the inventory persistence cm handle returns a composite state for the second cm handle'
             mockInventoryPersistence.getCmHandleState('some-cm-handle-2') >> compositeState2
         and: 'module sync service syncs the second cm handle and creates a schema set'
             1 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(yangModelCmHandle2)
         then: 'the state handler is called for the second cm handle'
-            1 * mockLcmEventsCmHandleStateHandler.updateCmHandleState(yangModelCmHandle2, CmHandleState.READY)
+            1 * mockLcmEventsCmHandleStateHandler.updateCmHandlesStateBatch(yangModelCmHandle2, CmHandleState.READY)
     }
 
-    def 'Schedule a Cm-Handle Sync for ADVISED Cm-Handle with failure'() {
+    def 'Perform state transition with failure'() {
         given: 'cm handles in an advised state'
             def compositeState = new CompositeState(cmHandleState: cmHandleState)
             def yangModelCmHandle = new YangModelCmHandle(id: 'some-cm-handle', compositeState: compositeState)
-        and: 'sync utilities return a cm handle'
-            mockSyncUtils.getAdvisedCmHandles() >> [yangModelCmHandle]
         when: 'module sync poll is executed'
-            objectUnderTest.executeAdvisedCmHandlePoll()
+            objectUnderTest.performModuleStateTransition([yangModelCmHandle])
         then: 'the inventory persistence cm handle returns a composite state for the cm handle'
             1 * mockInventoryPersistence.getCmHandleState('some-cm-handle') >> compositeState
         and: 'module sync service attempts to sync the cm handle and throws an exception'
@@ -91,24 +102,23 @@ class ModuleSyncWatchdogSpec extends Specification {
         and: 'update lock reason, details and attempts is invoked'
             1 * mockSyncUtils.updateLockReasonDetailsAndAttempts(compositeState, LockReasonCategory.LOCKED_MODULE_SYNC_FAILED ,'some exception')
         and: 'the state handler is called to update the state to LOCKED'
-            1 * mockLcmEventsCmHandleStateHandler.updateCmHandleState(yangModelCmHandle, CmHandleState.LOCKED)
+            1 * mockLcmEventsCmHandleStateHandler.updateCmHandlesStateBatch(yangModelCmHandle, CmHandleState.LOCKED)
     }
+
 
     def 'Schedule a Cm-Handle Sync with condition #scenario '() {
         given: 'cm handles in an locked state'
             def compositeState = new CompositeStateBuilder().withCmHandleState(CmHandleState.LOCKED)
                     .withLockReason(LockReasonCategory.LOCKED_MODULE_SYNC_FAILED, '').withLastUpdatedTimeNow().build()
             def yangModelCmHandle = new YangModelCmHandle(id: 'some-cm-handle', compositeState: compositeState)
-        and: 'sync utilities return a cm handle twice'
-            mockSyncUtils.getModuleSyncFailedCmHandles() >> [yangModelCmHandle, yangModelCmHandle]
         and: 'inventory persistence returns the composite state of the cm handle'
             mockInventoryPersistence.getCmHandleState(yangModelCmHandle.getId()) >> compositeState
         and: 'sync utils retry locked cm handle returns #isReadyForRetry'
             mockSyncUtils.isReadyForRetry(compositeState) >>> isReadyForRetry
         when: 'module sync poll is executed'
-            objectUnderTest.executeLockedCmHandlePoll()
+            objectUnderTest.performModuleStateTransition([yangModelCmHandle, yangModelCmHandle])
         then: 'the first cm handle is updated to state "ADVISED" from "READY"'
-            expectedNumberOfInvocationsToSaveCmHandleState * mockLcmEventsCmHandleStateHandler.updateCmHandleState(yangModelCmHandle, CmHandleState.ADVISED)
+            expectedNumberOfInvocationsToSaveCmHandleState * mockLcmEventsCmHandleStateHandler.updateCmHandlesStateBatch(yangModelCmHandle, CmHandleState.ADVISED)
         where:
             scenario                        | isReadyForRetry         || expectedNumberOfInvocationsToSaveCmHandleState
             'retry locked cm handle once'   | [true, false]           || 1

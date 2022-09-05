@@ -105,9 +105,9 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
             def dmiRegistrationRequest = '{}'
         and: 'service can register cm-handles successfully'
             def dmiRegistrationResponse = new DmiPluginRegistrationResponse(
-                createdCmHandles: [CmHandleRegistrationResponse.createSuccessResponse('cm-handle-1')],
-                updatedCmHandles: [CmHandleRegistrationResponse.createSuccessResponse('cm-handle-2')],
-                removedCmHandles: [CmHandleRegistrationResponse.createSuccessResponse('cm-handle-3')]
+                createdCmHandles: [CmHandleRegistrationResponse.createSuccessResponses('cm-handle-1')],
+                updatedCmHandles: [CmHandleRegistrationResponse.createSuccessResponses('cm-handle-2')],
+                removedCmHandles: [CmHandleRegistrationResponse.createSuccessResponses('cm-handle-3')]
             )
             mockNetworkCmProxyDataService.updateDmiRegistrationAndSyncModule(*_) >> dmiRegistrationResponse
         when: 'registration endpoint is invoked'
@@ -167,7 +167,7 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
     }
 
     def successResponse(cmHandle) {
-        return CmHandleRegistrationResponse.createSuccessResponse(cmHandle)
+        return CmHandleRegistrationResponse.createSuccessResponses(cmHandle)
     }
 
 }

@@ -43,6 +43,7 @@ import spock.lang.Specification
 import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter
 import java.util.stream.Collectors
+import java.util.concurrent.BlockingQueue
 
 class SyncUtilsSpec extends Specification{
 
@@ -67,13 +68,14 @@ class SyncUtilsSpec extends Specification{
 
 
     def 'Get an advised Cm-Handle where ADVISED cm handle #scenario'() {
-        given: 'the inventory persistence service returns a collection of data nodes'
-            mockCmHandleQueries.getCmHandlesByState(CmHandleState.ADVISED) >> dataNodeCollection
+        given: 'the inventory persistence service returns #expectedDataNodeSize data nodes'
+            mockCmHandleQueries.getCmHandlesByState(CmHandleState.ADVISED) >> dataNodes
         and: 'we have some additional (dmi, private) properties'
             dataNodeAdditionalProperties.xpath = dataNode.xpath + '/additional-properties[@name="dmiProp1"]'
             dataNode.childDataNodes = [dataNodeAdditionalProperties]
         when: 'get advised cm handles are fetched'
-            def yangModelCmHandles = objectUnderTest.getAdvisedCmHandles()
+            def blockingQueue = Mock(BlockingQueue<DataNode>)
+            def yangModelCmHandles = objectUnderTest.getAdvisedCmHandles(blockingQueue)
         then: 'the returned data node collection is the correct size'
             yangModelCmHandles.size() == expectedDataNodeSize
         and: 'if there is a data node the additional (dmi, private) properties are included'
@@ -83,11 +85,11 @@ class SyncUtilsSpec extends Specification{
             }
         and: 'yang model collection contains the correct data'
             yangModelCmHandles.stream().map(yangModel -> yangModel.id).collect(Collectors.toSet()) ==
-                dataNodeCollection.stream().map(dataNode -> dataNode.leaves.get("id")).collect(Collectors.toSet())
+                dataNodes.stream().map(dataNode -> dataNode.leaves.get("id")).collect(Collectors.toSet())
         where: 'the following scenarios are used'
-            scenario         | dataNodeCollection || expectedCallsToGetYangModelCmHandle | expectedDataNodeSize
-            'exists'         | [dataNode]         || 1                                   | 1
-            'does not exist' | []                 || 0                                   | 0
+            scenario         | dataNodes  || expectedCallsToGetYangModelCmHandle | expectedDataNodeSize
+            'exists'         | [dataNode] || 1                                   | 1
+            'does not exist' | []         || 0                                   | 0
     }
 
     def 'Update Lock Reason, Details and Attempts where lock reason #scenario'() {

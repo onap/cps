@@ -24,9 +24,11 @@ import com.hazelcast.config.Config;
 import com.hazelcast.config.MapConfig;
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
+import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
+import org.onap.cps.spi.model.DataNode;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -34,19 +36,38 @@ import org.springframework.context.annotation.Configuration;
  * Core infrastructure of the hazelcast distributed map for Module Sync and Data Sync use cases.
  */
 @Configuration
-public class SynchronizationSemaphoresConfig {
+public class SynchronizationCacheConfig {
 
-    private static final int TIME_TO_LIVE_IN_SECONDS = (int) TimeUnit.MINUTES.toSeconds(30);
+    private static Map<String, Integer> timeToLivePerConfig = new HashMap<>(3);
+
+    static {
+        timeToLivePerConfig.put("moduleSyncWorkQueueConfig", (int) TimeUnit.MINUTES.toSeconds(30));
+        timeToLivePerConfig.put("moduleSyncStartedOnCmHandlesConfig", (int) TimeUnit.MINUTES.toSeconds(1));
+        timeToLivePerConfig.put("dataSyncSemaphoreConfig", (int) TimeUnit.MINUTES.toSeconds(30));
+    }
 
     /**
-     * Module Sync Distributed Map Instance.
+     * Module Sync Distributed Queue Instance.
      *
-     * @return configured map of module sync semaphore
+     * @return queue of cm handles (ids) that need module sync
      */
     @Bean
-    public ConcurrentMap<String, Boolean> moduleSyncSemaphoreMap() {
-        return createHazelcastInstance("moduleSyncSemaphore", "moduleSyncSemaphoreConfig")
-                .getMap("moduleSyncSemaphore");
+    public BlockingQueue<DataNode> moduleSyncWorkQueue() {
+        return createHazelcastInstance("moduleSyncWorkQueue",
+                "moduleSyncWorkQueueConfig")
+                .getQueue("moduleSyncWorkQueue");
+    }
+
+    /**
+     * Module Sync Progress
+     *
+     * @return set of cm handles (ids) that for which module sync has started or been completed
+     */
+    @Bean
+    public Map<String, Object> moduleSyncStartedOnCmHandles() {
+        return createHazelcastInstance("moduleSyncStartedOnCmHandles",
+                "moduleSyncStartedOnCmHandlesConfig")
+                .getMap("moduleSyncStartedOnCmHandles");
     }
 
     /**
@@ -55,25 +76,24 @@ public class SynchronizationSemaphoresConfig {
      * @return configured map of data sync semaphore
      */
     @Bean
-    public Map<String, String> dataSyncSemaphoreMap() {
-        return createHazelcastInstance("dataSyncSemaphore", "dataSyncSemaphoreConfig")
+    public Map<String, String> dataSyncSemaphores() {
+        return createHazelcastInstance("dataSyncSemaphores", "dataSyncSemaphoreConfig")
                 .getMap("dataSyncSemaphore");
     }
 
     private HazelcastInstance createHazelcastInstance(
             final String hazelcastInstanceName, final String configMapName) {
-        return Hazelcast.newHazelcastInstance(
-                initializeDefaultMapConfig(hazelcastInstanceName, configMapName));
+        return Hazelcast.newHazelcastInstance(initializeConfig(hazelcastInstanceName, configMapName));
     }
 
-    private Config initializeDefaultMapConfig(final String instanceName, final String configName) {
+    private Config initializeConfig(final String instanceName, final String configName) {
         final Config config = new Config(instanceName);
         final MapConfig mapConfig = new MapConfig(configName);
-        mapConfig.setTimeToLiveSeconds(TIME_TO_LIVE_IN_SECONDS);
+        mapConfig.setTimeToLiveSeconds(timeToLivePerConfig.get(configName));
         mapConfig.setBackupCount(3);
         mapConfig.setAsyncBackupCount(3);
         config.addMapConfig(mapConfig);
-        config.setClusterName("synchronization-semaphores");
+        config.setClusterName("synchronization-caches");
         return config;
     }
 }

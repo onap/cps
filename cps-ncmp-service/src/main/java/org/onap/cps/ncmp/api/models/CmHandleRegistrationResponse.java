@@ -21,9 +21,12 @@
 
 package org.onap.cps.ncmp.api.models;
 
+import java.util.ArrayList;
 import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
 @Builder
@@ -37,13 +40,14 @@ public class CmHandleRegistrationResponse {
     /**
      * Creates a failure response based on exception.
      *
-     * @param cmHandle  cmHandle
+     * @param cmHandleId  cmHandle identifier
      * @param exception exception
      * @return CmHandleRegistrationResponse
      */
-    public static CmHandleRegistrationResponse createFailureResponse(final String cmHandle, final Exception exception) {
+    public static CmHandleRegistrationResponse createFailureResponse(final String cmHandleId,
+                                                                     final Exception exception) {
         return CmHandleRegistrationResponse.builder()
-            .cmHandle(cmHandle)
+            .cmHandle(cmHandleId)
             .status(Status.FAILURE)
             .registrationError(RegistrationError.UNKNOWN_ERROR)
             .errorText(exception.getMessage()).build();
@@ -52,22 +56,26 @@ public class CmHandleRegistrationResponse {
     /**
      * Creates a failure response based on registration error.
      *
-     * @param cmHandle          cmHandle
+     * @param cmHandleId          cmHandle identifier
      * @param registrationError registrationError
      * @return CmHandleRegistrationResponse
      */
-    public static CmHandleRegistrationResponse createFailureResponse(final String cmHandle,
+    public static CmHandleRegistrationResponse createFailureResponse(final String cmHandleId,
         final RegistrationError registrationError) {
-        return CmHandleRegistrationResponse.builder().cmHandle(cmHandle)
+        return CmHandleRegistrationResponse.builder().cmHandle(cmHandleId)
             .status(Status.FAILURE)
             .registrationError(registrationError)
             .errorText(registrationError.errorText)
             .build();
     }
 
-    public static CmHandleRegistrationResponse createSuccessResponse(final String cmHandle) {
-        return CmHandleRegistrationResponse.builder().cmHandle(cmHandle)
-            .status(Status.SUCCESS).build();
+    public static List<CmHandleRegistrationResponse> createSuccessResponses(final String... cmHandleIds) {
+        List<CmHandleRegistrationResponse> cmHandleRegistrationResponses = new ArrayList<>(cmHandleIds.length);
+        for (final String cmHandleId : cmHandleIds) {
+            cmHandleRegistrationResponses.add(CmHandleRegistrationResponse.builder().cmHandle(cmHandleId)
+                .status(Status.SUCCESS).build());
+        }
+        return cmHandleRegistrationResponses;
     }
 
     public enum Status {

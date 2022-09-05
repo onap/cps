@@ -27,7 +27,12 @@ import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED;
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
 
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsDataService;
@@ -97,6 +102,21 @@ public class InventoryPersistence {
     }
 
     /**
+     * Save all cm handles states in batch.
+     *
+     * @param cmHandleStates contains cm handle id and updated state
+     */
+    public void saveCmHandleStates(final Map<String, CompositeState> cmHandleStates) {
+        final Map<String, String> cmHandlesJsonDataMap = new HashMap<>();
+        cmHandleStates.entrySet().stream().forEach(cmHandleEntry ->
+                cmHandlesJsonDataMap.put(String.format(CM_HANDLE_XPATH_TEMPLATE, cmHandleEntry.getKey()),
+                        String.format("{\"state\":%s}",
+                                jsonObjectMapper.asJsonString(cmHandleEntry.getValue()))));
+        cpsDataService.replaceNodesTree(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cmHandlesJsonDataMap,
+                OffsetDateTime.now());
+    }
+
+    /**
      * This method retrieves DMI service name, DMI properties and the state for a given cm handle.
      * @param cmHandleId the id of the cm handle
      * @return yang model cm handle
@@ -137,6 +157,20 @@ public class InventoryPersistence {
                 String.format("{\"cm-handles\":[%s]}", jsonObjectMapper.asJsonString(yangModelCmHandle));
         cpsDataService.saveListElements(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NCMP_DMI_REGISTRY_PARENT,
                 cmHandleJsonData, NO_TIMESTAMP);
+    }
+
+    /**
+     * Method to save cmHandles.
+     *
+     * @param yangModelCmHandles cmHandle represented as Yang Models
+     */
+    public void saveCmHandles(final List<YangModelCmHandle> yangModelCmHandles) {
+        final List<String> cmHandlesJsonData = new ArrayList<>();
+        yangModelCmHandles.stream().forEach(yangModelCmHandle ->
+                cmHandlesJsonData.add(String.format("{\"cm-handles\":[%s]}",
+                        jsonObjectMapper.asJsonString(yangModelCmHandle))));
+        cpsDataService.saveListsElements(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NCMP_DMI_REGISTRY_PARENT,
+                cmHandlesJsonData, NO_TIMESTAMP);
     }
 
     /**

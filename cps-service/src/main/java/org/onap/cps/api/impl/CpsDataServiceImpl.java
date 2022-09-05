@@ -27,7 +27,12 @@ import static org.onap.cps.notification.Operation.DELETE;
 import static org.onap.cps.notification.Operation.UPDATE;
 
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsAdminService;
@@ -85,6 +90,18 @@ public class CpsDataServiceImpl implements CpsDataService {
             buildDataNodes(dataspaceName, anchorName, parentNodeXpath, jsonData);
         cpsDataPersistenceService.addListElements(dataspaceName, anchorName, parentNodeXpath,
             listElementDataNodeCollection);
+        processDataUpdatedEventAsync(dataspaceName, anchorName, parentNodeXpath, UPDATE, observedTimestamp);
+    }
+
+    @Override
+    public void saveListsElements(final String dataspaceName, final String anchorName,
+                                  final String parentNodeXpath, final List<String> jsonDataList,
+                                  final OffsetDateTime observedTimestamp) {
+        CpsValidator.validateNameCharacters(dataspaceName, anchorName);
+        final List<Collection<DataNode>> listElementDataNodeCollections =
+                buildDataNodes(dataspaceName, anchorName, parentNodeXpath, jsonDataList);
+        cpsDataPersistenceService.addListsElements(dataspaceName, anchorName, parentNodeXpath,
+                listElementDataNodeCollections);
         processDataUpdatedEventAsync(dataspaceName, anchorName, parentNodeXpath, UPDATE, observedTimestamp);
     }
 
@@ -148,6 +165,17 @@ public class CpsDataServiceImpl implements CpsDataService {
         final DataNode dataNode = buildDataNode(dataspaceName, anchorName, parentNodeXpath, jsonData);
         cpsDataPersistenceService.replaceDataNodeTree(dataspaceName, anchorName, dataNode);
         processDataUpdatedEventAsync(dataspaceName, anchorName, parentNodeXpath, UPDATE, observedTimestamp);
+    }
+
+    public void replaceNodesTree(final String dataspaceName, final String anchorName,
+                                 final Map<String, String> cmHandlesJsonDataMap,
+                                 final OffsetDateTime observedTimestamp) {
+        CpsValidator.validateNameCharacters(dataspaceName, anchorName);
+        final List<DataNode> dataNodes = buildDataNodes(dataspaceName, anchorName, cmHandlesJsonDataMap);
+        cpsDataPersistenceService.replaceDataNodeTree(dataspaceName, anchorName, dataNodes);
+        cmHandlesJsonDataMap.entrySet().stream().forEach(cmHandlesJsonData ->
+                processDataUpdatedEventAsync(dataspaceName, anchorName,
+                        cmHandlesJsonData.getKey(), UPDATE, observedTimestamp));
     }
 
     @Override
@@ -226,7 +254,22 @@ public class CpsDataServiceImpl implements CpsDataService {
             throw new DataValidationException("Invalid data.", "No data nodes provided");
         }
         return dataNodes;
+    }
 
+    private List<DataNode> buildDataNodes(final String dataspaceName, final String anchorName,
+                                          final Map<String, String> cmHandlesJsonDataMap) {
+        return cmHandlesJsonDataMap.entrySet().stream().map(cmHandlesJsonData ->
+                buildDataNode(dataspaceName, anchorName, cmHandlesJsonData.getKey(),
+                        cmHandlesJsonData.getValue())).collect(Collectors.toList());
+    }
+
+    private List<Collection<DataNode>> buildDataNodes(final String dataspaceName,
+                                                      final String anchorName,
+                                                      final String parentNodeXpath,
+                                                      final List<String> jsonDataList) {
+        return jsonDataList.stream().map(jsonData ->
+                        buildDataNodes(dataspaceName, anchorName, parentNodeXpath, jsonData))
+                .collect(Collectors.toList());
     }
 
     private void processDataUpdatedEventAsync(final String dataspaceName, final String anchorName, final String xpath,

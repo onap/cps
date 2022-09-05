@@ -70,7 +70,8 @@ public class NetworkCmProxyDataServicePropertyHandler {
                 CpsValidator.validateNameCharacters(cmHandleId);
                 final DataNode existingCmHandleDataNode = inventoryPersistence.getCmHandleDataNode(cmHandleId);
                 processUpdates(existingCmHandleDataNode, ncmpServiceCmHandle);
-                cmHandleRegistrationResponses.add(CmHandleRegistrationResponse.createSuccessResponse(cmHandleId));
+                cmHandleRegistrationResponses.addAll(CmHandleRegistrationResponse
+                        .createSuccessResponses(cmHandleId));
             } catch (final DataNodeNotFoundException e) {
                 log.error("Unable to find dataNode for cmHandleId : {} , caused by : {}",
                     cmHandleId, e.getMessage());

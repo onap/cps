@@ -41,6 +41,7 @@ public class CompositeStateUtils {
         return compositeState -> {
             compositeState.setCmHandleState(cmHandleState);
             compositeState.setLastUpdateTimeNow();
+            compositeState.setDataSyncEnabled(false);
         };
     }
 
@@ -49,17 +50,20 @@ public class CompositeStateUtils {
      *
      * @return Updated CompositeState
      */
-    public static Consumer<CompositeState> setCompositeStateToReadyWithInitialDataStoreSyncState() {
+    public static Consumer<CompositeState> setCompositeStateToReady() {
         return compositeState -> {
             compositeState.setDataSyncEnabled(false);
             compositeState.setLastUpdateTimeNow();
             compositeState.setCmHandleState(CmHandleState.READY);
-            final CompositeState.Operational operational =
-                    getInitialDataStoreSyncState(compositeState.getDataSyncEnabled());
-            final CompositeState.DataStores dataStores =
-                    CompositeState.DataStores.builder().operationalDataStore(operational).build();
-            compositeState.setDataStores(dataStores);
         };
+    }
+
+    public static void setInitialDataStoreSyncState(Boolean compositeState, CompositeState compositeState1) {
+        final CompositeState.Operational operational =
+                getInitialDataStoreSyncState(compositeState);
+        final CompositeState.DataStores dataStores =
+                CompositeState.DataStores.builder().operationalDataStore(operational).build();
+        compositeState1.setDataStores(dataStores);
     }
 
     /**
@@ -72,10 +76,7 @@ public class CompositeStateUtils {
                                                                final CompositeState compositeState) {
         compositeState.setDataSyncEnabled(dataSyncEnabled);
         compositeState.setLastUpdateTimeNow();
-        final CompositeState.Operational operational = getInitialDataStoreSyncState(dataSyncEnabled);
-        final CompositeState.DataStores dataStores =
-            CompositeState.DataStores.builder().operationalDataStore(operational).build();
-        compositeState.setDataStores(dataStores);
+        setInitialDataStoreSyncState(dataSyncEnabled, compositeState);
     }
 
     /**

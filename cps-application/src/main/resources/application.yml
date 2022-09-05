@@ -45,8 +45,8 @@ spring:
         username: ${DB_USERNAME}
         password: ${DB_PASSWORD}
         driverClassName: org.postgresql.Driver
-        initialization-mode: always
         hikari:
+            validation-timeout: 300000
             minimumIdle: 5
             maximumPoolSize: 80
             idleTimeout: 120000
@@ -91,6 +91,9 @@ spring:
       default-property-inclusion: NON_NULL
       serialization:
         FAIL_ON_EMPTY_BEANS: false
+    sql:
+        init:
+            mode: always
 app:
     ncmp:
         async-m2m:
@@ -167,8 +170,12 @@ dmi:
 
 timers:
     advised-modules-sync:
-        sleep-time-ms: 30000
+        sleep-time-ms: 5000
     locked-modules-sync:
         sleep-time-ms: 300000
     cm-handle-data-sync:
         sleep-time-ms: 30000
+
+modules-sync-watchdog:
+    async-executor:
+        parallelism-level: 10

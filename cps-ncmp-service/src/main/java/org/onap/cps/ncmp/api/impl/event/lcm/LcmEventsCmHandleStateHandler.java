@@ -23,6 +23,8 @@ package org.onap.cps.ncmp.api.impl.event.lcm;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.inventory.CmHandleState;
 
+import java.util.Map;
+
 /**
  * The implementation of it should handle the persisting of composite state and delegate the request to publish the
  * corresponding lcm event.
@@ -30,10 +32,17 @@ import org.onap.cps.ncmp.api.inventory.CmHandleState;
 public interface LcmEventsCmHandleStateHandler {
 
     /**
-     * Updates the composite state of cmHandle based on cmHandleState.
+     * Updates the composite state of a single cmHandles with the given on cmHandleState.
      *
-     * @param yangModelCmHandle   cm handle represented as yang model
-     * @param targetCmHandleState target cm handle state
+     * @param yangModelCmHandle cm handle represented as yang model
+     * @param cmHandleState the new state
      */
-    void updateCmHandleState(final YangModelCmHandle yangModelCmHandle, final CmHandleState targetCmHandleState);
+    void updateCmHandleState(final YangModelCmHandle yangModelCmHandle, final CmHandleState cmHandleState);
+
+    /**
+     * Updates the composite state of a batch cmHandles based on cmHandleState.
+     *
+     * @param yangModelCmHandlesToNewCmHandleStates a map cm handles with the new state for each
+     */
+    void updateCmHandlesStateBatch(final Map<YangModelCmHandle, CmHandleState> yangModelCmHandlesToNewCmHandleStates);
 }
