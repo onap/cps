@@ -3,6 +3,7 @@
  * Copyright (C) 2020-2022 Nordix Foundation.
  * Modifications Copyright (C) 2020-2022 Bell Canada.
  * Modifications Copyright (C) 2021 Pantheon.tech
+ * Modifications Copyright (C) 2022 TechMahindra Ltd.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,6 +40,7 @@ import org.onap.cps.spi.exceptions.DataspaceInUseException;
 import org.onap.cps.spi.exceptions.DataspaceNotFoundException;
 import org.onap.cps.spi.exceptions.ModuleNamesNotFoundException;
 import org.onap.cps.spi.model.Anchor;
+import org.onap.cps.spi.model.Dataspace;
 import org.onap.cps.spi.repository.AnchorRepository;
 import org.onap.cps.spi.repository.DataspaceRepository;
 import org.onap.cps.spi.repository.SchemaSetRepository;
@@ -79,6 +81,19 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
                 String.format("Dataspace contains %d schemaset(s)", numberOfAssociatedSchemaSets));
         }
         dataspaceRepository.delete(dataspaceEntity);
+    }
+
+    @Override
+    public Dataspace getDataspace(final String dataspaceName) {
+        final DataspaceEntity dataspaceEntity =  dataspaceRepository.getByName(dataspaceName);
+        return toDataspace(dataspaceEntity);
+    }
+
+    @Override
+    public Collection<Dataspace> getAllDataspaces() {
+        final Collection<DataspaceEntity> dataspaceEntities = dataspaceRepository.findAll();
+        return dataspaceEntities.stream().map(CpsAdminPersistenceServiceImpl::toDataspace)
+                .collect(Collectors.toSet());
     }
 
     @Override
@@ -153,6 +168,10 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
             .dataspaceName(anchorEntity.getDataspace().getName())
             .schemaSetName(anchorEntity.getSchemaSet().getName())
             .build();
+    }
+
+    private static Dataspace toDataspace(final DataspaceEntity dataspaceEntity) {
+        return Dataspace.builder().name(dataspaceEntity.getName()).build();
     }
 
     private void validateDataspaceAndModuleNames(final String dataspaceName,

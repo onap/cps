@@ -3,6 +3,7 @@
  *  Copyright (C) 2020-2022 Nordix Foundation
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -30,6 +31,7 @@ import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.spi.CpsAdminPersistenceService;
 import org.onap.cps.spi.model.Anchor;
+import org.onap.cps.spi.model.Dataspace;
 import org.onap.cps.spi.utils.CpsValidator;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
@@ -53,6 +55,17 @@ public class CpsAdminServiceImpl implements CpsAdminService {
     public void deleteDataspace(final String dataspaceName) {
         cpsValidator.validateNameCharacters(dataspaceName);
         cpsAdminPersistenceService.deleteDataspace(dataspaceName);
+    }
+
+    @Override
+    public Dataspace getDataspace(final String dataspaceName) {
+        cpsValidator.validateNameCharacters(dataspaceName);
+        return cpsAdminPersistenceService.getDataspace(dataspaceName);
+    }
+
+    @Override
+    public Collection<Dataspace> getAllDataspaces() {
+        return cpsAdminPersistenceService.getAllDataspaces();
     }
 
     @Override

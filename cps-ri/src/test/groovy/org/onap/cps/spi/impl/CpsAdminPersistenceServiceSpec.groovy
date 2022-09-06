@@ -3,6 +3,7 @@
  *  Copyright (C) 2021-2022 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2022 Bell Canada
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -30,6 +31,7 @@ import org.onap.cps.spi.exceptions.DataspaceInUseException
 import org.onap.cps.spi.exceptions.DataspaceNotFoundException
 import org.onap.cps.spi.exceptions.SchemaSetNotFoundException
 import org.onap.cps.spi.model.Anchor
+import org.onap.cps.spi.model.Dataspace
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.jdbc.Sql
 import org.testcontainers.shaded.com.fasterxml.jackson.databind.ObjectMapper
@@ -65,6 +67,32 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
         then: 'an exception that is is already defined is thrown with the correct details'
             def thrown = thrown(AlreadyDefinedException)
             thrown.details.contains(DATASPACE_NAME)
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Get a dataspace.'() {
+        when: 'dataspace is retrieved'
+            def dataspace = objectUnderTest.getDataspace(DATASPACE_NAME)
+        then: ' the response contains expected dataspace'
+            assert dataspace.getName().equals(DATASPACE_NAME);
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Get all dataspaces.'() {
+        when: 'all dataspaces are retrieved'
+            def dataspaces = objectUnderTest.getAllDataspaces()
+        then: 'the response contains expected dataspaces'
+            def expectedDataspaces = Set.of(new Dataspace(name: 'DATASPACE-001'), new Dataspace(name: 'DATASPACE-002-NO-DATA'),
+                     new Dataspace(name: 'DATASPACE-003'))
+            assert dataspaces == expectedDataspaces
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Get non existing dataspace.'() {
+        when: 'attempting to retrieve a non-existing dataspace'
+            def dataspace = objectUnderTest.getDataspace('non_existing_dataspace')
+        then: 'an DataspaceNotFoundException is thrown'
+            thrown(DataspaceNotFoundException)
     }
 
     @Sql([CLEAR_DATA, SET_DATA])

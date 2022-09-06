@@ -3,6 +3,7 @@
  *  Copyright (C) 2020-2022 Nordix Foundation
  *  Modifications Copyright (C) 2020-2021 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -35,8 +36,10 @@ import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.rest.api.CpsAdminApi;
 import org.onap.cps.rest.model.AnchorDetails;
+import org.onap.cps.rest.model.DataspaceDetails;
 import org.onap.cps.rest.model.SchemaSetDetails;
 import org.onap.cps.spi.model.Anchor;
+import org.onap.cps.spi.model.Dataspace;
 import org.onap.cps.spi.model.SchemaSet;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -173,5 +176,20 @@ public class AdminRestController implements CpsAdminApi {
         final List<AnchorDetails> anchorDetails = anchors.stream().map(cpsRestInputMapper::toAnchorDetails)
             .collect(Collectors.toList());
         return new ResponseEntity<>(anchorDetails, HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<List<DataspaceDetails>> getAllDataspaces() {
+        final Collection<Dataspace> dataspaces = cpsAdminService.getAllDataspaces();
+        final List<DataspaceDetails> dataspaceDetails = dataspaces.stream().map(cpsRestInputMapper::toDataspaceDetails)
+                .collect(Collectors.toList());
+        return new ResponseEntity<>(dataspaceDetails, HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<DataspaceDetails> getDataspace(final String dataspaceName) {
+        final Dataspace dataspace = cpsAdminService.getDataspace(dataspaceName);
+        final DataspaceDetails dataspaceDetails = cpsRestInputMapper.toDataspaceDetails(dataspace);
+        return new ResponseEntity<>(dataspaceDetails, HttpStatus.OK);
     }
 }
