@@ -3,6 +3,7 @@
  *  Copyright (C) 2020-2022 Nordix Foundation.
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,6 +24,7 @@
 package org.onap.cps.spi;
 
 import java.util.Collection;
+import java.util.List;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
 import org.onap.cps.spi.model.Anchor;
 
@@ -45,6 +47,22 @@ public interface CpsAdminPersistenceService {
      * @param dataspaceName the name of the dataspace to delete
      */
     void deleteDataspace(String dataspaceName);
+
+    /**
+     * Get dataspace name.
+     *
+     * @param dataspaceName dataspace name
+     * @return Dataspace name
+     * @throws AlreadyDefinedException if dataspace with same name already exists
+     */
+    String  getDataspace(String dataspaceName);
+
+    /**
+     * Get all dataspace names.
+     *
+     * @return list of dataspace names.
+     */
+    List<String> getAllDataspaces();
 
     /**
      * Create an Anchor.

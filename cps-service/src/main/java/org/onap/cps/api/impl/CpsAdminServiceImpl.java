@@ -3,6 +3,7 @@
  *  Copyright (C) 2020-2022 Nordix Foundation
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -24,6 +25,7 @@ package org.onap.cps.api.impl;
 
 import java.time.OffsetDateTime;
 import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.CpsAdminService;
@@ -52,6 +54,16 @@ public class CpsAdminServiceImpl implements CpsAdminService {
     public void deleteDataspace(final String dataspaceName) {
         CpsValidator.validateNameCharacters(dataspaceName);
         cpsAdminPersistenceService.deleteDataspace(dataspaceName);
+    }
+
+    @Override
+    public String getDataspace(final String dataspaceName) {
+        return cpsAdminPersistenceService.getDataspace(dataspaceName);
+    }
+
+    @Override
+    public List<String> getAllDataspaces() {
+        return cpsAdminPersistenceService.getAllDataspaces();
     }
 
     @Override

@@ -3,6 +3,7 @@
  *  Copyright (C) 2020-2022 Nordix Foundation
  *  Modifications Copyright (C) 2020-2021 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -26,7 +27,10 @@ import static org.onap.cps.rest.utils.MultipartFileUtil.extractYangResourcesMap;
 import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED;
 
 import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -173,5 +177,19 @@ public class AdminRestController implements CpsAdminApi {
         final List<AnchorDetails> anchorDetails = anchors.stream().map(cpsRestInputMapper::toAnchorDetails)
             .collect(Collectors.toList());
         return new ResponseEntity<>(anchorDetails, HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<Object> getAllDataspaces() {
+        final Map<String, List<String>> responseBody = new HashMap<>();
+        responseBody.put("dataspaceNames", cpsAdminService.getAllDataspaces());
+        return new ResponseEntity<>(responseBody, HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<Object> getDataspace(final String dataspaceName) {
+        final Map<String, String> responseBody =
+            Collections.singletonMap("dataspaceName", cpsAdminService.getDataspace(dataspaceName));
+        return new ResponseEntity<>(responseBody, HttpStatus.OK);
     }
 }
