@@ -153,6 +153,124 @@ paths:
                 status: 500
                 message: Internal Server Error
                 details: Internal Server Error occurred
+  /v2/admin/dataspaces:
+    get:
+      tags:
+      - cps-admin
+      summary: Get dataspaces
+      description: "Read all dataspaces"
+      operationId: getAllDataspaces
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DataspaceDetails'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 400
+                message: Bad Request
+                details: The provided request is not valid
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 401
+                message: Unauthorized request
+                details: This request is unauthorized
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 403
+                message: Request Forbidden
+                details: This request is forbidden
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 500
+                message: Internal Server Error
+                details: Internal Server Error occurred
+  /v2/admin/dataspaces/{dataspace-name}:
+    get:
+      tags:
+      - cps-admin
+      summary: Get an dataspace
+      description: Read an dataspace given a dataspace name
+      operationId: getDataspace
+      parameters:
+      - name: dataspace-name
+        in: path
+        description: dataspace-name
+        required: true
+        schema:
+          type: string
+          example: my-dataspace
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataspaceDetails'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 400
+                message: Bad Request
+                details: The provided request is not valid
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 401
+                message: Unauthorized request
+                details: This request is unauthorized
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 403
+                message: Request Forbidden
+                details: This request is forbidden
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 500
+                message: Internal Server Error
+                details: Internal Server Error occurred
   /v1/dataspaces/{dataspace-name}/anchors:
     get:
       tags:
@@ -1551,6 +1669,13 @@ components:
         schemaSetName:
           type: string
           example: my-schema-set
+    DataspaceDetails:
+      title: Dataspace details by dataspace Name
+      type: object
+      properties:
+        name:
+          type: string
+          example: my-dataspace
     MultipartFile:
       required:
       - file
