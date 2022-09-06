@@ -143,7 +143,7 @@ class CpsDataServiceImplSpec extends Specification {
             def jsonData = '{"branch": [{"name": "A"}, {"name": "B"}]}'
             objectUnderTest.saveListElementsBatch(dataspaceName, anchorName, '/test-tree', [jsonData], observedTimestamp)
         then: 'the persistence service method is invoked with correct parameters'
-            1 * mockCpsDataPersistenceService.addListElementsBatch(dataspaceName, anchorName, '/test-tree',_) >> {
+            1 * mockCpsDataPersistenceService.addMultipleLists(dataspaceName, anchorName, '/test-tree',_) >> {
                 args -> {
                     def listElementsCollection = args[3] as Collection<Collection<DataNode>>
                     assert listElementsCollection.size() == 1

@@ -73,7 +73,7 @@ public interface CpsDataPersistenceService {
      * @param parentNodeXpath         parent node xpath
      * @param listElementsCollections collections of data nodes representing list elements
      */
-    void addListElementsBatch(String dataspaceName, String anchorName, String parentNodeXpath,
+    void addMultipleLists(String dataspaceName, String anchorName, String parentNodeXpath,
             Collection<Collection<DataNode>> listElementsCollections);
 
     /**

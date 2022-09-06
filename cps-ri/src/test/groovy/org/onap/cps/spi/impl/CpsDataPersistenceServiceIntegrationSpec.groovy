@@ -27,6 +27,7 @@ import org.onap.cps.cpspath.parser.PathParsingException
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.entities.FragmentEntity
 import org.onap.cps.spi.exceptions.AlreadyDefinedException
+import org.onap.cps.spi.exceptions.AlreadyDefinedExceptionBatch
 import org.onap.cps.spi.exceptions.AnchorNotFoundException
 import org.onap.cps.spi.exceptions.CpsAdminException
 import org.onap.cps.spi.exceptions.CpsPathException
@@ -165,7 +166,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             def grandChild = buildDataNode('/parent-201/child-204[@key="NEW1"]/grand-child-204[@key2="NEW1-CHILD"]', [leave:'value'], [])
             listElements[0].childDataNodes = [grandChild]
         when: 'the new data node (list elements) are added to an existing parent node'
-            objectUnderTest.addListElementsBatch(DATASPACE_NAME, ANCHOR_NAME3, '/parent-201', [listElements])
+            objectUnderTest.addMultipleLists(DATASPACE_NAME, ANCHOR_NAME3, '/parent-201', [listElements])
         then: 'new entries are successfully persisted, parent node now contains 5 children (2 new + 3 existing before)'
             def parentFragment = fragmentRepository.getById(LIST_DATA_NODE_PARENT201_FRAGMENT_ID)
             def allChildXpaths = parentFragment.childFragments.collect { it.xpath }
@@ -176,6 +177,19 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             def anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, ANCHOR_NAME3)
             def grandChildFragmentEntity = fragmentRepository.findByDataspaceAndAnchorAndXpath(dataspaceEntity, anchorEntity, grandChild.xpath)
             assert grandChildFragmentEntity.isPresent()
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Add already existing list elements'() {
+        given: 'two new child list elements for an existing parent'
+            def listElementXpaths1 = ['/parent-100', '/parent-100/child-001']
+            def listElementXpaths2 = ['/parent-200', '/parent-200/child-201']
+            def listElements1 = toDataNodes(listElementXpaths1)
+            def listElements2 = toDataNodes(listElementXpaths2)
+        when: 'duplicate data node is requested to be added'
+            objectUnderTest.addMultipleLists(DATASPACE_NAME, ANCHOR_NAME3, '/parent-100', [listElements1,listElements2])
+        then: 'we get an exception'
+            thrown(AlreadyDefinedExceptionBatch)
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
