@@ -23,6 +23,7 @@
 package org.onap.cps.spi;
 
 import java.util.Collection;
+import java.util.List;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
 import org.onap.cps.spi.model.Anchor;
 
@@ -47,12 +48,29 @@ public interface CpsAdminPersistenceService {
     void deleteDataspace(String dataspaceName);
 
     /**
+     * Get dataspace.
+     *
+     * @param dataspaceName dataspace name
+     * @return Dataspace name 
+     * @throws AlreadyDefinedException if dataspace with same name already exists
+     */
+    String  getDataspace(String dataspaceName);
+
+    /**
+     * Get all dataspaces.
+     *
+     * @return list of dataspace names.
+     */
+    List<String> getAllDataspaces();
+
+    /**
      * Create an Anchor.
      *
      * @param dataspaceName dataspace name
      * @param schemaSetName schema set name
      * @param anchorName    anchor name
      */
+
     void createAnchor(String dataspaceName, String schemaSetName, String anchorName);
 
     /**

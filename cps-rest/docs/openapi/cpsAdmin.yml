@@ -234,3 +234,51 @@ anchorByDataspaceAndAnchorName:
         $ref: 'components.yml#/components/responses/Forbidden'
       '500':
         $ref: 'components.yml#/components/responses/InternalServerError'
+
+adminDataspaces:
+ get:
+   description: Read all dataspaces
+   tags:
+     - cps-admin
+   summary: Get all dataspaces
+   operationId: getDataspaces
+   responses:
+     '200':
+       description: OK
+       content:
+         application/json:
+           schema:
+             type: object
+     '400':
+       $ref: 'components.yml#/components/responses/BadRequest'
+     '401':
+       $ref: 'components.yml#/components/responses/Unauthorized'
+     '403':
+       $ref: 'components.yml#/components/responses/Forbidden'
+     '500':
+       $ref: 'components.yml#/components/responses/InternalServerError'
+
+adminDataspace:
+ get:
+   description: Read a dataspace
+   tags:
+     - cps-admin
+   summary: Get a dataspace
+   operationId: getDataspace
+   parameters:
+      - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
+   responses:
+     '200':
+       description: OK
+       content:
+         application/json:
+           schema:
+             type: object
+     '400':
+       $ref: 'components.yml#/components/responses/BadRequest'
+     '401':
+       $ref: 'components.yml#/components/responses/Unauthorized'
+     '403':
+       $ref: 'components.yml#/components/responses/Forbidden'
+     '500':
+       $ref: 'components.yml#/components/responses/InternalServerError'

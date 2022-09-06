@@ -82,6 +82,18 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
     }
 
     @Override
+    public String getDataspace(final String dataspaceName) {
+        final DataspaceEntity dataspaceEntity =  dataspaceRepository.getByName(dataspaceName);
+        return dataspaceEntity.getName();
+    }
+
+    @Override
+    public List<String> getAllDataspaces() {
+        final List<DataspaceEntity> dataspaceList = dataspaceRepository.findAll();
+        return dataspaceList.stream().map(entity -> entity.getName()).collect(Collectors.toList());
+    }
+
+    @Override
     public void createAnchor(final String dataspaceName, final String schemaSetName, final String anchorName) {
         final var dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         final var schemaSetEntity =
