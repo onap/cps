@@ -117,6 +117,29 @@
     },
     {
       "key": {
+        "uuid": "b0103a4a_58873a0b",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 504,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-09-06T14:33:11Z",
+      "side": 1,
+      "message": "thsi should be part of teh variable passed in it is part of teh name",
+      "range": {
+        "startLine": 504,
+        "startChar": 67,
+        "endLine": 504,
+        "endChar": 81
+      },
+      "revId": "09c09ec3c4851e2930d1d274dc40026865c634b4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e7ec779e_f2450a9c",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
         "patchSetId": 2
