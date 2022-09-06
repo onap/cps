@@ -1,7 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Nordix Foundation
- *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -21,57 +20,15 @@
 
 package org.onap.cps.ncmp.api.inventory;
 
-import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME;
-import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NO_TIMESTAMP;
-import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED;
-import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
-
-import java.time.OffsetDateTime;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.api.CpsDataService;
-import org.onap.cps.api.CpsModuleService;
-import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
-import org.onap.cps.spi.CpsAdminPersistenceService;
-import org.onap.cps.spi.CpsDataPersistenceService;
-import org.onap.cps.spi.FetchDescendantsOption;
-import org.onap.cps.spi.exceptions.SchemaSetNotFoundException;
 import org.onap.cps.spi.model.Anchor;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.ModuleDefinition;
 import org.onap.cps.spi.model.ModuleReference;
-import org.onap.cps.utils.CpsValidator;
-import org.onap.cps.utils.JsonObjectMapper;
-import org.springframework.stereotype.Component;
 
-@Slf4j
-@RequiredArgsConstructor
-@Component
-public class InventoryPersistence {
-
-    private static final String NCMP_DATASPACE_NAME = "NCMP-Admin";
-
-    private static final String NCMP_DMI_REGISTRY_ANCHOR = "ncmp-dmi-registry";
-
-    private static final String NCMP_DMI_REGISTRY_PARENT = "/dmi-registry";
-
-    private static final String CM_HANDLE_XPATH_TEMPLATE = "/dmi-registry/cm-handles[@id='" + "%s" + "']";
-
-    private final JsonObjectMapper jsonObjectMapper;
-
-    private final CpsDataService cpsDataService;
-
-    private final CpsModuleService cpsModuleService;
-
-    private final CpsDataPersistenceService cpsDataPersistenceService;
-
-    private final CpsAdminPersistenceService cpsAdminPersistenceService;
+public interface InventoryPersistence {
 
     /**
      * Get the Cm Handle Composite State from the data node.
@@ -79,50 +36,30 @@ public class InventoryPersistence {
      * @param cmHandleId cm handle id
      * @return the cm handle composite state
      */
-    public CompositeState getCmHandleState(final String cmHandleId) {
-        final DataNode stateAsDataNode = cpsDataService.getDataNode(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-            String.format(CM_HANDLE_XPATH_TEMPLATE, cmHandleId) + "/state",
-            FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
-        return new CompositeStateBuilder().fromDataNode(stateAsDataNode).build();
-    }
+    CompositeState getCmHandleState(String cmHandleId);
 
     /**
      * Save the cm handles state.
      *
-     * @param cmHandleId    cm handle id
+     * @param cmHandleId     cm handle id
      * @param compositeState composite state
      */
-    public void saveCmHandleState(final String cmHandleId, final CompositeState compositeState) {
-        final String cmHandleJsonData = String.format("{\"state\":%s}",
-            jsonObjectMapper.asJsonString(compositeState));
-        cpsDataService.updateDataNodeAndDescendants(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-            String.format(CM_HANDLE_XPATH_TEMPLATE, cmHandleId),
-            cmHandleJsonData, OffsetDateTime.now());
-    }
+    void saveCmHandleState(String cmHandleId, CompositeState compositeState);
 
     /**
      * Save all cm handles states in batch.
      *
      * @param cmHandleStatePerCmHandleId contains cm handle id and updated state
      */
-    public void saveCmHandleStateBatch(final Map<String, CompositeState> cmHandleStatePerCmHandleId) {
-        final Map<String, String> cmHandlesJsonDataMap = new HashMap<>();
-        cmHandleStatePerCmHandleId.forEach((cmHandleId, compositeState) -> cmHandlesJsonDataMap.put(
-                String.format(CM_HANDLE_XPATH_TEMPLATE, cmHandleId),
-                String.format("{\"state\":%s}", jsonObjectMapper.asJsonString(compositeState))));
-        cpsDataService.updateDataNodesAndDescendants(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                cmHandlesJsonDataMap, OffsetDateTime.now());
-    }
+    void saveCmHandleStateBatch(Map<String, CompositeState> cmHandleStatePerCmHandleId);
 
     /**
      * This method retrieves DMI service name, DMI properties and the state for a given cm handle.
+     *
      * @param cmHandleId the id of the cm handle
      * @return yang model cm handle
      */
-    public YangModelCmHandle getYangModelCmHandle(final String cmHandleId) {
-        CpsValidator.validateNameCharacters(cmHandleId);
-        return YangDataConverter.convertCmHandleToYangModel(getCmHandleDataNode(cmHandleId), cmHandleId);
-    }
+    YangModelCmHandle getYangModelCmHandle(String cmHandleId);
 
     /**
      * Method to return module definitions by cmHandleId.
@@ -130,9 +67,7 @@ public class InventoryPersistence {
      * @param cmHandleId cm handle ID
      * @return a collection of module definitions (moduleName, revision and yang resource content)
      */
-    public Collection<ModuleDefinition> getModuleDefinitionsByCmHandleId(final String cmHandleId) {
-        return cpsModuleService.getModuleDefinitionsByAnchorName(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId);
-    }
+    Collection<ModuleDefinition> getModuleDefinitionsByCmHandleId(String cmHandleId);
 
     /**
      * Method to return module references by cmHandleId.
@@ -140,60 +75,35 @@ public class InventoryPersistence {
      * @param cmHandleId cm handle ID
      * @return a collection of module references (moduleName and revision)
      */
-    public Collection<ModuleReference> getYangResourcesModuleReferences(final String cmHandleId) {
-        CpsValidator.validateNameCharacters(cmHandleId);
-        return cpsModuleService.getYangResourcesModuleReferences(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId);
-    }
+    Collection<ModuleReference> getYangResourcesModuleReferences(String cmHandleId);
 
     /**
      * Method to save cmHandle.
      *
      * @param yangModelCmHandle cmHandle represented as Yang Model
      */
-    public void saveCmHandle(final YangModelCmHandle yangModelCmHandle) {
-        final String cmHandleJsonData =
-                String.format("{\"cm-handles\":[%s]}", jsonObjectMapper.asJsonString(yangModelCmHandle));
-        cpsDataService.saveListElements(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NCMP_DMI_REGISTRY_PARENT,
-                cmHandleJsonData, NO_TIMESTAMP);
-    }
+    void saveCmHandle(YangModelCmHandle yangModelCmHandle);
 
     /**
      * Method to save batch of cm handles.
      *
      * @param yangModelCmHandles cm handle represented as Yang Models
      */
-    public void saveCmHandleBatch(final Collection<YangModelCmHandle> yangModelCmHandles) {
-        final List<String> cmHandlesJsonData = new ArrayList<>();
-        yangModelCmHandles.forEach(yangModelCmHandle -> cmHandlesJsonData.add(
-                String.format("{\"cm-handles\":[%s]}", jsonObjectMapper.asJsonString(yangModelCmHandle))));
-        cpsDataService.saveListElementsBatch(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                NCMP_DMI_REGISTRY_PARENT, cmHandlesJsonData, NO_TIMESTAMP);
-    }
+    void saveCmHandleBatch(Collection<YangModelCmHandle> yangModelCmHandles);
 
     /**
      * Method to delete a list or a list element.
      *
      * @param listElementXpath list element xPath
      */
-    public void deleteListOrListElement(final String listElementXpath) {
-        cpsDataService.deleteListOrListElement(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                listElementXpath, NO_TIMESTAMP);
-    }
+    void deleteListOrListElement(String listElementXpath);
 
     /**
      * Method to delete a schema set.
      *
      * @param schemaSetName schema set name
      */
-    public void deleteSchemaSetWithCascade(final String schemaSetName) {
-        try {
-            CpsValidator.validateNameCharacters(schemaSetName);
-            cpsModuleService.deleteSchemaSet(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, schemaSetName,
-                    CASCADE_DELETE_ALLOWED);
-        } catch (final SchemaSetNotFoundException schemaSetNotFoundException) {
-            log.warn("Schema set {} does not exist or already deleted", schemaSetName);
-        }
-    }
+    void deleteSchemaSetWithCascade(String schemaSetName);
 
     /**
      * Get data node via xpath.
@@ -201,10 +111,7 @@ public class InventoryPersistence {
      * @param xpath xpath
      * @return data node
      */
-    public DataNode getDataNode(final String xpath) {
-        return cpsDataPersistenceService.getDataNode(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                xpath, INCLUDE_ALL_DESCENDANTS);
-    }
+    DataNode getDataNode(String xpath);
 
     /**
      * Get data node of given cm handle.
@@ -212,9 +119,7 @@ public class InventoryPersistence {
      * @param cmHandleId cmHandle ID
      * @return data node
      */
-    public DataNode getCmHandleDataNode(final String cmHandleId) {
-        return this.getDataNode(String.format(CM_HANDLE_XPATH_TEMPLATE, cmHandleId));
-    }
+    DataNode getCmHandleDataNode(String cmHandleId);
 
     /**
      * Query anchors via module names.
@@ -222,37 +127,27 @@ public class InventoryPersistence {
      * @param moduleNamesForQuery module names
      * @return Collection of anchors
      */
-    public Collection<Anchor> queryAnchors(final Collection<String> moduleNamesForQuery) {
-        return  cpsAdminPersistenceService.queryAnchors(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, moduleNamesForQuery);
-    }
+    Collection<Anchor> queryAnchors(Collection<String> moduleNamesForQuery);
 
     /**
      * Method to get all anchors.
      *
      * @return Collection of anchors
      */
-    public Collection<Anchor> getAnchors() {
-        return cpsAdminPersistenceService.getAnchors(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME);
-    }
+    Collection<Anchor> getAnchors();
 
     /**
      * Replaces list content by removing all existing elements and inserting the given new elements as data nodes.
      *
-     * @param parentNodeXpath   parent node xpath
-     * @param dataNodes         datanodes representing the updated data
+     * @param parentNodeXpath parent node xpath
+     * @param dataNodes       datanodes representing the updated data
      */
-    public void replaceListContent(final String parentNodeXpath, final Collection<DataNode> dataNodes) {
-        cpsDataService.replaceListContent(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                parentNodeXpath, dataNodes, NO_TIMESTAMP);
-    }
+    void replaceListContent(String parentNodeXpath, Collection<DataNode> dataNodes);
 
     /**
      * Deletes data node for given anchor and dataspace.
      *
      * @param dataNodeXpath data node xpath
      */
-    public void deleteDataNode(final String dataNodeXpath) {
-        cpsDataService.deleteDataNode(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, dataNodeXpath,
-                NO_TIMESTAMP);
-    }
+    void deleteDataNode(String dataNodeXpath);
 }
