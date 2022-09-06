@@ -2,6 +2,7 @@
 #  Copyright (C) 2021 Nordix Foundation
 #  Modifications Copyright (C) 2021 Pantheon.tech
 #  Modifications Copyright (C) 2021 Bell Canada.
+#  Modifications Copyright (C) 2022 TechMahindra Ltd.
 #  ================================================================================
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -46,6 +47,12 @@ paths:
 
   /v1/dataspaces:
     $ref: 'cpsAdmin.yml#/dataspaces'
+
+  /v2/admin/dataspaces:
+    $ref: 'cpsAdmin.yml#/adminDataspaces'
+
+  /v2/admin/dataspaces/{dataspace-name}:
+    $ref: 'cpsAdmin.yml#/adminDataspace'
 
   /v1/dataspaces/{dataspace-name}/anchors:
     $ref: 'cpsAdmin.yml#/anchorsByDataspace'
