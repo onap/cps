@@ -3,6 +3,7 @@
  *  Copyright (C) 2020-2021 Pantheon.tech
  *  Modifications Copyright (C) 2020-2021 Bell Canada.
  *  Modifications Copyright (C) 2021-2022 Nordix Foundation
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -34,6 +35,7 @@ import org.onap.cps.api.CpsModuleService
 import org.onap.cps.spi.exceptions.AlreadyDefinedException
 import org.onap.cps.spi.exceptions.SchemaSetInUseException
 import org.onap.cps.spi.model.Anchor
+import org.onap.cps.spi.model.Dataspace;
 import org.onap.cps.spi.model.SchemaSet
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
@@ -211,6 +213,34 @@ class AdminRestControllerSpec extends Specification {
             response.status == HttpStatus.INTERNAL_SERVER_ERROR.value()
         where: 'following file types are used'
             fileType << ['YANG', 'ZIP']
+    }
+
+    def 'Get a dataspace.'() {
+        given: 'service method returns a dataspace'
+            mockCpsAdminService.getDataspace(dataspaceName) >>
+                    new Dataspace(dataspaceName: dataspaceName)
+        and: 'an endpoint'
+            def getDataspaceEndpoint = "$basePath/v2/admin/dataspaces/$dataspaceName"
+        when: 'get dataspace API is invoked'
+            def response = mvc.perform(get(getDataspaceEndpoint)).andReturn().response
+        then: 'the correct dataspace is returned'
+            response.status == HttpStatus.OK.value()
+            response.getContentAsString().contains(dataspaceName)
+    }
+
+
+    def 'Get all dataspace.'() {
+        given: 'service method returns all dataspace'
+            List<String> dsList = new ArrayList<>()
+            dsList.add(dataspaceName);
+            mockCpsAdminService.getAllDataspaces() >> dsList
+        and: 'an endpoint'
+            def getAllDataspaceEndpoint = "$basePath/v2/admin/dataspaces"
+        when: 'get all dataspace API is invoked'
+            def response = mvc.perform(get(getAllDataspaceEndpoint)).andReturn().response
+        then: 'the correct dataspace is returned'
+            response.status == HttpStatus.OK.value()
+            response.getContentAsString().contains(dataspaceName)
     }
 
     def 'Delete schema set.'() {

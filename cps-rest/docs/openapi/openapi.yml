@@ -47,6 +47,12 @@ paths:
   /v1/dataspaces:
     $ref: 'cpsAdmin.yml#/dataspaces'
 
+  /v2/admin/dataspaces:
+    $ref: 'cpsAdmin.yml#/adminDataspaces'
+
+  /v2/admin/dataspaces/{dataspace-name}:
+    $ref: 'cpsAdmin.yml#/adminDataspace'
+
   /v1/dataspaces/{dataspace-name}/anchors:
     $ref: 'cpsAdmin.yml#/anchorsByDataspace'
 

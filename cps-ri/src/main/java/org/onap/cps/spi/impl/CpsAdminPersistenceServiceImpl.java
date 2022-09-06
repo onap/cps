@@ -22,6 +22,7 @@
 
 package org.onap.cps.spi.impl;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -39,6 +40,7 @@ import org.onap.cps.spi.exceptions.DataspaceInUseException;
 import org.onap.cps.spi.exceptions.DataspaceNotFoundException;
 import org.onap.cps.spi.exceptions.ModuleNamesNotFoundException;
 import org.onap.cps.spi.model.Anchor;
+import org.onap.cps.spi.model.Dataspace;
 import org.onap.cps.spi.repository.AnchorRepository;
 import org.onap.cps.spi.repository.DataspaceRepository;
 import org.onap.cps.spi.repository.SchemaSetRepository;
@@ -79,6 +81,30 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
                 String.format("Dataspace contains %d schemaset(s)", numberOfAssociatedSchemaSets));
         }
         dataspaceRepository.delete(dataspaceEntity);
+    }
+
+    /**
+     * Get dataspace.
+     *
+     * @param dataspaceName dataspace name
+     * @throws AlreadyDefinedException if dataspace with same name already exists
+     */
+    @Override
+    public Dataspace getDataspace(final String dataspaceName) {
+        final DataspaceEntity dataspaceEntity =  dataspaceRepository.getByName(dataspaceName);
+        final Dataspace ds = new Dataspace();
+        ds.setDataspaceName(dataspaceEntity.getName());
+        return ds;
+    }
+
+    @Override
+    public List<String> getAllDataspace() {
+        final List<DataspaceEntity> dsList = dataspaceRepository.findAll();
+        final List<String> dataspaces = new ArrayList<>();
+        for (final DataspaceEntity ds : dsList) {
+            dataspaces.add(ds.getName());
+        }
+        return dataspaces;
     }
 
     @Override
