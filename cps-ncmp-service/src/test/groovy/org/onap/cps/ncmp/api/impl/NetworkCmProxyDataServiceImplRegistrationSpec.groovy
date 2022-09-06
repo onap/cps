@@ -28,14 +28,13 @@ import org.onap.cps.ncmp.api.NetworkCmProxyCmHandlerQueryService
 import org.onap.cps.ncmp.api.impl.event.lcm.LcmEventsCmHandleStateHandler
 import org.onap.cps.ncmp.api.impl.exception.DmiRequestException
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations
-import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.inventory.CmHandleQueries
 import org.onap.cps.ncmp.api.inventory.CmHandleState
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
-import org.onap.cps.spi.exceptions.AlreadyDefinedException
+import org.onap.cps.spi.exceptions.AlreadyDefinedExceptionBatch
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.exceptions.SchemaSetNotFoundException
@@ -185,20 +184,17 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
                                        new NcmpServiceCmHandle(cmHandleId: 'cmhandle2'),
                                        new NcmpServiceCmHandle(cmHandleId: 'cmhandle3')])
         and: 'cm-handle creation is successful for 1st and 3rd; failed for 2nd'
-            mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(*_) >> { throw new RuntimeException("Failed") }
+            mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(*_) >> { throw new AlreadyDefinedExceptionBatch(['cmhandle2']) }
         when: 'registration is updated to create cm-handles'
             def response = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'a response is received for all cm-handles'
             response.getCreatedCmHandles().size() == 1
         and: 'all cm-handles creation fails'
-            with(response.getCreatedCmHandles().get(0)) {
+            response.getCreatedCmHandles().each {
+                assert it.cmHandle == 'cmhandle2'
                 assert it.status == Status.FAILURE
-                assert it.registrationError == UNKNOWN_ERROR
-                assert it.errorText == 'Failed'
-                def sortedCmHandles = it.cmHandle.split(',').sort()
-                assert sortedCmHandles[0] == 'cmhandle1'
-                assert sortedCmHandles[1] == 'cmhandle2'
-                assert sortedCmHandles[2] == 'cmhandle3'
+                assert it.registrationError == CM_HANDLE_ALREADY_EXIST
+                assert it.errorText == 'cm-handle already exists'
             }
     }
 
@@ -219,10 +215,10 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
                 assert it.errorText == expectedErrorText
             }
         where:
-            scenario                                        | cmHandleId             | exception                                               || expectedError           | expectedErrorText
-            'cm-handle already exist'                       | 'cmhandle'             | new AlreadyDefinedException('', new RuntimeException()) || CM_HANDLE_ALREADY_EXIST | 'cm-handle already exists'
-            'cm-handle has invalid name'                    | 'cm handle with space' | new DataValidationException("", "")                     || CM_HANDLE_INVALID_ID    | 'cm-handle has an invalid character(s) in id'
-            'unknown exception while registering cm-handle' | 'cmhandle'             | new RuntimeException('Failed')                          || UNKNOWN_ERROR           | 'Failed'
+            scenario                                        | cmHandleId             | exception                                      || expectedError           | expectedErrorText
+            'cm-handle already exist'                       | 'cmhandle'             | new AlreadyDefinedExceptionBatch([cmHandleId]) || CM_HANDLE_ALREADY_EXIST | 'cm-handle already exists'
+            'cm-handle has invalid name'                    | 'cm handle with space' | new DataValidationException("", "")            || CM_HANDLE_INVALID_ID    | 'cm-handle has an invalid character(s) in id'
+            'unknown exception while registering cm-handle' | 'cmhandle'             | new RuntimeException('Failed')                 || UNKNOWN_ERROR           | 'Failed'
     }
 
     def 'Update CM-Handle: Update Operation Response is added to the response'() {

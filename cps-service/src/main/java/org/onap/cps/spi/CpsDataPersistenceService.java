@@ -66,15 +66,15 @@ public interface CpsDataPersistenceService {
         Collection<DataNode> listElementsCollection);
 
     /**
-     * Adds list child elements to a Fragment.
+     * Add multiple lists of data nodes to a parent node at the same time.
      *
      * @param dataspaceName           dataspace name
      * @param anchorName              anchor name
      * @param parentNodeXpath         parent node xpath
-     * @param listElementsCollections collections of data nodes representing list elements
+     * @param newLists collections of lists of data nodes representing list elements
      */
-    void addListElementsBatch(String dataspaceName, String anchorName, String parentNodeXpath,
-            Collection<Collection<DataNode>> listElementsCollections);
+    void addMultipleLists(String dataspaceName, String anchorName, String parentNodeXpath,
+            Collection<Collection<DataNode>> newLists);
 
     /**
      * Retrieves datanode by XPath for given dataspace and anchor.

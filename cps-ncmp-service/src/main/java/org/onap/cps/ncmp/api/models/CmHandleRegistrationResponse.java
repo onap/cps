@@ -21,6 +21,7 @@
 
 package org.onap.cps.ncmp.api.models;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.Builder;
@@ -65,6 +66,34 @@ public class CmHandleRegistrationResponse {
             .registrationError(registrationError)
             .errorText(registrationError.errorText)
             .build();
+    }
+
+    /**
+     * Creates a failure response based on registration error.
+     *
+     * @param cmHandleIds       list of failed cmHandleIds
+     * @param registrationError enum describing the type of registration error
+     * @return CmHandleRegistrationResponse
+     */
+    public static List<CmHandleRegistrationResponse> createFailureResponses(final Collection<String> cmHandleIds,
+            final RegistrationError registrationError) {
+        return cmHandleIds.stream()
+                .map(cmHandleId -> CmHandleRegistrationResponse.createFailureResponse(cmHandleId, registrationError))
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * Creates a failure response based on other exception.
+     *
+     * @param cmHandleIds list of failed cmHandleIds
+     * @param exception   exception caught during the registration
+     * @return CmHandleRegistrationResponse
+     */
+    public static List<CmHandleRegistrationResponse> createFailureResponses(final Collection<String> cmHandleIds,
+            final Exception exception) {
+        return cmHandleIds.stream()
+                .map(cmHandleId -> CmHandleRegistrationResponse.createFailureResponse(cmHandleId, exception))
+                .collect(Collectors.toList());
     }
 
     public static CmHandleRegistrationResponse createSuccessResponse(final String cmHandle) {

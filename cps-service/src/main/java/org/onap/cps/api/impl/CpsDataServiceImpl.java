@@ -97,7 +97,7 @@ public class CpsDataServiceImpl implements CpsDataService {
         CpsValidator.validateNameCharacters(dataspaceName, anchorName);
         final Collection<Collection<DataNode>> listElementDataNodeCollections =
                 buildDataNodes(dataspaceName, anchorName, parentNodeXpath, jsonDataList);
-        cpsDataPersistenceService.addListElementsBatch(dataspaceName, anchorName, parentNodeXpath,
+        cpsDataPersistenceService.addMultipleLists(dataspaceName, anchorName, parentNodeXpath,
                 listElementDataNodeCollections);
         processDataUpdatedEventAsync(dataspaceName, anchorName, parentNodeXpath, UPDATE, observedTimestamp);
     }
