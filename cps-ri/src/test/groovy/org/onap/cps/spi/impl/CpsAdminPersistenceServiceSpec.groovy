@@ -3,6 +3,7 @@
  *  Copyright (C) 2021-2022 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2022 Bell Canada
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -65,6 +66,30 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
         then: 'an exception that is is already defined is thrown with the correct details'
             def thrown = thrown(AlreadyDefinedException)
             thrown.details.contains(DATASPACE_NAME)
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Get a dataspace.'() {
+        when: 'dataspace is retrieved'
+            def dataspace = objectUnderTest.getDataspace(DATASPACE_NAME)
+        then: ' the response contains expected dataspace'
+            assert dataspace.equals(DATASPACE_NAME);
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Get all dataspaces.'() {
+        when: 'all dataspaces are retrieved'
+            def dataspaces = objectUnderTest.getAllDataspaces()
+        then: ' the response contains expected dataspaces'
+            assert dataspaces.toString().contains(DATASPACE_NAME);
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Get invalid dataspace.'() {
+        when: 'invalid dataspace is retrieved'
+            def dataspace = objectUnderTest.getDataspace('invalid_dataspace')
+        then: ' DataspaceNotFoundException is thrown'
+            thrown(DataspaceNotFoundException)
     }
 
     @Sql([CLEAR_DATA, SET_DATA])

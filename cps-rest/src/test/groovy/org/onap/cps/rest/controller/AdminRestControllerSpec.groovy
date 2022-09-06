@@ -3,6 +3,7 @@
  *  Copyright (C) 2020-2021 Pantheon.tech
  *  Modifications Copyright (C) 2020-2021 Bell Canada.
  *  Modifications Copyright (C) 2021-2022 Nordix Foundation
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -211,6 +212,31 @@ class AdminRestControllerSpec extends Specification {
             response.status == HttpStatus.INTERNAL_SERVER_ERROR.value()
         where: 'following file types are used'
             fileType << ['YANG', 'ZIP']
+    }
+
+    def 'Get a dataspace.'() {
+        given: 'service method returns a dataspace'
+            mockCpsAdminService.getDataspace(dataspaceName) >> dataspaceName
+        and: 'an endpoint'
+            def getDataspaceEndpoint = "$basePath/v2/admin/dataspaces/$dataspaceName"
+        when: 'get dataspace API is invoked'
+            def response = mvc.perform(get(getDataspaceEndpoint)).andReturn().response
+        then: 'the correct dataspace is returned'
+            response.status == HttpStatus.OK.value()
+            response.getContentAsString().contains(dataspaceName)
+    }
+
+
+    def 'Get all dataspaces.'() {
+        given: 'service method returns all dataspace'
+            mockCpsAdminService.getAllDataspaces() >> [dataspaceName]
+        and: 'an endpoint'
+            def getAllDataspaceEndpoint = "$basePath/v2/admin/dataspaces"
+        when: 'get all dataspace API is invoked'
+            def response = mvc.perform(get(getAllDataspaceEndpoint)).andReturn().response
+        then: 'the correct dataspace is returned'
+            response.status == HttpStatus.OK.value()
+            response.getContentAsString().contains(dataspaceName)
     }
 
     def 'Delete schema set.'() {

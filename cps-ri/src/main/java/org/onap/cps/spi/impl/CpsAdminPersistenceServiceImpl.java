@@ -3,6 +3,7 @@
  * Copyright (C) 2020-2022 Nordix Foundation.
  * Modifications Copyright (C) 2020-2022 Bell Canada.
  * Modifications Copyright (C) 2021 Pantheon.tech
+ * Modifications Copyright (C) 2022 TechMahindra Ltd.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -79,6 +80,18 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
                 String.format("Dataspace contains %d schemaset(s)", numberOfAssociatedSchemaSets));
         }
         dataspaceRepository.delete(dataspaceEntity);
+    }
+
+    @Override
+    public String getDataspace(final String dataspaceName) {
+        final DataspaceEntity dataspaceEntity =  dataspaceRepository.getByName(dataspaceName);
+        return dataspaceEntity.getName();
+    }
+
+    @Override
+    public List<String> getAllDataspaces() {
+        final List<DataspaceEntity> dataspaceList = dataspaceRepository.findAll();
+        return dataspaceList.stream().map(entity -> entity.getName()).collect(Collectors.toList());
     }
 
     @Override
