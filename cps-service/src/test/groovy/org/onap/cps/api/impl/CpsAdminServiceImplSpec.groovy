@@ -3,6 +3,7 @@
  *  Copyright (C) 2020-2022 Nordix Foundation
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -26,6 +27,7 @@ import org.onap.cps.api.CpsDataService
 import org.onap.cps.spi.CpsAdminPersistenceService
 import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.model.Anchor
+import org.onap.cps.spi.model.Dataspace
 import spock.lang.Specification
 import java.time.OffsetDateTime
 
@@ -125,6 +127,20 @@ class CpsAdminServiceImplSpec extends Specification {
             'dataspace name'             | 'dataspace names with spaces' | 'anchorName'
             'anchor name'                | 'dataspaceName'               | 'anchor name with spaces'
             'dataspace and anchor name'  | 'dataspace name with spaces'  | 'anchor name with spaces'
+    }
+
+    def 'Retrieve dataspace.'() {
+        given: 'that given dataspace is already created'
+            mockCpsAdminPersistenceService.getDataspace('someDataspace') >> 'someDataspace'
+        expect: 'the dataspace provided by persistence service is returned as result'
+            objectUnderTest.getDataspace('someDataspace') == 'someDataspace'
+    }
+
+    def 'Retrieve all dataspace.'() {
+        given: 'that all given dataspaces are already created'
+            mockCpsAdminPersistenceService.getAllDataspaces() >> ['someDataspace']
+        expect: 'the dataspace provided by persistence service is returned as result'
+            objectUnderTest.getAllDataspaces() == ['someDataspace']
     }
 
     def 'Delete anchor.'() {
