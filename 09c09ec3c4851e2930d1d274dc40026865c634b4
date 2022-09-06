@@ -275,6 +275,30 @@
       "revId": "09c09ec3c4851e2930d1d274dc40026865c634b4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cf1b3110_665c65cc",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 524,
+      "author": {
+        "id": 8111
+      },
+      "writtenOn": "2022-09-06T14:36:45Z",
+      "side": 1,
+      "message": "I have tried something similar first but i had several issues that\u0027s why i created separate tests",
+      "parentUuid": "e8ac4986_9fe5ce7e",
+      "range": {
+        "startLine": 524,
+        "startChar": 16,
+        "endLine": 524,
+        "endChar": 27
+      },
+      "revId": "09c09ec3c4851e2930d1d274dc40026865c634b4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
