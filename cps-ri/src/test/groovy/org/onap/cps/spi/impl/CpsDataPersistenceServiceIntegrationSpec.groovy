@@ -27,6 +27,7 @@ import org.onap.cps.cpspath.parser.PathParsingException
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.entities.FragmentEntity
 import org.onap.cps.spi.exceptions.AlreadyDefinedException
+import org.onap.cps.spi.exceptions.AlreadyDefinedExceptionBatch
 import org.onap.cps.spi.exceptions.AnchorNotFoundException
 import org.onap.cps.spi.exceptions.CpsAdminException
 import org.onap.cps.spi.exceptions.CpsPathException
@@ -176,6 +177,17 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             def anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, ANCHOR_NAME3)
             def grandChildFragmentEntity = fragmentRepository.findByDataspaceAndAnchorAndXpath(dataspaceEntity, anchorEntity, grandChild.xpath)
             assert grandChildFragmentEntity.isPresent()
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Add already existing list elements'() {
+        given: 'two new child list elements for an existing parent'
+            def listElementXpaths = ['/parent-100']
+            def listElements = toDataNodes(listElementXpaths)
+        when: 'duplicate data node is requested to be added'
+            objectUnderTest.addListElementsBatch(DATASPACE_NAME, ANCHOR_NAME3, '/parent-100', [listElements])
+        then: 'we get an exception'
+            thrown(AlreadyDefinedExceptionBatch)
     }
 
     @Sql([CLEAR_DATA, SET_DATA])

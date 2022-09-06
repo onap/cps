@@ -67,6 +67,34 @@ public class CmHandleRegistrationResponse {
             .build();
     }
 
+    /**
+     * Creates a failure response based on registration error.
+     *
+     * @param cmHandleIds       list of failed cmHandleIds
+     * @param registrationError registrationError
+     * @return CmHandleRegistrationResponse
+     */
+    public static List<CmHandleRegistrationResponse> createFailureResponses(final List<String> cmHandleIds,
+            final RegistrationError registrationError) {
+        return cmHandleIds.stream()
+                .map(cmHandleId -> CmHandleRegistrationResponse.createFailureResponse(cmHandleId, registrationError))
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * Creates a failure response based on exception.
+     *
+     * @param cmHandleIds list of failed cmHandleIds
+     * @param exception   exception
+     * @return CmHandleRegistrationResponse
+     */
+    public static List<CmHandleRegistrationResponse> createFailureResponses(final List<String> cmHandleIds,
+            final Exception exception) {
+        return cmHandleIds.stream()
+                .map(cmHandleId -> CmHandleRegistrationResponse.createFailureResponse(cmHandleId, exception))
+                .collect(Collectors.toList());
+    }
+
     public static CmHandleRegistrationResponse createSuccessResponse(final String cmHandle) {
         return CmHandleRegistrationResponse.builder().cmHandle(cmHandle)
             .status(Status.SUCCESS).build();

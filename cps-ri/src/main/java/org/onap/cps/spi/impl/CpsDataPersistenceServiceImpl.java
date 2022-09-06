@@ -52,6 +52,7 @@ import org.onap.cps.spi.entities.FragmentEntity;
 import org.onap.cps.spi.entities.SchemaSetEntity;
 import org.onap.cps.spi.entities.YangResourceEntity;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
+import org.onap.cps.spi.exceptions.AlreadyDefinedExceptionBatch;
 import org.onap.cps.spi.exceptions.ConcurrencyException;
 import org.onap.cps.spi.exceptions.CpsAdminException;
 import org.onap.cps.spi.exceptions.CpsPathException;
@@ -88,26 +89,46 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             Pattern.compile("\\[(\\@([^\\/]{0,9999}))\\]$");
 
     @Override
-    @Transactional
     public void addChildDataNode(final String dataspaceName, final String anchorName, final String parentNodeXpath,
                                  final DataNode newChildDataNode) {
-        addChildDataNodes(dataspaceName, anchorName, parentNodeXpath, Collections.singleton(newChildDataNode));
+        addChildDataNodeInSequence(dataspaceName, anchorName, parentNodeXpath, newChildDataNode);
     }
 
     @Override
-    @Transactional
     public void addListElements(final String dataspaceName, final String anchorName, final String parentNodeXpath,
                                 final Collection<DataNode> newListElements) {
         addChildDataNodes(dataspaceName, anchorName, parentNodeXpath, newListElements);
     }
 
     @Override
-    @Transactional
     public void addListElementsBatch(final String dataspaceName, final String anchorName, final String parentNodeXpath,
             final Collection<Collection<DataNode>> newListsElements) {
+        final List<String> failedCmHandleIds = new ArrayList<>();
+        newListsElements.forEach(newListElement -> {
+            try {
+                addChildDataNodes(dataspaceName, anchorName, parentNodeXpath, newListElement);
+            } catch (final AlreadyDefinedException exception) {
+                failedCmHandleIds.add((String) newListElement.stream().iterator().next().getLeaves().get("id"));
+            }
+        });
 
-        newListsElements.forEach(
-                newListElement -> addListElements(dataspaceName, anchorName, parentNodeXpath, newListElement));
+        if (!failedCmHandleIds.isEmpty()) {
+            throw new AlreadyDefinedExceptionBatch(failedCmHandleIds);
+        }
+
+    }
+
+    private void addChildDataNodeInSequence(final String dataspaceName, final String anchorName,
+            final String parentNodeXpath, final DataNode newChildren) {
+        final FragmentEntity parentFragmentEntity = getFragmentByXpath(dataspaceName, anchorName, parentNodeXpath);
+        final FragmentEntity newChildAsFragmentEntity =
+                prepareChildDataNode(parentFragmentEntity.getId(), parentFragmentEntity.getDataspace(),
+                        parentFragmentEntity.getAnchor(), newChildren);
+        try {
+            fragmentRepository.save(newChildAsFragmentEntity);
+        } catch (final DataIntegrityViolationException exception) {
+            throw AlreadyDefinedException.forDataNode(newChildren.getXpath(), anchorName, exception);
+        }
 
     }
 
@@ -117,20 +138,26 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         try {
             final List<FragmentEntity> fragmentEntities = new ArrayList<>();
             newChildren.forEach(newChildAsDataNode -> {
-                final FragmentEntity newChildAsFragmentEntity = convertToFragmentWithAllDescendants(
-                    parentFragmentEntity.getDataspace(),
-                    parentFragmentEntity.getAnchor(),
-                    newChildAsDataNode);
-                newChildAsFragmentEntity.setParentId(parentFragmentEntity.getId());
+
+                final FragmentEntity newChildAsFragmentEntity =
+                        prepareChildDataNode(parentFragmentEntity.getId(), parentFragmentEntity.getDataspace(),
+                                parentFragmentEntity.getAnchor(), newChildAsDataNode);
                 fragmentEntities.add(newChildAsFragmentEntity);
             });
             fragmentRepository.saveAll(fragmentEntities);
         } catch (final DataIntegrityViolationException exception) {
-            final List<String> conflictXpaths = newChildren.stream()
-                    .map(DataNode::getXpath)
-                    .collect(Collectors.toList());
-            throw AlreadyDefinedException.forDataNodes(conflictXpaths, anchorName, exception);
+            newChildren.forEach(
+                    newChildAsDataNode -> addChildDataNodeInSequence(dataspaceName, anchorName, parentNodeXpath,
+                            newChildAsDataNode));
         }
+    }
+
+    private FragmentEntity prepareChildDataNode(final Long id, final DataspaceEntity dataspace,
+            final AnchorEntity anchor, final DataNode newChildAsDataNode) {
+        final FragmentEntity newChildAsFragmentEntity =
+                convertToFragmentWithAllDescendants(dataspace, anchor, newChildAsDataNode);
+        newChildAsFragmentEntity.setParentId(id);
+        return newChildAsFragmentEntity;
     }
 
     @Override
