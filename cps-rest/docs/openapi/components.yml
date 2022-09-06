@@ -34,6 +34,14 @@ components:
           type: string
           example: my-schema-set
 
+    DataspaceDetails:
+      type: object
+      title: Dataspace details by dataspace Name
+      properties:
+        name:
+          type: string
+          example: my-dataspace
+
     ErrorMessage:
       type: object
       title: Error

@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Nordix Foundation
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -25,8 +26,10 @@ import org.mapstruct.Mapping;
 import org.mapstruct.NullValueCheckStrategy;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 import org.onap.cps.rest.model.AnchorDetails;
+import org.onap.cps.rest.model.DataspaceDetails;
 import org.onap.cps.rest.model.SchemaSetDetails;
 import org.onap.cps.spi.model.Anchor;
+import org.onap.cps.spi.model.Dataspace;
 import org.onap.cps.spi.model.SchemaSet;
 
 @Mapper(componentModel = "spring")
@@ -39,4 +42,5 @@ public interface CpsRestInputMapper {
 
     AnchorDetails toAnchorDetails(final Anchor anchor);
 
+    DataspaceDetails toDataspaceDetails(final Dataspace dataspace);
 }
