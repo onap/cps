@@ -24,12 +24,14 @@ package org.onap.cps.api.impl;
 
 import java.time.OffsetDateTime;
 import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.spi.CpsAdminPersistenceService;
 import org.onap.cps.spi.model.Anchor;
+import org.onap.cps.spi.model.Dataspace;
 import org.onap.cps.utils.CpsValidator;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
@@ -52,6 +54,16 @@ public class CpsAdminServiceImpl implements CpsAdminService {
     public void deleteDataspace(final String dataspaceName) {
         CpsValidator.validateNameCharacters(dataspaceName);
         cpsAdminPersistenceService.deleteDataspace(dataspaceName);
+    }
+
+    @Override
+    public Dataspace getDataspace(final String dataspaceName) {
+        return cpsAdminPersistenceService.getDataspace(dataspaceName);
+    }
+
+    @Override
+    public List<String> getAllDataspaces() {
+        return cpsAdminPersistenceService.getAllDataspace();
     }
 
     @Override

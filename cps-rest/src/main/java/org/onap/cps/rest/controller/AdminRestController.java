@@ -26,7 +26,9 @@ import static org.onap.cps.rest.utils.MultipartFileUtil.extractYangResourcesMap;
 import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -173,5 +175,17 @@ public class AdminRestController implements CpsAdminApi {
         final List<AnchorDetails> anchorDetails = anchors.stream().map(cpsRestInputMapper::toAnchorDetails)
             .collect(Collectors.toList());
         return new ResponseEntity<>(anchorDetails, HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<Object> getAdminDataspaces() {
+        final Map<String, List<String>> responseBody = new HashMap<>();
+        responseBody.put("dataspaceNames", cpsAdminService.getAllDataspaces());
+        return new ResponseEntity<>(responseBody, HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<Object> getAdminDataspace(final String dataspaceName) {
+        return new ResponseEntity<>(cpsAdminService.getDataspace(dataspaceName), HttpStatus.OK);
     }
 }
