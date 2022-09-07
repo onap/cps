@@ -42,6 +42,52 @@
     },
     {
       "key": {
+        "uuid": "42d3e0d0_d1e5b8dd",
+        "filename": "cps-rest/docs/openapi/cpsAdminV2.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-09-07T09:25:31Z",
+      "side": 1,
+      "message": "Could a new line be inserted between here?",
+      "range": {
+        "startLine": 40,
+        "startChar": 70,
+        "endLine": 41,
+        "endChar": 19
+      },
+      "revId": "36d8c2c9bc4c0cdf29a97cdec700e5d799a48649",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4248f839_2158054f",
+        "filename": "cps-rest/docs/openapi/cpsAdminV2.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-09-07T09:25:31Z",
+      "side": 1,
+      "message": "New line here too",
+      "range": {
+        "startLine": 64,
+        "startChar": 41,
+        "endLine": 65,
+        "endChar": 10
+      },
+      "revId": "36d8c2c9bc4c0cdf29a97cdec700e5d799a48649",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "50b66c64_76752161",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
         "patchSetId": 5
