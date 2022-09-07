@@ -22,34 +22,31 @@ package org.onap.cps.aop
 
 import org.aspectj.lang.ProceedingJoinPoint
 import org.aspectj.lang.reflect.MethodSignature
-import org.onap.cps.spi.exceptions.DataValidationException
 import spock.lang.Specification
 import java.util.logging.Level
 import java.util.logging.Logger
 
 class CpsLoggingAspectServiceSpec extends Specification {
 
-    private static final Logger logger = Logger.getLogger("org.onap.cps")
+    private static final Logger logger = Logger.getLogger('org.onap.cps')
 
     def mockProceedingJoinPoint = Mock(ProceedingJoinPoint)
-    def mockMethodSignature = Mock(MethodSignature);
-    def objectUnderTest = new CpsLoggingAspectService()
+    def mockMethodSignature = Mock(MethodSignature)
+    def objectUnderTest = Spy(CpsLoggingAspectService)
 
     def setup() {
         mockMethodSignature.getDeclaringType() >> this.getClass()
-        mockMethodSignature.getDeclaringType().getSimpleName() >> 'CpsLoggingAspectServiceSpec'
-        mockMethodSignature.getName() >> 'logMethodExecutionTime'
         mockProceedingJoinPoint.getSignature() >> mockMethodSignature
     }
 
     def 'Log method execution time for log level : #logLevel.'() {
-        given: 'mock valid pointcut arguments and set log level to #logLevel'
-            mockProceedingJoinPoint.getArgs() >> 'dataspace-name'
+        given: 'normal method and log level of #logLevel'
+            mockMethodSignature.getName() >> 'some method'
             logger.setLevel(logLevel)
-        when: 'aop intercepts cps method'
-            objectUnderTest.logMethodExecutionTime(mockProceedingJoinPoint)
-        then: 'expected number of method execution'
-            expectedNumberOfMethodExecution * mockMethodSignature.getName()
+        when: 'cps method is intercepted'
+            objectUnderTest.interceptMethodCall(mockProceedingJoinPoint)
+        then: 'logging is only done for correct levels'
+            expectedNumberOfMethodExecution * objectUnderTest.logMethodCall(*_)
         where: 'the following log levels are used'
             logLevel     || expectedNumberOfMethodExecution
             Level.INFO   || 0
@@ -58,11 +55,32 @@ class CpsLoggingAspectServiceSpec extends Specification {
     }
 
     def 'Exception thrown during method execution.'() {
-        given: 'some exception is created'
-            mockProceedingJoinPoint.proceed() >> { throw new Exception("some exception") }
-        when: 'aop intercepts cps method and start calculation of time'
-            objectUnderTest.logMethodExecutionTime(mockProceedingJoinPoint)
-        then: 'some exception is thrown'
-            thrown Exception
+        given: 'some exception is thrown'
+            def originalException = new Exception('some exception')
+            mockProceedingJoinPoint.proceed() >> {
+                throw originalException
+            }
+        when: 'cps method is intercepted'
+            objectUnderTest.interceptMethodCall(mockProceedingJoinPoint)
+        then: 'the same exception is still thrown'
+            def thrownException = thrown(Exception)
+            assert thrownException == originalException
     }
+
+    def 'Masking sensitive data.'() {
+        given: 'method named #methodName returns some value'
+            mockMethodSignature.getName() >> methodName
+            mockProceedingJoinPoint.proceed() >> 'original return value'
+        and: 'the logger level is set to FINE'
+            logger.setLevel(Level.FINE)
+        when: 'cps method is intercepted'
+           objectUnderTest.interceptMethodCall(mockProceedingJoinPoint)
+        then: 'the expected value is being logged'
+            1 * objectUnderTest.logMethodCall(_, _, _, expectedLogValue)
+        where: 'the following method names are used'
+            methodName        || expectedLogValue
+            'normalMethod'    || 'original return value'
+            'getAuthPassword' || '***********'
+    }
+
 }

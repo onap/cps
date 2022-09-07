@@ -40,6 +40,13 @@ Bug Fixes
 ---------
    - None
 
+Security Notes
+--------------
+
+*Fixed Security Issues*
+
+   - `CPS-1226 <https://jira.onap.org/browse/CPS-1226>`_  Security bug in the logs
+
 Version: 3.1.0
 ==============
 
