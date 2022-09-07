@@ -4,87 +4,87 @@ info:
   description: NCMP to CPS Proxy API
   version: "1.0"
 servers:
-  - url: /ncmp
+- url: /ncmp
 paths:
   /v1/ch/{cm-handle}/data/ds/{ncmp-datastore-name}:
     get:
       tags:
-        - network-cm-proxy
+      - network-cm-proxy
       summary: Get resource data for cm handle
       description: Get resource data for given cm handle
       operationId: getResourceDataForCmHandle
       parameters:
-        - name: ncmp-datastore-name
-          in: path
-          description: The type of the requested data
-          required: true
-          schema:
-            type: string
-            example: ncmp-datastore:operational
-        - name: cm-handle
-          in: path
-          description: "The identifier for a network function, network element, subnetwork\
+      - name: ncmp-datastore-name
+        in: path
+        description: The type of the requested data
+        required: true
+        schema:
+          type: string
+          example: ncmp-datastore:operational
+      - name: cm-handle
+        in: path
+        description: "The identifier for a network function, network element, subnetwork\
           \ or any other cm object by managed Network CM Proxy"
-          required: true
-          schema:
-            type: string
-            example: my-cm-handle
-        - name: resourceIdentifier
-          in: query
-          description: The format of resource identifier depend on the associated DMI
-            Plugin implementation. For ONAP DMI Plugin it will be RESTConf paths but
-            it can really be anything.
-          required: true
-          allowReserved: true
-          schema:
-            type: string
-          examples:
-            sample 1:
-              value:
-                resourceIdentifier: \shops\bookstore
-            sample 2:
-              value:
-                resourceIdentifier: "\\shops\\bookstore\\categories[@code=1]"
-            sample 3:
-              value:
-                resourceIdentifier: "parent=shops,child=bookstore"
-        - name: options
-          in: query
-          description: "options parameter in query, it is mandatory to wrap key(s)=value(s)\
+        required: true
+        schema:
+          type: string
+          example: my-cm-handle
+      - name: resourceIdentifier
+        in: query
+        description: The format of resource identifier depend on the associated DMI
+          Plugin implementation. For ONAP DMI Plugin it will be RESTConf paths but
+          it can really be anything.
+        required: true
+        allowReserved: true
+        schema:
+          type: string
+        examples:
+          sample 1:
+            value:
+              resourceIdentifier: \shops\bookstore
+          sample 2:
+            value:
+              resourceIdentifier: "\\shops\\bookstore\\categories[@code=1]"
+          sample 3:
+            value:
+              resourceIdentifier: "parent=shops,child=bookstore"
+      - name: options
+        in: query
+        description: "options parameter in query, it is mandatory to wrap key(s)=value(s)\
           \ in parenthesis'()'. The format of options parameter depend on the associated\
           \ DMI Plugin implementation."
-          required: false
-          allowReserved: true
-          schema:
-            type: string
-          examples:
-            sample 1:
-              value:
-                options: (depth=3)
-            sample 2:
-              value:
-                options: (fields=book)
-            sample 3:
-              value:
-                options: "(depth=2,fields=book/authors)"
-        - name: topic
-          in: query
-          description: topic parameter in query.
-          required: false
-          allowReserved: true
-          schema:
-            type: string
-          examples:
-            sample 1:
-              value:
-                topic: my-topic-name
-        - name: include-descendants
-          in: query
-          description: Determines if descendants are included in response
-          required: false
-          schema:
-            type: boolean
-            default: false
+        required: false
+        allowReserved: true
+        schema:
+          type: string
+        examples:
+          sample 1:
+            value:
+              options: (depth=3)
+          sample 2:
+            value:
+              options: (fields=book)
+          sample 3:
+            value:
+              options: "(depth=2,fields=book/authors)"
+      - name: topic
+        in: query
+        description: topic parameter in query.
+        required: false
+        allowReserved: true
+        schema:
+          type: string
+        examples:
+          sample 1:
+            value:
+              topic: my-topic-name
+      - name: include-descendants
+        in: query
+        description: Determines if descendants are included in response
+        required: false
+        schema:
+          type: boolean
+          default: false
       responses:
         "200":
           description: OK
@@ -146,51 +146,57 @@ paths:
                 dmi-response:
                   http-code: 400
                   body: Bad Request
-  /v1/ch/{cm-handle}/data/ds/ncmp-datastore:passthrough-running:
     put:
       tags:
-        - network-cm-proxy
+      - network-cm-proxy
       summary: Update resource data from pass-through running for a cm handle
       description: Update resource data from pass-through running for the given cm
         handle
       operationId: updateResourceDataRunningForCmHandle
       parameters:
-        - name: cm-handle
-          in: path
-          description: "The identifier for a network function, network element, subnetwork\
+      - name: ncmp-datastore-name
+        in: path
+        description: The type of the requested data
+        required: true
+        schema:
+          type: string
+          example: ncmp-datastore:operational
+      - name: cm-handle
+        in: path
+        description: "The identifier for a network function, network element, subnetwork\
           \ or any other cm object by managed Network CM Proxy"
-          required: true
-          schema:
-            type: string
-            example: my-cm-handle
-        - name: resourceIdentifier
-          in: query
-          description: The format of resource identifier depend on the associated DMI
-            Plugin implementation. For ONAP DMI Plugin it will be RESTConf paths but
-            it can really be anything.
-          required: true
-          allowReserved: true
-          schema:
-            type: string
-          examples:
-            sample 1:
-              value:
-                resourceIdentifier: \shops\bookstore
-            sample 2:
-              value:
-                resourceIdentifier: "\\shops\\bookstore\\categories[@code=1]"
-            sample 3:
-              value:
-                resourceIdentifier: "parent=shops,child=bookstore"
-        - name: Content-Type
-          in: header
-          description: "Content parameter for request, if content parameter is null,\
+        required: true
+        schema:
+          type: string
+          example: my-cm-handle
+      - name: resourceIdentifier
+        in: query
+        description: The format of resource identifier depend on the associated DMI
+          Plugin implementation. For ONAP DMI Plugin it will be RESTConf paths but
+          it can really be anything.
+        required: true
+        allowReserved: true
+        schema:
+          type: string
+        examples:
+          sample 1:
+            value:
+              resourceIdentifier: \shops\bookstore
+          sample 2:
+            value:
+              resourceIdentifier: "\\shops\\bookstore\\categories[@code=1]"
+          sample 3:
+            value:
+              resourceIdentifier: "parent=shops,child=bookstore"
+      - name: Content-Type
+        in: header
+        description: "Content parameter for request, if content parameter is null,\
           \ default value is application/json."
-          required: false
-          schema:
-            type: string
-            example: application/yang-data+json
-            default: application/json
+        required: false
+        schema:
+          type: string
+          example: application/yang-data+json
+          default: application/json
       requestBody:
         content:
           application/json:
@@ -266,47 +272,54 @@ paths:
                   body: Bad Request
     post:
       tags:
-        - network-cm-proxy
+      - network-cm-proxy
       summary: create resource data from pass-through running for cm handle
       description: create resource data from pass-through running for given cm handle
       operationId: createResourceDataRunningForCmHandle
       parameters:
-        - name: cm-handle
-          in: path
-          description: "The identifier for a network function, network element, subnetwork\
+      - name: ncmp-datastore-name
+        in: path
+        description: The type of the requested data
+        required: true
+        schema:
+          type: string
+          example: ncmp-datastore:operational
+      - name: cm-handle
+        in: path
+        description: "The identifier for a network function, network element, subnetwork\
           \ or any other cm object by managed Network CM Proxy"
-          required: true
-          schema:
-            type: string
-            example: my-cm-handle
-        - name: resourceIdentifier
-          in: query
-          description: The format of resource identifier depend on the associated DMI
-            Plugin implementation. For ONAP DMI Plugin it will be RESTConf paths but
-            it can really be anything.
-          required: true
-          allowReserved: true
-          schema:
-            type: string
-          examples:
-            sample 1:
-              value:
-                resourceIdentifier: \shops\bookstore
-            sample 2:
-              value:
-                resourceIdentifier: "\\shops\\bookstore\\categories[@code=1]"
-            sample 3:
-              value:
-                resourceIdentifier: "parent=shops,child=bookstore"
-        - name: Content-Type
-          in: header
-          description: "Content parameter for request, if content parameter is null,\
+        required: true
+        schema:
+          type: string
+          example: my-cm-handle
+      - name: resourceIdentifier
+        in: query
+        description: The format of resource identifier depend on the associated DMI
+          Plugin implementation. For ONAP DMI Plugin it will be RESTConf paths but
+          it can really be anything.
+        required: true
+        allowReserved: true
+        schema:
+          type: string
+        examples:
+          sample 1:
+            value:
+              resourceIdentifier: \shops\bookstore
+          sample 2:
+            value:
+              resourceIdentifier: "\\shops\\bookstore\\categories[@code=1]"
+          sample 3:
+            value:
+              resourceIdentifier: "parent=shops,child=bookstore"
+      - name: Content-Type
+        in: header
+        description: "Content parameter for request, if content parameter is null,\
           \ default value is application/json."
-          required: false
-          schema:
-            type: string
-            example: application/yang-data+json
-            default: application/json
+        required: false
+        schema:
+          type: string
+          example: application/yang-data+json
+          default: application/json
       requestBody:
         content:
           application/json:
@@ -379,47 +392,54 @@ paths:
                   body: Bad Request
     delete:
       tags:
-        - network-cm-proxy
+      - network-cm-proxy
       summary: Delete resource data
       description: Delete resource data from pass-through running for a given cm handle
       operationId: deleteResourceDataRunningForCmHandle
       parameters:
-        - name: cm-handle
-          in: path
-          description: "The identifier for a network function, network element, subnetwork\
+      - name: ncmp-datastore-name
+        in: path
+        description: The type of the requested data
+        required: true
+        schema:
+          type: string
+          example: ncmp-datastore:operational
+      - name: cm-handle
+        in: path
+        description: "The identifier for a network function, network element, subnetwork\
           \ or any other cm object by managed Network CM Proxy"
-          required: true
-          schema:
-            type: string
-            example: my-cm-handle
-        - name: resourceIdentifier
-          in: query
-          description: The format of resource identifier depend on the associated DMI
-            Plugin implementation. For ONAP DMI Plugin it will be RESTConf paths but
-            it can really be anything.
-          required: true
-          allowReserved: true
-          schema:
-            type: string
-          examples:
-            sample 1:
-              value:
-                resourceIdentifier: \shops\bookstore
-            sample 2:
-              value:
-                resourceIdentifier: "\\shops\\bookstore\\categories[@code=1]"
-            sample 3:
-              value:
-                resourceIdentifier: "parent=shops,child=bookstore"
-        - name: Content-Type
-          in: header
-          description: "Content parameter for request, if content parameter is null,\
+        required: true
+        schema:
+          type: string
+          example: my-cm-handle
+      - name: resourceIdentifier
+        in: query
+        description: The format of resource identifier depend on the associated DMI
+          Plugin implementation. For ONAP DMI Plugin it will be RESTConf paths but
+          it can really be anything.
+        required: true
+        allowReserved: true
+        schema:
+          type: string
+        examples:
+          sample 1:
+            value:
+              resourceIdentifier: \shops\bookstore
+          sample 2:
+            value:
+              resourceIdentifier: "\\shops\\bookstore\\categories[@code=1]"
+          sample 3:
+            value:
+              resourceIdentifier: "parent=shops,child=bookstore"
+      - name: Content-Type
+        in: header
+        description: "Content parameter for request, if content parameter is null,\
           \ default value is application/json."
-          required: false
-          schema:
-            type: string
-            example: application/yang-data+json
-            default: application/json
+        required: false
+        schema:
+          type: string
+          example: application/yang-data+json
+          default: application/json
       responses:
         "204":
           description: No Content
@@ -487,48 +507,55 @@ paths:
                   body: Bad Request
     patch:
       tags:
-        - network-cm-proxy
+      - network-cm-proxy
       summary: Patch resource data from pass-through running
       description: Patch resource data from pass-through running for the given cm
         handle
       operationId: patchResourceDataRunningForCmHandle
       parameters:
-        - name: cm-handle
-          in: path
-          description: "The identifier for a network function, network element, subnetwork\
+      - name: ncmp-datastore-name
+        in: path
+        description: The type of the requested data
+        required: true
+        schema:
+          type: string
+          example: ncmp-datastore:operational
+      - name: cm-handle
+        in: path
+        description: "The identifier for a network function, network element, subnetwork\
           \ or any other cm object by managed Network CM Proxy"
-          required: true
-          schema:
-            type: string
-            example: my-cm-handle
-        - name: resourceIdentifier
-          in: query
-          description: The format of resource identifier depend on the associated DMI
-            Plugin implementation. For ONAP DMI Plugin it will be RESTConf paths but
-            it can really be anything.
-          required: true
-          allowReserved: true
-          schema:
-            type: string
-          examples:
-            sample 1:
-              value:
-                resourceIdentifier: \shops\bookstore
-            sample 2:
-              value:
-                resourceIdentifier: "\\shops\\bookstore\\categories[@code=1]"
-            sample 3:
-              value:
-                resourceIdentifier: "parent=shops,child=bookstore"
-        - name: Content-Type
-          in: header
-          description: "Content parameter for request, if content parameter is null,\
+        required: true
+        schema:
+          type: string
+          example: my-cm-handle
+      - name: resourceIdentifier
+        in: query
+        description: The format of resource identifier depend on the associated DMI
+          Plugin implementation. For ONAP DMI Plugin it will be RESTConf paths but
+          it can really be anything.
+        required: true
+        allowReserved: true
+        schema:
+          type: string
+        examples:
+          sample 1:
+            value:
+              resourceIdentifier: \shops\bookstore
+          sample 2:
+            value:
+              resourceIdentifier: "\\shops\\bookstore\\categories[@code=1]"
+          sample 3:
+            value:
+              resourceIdentifier: "parent=shops,child=bookstore"
+      - name: Content-Type
+        in: header
+        description: "Content parameter for request, if content parameter is null,\
           \ default value is application/json."
-          required: false
-          schema:
-            type: string
-            example: application/yang-data+json
-            default: application/json
+        required: false
+        schema:
+          type: string
+          example: application/yang-data+json
+          default: application/json
       requestBody:
         content:
           '*/*':
@@ -599,20 +626,20 @@ paths:
   /v1/ch/{cm-handle}/modules:
     get:
       tags:
-        - network-cm-proxy
+      - network-cm-proxy
       summary: Fetch all module references (name and revision) for a given cm handle
       description: fetch all module references (name and revision) for a given cm
         handle
       operationId: getModuleReferencesByCmHandle
       parameters:
-        - name: cm-handle
-          in: path
-          description: "The identifier for a network function, network element, subnetwork\
+      - name: cm-handle
+        in: path
+        description: "The identifier for a network function, network element, subnetwork\
           \ or any other cm object by managed Network CM Proxy"
-          required: true
-          schema:
-            type: string
-            example: my-cm-handle
+        required: true
+        schema:
+          type: string
+          example: my-cm-handle
       responses:
         "200":
           description: OK
@@ -665,21 +692,21 @@ paths:
   /v1/ch/{cm-handle}/modules/definitions:
     get:
       tags:
-        - network-cm-proxy
+      - network-cm-proxy
       summary: "Fetch all module definitions (name, revision, yang resource) for a\
         \ given cm handle"
       description: "Fetch all module definitions (name, revision, yang resource) for\
         \ a given cm handle"
       operationId: getModuleDefinitionsByCmHandleId
       parameters:
-        - name: cm-handle
-          in: path
-          description: "The identifier for a network function, network element, subnetwork\
+      - name: cm-handle
+        in: path
+        description: "The identifier for a network function, network element, subnetwork\
           \ or any other cm object by managed Network CM Proxy"
-          required: true
-          schema:
-            type: string
-            example: my-cm-handle
+        required: true
+        schema:
+          type: string
+          example: my-cm-handle
       responses:
         "200":
           description: OK
@@ -722,7 +749,7 @@ paths:
   /v1/ch/searches:
     post:
       tags:
-        - network-cm-proxy
+      - network-cm-proxy
       summary: Execute cm handle search using the available conditions
       description: Execute cm handle query search and return a list of cm handle details.
         Any number of conditions can be applied. To be included in the result a cm-handle
@@ -804,19 +831,19 @@ paths:
   /v1/ch/{cm-handle}:
     get:
       tags:
-        - network-cm-proxy
+      - network-cm-proxy
       summary: Retrieve CM handle details
       description: Retrieve CM handle details and properties by cm handle id
       operationId: retrieveCmHandleDetailsById
       parameters:
-        - name: cm-handle
-          in: path
-          description: "The identifier for a network function, network element, subnetwork\
+      - name: cm-handle
+        in: path
+        description: "The identifier for a network function, network element, subnetwork\
           \ or any other cm object by managed Network CM Proxy"
-          required: true
-          schema:
-            type: string
-            example: my-cm-handle
+        required: true
+        schema:
+          type: string
+          example: my-cm-handle
       responses:
         "200":
           description: OK
@@ -867,19 +894,19 @@ paths:
   /v1/ch/{cm-handle}/properties:
     get:
       tags:
-        - network-cm-proxy
+      - network-cm-proxy
       summary: Get CM handle properties
       description: Get CM handle properties by cm handle id
       operationId: getCmHandlePublicPropertiesByCmHandleId
       parameters:
-        - name: cm-handle
-          in: path
-          description: "The identifier for a network function, network element, subnetwork\
+      - name: cm-handle
+        in: path
+        description: "The identifier for a network function, network element, subnetwork\
           \ or any other cm object by managed Network CM Proxy"
-          required: true
-          schema:
-            type: string
-            example: my-cm-handle
+        required: true
+        schema:
+          type: string
+          example: my-cm-handle
       responses:
         "200":
           description: OK
@@ -930,7 +957,7 @@ paths:
   /v1/ch/id-searches:
     post:
       tags:
-        - network-cm-proxy
+      - network-cm-proxy
       summary: Execute cm handle query upon a given set of query parameters
       description: Execute cm handle query search and return a list of cm handle ids.
         Any number of conditions can be applied. To be included in the result a cm-handle
@@ -1022,19 +1049,19 @@ paths:
   /v1/ch/{cm-handle}/state:
     get:
       tags:
-        - network-cm-proxy
+      - network-cm-proxy
       summary: Get CM handle state
       description: Get CM handle state by cm handle id
       operationId: getCmHandleStateByCmHandleId
       parameters:
-        - name: cm-handle
-          in: path
-          description: "The identifier for a network function, network element, subnetwork\
+      - name: cm-handle
+        in: path
+        description: "The identifier for a network function, network element, subnetwork\
           \ or any other cm object by managed Network CM Proxy"
-          required: true
-          schema:
-            type: string
-            example: my-cm-handle
+        required: true
+        schema:
+          type: string
+          example: my-cm-handle
       responses:
         "200":
           description: OK
@@ -1085,28 +1112,28 @@ paths:
   /v1/ch/{cm-handle}/data-sync:
     put:
       tags:
-        - network-cm-proxy
+      - network-cm-proxy
       summary: Set the Data Sync Enabled Flag
       description: Set the data sync enabled flag to true or false for a specified
         Cm-Handle. This will in turn set the data sync state to UNSYNCHRONIZED and
         NONE_REQUESTED respectfully.
       operationId: setDataSyncEnabledFlagForCmHandle
       parameters:
-        - name: cm-handle
-          in: path
-          description: "The identifier for a network function, network element, subnetwork\
+      - name: cm-handle
+        in: path
+        description: "The identifier for a network function, network element, subnetwork\
           \ or any other cm object by managed Network CM Proxy"
-          required: true
-          schema:
-            type: string
-            example: my-cm-handle
-        - name: dataSyncEnabled
-          in: query
-          description: Is used to enable or disable the data synchronization flag
-          required: true
-          schema:
-            type: boolean
-            example: true
+        required: true
+        schema:
+          type: string
+          example: my-cm-handle
+      - name: dataSyncEnabled
+        in: query
+        description: Is used to enable or disable the data synchronization flag
+        required: true
+        schema:
+          type: boolean
+          example: true
       responses:
         "200":
           description: OK
@@ -1334,17 +1361,17 @@ components:
       value:
         bookstore:
           categories:
-            - code: "01"
-              books:
-                - authors:
-                    - Iain M. Banks
-                    - Ursula K. Le Guin
-              name: SciFi
-            - code: "02"
-              books:
-                - authors:
-                    - Philip Pullman
-              name: kids
+          - code: "01"
+            books:
+            - authors:
+              - Iain M. Banks
+              - Ursula K. Le Guin
+            name: SciFi
+          - code: "02"
+            books:
+            - authors:
+              - Philip Pullman
+            name: kids
     dataSampleRequest:
       summary: Sample request
       description: Sample request body
@@ -1352,17 +1379,17 @@ components:
         test:bookstore:
           bookstore-name: Chapters
           categories:
-            - code: "01"
-              name: SciFi
-              books:
-                - authors:
-                    - Iain M. Banks
-                    - Ursula K. Le Guin
-            - code: "02"
-              name: kids
-              books:
-                - authors:
-                    - Philip Pullman
+          - code: "01"
+            name: SciFi
+            books:
+            - authors:
+              - Iain M. Banks
+              - Ursula K. Le Guin
+          - code: "02"
+            name: kids
+            books:
+            - authors:
+              - Philip Pullman
     dataSamplePatchRequest:
       summary: Sample patch request
       description: Sample patch request body
@@ -1370,83 +1397,83 @@ components:
         ietf-restconf:yang-patch:
           patch-id: patch-1
           edit:
-            - edit-id: edit1
-              operation: merge
-              target: /
-              value:
-                test:bookstore:
-                  bookstore-name: Chapters
-                  categories:
-                    - code: "01"
-                      name: Science
-                      books:
-                        - authors:
-                            - Author1
-                            - Author2
-                    - code: "02"
-                      name: Arts
-                      books:
-                        - authors:
-                            - Author3
-            - edit-id: edit2
-              operation: merge
-              target: /
-              value:
-                test:bookstore:
-                  bookstore-name: Novels
-                  categories:
-                    - code: "03"
-                      name: History
-                      books:
-                        - authors:
-                            - Iain M. Banks
-                            - Ursula K. Le Guin
-                    - code: "04"
-                      name: Fiction
-                      books:
-                        - authors:
-                            - Philip Pullman
+          - edit-id: edit1
+            operation: merge
+            target: /
+            value:
+              test:bookstore:
+                bookstore-name: Chapters
+                categories:
+                - code: "01"
+                  name: Science
+                  books:
+                  - authors:
+                    - Author1
+                    - Author2
+                - code: "02"
+                  name: Arts
+                  books:
+                  - authors:
+                    - Author3
+          - edit-id: edit2
+            operation: merge
+            target: /
+            value:
+              test:bookstore:
+                bookstore-name: Novels
+                categories:
+                - code: "03"
+                  name: History
+                  books:
+                  - authors:
+                    - Iain M. Banks
+                    - Ursula K. Le Guin
+                - code: "04"
+                  name: Fiction
+                  books:
+                  - authors:
+                    - Philip Pullman
     pubPropCmHandleQueryParameters:
       value:
         cmHandleQueryParameters:
-          - conditionName: hasAllProperties
-            conditionParameters:
-              - Color: yellow
-              - Shape: circle
-              - Size: small
+        - conditionName: hasAllProperties
+          conditionParameters:
+          - Color: yellow
+          - Shape: circle
+          - Size: small
     modulesCmHandleQueryParameters:
       value:
         cmHandleQueryParameters:
-          - conditionName: hasAllModules
-            conditionParameters:
-              - moduleName: my-module-1
-              - moduleName: my-module-2
-              - moduleName: my-module-3
+        - conditionName: hasAllModules
+          conditionParameters:
+          - moduleName: my-module-1
+          - moduleName: my-module-2
+          - moduleName: my-module-3
     allCmHandleQueryParameters:
       value:
         cmHandleQueryParameters:
-          - conditionName: hasAllModules
-            conditionParameters:
-              - moduleName: my-module-1
-              - moduleName: my-module-2
-              - moduleName: my-module-3
-          - conditionName: hasAllProperties
-            conditionParameters:
-              - Color: yellow
-              - Shape: circle
-              - Size: small
-          - conditionName: cmHandleWithCpsPath
-            conditionParameters:
-              - cpsPath: "//state[@cm-handle-state='ADVISED']"
+        - conditionName: hasAllModules
+          conditionParameters:
+          - moduleName: my-module-1
+          - moduleName: my-module-2
+          - moduleName: my-module-3
+        - conditionName: hasAllProperties
+          conditionParameters:
+          - Color: yellow
+          - Shape: circle
+          - Size: small
+        - conditionName: cmHandleWithCpsPath
+          conditionParameters:
+          - cpsPath: "//state[@cm-handle-state='ADVISED']"
     cpsPathCmHandleStateQueryParameters:
       value:
         cmHandleQueryParameters:
-          - conditionName: cmHandleWithCpsPath
-            conditionParameters:
-              - cpsPath: "//state[@cm-handle-state='LOCKED']"
+        - conditionName: cmHandleWithCpsPath
+          conditionParameters:
+          - cpsPath: "//state[@cm-handle-state='LOCKED']"
     cpsPathCmHandleDataSyncQueryParameters:
       value:
         cmHandleQueryParameters:
-          - conditionName: cmHandleWithCpsPath
-            conditionParameters:
-              - cpsPath: "//state[@data-sync-enabled='true']"
+        - conditionName: cmHandleWithCpsPath
+          conditionParameters:
+          - cpsPath: "//state[@data-sync-enabled='true']"

@@ -4,12 +4,12 @@ info:
   description: NCMP Inventory API
   version: "1.0"
 servers:
-  - url: /ncmpInventory
+- url: /ncmpInventory
 paths:
   /v1/ch:
     post:
       tags:
-        - network-cm-proxy-inventory
+      - network-cm-proxy-inventory
       summary: DMI notifies NCMP of new CM Handles
       description: "Register a DMI Plugin with any new, updated or removed CM Handles."
       operationId: updateDmiPluginRegistration
@@ -63,51 +63,51 @@ paths:
                 $ref: '#/components/schemas/DmiPluginRegistrationErrorResponse'
               example:
                 failedCreatedCmHandles:
-                  - cmHandle: my-cm-handle-01
-                    errorCode: "00"
-                    errorText: Unknown error. <error-details>
-                  - cmHandle: my-cm-handle-02
-                    errorCode: "01"
-                    errorText: cm-handle already exists
-                  - cmHandle: my-cm-handle-03
-                    errorCode: "03"
-                    errorText: cm-handle has an invalid character(s) in id
+                - cmHandle: my-cm-handle-01
+                  errorCode: "00"
+                  errorText: Unknown error. <error-details>
+                - cmHandle: my-cm-handle-02
+                  errorCode: "01"
+                  errorText: cm-handle already exists
+                - cmHandle: my-cm-handle-03
+                  errorCode: "03"
+                  errorText: cm-handle has an invalid character(s) in id
                 failedUpdatedCmHandles:
-                  - cmHandle: my-cm-handle-01
-                    errorCode: "00"
-                    errorText: Unknown error. <error-details>
-                  - cmHandle: my-cm-handle-02
-                    errorCode: "02"
-                    errorText: cm-handle does not exist
-                  - cmHandle: my-cm-handle-03
-                    errorCode: "03"
-                    errorText: cm-handle has an invalid character(s) in id
+                - cmHandle: my-cm-handle-01
+                  errorCode: "00"
+                  errorText: Unknown error. <error-details>
+                - cmHandle: my-cm-handle-02
+                  errorCode: "02"
+                  errorText: cm-handle does not exist
+                - cmHandle: my-cm-handle-03
+                  errorCode: "03"
+                  errorText: cm-handle has an invalid character(s) in id
                 failedRemovedCmHandles:
-                  - cmHandle: my-cm-handle-01
-                    errorCode: "00"
-                    errorText: Unknown error. <error-details>
-                  - cmHandle: my-cm-handle-02
-                    errorCode: "02"
-                    errorText: cm-handle does not exists
-                  - cmHandle: my-cm-handle-03
-                    errorCode: "03"
-                    errorText: cm-handle has an invalid character(s) in id
+                - cmHandle: my-cm-handle-01
+                  errorCode: "00"
+                  errorText: Unknown error. <error-details>
+                - cmHandle: my-cm-handle-02
+                  errorCode: "02"
+                  errorText: cm-handle does not exists
+                - cmHandle: my-cm-handle-03
+                  errorCode: "03"
+                  errorText: cm-handle has an invalid character(s) in id
   /v1/ch/cmHandles:
     get:
       tags:
-        - network-cm-proxy-inventory
+      - network-cm-proxy-inventory
       summary: "Get all cm handle IDs for a registered DMI plugin (DMI plugin, DMI\
         \ data plugin, DMI model plugin)"
       description: Get all cm handle IDs for a registered DMI plugin
       operationId: getAllCmHandleIdsForRegisteredDmi
       parameters:
-        - name: dmi-plugin-identifier
-          in: query
-          description: dmi-plugin-identifier
-          required: true
-          schema:
-            type: string
-            example: my-dmi-plugin
+      - name: dmi-plugin-identifier
+        in: query
+        description: dmi-plugin-identifier
+        required: true
+        schema:
+          type: string
+          example: my-dmi-plugin
       responses:
         "200":
           description: OK
@@ -175,14 +175,14 @@ components:
         removedCmHandles:
           type: array
           example:
-            - my-cm-handle1
-            - my-cm-handle2
-            - my-cm-handle3
+          - my-cm-handle1
+          - my-cm-handle2
+          - my-cm-handle3
           items:
             type: string
     RestInputCmHandle:
       required:
-        - cmHandle
+      - cmHandle
       type: object
       properties:
         cmHandle:
