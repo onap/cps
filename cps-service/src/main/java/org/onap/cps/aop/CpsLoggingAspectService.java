@@ -39,6 +39,8 @@ public class CpsLoggingAspectService {
 
     private static final String CPS_PACKAGE_NAME = "org.onap.cps";
     private static final String ALL_CPS_METHODS = "execution(* " + CPS_PACKAGE_NAME + "..*(..)))";
+    private static final String AUTH_PASSWORD_METHOD = "AuthPassword";
+    private static final String PRIVATE_FIELD = "***********";
 
     /**
      * To measure method execution time as a logging.
@@ -53,9 +55,14 @@ public class CpsLoggingAspectService {
             final StopWatch stopWatch = new StopWatch();
             //Calculate method execution time
             stopWatch.start();
-            final Object returnValue = proceedingJoinPoint.proceed();
+            Object returnValue = proceedingJoinPoint.proceed();
             stopWatch.stop();
             final MethodSignature methodSignature = (MethodSignature) proceedingJoinPoint.getSignature();
+
+            if (methodSignature.getDeclaringType().getSimpleName().contains(AUTH_PASSWORD_METHOD)) {
+                returnValue = PRIVATE_FIELD;
+            }
+
             //Log method execution time
             log.debug("Execution time of : {}.{}() with argument[s] = {} having result = {} :: {} ms",
                     methodSignature.getDeclaringType().getSimpleName(),
