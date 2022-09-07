@@ -22,7 +22,6 @@ package org.onap.cps.aop
 
 import org.aspectj.lang.ProceedingJoinPoint
 import org.aspectj.lang.reflect.MethodSignature
-import org.onap.cps.spi.exceptions.DataValidationException
 import spock.lang.Specification
 import java.util.logging.Level
 import java.util.logging.Logger
@@ -38,23 +37,23 @@ class CpsLoggingAspectServiceSpec extends Specification {
     def setup() {
         mockMethodSignature.getDeclaringType() >> this.getClass()
         mockMethodSignature.getDeclaringType().getSimpleName() >> 'CpsLoggingAspectServiceSpec'
-        mockMethodSignature.getName() >> 'logMethodExecutionTime'
         mockProceedingJoinPoint.getSignature() >> mockMethodSignature
     }
 
     def 'Log method execution time for log level : #logLevel.'() {
         given: 'mock valid pointcut arguments and set log level to #logLevel'
             mockProceedingJoinPoint.getArgs() >> 'dataspace-name'
+            mockProceedingJoinPoint.proceed() >> 'CPS_PASSWORD'
             logger.setLevel(logLevel)
         when: 'aop intercepts cps method'
             objectUnderTest.logMethodExecutionTime(mockProceedingJoinPoint)
         then: 'expected number of method execution'
-            expectedNumberOfMethodExecution * mockMethodSignature.getName()
+            expectedNumberOfMethodExecution * mockMethodSignature.getName() >> 'methodSignature()'
         where: 'the following log levels are used'
             logLevel     || expectedNumberOfMethodExecution
             Level.INFO   || 0
-            Level.FINE   || 1
-            Level.FINEST || 1
+            Level.FINE   || 2
+            Level.FINEST || 2
     }
 
     def 'Exception thrown during method execution.'() {
@@ -65,4 +64,17 @@ class CpsLoggingAspectServiceSpec extends Specification {
         then: 'some exception is thrown'
             thrown Exception
     }
+
+    def 'Password blurred for DmiProperties getAuthPassword.'() {
+        given: 'password is returned for call to method getAuthPassword()'
+            mockProceedingJoinPoint.proceed() >> 'CPS_PASSWORD'
+            mockMethodSignature.getName() >> 'getAuthPassword()'
+        and: 'the logger level is set to FINE'
+            logger.setLevel(Level.FINE)
+        when: 'logging intercepts cps method getAuthPassword()'
+            def password = objectUnderTest.logMethodExecutionTime(mockProceedingJoinPoint)
+        then: 'the password has been replaced with asterisks'
+            password == '***********'
+    }
+
 }
