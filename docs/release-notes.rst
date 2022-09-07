@@ -103,6 +103,7 @@ Security Notes
 *Fixed Security Issues*
 
    - `CPS-963 <https://jira.onap.org/browse/CPS-963>`_  Liquibase has got serious vulnerability, upgrade required
+   - `CPS-1226 <https://jira.onap.org/browse/CPS-1226>`_  Security bug in the logs
 
 *Known Security Issues*
 

@@ -39,31 +39,45 @@ public class CpsLoggingAspectService {
 
     private static final String CPS_PACKAGE_NAME = "org.onap.cps";
     private static final String ALL_CPS_METHODS = "execution(* " + CPS_PACKAGE_NAME + "..*(..)))";
+    private static final String METHOD_RETURNING_SENSITIVE_DATA = "AuthPassword";
+    private static final String SENSTIVE_DATA_MASK = "***********";
 
     /**
-     * To measure method execution time as a logging.
+     * Intercept methods to measure and log execution details when debug level logging enabled.
      *
      * @param proceedingJoinPoint exposes the proceed(..) method in order to support around advice.
      * @return empty in case of void otherwise an object of return type
      */
     @Around(ALL_CPS_METHODS)
     @SneakyThrows
-    public Object logMethodExecutionTime(final ProceedingJoinPoint proceedingJoinPoint) {
+    public Object interceptMethodCall(final ProceedingJoinPoint proceedingJoinPoint) {
         if (isSlf4JDebugEnabled()) {
             final StopWatch stopWatch = new StopWatch();
-            //Calculate method execution time
             stopWatch.start();
             final Object returnValue = proceedingJoinPoint.proceed();
             stopWatch.stop();
             final MethodSignature methodSignature = (MethodSignature) proceedingJoinPoint.getSignature();
-            //Log method execution time
-            log.debug("Execution time of : {}.{}() with argument[s] = {} having result = {} :: {} ms",
-                    methodSignature.getDeclaringType().getSimpleName(),
-                    methodSignature.getName(), Arrays.toString(proceedingJoinPoint.getArgs()), returnValue,
-                    stopWatch.getTotalTimeMillis());
+
+            final Object logValue;
+            if (methodSignature.getName().contains(METHOD_RETURNING_SENSITIVE_DATA)) {
+                logValue = SENSTIVE_DATA_MASK;
+            } else {
+                logValue = returnValue;
+            }
+            logMethodCall(methodSignature, proceedingJoinPoint, stopWatch, logValue);
             return returnValue;
         }
         return proceedingJoinPoint.proceed();
+    }
+
+    void logMethodCall(final MethodSignature methodSignature,
+                       final ProceedingJoinPoint proceedingJoinPoint,
+                       final StopWatch stopWatch,
+                       final Object logValue) {
+        log.debug("Execution time of : {}.{}() with argument[s] = {} having result = {} :: {} ms",
+                methodSignature.getDeclaringType().getSimpleName(),
+                methodSignature.getName(), Arrays.toString(proceedingJoinPoint.getArgs()), logValue,
+                stopWatch.getTotalTimeMillis());
     }
 
     private static boolean isSlf4JDebugEnabled() {
