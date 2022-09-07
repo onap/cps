@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "07f099dd_02b0a0b6",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandler.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-09-07T10:26:52Z",
+      "side": 1,
+      "message": "nb Legacy and new issue, not all of the (newer) exceptions are covered in\n\nNetworkCmProxyRestExceptionHandlerSpec. They should be added but we can do that later. Given the time constraints we wont do it part of this commit",
+      "range": {
+        "startLine": 78,
+        "startChar": 12,
+        "endLine": 78,
+        "endChar": 111
+      },
+      "revId": "440dc8aab179f6c8451683f53b019ccd8bd60bdf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
