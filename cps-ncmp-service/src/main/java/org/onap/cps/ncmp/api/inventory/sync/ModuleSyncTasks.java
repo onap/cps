@@ -71,6 +71,7 @@ public class ModuleSyncTasks {
                     moduleSyncService.syncAndCreateSchemaSetAndAnchor(yangModelCmHandle);
                     cmHandelStatePerCmHandle.put(yangModelCmHandle, CmHandleState.READY);
                 } catch (final Exception e) {
+                    log.warn("Processing module sync batch failed.");
                     syncUtils.updateLockReasonDetailsAndAttempts(compositeState,
                             LockReasonCategory.LOCKED_MODULE_SYNC_FAILED, e.getMessage());
                     setCmHandleStateLocked(yangModelCmHandle, compositeState.getLockReason());
@@ -81,6 +82,7 @@ public class ModuleSyncTasks {
             lcmEventsCmHandleStateHandler.updateCmHandleStateBatch(cmHandelStatePerCmHandle);
         } finally {
             batchCounter.getAndDecrement();
+            log.info("Processing module sync batch finished. {} batch(es) active.", batchCounter.get());
         }
         return COMPLETED_FUTURE;
     }
