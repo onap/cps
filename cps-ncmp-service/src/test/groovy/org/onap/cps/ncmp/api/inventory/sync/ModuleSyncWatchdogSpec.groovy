@@ -52,20 +52,19 @@ class ModuleSyncWatchdogSpec extends Specification {
     def 'Module sync advised cm handles with #scenario.'() {
         given: 'sync utilities returns #numberOfAdvisedCmHandles advised cm handles'
             mockSyncUtils.getAdvisedCmHandles() >> createDataNodes(numberOfAdvisedCmHandles)
-        and: 'the executor has #parallelismLevel available threads'
-            spiedAsyncTaskExecutor.getAsyncTaskParallelismLevel() >> parallelismLevel
+        and: 'the executor has enough available threads'
+            spiedAsyncTaskExecutor.getAsyncTaskParallelismLevel() >> 3
         when: ' module sync is started'
             objectUnderTest.moduleSyncAdvisedCmHandles()
         then: 'it performs #expectedNumberOfTaskExecutions tasks'
             expectedNumberOfTaskExecutions * spiedAsyncTaskExecutor.executeTask(*_)
         where: ' the following parameter are used'
-            scenario              | parallelismLevel | numberOfAdvisedCmHandles                                          || expectedNumberOfTaskExecutions
-            'less then 1 batch'   | 9                | 1                                                                 || 1
-            'exactly 1 batch'     | 9                | ModuleSyncWatchdog.MODULE_SYNC_BATCH_SIZE                         || 1
-            '2 batches'           | 9                | 2 * ModuleSyncWatchdog.MODULE_SYNC_BATCH_SIZE                     || 2
-            'queue capacity'      | 9                | testQueueCapacity                                                 || 3
-            'over queue capacity' | 9                | testQueueCapacity + 2 * ModuleSyncWatchdog.MODULE_SYNC_BATCH_SIZE || 3
-            'not enough threads'  | 2                | testQueueCapacity                                                 || 2
+            scenario              | numberOfAdvisedCmHandles                                          || expectedNumberOfTaskExecutions
+            'less then 1 batch'   | 1                                                                 || 1
+            'exactly 1 batch'     | ModuleSyncWatchdog.MODULE_SYNC_BATCH_SIZE                         || 1
+            '2 batches'           | 2 * ModuleSyncWatchdog.MODULE_SYNC_BATCH_SIZE                     || 2
+            'queue capacity'      | testQueueCapacity                                                 || 3
+            'over queue capacity' | testQueueCapacity + 2 * ModuleSyncWatchdog.MODULE_SYNC_BATCH_SIZE || 3
     }
 
     def 'Reset failed cm handles.'() {

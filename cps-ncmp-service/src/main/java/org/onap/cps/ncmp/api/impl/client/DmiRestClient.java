@@ -56,7 +56,7 @@ public class DmiRestClient {
         } catch (final HttpStatusCodeException httpStatusCodeException) {
             final String exceptionMessage = "Unable to " + operation.toString() + " resource data.";
             throw new HttpClientRequestException(exceptionMessage, httpStatusCodeException.getResponseBodyAsString(),
-                httpStatusCodeException.getRawStatusCode());
+                    httpStatusCodeException.getRawStatusCode());
         }
     }
 
