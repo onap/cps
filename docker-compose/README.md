@@ -3,6 +3,7 @@
    Copyright (C) 2020 Pantheon.tech
    Modifications Copyright (C) 2020-2021 Nordix Foundation.
    Modifications Copyright (C) 2021 Bell Canada.
+   Modifications Copyright (C) 2022 TechMahindra Ltd.
   ================================================================================
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -87,6 +88,7 @@ Following command starts the application using JAR file:
 
 ```bash
 DB_HOST=localhost DB_USERNAME=cps DB_PASSWORD=cps CPS_CORE_USERNAME=cpsuser CPS_CORE_PASSWORD=cpsr0cks! \
+  CPS_USERNAME=cpsuser CPS_PASSWORD=cpsr0cks! \
   java -jar cps-application/target/cps-application-x.y.z-SNAPSHOT.jar
 ```
 
@@ -97,6 +99,7 @@ Here are the steps to run or debug the application from Intellij:
 1. Enable the desired maven profile form Maven Tool Window
 2. Run a configuration from `Run -> Edit configurations` with following settings:
    * `Environment variables`: `DB_HOST=localhost;DB_USERNAME=cps;DB_PASSWORD=cps
+                                CPS_USERNAME=cpsuser CPS_PASSWORD=cpsr0cks!
                                 CPS_CORE_USERNAME=cpsuser CPS_CORE_PASSWORD=cpsr0cks!`
 
 ## Accessing services
