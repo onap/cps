@@ -62,16 +62,22 @@ public class ModuleSyncWatchdog {
      */
     @Scheduled(fixedDelayString = "${timers.advised-modules-sync.sleep-time-ms:5000}")
     public void moduleSyncAdvisedCmHandles() {
+        log.debug("Processing module sync watchdog waking up.");
         populateWorkQueueIfNeeded();
         final int asyncTaskParallelismLevel = asyncTaskExecutor.getAsyncTaskParallelismLevel();
-        while (!moduleSyncWorkQueue.isEmpty() && batchCounter.get() <= asyncTaskParallelismLevel) {
-            batchCounter.getAndIncrement();
-            final Collection<DataNode> nextBatch = prepareNextBatch();
-            asyncTaskExecutor.executeTask(() ->
-                            moduleSyncTasks.performModuleSync(nextBatch, batchCounter),
-                    ASYNC_TASK_TIMEOUT_IN_MILLISECONDS
-            );
-            preventBusyWait();
+        while (!moduleSyncWorkQueue.isEmpty()) {
+            if (batchCounter.get() <= asyncTaskParallelismLevel) {
+                final Collection<DataNode> nextBatch = prepareNextBatch();
+                log.debug("Processing module sync batch of {}. {} batch(es) active.",
+                        nextBatch.size(), batchCounter.get());
+                asyncTaskExecutor.executeTask(() ->
+                                moduleSyncTasks.performModuleSync(nextBatch, batchCounter),
+                        ASYNC_TASK_TIMEOUT_IN_MILLISECONDS
+                );
+                batchCounter.getAndIncrement();
+            } else {
+                preventBusyWait();
+            }
         }
     }
 
@@ -80,6 +86,7 @@ public class ModuleSyncWatchdog {
      */
     @Scheduled(fixedDelayString = "${timers.locked-modules-sync.sleep-time-ms:300000}")
     public void resetPreviouslyFailedCmHandles() {
+        log.debug("Processing module sync retry-watchdog waking up.");
         final List<YangModelCmHandle> failedCmHandles = syncUtils.getModuleSyncFailedCmHandles();
         moduleSyncTasks.resetFailedCmHandles(failedCmHandles);
     }
@@ -95,6 +102,7 @@ public class ModuleSyncWatchdog {
     private void populateWorkQueueIfNeeded() {
         if (moduleSyncWorkQueue.isEmpty()) {
             final List<DataNode> advisedCmHandles = syncUtils.getAdvisedCmHandles();
+            log.debug("Processing module sync fetched {} advised cm handles from DB", advisedCmHandles.size());
             for (final DataNode advisedCmHandle : advisedCmHandles) {
                 if (!moduleSyncWorkQueue.offer(advisedCmHandle)) {
                     log.warn("Unable to add cm handle {} to the work queue", advisedCmHandle.getLeaves().get("id"));

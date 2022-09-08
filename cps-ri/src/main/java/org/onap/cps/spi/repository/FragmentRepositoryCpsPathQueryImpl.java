@@ -20,7 +20,6 @@
 
 package org.onap.cps.spi.repository;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,12 +28,14 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.cpspath.parser.CpsPathPrefixType;
 import org.onap.cps.cpspath.parser.CpsPathQuery;
 import org.onap.cps.spi.entities.FragmentEntity;
 import org.onap.cps.utils.JsonObjectMapper;
 
 @RequiredArgsConstructor
+@Slf4j
 public class FragmentRepositoryCpsPathQueryImpl implements FragmentRepositoryCpsPathQuery {
 
     public static final String SIMILAR_TO_ABSOLUTE_PATH_PREFIX = "%/";
@@ -62,16 +63,8 @@ public class FragmentRepositoryCpsPathQueryImpl implements FragmentRepositoryCps
         addTextFunctionCondition(cpsPathQuery, sqlStringBuilder, queryParameters);
         final Query query = entityManager.createNativeQuery(sqlStringBuilder.toString(), FragmentEntity.class);
         setQueryParameters(query, queryParameters);
-        return getFragmentEntitiesAsStream(query);
-    }
-
-    private List<FragmentEntity> getFragmentEntitiesAsStream(final Query query) {
-        final List<FragmentEntity> fragmentEntities = new ArrayList<>();
-        query.getResultStream().forEach(fragmentEntity -> {
-            fragmentEntities.add((FragmentEntity) fragmentEntity);
-            entityManager.detach(fragmentEntity);
-        });
-
+        final List<FragmentEntity> fragmentEntities = query.getResultList();
+        log.info("Fetched {} fragment entities by anchor and cps path.", fragmentEntities.size());
         return fragmentEntities;
     }
 
