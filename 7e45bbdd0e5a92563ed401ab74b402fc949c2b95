@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b88d2ada_63b944cb",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-09-08T12:11:30Z",
+      "side": 1,
+      "message": "2 minutes, is that not very long ?!\nactually all these timeous seem veru long if we wnt to detect and resolve problems quickly. If DB operation only suppose to take a few (milli)seconds?!",
+      "range": {
+        "startLine": 53,
+        "startChar": 32,
+        "endLine": 53,
+        "endChar": 39
+      },
+      "revId": "7e45bbdd0e5a92563ed401ab74b402fc949c2b95",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
