@@ -22,6 +22,53 @@
       "revId": "7e45bbdd0e5a92563ed401ab74b402fc949c2b95",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e488b952_edcf2abc",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-09-08T14:22:25Z",
+      "side": 1,
+      "message": "reading HikarCP documentation and general feedback on the web this parameter is not often set and if anythings should/could be ste lower to reduce HikarCP waiting for dead connections (not sure how often this really happens though)",
+      "parentUuid": "b88d2ada_63b944cb",
+      "range": {
+        "startLine": 53,
+        "startChar": 32,
+        "endLine": 53,
+        "endChar": 39
+      },
+      "revId": "7e45bbdd0e5a92563ed401ab74b402fc949c2b95",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dab071af_bee960a6",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-09-08T14:22:25Z",
+      "side": 1,
+      "message": "not sure if changing this from the default is a good idea...\nThis is used by Hikari to help keeping connections alive...\nIt depends a lot on the postgres default behavior detecting \u0027idle\u0027 connections so the idea is to keep it alive and prevent Postgress taking back connections to quickly. In any case this will not effect our perforamcn while we are busy and have many threads using DB connections",
+      "range": {
+        "startLine": 55,
+        "startChar": 12,
+        "endLine": 55,
+        "endChar": 32
+      },
+      "revId": "7e45bbdd0e5a92563ed401ab74b402fc949c2b95",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
