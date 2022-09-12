@@ -844,6 +844,30 @@
       "revId": "f012f91aa9170a91bf374ecf7f2c60a0915c772d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "66e75aee_a0008e4a",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/AlreadyDefinedExceptionBatch.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-09-12T16:12:14Z",
+      "side": 1,
+      "message": "noted.\ntoo many impacts.\nwill do in separate JIRA.",
+      "parentUuid": "cb54a94d_49110a9f",
+      "range": {
+        "startLine": 31,
+        "startChar": 46,
+        "endLine": 31,
+        "endChar": 50
+      },
+      "revId": "f012f91aa9170a91bf374ecf7f2c60a0915c772d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
