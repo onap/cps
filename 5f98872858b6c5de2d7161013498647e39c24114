@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6b3f52a3_7798d6b4",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepositoryCpsPathQueryImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-09-13T16:44:28Z",
+      "side": 1,
+      "message": "can you explain in aht please?",
+      "range": {
+        "startLine": 41,
+        "startChar": 76,
+        "endLine": 41,
+        "endChar": 94
+      },
+      "revId": "5f98872858b6c5de2d7161013498647e39c24114",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "039a7b8d_5bc0cfce",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepositoryCpsPathQueryImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-09-13T16:44:28Z",
+      "side": 1,
+      "message": "should not use SIMILaR_TO anymore since that has no been replaced with ~ \nmaybe just replace with \u0027REGEX_...\u0027",
+      "range": {
+        "startLine": 41,
+        "startChar": 31,
+        "endLine": 41,
+        "endChar": 41
+      },
+      "revId": "5f98872858b6c5de2d7161013498647e39c24114",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
