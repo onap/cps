@@ -26,9 +26,9 @@ import lombok.Getter;
 public class AlreadyDefinedExceptionBatch extends RuntimeException {
 
     @Getter
-    private final Collection<String> alreadyDefinedCmHandleIds;
+    private final Collection<String> alreadyDefinedXpaths;
 
-    public AlreadyDefinedExceptionBatch(final Collection<String> alreadyDefinedCmHandleIds) {
-        this.alreadyDefinedCmHandleIds = alreadyDefinedCmHandleIds;
+    public AlreadyDefinedExceptionBatch(final Collection<String> alreadyDefinedXPaths) {
+        this.alreadyDefinedXpaths = alreadyDefinedXPaths;
     }
 }

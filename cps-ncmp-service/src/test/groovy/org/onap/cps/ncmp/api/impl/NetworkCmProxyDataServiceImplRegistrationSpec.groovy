@@ -184,7 +184,8 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
                                        new NcmpServiceCmHandle(cmHandleId: 'cmhandle2'),
                                        new NcmpServiceCmHandle(cmHandleId: 'cmhandle3')])
         and: 'cm-handle creation is successful for 1st and 3rd; failed for 2nd'
-            mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(*_) >> { throw new AlreadyDefinedExceptionBatch(['cmhandle2']) }
+            def xpath = "somePathWithId[@id='cmhandle2']"
+            mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(*_) >> { throw new AlreadyDefinedExceptionBatch([xpath]) }
         when: 'registration is updated to create cm-handles'
             def response = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'a response is received for all cm-handles'

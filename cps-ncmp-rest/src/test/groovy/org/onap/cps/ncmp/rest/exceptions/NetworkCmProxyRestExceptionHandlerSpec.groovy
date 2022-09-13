@@ -33,6 +33,8 @@ import org.onap.cps.ncmp.rest.controller.handlers.NcmpDatastoreResourceRequestHa
 import org.onap.cps.ncmp.rest.executor.CpsNcmpTaskExecutor
 import org.onap.cps.ncmp.rest.mapper.CmHandleStateMapper
 import org.onap.cps.ncmp.rest.util.DeprecationHelper
+import org.onap.cps.spi.exceptions.AlreadyDefinedException
+import org.onap.cps.spi.exceptions.AlreadyDefinedExceptionBatch
 import org.onap.cps.spi.exceptions.CpsException
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.spi.exceptions.DataValidationException
@@ -106,13 +108,15 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
         then: 'an HTTP response is returned with correct message and details'
             assertTestResponse(response, expectedErrorCode, expectedErrorMessage, expectedErrorDetails)
         where:
-            scenario              | exception                                                        || expectedErrorDetails | expectedErrorMessage | expectedErrorCode
-            'CPS'                 | new CpsException(sampleErrorMessage, sampleErrorDetails)         || sampleErrorDetails   | sampleErrorMessage   | INTERNAL_SERVER_ERROR
-            'NCMP-server'         | new ServerNcmpException(sampleErrorMessage, sampleErrorDetails)  || null                 | sampleErrorMessage   | INTERNAL_SERVER_ERROR
-            'NCMP-client'         | new DmiRequestException(sampleErrorMessage, sampleErrorDetails)  || null                 | sampleErrorMessage   | BAD_REQUEST
-            'DataNode Validation' | new DataNodeNotFoundException('myDataspaceName', 'myAnchorName') || null                 | 'DataNode not found' | NOT_FOUND
-            'other'               | new IllegalStateException(sampleErrorMessage)                    || null                 | sampleErrorMessage   | INTERNAL_SERVER_ERROR
-            'Data Node Not Found' | new DataNodeNotFoundException('myDataspaceName', 'myAnchorName') || 'DataNode not found' | 'DataNode not found' | NOT_FOUND
+            scenario              | exception                                                        || expectedErrorDetails     | expectedErrorMessage        | expectedErrorCode
+            'CPS'                 | new CpsException(sampleErrorMessage, sampleErrorDetails)         || sampleErrorDetails       | sampleErrorMessage          | INTERNAL_SERVER_ERROR
+            'NCMP-server'         | new ServerNcmpException(sampleErrorMessage, sampleErrorDetails)  || null                     | sampleErrorMessage          | INTERNAL_SERVER_ERROR
+            'NCMP-client'         | new DmiRequestException(sampleErrorMessage, sampleErrorDetails)  || null                     | sampleErrorMessage          | BAD_REQUEST
+            'DataNode Validation' | new DataNodeNotFoundException('myDataspaceName', 'myAnchorName') || null                     | 'DataNode not found'        | NOT_FOUND
+            'other'               | new IllegalStateException(sampleErrorMessage)                    || null                     | sampleErrorMessage          | INTERNAL_SERVER_ERROR
+            'Data Node Not Found' | new DataNodeNotFoundException('myDataspaceName', 'myAnchorName') || 'DataNode not found'     | 'DataNode not found'        | NOT_FOUND
+            'Existing entry'      | new AlreadyDefinedException('name',null)                         || 'name already exists'    | 'Already defined exception' | CONFLICT
+            'Existing entries'    | new AlreadyDefinedExceptionBatch(["x[@id='abc']"])               || 'Check logs for details' | null                        | CONFLICT
     }
 
     def 'Post request with exception returns correct HTTP Status.'() {
@@ -156,7 +160,7 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
         assert response.status == expectedStatus.value()
         def content = new JsonSlurper().parseText(response.contentAsString)
         assert content['status'].toString().contains(expectedStatus.toString())
-        assert content['message'].toString().contains(expectedErrorMessage)
+        assert expectedErrorMessage == null || content['message'].toString().contains(expectedErrorMessage)
         assert expectedErrorDetails == null || content['details'].toString().contains(expectedErrorDetails)
     }
 

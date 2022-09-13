@@ -103,17 +103,17 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     @Override
     public void addMultipleLists(final String dataspaceName, final String anchorName, final String parentNodeXpath,
             final Collection<Collection<DataNode>> newLists) {
-        final Collection<String> failedCmHandleIds = new HashSet<>();
+        final Collection<String> failedXpaths = new HashSet<>();
         newLists.forEach(newList -> {
             try {
                 addChildrenDataNodes(dataspaceName, anchorName, parentNodeXpath, newList);
-            } catch (final AlreadyDefinedException e) {
-                newList.forEach(listElement -> failedCmHandleIds.add((String) listElement.getLeaves().get("id")));
+            } catch (final AlreadyDefinedExceptionBatch e) {
+                failedXpaths.addAll(e.getAlreadyDefinedXpaths());
             }
         });
 
-        if (!failedCmHandleIds.isEmpty()) {
-            throw new AlreadyDefinedExceptionBatch(failedCmHandleIds);
+        if (!failedXpaths.isEmpty()) {
+            throw new AlreadyDefinedExceptionBatch(failedXpaths);
         }
 
     }
@@ -147,7 +147,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             });
             fragmentRepository.saveAll(fragmentEntities);
         } catch (final DataIntegrityViolationException e) {
-            log.warn("Exception occurred : {} , Batch with size : {} will be retried using individual save operations",
+            log.warn("Exception occurred : {} , While saving : {} children, retrying using individual save operations",
                     e, fragmentEntities.size());
             retrySavingEachChildIndividually(dataspaceName, anchorName, parentNodeXpath, newChildren);
         }
@@ -155,7 +155,17 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
 
     private void retrySavingEachChildIndividually(final String dataspaceName, final String anchorName,
             final String parentNodeXpath, final Collection<DataNode> newChildren) {
-        newChildren.forEach(newChild -> addNewChildDataNode(dataspaceName, anchorName, parentNodeXpath, newChild));
+        final Collection<String> failedXpaths = new HashSet<>();
+        for (final DataNode newChild : newChildren) {
+            try {
+                addNewChildDataNode(dataspaceName, anchorName, parentNodeXpath, newChild);
+            } catch (final AlreadyDefinedException e) {
+                failedXpaths.add(newChild.getXpath());
+            }
+        }
+        if (!failedXpaths.isEmpty()) {
+            throw new AlreadyDefinedExceptionBatch(failedXpaths);
+        }
     }
 
     @Override

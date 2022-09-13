@@ -49,6 +49,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     CpsDataPersistenceService objectUnderTest
 
     static final JsonObjectMapper jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
+    static final DataNodeBuilder dataNodeBuilder = new DataNodeBuilder()
 
     static final String SET_DATA = '/data/fragment.sql'
     static final int DATASPACE_1001_ID = 1001L
@@ -180,33 +181,41 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
-    def 'Add already existing list elements'() {
+    def 'Add multiple list with a mix of existing and new elements'() {
         given: 'two new child list elements for an existing parent'
-            def listElementXpaths1 = ['/parent-100', '/parent-100/child-001']
-            def listElementXpaths2 = ['/parent-200', '/parent-200/child-201']
-            def listElements1 = toDataNodesWithId(listElementXpaths1, 'cmhandle1')
-            def listElements2 = toDataNodesWithId(listElementXpaths2, 'cmhandle2')
+            def existingDataNode = dataNodeBuilder.withXpath('/parent-100/child-001').withLeaves(['id': '001']).build()
+            def newDataNode1 = dataNodeBuilder.withXpath('/parent-100/child-new1').withLeaves(['id': 'new1']).build()
+            def newDataNode2 = dataNodeBuilder.withXpath('/parent-200/child-new2').withLeaves(['id': 'new2']).build()
+            def dataNodeList1 = [existingDataNode, newDataNode1]
+            def dataNodeList2 = [newDataNode2]
         when: 'duplicate data node is requested to be added'
-            objectUnderTest.addMultipleLists(DATASPACE_NAME, ANCHOR_NAME3, '/', [listElements1,listElements2])
+            objectUnderTest.addMultipleLists(DATASPACE_NAME, ANCHOR_NAME3, '/', [dataNodeList1,dataNodeList2])
         then: 'already defined batch exception is thrown'
-            def e = thrown(AlreadyDefinedExceptionBatch)
-        and: 'it contains both cmhandle ids'
-            assert e.alreadyDefinedCmHandleIds.size() == 2
-            assert e.alreadyDefinedCmHandleIds.containsAll(['cmhandle1', 'cmhandle2'])
+            def thrown = thrown(AlreadyDefinedExceptionBatch)
+        and: 'it only contains the xpath(s) of the duplicated elements'
+            assert thrown.alreadyDefinedXpaths.size() == 1
+            assert thrown.alreadyDefinedXpaths.contains('/parent-100/child-001')
+        and: 'it does NOT contains the xpaths of the new element that were not combined with existing elements'
+            assert !thrown.alreadyDefinedXpaths.contains('/parent-100/child-new1')
+            assert !thrown.alreadyDefinedXpaths.contains('/parent-100/child-new1')
+        and: 'the new entity is inserted correctly'
+            def dataspaceEntity = dataspaceRepository.getByName(DATASPACE_NAME)
+            def anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, ANCHOR_NAME3)
+            fragmentRepository.findByDataspaceAndAnchorAndXpath(dataspaceEntity, anchorEntity, '/parent-200/child-new2').isPresent()
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Add list element error scenario: #scenario.'() {
         given: 'list element as a collection of data nodes'
-            def listElementCollection = toDataNodes(listElementXpaths)
+            def listElements = toDataNodes(listElementXpaths)
         when: 'attempt to add list elements to parent node'
-            objectUnderTest.addListElements(DATASPACE_NAME, ANCHOR_NAME3, parentNodeXpath, listElementCollection)
+            objectUnderTest.addListElements(DATASPACE_NAME, ANCHOR_NAME3, parentNodeXpath, listElements)
         then: 'a #expectedException is thrown'
             thrown(expectedException)
         where: 'following parameters were used'
             scenario                        | parentNodeXpath | listElementXpaths                   || expectedException
             'parent node does not exist'    | '/unknown'      | ['irrelevant']                      || DataNodeNotFoundException
-            'data fragment already exists'  | '/parent-201'   | ["/parent-201/child-204[@key='A']"] || AlreadyDefinedException
+            'data fragment already exists'  | '/parent-201'   | ["/parent-201/child-204[@key='A']"] || AlreadyDefinedExceptionBatch
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
@@ -576,12 +585,9 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
         return xpaths.collect { new DataNodeBuilder().withXpath(it).build() }
     }
 
-    static Collection<DataNode> toDataNodesWithId(xpaths, id) {
-        return xpaths.collect { new DataNodeBuilder().withXpath(it).withLeaves(['id': id]).build() }
-    }
 
     static DataNode buildDataNode(xpath, leaves, childDataNodes) {
-        return new DataNodeBuilder().withXpath(xpath).withLeaves(leaves).withChildDataNodes(childDataNodes).build()
+        return dataNodeBuilder.withXpath(xpath).withLeaves(leaves).withChildDataNodes(childDataNodes).build()
     }
 
     static Map<String, Object> getLeavesMap(FragmentEntity fragmentEntity) {
