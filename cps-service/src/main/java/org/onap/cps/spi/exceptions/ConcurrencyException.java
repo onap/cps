@@ -20,8 +20,8 @@ package org.onap.cps.spi.exceptions;
 
 public class ConcurrencyException extends CpsException {
 
-    public ConcurrencyException(final String message, final String details, final Throwable cause) {
-        super(message, details, cause);
+    public ConcurrencyException(final String message, final String details) {
+        super(message, details);
     }
 
 }

@@ -234,8 +234,8 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             } catch (final PathParsingException e) {
                 throw new CpsPathException(e.getMessage());
             }
-            return fragmentRepository.getByDataspaceAndAnchorAndXpath(dataspaceEntity, anchorEntity,
-                    normalizedXpath);
+
+            return fragmentRepository.getByDataspaceAndAnchorAndXpath(dataspaceEntity, anchorEntity, normalizedXpath);
         }
     }
 
@@ -345,8 +345,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         } catch (final StaleStateException staleStateException) {
             throw new ConcurrencyException("Concurrent Transactions",
                     String.format("dataspace :'%s', Anchor : '%s' and xpath: '%s' is updated by another transaction.",
-                            dataspaceName, anchorName, dataNode.getXpath()),
-                    staleStateException);
+                            dataspaceName, anchorName, dataNode.getXpath()));
         }
     }
 
@@ -354,6 +353,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     public void updateDataNodesAndDescendants(final String dataspaceName,
                                               final String anchorName,
                                               final List<DataNode> dataNodes) {
+
         final Map<DataNode, FragmentEntity> dataNodeFragmentEntityMap = dataNodes.stream()
             .collect(Collectors.toMap(
                 dataNode -> dataNode, dataNode -> getFragmentByXpath(dataspaceName, anchorName, dataNode.getXpath())));
@@ -362,10 +362,27 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         try {
             fragmentRepository.saveAll(dataNodeFragmentEntityMap.values());
         } catch (final StaleStateException staleStateException) {
-            throw new ConcurrencyException("Concurrent Transactions",
-                String.format("A data node in dataspace :'%s' with Anchor : '%s' is updated by another transaction.",
-                    dataspaceName, anchorName),
-                staleStateException);
+            retryUpdateDataNodesIndividually(dataspaceName, anchorName, dataNodeFragmentEntityMap.values());
+        }
+    }
+
+    private void retryUpdateDataNodesIndividually(final String dataspaceName, final String anchorName,
+            final Collection<FragmentEntity> fragmentEntities) {
+        final Collection<String> failedXpaths = new HashSet<>();
+
+        fragmentEntities.forEach(dataNodeFragment -> {
+            try {
+                fragmentRepository.save(dataNodeFragment);
+            } catch (final StaleStateException e) {
+                failedXpaths.add(dataNodeFragment.getXpath());
+            }
+        });
+
+        if (!failedXpaths.isEmpty()) {
+            final String failedXpathsConcatenated = String.join(",", failedXpaths);
+            throw new ConcurrencyException("Concurrent Transactions", String.format(
+                    "DataNodes : %s in Dataspace :'%s' with Anchor : '%s'  are updated by another transaction.",
+                    failedXpathsConcatenated, dataspaceName, anchorName));
         }
     }
 

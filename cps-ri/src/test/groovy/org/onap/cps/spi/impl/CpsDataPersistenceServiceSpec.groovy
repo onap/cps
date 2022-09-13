@@ -86,17 +86,25 @@ class CpsDataPersistenceServiceSpec extends Specification {
             assert concurrencyException.getDetails().contains('/some/xpath')
     }
 
-    def 'Handling of StaleStateException (caused by concurrent updates) during  update data nodes and descendants.'() {
-        given: 'the fragment repository returns a list of fragment entities'
-            mockFragmentRepository.getByDataspaceAndAnchorAndXpath(*_) >> new FragmentEntity()
-        and: 'a data node is concurrently updated by another transaction'
+    def 'Handling of StaleStateException (caused by concurrent updates) during update data nodes and descendants.'() {
+        given: 'the system contains and can update one datanode'
+            def dataNode1 = mockDataNodeAndFragmentEntity('/node1', 'OK')
+        and: 'the system contains two more datanodes that throw an exception while updating'
+            def dataNode2 = mockDataNodeAndFragmentEntity('/node2', 'EXCEPTION')
+            def dataNode3 = mockDataNodeAndFragmentEntity('/node3', 'EXCEPTION')
+        and: 'the batch update will therefore also fail'
             mockFragmentRepository.saveAll(*_) >> { throw new StaleStateException("concurrent updates") }
-        when: 'attempt to update data node with submitted data nodes'
-            objectUnderTest.updateDataNodesAndDescendants('some-dataspace', 'some-anchor', [])
+        when: 'attempt batch update data nodes'
+            objectUnderTest.updateDataNodesAndDescendants('some-dataspace', 'some-anchor', [dataNode1, dataNode2, dataNode3])
         then: 'concurrency exception is thrown'
-            def concurrencyException = thrown(ConcurrencyException)
-            assert concurrencyException.getDetails().contains('some-dataspace')
-            assert concurrencyException.getDetails().contains('some-anchor')
+            def thrown = thrown(ConcurrencyException)
+            assert thrown.message == 'Concurrent Transactions'
+        and: 'it does not contain the successfull datanode'
+            assert !thrown.details.contains('/node1')
+        and: 'it contains the failed datanodes'
+            assert thrown.details.contains('/node2')
+            assert thrown.details.contains('/node3')
+
     }
 
     def 'Retrieving a data node with a property JSON value of #scenario'() {
@@ -192,5 +200,15 @@ class CpsDataPersistenceServiceSpec extends Specification {
                 ])
                 assert fragmentEntities.size() == 2
             }})
+    }
+
+    def mockDataNodeAndFragmentEntity(xpath, scenario) {
+        def dataNode = new DataNodeBuilder().withXpath(xpath).build()
+        def fragmentEntity = new FragmentEntity(xpath: xpath, childFragments: [])
+        mockFragmentRepository.getByDataspaceAndAnchorAndXpath(_, _, xpath) >> fragmentEntity
+        if ('EXCEPTION' == scenario) {
+            mockFragmentRepository.save(fragmentEntity) >> { throw new StaleStateException("concurrent updates") }
+        }
+        return dataNode
     }
 }
