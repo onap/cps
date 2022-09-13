@@ -52,6 +52,7 @@ import org.onap.cps.spi.entities.FragmentEntity;
 import org.onap.cps.spi.entities.SchemaSetEntity;
 import org.onap.cps.spi.entities.YangResourceEntity;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
+import org.onap.cps.spi.exceptions.AlreadyDefinedExceptionBatch;
 import org.onap.cps.spi.exceptions.ConcurrencyException;
 import org.onap.cps.spi.exceptions.CpsAdminException;
 import org.onap.cps.spi.exceptions.CpsPathException;
@@ -88,49 +89,73 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             Pattern.compile("\\[(\\@([^\\/]{0,9999}))\\]$");
 
     @Override
-    @Transactional
     public void addChildDataNode(final String dataspaceName, final String anchorName, final String parentNodeXpath,
                                  final DataNode newChildDataNode) {
-        addChildDataNodes(dataspaceName, anchorName, parentNodeXpath, Collections.singleton(newChildDataNode));
+        addNewChildDataNode(dataspaceName, anchorName, parentNodeXpath, newChildDataNode);
     }
 
     @Override
-    @Transactional
     public void addListElements(final String dataspaceName, final String anchorName, final String parentNodeXpath,
                                 final Collection<DataNode> newListElements) {
-        addChildDataNodes(dataspaceName, anchorName, parentNodeXpath, newListElements);
+        addChildrenDataNodes(dataspaceName, anchorName, parentNodeXpath, newListElements);
     }
 
     @Override
-    @Transactional
-    public void addListElementsBatch(final String dataspaceName, final String anchorName, final String parentNodeXpath,
-            final Collection<Collection<DataNode>> newListsElements) {
+    public void addMultipleLists(final String dataspaceName, final String anchorName, final String parentNodeXpath,
+            final Collection<Collection<DataNode>> newLists) {
+        final Collection<String> failedCmHandleIds = new HashSet<>();
+        newLists.forEach(newList -> {
+            try {
+                addChildrenDataNodes(dataspaceName, anchorName, parentNodeXpath, newList);
+            } catch (final AlreadyDefinedException e) {
+                newList.forEach(listElement -> failedCmHandleIds.add((String) listElement.getLeaves().get("id")));
+            }
+        });
 
-        newListsElements.forEach(
-                newListElement -> addListElements(dataspaceName, anchorName, parentNodeXpath, newListElement));
+        if (!failedCmHandleIds.isEmpty()) {
+            throw new AlreadyDefinedExceptionBatch(failedCmHandleIds);
+        }
 
     }
 
-    private void addChildDataNodes(final String dataspaceName, final String anchorName, final String parentNodeXpath,
-                                   final Collection<DataNode> newChildren) {
+    private void addNewChildDataNode(final String dataspaceName, final String anchorName,
+            final String parentNodeXpath, final DataNode newChild) {
         final FragmentEntity parentFragmentEntity = getFragmentByXpath(dataspaceName, anchorName, parentNodeXpath);
+        final FragmentEntity newChildAsFragmentEntity =
+                convertToFragmentWithAllDescendants(parentFragmentEntity.getDataspace(),
+                        parentFragmentEntity.getAnchor(), newChild);
+        newChildAsFragmentEntity.setParentId(parentFragmentEntity.getId());
         try {
-            final List<FragmentEntity> fragmentEntities = new ArrayList<>();
+            fragmentRepository.save(newChildAsFragmentEntity);
+        } catch (final DataIntegrityViolationException e) {
+            throw AlreadyDefinedException.forDataNode(newChild.getXpath(), anchorName, e);
+        }
+
+    }
+
+    private void addChildrenDataNodes(final String dataspaceName, final String anchorName, final String parentNodeXpath,
+            final Collection<DataNode> newChildren) {
+        final FragmentEntity parentFragmentEntity = getFragmentByXpath(dataspaceName, anchorName, parentNodeXpath);
+        final List<FragmentEntity> fragmentEntities = new ArrayList<>(newChildren.size());
+        try {
             newChildren.forEach(newChildAsDataNode -> {
-                final FragmentEntity newChildAsFragmentEntity = convertToFragmentWithAllDescendants(
-                    parentFragmentEntity.getDataspace(),
-                    parentFragmentEntity.getAnchor(),
-                    newChildAsDataNode);
+                final FragmentEntity newChildAsFragmentEntity =
+                        convertToFragmentWithAllDescendants(parentFragmentEntity.getDataspace(),
+                                parentFragmentEntity.getAnchor(), newChildAsDataNode);
                 newChildAsFragmentEntity.setParentId(parentFragmentEntity.getId());
                 fragmentEntities.add(newChildAsFragmentEntity);
             });
             fragmentRepository.saveAll(fragmentEntities);
-        } catch (final DataIntegrityViolationException exception) {
-            final List<String> conflictXpaths = newChildren.stream()
-                    .map(DataNode::getXpath)
-                    .collect(Collectors.toList());
-            throw AlreadyDefinedException.forDataNodes(conflictXpaths, anchorName, exception);
+        } catch (final DataIntegrityViolationException e) {
+            log.warn("Exception occurred : {} , Batch with size : {} will be retried using individual save operations",
+                    e, fragmentEntities.size());
+            retrySavingEachChildIndividually(dataspaceName, anchorName, parentNodeXpath, newChildren);
         }
+    }
+
+    private void retrySavingEachChildIndividually(final String dataspaceName, final String anchorName,
+            final String parentNodeXpath, final Collection<DataNode> newChildren) {
+        newChildren.forEach(newChild -> addNewChildDataNode(dataspaceName, anchorName, parentNodeXpath, newChild));
     }
 
     @Override
