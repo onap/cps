@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "44830359_5625a2e1",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-09-13T15:06:36Z",
+      "side": 1,
+      "message": "NB : Was tested with 30 Sec Csaba would give feedback with 2 Sec.",
+      "range": {
+        "startLine": 53,
+        "startChar": 36,
+        "endLine": 53,
+        "endChar": 41
+      },
+      "revId": "4d6250edd5a35be1abc908934186c47ac390eff4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
