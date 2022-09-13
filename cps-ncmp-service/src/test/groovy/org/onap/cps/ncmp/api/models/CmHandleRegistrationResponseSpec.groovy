@@ -24,6 +24,8 @@ import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationErr
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.Status
 import spock.lang.Specification
 
+import java.util.stream.Collectors
+
 class CmHandleRegistrationResponseSpec extends Specification {
 
     def 'Successful cm-handle Registration Response'() {
@@ -67,5 +69,26 @@ class CmHandleRegistrationResponseSpec extends Specification {
             'cm-handle already exists' | 'cmHandle'  | RegistrationError.CM_HANDLE_ALREADY_EXIST
             'cm-handle id is invalid'  | 'cm handle' | RegistrationError.CM_HANDLE_INVALID_ID
     }
+
+    def 'Failed cm-handle Registration with multiple responses.'() {
+        when: 'cm-handle failure response is created for 2 xpaths'
+            def cmHandleRegistrationResponses =
+                CmHandleRegistrationResponse.createFailureResponses(["somePathWithId[@id='123']","somePathWithId[@id='456']"], RegistrationError.CM_HANDLE_ALREADY_EXIST)
+        then: 'the response has the correct cm handle ids'
+            assert cmHandleRegistrationResponses.size() == 2
+            assert cmHandleRegistrationResponses.stream().map(it -> it.cmHandle).collect(Collectors.toList())
+                .containsAll(['123','456'])
+    }
+
+    def 'Failed cm-handle Registration with multiple responses with an unexpected xpath.'() {
+        when: 'cm-handle failure response is created for one valid and one unexpected xpath'
+            def cmHandleRegistrationResponses =
+                CmHandleRegistrationResponse.createFailureResponses(["somePathWithId[@id='123']","valid/xpath/without-id[@key='123']"], RegistrationError.CM_HANDLE_ALREADY_EXIST)
+        then: 'the response has only one entry'
+            assert cmHandleRegistrationResponses.size() == 1
+    }
+
+
+
 
 }

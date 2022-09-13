@@ -21,15 +21,20 @@
 
 package org.onap.cps.ncmp.api.models;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Data
 @Builder
+@Slf4j
 public class CmHandleRegistrationResponse {
 
     private final String cmHandle;
@@ -37,16 +42,19 @@ public class CmHandleRegistrationResponse {
     private RegistrationError registrationError;
     private String errorText;
 
+    private static final Pattern cmHandleIdInXpathPattern = Pattern.compile("\\[@id='(.*?)']");
+
     /**
      * Creates a failure response based on exception.
      *
-     * @param cmHandle  cmHandle
+     * @param cmHandleId  cmHandleId
      * @param exception exception
      * @return CmHandleRegistrationResponse
      */
-    public static CmHandleRegistrationResponse createFailureResponse(final String cmHandle, final Exception exception) {
+    public static CmHandleRegistrationResponse createFailureResponse(final String cmHandleId,
+                                                                     final Exception exception) {
         return CmHandleRegistrationResponse.builder()
-            .cmHandle(cmHandle)
+            .cmHandle(cmHandleId)
             .status(Status.FAILURE)
             .registrationError(RegistrationError.UNKNOWN_ERROR)
             .errorText(exception.getMessage()).build();
@@ -55,13 +63,13 @@ public class CmHandleRegistrationResponse {
     /**
      * Creates a failure response based on registration error.
      *
-     * @param cmHandle          cmHandle
+     * @param cmHandleId          cmHandleId
      * @param registrationError registrationError
      * @return CmHandleRegistrationResponse
      */
-    public static CmHandleRegistrationResponse createFailureResponse(final String cmHandle,
+    public static CmHandleRegistrationResponse createFailureResponse(final String cmHandleId,
         final RegistrationError registrationError) {
-        return CmHandleRegistrationResponse.builder().cmHandle(cmHandle)
+        return CmHandleRegistrationResponse.builder().cmHandle(cmHandleId)
             .status(Status.FAILURE)
             .registrationError(registrationError)
             .errorText(registrationError.errorText)
@@ -71,15 +79,23 @@ public class CmHandleRegistrationResponse {
     /**
      * Creates a failure response based on registration error.
      *
-     * @param cmHandleIds       list of failed cmHandleIds
+     * @param failedXpaths       list of failed Xpaths
      * @param registrationError enum describing the type of registration error
      * @return CmHandleRegistrationResponse
      */
-    public static List<CmHandleRegistrationResponse> createFailureResponses(final Collection<String> cmHandleIds,
+    public static List<CmHandleRegistrationResponse> createFailureResponses(final Collection<String> failedXpaths,
             final RegistrationError registrationError) {
-        return cmHandleIds.stream()
-                .map(cmHandleId -> CmHandleRegistrationResponse.createFailureResponse(cmHandleId, registrationError))
-                .collect(Collectors.toList());
+        final List<CmHandleRegistrationResponse> cmHandleRegistrationResponses = new ArrayList<>(failedXpaths.size());
+        for (final String xpath : failedXpaths) {
+            final Matcher matcher = cmHandleIdInXpathPattern.matcher(xpath);
+            if (matcher.find()) {
+                cmHandleRegistrationResponses.add(
+                    CmHandleRegistrationResponse.createFailureResponse(matcher.group(1), registrationError));
+            } else {
+                log.warn("Unexpected xpath {}", xpath);
+            }
+        }
+        return cmHandleRegistrationResponses;
     }
 
     /**

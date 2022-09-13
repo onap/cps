@@ -184,7 +184,8 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
                                        new NcmpServiceCmHandle(cmHandleId: 'cmhandle2'),
                                        new NcmpServiceCmHandle(cmHandleId: 'cmhandle3')])
         and: 'cm-handle creation is successful for 1st and 3rd; failed for 2nd'
-            mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(*_) >> { throw new AlreadyDefinedExceptionBatch(['cmhandle2']) }
+            def xpath = "somePathWithId[@id='cmhandle2']"
+            mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(*_) >> { throw new AlreadyDefinedExceptionBatch([xpath]) }
         when: 'registration is updated to create cm-handles'
             def response = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'a response is received for all cm-handles'
@@ -215,10 +216,10 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
                 assert it.errorText == expectedErrorText
             }
         where:
-            scenario                                        | cmHandleId             | exception                                      || expectedError           | expectedErrorText
-            'cm-handle already exist'                       | 'cmhandle'             | new AlreadyDefinedExceptionBatch([cmHandleId]) || CM_HANDLE_ALREADY_EXIST | 'cm-handle already exists'
-            'cm-handle has invalid name'                    | 'cm handle with space' | new DataValidationException("", "")            || CM_HANDLE_INVALID_ID    | 'cm-handle has an invalid character(s) in id'
-            'unknown exception while registering cm-handle' | 'cmhandle'             | new RuntimeException('Failed')                 || UNKNOWN_ERROR           | 'Failed'
+            scenario                                        | cmHandleId             | exception                                                                  || expectedError           | expectedErrorText
+            'cm-handle already exist'                       | 'cmhandle'             | new AlreadyDefinedExceptionBatch(["path[@id='${cmHandleId}']".toString()]) || CM_HANDLE_ALREADY_EXIST | 'cm-handle already exists'
+            'cm-handle has invalid name'                    | 'cm handle with space' | new DataValidationException("", "")                                        || CM_HANDLE_INVALID_ID    | 'cm-handle has an invalid character(s) in id'
+            'unknown exception while registering cm-handle' | 'cmhandle'             | new RuntimeException('Failed')                                             || UNKNOWN_ERROR           | 'Failed'
     }
 
     def 'Update CM-Handle: Update Operation Response is added to the response'() {

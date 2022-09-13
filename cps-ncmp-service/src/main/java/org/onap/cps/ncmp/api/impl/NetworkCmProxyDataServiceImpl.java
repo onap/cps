@@ -367,7 +367,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             return CmHandleRegistrationResponse.createSuccessResponses(cmHandleIds);
         } catch (final AlreadyDefinedExceptionBatch alreadyDefinedExceptionBatch) {
             return CmHandleRegistrationResponse.createFailureResponses(
-                    alreadyDefinedExceptionBatch.getAlreadyDefinedCmHandleIds(),
+                    alreadyDefinedExceptionBatch.getAlreadyDefinedXpaths(),
                     RegistrationError.CM_HANDLE_ALREADY_EXIST);
         } catch (final Exception exception) {
             return CmHandleRegistrationResponse.createFailureResponses(cmHandleIds, exception);

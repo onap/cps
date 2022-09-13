@@ -31,6 +31,7 @@ import org.onap.cps.rest.controller.DataRestController;
 import org.onap.cps.rest.controller.QueryRestController;
 import org.onap.cps.rest.model.ErrorMessage;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
+import org.onap.cps.spi.exceptions.AlreadyDefinedExceptionBatch;
 import org.onap.cps.spi.exceptions.CpsAdminException;
 import org.onap.cps.spi.exceptions.CpsException;
 import org.onap.cps.spi.exceptions.CpsPathException;
@@ -75,7 +76,7 @@ public class CpsRestExceptionHandler {
             ? HttpStatus.NOT_FOUND : HttpStatus.BAD_REQUEST, exception);
     }
 
-    @ExceptionHandler({DataInUseException.class, AlreadyDefinedException.class})
+    @ExceptionHandler({DataInUseException.class, AlreadyDefinedException.class, AlreadyDefinedExceptionBatch.class})
     public static ResponseEntity<Object> handleDataInUseException(final Exception exception) {
         return buildErrorResponse(HttpStatus.CONFLICT, exception);
     }
