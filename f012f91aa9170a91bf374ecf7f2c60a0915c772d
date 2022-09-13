@@ -868,6 +868,30 @@
       "revId": "f012f91aa9170a91bf374ecf7f2c60a0915c772d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e5370d6e_fd57c44f",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/AlreadyDefinedExceptionBatch.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-09-13T07:03:43Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "66e75aee_a0008e4a",
+      "range": {
+        "startLine": 31,
+        "startChar": 46,
+        "endLine": 31,
+        "endChar": 50
+      },
+      "revId": "f012f91aa9170a91bf374ecf7f2c60a0915c772d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }

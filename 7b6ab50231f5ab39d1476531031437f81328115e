@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eaebbde1_5fff7b7e",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 580,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-09-13T07:03:43Z",
+      "side": 1,
+      "message": "I like this use of .collect :-)",
+      "range": {
+        "startLine": 580,
+        "startChar": 15,
+        "endLine": 580,
+        "endChar": 100
+      },
+      "revId": "7b6ab50231f5ab39d1476531031437f81328115e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
