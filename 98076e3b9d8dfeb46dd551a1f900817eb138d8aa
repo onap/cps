@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "23f21ace_a6e9c529",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-09-13T07:06:14Z",
+      "side": 1,
+      "message": "i\u0027m not sure if we should be touching these at all but the proposed changed will not impact much eitehr wasy so I can live with them",
+      "range": {
+        "startLine": 51,
+        "startChar": 1,
+        "endLine": 53,
+        "endChar": 41
+      },
+      "revId": "98076e3b9d8dfeb46dd551a1f900817eb138d8aa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "622fda54_190517cb",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/client/DmiRestClient.java",
         "patchSetId": 2
