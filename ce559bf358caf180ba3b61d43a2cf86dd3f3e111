@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "95e82199_1dddbfff",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-09-13T08:55:11Z",
+      "side": 1,
+      "message": "NB: would be better what changes are \n- Updated regex for match list identifiers during xpath parsing",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 23
+      },
+      "revId": "ce559bf358caf180ba3b61d43a2cf86dd3f3e111",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9dc125a4_2c8f8af4",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-09-13T08:55:11Z",
+      "side": 1,
+      "message": "NB (non-blocking) suggestion: instead of jus a comment you coudl add a separate test that show how this fails when there is an [ or ] inside the value of a string",
+      "range": {
+        "startLine": 56,
+        "startChar": 3,
+        "endLine": 56,
+        "endChar": 58
+      },
+      "revId": "ce559bf358caf180ba3b61d43a2cf86dd3f3e111",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c2464e6c_08b43863",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-09-13T08:55:11Z",
+      "side": 1,
+      "message": "maybe just add @ to the original expression i.e.\nXPATH_NODE_KEY_ATTRIBUTES_REGEX \u003d \"\\\\[@.+\";",
+      "range": {
+        "startLine": 55,
+        "startChar": 3,
+        "endLine": 57,
+        "endChar": 0
+      },
+      "revId": "ce559bf358caf180ba3b61d43a2cf86dd3f3e111",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
