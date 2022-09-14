@@ -45,6 +45,30 @@
       "revId": "5f98872858b6c5de2d7161013498647e39c24114",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a5a282f_2f490dd3",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepositoryCpsPathQueryImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-09-14T08:16:29Z",
+      "side": 1,
+      "message": "I tried it in regex101 I can see ho it work now :-)\nbut is does seem to miss an opening ( ?! It only worked for me when I inserted an extra ( in front of \\\\[  like so\n(\\\\[@(?!.*\\\\[).*?])?$",
+      "parentUuid": "6b3f52a3_7798d6b4",
+      "range": {
+        "startLine": 41,
+        "startChar": 76,
+        "endLine": 41,
+        "endChar": 94
+      },
+      "revId": "5f98872858b6c5de2d7161013498647e39c24114",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
