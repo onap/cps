@@ -50,7 +50,7 @@ spring:
             maximumPoolSize: 80
             idleTimeout: 60000
             connectionTimeout: 120000
-            leakDetectionThreshold: 2000
+            leakDetectionThreshold: 30000
             pool-name: CpsDatabasePool
 
     cache:
