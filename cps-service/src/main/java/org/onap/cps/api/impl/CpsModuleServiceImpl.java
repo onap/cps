@@ -3,6 +3,7 @@
  *  Copyright (C) 2020-2022 Nordix Foundation
  *  Modifications Copyright (C) 2020-2021 Pantheon.tech
  *  Modifications Copyright (C) 2022 Bell Canada
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -35,6 +36,7 @@ import org.onap.cps.spi.model.ModuleDefinition;
 import org.onap.cps.spi.model.ModuleReference;
 import org.onap.cps.spi.model.SchemaSet;
 import org.onap.cps.spi.utils.CpsValidator;
+import org.onap.cps.yang.YangTextSchemaSourceSet;
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -75,6 +77,19 @@ public class CpsModuleServiceImpl implements CpsModuleService {
             .get(dataspaceName, schemaSetName);
         return SchemaSet.builder().name(schemaSetName).dataspaceName(dataspaceName)
             .moduleReferences(yangTextSchemaSourceSet.getModuleReferences()).build();
+    }
+
+    @Override
+    public Collection<SchemaSet> getSchemaSets(final String dataspaceName) {
+        cpsValidator.validateNameCharacters(dataspaceName);
+        final Collection<SchemaSet> schemaSets =
+            cpsModulePersistenceService.getSchemaSetsByDataspaceName(dataspaceName);
+        schemaSets.forEach(schemaSet -> {
+            final YangTextSchemaSourceSet yangTextSchemaSourceSet = yangTextSchemaSourceSetCache
+                    .get(dataspaceName, schemaSet.getName());
+            schemaSet.setModuleReferences(yangTextSchemaSourceSet.getModuleReferences());
+        });
+        return schemaSets;
     }
 
     @Override
