@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "09bbbba4_6d0e3ff4",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceQueryDataNodeSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-09-14T17:01:46Z",
+      "side": 1,
+      "message": "so brackets dont work as expected :-)\nwill you add doc update (in other commit?)",
+      "range": {
+        "startLine": 106,
+        "startChar": 129,
+        "endLine": 106,
+        "endChar": 131
+      },
+      "revId": "19a59f369cbb348441d69d5e2675f17e0e1b7f3f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
