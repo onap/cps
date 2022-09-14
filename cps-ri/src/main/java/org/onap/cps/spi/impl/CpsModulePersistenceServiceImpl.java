@@ -3,6 +3,7 @@
  *  Copyright (C) 2020-2022 Nordix Foundation
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -30,6 +31,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -55,6 +57,7 @@ import org.onap.cps.spi.exceptions.DuplicatedYangResourceException;
 import org.onap.cps.spi.exceptions.ModelValidationException;
 import org.onap.cps.spi.model.ModuleDefinition;
 import org.onap.cps.spi.model.ModuleReference;
+import org.onap.cps.spi.model.SchemaSet;
 import org.onap.cps.spi.repository.DataspaceRepository;
 import org.onap.cps.spi.repository.ModuleReferenceRepository;
 import org.onap.cps.spi.repository.SchemaSetRepository;
@@ -152,6 +155,21 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
         } catch (final DataIntegrityViolationException e) {
             throw AlreadyDefinedException.forSchemaSet(schemaSetName, dataspaceName, e);
         }
+    }
+
+    @Override
+    public List<SchemaSet> getSchemaSetsFromDataspace(final String dataspaceName) {
+        final List<SchemaSet> schemaSets = new ArrayList<>();
+        final List<SchemaSetEntity> schemasetEntity = schemaSetRepository.findAll();
+        for (final SchemaSetEntity se : schemasetEntity) {
+            if (se.getDataspace().getName().equals(dataspaceName)) {
+                final SchemaSet ss = new SchemaSet();
+                ss.setName(se.getName());
+                ss.setDataspaceName(se.getDataspace().getName());
+                schemaSets.add(ss);
+            }
+        }
+        return schemaSets;
     }
 
     @Override
