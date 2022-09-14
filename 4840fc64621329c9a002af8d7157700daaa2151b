@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d7cd96cb_612d405f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncTasksSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-09-14T15:48:11Z",
+      "side": 1,
+      "message": "NB: need to re-enable this assert (use a different commit though, not needed for this bugfix)",
+      "range": {
+        "startLine": 111,
+        "startChar": 0,
+        "endLine": 112,
+        "endChar": 14
+      },
+      "revId": "4840fc64621329c9a002af8d7157700daaa2151b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bd14eb81_aa3a96ab",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncTasksSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-09-14T15:48:11Z",
+      "side": 1,
+      "message": "NB: remove \u0027each\u0027",
+      "range": {
+        "startLine": 128,
+        "startChar": 50,
+        "endLine": 128,
+        "endChar": 55
+      },
+      "revId": "4840fc64621329c9a002af8d7157700daaa2151b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
