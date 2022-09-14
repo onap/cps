@@ -677,6 +677,70 @@ paths:
                 status: 500
                 message: Internal Server Error
                 details: Internal Server Error occurred
+  /v1/admin/dataspaces/{dataspace-name}/schema-sets:
+    get:
+      tags:
+      - cps-admin
+      summary: Get schema sets for a given dataspace
+      description: "Read schema sets for a given dataspace"
+      operationId: getSchemaSets
+      parameters:
+        - name: dataspace-name
+          in: path
+          description: dataspace-name
+          required: true
+          schema:
+            type: string
+            example: my-dataspace
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SchemaSetDetails'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 400
+                message: Bad Request
+                details: The provided request is not valid
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 401
+                message: Unauthorized request
+                details: This request is unauthorized
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 403
+                message: Request Forbidden
+                details: This request is forbidden
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 500
+                message: Internal Server Error
+                details: Internal Server Error occurred
   /v1/dataspaces/{dataspace-name}/anchors/{anchor-name}/node:
     get:
       tags:

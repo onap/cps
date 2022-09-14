@@ -3,6 +3,7 @@
  *  Copyright (C) 2020-2022 Nordix Foundation
  *  Modifications Copyright (C) 2020-2021 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -103,6 +104,20 @@ public class AdminRestController implements CpsAdminApi {
     public ResponseEntity<SchemaSetDetails> getSchemaSet(final String dataspaceName, final String schemaSetName) {
         final var schemaSet = cpsModuleService.getSchemaSet(dataspaceName, schemaSetName);
         final var schemaSetDetails = cpsRestInputMapper.toSchemaSetDetails(schemaSet);
+        return new ResponseEntity<>(schemaSetDetails, HttpStatus.OK);
+    }
+
+    /**
+     * Get list of schema sets for a given dataspace name.
+     *
+     * @param dataspaceName dataspace name
+     * @return a {@Link ResponseEntity} of schema sets & {@link HttpStatus} OK
+     */
+    @Override
+    public ResponseEntity<List<SchemaSetDetails>> getSchemaSets(final String dataspaceName) {
+        final Collection<SchemaSet> schemaSets = cpsModuleService.getSchemaSets(dataspaceName);
+        final List<SchemaSetDetails> schemaSetDetails = schemaSets.stream().map(cpsRestInputMapper::toSchemaSetDetails)
+                .collect(Collectors.toList());
         return new ResponseEntity<>(schemaSetDetails, HttpStatus.OK);
     }
 
