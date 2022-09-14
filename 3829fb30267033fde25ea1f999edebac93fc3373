@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1a954531_97fdda13",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncTasks.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-09-14T22:57:57Z",
+      "side": 1,
+      "message": "Returns:\nif the argument is null, then a string equal to \"null\"; otherwise, the value of obj.toString() is returned.\n\nreturn (obj \u003d\u003d null) ? \"null\" : obj.toString();",
+      "parentUuid": "38e7f5d6_d71ee4b5",
+      "range": {
+        "startLine": 86,
+        "startChar": 42,
+        "endLine": 86,
+        "endChar": 56
+      },
+      "revId": "3829fb30267033fde25ea1f999edebac93fc3373",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "df3d2b0b_d9a131ed",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncTasks.java",
         "patchSetId": 2
@@ -106,6 +130,30 @@
       "writtenOn": "2022-09-14T16:23:06Z",
       "side": 1,
       "message": "??",
+      "range": {
+        "startLine": 111,
+        "startChar": 0,
+        "endLine": 111,
+        "endChar": 2
+      },
+      "revId": "3829fb30267033fde25ea1f999edebac93fc3373",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "639fb81f_e9fc6b1c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncTasksSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-09-14T22:57:57Z",
+      "side": 1,
+      "message": "NB: need to re-enable this assert (use a different commit though, not needed for this bugfix)",
+      "parentUuid": "acca0bd3_77c951e9",
       "range": {
         "startLine": 111,
         "startChar": 0,
