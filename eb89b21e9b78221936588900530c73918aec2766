@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e6947bdf_a9081477",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepositoryCpsPathQueryImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-09-14T16:11:25Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9250a480_9830894b",
+      "range": {
+        "startLine": 78,
+        "startChar": 29,
+        "endLine": 78,
+        "endChar": 38
+      },
+      "revId": "eb89b21e9b78221936588900530c73918aec2766",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ea4478d_5094e20a",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceQueryDataNodeSpec.groovy",
         "patchSetId": 3
@@ -45,6 +69,30 @@
       "revId": "eb89b21e9b78221936588900530c73918aec2766",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f0f8823d_c9bd91a3",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceQueryDataNodeSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-09-14T16:11:25Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6ea4478d_5094e20a",
+      "range": {
+        "startLine": 105,
+        "startChar": 80,
+        "endLine": 105,
+        "endChar": 85
+      },
+      "revId": "eb89b21e9b78221936588900530c73918aec2766",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -94,6 +142,54 @@
     },
     {
       "key": {
+        "uuid": "26562783_995b356a",
+        "filename": "cps-ri/src/test/resources/data/cps-path-query.sql",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-09-14T16:11:25Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b67525ca_ba096970",
+      "range": {
+        "startLine": 60,
+        "startChar": 106,
+        "endLine": 60,
+        "endChar": 122
+      },
+      "revId": "eb89b21e9b78221936588900530c73918aec2766",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e55a05d5_81825e5e",
+        "filename": "cps-ri/src/test/resources/data/cps-path-query.sql",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-09-14T16:11:25Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a600ba0f_25b87a82",
+      "range": {
+        "startLine": 60,
+        "startChar": 66,
+        "endLine": 60,
+        "endChar": 69
+      },
+      "revId": "eb89b21e9b78221936588900530c73918aec2766",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "14ac33aa_5df0d356",
         "filename": "cps-ri/src/test/resources/data/cps-path-query.sql",
         "patchSetId": 3
@@ -114,6 +210,30 @@
       "revId": "eb89b21e9b78221936588900530c73918aec2766",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "62ccce93_4db034ef",
+        "filename": "cps-ri/src/test/resources/data/cps-path-query.sql",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6738
+      },
+      "writtenOn": "2022-09-14T16:11:25Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "14ac33aa_5df0d356",
+      "range": {
+        "startLine": 61,
+        "startChar": 106,
+        "endLine": 61,
+        "endChar": 123
+      },
+      "revId": "eb89b21e9b78221936588900530c73918aec2766",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
