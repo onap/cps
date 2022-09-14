@@ -46,7 +46,7 @@ public class ModuleSyncTasks {
     private final SyncUtils syncUtils;
     private final ModuleSyncService moduleSyncService;
     private final LcmEventsCmHandleStateHandler lcmEventsCmHandleStateHandler;
-
+    private final Map<String, Object> moduleSyncStartedOnCmHandles;
     private static final CompletableFuture<Void> COMPLETED_FUTURE = CompletableFuture.completedFuture(null);
 
     /**
@@ -76,6 +76,12 @@ public class ModuleSyncTasks {
                             LockReasonCategory.LOCKED_MODULE_SYNC_FAILED, e.getMessage());
                     setCmHandleStateLocked(yangModelCmHandle, compositeState.getLockReason());
                     cmHandelStatePerCmHandle.put(yangModelCmHandle, CmHandleState.LOCKED);
+                } finally {
+                    if (moduleSyncStartedOnCmHandles.remove(cmHandleId) == null) {
+                        log.warn("{} finished module sync but can not be removed from in progress map", cmHandleId);
+                    } else {
+                        log.debug("{} finished module sync", cmHandleId);
+                    }
                 }
                 log.debug("{} is now in {} state", cmHandleId, compositeState.getCmHandleState().name());
             }
