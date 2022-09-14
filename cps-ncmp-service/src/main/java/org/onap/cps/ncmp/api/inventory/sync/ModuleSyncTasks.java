@@ -46,7 +46,7 @@ public class ModuleSyncTasks {
     private final SyncUtils syncUtils;
     private final ModuleSyncService moduleSyncService;
     private final LcmEventsCmHandleStateHandler lcmEventsCmHandleStateHandler;
-
+    private final Map<String, Object> moduleSyncStartedOnCmHandles;
     private static final CompletableFuture<Void> COMPLETED_FUTURE = CompletableFuture.completedFuture(null);
 
     /**
@@ -82,6 +82,14 @@ public class ModuleSyncTasks {
             lcmEventsCmHandleStateHandler.updateCmHandleStateBatch(cmHandelStatePerCmHandle);
         } finally {
             batchCounter.getAndDecrement();
+            for (final DataNode cmHandleAsDataNode : cmHandlesAsDataNodes) {
+                final String cmHandleId = String.valueOf(cmHandleAsDataNode.getLeaves().get("id"));
+                if (moduleSyncStartedOnCmHandles.remove(cmHandleId) == null) {
+                    log.warn("{} finished module sync but can not be removed from in progress map", cmHandleId);
+                } else {
+                    log.debug("{} removed from in progress map", cmHandleId);
+                }
+            }
             log.info("Processing module sync batch finished. {} batch(es) active.", batchCounter.get());
         }
         return COMPLETED_FUTURE;

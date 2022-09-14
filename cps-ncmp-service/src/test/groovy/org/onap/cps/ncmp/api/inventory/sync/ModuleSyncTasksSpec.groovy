@@ -43,9 +43,12 @@ class ModuleSyncTasksSpec extends Specification {
 
     def mockLcmEventsCmHandleStateHandler = Mock(LcmEventsCmHandleStateHandler)
 
+    Map<String, Object> moduleSyncStartedOnCmHandles = [:]
+
     def batchCount = new AtomicInteger(5)
 
-    def objectUnderTest = new ModuleSyncTasks(mockInventoryPersistence, mockSyncUtils, mockModuleSyncService, mockLcmEventsCmHandleStateHandler)
+    def objectUnderTest = new ModuleSyncTasks(mockInventoryPersistence, mockSyncUtils, mockModuleSyncService,
+            mockLcmEventsCmHandleStateHandler, moduleSyncStartedOnCmHandles)
 
     def 'Module Sync ADVISED cm handles.'() {
         given: 'cm handles in an ADVISED state'
@@ -53,6 +56,9 @@ class ModuleSyncTasksSpec extends Specification {
             def cmHandle2 = advisedCmHandleAsDataNode('cm-handle-2')
         and: 'the inventory persistence cm handle returns a ADVISED state for the any handle'
             mockInventoryPersistence.getCmHandleState(_) >> new CompositeState(cmHandleState: CmHandleState.ADVISED)
+        and: 'entries in progress map for both cm handles'
+            moduleSyncStartedOnCmHandles.put('cm-handle-1', 'started')
+            moduleSyncStartedOnCmHandles.put('cm-handle-2', 'started')
         when: 'module sync poll is executed'
             objectUnderTest.performModuleSync([cmHandle1, cmHandle2], batchCount)
         then: 'module sync service deletes schemas set of each cm handle if it already exists'
@@ -65,6 +71,8 @@ class ModuleSyncTasksSpec extends Specification {
             1 * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(_) >> { args ->
                 assertBatch(args, ['cm-handle-1', 'cm-handle-2'], CmHandleState.READY)
             }
+        and: 'all entries are removed from in progress map (CPS-1239)'
+            assert moduleSyncStartedOnCmHandles.isEmpty()
         and: 'batch count is decremented by one'
             assert batchCount.get() == 4
     }
@@ -106,6 +114,21 @@ class ModuleSyncTasksSpec extends Specification {
             'retry locked cm handle once'   | [true, false]   || 1
             'retry locked cm handle twice'  | [true, true]    || 2
             'do not retry locked cm handle' | [false, false]  || 0
+    }
+
+    def 'Module Sync ADVISED cm handle without entry in progress map.'() {
+        given: 'cm handles in an ADVISED state'
+            def cmHandle1 = advisedCmHandleAsDataNode('cm-handle-1')
+        and: 'the inventory persistence cm handle returns a ADVISED state for the any handle'
+            mockInventoryPersistence.getCmHandleState(_) >> new CompositeState(cmHandleState: CmHandleState.ADVISED)
+        and: 'entry in progress map for other cm handle'
+            moduleSyncStartedOnCmHandles.put('other-cm-handle', 'started')
+        when: 'module sync poll is executed'
+            objectUnderTest.performModuleSync([cmHandle1], batchCount)
+        then: 'module sync service is invoked for each cm handle'
+            1 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(_) >> { args -> assertYamgModelCmHandleArgument(args, 'cm-handle-1') }
+        and: 'the entry for other cm handle is still in the progress map'
+            assert moduleSyncStartedOnCmHandles.size() == 1
     }
 
     def advisedCmHandleAsDataNode(cmHandleId) {
