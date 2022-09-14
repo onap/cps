@@ -90,6 +90,29 @@ schemaSet:
         $ref: 'components.yml#/components/responses/Conflict'
       '500':
         $ref: 'components.yml#/components/responses/InternalServerError'
+  get:
+    description: Read all schema sets inside a dataspace
+    tags:
+      - cps-admin
+    summary: Get all schema sets
+    operationId: getSchemaSets
+    parameters:
+      - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: object
+      '400':
+        $ref: 'components.yml#/components/responses/BadRequest'
+      '401':
+        $ref: 'components.yml#/components/responses/Unauthorized'
+      '403':
+        $ref: 'components.yml#/components/responses/Forbidden'
+      '500':
+        $ref: 'components.yml#/components/responses/InternalServerError'
 
 schemaSetBySchemaSetName:
   get:
