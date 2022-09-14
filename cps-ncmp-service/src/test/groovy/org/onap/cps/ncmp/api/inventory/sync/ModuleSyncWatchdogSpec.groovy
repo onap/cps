@@ -21,10 +21,10 @@
 
 package org.onap.cps.ncmp.api.inventory.sync
 
+import com.hazelcast.map.IMap
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.inventory.sync.executor.AsyncTaskExecutor
 import java.util.concurrent.ArrayBlockingQueue
-import java.util.concurrent.BlockingQueue
 import org.onap.cps.spi.model.DataNode
 import spock.lang.Specification
 
@@ -36,13 +36,13 @@ class ModuleSyncWatchdogSpec extends Specification {
 
     def moduleSyncWorkQueue = new ArrayBlockingQueue(testQueueCapacity)
 
-    def moduleSyncStartedOnCmHandles = [:]
+    def stubbedModuleSyncStartedOnCmHandles = Stub(IMap<String, Object>)
 
     def mockModuleSyncTasks = Mock(ModuleSyncTasks)
 
     def spiedAsyncTaskExecutor = Spy(AsyncTaskExecutor)
 
-    def objectUnderTest = new ModuleSyncWatchdog(mockSyncUtils, moduleSyncWorkQueue , moduleSyncStartedOnCmHandles,
+    def objectUnderTest = new ModuleSyncWatchdog(mockSyncUtils, moduleSyncWorkQueue , stubbedModuleSyncStartedOnCmHandles,
             mockModuleSyncTasks, spiedAsyncTaskExecutor)
 
     void setup() {
