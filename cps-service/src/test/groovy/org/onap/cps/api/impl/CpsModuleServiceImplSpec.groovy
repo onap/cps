@@ -3,6 +3,7 @@
  *  Copyright (C) 2020-2022 Nordix Foundation
  *  Modifications Copyright (C) 2020-2021 Pantheon.tech
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -30,6 +31,7 @@ import org.onap.cps.spi.exceptions.SchemaSetInUseException
 import org.onap.cps.spi.utils.CpsValidator
 import org.onap.cps.spi.model.Anchor
 import org.onap.cps.spi.model.ModuleReference
+import org.onap.cps.spi.model.SchemaSet
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
 import spock.lang.Specification
 import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED
@@ -89,6 +91,25 @@ class CpsModuleServiceImplSpec extends Specification {
             result.getModuleReferences().contains(new ModuleReference('stores', '2020-09-15', 'org:onap:ccsdk:sample'))
         and: 'the CpsValidator is called on the dataspaceName and schemaSetName'
             1 * mockCpsValidator.validateNameCharacters('someDataspace', 'someSchemaSet')
+    }
+
+    def 'Get schema sets by dataspace name.'() {
+        given: 'an already present schema set'
+            def createdSchemaSet = new SchemaSet(name: 'someSchemaSet', dataspaceName: 'someDataspace', moduleReferences: [new ModuleReference(moduleName: 'stores', revision: '2020-09-15')])
+            def yangResourcesNameToContentMap = TestUtils.getYangResourcesAsMap('bookstore.yang')
+        and: 'yang resource cache returns the expected schema set'
+            mockCpsModulePersistenceService.getSchemaSetsByDataspaceName('someDataspace') >> [createdSchemaSet]
+        and: 'yang resource cache returns the expected schema set'
+            mockYangTextSchemaSourceSetCache.get('someDataspace', 'someSchemaSet') >> YangTextSchemaSourceSetBuilder.of(yangResourcesNameToContentMap)
+        when: 'get schema set method is invoked'
+            def result = objectUnderTest.getSchemaSets('someDataspace')
+        then: 'the correct schema sets are returned'
+            assert result.size() == 1
+            assert result.getAt(0).getName() == 'someSchemaSet'
+            assert result.getAt(0).getDataspaceName() == 'someDataspace'
+            assert result.getAt(0).getModuleReferences().contains(new ModuleReference('stores', '2020-09-15', 'org:onap:ccsdk:sample'))
+        and: 'the CpsValidator is called on the dataspaceName'
+            1 * mockCpsValidator.validateNameCharacters('someDataspace')
     }
 
     def 'Delete schema-set when cascade is allowed.'() {
