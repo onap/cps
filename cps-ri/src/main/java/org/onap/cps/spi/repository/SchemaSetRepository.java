@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Pantheon.tech
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -19,6 +20,7 @@
 
 package org.onap.cps.spi.repository;
 
+import java.util.List;
 import java.util.Optional;
 import javax.validation.constraints.NotNull;
 import org.onap.cps.spi.entities.DataspaceEntity;
@@ -32,6 +34,8 @@ public interface SchemaSetRepository extends JpaRepository<SchemaSetEntity, Inte
 
     Optional<SchemaSetEntity> findByDataspaceAndName(@NotNull DataspaceEntity dataspaceEntity,
         @NotNull String schemaSetName);
+
+    Optional<List<SchemaSetEntity>> findByDataspace(@NotNull DataspaceEntity dataspaceEntity);
 
     Integer countByDataspace(@NotNull DataspaceEntity dataspaceEntity);
 
@@ -47,5 +51,17 @@ public interface SchemaSetRepository extends JpaRepository<SchemaSetEntity, Inte
         @NotNull final String schemaSetName) {
         return findByDataspaceAndName(dataspaceEntity, schemaSetName)
             .orElseThrow(() -> new SchemaSetNotFoundException(dataspaceEntity.getName(), schemaSetName));
+    }
+
+    /**
+     * Gets all schema sets for a given dataspace.
+     *
+     * @param dataspaceEntity dataspace entity
+     * @return list of schema set entity
+     * @throws SchemaSetNotFoundException if SchemaSet not found
+     */
+    default List<SchemaSetEntity> getByDataspace(@NotNull final DataspaceEntity dataspaceEntity) {
+        return findByDataspace(dataspaceEntity)
+            .orElseThrow(() -> new SchemaSetNotFoundException(dataspaceEntity.getName()));
     }
 }

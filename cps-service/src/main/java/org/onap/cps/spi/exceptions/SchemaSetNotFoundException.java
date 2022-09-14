@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Pantheon.tech
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -37,5 +38,15 @@ public class SchemaSetNotFoundException extends CpsAdminException {
     public SchemaSetNotFoundException(final String dataspaceName, final String schemaSetName) {
         super("Schema Set not found.",
                 String.format("Schema Set with name %s was not found for dataspace %s.", schemaSetName, dataspaceName));
+    }
+
+    /**
+     * Constructor.
+     *
+     * @param dataspaceName dataspace name
+     */
+    public SchemaSetNotFoundException(final String dataspaceName) {
+        super("Schema Sets not found.",
+            String.format("Schema Sets was not found for dataspace %s.", dataspaceName));
     }
 }

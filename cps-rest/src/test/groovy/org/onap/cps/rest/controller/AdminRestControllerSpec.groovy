@@ -278,6 +278,21 @@ class AdminRestControllerSpec extends Specification {
             response.getContentAsString().contains(schemaSetName)
     }
 
+    def 'Get all schema sets for a given dataspace name.'() {
+        given: 'service method returns all schema sets for a dataspace'
+            mockCpsModuleService.getSchemaSets(dataspaceName) >>
+                [new SchemaSet(name: schemaSetName, dataspaceName: dataspaceName),
+                new SchemaSet(name: "test-schemaset", dataspaceName: dataspaceName)]
+        and: 'an endpoint'
+            def schemaSetEndpoint = "$basePath/v1/dataspaces/$dataspaceName/schema-sets"
+        when: 'get schema sets API is invoked'
+            def response = mvc.perform(get(schemaSetEndpoint)).andReturn().response
+        then: 'the correct schema sets is returned'
+            assert response.status == HttpStatus.OK.value()
+            assert response.getContentAsString() == '[{"dataspaceName":"my_dataspace","moduleReferences":[],"name":' +
+                   '"my_schema_set"},{"dataspaceName":"my_dataspace","moduleReferences":[],"name":"test-schemaset"}]'
+    }
+
     def 'Create Anchor.'() {
         given: 'request parameters'
             def requestParams = new LinkedMultiValueMap<>()
