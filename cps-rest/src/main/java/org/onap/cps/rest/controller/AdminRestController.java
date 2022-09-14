@@ -3,6 +3,7 @@
  *  Copyright (C) 2020-2022 Nordix Foundation
  *  Modifications Copyright (C) 2020-2021 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -25,8 +26,11 @@ package org.onap.cps.rest.controller;
 import static org.onap.cps.rest.utils.MultipartFileUtil.extractYangResourcesMap;
 import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -104,6 +108,25 @@ public class AdminRestController implements CpsAdminApi {
         final var schemaSet = cpsModuleService.getSchemaSet(dataspaceName, schemaSetName);
         final var schemaSetDetails = cpsRestInputMapper.toSchemaSetDetails(schemaSet);
         return new ResponseEntity<>(schemaSetDetails, HttpStatus.OK);
+    }
+
+    /**
+     * Get {@link SchemaSetDetails} based on dataspace name & {@link SchemaSet} name.
+     *
+     * @param dataspaceName dataspace name
+     * @return a {@Link ResponseEntity} of schema sets & {@link HttpStatus} OK
+     */
+    @Override
+    public ResponseEntity<Object> getSchemaSets(final String dataspaceName) {
+        final List<SchemaSet> schemaSets = cpsModuleService.getSchemaSets(dataspaceName);
+        final Map<String, List<String>> responseMap = new HashMap<>();
+        final List<String> schemaSetList = new ArrayList<>();
+
+        for (final SchemaSet ss : schemaSets) {
+            schemaSetList.add(ss.getName());
+        }
+        responseMap.put("schemaSetNames", schemaSetList);
+        return new ResponseEntity<>(responseMap, HttpStatus.OK);
     }
 
     /**
