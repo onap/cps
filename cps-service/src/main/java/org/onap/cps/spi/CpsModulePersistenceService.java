@@ -2,6 +2,7 @@
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2020-2022 Nordix Foundation
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -22,9 +23,11 @@
 package org.onap.cps.spi;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import org.onap.cps.spi.model.ModuleDefinition;
 import org.onap.cps.spi.model.ModuleReference;
+import org.onap.cps.spi.model.SchemaSet;
 
 /**
  * Service to manage modules.
@@ -50,6 +53,14 @@ public interface CpsModulePersistenceService {
      */
     void storeSchemaSetFromModules(String dataspaceName, String schemaSetName,
         Map<String, String> newModuleNameToContentMap, Collection<ModuleReference> allModuleReferences);
+
+    /**
+     * Get all schema sets from a given dataspace.
+     *
+     * @param dataspaceName dataspace name.
+     * @return List of schema set
+     */
+    List<SchemaSet> getSchemaSetsByDataspaceName(String dataspaceName);
 
     /**
      * Deletes Schema Set.
