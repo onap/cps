@@ -17,8 +17,11 @@
  *  SPDX-License-Identifier: Apache-2.0
  *  ============LICENSE_END=========================================================
  */
+
 package org.onap.cps.ncmp.api.impl.config.embeddedcache
+
 import com.hazelcast.core.Hazelcast
+import com.hazelcast.map.IMap
 import org.onap.cps.spi.model.DataNode
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -34,7 +37,7 @@ class SynchronizationCacheConfigSpec extends Specification {
     private BlockingQueue<DataNode> moduleSyncWorkQueue
 
     @Autowired
-    private Map<String, Object> moduleSyncStartedOnCmHandles
+    private IMap<String, Object> moduleSyncStartedOnCmHandles
 
     @Autowired
     private Map<String, Boolean> dataSyncSemaphores

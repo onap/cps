@@ -22,6 +22,7 @@
 
 package org.onap.cps.ncmp.api.impl
 
+import com.hazelcast.map.IMap
 import org.onap.cps.ncmp.api.NetworkCmProxyCmHandlerQueryService
 import org.onap.cps.ncmp.api.impl.event.lcm.LcmEventsCmHandleStateHandler
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
@@ -39,14 +40,7 @@ import org.onap.cps.spi.exceptions.CpsException
 import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.model.CmHandleQueryServiceParameters
 import spock.lang.Shared
-
 import java.util.stream.Collectors
-
-import static org.onap.cps.ncmp.api.impl.operations.DmiOperations.DataStoreEnum.PASSTHROUGH_OPERATIONAL
-import static org.onap.cps.ncmp.api.impl.operations.DmiOperations.DataStoreEnum.PASSTHROUGH_RUNNING
-import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.CREATE
-import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.UPDATE
-
 import org.onap.cps.utils.JsonObjectMapper
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.api.CpsDataService
@@ -56,6 +50,11 @@ import org.onap.cps.spi.model.DataNode
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import spock.lang.Specification
+
+import static org.onap.cps.ncmp.api.impl.operations.DmiOperations.DataStoreEnum.PASSTHROUGH_OPERATIONAL
+import static org.onap.cps.ncmp.api.impl.operations.DmiOperations.DataStoreEnum.PASSTHROUGH_RUNNING
+import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.CREATE
+import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.UPDATE
 
 class NetworkCmProxyDataServiceImplSpec extends Specification {
 
@@ -68,6 +67,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     def mockDmiPluginRegistration = Mock(DmiPluginRegistration)
     def mockCpsCmHandlerQueryService = Mock(NetworkCmProxyCmHandlerQueryService)
     def mockLcmEventsCmHandleStateHandler = Mock(LcmEventsCmHandleStateHandler)
+    def stubModuleSyncStartedOnCmHandles = Stub(IMap<String, Object>)
 
     def NO_TOPIC = null
     def NO_REQUEST_ID = null
@@ -84,7 +84,8 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             mockCmHandleQueries,
             mockCpsCmHandlerQueryService,
             mockLcmEventsCmHandleStateHandler,
-            mockCpsDataService)
+            mockCpsDataService,
+            stubModuleSyncStartedOnCmHandles)
 
     def cmHandleXPath = "/dmi-registry/cm-handles[@id='testCmHandle']"
 
