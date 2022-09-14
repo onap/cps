@@ -38,4 +38,5 @@ public class SchemaSetNotFoundException extends CpsAdminException {
         super("Schema Set not found.",
                 String.format("Schema Set with name %s was not found for dataspace %s.", schemaSetName, dataspaceName));
     }
+
 }

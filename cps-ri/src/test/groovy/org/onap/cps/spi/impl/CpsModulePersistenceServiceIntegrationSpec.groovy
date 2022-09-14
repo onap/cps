@@ -2,6 +2,7 @@
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021-2022 Nordix Foundation
  *  Modifications Copyright (C) 2021-2022 Bell Canada.
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -28,6 +29,7 @@ import org.onap.cps.spi.exceptions.DataspaceNotFoundException
 import org.onap.cps.spi.exceptions.SchemaSetNotFoundException
 import org.onap.cps.spi.model.ModuleDefinition
 import org.onap.cps.spi.model.ModuleReference
+import org.onap.cps.spi.model.SchemaSet
 import org.onap.cps.spi.repository.AnchorRepository
 import org.onap.cps.spi.repository.SchemaSetRepository
 import org.onap.cps.spi.repository.SchemaSetYangResourceRepositoryImpl
@@ -206,6 +208,14 @@ class CpsModulePersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase 
             def existingResourceRevision = '2020-09-15'
             assertSchemaSetWithOneModuleIsPersistedCorrectly(NEW_RESOURCE_NAME, existingResourceModuleName,
                 existingResourceRevision, existingResourceContent, existingResourceChecksum)
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Retrieve schema sets for a given dataspace name'() {
+        when: 'the schema set resources for a given dataspace name is retrieved'
+            def result = objectUnderTest.getSchemaSetsByDataspaceName(DATASPACE_NAME)
+        then: 'the correct resources are returned'
+             result.contains(new SchemaSet(name: 'SCHEMA-SET-001', dataspaceName: 'DATASPACE-001'))
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
