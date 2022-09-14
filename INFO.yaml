@@ -47,16 +47,6 @@ meetings:
       time: '08:00 America/New_York'
 committers:
     - <<: *onap_releng_ptl
-    - name: 'Aditya Puthuparambil'
-      email: 'aditya.puthuparambil@bell.ca'
-      company: 'Bell Canada'
-      id: 'puthuparambil.aditya'
-      timezone: 'Europe/Dublin'
-    - name: 'Renu Kumari'
-      email: 'renu.kumari@bell.ca'
-      company: 'Bell Canada'
-      id: 'renukumari'
-      timezone: 'America/Toronto'
     - name: 'Joseph Keenan'
       email: 'joseph.keenan@est.tech'
       company: 'Ericsson Software Technology'
