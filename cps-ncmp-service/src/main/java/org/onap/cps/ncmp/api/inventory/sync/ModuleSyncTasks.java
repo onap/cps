@@ -46,19 +46,21 @@ public class ModuleSyncTasks {
     private final SyncUtils syncUtils;
     private final ModuleSyncService moduleSyncService;
     private final LcmEventsCmHandleStateHandler lcmEventsCmHandleStateHandler;
-
     private static final CompletableFuture<Void> COMPLETED_FUTURE = CompletableFuture.completedFuture(null);
 
     /**
      * Perform module sync on a batch of cm handles.
      *
-     * @param cmHandlesAsDataNodes a batch of Data nodes representing cm handles to perform module sync on
-     * @param batchCounter the number of batches currently being processed, will be decreased when task is finished
-     *                     or fails
+     * @param cmHandlesAsDataNodes         a batch of Data nodes representing cm handles to perform module sync on
+     * @param batchCounter                 the number of batches currently being processed, will be decreased when
+     *                                     task is finished or fails
+     * @param moduleSyncStartedOnCmHandles Map of cm handles (ids) and objects for which module sync has started or
+     *                                     been completed
      * @return completed future to handle post-processing
      */
     public CompletableFuture<Void> performModuleSync(final Collection<DataNode> cmHandlesAsDataNodes,
-                                                     final AtomicInteger batchCounter) {
+                                                     final AtomicInteger batchCounter,
+                                                     final Map<String, Object> moduleSyncStartedOnCmHandles) {
         try {
             final Map<YangModelCmHandle, CmHandleState> cmHandelStatePerCmHandle = new HashMap<>();
             for (final DataNode cmHandleAsDataNode : cmHandlesAsDataNodes) {
@@ -82,6 +84,14 @@ public class ModuleSyncTasks {
             lcmEventsCmHandleStateHandler.updateCmHandleStateBatch(cmHandelStatePerCmHandle);
         } finally {
             batchCounter.getAndDecrement();
+            for (final DataNode cmHandleAsDataNode : cmHandlesAsDataNodes) {
+                final String cmHandleId = String.valueOf(cmHandleAsDataNode.getLeaves().get("id"));
+                if (moduleSyncStartedOnCmHandles.remove(cmHandleId) == null) {
+                    log.warn("{} finished module sync but can not be removed from in progress map", cmHandleId);
+                } else {
+                    log.debug("{} removed from in progress map", cmHandleId);
+                }
+            }
             log.info("Processing module sync batch finished. {} batch(es) active.", batchCounter.get());
         }
         return COMPLETED_FUTURE;

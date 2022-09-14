@@ -71,7 +71,8 @@ public class ModuleSyncWatchdog {
                 log.debug("Processing module sync batch of {}. {} batch(es) active.",
                         nextBatch.size(), batchCounter.get());
                 asyncTaskExecutor.executeTask(() ->
-                                moduleSyncTasks.performModuleSync(nextBatch, batchCounter),
+                                moduleSyncTasks.performModuleSync(nextBatch, batchCounter,
+                                        moduleSyncStartedOnCmHandles),
                         ASYNC_TASK_TIMEOUT_IN_MILLISECONDS
                 );
                 batchCounter.getAndIncrement();
