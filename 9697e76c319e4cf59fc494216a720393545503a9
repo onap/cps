@@ -46,6 +46,30 @@
       "revId": "9697e76c319e4cf59fc494216a720393545503a9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a2a42469_6e57492e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-09-14T08:30:07Z",
+      "side": 1,
+      "message": "yeah..but sonar was complaining as I was not doing anything with the extracted variable.",
+      "parentUuid": "cc76cca4_c4c355e2",
+      "range": {
+        "startLine": 237,
+        "startChar": 0,
+        "endLine": 238,
+        "endChar": 118
+      },
+      "revId": "9697e76c319e4cf59fc494216a720393545503a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
