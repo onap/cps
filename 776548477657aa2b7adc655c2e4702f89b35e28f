@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d85bc85a_b6d3db2f",
+        "filename": "docker-compose/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-09-14T11:19:01Z",
+      "side": 1,
+      "message": "When I tested these environment variables CPS_CORE_USERNAME and CPS_CORE_PASSWORD didn\u0027t seem to be needed but DMI_USERNAME\u003dcpsuser and DMI_PASSWORD\u003dcpsr0cks! did, have you tested these ones?",
+      "range": {
+        "startLine": 90,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 47
+      },
+      "revId": "776548477657aa2b7adc655c2e4702f89b35e28f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
