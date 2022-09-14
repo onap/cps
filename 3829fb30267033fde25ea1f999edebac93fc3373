@@ -71,6 +71,30 @@
     },
     {
       "key": {
+        "uuid": "b570691f_14483e4a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncTasksSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-09-14T16:59:25Z",
+      "side": 1,
+      "message": "its good practice when adding a test that proves a bug fix to have a Jira Ref",
+      "parentUuid": "824a970d_3d08b301",
+      "range": {
+        "startLine": 74,
+        "startChar": 59,
+        "endLine": 74,
+        "endChar": 69
+      },
+      "revId": "3829fb30267033fde25ea1f999edebac93fc3373",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "acca0bd3_77c951e9",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncTasksSpec.groovy",
         "patchSetId": 2
