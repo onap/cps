@@ -3,6 +3,7 @@
  *  Copyright (C) 2020-2022 Nordix Foundation
  *  Modifications Copyright (C) 2020-2021 Pantheon.tech
  *  Modifications Copyright (C) 2022 Bell Canada
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -23,6 +24,7 @@
 package org.onap.cps.api.impl;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import lombok.AllArgsConstructor;
 import org.onap.cps.api.CpsAdminService;
@@ -74,6 +76,11 @@ public class CpsModuleServiceImpl implements CpsModuleService {
             .get(dataspaceName, schemaSetName);
         return SchemaSet.builder().name(schemaSetName).dataspaceName(dataspaceName)
             .moduleReferences(yangTextSchemaSourceSet.getModuleReferences()).build();
+    }
+
+    @Override
+    public List<SchemaSet> getSchemaSets(final String dataspaceName) {
+        return cpsModulePersistenceService.getSchemaSetsFromDataspace(dataspaceName);
     }
 
     @Override
