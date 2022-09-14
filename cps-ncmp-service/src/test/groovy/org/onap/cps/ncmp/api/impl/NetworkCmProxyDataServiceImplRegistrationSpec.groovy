@@ -22,6 +22,14 @@
 package org.onap.cps.ncmp.api.impl
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.hazelcast.config.Config
+import com.hazelcast.instance.impl.HazelcastInstanceFactory
+import com.hazelcast.instance.impl.Node
+import com.hazelcast.map.IMap
+import com.hazelcast.map.impl.MapService
+import com.hazelcast.map.impl.proxy.MapProxyImpl
+import com.hazelcast.multimap.impl.MultiMapProxySupport
+import com.hazelcast.spi.impl.NodeEngineImpl
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.ncmp.api.NetworkCmProxyCmHandlerQueryService
@@ -63,6 +71,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     def stubbedNetworkCmProxyCmHandlerQueryService = Stub(NetworkCmProxyCmHandlerQueryService)
     def mockLcmEventsCmHandleStateHandler = Mock(LcmEventsCmHandleStateHandler)
     def mockCpsDataService = Mock(CpsDataService)
+    IMap<String, Object> moduleSyncStartedOnCmHandles= HazelcastInstanceFactory.getOrCreateHazelcastInstance(new Config('moduleSyncStartedOnCmHandles')).getMap('moduleSyncStartedOnCmHandles')
     def objectUnderTest = getObjectUnderTest()
 
     def 'DMI Registration: Create, Update & Delete operations are processed in the right order'() {
@@ -71,11 +80,15 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             dmiRegistration.setCreatedCmHandles([new NcmpServiceCmHandle(cmHandleId: 'cmhandle-1', publicProperties: ['publicProp1': 'value'], dmiProperties: [:])])
             dmiRegistration.setUpdatedCmHandles([new NcmpServiceCmHandle(cmHandleId: 'cmhandle-2', publicProperties: ['publicProp1': 'value'], dmiProperties: [:])])
             dmiRegistration.setRemovedCmHandles(['cmhandle-2'])
+        and: 'entries in progress map for both cm handles'
+            moduleSyncStartedOnCmHandles.putIfAbsent('cmhandle-2', 'started')
         when: 'registration is processed'
             objectUnderTest.updateDmiRegistrationAndSyncModule(dmiRegistration)
             // Spock validated invocation order between multiple then blocks
         then: 'cm-handles are removed first'
             1 * objectUnderTest.parseAndRemoveCmHandlesInDmiRegistration(*_)
+        and: 'all entries are removed from in progress map (CPS-1239)'
+            assert moduleSyncStartedOnCmHandles.isEmpty()
         then: 'cm-handles are created'
             1 * objectUnderTest.parseAndCreateCmHandlesInDmiRegistrationAndSyncModules(*_)
         then: 'cm-handles are updated'
@@ -243,6 +256,8 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
         given: 'a registration'
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server',
                 removedCmHandles: ['cmhandle'])
+        and: 'entries in progress map for both cm handles'
+            moduleSyncStartedOnCmHandles.putIfAbsent('cmhandle', 'started')
         and: '#scenario'
             mockCpsModuleService.deleteSchemaSet(_, 'cmhandle', CASCADE_DELETE_ALLOWED) >>
                 { if (!schemaSetExist) { throw new SchemaSetNotFoundException("", "") } }
@@ -254,6 +269,8 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             1 * mockInventoryPersistence.deleteSchemaSetWithCascade(_)
         and: 'method to delete relevant list/list element is called once'
             1 * mockInventoryPersistence.deleteListOrListElement(_)
+        and: 'all entries are removed from in progress map (CPS-1239)'
+            assert moduleSyncStartedOnCmHandles.isEmpty()
         and: 'successful response is received'
             assert response.getRemovedCmHandles().size() == 1
             with(response.getRemovedCmHandles().get(0)) {
@@ -271,13 +288,19 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     def 'Remove CmHandle: All cm-handles delete requests are processed'() {
         given: 'a registration with three cm-handles to be deleted'
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server',
-                removedCmHandles: ['cmhandle1', 'cmhandle2', 'cmhandle3'])
+                removedCmHandles: ['cmhandle1', 'cmhandle2', 'cmhandle3','cmhandle4'])
+        and: 'entries in progress map for both cm handles'
+            moduleSyncStartedOnCmHandles.putIfAbsent('cmhandle1', 'started')
+            moduleSyncStartedOnCmHandles.putIfAbsent('cmhandle2', 'started')
+            moduleSyncStartedOnCmHandles.putIfAbsent('cmhandle3', 'started')
         and: 'cm-handle deletion is successful for 1st and 3rd; failed for 2nd'
             mockInventoryPersistence.deleteListOrListElement(_) >> {} >> { throw new RuntimeException("Failed") } >> {}
         when: 'registration is updated to delete cmhandles'
             def response = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'a response is received for all cm-handles'
-            response.getRemovedCmHandles().size() == 3
+            response.getRemovedCmHandles().size() == 4
+        and: 'all entries are removed from in progress map (CPS-1239)'
+            assert moduleSyncStartedOnCmHandles.size()==1
         and: '1st and 3rd cm-handle deletes successfully'
             with(response.getRemovedCmHandles().get(0)) {
                 assert it.status == Status.SUCCESS
@@ -347,7 +370,8 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
 
     def getObjectUnderTest() {
         return Spy(new NetworkCmProxyDataServiceImpl(spiedJsonObjectMapper, mockDmiDataOperations,
-            mockNetworkCmProxyDataServicePropertyHandler, mockInventoryPersistence, mockCmhandleQueries,
-                stubbedNetworkCmProxyCmHandlerQueryService, mockLcmEventsCmHandleStateHandler, mockCpsDataService))
+                mockNetworkCmProxyDataServicePropertyHandler, mockInventoryPersistence, mockCmhandleQueries,
+                stubbedNetworkCmProxyCmHandlerQueryService, mockLcmEventsCmHandleStateHandler, mockCpsDataService,
+                moduleSyncStartedOnCmHandles))
     }
 }

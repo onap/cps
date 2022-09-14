@@ -22,6 +22,9 @@
 
 package org.onap.cps.ncmp.api.impl
 
+import com.hazelcast.config.Config
+import com.hazelcast.instance.impl.HazelcastInstanceFactory
+import com.hazelcast.map.IMap
 import org.onap.cps.ncmp.api.NetworkCmProxyCmHandlerQueryService
 import org.onap.cps.ncmp.api.impl.event.lcm.LcmEventsCmHandleStateHandler
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
@@ -68,6 +71,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     def mockDmiPluginRegistration = Mock(DmiPluginRegistration)
     def mockCpsCmHandlerQueryService = Mock(NetworkCmProxyCmHandlerQueryService)
     def mockLcmEventsCmHandleStateHandler = Mock(LcmEventsCmHandleStateHandler)
+    IMap<String, Object> moduleSyncStartedOnCmHandles= HazelcastInstanceFactory.getOrCreateHazelcastInstance(new Config('moduleSyncStartedOnCmHandles')).getMap('moduleSyncStartedOnCmHandles')
 
     def NO_TOPIC = null
     def NO_REQUEST_ID = null
@@ -84,7 +88,8 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             mockCmHandleQueries,
             mockCpsCmHandlerQueryService,
             mockLcmEventsCmHandleStateHandler,
-            mockCpsDataService)
+            mockCpsDataService,
+            moduleSyncStartedOnCmHandles)
 
     def cmHandleXPath = "/dmi-registry/cm-handles[@id='testCmHandle']"
 

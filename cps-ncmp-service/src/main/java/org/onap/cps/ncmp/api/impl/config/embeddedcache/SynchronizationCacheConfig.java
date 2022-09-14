@@ -26,7 +26,7 @@ import com.hazelcast.config.NamedConfig;
 import com.hazelcast.config.QueueConfig;
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
-import java.util.Map;
+import com.hazelcast.map.IMap;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
 import org.onap.cps.spi.model.DataNode;
@@ -62,7 +62,7 @@ public class SynchronizationCacheConfig {
      * @return Map of cm handles (ids) and objects (not used really) for which module sync has started or been completed
      */
     @Bean
-    public Map<String, Object> moduleSyncStartedOnCmHandles() {
+    public IMap<String, Object> moduleSyncStartedOnCmHandles() {
         return createHazelcastInstance("moduleSyncStartedOnCmHandles", moduleSyncStartedConfig)
             .getMap("moduleSyncStartedOnCmHandles");
     }
@@ -73,7 +73,7 @@ public class SynchronizationCacheConfig {
      * @return configured map of data sync semaphores
      */
     @Bean
-    public Map<String, Boolean> dataSyncSemaphores() {
+    public IMap<String, Boolean> dataSyncSemaphores() {
         return createHazelcastInstance("dataSyncSemaphores", dataSyncSemaphoresConfig)
             .getMap("dataSyncSemaphores");
     }

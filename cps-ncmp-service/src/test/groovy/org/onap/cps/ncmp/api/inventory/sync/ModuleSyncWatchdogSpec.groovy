@@ -21,6 +21,9 @@
 
 package org.onap.cps.ncmp.api.inventory.sync
 
+import com.hazelcast.config.Config
+import com.hazelcast.instance.impl.HazelcastInstanceFactory
+import com.hazelcast.map.IMap
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.inventory.sync.executor.AsyncTaskExecutor
 import java.util.concurrent.ArrayBlockingQueue
@@ -36,7 +39,7 @@ class ModuleSyncWatchdogSpec extends Specification {
 
     def moduleSyncWorkQueue = new ArrayBlockingQueue(testQueueCapacity)
 
-    def moduleSyncStartedOnCmHandles = [:]
+    IMap<String, Object> moduleSyncStartedOnCmHandles= HazelcastInstanceFactory.getOrCreateHazelcastInstance(new Config('moduleSyncStartedOnCmHandles')).getMap('moduleSyncStartedOnCmHandles')
 
     def mockModuleSyncTasks = Mock(ModuleSyncTasks)
 
