@@ -2,6 +2,7 @@
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -107,6 +108,12 @@ class CpsExceptionsSpec extends Specification {
         expect: 'the exception details contains the correct message with dataspace and schema set names'
             (new SchemaSetNotFoundException(dataspaceName, schemaSetName)).details
                     == "Schema Set with name ${schemaSetName} was not found for dataspace ${dataspaceName}."
+    }
+
+    def 'Creating a exception that a schema sets cannot be found for given dataspace'() {
+        expect: 'the exception details contains the correct message with dataspace name'
+        (new SchemaSetNotFoundException(dataspaceName)).details
+                == "Schema Sets was not found for dataspace ${dataspaceName}."
     }
 
     def 'Creating a exception that an anchor cannot be found.'() {
