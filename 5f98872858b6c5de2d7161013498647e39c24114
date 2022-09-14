@@ -69,6 +69,30 @@
       "revId": "5f98872858b6c5de2d7161013498647e39c24114",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa2e2fe2_d3f70b35",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepositoryCpsPathQueryImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-09-14T08:51:32Z",
+      "side": 1,
+      "message": "my bad, I forgot to copy teh first ( \nsorry",
+      "parentUuid": "5a5a282f_2f490dd3",
+      "range": {
+        "startLine": 41,
+        "startChar": 76,
+        "endLine": 41,
+        "endChar": 94
+      },
+      "revId": "5f98872858b6c5de2d7161013498647e39c24114",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
