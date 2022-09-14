@@ -2,6 +2,7 @@
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2020-2022 Nordix Foundation
  *  Modifications Copyright (C) 2020-2021 Pantheon.tech
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -64,6 +65,14 @@ public interface CpsModuleService {
      * @return a SchemaSet
      */
     SchemaSet getSchemaSet(String dataspaceName, String schemaSetName);
+
+    /**
+     * Retrieve all schema sets in the given dataspace.
+     *
+     * @param dataspaceName dataspace name
+     * @return all SchemaSets
+     */
+    Collection<SchemaSet> getSchemaSets(String dataspaceName);
 
     /**
      * Deletes Schema Set.

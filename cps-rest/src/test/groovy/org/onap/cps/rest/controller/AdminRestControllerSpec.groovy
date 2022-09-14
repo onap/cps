@@ -3,6 +3,7 @@
  *  Copyright (C) 2020-2021 Pantheon.tech
  *  Modifications Copyright (C) 2020-2021 Bell Canada.
  *  Modifications Copyright (C) 2021-2022 Nordix Foundation
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -28,6 +29,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 
+import java.util.ArrayList;
 import org.mapstruct.factory.Mappers
 import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsModuleService
@@ -248,6 +250,21 @@ class AdminRestControllerSpec extends Specification {
         then: 'the correct schema set is returned'
             response.status == HttpStatus.OK.value()
             response.getContentAsString().contains(schemaSetName)
+    }
+
+    def 'Get all schema sets for a given dataspace name.'() {
+        given: 'service method returns all schema sets for a dataspace'
+            mockCpsModuleService.getSchemaSets(dataspaceName) >>
+                [new SchemaSet(name: schemaSetName, dataspaceName: dataspaceName),
+                new SchemaSet(name: "test-schemaset", dataspaceName: dataspaceName)]
+        and: 'an endpoint'
+            def schemaSetEndpoint = "$basePath/v2/admin/dataspaces/$dataspaceName/schema-sets"
+        when: 'get schema sets API is invoked'
+            def response = mvc.perform(get(schemaSetEndpoint)).andReturn().response
+        then: 'the correct schema sets is returned'
+            assert response.status == HttpStatus.OK.value()
+            assert response.getContentAsString().contains(schemaSetName)
+            assert response.getContentAsString().contains("test-schemaset")
     }
 
     def 'Create Anchor.'() {

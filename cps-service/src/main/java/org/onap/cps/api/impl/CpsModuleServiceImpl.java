@@ -3,6 +3,7 @@
  *  Copyright (C) 2020-2022 Nordix Foundation
  *  Modifications Copyright (C) 2020-2021 Pantheon.tech
  *  Modifications Copyright (C) 2022 Bell Canada
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -74,6 +75,18 @@ public class CpsModuleServiceImpl implements CpsModuleService {
             .get(dataspaceName, schemaSetName);
         return SchemaSet.builder().name(schemaSetName).dataspaceName(dataspaceName)
             .moduleReferences(yangTextSchemaSourceSet.getModuleReferences()).build();
+    }
+
+    @Override
+    public Collection<SchemaSet> getSchemaSets(final String dataspaceName) {
+        CpsValidator.validateNameCharacters(dataspaceName);
+        final var schemaSets = cpsModulePersistenceService.getSchemaSetsByDataspaceName(dataspaceName);
+        for (final SchemaSet schemaSet : schemaSets) {
+            final var yangTextSchemaSourceSet = yangTextSchemaSourceSetCache
+                    .get(dataspaceName, schemaSet.getName());
+            schemaSet.setModuleReferences(yangTextSchemaSourceSet.getModuleReferences());
+        }
+        return schemaSets;
     }
 
     @Override
