@@ -3,6 +3,7 @@
  *  Copyright (C) 2020-2022 Nordix Foundation
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -55,6 +56,7 @@ import org.onap.cps.spi.exceptions.DuplicatedYangResourceException;
 import org.onap.cps.spi.exceptions.ModelValidationException;
 import org.onap.cps.spi.model.ModuleDefinition;
 import org.onap.cps.spi.model.ModuleReference;
+import org.onap.cps.spi.model.SchemaSet;
 import org.onap.cps.spi.repository.DataspaceRepository;
 import org.onap.cps.spi.repository.ModuleReferenceRepository;
 import org.onap.cps.spi.repository.SchemaSetRepository;
@@ -152,6 +154,14 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
         } catch (final DataIntegrityViolationException e) {
             throw AlreadyDefinedException.forSchemaSet(schemaSetName, dataspaceName, e);
         }
+    }
+
+    @Override
+    public Collection<SchemaSet> getSchemaSetsByDataspaceName(final String dataspaceName) {
+        final List<SchemaSetEntity> schemaSetEntities = schemaSetRepository.findAll();
+        return schemaSetEntities.stream()
+                .filter(schemaSetEntity -> schemaSetEntity.getDataspace().getName().equals(dataspaceName))
+                .map(CpsModulePersistenceServiceImpl::toSchemaSet).collect(Collectors.toList());
     }
 
     @Override
@@ -358,5 +368,10 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
                 yangResourceEntity.getModuleName(),
                 yangResourceEntity.getRevision(),
                 yangResourceEntity.getContent());
+    }
+
+    private static SchemaSet toSchemaSet(final SchemaSetEntity schemaSetEntity) {
+        return SchemaSet.builder().name(schemaSetEntity.getName())
+                .dataspaceName(schemaSetEntity.getDataspace().getName()).build();
     }
 }
