@@ -3,6 +3,7 @@
  *  Copyright (C) 2020-2022 Nordix Foundation
  *  Modifications Copyright (C) 2020-2021 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -26,7 +27,9 @@ import static org.onap.cps.rest.utils.MultipartFileUtil.extractYangResourcesMap;
 import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -104,6 +107,22 @@ public class AdminRestController implements CpsAdminApi {
         final var schemaSet = cpsModuleService.getSchemaSet(dataspaceName, schemaSetName);
         final var schemaSetDetails = cpsRestInputMapper.toSchemaSetDetails(schemaSet);
         return new ResponseEntity<>(schemaSetDetails, HttpStatus.OK);
+    }
+
+    /**
+     * Get list of schema set names for a given dataspace name.
+     *
+     * @param dataspaceName dataspace name
+     * @return a {@Link ResponseEntity} of schema set names & {@link HttpStatus} OK
+     */
+    @Override
+    public ResponseEntity<Object> getSchemaSets(final String dataspaceName) {
+        final List<SchemaSet> schemaSets = cpsModuleService.getSchemaSets(dataspaceName);
+        final List<String> schemaSetList = schemaSets.stream().map(schemaSet ->
+                schemaSet.getName()).collect(Collectors.toList());
+        final Map<String, List<String>> responseMap = new HashMap<>();
+        responseMap.put("schemaSetNames", schemaSetList);
+        return new ResponseEntity<>(responseMap, HttpStatus.OK);
     }
 
     /**
