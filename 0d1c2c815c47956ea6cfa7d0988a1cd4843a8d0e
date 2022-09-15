@@ -22,6 +22,30 @@
       "revId": "0d1c2c815c47956ea6cfa7d0988a1cd4843a8d0e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a1eb782d_585e2873",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncTasks.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-09-15T09:00:39Z",
+      "side": 1,
+      "message": "There was cyclic dependency if we inject moduleSyncStartedOnCmHandles here.\nYes, you are right doing into future onComple is more cleaner and perfect location.\n\nLogs from CI build :\n\n {\"logTimeStamp\":\"2022-09-14T16:16:17.419Z\",\"logLevel\":\"ERROR\",\"principalId\":\"cpsuser\",\"serviceName\":\"cps-application\",\"message\":\"\\n\\n***************************\\nAPPLICATION FAILED TO START\\n***************************\\n\\nDescription:\\n\\nThe dependencies of some of the beans in the application context form a cycle:\\n\\n┌─────┐\\n|  moduleSyncTasks defined in URL [jar:file:/app/libs/cps-ncmp-service-3.1.0-SNAPSHOT.jar!/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncTasks.class]\\n↑     ↓\\n|  moduleSyncWatchdog defined in URL [jar:file:/app/libs/cps-ncmp-service-3.1.0-SNAPSHOT.jar!/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.class]\\n└─────┘\\n\\n\\nAction:\\n\\nRelying upon circular references is discouraged and they are prohibited by default. Update your application to remove the dependency cycle between beans. As a last resort, it may be possible to break the cycle automatically by setting spring.main.allow-circular-references to true.\\n\",\"processId\":\"1\",\"threadName\":\"main\",\"class\":\"o.s.b.d.LoggingFailureAnalysisReporter\"}",
+      "parentUuid": "19853a33_6f90f5a4",
+      "range": {
+        "startLine": 63,
+        "startChar": 79,
+        "endLine": 63,
+        "endChar": 107
+      },
+      "revId": "0d1c2c815c47956ea6cfa7d0988a1cd4843a8d0e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
