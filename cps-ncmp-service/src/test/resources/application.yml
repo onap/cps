@@ -16,13 +16,14 @@
 #  SPDX-License-Identifier: Apache-2.0
 #  ============LICENSE_END=========================================================
 
-dmi:
-    auth:
-        username: some-user
-        password: some-password
-    api:
-        base-path: dmi
+ncmp:
+    dmi:
+        auth:
+            username: some-user
+            password: some-password
+        api:
+            base-path: dmi
 
-modules-sync-watchdog:
-    async-executor:
-        parallelism-level: 3
+    modules-sync-watchdog:
+        async-executor:
+            parallelism-level: 3
