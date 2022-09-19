@@ -60,7 +60,7 @@ public class ModuleSyncWatchdog {
      * This method will only finish when there are no more 'ADVISED' cm handles in the DB.
      * This method wil be triggered on a configurable interval
      */
-    @Scheduled(fixedDelayString = "${timers.advised-modules-sync.sleep-time-ms:5000}")
+    @Scheduled(fixedDelayString = "${ncmp.timers.advised-modules-sync.sleep-time-ms:5000}")
     public void moduleSyncAdvisedCmHandles() {
         log.info("Processing module sync watchdog waking up.");
         populateWorkQueueIfNeeded();
@@ -84,7 +84,7 @@ public class ModuleSyncWatchdog {
     /**
      * Find any failed (locked) cm handles and change state back to 'ADVISED'.
      */
-    @Scheduled(fixedDelayString = "${timers.locked-modules-sync.sleep-time-ms:300000}")
+    @Scheduled(fixedDelayString = "${ncmp.timers.locked-modules-sync.sleep-time-ms:300000}")
     public void resetPreviouslyFailedCmHandles() {
         log.info("Processing module sync retry-watchdog waking up.");
         final List<YangModelCmHandle> failedCmHandles = syncUtils.getModuleSyncFailedCmHandles();

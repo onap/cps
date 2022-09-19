@@ -37,7 +37,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class AsyncTaskExecutor {
 
-    @Value("${modules-sync-watchdog.async-executor.parallelism-level:10}")
+    @Value("${ncmp.modules-sync-watchdog.async-executor.parallelism-level:10}")
     @Getter
     private int asyncTaskParallelismLevel;
     private ExecutorService executorService;
