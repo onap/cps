@@ -38,12 +38,91 @@ Release Data
 
 Features
 --------
-   - `CPS-322 <https://jira.onap.org/browse/CPS-322>`_  Implement additional validation for names and identifiers
-   - `CPS-1136 <https://jira.onap.org/browse/CPS-1136>`_  Get all cm handles by DMI plugin Identifier
-   - `CPS-1001 <https://jira.onap.org/browse/CPS-1001>`_  Add CPS-E-05 endpoint for Read data, NCMP-Operational Datastore
+   - `CPS-127 <https://jira.onap.org/browse/CPS-127>`_  Evaluate and review model mapping solution
+   - `CPS-322 <https://jira.onap.org/browse/CPS-322>`_  Implement additional validations for names used as identifiers
+   - `CPS-340 <https://jira.onap.org/browse/CPS-340>`_  Patch and update the root data node
+   - `CPS-392 <https://jira.onap.org/browse/CPS-392>`_  Spike: A&AI Inventory List
+   - `CPS-438 <https://jira.onap.org/browse/CPS-438>`_  Make DB Schema Updates & Data Population More Robust for Kubernetes Environments
+   - `CPS-529 <https://jira.onap.org/browse/CPS-529>`_  Rename name to filename in yang resource table
+   - `CPS-588 <https://jira.onap.org/browse/CPS-588>`_  Groovy Clean tests clean-up
+   - `CPS-731 <https://jira.onap.org/browse/CPS-731>`_  Query based on Public CM Properties
+   - `CPS-748 <https://jira.onap.org/browse/CPS-748>`_   Support ONAP Strimzi Kafka PoC
+   - `CPS-821 <https://jira.onap.org/browse/CPS-821>`_  Spike: Support Async read-write operations on CPS-NCMP interface
+   - `CPS-827 <https://jira.onap.org/browse/CPS-827>`_  Remove explicit dependency on log4j 2.16.0
+   - `CPS-828 <https://jira.onap.org/browse/CPS-828>`_  Async: NCMP Rest impl. including Request ID generation
+   - `CPS-829 <https://jira.onap.org/browse/CPS-829>`_  Async: Internal message topic incl. basic producer & Consumer
+   - `CPS-830 <https://jira.onap.org/browse/CPS-830>`_  DMI-NCMP Asynchronously Publish Response Event to Client Topic
+   - `CPS-858 <https://jira.onap.org/browse/CPS-858>`_  Spike: Define NCMP notifications on CM handle Add (Ready) & Delete
+   - `CPS-869 <https://jira.onap.org/browse/CPS-869>`_  Apply Standardized logging fields to adhere to ONAP Best practice REQ-1072
+   - `CPS-870 <https://jira.onap.org/browse/CPS-870>`_  Align CPS-Core output with SDN-C output (add module name)
+   - `CPS-875 <https://jira.onap.org/browse/CPS-875>`_  CM Handle State: Watchdog-process that syncs 'ADVISED' CM Handles
+   - `CPS-876 <https://jira.onap.org/browse/CPS-876>`_  CM Handle State: Remove model-sync from registration process
+   - `CPS-877 <https://jira.onap.org/browse/CPS-877>`_  CM Handle State: Exclude any CM-Handles from queries/operations that are not in state 'READY'
+   - `CPS-878 <https://jira.onap.org/browse/CPS-878>`_  CM Handle State: Retry CM-Handles that are LOCKED, Failed-to-Sync"
+   - `CPS-897 <https://jira.onap.org/browse/CPS-897>`_  Upgrade postgres core db to version 14
+   - `CPS-898 <https://jira.onap.org/browse/CPS-898>`_  Create method to Lock an Anchor Entity
+   - `CPS-899 <https://jira.onap.org/browse/CPS-899>`_  Start and stop sessions on Java API
+   - `CPS-909 <https://jira.onap.org/browse/CPS-909>`_  Separate NCMP endpoint for ch/{cm-handle}/properties and ch/{cm-handle}/state
+   - `CPS-917 <https://jira.onap.org/browse/CPS-917>`_  Structured Errors response for passthrough use-cases in NCMP
+   - `CPS-953 <https://jira.onap.org/browse/CPS-953>`_  Update maven deploy plugin version
+   - `CPS-958 <https://jira.onap.org/browse/CPS-958>`_  Update SpringBoot when approved version has Log4J 2.17.1 or higher
+   - `CPS-962 <https://jira.onap.org/browse/CPS-962>`_  Update SpringBoot CPS-Temporal to 2.6.4
+   - `CPS-977 <https://jira.onap.org/browse/CPS-977>`_  Query CM Handles using CpsPath
+   - `CPS-996 <https://jira.onap.org/browse/CPS-996>`_  Create new Dataspace for ncmp:operational datastore
+   - `CPS-999 <https://jira.onap.org/browse/CPS-999>`_  Add Anchor to to 'NCMP-CmHandle-Operational-Data' Dataspace (upon model-sync)
+   - `CPS-1000 <https://jira.onap.org/browse/CPS-1000>`_  Create Data Synchronization watchdog
+   - `CPS-1003 <https://jira.onap.org/browse/CPS-1003>`_  De-registration: send required event(s) using central state handler
+   - `CPS-1015 <https://jira.onap.org/browse/CPS-1015>`_  Implement Distributed Caching System
+   - `CPS-1016 <https://jira.onap.org/browse/CPS-1016>`_  Merge 2 'query' end points in NCMP
+   - `CPS-1031 <https://jira.onap.org/browse/CPS-1031>`_  Review properties defined in (oom) application-helm
+   - `CPS-1034 <https://jira.onap.org/browse/CPS-1034>`_  Publish lifecycle events for ADVISED , READY and LOCKED state transition"
+   - `CPS-1045 <https://jira.onap.org/browse/CPS-1045>`_  Allow Module Re-Sync
+   - `CPS-1046 <https://jira.onap.org/browse/CPS-1046>`_  dmi-registry latest registry model changes(state)
+   - `CPS-1064 <https://jira.onap.org/browse/CPS-1064>`_  Support retrieval of YANG module sources for CM handle on the NCMP interface
+   - `CPS-1076 <https://jira.onap.org/browse/CPS-1076>`_  Retry Algorithm for Module-Sync based on LockReason.Details (from last failure)
+   - `CPS-1099 <https://jira.onap.org/browse/CPS-1099>`_  Expose simplified 'external' lock reason enum state over REST interface
+   - `CPS-1101 <https://jira.onap.org/browse/CPS-1101>`_  Introducing the DELETING and DELETED Cmhandle State
+   - `CPS-1102 <https://jira.onap.org/browse/CPS-1102>`_  Register the Cmhandle Sends Advised State notification.
+   - `CPS-1119 <https://jira.onap.org/browse/CPS-1119>`_  Define the Initial DataSyncEnabled-flag & SyncStateEnum after module Sync based on 'hidden' config param
+   - `CPS-1133 <https://jira.onap.org/browse/CPS-1133>`_  Enable/Disable Data Sync for Cm Handle
+   - `CPS-1134 <https://jira.onap.org/browse/CPS-1134>`_  Update CPS info.yaml
+   - `CPS-1136 <https://jira.onap.org/browse/CPS-1136>`_  DMI Audit Support (get all CM Handles for a registered DMI)
+   - `CPS-1146 <https://jira.onap.org/browse/CPS-1146>`_  Refactor unit test for Notification Error Handler
+   - `CPS-1152 <https://jira.onap.org/browse/CPS-1152>`_  Spike Conform JSON and dmi-registry casing conventions
+   - `CPS-1153 <https://jira.onap.org/browse/CPS-1153>`_  Spike: Publish a public dmi-registry to documentation
+   - `CPS-1162 <https://jira.onap.org/browse/CPS-1162>`_  State Model Read the Docs
+   - `CPS-1165 <https://jira.onap.org/browse/CPS-1165>`_  Life Cycle Management Events Read the docs
+   - `CPS-1167 <https://jira.onap.org/browse/CPS-1167>`_  End to End Demo for publishing lifecycle management events and functionality around it.
+   - `CPS-1168 <https://jira.onap.org/browse/CPS-1168>`_  CSITs for DataStore SyncState
+   - `CPS-1169 <https://jira.onap.org/browse/CPS-1169>`_  Investigate open daylight Upgrade
+   - `CPS-1176 <https://jira.onap.org/browse/CPS-1176>`_  Tax credit report for 2021
+   - `CPS-1181 <https://jira.onap.org/browse/CPS-1181>`_  Module Sync, Data Sync & Retry Mechanism Read the Docs"
+   - `CPS-1252 <https://jira.onap.org/browse/CPS-1252>`_  Review and update INFO.yaml
+   - `CPS-1276 <https://jira.onap.org/browse/CPS-1276>`_  ncmp-dmi-plugin sync openapi docs
+   - `CPS-1277 <https://jira.onap.org/browse/CPS-1277>`_  Add 3.1.0.yaml file for maven release
+
 
 Bug Fixes
 ---------
+   - `CPS-896 <https://jira.onap.org/browse/CPS-896>`_  CM Handle Registration Process only partially completes when exception is thrown
+   - `CPS-957 <https://jira.onap.org/browse/CPS-957>`_  NCMP: fix getResourceDataForPassthroughOperational endpoint
+   - `CPS-963 <https://jira.onap.org/browse/CPS-963>`_  Liquibase has got serious vulnerability, upgrade required"
+   - `CPS-1020 <https://jira.onap.org/browse/CPS-1020>`_  DuplicatedYangResourceException error at parallel cmHandle registration
+   - `CPS-1056 <https://jira.onap.org/browse/CPS-1056>`_  Wrong error response format in case of Dmi plugin error
+   - `CPS-1067 <https://jira.onap.org/browse/CPS-1067>`_  NCMP returns 500 error on searches endpoint when No DMi Handles registered
+   - `CPS-1085 <https://jira.onap.org/browse/CPS-1085>`_  Performance degradation on ncmp/v1/ch/searches endpoint
+   - `CPS-1087 <https://jira.onap.org/browse/CPS-1087>`_  CPS release notes are not in sync with CPS artifacts delivered
+   - `CPS-1088 <https://jira.onap.org/browse/CPS-1088>`_  Kafka consumer can not be turned off
+   - `CPS-1094 <https://jira.onap.org/browse/CPS-1094>`_  cps-ncmp-rest-stub can not be compiled and executed
+   - `CPS-1097 <https://jira.onap.org/browse/CPS-1097>`_  Unable to change state from LOCKED to ADVISED
+   - `CPS-1126 <https://jira.onap.org/browse/CPS-1126>`_  CmHandle creation performance degradation
+   - `CPS-1141 <https://jira.onap.org/browse/CPS-1141>`_  Cps Kubernetes Pod not deploying
+   - `CPS-1150 <https://jira.onap.org/browse/CPS-1150>`_  Vulnerability found within Opendaylight in CPS
+   - `CPS-1175 <https://jira.onap.org/browse/CPS-1175>`_  Incorrect response when empty body executed for cmhandle id-searches
+   - `CPS-1212 <https://jira.onap.org/browse/CPS-1212>`_  Additional Properties for CM Handles not included when send to DMI Plugin
+   - `CPS-1217 <https://jira.onap.org/browse/CPS-1217>`_  Searches endpoint gives back empty list however there are already available cmhandles
+   - `CPS-1218 <https://jira.onap.org/browse/CPS-1218>`_  NCMP logs are flooded with SyncUtils logs
+   - `CPS-1223 <https://jira.onap.org/browse/CPS-1223>`_  Decouple Registration of cmHandle and publishing of LCM events
 
 ..      ========================
 ..      * * *   JAKARTA   * * *

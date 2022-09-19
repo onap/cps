@@ -168,6 +168,7 @@ values to configure the application to be deployed. This list is not exhaustive.
 
 Any spring supported property can be configured by providing in ``config.additional.<spring-supported-property-name>: value`` Example: config.additional.spring.datasource.hikari.maximumPoolSize: 30
 
+
 +---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
 | Property                              | Description                                                                                             | Default Value                 |
 +=======================================+=========================================================================================================+===============================+
@@ -197,7 +198,7 @@ Any spring supported property can be configured by providing in ``config.additio
 | logging.level                         | Logging level set in cps-core                                                                           | info                          |
 |                                       |                                                                                                         |                               |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| config.useStrimziKafka                | If targeting a custom kafka cluster, ie useStrimziKakfa: false, the config.eventPublisher.spring.kafka  | true                          |
+| config.useStrimziKafka                | If targeting a custom kafka cluster, ie useStrimziKafka: false, the config.eventPublisher.spring.kafka  | true                          |
 |                                       | values must be set.                                                                                     |                               |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
 | config.eventPublisher.                | Kafka hostname and port                                                                                 | ``<kafka-bootstrap>:9092``    |
