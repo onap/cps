@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9aa58d88_8189c9ba",
+        "filename": "cps-rest/docs/openapi/cpsAdmin.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-09-19T10:13:04Z",
+      "side": 1,
+      "message": "since this is documentation it can be schema sets",
+      "range": {
+        "startLine": 94,
+        "startChar": 26,
+        "endLine": 94,
+        "endChar": 37
+      },
+      "revId": "cc83123e1f945a9454a86821e7cf927d1bb94971",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf55bb3c_de888446",
+        "filename": "cps-rest/docs/openapi/cpsAdmin.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-09-19T10:13:04Z",
+      "side": 1,
+      "message": "schema sets",
+      "range": {
+        "startLine": 97,
+        "startChar": 21,
+        "endLine": 97,
+        "endChar": 31
+      },
+      "revId": "cc83123e1f945a9454a86821e7cf927d1bb94971",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e0598c33_0445d508",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-09-19T10:13:04Z",
+      "side": 1,
+      "message": "This is now just schemaSetNames",
+      "range": {
+        "startLine": 114,
+        "startChar": 18,
+        "endLine": 114,
+        "endChar": 34
+      },
+      "revId": "cc83123e1f945a9454a86821e7cf927d1bb94971",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c199b62c_17071a55",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-09-19T10:13:04Z",
+      "side": 1,
+      "message": "not relevant anymore",
+      "range": {
+        "startLine": 114,
+        "startChar": 60,
+        "endLine": 114,
+        "endChar": 85
+      },
+      "revId": "cc83123e1f945a9454a86821e7cf927d1bb94971",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "974e1760_e7436662",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-09-19T10:13:04Z",
+      "side": 1,
+      "message": "I would use schema set name",
+      "range": {
+        "startLine": 117,
+        "startChar": 43,
+        "endLine": 117,
+        "endChar": 54
+      },
+      "revId": "cc83123e1f945a9454a86821e7cf927d1bb94971",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "867cf788_8340b222",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-09-19T10:13:04Z",
+      "side": 1,
+      "message": "Can be replaced by def schemaSetList \u003d [ new SchemaSet(name: schemaSetName, dataspaceName: dataspaceName) ]",
+      "range": {
+        "startLine": 257,
+        "startChar": 12,
+        "endLine": 259,
+        "endChar": 40
+      },
+      "revId": "cc83123e1f945a9454a86821e7cf927d1bb94971",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "58123a9f_10779e12",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-09-19T10:13:04Z",
+      "side": 1,
+      "message": "schemaSetEntities",
+      "range": {
+        "startLine": 163,
+        "startChar": 36,
+        "endLine": 163,
+        "endChar": 52
+      },
+      "revId": "cc83123e1f945a9454a86821e7cf927d1bb94971",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a4a70f69_f32faa37",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-09-19T10:13:04Z",
+      "side": 1,
+      "message": "Would prefer full name instead of acronym: schemaSetEntity",
+      "range": {
+        "startLine": 164,
+        "startChar": 35,
+        "endLine": 164,
+        "endChar": 38
+      },
+      "revId": "cc83123e1f945a9454a86821e7cf927d1bb94971",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e48021e1_a12b0fde",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-09-19T10:13:04Z",
+      "side": 1,
+      "message": "schemaSet",
+      "range": {
+        "startLine": 166,
+        "startChar": 32,
+        "endLine": 166,
+        "endChar": 35
+      },
+      "revId": "cc83123e1f945a9454a86821e7cf927d1bb94971",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
