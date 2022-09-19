@@ -45,7 +45,7 @@ Operational state goes to UNSYNCHRONIZED when data sync (flag) is enabled
     ${verifyResponse}=         GET On Session     CPS_URL   ${verifyUri}   headers=${verifyHeaders}
     ${verifyResponseJson}=    Set Variable        ${verifyResponse.json()['state']['dataSyncState']['operational']}
     Should Be Equal As Strings                    ${verifyResponseJson['syncState']}   UNSYNCHRONIZED
-    Sleep    5
+    Sleep    30
 
 Operational state goes to SYNCHRONIZED after sometime when data sync (flag) is enabled
     ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/PNFDemo/state
