@@ -34,15 +34,14 @@ CPS Log pattern
 
    <pattern>
        {
-         "timestamp" : "%timestamp", // 2022-01-28 18:39:17.768
-         "severity": "%level",   // DEBUG
-         "service": "${springAppName}",  // cps-application
-         "trace": "${TraceId}", // e17da1571e518c59
-         "span": "${SpanId}", // e17da1571e518c59
-         "pid": "${PID}", //11128
-         "thread": "%thread", //tp1901272535-29
+         "logTimeStamp" : "%timestamp", // 2022-01-28 18:39:17.768
+         "logLevel": "%level",   // DEBUG
+         "principalId": "%userId",    // cpsuser
+         "serviceName": "${springAppName}",  // cps-application
+         "message":"%message",  // Execution time ...
+         "processId": "${PID}", //11128
+         "threadName": "%thread", //tp1901272535-29
          "class": "%logger{40}", .// o.onap.cps.aop.CpsLoggingAspectService
-         "rest": "%message" // Execution time ...
        }
    </pattern>
 
@@ -198,7 +197,7 @@ Prometheus Metrics can be checked at the following endpoint
 Naming Validation
 -----------------
 
-As part of the Jakarta 3.1.0 release, CPS has added validation to the names of the following components:
+As part of the Kohn 3.1.0 release, CPS has added validation to the names of the following components:
 
     - Dataspace names
     - Schema Set names
