@@ -168,6 +168,7 @@ values to configure the application to be deployed. This list is not exhaustive.
 
 Any spring supported property can be configured by providing in ``config.additional.<spring-supported-property-name>: value`` Example: config.additional.spring.datasource.hikari.maximumPoolSize: 30
 
+
 +---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
 | Property                              | Description                                                                                             | Default Value                 |
 +=======================================+=========================================================================================================+===============================+
@@ -197,7 +198,7 @@ Any spring supported property can be configured by providing in ``config.additio
 | logging.level                         | Logging level set in cps-core                                                                           | info                          |
 |                                       |                                                                                                         |                               |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| config.useStrimziKafka                | If targeting a custom kafka cluster, ie useStrimziKakfa: false, the config.eventPublisher.spring.kafka  | true                          |
+| config.useStrimziKafka                | If targeting a custom kafka cluster, ie useStrimziKafka: false, the config.eventPublisher.spring.kafka  | true                          |
 |                                       | values must be set.                                                                                     |                               |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
 | config.eventPublisher.                | Kafka hostname and port                                                                                 | ``<kafka-bootstrap>:9092``    |
@@ -251,7 +252,7 @@ Any spring supported property can be configured by providing in ``config.additio
 | enabled-dataspaces                    |                                                                                                         |                               |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
 | config.additional.                    | If asynchronous messaging, user notifications, and updated event persistence should be enabled          | ``true``                      |
-| notification.enabled                  |                                                                                                         |                               |
+| notification.data-updated.enabled     |                                                                                                         |                               |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
 | config.additional.                    | Core pool size in asynchronous execution of notification.                                               | ``2``                         |
 | notification.async.executor.          |                                                                                                         |                               |
@@ -269,7 +270,7 @@ Any spring supported property can be configured by providing in ``config.additio
 | notification.async.executor.          |                                                                                                         |                               |
 | wait-for-tasks-to-complete-on-shutdown|                                                                                                         |                               |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| config.additional.                    | Prefix to be added to the thread name in asynchronous execution of notifications.                       | ``async_``                    |
+| config.additional.                    | Prefix to be added to the thread name in asynchronous execution of notifications.                       | ``Async-``                    |
 | notification.async.executor.          |                                                                                                         |                               |
 | thread-name-prefix                    |                                                                                                         |                               |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
@@ -291,17 +292,17 @@ Additional CPS-NCMP Customizations
 |                                       |                                                                                                         |                               |
 |                                       | See also :ref:`cps_common_credentials_retrieval`.                                                       |                               |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| config.timers.advised-modules-sync    | Specifies the delay in milliseconds in which the module sync watch dog will wake again after finishing. | ``30000``                     |
-| .sleep-time-ms                        |                                                                                                         |                               |
+| config.ncmp.timers                    | Specifies the delay in milliseconds in which the module sync watch dog will wake again after finishing. | ``30000``                     |
+| .advised-modules-sync.sleep-time-ms   |                                                                                                         |                               |
 |                                       |                                                                                                         |                               |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| config.timers.locked-modules-sync     | Specifies the delay in milliseconds in which the retry mechanism watch dog                              |                               |
-|                                       | will wake again after finishing.                                                                        | ``300000``                    |
-| .sleep-time-ms                        |                                                                                                         |                               |
+| config.ncmp.timers                    | Specifies the delay in milliseconds in which the retry mechanism watch dog                              |                               |
+| .locked-modules-sync.sleep-time-ms    | will wake again after finishing.                                                                        | ``300000``                    |
+|                                       |                                                                                                         |                               |
 |                                       |                                                                                                         |                               |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| config.timers.cm-handle-data-sync     | Specifies the delay in milliseconds in which the data sync watch dog will wake again after finishing.   | ``30000``                     |
-| .sleep-time-ms                        |                                                                                                         |                               |
+| config.ncmp.timers                    | Specifies the delay in milliseconds in which the data sync watch dog will wake again after finishing.   | ``30000``                     |
+| .cm-handle-data-sync.sleep-time-ms    |                                                                                                         |                               |
 |                                       |                                                                                                         |                               |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
 
