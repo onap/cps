@@ -38,8 +38,8 @@ import org.onap.cps.utils.JsonObjectMapper;
 @Slf4j
 public class FragmentRepositoryCpsPathQueryImpl implements FragmentRepositoryCpsPathQuery {
 
-    public static final String SIMILAR_TO_ABSOLUTE_PATH_PREFIX = "%/";
-    public static final String SIMILAR_TO_OPTIONAL_LIST_INDEX_POSTFIX = "(\\[[^/]*])?";
+    public static final String REGEX_ABSOLUTE_PATH_PREFIX = ".*\\/";
+    public static final String REGEX_OPTIONAL_LIST_INDEX_POSTFIX = "(\\[@(?!.*\\[).*?])?$";
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -51,8 +51,8 @@ public class FragmentRepositoryCpsPathQueryImpl implements FragmentRepositoryCps
         final StringBuilder sqlStringBuilder = new StringBuilder("SELECT * FROM FRAGMENT WHERE anchor_id = :anchorId");
         final Map<String, Object> queryParameters = new HashMap<>();
         queryParameters.put("anchorId", anchorId);
-        sqlStringBuilder.append(" AND xpath SIMILAR TO :xpathRegex");
-        final String xpathRegex = getSimilarToXpathSqlRegex(cpsPathQuery);
+        sqlStringBuilder.append(" AND xpath ~ :xpathRegex");
+        final String xpathRegex = getXpathSqlRegex(cpsPathQuery);
         queryParameters.put("xpathRegex", xpathRegex);
         if (cpsPathQuery.hasLeafConditions()) {
             sqlStringBuilder.append(" AND attributes @> :leafDataAsJson\\:\\:jsonb");
@@ -68,15 +68,15 @@ public class FragmentRepositoryCpsPathQueryImpl implements FragmentRepositoryCps
         return fragmentEntities;
     }
 
-    private static String getSimilarToXpathSqlRegex(final CpsPathQuery cpsPathQuery) {
+    private static String getXpathSqlRegex(final CpsPathQuery cpsPathQuery) {
         final StringBuilder xpathRegexBuilder = new StringBuilder();
         if (CpsPathPrefixType.ABSOLUTE.equals(cpsPathQuery.getCpsPathPrefixType())) {
             xpathRegexBuilder.append(escapeXpath(cpsPathQuery.getXpathPrefix()));
         } else {
-            xpathRegexBuilder.append(SIMILAR_TO_ABSOLUTE_PATH_PREFIX);
+            xpathRegexBuilder.append(REGEX_ABSOLUTE_PATH_PREFIX);
             xpathRegexBuilder.append(escapeXpath(cpsPathQuery.getDescendantName()));
         }
-        xpathRegexBuilder.append(SIMILAR_TO_OPTIONAL_LIST_INDEX_POSTFIX);
+        xpathRegexBuilder.append(REGEX_OPTIONAL_LIST_INDEX_POSTFIX);
         return xpathRegexBuilder.toString();
     }
 
