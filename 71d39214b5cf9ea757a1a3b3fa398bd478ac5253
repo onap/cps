@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5eba368d_c5adc28a",
+        "filename": "cps-rest/docs/openapi/cpsAdmin.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-09-20T12:00:54Z",
+      "side": 1,
+      "message": "Add TechMahindra modifications copyright",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 57
+      },
+      "revId": "71d39214b5cf9ea757a1a3b3fa398bd478ac5253",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dac6f6da_79d270b2",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-09-20T12:00:54Z",
+      "side": 1,
+      "message": "only dataspace name is passed so this is incorrect in my opinion",
+      "range": {
+        "startLine": 113,
+        "startChar": 59,
+        "endLine": 113,
+        "endChar": 85
+      },
+      "revId": "71d39214b5cf9ea757a1a3b3fa398bd478ac5253",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6b9678a3_dbbb99f2",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-09-20T12:00:54Z",
+      "side": 1,
+      "message": "for a given dataspace",
+      "range": {
+        "startLine": 255,
+        "startChar": 29,
+        "endLine": 255,
+        "endChar": 45
+      },
+      "revId": "71d39214b5cf9ea757a1a3b3fa398bd478ac5253",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f8cfa691_f58828c0",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-09-20T12:00:54Z",
+      "side": 1,
+      "message": "NB: not sure if this and block adds value",
+      "range": {
+        "startLine": 259,
+        "startChar": 8,
+        "endLine": 260,
+        "endChar": 88
+      },
+      "revId": "71d39214b5cf9ea757a1a3b3fa398bd478ac5253",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a9aaa0ed_4cb4e249",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-09-20T12:00:54Z",
+      "side": 1,
+      "message": "NB: Could an objectMapper be used?",
+      "range": {
+        "startLine": 164,
+        "startChar": 6,
+        "endLine": 171,
+        "endChar": 9
+      },
+      "revId": "71d39214b5cf9ea757a1a3b3fa398bd478ac5253",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "272e82d5_16a2361d",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-09-20T12:00:54Z",
+      "side": 1,
+      "message": "Retrieve",
+      "range": {
+        "startLine": 213,
+        "startChar": 9,
+        "endLine": 213,
+        "endChar": 20
+      },
+      "revId": "71d39214b5cf9ea757a1a3b3fa398bd478ac5253",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5cfbe301_81268106",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsModuleService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-09-20T12:00:54Z",
+      "side": 1,
+      "message": "NB: Should this be more descriptive? e.g. gerSchemaSetsForDataspace",
+      "range": {
+        "startLine": 76,
+        "startChar": 20,
+        "endLine": 76,
+        "endChar": 33
+      },
+      "revId": "71d39214b5cf9ea757a1a3b3fa398bd478ac5253",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "beb01cc0_da576385",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsModulePersistenceService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-09-20T12:00:54Z",
+      "side": 1,
+      "message": "a given dataspace\nand add line break before params",
+      "range": {
+        "startLine": 58,
+        "startChar": 32,
+        "endLine": 58,
+        "endChar": 44
+      },
+      "revId": "71d39214b5cf9ea757a1a3b3fa398bd478ac5253",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
