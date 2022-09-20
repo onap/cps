@@ -2,6 +2,46 @@
   "comments": [
     {
       "key": {
+        "uuid": "f7c7df4b_4777ae75",
+        "filename": "dmi-plugin-perf-stub/files/moduleResourcesResponse.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-09-20T12:03:24Z",
+      "side": 1,
+      "message": "Can this file be reduced to make it easier to understand, manage, and possibly debug in the future?",
+      "revId": "0d09cd74650f761450fc2bd48102dbdc901ecf13",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b0d6a1a2_74b43429",
+        "filename": "dmi-plugin-perf-stub/files/moduleResponse.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-09-20T12:03:24Z",
+      "side": 1,
+      "message": "Formatting is wrong",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 5
+      },
+      "revId": "0d09cd74650f761450fc2bd48102dbdc901ecf13",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8621d5f6_0951a4f5",
         "filename": "dmi-plugin-perf-stub/start.sh",
         "patchSetId": 1
