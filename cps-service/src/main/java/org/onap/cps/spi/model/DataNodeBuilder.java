@@ -44,7 +44,7 @@ import org.opendaylight.yangtools.yang.data.api.schema.ValueNode;
 @Slf4j
 public class DataNodeBuilder {
 
-    private NormalizedNode<?, ?> normalizedNodeTree;
+    private NormalizedNode normalizedNodeTree;
     private String xpath;
     private String moduleNamePrefix;
     private String parentNodeXpath = "";
@@ -69,7 +69,7 @@ public class DataNodeBuilder {
      * @param normalizedNodeTree used for creating the Data Node
      * @return this {@link DataNodeBuilder} object
      */
-    public DataNodeBuilder withNormalizedNodeTree(final NormalizedNode<?, ?> normalizedNodeTree) {
+    public DataNodeBuilder withNormalizedNodeTree(final NormalizedNode normalizedNodeTree) {
         this.normalizedNodeTree = normalizedNodeTree;
         return this;
     }
@@ -171,15 +171,15 @@ public class DataNodeBuilder {
     }
 
     private static void addDataNodeFromNormalizedNode(final DataNode currentDataNode,
-        final NormalizedNode<?, ?> normalizedNode) {
+        final NormalizedNode normalizedNode) {
 
         if (normalizedNode instanceof DataContainerNode) {
-            addYangContainer(currentDataNode, (DataContainerNode<?>) normalizedNode);
+            addYangContainer(currentDataNode, (DataContainerNode) normalizedNode);
         } else if (normalizedNode instanceof MapNode) {
             addDataNodeForEachListElement(currentDataNode, (MapNode) normalizedNode);
         } else if (normalizedNode instanceof ValueNode) {
-            final ValueNode<?, ?> valuesNode = (ValueNode<?, ?>) normalizedNode;
-            addYangLeaf(currentDataNode, valuesNode.getNodeType().getLocalName(), valuesNode.getValue());
+            final ValueNode<?> valuesNode = (ValueNode<?>) normalizedNode;
+            addYangLeaf(currentDataNode, valuesNode.getIdentifier().getNodeType().getLocalName(), valuesNode.body().toString());
         } else if (normalizedNode instanceof LeafSetNode) {
             addYangLeafList(currentDataNode, (LeafSetNode<?>) normalizedNode);
         } else {
@@ -187,13 +187,13 @@ public class DataNodeBuilder {
         }
     }
 
-    private static void addYangContainer(final DataNode currentDataNode, final DataContainerNode<?> dataContainerNode) {
+    private static void addYangContainer(final DataNode currentDataNode, final DataContainerNode dataContainerNode) {
         final DataNode dataContainerDataNode =
             (dataContainerNode.getIdentifier() instanceof YangInstanceIdentifier.AugmentationIdentifier)
                 ? currentDataNode
                 : createAndAddChildDataNode(currentDataNode, YangUtils.buildXpath(dataContainerNode.getIdentifier()));
-        final Collection<DataContainerChild<?, ?>> normalizedChildNodes = dataContainerNode.getValue();
-        for (final NormalizedNode<?, ?> normalizedNode : normalizedChildNodes) {
+        final Collection<DataContainerChild> normalizedChildNodes = dataContainerNode.body();
+        for (final NormalizedNode normalizedNode : normalizedChildNodes) {
             addDataNodeFromNormalizedNode(dataContainerDataNode, normalizedNode);
         }
     }
@@ -207,16 +207,16 @@ public class DataNodeBuilder {
     }
 
     private static void addYangLeafList(final DataNode currentDataNode, final LeafSetNode<?> leafSetNode) {
-        final String leafListName = leafSetNode.getNodeType().getLocalName();
-        final List<?> leafListValues = ((Collection<? extends NormalizedNode<?, ?>>) leafSetNode.getValue())
+        final String leafListName = leafSetNode.getIdentifier().getNodeType().getLocalName();
+        final List<?> leafListValues = ((Collection<? extends NormalizedNode>) leafSetNode.body())
             .stream()
-            .map(normalizedNode -> ((ValueNode<?, ?>) normalizedNode).getValue())
+            .map(normalizedNode -> (normalizedNode).body())
             .collect(Collectors.toUnmodifiableList());
         addYangLeaf(currentDataNode, leafListName, leafListValues);
     }
 
     private static void addDataNodeForEachListElement(final DataNode currentDataNode, final MapNode mapNode) {
-        final Collection<MapEntryNode> mapEntryNodes = mapNode.getValue();
+        final Collection<MapEntryNode> mapEntryNodes = mapNode.body();
         for (final MapEntryNode mapEntryNode : mapEntryNodes) {
             addDataNodeFromNormalizedNode(currentDataNode, mapEntryNode);
         }

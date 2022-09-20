@@ -42,10 +42,9 @@ import org.opendaylight.yangtools.yang.data.codec.gson.JSONCodecFactorySupplier;
 import org.opendaylight.yangtools.yang.data.codec.gson.JsonParserStream;
 import org.opendaylight.yangtools.yang.data.impl.schema.ImmutableNormalizedNodeStreamWriter;
 import org.opendaylight.yangtools.yang.data.impl.schema.NormalizedNodeResult;
-import org.opendaylight.yangtools.yang.model.api.DataNodeContainer;
-import org.opendaylight.yangtools.yang.model.api.DataSchemaNode;
-import org.opendaylight.yangtools.yang.model.api.EffectiveModelContext;
-import org.opendaylight.yangtools.yang.model.api.SchemaContext;
+import org.opendaylight.yangtools.yang.model.api.*;
+import org.opendaylight.yangtools.yang.model.api.meta.EffectiveStatement;
+import org.opendaylight.yangtools.yang.model.spi.DefaultSchemaTreeInference;
 
 @Slf4j
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -62,7 +61,7 @@ public class YangUtils {
      * @return the NormalizedNode object
      */
     @SuppressWarnings("squid:S1452")  // Generic type <? ,?> is returned by external librray, opendaylight.yangtools
-    public static NormalizedNode<?, ?> parseJsonData(final String jsonData, final SchemaContext schemaContext) {
+    public static NormalizedNode parseJsonData(final String jsonData, final SchemaContext schemaContext) {
         return parseJsonData(jsonData, schemaContext, Optional.empty());
     }
 
@@ -75,13 +74,13 @@ public class YangUtils {
      * @return the NormalizedNode object
      */
     @SuppressWarnings("squid:S1452")  // Generic type <? ,?> is returned by external librray, opendaylight.yangtools
-    public static NormalizedNode<?, ?> parseJsonData(final String jsonData, final SchemaContext schemaContext,
+    public static NormalizedNode parseJsonData(final String jsonData, final SchemaContext schemaContext,
         final String parentNodeXpath) {
         final var parentSchemaNode = getDataSchemaNodeByXpath(parentNodeXpath, schemaContext);
         return parseJsonData(jsonData, schemaContext, Optional.of(parentSchemaNode));
     }
 
-    private static NormalizedNode<?, ?> parseJsonData(final String jsonData, final SchemaContext schemaContext,
+    private static NormalizedNode parseJsonData(final String jsonData, final SchemaContext schemaContext,
         final Optional<DataSchemaNode> optionalParentSchemaNode) {
         final var jsonCodecFactory = JSONCodecFactorySupplier.DRAFT_LHOTKA_NETMOD_YANG_JSON_02
             .getShared((EffectiveModelContext) schemaContext);

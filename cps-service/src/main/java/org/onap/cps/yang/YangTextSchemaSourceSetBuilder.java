@@ -32,6 +32,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import lombok.NoArgsConstructor;
@@ -41,9 +42,9 @@ import org.onap.cps.spi.model.ModuleReference;
 import org.opendaylight.yangtools.yang.common.Revision;
 import org.opendaylight.yangtools.yang.model.api.Module;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
-import org.opendaylight.yangtools.yang.model.parser.api.YangSyntaxErrorException;
 import org.opendaylight.yangtools.yang.model.repo.api.RevisionSourceIdentifier;
 import org.opendaylight.yangtools.yang.model.repo.api.YangTextSchemaSource;
+import org.opendaylight.yangtools.yang.parser.api.YangSyntaxErrorException;
 import org.opendaylight.yangtools.yang.parser.rfc7950.reactor.RFC7950Reactors;
 import org.opendaylight.yangtools.yang.parser.rfc7950.repo.YangStatementStreamSource;
 import org.opendaylight.yangtools.yang.parser.spi.meta.ReactorException;
@@ -154,6 +155,11 @@ public final class YangTextSchemaSourceSetBuilder {
             createIdentifierFromSourceName(checkNotNull(sourceName));
 
         return new YangTextSchemaSource(revisionSourceIdentifier) {
+            @Override
+            public Optional<String> getSymbolicName() {
+                return Optional.empty();
+            }
+
             @Override
             protected MoreObjects.ToStringHelper addToStringAttributes(
                 final MoreObjects.ToStringHelper toStringHelper) {
