@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8621d5f6_0951a4f5",
+        "filename": "dmi-plugin-perf-stub/start.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-09-20T10:05:09Z",
+      "side": 1,
+      "message": "maybe change the port.\n8783 is been used as DMI port for our local docker compose.",
+      "range": {
+        "startLine": 1,
+        "startChar": 23,
+        "endLine": 1,
+        "endChar": 27
+      },
+      "revId": "0d09cd74650f761450fc2bd48102dbdc901ecf13",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
