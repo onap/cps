@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "25a843a1_f8435b71",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-09-20T15:08:09Z",
+      "side": 1,
+      "message": "not present in progress map ??",
+      "range": {
+        "startLine": 359,
+        "startChar": 45,
+        "endLine": 359,
+        "endChar": 68
+      },
+      "revId": "8cefdf82d52ee2fc73375b7d7b99498abbe7ccd3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e653e28a_bc0177bd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncTasks.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-09-20T15:08:09Z",
+      "side": 1,
+      "message": "NB: extra space",
+      "range": {
+        "startLine": 75,
+        "startChar": 58,
+        "endLine": 75,
+        "endChar": 60
+      },
+      "revId": "8cefdf82d52ee2fc73375b7d7b99498abbe7ccd3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a3717604_8ff4c928",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-09-20T15:08:09Z",
+      "side": 1,
+      "message": "??",
+      "range": {
+        "startLine": 259,
+        "startChar": 42,
+        "endLine": 259,
+        "endChar": 57
+      },
+      "revId": "8cefdf82d52ee2fc73375b7d7b99498abbe7ccd3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b4a0332c_d86b9a59",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-09-20T15:08:09Z",
+      "side": 1,
+      "message": "may be for the test we can name the map differently.\njust suffix it with Test ? \nwhat do you think?\n\nalso do we really need to get instance of map from Hazelcast , can we just use ConcurrentHashMap or similar??",
+      "range": {
+        "startLine": 74,
+        "startChar": 161,
+        "endLine": 74,
+        "endChar": 189
+      },
+      "revId": "8cefdf82d52ee2fc73375b7d7b99498abbe7ccd3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
