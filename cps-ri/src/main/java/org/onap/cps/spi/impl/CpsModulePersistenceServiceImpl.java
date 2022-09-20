@@ -60,9 +60,9 @@ import org.onap.cps.spi.repository.ModuleReferenceRepository;
 import org.onap.cps.spi.repository.SchemaSetRepository;
 import org.onap.cps.spi.repository.YangResourceRepository;
 import org.opendaylight.yangtools.yang.common.Revision;
-import org.opendaylight.yangtools.yang.model.parser.api.YangSyntaxErrorException;
 import org.opendaylight.yangtools.yang.model.repo.api.RevisionSourceIdentifier;
 import org.opendaylight.yangtools.yang.model.repo.api.YangTextSchemaSource;
+import org.opendaylight.yangtools.yang.parser.api.YangSyntaxErrorException;
 import org.opendaylight.yangtools.yang.parser.rfc7950.repo.YangModelDependencyInfo;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.retry.annotation.Backoff;
@@ -251,6 +251,11 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
                 createIdentifierFromSourceName(checkNotNull(sourceName));
 
         final var tempYangTextSchemaSource = new YangTextSchemaSource(revisionSourceIdentifier) {
+            @Override
+            public Optional<String> getSymbolicName() {
+                return Optional.empty();
+            }
+
             @Override
             protected MoreObjects.ToStringHelper addToStringAttributes(
                     final MoreObjects.ToStringHelper toStringHelper) {

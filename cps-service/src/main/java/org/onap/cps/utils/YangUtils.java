@@ -45,7 +45,9 @@ import org.opendaylight.yangtools.yang.data.impl.schema.NormalizedNodeResult;
 import org.opendaylight.yangtools.yang.model.api.DataNodeContainer;
 import org.opendaylight.yangtools.yang.model.api.DataSchemaNode;
 import org.opendaylight.yangtools.yang.model.api.EffectiveModelContext;
+import org.opendaylight.yangtools.yang.model.api.EffectiveStatementInference;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
+import org.opendaylight.yangtools.yang.model.util.SchemaInferenceStack;
 
 @Slf4j
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -62,7 +64,7 @@ public class YangUtils {
      * @return the NormalizedNode object
      */
     @SuppressWarnings("squid:S1452")  // Generic type <? ,?> is returned by external librray, opendaylight.yangtools
-    public static NormalizedNode<?, ?> parseJsonData(final String jsonData, final SchemaContext schemaContext) {
+    public static NormalizedNode parseJsonData(final String jsonData, final SchemaContext schemaContext) {
         return parseJsonData(jsonData, schemaContext, Optional.empty());
     }
 
@@ -75,22 +77,29 @@ public class YangUtils {
      * @return the NormalizedNode object
      */
     @SuppressWarnings("squid:S1452")  // Generic type <? ,?> is returned by external librray, opendaylight.yangtools
-    public static NormalizedNode<?, ?> parseJsonData(final String jsonData, final SchemaContext schemaContext,
+    public static NormalizedNode parseJsonData(final String jsonData, final SchemaContext schemaContext,
         final String parentNodeXpath) {
         final var parentSchemaNode = getDataSchemaNodeByXpath(parentNodeXpath, schemaContext);
         return parseJsonData(jsonData, schemaContext, Optional.of(parentSchemaNode));
     }
 
-    private static NormalizedNode<?, ?> parseJsonData(final String jsonData, final SchemaContext schemaContext,
+    private static NormalizedNode parseJsonData(final String jsonData, final SchemaContext schemaContext,
         final Optional<DataSchemaNode> optionalParentSchemaNode) {
         final var jsonCodecFactory = JSONCodecFactorySupplier.DRAFT_LHOTKA_NETMOD_YANG_JSON_02
             .getShared((EffectiveModelContext) schemaContext);
         final var normalizedNodeResult = new NormalizedNodeResult();
         final var normalizedNodeStreamWriter = ImmutableNormalizedNodeStreamWriter
             .from(normalizedNodeResult);
+        EffectiveStatementInference inference = null;
+
+        if (optionalParentSchemaNode.isPresent()) {
+            final EffectiveModelContext context = ((EffectiveModelContext) schemaContext);
+            inference = SchemaInferenceStack.ofDataTreePath(context,
+                    optionalParentSchemaNode.get().getQName()).toInference();
+        }
 
         try (final JsonParserStream jsonParserStream = optionalParentSchemaNode.isPresent()
-            ? JsonParserStream.create(normalizedNodeStreamWriter, jsonCodecFactory, optionalParentSchemaNode.get())
+            ? JsonParserStream.create(normalizedNodeStreamWriter, jsonCodecFactory, inference)
             : JsonParserStream.create(normalizedNodeStreamWriter, jsonCodecFactory)
         ) {
             final var jsonReader = new JsonReader(new StringReader(jsonData));
