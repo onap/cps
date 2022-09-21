@@ -159,22 +159,22 @@ logging:
             springframework: INFO
             onap:
                 cps: INFO
+ncmp:
+    dmi:
+        auth:
+            username: ${DMI_USERNAME}
+            password: ${DMI_PASSWORD}
+        api:
+            base-path: dmi
 
-dmi:
-    auth:
-        username: ${DMI_USERNAME}
-        password: ${DMI_PASSWORD}
-    api:
-        base-path: dmi
+    timers:
+        advised-modules-sync:
+            sleep-time-ms: 5000
+        locked-modules-sync:
+            sleep-time-ms: 300000
+        cm-handle-data-sync:
+            sleep-time-ms: 30000
 
-timers:
-    advised-modules-sync:
-        sleep-time-ms: 5000
-    locked-modules-sync:
-        sleep-time-ms: 300000
-    cm-handle-data-sync:
-        sleep-time-ms: 30000
-
-modules-sync-watchdog:
-    async-executor:
-        parallelism-level: 10
+    modules-sync-watchdog:
+        async-executor:
+            parallelism-level: 10
