@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5b483b33_01c70e32",
+        "filename": "cps-rest/docs/openapi/cpsAdmin.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2022-09-21T08:01:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5eba368d_c5adc28a",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 57
+      },
+      "revId": "71d39214b5cf9ea757a1a3b3fa398bd478ac5253",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dac6f6da_79d270b2",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
         "patchSetId": 4
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "72221cbf_e76def93",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2022-09-21T08:01:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dac6f6da_79d270b2",
+      "range": {
+        "startLine": 113,
+        "startChar": 59,
+        "endLine": 113,
+        "endChar": 85
+      },
+      "revId": "71d39214b5cf9ea757a1a3b3fa398bd478ac5253",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6b9678a3_dbbb99f2",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
         "patchSetId": 4
@@ -68,6 +116,30 @@
       "revId": "71d39214b5cf9ea757a1a3b3fa398bd478ac5253",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a1765ea_3106e6e2",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2022-09-21T08:01:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6b9678a3_dbbb99f2",
+      "range": {
+        "startLine": 255,
+        "startChar": 29,
+        "endLine": 255,
+        "endChar": 45
+      },
+      "revId": "71d39214b5cf9ea757a1a3b3fa398bd478ac5253",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
