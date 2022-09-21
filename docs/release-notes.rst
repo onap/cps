@@ -44,6 +44,16 @@ Features
 
 Bug Fixes
 ---------
+****
+
+Known Limitations, Issues and Workarounds
+-----------------------------------------
+
+*System Limitations*
+
+Cps-path cannot contain '[' or ']' in the attribute value or text value.
+Example of invalid cps-path : /parent/child[@leaf=text[with]braces]
+
 
 ..      ========================
 ..      * * *   JAKARTA   * * *
