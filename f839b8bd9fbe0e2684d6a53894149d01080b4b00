@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "162b4cdb_71a4224e",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-09-21T15:05:02Z",
+      "side": 1,
+      "message": "below",
+      "range": {
+        "startLine": 202,
+        "startChar": 48,
+        "endLine": 202,
+        "endChar": 49
+      },
+      "revId": "f839b8bd9fbe0e2684d6a53894149d01080b4b00",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "55db0dc7_cc5f4f63",
         "filename": "docs/release-notes.rst",
         "patchSetId": 3
