@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "45192c8c_9722bdce",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-09-21T08:24:02Z",
+      "side": 1,
+      "message": "Set this patch to WIP?",
+      "range": {
+        "startLine": 9,
+        "startChar": 8,
+        "endLine": 9,
+        "endChar": 50
+      },
+      "revId": "9567aa42616a01abb434b64f4f0b4bda1da87c84",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f4557d5b_59d9a177",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
         "patchSetId": 1
@@ -13,6 +36,30 @@
       "writtenOn": "2022-09-21T08:21:30Z",
       "side": 1,
       "message": "alwasy import individual classed. Set you IDE to never use import .*",
+      "range": {
+        "startLine": 45,
+        "startChar": 49,
+        "endLine": 45,
+        "endChar": 51
+      },
+      "revId": "9567aa42616a01abb434b64f4f0b4bda1da87c84",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b8df2e00_3690b175",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-09-21T08:24:02Z",
+      "side": 1,
+      "message": "I think * is ok and wont lead to bloat but I agree it is best to be specific as its easier for us to know exactly whats being imported and used",
+      "parentUuid": "f4557d5b_59d9a177",
       "range": {
         "startLine": 45,
         "startChar": 49,
@@ -41,6 +88,29 @@
         "startChar": 7,
         "endLine": 161,
         "endChar": 13
+      },
+      "revId": "9567aa42616a01abb434b64f4f0b4bda1da87c84",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f955c67_083f65ab",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangUtilsSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-09-21T08:24:02Z",
+      "side": 1,
+      "message": "2020 - 2022",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 23
       },
       "revId": "9567aa42616a01abb434b64f4f0b4bda1da87c84",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
