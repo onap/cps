@@ -21,8 +21,10 @@
 
 package org.onap.cps.ncmp.api.inventory.sync
 
+import com.hazelcast.config.Config
+import com.hazelcast.instance.impl.HazelcastInstanceFactory
+import com.hazelcast.map.IMap
 import org.onap.cps.ncmp.api.impl.event.lcm.LcmEventsCmHandleStateHandler
-import org.onap.cps.ncmp.api.impl.utils.YangDataConverter
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.inventory.CmHandleState
 import org.onap.cps.ncmp.api.inventory.CompositeState
@@ -43,9 +45,14 @@ class ModuleSyncTasksSpec extends Specification {
 
     def mockLcmEventsCmHandleStateHandler = Mock(LcmEventsCmHandleStateHandler)
 
+    IMap<String, Object> moduleSyncStartedOnCmHandles = HazelcastInstanceFactory
+            .getOrCreateHazelcastInstance(new Config('hazelcastInstanceName'))
+            .getMap('mapInstanceName')
+
     def batchCount = new AtomicInteger(5)
 
-    def objectUnderTest = new ModuleSyncTasks(mockInventoryPersistence, mockSyncUtils, mockModuleSyncService, mockLcmEventsCmHandleStateHandler)
+    def objectUnderTest = new ModuleSyncTasks(mockInventoryPersistence, mockSyncUtils, mockModuleSyncService,
+            mockLcmEventsCmHandleStateHandler, moduleSyncStartedOnCmHandles)
 
     def 'Module Sync ADVISED cm handles.'() {
         given: 'cm handles in an ADVISED state'
@@ -95,17 +102,39 @@ class ModuleSyncTasksSpec extends Specification {
                     .withLockReason(LockReasonCategory.LOCKED_MODULE_SYNC_FAILED, '').withLastUpdatedTimeNow().build()
             def yangModelCmHandle1 = new YangModelCmHandle(id: 'cm-handle-1', compositeState: lockedState)
             def yangModelCmHandle2 = new YangModelCmHandle(id: 'cm-handle-2', compositeState: lockedState)
+            def expectedCmHandleStatePerCmHandle = [(yangModelCmHandle1): CmHandleState.ADVISED]
+        and: 'clear in progress map'
+            resetModuleSyncStartedOnCmHandles(moduleSyncStartedOnCmHandles)
+        and: 'add cm handle entry into progress map'
+            moduleSyncStartedOnCmHandles.put('cm-handle-1', 'started')
+            moduleSyncStartedOnCmHandles.put('cm-handle-2', 'started')
         and: 'sync utils retry locked cm handle returns #isReadyForRetry'
             mockSyncUtils.isReadyForRetry(lockedState) >>> isReadyForRetry
         when: 'resetting failed cm handles'
             objectUnderTest.resetFailedCmHandles([yangModelCmHandle1, yangModelCmHandle2])
         then: 'updated to state "ADVISED" from "READY" is called as often as there are cm handles ready for retry'
-//            expectedNumberOfInvocationsToSaveCmHandleState * mockLcmEventsCmHandleStateHandler.updateCmHandleState(_, CmHandleState.ADVISED)
+            expectedNumberOfInvocationsToUpdateCmHandleState * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(expectedCmHandleStatePerCmHandle)
+        and: 'after reset performed size of in progress map'
+            assert moduleSyncStartedOnCmHandles.size() == inProgressMapSize
         where:
-            scenario                        | isReadyForRetry || expectedNumberOfInvocationsToSaveCmHandleState
-            'retry locked cm handle once'   | [true, false]   || 1
-            'retry locked cm handle twice'  | [true, true]    || 2
-            'do not retry locked cm handle' | [false, false]  || 0
+            scenario                        | isReadyForRetry | inProgressMapSize || expectedNumberOfInvocationsToUpdateCmHandleState
+            'retry locked cm handle'        | [true, false]   | 1                 || 1
+            'do not retry locked cm handle' | [false, false]  | 2                 || 0
+    }
+
+    def 'Module Sync ADVISED cm handle without entry in progress map.'() {
+        given: 'cm handles in an ADVISED state'
+            def cmHandle1 = advisedCmHandleAsDataNode('cm-handle-1')
+        and: 'the inventory persistence cm handle returns a ADVISED state for the any handle'
+            mockInventoryPersistence.getCmHandleState(_) >> new CompositeState(cmHandleState: CmHandleState.ADVISED)
+        and: 'entry in progress map for other cm handle'
+            moduleSyncStartedOnCmHandles.put('other-cm-handle', 'started')
+        when: 'module sync poll is executed'
+            objectUnderTest.performModuleSync([cmHandle1], batchCount)
+        then: 'module sync service is invoked for cm handle'
+            1 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(_) >> { args -> assertYamgModelCmHandleArgument(args, 'cm-handle-1') }
+        and: 'the entry for other cm handle is still in the progress map'
+            assert moduleSyncStartedOnCmHandles.get('other-cm-handle') != null
     }
 
     def advisedCmHandleAsDataNode(cmHandleId) {
@@ -130,5 +159,9 @@ class ModuleSyncTasksSpec extends Specification {
             }
         }
         return true
+    }
+
+    def resetModuleSyncStartedOnCmHandles(moduleSyncStartedOnCmHandles) {
+        moduleSyncStartedOnCmHandles.clear();
     }
 }

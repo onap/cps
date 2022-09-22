@@ -20,6 +20,7 @@
 
 package org.onap.cps.ncmp.api.inventory.sync;
 
+import com.hazelcast.map.IMap;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -46,15 +47,14 @@ public class ModuleSyncTasks {
     private final SyncUtils syncUtils;
     private final ModuleSyncService moduleSyncService;
     private final LcmEventsCmHandleStateHandler lcmEventsCmHandleStateHandler;
-
-    private static final CompletableFuture<Void> COMPLETED_FUTURE = CompletableFuture.completedFuture(null);
+    private final IMap<String, Object> moduleSyncStartedOnCmHandles;
 
     /**
      * Perform module sync on a batch of cm handles.
      *
-     * @param cmHandlesAsDataNodes a batch of Data nodes representing cm handles to perform module sync on
-     * @param batchCounter the number of batches currently being processed, will be decreased when task is finished
-     *                     or fails
+     * @param cmHandlesAsDataNodes         a batch of Data nodes representing cm handles to perform module sync on
+     * @param batchCounter                 the number of batches currently being processed, will be decreased when
+     *                                     task is finished or fails
      * @return completed future to handle post-processing
      */
     public CompletableFuture<Void> performModuleSync(final Collection<DataNode> cmHandlesAsDataNodes,
@@ -71,7 +71,7 @@ public class ModuleSyncTasks {
                     moduleSyncService.syncAndCreateSchemaSetAndAnchor(yangModelCmHandle);
                     cmHandelStatePerCmHandle.put(yangModelCmHandle, CmHandleState.READY);
                 } catch (final Exception e) {
-                    log.warn("Processing module sync batch failed.");
+                    log.warn("Processing of {} module sync failed.", cmHandleId);
                     syncUtils.updateLockReasonDetailsAndAttempts(compositeState,
                             LockReasonCategory.LOCKED_MODULE_SYNC_FAILED, e.getMessage());
                     setCmHandleStateLocked(yangModelCmHandle, compositeState.getLockReason());
@@ -84,28 +84,28 @@ public class ModuleSyncTasks {
             batchCounter.getAndDecrement();
             log.info("Processing module sync batch finished. {} batch(es) active.", batchCounter.get());
         }
-        return COMPLETED_FUTURE;
+        return CompletableFuture.completedFuture(null);
     }
 
     /**
      * Reset state to "ADVISED" for any previously failed cm handles.
      *
      * @param failedCmHandles previously failed (locked) cm handles
-     * @return completed future to handle post-processing
      */
-    public CompletableFuture<Void> resetFailedCmHandles(final List<YangModelCmHandle> failedCmHandles) {
+    public void resetFailedCmHandles(final List<YangModelCmHandle> failedCmHandles) {
         final Map<YangModelCmHandle, CmHandleState> cmHandleStatePerCmHandle = new HashMap<>(failedCmHandles.size());
         for (final YangModelCmHandle failedCmHandle : failedCmHandles) {
             final CompositeState compositeState = failedCmHandle.getCompositeState();
             final boolean isReadyForRetry = syncUtils.isReadyForRetry(compositeState);
             if (isReadyForRetry) {
+                final String resetCmHandleId = failedCmHandle.getId();
                 log.debug("Reset cm handle {} state to ADVISED to be re-attempted by module-sync watchdog",
-                        failedCmHandle.getId());
+                        resetCmHandleId);
                 cmHandleStatePerCmHandle.put(failedCmHandle, CmHandleState.ADVISED);
+                removeResetCmHandleFromModuleSyncMap(resetCmHandleId);
             }
         }
         lcmEventsCmHandleStateHandler.updateCmHandleStateBatch(cmHandleStatePerCmHandle);
-        return COMPLETED_FUTURE;
     }
 
     private void setCmHandleStateLocked(final YangModelCmHandle advisedCmHandle,
@@ -113,4 +113,9 @@ public class ModuleSyncTasks {
         advisedCmHandle.getCompositeState().setLockReason(lockReason);
     }
 
+    private void removeResetCmHandleFromModuleSyncMap(final String resetCmHandleId) {
+        if (moduleSyncStartedOnCmHandles.remove(resetCmHandleId) != null) {
+            log.debug("{} removed from in progress map", resetCmHandleId);
+        }
+    }
 }

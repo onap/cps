@@ -21,10 +21,10 @@
 
 package org.onap.cps.ncmp.api.inventory.sync;
 
+import com.hazelcast.map.IMap;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -44,7 +44,7 @@ public class ModuleSyncWatchdog {
 
     private final SyncUtils syncUtils;
     private final BlockingQueue<DataNode> moduleSyncWorkQueue;
-    private final Map<String, Object> moduleSyncStartedOnCmHandles;
+    private final IMap<String, Object> moduleSyncStartedOnCmHandles;
     private final ModuleSyncTasks moduleSyncTasks;
     private final AsyncTaskExecutor asyncTaskExecutor;
     private static final int MODULE_SYNC_BATCH_SIZE = 100;
@@ -72,8 +72,7 @@ public class ModuleSyncWatchdog {
                         nextBatch.size(), batchCounter.get());
                 asyncTaskExecutor.executeTask(() ->
                                 moduleSyncTasks.performModuleSync(nextBatch, batchCounter),
-                        ASYNC_TASK_TIMEOUT_IN_MILLISECONDS
-                );
+                        ASYNC_TASK_TIMEOUT_IN_MILLISECONDS);
                 batchCounter.getAndIncrement();
             } else {
                 preventBusyWait();

@@ -27,6 +27,7 @@ import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NFP_OPER
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum;
 import static org.onap.cps.utils.CmHandleQueryRestParametersValidator.validateCmHandleQueryParameters;
 
+import com.hazelcast.map.IMap;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -77,20 +78,14 @@ import org.springframework.stereotype.Service;
 public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService {
 
     private final JsonObjectMapper jsonObjectMapper;
-
     private final DmiDataOperations dmiDataOperations;
-
     private final NetworkCmProxyDataServicePropertyHandler networkCmProxyDataServicePropertyHandler;
-
     private final InventoryPersistence inventoryPersistence;
-
     private final CmHandleQueries cmHandleQueries;
-
     private final NetworkCmProxyCmHandlerQueryService networkCmProxyCmHandlerQueryService;
-
     private final LcmEventsCmHandleStateHandler lcmEventsCmHandleStateHandler;
-
     private final CpsDataService cpsDataService;
+    private final IMap<String, Object> moduleSyncStartedOnCmHandles;
 
     @Override
     public DmiPluginRegistrationResponse updateDmiRegistrationAndSyncModule(
@@ -329,7 +324,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                 final YangModelCmHandle yangModelCmHandle = inventoryPersistence.getYangModelCmHandle(cmHandleId);
                 lcmEventsCmHandleStateHandler.updateCmHandleState(yangModelCmHandle,
                         CmHandleState.DELETING);
-                deleteCmHandleByCmHandleId(cmHandleId);
+                deleteCmHandleFromDbAndModuleSyncMap(cmHandleId);
                 cmHandleRegistrationResponses.add(CmHandleRegistrationResponse.createSuccessResponse(cmHandleId));
                 lcmEventsCmHandleStateHandler.updateCmHandleState(yangModelCmHandle,
                         CmHandleState.DELETED);
@@ -353,9 +348,17 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         return cmHandleRegistrationResponses;
     }
 
-    private void deleteCmHandleByCmHandleId(final String cmHandleId) {
+    private void deleteCmHandleFromDbAndModuleSyncMap(final String cmHandleId) {
         inventoryPersistence.deleteSchemaSetWithCascade(cmHandleId);
         inventoryPersistence.deleteListOrListElement("/dmi-registry/cm-handles[@id='" + cmHandleId + "']");
+        removeDeletedCmHandleFromModuleSyncMap(cmHandleId);
+    }
+
+    // CPS-1239 Robustness cleaning of in progress cache
+    private void removeDeletedCmHandleFromModuleSyncMap(final String deletedCmHandleId) {
+        if (moduleSyncStartedOnCmHandles.remove(deletedCmHandleId) != null) {
+            log.debug("{} removed from in progress map", deletedCmHandleId);
+        }
     }
 
     private List<CmHandleRegistrationResponse> registerNewCmHandles(final Map<YangModelCmHandle, CmHandleState>
