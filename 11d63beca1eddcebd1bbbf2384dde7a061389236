@@ -237,6 +237,30 @@
     },
     {
       "key": {
+        "uuid": "d9bad89f_eec59932",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationCacheConfig.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-09-22T10:03:15Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "03be7513_8accc151",
+      "range": {
+        "startLine": 30,
+        "startChar": 28,
+        "endLine": 30,
+        "endChar": 41
+      },
+      "revId": "11d63beca1eddcebd1bbbf2384dde7a061389236",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2bc842a5_a1b638fb",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationCacheConfig.java",
         "patchSetId": 8
@@ -257,6 +281,30 @@
       "revId": "11d63beca1eddcebd1bbbf2384dde7a061389236",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae7ce09b_26f31ef6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationCacheConfig.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-09-22T10:03:15Z",
+      "side": 1,
+      "message": "I changed it to a bug!",
+      "parentUuid": "2bc842a5_a1b638fb",
+      "range": {
+        "startLine": 109,
+        "startChar": 18,
+        "endLine": 109,
+        "endChar": 38
+      },
+      "revId": "11d63beca1eddcebd1bbbf2384dde7a061389236",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
