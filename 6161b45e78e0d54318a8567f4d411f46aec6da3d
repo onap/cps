@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "f91fde65_b91d02f8",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/aop/CpsLoggingAspectServiceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-09-22T15:30:58Z",
+      "side": 1,
+      "message": "the method is called an extra time in the if statement for the contains \"authPassword\"",
+      "parentUuid": "534290d5_f3c84d3e",
+      "range": {
+        "startLine": 55,
+        "startChar": 28,
+        "endLine": 55,
+        "endChar": 29
+      },
+      "revId": "6161b45e78e0d54318a8567f4d411f46aec6da3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "69bb4d01_3a0af339",
         "filename": "cps-service/src/test/groovy/org/onap/cps/aop/CpsLoggingAspectServiceSpec.groovy",
         "patchSetId": 2
