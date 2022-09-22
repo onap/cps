@@ -44,6 +44,15 @@ Features
 
 Bug Fixes
 ---------
+   - `CPS-1179 <https://jira.onap.org/browse/CPS-1179>`_ Node API - GET method returns invalid response when identifier contains '/'
+
+Known Limitations, Issues and Workarounds
+-----------------------------------------
+
+*System Limitations*
+
+Having '[' token in any index in any list will have a negative impact on the search functions leaf-conditions and text()-condition.
+Example of an xpath that would cause problems while using cps-path queries : /parent/child[@id='id[with]braces']
 
 ..      ========================
 ..      * * *   JAKARTA   * * *
