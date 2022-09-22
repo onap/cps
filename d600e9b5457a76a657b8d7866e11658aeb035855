@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cc12ea52_9f9aee99",
+        "filename": "cps-rest/docs/openapi/openapi.yml",
+        "patchSetId": 10
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-09-22T07:55:00Z",
+      "side": 1,
+      "message": "should this be different version now ?",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 18
+      },
+      "revId": "d600e9b5457a76a657b8d7866e11658aeb035855",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "473d82da_eca269f9",
+        "filename": "cps-rest/docs/openapi/openapi.yml",
+        "patchSetId": 10
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-09-22T07:55:00Z",
+      "side": 1,
+      "message": "formatting - extra space",
+      "range": {
+        "startLine": 82,
+        "startChar": 3,
+        "endLine": 82,
+        "endChar": 10
+      },
+      "revId": "d600e9b5457a76a657b8d7866e11658aeb035855",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
