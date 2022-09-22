@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "534290d5_f3c84d3e",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/aop/CpsLoggingAspectServiceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-09-22T15:28:14Z",
+      "side": 1,
+      "message": "why has this increased?",
+      "range": {
+        "startLine": 55,
+        "startChar": 28,
+        "endLine": 55,
+        "endChar": 29
+      },
+      "revId": "6161b45e78e0d54318a8567f4d411f46aec6da3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "69bb4d01_3a0af339",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/aop/CpsLoggingAspectServiceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-09-22T15:28:14Z",
+      "side": 1,
+      "message": "use assert keyword",
+      "range": {
+        "startLine": 77,
+        "startChar": 12,
+        "endLine": 77,
+        "endChar": 20
+      },
+      "revId": "6161b45e78e0d54318a8567f4d411f46aec6da3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
