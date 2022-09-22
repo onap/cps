@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "110de866_ff6d5a14",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-09-22T10:34:51Z",
+      "side": 1,
+      "message": "I would suggest like getAllDataspacesForGivenDName... but it is a bit long... what do the team think?",
+      "parentUuid": "e34cee3d_277fa037",
+      "range": {
+        "startLine": 182,
+        "startChar": 34,
+        "endLine": 182,
+        "endChar": 47
+      },
+      "revId": "49c73772813cac0cdef1dc0bc06b9140cf8d3070",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "96d35de3_d21f6850",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
         "patchSetId": 5
@@ -64,6 +88,29 @@
         "startChar": 0,
         "endLine": 223,
         "endChar": 85
+      },
+      "revId": "49c73772813cac0cdef1dc0bc06b9140cf8d3070",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a089338d_42d518d4",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-09-22T10:34:51Z",
+      "side": 1,
+      "message": "dataspaces",
+      "range": {
+        "startLine": 232,
+        "startChar": 17,
+        "endLine": 232,
+        "endChar": 26
       },
       "revId": "49c73772813cac0cdef1dc0bc06b9140cf8d3070",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
@@ -133,6 +180,46 @@
         "startChar": 29,
         "endLine": 54,
         "endChar": 30
+      },
+      "revId": "49c73772813cac0cdef1dc0bc06b9140cf8d3070",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "58980f12_8f103792",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsAdminPersistenceService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-09-22T10:34:51Z",
+      "side": 1,
+      "message": "Remove line break",
+      "revId": "49c73772813cac0cdef1dc0bc06b9140cf8d3070",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8c41b5c4_0852e48e",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/Dataspace.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-09-22T10:34:51Z",
+      "side": 1,
+      "message": "I am sure we have something that could be used?\nand do we need a full bean just to hold a string?",
+      "range": {
+        "startLine": 33,
+        "startChar": 13,
+        "endLine": 33,
+        "endChar": 22
       },
       "revId": "49c73772813cac0cdef1dc0bc06b9140cf8d3070",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
