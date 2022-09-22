@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d8129a50_c0eafd43",
+        "filename": "docs/admin-guide.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-09-22T10:33:28Z",
+      "side": 1,
+      "message": "above was a copy\u0026paster error Luke fixed.",
+      "parentUuid": "9b0da681_f6473e04",
+      "range": {
+        "startLine": 200,
+        "startChar": 15,
+        "endLine": 200,
+        "endChar": 20
+      },
+      "revId": "4a34fa546a3010fd04330194e6ea5296cad51587",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8b349a40_abe62e2d",
         "filename": "docs/release-notes.rst",
         "patchSetId": 5
@@ -45,6 +69,30 @@
       "revId": "4a34fa546a3010fd04330194e6ea5296cad51587",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0d56de17_e8a99c69",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-09-22T10:33:28Z",
+      "side": 1,
+      "message": "preliminary doc updates! will need to update finally when actually release at next milestone",
+      "parentUuid": "8b349a40_abe62e2d",
+      "range": {
+        "startLine": 35,
+        "startChar": 41,
+        "endLine": 35,
+        "endChar": 58
+      },
+      "revId": "4a34fa546a3010fd04330194e6ea5296cad51587",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
