@@ -2,6 +2,75 @@
   "comments": [
     {
       "key": {
+        "uuid": "e34cee3d_277fa037",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-09-22T07:48:38Z",
+      "side": 1,
+      "message": "suggestion  \u0027getAllDataspaces\u0027 instead",
+      "range": {
+        "startLine": 182,
+        "startChar": 34,
+        "endLine": 182,
+        "endChar": 47
+      },
+      "revId": "49c73772813cac0cdef1dc0bc06b9140cf8d3070",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "96d35de3_d21f6850",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-09-22T07:48:38Z",
+      "side": 1,
+      "message": "remove extra space",
+      "range": {
+        "startLine": 190,
+        "startChar": 48,
+        "endLine": 190,
+        "endChar": 49
+      },
+      "revId": "49c73772813cac0cdef1dc0bc06b9140cf8d3070",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7bf4664f_ecc39bc0",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-09-22T07:48:38Z",
+      "side": 1,
+      "message": "NB: i think this is better reversed (given: \u0027an endpoint\u0027 ... and \u0027service method returns...\u0027 -\u003e same as the method below",
+      "range": {
+        "startLine": 219,
+        "startChar": 0,
+        "endLine": 223,
+        "endChar": 85
+      },
+      "revId": "49c73772813cac0cdef1dc0bc06b9140cf8d3070",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "92daa188_46a6674e",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsAdminPersistenceServiceSpec.groovy",
         "patchSetId": 5
@@ -18,6 +87,52 @@
         "startChar": 46,
         "endLine": 91,
         "endChar": 52
+      },
+      "revId": "49c73772813cac0cdef1dc0bc06b9140cf8d3070",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4d56701_bfa0a44f",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsAdminService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-09-22T07:48:38Z",
+      "side": 1,
+      "message": "list of dataspaces",
+      "range": {
+        "startLine": 64,
+        "startChar": 15,
+        "endLine": 64,
+        "endChar": 28
+      },
+      "revId": "49c73772813cac0cdef1dc0bc06b9140cf8d3070",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e1b1bb4_0b4faa28",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsAdminPersistenceService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-09-22T07:48:38Z",
+      "side": 1,
+      "message": "extra space",
+      "range": {
+        "startLine": 54,
+        "startChar": 29,
+        "endLine": 54,
+        "endChar": 30
       },
       "revId": "49c73772813cac0cdef1dc0bc06b9140cf8d3070",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
