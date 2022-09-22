@@ -16,8 +16,8 @@ CPS Release Notes
 ..      * * *   KOHN   * * *
 ..      ====================
 
-Version: 3.1.0 (not released yet)
-=================================
+Version: 3.1.0
+==============
 
 Release Data
 ------------
@@ -32,19 +32,54 @@ Release Data
 | **Release designation**              | 3.1.0 Kohn                                             |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
-| **Release date**                     | N/A                                                    |
+| **Release date**                     | 2022 September 14                                      |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
 
 Features
 --------
-   - `CPS-322 <https://jira.onap.org/browse/CPS-322>`_  Implement additional validation for names and identifiers
-   - `CPS-1136 <https://jira.onap.org/browse/CPS-1136>`_  Get all cm handles by DMI plugin Identifier
-   - `CPS-1001 <https://jira.onap.org/browse/CPS-1001>`_  Add CPS-E-05 endpoint for Read data, NCMP-Operational Datastore
+   - `CPS-340 <https://jira.onap.org/browse/CPS-340>`_  Patch and update the root data node
+   - `CPS-575 <https://jira.onap.org/browse/CPS-575>`_  Write data for cmHandle using ncmp-datastores:passthrough-running (NCMP.)
+   - `CPS-731 <https://jira.onap.org/browse/CPS-731>`_  Query based on Public CM Properties
+   - `CPS-828 <https://jira.onap.org/browse/CPS-828>`_  Async: NCMP Rest impl. including Request ID generation
+   - `CPS-829 <https://jira.onap.org/browse/CPS-829>`_  Async: Internal message topic incl. basic producer & Consumer
+   - `CPS-830 <https://jira.onap.org/browse/CPS-830>`_  DMI-NCMP Asynchronously Publish Response Event to Client Topic
+   - `CPS-869 <https://jira.onap.org/browse/CPS-869>`_  Apply Standardized logging fields to adhere to ONAP Best practice REQ-1072
+   - `CPS-870 <https://jira.onap.org/browse/CPS-870>`_  Align CPS-Core output with SDN-C output (add module name)
+   - `CPS-875 <https://jira.onap.org/browse/CPS-875>`_  CM Handle State: Watchdog-process that syncs 'ADVISED' CM Handles
+   - `CPS-877 <https://jira.onap.org/browse/CPS-877>`_  CM Handle State: Exclude any CM-Handles from queries/operations that are not in state 'READY'
+   - `CPS-899 <https://jira.onap.org/browse/CPS-899>`_  Start and stop sessions on Java API
+   - `CPS-909 <https://jira.onap.org/browse/CPS-909>`_  Separate NCMP endpoint for ch/{cm-handle}/properties and ch/{cm-handle}/state
+   - `CPS-917 <https://jira.onap.org/browse/CPS-917>`_  Structured Errors response for passthrough use-cases in NCMP
+   - `CPS-953 <https://jira.onap.org/browse/CPS-953>`_  Update maven deploy plugin version
+   - `CPS-977 <https://jira.onap.org/browse/CPS-977>`_  Query CM Handles using CpsPath
+   - `CPS-1000 <https://jira.onap.org/browse/CPS-1000>`_  Create Data Synchronization watchdog
+   - `CPS-1016 <https://jira.onap.org/browse/CPS-1016>`_  Merge 2 'query' end points in NCMP
+   - `CPS-1034 <https://jira.onap.org/browse/CPS-1034>`_  Publish lifecycle events for ADVISED , READY and LOCKED state transition"
+   - `CPS-1064 <https://jira.onap.org/browse/CPS-1064>`_  Support retrieval of YANG module sources for CM handle on the NCMP interface
+   - `CPS-1099 <https://jira.onap.org/browse/CPS-1099>`_  Expose simplified 'external' lock reason enum state over REST interface
+   - `CPS-1101 <https://jira.onap.org/browse/CPS-1101>`_  Introducing the DELETING and DELETED Cmhandle State
+   - `CPS-1102 <https://jira.onap.org/browse/CPS-1102>`_  Register the Cmhandle Sends Advised State notification.
+   - `CPS-1133 <https://jira.onap.org/browse/CPS-1133>`_  Enable/Disable Data Sync for Cm Handle
+   - `CPS-1136 <https://jira.onap.org/browse/CPS-1136>`_  DMI Audit Support (get all CM Handles for a registered DMI)
+
 
 Bug Fixes
 ---------
-   - `CPS-1179 <https://jira.onap.org/browse/CPS-1179>`_ Node API - GET method returns invalid response when identifier contains '/'
+   - `CPS-896 <https://jira.onap.org/browse/CPS-896>`_  CM Handle Registration Process only partially completes when exception is thrown
+   - `CPS-957 <https://jira.onap.org/browse/CPS-957>`_  NCMP: fix getResourceDataForPassthroughOperational endpoint
+   - `CPS-1020 <https://jira.onap.org/browse/CPS-1020>`_  DuplicatedYangResourceException error at parallel cmHandle registration
+   - `CPS-1056 <https://jira.onap.org/browse/CPS-1056>`_  Wrong error response format in case of Dmi plugin error
+   - `CPS-1067 <https://jira.onap.org/browse/CPS-1067>`_  NCMP returns 500 error on searches endpoint when No DMi Handles registered
+   - `CPS-1085 <https://jira.onap.org/browse/CPS-1085>`_  Performance degradation on ncmp/v1/ch/searches endpoint
+   - `CPS-1088 <https://jira.onap.org/browse/CPS-1088>`_  Kafka consumer can not be turned off
+   - `CPS-1097 <https://jira.onap.org/browse/CPS-1097>`_  Unable to change state from LOCKED to ADVISED
+   - `CPS-1126 <https://jira.onap.org/browse/CPS-1126>`_  CmHandle creation performance degradation
+   - `CPS-1175 <https://jira.onap.org/browse/CPS-1175>`_  Incorrect response when empty body executed for cmhandle id-searches
+   - `CPS-1179 <https://jira.onap.org/browse/CPS-1179>`_  Node API - GET method returns invalid response when identifier contains '/'
+   - `CPS-1212 <https://jira.onap.org/browse/CPS-1212>`_  Additional Properties for CM Handles not included when send to DMI Plugin
+   - `CPS-1217 <https://jira.onap.org/browse/CPS-1217>`_  Searches endpoint gives back empty list however there are already available cmhandles
+   - `CPS-1218 <https://jira.onap.org/browse/CPS-1218>`_  NCMP logs are flooded with SyncUtils logs
 
 Known Limitations, Issues and Workarounds
 -----------------------------------------
@@ -53,6 +88,25 @@ Known Limitations, Issues and Workarounds
 
 Having '[' token in any index in any list will have a negative impact on the search functions leaf-conditions and text()-condition.
 Example of an xpath that would cause problems while using cps-path queries : /parent/child[@id='id[with]braces']
+
+*Known Vulnerabilities*
+
+None
+
+*Workarounds*
+
+None
+
+Security Notes
+--------------
+
+*Fixed Security Issues*
+
+   - `CPS-963 <https://jira.onap.org/browse/CPS-963>`_  Liquibase has got serious vulnerability, upgrade required
+
+*Known Security Issues*
+
+None
 
 ..      ========================
 ..      * * *   JAKARTA   * * *
