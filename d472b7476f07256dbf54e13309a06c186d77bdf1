@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "385375fe_c74ec634",
+        "filename": "cps-service/src/main/java/org/onap/cps/aop/CpsLoggingAspectService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-09-22T14:56:42Z",
+      "side": 1,
+      "message": "how unique is this? \nShould we have an array/collection of private field names instead where this is just the first entry?!\n(maybe this is coding for the future and I should not suggest it :-) )",
+      "range": {
+        "startLine": 42,
+        "startChar": 32,
+        "endLine": 42,
+        "endChar": 53
+      },
+      "revId": "d472b7476f07256dbf54e13309a06c186d77bdf1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
