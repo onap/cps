@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "8d754030_43bc5a59",
+        "filename": "checkstyle/src/main/resources/project-committers-config.csv",
+        "patchSetId": 10
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-09-22T10:30:18Z",
+      "side": 1,
+      "message": "NB: Perhaps this should have been done as part of another commit",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 34
+      },
+      "revId": "d600e9b5457a76a657b8d7866e11658aeb035855",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df9d1640_16ff93d8",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 10
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-09-22T10:30:18Z",
+      "side": 1,
+      "message": "I might not have been here for this discussion but this looks weird to me to add v2 here... should we not have /v2/ in the url for new(er) APIIs?",
+      "range": {
+        "startLine": 274,
+        "startChar": 11,
+        "endLine": 274,
+        "endChar": 13
+      },
+      "revId": "d600e9b5457a76a657b8d7866e11658aeb035855",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cc12ea52_9f9aee99",
         "filename": "cps-rest/docs/openapi/openapi.yml",
         "patchSetId": 10
@@ -13,6 +59,30 @@
       "writtenOn": "2022-09-22T07:55:00Z",
       "side": 1,
       "message": "should this be different version now ?",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 18
+      },
+      "revId": "d600e9b5457a76a657b8d7866e11658aeb035855",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b1384ad4_04b8c26c",
+        "filename": "cps-rest/docs/openapi/openapi.yml",
+        "patchSetId": 10
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-09-22T10:30:18Z",
+      "side": 1,
+      "message": "Ideally yes we should be updating versions but this is not strictly followed... perhaps we should start now",
+      "parentUuid": "cc12ea52_9f9aee99",
       "range": {
         "startLine": 26,
         "startChar": 0,
@@ -41,6 +111,29 @@
         "startChar": 3,
         "endLine": 82,
         "endChar": 10
+      },
+      "revId": "d600e9b5457a76a657b8d7866e11658aeb035855",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "79c0282a_7ea92ec8",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-09-22T10:30:18Z",
+      "side": 1,
+      "message": "Create an anchor",
+      "range": {
+        "startLine": 166,
+        "startChar": 7,
+        "endLine": 166,
+        "endChar": 27
       },
       "revId": "d600e9b5457a76a657b8d7866e11658aeb035855",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
