@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3d997989_c22b8426",
+        "filename": "cps-rest/docs/openapi/openapi.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-09-22T10:38:21Z",
+      "side": 1,
+      "message": "Add TechMahindra copyright modification\n\nThere is a script you can run to test copyright... @Luke perhaps this needs to be updated now for TechMahindra?",
+      "range": {
+        "startLine": 5,
+        "startChar": 5,
+        "endLine": 5,
+        "endChar": 6
+      },
+      "revId": "48b0954949e725486e5d23f161051c19e187e4ac",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35d97761_e916c87b",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-09-22T10:38:21Z",
+      "side": 1,
+      "message": "getAllScemaSetsForGivenDataspaceName",
+      "range": {
+        "startLine": 119,
+        "startChar": 34,
+        "endLine": 119,
+        "endChar": 47
+      },
+      "revId": "48b0954949e725486e5d23f161051c19e187e4ac",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d6ef0677_87518d3b",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-09-22T10:38:21Z",
+      "side": 1,
+      "message": "from what dataspace?",
+      "range": {
+        "startLine": 161,
+        "startChar": 27,
+        "endLine": 161,
+        "endChar": 53
+      },
+      "revId": "48b0954949e725486e5d23f161051c19e187e4ac",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cbdef41f_57a1a7cc",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsModuleService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-09-22T10:38:21Z",
+      "side": 1,
+      "message": "Interchanging read and get... yes they are synonyms but I think we should be consistent",
+      "range": {
+        "startLine": 71,
+        "startChar": 7,
+        "endLine": 71,
+        "endChar": 51
+      },
+      "revId": "48b0954949e725486e5d23f161051c19e187e4ac",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
