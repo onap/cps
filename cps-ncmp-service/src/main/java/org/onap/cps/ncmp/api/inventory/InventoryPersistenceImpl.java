@@ -76,18 +76,18 @@ public class InventoryPersistenceImpl implements InventoryPersistence {
     @Override
     public CompositeState getCmHandleState(final String cmHandleId) {
         final DataNode stateAsDataNode = cpsDataService.getDataNode(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-            String.format(CM_HANDLE_XPATH_TEMPLATE, cmHandleId) + "/state",
-            FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
+                String.format(CM_HANDLE_XPATH_TEMPLATE, cmHandleId) + "/state",
+                FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
         return new CompositeStateBuilder().fromDataNode(stateAsDataNode).build();
     }
 
     @Override
     public void saveCmHandleState(final String cmHandleId, final CompositeState compositeState) {
         final String cmHandleJsonData = String.format("{\"state\":%s}",
-            jsonObjectMapper.asJsonString(compositeState));
+                jsonObjectMapper.asJsonString(compositeState));
         cpsDataService.updateDataNodeAndDescendants(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-            String.format(CM_HANDLE_XPATH_TEMPLATE, cmHandleId),
-            cmHandleJsonData, OffsetDateTime.now());
+                String.format(CM_HANDLE_XPATH_TEMPLATE, cmHandleId),
+                cmHandleJsonData, OffsetDateTime.now());
     }
 
     @Override
@@ -153,8 +153,13 @@ public class InventoryPersistenceImpl implements InventoryPersistence {
 
     @Override
     public DataNode getDataNode(final String xpath) {
+        return getDataNode(xpath, INCLUDE_ALL_DESCENDANTS);
+    }
+
+    @Override
+    public DataNode getDataNode(final String xpath, final FetchDescendantsOption fetchDescendantsOption) {
         return cpsDataPersistenceService.getDataNode(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                xpath, INCLUDE_ALL_DESCENDANTS);
+                xpath, fetchDescendantsOption);
     }
 
     @Override
@@ -164,7 +169,7 @@ public class InventoryPersistenceImpl implements InventoryPersistence {
 
     @Override
     public Collection<Anchor> queryAnchors(final Collection<String> moduleNamesForQuery) {
-        return  cpsAdminPersistenceService.queryAnchors(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, moduleNamesForQuery);
+        return cpsAdminPersistenceService.queryAnchors(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, moduleNamesForQuery);
     }
 
     @Override
