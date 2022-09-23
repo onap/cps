@@ -44,7 +44,7 @@ class CpsQueryServiceImplSpec extends Specification {
         then: 'the persistence service is called once with the correct parameters'
             1 * mockCpsDataPersistenceService.queryDataNodes(dataspaceName, anchorName, cpsPath, fetchDescendantsOption)
         where: 'all fetch descendants options are supported'
-            fetchDescendantsOption << FetchDescendantsOption.values()
+            fetchDescendantsOption << [FetchDescendantsOption.OMIT_DESCENDANTS, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS]
     }
 
     def 'Query data nodes by cps path with invalid #scenario.'() {

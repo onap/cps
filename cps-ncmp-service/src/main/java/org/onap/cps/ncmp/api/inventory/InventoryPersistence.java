@@ -23,6 +23,7 @@ package org.onap.cps.ncmp.api.inventory;
 import java.util.Collection;
 import java.util.Map;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
+import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.Anchor;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.ModuleDefinition;
@@ -112,6 +113,15 @@ public interface InventoryPersistence {
      * @return data node
      */
     DataNode getDataNode(String xpath);
+
+    /**
+     * Get data node via xpath.
+     *
+     * @param xpath xpath
+     * @param fetchDescendantsOption fetch descendants option
+     * @return data node
+     */
+    DataNode getDataNode(String xpath, FetchDescendantsOption fetchDescendantsOption);
 
     /**
      * Get data node of given cm handle.

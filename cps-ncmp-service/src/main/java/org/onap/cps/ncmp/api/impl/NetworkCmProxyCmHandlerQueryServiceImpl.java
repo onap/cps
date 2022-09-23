@@ -43,6 +43,7 @@ import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
 import org.onap.cps.ncmp.api.inventory.CmHandleQueries;
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
+import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.spi.model.Anchor;
 import org.onap.cps.spi.model.CmHandleQueryServiceParameters;
@@ -217,7 +218,7 @@ public class NetworkCmProxyCmHandlerQueryServiceImpl implements NetworkCmProxyCm
     }
 
     private Set<String> getAllCmHandleIds() {
-        return inventoryPersistence.getDataNode("/dmi-registry")
+        return inventoryPersistence.getDataNode("/dmi-registry", new FetchDescendantsOption(1))
             .getChildDataNodes().stream().map(dataNode -> dataNode.getLeaves().get("id").toString())
             .collect(Collectors.toSet());
     }
