@@ -22,8 +22,6 @@
 
 package org.onap.cps.spi.impl;
 
-import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
-
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ImmutableSet.Builder;
 import java.util.ArrayList;
@@ -102,7 +100,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
 
     @Override
     public void addMultipleLists(final String dataspaceName, final String anchorName, final String parentNodeXpath,
-            final Collection<Collection<DataNode>> newLists) {
+                                 final Collection<Collection<DataNode>> newLists) {
         final Collection<String> failedXpaths = new HashSet<>();
         newLists.forEach(newList -> {
             try {
@@ -119,7 +117,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     }
 
     private void addNewChildDataNode(final String dataspaceName, final String anchorName,
-            final String parentNodeXpath, final DataNode newChild) {
+                                     final String parentNodeXpath, final DataNode newChild) {
         final FragmentEntity parentFragmentEntity = getFragmentByXpath(dataspaceName, anchorName, parentNodeXpath);
         final FragmentEntity newChildAsFragmentEntity =
                 convertToFragmentWithAllDescendants(parentFragmentEntity.getDataspace(),
@@ -134,7 +132,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     }
 
     private void addChildrenDataNodes(final String dataspaceName, final String anchorName, final String parentNodeXpath,
-            final Collection<DataNode> newChildren) {
+                                      final Collection<DataNode> newChildren) {
         final FragmentEntity parentFragmentEntity = getFragmentByXpath(dataspaceName, anchorName, parentNodeXpath);
         final List<FragmentEntity> fragmentEntities = new ArrayList<>(newChildren.size());
         try {
@@ -154,7 +152,8 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     }
 
     private void retrySavingEachChildIndividually(final String dataspaceName, final String anchorName,
-            final String parentNodeXpath, final Collection<DataNode> newChildren) {
+                                                  final String parentNodeXpath,
+                                                  final Collection<DataNode> newChildren) {
         final Collection<String> failedXpaths = new HashSet<>();
         for (final DataNode newChild : newChildren) {
             try {
@@ -191,7 +190,8 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
      * @return a Fragment built from current DataNode
      */
     private FragmentEntity convertToFragmentWithAllDescendants(final DataspaceEntity dataspaceEntity,
-                             final AnchorEntity anchorEntity, final DataNode dataNodeToBeConverted) {
+                                                               final AnchorEntity anchorEntity,
+                                                               final DataNode dataNodeToBeConverted) {
         final FragmentEntity parentFragment = toFragmentEntity(dataspaceEntity, anchorEntity, dataNodeToBeConverted);
         final Builder<FragmentEntity> childFragmentsImmutableSetBuilder = ImmutableSet.builder();
         for (final DataNode childDataNode : dataNodeToBeConverted.getChildDataNodes()) {
@@ -217,16 +217,29 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     @Override
     public DataNode getDataNode(final String dataspaceName, final String anchorName, final String xpath,
                                 final FetchDescendantsOption fetchDescendantsOption) {
+        System.out.println(
+                "perf-characteristics," + this.getClass().getSimpleName() + ",start," + System.currentTimeMillis());
         final FragmentEntity fragmentEntity = getFragmentByXpath(dataspaceName, anchorName, xpath);
-        return toDataNode(fragmentEntity, fetchDescendantsOption);
+        final DataNode result = toDataNode(fragmentEntity, fetchDescendantsOption);
+        System.out.println(
+                "perf-characteristics," + this.getClass().getSimpleName() + ",end," + System.currentTimeMillis());
+        return result;
     }
 
     private FragmentEntity getFragmentByXpath(final String dataspaceName, final String anchorName,
                                               final String xpath) {
+        System.out.println(
+                "perf-characteristics," + this.getClass().getSimpleName() + "/getFragmentByXpath"
+                        + ",start," + System.currentTimeMillis());
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         final AnchorEntity anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
         if (isRootXpath(xpath)) {
-            return fragmentRepository.findFirstRootByDataspaceAndAnchor(dataspaceEntity, anchorEntity);
+            final FragmentEntity result = fragmentRepository.findFirstRootByDataspaceAndAnchor(
+                    dataspaceEntity, anchorEntity);
+            System.out.println(
+                    "perf-characteristics," + this.getClass().getSimpleName() + "/getFragmentByXpath"
+                            + ",end," + System.currentTimeMillis());
+            return result;
         } else {
             final String normalizedXpath;
             try {
@@ -235,7 +248,12 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
                 throw new CpsPathException(e.getMessage());
             }
 
-            return fragmentRepository.getByDataspaceAndAnchorAndXpath(dataspaceEntity, anchorEntity, normalizedXpath);
+            final FragmentEntity result = fragmentRepository.getByDataspaceAndAnchorAndXpath(
+                    dataspaceEntity, anchorEntity, normalizedXpath);
+            System.out.println(
+                    "perf-characteristics," + this.getClass().getSimpleName() + "/getFragmentByXpath"
+                            + ",end," + System.currentTimeMillis());
+            return result;
         }
     }
 
@@ -300,11 +318,12 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         if (fragmentEntity.getAttributes() != null) {
             leaves = jsonObjectMapper.convertJsonString(fragmentEntity.getAttributes(), Map.class);
         }
-        return new DataNodeBuilder()
+        final DataNode result = new DataNodeBuilder()
                 .withModuleNamePrefix(getFirstModuleName(fragmentEntity))
                 .withXpath(fragmentEntity.getXpath())
                 .withLeaves(leaves)
                 .withChildDataNodes(childDataNodes).build();
+        return result;
     }
 
     private String getFirstModuleName(final FragmentEntity fragmentEntity) {
@@ -319,10 +338,10 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
 
     private List<DataNode> getChildDataNodes(final FragmentEntity fragmentEntity,
                                              final FetchDescendantsOption fetchDescendantsOption) {
-        if (fetchDescendantsOption == INCLUDE_ALL_DESCENDANTS) {
+        if (fetchDescendantsOption.hasNext()) { //TODO here
             return fragmentEntity.getChildFragments().stream()
-                    .map(childFragmentEntity -> toDataNode(childFragmentEntity, fetchDescendantsOption))
-                    .collect(Collectors.toUnmodifiableList());
+                    .map(childFragmentEntity -> toDataNode(childFragmentEntity, fetchDescendantsOption.next()))
+                    .collect(Collectors.toList());
         }
         return Collections.emptyList();
     }
@@ -355,10 +374,11 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
                                               final List<DataNode> dataNodes) {
 
         final Map<DataNode, FragmentEntity> dataNodeFragmentEntityMap = dataNodes.stream()
-            .collect(Collectors.toMap(
-                dataNode -> dataNode, dataNode -> getFragmentByXpath(dataspaceName, anchorName, dataNode.getXpath())));
+                .collect(Collectors.toMap(
+                        dataNode -> dataNode,
+                        dataNode -> getFragmentByXpath(dataspaceName, anchorName, dataNode.getXpath())));
         dataNodeFragmentEntityMap.forEach(
-            (dataNode, fragmentEntity) -> updateFragmentEntityAndDescendantsWithDataNode(fragmentEntity, dataNode));
+                (dataNode, fragmentEntity) -> updateFragmentEntityAndDescendantsWithDataNode(fragmentEntity, dataNode));
         try {
             fragmentRepository.saveAll(dataNodeFragmentEntityMap.values());
         } catch (final StaleStateException staleStateException) {
@@ -367,7 +387,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     }
 
     private void retryUpdateDataNodesIndividually(final String dataspaceName, final String anchorName,
-            final Collection<FragmentEntity> fragmentEntities) {
+                                                  final Collection<FragmentEntity> fragmentEntities) {
         final Collection<String> failedXpaths = new HashSet<>();
 
         fragmentEntities.forEach(dataNodeFragment -> {

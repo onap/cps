@@ -224,9 +224,13 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     @Override
     public ResponseEntity<List<String>> searchCmHandleIds(
             final CmHandleQueryParameters cmHandleQueryParameters) {
+        System.out.println(
+                "perf-characteristics," + this.getClass().getSimpleName() + ",start," + System.currentTimeMillis());
         final CmHandleQueryApiParameters cmHandleQueryApiParameters =
                 jsonObjectMapper.convertToValueType(cmHandleQueryParameters, CmHandleQueryApiParameters.class);
         final Set<String> cmHandleIds = networkCmProxyDataService.executeCmHandleIdSearch(cmHandleQueryApiParameters);
+        System.out.println(
+                "perf-characteristics," + this.getClass().getSimpleName() + ",end," + System.currentTimeMillis());
         return ResponseEntity.ok(List.copyOf(cmHandleIds));
     }
 

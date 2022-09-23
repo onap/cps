@@ -194,12 +194,17 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
      */
     @Override
     public Set<String> executeCmHandleIdSearch(final CmHandleQueryApiParameters cmHandleQueryApiParameters) {
+        System.out.println(
+                "perf-characteristics," + this.getClass().getSimpleName() + ",start," + System.currentTimeMillis());
         final CmHandleQueryServiceParameters cmHandleQueryServiceParameters = jsonObjectMapper.convertToValueType(
                 cmHandleQueryApiParameters, CmHandleQueryServiceParameters.class);
 
         validateCmHandleQueryParameters(cmHandleQueryServiceParameters);
 
-        return networkCmProxyCmHandlerQueryService.queryCmHandleIds(cmHandleQueryServiceParameters);
+        final Set<String> result = networkCmProxyCmHandlerQueryService.queryCmHandleIds(cmHandleQueryServiceParameters);
+        System.out.println(
+                "perf-characteristics," + this.getClass().getSimpleName() + ",end," + System.currentTimeMillis());
+        return result;
     }
 
     /**
