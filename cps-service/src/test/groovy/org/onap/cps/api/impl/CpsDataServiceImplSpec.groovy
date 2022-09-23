@@ -188,7 +188,7 @@ class CpsDataServiceImplSpec extends Specification {
         expect: 'service returns same data if uses same parameters'
             objectUnderTest.getDataNode(dataspaceName, anchorName, xpath, fetchDescendantsOption) == dataNode
         where: 'all fetch options are supported'
-            fetchDescendantsOption << FetchDescendantsOption.values()
+            fetchDescendantsOption << [FetchDescendantsOption.OMIT_DESCENDANTS, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS]
     }
 
     def 'Get data node with option invalid #scenario.'() {
