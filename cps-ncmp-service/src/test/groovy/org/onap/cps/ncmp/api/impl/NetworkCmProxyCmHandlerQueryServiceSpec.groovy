@@ -153,7 +153,9 @@ class NetworkCmProxyCmHandlerQueryServiceSpec extends Specification {
     def 'Retrieve cm handles when the query is empty.'() {
         given: 'We use an empty query'
             def cmHandleQueryParameters = new CmHandleQueryServiceParameters()
-        and: 'the inventory persistence returns the dmi registry datanode'
+        and: 'the inventory persistence returns the dmi registry datanode with just ids'
+            inventoryPersistence.getDataNode("/dmi-registry", FetchDescendantsOption.FETCH_DIRECT_CHILDREN_ONLY) >> dmiRegistry
+        and: 'the inventory persistence returns the dmi registry datanode with data'
             inventoryPersistence.getDataNode("/dmi-registry") >> dmiRegistry
         when: 'the query is executed for both cm handle ids and details'
             def returnedCmHandlesJustIds = objectUnderTest.queryCmHandleIds(cmHandleQueryParameters)

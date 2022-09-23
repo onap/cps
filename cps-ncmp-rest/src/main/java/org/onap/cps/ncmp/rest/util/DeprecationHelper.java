@@ -25,6 +25,7 @@ import java.util.Collections;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.ncmp.api.models.CmHandleQueryApiParameters;
 import org.onap.cps.ncmp.api.models.ConditionApiProperties;
+import org.onap.cps.ncmp.rest.exceptions.OldConditionsException;
 import org.onap.cps.ncmp.rest.model.CmHandleQueryParameters;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.stereotype.Component;
@@ -71,5 +72,19 @@ public class DeprecationHelper {
         }
 
         return cmHandleQueryApiParameters;
+    }
+
+    /**
+     * Check cmHandle query parameters and reject when old conditions exists.
+     *
+     * @deprecated this method will be removed in Release 12 (No Name know yet)
+     *
+     * @param cmHandleQueryParameters the original input parameter
+     */
+    @Deprecated
+    public void validateCmHandleIdSearchInput(final CmHandleQueryParameters cmHandleQueryParameters) {
+        if (cmHandleQueryParameters.getConditions() != null) {
+            throw new OldConditionsException();
+        }
     }
 }

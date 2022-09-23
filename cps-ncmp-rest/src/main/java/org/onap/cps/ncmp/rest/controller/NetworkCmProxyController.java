@@ -222,8 +222,10 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
      * @return collection of cm handle ids
      */
     @Override
+    @SuppressWarnings("deprecation") // validateCmHandleIdSearchInput method will be removed in Release 12
     public ResponseEntity<List<String>> searchCmHandleIds(
             final CmHandleQueryParameters cmHandleQueryParameters) {
+        deprecationHelper.validateCmHandleIdSearchInput(cmHandleQueryParameters);
         final CmHandleQueryApiParameters cmHandleQueryApiParameters =
                 jsonObjectMapper.convertToValueType(cmHandleQueryParameters, CmHandleQueryApiParameters.class);
         final Set<String> cmHandleIds = networkCmProxyDataService.executeCmHandleIdSearch(cmHandleQueryApiParameters);

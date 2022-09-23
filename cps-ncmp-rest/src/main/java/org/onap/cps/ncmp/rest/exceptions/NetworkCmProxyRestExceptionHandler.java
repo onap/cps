@@ -76,7 +76,7 @@ public class NetworkCmProxyRestExceptionHandler {
         return wrapDmiErrorResponse(HttpStatus.BAD_GATEWAY, httpClientRequestException);
     }
 
-    @ExceptionHandler({DmiRequestException.class, DataValidationException.class,
+    @ExceptionHandler({DmiRequestException.class, DataValidationException.class, OldConditionsException.class,
             HttpMessageNotReadableException.class, InvalidTopicException.class, InvalidDatastoreException.class})
     public static ResponseEntity<Object> handleDmiRequestExceptions(final Exception exception) {
         return buildErrorResponse(HttpStatus.BAD_REQUEST, exception);
