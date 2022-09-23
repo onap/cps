@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Pantheon.tech
+ *  Copyright (C) 2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -19,7 +20,23 @@
 
 package org.onap.cps.spi;
 
-public enum FetchDescendantsOption {
-    OMIT_DESCENDANTS,
-    INCLUDE_ALL_DESCENDANTS
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
+public class FetchDescendantsOption {
+
+    public static final FetchDescendantsOption FETCH_DIRECT_CHILDREN_ONLY = new FetchDescendantsOption(1);
+    public static final FetchDescendantsOption OMIT_DESCENDANTS = new FetchDescendantsOption(0);
+    public static final FetchDescendantsOption INCLUDE_ALL_DESCENDANTS = new FetchDescendantsOption(-1);
+
+    private final int depth;
+
+    public boolean hasNext() {
+        return depth > 0 || this.depth == INCLUDE_ALL_DESCENDANTS.depth;
+    }
+
+    public FetchDescendantsOption next() {
+        return this.depth == INCLUDE_ALL_DESCENDANTS.depth
+                ? INCLUDE_ALL_DESCENDANTS : new FetchDescendantsOption(depth - 1);
+    }
 }

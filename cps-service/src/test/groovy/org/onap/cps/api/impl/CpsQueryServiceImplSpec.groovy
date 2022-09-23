@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Nordix Foundation
+ *  Copyright (C) 2021 - 2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -44,7 +44,7 @@ class CpsQueryServiceImplSpec extends Specification {
         then: 'the persistence service is called once with the correct parameters'
             1 * mockCpsDataPersistenceService.queryDataNodes(dataspaceName, anchorName, cpsPath, fetchDescendantsOption)
         where: 'all fetch descendants options are supported'
-            fetchDescendantsOption << FetchDescendantsOption.values()
+            fetchDescendantsOption << [FetchDescendantsOption.OMIT_DESCENDANTS, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS]
     }
 
     def 'Query data nodes by cps path with invalid #scenario.'() {
