@@ -22,6 +22,30 @@
       "revId": "99edf53098e5f89309f37b47b9bcb396b8edc20d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e5341883_fa9c7c8e",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/aop/CpsLoggingAspectServiceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-09-26T08:32:37Z",
+      "side": 1,
+      "message": "It will hit a null pointer exception at the if statement without it",
+      "parentUuid": "6d29614b_bb17a48d",
+      "range": {
+        "startLine": 46,
+        "startChar": 12,
+        "endLine": 46,
+        "endChar": 63
+      },
+      "revId": "99edf53098e5f89309f37b47b9bcb396b8edc20d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
