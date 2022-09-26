@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bb668d47_b1a71587",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-09-26T13:28:48Z",
+      "side": 1,
+      "message": "I think this needs to be under 3.1.1 in the release notes.\nCorrect me if I am wrong.",
+      "range": {
+        "startLine": 106,
+        "startChar": 6,
+        "endLine": 106,
+        "endChar": 82
+      },
+      "revId": "12e912b9e22636651ac74bfc83c881bf3fb4b9b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
