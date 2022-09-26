@@ -46,6 +46,30 @@
       "revId": "99edf53098e5f89309f37b47b9bcb396b8edc20d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d6702c57_dffb61fc",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/aop/CpsLoggingAspectServiceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-09-26T08:56:41Z",
+      "side": 1,
+      "message": "OK, you probably need to return something but returning CPS-PASSWORD for this test is misleading also you havn\u0027t updated the label to (possibly split) to explain this additional mock. I\u0027ll check out teh patch myself now to se exactly what is going on",
+      "parentUuid": "e5341883_fa9c7c8e",
+      "range": {
+        "startLine": 46,
+        "startChar": 12,
+        "endLine": 46,
+        "endChar": 63
+      },
+      "revId": "99edf53098e5f89309f37b47b9bcb396b8edc20d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
