@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "783a5bc3_37e29b2f",
+        "filename": "cps-rest/docs/openapi/cpsAdmin.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2022-09-26T06:24:05Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "4b75e229_3583330d",
+      "revId": "61c5b06dcaa4e8902b946fb86e773b75ddb10a8f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c404f300_e9ca80a5",
         "filename": "cps-rest/docs/openapi/openapi.yml",
         "patchSetId": 5
@@ -33,6 +51,24 @@
       "revId": "61c5b06dcaa4e8902b946fb86e773b75ddb10a8f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5d8aac47_a25be0cc",
+        "filename": "cps-rest/docs/openapi/openapi.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2022-09-26T06:24:05Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "c404f300_e9ca80a5",
+      "revId": "61c5b06dcaa4e8902b946fb86e773b75ddb10a8f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "59222d47_8120adbe",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2022-09-26T06:24:05Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "c7dcf8d2_2f067f34",
+      "revId": "61c5b06dcaa4e8902b946fb86e773b75ddb10a8f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d56c67a6_995d12c3",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
         "patchSetId": 5
@@ -67,6 +121,24 @@
       "revId": "61c5b06dcaa4e8902b946fb86e773b75ddb10a8f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7f2d947f_94a1e5a1",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2022-09-26T06:24:05Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "d56c67a6_995d12c3",
+      "revId": "61c5b06dcaa4e8902b946fb86e773b75ddb10a8f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "316fed1f_640e84ec",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsAdminServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2022-09-26T06:24:05Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "2a5e0212_d9bb9fd1",
+      "revId": "61c5b06dcaa4e8902b946fb86e773b75ddb10a8f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "49cdb336_d249b9d4",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsAdminPersistenceService.java",
         "patchSetId": 5
@@ -101,6 +191,24 @@
       "revId": "61c5b06dcaa4e8902b946fb86e773b75ddb10a8f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "22c37869_a96d75c6",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsAdminPersistenceService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2022-09-26T06:24:05Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "49cdb336_d249b9d4",
+      "revId": "61c5b06dcaa4e8902b946fb86e773b75ddb10a8f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
