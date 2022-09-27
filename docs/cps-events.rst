@@ -11,6 +11,64 @@ CPS Events
 CPS-NCMP
 ********
 
+Async events are triggered when a valid topic has been detected in a passthrough operation.
+
+:download:`NCMP request response event schema <schemas/ncmp-async-request-response-event-schema-v1.json>`
+
+Event header
+^^^^^^^^^^^^^
+
+.. code-block:: json
+
+    {
+        "eventId"               :   "0002",
+        "eventCorrelationId"    :   "cps-001",
+        "eventTime"             :   "2021-11-16T16:42:25-04:00",
+        "eventTarget"           :   "org.onap.ncmp",
+        "eventType"             :   "",
+        "eventSchema"           :   "",
+        "eventSchemaVersion"    :   "1.0",
+        "event"                 :   { ... },
+        "forwarded-Event"       :   { ... }
+    }
+
+Event Payload
+^^^^^^^^^^^^^
+
+.. code-block:: json
+
+    {
+        "Forwarded-Event": {
+            "eventId"                   :   "",
+            "eventCorrelationId"        :   "",
+            "eventTime"                 :   "",
+            "eventTarget"               :   "",
+            "eventType"                 :   "",
+            "eventSchema"               :   "",
+            "eventSchemaVersion"        :   "",
+            "eventSource"               :   "",
+            "response-data-schema"      :   "",
+            "response-status"           :   "",
+            "response-code"             :   "",
+            "forwardedEventData"        :   ""
+        },
+        "Event": {
+             "eventId"                  :   "",
+             "eventCorrelationId"       :   "",
+             "eventTarget"              :   "",
+             "eventTime"                :   "",
+             "eventType"                :   "",
+             "eventSchema"              :   "",
+             "eventSource"              :   "",
+             "response-data-schema"     :   "",
+             "response-status"          :   "",
+             "response-code"            :   "",
+             "event-data"               :   ""
+          }
+        }
+      }
+    }
+
 Lifecycle Management (LCM) Event
 ================================
 
