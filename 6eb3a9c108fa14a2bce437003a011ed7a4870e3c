@@ -1,0 +1,182 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b1d4da87_73e1b113",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-09-27T10:30:31Z",
+      "side": 1,
+      "message": "NB:\nI would add: \nthe license scan committers config file has been updated\nas it is not directly related to this commit",
+      "revId": "6eb3a9c108fa14a2bce437003a011ed7a4870e3c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8d88db19_ceca938b",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-09-27T10:30:31Z",
+      "side": 1,
+      "message": "NB: we have started using assert in CPS recently as is better Groovy convention so would change line to\nassert response.status \u003d\u003d HttpStatus.CREATED.value()",
+      "range": {
+        "startLine": 362,
+        "startChar": 0,
+        "endLine": 362,
+        "endChar": 57
+      },
+      "revId": "6eb3a9c108fa14a2bce437003a011ed7a4870e3c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9ebcf023_ccd76d98",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-09-27T10:30:31Z",
+      "side": 1,
+      "message": "Sorry on rereview I think we need to add another test to these:\nassert response.content.isEmpty()\nSo that we know that there is no body returned, otherwise it is functionally same as original tests",
+      "range": {
+        "startLine": 363,
+        "startChar": 1,
+        "endLine": 363,
+        "endChar": 5
+      },
+      "revId": "6eb3a9c108fa14a2bce437003a011ed7a4870e3c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2c6c76a2_18445c8f",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-09-27T10:30:31Z",
+      "side": 1,
+      "message": "NB: ...V2 API. like the others",
+      "range": {
+        "startLine": 365,
+        "startChar": 50,
+        "endLine": 365,
+        "endChar": 51
+      },
+      "revId": "6eb3a9c108fa14a2bce437003a011ed7a4870e3c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "41b530e9_207928ea",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-09-27T10:30:31Z",
+      "side": 1,
+      "message": "NB: assert response.status \u003d\u003d HttpStatus.CREATED.value()",
+      "range": {
+        "startLine": 383,
+        "startChar": 0,
+        "endLine": 383,
+        "endChar": 57
+      },
+      "revId": "6eb3a9c108fa14a2bce437003a011ed7a4870e3c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3674a94b_51cee5e5",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-09-27T10:30:31Z",
+      "side": 1,
+      "message": "assert response.content.isEmpty()",
+      "range": {
+        "startLine": 384,
+        "startChar": 0,
+        "endLine": 384,
+        "endChar": 5
+      },
+      "revId": "6eb3a9c108fa14a2bce437003a011ed7a4870e3c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce345a30_450beb68",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-09-27T10:30:31Z",
+      "side": 1,
+      "message": "NB: assert response.status \u003d\u003d HttpStatus.CREATED.value()",
+      "range": {
+        "startLine": 401,
+        "startChar": 0,
+        "endLine": 401,
+        "endChar": 57
+      },
+      "revId": "6eb3a9c108fa14a2bce437003a011ed7a4870e3c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f75adada_f3444297",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 402,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-09-27T10:30:31Z",
+      "side": 1,
+      "message": "assert response.content.isEmpty()",
+      "range": {
+        "startLine": 402,
+        "startChar": 0,
+        "endLine": 402,
+        "endChar": 5
+      },
+      "revId": "6eb3a9c108fa14a2bce437003a011ed7a4870e3c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
