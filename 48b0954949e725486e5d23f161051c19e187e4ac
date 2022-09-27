@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c302d78b_373fe9a6",
+        "filename": "cps-rest/docs/openapi/openapi.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-09-27T10:16:15Z",
+      "side": 1,
+      "message": "Yeah it\u0027s been updated in another commit, I will explain how it works in next sub team daily",
+      "parentUuid": "3d997989_c22b8426",
+      "range": {
+        "startLine": 5,
+        "startChar": 5,
+        "endLine": 5,
+        "endChar": 6
+      },
+      "revId": "48b0954949e725486e5d23f161051c19e187e4ac",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "35d97761_e916c87b",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
         "patchSetId": 6
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "2cfbb583_ec5a713b",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-09-27T10:16:15Z",
+      "side": 1,
+      "message": "I agree but I think the name given matches the methods throughout the class so I think its ok to leave as is",
+      "parentUuid": "35d97761_e916c87b",
+      "range": {
+        "startLine": 119,
+        "startChar": 34,
+        "endLine": 119,
+        "endChar": 47
+      },
+      "revId": "48b0954949e725486e5d23f161051c19e187e4ac",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d6ef0677_87518d3b",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
         "patchSetId": 6
@@ -59,6 +107,30 @@
       "writtenOn": "2022-09-22T10:38:21Z",
       "side": 1,
       "message": "from what dataspace?",
+      "range": {
+        "startLine": 161,
+        "startChar": 27,
+        "endLine": 161,
+        "endChar": 53
+      },
+      "revId": "48b0954949e725486e5d23f161051c19e187e4ac",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b40e5aa_7b6fd19d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-09-27T10:16:15Z",
+      "side": 1,
+      "message": "suggestion: getSchemaSetsByDataspaceName\nSeems consistent with most get operations in CPS",
+      "parentUuid": "d6ef0677_87518d3b",
       "range": {
         "startLine": 161,
         "startChar": 27,
