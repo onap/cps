@@ -11,6 +11,45 @@ CPS Events
 CPS-NCMP
 ********
 
+Async events are triggered when a valid topic has been detected in a passthrough operation.
+
+:download:`NCMP request response event schema <schemas/ncmp-async-request-response-event-schema-v1.json>`
+
+Event header
+^^^^^^^^^^^^^
+
+.. code-block:: json
+
+    {
+        "eventId"               : "001",
+        "eventCorrelationId"    : "cps-001",
+        "eventTime"             : "2022-09-28T12:24:21.003+0000",
+        "eventTarget"           : "test-topic",
+        "eventType"             : "org.onap.cps.ncmp.event.model.DmiAsyncRequestResponseEvent",
+        "eventSchema"           : "urn:cps:org.onap.cps.ncmp.event.model.DmiAsyncRequestResponseEvent:v1",
+        "forwarded-Event"       : { ... }
+    }
+
+Forwarded-Event Payload
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: json
+
+    "Forwarded-Event": {
+        "eventId"               : "002",
+        "eventCorrelationId"    : "cps-001",
+        "eventTime"             : "2022-09-28T12:24:18.340+0000",
+        "eventTarget"           : "test-topic",
+        "eventType"             : "org.onap.cps.ncmp.event.model.DmiAsyncRequestResponseEvent",
+        "eventSchema"           : "urn:cps:org.onap.cps.ncmp.event.model.DmiAsyncRequestResponseEvent:v1",
+        "eventSource"           : "org.onap.cps.ncmp.dmi",
+        "response-data-schema"  : "urn:cps:org.onap.cps.ncmp.event.model.DmiAsyncRequestResponseEvent:v1",
+        "response-status"       : "OK",
+        "response-code"         : "200",
+        "response-data"         : { ... }
+    }
+
+
 Lifecycle Management (LCM) Event
 ================================
 
