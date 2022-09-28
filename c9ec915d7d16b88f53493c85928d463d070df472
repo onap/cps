@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8f9616ee_6caf0e1b",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/FetchDescendantsOption.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-09-28T10:44:26Z",
+      "side": 0,
+      "message": "Add Nordix copyright mofidication",
+      "revId": "c9ec915d7d16b88f53493c85928d463d070df472",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
