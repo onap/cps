@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "f77d2160_cf611acf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-09-28T11:38:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "04e341c2_2b8c65a3",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 40
+      },
+      "revId": "c2ebf05949abba0476f6bd7f68241ea18ce06b77",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "138d7157_5dbb0148",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceImpl.java",
         "patchSetId": 2
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "b0a323b5_e77a9ad8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-09-28T11:38:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "138d7157_5dbb0148",
+      "range": {
+        "startLine": 221,
+        "startChar": 65,
+        "endLine": 221,
+        "endChar": 94
+      },
+      "revId": "c2ebf05949abba0476f6bd7f68241ea18ce06b77",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bfff2c67_25f924a2",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/FetchDescendantsOption.java",
         "patchSetId": 2
@@ -68,6 +116,30 @@
       "revId": "c2ebf05949abba0476f6bd7f68241ea18ce06b77",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07e39092_fc76dc9c",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/FetchDescendantsOption.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-09-28T11:38:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bfff2c67_25f924a2",
+      "range": {
+        "startLine": 25,
+        "startChar": 13,
+        "endLine": 25,
+        "endChar": 36
+      },
+      "revId": "c2ebf05949abba0476f6bd7f68241ea18ce06b77",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
