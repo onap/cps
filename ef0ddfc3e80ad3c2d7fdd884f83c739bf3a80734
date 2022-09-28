@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0234f0ea_d13ac987",
+        "filename": "cps-application/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-09-28T12:56:53Z",
+      "side": 1,
+      "message": "2021 - 2022",
+      "range": {
+        "startLine": 6,
+        "startChar": 30,
+        "endLine": 6,
+        "endChar": 35
+      },
+      "revId": "ef0ddfc3e80ad3c2d7fdd884f83c739bf3a80734",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "af721492_815a996d",
+        "filename": "cps-events/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-09-28T12:56:53Z",
+      "side": 1,
+      "message": "Add Nordix copyright modification",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 2
+      },
+      "revId": "ef0ddfc3e80ad3c2d7fdd884f83c739bf3a80734",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "90b181d8_a0d37814",
+        "filename": "cps-ncmp-rest-stub/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-09-28T12:56:53Z",
+      "side": 1,
+      "message": "Add Nordix copyright modification",
+      "range": {
+        "startLine": 5,
+        "startChar": 2,
+        "endLine": 5,
+        "endChar": 3
+      },
+      "revId": "ef0ddfc3e80ad3c2d7fdd884f83c739bf3a80734",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "12ebca60_e02d02ef",
+        "filename": "cps-path-parser/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-09-28T12:56:53Z",
+      "side": 1,
+      "message": "Add Nordix copyright modification",
+      "range": {
+        "startLine": 5,
+        "startChar": 2,
+        "endLine": 5,
+        "endChar": 3
+      },
+      "revId": "ef0ddfc3e80ad3c2d7fdd884f83c739bf3a80734",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "de7354ff_3fd6d2b9",
+        "filename": "spotbugs/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-09-28T12:56:53Z",
+      "side": 1,
+      "message": "Add Nordix copyright modification",
+      "range": {
+        "startLine": 5,
+        "startChar": 2,
+        "endLine": 5,
+        "endChar": 3
+      },
+      "revId": "ef0ddfc3e80ad3c2d7fdd884f83c739bf3a80734",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
