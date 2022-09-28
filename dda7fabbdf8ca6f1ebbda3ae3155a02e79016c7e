@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ecf15c4_9d312a1c",
+        "filename": "releases/3.1.1-container.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-09-28T09:44:29Z",
+      "side": 1,
+      "message": "do we include this normally?",
+      "range": {
+        "startLine": 8,
+        "startChar": 20,
+        "endLine": 8,
+        "endChar": 36
+      },
+      "revId": "dda7fabbdf8ca6f1ebbda3ae3155a02e79016c7e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
