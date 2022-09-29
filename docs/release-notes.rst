@@ -38,7 +38,7 @@ Release Data
 
 Bug Fixes
 ---------
-   - None
+   - `CPS-1265 <https://jira.onap.org/browse/CPS-1265>`_  Revision field should not be required (NotNull) on cps-ri YangResourceEntity
 
 Version: 3.1.3
 ==============
