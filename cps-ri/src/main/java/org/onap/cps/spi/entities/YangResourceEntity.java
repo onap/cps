@@ -66,7 +66,6 @@ public class YangResourceEntity implements Serializable {
     @Column
     private String moduleName;
 
-    @NotNull
     @Column
     private String revision;
 
