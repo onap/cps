@@ -38,6 +38,7 @@ Release Data
 
 Bug Fixes
 ---------
+   - `CPS-1265 <https://jira.onap.org/browse/CPS-1265>`_  Revision field should not be required (NotNull) on cps-ri YangResourceEntity
    - `CPS-1294 <https://jira.onap.org/browse/CPS-1294>`_  Kafka communication fault caused cmHandle registration error
 
 Version: 3.1.3
