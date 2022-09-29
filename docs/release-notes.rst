@@ -34,6 +34,7 @@ Version: 3.0.1
 
 Bug Fixes
 ---------
+   - `CPS-1265 <https://jira.onap.org/browse/CPS-1265>`_  Revision field should not be required (NotNull) on cps-ri YangResourceEntity
    - `CPS-961 <https://jira.onap.org/browse/CPS-961>`_  Updated ANTLR compiler version to 4.9.2 to be compatible with runtime version
 
 Version: 3.0.0
