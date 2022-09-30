@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "930405cb_4bb74c89",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsQueryServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-09-30T14:06:57Z",
+      "side": 1,
+      "message": "can use @RequiredArgsConstructor as we used throughout CPS",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 19
+      },
+      "revId": "013cfa9937b0afeaa20069d367589652788802fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e290b576_ed947e2d",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsQueryServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-09-30T14:06:57Z",
+      "side": 1,
+      "message": "final",
+      "revId": "013cfa9937b0afeaa20069d367589652788802fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f7f8fae_c50089d5",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsQueryServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-09-30T14:06:57Z",
+      "side": 1,
+      "message": "final",
+      "range": {
+        "startLine": 37,
+        "startChar": 11,
+        "endLine": 37,
+        "endChar": 12
+      },
+      "revId": "013cfa9937b0afeaa20069d367589652788802fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ed6a906a_2e82d4ac",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/YangTextSchemaSourceSetCache.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-09-30T14:06:57Z",
+      "side": 1,
+      "message": "same as previous comment",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 19
+      },
+      "revId": "013cfa9937b0afeaa20069d367589652788802fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
