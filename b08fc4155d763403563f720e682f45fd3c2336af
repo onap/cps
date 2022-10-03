@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1b486a30_b4638412",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-10-03T09:03:19Z",
+      "side": 1,
+      "message": "is this specified just for this test? maybe change label ?",
+      "range": {
+        "startLine": 158,
+        "startChar": 85,
+        "endLine": 158,
+        "endChar": 111
+      },
+      "revId": "b08fc4155d763403563f720e682f45fd3c2336af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ebf33e2f_43afe7f3",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsQueryServiceImplSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-10-03T09:03:19Z",
+      "side": 1,
+      "message": "no spaces here, 2021-2022",
+      "range": {
+        "startLine": 3,
+        "startChar": 22,
+        "endLine": 3,
+        "endChar": 25
+      },
+      "revId": "b08fc4155d763403563f720e682f45fd3c2336af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8e9d600c_88d511bd",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/spi/FetchDescendantsOptionSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-10-03T09:03:19Z",
+      "side": 1,
+      "message": "given: \u0027fetch descendant option with #depth depth\u0027\n   def descendantOption \u003d new FetchDescendantsOption(depth)\nthen: \u0027it\u0027s \u0027has next\u0027 method returns the correct response\u0027\n   descendantOption.hasNext() \u003d\u003d hasNext\n\n--- i\u0027m not sure about the \u0027then\u0027 label, maybe other suggestions from the team?",
+      "range": {
+        "startLine": 28,
+        "startChar": 8,
+        "endLine": 31,
+        "endChar": 49
+      },
+      "revId": "b08fc4155d763403563f720e682f45fd3c2336af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da85ea1a_29cb89b1",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/spi/FetchDescendantsOptionSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-10-03T09:03:19Z",
+      "side": 1,
+      "message": "should \u0027next\u0027 for this not -2?",
+      "range": {
+        "startLine": 49,
+        "startChar": 39,
+        "endLine": 49,
+        "endChar": 51
+      },
+      "revId": "b08fc4155d763403563f720e682f45fd3c2336af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
