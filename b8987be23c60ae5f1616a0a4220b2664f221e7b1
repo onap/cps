@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "db6bf011_36e69dc7",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsAdminPersistenceService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-10-03T09:16:41Z",
+      "side": 1,
+      "message": "why is this needed?",
+      "range": {
+        "startLine": 56,
+        "startChar": 5,
+        "endLine": 56,
+        "endChar": 81
+      },
+      "revId": "b8987be23c60ae5f1616a0a4220b2664f221e7b1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca1440fc_b6308d02",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsAdminServiceImplSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-10-03T09:16:41Z",
+      "side": 1,
+      "message": "suggestion , may add one more \u0027someDataspace1\u0027 \u0027someDataspace2\u0027 ? I think this test is similar to test above, maybe adding one more shows it returns multiple?",
+      "range": {
+        "startLine": 140,
+        "startChar": 65,
+        "endLine": 140,
+        "endChar": 82
+      },
+      "revId": "b8987be23c60ae5f1616a0a4220b2664f221e7b1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
