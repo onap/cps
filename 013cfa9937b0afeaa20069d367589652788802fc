@@ -19,6 +19,29 @@
     },
     {
       "key": {
+        "uuid": "76342e45_8326afc7",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-10-03T11:54:20Z",
+      "side": 1,
+      "message": "Cm Handle is unknown",
+      "range": {
+        "startLine": 371,
+        "startChar": 13,
+        "endLine": 371,
+        "endChar": 20
+      },
+      "revId": "013cfa9937b0afeaa20069d367589652788802fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "930405cb_4bb74c89",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsQueryServiceImpl.java",
         "patchSetId": 4
