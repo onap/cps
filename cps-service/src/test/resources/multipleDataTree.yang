@@ -1,0 +1,23 @@
+module multipleDataTree {
+    yang-version 1.1;
+    namespace "org:onap:ccsdk:sample";
+
+    prefix book-store;
+
+    revision "2020-09-15" {
+        description
+        "Sample Model";
+    }
+
+    container first-container {
+        leaf a-leaf {
+            type string;
+        }
+    }
+
+    container last-container {
+        leaf x-leaf {
+            type string;
+        }
+    }
+}
