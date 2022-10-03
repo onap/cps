@@ -25,6 +25,53 @@
     },
     {
       "key": {
+        "uuid": "e4f993e4_0f0d87de",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-03T12:51:51Z",
+      "side": 1,
+      "message": "agreed, an extra (and:) label is needed or update the existing label",
+      "parentUuid": "1b486a30_b4638412",
+      "range": {
+        "startLine": 158,
+        "startChar": 85,
+        "endLine": 158,
+        "endChar": 111
+      },
+      "revId": "b08fc4155d763403563f720e682f45fd3c2336af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3060e78_3e693873",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/FetchDescendantsOption.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-03T12:51:51Z",
+      "side": 1,
+      "message": "I like it :-)",
+      "range": {
+        "startLine": 28,
+        "startChar": 47,
+        "endLine": 28,
+        "endChar": 74
+      },
+      "revId": "b08fc4155d763403563f720e682f45fd3c2336af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ebf33e2f_43afe7f3",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsQueryServiceImplSpec.groovy",
         "patchSetId": 4
@@ -41,6 +88,46 @@
         "startChar": 22,
         "endLine": 3,
         "endChar": 25
+      },
+      "revId": "b08fc4155d763403563f720e682f45fd3c2336af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8310eb1b_a120fce0",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/spi/FetchDescendantsOptionSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-03T12:51:51Z",
+      "side": 1,
+      "message": "overal l good tets and should cover all scenarios but a bit of refinement of teh \u0027tets as description\u0027 is needed",
+      "revId": "b08fc4155d763403563f720e682f45fd3c2336af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f41423b_61fe9f39",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/spi/FetchDescendantsOptionSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-03T12:51:51Z",
+      "side": 1,
+      "message": "dont shorten (tehr is also an s missing)! \u0027fetchDescendantsOption\u0027  (your IntelliJ should suggest this name)",
+      "range": {
+        "startLine": 29,
+        "startChar": 16,
+        "endLine": 29,
+        "endChar": 33
       },
       "revId": "b08fc4155d763403563f720e682f45fd3c2336af",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
@@ -71,6 +158,145 @@
     },
     {
       "key": {
+        "uuid": "878cbdc5_c90e6235",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/spi/FetchDescendantsOptionSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-03T12:51:51Z",
+      "side": 1,
+      "message": "\u0027next level descendants available: #hasNext\u0027",
+      "parentUuid": "8e9d600c_88d511bd",
+      "range": {
+        "startLine": 28,
+        "startChar": 8,
+        "endLine": 31,
+        "endChar": 49
+      },
+      "revId": "b08fc4155d763403563f720e682f45fd3c2336af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3177b3aa_c1be6bc8",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/spi/FetchDescendantsOptionSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-03T12:51:51Z",
+      "side": 1,
+      "message": "expectedHasNext",
+      "range": {
+        "startLine": 33,
+        "startChar": 49,
+        "endLine": 33,
+        "endChar": 56
+      },
+      "revId": "b08fc4155d763403563f720e682f45fd3c2336af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "296d33b7_e11441fd",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/spi/FetchDescendantsOptionSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-03T12:51:51Z",
+      "side": 1,
+      "message": "don\u0027t understand this option/test, maybe \u0027invalid depth\u0027 woudl be a better description\nAlso a logic orde of the test would be 0,1,2,-1,-2",
+      "range": {
+        "startLine": 36,
+        "startChar": 12,
+        "endLine": 36,
+        "endChar": 54
+      },
+      "revId": "b08fc4155d763403563f720e682f45fd3c2336af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6d21a03e_5a511729",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/spi/FetchDescendantsOptionSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-03T12:51:51Z",
+      "side": 1,
+      "message": "the next level of depth is as expected",
+      "range": {
+        "startLine": 44,
+        "startChar": 15,
+        "endLine": 44,
+        "endChar": 76
+      },
+      "revId": "b08fc4155d763403563f720e682f45fd3c2336af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "74fe7b35_9473c4f6",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/spi/FetchDescendantsOptionSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-03T12:51:51Z",
+      "side": 1,
+      "message": "expectedNextDepth\nYou do NOT need this variable if you move -1 case to a separare test",
+      "range": {
+        "startLine": 47,
+        "startChar": 49,
+        "endLine": 47,
+        "endChar": 53
+      },
+      "revId": "b08fc4155d763403563f720e682f45fd3c2336af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f9bdd2e4_2f3d1872",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/spi/FetchDescendantsOptionSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-03T12:51:51Z",
+      "side": 1,
+      "message": "just wondering, could this cause an issue I suppose not, but maybe the production code should throw an exception?!",
+      "range": {
+        "startLine": 48,
+        "startChar": 40,
+        "endLine": 48,
+        "endChar": 51
+      },
+      "revId": "b08fc4155d763403563f720e682f45fd3c2336af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "da85ea1a_29cb89b1",
         "filename": "cps-service/src/test/groovy/org/onap/cps/spi/FetchDescendantsOptionSpec.groovy",
         "patchSetId": 4
@@ -86,6 +312,53 @@
         "startLine": 49,
         "startChar": 39,
         "endLine": 49,
+        "endChar": 51
+      },
+      "revId": "b08fc4155d763403563f720e682f45fd3c2336af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d38d7d33_05ac012a",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/spi/FetchDescendantsOptionSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-03T12:51:51Z",
+      "side": 1,
+      "message": "it is -1, it might be betrt to write a spearet test for this to show its behavior is different",
+      "parentUuid": "da85ea1a_29cb89b1",
+      "range": {
+        "startLine": 49,
+        "startChar": 39,
+        "endLine": 49,
+        "endChar": 51
+      },
+      "revId": "b08fc4155d763403563f720e682f45fd3c2336af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "549a2ca6_918eaafd",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/spi/FetchDescendantsOptionSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-03T12:51:51Z",
+      "side": 1,
+      "message": "no needed in this test previous tets already flagged this as an invalid value",
+      "range": {
+        "startLine": 50,
+        "startChar": 12,
+        "endLine": 50,
         "endChar": 51
       },
       "revId": "b08fc4155d763403563f720e682f45fd3c2336af",
