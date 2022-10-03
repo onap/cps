@@ -38,7 +38,7 @@ Release Data
 
 Bug Fixes
 ---------
-   - None
+   - `CPS-1294 <https://jira.onap.org/browse/CPS-1294>`_  Kafka communication fault caused cmHandle registration error
 
 Version: 3.1.3
 ==============

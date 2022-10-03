@@ -24,6 +24,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.ncmp.cmhandle.event.lcm.LcmEvent;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.kafka.KafkaException;
 import org.springframework.stereotype.Service;
 
 /**
@@ -51,7 +52,11 @@ public class LcmEventsService {
      */
     public void publishLcmEvent(final String cmHandleId, final LcmEvent lcmEvent) {
         if (notificationsEnabled) {
-            lcmEventsPublisher.publishEvent(topicName, cmHandleId, lcmEvent);
+            try {
+                lcmEventsPublisher.publishEvent(topicName, cmHandleId, lcmEvent);
+            } catch (final KafkaException e) {
+                log.error("Unable to publish message to topic : {} and cause : {}", topicName, e.getMessage());
+            }
         } else {
             log.debug("Notifications disabled.");
         }

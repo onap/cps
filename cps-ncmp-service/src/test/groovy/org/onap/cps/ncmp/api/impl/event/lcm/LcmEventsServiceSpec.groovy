@@ -21,6 +21,7 @@
 package org.onap.cps.ncmp.api.impl.event.lcm
 
 import org.onap.ncmp.cmhandle.event.lcm.LcmEvent
+import org.springframework.kafka.KafkaException
 import spock.lang.Specification
 
 class LcmEventsServiceSpec extends Specification {
@@ -43,6 +44,19 @@ class LcmEventsServiceSpec extends Specification {
             scenario   | notificationsEnabled || expectedTimesMethodCalled
             'enabled'  | true                 || 1
             'disabled' | false                || 0
+    }
+
+    def 'Unable to send message'(){
+        given: 'a cm handle id and Lcm Event and notification enabled'
+            def cmHandleId = 'test-cm-handle-id'
+            def lcmEvent = new LcmEvent(eventId: UUID.randomUUID().toString(), eventCorrelationId: cmHandleId)
+            objectUnderTest.notificationsEnabled = true
+        when: 'publisher set to throw an exception'
+            mockLcmEventsPublisher.publishEvent(*_) >> { throw new KafkaException('publishing failed')}
+        and: 'an event is publised'
+            objectUnderTest.publishLcmEvent(cmHandleId, lcmEvent)
+        then: 'the exception is just logged and not bubbled up'
+            noExceptionThrown()
     }
 
 }
