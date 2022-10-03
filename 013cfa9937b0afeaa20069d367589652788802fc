@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "96acf636_8ac91399",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-10-03T11:49:39Z",
+      "side": 1,
+      "message": "Issue-ID ??",
+      "revId": "013cfa9937b0afeaa20069d367589652788802fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "930405cb_4bb74c89",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsQueryServiceImpl.java",
         "patchSetId": 4
