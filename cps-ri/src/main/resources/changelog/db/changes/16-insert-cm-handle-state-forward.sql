@@ -1,0 +1,3 @@
+create view cmHandles as select * from fragment where xpath ~* '^/dmi-registry/cm-handles\[@id=''[\w\-]+''\]$';
+insert into fragment(xpath, attributes, anchor_id, parent_id, dataspace_id, schema_node_id) select concat(xpath, '/state'), to_jsonb(concat('{"cm-handle-state": "ADVISED", "last-update-time": "', to_char(now(), 'YYYY-MM-DD"T"HH24:MI:SS.MSTZHTZM'), '"}')::json), anchor_id, id, dataspace_id, schema_node_id from cmHandles;
+drop view cmHandles;
