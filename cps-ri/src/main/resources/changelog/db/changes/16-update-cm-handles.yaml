@@ -1,0 +1,12 @@
+databaseChangeLog:
+  - changeSet:
+      author: cps
+      label: cm-handle-update-state
+      id: 16
+      changes:
+        - sql:
+            sql: "INSERT into fragment(xpath, attributes, anchor_id, parent_id, dataspace_id, schema_node_id) values('/dmi-registry/cm-handles[@id=''CmHandle1'']/state', '{\"cm-handle-state\": \"ADVISED\", \"last-update-time\": \"2022-10-03T14:23:11.289+0000\"}', 2, 145, 2, NULL)"
+      rollback:
+        - sql:
+            sql: "DELETE from fragment WHERE xpath = '/dmi-registry/cm-handles[@id=''CmHandle1'']/state/lock-reason';
+            DELETE from fragment WHERE xpath = '/dmi-registry/cm-handles[@id=''CmHandle1'']/state';"
