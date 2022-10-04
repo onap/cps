@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "616a5b95_05c8064f",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/JsonParserStreamSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-10-04T08:03:18Z",
+      "side": 1,
+      "message": "yes",
+      "parentUuid": "73e3e426_f38f27cf",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 29
+      },
+      "revId": "02dfb222800c682f54363299e98903a91fb43295",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ed3d2a41_aadd3646",
         "filename": "cps-service/src/test/groovy/org/onap/cps/utils/JsonParserStreamSpec.groovy",
         "patchSetId": 4
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "059292b5_ca51e06b",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/JsonParserStreamSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-10-04T08:03:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ed3d2a41_aadd3646",
+      "range": {
+        "startLine": 27,
+        "startChar": 12,
+        "endLine": 27,
+        "endChar": 18
+      },
+      "revId": "02dfb222800c682f54363299e98903a91fb43295",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e23f28f8_6c734d00",
         "filename": "cps-service/src/test/groovy/org/onap/cps/utils/JsonParserStreamSpec.groovy",
         "patchSetId": 4
@@ -59,6 +107,30 @@
       "writtenOn": "2022-10-03T15:02:36Z",
       "side": 1,
       "message": "just because of teh problem at hand I would like to see a type definition here",
+      "range": {
+        "startLine": 40,
+        "startChar": 16,
+        "endLine": 40,
+        "endChar": 35
+      },
+      "revId": "02dfb222800c682f54363299e98903a91fb43295",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9f1505e5_d844ab8f",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/JsonParserStreamSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-10-04T08:03:18Z",
+      "side": 1,
+      "message": "see next patch and confirm if its ok :)",
+      "parentUuid": "e23f28f8_6c734d00",
       "range": {
         "startLine": 40,
         "startChar": 16,
