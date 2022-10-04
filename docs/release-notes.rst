@@ -38,7 +38,7 @@ Release Data
 
 Bug Fixes
 ---------
-   - None
+   - `CPS-1312 <https://jira.onap.org/browse/CPS-1312>`_  CPS(/NCMP) does not have version control
 
 Version: 3.1.4
 ==============
