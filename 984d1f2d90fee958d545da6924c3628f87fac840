@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "6894b5ab_aa249ed6",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/16-insert-cm-handle-state-forward.sql",
+        "patchSetId": 4
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-10-05T15:42:56Z",
+      "side": 1,
+      "message": "As per the https://stackoverflow.com/questions/56391050/liquibase-commits-changeset-partially\nlink. If we combine the DDL and DML that argument fails and looks like we should not combine DDL and DMLs in liquibase..\n\nBut since this is tested and the rows are successfully inserted..\nI am kind of ok to get this going.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 20
+      },
+      "revId": "984d1f2d90fee958d545da6924c3628f87fac840",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6563bd26_c4133f96",
         "filename": "cps-ri/src/main/resources/changelog/db/changes/16-insert-cm-handle-state-rollback.sql",
         "patchSetId": 4
