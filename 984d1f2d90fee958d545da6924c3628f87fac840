@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "6a8d0587_bf6aaabe",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/16-insert-cm-handle-state-forward.sql",
+        "patchSetId": 4
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-10-05T16:15:26Z",
+      "side": 1,
+      "message": "By tested I meant Luke already tested the happy case and should be working.",
+      "parentUuid": "3e157cc9_2f7e32c7",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 20
+      },
+      "revId": "984d1f2d90fee958d545da6924c3628f87fac840",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6563bd26_c4133f96",
         "filename": "cps-ri/src/main/resources/changelog/db/changes/16-insert-cm-handle-state-rollback.sql",
         "patchSetId": 4
