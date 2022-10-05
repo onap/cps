@@ -16,6 +16,24 @@
       "revId": "984d1f2d90fee958d545da6924c3628f87fac840",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c2db31c0_3c47ec3e",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/16-insert-cm-handle-state-rollback.sql",
+        "patchSetId": 4
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-10-05T15:37:24Z",
+      "side": 1,
+      "message": "Yeah it seems to, states were deleted successfully when I tested it",
+      "parentUuid": "6563bd26_c4133f96",
+      "revId": "984d1f2d90fee958d545da6924c3628f87fac840",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
