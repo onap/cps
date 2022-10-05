@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "4883a923_2f6eee69",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/16-insert-cm-handle-state-forward.sql",
+        "patchSetId": 4
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-05T16:18:04Z",
+      "side": 1,
+      "message": "If you mean about creating a tempory view? I know it is not the ideal or most beautiful solution but it works and this should eb a once-off for a very specific upgrade path",
+      "parentUuid": "3e157cc9_2f7e32c7",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 20
+      },
+      "revId": "984d1f2d90fee958d545da6924c3628f87fac840",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6563bd26_c4133f96",
         "filename": "cps-ri/src/main/resources/changelog/db/changes/16-insert-cm-handle-state-rollback.sql",
         "patchSetId": 4
