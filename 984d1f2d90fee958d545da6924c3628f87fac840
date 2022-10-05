@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "57a80dbb_28b2ae58",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-05T16:10:37Z",
+      "side": 1,
+      "message": "NB: this is a bit misleading, this is only the short-term quickfix to handle cm-state specific upgrade",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 25
+      },
+      "revId": "984d1f2d90fee958d545da6924c3628f87fac840",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6894b5ab_aa249ed6",
         "filename": "cps-ri/src/main/resources/changelog/db/changes/16-insert-cm-handle-state-forward.sql",
         "patchSetId": 4
@@ -13,6 +36,30 @@
       "writtenOn": "2022-10-05T15:42:56Z",
       "side": 1,
       "message": "As per the https://stackoverflow.com/questions/56391050/liquibase-commits-changeset-partially\nlink. If we combine the DDL and DML that argument fails and looks like we should not combine DDL and DMLs in liquibase..\n\nBut since this is tested and the rows are successfully inserted..\nI am kind of ok to get this going.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 20
+      },
+      "revId": "984d1f2d90fee958d545da6924c3628f87fac840",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e157cc9_2f7e32c7",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/16-insert-cm-handle-state-forward.sql",
+        "patchSetId": 4
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-05T16:10:37Z",
+      "side": 1,
+      "message": "not sure what you mean Priyank but as you state it has bene tested and base don that I think we can approve this.\nI  would have some minor comment on this, formatting etc but nothing blocking!",
+      "parentUuid": "6894b5ab_aa249ed6",
       "range": {
         "startLine": 1,
         "startChar": 0,
