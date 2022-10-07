@@ -1,0 +1,23 @@
+module multipleDataTree {
+    yang-version 1.1;
+    namespace "org:onap:ccsdk:multiDataTree";
+
+    prefix multiple-data-tree;
+
+    revision "2020-09-15" {
+        description
+        "Sample Model for multiple data tree";
+    }
+
+    container first-container {
+        leaf a-leaf {
+            type string;
+        }
+    }
+
+    container last-container {
+        leaf x-leaf {
+            type string;
+        }
+    }
+}
