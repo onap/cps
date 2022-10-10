@@ -20,6 +20,7 @@
 
 package org.onap.cps.ncmp.api.inventory.sync
 
+import com.hazelcast.map.IMap
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.inventory.CmHandleState
@@ -27,8 +28,6 @@ import org.onap.cps.ncmp.api.inventory.CompositeState
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence
 import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
 import spock.lang.Specification
-import java.util.concurrent.ConcurrentHashMap
-import java.util.concurrent.ConcurrentMap
 
 class DataSyncWatchdogSpec extends Specification {
 
@@ -38,11 +37,11 @@ class DataSyncWatchdogSpec extends Specification {
 
     def mockSyncUtils = Mock(SyncUtils)
 
-    def stubbedMap = Stub(ConcurrentMap)
+    def mockMap = Mock(IMap<String,Boolean>)
 
     def jsonString = '{"stores:bookstore":{"categories":[{"code":"01"}]}}'
 
-    def objectUnderTest = new DataSyncWatchdog(mockInventoryPersistence, mockCpsDataService, mockSyncUtils, stubbedMap as ConcurrentHashMap)
+    def objectUnderTest = new DataSyncWatchdog(mockInventoryPersistence, mockCpsDataService, mockSyncUtils, mockMap)
 
     def compositeState = getCompositeState()
 
