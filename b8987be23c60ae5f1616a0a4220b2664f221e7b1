@@ -2,6 +2,328 @@
   "comments": [
     {
       "key": {
+        "uuid": "3b291fd7_93f5f44c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-10T16:30:37Z",
+      "side": 1,
+      "message": "NB, this is a bit ambiguous. I would  have mentioned the speci objects instead of suggesting we support some wildcard option :-) But is is only a commit message (still people will see this and wonder)",
+      "range": {
+        "startLine": 7,
+        "startChar": 28,
+        "endLine": 7,
+        "endChar": 30
+      },
+      "revId": "b8987be23c60ae5f1616a0a4220b2664f221e7b1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2626c678_64abce83",
+        "filename": "cps-rest/docs/openapi/cpsAdmin.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-10T16:30:37Z",
+      "side": 1,
+      "message": "dataspace names  (there are NO objects)",
+      "range": {
+        "startLine": 241,
+        "startChar": 26,
+        "endLine": 241,
+        "endChar": 35
+      },
+      "revId": "b8987be23c60ae5f1616a0a4220b2664f221e7b1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a21debc0_1b03e914",
+        "filename": "cps-rest/docs/openapi/cpsAdmin.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-10T16:30:37Z",
+      "side": 1,
+      "message": "dataspace name\nadd: given an...  \n(see previous existing methods and try to be consistent)",
+      "range": {
+        "startLine": 264,
+        "startChar": 16,
+        "endLine": 264,
+        "endChar": 32
+      },
+      "revId": "b8987be23c60ae5f1616a0a4220b2664f221e7b1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6688b196_20d32088",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-10T16:30:37Z",
+      "side": 1,
+      "message": "Unlike other responses, we are NOT modelling it in the API ie. we don\u0027t have object in  org.onap.cps.rest.model.\nI think this is a more loose contract then other API methods, inconsistent and should be addressed\n\nMaybe since these are only names, its OK but I would like to discuss",
+      "range": {
+        "startLine": 185,
+        "startChar": 25,
+        "endLine": 185,
+        "endChar": 77
+      },
+      "revId": "b8987be23c60ae5f1616a0a4220b2664f221e7b1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "32cdf3dd_5ae5afb6",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-10T16:30:37Z",
+      "side": 1,
+      "message": "Unlike other responses, we are NOT modelling it in the API ie. we don\u0027t have object in  org.onap.cps.rest.model.\nI think this is a more loose contract then other API methods, inconsistent and should be addressed",
+      "range": {
+        "startLine": 192,
+        "startChar": 37,
+        "endLine": 192,
+        "endChar": 97
+      },
+      "revId": "b8987be23c60ae5f1616a0a4220b2664f221e7b1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e5ba4efb_68ffdfe4",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-10T16:30:37Z",
+      "side": 1,
+      "message": "NB: Order of test inconsistent with order in API and Impl",
+      "range": {
+        "startLine": 217,
+        "startChar": 4,
+        "endLine": 217,
+        "endChar": 26
+      },
+      "revId": "b8987be23c60ae5f1616a0a4220b2664f221e7b1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "33a61495_27cf36c5",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-10T16:30:37Z",
+      "side": 1,
+      "message": "always test collection with 2 value (No more, no less unless for very good (test)reasons)",
+      "range": {
+        "startLine": 232,
+        "startChar": 55,
+        "endLine": 232,
+        "endChar": 68
+      },
+      "revId": "b8987be23c60ae5f1616a0a4220b2664f221e7b1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3783dcaf_d41ed3ee",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-10T16:30:37Z",
+      "side": 1,
+      "message": "tets with 2 names please",
+      "range": {
+        "startLine": 239,
+        "startChar": 51,
+        "endLine": 239,
+        "endChar": 64
+      },
+      "revId": "b8987be23c60ae5f1616a0a4220b2664f221e7b1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "49611541_7dbe3022",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-10T16:30:37Z",
+      "side": 1,
+      "message": "NB: dataspaceEntity",
+      "range": {
+        "startLine": 94,
+        "startChar": 42,
+        "endLine": 94,
+        "endChar": 49
+      },
+      "revId": "b8987be23c60ae5f1616a0a4220b2664f221e7b1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c627f1aa_d399c38b",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsAdminPersistenceServiceSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-10T16:30:37Z",
+      "side": 1,
+      "message": "makes me wonder; what is the point of this (API) method, just proofing it exists?!",
+      "range": {
+        "startLine": 76,
+        "startChar": 19,
+        "endLine": 76,
+        "endChar": 52
+      },
+      "revId": "b8987be23c60ae5f1616a0a4220b2664f221e7b1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb9e0f7e_793fcdfd",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsAdminPersistenceServiceSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-10T16:30:37Z",
+      "side": 1,
+      "message": "attempting to retrieve a non-existing dataspace",
+      "range": {
+        "startLine": 89,
+        "startChar": 15,
+        "endLine": 89,
+        "endChar": 45
+      },
+      "revId": "b8987be23c60ae5f1616a0a4220b2664f221e7b1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "835a9b9a_d23bff6a",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsAdminPersistenceServiceSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-10T16:30:37Z",
+      "side": 1,
+      "message": "not so much invalid (would suggest an invalid name) but rather non-existing",
+      "range": {
+        "startLine": 90,
+        "startChar": 58,
+        "endLine": 90,
+        "endChar": 66
+      },
+      "revId": "b8987be23c60ae5f1616a0a4220b2664f221e7b1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "87dd6ac1_b69a1f23",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsAdminService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-10T16:30:37Z",
+      "side": 1,
+      "message": "again what is the point?!\nIf it is just to prof it exists maybe we should return a boolean?!",
+      "range": {
+        "startLine": 55,
+        "startChar": 7,
+        "endLine": 56,
+        "endChar": 31
+      },
+      "revId": "b8987be23c60ae5f1616a0a4220b2664f221e7b1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "75fda73e_93b427da",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsAdminServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-10T16:30:37Z",
+      "side": 1,
+      "message": "DataspaceName",
+      "range": {
+        "startLine": 60,
+        "startChar": 21,
+        "endLine": 60,
+        "endChar": 30
+      },
+      "revId": "b8987be23c60ae5f1616a0a4220b2664f221e7b1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "db6bf011_36e69dc7",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsAdminPersistenceService.java",
         "patchSetId": 7
@@ -25,6 +347,30 @@
     },
     {
       "key": {
+        "uuid": "f13e540a_429bfc81",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsAdminPersistenceService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-10T16:30:37Z",
+      "side": 1,
+      "message": "agrreed",
+      "parentUuid": "db6bf011_36e69dc7",
+      "range": {
+        "startLine": 56,
+        "startChar": 5,
+        "endLine": 56,
+        "endChar": 81
+      },
+      "revId": "b8987be23c60ae5f1616a0a4220b2664f221e7b1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ca1440fc_b6308d02",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsAdminServiceImplSpec.groovy",
         "patchSetId": 7
@@ -36,6 +382,30 @@
       "writtenOn": "2022-10-03T09:16:41Z",
       "side": 1,
       "message": "suggestion , may add one more \u0027someDataspace1\u0027 \u0027someDataspace2\u0027 ? I think this test is similar to test above, maybe adding one more shows it returns multiple?",
+      "range": {
+        "startLine": 140,
+        "startChar": 65,
+        "endLine": 140,
+        "endChar": 82
+      },
+      "revId": "b8987be23c60ae5f1616a0a4220b2664f221e7b1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "beb5ffd6_64391dc7",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsAdminServiceImplSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-10T16:30:37Z",
+      "side": 1,
+      "message": "agreed, see previous simlar comment",
+      "parentUuid": "ca1440fc_b6308d02",
       "range": {
         "startLine": 140,
         "startChar": 65,
