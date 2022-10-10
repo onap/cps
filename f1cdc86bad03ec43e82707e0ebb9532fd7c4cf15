@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "299560b6_b02ff110",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/FetchDescendantsOption.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-10T15:27:25Z",
+      "side": 1,
+      "message": "you are right, it is  hasNext(). But you can use hasNext here to avoid the dupclication",
+      "parentUuid": "8762c748_26eb3fd7",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 9
+      },
+      "revId": "f1cdc86bad03ec43e82707e0ebb9532fd7c4cf15",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d58ff5f0_ddb0e9bf",
         "filename": "cps-service/src/test/groovy/org/onap/cps/spi/FetchDescendantsOptionSpec.groovy",
         "patchSetId": 5
