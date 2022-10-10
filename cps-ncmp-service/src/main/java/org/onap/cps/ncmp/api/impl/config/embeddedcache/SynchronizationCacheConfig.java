@@ -28,7 +28,6 @@ import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.map.IMap;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.TimeUnit;
 import org.onap.cps.spi.model.DataNode;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -40,10 +39,8 @@ import org.springframework.context.annotation.Configuration;
 public class SynchronizationCacheConfig {
 
     private static final QueueConfig commonQueueConfig = createQueueConfig();
-    private static final MapConfig moduleSyncStartedConfig =
-        createMapConfig("moduleSyncStartedConfig", TimeUnit.MINUTES.toSeconds(1));
-    private static final MapConfig dataSyncSemaphoresConfig =
-        createMapConfig("dataSyncSemaphoresConfig", TimeUnit.MINUTES.toSeconds(30));
+    private static final MapConfig moduleSyncStartedConfig = createMapConfig("moduleSyncStartedConfig");
+    private static final MapConfig dataSyncSemaphoresConfig = createMapConfig("dataSyncSemaphoresConfig");
 
     /**
      * Module Sync Distributed Queue Instance.
@@ -102,11 +99,10 @@ public class SynchronizationCacheConfig {
         return commonQueueConfig;
     }
 
-    private static MapConfig createMapConfig(final String configName, final long timeToLiveSeconds) {
+    private static MapConfig createMapConfig(final String configName) {
         final MapConfig mapConfig = new MapConfig(configName);
         mapConfig.setBackupCount(3);
         mapConfig.setAsyncBackupCount(3);
-        mapConfig.setTimeToLiveSeconds((int) timeToLiveSeconds);
         return mapConfig;
     }
 

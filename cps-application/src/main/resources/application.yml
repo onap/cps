@@ -178,3 +178,9 @@ ncmp:
     modules-sync-watchdog:
         async-executor:
             parallelism-level: 10
+
+    hazelcast:
+        modulesync-semaphore:
+            ttl-seconds: 60
+        datasync-semaphore:
+            ttl-seconds: 1800

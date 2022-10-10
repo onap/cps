@@ -20,8 +20,9 @@
 
 package org.onap.cps.ncmp.api.inventory.sync;
 
+import com.hazelcast.map.IMap;
 import java.time.OffsetDateTime;
-import java.util.Map;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,6 +30,7 @@ import org.onap.cps.api.CpsDataService;
 import org.onap.cps.ncmp.api.inventory.CompositeState;
 import org.onap.cps.ncmp.api.inventory.DataStoreSyncState;
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -46,7 +48,10 @@ public class DataSyncWatchdog {
 
     private final SyncUtils syncUtils;
 
-    private final Map<String, Boolean> dataSyncSemaphores;
+    private final IMap<String, Boolean> dataSyncSemaphores;
+
+    @Value("${ncmp.hazelcast.datasync-semaphore.ttl-seconds:1800}")
+    private int dataSyncSemaphoresTtlSeconds;
 
     /**
      * Execute Cm Handle poll which queries the cm handle state in 'READY' and Operational Datastore Sync State in
@@ -92,6 +97,7 @@ public class DataSyncWatchdog {
     }
 
     private boolean hasPushedIntoSemaphoreMap(final String cmHandleId) {
-        return dataSyncSemaphores.putIfAbsent(cmHandleId, DATA_SYNC_IN_PROGRESS) == null;
+        return dataSyncSemaphores.putIfAbsent(cmHandleId, DATA_SYNC_IN_PROGRESS, dataSyncSemaphoresTtlSeconds,
+                TimeUnit.SECONDS) == null;
     }
 }

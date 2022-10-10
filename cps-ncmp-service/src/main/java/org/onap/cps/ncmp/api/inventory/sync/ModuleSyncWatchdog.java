@@ -34,6 +34,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.inventory.sync.executor.AsyncTaskExecutor;
 import org.onap.cps.spi.model.DataNode;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -53,6 +54,9 @@ public class ModuleSyncWatchdog {
     private static final long ASYNC_TASK_TIMEOUT_IN_MILLISECONDS = TimeUnit.MINUTES.toMillis(5);
     @Getter
     private AtomicInteger batchCounter = new AtomicInteger(1);
+
+    @Value("${ncmp.hazelcast.modulesync-semaphore.ttl-seconds:60}")
+    private int moduleSyncStartedOnCmHandlesTtlSeconds;
 
     /**
      * Check DB for any cm handles in 'ADVISED' state.
@@ -117,8 +121,9 @@ public class ModuleSyncWatchdog {
         log.debug("nextBatchCandidates size : {}", nextBatchCandidates.size());
         for (final DataNode batchCandidate : nextBatchCandidates) {
             final String cmHandleId = String.valueOf(batchCandidate.getLeaves().get("id"));
-            final boolean alreadyAddedToInProgressMap = VALUE_FOR_HAZELCAST_IN_PROGRESS_MAP
-                .equals(moduleSyncStartedOnCmHandles.putIfAbsent(cmHandleId, VALUE_FOR_HAZELCAST_IN_PROGRESS_MAP));
+            final boolean alreadyAddedToInProgressMap = VALUE_FOR_HAZELCAST_IN_PROGRESS_MAP.equals(
+                    moduleSyncStartedOnCmHandles.putIfAbsent(cmHandleId, VALUE_FOR_HAZELCAST_IN_PROGRESS_MAP,
+                            moduleSyncStartedOnCmHandlesTtlSeconds, TimeUnit.SECONDS));
             if (alreadyAddedToInProgressMap) {
                 log.debug("module sync for {} already in progress by other instance", cmHandleId);
             } else {
