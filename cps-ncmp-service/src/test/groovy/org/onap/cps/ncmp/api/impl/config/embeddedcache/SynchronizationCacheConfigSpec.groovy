@@ -40,7 +40,7 @@ class SynchronizationCacheConfigSpec extends Specification {
     private IMap<String, Object> moduleSyncStartedOnCmHandles
 
     @Autowired
-    private Map<String, Boolean> dataSyncSemaphores
+    private IMap<String, Boolean> dataSyncSemaphores
 
     def 'Embedded (hazelcast) Caches for Module and Data Sync.'() {
         expect: 'system is able to create an instance of the Module Sync Work Queue'
@@ -53,5 +53,23 @@ class SynchronizationCacheConfigSpec extends Specification {
             assert Hazelcast.allHazelcastInstances.size() == 3
         and: 'they have the correct names (in any order)'
             assert Hazelcast.allHazelcastInstances.name.containsAll('moduleSyncWorkQueue', 'moduleSyncStartedOnCmHandles', 'dataSyncSemaphores' )
+    }
+
+    def 'Verify configs for Distributed objects'(){
+        given: 'the Module Sync Work Queue config'
+            def queueConfig =  Hazelcast.getHazelcastInstanceByName('moduleSyncWorkQueue').config.queueConfigs.get('defaultQueueConfig')
+        and: 'the Module Sync Started Cm Handle Map config'
+            def moduleSyncStartedOnCmHandlesConfig =  Hazelcast.getHazelcastInstanceByName('moduleSyncStartedOnCmHandles').config.mapConfigs.get('moduleSyncStartedConfig')
+        and: 'the Data Sync Semaphores Map config'
+            def dataSyncSemaphoresConfig =  Hazelcast.getHazelcastInstanceByName('dataSyncSemaphores').config.mapConfigs.get('dataSyncSemaphoresConfig')
+        expect: 'system created instance with correct config of Module Sync Work Queue'
+            assert queueConfig.backupCount == 3
+            assert queueConfig.asyncBackupCount == 3
+        and: 'Module Sync Started Cm Handle Map'
+            assert moduleSyncStartedOnCmHandlesConfig.backupCount == 3
+            assert moduleSyncStartedOnCmHandlesConfig.asyncBackupCount == 3
+        and: 'Data Sync Semaphore Map'
+            assert dataSyncSemaphoresConfig.backupCount == 3
+            assert dataSyncSemaphoresConfig.asyncBackupCount == 3
     }
 }
