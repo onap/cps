@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "54ddfd33_c62da6b7",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-10T16:14:51Z",
+      "side": 1,
+      "message": "NB: I believe we agreed to remove such annotation?",
+      "range": {
+        "startLine": 76,
+        "startChar": 50,
+        "endLine": 76,
+        "endChar": 65
+      },
+      "revId": "1ef67ae5dd70c13cbff1075a2ad618cf4bddd8c5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7caf4c1b_18769a12",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-10T16:14:51Z",
+      "side": 1,
+      "message": "NB Suggestion: put V2 specific test in a aspearte test class (extracting out any commonalities in a baseSpec)\n(Can be done next time)",
+      "range": {
+        "startLine": 350,
+        "startChar": 36,
+        "endLine": 350,
+        "endChar": 39
+      },
+      "revId": "1ef67ae5dd70c13cbff1075a2ad618cf4bddd8c5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
