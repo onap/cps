@@ -20,12 +20,14 @@
 
 package org.onap.cps.ncmp.api.inventory.sync;
 
+import com.hazelcast.map.IMap;
 import java.time.OffsetDateTime;
-import java.util.Map;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsDataService;
+import org.onap.cps.ncmp.api.impl.config.embeddedcache.SynchronizationCacheConfig;
 import org.onap.cps.ncmp.api.inventory.CompositeState;
 import org.onap.cps.ncmp.api.inventory.DataStoreSyncState;
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
@@ -46,7 +48,7 @@ public class DataSyncWatchdog {
 
     private final SyncUtils syncUtils;
 
-    private final Map<String, Boolean> dataSyncSemaphores;
+    private final IMap<String, Boolean> dataSyncSemaphores;
 
     /**
      * Execute Cm Handle poll which queries the cm handle state in 'READY' and Operational Datastore Sync State in
@@ -92,6 +94,7 @@ public class DataSyncWatchdog {
     }
 
     private boolean hasPushedIntoSemaphoreMap(final String cmHandleId) {
-        return dataSyncSemaphores.putIfAbsent(cmHandleId, DATA_SYNC_IN_PROGRESS) == null;
+        return dataSyncSemaphores.putIfAbsent(cmHandleId, DATA_SYNC_IN_PROGRESS,
+                SynchronizationCacheConfig.DATA_SYNC_SEMAPHORE_TTL_SECS, TimeUnit.SECONDS) == null;
     }
 }
