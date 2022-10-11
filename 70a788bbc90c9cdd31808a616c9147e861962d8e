@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dd83fa80_97d85874",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationCacheConfig.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-11T17:25:37Z",
+      "side": 1,
+      "message": "any reason you moved away from configurable parameters?! \nI thought it was night but probably not part of the scope/bugfix...",
+      "range": {
+        "startLine": 41,
+        "startChar": 27,
+        "endLine": 42,
+        "endChar": 64
+      },
+      "revId": "70a788bbc90c9cdd31808a616c9147e861962d8e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2c0c17f4_065b1614",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationCacheConfigSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-11T17:25:37Z",
+      "side": 1,
+      "message": "can you use a MS unit\nUnit test should run fast so if you can set a TTL of 10ms and wait 20ms ?!",
+      "range": {
+        "startLine": 80,
+        "startChar": 91,
+        "endLine": 80,
+        "endChar": 110
+      },
+      "revId": "70a788bbc90c9cdd31808a616c9147e861962d8e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ea742a2d_4ee02812",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationCacheConfigSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-11T17:25:37Z",
+      "side": 1,
+      "message": "verfiy the enrty DOES exist BEFOER the expiry",
+      "range": {
+        "startLine": 82,
+        "startChar": 8,
+        "endLine": 82,
+        "endChar": 45
+      },
+      "revId": "70a788bbc90c9cdd31808a616c9147e861962d8e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
