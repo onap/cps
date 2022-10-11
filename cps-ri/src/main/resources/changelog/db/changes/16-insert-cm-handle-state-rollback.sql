@@ -1,4 +1,4 @@
-delete from fragment where xpath ~* '^/dmi-registry/cm-handles\[@id=''[\w\-]+''\]/state/lock-reason$';
-delete from fragment where xpath ~* '^/dmi-registry/cm-handles\[@id=''[\w\-]+''\]/state/datastores/operational$';
-delete from fragment where xpath ~* '^/dmi-registry/cm-handles\[@id=''[\w\-]+''\]/state/datastores$';
-delete from fragment where xpath ~* '^/dmi-registry/cm-handles\[@id=''[\w\-]+''\]/state$';
+DELETE FROM fragment WHERE xpath ~* '^/dmi-registry/cm-handles\[@id=''[\w\-]+''\]/state/lock-reason$';
+DELETE FROM fragment WHERE xpath ~* '^/dmi-registry/cm-handles\[@id=''[\w\-]+''\]/state/datastores/operational$';
+DELETE FROM fragment WHERE xpath ~* '^/dmi-registry/cm-handles\[@id=''[\w\-]+''\]/state/datastores$';
+DELETE FROM fragment WHERE xpath ~* '^/dmi-registry/cm-handles\[@id=''[\w\-]+''\]/state$';
