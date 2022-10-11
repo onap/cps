@@ -12,11 +12,11 @@ CPS Release Notes
     :depth: 2
 ..
 
-..      ====================
-..      * * *   KOHN   * * *
-..      ====================
+..      ======================
+..      * * *   LONDON   * * *
+..      ======================
 
-Version: 3.1.5 (not yet released)
+Version: 3.2.0 (not yet released)
 =================================
 
 Release Data
@@ -26,19 +26,33 @@ Release Data
 | **CPS Project**                      |                                                        |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
-| **Docker images**                    | onap/cps-and-ncmp:3.1.5                                |
+| **Docker images**                    | onap/cps-and-ncmp:3.2.0                                |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
-| **Release designation**              | 3.1.5 Kohn                                             |
+| **Release designation**              | 3.2.0 London                                           |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
 | **Release date**                     | (not yet released)                                     |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
+Features
+--------
+   - `CPS-1185 <https://jira.onap.org/browse/CPS-1185>`_  Get all dataspaces
+   - `CPS-1186 <https://jira.onap.org/browse/CPS-1186>`_  Get all schema sets for a dataspace
+   - `CPS-1187 <https://jira.onap.org/browse/CPS-1187>`_  Get single dataspace
+   - `CPS-1189 <https://jira.onap.org/browse/CPS-1189>`_  Various create endpoints should return 201 response with empty body
 
 Bug Fixes
 ---------
    - `CPS-1312 <https://jira.onap.org/browse/CPS-1312>`_  CPS(/NCMP) does not have version control
+
+Known Limitations, Issues and Workarounds
+-----------------------------------------
+
+*System Limitations*
+
+For upgrading, CPS uses Liquibase for database upgrades. CPS currently only supports upgrading from Liquibase changelog 11 to Liquibase changelog 16.
+This is from commit CPS-506: List all known modules and revision to CPS-1312: Default CMHandles to READY during upgrade or from ONAP release Honolulu to London.
 
 Version: 3.1.4
 ==============
