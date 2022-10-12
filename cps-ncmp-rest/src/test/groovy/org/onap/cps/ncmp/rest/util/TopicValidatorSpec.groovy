@@ -23,6 +23,8 @@ package org.onap.cps.ncmp.rest.util
 import org.onap.cps.ncmp.rest.exceptions.InvalidTopicException
 import spock.lang.Specification
 
+import java.lang.reflect.Constructor
+
 class TopicValidatorSpec extends Specification {
 
     def 'Valid topic name validation.'() {
@@ -44,4 +46,12 @@ class TopicValidatorSpec extends Specification {
             'invalid non empty topic' | '1_5_*_#'
     }
 
+    def 'Private constructor invoked.'() {
+        when: 'invoke the private constructor'
+        final Constructor constructor = TopicValidator.class.getDeclaredConstructor()
+        constructor.setAccessible(true)
+        constructor.newInstance()
+        then: 'Should throw an exception'
+        thrown(Exception)
+    }
 }
