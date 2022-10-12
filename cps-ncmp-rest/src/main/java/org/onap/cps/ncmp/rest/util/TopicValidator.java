@@ -28,6 +28,10 @@ public class TopicValidator {
     private static final Pattern TOPIC_NAME_PATTERN = Pattern.compile("^[a-zA-Z0-9]([._-](?![._-])|"
         + "[a-zA-Z0-9]){0,120}[a-zA-Z0-9]$");
 
+    private TopicValidator() {
+        throw new UnsupportedOperationException("This is a utility class and cannot be instantiated");
+    }
+
     /**
      * Validate kafka topic name pattern.
      *
