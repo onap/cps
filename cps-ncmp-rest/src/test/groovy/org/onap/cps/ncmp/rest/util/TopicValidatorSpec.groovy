@@ -43,5 +43,4 @@ class TopicValidatorSpec extends Specification {
             'blank topic'             | ' '
             'invalid non empty topic' | '1_5_*_#'
     }
-
 }
