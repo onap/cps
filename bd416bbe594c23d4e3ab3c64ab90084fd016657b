@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ff1b54bc_668dcaef",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/16-insert-cm-handle-state-forward.sql",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-12T08:12:50Z",
+      "side": 1,
+      "message": "have to relyon testing for this :-)",
+      "revId": "bd416bbe594c23d4e3ab3c64ab90084fd016657b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f91217e3_7de06c5f",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/16-insert-cm-handle-state-rollback.sql",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-12T08:12:50Z",
+      "side": 1,
+      "message": "the rollback is stil ONLY valid for the correct FROM version!\nI think that is OK as long as we document it...",
+      "revId": "bd416bbe594c23d4e3ab3c64ab90084fd016657b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
