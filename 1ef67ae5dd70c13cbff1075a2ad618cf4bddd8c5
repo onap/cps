@@ -25,6 +25,53 @@
     },
     {
       "key": {
+        "uuid": "0cf9d7b3_8662aa85",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-10-12T12:40:15Z",
+      "side": 1,
+      "message": "NB: Agreed",
+      "parentUuid": "54ddfd33_c62da6b7",
+      "range": {
+        "startLine": 76,
+        "startChar": 50,
+        "endLine": 76,
+        "endChar": 65
+      },
+      "revId": "1ef67ae5dd70c13cbff1075a2ad618cf4bddd8c5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "78152d50_298a747b",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-10-12T12:40:15Z",
+      "side": 1,
+      "message": "Will this always return created even if the operation failed?",
+      "range": {
+        "startLine": 120,
+        "startChar": 15,
+        "endLine": 120,
+        "endChar": 56
+      },
+      "revId": "1ef67ae5dd70c13cbff1075a2ad618cf4bddd8c5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7caf4c1b_18769a12",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
         "patchSetId": 13
