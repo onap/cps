@@ -3,6 +3,7 @@
  *  Copyright (C) 2020 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Nordix Foundation
  *  Modifications Copyright (C) 2021 Bell Canada.
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -174,6 +175,18 @@ class CpsRestExceptionHandlerSpec extends Specification {
             response.status == BAD_REQUEST.value()
         where: 'the following exceptions are thrown'
             exceptionThrown << [new DataNodeNotFoundException('', ''), new NotFoundInDataspaceException('', '')]
+    }
+
+   def 'Post request with invalid JSON payload returns HTTP Status Bad Request.'() {
+        when: 'data post request is performed'
+            def response = mvc.perform(
+                post("$basePath/v1/dataspaces/dataspace-name/anchors/anchor-name/nodes")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .param('xpath', 'parent node xpath')
+                    .content('{')
+            ).andReturn().response
+        then: 'response code indicates bad input parameters'
+            response.status == BAD_REQUEST.value()
     }
 
     /*
