@@ -2,6 +2,7 @@
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Nordix Foundation
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -43,6 +44,7 @@ import org.onap.cps.spi.exceptions.NotFoundInDataspaceException;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -64,7 +66,7 @@ public class CpsRestExceptionHandler {
     }
 
     @ExceptionHandler({ModelValidationException.class, DataValidationException.class, CpsAdminException.class,
-        CpsPathException.class, ValidationException.class})
+        CpsPathException.class, ValidationException.class, HttpMessageNotReadableException.class})
     public static ResponseEntity<Object> handleBadRequestExceptions(final Exception exception) {
         return buildErrorResponse(HttpStatus.BAD_REQUEST, exception);
     }

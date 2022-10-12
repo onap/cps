@@ -3,6 +3,7 @@
  *  Copyright (C) 2021-2022 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada.
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -151,6 +152,21 @@ class DataRestControllerSpec extends Specification {
             scenario                     | observedTimestamp
             'with observed-timestamp'    | '2021-03-03T23:59:59.999-0400'
             'without observed-timestamp' | null
+    }
+
+    def 'Create a node with invalid JSON payload'() {
+        given: 'endpoint to create a node'
+        def endpoint = "$dataNodeBaseEndpoint/anchors/$anchorName/nodes"
+        when: 'post is invoked with datanode endpoint and json'
+        def response =
+                mvc.perform(
+                        post(endpoint)
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .param('xpath', '/')
+                                .content('{')
+                ).andReturn().response
+        then: 'return response with HTTP BAD_REQUEST status'
+        assert response.status == HttpStatus.BAD_REQUEST.value()
     }
 
     def 'Save list elements #scenario.'() {
