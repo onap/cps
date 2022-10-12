@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "2514b330_57b2328b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationCacheConfigSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-10-12T09:48:52Z",
+      "side": 1,
+      "message": "I checked in my local and then committed code.\nI tried setting lower key expiration but was not getting 100% pass rate , but when I provide anything above 1sec it works everytime.",
+      "parentUuid": "2c0c17f4_065b1614",
+      "range": {
+        "startLine": 80,
+        "startChar": 91,
+        "endLine": 80,
+        "endChar": 110
+      },
+      "revId": "70a788bbc90c9cdd31808a616c9147e861962d8e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ea742a2d_4ee02812",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationCacheConfigSpec.groovy",
         "patchSetId": 4
@@ -92,6 +116,30 @@
       "revId": "70a788bbc90c9cdd31808a616c9147e861962d8e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d47f3b3d_c3f17c4d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationCacheConfigSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-10-12T09:48:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ea742a2d_4ee02812",
+      "range": {
+        "startLine": 82,
+        "startChar": 8,
+        "endLine": 82,
+        "endChar": 45
+      },
+      "revId": "70a788bbc90c9cdd31808a616c9147e861962d8e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
