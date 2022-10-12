@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a67e9071_94c7196c",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-12T12:32:38Z",
+      "side": 1,
+      "message": "You need to create 3.0.2. section!\nAdd the Jira to the new section\nThen follow the release process to release a new version og JAKARTA!",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 14
+      },
+      "revId": "0d224defe0c5cf20079a5b4f2e89c04e1bdb391c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
