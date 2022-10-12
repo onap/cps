@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "ceca0038_3c3b2e03",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationCacheConfigSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-12T13:41:38Z",
+      "side": 1,
+      "message": "can you try a bit lower i.e 100 ms, or 300ms or 500ms basiclay teh lowest that works and give consistent result without too much delay",
+      "parentUuid": "2514b330_57b2328b",
+      "range": {
+        "startLine": 80,
+        "startChar": 91,
+        "endLine": 80,
+        "endChar": 110
+      },
+      "revId": "70a788bbc90c9cdd31808a616c9147e861962d8e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ea742a2d_4ee02812",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationCacheConfigSpec.groovy",
         "patchSetId": 4
