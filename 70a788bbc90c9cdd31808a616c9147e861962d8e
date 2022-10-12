@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7798d223_810167e9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationCacheConfig.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-10-12T08:23:22Z",
+      "side": 1,
+      "message": "then I thought since we wont be exposing these params anywhere so why not use it as a static variable.",
+      "parentUuid": "dd83fa80_97d85874",
+      "range": {
+        "startLine": 41,
+        "startChar": 27,
+        "endLine": 42,
+        "endChar": 64
+      },
+      "revId": "70a788bbc90c9cdd31808a616c9147e861962d8e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2c0c17f4_065b1614",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationCacheConfigSpec.groovy",
         "patchSetId": 4
