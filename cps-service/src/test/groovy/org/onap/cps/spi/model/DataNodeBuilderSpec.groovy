@@ -2,6 +2,7 @@
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Nordix Foundation.
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -21,13 +22,10 @@
 package org.onap.cps.spi.model
 
 import org.onap.cps.TestUtils
-import org.onap.cps.spi.model.DataNodeBuilder
 import org.onap.cps.utils.DataMapUtils
 import org.onap.cps.utils.YangUtils
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
-import org.opendaylight.yangtools.yang.common.QName
-import org.opendaylight.yangtools.yang.data.api.YangInstanceIdentifier
-import org.opendaylight.yangtools.yang.data.api.schema.NormalizedNode
+import org.opendaylight.yangtools.yang.data.api.schema.ContainerNode
 import spock.lang.Specification
 
 class DataNodeBuilderSpec extends Specification {
@@ -58,9 +56,9 @@ class DataNodeBuilderSpec extends Specification {
             def jsonData = TestUtils.getResourceFileContent('test-tree.json')
             def normalizedNode = YangUtils.parseJsonData(jsonData, schemaContext)
         when: 'the normalized node is converted to a data node'
-            def result = new DataNodeBuilder().withNormalizedNodeTree(normalizedNode).build()
+            def result = new DataNodeBuilder().withContainerNode(normalizedNode).build()
             def mappedResult = TestUtils.getFlattenMapByXpath(result)
-        then: '5 DataNode objects with unique xpath were created in total'
+        then: '6 DataNode objects with unique xpath were created in total'
             mappedResult.size() == 6
         and: 'all expected xpaths were built'
             mappedResult.keySet().containsAll(expectedLeavesByXpathMap.keySet())
@@ -79,7 +77,7 @@ class DataNodeBuilderSpec extends Specification {
             def normalizedNode = YangUtils.parseJsonData(jsonData, schemaContext, "/test-tree")
         when: 'the normalized node is converted to a data node with parent node xpath defined'
             def result = new DataNodeBuilder()
-                    .withNormalizedNodeTree(normalizedNode)
+                    .withContainerNode(normalizedNode)
                     .withParentNodeXpath("/test-tree")
                     .build()
             def mappedResult = TestUtils.getFlattenMapByXpath(result)
@@ -98,7 +96,7 @@ class DataNodeBuilderSpec extends Specification {
             def jsonData = TestUtils.getResourceFileContent('ietf/data/ietf-network-topology-sample-rfc8345.json')
             def normalizedNode = YangUtils.parseJsonData(jsonData, schemaContext)
         when: 'the normalized node is converted to a data node '
-            def result = new DataNodeBuilder().withNormalizedNodeTree(normalizedNode).build()
+            def result = new DataNodeBuilder().withContainerNode(normalizedNode).build()
             def mappedResult = TestUtils.getFlattenMapByXpath(result)
         then: 'all expected data nodes are populated'
             mappedResult.size() == 32
@@ -132,7 +130,7 @@ class DataNodeBuilderSpec extends Specification {
             def jsonData = '{"source": {"source-node": "D1", "source-tp": "1-2-1"}}'
             def normalizedNode = YangUtils.parseJsonData(jsonData, schemaContext, parentNodeXpath)
         when: 'the normalized node is converted to a data node with given parent node xpath'
-            def result = new DataNodeBuilder().withNormalizedNodeTree(normalizedNode)
+            def result = new DataNodeBuilder().withContainerNode(normalizedNode)
                     .withParentNodeXpath(parentNodeXpath).build()
         then: 'the resulting data node represents a child of augmentation node'
             assert result.xpath == "/networks/network[@network-id='otn-hc']/link[@link-id='D1,1-2-1,D2,2-1-1']/source"
@@ -149,7 +147,7 @@ class DataNodeBuilderSpec extends Specification {
         and: 'the json data fragment (list element) parsed into normalized node object'
             def normalizedNode = YangUtils.parseJsonData(jsonData, schemaContext, parentNodeXpath)
         when: 'the normalized node is converted to a data node collection'
-            def result = new DataNodeBuilder().withNormalizedNodeTree(normalizedNode)
+            def result = new DataNodeBuilder().withContainerNode(normalizedNode)
                     .withParentNodeXpath(parentNodeXpath).buildCollection()
             def resultXpaths = result.collect { it.getXpath() }
         then: 'the resulting collection contains data nodes for expected list elements'
@@ -161,16 +159,16 @@ class DataNodeBuilderSpec extends Specification {
             'multiple entries' | '{"branch": [{"name": "One"}, {"name": "Two"}]}' | 2            | ['/test-tree/branch[@name=\'One\']', '/test-tree/branch[@name=\'Two\']']
     }
 
-    def 'Converting NormalizedNode to a DataNode collection -- edge cases: #scenario.'() {
+    def 'Converting collection of NormalizedNodes to a collection of DataNode collection -- edge cases: #scenario.'() {
         when: 'the normalized node is #node'
-            def result = new DataNodeBuilder().withNormalizedNodeTree(normalizedNode).buildCollection()
+            def result = new DataNodeBuilder().withContainerNode(normalizedNode).buildCollection()
         then: 'the resulting collection contains data nodes for expected list elements'
             assert result.size() == expectedSize
             assert result.containsAll(expectedNodes)
         where: 'following parameters are used'
             scenario                                | node            | normalizedNode       | expectedSize | expectedNodes
             'NormalizedNode is null'                | 'null'          | null                 | 1            | [ new DataNode() ]
-            'NormalizedNode is an unsupported type' | 'not supported' | Mock(NormalizedNode) | 0            | [ ]
+            'NormalizedNode is an unsupported type' | 'not supported' | Mock(ContainerNode)  | 0            | [ ]
     }
 
     def 'Use of adding the module name prefix attribute of data node.'() {
