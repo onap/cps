@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d0b5dff3_201763ac",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationCacheConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-10-13T13:18:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1add3f15_9cbb3782",
+      "range": {
+        "startLine": 41,
+        "startChar": 4,
+        "endLine": 42,
+        "endChar": 64
+      },
+      "revId": "75b6ffda64dc527dc4d1aabfad633354a56a7b94",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9f7718ab_507a630e",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationCacheConfig.java",
         "patchSetId": 6
@@ -60,6 +84,30 @@
       "side": 1,
       "message": "Please elaborate. I dont understand what you mean here.\nWill connect over call here.",
       "parentUuid": "9f7718ab_507a630e",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 5
+      },
+      "revId": "75b6ffda64dc527dc4d1aabfad633354a56a7b94",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a2fe05c_69fbf005",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationCacheConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-10-13T13:18:35Z",
+      "side": 1,
+      "message": "Agreed to create https://jira.onap.org/browse/CPS-1340 \nand later review if it can be done as the current scope is for TTL only.",
+      "parentUuid": "82a2b261_07e101a7",
       "range": {
         "startLine": 48,
         "startChar": 0,
