@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "98bdbe40_fae918df",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationCacheConfig.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-10-13T14:26:07Z",
+      "side": 1,
+      "message": "Can be replaced by \n\n @Getter\n private static final int MODULE_SYNC_STARTED_TTL_SECS \u003d 60;\n @Getter\n private static final int DATA_SYNC_SEMAPHORE_TTL_SECS \u003d 1800;",
+      "range": {
+        "startLine": 112,
+        "startChar": 4,
+        "endLine": 118,
+        "endChar": 5
+      },
+      "revId": "3b4d3d1e24d4bf15c15bc0d16f4cf68c7feccc9c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
