@@ -3,6 +3,7 @@
  *  Copyright (C) 2021-2022 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada.
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -37,6 +38,7 @@ import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.DataNodeBuilder
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.test.context.jdbc.Sql
 import javax.validation.ConstraintViolationException
 
@@ -64,9 +66,9 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     static final long LIST_DATA_NODE_PARENT202_FRAGMENT_ID = 4211L
     static final long PARENT_3_FRAGMENT_ID = 4003L
 
-    static final DataNode newDataNode = new DataNodeBuilder().build()
-    static DataNode existingDataNode
-    static DataNode existingChildDataNode
+    static final Collection<DataNode> newDataNode = new DataNodeBuilder().buildCollection()
+    static Collection<DataNode> existingDataNode
+    static Collection<DataNode> existingChildDataNode
 
     def expectedLeavesByXpathMap = [
             '/parent-100'                      : ['parent-leaf': 'parent-leaf value'],
@@ -86,8 +88,8 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             def parentXpath = "/parent-new"
             def childXpath = "/parent-new/child-new"
             def grandChildXpath = "/parent-new/child-new/grandchild-new"
-            objectUnderTest.storeDataNode(DATASPACE_NAME, ANCHOR_NAME1,
-                    createDataNodeTree(parentXpath, childXpath, grandChildXpath))
+            def node = createDataNodeTree(parentXpath, childXpath, grandChildXpath)
+            objectUnderTest.storeDataNodes(DATASPACE_NAME, ANCHOR_NAME1, node)
         then: 'it can be retrieved by its xpath'
             def parentFragment = getFragmentByXpath(DATASPACE_NAME, ANCHOR_NAME1, parentXpath)
         and: 'it contains the children'
@@ -104,9 +106,9 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     def 'Store data node for multiple anchors using the same schema.'() {
         def xpath = "/parent-new"
         given: 'a fragment is stored for an anchor'
-            objectUnderTest.storeDataNode(DATASPACE_NAME, ANCHOR_NAME1, createDataNodeTree(xpath))
+            objectUnderTest.storeDataNodes(DATASPACE_NAME, ANCHOR_NAME1, createDataNodeTree(xpath))
         when: 'another fragment is stored for an other anchor, using the same schema set'
-            objectUnderTest.storeDataNode(DATASPACE_NAME, ANCHOR_NAME3, createDataNodeTree(xpath))
+            objectUnderTest.storeDataNodes(DATASPACE_NAME, ANCHOR_NAME3, createDataNodeTree(xpath))
         then: 'both fragments can be retrieved by their xpath'
             def fragment1 = getFragmentByXpath(DATASPACE_NAME, ANCHOR_NAME1, xpath)
             fragment1.anchor.name == ANCHOR_NAME1
@@ -119,7 +121,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Store datanode error scenario: #scenario.'() {
         when: 'attempt to store a data node with #scenario'
-            objectUnderTest.storeDataNode(dataspaceName, anchorName, dataNode)
+            objectUnderTest.storeDataNodes(dataspaceName, anchorName, dataNode)
         then: 'a #expectedException is thrown'
             thrown(expectedException)
         where: 'the following data is used'
@@ -127,7 +129,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             'dataspace does not exist'  | 'unknown'      | 'not-relevant' | newDataNode      || DataspaceNotFoundException
             'schema set does not exist' | DATASPACE_NAME | 'unknown'      | newDataNode      || AnchorNotFoundException
             'anchor already exists'     | DATASPACE_NAME | ANCHOR_NAME1   | newDataNode      || ConstraintViolationException
-            'datanode already exists'   | DATASPACE_NAME | ANCHOR_NAME1   | existingDataNode || AlreadyDefinedException
+            'datanode already exists'   | DATASPACE_NAME | ANCHOR_NAME1   | existingDataNode || DataIntegrityViolationException
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
@@ -135,7 +137,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
         given: ' a new child node'
             def newChild = createDataNodeTree('xpath for new child')
         when: 'the child is added to an existing parent with 1 child'
-            objectUnderTest.addChildDataNode(DATASPACE_NAME, ANCHOR_NAME1, XPATH_DATA_NODE_WITH_DESCENDANTS, newChild)
+            objectUnderTest.addNewChildrenDataNodes(DATASPACE_NAME, ANCHOR_NAME1, XPATH_DATA_NODE_WITH_DESCENDANTS, newChild)
         then: 'the parent is now has to 2 children'
             def expectedExistingChildPath = '/parent-1/child-1'
             def parentFragment = fragmentRepository.findById(ID_DATA_NODE_WITH_DESCENDANTS).orElseThrow()
@@ -143,19 +145,19 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
         and: 'it still has the old child'
             parentFragment.childFragments.find({ it.xpath == expectedExistingChildPath })
         and: 'it has the new child'
-            parentFragment.childFragments.find({ it.xpath == newChild.xpath })
+            parentFragment.childFragments.find({ it.xpath == newChild[0].xpath })
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Add child error scenario: #scenario.'() {
         when: 'attempt to add a child data node with #scenario'
-            objectUnderTest.addChildDataNode(DATASPACE_NAME, ANCHOR_NAME1, parentXpath, dataNode)
+            objectUnderTest.addNewChildrenDataNodes(DATASPACE_NAME, ANCHOR_NAME1, parentXpath, dataNode)
         then: 'a #expectedException is thrown'
             thrown(expectedException)
         where: 'the following data is used'
             scenario                 | parentXpath                      | dataNode              || expectedException
             'parent does not exist'  | '/unknown'                       | newDataNode           || DataNodeNotFoundException
-            'already existing child' | XPATH_DATA_NODE_WITH_DESCENDANTS | existingChildDataNode || AlreadyDefinedException
+            'already existing child' | XPATH_DATA_NODE_WITH_DESCENDANTS | existingChildDataNode || AlreadyDefinedExceptionBatch
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
@@ -623,9 +625,9 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
         if (xpaths.length > 1) {
             def xPathsDescendant = Arrays.copyOfRange(xpaths, 1, xpaths.length)
             def childDataNode = createDataNodeTree(xPathsDescendant)
-            dataNodeBuilder.withChildDataNodes(ImmutableSet.of(childDataNode))
+            dataNodeBuilder.withChildDataNodes(ImmutableSet.of(childDataNode[0]))
         }
-        dataNodeBuilder.build()
+        dataNodeBuilder.buildCollection()
     }
 
     def getFragmentByXpath(dataspaceName, anchorName, xpath) {
