@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "76d473ba_1a78227b",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsToDataNodePerfSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-13T14:16:48Z",
+      "side": 1,
+      "message": "would declare this sa a normal groovy def as part of test setup ie. just above line 43",
+      "range": {
+        "startLine": 38,
+        "startChar": 24,
+        "endLine": 38,
+        "endChar": 70
+      },
+      "revId": "9115e06e232fbfb0fd5a3be072b8225f8c76db1c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b6c2185d_963408ff",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsToDataNodePerfSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-13T14:16:48Z",
+      "side": 1,
+      "message": "add a stopwatch for the setup us as well and assert its duration too",
+      "range": {
+        "startLine": 42,
+        "startChar": 8,
+        "endLine": 42,
+        "endChar": 13
+      },
+      "revId": "9115e06e232fbfb0fd5a3be072b8225f8c76db1c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7571c1d4_5041411b",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsToDataNodePerfSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-13T14:16:48Z",
+      "side": 1,
+      "message": "set a value of 0 and run in CI so you can see how long it takes in CI  (I assume you can see teh details of the test if it fails)",
+      "range": {
+        "startLine": 58,
+        "startChar": 42,
+        "endLine": 58,
+        "endChar": 47
+      },
+      "revId": "9115e06e232fbfb0fd5a3be072b8225f8c76db1c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eae558d9_11ee90bb",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsToDataNodePerfSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-13T14:16:48Z",
+      "side": 1,
+      "message": "this is included in teh next assert, not needed",
+      "range": {
+        "startLine": 59,
+        "startChar": 1,
+        "endLine": 60,
+        "endChar": 53
+      },
+      "revId": "9115e06e232fbfb0fd5a3be072b8225f8c76db1c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8375dfc9_f97f03ab",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsToDataNodePerfSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-13T14:16:48Z",
+      "side": 1,
+      "message": "createChildrenAndGrandChildren\n\nor goForthAndMultiply :-)",
+      "range": {
+        "startLine": 65,
+        "startChar": 8,
+        "endLine": 65,
+        "endChar": 36
+      },
+      "revId": "9115e06e232fbfb0fd5a3be072b8225f8c76db1c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
