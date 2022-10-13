@@ -3,6 +3,7 @@
  *  Copyright (C) 2021 Bell Canada. All rights reserved.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2022 Nordix Foundation.
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -45,6 +46,7 @@ import org.opendaylight.yangtools.yang.data.api.schema.ValueNode;
 public class DataNodeBuilder {
 
     private NormalizedNode<?, ?> normalizedNodeTree;
+    private Collection<DataContainerChild<? extends YangInstanceIdentifier.PathArgument, ?>> normalizedNodeCollection;
     private String xpath;
     private String moduleNamePrefix;
     private String parentNodeXpath = "";
@@ -71,6 +73,19 @@ public class DataNodeBuilder {
      */
     public DataNodeBuilder withNormalizedNodeTree(final NormalizedNode<?, ?> normalizedNodeTree) {
         this.normalizedNodeTree = normalizedNodeTree;
+        return this;
+    }
+
+
+    /**
+     * To use {@link Collection} of Normalized Nodes for creating {@link DataNode}.
+     *
+     * @param dataContainerChildren used for creating the Data Node
+     * @return this {@link DataNodeBuilder} object
+     */
+    public DataNodeBuilder withNormalizedNodeCollection(final Collection<DataContainerChild<?
+            extends YangInstanceIdentifier.PathArgument, ?>> dataContainerChildren) {
+        this.normalizedNodeCollection = dataContainerChildren;
         return this;
     }
 
@@ -126,7 +141,7 @@ public class DataNodeBuilder {
      * @return {@link DataNode}
      */
     public DataNode build() {
-        if (normalizedNodeTree != null) {
+        if (normalizedNodeCollection != null) {
             return buildFromNormalizedNodeTree();
         } else {
             return buildFromAttributes();
@@ -139,9 +154,9 @@ public class DataNodeBuilder {
      * @return {@link DataNode} {@link Collection}
      */
     public Collection<DataNode> buildCollection() {
-        if (normalizedNodeTree != null) {
+        if (normalizedNodeCollection != null) {
             return buildCollectionFromNormalizedNodeTree();
-        } else {
+        }  else {
             return Set.of(buildFromAttributes());
         }
     }
@@ -164,9 +179,12 @@ public class DataNodeBuilder {
         return dataNodeCollection.iterator().next();
     }
 
+
     private Collection<DataNode> buildCollectionFromNormalizedNodeTree() {
         final var parentDataNode = new DataNodeBuilder().withXpath(parentNodeXpath).build();
-        addDataNodeFromNormalizedNode(parentDataNode, normalizedNodeTree);
+        for (final NormalizedNode normalizedNode: normalizedNodeCollection) {
+            addDataNodeFromNormalizedNode(parentDataNode, normalizedNode);
+        }
         return parentDataNode.getChildDataNodes();
     }
 
