@@ -3,6 +3,7 @@
  *  Copyright (C) 2021-2022 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -88,6 +89,12 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     }
 
     @Override
+    public void addNewChildrenDataNodes(final String dataspaceName, final String anchorName,
+                                        final String parentNodeXpath, final Collection<DataNode> dataNodes) {
+        addChildrenDataNodes(dataspaceName, anchorName, parentNodeXpath, dataNodes);
+    }
+
+    @Override
     public void addListElements(final String dataspaceName, final String anchorName, final String parentNodeXpath,
                                 final Collection<DataNode> newListElements) {
         addChildrenDataNodes(dataspaceName, anchorName, parentNodeXpath, newListElements);
@@ -165,15 +172,41 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     }
 
     @Override
-    public void storeDataNode(final String dataspaceName, final String anchorName, final DataNode dataNode) {
+    public void storeDataNodes(final String dataspaceName, final String anchorName,
+                               final Collection<DataNode> dataNodes) {
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         final AnchorEntity anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
-        final FragmentEntity fragmentEntity = convertToFragmentWithAllDescendants(dataspaceEntity, anchorEntity,
-                dataNode);
+        final List<FragmentEntity> fragmentEntities = new ArrayList<>(dataNodes.size());
         try {
-            fragmentRepository.save(fragmentEntity);
+            for (final DataNode dataNode: dataNodes) {
+                final FragmentEntity fragmentEntity = convertToFragmentWithAllDescendants(dataspaceEntity, anchorEntity,
+                        dataNode);
+                fragmentEntities.add(fragmentEntity);
+            }
+            fragmentRepository.saveAll(fragmentEntities);
         } catch (final DataIntegrityViolationException exception) {
-            throw AlreadyDefinedException.forDataNode(dataNode.getXpath(), anchorName, exception);
+            log.warn("Exception occurred : {} , While saving : {} data nodes, Retrying saving data nodes individually",
+                    exception, dataNodes.size());
+            storeDataNodesIndividually(dataspaceName, anchorName, dataNodes);
+        }
+    }
+
+    private void storeDataNodesIndividually(final String dataspaceName, final String anchorName,
+                                           final Collection<DataNode> dataNodes) {
+        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        final AnchorEntity anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
+        final Collection<String> failedXpaths = new HashSet<>();
+        for (final DataNode dataNode: dataNodes) {
+            try {
+                final FragmentEntity fragmentEntity = convertToFragmentWithAllDescendants(dataspaceEntity, anchorEntity,
+                        dataNode);
+                fragmentRepository.save(fragmentEntity);
+            } catch (final DataIntegrityViolationException e) {
+                failedXpaths.add(dataNode.getXpath());
+            }
+        }
+        if (!failedXpaths.isEmpty()) {
+            throw new AlreadyDefinedExceptionBatch(failedXpaths);
         }
     }
 

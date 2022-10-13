@@ -3,6 +3,7 @@
  *  Copyright (C) 2021-2022 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada.
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -26,7 +27,6 @@ import com.google.common.collect.ImmutableSet
 import org.onap.cps.cpspath.parser.PathParsingException
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.entities.FragmentEntity
-import org.onap.cps.spi.exceptions.AlreadyDefinedException
 import org.onap.cps.spi.exceptions.AlreadyDefinedExceptionBatch
 import org.onap.cps.spi.exceptions.AnchorNotFoundException
 import org.onap.cps.spi.exceptions.CpsAdminException
@@ -35,8 +35,10 @@ import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.spi.exceptions.DataspaceNotFoundException
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.DataNodeBuilder
+import org.onap.cps.spi.repository.FragmentRepository
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.test.context.jdbc.Sql
 import javax.validation.ConstraintViolationException
 
@@ -64,9 +66,11 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     static final long LIST_DATA_NODE_PARENT202_FRAGMENT_ID = 4211L
     static final long PARENT_3_FRAGMENT_ID = 4003L
 
-    static final DataNode newDataNode = new DataNodeBuilder().build()
-    static DataNode existingDataNode
-    static DataNode existingChildDataNode
+    static final Collection<DataNode> newDataNodes = new DataNodeBuilder().buildCollection()
+    static Collection<DataNode> existingDataNodes
+    static Collection<DataNode> existingChildDataNodes
+
+    def mockFragmentRepository = Mock(FragmentRepository)
 
     def expectedLeavesByXpathMap = [
             '/parent-207'                      : ['parent-leaf': 'parent-leaf value'],
@@ -76,8 +80,8 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     ]
 
     static {
-        existingDataNode = createDataNodeTree(XPATH_DATA_NODE_WITH_DESCENDANTS)
-        existingChildDataNode = createDataNodeTree('/parent-1/child-1')
+        existingDataNodes = createDataNodeTreeCollection(XPATH_DATA_NODE_WITH_DESCENDANTS)
+        existingChildDataNodes = createDataNodeTreeCollection('/parent-1/child-1')
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
@@ -93,13 +97,13 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
-    def 'Storing and Retrieving a new DataNode with descendants.'() {
+    def 'Storing and Retrieving a new DataNodes with descendants.'() {
         when: 'a fragment with descendants is stored'
             def parentXpath = '/parent-new'
             def childXpath = '/parent-new/child-new'
             def grandChildXpath = '/parent-new/child-new/grandchild-new'
-            objectUnderTest.storeDataNode(DATASPACE_NAME, ANCHOR_NAME1,
-                    createDataNodeTree(parentXpath, childXpath, grandChildXpath))
+            def dataNodes = createDataNodeTreeCollection(parentXpath, childXpath, grandChildXpath)
+            objectUnderTest.storeDataNodes(DATASPACE_NAME, ANCHOR_NAME1, dataNodes)
         then: 'it can be retrieved by its xpath'
             def dataNode = objectUnderTest.getDataNode(DATASPACE_NAME, ANCHOR_NAME1, parentXpath, INCLUDE_ALL_DESCENDANTS)
             assert dataNode.xpath == parentXpath
@@ -117,9 +121,9 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     def 'Store data node for multiple anchors using the same schema.'() {
         def xpath = '/parent-new'
         given: 'a fragment is stored for an anchor'
-            objectUnderTest.storeDataNode(DATASPACE_NAME, ANCHOR_NAME1, createDataNodeTree(xpath))
+            objectUnderTest.storeDataNodes(DATASPACE_NAME, ANCHOR_NAME1, createDataNodeTreeCollection(xpath))
         when: 'another fragment is stored for an other anchor, using the same schema set'
-            objectUnderTest.storeDataNode(DATASPACE_NAME, ANCHOR_NAME3, createDataNodeTree(xpath))
+            objectUnderTest.storeDataNodes(DATASPACE_NAME, ANCHOR_NAME3, createDataNodeTreeCollection(xpath))
         then: 'both fragments can be retrieved by their xpath'
             def fragment1 = getFragmentByXpath(DATASPACE_NAME, ANCHOR_NAME1, xpath)
             fragment1.anchor.name == ANCHOR_NAME1
@@ -130,45 +134,81 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
-    def 'Store datanode error scenario: #scenario.'() {
+    def 'Store datanodes error scenario: #scenario.'() {
         when: 'attempt to store a data node with #scenario'
-            objectUnderTest.storeDataNode(dataspaceName, anchorName, dataNode)
+            objectUnderTest.storeDataNodes(dataspaceName, anchorName, dataNodes)
         then: 'a #expectedException is thrown'
             thrown(expectedException)
         where: 'the following data is used'
-            scenario                    | dataspaceName  | anchorName     | dataNode         || expectedException
-            'dataspace does not exist'  | 'unknown'      | 'not-relevant' | newDataNode      || DataspaceNotFoundException
-            'schema set does not exist' | DATASPACE_NAME | 'unknown'      | newDataNode      || AnchorNotFoundException
-            'anchor already exists'     | DATASPACE_NAME | ANCHOR_NAME1   | newDataNode      || ConstraintViolationException
-            'datanode already exists'   | DATASPACE_NAME | ANCHOR_NAME1   | existingDataNode || AlreadyDefinedException
+            scenario                    | dataspaceName  | anchorName     | dataNodes          || expectedException
+            'dataspace does not exist'  | 'unknown'      | 'not-relevant' | newDataNodes       || DataspaceNotFoundException
+            'schema set does not exist' | DATASPACE_NAME | 'unknown'      | newDataNodes       || AnchorNotFoundException
+            'anchor already exists'     | DATASPACE_NAME | ANCHOR_NAME1   | newDataNodes       || ConstraintViolationException
+            'datanode already exists'   | DATASPACE_NAME | ANCHOR_NAME1   | existingDataNodes  || AlreadyDefinedExceptionBatch
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
-    def 'Add a child to a Fragment that already has a child.'() {
-        given: ' a new child node'
-            def newChild = createDataNodeTree('xpath for new child')
+    def 'Handling Exception when storing data nodes: #scenario'(){
+        given: 'system tries to store data nodes that throw an exception with #scenario'
+            def dataNodes = mockDataNodesAndFragmentEntity('/parent-1','EXCEPTION', dataNode)
+        and: 'the batch store operation fails'
+            fragmentRepository.saveAll(*_) >> { throw new DataIntegrityViolationException("Exception occurred") }
+        when: 'attempt to store the data nodes is done'
+            objectUnderTest.storeDataNodes(dataspaceName, anchorName, dataNodes)
+        then: '#expectedException is thrown'
+            thrown(expectedException)
+        where: 'the following data is used'
+            scenario                    | dataspaceName  | anchorName     | dataNode          || expectedException
+            'dataspace does not exist'  | 'unknown'      | 'not-relevant' | newDataNodes       || DataspaceNotFoundException
+            'schema set does not exist' | DATASPACE_NAME | 'unknown'      | newDataNodes       || AnchorNotFoundException
+            'anchor already exists'     | DATASPACE_NAME | ANCHOR_NAME1   | newDataNodes       || ConstraintViolationException
+            'datanode already exists'   | DATASPACE_NAME | ANCHOR_NAME1   | existingDataNodes  || AlreadyDefinedExceptionBatch
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Storing data nodes individually when batch operation fails'(){
+        def xpath = '/parent-new'
+        given: 'a collection of data nodes that throws exception'
+            def dataNodes = mockDataNodesCollection(xpath, 'EXCEPTION')
+        and: 'causing the batch store operation to fail'
+            mockFragmentRepository.saveAll(*_) >> { throw new DataIntegrityViolationException("Exception occurred") }
+        when: 'trying to store data nodes'
+            objectUnderTest.storeDataNodes(DATASPACE_NAME, ANCHOR_NAME1, dataNodes)
+        then: 'then the data nodes are stored individually'
+            def fragment = getFragmentByXpath(DATASPACE_NAME, ANCHOR_NAME1, xpath)
+            fragment.anchor.name == ANCHOR_NAME1
+            fragment.xpath == xpath
+        }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Add children to a Fragment that already has a child.'() {
+        given: 'collection of new child data nodes'
+            def newChild1 = createDataNodeTree('/parent-1/child-2')
+            def newChild2 = createDataNodeTree('/parent-1/child-3')
+            def newChildrenCollection = [newChild1, newChild2]
         when: 'the child is added to an existing parent with 1 child'
-            objectUnderTest.addChildDataNode(DATASPACE_NAME, ANCHOR_NAME1, XPATH_DATA_NODE_WITH_DESCENDANTS, newChild)
-        then: 'the parent is now has to 2 children'
+            objectUnderTest.addNewChildrenDataNodes(DATASPACE_NAME, ANCHOR_NAME1, XPATH_DATA_NODE_WITH_DESCENDANTS, newChildrenCollection)
+        then: 'the parent is now has to 3 children'
             def expectedExistingChildPath = '/parent-1/child-1'
             def parentFragment = fragmentRepository.findById(ID_DATA_NODE_WITH_DESCENDANTS).orElseThrow()
-            parentFragment.childFragments.size() == 2
+            parentFragment.childFragments.size() == 3
         and: 'it still has the old child'
             parentFragment.childFragments.find({ it.xpath == expectedExistingChildPath })
         and: 'it has the new child'
-            parentFragment.childFragments.find({ it.xpath == newChild.xpath })
+            parentFragment.childFragments.find({ it.xpath == newChildrenCollection[0].xpath })
+            parentFragment.childFragments.find({ it.xpath == newChildrenCollection[1].xpath })
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Add child error scenario: #scenario.'() {
         when: 'attempt to add a child data node with #scenario'
-            objectUnderTest.addChildDataNode(DATASPACE_NAME, ANCHOR_NAME1, parentXpath, dataNode)
+            objectUnderTest.addNewChildrenDataNodes(DATASPACE_NAME, ANCHOR_NAME1, parentXpath, dataNodes)
         then: 'a #expectedException is thrown'
             thrown(expectedException)
         where: 'the following data is used'
-            scenario                 | parentXpath                      | dataNode              || expectedException
-            'parent does not exist'  | '/unknown'                       | newDataNode           || DataNodeNotFoundException
-            'already existing child' | XPATH_DATA_NODE_WITH_DESCENDANTS | existingChildDataNode || AlreadyDefinedException
+            scenario                 | parentXpath                      | dataNodes               || expectedException
+            'parent does not exist'  | '/unknown'                       | newDataNodes            || DataNodeNotFoundException
+            'already existing child' | XPATH_DATA_NODE_WITH_DESCENDANTS | existingChildDataNodes  || AlreadyDefinedExceptionBatch
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
@@ -632,10 +672,20 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
         def dataNodeBuilder = new DataNodeBuilder().withXpath(xpaths[0])
         if (xpaths.length > 1) {
             def xPathsDescendant = Arrays.copyOfRange(xpaths, 1, xpaths.length)
-            def childDataNode = createDataNodeTree(xPathsDescendant)
+            def childDataNode = createOneDataNodeTree(xPathsDescendant)
             dataNodeBuilder.withChildDataNodes(ImmutableSet.of(childDataNode))
         }
         dataNodeBuilder.build()
+    }
+
+    def static createDataNodeTreeCollection(String... xpaths) {
+        def dataNodeBuilder = new DataNodeBuilder().withXpath(xpaths[0])
+        if (xpaths.length > 1) {
+            def xPathsDescendant = Arrays.copyOfRange(xpaths, 1, xpaths.length)
+            def childDataNode = createDataNodeTreeCollection(xPathsDescendant)
+            dataNodeBuilder.withChildDataNodes(ImmutableSet.of(childDataNode[0]))
+        }
+        dataNodeBuilder.buildCollection()
     }
 
     def getFragmentByXpath(dataspaceName, anchorName, xpath) {
@@ -663,6 +713,29 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             .withXpath("${parentXPath}/${tag}-grand-child")
             .withLeaves([attr1: tag])
             .build()
+    }
+
+    def mockDataNodesAndFragmentEntity( xpath,exception, dataNode) {
+        def dataNodes = dataNode
+        def dataspaceEntity = dataspaceRepository.getByName(DATASPACE_NAME)
+        def anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, ANCHOR_NAME1)
+        def fragmentEntity = fragmentRepository.getByDataspaceAndAnchorAndXpath(dataspaceEntity,anchorEntity,xpath)
+        if ('EXCEPTION' == exception) {
+            fragmentRepository.save(fragmentEntity) >> { throw new DataIntegrityViolationException("Exception occurred") }
+        }
+        return dataNodes
+    }
+
+    def mockDataNodesCollection(xpath, scenario) {
+        def dataNodes = new DataNodeBuilder().withXpath(xpath).buildCollection()
+        def dataspaceEntity = dataspaceRepository.getByName(DATASPACE_NAME)
+        def anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, ANCHOR_NAME1)
+        def fragmentEntity = new FragmentEntity(xpath: xpath, childFragments: [])
+        mockFragmentRepository.getByDataspaceAndAnchorAndXpath(dataspaceEntity,anchorEntity,xpath) >> fragmentEntity
+        if ('EXCEPTION' == scenario) {
+            mockFragmentRepository.save(fragmentEntity)
+        }
+        return dataNodes
     }
 
 }
