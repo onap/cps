@@ -3,6 +3,7 @@
  *  Copyright (C) 2020-2022 Nordix Foundation.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2022 Bell Canada
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,14 +35,15 @@ import org.onap.cps.spi.model.DataNode;
  */
 public interface CpsDataPersistenceService {
 
+
     /**
-     * Store a datanode.
-     *
+     * Store multiple datanodes at once.
      * @param dataspaceName dataspace name
      * @param anchorName    anchor name
-     * @param dataNode      data node
+     * @param dataNodes     data nodes
      */
-    void storeDataNode(String dataspaceName, String anchorName, DataNode dataNode);
+
+    void storeDataNodes(String dataspaceName, String anchorName, Collection<DataNode> dataNodes);
 
     /**
      * Add a child to a Fragment.
@@ -52,6 +54,18 @@ public interface CpsDataPersistenceService {
      * @param dataNode      dataNode
      */
     void addChildDataNode(String dataspaceName, String anchorName, String parentXpath, DataNode dataNode);
+
+    /**
+     * Add a multiple children to a Fragment.
+     *
+     * @param dataspaceName dataspace name
+     * @param anchorName    anchor name
+     * @param parentXpath   parent xpath
+     * @param dataNodes     collection of dataNodes
+     */
+
+    void addNewChildrenDataNodes(String dataspaceName, String anchorName, String parentXpath,
+                                 Collection<DataNode> dataNodes);
 
     /**
      * Adds list child elements to a Fragment.
