@@ -34,6 +34,7 @@ import org.onap.cps.spi.repository.DataspaceRepository
 import org.onap.cps.spi.repository.FragmentRepository
 import org.onap.cps.spi.utils.SessionManager
 import org.onap.cps.utils.JsonObjectMapper
+import org.springframework.dao.DataIntegrityViolationException
 import spock.lang.Specification
 
 class CpsDataPersistenceServiceSpec extends Specification {
@@ -45,6 +46,21 @@ class CpsDataPersistenceServiceSpec extends Specification {
     def mockSessionManager = Mock(SessionManager)
 
     def objectUnderTest = new CpsDataPersistenceServiceImpl(mockDataspaceRepository, mockAnchorRepository, mockFragmentRepository, jsonObjectMapper, mockSessionManager)
+
+    def 'Storing data nodes individually when batch operation fails'(){
+        def xpath = '/parent-new'
+        given: 'a collection of data nodes that throws exception'
+            def dataNodes = mockDataNodesCollection(xpath, 'EXCEPTION')
+            def dataspaceEntity = mockDataspaceRepository.getByName('dataSpaceName')
+            def anchorEntity = mockAnchorRepository.getByDataspaceAndName(dataspaceEntity, 'anchorName')
+        and: 'causing the batch store operation to fail'
+            mockFragmentRepository.saveAll(*_) >> { throw new DataIntegrityViolationException("Exception occurred") }
+        when: 'trying to store data nodes'
+            objectUnderTest.storeDataNodes('dataSpaceName', 'anchorName', dataNodes)
+        then: 'then the data nodes are stored individually'
+            def fragment = mockFragmentRepository.getByDataspaceAndAnchorAndXpath(dataspaceEntity, anchorEntity, xpath)
+            assert fragment.xpath == xpath
+    }
 
     def 'Handling of StaleStateException (caused by concurrent updates) during update data node and descendants.'() {
         given: 'the fragment repository returns a fragment entity'
@@ -172,6 +188,18 @@ class CpsDataPersistenceServiceSpec extends Specification {
                 ])
                 assert fragmentEntities.size() == 2
             }})
+    }
+
+    def mockDataNodesCollection(xpath, scenario) {
+        def dataNodes = new DataNodeBuilder().withXpath(xpath).buildCollection()
+        def dataspaceEntity = mockDataspaceRepository.getByName('dataSpaceName')
+        def anchorEntity = mockAnchorRepository.getByDataspaceAndName(dataspaceEntity, 'anchorName')
+        def fragmentEntity = new FragmentEntity(xpath: xpath, childFragments: [])
+        mockFragmentRepository.getByDataspaceAndAnchorAndXpath(dataspaceEntity,anchorEntity,xpath) >> fragmentEntity
+        if ('EXCEPTION' == scenario) {
+            mockFragmentRepository.save(fragmentEntity)
+        }
+        return dataNodes
     }
 
     def mockDataNodeAndFragmentEntity(xpath, scenario) {

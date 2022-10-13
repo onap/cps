@@ -3,6 +3,7 @@
  *  Copyright (C) 2021-2022 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada.
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -62,17 +63,22 @@ class CpsDataServiceImplSpec extends Specification {
 
     def 'Saving json data.'() {
         given: 'schema set for given anchor and dataspace references test-tree model'
-            setupSchemaSetMocks('test-tree.yang')
+            setupSchemaSetMocks('multipleDataTree.yang')
         when: 'save data method is invoked with test-tree json data'
-            def jsonData = TestUtils.getResourceFileContent('test-tree.json')
+            def jsonData = TestUtils.getResourceFileContent('multiple-object-data.json')
             objectUnderTest.saveData(dataspaceName, anchorName, jsonData, observedTimestamp)
         then: 'the persistence service method is invoked with correct parameters'
-            1 * mockCpsDataPersistenceService.storeDataNode(dataspaceName, anchorName,
-                { dataNode -> dataNode.xpath == '/test-tree' })
+            1 * mockCpsDataPersistenceService.storeDataNodes(dataspaceName, anchorName,
+                { dataNode -> dataNode.xpath[index] == xpath })
         and: 'the CpsValidator is called on the dataspaceName and AnchorName'
             1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
         and: 'data updated event is sent to notification service'
             1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, '/', Operation.CREATE, observedTimestamp)
+        where:
+            index   |   xpath
+                0   | '/first-container'
+                1   | '/last-container'
+
     }
 
     def 'Saving child data fragment under existing node.'() {
@@ -82,8 +88,8 @@ class CpsDataServiceImplSpec extends Specification {
             def jsonData = '{"branch": [{"name": "New"}]}'
             objectUnderTest.saveData(dataspaceName, anchorName, '/test-tree', jsonData, observedTimestamp)
         then: 'the persistence service method is invoked with correct parameters'
-            1 * mockCpsDataPersistenceService.addChildDataNode(dataspaceName, anchorName, '/test-tree',
-                { dataNode -> dataNode.xpath == '/test-tree/branch[@name=\'New\']' })
+            1 * mockCpsDataPersistenceService.addNewChildrenDataNodes(dataspaceName, anchorName, '/test-tree',
+                { dataNode -> dataNode.xpath[0] == '/test-tree/branch[@name=\'New\']' })
         and: 'the CpsValidator is called on the dataspaceName and AnchorName'
             1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
         and: 'data updated event is sent to notification service'
@@ -207,8 +213,8 @@ class CpsDataServiceImplSpec extends Specification {
         when: 'replace data method is invoked with json data #jsonData and parent node xpath #parentNodeXpath'
             objectUnderTest.updateDataNodeAndDescendants(dataspaceName, anchorName, parentNodeXpath, jsonData, observedTimestamp)
         then: 'the persistence service method is invoked with correct parameters'
-            1 * mockCpsDataPersistenceService.updateDataNodeAndDescendants(dataspaceName, anchorName,
-                { dataNode -> dataNode.xpath == expectedNodeXpath })
+            1 * mockCpsDataPersistenceService.updateDataNodesAndDescendants(dataspaceName, anchorName,
+                { dataNode -> dataNode.xpath[0] == expectedNodeXpath })
         and: 'data updated event is sent to notification service'
             1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, parentNodeXpath, Operation.UPDATE, observedTimestamp)
         and: 'the CpsValidator is called on the dataspaceName and AnchorName'
