@@ -2,6 +2,7 @@
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -25,6 +26,7 @@ import org.onap.cps.TestUtils
 import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
 import org.opendaylight.yangtools.yang.common.QName
+import org.opendaylight.yangtools.yang.data.api.schema.DataContainerChild
 import org.opendaylight.yangtools.yang.data.api.schema.NormalizedNode
 import spock.lang.Specification
 
@@ -36,9 +38,15 @@ class YangUtilsSpec extends Specification {
             def yangResourceNameToContent = TestUtils.getYangResourcesAsMap('bookstore.yang')
             def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getSchemaContext()
         when: 'the json data is parsed'
-            NormalizedNode<?, ?> result = YangUtils.parseJsonData(jsonData, schemaContext)
-        then: 'the result is a normalized node of the correct type'
-            result.nodeType == QName.create('org:onap:ccsdk:sample', '2020-09-15', 'bookstore')
+            def result = YangUtils.parseJsonData(jsonData, schemaContext)
+        then: 'the children in result are of type normalized node'
+            DataContainerChild dataContainerChild = result.getValue()[index]
+            dataContainerChild instanceof NormalizedNode == true
+        then: 'qualified name of children created is as expected'
+            dataContainerChild.nodeType == QName.create('org:onap:ccsdk:sample', '2020-09-15', nodeName)
+        where:
+            index   | nodeName
+            0       | 'bookstore'
     }
 
     def 'Parsing invalid data: #description.'() {
@@ -62,13 +70,16 @@ class YangUtilsSpec extends Specification {
             def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourcesMap).getSchemaContext()
         when: 'json string is parsed'
             def result = YangUtils.parseJsonData(jsonData, schemaContext, parentNodeXpath)
+        then: 'the children in result are of type normalized node'
+            DataContainerChild dataContainerChild = result.getValue()[index]
+            dataContainerChild instanceof NormalizedNode == true
         then: 'result represents a node of expected type'
-            result.nodeType == QName.create('org:onap:cps:test:test-tree', '2020-02-02', nodeName)
+            dataContainerChild.nodeType == QName.create('org:onap:cps:test:test-tree', '2020-02-02', nodeName)
         where:
-            scenario                    | jsonData                                                                      | parentNodeXpath                       || nodeName
-            'list element as container' | '{ "branch": { "name": "B", "nest": { "name": "N", "birds": ["bird"] } } }'   | '/test-tree'                          || 'branch'
-            'list element within list'  | '{ "branch": [{ "name": "B", "nest": { "name": "N", "birds": ["bird"] } }] }' | '/test-tree'                          || 'branch'
-            'container element'         | '{ "nest": { "name": "N", "birds": ["bird"] } }'                              | '/test-tree/branch[@name=\'Branch\']' || 'nest'
+            index   |        scenario            | jsonData                                                                      | parentNodeXpath                       || nodeName
+                0   |'list element as container' | '{ "branch": { "name": "B", "nest": { "name": "N", "birds": ["bird"] } } }'   | '/test-tree'                          || 'branch'
+                0   |'list element within list'  | '{ "branch": [{ "name": "B", "nest": { "name": "N", "birds": ["bird"] } }] }' | '/test-tree'                          || 'branch'
+                0   |'container element'         | '{ "nest": { "name": "N", "birds": ["bird"] } }'                              | '/test-tree/branch[@name=\'Branch\']' || 'nest'
     }
 
     def 'Parsing json data fragment by xpath error scenario: #scenario.'() {
