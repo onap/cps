@@ -2,6 +2,7 @@
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Nordix Foundation.
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -58,9 +59,9 @@ class DataNodeBuilderSpec extends Specification {
             def jsonData = TestUtils.getResourceFileContent('test-tree.json')
             def normalizedNode = YangUtils.parseJsonData(jsonData, schemaContext)
         when: 'the normalized node is converted to a data node'
-            def result = new DataNodeBuilder().withNormalizedNodeTree(normalizedNode).build()
+            def result = new DataNodeBuilder().withNormalizedNodeCollection(normalizedNode).build()
             def mappedResult = TestUtils.getFlattenMapByXpath(result)
-        then: '5 DataNode objects with unique xpath were created in total'
+        then: '6 DataNode objects with unique xpath were created in total'
             mappedResult.size() == 6
         and: 'all expected xpaths were built'
             mappedResult.keySet().containsAll(expectedLeavesByXpathMap.keySet())
@@ -79,7 +80,7 @@ class DataNodeBuilderSpec extends Specification {
             def normalizedNode = YangUtils.parseJsonData(jsonData, schemaContext, "/test-tree")
         when: 'the normalized node is converted to a data node with parent node xpath defined'
             def result = new DataNodeBuilder()
-                    .withNormalizedNodeTree(normalizedNode)
+                    .withNormalizedNodeCollection(normalizedNode)
                     .withParentNodeXpath("/test-tree")
                     .build()
             def mappedResult = TestUtils.getFlattenMapByXpath(result)
@@ -98,7 +99,7 @@ class DataNodeBuilderSpec extends Specification {
             def jsonData = TestUtils.getResourceFileContent('ietf/data/ietf-network-topology-sample-rfc8345.json')
             def normalizedNode = YangUtils.parseJsonData(jsonData, schemaContext)
         when: 'the normalized node is converted to a data node '
-            def result = new DataNodeBuilder().withNormalizedNodeTree(normalizedNode).build()
+            def result = new DataNodeBuilder().withNormalizedNodeCollection(normalizedNode).build()
             def mappedResult = TestUtils.getFlattenMapByXpath(result)
         then: 'all expected data nodes are populated'
             mappedResult.size() == 32
@@ -132,7 +133,7 @@ class DataNodeBuilderSpec extends Specification {
             def jsonData = '{"source": {"source-node": "D1", "source-tp": "1-2-1"}}'
             def normalizedNode = YangUtils.parseJsonData(jsonData, schemaContext, parentNodeXpath)
         when: 'the normalized node is converted to a data node with given parent node xpath'
-            def result = new DataNodeBuilder().withNormalizedNodeTree(normalizedNode)
+            def result = new DataNodeBuilder().withNormalizedNodeCollection(normalizedNode)
                     .withParentNodeXpath(parentNodeXpath).build()
         then: 'the resulting data node represents a child of augmentation node'
             assert result.xpath == "/networks/network[@network-id='otn-hc']/link[@link-id='D1,1-2-1,D2,2-1-1']/source"
@@ -149,7 +150,7 @@ class DataNodeBuilderSpec extends Specification {
         and: 'the json data fragment (list element) parsed into normalized node object'
             def normalizedNode = YangUtils.parseJsonData(jsonData, schemaContext, parentNodeXpath)
         when: 'the normalized node is converted to a data node collection'
-            def result = new DataNodeBuilder().withNormalizedNodeTree(normalizedNode)
+            def result = new DataNodeBuilder().withNormalizedNodeCollection(normalizedNode)
                     .withParentNodeXpath(parentNodeXpath).buildCollection()
             def resultXpaths = result.collect { it.getXpath() }
         then: 'the resulting collection contains data nodes for expected list elements'

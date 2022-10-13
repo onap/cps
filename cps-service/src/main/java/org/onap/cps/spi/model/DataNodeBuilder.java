@@ -3,6 +3,7 @@
  *  Copyright (C) 2021 Bell Canada. All rights reserved.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2022 Nordix Foundation.
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -44,7 +45,7 @@ import org.opendaylight.yangtools.yang.data.api.schema.ValueNode;
 @Slf4j
 public class DataNodeBuilder {
 
-    private NormalizedNode<?, ?> normalizedNodeTree;
+    private Collection<DataContainerChild<? extends YangInstanceIdentifier.PathArgument, ?>> normalizedNodeCollection;
     private String xpath;
     private String moduleNamePrefix;
     private String parentNodeXpath = "";
@@ -62,15 +63,15 @@ public class DataNodeBuilder {
         return this;
     }
 
-
     /**
-     * To use {@link NormalizedNode} for creating {@link DataNode}.
+     * To use {@link Collection} of Normalized Nodes for creating {@link DataNode}.
      *
-     * @param normalizedNodeTree used for creating the Data Node
+     * @param normalizednodecollection used for creating the Data Node
      * @return this {@link DataNodeBuilder} object
      */
-    public DataNodeBuilder withNormalizedNodeTree(final NormalizedNode<?, ?> normalizedNodeTree) {
-        this.normalizedNodeTree = normalizedNodeTree;
+    public DataNodeBuilder withNormalizedNodeCollection(final Collection<DataContainerChild<?
+            extends YangInstanceIdentifier.PathArgument, ?>> normalizednodecollection) {
+        this.normalizedNodeCollection = normalizednodecollection;
         return this;
     }
 
@@ -126,8 +127,8 @@ public class DataNodeBuilder {
      * @return {@link DataNode}
      */
     public DataNode build() {
-        if (normalizedNodeTree != null) {
-            return buildFromNormalizedNodeTree();
+        if (normalizedNodeCollection != null) {
+            return buildFromNormalizedNodeCollection();
         } else {
             return buildFromAttributes();
         }
@@ -139,9 +140,9 @@ public class DataNodeBuilder {
      * @return {@link DataNode} {@link Collection}
      */
     public Collection<DataNode> buildCollection() {
-        if (normalizedNodeTree != null) {
-            return buildCollectionFromNormalizedNodeTree();
-        } else {
+        if (normalizedNodeCollection != null) {
+            return buildCollectionFromNormalizedNodeCollection();
+        }  else {
             return Set.of(buildFromAttributes());
         }
     }
@@ -155,8 +156,8 @@ public class DataNodeBuilder {
         return dataNode;
     }
 
-    private DataNode buildFromNormalizedNodeTree() {
-        final Collection<DataNode> dataNodeCollection = buildCollectionFromNormalizedNodeTree();
+    private DataNode buildFromNormalizedNodeCollection() {
+        final Collection<DataNode> dataNodeCollection = buildCollectionFromNormalizedNodeCollection();
         if (!dataNodeCollection.iterator().hasNext()) {
             throw new DataValidationException(
                 "Unsupported xpath: ", "Unsupported xpath as it is referring to one element");
@@ -164,9 +165,11 @@ public class DataNodeBuilder {
         return dataNodeCollection.iterator().next();
     }
 
-    private Collection<DataNode> buildCollectionFromNormalizedNodeTree() {
+    private Collection<DataNode> buildCollectionFromNormalizedNodeCollection() {
         final var parentDataNode = new DataNodeBuilder().withXpath(parentNodeXpath).build();
-        addDataNodeFromNormalizedNode(parentDataNode, normalizedNodeTree);
+        for (final NormalizedNode normalizedNode: normalizedNodeCollection) {
+            addDataNodeFromNormalizedNode(parentDataNode, normalizedNode);
+        }
         return parentDataNode.getChildDataNodes();
     }
 
