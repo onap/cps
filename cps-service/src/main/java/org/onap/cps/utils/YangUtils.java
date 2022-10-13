@@ -3,6 +3,7 @@
  *  Copyright (C) 2020-2021 Nordix Foundation
  *  Modifications Copyright (C) 2021 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -40,8 +41,9 @@ import org.opendaylight.yangtools.yang.data.api.YangInstanceIdentifier;
 import org.opendaylight.yangtools.yang.data.api.schema.NormalizedNode;
 import org.opendaylight.yangtools.yang.data.codec.gson.JSONCodecFactorySupplier;
 import org.opendaylight.yangtools.yang.data.codec.gson.JsonParserStream;
+import org.opendaylight.yangtools.yang.data.impl.schema.Builders;
 import org.opendaylight.yangtools.yang.data.impl.schema.ImmutableNormalizedNodeStreamWriter;
-import org.opendaylight.yangtools.yang.data.impl.schema.NormalizedNodeResult;
+import org.opendaylight.yangtools.yang.data.impl.schema.builder.api.DataContainerNodeBuilder;
 import org.opendaylight.yangtools.yang.model.api.DataNodeContainer;
 import org.opendaylight.yangtools.yang.model.api.DataSchemaNode;
 import org.opendaylight.yangtools.yang.model.api.EffectiveModelContext;
@@ -62,7 +64,7 @@ public class YangUtils {
      * @param schemaContext schema context describing associated data model
      * @return the NormalizedNode object
      */
-    @SuppressWarnings("squid:S1452")  // Generic type <? ,?> is returned by external librray, opendaylight.yangtools
+    @SuppressWarnings("squid:S1452")  // Generic type <? ,?> is returned by external library, opendaylight.yangtools
     public static NormalizedNode<?, ?> parseJsonData(final String jsonData, final SchemaContext schemaContext) {
         return parseJsonData(jsonData, schemaContext, Optional.empty());
     }
@@ -75,7 +77,7 @@ public class YangUtils {
      * @param parentNodeXpath the xpath referencing the parent node current data fragment belong to
      * @return the NormalizedNode object
      */
-    @SuppressWarnings("squid:S1452")  // Generic type <? ,?> is returned by external librray, opendaylight.yangtools
+    @SuppressWarnings("squid:S1452")  // Generic type <? ,?> is returned by external library, opendaylight.yangtools
     public static NormalizedNode<?, ?> parseJsonData(final String jsonData, final SchemaContext schemaContext,
         final String parentNodeXpath) {
         final var parentSchemaNode = getDataSchemaNodeByXpath(parentNodeXpath, schemaContext);
@@ -86,9 +88,10 @@ public class YangUtils {
         final Optional<DataSchemaNode> optionalParentSchemaNode) {
         final var jsonCodecFactory = JSONCodecFactorySupplier.DRAFT_LHOTKA_NETMOD_YANG_JSON_02
             .getShared((EffectiveModelContext) schemaContext);
-        final var normalizedNodeResult = new NormalizedNodeResult();
+        final DataContainerNodeBuilder dataContainerNodeBuilder = Builders.containerBuilder()
+                .withNodeIdentifier(new YangInstanceIdentifier.NodeIdentifier(schemaContext.getQName()));
         final var normalizedNodeStreamWriter = ImmutableNormalizedNodeStreamWriter
-            .from(normalizedNodeResult);
+            .from(dataContainerNodeBuilder);
 
         try (final JsonParserStream jsonParserStream = optionalParentSchemaNode.isPresent()
             ? JsonParserStream.create(normalizedNodeStreamWriter, jsonCodecFactory, optionalParentSchemaNode.get())
@@ -105,7 +108,7 @@ public class YangUtils {
                 "Failed to parse json data. Unsupported xpath or json data:" + jsonData, illegalStateException
                 .getMessage(), illegalStateException);
         }
-        return normalizedNodeResult.getResult();
+        return dataContainerNodeBuilder.build();
     }
 
     /**
