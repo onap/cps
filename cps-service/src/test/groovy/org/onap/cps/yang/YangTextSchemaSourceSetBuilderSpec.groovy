@@ -20,11 +20,12 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.yang
+package org.onap.cps.utils.yang
 
 
 import org.onap.cps.TestUtils
 import org.onap.cps.spi.exceptions.ModelValidationException
+import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
 import org.opendaylight.yangtools.yang.common.Revision
 import spock.lang.Specification
 
