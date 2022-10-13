@@ -45,6 +45,30 @@
       "revId": "d05c1d71f33c1d951d5a5196f6c206457431da9e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "663a0bf0_27a63692",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/FetchDescendantsOption.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-13T12:52:40Z",
+      "side": 1,
+      "message": "apparently the official rules are NOT to add the word \u0027Modifications\u0027 or even \u0027Copyright\u0027\n(LUke is looking at a new CI tool develop by ONAP that wil check this going forward)\nFor now we will accept such variations",
+      "parentUuid": "f9854478_6056bbc4",
+      "range": {
+        "startLine": 4,
+        "startChar": 4,
+        "endLine": 4,
+        "endChar": 17
+      },
+      "revId": "d05c1d71f33c1d951d5a5196f6c206457431da9e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
