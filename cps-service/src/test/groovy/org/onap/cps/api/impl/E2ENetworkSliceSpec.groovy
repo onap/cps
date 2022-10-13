@@ -3,6 +3,7 @@
  * Copyright (C) 2021-2022 Nordix Foundation.
  * Modifications Copyright (C) 2021-2022 Bell Canada.
  * Modifications Copyright (C) 2021 Pantheon.tech
+ * Modifications Copyright (C) 2022 TechMahindra Ltd.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -90,9 +91,9 @@ class E2ENetworkSliceSpec extends Specification {
         when: 'saveData method is invoked'
             cpsDataServiceImpl.saveData(dataspaceName, anchorName, jsonData, noTimestamp)
         then: 'Parameters are validated and processing is delegated to persistence service'
-            1 * mockDataStoreService.storeDataNode('someDataspace', 'someAnchor', _) >>
+            1 * mockDataStoreService.storeDataNodes('someDataspace', 'someAnchor', _) >>
                     { args -> dataNodeStored = args[2]}
-            def child = dataNodeStored.childDataNodes[0]
+            def child = dataNodeStored[0].childDataNodes[0]
             assert child.childDataNodes.size() == 1
         and: 'list of Tracking Area for a Coverage Area are stored with correct xpath and child nodes '
             def listOfTAForCoverageArea = child.childDataNodes[0]
@@ -122,10 +123,10 @@ class E2ENetworkSliceSpec extends Specification {
         when: 'saveData method is invoked'
             cpsDataServiceImpl.saveData('someDataspace', 'someAnchor', jsonData, noTimestamp)
         then: 'parameters are validated and processing is delegated to persistence service'
-            1 * mockDataStoreService.storeDataNode('someDataspace', 'someAnchor', _) >>
+            1 * mockDataStoreService.storeDataNodes('someDataspace', 'someAnchor', _) >>
                     { args -> dataNodeStored = args[2]}
         and: 'the size of the tree is correct'
-            def cpsRanInventory = TestUtils.getFlattenMapByXpath(dataNodeStored)
+            def cpsRanInventory = TestUtils.getFlattenMapByXpath(dataNodeStored[0])
             assert  cpsRanInventory.size() == 4
         and: 'ran-inventory contains the correct child node'
             def ranInventory = cpsRanInventory.get('/ran-inventory')
