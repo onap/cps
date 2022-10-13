@@ -3,6 +3,7 @@
  *  Copyright (C) 2020-2021 Pantheon.tech
  *  Modifications Copyright (C) 2020-2022 Nordix Foundation
  *  Modifications Copyright (C) 2021 Bell Canada.
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,11 +21,12 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.yang
+package org.onap.cps.utils.yang
 
 
 import org.onap.cps.TestUtils
 import org.onap.cps.spi.exceptions.ModelValidationException
+import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
 import org.opendaylight.yangtools.yang.common.Revision
 import spock.lang.Specification
 

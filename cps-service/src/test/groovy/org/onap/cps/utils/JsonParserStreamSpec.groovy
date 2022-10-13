@@ -1,3 +1,24 @@
+/*
+ * ============LICENSE_START=======================================================
+ *  Copyright (C) 2022 Nordix Foundation
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
+ *  ================================================================================
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ *
+ *  SPDX-License-Identifier: Apache-2.0
+ *  ============LICENSE_END=========================================================
+ */
+
 package org.onap.cps.utils
 
 import com.google.gson.stream.JsonReader
@@ -26,10 +47,10 @@ class JsonParserStreamSpec extends Specification{
             def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourcesMap).getSchemaContext()
         and: 'variable to store the result of parsing'
             DataContainerNodeBuilder<YangInstanceIdentifier.NodeIdentifier, ContainerNode> builder =
-                    Builders.containerBuilder().withNodeIdentifier(new YangInstanceIdentifier.NodeIdentifier(schemaContext.getQName()));
-            def normalizedNodeStreamWriter = ImmutableNormalizedNodeStreamWriter.from(builder);
+                    Builders.containerBuilder().withNodeIdentifier(new YangInstanceIdentifier.NodeIdentifier(schemaContext.getQName()))
+            def normalizedNodeStreamWriter = ImmutableNormalizedNodeStreamWriter.from(builder)
             def jsonCodecFactory = JSONCodecFactorySupplier.DRAFT_LHOTKA_NETMOD_YANG_JSON_02
-                    .getShared((EffectiveModelContext) schemaContext);
+                    .getShared((EffectiveModelContext) schemaContext)
         and: 'JSON parser stream'
             def jsonParserStream = JsonParserStream.create(normalizedNodeStreamWriter, jsonCodecFactory)
         when: 'parsing is invoked with the given JSON reader'
