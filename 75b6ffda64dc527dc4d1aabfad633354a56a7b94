@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9f7718ab_507a630e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationCacheConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-10-13T10:49:26Z",
+      "side": 1,
+      "message": "Foe more appropriate implementation of distributed data structure it  should be modified as below :\n\n- Single Hazelcast Instance\n  - BlockingQueue\n    - QueueConfig \n  - IMap\n    - MapConfig",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 5
+      },
+      "revId": "75b6ffda64dc527dc4d1aabfad633354a56a7b94",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "952fc5a4_884d8148",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationCacheConfigSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-10-13T10:49:26Z",
+      "side": 1,
+      "message": "NB : Remove extra blank line",
+      "revId": "75b6ffda64dc527dc4d1aabfad633354a56a7b94",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "686d6e37_23cb21c7",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/DataSyncWatchdogSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-10-13T10:49:26Z",
+      "side": 1,
+      "message": "We are not asserting any thing with this mocked object. can\u0027t we use stubbed object here?",
+      "range": {
+        "startLine": 40,
+        "startChar": 18,
+        "endLine": 40,
+        "endChar": 44
+      },
+      "revId": "75b6ffda64dc527dc4d1aabfad633354a56a7b94",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
