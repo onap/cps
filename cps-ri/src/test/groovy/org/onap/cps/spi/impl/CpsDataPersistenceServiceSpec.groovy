@@ -37,6 +37,7 @@ import org.onap.cps.spi.utils.SessionManager
 import org.onap.cps.utils.JsonObjectMapper
 import spock.lang.Shared
 import spock.lang.Specification
+import com.hazelcast.map.IMap;
 
 class CpsDataPersistenceServiceSpec extends Specification {
 
@@ -45,9 +46,10 @@ class CpsDataPersistenceServiceSpec extends Specification {
     def mockFragmentRepository = Mock(FragmentRepository)
     def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
     def mockSessionManager = Mock(SessionManager)
+    def mockSchemaContextCache = Mock(IMap<Integer, String>)
 
     def objectUnderTest = new CpsDataPersistenceServiceImpl(
-            mockDataspaceRepository, mockAnchorRepository, mockFragmentRepository, jsonObjectMapper,mockSessionManager)
+            mockDataspaceRepository, mockAnchorRepository, mockFragmentRepository, jsonObjectMapper,mockSessionManager, mockSchemaContextCache)
 
     @Shared
     def NEW_RESOURCE_CONTENT = 'module stores {\n' +
