@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7de22c02_3a6ebad7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-10-14T09:26:14Z",
+      "side": 1,
+      "message": "If we could do a more descriptive commit message? something like correcting 500 error code to 400 for create node api",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 22
+      },
+      "revId": "ef6f832d28aa9a85ef45c507eb7ad0bc21ed05f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
