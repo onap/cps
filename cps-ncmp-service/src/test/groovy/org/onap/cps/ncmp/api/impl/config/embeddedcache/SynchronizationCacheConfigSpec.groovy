@@ -51,7 +51,7 @@ class SynchronizationCacheConfigSpec extends Specification {
         and: 'system is able to create an instance of a map to hold data sync semaphores'
             assert null != dataSyncSemaphores
         and: 'there 3 instances'
-            assert Hazelcast.allHazelcastInstances.size() == 3
+            assert Hazelcast.allHazelcastInstances.size() == 4
         and: 'they have the correct names (in any order)'
             assert Hazelcast.allHazelcastInstances.name.containsAll('moduleSyncWorkQueue', 'moduleSyncStartedOnCmHandles', 'dataSyncSemaphores' )
     }

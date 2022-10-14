@@ -45,6 +45,7 @@ public class DataNode implements Serializable {
     private String anchorName;
     private ModuleReference moduleReference;
     private String xpath;
+    @Setter
     private String moduleNamePrefix;
     private Map<String, Object> leaves = Collections.emptyMap();
     private Collection<String> xpathsChildren;
