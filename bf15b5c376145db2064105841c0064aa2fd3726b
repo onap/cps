@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "4e258cfc_403c85e7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2022-10-14T13:40:37Z",
+      "side": 1,
+      "message": "ah yes, my mistake. Its resolved now",
+      "parentUuid": "d6fe9878_66400ff0",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 138
+      },
+      "revId": "bf15b5c376145db2064105841c0064aa2fd3726b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "af1816b7_644f2b10",
         "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangUtilsSpec.groovy",
         "patchSetId": 1
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "4ee8fff4_1e5240d6",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangUtilsSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2022-10-14T13:40:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "af1816b7_644f2b10",
+      "range": {
+        "startLine": 49,
+        "startChar": 12,
+        "endLine": 49,
+        "endChar": 33
+      },
+      "revId": "bf15b5c376145db2064105841c0064aa2fd3726b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2dbb7200_e1a27e13",
         "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangUtilsSpec.groovy",
         "patchSetId": 1
@@ -68,6 +116,30 @@
       "revId": "bf15b5c376145db2064105841c0064aa2fd3726b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3cfadd6c_064f0cee",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangUtilsSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2022-10-14T13:40:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2dbb7200_e1a27e13",
+      "range": {
+        "startLine": 73,
+        "startChar": 15,
+        "endLine": 73,
+        "endChar": 64
+      },
+      "revId": "bf15b5c376145db2064105841c0064aa2fd3726b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
