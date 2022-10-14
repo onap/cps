@@ -23,6 +23,9 @@
 package org.onap.cps.spi.impl
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.hazelcast.config.Config
+import com.hazelcast.instance.impl.HazelcastInstanceFactory
+import com.hazelcast.map.IMap
 import org.onap.cps.DatabaseTestContainer
 import org.onap.cps.spi.repository.AnchorRepository
 import org.onap.cps.spi.repository.DataspaceRepository
@@ -57,6 +60,11 @@ class CpsPersistenceSpecBase extends Specification {
 
     @SpringBean
     JsonObjectMapper jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
+
+    @SpringBean
+    IMap<Integer, String> schemaContextCache = HazelcastInstanceFactory
+            .getOrCreateHazelcastInstance(new Config('hazelcastInstanceName'))
+            .getMap('mapInstanceName')
 
     static final String CLEAR_DATA = '/data/clear-all.sql'
 
