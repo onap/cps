@@ -31,6 +31,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.ncmp.api.impl.config.embeddedcache.SynchronizationCacheConfig;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.inventory.sync.executor.AsyncTaskExecutor;
 import org.onap.cps.spi.model.DataNode;
@@ -117,8 +118,9 @@ public class ModuleSyncWatchdog {
         log.debug("nextBatchCandidates size : {}", nextBatchCandidates.size());
         for (final DataNode batchCandidate : nextBatchCandidates) {
             final String cmHandleId = String.valueOf(batchCandidate.getLeaves().get("id"));
-            final boolean alreadyAddedToInProgressMap = VALUE_FOR_HAZELCAST_IN_PROGRESS_MAP
-                .equals(moduleSyncStartedOnCmHandles.putIfAbsent(cmHandleId, VALUE_FOR_HAZELCAST_IN_PROGRESS_MAP));
+            final boolean alreadyAddedToInProgressMap = VALUE_FOR_HAZELCAST_IN_PROGRESS_MAP.equals(
+                    moduleSyncStartedOnCmHandles.putIfAbsent(cmHandleId, VALUE_FOR_HAZELCAST_IN_PROGRESS_MAP,
+                            SynchronizationCacheConfig.MODULE_SYNC_STARTED_TTL_SECS, TimeUnit.SECONDS));
             if (alreadyAddedToInProgressMap) {
                 log.debug("module sync for {} already in progress by other instance", cmHandleId);
             } else {
