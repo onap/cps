@@ -44,6 +44,7 @@ public class SynchronizationCacheConfig {
     private static final QueueConfig commonQueueConfig = createQueueConfig();
     private static final MapConfig moduleSyncStartedConfig = createMapConfig("moduleSyncStartedConfig");
     private static final MapConfig dataSyncSemaphoresConfig = createMapConfig("dataSyncSemaphoresConfig");
+    private static final MapConfig schemaContextCacheConfig = createMapConfig("schemaContextCacheConfig");
 
     /**
      * Module Sync Distributed Queue Instance.
@@ -76,6 +77,17 @@ public class SynchronizationCacheConfig {
     public IMap<String, Boolean> dataSyncSemaphores() {
         return createHazelcastInstance("dataSyncSemaphores", dataSyncSemaphoresConfig)
             .getMap("dataSyncSemaphores");
+    }
+
+    /**
+     * Schema Context Cache Distributed Map Instance.
+     *
+     * @return configured map of schema context cache
+     */
+    @Bean
+    public IMap<Integer, String> schemaContextCache() {
+        return createHazelcastInstance("schemaContextCache", schemaContextCacheConfig)
+                .getMap("schemaContextCache");
     }
 
     private HazelcastInstance createHazelcastInstance(

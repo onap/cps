@@ -24,6 +24,7 @@ package org.onap.cps.spi.impl;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ImmutableSet.Builder;
+import com.hazelcast.map.IMap;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -32,6 +33,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -73,18 +75,16 @@ import org.springframework.stereotype.Service;
 public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService {
 
     private final DataspaceRepository dataspaceRepository;
-
     private final AnchorRepository anchorRepository;
-
     private final FragmentRepository fragmentRepository;
-
     private final JsonObjectMapper jsonObjectMapper;
-
     private final SessionManager sessionManager;
+    private final IMap<Integer, String> schemaContextCache;
 
     private static final String REG_EX_FOR_OPTIONAL_LIST_INDEX = "(\\[@[\\s\\S]+?]){0,1})";
     private static final Pattern REG_EX_PATTERN_FOR_LIST_ELEMENT_KEY_PREDICATE =
             Pattern.compile("\\[(\\@([^\\/]{0,9999}))\\]$");
+    private static final int SCHEMA_CONTEXT_CACHE_TTL_SECS = 3600;
 
     @Override
     public void addChildDataNode(final String dataspaceName, final String anchorName, final String parentNodeXpath,
@@ -218,7 +218,9 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     public DataNode getDataNode(final String dataspaceName, final String anchorName, final String xpath,
                                 final FetchDescendantsOption fetchDescendantsOption) {
         final FragmentEntity fragmentEntity = getFragmentByXpath(dataspaceName, anchorName, xpath);
-        return toDataNode(fragmentEntity, fetchDescendantsOption);
+        final DataNode dataNode = toDataNode(fragmentEntity, fetchDescendantsOption);
+        setModuleNamePrefix(fragmentEntity, dataNode);
+        return dataNode;
     }
 
     private FragmentEntity getFragmentByXpath(final String dataspaceName, final String anchorName,
@@ -259,9 +261,18 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             fragmentEntities = ancestorXpaths.isEmpty() ? Collections.emptyList()
                     : fragmentRepository.findAllByAnchorAndXpathIn(anchorEntity, ancestorXpaths);
         }
-        return fragmentEntities.stream()
-                .map(fragmentEntity -> toDataNode(fragmentEntity, fetchDescendantsOption))
-                .collect(Collectors.toUnmodifiableList());
+        final List<DataNode> dataNodes = fragmentEntities.stream()
+                .map(fragmentEntity -> {
+                    final DataNode dataNode = toDataNode(fragmentEntity, fetchDescendantsOption);
+                    setModuleNamePrefix(fragmentEntity, dataNode);
+                    return dataNode;
+                }).collect(Collectors.toUnmodifiableList());
+        return dataNodes;
+    }
+
+    private void setModuleNamePrefix(final FragmentEntity fragmentEntity, final DataNode dataNode) {
+        final String moduleNamePrefix = getFirstModuleName(fragmentEntity);
+        dataNode.setModuleNamePrefix(moduleNamePrefix);
     }
 
     @Override
@@ -303,20 +314,30 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             leaves = jsonObjectMapper.convertJsonString(fragmentEntity.getAttributes(), Map.class);
         }
         return new DataNodeBuilder()
-                .withModuleNamePrefix(getFirstModuleName(fragmentEntity))
                 .withXpath(fragmentEntity.getXpath())
                 .withLeaves(leaves)
                 .withChildDataNodes(childDataNodes).build();
     }
 
     private String getFirstModuleName(final FragmentEntity fragmentEntity) {
-        final SchemaSetEntity schemaSetEntity = fragmentEntity.getAnchor().getSchemaSet();
+        final AnchorEntity anchorEntity = fragmentEntity.getAnchor();
+        final String cachedModuleNamePrefix = schemaContextCache.get(anchorEntity.getId());
+        if (cachedModuleNamePrefix != null) {
+            log.debug("Module name prefix for an anchor id: {} is found in schema context cache", anchorEntity.getId());
+            return cachedModuleNamePrefix;
+        }
+        final SchemaSetEntity schemaSetEntity = anchorEntity.getSchemaSet();
         final Map<String, String> yangResourceNameToContent =
                 schemaSetEntity.getYangResources().stream().collect(
                         Collectors.toMap(YangResourceEntity::getFileName, YangResourceEntity::getContent));
         final SchemaContext schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent)
                 .getSchemaContext();
-        return schemaContext.getModules().iterator().next().getName();
+        final String moduleNamePrefix = schemaContext.getModules().iterator().next().getName();
+        if (schemaContextCache.putIfAbsent(anchorEntity.getId(), moduleNamePrefix, SCHEMA_CONTEXT_CACHE_TTL_SECS,
+                TimeUnit.SECONDS) == null) {
+            log.debug("Module name prefix for an anchor id: {} is cached", anchorEntity.getId());
+        }
+        return moduleNamePrefix;
     }
 
     private List<DataNode> getChildDataNodes(final FragmentEntity fragmentEntity,
