@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "059e82bf_34ea61b5",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsToDataNodePerfSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-14T08:52:18Z",
+      "side": 1,
+      "message": ":-D",
+      "range": {
+        "startLine": 73,
+        "startChar": 8,
+        "endLine": 73,
+        "endChar": 26
+      },
+      "revId": "bb2890d70fea3d6b4623cfd990853524f85c14cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
