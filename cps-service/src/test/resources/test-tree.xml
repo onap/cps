@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<data xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+    <test-tree xmlns="org:onap:cps:test:test-tree">
+        <branch>
+            <name>Left</name>
+            <nest>
+                <name>Small</name>
+                <birds>Sparrow</birds>
+                <birds>Robin</birds>
+                <birds>Finch</birds>
+            </nest>
+        </branch>
+        <branch>
+            <name>Right</name>
+            <nest>
+                <name>Big</name>
+                <birds>Owl</birds>
+                <birds>Raven</birds>
+                <birds>Crow</birds>
+            </nest>
+        </branch>
+        <fruit>
+            <name>Apple</name>
+            <color>Green</color>
+        </fruit>
+    </test-tree>
+</data>

@@ -162,13 +162,13 @@ class CpsRestExceptionHandlerSpec extends Specification {
 
     def 'Post request with #exceptionThrown.class.simpleName returns HTTP Status Bad Request.'() {
         given: '#exception is thrown the service indicating data is not found'
-            mockCpsDataService.saveData(_, _, _, _, _) >> { throw exceptionThrown }
+            mockCpsDataService.saveData(*_) >> { throw exceptionThrown }
         when: 'data update request is performed'
             def response = mvc.perform(
                 post("$basePath/v1/dataspaces/dataspace-name/anchors/anchor-name/nodes")
                     .contentType(MediaType.APPLICATION_JSON)
                     .param('xpath', 'parent node xpath')
-                    .content(groovy.json.JsonOutput.toJson('{"some-key" : "some-value"}'))
+                    .content('{"some-key" : "some-value"}')
             ).andReturn().response
         then: 'response code indicates bad input parameters'
             response.status == BAD_REQUEST.value()
