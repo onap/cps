@@ -3,6 +3,7 @@
  *  Copyright (C) 2020-2022 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada
+ *  Modifications Copyright (C) 2022 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -27,6 +28,7 @@ import java.util.Collection;
 import java.util.Map;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
+import org.onap.cps.utils.ContentType;
 
 /*
  * Datastore interface for handling CPS data.
@@ -38,10 +40,22 @@ public interface CpsDataService {
      *
      * @param dataspaceName dataspace name
      * @param anchorName    anchor name
-     * @param jsonData      json data
+     * @param nodeData      node data
      * @param observedTimestamp observedTimestamp
      */
-    void saveData(String dataspaceName, String anchorName, String jsonData, OffsetDateTime observedTimestamp);
+    void saveData(String dataspaceName, String anchorName, String nodeData, OffsetDateTime observedTimestamp);
+
+    /**
+     * Persists data for the given anchor and dataspace.
+     *
+     * @param dataspaceName dataspace name
+     * @param anchorName    anchor name
+     * @param nodeData      node data
+     * @param observedTimestamp observedTimestamp
+     * @param contentType       node data content type
+     */
+    void saveData(String dataspaceName, String anchorName, String nodeData, OffsetDateTime observedTimestamp,
+                  ContentType contentType);
 
     /**
      * Persists child data fragment under existing data node for the given anchor and dataspace.
@@ -49,11 +63,25 @@ public interface CpsDataService {
      * @param dataspaceName   dataspace name
      * @param anchorName      anchor name
      * @param parentNodeXpath parent node xpath
-     * @param jsonData        json data
+     * @param nodeData        node data
      * @param observedTimestamp observedTimestamp
      */
-    void saveData(String dataspaceName, String anchorName, String parentNodeXpath, String jsonData,
-        OffsetDateTime observedTimestamp);
+    void saveData(String dataspaceName, String anchorName, String parentNodeXpath, String nodeData,
+                  OffsetDateTime observedTimestamp);
+
+    /**
+     * Persists child data fragment under existing data node for the given anchor, dataspace and content type.
+     *
+     * @param dataspaceName     dataspace name
+     * @param anchorName        anchor name
+     * @param parentNodeXpath   parent node xpath
+     * @param nodeData          node data
+     * @param observedTimestamp observedTimestamp
+     * @param contentType       node data content type
+     *
+     */
+    void saveData(String dataspaceName, String anchorName, String parentNodeXpath, String nodeData,
+                  OffsetDateTime observedTimestamp, ContentType contentType);
 
     /**
      * Persists child data fragment representing one or more list elements under existing data node for the

@@ -3,6 +3,7 @@
  *  Copyright (C) 2021-2022 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada.
+ *  Modifications Copyright (C) 2022 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -26,6 +27,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.DataNodeBuilder
+import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.DateTimeUtility
 import org.onap.cps.utils.JsonObjectMapper
 import org.onap.cps.utils.PrefixResolver
@@ -69,8 +71,18 @@ class DataRestControllerSpec extends Specification {
     def dataspaceName = 'my_dataspace'
     def anchorName = 'my_anchor'
     def noTimestamp = null
-    def requestBody = '{"some-key" : "some-value","categories":[{"books":[{"authors":["Iain M. Banks"]}]}]}'
+
+    @Shared
+    def requestBodyJson = '{"some-key":"some-value","categories":[{"books":[{"authors":["Iain M. Banks"]}]}]}'
+
+    @Shared
     def expectedJsonData = '{"some-key":"some-value","categories":[{"books":[{"authors":["Iain M. Banks"]}]}]}'
+
+    @Shared
+    def requestBodyXml = '<?xml version=\'1.0\' encoding=\'UTF-8\'?>\n<bookstore xmlns="org:onap:ccsdk:sample">\n</bookstore>'
+
+    @Shared
+    def expectedXmlData = '<?xml version=\'1.0\' encoding=\'UTF-8\'?>\n<bookstore xmlns="org:onap:ccsdk:sample">\n</bookstore>'
 
     @Shared
     static DataNode dataNodeWithLeavesNoChildren = new DataNodeBuilder().withXpath('/xpath')
@@ -91,18 +103,20 @@ class DataRestControllerSpec extends Specification {
             def response =
                 mvc.perform(
                     post(endpoint)
-                        .contentType(MediaType.APPLICATION_JSON)
+                        .contentType(contentType)
                         .param('xpath', parentNodeXpath)
                         .content(requestBody)
                 ).andReturn().response
         then: 'a created response is returned'
             response.status == HttpStatus.CREATED.value()
         then: 'the java API was called with the correct parameters'
-            1 * mockCpsDataService.saveData(dataspaceName, anchorName, expectedJsonData, noTimestamp)
+            1 * mockCpsDataService.saveData(dataspaceName, anchorName, expectedData, noTimestamp, expectedContentType)
         where: 'following xpath parameters are are used'
-            scenario                     | parentNodeXpath
-            'no xpath parameter'         | ''
-            'xpath parameter point root' | '/'
+            scenario                                   | parentNodeXpath | contentType                | expectedContentType | requestBody     | expectedData
+            'JSON content: no xpath parameter'         | ''              | MediaType.APPLICATION_JSON | ContentType.JSON    | requestBodyJson | expectedJsonData
+            'JSON content: xpath parameter point root' | '/'             | MediaType.APPLICATION_JSON | ContentType.JSON    | requestBodyJson | expectedJsonData
+            'XML content: no xpath parameter'          | ''              | MediaType.APPLICATION_XML  | ContentType.XML     | requestBodyXml  | expectedXmlData
+            'XML content: xpath parameter point root'  | '/'             | MediaType.APPLICATION_XML  | ContentType.XML     | requestBodyXml  | expectedXmlData
     }
 
     def 'Create a node with observed-timestamp'() {
@@ -112,30 +126,31 @@ class DataRestControllerSpec extends Specification {
             def response =
                 mvc.perform(
                     post(endpoint)
-                        .contentType(MediaType.APPLICATION_JSON)
+                        .contentType(contentType)
                         .param('xpath', '')
                         .param('observed-timestamp', observedTimestamp)
-                        .content(requestBody)
+                        .content(content)
                 ).andReturn().response
         then: 'a created response is returned'
             response.status == expectedHttpStatus.value()
         then: 'the java API was called with the correct parameters'
-            expectedApiCount * mockCpsDataService.saveData(dataspaceName, anchorName, expectedJsonData,
-                { it == DateTimeUtility.toOffsetDateTime(observedTimestamp) })
+            expectedApiCount * mockCpsDataService.saveData(dataspaceName, anchorName, expectedData,
+                { it == DateTimeUtility.toOffsetDateTime(observedTimestamp) }, expectedContentType)
         where:
-            scenario                          | observedTimestamp              || expectedApiCount | expectedHttpStatus
-            'with observed-timestamp'         | '2021-03-03T23:59:59.999-0400' || 1                | HttpStatus.CREATED
-            'with invalid observed-timestamp' | 'invalid'                      || 0                | HttpStatus.BAD_REQUEST
+            scenario                          | observedTimestamp              | contentType                | content         || expectedApiCount | expectedHttpStatus     | expectedData     | expectedContentType
+            'with observed-timestamp JSON'    | '2021-03-03T23:59:59.999-0400' | MediaType.APPLICATION_JSON | requestBodyJson || 1                | HttpStatus.CREATED     | expectedJsonData | ContentType.JSON
+            'with observed-timestamp XML'     | '2021-03-03T23:59:59.999-0400' | MediaType.APPLICATION_XML  | requestBodyXml  || 1                | HttpStatus.CREATED     | expectedXmlData  | ContentType.XML
+            'with invalid observed-timestamp' | 'invalid'                      | MediaType.APPLICATION_JSON | requestBodyJson || 0                | HttpStatus.BAD_REQUEST | expectedJsonData | ContentType.JSON
     }
 
-    def 'Create a child node'() {
+    def 'Create a child node #scenario'() {
         given: 'endpoint to create a node'
             def endpoint = "$dataNodeBaseEndpoint/anchors/$anchorName/nodes"
         and: 'parent node xpath'
             def parentNodeXpath = 'some xpath'
         when: 'post is invoked with datanode endpoint and json'
             def postRequestBuilder = post(endpoint)
-                .contentType(MediaType.APPLICATION_JSON)
+                .contentType(contentType)
                 .param('xpath', parentNodeXpath)
                 .content(requestBody)
             if (observedTimestamp != null)
@@ -145,12 +160,14 @@ class DataRestControllerSpec extends Specification {
         then: 'a created response is returned'
             response.status == HttpStatus.CREATED.value()
         then: 'the java API was called with the correct parameters'
-            1 * mockCpsDataService.saveData(dataspaceName, anchorName, parentNodeXpath, expectedJsonData,
-                DateTimeUtility.toOffsetDateTime(observedTimestamp))
+            1 * mockCpsDataService.saveData(dataspaceName, anchorName, parentNodeXpath, expectedData,
+                DateTimeUtility.toOffsetDateTime(observedTimestamp), expectedContentType)
         where:
-            scenario                     | observedTimestamp
-            'with observed-timestamp'    | '2021-03-03T23:59:59.999-0400'
-            'without observed-timestamp' | null
+            scenario                          | observedTimestamp              | contentType                | requestBody     | expectedData     | expectedContentType
+            'with observed-timestamp JSON'    | '2021-03-03T23:59:59.999-0400' | MediaType.APPLICATION_JSON | requestBodyJson | expectedJsonData | ContentType.JSON
+            'with observed-timestamp XML'     | '2021-03-03T23:59:59.999-0400' | MediaType.APPLICATION_XML  | requestBodyXml  | expectedXmlData  | ContentType.XML
+            'without observed-timestamp JSON' | null                           | MediaType.APPLICATION_JSON | requestBodyJson | expectedJsonData | ContentType.JSON
+            'without observed-timestamp XML'  | null                           | MediaType.APPLICATION_XML  | requestBodyXml  | expectedXmlData  | ContentType.XML
     }
 
     def 'Save list elements #scenario.'() {
@@ -160,7 +177,7 @@ class DataRestControllerSpec extends Specification {
             def postRequestBuilder = post("$dataNodeBaseEndpoint/anchors/$anchorName/list-nodes")
                 .contentType(MediaType.APPLICATION_JSON)
                 .param('xpath', parentNodeXpath)
-                .content(requestBody)
+                .content(requestBodyJson)
             if (observedTimestamp != null)
                 postRequestBuilder.param('observed-timestamp', observedTimestamp)
             def response = mvc.perform(postRequestBuilder).andReturn().response
@@ -228,7 +245,7 @@ class DataRestControllerSpec extends Specification {
                 mvc.perform(
                     patch(endpoint)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(requestBody)
+                        .content(requestBodyJson)
                         .param('xpath', inputXpath)
                 ).andReturn().response
         then: 'the service method is invoked with expected parameters'
@@ -250,7 +267,7 @@ class DataRestControllerSpec extends Specification {
                 mvc.perform(
                     patch(endpoint)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(requestBody)
+                        .content(requestBodyJson)
                         .param('xpath', '/')
                         .param('observed-timestamp', observedTimestamp)
                 ).andReturn().response
@@ -273,7 +290,7 @@ class DataRestControllerSpec extends Specification {
                 mvc.perform(
                     put(endpoint)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(requestBody)
+                        .content(requestBodyJson)
                         .param('xpath', inputXpath))
                     .andReturn().response
         then: 'the service method is invoked with expected parameters'
@@ -295,7 +312,7 @@ class DataRestControllerSpec extends Specification {
                 mvc.perform(
                     put(endpoint)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(requestBody)
+                        .content(requestBodyJson)
                         .param('xpath', '')
                         .param('observed-timestamp', observedTimestamp))
                     .andReturn().response
@@ -315,7 +332,7 @@ class DataRestControllerSpec extends Specification {
             def putRequestBuilder = put("$dataNodeBaseEndpoint/anchors/$anchorName/list-nodes")
                 .contentType(MediaType.APPLICATION_JSON)
                 .param('xpath', 'parent xpath')
-                .content(requestBody)
+                .content(requestBodyJson)
             if (observedTimestamp != null)
                 putRequestBuilder.param('observed-timestamp', observedTimestamp)
             def response = mvc.perform(putRequestBuilder).andReturn().response
