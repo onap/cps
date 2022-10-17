@@ -3,6 +3,7 @@
  *  Copyright (C) 2020-2021 Nordix Foundation
  *  Modifications Copyright (C) 2021 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
+ *  Modifications Copyright (C) 2022 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -26,26 +27,35 @@ import com.google.gson.JsonSyntaxException;
 import com.google.gson.stream.JsonReader;
 import java.io.IOException;
 import java.io.StringReader;
+import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamReader;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.spi.exceptions.DataValidationException;
 import org.opendaylight.yangtools.yang.data.api.YangInstanceIdentifier;
+import org.opendaylight.yangtools.yang.data.api.schema.DataContainerChild;
 import org.opendaylight.yangtools.yang.data.api.schema.NormalizedNode;
+import org.opendaylight.yangtools.yang.data.api.schema.stream.NormalizedNodeStreamWriter;
 import org.opendaylight.yangtools.yang.data.codec.gson.JSONCodecFactorySupplier;
 import org.opendaylight.yangtools.yang.data.codec.gson.JsonParserStream;
+import org.opendaylight.yangtools.yang.data.codec.xml.XmlCodecFactory;
+import org.opendaylight.yangtools.yang.data.codec.xml.XmlParserStream;
 import org.opendaylight.yangtools.yang.data.impl.schema.ImmutableNormalizedNodeStreamWriter;
 import org.opendaylight.yangtools.yang.data.impl.schema.NormalizedNodeResult;
 import org.opendaylight.yangtools.yang.model.api.DataNodeContainer;
 import org.opendaylight.yangtools.yang.model.api.DataSchemaNode;
 import org.opendaylight.yangtools.yang.model.api.EffectiveModelContext;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
+import org.xml.sax.SAXException;
 
 @Slf4j
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -54,6 +64,41 @@ public class YangUtils {
     private static final String XPATH_DELIMITER_REGEX = "\\/";
     private static final String XPATH_NODE_KEY_ATTRIBUTES_REGEX = "\\[.*?\\]";
     //Might cause an issue with [] inside [] in key-values
+
+    /**
+     * Parses data into NormalizedNode according to given schema context.
+     *
+     * @param nodeData      data string
+     * @param schemaContext schema context describing associated data model
+     * @return the NormalizedNode object
+     */
+    @SuppressWarnings("squid:S1452")  // Generic type <? ,?> is returned by external librray, opendaylight.yangtools
+    public static NormalizedNode<?, ?> parseData(final ContentType contentType, final String nodeData,
+                                                 final SchemaContext schemaContext) {
+        if (contentType == ContentType.JSON) {
+            return parseJsonData(nodeData, schemaContext, Optional.empty());
+        }
+        return parseXmlData(XmlFileUtils.prepareXmlContent(nodeData, schemaContext), schemaContext,
+                Optional.empty());
+    }
+
+    /**
+     * Parses data into NormalizedNode according to given schema context.
+     *
+     * @param nodeData      data string
+     * @param schemaContext schema context describing associated data model
+     * @return the NormalizedNode object
+     */
+    @SuppressWarnings("squid:S1452")  // Generic type <? ,?> is returned by external librray, opendaylight.yangtools
+    public static NormalizedNode<?, ?> parseData(final ContentType contentType, final String nodeData,
+                                                 final SchemaContext schemaContext, final String parentNodeXpath) {
+        final var parentSchemaNode = getDataSchemaNodeByXpath(parentNodeXpath, schemaContext);
+        if (contentType == ContentType.JSON) {
+            return parseJsonData(nodeData, schemaContext, Optional.of(parentSchemaNode));
+        }
+        return parseXmlData(XmlFileUtils.prepareXmlContent(nodeData, parentSchemaNode, parentNodeXpath), schemaContext,
+                Optional.of(parentSchemaNode));
+    }
 
     /**
      * Parses jsonData into NormalizedNode according to given schema context.
@@ -100,12 +145,36 @@ public class YangUtils {
         } catch (final IOException | JsonSyntaxException exception) {
             throw new DataValidationException(
                 "Failed to parse json data: " + jsonData, exception.getMessage(), exception);
-        } catch (final IllegalStateException illegalStateException) {
+        } catch (final IllegalStateException | IllegalArgumentException exception) {
             throw new DataValidationException(
-                "Failed to parse json data. Unsupported xpath or json data:" + jsonData, illegalStateException
-                .getMessage(), illegalStateException);
+                "Failed to parse json data. Unsupported xpath or json data:" + jsonData, exception
+                .getMessage(), exception);
         }
         return normalizedNodeResult.getResult();
+    }
+
+    private static NormalizedNode<?, ?> parseXmlData(final String xmlData, final SchemaContext schemaContext,
+                                                     final Optional<DataSchemaNode> optionalParentSchemaNode) {
+        final XMLInputFactory factory = XMLInputFactory.newInstance();
+        factory.setProperty(XMLInputFactory.SUPPORT_DTD, false);
+        final NormalizedNodeResult normalizedNodeResult = new NormalizedNodeResult();
+        final NormalizedNodeStreamWriter normalizedNodeStreamWriter = ImmutableNormalizedNodeStreamWriter
+               .from(normalizedNodeResult);
+        final XmlCodecFactory xmlCodecFactory = XmlCodecFactory.create((EffectiveModelContext) schemaContext);
+        try (final XmlParserStream xmlParser = optionalParentSchemaNode.isPresent()
+                ? XmlParserStream.create(normalizedNodeStreamWriter, (EffectiveModelContext) schemaContext,
+                    optionalParentSchemaNode.get())
+                : XmlParserStream.create(normalizedNodeStreamWriter, xmlCodecFactory,
+                    xmlCodecFactory.getEffectiveModelContext())) {
+            final XMLStreamReader reader = factory.createXMLStreamReader(new StringReader(xmlData));
+            xmlParser.parse(reader);
+        } catch (final XMLStreamException | URISyntaxException | IOException
+                       | SAXException | NullPointerException exception) {
+            throw new DataValidationException(
+                "Failed to parse xml data: " + xmlData, exception.getMessage(), exception);
+        }
+        final NormalizedNode<?, ?> normalizedNode = normalizedNodeResult.getResult();
+        return getChildNormalizedNode(normalizedNode);
     }
 
     /**
@@ -187,5 +256,19 @@ public class YangUtils {
     private static DataValidationException schemaNodeNotFoundException(final String schemaNodeIdentifier) {
         return new DataValidationException("Invalid xpath.",
             String.format("No schema node was found for xpath identifier '%s'.", schemaNodeIdentifier));
+    }
+
+    private static NormalizedNode<?, ?> getChildNormalizedNode(final NormalizedNode<?, ?> parent) {
+        final Collection<DataContainerChild<?, ?>> children = (Collection<DataContainerChild<?, ?>>)
+                parent.getValue();
+        final String parentNodeType = parent.getNodeType().getLocalName();
+        while (children.iterator().hasNext()) {
+            final NormalizedNode<?, ?> child = children.iterator().next();
+            if (!child.getNodeType().getLocalName().equals(parentNodeType)) {
+                return child;
+            }
+            return getChildNormalizedNode(child);
+        }
+        throw new DataValidationException("Invalid user input", "Parent NormalizedNode has no children");
     }
 }
