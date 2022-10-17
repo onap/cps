@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "123162e0_f71533af",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 13
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-17T10:07:16Z",
+      "side": 1,
+      "message": "separate into a compenentsV2 file",
+      "range": {
+        "startLine": 274,
+        "startChar": 0,
+        "endLine": 275,
+        "endChar": 48
+      },
+      "revId": "1ef67ae5dd70c13cbff1075a2ad618cf4bddd8c5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "54ddfd33_c62da6b7",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
         "patchSetId": 13
@@ -96,6 +119,46 @@
     },
     {
       "key": {
+        "uuid": "1f8108f4_848acc45",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-17T10:07:16Z",
+      "side": 1,
+      "message": "For any endpoint that hasn\u0027t changes show ar least once that it can be called with v1 and v2 (use where for those endpoints)\nId there are multiple test for the same endpoint only one (basic) scenario have to be changed to run with both v1 and v2",
+      "revId": "1ef67ae5dd70c13cbff1075a2ad618cf4bddd8c5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad13b952_778d267f",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-17T10:07:16Z",
+      "side": 1,
+      "message": "no need for other clues for testing v2!\n(this is just \u0027polluting\u0027 the test)",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 43
+      },
+      "revId": "1ef67ae5dd70c13cbff1075a2ad618cf4bddd8c5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7caf4c1b_18769a12",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
         "patchSetId": 13
@@ -111,6 +174,76 @@
         "startLine": 350,
         "startChar": 36,
         "endLine": 350,
+        "endChar": 39
+      },
+      "revId": "1ef67ae5dd70c13cbff1075a2ad618cf4bddd8c5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f5e92bf_5dea0f9a",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-17T10:07:16Z",
+      "side": 1,
+      "message": "discard above, we agreed to have the test in the same file\nBut please add a v2 version of any tets just under the v1 version of the same test",
+      "parentUuid": "7caf4c1b_18769a12",
+      "range": {
+        "startLine": 350,
+        "startChar": 36,
+        "endLine": 350,
+        "endChar": 39
+      },
+      "revId": "1ef67ae5dd70c13cbff1075a2ad618cf4bddd8c5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0422a206_bc59f3c5",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-17T10:07:16Z",
+      "side": 1,
+      "message": "move to directtly under v1 of same test",
+      "range": {
+        "startLine": 366,
+        "startChar": 4,
+        "endLine": 366,
+        "endChar": 59
+      },
+      "revId": "1ef67ae5dd70c13cbff1075a2ad618cf4bddd8c5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b5351754_9a9d5581",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-17T10:07:16Z",
+      "side": 1,
+      "message": "move to directtly under v1 of same test",
+      "range": {
+        "startLine": 388,
+        "startChar": 3,
+        "endLine": 388,
         "endChar": 39
       },
       "revId": "1ef67ae5dd70c13cbff1075a2ad618cf4bddd8c5",
