@@ -202,6 +202,13 @@ components:
       schema:
         type: string
         example: '2021-03-21T00:10:34.030-0100'
+    contentTypeHeader:
+      name: Content-Type
+      in: header
+      description: Content type header
+      schema:
+        type: string
+      required: true
 
   responses:
     NotFound:
