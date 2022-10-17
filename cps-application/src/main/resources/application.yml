@@ -33,6 +33,7 @@ spring:
     application:
         name: "cps-application"
     jpa:
+        show-sql: false
         ddl-auto: create
         open-in-view: false
         properties:
