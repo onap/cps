@@ -3,6 +3,7 @@
  *  Copyright (C) 2021-2022 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada.
+ *  Modifications Copyright (C) 2022 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -26,6 +27,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.DataNodeBuilder
+import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.DateTimeUtility
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
@@ -65,7 +67,7 @@ class DataRestControllerSpec extends Specification {
     def dataspaceName = 'my_dataspace'
     def anchorName = 'my_anchor'
     def noTimestamp = null
-    def requestBody = '{"some-key" : "some-value","categories":[{"books":[{"authors":["Iain M. Banks"]}]}]}'
+    def requestBody = '{"some-key":"some-value","categories":[{"books":[{"authors":["Iain M. Banks"]}]}]}'
     def expectedJsonData = '{"some-key":"some-value","categories":[{"books":[{"authors":["Iain M. Banks"]}]}]}'
 
     @Shared
@@ -94,7 +96,7 @@ class DataRestControllerSpec extends Specification {
         then: 'a created response is returned'
             response.status == HttpStatus.CREATED.value()
         then: 'the java API was called with the correct parameters'
-            1 * mockCpsDataService.saveData(dataspaceName, anchorName, expectedJsonData, noTimestamp)
+            1 * mockCpsDataService.saveData(dataspaceName, anchorName, expectedJsonData, noTimestamp, ContentType.JSON)
         where: 'following xpath parameters are are used'
             scenario                     | parentNodeXpath
             'no xpath parameter'         | ''
@@ -117,7 +119,7 @@ class DataRestControllerSpec extends Specification {
             response.status == expectedHttpStatus.value()
         then: 'the java API was called with the correct parameters'
             expectedApiCount * mockCpsDataService.saveData(dataspaceName, anchorName, expectedJsonData,
-                { it == DateTimeUtility.toOffsetDateTime(observedTimestamp) })
+                { it == DateTimeUtility.toOffsetDateTime(observedTimestamp) }, ContentType.JSON)
         where:
             scenario                          | observedTimestamp              || expectedApiCount | expectedHttpStatus
             'with observed-timestamp'         | '2021-03-03T23:59:59.999-0400' || 1                | HttpStatus.CREATED
@@ -142,7 +144,7 @@ class DataRestControllerSpec extends Specification {
             response.status == HttpStatus.CREATED.value()
         then: 'the java API was called with the correct parameters'
             1 * mockCpsDataService.saveData(dataspaceName, anchorName, parentNodeXpath, expectedJsonData,
-                DateTimeUtility.toOffsetDateTime(observedTimestamp))
+                DateTimeUtility.toOffsetDateTime(observedTimestamp), ContentType.JSON)
         where:
             scenario                     | observedTimestamp
             'with observed-timestamp'    | '2021-03-03T23:59:59.999-0400'
@@ -366,5 +368,47 @@ class DataRestControllerSpec extends Specification {
             'with observed timestamp'           | '2021-03-03T23:59:59.999-0400'    || 1                | HttpStatus.NO_CONTENT
             'without observed timestamp'        | null                              || 1                | HttpStatus.NO_CONTENT
             'with invalid observed timestamp'   | 'invalid'                         || 0                | HttpStatus.BAD_REQUEST
+    }
+
+    def requestBodyXml = '<?xml version=\'1.0\' encoding=\'UTF-8\'?>\n' +
+            '<data xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">\n' +
+            '<bookstore xmlns="org:onap:ccsdk:sample">\n' +
+            '    <bookstore-name>Chapters</bookstore-name>\n' +
+            '    <categories>\n' +
+            '        <code>1</code>\n' +
+            '        <name>SciFi</name>\n' +
+            '        <books>\n' +
+            '            <title>2001: A Space Odyssey</title>\n' +
+            '            <lang>en</lang>\n' +
+            '            <authors>\n' +
+            '                Iain M. Banks\n' +
+            '            </authors>\n' +
+            '            <pub_year>1994</pub_year>\n' +
+            '            <price>895</price>\n' +
+            '        </books>\n' +
+            '    </categories>\n' +
+            '</bookstore>\n' +
+            '</data>'
+
+
+    def 'Create a node with XML payload: #scenario.'() {
+        given: 'endpoint to create a node'
+        def endpoint = "$dataNodeBaseEndpoint/anchors/$anchorName/nodes"
+        when: 'post is invoked with datanode endpoint and xml'
+        def response =
+                mvc.perform(
+                        post(endpoint)
+                                .contentType(MediaType.APPLICATION_XML)
+                                .param('xpath', parentNodeXpath)
+                                .content(requestBodyXml)
+                ).andReturn().response
+        then: 'a created response is returned'
+        response.status == HttpStatus.CREATED.value()
+        then: 'the java API was called with the correct parameters'
+        1 * mockCpsDataService.saveData(dataspaceName, anchorName, requestBodyXml, noTimestamp, ContentType.XML)
+        where: 'following xpath parameters are are used'
+        scenario                     | parentNodeXpath
+        'no xpath parameter'         | ''
+        'xpath parameter point root' | '/'
     }
 }

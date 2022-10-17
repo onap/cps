@@ -2,6 +2,7 @@
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
+ *  Modifications Copyright (C) 2022 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -36,7 +37,7 @@ class YangUtilsSpec extends Specification {
             def yangResourceNameToContent = TestUtils.getYangResourcesAsMap('bookstore.yang')
             def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getSchemaContext()
         when: 'the json data is parsed'
-            NormalizedNode<?, ?> result = YangUtils.parseJsonData(jsonData, schemaContext)
+            NormalizedNode<?, ?> result = YangUtils.parseData(jsonData, schemaContext, ContentType.JSON)
         then: 'the result is a normalized node of the correct type'
             result.nodeType == QName.create('org:onap:ccsdk:sample', '2020-09-15', 'bookstore')
     }
@@ -125,6 +126,30 @@ class YangUtilsSpec extends Specification {
             'container xpath'                              | '/test-tree'                                                        || ['test-tree']
             'xpath contains list attribute'                | '/test-tree/branch[@name=\'Branch\']'                               || ['test-tree','branch']
             'xpath contains list attributes with /'        | '/test-tree/branch[@name=\'/Branch\']/categories[@id=\'/broken\']'  || ['test-tree','branch','categories']
+    }
+
+    def 'Parsing a valid XML String without parent xpath.'() {
+        given: 'a yang model (file)'
+        def xmlData = org.onap.cps.TestUtils.getResourceFileContent('bookstore.xml')
+        and: 'a model for that data'
+        def yangResourceNameToContent = TestUtils.getYangResourcesAsMap('bookstore.yang')
+        def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getSchemaContext()
+        when: 'the xml data is parsed'
+        NormalizedNode<?, ?> result = YangUtils.parseData(xmlData, schemaContext, ContentType.XML)
+        then: 'the result is a normalized node of the correct type'
+        result.nodeType != QName.create('org:onap:ccsdk:sample', '2020-09-15', 'bookstore')
+    }
+
+    def 'Parsing a valid XML String with parent xpath.'() {
+        given: 'a yang model (file)'
+        def xmlData = org.onap.cps.TestUtils.getResourceFileContent('bookstore_xpath.xml')
+        and: 'a model for that data'
+        def yangResourceNameToContent = TestUtils.getYangResourcesAsMap('bookstore.yang')
+        def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getSchemaContext()
+        when: 'the xml data is parsed'
+        NormalizedNode<?, ?> result = YangUtils.parseData(xmlData, schemaContext, "/bookstore", ContentType.XML)
+        then: 'the result is a normalized node of the correct type'
+        result.nodeType == QName.create('org:onap:ccsdk:sample', '2020-09-15', 'bookstore')
     }
 
 }
