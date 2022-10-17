@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "27c7ca47_0b751a03",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationCacheConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-10-17T11:21:00Z",
+      "side": 1,
+      "message": "add more description please",
+      "range": {
+        "startLine": 83,
+        "startChar": 7,
+        "endLine": 83,
+        "endChar": 53
+      },
+      "revId": "554933e3daae6587f38c9a7024c0c73905099f2b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ab50ace1_2c4e720a",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 2
