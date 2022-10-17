@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "38a43e30_6f5428b0",
+        "filename": "cps-rest/docs/openapi/openapi.yml",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-10-17T10:21:25Z",
+      "side": 0,
+      "message": "As discussed , \nWe need to re-review the OpenAPI generated view if it is generating fine.\n\nYou can access the swagger docs at \nhttp://localhost:8883/swagger-ui/index.html?configUrl\u003d/v3/api-docs/swagger-config#/",
+      "revId": "6abd69ad61216db6c994bfec662ec46685b871c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
