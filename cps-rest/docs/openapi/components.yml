@@ -2,6 +2,7 @@
 # Copyright (c) 2021-2022 Bell Canada.
 # Modifications Copyright (C) 2021-2022 Nordix Foundation
 # Modifications Copyright (C) 2022 TechMahindra Ltd.
+# Modifications Copyright (C) 2022 Deutsche Telekom AG
 # ================================================================================
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -211,6 +212,13 @@ components:
       schema:
         type: string
         example: '2021-03-21T00:10:34.030-0100'
+    contentTypeHeader:
+      name: Content-Type
+      in: header
+      description: Content type header
+      schema:
+        type: string
+      required: true
 
   responses:
     NotFound:
