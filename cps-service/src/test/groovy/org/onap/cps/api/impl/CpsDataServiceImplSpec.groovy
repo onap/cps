@@ -32,6 +32,7 @@ import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.model.Anchor
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.DataNodeBuilder
+import org.onap.cps.utils.ContentType
 import org.onap.cps.yang.YangTextSchemaSourceSet
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
 import spock.lang.Specification
@@ -75,6 +76,39 @@ class CpsDataServiceImplSpec extends Specification {
             1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, '/', Operation.CREATE, observedTimestamp)
     }
 
+    def 'Saving xml data.'() {
+        given: 'schema set for given anchor and dataspace references test-tree model'
+        setupSchemaSetMocks('test-tree.yang')
+        when: 'save data method is invoked with test-tree json data'
+            def xmlData = TestUtils.getResourceFileContent('test-tree.xml')
+            objectUnderTest.saveData(dataspaceName, anchorName, xmlData, observedTimestamp, ContentType.XML)
+        then: 'the persistence service method is invoked with correct parameters'
+            1 * mockCpsDataPersistenceService.storeDataNode(dataspaceName, anchorName,
+                { dataNode -> dataNode.xpath == '/data' })
+        and: 'data updated event is sent to notification service'
+            1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, '/', Operation.CREATE, observedTimestamp)
+    }
+
+    def 'Saving json data with xml content type.'() {
+        given: 'schema set for given anchor and dataspace references test-tree model'
+        setupSchemaSetMocks('test-tree.yang')
+        when: 'save data method is invoked with test-tree json data'
+            def jsonData = TestUtils.getResourceFileContent('test-tree.json')
+            objectUnderTest.saveData(dataspaceName, anchorName, jsonData, observedTimestamp, ContentType.XML)
+        then: 'a data validation exception is thrown'
+            thrown(DataValidationException)
+    }
+
+    def 'Saving xml data with json content type.'() {
+        given: 'schema set for given anchor and dataspace references test-tree model'
+        setupSchemaSetMocks('test-tree.yang')
+        when: 'save data method is invoked with test-tree json data'
+            def jsonData = TestUtils.getResourceFileContent('test-tree.xml')
+            objectUnderTest.saveData(dataspaceName, anchorName, jsonData, observedTimestamp, ContentType.JSON)
+        then: 'a data validation exception is thrown'
+            thrown(DataValidationException)
+    }
+
     def 'Saving child data fragment under existing node.'() {
         given: 'schema set for given anchor and dataspace references test-tree model'
             setupSchemaSetMocks('test-tree.yang')
@@ -84,7 +118,7 @@ class CpsDataServiceImplSpec extends Specification {
         then: 'the persistence service method is invoked with correct parameters'
             1 * mockCpsDataPersistenceService.addChildDataNode(dataspaceName, anchorName, '/test-tree',
                 { dataNode -> dataNode.xpath == '/test-tree/branch[@name=\'New\']' })
-        and: 'the CpsValidator is called on the dataspaceName and AnchorName'
+        and: 'the CpsValidator is called oLock anchorn the dataspaceName and AnchorName'
             1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
         and: 'data updated event is sent to notification service'
             1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, '/test-tree', Operation.CREATE, observedTimestamp)
