@@ -3,6 +3,7 @@
  *  Copyright (C) 2020-2021 Nordix Foundation
  *  Modifications Copyright (C) 2021 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
+ *  Modifications Copyright (C) 2022 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -26,12 +27,16 @@ import com.google.gson.JsonSyntaxException;
 import com.google.gson.stream.JsonReader;
 import java.io.IOException;
 import java.io.StringReader;
+import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamReader;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -40,12 +45,15 @@ import org.opendaylight.yangtools.yang.data.api.YangInstanceIdentifier;
 import org.opendaylight.yangtools.yang.data.api.schema.NormalizedNode;
 import org.opendaylight.yangtools.yang.data.codec.gson.JSONCodecFactorySupplier;
 import org.opendaylight.yangtools.yang.data.codec.gson.JsonParserStream;
+import org.opendaylight.yangtools.yang.data.codec.xml.XmlCodecFactory;
+import org.opendaylight.yangtools.yang.data.codec.xml.XmlParserStream;
 import org.opendaylight.yangtools.yang.data.impl.schema.ImmutableNormalizedNodeStreamWriter;
 import org.opendaylight.yangtools.yang.data.impl.schema.NormalizedNodeResult;
 import org.opendaylight.yangtools.yang.model.api.DataNodeContainer;
 import org.opendaylight.yangtools.yang.model.api.DataSchemaNode;
 import org.opendaylight.yangtools.yang.model.api.EffectiveModelContext;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
+import org.xml.sax.SAXException;
 
 @Slf4j
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -54,6 +62,39 @@ public class YangUtils {
     private static final String XPATH_DELIMITER_REGEX = "\\/";
     private static final String XPATH_NODE_KEY_ATTRIBUTES_REGEX = "\\[.*?\\]";
     //Might cause an issue with [] inside [] in key-values
+
+    /**
+     * Parses data into NormalizedNode according to given schema context.
+     *
+     * @param nodeData      data string
+     * @param schemaContext schema context describing associated data model
+     * @return the NormalizedNode object
+     */
+    public static NormalizedNode<?, ?> parseData(final String nodeData, final SchemaContext schemaContext,
+                                                 final ContentType contentType) {
+        if (contentType == ContentType.JSON) {
+            return parseJsonData(nodeData, schemaContext, Optional.empty());
+        } else {
+            return parseXmlData(nodeData, schemaContext, Optional.empty());
+        }
+    }
+
+    /**
+     * Parses data into NormalizedNode according to given schema context.
+     *
+     * @param nodeData      data string
+     * @param schemaContext schema context describing associated data model
+     * @return the NormalizedNode object
+     */
+    public static NormalizedNode<?, ?> parseData(final String nodeData, final SchemaContext schemaContext,
+                                                 final String parentNodeXpath, final ContentType contentType) {
+        final var parentSchemaNode = getDataSchemaNodeByXpath(parentNodeXpath, schemaContext);
+        if (contentType == ContentType.JSON) {
+            return parseJsonData(nodeData, schemaContext, Optional.of(parentSchemaNode));
+        } else {
+            return parseXmlData(nodeData, schemaContext, Optional.of(parentSchemaNode));
+        }
+    }
 
     /**
      * Parses jsonData into NormalizedNode according to given schema context.
@@ -100,10 +141,31 @@ public class YangUtils {
         } catch (final IOException | JsonSyntaxException exception) {
             throw new DataValidationException(
                 "Failed to parse json data: " + jsonData, exception.getMessage(), exception);
-        } catch (final IllegalStateException illegalStateException) {
+        } catch (final IllegalStateException | IllegalArgumentException exception) {
             throw new DataValidationException(
-                "Failed to parse json data. Unsupported xpath or json data:" + jsonData, illegalStateException
-                .getMessage(), illegalStateException);
+                "Failed to parse json data. Unsupported xpath or json data:" + jsonData, exception
+                .getMessage(), exception);
+        }
+        return normalizedNodeResult.getResult();
+    }
+
+    private static NormalizedNode<?, ?> parseXmlData(final String jsonData, final SchemaContext schemaContext,
+                                                     final Optional<DataSchemaNode> optionalParentSchemaNode) {
+        final XMLInputFactory factory = XMLInputFactory.newInstance();
+        final NormalizedNodeResult normalizedNodeResult = new NormalizedNodeResult();
+        final var normalizedNodeStreamWriter = ImmutableNormalizedNodeStreamWriter
+               .from(normalizedNodeResult);
+        final XmlCodecFactory xmlCodecFactory = XmlCodecFactory.create((EffectiveModelContext) schemaContext);
+        try (final XmlParserStream xmlParser = optionalParentSchemaNode.isPresent()
+                ? XmlParserStream.create(normalizedNodeStreamWriter, (EffectiveModelContext) schemaContext,
+                    optionalParentSchemaNode.get())
+                : XmlParserStream.create(normalizedNodeStreamWriter, xmlCodecFactory,
+                    xmlCodecFactory.getEffectiveModelContext())) {
+            final XMLStreamReader reader = factory.createXMLStreamReader(new StringReader(jsonData));
+            xmlParser.parse(reader);
+        } catch (final XMLStreamException | URISyntaxException | IOException | SAXException exception) {
+            throw new DataValidationException(
+                "Failed to parse xml data: " + jsonData, exception.getMessage(), exception);
         }
         return normalizedNodeResult.getResult();
     }

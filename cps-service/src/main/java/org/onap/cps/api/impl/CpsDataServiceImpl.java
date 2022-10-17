@@ -3,6 +3,7 @@
  *  Copyright (C) 2021-2022 Nordix Foundation
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
+ *  Modifications Copyright (C) 2022 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -43,7 +44,8 @@ import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.spi.model.Anchor;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.DataNodeBuilder;
-import org.onap.cps.spi.utils.CpsValidator;
+import org.onap.cps.utils.ContentType;
+import org.onap.cps.utils.CpsValidator;
 import org.onap.cps.utils.YangUtils;
 import org.opendaylight.yangtools.yang.data.api.schema.NormalizedNode;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
@@ -64,19 +66,32 @@ public class CpsDataServiceImpl implements CpsDataService {
     private final CpsValidator cpsValidator;
 
     @Override
-    public void saveData(final String dataspaceName, final String anchorName, final String jsonData,
+    public void saveData(final String dataspaceName, final String anchorName, final String nodeData,
         final OffsetDateTime observedTimestamp) {
-        cpsValidator.validateNameCharacters(dataspaceName, anchorName);
-        final DataNode dataNode = buildDataNode(dataspaceName, anchorName, ROOT_NODE_XPATH, jsonData);
+        saveData(dataspaceName, anchorName, nodeData, observedTimestamp, ContentType.JSON);
+    }
+
+    @Override
+    public void saveData(final String dataspaceName, final String anchorName, final String nodeData,
+                         final OffsetDateTime observedTimestamp, final ContentType contentType) {
+        CpsValidator.validateNameCharacters(dataspaceName, anchorName);
+        final DataNode dataNode = buildDataNode(dataspaceName, anchorName, ROOT_NODE_XPATH, nodeData, contentType);
         cpsDataPersistenceService.storeDataNode(dataspaceName, anchorName, dataNode);
         processDataUpdatedEventAsync(dataspaceName, anchorName, ROOT_NODE_XPATH, CREATE, observedTimestamp);
     }
 
     @Override
     public void saveData(final String dataspaceName, final String anchorName, final String parentNodeXpath,
-        final String jsonData, final OffsetDateTime observedTimestamp) {
-        cpsValidator.validateNameCharacters(dataspaceName, anchorName);
-        final DataNode dataNode = buildDataNode(dataspaceName, anchorName, parentNodeXpath, jsonData);
+                         final String nodeData, final OffsetDateTime observedTimestamp) {
+        saveData(dataspaceName, anchorName, parentNodeXpath, nodeData, observedTimestamp, ContentType.JSON);
+    }
+
+    @Override
+    public void saveData(final String dataspaceName, final String anchorName, final String parentNodeXpath,
+                         final String nodeData, final OffsetDateTime observedTimestamp,
+                         final ContentType contentType) {
+        CpsValidator.validateNameCharacters(dataspaceName, anchorName);
+        final DataNode dataNode = buildDataNode(dataspaceName, anchorName, parentNodeXpath, nodeData, contentType);
         cpsDataPersistenceService.addChildDataNode(dataspaceName, anchorName, parentNodeXpath, dataNode);
         processDataUpdatedEventAsync(dataspaceName, anchorName, parentNodeXpath, CREATE, observedTimestamp);
     }
@@ -113,8 +128,8 @@ public class CpsDataServiceImpl implements CpsDataService {
     @Override
     public void updateNodeLeaves(final String dataspaceName, final String anchorName, final String parentNodeXpath,
         final String jsonData, final OffsetDateTime observedTimestamp) {
-        cpsValidator.validateNameCharacters(dataspaceName, anchorName);
-        final DataNode dataNode = buildDataNode(dataspaceName, anchorName, parentNodeXpath, jsonData);
+        CpsValidator.validateNameCharacters(dataspaceName, anchorName);
+        final DataNode dataNode = buildDataNode(dataspaceName, anchorName, parentNodeXpath, jsonData, ContentType.JSON);
         cpsDataPersistenceService
             .updateDataLeaves(dataspaceName, anchorName, dataNode.getXpath(), dataNode.getLeaves());
         processDataUpdatedEventAsync(dataspaceName, anchorName, parentNodeXpath, UPDATE, observedTimestamp);
@@ -160,8 +175,8 @@ public class CpsDataServiceImpl implements CpsDataService {
     public void updateDataNodeAndDescendants(final String dataspaceName, final String anchorName,
                                              final String parentNodeXpath, final String jsonData,
                                              final OffsetDateTime observedTimestamp) {
-        cpsValidator.validateNameCharacters(dataspaceName, anchorName);
-        final DataNode dataNode = buildDataNode(dataspaceName, anchorName, parentNodeXpath, jsonData);
+        CpsValidator.validateNameCharacters(dataspaceName, anchorName);
+        final DataNode dataNode = buildDataNode(dataspaceName, anchorName, parentNodeXpath, jsonData, ContentType.JSON);
         cpsDataPersistenceService.updateDataNodeAndDescendants(dataspaceName, anchorName, dataNode);
         processDataUpdatedEventAsync(dataspaceName, anchorName, parentNodeXpath, UPDATE, observedTimestamp);
     }
@@ -220,17 +235,19 @@ public class CpsDataServiceImpl implements CpsDataService {
     }
 
     private DataNode buildDataNode(final String dataspaceName, final String anchorName,
-                                   final String parentNodeXpath, final String jsonData) {
+                                   final String parentNodeXpath, final String nodeData,
+                                   final ContentType contentType) {
 
         final Anchor anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
         final SchemaContext schemaContext = getSchemaContext(dataspaceName, anchor.getSchemaSetName());
 
         if (ROOT_NODE_XPATH.equals(parentNodeXpath)) {
-            final NormalizedNode<?, ?> normalizedNode = YangUtils.parseJsonData(jsonData, schemaContext);
+            final NormalizedNode<?, ?> normalizedNode = YangUtils.parseData(nodeData, schemaContext, contentType);
             return new DataNodeBuilder().withNormalizedNodeTree(normalizedNode).build();
         }
 
-        final NormalizedNode<?, ?> normalizedNode = YangUtils.parseJsonData(jsonData, schemaContext, parentNodeXpath);
+        final NormalizedNode<?, ?> normalizedNode = YangUtils.parseData(nodeData, schemaContext, parentNodeXpath,
+                contentType);
         return new DataNodeBuilder()
             .withParentNodeXpath(parentNodeXpath)
             .withNormalizedNodeTree(normalizedNode)
@@ -241,7 +258,7 @@ public class CpsDataServiceImpl implements CpsDataService {
                                           final Map<String, String> nodesJsonData) {
         return nodesJsonData.entrySet().stream().map(nodeJsonData ->
             buildDataNode(dataspaceName, anchorName, nodeJsonData.getKey(),
-                nodeJsonData.getValue())).collect(Collectors.toList());
+                nodeJsonData.getValue(), ContentType.JSON)).collect(Collectors.toList());
     }
 
     private Collection<DataNode> buildDataNodes(final String dataspaceName,
