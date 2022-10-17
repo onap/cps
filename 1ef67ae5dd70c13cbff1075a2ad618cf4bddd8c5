@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "4291a9d9_c428f4d5",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-17T09:29:17Z",
+      "side": 1,
+      "message": "good question but, no, exceptions are handled in a separate common class (CpsRestExceptionHandler) for all endpoint so it won\u0027t get here",
+      "parentUuid": "78152d50_298a747b",
+      "range": {
+        "startLine": 120,
+        "startChar": 15,
+        "endLine": 120,
+        "endChar": 56
+      },
+      "revId": "1ef67ae5dd70c13cbff1075a2ad618cf4bddd8c5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7caf4c1b_18769a12",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
         "patchSetId": 13
