@@ -22,16 +22,21 @@
 
 package org.onap.cps.utils;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.stream.JsonReader;
 import java.io.IOException;
 import java.io.StringReader;
+import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamReader;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -40,12 +45,17 @@ import org.opendaylight.yangtools.yang.data.api.YangInstanceIdentifier;
 import org.opendaylight.yangtools.yang.data.api.schema.NormalizedNode;
 import org.opendaylight.yangtools.yang.data.codec.gson.JSONCodecFactorySupplier;
 import org.opendaylight.yangtools.yang.data.codec.gson.JsonParserStream;
+import org.opendaylight.yangtools.yang.data.codec.xml.XmlCodecFactory;
+import org.opendaylight.yangtools.yang.data.codec.xml.XmlParserStream;
 import org.opendaylight.yangtools.yang.data.impl.schema.ImmutableNormalizedNodeStreamWriter;
 import org.opendaylight.yangtools.yang.data.impl.schema.NormalizedNodeResult;
 import org.opendaylight.yangtools.yang.model.api.DataNodeContainer;
 import org.opendaylight.yangtools.yang.model.api.DataSchemaNode;
 import org.opendaylight.yangtools.yang.model.api.EffectiveModelContext;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
+//import org.opendaylight.yangtools.yang.model.api.SchemaPath;
+//import org.opendaylight.yangtools.yang.model.util.SchemaContextUtil;
+import org.xml.sax.SAXException;
 
 @Slf4j
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -54,6 +64,42 @@ public class YangUtils {
     private static final String XPATH_DELIMITER_REGEX = "\\/";
     private static final String XPATH_NODE_KEY_ATTRIBUTES_REGEX = "\\[.*?\\]";
     //Might cause an issue with [] inside [] in key-values
+
+    /**
+     * Parses data into NormalizedNode according to given schema context.
+     *
+     * @param data          data string
+     * @param schemaContext schema context describing associated data model
+     * @return the NormalizedNode object
+     */
+    public static NormalizedNode<?, ?> parseData(final String data, final SchemaContext schemaContext) {
+        try {
+            final JsonObjectMapper jsonObjectMapper = new JsonObjectMapper(new ObjectMapper());
+            jsonObjectMapper.convertToJsonNode(data);
+            return parseJsonData(data, schemaContext, Optional.empty());
+        } catch (final DataValidationException e) {
+            return parseXmlData(data, schemaContext, Optional.empty());
+        }
+    }
+
+    /**
+     * Parses data into NormalizedNode according to given schema context.
+     *
+     * @param data          data string
+     * @param schemaContext schema context describing associated data model
+     * @return the NormalizedNode object
+     */
+    public static NormalizedNode<?, ?> parseData(final String data, final SchemaContext schemaContext,
+                                                 final String parentNodeXpath) {
+        final var parentSchemaNode = getDataSchemaNodeByXpath(parentNodeXpath, schemaContext);
+        try {
+            final JsonObjectMapper jsonObjectMapper = new JsonObjectMapper(new ObjectMapper());
+            jsonObjectMapper.convertToJsonNode(data);
+            return parseJsonData(data, schemaContext, Optional.of(parentSchemaNode));
+        } catch (final DataValidationException e) {
+            return parseXmlData(data, schemaContext, Optional.of(parentSchemaNode));
+        }
+    }
 
     /**
      * Parses jsonData into NormalizedNode according to given schema context.
@@ -106,6 +152,31 @@ public class YangUtils {
                 .getMessage(), illegalStateException);
         }
         return normalizedNodeResult.getResult();
+    }
+
+    private static NormalizedNode<?, ?> parseXmlData(final String jsonData, final SchemaContext schemaContext,
+                                                     final Optional<DataSchemaNode> optionalParentSchemaNode) {
+        try {
+            final XMLInputFactory factory = XMLInputFactory.newInstance();
+            final XMLStreamReader reader = factory.createXMLStreamReader(new StringReader(jsonData));
+            final NormalizedNodeResult normalizedNodeResult = new NormalizedNodeResult();
+            final var normalizedNodeStreamWriter = ImmutableNormalizedNodeStreamWriter
+                   .from(normalizedNodeResult);
+            final XmlParserStream xmlParser;
+            if (optionalParentSchemaNode.isPresent()) {
+                xmlParser = XmlParserStream.create(normalizedNodeStreamWriter,
+                        (EffectiveModelContext) schemaContext, optionalParentSchemaNode.get());
+            } else {
+                final XmlCodecFactory xmlCodecFactory = XmlCodecFactory.create((EffectiveModelContext) schemaContext);
+                xmlParser = XmlParserStream.create(normalizedNodeStreamWriter,
+                        xmlCodecFactory, xmlCodecFactory.getEffectiveModelContext());
+            }
+            xmlParser.parse(reader);
+            return normalizedNodeResult.getResult();
+        } catch (final XMLStreamException | URISyntaxException | IOException | SAXException exception) {
+            throw new DataValidationException(
+                "Failed to parse xml data: " + jsonData, exception.getMessage(), exception);
+        }
     }
 
     /**

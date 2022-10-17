@@ -157,9 +157,9 @@ logging:
     format: json
     level:
         org:
-            springframework: INFO
+            springframework: DEBUG
             onap:
-                cps: INFO
+                cps: DEBUG
 ncmp:
     dmi:
         auth:

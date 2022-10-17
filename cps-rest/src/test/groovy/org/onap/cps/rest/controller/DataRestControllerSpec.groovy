@@ -65,7 +65,7 @@ class DataRestControllerSpec extends Specification {
     def dataspaceName = 'my_dataspace'
     def anchorName = 'my_anchor'
     def noTimestamp = null
-    def requestBody = '{"some-key" : "some-value","categories":[{"books":[{"authors":["Iain M. Banks"]}]}]}'
+    def requestBody = '{"some-key":"some-value","categories":[{"books":[{"authors":["Iain M. Banks"]}]}]}'
     def expectedJsonData = '{"some-key":"some-value","categories":[{"books":[{"authors":["Iain M. Banks"]}]}]}'
 
     @Shared

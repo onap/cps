@@ -226,11 +226,11 @@ public class CpsDataServiceImpl implements CpsDataService {
         final SchemaContext schemaContext = getSchemaContext(dataspaceName, anchor.getSchemaSetName());
 
         if (ROOT_NODE_XPATH.equals(parentNodeXpath)) {
-            final NormalizedNode<?, ?> normalizedNode = YangUtils.parseJsonData(jsonData, schemaContext);
+            final NormalizedNode<?, ?> normalizedNode = YangUtils.parseData(jsonData, schemaContext);
             return new DataNodeBuilder().withNormalizedNodeTree(normalizedNode).build();
         }
 
-        final NormalizedNode<?, ?> normalizedNode = YangUtils.parseJsonData(jsonData, schemaContext, parentNodeXpath);
+        final NormalizedNode<?, ?> normalizedNode = YangUtils.parseData(jsonData, schemaContext, parentNodeXpath);
         return new DataNodeBuilder()
             .withParentNodeXpath(parentNodeXpath)
             .withNormalizedNodeTree(normalizedNode)

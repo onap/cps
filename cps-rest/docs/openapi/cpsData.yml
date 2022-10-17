@@ -153,10 +153,15 @@ nodesByDataspaceAndAnchor:
       content:
         application/json:
           schema:
-            type: object
+            type: string
           examples:
             dataSample:
               $ref: 'components.yml#/components/examples/dataSample'
+        application/xml:
+          schema:
+            type: string
+          dataSample:
+            $ref: 'components.yml#/components/examples/dataSample'
     responses:
       '201':
         $ref: 'components.yml#/components/responses/Created'
