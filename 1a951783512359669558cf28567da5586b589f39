@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f07a31eb_fc0240cd",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/util/TopicValidator.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-17T10:27:14Z",
+      "side": 1,
+      "message": "I think we usually use a Lombok annotation for this, then you dont need test either\n@NoArgsConstructor(access \u003d AccessLevel.PRIVATE)",
+      "range": {
+        "startLine": 31,
+        "startChar": 1,
+        "endLine": 33,
+        "endChar": 5
+      },
+      "revId": "1a951783512359669558cf28567da5586b589f39",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2ffd3577_5307213a",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/util/TopicValidatorSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-17T10:27:14Z",
+      "side": 1,
+      "message": "this test is not needed, but for future test, make sure to setup you IDE correctly for groovy Indentation\nCode Stylr, Groovy, Tasb and Indents (first tab), Label ident: 4",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 5
+      },
+      "revId": "1a951783512359669558cf28567da5586b589f39",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
