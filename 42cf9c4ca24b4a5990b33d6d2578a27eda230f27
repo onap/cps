@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "75e16943_aded3ca5",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-10-17T12:20:55Z",
+      "side": 1,
+      "message": "yeah..\nI think this is the right thing to do here.\n\nLater if we want to print the SQL queries we can enable the logging at a particular package using our logging framework.\n\nMore details here : https://www.baeldung.com/sql-logging-spring-boot",
+      "revId": "42cf9c4ca24b4a5990b33d6d2578a27eda230f27",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
