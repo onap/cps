@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da9d3f0c_fae1f81b",
+        "filename": "cps-events/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-10-17T13:11:37Z",
+      "side": 0,
+      "message": "Add modification copyright",
+      "revId": "bbdbf57553847998fbcc2b9f3e459ff73bf64746",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6813eaf3_9383a299",
+        "filename": "cps-ncmp-rest-stub/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-10-17T13:11:37Z",
+      "side": 0,
+      "message": "Add modification copyright",
+      "revId": "bbdbf57553847998fbcc2b9f3e459ff73bf64746",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca202b4f_168756b1",
+        "filename": "cps-path-parser/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-10-17T13:11:37Z",
+      "side": 0,
+      "message": "Add modification copyright",
+      "revId": "bbdbf57553847998fbcc2b9f3e459ff73bf64746",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4d5c1593_961b5f6d",
+        "filename": "spotbugs/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-10-17T13:11:37Z",
+      "side": 0,
+      "message": "Add modification copyright",
+      "revId": "bbdbf57553847998fbcc2b9f3e459ff73bf64746",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
