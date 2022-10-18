@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "8a8e3ad8_1db8f564",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationCacheConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-10-18T14:50:53Z",
+      "side": 1,
+      "message": "Added",
+      "parentUuid": "27c7ca47_0b751a03",
+      "range": {
+        "startLine": 83,
+        "startChar": 7,
+        "endLine": 83,
+        "endChar": 53
+      },
+      "revId": "554933e3daae6587f38c9a7024c0c73905099f2b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "97690805_d6801281",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationCacheConfigSpec.groovy",
         "patchSetId": 2
@@ -45,6 +69,30 @@
       "revId": "554933e3daae6587f38c9a7024c0c73905099f2b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35142e29_b3017028",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationCacheConfigSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-10-18T14:50:53Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "97690805_d6801281",
+      "range": {
+        "startLine": 56,
+        "startChar": 123,
+        "endLine": 56,
+        "endChar": 143
+      },
+      "revId": "554933e3daae6587f38c9a7024c0c73905099f2b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -94,6 +142,54 @@
     },
     {
       "key": {
+        "uuid": "253040d7_71c842a3",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-10-18T14:50:53Z",
+      "side": 1,
+      "message": "Due to circular dependency, we Can\u0027t move this config into \"SynchronizationCacheConfig\".",
+      "parentUuid": "ab50ace1_2c4e720a",
+      "range": {
+        "startLine": 87,
+        "startChar": 29,
+        "endLine": 87,
+        "endChar": 58
+      },
+      "revId": "554933e3daae6587f38c9a7024c0c73905099f2b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e12b83ac_4489fdc7",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-10-18T14:50:53Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f20e8516_aea04bcf",
+      "range": {
+        "startLine": 87,
+        "startChar": 61,
+        "endLine": 87,
+        "endChar": 65
+      },
+      "revId": "554933e3daae6587f38c9a7024c0c73905099f2b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "727f3d78_ca2f0820",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 2
@@ -105,6 +201,30 @@
       "writtenOn": "2022-10-17T12:28:25Z",
       "side": 1,
       "message": "can we avoid this and use just the id with getting anchor object (might need to discuss)",
+      "range": {
+        "startLine": 323,
+        "startChar": 8,
+        "endLine": 323,
+        "endChar": 69
+      },
+      "revId": "554933e3daae6587f38c9a7024c0c73905099f2b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc2c8f02_a2f068f0",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-10-18T14:50:53Z",
+      "side": 1,
+      "message": "Avoided",
+      "parentUuid": "727f3d78_ca2f0820",
       "range": {
         "startLine": 323,
         "startChar": 8,
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "74cebd69_59068bfd",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-10-18T14:50:53Z",
+      "side": 1,
+      "message": "Modified",
+      "parentUuid": "8da1a86c_97812f0b",
+      "range": {
+        "startLine": 336,
+        "startChar": 12,
+        "endLine": 336,
+        "endChar": 30
+      },
+      "revId": "554933e3daae6587f38c9a7024c0c73905099f2b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "818b7f61_4e81d0d3",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsPersistenceSpecBase.groovy",
         "patchSetId": 2
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "6c6d75aa_42c4a7df",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsPersistenceSpecBase.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-10-18T14:50:53Z",
+      "side": 1,
+      "message": "Aligned",
+      "parentUuid": "818b7f61_4e81d0d3",
+      "range": {
+        "startLine": 65,
+        "startChar": 44,
+        "endLine": 65,
+        "endChar": 45
+      },
+      "revId": "554933e3daae6587f38c9a7024c0c73905099f2b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "94a013c2_9e86857a",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNode.java",
         "patchSetId": 2
@@ -174,6 +342,30 @@
       "writtenOn": "2022-10-17T11:12:34Z",
       "side": 1,
       "message": "will this create a public setter ?? \nAs I see we already have a protected setter at the class level?",
+      "range": {
+        "startLine": 48,
+        "startChar": 4,
+        "endLine": 48,
+        "endChar": 11
+      },
+      "revId": "554933e3daae6587f38c9a7024c0c73905099f2b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "299e0af8_2fc5e521",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNode.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-10-18T14:50:53Z",
+      "side": 1,
+      "message": "Addressed and reverted as previous.",
+      "parentUuid": "94a013c2_9e86857a",
       "range": {
         "startLine": 48,
         "startChar": 4,

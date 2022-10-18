@@ -16,6 +16,24 @@
       "revId": "3e9640d66ac09538d87941eb1321c70a806151ab",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4501364e_247cd341",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationCacheConfigSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-10-18T14:50:53Z",
+      "side": 0,
+      "message": "Added new instance name",
+      "parentUuid": "812fea7f_130a97d6",
+      "revId": "3e9640d66ac09538d87941eb1321c70a806151ab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
