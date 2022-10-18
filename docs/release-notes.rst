@@ -51,8 +51,8 @@ Known Limitations, Issues and Workarounds
 
 *System Limitations*
 
-For upgrading, CPS uses Liquibase for database upgrades. CPS currently only supports upgrading from Liquibase changelog 11 to Liquibase changelog 16.
-This is from commit CPS-506: List all known modules and revision to CPS-1312: Default CMHandles to READY during upgrade or from ONAP release Honolulu to London.
+For upgrading, CPS uses Liquibase for database upgrades. CPS/NCMP currently only supports upgrading from Liquibase changelog 11 to Liquibase changelog 16.
+This is from commit CPS-506: List all known modules and revision to CPS-1312: Default CMHandles to READY during upgrade or from ONAP release Honolulu to Kohn.
 
 Version: 3.1.4
 ==============
