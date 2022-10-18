@@ -26,6 +26,9 @@ import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
 import org.opendaylight.yangtools.yang.common.QName
 import org.opendaylight.yangtools.yang.data.api.schema.NormalizedNode
+import org.opendaylight.yangtools.yang.model.api.DataNodeContainer
+import org.opendaylight.yangtools.yang.model.api.DataSchemaNode
+import org.opendaylight.yangtools.yang.model.api.SchemaContext
 import spock.lang.Specification
 
 class YangUtilsSpec extends Specification {
@@ -101,6 +104,17 @@ class YangUtilsSpec extends Specification {
             description                                          | invalidJson
             'malformed json string with unterminated array data' | '{bookstore={categories=[{books=[{authors=[Iain M. Banks]}]}]}}'
             'incorrect json'                                     | '{" }'
+    }
+
+    def 'Insert Prefix'() {
+        given: 'schema context'
+            def yangResourcesMap = TestUtils.getYangResourcesAsMap('bookstore.yang')
+            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourcesMap).getSchemaContext()
+
+        when: 'a simplified model node is created'
+            def simplifiedModelNode  = YangUtils.getSimplifiedModelNode(schemaContext)
+        then: 'that can be used to insert module prefixes in a valid path'
+            assert simplifiedModelNode.resolve('', 'bookstore/categories/books') == '/book-store:bookstore/categories/books'
     }
 
     def 'Parsing json data with space.'() {

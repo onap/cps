@@ -29,13 +29,16 @@ import java.io.StringReader;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.spi.exceptions.DataValidationException;
+import org.opendaylight.yangtools.yang.common.QNameModule;
 import org.opendaylight.yangtools.yang.data.api.YangInstanceIdentifier;
 import org.opendaylight.yangtools.yang.data.api.schema.NormalizedNode;
 import org.opendaylight.yangtools.yang.data.codec.gson.JSONCodecFactorySupplier;
@@ -45,6 +48,7 @@ import org.opendaylight.yangtools.yang.data.impl.schema.NormalizedNodeResult;
 import org.opendaylight.yangtools.yang.model.api.DataNodeContainer;
 import org.opendaylight.yangtools.yang.model.api.DataSchemaNode;
 import org.opendaylight.yangtools.yang.model.api.EffectiveModelContext;
+import org.opendaylight.yangtools.yang.model.api.Module;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
 
 @Slf4j
@@ -123,6 +127,34 @@ public class YangUtils {
                 (YangInstanceIdentifier.NodeIdentifierWithPredicates) nodeIdentifier));
         }
         return xpathBuilder.toString();
+    }
+
+
+    public static SimplifiedModelNode getSimplifiedModelNode(final SchemaContext schemaContext) {
+        final Map<QNameModule, String> moduleMap = new HashMap(schemaContext.getModules().size());
+        for (Module module : schemaContext.getModules()) {
+            moduleMap.put(module.getQNameModule(), module.getPrefix());
+        }
+        SimplifiedModelNode root = new SimplifiedModelNode();
+        treeWalker(schemaContext.getChildNodes(), moduleMap, root);
+        return root;
+    }
+
+    private static void treeWalker(final Collection<? extends DataSchemaNode> dataSchemaNodes,
+                                                 final Map<QNameModule, String> moduleMap,
+                                                 final SimplifiedModelNode parentSimplifiedModelNode) {
+        for (DataSchemaNode dataSchemaNode : dataSchemaNodes) {
+            final String containerName = dataSchemaNode.getQName().getLocalName();
+            final String prefix = moduleMap.get(dataSchemaNode.getQName().getModule());
+            final SimplifiedModelNode childSimplifiedModelNode = new SimplifiedModelNode(containerName, prefix);
+            parentSimplifiedModelNode.addChild(childSimplifiedModelNode);
+            if (dataSchemaNode instanceof DataNodeContainer) {
+                DataNodeContainer dataNodeContainer = (DataNodeContainer) dataSchemaNode;
+                treeWalker(dataNodeContainer.getChildNodes(), moduleMap, childSimplifiedModelNode);
+            } else {
+                // Leaf (to be handled later)
+            }
+        }
     }
 
     private static String getKeyAttributesStatement(
