@@ -21,8 +21,11 @@
 package org.onap.cps.ncmp.rest.util;
 
 import java.util.regex.Pattern;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import org.onap.cps.ncmp.rest.exceptions.InvalidTopicException;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class TopicValidator {
 
     private static final Pattern TOPIC_NAME_PATTERN = Pattern.compile("^[a-zA-Z0-9]([._-](?![._-])|"
