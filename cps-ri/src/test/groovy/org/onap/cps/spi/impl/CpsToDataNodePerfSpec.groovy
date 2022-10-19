@@ -54,8 +54,8 @@ class CpsToDataNodePerfSpec extends CpsPersistenceSpecBase {
             def readDurationInMillis = readStopWatch.getTime()
         then : 'setup duration is under 8 seconds'
             assert setupDurationInMillis < 8000
-        and: 'read duration is under 3.5 seconds'
-            assert readDurationInMillis < 3500
+        and: 'read duration is under 6 seconds'
+            assert readDurationInMillis < 6000
         and: 'data node is returned with all the descendants populated'
             assert countDataNodes(result) == 1533
     }
