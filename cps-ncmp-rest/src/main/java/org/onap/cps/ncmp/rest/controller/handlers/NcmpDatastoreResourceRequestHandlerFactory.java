@@ -54,11 +54,9 @@ public class NcmpDatastoreResourceRequestHandlerFactory {
             case PASSTHROUGH_RUNNING:
                 return new NcmpDatastorePassthroughRunningResourceRequestHandler(networkCmProxyDataService,
                         cpsNcmpTaskExecutor, timeOutInMilliSeconds, notificationFeatureEnabled);
-            case PASSTHROUGH_OPERATIONAL:
+            default:
                 return new NcmpDatastorePassthroughOperationalResourceRequestHandler(networkCmProxyDataService,
                         cpsNcmpTaskExecutor, timeOutInMilliSeconds, notificationFeatureEnabled);
-            default:
-                return null;
         }
     }
 }

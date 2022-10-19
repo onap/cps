@@ -42,16 +42,16 @@ public class CmHandleQueryRestParametersValidator {
         cmHandleQueryServiceParameters.getCmHandleQueryParameters().forEach(
                 conditionApiProperty -> {
                     if (Strings.isNullOrEmpty(conditionApiProperty.getConditionName())) {
-                        throwDataValidationException("Missing 'conditionName' - please supply a valid name.");
+                        throw throwDataValidationException("Missing 'conditionName' - please supply a valid name.");
                     }
                     if (Arrays.stream(ValidQueryProperties.values()).noneMatch(validQueryProperty ->
                         validQueryProperty.getQueryProperty().equals(conditionApiProperty.getConditionName()))) {
-                        throwDataValidationException(
+                        throw throwDataValidationException(
                                 String.format("Wrong 'conditionName': %s - please supply a valid name.",
                                 conditionApiProperty.getConditionName()));
                     }
                     if (conditionApiProperty.getConditionParameters().isEmpty()) {
-                        throwDataValidationException(
+                        throw throwDataValidationException(
                                 "Empty 'conditionsParameters' - please supply a valid condition parameter.");
                     }
                     conditionApiProperty.getConditionParameters().forEach(
@@ -63,16 +63,16 @@ public class CmHandleQueryRestParametersValidator {
 
     private static void validateConditionParameter(final Map<String, String> conditionParameter) {
         if (conditionParameter.isEmpty()) {
-            throwDataValidationException(
+            throw throwDataValidationException(
                     "Empty 'conditionsParameter' - please supply a valid condition parameter.");
         }
         if (conditionParameter.size() > 1) {
-            throwDataValidationException("Too many name in one 'conditionsParameter' -"
+            throw throwDataValidationException("Too many name in one 'conditionsParameter' -"
                     + " please supply one name in one condition parameter.");
         }
         conditionParameter.forEach((key, value) -> {
             if (Strings.isNullOrEmpty(key)) {
-                throwDataValidationException(
+                throw throwDataValidationException(
                         "Missing 'conditionsParameterName' - please supply a valid name.");
             }
         });
@@ -86,7 +86,8 @@ public class CmHandleQueryRestParametersValidator {
         if (conditionProperty.containsKey("moduleName") && !conditionProperty.get("moduleName").isEmpty()) {
             return;
         }
-        throwDataValidationException("Wrong module condition property. - please supply a valid condition property.");
+        throw throwDataValidationException("Wrong module condition property. - "
+                + "please supply a valid condition property.");
     }
 
     /**
@@ -98,15 +99,15 @@ public class CmHandleQueryRestParametersValidator {
             return true;
         }
         if (conditionProperty.size() > 1) {
-            throwDataValidationException("Only one condition property is allowed for the CPS path query.");
+            throw throwDataValidationException("Only one condition property is allowed for the CPS path query.");
         }
         if (!conditionProperty.containsKey("cpsPath")) {
-            throwDataValidationException(
+            throw throwDataValidationException(
                 "Wrong CPS path condition property. - expecting \"cpsPath\" as the condition property.");
         }
         final String cpsPath = conditionProperty.get("cpsPath");
         if (cpsPath.isBlank()) {
-            throwDataValidationException(
+            throw throwDataValidationException(
                 "Wrong CPS path. - please supply a valid CPS path.");
         }
         if (cpsPath.contains("/additional-properties")) {
@@ -117,8 +118,8 @@ public class CmHandleQueryRestParametersValidator {
         return true;
     }
 
-    private static void throwDataValidationException(final String details) {
-        throw new DataValidationException("Invalid Query Parameter.", details);
+    private static DataValidationException throwDataValidationException(final String details) {
+        return new DataValidationException("Invalid Query Parameter.", details);
     }
 
 }

@@ -62,9 +62,7 @@ public interface CmHandleStateMapper {
             dataStores.setOperational(operationalSyncState);
         }
 
-
         return dataStores;
-
     }
 
     /**

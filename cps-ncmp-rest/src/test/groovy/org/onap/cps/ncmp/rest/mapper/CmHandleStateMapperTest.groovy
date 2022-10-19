@@ -59,6 +59,15 @@ class CmHandleStateMapperTest extends Specification {
             assert result.dataSyncState.operational.getSyncState() != null
     }
 
+    def 'Composite State is null'() {
+        given: 'a composite state model is null'
+            def compositeState = null
+        when: 'mapper is called'
+            def result = objectUnderTest.toDataStores(compositeState)
+        then: 'result is null'
+            assert result == null
+    }
+
     def 'Internal to External Lock Reason Mapping of #scenario'() {
         given: 'a LOCKED composite state with locked reason of #scenario'
             def compositeState = new CompositeStateBuilder()

@@ -103,6 +103,15 @@ class CmHandleQueryRestParametersValidatorSpec extends Specification {
             'cpsPath not supplied'                | ['cpsPath':'']                                  || 'Wrong CPS path. - please supply a valid CPS path.'
     }
 
+    def 'Validate empty conditions property returns true.'() {
+        given: 'an empty condition property'
+            def conditionProperty = [:]
+        when: 'validator is invoked'
+            def result = CmHandleQueryRestParametersValidator.validateCpsPathConditionProperties(conditionProperty)
+        then: 'result is true'
+            result
+    }
+
     def 'Validate CmHandle where #scenario.'() {
         when: 'the validator is called on a cps path condition property'
             def result = CmHandleQueryRestParametersValidator.validateCpsPathConditionProperties(['cpsPath':cpsPath])
