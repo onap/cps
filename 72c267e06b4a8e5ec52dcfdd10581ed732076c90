@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c4fa2f18_d2a9f768",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreResourceRequestHandlerFactory.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-10-19T11:55:46Z",
+      "side": 0,
+      "message": "Im not sure about this as it fundamentally changes how we retrieve the request handler... I would like some comments from others on this",
+      "range": {
+        "startLine": 57,
+        "startChar": 12,
+        "endLine": 61,
+        "endChar": 28
+      },
+      "revId": "72c267e06b4a8e5ec52dcfdd10581ed732076c90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
