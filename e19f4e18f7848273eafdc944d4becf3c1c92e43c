@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "e665844b_2cff5ce5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-19T13:50:00Z",
+      "side": 1,
+      "message": "put on new line",
+      "range": {
+        "startLine": 9,
+        "startChar": 71,
+        "endLine": 9,
+        "endChar": 95
+      },
+      "revId": "e19f4e18f7848273eafdc944d4becf3c1c92e43c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f46f6ac7_e911597f",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreResourceRequestHandlerFactory.java",
         "patchSetId": 1
@@ -86,6 +109,29 @@
         "startLine": 47,
         "startChar": 3,
         "endLine": 56,
+        "endChar": 5
+      },
+      "revId": "e19f4e18f7848273eafdc944d4becf3c1c92e43c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "570a7d59_f94e7dd3",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/JsonObjectMapperSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-19T13:50:00Z",
+      "side": 1,
+      "message": "sample test? please remove",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 87,
         "endChar": 5
       },
       "revId": "e19f4e18f7848273eafdc944d4becf3c1c92e43c",
