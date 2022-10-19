@@ -20,7 +20,7 @@
 
 package org.onap.cps.utils
 
-
+import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.SerializationFeature
 import groovy.json.JsonSlurper
@@ -44,6 +44,19 @@ class JsonObjectMapperSpec extends Specification {
             assert contentMap.'test:bookstore'.'bookstore-name' == 'Chapters'
     }
 
+    def 'Map a structured object to json String error.'() {
+        given: 'some object'
+            def object = new Object()
+        and: 'the Object mapper throws an exception'
+            spiedObjectMapper.writeValueAsString(object) >> { throw new JsonProcessingException('Sample problem'){} }
+        when: 'attempting to convert the object to a string'
+            jsonObjectMapper.asJsonString(object);
+        then: 'a Data Validation Exception is thrown'
+            def thrown = thrown(DataValidationException)
+        and: 'the details containing the original error message'
+            assert thrown.details == 'Sample problem'
+    }
+
     def 'Map a structurally compatible object to class object of specific class type T.'() {
         given: 'a map object model'
             def contentMap = new JsonSlurper().parseText(TestUtils.getResourceFileContent('bookstore.json'))
@@ -61,7 +74,7 @@ class JsonObjectMapperSpec extends Specification {
         given: 'Unstructured json string'
             def content = '{ "nest": { "birds": "bird"] } }'
         when: 'mapping json string to given class type'
-            def contentMap = jsonObjectMapper.convertJsonString(content, Map);
+            jsonObjectMapper.convertJsonString(content, Map);
         then: 'an exception is thrown'
             thrown(DataValidationException)
     }

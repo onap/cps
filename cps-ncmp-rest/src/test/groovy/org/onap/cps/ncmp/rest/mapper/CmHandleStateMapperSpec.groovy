@@ -32,7 +32,7 @@ import java.time.OffsetDateTime
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 
-class CmHandleStateMapperTest extends Specification {
+class CmHandleStateMapperSpec extends Specification {
 
     def formattedDateAndTime = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
         .format(OffsetDateTime.of(2022, 12, 31, 20, 30, 40, 1, ZoneOffset.UTC))
@@ -57,6 +57,11 @@ class CmHandleStateMapperTest extends Specification {
             assert result.lockReason.details == 'locked details'
             assert result.cmHandleState == 'ADVISED'
             assert result.dataSyncState.operational.getSyncState() != null
+    }
+
+    def 'Handling null state.'() {
+        expect: 'converting null returns null'
+            objectUnderTest.toDataStores(null) == null
     }
 
     def 'Internal to External Lock Reason Mapping of #scenario'() {
