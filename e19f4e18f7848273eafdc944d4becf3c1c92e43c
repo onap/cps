@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f46f6ac7_e911597f",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreResourceRequestHandlerFactory.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-19T12:43:03Z",
+      "side": 1,
+      "message": "apply both labels\n\ncase PASSTHROUGH_OPERATIONAL:\ncase default:\n              return new NcmpDatastorePassthroughRunningResourceRequestHandler(networkCmProxyDataService,\n                        cpsNcmpTaskExecutor, timeOutInMilliSeconds, notificationFeatureEnabled);",
+      "range": {
+        "startLine": 57,
+        "startChar": 12,
+        "endLine": 57,
+        "endChar": 20
+      },
+      "revId": "e19f4e18f7848273eafdc944d4becf3c1c92e43c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f1fde4cc_56bc563a",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/CmHandleQueryRestParametersValidator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-19T12:43:03Z",
+      "side": 1,
+      "message": "as per my original proposal, rename to \u0027create...\u0027",
+      "range": {
+        "startLine": 121,
+        "startChar": 43,
+        "endLine": 121,
+        "endChar": 48
+      },
+      "revId": "e19f4e18f7848273eafdc944d4becf3c1c92e43c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f6c8ddb_bab85fda",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/CmHandleQueryRestParametersValidatorSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-19T12:43:03Z",
+      "side": 1,
+      "message": "good test but can be soimpliedied using expect label. Let me show you how",
+      "range": {
+        "startLine": 106,
+        "startChar": 3,
+        "endLine": 113,
+        "endChar": 5
+      },
+      "revId": "e19f4e18f7848273eafdc944d4becf3c1c92e43c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5842d58a_5f8efca1",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/JsonObjectMapperSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-19T12:43:03Z",
+      "side": 1,
+      "message": "good test again, want to help uou a little with labelling in a call...",
+      "range": {
+        "startLine": 47,
+        "startChar": 3,
+        "endLine": 56,
+        "endChar": 5
+      },
+      "revId": "e19f4e18f7848273eafdc944d4becf3c1c92e43c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}

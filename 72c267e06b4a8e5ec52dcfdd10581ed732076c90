@@ -22,6 +22,30 @@
       "revId": "72c267e06b4a8e5ec52dcfdd10581ed732076c90",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "af26f7fd_e197723d",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreResourceRequestHandlerFactory.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-19T12:43:03Z",
+      "side": 0,
+      "message": "I know we look at this is the past and agreed it was a SonarQube conflict (limitation) between 2 rules.\n\nBut maybe this is hafl way a good solution; maybe apply bothe labels with a break and taht solves both issues?!\nJust ry it and see what SQ says. See My comment on Patch 1 on teh right",
+      "parentUuid": "c4fa2f18_d2a9f768",
+      "range": {
+        "startLine": 57,
+        "startChar": 12,
+        "endLine": 61,
+        "endChar": 28
+      },
+      "revId": "72c267e06b4a8e5ec52dcfdd10581ed732076c90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
