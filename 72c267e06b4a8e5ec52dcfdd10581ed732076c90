@@ -46,6 +46,30 @@
       "revId": "72c267e06b4a8e5ec52dcfdd10581ed732076c90",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c43abae4_9a0eeb1b",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreResourceRequestHandlerFactory.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-10-19T12:44:52Z",
+      "side": 0,
+      "message": "I think it is ok as same implementation since its an enum. Only other state the enum can be is PASSTHROUGH_OPERATIONAL. Double checked for nulls as well and a nullpointer will be thrown by the switch statement if datastoreType is a null value",
+      "parentUuid": "c4fa2f18_d2a9f768",
+      "range": {
+        "startLine": 57,
+        "startChar": 12,
+        "endLine": 61,
+        "endChar": 28
+      },
+      "revId": "72c267e06b4a8e5ec52dcfdd10581ed732076c90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
