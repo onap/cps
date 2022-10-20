@@ -89,7 +89,6 @@ public interface CpsDataPersistenceService {
     DataNode getDataNode(String dataspaceName, String anchorName, String xpath,
         FetchDescendantsOption fetchDescendantsOption);
 
-
     /**
      * Updates leaves for existing data node.
      *
