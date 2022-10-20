@@ -531,28 +531,25 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     def 'Confirm deletion of #scenario.'() {
         given: 'a valid data node'
             def dataNode
-            def dataNodeXpath
-        when: 'data nodes are deleted'
+        and: 'data nodes are deleted'
             objectUnderTest.deleteDataNode(DATASPACE_NAME, ANCHOR_NAME3, xpathForDeletion)
-        then: 'verify data nodes are removed'
-            try {
-                dataNode = objectUnderTest.getDataNode(DATASPACE_NAME, ANCHOR_NAME3, getDataNodesXpaths, INCLUDE_ALL_DESCENDANTS)
-                dataNodeXpath = dataNode.xpath
-                assert dataNodeXpath == expectedXpaths
-            } catch (DataNodeNotFoundException) {
-                assert dataNodeXpath == expectedXpaths
+        when: 'verify data nodes are removed'
+            objectUnderTest.getDataNode(DATASPACE_NAME, ANCHOR_NAME3, xpathForDeletion, INCLUDE_ALL_DESCENDANTS)
+        then:
+            thrown(DataNodeNotFoundException)
+        and: 'some related object is not deleted'
+            if (xpathSurvivor!=null) {
+                dataNode = objectUnderTest.getDataNode(DATASPACE_NAME, ANCHOR_NAME3, xpathSurvivor, INCLUDE_ALL_DESCENDANTS)
+                assert dataNode.xpath == xpathSurvivor
             }
         where: 'following parameters were used'
-            scenario                                | xpathForDeletion                                   | getDataNodesXpaths                                || expectedXpaths
-            'child of target'                       | '/parent-206/child-206'                            | '/parent-206/child-206'                           || null
-            'child data node, parent still exists'  | '/parent-206/child-206'                            | '/parent-206'                                     || '/parent-206'
-            'list element'                          | '/parent-206/child-206/grand-child-206[@key="A"]'  | '/parent-206/child-206/grand-child-206[@key="A"]' || null
-            'list element, sibling still exists'    | '/parent-206/child-206/grand-child-206[@key="A"]'  | '/parent-206/child-206/grand-child-206[@key="X"]' || "/parent-206/child-206/grand-child-206[@key='X']"
-            'container node'                        | '/parent-206'                                      | '/parent-206'                                     || null
-            'container list node'                   | '/parent-206[@key="A"]'                            | '/parent-206[@key="B"]'                           || "/parent-206[@key='B']"
-            'root node with xpath /'                | '/'                                                | '/'                                               || null
-            'root node with xpath passed as blank'  | ''                                                 | ''                                                || null
-
+            scenario                               | xpathForDeletion                                  || xpathSurvivor
+            'child data node, parent still exists' | '/parent-206/child-206'                           || '/parent-206'
+            'list element, sibling still exists'   | '/parent-206/child-206/grand-child-206[@key="A"]' || "/parent-206/child-206/grand-child-206[@key='X']"
+            'container node'                       | '/parent-206'                                     || null
+            'container list node'                  | '/parent-206[@key="A"]'                           || "/parent-206[@key='B']"
+            'root node with xpath /'               | '/'                                               || null
+            'root node with xpath passed as blank' | ''                                                || null
     }
 
     @Sql([CLEAR_DATA, SET_DATA])

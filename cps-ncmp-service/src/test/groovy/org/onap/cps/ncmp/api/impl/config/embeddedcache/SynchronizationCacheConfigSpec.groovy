@@ -76,13 +76,13 @@ class SynchronizationCacheConfigSpec extends Specification {
 
     def 'Time to Live Verify for Module Sync and Data Sync Semaphore'() {
         when: 'the keys are inserted with a TTL'
-            moduleSyncStartedOnCmHandles.put('testKeyModuleSync', 'toBeExpired' as Object, 1000, TimeUnit.MILLISECONDS)
-            dataSyncSemaphores.put('testKeyDataSync', Boolean.TRUE, 1000, TimeUnit.MILLISECONDS)
+            moduleSyncStartedOnCmHandles.put('testKeyModuleSync', 'toBeExpired' as Object, 100, TimeUnit.MILLISECONDS)
+            dataSyncSemaphores.put('testKeyDataSync', Boolean.TRUE, 100, TimeUnit.MILLISECONDS)
         then: 'the entries are present in the map'
             assert moduleSyncStartedOnCmHandles.get('testKeyModuleSync') != null
             assert dataSyncSemaphores.get('testKeyDataSync') != null
         and: 'we wait for the key expiration'
-            sleep(1500)
+            sleep(2000)
         and: 'the keys should be expired as TTL elapsed'
             assert moduleSyncStartedOnCmHandles.get('testKeyModuleSync') == null
             assert dataSyncSemaphores.get('testKeyDataSync') == null
