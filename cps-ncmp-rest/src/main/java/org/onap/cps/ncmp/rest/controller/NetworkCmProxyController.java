@@ -39,6 +39,7 @@ import org.onap.cps.ncmp.api.models.CmHandleQueryApiParameters;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.ncmp.rest.api.NetworkCmProxyApi;
 import org.onap.cps.ncmp.rest.controller.handlers.DatastoreType;
+import org.onap.cps.ncmp.rest.controller.handlers.NcmpDatastoreOperationalResourceRequestHandler;
 import org.onap.cps.ncmp.rest.controller.handlers.NcmpDatastoreResourceRequestHandler;
 import org.onap.cps.ncmp.rest.controller.handlers.NcmpDatastoreResourceRequestHandlerFactory;
 import org.onap.cps.ncmp.rest.exceptions.InvalidDatastoreException;
@@ -97,6 +98,34 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
 
         return ncmpDatastoreResourceRequestHandler.getResourceData(cmHandle, resourceIdentifier,
                 optionsParamInQuery, topicParamInQuery, includeDescendants);
+    }
+
+    /**
+     * Query resource data from datastore.
+     *
+     * @param cmHandle            cm handle identifier
+     * @param cpsPath             CPS Path
+     * @param optionsParamInQuery options query parameter
+     * @param topicParamInQuery   topic query parameter
+     * @param includeDescendants  whether include descendants
+     * @return {@code ResponseEntity} response from dmi plugin
+     */
+
+    @Override
+    public ResponseEntity<Object> queryResourceDataForCmHandle(final String datastoreName,
+                                                               final String cmHandle,
+                                                               final String cpsPath,
+                                                               final String optionsParamInQuery,
+                                                               final String topicParamInQuery,
+                                                               final Boolean includeDescendants) {
+        acceptOperationalOnly(datastoreName);
+        final NcmpDatastoreOperationalResourceRequestHandler ncmpDatastoreResourceRequestHandler =
+            (NcmpDatastoreOperationalResourceRequestHandler)
+                ncmpDatastoreResourceRequestHandlerFactory.getNcmpDatastoreResourceRequestHandler(
+                    DatastoreType.OPERATIONAL);
+
+        return ncmpDatastoreResourceRequestHandler.queryResourceData(cmHandle, cpsPath,
+            topicParamInQuery, includeDescendants);
     }
 
     /**
@@ -336,6 +365,14 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         final DatastoreType datastoreType = DatastoreType.fromDatastoreName(datastoreName);
 
         if (DatastoreType.PASSTHROUGH_RUNNING != datastoreType) {
+            throw new InvalidDatastoreException(datastoreName + " is not supported");
+        }
+    }
+
+    private void acceptOperationalOnly(final String datastoreName) {
+        final DatastoreType datastoreType = DatastoreType.fromDatastoreName(datastoreName);
+
+        if (DatastoreType.OPERATIONAL != datastoreType) {
             throw new InvalidDatastoreException(datastoreName + " is not supported");
         }
     }

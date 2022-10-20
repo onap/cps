@@ -163,6 +163,13 @@ public class NetworkCmProxyStubController implements NetworkCmProxyApi {
     }
 
     @Override
+    public ResponseEntity<Object> queryResourceDataForCmHandle(final String ncmpDatastoreName, final String cmHandle,
+                                                               final String cpsPath, final String options,
+                                                               final String topic, final Boolean includeDescendants) {
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+    }
+
+    @Override
     public ResponseEntity<RestOutputCmHandle> retrieveCmHandleDetailsById(final String cmHandleId) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }

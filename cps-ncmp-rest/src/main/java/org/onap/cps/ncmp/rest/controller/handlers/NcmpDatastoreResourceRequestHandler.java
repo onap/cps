@@ -34,8 +34,8 @@ import org.springframework.http.ResponseEntity;
 @Slf4j
 public abstract class NcmpDatastoreResourceRequestHandler {
 
-    private static final String NO_REQUEST_ID = null;
-    private static final String NO_TOPIC = null;
+    protected static final String NO_REQUEST_ID = null;
+    protected static final String NO_TOPIC = null;
 
     protected final NetworkCmProxyDataService networkCmProxyDataService;
     protected final CpsNcmpTaskExecutor cpsNcmpTaskExecutor;
