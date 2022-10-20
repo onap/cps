@@ -57,7 +57,7 @@ public class FragmentRepositoryCpsPathQueryImpl implements FragmentRepositoryCps
         if (cpsPathQuery.hasLeafConditions()) {
             sqlStringBuilder.append(" AND attributes @> :leafDataAsJson\\:\\:jsonb");
             queryParameters.put("leafDataAsJson", jsonObjectMapper.asJsonString(
-                    cpsPathQuery.getLeavesData()));
+                cpsPathQuery.getLeavesData()));
         }
 
         addTextFunctionCondition(cpsPathQuery, sqlStringBuilder, queryParameters);

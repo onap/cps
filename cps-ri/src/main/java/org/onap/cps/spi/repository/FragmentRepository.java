@@ -30,6 +30,7 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.FragmentEntity;
+import org.onap.cps.spi.entities.FragmentExtract;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -69,4 +70,12 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>,
     @Modifying
     @Query("DELETE FROM FragmentEntity fe WHERE fe.anchor IN (:anchors)")
     void deleteByAnchorIn(@NotNull @Param("anchors") Collection<AnchorEntity> anchorEntities);
+
+    @Query(value = "SELECT id, anchor_id AS anchorId, xpath, parent_id AS parentId,"
+        + " CAST(attributes AS TEXT) AS attributes"
+        + " FROM FRAGMENT WHERE anchor_id = :anchorId"
+        + " AND ( xpath LIKE :pathPrefix OR xpath LIKE CONCAT(:pathPrefix,'/%') )",
+           nativeQuery = true)
+    List<FragmentExtract> findByAnchorIdAndPathPrefix(@Param("anchorId") int anchorId,
+                                                      @Param("pathPrefix") String pathPrefix);
 }
