@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Copyright (C) 2022 Tech Mahindra
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -23,7 +24,11 @@ package org.onap.cps.cpspath.parser;
 import static org.onap.cps.cpspath.parser.CpsPathPrefixType.DESCENDANT;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Map;
+import java.util.Arrays;
+
 import org.onap.cps.cpspath.parser.antlr4.CpsPathBaseListener;
 import org.onap.cps.cpspath.parser.antlr4.CpsPathParser;
 import org.onap.cps.cpspath.parser.antlr4.CpsPathParser.AncestorAxisContext;
@@ -45,6 +50,8 @@ public class CpsPathBuilder extends CpsPathBaseListener {
     final Map<String, Object> leavesData = new HashMap<>();
 
     final StringBuilder normalizedXpathBuilder = new StringBuilder();
+
+    final List<CpsPathOperatorType> operators = new ArrayList<>();
 
     final StringBuilder normalizedAncestorPathBuilder = new StringBuilder();
 
@@ -81,10 +88,38 @@ public class CpsPathBuilder extends CpsPathBaseListener {
             throw new PathParsingException("Unsupported comparison value encountered in expression" + ctx.getText());
         }
         leavesData.put(ctx.leafName().getText(), comparisonValue);
-        appendCondition(normalizedXpathBuilder, ctx.leafName().getText(), comparisonValue);
-        if (processingAncestorAxis) {
-            appendCondition(normalizedAncestorPathBuilder, ctx.leafName().getText(), comparisonValue);
+        final char lastCharacter = normalizedXpathBuilder.charAt(normalizedXpathBuilder.length() - 1);
+        String operatorName = operators.toString().replace("[", "").replace("]", "");
+        String[] operatorValue = operatorName.split(",");
+        for (String str1 : operatorValue) {
+            normalizedXpathBuilder.append(lastCharacter == '[' ? "" : " " + str1 + " ");
+            break;
         }
+        for (String s : Arrays.asList("@", ctx.leafName().getText(), "='")) {
+            normalizedXpathBuilder.append(s);
+        }
+        normalizedXpathBuilder.append(comparisonValue);
+        normalizedXpathBuilder.append("'");
+        if (processingAncestorAxis) {
+            normalizedAncestorPathBuilder.append(lastCharacter == '[' ? "" : " and ");
+            for (String s : Arrays.asList("@", ctx.leafName().getText(), "='")) {
+                normalizedAncestorPathBuilder.append(s);
+            }
+            normalizedAncestorPathBuilder.append(comparisonValue);
+            normalizedAncestorPathBuilder.append("'");
+        }
+    }
+
+
+    @Override
+    public void exitOperators(final CpsPathParser.OperatorsContext ctx) {
+        if (ctx.getText().equalsIgnoreCase("or")) {
+            operators.add(CpsPathOperatorType.or);
+        }
+        if (ctx.getText().equalsIgnoreCase("and")) {
+            operators.add(CpsPathOperatorType.and);
+        }
+        cpsPathQuery.setOperatorName(operators);
     }
 
     @Override
@@ -95,7 +130,7 @@ public class CpsPathBuilder extends CpsPathBaseListener {
     }
 
     @Override
-    public void enterMultipleLeafConditions(final MultipleLeafConditionsContext ctx)  {
+    public void enterMultipleLeafConditions(final MultipleLeafConditionsContext ctx) {
         normalizedXpathBuilder.append(OPEN_BRACKET);
         leavesData.clear();
     }
@@ -157,14 +192,4 @@ public class CpsPathBuilder extends CpsPathBaseListener {
         }
     }
 
-    private void appendCondition(final StringBuilder currentNormalizedPathBuilder, final String name,
-                                final Object value) {
-        final char lastCharacter = currentNormalizedPathBuilder.charAt(currentNormalizedPathBuilder.length() - 1);
-        currentNormalizedPathBuilder.append(lastCharacter == '[' ? "" : " and ")
-                .append("@")
-                .append(name)
-                .append("='")
-                .append(value)
-                .append("'");
-    }
 }
