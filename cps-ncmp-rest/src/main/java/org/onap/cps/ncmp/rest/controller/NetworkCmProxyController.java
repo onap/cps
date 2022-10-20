@@ -39,7 +39,7 @@ import org.onap.cps.ncmp.api.models.CmHandleQueryApiParameters;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.ncmp.rest.api.NetworkCmProxyApi;
 import org.onap.cps.ncmp.rest.controller.handlers.DatastoreType;
-import org.onap.cps.ncmp.rest.controller.handlers.NcmpDatastoreResourceRequestHandler;
+import org.onap.cps.ncmp.rest.controller.handlers.NcmpDatastoreRequestHandler;
 import org.onap.cps.ncmp.rest.controller.handlers.NcmpDatastoreResourceRequestHandlerFactory;
 import org.onap.cps.ncmp.rest.exceptions.InvalidDatastoreException;
 import org.onap.cps.ncmp.rest.mapper.CmHandleStateMapper;
@@ -91,12 +91,39 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
                                                              final String topicParamInQuery,
                                                              final Boolean includeDescendants) {
 
-        final NcmpDatastoreResourceRequestHandler ncmpDatastoreResourceRequestHandler =
+        final NcmpDatastoreRequestHandler ncmpDatastoreRequestHandler =
                 ncmpDatastoreResourceRequestHandlerFactory.getNcmpDatastoreResourceRequestHandler(
                         DatastoreType.fromDatastoreName(datastoreName));
 
-        return ncmpDatastoreResourceRequestHandler.getResourceData(cmHandle, resourceIdentifier,
+        return ncmpDatastoreRequestHandler.executeRequest(cmHandle, resourceIdentifier,
                 optionsParamInQuery, topicParamInQuery, includeDescendants);
+    }
+
+    /**
+     * Query resource data from datastore.
+     *
+     * @param datastoreName       name of the datastore
+     * @param cmHandle            cm handle identifier
+     * @param cpsPath             CPS Path
+     * @param optionsParamInQuery options query parameter
+     * @param topicParamInQuery   topic query parameter
+     * @param includeDescendants  whether include descendants
+     * @return {@code ResponseEntity} response from dmi plugin
+     */
+
+    @Override
+    public ResponseEntity<Object> queryResourceDataForCmHandle(final String datastoreName,
+                                                               final String cmHandle,
+                                                               final String cpsPath,
+                                                               final String optionsParamInQuery,
+                                                               final String topicParamInQuery,
+                                                               final Boolean includeDescendants) {
+        validateDataStore(DatastoreType.OPERATIONAL, datastoreName);
+        final NcmpDatastoreRequestHandler ncmpDatastoreRequestHandler =
+            ncmpDatastoreResourceRequestHandlerFactory.getNcmpDatastoreResourceQueryHandler();
+
+        return ncmpDatastoreRequestHandler.executeRequest(cmHandle, cpsPath, optionsParamInQuery,
+            topicParamInQuery, includeDescendants);
     }
 
     /**
@@ -117,7 +144,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
                                                                       final Object requestBody,
                                                                       final String contentType) {
 
-        acceptPassthroughRunningOnly(datastoreName);
+        validateDataStore(DatastoreType.PASSTHROUGH_RUNNING, datastoreName);
 
         final Object responseObject = networkCmProxyDataService
                 .writeResourceDataPassThroughRunningForCmHandle(
@@ -143,7 +170,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
                                                                      final Object requestBody,
                                                                      final String contentType) {
 
-        acceptPassthroughRunningOnly(datastoreName);
+        validateDataStore(DatastoreType.PASSTHROUGH_RUNNING, datastoreName);
 
         networkCmProxyDataService.writeResourceDataPassThroughRunningForCmHandle(cmHandle,
                 resourceIdentifier, CREATE, jsonObjectMapper.asJsonString(requestBody), contentType);
@@ -167,7 +194,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
                                                                        final String cmHandle,
                                                                        final Object requestBody,
                                                                        final String contentType) {
-        acceptPassthroughRunningOnly(datastoreName);
+        validateDataStore(DatastoreType.PASSTHROUGH_RUNNING, datastoreName);
 
         networkCmProxyDataService.writeResourceDataPassThroughRunningForCmHandle(cmHandle,
                 resourceIdentifier, UPDATE, jsonObjectMapper.asJsonString(requestBody), contentType);
@@ -189,7 +216,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
                                                                      final String resourceIdentifier,
                                                                      final String contentType) {
 
-        acceptPassthroughRunningOnly(datastoreName);
+        validateDataStore(DatastoreType.PASSTHROUGH_RUNNING, datastoreName);
 
         networkCmProxyDataService.writeResourceDataPassThroughRunningForCmHandle(cmHandle,
                 resourceIdentifier, DELETE, NO_BODY, contentType);
@@ -332,11 +359,11 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         return restOutputCmHandle;
     }
 
-    private void acceptPassthroughRunningOnly(final String datastoreName) {
-        final DatastoreType datastoreType = DatastoreType.fromDatastoreName(datastoreName);
+    private void validateDataStore(final DatastoreType acceptableDataStoreType, final String requestedDatastoreName) {
+        final DatastoreType datastoreType = DatastoreType.fromDatastoreName(requestedDatastoreName);
 
-        if (DatastoreType.PASSTHROUGH_RUNNING != datastoreType) {
-            throw new InvalidDatastoreException(datastoreName + " is not supported");
+        if (acceptableDataStoreType != datastoreType) {
+            throw new InvalidDatastoreException(requestedDatastoreName + " is not supported");
         }
     }
 }

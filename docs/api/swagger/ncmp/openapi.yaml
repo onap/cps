@@ -6,7 +6,7 @@ info:
 servers:
 - url: /ncmp
 paths:
-  /v1/ch/{cm-handle}/data/ds/{ncmp-datastore-name}:
+  /v1/ch/{cm-handle}/data/ds/{datastore-name}:
     get:
       tags:
       - network-cm-proxy
@@ -14,7 +14,7 @@ paths:
       description: Get resource data for given cm handle
       operationId: getResourceDataForCmHandle
       parameters:
-      - name: ncmp-datastore-name
+      - name: datastore-name
         in: path
         description: The type of the requested data
         required: true
@@ -154,7 +154,7 @@ paths:
         handle
       operationId: updateResourceDataRunningForCmHandle
       parameters:
-      - name: ncmp-datastore-name
+      - name: datastore-name
         in: path
         description: The type of the requested data
         required: true
@@ -277,7 +277,7 @@ paths:
       description: create resource data from pass-through running for given cm handle
       operationId: createResourceDataRunningForCmHandle
       parameters:
-      - name: ncmp-datastore-name
+      - name: datastore-name
         in: path
         description: The type of the requested data
         required: true
@@ -397,7 +397,7 @@ paths:
       description: Delete resource data from pass-through running for a given cm handle
       operationId: deleteResourceDataRunningForCmHandle
       parameters:
-      - name: ncmp-datastore-name
+      - name: datastore-name
         in: path
         description: The type of the requested data
         required: true
@@ -513,7 +513,7 @@ paths:
         handle
       operationId: patchResourceDataRunningForCmHandle
       parameters:
-      - name: ncmp-datastore-name
+      - name: datastore-name
         in: path
         description: The type of the requested data
         required: true

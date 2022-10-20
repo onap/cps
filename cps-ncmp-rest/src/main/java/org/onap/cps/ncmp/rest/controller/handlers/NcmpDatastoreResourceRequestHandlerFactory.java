@@ -22,6 +22,7 @@ package org.onap.cps.ncmp.rest.controller.handlers;
 
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
+import org.onap.cps.ncmp.api.NetworkCmProxyQueryService;
 import org.onap.cps.ncmp.rest.executor.CpsNcmpTaskExecutor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -31,6 +32,7 @@ import org.springframework.stereotype.Component;
 public class NcmpDatastoreResourceRequestHandlerFactory {
 
     private final NetworkCmProxyDataService networkCmProxyDataService;
+    private final NetworkCmProxyQueryService networkCmProxyQueryService;
     private final CpsNcmpTaskExecutor cpsNcmpTaskExecutor;
 
     @Value("${notification.async.executor.time-out-value-in-ms:2000}")
@@ -44,7 +46,7 @@ public class NcmpDatastoreResourceRequestHandlerFactory {
      * @param datastoreType the datastore type
      * @return the ncmp datastore handler
      */
-    public NcmpDatastoreResourceRequestHandler getNcmpDatastoreResourceRequestHandler(
+    public NcmpDatastoreRequestHandler getNcmpDatastoreResourceRequestHandler(
             final DatastoreType datastoreType) {
 
         switch (datastoreType) {
@@ -60,4 +62,15 @@ public class NcmpDatastoreResourceRequestHandlerFactory {
                         cpsNcmpTaskExecutor, timeOutInMilliSeconds, notificationFeatureEnabled);
         }
     }
+
+    /**
+     * Gets ncmp datastore query handler.
+     * Note. Currently only ncmp-datastore:operational supports query operations
+     * @return a ncmp datastore query handler.
+     */
+    public NcmpDatastoreRequestHandler getNcmpDatastoreResourceQueryHandler() {
+        return new NcmpDatastoreOperationalQueryHandler(networkCmProxyQueryService, cpsNcmpTaskExecutor,
+            timeOutInMilliSeconds, notificationFeatureEnabled);
+    }
+
 }

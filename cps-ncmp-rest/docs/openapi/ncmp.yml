@@ -194,6 +194,41 @@ resourceDataForCmHandle:
       502:
         $ref: 'components.yaml#/components/responses/BadGateway'
 
+queryResourceDataForCmHandle:
+  get:
+    tags:
+      - network-cm-proxy
+    summary: Query resource data for a given cm handle
+    description: Query resource data for a given cm handle
+    operationId: queryResourceDataForCmHandle
+    parameters:
+      - $ref: 'components.yaml#/components/parameters/datastoreName'
+      - $ref: 'components.yaml#/components/parameters/cmHandleInPath'
+      - $ref: 'components.yaml#/components/parameters/cpsPathInQuery'
+      - $ref: 'components.yaml#/components/parameters/optionsParamInQuery'
+      - $ref: 'components.yaml#/components/parameters/topicParamInQuery'
+      - $ref: 'components.yaml#/components/parameters/includeDescendantsOptionInQuery'
+    responses:
+      200:
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: object
+            examples:
+              dataSampleResponse:
+                $ref: 'components.yaml#/components/examples/dataSampleResponse'
+      400:
+        $ref: 'components.yaml#/components/responses/BadRequest'
+      401:
+        $ref: 'components.yaml#/components/responses/Unauthorized'
+      403:
+        $ref: 'components.yaml#/components/responses/Forbidden'
+      500:
+        $ref: 'components.yaml#/components/responses/InternalServerError'
+      502:
+        $ref: 'components.yaml#/components/responses/BadGateway'
+
 fetchModuleReferencesByCmHandle:
   get:
     description: fetch all module references (name and revision) for a given cm handle
