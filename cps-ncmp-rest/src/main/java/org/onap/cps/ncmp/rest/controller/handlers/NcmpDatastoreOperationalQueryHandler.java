@@ -22,18 +22,21 @@ package org.onap.cps.ncmp.rest.controller.handlers;
 
 import java.util.function.Supplier;
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
+import org.onap.cps.ncmp.api.NetworkCmProxyQueryService;
 import org.onap.cps.ncmp.rest.executor.CpsNcmpTaskExecutor;
+import org.onap.cps.spi.FetchDescendantsOption;
 
 @Slf4j
-public class NcmpDatastorePassthroughOperationalResourceRequestHandler extends NcmpDatastoreRequestHandler {
+public class NcmpDatastoreOperationalQueryHandler extends NcmpDatastoreRequestHandler {
 
-    public NcmpDatastorePassthroughOperationalResourceRequestHandler(
-            final NetworkCmProxyDataService networkCmProxyDataService,
-            final CpsNcmpTaskExecutor cpsNcmpTaskExecutor,
-            final int timeOutInMilliSeconds,
-            final boolean notificationFeatureEnabled) {
-        super(networkCmProxyDataService, cpsNcmpTaskExecutor, timeOutInMilliSeconds, notificationFeatureEnabled);
+    private final NetworkCmProxyQueryService networkCmProxyQueryService;
+
+    public NcmpDatastoreOperationalQueryHandler(final NetworkCmProxyQueryService networkCmProxyQueryService,
+                                                final CpsNcmpTaskExecutor cpsNcmpTaskExecutor,
+                                                final int timeOutInMilliSeconds,
+                                                final boolean notificationFeatureEnabled) {
+        super(null, cpsNcmpTaskExecutor, timeOutInMilliSeconds, notificationFeatureEnabled);
+        this.networkCmProxyQueryService = networkCmProxyQueryService;
     }
 
     @Override
@@ -44,8 +47,10 @@ public class NcmpDatastorePassthroughOperationalResourceRequestHandler extends N
                                             final String requestId,
                                             final Boolean includeDescendant) {
 
-        return () -> networkCmProxyDataService.getResourceDataOperationalForCmHandle(
-                cmHandle, resourceIdentifier, optionsParamInQuery, topicParamInQuery, requestId);
+        final FetchDescendantsOption fetchDescendantsOption = getFetchDescendantsOption(includeDescendant);
+
+        return () -> networkCmProxyQueryService.queryResourceDataOperational(cmHandle, resourceIdentifier,
+            fetchDescendantsOption);
     }
 
 }
