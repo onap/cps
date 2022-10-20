@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "93863468_7c4f4e79",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/CpsValidatorImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-20T11:00:49Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "811b9218_4915c9b0",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 24
+      },
+      "revId": "d7f105d9ac772f5262eb52c76259150666864212",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2943490a_b160f3ce",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/CpsValidator.java",
         "patchSetId": 6

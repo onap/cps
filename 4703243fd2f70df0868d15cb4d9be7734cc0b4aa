@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4dd4c92b_58ce9248",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/CpsValidatorImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-20T11:00:49Z",
+      "side": 1,
+      "message": "this should be in org.onap.cps.spi.impl.utils",
+      "range": {
+        "startLine": 21,
+        "startChar": 8,
+        "endLine": 21,
+        "endChar": 30
+      },
+      "revId": "4703243fd2f70df0868d15cb4d9be7734cc0b4aa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
