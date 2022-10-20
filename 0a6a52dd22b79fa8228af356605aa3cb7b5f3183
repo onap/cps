@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e12887f8_076e81fa",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-10-20T15:53:04Z",
+      "side": 1,
+      "message": "I don\u0027t think I wrote this test but I might have moved it, I have a feeling the context of it may have been lost in a rebase or something like that. I tested the code coverage with and without the test and there is no difference so I will remove it",
+      "parentUuid": "e7ee2a52_f59a3a19",
+      "range": {
+        "startLine": 359,
+        "startChar": 43,
+        "endLine": 359,
+        "endChar": 83
+      },
+      "revId": "0a6a52dd22b79fa8228af356605aa3cb7b5f3183",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e4511f51_73fbd1ea",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
         "patchSetId": 10
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "699f3e7c_4fea7dfe",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-10-20T15:53:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e4511f51_73fbd1ea",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 19
+      },
+      "revId": "0a6a52dd22b79fa8228af356605aa3cb7b5f3183",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f68e667e_310e1c62",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
         "patchSetId": 10
@@ -68,6 +116,30 @@
       "revId": "0a6a52dd22b79fa8228af356605aa3cb7b5f3183",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3d64915_2f5e619d",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-10-20T15:53:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f68e667e_310e1c62",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 19
+      },
+      "revId": "0a6a52dd22b79fa8228af356605aa3cb7b5f3183",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
