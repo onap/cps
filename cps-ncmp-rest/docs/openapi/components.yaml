@@ -456,11 +456,16 @@ components:
     cpsPathInQuery:
       name: cps-path
       in: query
-      description: cps-path
+      description: For more details on cps path, please refer https://docs.onap.org/projects/onap-cps/en/latest/cps-path.html
       required: false
       schema:
         type: string
         default: /
+      examples:
+        container cps path:
+          value: //bookstore
+        list attributes cps path:
+          value: //categories[@code=1]
     dmiPluginIdentifierInQuery:
       name: dmi-plugin-identifier
       in: query
