@@ -66,27 +66,34 @@ public abstract class NcmpDatastoreResourceRequestHandler {
                                                   final String topicParamInQuery,
                                                   final Boolean includeDescendants) {
 
-        final String requestId = UUID.randomUUID().toString();
         final boolean asyncResponseRequested = topicParamInQuery != null;
-
         if (asyncResponseRequested && notificationFeatureEnabled) {
-            TopicValidator.validateTopicName(topicParamInQuery);
-            log.debug("Received Async request with id {}", requestId);
-            cpsNcmpTaskExecutor.executeTask(
-                    getTask(cmHandleId, resourceIdentifier, optionsParamInQuery, topicParamInQuery, requestId,
-                            includeDescendants), timeOutInMilliSeconds);
-
-            return ResponseEntity.ok(Map.of("requestId", requestId));
+            final String requestId = UUID.randomUUID().toString();
+            final Supplier<Object> getTask = getTask(cmHandleId, resourceIdentifier, optionsParamInQuery,
+                topicParamInQuery, requestId, includeDescendants);
+            return executeTaskAsync(topicParamInQuery, requestId, getTask);
         }
 
         if (asyncResponseRequested) {
             log.warn("Asynchronous messaging is currently disabled, will use synchronous operation.");
         }
-        
-        final Object responseObject =
-                getTask(cmHandleId, resourceIdentifier, optionsParamInQuery, NO_TOPIC, NO_REQUEST_ID,
-                        includeDescendants).get();
+        final Supplier<Object> getTask = getTask(cmHandleId, resourceIdentifier, optionsParamInQuery, NO_TOPIC,
+            NO_REQUEST_ID, includeDescendants);
+        return executeTaskSync(getTask);
+    }
 
-        return ResponseEntity.ok(responseObject);
+    protected ResponseEntity<Object> executeTaskAsync(final String topicParamInQuery,
+                                                      final String requestId,
+                                                      final Supplier<Object> task) {
+
+        TopicValidator.validateTopicName(topicParamInQuery);
+        log.debug("Received Async request with id {}", requestId);
+        cpsNcmpTaskExecutor.executeTask(task, timeOutInMilliSeconds);
+
+        return ResponseEntity.ok(Map.of("requestId", requestId));
+    }
+
+    protected ResponseEntity<Object> executeTaskSync(final Supplier<Object> task) {
+        return ResponseEntity.ok(task.get());
     }
 }
