@@ -24,6 +24,7 @@ import org.hibernate.StaleStateException
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.entities.AnchorEntity
 import org.onap.cps.spi.entities.FragmentEntity
+import org.onap.cps.spi.entities.FragmentExtract
 import org.onap.cps.spi.entities.SchemaSetEntity
 import org.onap.cps.spi.entities.YangResourceEntity
 import org.onap.cps.spi.exceptions.ConcurrencyException
@@ -107,13 +108,10 @@ class CpsDataPersistenceServiceSpec extends Specification {
 
     }
 
+
     def 'Retrieving a data node with a property JSON value of #scenario'() {
-        given: 'a fragment with a property JSON value of #scenario'
-        mockFragmentRepository.getByDataspaceAndAnchorAndXpath(*_) >> {
-            new FragmentEntity(childFragments: Collections.emptySet(),
-                    attributes: "{\"some attribute\": ${dataString}}",
-                    anchor: new AnchorEntity(schemaSet: new SchemaSetEntity(yangResources: yangResourceSet )))
-        }
+        given: 'the db has a fragment with an attribute property JSON value of #scenario'
+            mockFragmentWithJson("{\"some attribute\": ${dataString}}")
         when: 'getting the data node represented by this fragment'
             def dataNode = objectUnderTest.getDataNode('my-dataspace', 'my-anchor',
                     '/parent-01', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
@@ -137,9 +135,7 @@ class CpsDataPersistenceServiceSpec extends Specification {
 
     def 'Retrieving a data node with invalid JSON'() {
         given: 'a fragment with invalid JSON'
-            mockFragmentRepository.getByDataspaceAndAnchorAndXpath(*_) >> {
-                new FragmentEntity(childFragments: Collections.emptySet(), attributes: '{invalid json')
-            }
+            mockFragmentWithJson('{invalid json')
         when: 'getting the data node represented by this fragment'
             objectUnderTest.getDataNode('my-dataspace', 'my-anchor',
                     '/parent-01', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
@@ -211,4 +207,15 @@ class CpsDataPersistenceServiceSpec extends Specification {
         }
         return dataNode
     }
+
+    def mockFragmentWithJson(json) {
+        def mockAnchor = Mock(AnchorEntity)
+        mockAnchor.getId() >> 123
+        mockAnchorRepository.getByDataspaceAndName(*_) >> mockAnchor
+        def mockFragmentExtract = Mock(FragmentExtract)
+        mockFragmentExtract.getId() >> 456
+        mockFragmentExtract.getAttributes() >> json
+        mockFragmentRepository.findByAnchorIdAndPathPrefix(*_) >> [mockFragmentExtract]
+    }
+
 }
