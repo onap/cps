@@ -74,17 +74,30 @@ class SynchronizationCacheConfigSpec extends Specification {
             assert dataSyncSemaphoresConfig.asyncBackupCount == 3
     }
 
-    def 'Time to Live Verify for Module Sync and Data Sync Semaphore'() {
-        when: 'the keys are inserted with a TTL'
-            moduleSyncStartedOnCmHandles.put('testKeyModuleSync', 'toBeExpired' as Object, 1000, TimeUnit.MILLISECONDS)
-            dataSyncSemaphores.put('testKeyDataSync', Boolean.TRUE, 1000, TimeUnit.MILLISECONDS)
-        then: 'the entries are present in the map'
+    def 'Time to Live Verify for Module Sync Semaphore'() {
+        when: 'the key is inserted with a TTL of 1 second (Hazelcast TTL resolution is seconds!)'
+            moduleSyncStartedOnCmHandles.put('testKeyModuleSync', 'toBeExpired' as Object, 1, TimeUnit.SECONDS)
+        then: 'the entry is present in the map'
             assert moduleSyncStartedOnCmHandles.get('testKeyModuleSync') != null
-            assert dataSyncSemaphores.get('testKeyDataSync') != null
-        and: 'we wait for the key expiration'
-            sleep(1500)
-        and: 'the keys should be expired as TTL elapsed'
-            assert moduleSyncStartedOnCmHandles.get('testKeyModuleSync') == null
-            assert dataSyncSemaphores.get('testKeyDataSync') == null
+        and: 'the entry expires in less then 2 seconds'
+            waitMax2SecondsForKeyExpiration(moduleSyncStartedOnCmHandles, 'testKeyModuleSync')
     }
+
+    def 'Time to Live Verify for Data Sync Semaphore'() {
+        when: 'the key is inserted with a TTL of 1 second'
+            dataSyncSemaphores.put('testKeyDataSync', Boolean.TRUE, 1, TimeUnit.SECONDS)
+        then: 'the entry is present in the map'
+            assert dataSyncSemaphores.get('testKeyDataSync') != null
+        and: 'the entry expires in less then 2 seconds'
+            waitMax2SecondsForKeyExpiration(dataSyncSemaphores, 'testKeyDataSync')
+    }
+
+    def waitMax2SecondsForKeyExpiration(map, key) {
+        def count = 0
+        while ( map.get(key)!=null && ++count <= 20 ) {
+            sleep(100)
+        }
+        return count < 20 // Should have expired in less the 20 x 100ms = 2 seconds!
+    }
+
 }
