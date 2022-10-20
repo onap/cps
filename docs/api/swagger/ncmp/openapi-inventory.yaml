@@ -148,6 +148,10 @@ paths:
                 message: Internal Server Error
                 details: Internal Server Error occurred
 components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
   schemas:
     RestDmiPluginRegistration:
       type: object
@@ -234,3 +238,6 @@ components:
         errorText:
           type: string
           example: Unknown error. <error-details>
+
+security:
+  - basicAuth: []

@@ -24,9 +24,16 @@ info:
   version: "1.0"
 servers:
   - url: /ncmpInventory
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
 paths:
   /v1/ch:
     $ref: 'ncmp-inventory.yml#/updateDmiRegistration'
 
   /v1/ch/cmHandles:
     $ref: 'ncmp-inventory.yml#/getAllCmHandleIdsForRegisteredDmi'
+security:
+  - basicAuth: []
