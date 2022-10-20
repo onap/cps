@@ -37,6 +37,7 @@ Release Data
 +--------------------------------------+--------------------------------------------------------+
 Features
 --------
+   - `CPS-1002 <https://jira.onap.org/browse/CPS-1002>`_  Query data NCMP-Operational with CPSpath
    - `CPS-1185 <https://jira.onap.org/browse/CPS-1185>`_  Get all dataspaces
    - `CPS-1186 <https://jira.onap.org/browse/CPS-1186>`_  Get all schema sets for a dataspace
    - `CPS-1187 <https://jira.onap.org/browse/CPS-1187>`_  Get single dataspace

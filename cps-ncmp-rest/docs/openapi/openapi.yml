@@ -31,8 +31,11 @@ components:
       type: http
       scheme: basic
 paths:
-  /v1/ch/{cm-handle}/data/ds/{ncmp-datastore-name}:
+  /v1/ch/{cm-handle}/data/ds/{datastore-name}:
     $ref: 'ncmp.yml#/resourceDataForCmHandle'
+
+  /v1/ch/{cm-handle}/data/ds/{datastore-name}/query:
+    $ref: 'ncmp.yml#/queryResourceDataForCmHandle'
 
   /v1/ch/{cm-handle}/modules:
     $ref: 'ncmp.yml#/fetchModuleReferencesByCmHandle'
