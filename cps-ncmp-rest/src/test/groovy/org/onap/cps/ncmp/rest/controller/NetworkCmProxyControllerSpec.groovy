@@ -27,6 +27,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import org.mapstruct.factory.Mappers
 import org.onap.cps.TestUtils
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService
+import org.onap.cps.ncmp.api.NetworkCmProxyQueryService
 import org.onap.cps.ncmp.api.inventory.CmHandleState
 import org.onap.cps.ncmp.api.inventory.CompositeState
 import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
@@ -37,10 +38,12 @@ import org.onap.cps.ncmp.rest.controller.handlers.NcmpDatastoreOperationalResour
 import org.onap.cps.ncmp.rest.controller.handlers.NcmpDatastorePassthroughOperationalResourceRequestHandler
 import org.onap.cps.ncmp.rest.controller.handlers.NcmpDatastorePassthroughRunningResourceRequestHandler
 import org.onap.cps.ncmp.rest.controller.handlers.NcmpDatastoreResourceRequestHandlerFactory
+import org.onap.cps.ncmp.rest.exceptions.InvalidDatastoreException
 import org.onap.cps.ncmp.rest.executor.CpsNcmpTaskExecutor
 import org.onap.cps.ncmp.rest.mapper.CmHandleStateMapper
 import org.onap.cps.ncmp.rest.util.DeprecationHelper
 import org.onap.cps.spi.FetchDescendantsOption
+import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.model.ModuleDefinition
 import org.onap.cps.spi.model.ModuleReference
 import org.onap.cps.utils.JsonObjectMapper
@@ -84,6 +87,9 @@ class NetworkCmProxyControllerSpec extends Specification {
     NetworkCmProxyDataService mockNetworkCmProxyDataService = Mock()
 
     @SpringBean
+    NetworkCmProxyQueryService mockNetworkCmProxyQueryService = Mock()
+
+    @SpringBean
     ObjectMapper objectMapper = new ObjectMapper()
 
     @SpringBean
@@ -120,7 +126,7 @@ class NetworkCmProxyControllerSpec extends Specification {
         stubbedNcmpDatastoreResourceRequestHandlerFactory.getNcmpDatastoreResourceRequestHandler(
             DatastoreType.OPERATIONAL) >>
             new NcmpDatastoreOperationalResourceRequestHandler(
-                mockNetworkCmProxyDataService, spiedCpsTaskExecutor, TIMEOUT_IN_MS, NOTIFICATION_ENABLED)
+                mockNetworkCmProxyDataService, mockNetworkCmProxyQueryService, spiedCpsTaskExecutor, TIMEOUT_IN_MS, NOTIFICATION_ENABLED)
 
         stubbedNcmpDatastoreResourceRequestHandlerFactory.getNcmpDatastoreResourceRequestHandler(
             DatastoreType.PASSTHROUGH_OPERATIONAL) >>
@@ -192,6 +198,40 @@ class NetworkCmProxyControllerSpec extends Specification {
             'missing topic in url'                 | 'passthrough-running'     | '&topic='
             'blank topic value in url'             | 'passthrough-running'     | '&topic=\" \"'
             'invalid non-empty topic value in url' | 'passthrough-running'     | '&topic=1_5_*_#'
+    }
+
+    def 'Query Resource Data from operational.'() {
+        given: 'the query resource data url'
+            def getUrl = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:operational/query" +
+                "?cps-path=/cps/path"
+        when: 'the query data resource request is performed'
+            def response = mvc.perform(
+                get(getUrl)
+                    .contentType(MediaType.APPLICATION_JSON)
+            ).andReturn().response
+        then: 'the NCMP query service is called with queryResourceDataOperationalForCmHandle'
+            1 * mockNetworkCmProxyQueryService.queryResourceDataOperational('testCmHandle',
+                '/cps/path',
+                FetchDescendantsOption.OMIT_DESCENDANTS)
+        and: 'response status is Ok'
+            response.status == HttpStatus.OK.value()
+    }
+
+    def 'Query Resource Data using datastore of #datastore'() {
+        given: 'the query resource data url'
+            def getUrl = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:${datastore}/query" +
+                "?cps-path=/cps/path"
+        when: 'the query data resource request is performed'
+            def response = mvc.perform(
+                get(getUrl)
+                    .contentType(MediaType.APPLICATION_JSON)
+            ).andReturn().response
+        then: 'a 400 BAD_REQUEST is returned for the unsupported datastore'
+            response.status == 400
+        and: 'the error message is that datastore #datastore is not supported'
+            response.contentAsString.contains("ncmp-datastore:${datastore} is not supported")
+        where: 'the following datastore is used'
+            datastore << ["passthrough-running", "passthrough-operational"]
     }
 
     def 'Get Resource Data from pass-through running with #scenario value in resource identifier param.'() {
