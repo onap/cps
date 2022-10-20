@@ -74,17 +74,26 @@ class SynchronizationCacheConfigSpec extends Specification {
             assert dataSyncSemaphoresConfig.asyncBackupCount == 3
     }
 
-    def 'Time to Live Verify for Module Sync and Data Sync Semaphore'() {
-        when: 'the keys are inserted with a TTL'
+    def 'Time to Live Verify for Module Sync Semaphore'() {
+        when: 'the key is inserted with a TTL'
             moduleSyncStartedOnCmHandles.put('testKeyModuleSync', 'toBeExpired' as Object, 1000, TimeUnit.MILLISECONDS)
-            dataSyncSemaphores.put('testKeyDataSync', Boolean.TRUE, 1000, TimeUnit.MILLISECONDS)
-        then: 'the entries are present in the map'
+        then: 'the entry is present in the map'
             assert moduleSyncStartedOnCmHandles.get('testKeyModuleSync') != null
-            assert dataSyncSemaphores.get('testKeyDataSync') != null
-        and: 'we wait for the key expiration'
-            sleep(1500)
-        and: 'the keys should be expired as TTL elapsed'
+        and: 'wait for the key expiration'
+            sleep(2000)
+        and: 'the key should be expired as TTL elapsed'
             assert moduleSyncStartedOnCmHandles.get('testKeyModuleSync') == null
+    }
+
+    def 'Time to Live Verify for Data Sync Semaphore'() {
+        when: 'the key is inserted with a TTL'
+            dataSyncSemaphores.put('testKeyDataSync', Boolean.TRUE, 1000, TimeUnit.MILLISECONDS)
+        then: 'the entry is present in the map'
+            assert dataSyncSemaphores.get('testKeyDataSync') != null
+        and: 'wait for the key expiration'
+            sleep(2000)
+        and: 'the key should be expired as TTL elapsed'
             assert dataSyncSemaphores.get('testKeyDataSync') == null
     }
+
 }
