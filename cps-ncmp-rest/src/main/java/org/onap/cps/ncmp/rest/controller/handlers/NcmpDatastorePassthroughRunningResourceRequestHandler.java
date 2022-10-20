@@ -26,7 +26,7 @@ import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
 import org.onap.cps.ncmp.rest.executor.CpsNcmpTaskExecutor;
 
 @Slf4j
-public class NcmpDatastorePassthroughRunningResourceRequestHandler extends NcmpDatastoreResourceRequestHandler {
+public class NcmpDatastorePassthroughRunningResourceRequestHandler extends NcmpDatastoreRequestHandler {
 
     public NcmpDatastorePassthroughRunningResourceRequestHandler(
             final NetworkCmProxyDataService networkCmProxyDataService,
@@ -37,12 +37,12 @@ public class NcmpDatastorePassthroughRunningResourceRequestHandler extends NcmpD
     }
 
     @Override
-    public Supplier<Object> getTask(final String cmHandle,
-                                    final String resourceIdentifier,
-                                    final String optionsParamInQuery,
-                                    final String topicParamInQuery,
-                                    final String requestId,
-                                    final Boolean includeDescendant) {
+    public Supplier<Object> getTaskSupplier(final String cmHandle,
+                                            final String resourceIdentifier,
+                                            final String optionsParamInQuery,
+                                            final String topicParamInQuery,
+                                            final String requestId,
+                                            final Boolean includeDescendant) {
 
         return () -> networkCmProxyDataService.getResourceDataPassThroughRunningForCmHandle(
                 cmHandle, resourceIdentifier, optionsParamInQuery, topicParamInQuery, requestId);
