@@ -25,17 +25,19 @@ import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.impl.CpsPersistenceSpecBase
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.DataNodeBuilder
+import org.onap.cps.spi.repository.FragmentRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.jdbc.Sql
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 
 class CpsToDataNodePerfSpec extends CpsPersistenceSpecBase {
 
+    static final String SET_DATA = '/data/fragment.sql'
+
     @Autowired
     CpsDataPersistenceService objectUnderTest
 
-    static final String SET_DATA = '/data/fragment.sql'
-    static final String  XPATH_DATA_NODE_WITH_DESCENDANTS = '/parent-1'
+    def XPATH_DATA_NODE_WITH_DESCENDANTS = '/parent-1'
 
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Get data node by xpath with all descendants with many children'() {
@@ -48,14 +50,13 @@ class CpsToDataNodePerfSpec extends CpsPersistenceSpecBase {
         when: 'data node is requested with all descendants'
             def readStopWatch = new StopWatch()
             readStopWatch.start()
-            def result = objectUnderTest.getDataNode(
-                DATASPACE_NAME, ANCHOR_NAME1, XPATH_DATA_NODE_WITH_DESCENDANTS, INCLUDE_ALL_DESCENDANTS)
+            def result = objectUnderTest.getDataNode(DATASPACE_NAME, ANCHOR_NAME1, XPATH_DATA_NODE_WITH_DESCENDANTS, INCLUDE_ALL_DESCENDANTS)
             readStopWatch.stop()
             def readDurationInMillis = readStopWatch.getTime()
-        then : 'setup duration is under 8 seconds'
+        then: 'setup duration is under 8 seconds'
             assert setupDurationInMillis < 8000
-        and: 'read duration is under 6 seconds'
-            assert readDurationInMillis < 6000
+        and: 'read duration is under 500 milliseconds'
+            assert readDurationInMillis < 500
         and: 'data node is returned with all the descendants populated'
             assert countDataNodes(result) == 1533
     }

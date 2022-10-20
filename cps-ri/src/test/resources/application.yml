@@ -25,6 +25,7 @@ spring:
         enable_lazy_load_no_trans: true
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
+        show_sql: false
 
   datasource:
     url: ${DB_URL}
