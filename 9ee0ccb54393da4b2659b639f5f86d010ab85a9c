@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "644d1a7f_bcbe5159",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/utils/CpsValidatorSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-20T13:03:06Z",
+      "side": 1,
+      "message": "move this one too! \n(then you wont need import)",
+      "range": {
+        "startLine": 21,
+        "startChar": 21,
+        "endLine": 21,
+        "endChar": 30
+      },
+      "revId": "9ee0ccb54393da4b2659b639f5f86d010ab85a9c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
