@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "30d6d59c_d12e65b7",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-20T08:36:18Z",
+      "side": 1,
+      "message": "NB: Remove instead of commenting out",
+      "range": {
+        "startLine": 225,
+        "startChar": 0,
+        "endLine": 225,
+        "endChar": 3
+      },
+      "revId": "d7f105d9ac772f5262eb52c76259150666864212",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "20b738e5_d6b85a96",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/CpsValidatorImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-20T08:36:18Z",
+      "side": 1,
+      "message": "Q: Is ths neded?",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 24
+      },
+      "revId": "d7f105d9ac772f5262eb52c76259150666864212",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2943490a_b160f3ce",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/CpsValidator.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-20T08:36:18Z",
+      "side": 1,
+      "message": "interface need to be in the SPI package",
+      "range": {
+        "startLine": 23,
+        "startChar": 17,
+        "endLine": 23,
+        "endChar": 30
+      },
+      "revId": "d7f105d9ac772f5262eb52c76259150666864212",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
