@@ -22,8 +22,9 @@ package org.onap.cps.cpspath.parser;
 
 import static org.onap.cps.cpspath.parser.CpsPathPrefixType.DESCENDANT;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+
+
 import org.onap.cps.cpspath.parser.antlr4.CpsPathBaseListener;
 import org.onap.cps.cpspath.parser.antlr4.CpsPathParser;
 import org.onap.cps.cpspath.parser.antlr4.CpsPathParser.AncestorAxisContext;
@@ -45,6 +46,8 @@ public class CpsPathBuilder extends CpsPathBaseListener {
     final Map<String, Object> leavesData = new HashMap<>();
 
     final StringBuilder normalizedXpathBuilder = new StringBuilder();
+
+    final List<String> payloads = new ArrayList<>();
 
     final StringBuilder normalizedAncestorPathBuilder = new StringBuilder();
 
@@ -81,9 +84,24 @@ public class CpsPathBuilder extends CpsPathBaseListener {
             throw new PathParsingException("Unsupported comparison value encountered in expression" + ctx.getText());
         }
         leavesData.put(ctx.leafName().getText(), comparisonValue);
-        appendCondition(normalizedXpathBuilder, ctx.leafName().getText(), comparisonValue);
+        String parent = ctx.getParent().getText();
+        String payload = ctx.getPayload().getText();
+        payloads.add(payload);
+        String operator = findOperator(parent, payloads);
+        appendCondition(normalizedXpathBuilder, ctx.leafName().getText(), comparisonValue, operator);
         if (processingAncestorAxis) {
-            appendCondition(normalizedAncestorPathBuilder, ctx.leafName().getText(), comparisonValue);
+            appendCondition(normalizedAncestorPathBuilder, ctx.leafName().getText(), comparisonValue, operator);
+        }
+    }
+
+    private String findOperator(String parent, List<String> payloads) {
+        StringBuilder parentStringBuilder = new StringBuilder(parent);
+        try {
+            payloads.forEach(payload -> parentStringBuilder.delete(parentStringBuilder.indexOf(payload), parentStringBuilder.indexOf(payload) + payload.length()));
+            parentStringBuilder.delete(0, parentStringBuilder.indexOf("[") + 1);
+            return parentStringBuilder.toString().trim();
+        } catch (RuntimeException e) {
+            return null;
         }
     }
 
@@ -158,13 +176,13 @@ public class CpsPathBuilder extends CpsPathBaseListener {
     }
 
     private void appendCondition(final StringBuilder currentNormalizedPathBuilder, final String name,
-                                final Object value) {
+                                 final Object value, String operator) {
         final char lastCharacter = currentNormalizedPathBuilder.charAt(currentNormalizedPathBuilder.length() - 1);
-        currentNormalizedPathBuilder.append(lastCharacter == '[' ? "" : " and ")
-                .append("@")
-                .append(name)
-                .append("='")
-                .append(value)
-                .append("'");
+        currentNormalizedPathBuilder.append(lastCharacter == '[' ? "" : " " + operator + " ");
+        currentNormalizedPathBuilder.append("@");
+        currentNormalizedPathBuilder.append(name);
+        currentNormalizedPathBuilder.append("='");
+        currentNormalizedPathBuilder.append(value);
+        currentNormalizedPathBuilder.append("'");
     }
 }
