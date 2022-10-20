@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e7ee2a52_f59a3a19",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-10-20T13:26:01Z",
+      "side": 1,
+      "message": "?? this method is for removal of cmHandle..\ndo you meant to call this method only ?? plz confirm.",
+      "range": {
+        "startLine": 359,
+        "startChar": 43,
+        "endLine": 359,
+        "endChar": 83
+      },
+      "revId": "0a6a52dd22b79fa8228af356605aa3cb7b5f3183",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e4511f51_73fbd1ea",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-10-20T13:26:01Z",
+      "side": 1,
+      "message": "this needs to be @RequiredArgsConstructor as we have already declared the instance variables as final.",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 19
+      },
+      "revId": "0a6a52dd22b79fa8228af356605aa3cb7b5f3183",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f68e667e_310e1c62",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-10-20T13:26:01Z",
+      "side": 1,
+      "message": "change to @RequiredArgsConstructor",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 19
+      },
+      "revId": "0a6a52dd22b79fa8228af356605aa3cb7b5f3183",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
