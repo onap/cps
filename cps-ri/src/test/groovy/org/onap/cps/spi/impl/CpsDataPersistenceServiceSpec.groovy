@@ -25,8 +25,7 @@ import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.cache.AnchorDataCacheEntry
 import org.onap.cps.spi.entities.AnchorEntity
 import org.onap.cps.spi.entities.FragmentEntity
-import org.onap.cps.spi.entities.SchemaSetEntity
-import org.onap.cps.spi.entities.YangResourceEntity
+import org.onap.cps.spi.entities.FragmentExtract
 import org.onap.cps.spi.exceptions.ConcurrencyException
 import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.model.DataNode
@@ -51,25 +50,6 @@ class CpsDataPersistenceServiceSpec extends Specification {
 
     def objectUnderTest = new CpsDataPersistenceServiceImpl(
             mockDataspaceRepository, mockAnchorRepository, mockFragmentRepository, jsonObjectMapper, mockSessionManager, mockAnchorDataCache)
-
-    @Shared
-    def NEW_RESOURCE_CONTENT = 'module stores {\n' +
-            '    yang-version 1.1;\n' +
-            '    namespace "org:onap:ccsdk:sample";\n' +
-            '\n' +
-            '    prefix book-store;\n' +
-            '\n' +
-            '    revision "2020-09-15" {\n' +
-            '        description\n' +
-            '        "Sample Model";\n' +
-            '    }' +
-            '}'
-
-    @Shared
-    def yangResourceSet = [new YangResourceEntity(moduleName: 'moduleName', content: NEW_RESOURCE_CONTENT,
-            fileName: 'sampleYangResource'
-    )] as Set
-
 
     def 'Handling of StaleStateException (caused by concurrent updates) during update data node and descendants.'() {
         given: 'the fragment repository returns a fragment entity'
@@ -107,16 +87,12 @@ class CpsDataPersistenceServiceSpec extends Specification {
         and: 'it contains the failed datanodes'
             assert thrown.details.contains('/node2')
             assert thrown.details.contains('/node3')
-
     }
 
+
     def 'Retrieving a data node with a property JSON value of #scenario'() {
-        given: 'a fragment with a property JSON value of #scenario'
-        mockFragmentRepository.getByDataspaceAndAnchorAndXpath(*_) >> {
-            new FragmentEntity(childFragments: Collections.emptySet(),
-                    attributes: "{\"some attribute\": ${dataString}}",
-                    anchor: new AnchorEntity(schemaSet: new SchemaSetEntity(yangResources: yangResourceSet )))
-        }
+        given: 'the db has a fragment with an attribute property JSON value of #scenario'
+            mockFragmentWithJson("{\"some attribute\": ${dataString}}")
         when: 'getting the data node represented by this fragment'
             def dataNode = objectUnderTest.getDataNode('my-dataspace', 'my-anchor',
                     '/parent-01', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
@@ -140,9 +116,7 @@ class CpsDataPersistenceServiceSpec extends Specification {
 
     def 'Retrieving a data node with invalid JSON'() {
         given: 'a fragment with invalid JSON'
-            mockFragmentRepository.getByDataspaceAndAnchorAndXpath(*_) >> {
-                new FragmentEntity(childFragments: Collections.emptySet(), attributes: '{invalid json')
-            }
+            mockFragmentWithJson('{invalid json')
         when: 'getting the data node represented by this fragment'
             objectUnderTest.getDataNode('my-dataspace', 'my-anchor',
                     '/parent-01', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
@@ -214,4 +188,21 @@ class CpsDataPersistenceServiceSpec extends Specification {
         }
         return dataNode
     }
+
+    def mockFragmentWithJson(json) {
+        def anchorName = 'some anchor'
+        def anchorDataCacheEntry = new AnchorDataCacheEntry()
+        anchorDataCacheEntry.setProperty(objectUnderTest.TOP_LEVEL_MODULE_PREFIX_PROPERTY_NAME,  'some prefix')
+        mockAnchorDataCache.containsKey(anchorName) >> true
+        mockAnchorDataCache.get(anchorName) >> anchorDataCacheEntry
+        def mockAnchor = Mock(AnchorEntity)
+        mockAnchor.getId() >> 123
+        mockAnchor.getName() >> anchorName
+        mockAnchorRepository.getByDataspaceAndName(*_) >> mockAnchor
+        def mockFragmentExtract = Mock(FragmentExtract)
+        mockFragmentExtract.getId() >> 456
+        mockFragmentExtract.getAttributes() >> json
+        mockFragmentRepository.findByAnchorIdAndParentXpath(*_) >> [mockFragmentExtract]
+    }
+
 }
