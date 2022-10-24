@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "88e3f7e2_0921de61",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/YangResourceNativeRepositoryImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-10-24T16:15:01Z",
+      "side": 1,
+      "message": "Why it is not a warn?",
+      "range": {
+        "startLine": 54,
+        "startChar": 16,
+        "endLine": 54,
+        "endChar": 21
+      },
+      "revId": "9129839d2fa02850677ff0a9aa358fbcffd5462e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c50b48d_39628143",
+        "filename": "cps-ri/src/test/resources/application.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2022-10-24T16:15:01Z",
+      "side": 1,
+      "message": "Add modification license",
+      "range": {
+        "startLine": 3,
+        "startChar": 2,
+        "endLine": 3,
+        "endChar": 4
+      },
+      "revId": "9129839d2fa02850677ff0a9aa358fbcffd5462e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
