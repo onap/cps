@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d5da42d5_8b01b6bc",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/cache/AnchorDataCacheConfig.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-24T13:26:44Z",
+      "side": 1,
+      "message": "not used",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 9
+      },
+      "revId": "10583df751cce363c3682a7c614f1128e8e932bf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d54cafad_b78ab6df",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-24T13:26:44Z",
+      "side": 1,
+      "message": "a lot of changes and inconsistencies because you started passing around the builder instead of teh object.\nJust add a setter for the prefix on the object instead!",
+      "range": {
+        "startLine": 223,
+        "startChar": 30,
+        "endLine": 223,
+        "endChar": 58
+      },
+      "revId": "10583df751cce363c3682a7c614f1128e8e932bf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2bb27e04_db8cd3b1",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-24T13:26:44Z",
+      "side": 1,
+      "message": "extract out smaller methods with meaningful names: extractPrefix  and cachePrefix or similar...",
+      "range": {
+        "startLine": 331,
+        "startChar": 1,
+        "endLine": 343,
+        "endChar": 9
+      },
+      "revId": "10583df751cce363c3682a7c614f1128e8e932bf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35ba5e16_84265eca",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/YangResourceNativeRepositoryImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-24T13:26:44Z",
+      "side": 1,
+      "message": "why did you change this?!",
+      "range": {
+        "startLine": 54,
+        "startChar": 16,
+        "endLine": 54,
+        "endChar": 21
+      },
+      "revId": "10583df751cce363c3682a7c614f1128e8e932bf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5648dd8e_81bf9b91",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-24T13:26:44Z",
+      "side": 1,
+      "message": "probably easier to use a real map!",
+      "range": {
+        "startLine": 49,
+        "startChar": 33,
+        "endLine": 49,
+        "endChar": 37
+      },
+      "revId": "10583df751cce363c3682a7c614f1128e8e932bf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
