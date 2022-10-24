@@ -51,7 +51,7 @@ public class YangResourceNativeRepositoryImpl implements YangResourceNativeRepos
             .addScalar("id", StandardBasicTypes.LONG);
         final List<Long> yangResourceIds = query.getResultList();
         if (yangResourceIds.size() != moduleReferences.size()) {
-            log.warn("ModuleReferences size : {} and QueryResult size : {}", moduleReferences.size(),
+            log.debug("ModuleReferences size : {} and QueryResult size : {}", moduleReferences.size(),
                     yangResourceIds.size());
         }
         return yangResourceIds;
