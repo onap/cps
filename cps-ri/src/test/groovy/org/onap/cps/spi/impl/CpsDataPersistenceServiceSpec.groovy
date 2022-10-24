@@ -22,6 +22,7 @@ package org.onap.cps.spi.impl
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.hibernate.StaleStateException
 import org.onap.cps.spi.FetchDescendantsOption
+import org.onap.cps.spi.cache.AnchorDataCacheEntry
 import org.onap.cps.spi.entities.AnchorEntity
 import org.onap.cps.spi.entities.FragmentEntity
 import org.onap.cps.spi.entities.SchemaSetEntity
@@ -37,6 +38,7 @@ import org.onap.cps.spi.utils.SessionManager
 import org.onap.cps.utils.JsonObjectMapper
 import spock.lang.Shared
 import spock.lang.Specification
+import com.hazelcast.map.IMap;
 
 class CpsDataPersistenceServiceSpec extends Specification {
 
@@ -45,9 +47,10 @@ class CpsDataPersistenceServiceSpec extends Specification {
     def mockFragmentRepository = Mock(FragmentRepository)
     def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
     def mockSessionManager = Mock(SessionManager)
+    def mockAnchorDataCache =  Mock(IMap<String, AnchorDataCacheEntry>)
 
     def objectUnderTest = new CpsDataPersistenceServiceImpl(
-            mockDataspaceRepository, mockAnchorRepository, mockFragmentRepository, jsonObjectMapper,mockSessionManager)
+            mockDataspaceRepository, mockAnchorRepository, mockFragmentRepository, jsonObjectMapper, mockSessionManager, mockAnchorDataCache)
 
     @Shared
     def NEW_RESOURCE_CONTENT = 'module stores {\n' +
