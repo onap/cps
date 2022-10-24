@@ -2,6 +2,75 @@
   "comments": [
     {
       "key": {
+        "uuid": "7f4c962b_ee683cda",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationCacheConfigSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-10-24T18:00:37Z",
+      "side": 1,
+      "message": "NB: What will this be used for?",
+      "range": {
+        "startLine": 34,
+        "startChar": 22,
+        "endLine": 34,
+        "endChar": 46
+      },
+      "revId": "9129839d2fa02850677ff0a9aa358fbcffd5462e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec86a4cb_c4b2e36c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/cache/AnchorDataCacheConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-10-24T18:00:37Z",
+      "side": 1,
+      "message": "NB: What is the diff between the backupCount and AsyncBackupCount?",
+      "range": {
+        "startLine": 69,
+        "startChar": 7,
+        "endLine": 70,
+        "endChar": 41
+      },
+      "revId": "9129839d2fa02850677ff0a9aa358fbcffd5462e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0376ef51_a99475f0",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/cache/AnchorDataCacheEntry.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-10-24T18:00:37Z",
+      "side": 1,
+      "message": "What properties are these\u003e the anchors or the caches?",
+      "range": {
+        "startLine": 31,
+        "startChar": 32,
+        "endLine": 31,
+        "endChar": 42
+      },
+      "revId": "9129839d2fa02850677ff0a9aa358fbcffd5462e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "88e3f7e2_0921de61",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/YangResourceNativeRepositoryImpl.java",
         "patchSetId": 6
@@ -25,6 +94,52 @@
     },
     {
       "key": {
+        "uuid": "108eb7b6_6e7b84fb",
+        "filename": "cps-ri/src/test/groovy/org/anap/cps/spi/cache/AchorDataCacheConfigSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-10-24T18:00:37Z",
+      "side": 1,
+      "message": "NB: W.R.T. my prvious comment about naming... is it so the context isnt dirtied and kept seperate in test?",
+      "range": {
+        "startLine": 33,
+        "startChar": 22,
+        "endLine": 33,
+        "endChar": 41
+      },
+      "revId": "9129839d2fa02850677ff0a9aa358fbcffd5462e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ecc99509_0b838560",
+        "filename": "cps-ri/src/test/groovy/org/anap/cps/spi/cache/AnchorDataCacheEntrySpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-10-24T18:00:37Z",
+      "side": 1,
+      "message": "is this test necessary?",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 5
+      },
+      "revId": "9129839d2fa02850677ff0a9aa358fbcffd5462e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0c50b48d_39628143",
         "filename": "cps-ri/src/test/resources/application.yml",
         "patchSetId": 6
@@ -41,6 +156,29 @@
         "startChar": 2,
         "endLine": 3,
         "endChar": 4
+      },
+      "revId": "9129839d2fa02850677ff0a9aa358fbcffd5462e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "85e63471_f1a451d6",
+        "filename": "cps-ri/src/test/resources/application.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-10-24T18:00:37Z",
+      "side": 1,
+      "message": "Were these not changed in a previous commit?",
+      "range": {
+        "startLine": 21,
+        "startChar": 14,
+        "endLine": 21,
+        "endChar": 19
       },
       "revId": "9129839d2fa02850677ff0a9aa358fbcffd5462e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
