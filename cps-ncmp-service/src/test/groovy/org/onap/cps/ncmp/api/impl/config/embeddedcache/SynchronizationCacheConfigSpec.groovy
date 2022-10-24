@@ -31,7 +31,7 @@ import java.util.concurrent.BlockingQueue
 import java.util.concurrent.TimeUnit
 
 @SpringBootTest
-@ContextConfiguration(classes = [SynchronizationCacheConfig])
+@ContextConfiguration(name = "Sync Cache Test Configuration", classes = [SynchronizationCacheConfig])
 class SynchronizationCacheConfigSpec extends Specification {
 
     @Autowired
