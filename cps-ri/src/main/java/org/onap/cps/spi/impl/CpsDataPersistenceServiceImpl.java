@@ -24,6 +24,7 @@ package org.onap.cps.spi.impl;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ImmutableSet.Builder;
+import com.hazelcast.map.IMap;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -32,6 +33,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -44,6 +46,8 @@ import org.onap.cps.cpspath.parser.CpsPathUtil;
 import org.onap.cps.cpspath.parser.PathParsingException;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.FetchDescendantsOption;
+import org.onap.cps.spi.cache.AnchorDataCacheConfig;
+import org.onap.cps.spi.cache.AnchorDataCacheEntry;
 import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.FragmentEntity;
@@ -73,18 +77,16 @@ import org.springframework.stereotype.Service;
 public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService {
 
     private final DataspaceRepository dataspaceRepository;
-
     private final AnchorRepository anchorRepository;
-
     private final FragmentRepository fragmentRepository;
-
     private final JsonObjectMapper jsonObjectMapper;
-
     private final SessionManager sessionManager;
+    private final IMap<String, AnchorDataCacheEntry> anchorDataCache;
 
     private static final String REG_EX_FOR_OPTIONAL_LIST_INDEX = "(\\[@[\\s\\S]+?]){0,1})";
     private static final Pattern REG_EX_PATTERN_FOR_LIST_ELEMENT_KEY_PREDICATE =
             Pattern.compile("\\[(\\@([^\\/]{0,9999}))\\]$");
+    private static final String TOP_LEVEL_MODULE_PREFIX_PROPERTY_NAME = "topLevelModulePrefix";
 
     @Override
     public void addChildDataNode(final String dataspaceName, final String anchorName, final String parentNodeXpath,
@@ -218,7 +220,9 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     public DataNode getDataNode(final String dataspaceName, final String anchorName, final String xpath,
                                 final FetchDescendantsOption fetchDescendantsOption) {
         final FragmentEntity fragmentEntity = getFragmentByXpath(dataspaceName, anchorName, xpath);
-        return toDataNode(fragmentEntity, fetchDescendantsOption);
+        final DataNode dataNode = toDataNode(fragmentEntity, fetchDescendantsOption);
+        dataNode.setModuleNamePrefix(getRootModuleNamePrefix(fragmentEntity.getAnchor()));
+        return dataNode;
     }
 
     private FragmentEntity getFragmentByXpath(final String dataspaceName, final String anchorName,
@@ -260,8 +264,11 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
                     : fragmentRepository.findAllByAnchorAndXpathIn(anchorEntity, ancestorXpaths);
         }
         return fragmentEntities.stream()
-                .map(fragmentEntity -> toDataNode(fragmentEntity, fetchDescendantsOption))
-                .collect(Collectors.toUnmodifiableList());
+                .map(fragmentEntity -> {
+                    final DataNode dataNode = toDataNode(fragmentEntity, fetchDescendantsOption);
+                    dataNode.setModuleNamePrefix(getRootModuleNamePrefix(anchorEntity));
+                    return dataNode;
+                }).collect(Collectors.toUnmodifiableList());
     }
 
     @Override
@@ -303,20 +310,47 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             leaves = jsonObjectMapper.convertJsonString(fragmentEntity.getAttributes(), Map.class);
         }
         return new DataNodeBuilder()
-                .withModuleNamePrefix(getFirstModuleName(fragmentEntity))
                 .withXpath(fragmentEntity.getXpath())
                 .withLeaves(leaves)
                 .withChildDataNodes(childDataNodes).build();
     }
 
-    private String getFirstModuleName(final FragmentEntity fragmentEntity) {
-        final SchemaSetEntity schemaSetEntity = fragmentEntity.getAnchor().getSchemaSet();
+    private String getRootModuleNamePrefix(final AnchorEntity anchorEntity) {
+        final String cachedModuleNamePrefix = getModuleNamePrefixFromCache(anchorEntity);
+        if (cachedModuleNamePrefix != null) {
+            return cachedModuleNamePrefix;
+        }
+        final String moduleNamePrefix = buildSchemaContextAndRetrieveModulePrefix(anchorEntity);
+        cacheModuleNamePrefix(anchorEntity.getName(), moduleNamePrefix);
+        return moduleNamePrefix;
+    }
+
+    private String buildSchemaContextAndRetrieveModulePrefix(final AnchorEntity anchorEntity) {
+        final SchemaSetEntity schemaSetEntity = anchorEntity.getSchemaSet();
         final Map<String, String> yangResourceNameToContent =
                 schemaSetEntity.getYangResources().stream().collect(
                         Collectors.toMap(YangResourceEntity::getFileName, YangResourceEntity::getContent));
         final SchemaContext schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent)
                 .getSchemaContext();
         return schemaContext.getModules().iterator().next().getName();
+    }
+
+    private void cacheModuleNamePrefix(final String anchorName, final String moduleNamePrefix) {
+        final AnchorDataCacheEntry anchorDataCacheEntry = new AnchorDataCacheEntry();
+        anchorDataCacheEntry.setProperty(TOP_LEVEL_MODULE_PREFIX_PROPERTY_NAME, moduleNamePrefix);
+        if (anchorDataCache.putIfAbsent(anchorName, anchorDataCacheEntry,
+            AnchorDataCacheConfig.ANCHOR_DATA_CACHE_TTL_SECS, TimeUnit.SECONDS) == null) {
+            log.debug("Module name prefix for an anchor  {} is cached", anchorName);
+        }
+    }
+
+    private String getModuleNamePrefixFromCache(final AnchorEntity anchorEntity) {
+        if (anchorDataCache.containsKey(anchorEntity.getName())) {
+            final AnchorDataCacheEntry anchorDataCacheEntry = anchorDataCache.get(anchorEntity.getName());
+            return anchorDataCacheEntry.hasProperty(TOP_LEVEL_MODULE_PREFIX_PROPERTY_NAME)
+                    ? anchorDataCacheEntry.getProperty(TOP_LEVEL_MODULE_PREFIX_PROPERTY_NAME).toString() : null;
+        }
+        return null;
     }
 
     private List<DataNode> getChildDataNodes(final FragmentEntity fragmentEntity,
