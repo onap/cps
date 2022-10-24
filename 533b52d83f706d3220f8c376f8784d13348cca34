@@ -1,0 +1,326 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0c5eccf5_5bf9228a",
+        "filename": "cps-rest/docs/openapi/cpsData.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-24T08:23:16Z",
+      "side": 1,
+      "message": "Wwe had a lot of issue around String v. Object in this and other APIs I forget what the outcome was but there was a good reason for one over the other\nWe shouldn\u0027t change this without a good reason",
+      "range": {
+        "startLine": 158,
+        "startChar": 18,
+        "endLine": 158,
+        "endChar": 24
+      },
+      "revId": "533b52d83f706d3220f8c376f8784d13348cca34",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "64d2dfe6_b6315f5c",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-24T08:23:16Z",
+      "side": 1,
+      "message": "rename to requestBodyJson",
+      "range": {
+        "startLine": 70,
+        "startChar": 8,
+        "endLine": 70,
+        "endChar": 20
+      },
+      "revId": "533b52d83f706d3220f8c376f8784d13348cca34",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d39bf2c7_bd0dfdd5",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-24T08:23:16Z",
+      "side": 1,
+      "message": "Should a a test to cover XML mediatype where possible \njust extend te where table with the additional options\nonly once for each endpoint ie. only extend one/the most basic test for the endpoint)",
+      "range": {
+        "startLine": 92,
+        "startChar": 37,
+        "endLine": 92,
+        "endChar": 63
+      },
+      "revId": "533b52d83f706d3220f8c376f8784d13348cca34",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7756f475_29d66662",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-24T08:23:16Z",
+      "side": 1,
+      "message": "For test try to keep the data to a minimum, you can probably do with a one liner XML like the josn on line #70\nAlso move this statemnt to line #71",
+      "range": {
+        "startLine": 373,
+        "startChar": 8,
+        "endLine": 391,
+        "endChar": 21
+      },
+      "revId": "533b52d83f706d3220f8c376f8784d13348cca34",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ee7c7b85_91010dc6",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 413,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-24T08:23:16Z",
+      "side": 1,
+      "message": "as mentioned above you can combine this with an existing test.",
+      "range": {
+        "startLine": 394,
+        "startChar": 4,
+        "endLine": 413,
+        "endChar": 5
+      },
+      "revId": "533b52d83f706d3220f8c376f8784d13348cca34",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e4cace2e_82555282",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/exceptions/CpsRestExceptionHandlerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-24T08:23:16Z",
+      "side": 1,
+      "message": "change to _* for less maintenance going forward :-)",
+      "range": {
+        "startLine": 165,
+        "startChar": 40,
+        "endLine": 165,
+        "endChar": 56
+      },
+      "revId": "533b52d83f706d3220f8c376f8784d13348cca34",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c2b5f3c9_8903c365",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-24T08:23:16Z",
+      "side": 1,
+      "message": "bit hard to compare, but are there THREE variations now of saveData, why exactly?!",
+      "range": {
+        "startLine": 46,
+        "startChar": 9,
+        "endLine": 46,
+        "endChar": 17
+      },
+      "revId": "533b52d83f706d3220f8c376f8784d13348cca34",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4116e281_5f10fbe1",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-24T08:23:16Z",
+      "side": 1,
+      "message": "related to my previous comment, did you do this deliberately (overload) for backward compatibility?",
+      "range": {
+        "startLine": 84,
+        "startChar": 0,
+        "endLine": 86,
+        "endChar": 106
+      },
+      "revId": "533b52d83f706d3220f8c376f8784d13348cca34",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab425db2_9d2953eb",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-24T08:23:16Z",
+      "side": 1,
+      "message": "keep order of parameters consistent and logical. I think you have this as the first parameter in other methods which I thin is better",
+      "range": {
+        "startLine": 75,
+        "startChar": 49,
+        "endLine": 75,
+        "endChar": 78
+      },
+      "revId": "533b52d83f706d3220f8c376f8784d13348cca34",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "05b07ce1_3e4852d8",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-24T08:23:16Z",
+      "side": 1,
+      "message": "no need for else",
+      "range": {
+        "startLine": 78,
+        "startChar": 10,
+        "endLine": 78,
+        "endChar": 16
+      },
+      "revId": "533b52d83f706d3220f8c376f8784d13348cca34",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb2c55d9_7e9d5102",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-24T08:23:16Z",
+      "side": 1,
+      "message": "no need for else",
+      "range": {
+        "startLine": 96,
+        "startChar": 10,
+        "endLine": 96,
+        "endChar": 16
+      },
+      "revId": "533b52d83f706d3220f8c376f8784d13348cca34",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "686614ca_799ea414",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-24T08:23:16Z",
+      "side": 1,
+      "message": "good test but can easily combined into one",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 110,
+        "endChar": 5
+      },
+      "revId": "533b52d83f706d3220f8c376f8784d13348cca34",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a8113b5_655233a7",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-24T08:23:16Z",
+      "side": 1,
+      "message": "accident?",
+      "range": {
+        "startLine": 121,
+        "startChar": 41,
+        "endLine": 121,
+        "endChar": 55
+      },
+      "revId": "533b52d83f706d3220f8c376f8784d13348cca34",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "505315f5_20b012ca",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangUtilsSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-24T08:23:16Z",
+      "side": 1,
+      "message": "correct indentation.\n\nIn IntellJ: settings, Edito, Code Style., Groovy, Tabs and Indents (first tab), Label Indent 4",
+      "range": {
+        "startLine": 131,
+        "startChar": 0,
+        "endLine": 140,
+        "endChar": 91
+      },
+      "revId": "533b52d83f706d3220f8c376f8784d13348cca34",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
