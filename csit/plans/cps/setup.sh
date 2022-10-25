@@ -78,7 +78,8 @@ cd $WORKSPACE/archives/dc-dmi
 # copy docker-compose (downloaded already for cps)
 cp $WORKSPACE/archives/dc-cps/docker-compose .
 chmod +x docker-compose
-./docker-compose up -d
+#./docker-compose up -d
+docker-compose -f $WORKSPACE/../docker-compose.yml up -d
 
 ###################### setup sdnc #######################################
 source $WORKSPACE/plans/cps/sdnc/sdnc_setup.sh
