@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "997d3bf4_e464840f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationCacheConfigSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-25T08:56:40Z",
+      "side": 1,
+      "message": "I have an issue with test saying HazelCast is already initiated (there is a similar test in a differmt module) I hope by giving them different names it woudl sort that isuse. It looked liek it did on  my machine but now it faisl again in CI. Once I have resolved that I hope I knwo for suer if I need to name those test configurations or not",
+      "parentUuid": "7f4c962b_ee683cda",
+      "range": {
+        "startLine": 34,
+        "startChar": 22,
+        "endLine": 34,
+        "endChar": 46
+      },
+      "revId": "9129839d2fa02850677ff0a9aa358fbcffd5462e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ec86a4cb_c4b2e36c",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/cache/AnchorDataCacheConfig.java",
         "patchSetId": 6
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "9bc8dfbb_815ebdff",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/cache/AnchorDataCacheConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-25T08:56:40Z",
+      "side": 1,
+      "message": "Async Priyank, we discussed this before when it was first introduced for in teh service module",
+      "parentUuid": "ec86a4cb_c4b2e36c",
+      "range": {
+        "startLine": 69,
+        "startChar": 7,
+        "endLine": 70,
+        "endChar": 41
+      },
+      "revId": "9129839d2fa02850677ff0a9aa358fbcffd5462e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0376ef51_a99475f0",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/cache/AnchorDataCacheEntry.java",
         "patchSetId": 6
@@ -59,6 +107,30 @@
       "writtenOn": "2022-10-24T18:00:37Z",
       "side": 1,
       "message": "What properties are these\u003e the anchors or the caches?",
+      "range": {
+        "startLine": 31,
+        "startChar": 32,
+        "endLine": 31,
+        "endChar": 42
+      },
+      "revId": "9129839d2fa02850677ff0a9aa358fbcffd5462e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e15ccafb_3b9b3464",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/cache/AnchorDataCacheEntry.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-25T08:56:40Z",
+      "side": 1,
+      "message": "these are the properties we want to cache for each anchor. A Mpa makes it upgrade proof.\nCurrently we have only one property: top-level-prefix",
+      "parentUuid": "0376ef51_a99475f0",
       "range": {
         "startLine": 31,
         "startChar": 32,
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "ad162ceb_9ac38395",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/YangResourceNativeRepositoryImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-25T08:56:40Z",
+      "side": 1,
+      "message": "I asked Sourabh that too (see previous patches)\nI change it back now",
+      "parentUuid": "88e3f7e2_0921de61",
+      "range": {
+        "startLine": 54,
+        "startChar": 16,
+        "endLine": 54,
+        "endChar": 21
+      },
+      "revId": "9129839d2fa02850677ff0a9aa358fbcffd5462e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "108eb7b6_6e7b84fb",
         "filename": "cps-ri/src/test/groovy/org/anap/cps/spi/cache/AchorDataCacheConfigSpec.groovy",
         "patchSetId": 6
@@ -105,6 +201,30 @@
       "writtenOn": "2022-10-24T18:00:37Z",
       "side": 1,
       "message": "NB: W.R.T. my prvious comment about naming... is it so the context isnt dirtied and kept seperate in test?",
+      "range": {
+        "startLine": 33,
+        "startChar": 22,
+        "endLine": 33,
+        "endChar": 41
+      },
+      "revId": "9129839d2fa02850677ff0a9aa358fbcffd5462e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e4fc0442_0df224d4",
+        "filename": "cps-ri/src/test/groovy/org/anap/cps/spi/cache/AchorDataCacheConfigSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-25T08:56:40Z",
+      "side": 1,
+      "message": "yes the idea was to have clearly separated context...",
+      "parentUuid": "108eb7b6_6e7b84fb",
       "range": {
         "startLine": 33,
         "startChar": 22,
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "68125241_4d3194c2",
+        "filename": "cps-ri/src/test/groovy/org/anap/cps/spi/cache/AnchorDataCacheEntrySpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-25T08:56:40Z",
+      "side": 1,
+      "message": "would I write it if not :-)\nAlthough this cache is already use not al methods and code paths are. this test make sure all possible code paths are covered in one simple test",
+      "parentUuid": "ecc99509_0b838560",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 5
+      },
+      "revId": "9129839d2fa02850677ff0a9aa358fbcffd5462e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0c50b48d_39628143",
         "filename": "cps-ri/src/test/resources/application.yml",
         "patchSetId": 6
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "89ef3d50_62511b76",
+        "filename": "cps-ri/src/test/resources/application.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-25T08:56:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c50b48d_39628143",
+      "range": {
+        "startLine": 3,
+        "startChar": 2,
+        "endLine": 3,
+        "endChar": 4
+      },
+      "revId": "9129839d2fa02850677ff0a9aa358fbcffd5462e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "85e63471_f1a451d6",
         "filename": "cps-ri/src/test/resources/application.yml",
         "patchSetId": 6
@@ -183,6 +351,30 @@
       "revId": "9129839d2fa02850677ff0a9aa358fbcffd5462e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "73bbf7f8_13161db3",
+        "filename": "cps-ri/src/test/resources/application.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-25T08:56:40Z",
+      "side": 1,
+      "message": "yes another commit that isn\u0027t merged yet :-)\nStil oen should come first",
+      "parentUuid": "85e63471_f1a451d6",
+      "range": {
+        "startLine": 21,
+        "startChar": 14,
+        "endLine": 21,
+        "endChar": 19
+      },
+      "revId": "9129839d2fa02850677ff0a9aa358fbcffd5462e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
