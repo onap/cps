@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0f3b1e3d_1eb13895",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-25T17:45:42Z",
+      "side": 1,
+      "message": "this could be combine into one, more generic method with a signature like this\n\nvalidateDataStore(DatastoreType acceptableDataStoreType, requestedDatastoreName) \n\nor even (more easily extensible)\n\nvalidateDataStore(Set\u003cDatastoreType\u003e acceptableDataStoreTypes, requestedDatastoreName)",
+      "range": {
+        "startLine": 364,
+        "startChar": 0,
+        "endLine": 378,
+        "endChar": 5
+      },
+      "revId": "d7921fcaf1521ba38cbc1e59ef3224ebb3acee47",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "096dcece_39a259e6",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreOperationalResourceRequestHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-25T17:45:42Z",
+      "side": 1,
+      "message": "why are you not injecting this instead ie make this class a bean",
+      "range": {
+        "startLine": 45,
+        "startChar": 8,
+        "endLine": 45,
+        "endChar": 69
+      },
+      "revId": "d7921fcaf1521ba38cbc1e59ef3224ebb3acee47",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d4f480cf_8703de8e",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreOperationalResourceRequestHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-25T17:45:42Z",
+      "side": 1,
+      "message": "private methods should come after public methods",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 5
+      },
+      "revId": "d7921fcaf1521ba38cbc1e59ef3224ebb3acee47",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "01cfa5e2_408ef4c7",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreOperationalResourceRequestHandlerFactorySpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-25T17:45:42Z",
+      "side": 1,
+      "message": "suggestion timeoutForTest (I also dont think we typically user upercase for groovy \u0027constants\u0027)",
+      "range": {
+        "startLine": 35,
+        "startChar": 8,
+        "endLine": 35,
+        "endChar": 19
+      },
+      "revId": "d7921fcaf1521ba38cbc1e59ef3224ebb3acee47",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
