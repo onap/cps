@@ -1,13 +1,12 @@
 /*
- *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ * ============LICENSE_START=======================================================
+ *  Copyright (C) 2022 <organization name>
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
  *
  *        http://www.apache.org/licenses/LICENSE-2.0
- *
  *  Unless required by applicable law or agreed to in writing, software
  *  distributed under the License is distributed on an "AS IS" BASIS,
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -16,9 +15,11 @@
  *
  *  SPDX-License-Identifier: Apache-2.0
  *  ============LICENSE_END=========================================================
+ *
+ *
  */
 
-package org.onap.cps.ri.performance
+package org.onap.cps.spi.perf
 
 import org.apache.commons.lang3.time.StopWatch
 import org.onap.cps.spi.CpsDataPersistenceService
@@ -29,7 +30,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.jdbc.Sql
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 
-class CpsToDataNodePerfSpec extends CpsPersistenceSpecBase {
+class CpsToDataNodePerfTest extends CpsPersistenceSpecBase {
 
     @Autowired
     CpsDataPersistenceService objectUnderTest
@@ -37,7 +38,7 @@ class CpsToDataNodePerfSpec extends CpsPersistenceSpecBase {
     static final String SET_DATA = '/data/fragment.sql'
     static final String  XPATH_DATA_NODE_WITH_DESCENDANTS = '/parent-1'
 
-    @Sql([CLEAR_DATA, SET_DATA])
+    @Sql([CpsPersistenceSpecBase.CLEAR_DATA, SET_DATA])
     def 'Get data node by xpath with all descendants with many children'() {
         given: 'nodes and grandchildren have been persisted'
             def setupStopWatch = new StopWatch()
@@ -49,7 +50,7 @@ class CpsToDataNodePerfSpec extends CpsPersistenceSpecBase {
             def readStopWatch = new StopWatch()
             readStopWatch.start()
             def result = objectUnderTest.getDataNode(
-                DATASPACE_NAME, ANCHOR_NAME1, XPATH_DATA_NODE_WITH_DESCENDANTS, INCLUDE_ALL_DESCENDANTS)
+                    CpsPersistenceSpecBase.DATASPACE_NAME, CpsPersistenceSpecBase.ANCHOR_NAME1, XPATH_DATA_NODE_WITH_DESCENDANTS, INCLUDE_ALL_DESCENDANTS)
             readStopWatch.stop()
             def readDurationInMillis = readStopWatch.getTime()
         then : 'setup duration is under 8 seconds'
@@ -66,7 +67,7 @@ class CpsToDataNodePerfSpec extends CpsPersistenceSpecBase {
         (1..numOfChildren).each {
             def childName = "perf-test-child-${it}".toString()
             def newChild = goForthAndMultiply(XPATH_DATA_NODE_WITH_DESCENDANTS, childName, numOfGrandChildren)
-            objectUnderTest.addChildDataNode(DATASPACE_NAME, ANCHOR_NAME1, XPATH_DATA_NODE_WITH_DESCENDANTS, newChild)
+            objectUnderTest.addChildDataNode(CpsPersistenceSpecBase.DATASPACE_NAME, CpsPersistenceSpecBase.ANCHOR_NAME1, XPATH_DATA_NODE_WITH_DESCENDANTS, newChild)
         }
     }
 
