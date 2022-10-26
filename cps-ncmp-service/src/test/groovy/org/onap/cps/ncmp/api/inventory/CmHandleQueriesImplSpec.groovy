@@ -37,10 +37,13 @@ class CmHandleQueriesImplSpec extends Specification {
     @Shared
     def static sampleDataNodes = [new DataNode()]
 
+    def mockPrivateProperty = '//additional-properties[@name=\"Contact3\" and @value=\"newemailforstore3@bookstore.com\"]/ancestor::cm-handles'
+
     def static pnfDemo = createDataNode('PNFDemo')
     def static pnfDemo2 = createDataNode('PNFDemo2')
     def static pnfDemo3 = createDataNode('PNFDemo3')
     def static pnfDemo4 = createDataNode('PNFDemo4')
+    def static pnfDemo5 = createDataNode('PNFDemo5')
 
     def static pnfDemoCmHandle = new NcmpServiceCmHandle(cmHandleId: 'PNFDemo')
     def static pnfDemo2CmHandle = new NcmpServiceCmHandle(cmHandleId: 'PNFDemo2')
@@ -67,6 +70,22 @@ class CmHandleQueriesImplSpec extends Specification {
             def returnedCmHandlesWithData = objectUnderTest.queryCmHandlePublicProperties([:])
         then: 'no cm handles are returned'
             returnedCmHandlesWithData.keySet().size() == 0
+    }
+
+    def 'Query CmHandles using empty private properties query pair.'() {
+        when: 'a query on CmHandle private properties is executed using an empty map'
+            def returnedCmHandlesWithData = objectUnderTest.queryCmHandlePrivateProperties([:])
+        then: 'no cm handles are returned'
+            returnedCmHandlesWithData.keySet().size() == 0
+    }
+
+    def 'Query CmHandles using private properties query pair.'() {
+        given:
+            cpsDataPersistenceService.queryDataNodes(_, _, mockPrivateProperty, _) >> [pnfDemo5]
+        when: 'a query on CmHandle private properties is executed using a map'
+            def returnedCmHandlesWithData = objectUnderTest.queryCmHandlePrivateProperties(['Contact3' : 'newemailforstore3@bookstore.com'])
+        then: 'one cm handle are returned'
+            returnedCmHandlesWithData.keySet().size() == 1
     }
 
     def 'Combine two query results where #scenario.'() {

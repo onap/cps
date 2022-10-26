@@ -30,6 +30,14 @@ import org.onap.cps.spi.model.DataNode;
 public interface CmHandleQueries {
 
     /**
+     * Query CmHandles based on PrivateProperties.
+     *
+     * @param publicPropertyQueryPairs private properties for query
+     * @return CmHandles which have these private properties
+     */
+    Map<String, NcmpServiceCmHandle> queryCmHandlePrivateProperties(Map<String, String> publicPropertyQueryPairs);
+
+    /**
      * Query CmHandles based on PublicProperties.
      *
      * @param publicPropertyQueryPairs public properties for query

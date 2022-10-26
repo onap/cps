@@ -33,6 +33,7 @@ import org.onap.cps.ncmp.api.models.DmiPluginRegistrationResponse;
 import org.onap.cps.ncmp.rest.api.NetworkCmProxyInventoryApi;
 import org.onap.cps.ncmp.rest.model.CmHandlerRegistrationErrorResponse;
 import org.onap.cps.ncmp.rest.model.DmiPluginRegistrationErrorResponse;
+import org.onap.cps.ncmp.rest.model.OldConditionProperties;
 import org.onap.cps.ncmp.rest.model.RestDmiPluginRegistration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -46,6 +47,11 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
 
     private final NetworkCmProxyDataService networkCmProxyDataService;
     private final NcmpRestInputMapper ncmpRestInputMapper;
+
+    @Override
+    public ResponseEntity<List<String>> filterDmiRegistryPrivateFields(final OldConditionProperties body) {
+        return null;
+    }
 
     /**
      * Get all cm-handle IDs under a registered DMI plugin.
