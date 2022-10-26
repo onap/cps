@@ -165,6 +165,17 @@ class NetworkCmProxyCmHandlerQueryServiceSpec extends Specification {
             returnedCmHandlesWithData.stream().map(d -> d.cmHandleId).collect(Collectors.toSet()) == ['PNFDemo1', 'PNFDemo2', 'PNFDemo3', 'PNFDemo4'] as Set
     }
 
+    def 'Retrieve CMHandleIds by different DMI properties.' () {
+        given: 'We query without any properties'
+            def cmHandleQueryParameters = new CmHandleQueryServiceParameters()
+        and: 'the inventoryPersistence returns all four CmHandleIds'
+            inventoryPersistence.getDataNode(*_) >> dmiRegistry
+        when: 'the query executed'
+            def resultSet = objectUnderTest.queryCmHandleIdsForInventory(cmHandleQueryParameters)
+        then: 'the size of the result list equals the size of all cmHandleIds.'
+            resultSet.size() == 4
+    }
+
     def createConditionProperties(String conditionName, List<Map<String, String>> conditionParameters) {
         return new ConditionProperties(conditionName : conditionName, conditionParameters : conditionParameters)
     }
