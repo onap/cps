@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e05bf576_650045b8",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-26T16:48:48Z",
+      "side": 1,
+      "message": "needs to be uppercase KOHN\n\n(all other release header are like that, not sure if that is why the build failed)",
+      "range": {
+        "startLine": 58,
+        "startChar": 16,
+        "endLine": 58,
+        "endChar": 20
+      },
+      "revId": "69d0496af359c0b21e096c8c1f8f2a6039c8a45c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
