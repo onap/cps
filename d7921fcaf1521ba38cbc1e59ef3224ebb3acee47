@@ -91,6 +91,40 @@
       "revId": "d7921fcaf1521ba38cbc1e59ef3224ebb3acee47",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "afa89e4e_f1bf992c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyQueryServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2022-10-26T10:08:09Z",
+      "side": 1,
+      "message": "should be extracted as a list of objects to improve readability if possible\n(like: def mockedDataNodeList \u003d [new DataNode(xpath: \u0027/cps/path\u0027), new DataNode(xpath: \u0027/cps/path/child\u0027)])",
+      "revId": "d7921fcaf1521ba38cbc1e59ef3224ebb3acee47",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e698a910_e3fe7181",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyQueryServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2022-10-26T10:08:09Z",
+      "side": 1,
+      "message": "the same variable could be used here as well",
+      "revId": "d7921fcaf1521ba38cbc1e59ef3224ebb3acee47",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
