@@ -26,11 +26,15 @@ import org.onap.cps.spi.model.ConditionProperties
 import spock.lang.Specification
 
 class CmHandleQueryRestParametersValidatorSpec extends Specification {
+
+    def VALID_QUERY_PROPERTIES = ['hasAllProperties', 'hasAllModules', 'cmHandleWithCpsPath']
+    def VALID_QUERY_PROPERTIES2 = ['hasAllProperties', 'hasAllModules', 'cmHandleWithDmiPlugin']
+
     def 'CM Handle Query validation: empty query.'() {
         given: 'a cm handle query'
             def cmHandleQueryParameters = new CmHandleQueryServiceParameters()
         when: 'validator is invoked'
-            CmHandleQueryRestParametersValidator.validateCmHandleQueryParameters(cmHandleQueryParameters)
+            CmHandleQueryRestParametersValidator.validateCmHandleQueryParameters(cmHandleQueryParameters, VALID_QUERY_PROPERTIES)
         then: 'data validation exception is not thrown'
             noExceptionThrown()
     }
@@ -43,7 +47,20 @@ class CmHandleQueryRestParametersValidatorSpec extends Specification {
             condition.conditionParameters = [[key1:'value1'],[key2:'value2']]
             cmHandleQueryParameters.cmHandleQueryParameters = [condition]
         when: 'validator is invoked'
-            CmHandleQueryRestParametersValidator.validateCmHandleQueryParameters(cmHandleQueryParameters)
+            CmHandleQueryRestParametersValidator.validateCmHandleQueryParameters(cmHandleQueryParameters, VALID_QUERY_PROPERTIES)
+        then: 'data validation exception is not thrown'
+            noExceptionThrown()
+    }
+
+    def 'CM Handle Dmi Query validation: normal query.'() {
+        given: 'a cm handle query for Dmi fields'
+            def cmHandleQueryParameters = new CmHandleQueryServiceParameters()
+            def condition = new ConditionProperties()
+            condition.conditionName = 'hasAllProperties'
+            condition.conditionParameters = [[key1:'value1'],[key2:'value2']]
+            cmHandleQueryParameters.cmHandleQueryParameters = [condition]
+        when: 'validator is invoked'
+            CmHandleQueryRestParametersValidator.validateCmHandleQueryParameters(cmHandleQueryParameters, VALID_QUERY_PROPERTIES2)
         then: 'data validation exception is not thrown'
             noExceptionThrown()
     }
@@ -53,10 +70,10 @@ class CmHandleQueryRestParametersValidatorSpec extends Specification {
             def cmHandleQueryParameters = new CmHandleQueryServiceParameters()
             def condition = new ConditionProperties()
             condition.conditionName = conditionName
-            condition.conditionParameters = conditionParameters
+            condition.conditionParameters = conditionParameters as List<Map<String, String>>
             cmHandleQueryParameters.cmHandleQueryParameters = [condition]
         when: 'validator is invoked'
-            CmHandleQueryRestParametersValidator.validateCmHandleQueryParameters(cmHandleQueryParameters)
+            CmHandleQueryRestParametersValidator.validateCmHandleQueryParameters(cmHandleQueryParameters, VALID_QUERY_PROPERTIES)
         then: 'a data validation exception is thrown'
             thrown(DataValidationException)
         where:
@@ -66,7 +83,7 @@ class CmHandleQueryRestParametersValidatorSpec extends Specification {
             'wrong condition name' | 'wrong'            | []
             'no condition name'    | ''                 | []
             'too many properties'  | 'hasAllProperties' | [[key1:'value1', key2:'value2']]
-            'wrong properties'     | 'hasAllProperties' | [['':'wrong']]
+            'empty key'            | 'hasAllProperties' | [['':'wrong']]
     }
 
     def 'CM Handle Query validation: validate module name condition properties - valid query.'() {

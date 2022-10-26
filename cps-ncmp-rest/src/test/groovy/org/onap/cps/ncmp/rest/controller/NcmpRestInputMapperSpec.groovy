@@ -22,10 +22,13 @@ package org.onap.cps.ncmp.rest.controller
 
 import org.mapstruct.factory.Mappers
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
+import org.onap.cps.ncmp.rest.model.CmHandleQueryParameters
+import org.onap.cps.ncmp.rest.model.ConditionProperties
 import org.onap.cps.ncmp.rest.model.RestDmiPluginRegistration
 import org.onap.cps.ncmp.rest.model.RestInputCmHandle
 import org.onap.cps.ncmp.rest.model.RestModuleDefinition
 import org.onap.cps.ncmp.rest.model.RestModuleReference
+import org.onap.cps.spi.model.CmHandleQueryServiceParameters
 import org.onap.cps.spi.model.ModuleDefinition
 import org.onap.cps.spi.model.ModuleReference
 import spock.lang.Specification
@@ -103,5 +106,23 @@ class NcmpRestInputMapperSpec extends Specification {
                     '    revision: revision\n' +
                     '    content: content\n' +
                     '}'
+    }
+
+    def 'Convert a CmHandle REST query to CmHandle query service parameters.'() {
+        given: 'a CmHandle REST query with two conditions'
+            def conditionParameter1 = new ConditionProperties(conditionName: 'some condition', conditionParameters: [[p1:1]] )
+            def conditionParameter2 = new ConditionProperties(conditionName: 'other condition', conditionParameters: [[p2:2]] )
+            def cmHandleQuery = new CmHandleQueryParameters()
+            cmHandleQuery.cmHandleQueryParameters = [conditionParameter1, conditionParameter2]
+        when: 'it is converted into CmHandle query service parameters'
+            def result = objectUnderTest.toCmHandleQueryServiceParameters(cmHandleQuery)
+        then: 'the result is of the correct class'
+            assert result instanceof CmHandleQueryServiceParameters
+        and: 'the result has the same conditions'
+            assert result.cmHandleQueryParameters.size() == 2
+            assert result.cmHandleQueryParameters[0].conditionName == 'some condition'
+            assert result.cmHandleQueryParameters[0].conditionParameters == [[p1:1]]
+            assert result.cmHandleQueryParameters[1].conditionName == 'other condition'
+            assert result.cmHandleQueryParameters[1].conditionParameters == [[p2:2]]
     }
 }

@@ -30,6 +30,7 @@ import static org.onap.cps.utils.CmHandleQueryRestParametersValidator.validateCm
 import com.hazelcast.map.IMap;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -68,6 +69,8 @@ import org.onap.cps.spi.model.CmHandleQueryServiceParameters;
 import org.onap.cps.spi.model.ModuleDefinition;
 import org.onap.cps.spi.model.ModuleReference;
 import org.onap.cps.utils.JsonObjectMapper;
+import org.onap.cps.utils.ValidInventoryQueryParameters;
+import org.onap.cps.utils.ValidQueryProperties;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -172,7 +175,9 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         final CmHandleQueryServiceParameters cmHandleQueryServiceParameters = jsonObjectMapper.convertToValueType(
                 cmHandleQueryApiParameters, CmHandleQueryServiceParameters.class);
 
-        validateCmHandleQueryParameters(cmHandleQueryServiceParameters);
+        final List<String> queryPropertiesList = Arrays.stream(ValidQueryProperties.values())
+                                    .map(ValidQueryProperties::getQueryProperty).collect(Collectors.toList());
+        validateCmHandleQueryParameters(cmHandleQueryServiceParameters, queryPropertiesList);
 
         return networkCmProxyCmHandlerQueryService.queryCmHandles(cmHandleQueryServiceParameters);
     }
@@ -188,7 +193,9 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         final CmHandleQueryServiceParameters cmHandleQueryServiceParameters = jsonObjectMapper.convertToValueType(
                 cmHandleQueryApiParameters, CmHandleQueryServiceParameters.class);
 
-        validateCmHandleQueryParameters(cmHandleQueryServiceParameters);
+        final List<String> queryPropertiesList = Arrays.stream(ValidQueryProperties.values())
+                .map(ValidQueryProperties::getQueryProperty).collect(Collectors.toList());
+        validateCmHandleQueryParameters(cmHandleQueryServiceParameters, queryPropertiesList);
 
         return networkCmProxyCmHandlerQueryService.queryCmHandleIds(cmHandleQueryServiceParameters);
     }
@@ -235,6 +242,24 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         final Set<String> cmHandleIds = new HashSet<>(ncmpServiceCmHandles.size());
         ncmpServiceCmHandles.forEach(cmHandle -> cmHandleIds.add(cmHandle.getCmHandleId()));
         return cmHandleIds;
+    }
+
+    /**
+     * Get all cm handle IDs by various properties.
+     *
+     * @param cmHandleQueryServiceParameters cm handle query parameters
+     * @return set of cm handle IDs
+     */
+    @Override
+    public Set<String> executeCmHandleIdSearchForInventory(
+            final CmHandleQueryServiceParameters cmHandleQueryServiceParameters) {
+
+        final List<String> queryPropertiesList = Arrays.stream(ValidInventoryQueryParameters.values())
+                .map(ValidInventoryQueryParameters::getQueryProperty).collect(Collectors.toList());
+
+        validateCmHandleQueryParameters(cmHandleQueryServiceParameters, queryPropertiesList);
+
+        return networkCmProxyCmHandlerQueryService.queryCmHandleIdsForInventory(cmHandleQueryServiceParameters);
     }
 
     /**

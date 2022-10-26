@@ -21,7 +21,7 @@
 package org.onap.cps.utils;
 
 import com.google.common.base.Strings;
-import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -38,14 +38,12 @@ public class CmHandleQueryRestParametersValidator {
      * @param cmHandleQueryServiceParameters name of data to be validated
      */
     public static void validateCmHandleQueryParameters(
-            final CmHandleQueryServiceParameters cmHandleQueryServiceParameters) {
+            final CmHandleQueryServiceParameters cmHandleQueryServiceParameters,
+            final List<String> queryPropertiesList) {
         cmHandleQueryServiceParameters.getCmHandleQueryParameters().forEach(
                 conditionApiProperty -> {
-                    if (Strings.isNullOrEmpty(conditionApiProperty.getConditionName())) {
-                        throw createDataValidationException("Missing 'conditionName' - please supply a valid name.");
-                    }
-                    if (Arrays.stream(ValidQueryProperties.values()).noneMatch(validQueryProperty ->
-                        validQueryProperty.getQueryProperty().equals(conditionApiProperty.getConditionName()))) {
+                    if (queryPropertiesList.stream().noneMatch(validQueryProperty ->
+                        validQueryProperty.equals(conditionApiProperty.getConditionName()))) {
                         throw createDataValidationException(
                                 String.format("Wrong 'conditionName': %s - please supply a valid name.",
                                 conditionApiProperty.getConditionName()));
