@@ -27,10 +27,12 @@ import java.util.stream.Collectors;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
+import org.onap.cps.ncmp.api.models.CmHandleQueryServiceParameters;
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse;
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.Status;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistrationResponse;
 import org.onap.cps.ncmp.rest.api.NetworkCmProxyInventoryApi;
+import org.onap.cps.ncmp.rest.model.CmHandleQueryParameters;
 import org.onap.cps.ncmp.rest.model.CmHandlerRegistrationErrorResponse;
 import org.onap.cps.ncmp.rest.model.DmiPluginRegistrationErrorResponse;
 import org.onap.cps.ncmp.rest.model.RestDmiPluginRegistration;
@@ -46,6 +48,16 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
 
     private final NetworkCmProxyDataService networkCmProxyDataService;
     private final NcmpRestInputMapper ncmpRestInputMapper;
+
+    @Override
+    public ResponseEntity<List<String>> searchCmHandleIds(final CmHandleQueryParameters cmHandleQueryParameters) {
+        final CmHandleQueryServiceParameters cmHandleQueryServiceParameters = ncmpRestInputMapper
+                .toCmHandleQueryServiceParameters(cmHandleQueryParameters);
+
+        final Set<String> cmHandleIds = networkCmProxyDataService
+                .executeCmHandleIdSearchForInventory(cmHandleQueryServiceParameters);
+        return ResponseEntity.ok(List.copyOf(cmHandleIds));
+    }
 
     /**
      * Get all cm-handle IDs under a registered DMI plugin.

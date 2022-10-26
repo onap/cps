@@ -27,10 +27,11 @@ import org.onap.cps.ncmp.api.NetworkCmProxyDataService
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.models.DmiPluginRegistrationResponse
-import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
+import org.onap.cps.ncmp.rest.model.CmHandleQueryParameters
 import org.onap.cps.ncmp.rest.model.CmHandlerRegistrationErrorResponse
 import org.onap.cps.ncmp.rest.model.DmiPluginRegistrationErrorResponse
 import org.onap.cps.ncmp.rest.model.RestDmiPluginRegistration
+import org.onap.cps.ncmp.api.models.CmHandleQueryServiceParameters
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
@@ -60,6 +61,9 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
 
     DmiPluginRegistration mockDmiPluginRegistration = Mock()
 
+    CmHandleQueryServiceParameters cmHandleQueryServiceParameters = Mock()
+
+    @SpringBean
     JsonObjectMapper jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
 
     @Value('${rest.api.ncmp-inventory-base-path}/v1')
@@ -100,6 +104,29 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
             ).andReturn().response
         then: 'response status is bad request'
             response.status == HttpStatus.BAD_REQUEST.value()
+    }
+
+    def 'CmHandle search endpoint test #scenario.'() {
+        given: 'a query object'
+            def cmHandleQueryParameters = jsonObjectMapper.asJsonString(new CmHandleQueryParameters())
+        and: 'the mapper service returns a converted object'
+            ncmpRestInputMapper.toCmHandleQueryServiceParameters(_) >> cmHandleQueryServiceParameters
+        and: 'the service returns the desired results'
+            mockNetworkCmProxyDataService.executeCmHandleIdSearchForInventory(cmHandleQueryServiceParameters) >> serviceMockResponse
+        when: 'post request is performed & search is called with the given request parameters'
+            def response = mvc.perform(
+                    post("$ncmpBasePathV1/ch/searches")
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(cmHandleQueryParameters)
+            ).andReturn().response
+        then: 'response status is OK'
+            assert response.status == HttpStatus.OK.value()
+        and: 'the response data matches the service response.'
+            jsonObjectMapper.convertJsonString(response.getContentAsString(), List) == serviceMockResponse
+        where: 'the service respond with'
+            scenario             | serviceMockResponse
+            'empty response'     | []
+            'populates response' | ['cmHandle1', 'cmHandle2']
     }
 
     def 'DMI Registration: All cm-handles operations processed successfully.'() {

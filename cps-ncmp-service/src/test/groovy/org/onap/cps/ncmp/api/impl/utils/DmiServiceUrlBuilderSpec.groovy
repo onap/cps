@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.utils
+package org.onap.cps.ncmp.api.impl.utils
 
 import org.onap.cps.spi.utils.CpsValidator
 
@@ -26,7 +26,6 @@ import static org.onap.cps.ncmp.api.impl.operations.DmiOperations.DataStoreEnum.
 
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration
-import org.onap.cps.ncmp.api.impl.utils.DmiServiceUrlBuilder
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import spock.lang.Shared
 import spock.lang.Specification

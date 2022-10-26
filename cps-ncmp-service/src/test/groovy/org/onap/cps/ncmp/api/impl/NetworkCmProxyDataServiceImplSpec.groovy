@@ -33,14 +33,12 @@ import org.onap.cps.ncmp.api.inventory.InventoryPersistence
 import org.onap.cps.ncmp.api.inventory.LockReasonCategory
 import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
 import org.onap.cps.ncmp.api.models.CmHandleQueryApiParameters
-import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse
+import org.onap.cps.ncmp.api.models.CmHandleQueryServiceParameters
 import org.onap.cps.ncmp.api.models.ConditionApiProperties
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import org.onap.cps.spi.exceptions.CpsException
-import org.onap.cps.spi.exceptions.DataNodeNotFoundException
-import org.onap.cps.spi.exceptions.DataValidationException
-import org.onap.cps.spi.model.CmHandleQueryServiceParameters
+import org.onap.cps.spi.model.ConditionProperties
 import spock.lang.Shared
 import java.util.stream.Collectors
 import org.onap.cps.utils.JsonObjectMapper
@@ -57,10 +55,6 @@ import static org.onap.cps.ncmp.api.impl.operations.DmiOperations.DataStoreEnum.
 import static org.onap.cps.ncmp.api.impl.operations.DmiOperations.DataStoreEnum.PASSTHROUGH_RUNNING
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.CREATE
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.UPDATE
-import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationError.CM_HANDLE_DOES_NOT_EXIST
-import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationError.CM_HANDLE_INVALID_ID
-import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationError.UNKNOWN_ERROR
-
 
 class NetworkCmProxyDataServiceImplSpec extends Specification {
 
@@ -200,6 +194,24 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             def result = objectUnderTest.getCmHandlePublicProperties('some-cm-handle')
         then: 'the result returns the correct data'
             result == [ 'public prop' : 'some public prop' ]
+    }
+
+    def 'Execute cm handle id search for inventory'() {
+        given: 'a ConditionApiProperties object'
+            def conditionProperties = new ConditionProperties()
+            conditionProperties.conditionName = 'hasAllProperties'
+            conditionProperties.conditionParameters = [ [ 'some-key' : 'some-value' ] ]
+            def conditionServiceProps = new CmHandleQueryServiceParameters()
+            conditionServiceProps.cmHandleQueryParameters = [conditionProperties] as List<ConditionProperties>
+
+        and: 'the system returns an set of cmHandle ids'
+            mockCpsCmHandlerQueryService.queryCmHandleIdsForInventory(*_) >> [ 'cmHandle1', 'cmHandle2' ]
+        when: 'getting cm handle id set for a given dmi property'
+            def result = objectUnderTest.executeCmHandleIdSearchForInventory(conditionServiceProps)
+        then: 'the result returns the correct 2 elements'
+            assert result.size() == 2
+            assert result.contains('cmHandle1')
+            assert result.contains('cmHandle2')
     }
 
     def 'Get cm handle composite state'() {
