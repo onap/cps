@@ -41,6 +41,7 @@ import org.onap.cps.spi.exceptions.CpsException
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.model.CmHandleQueryServiceParameters
+import org.onap.cps.spi.model.ConditionProperties
 import spock.lang.Shared
 import java.util.stream.Collectors
 import org.onap.cps.utils.JsonObjectMapper
@@ -200,6 +201,24 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             def result = objectUnderTest.getCmHandlePublicProperties('some-cm-handle')
         then: 'the result returns the correct data'
             result == [ 'public prop' : 'some public prop' ]
+    }
+
+    def 'Execute cm handle id search for inventory'() {
+        given: 'a ConditionApiProperties object'
+            def conditionProperties = new ConditionProperties()
+            conditionProperties.conditionName = 'hasAllProperties'
+            conditionProperties.conditionParameters = [ [ 'Color': 'yellow'] ]
+            def conditionServiceProps = new CmHandleQueryServiceParameters()
+            conditionServiceProps.cmHandleQueryParameters = [conditionProperties] as List<ConditionProperties>
+
+        and: 'the system returns an set of cmHandle ids'
+            1 * mockCpsCmHandlerQueryService.queryCmHandleIdsForInventory(*_) >> [ 'cmHandle1', 'cmHandle2' ]
+        when: 'getting cm handle id set for a given dmi property'
+            def result = objectUnderTest.executeCmHandleIdSearchForInventory(conditionServiceProps)
+        then: 'the result returns 2 elements'
+            result.size() == 2
+            result.contains('cmHandle1')
+            result.contains('cmHandle2')
     }
 
     def 'Get cm handle composite state'() {
