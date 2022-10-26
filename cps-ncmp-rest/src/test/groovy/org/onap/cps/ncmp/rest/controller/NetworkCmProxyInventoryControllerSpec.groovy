@@ -27,8 +27,9 @@ import org.onap.cps.ncmp.api.NetworkCmProxyDataService
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.models.DmiPluginRegistrationResponse
-import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
+import org.onap.cps.ncmp.rest.model.CmHandleQueryParameters
 import org.onap.cps.ncmp.rest.model.CmHandlerRegistrationErrorResponse
+import org.onap.cps.ncmp.rest.model.ConditionProperties
 import org.onap.cps.ncmp.rest.model.DmiPluginRegistrationErrorResponse
 import org.onap.cps.ncmp.rest.model.RestDmiPluginRegistration
 import org.onap.cps.utils.JsonObjectMapper
@@ -60,6 +61,7 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
 
     DmiPluginRegistration mockDmiPluginRegistration = Mock()
 
+    @SpringBean
     JsonObjectMapper jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
 
     @Value('${rest.api.ncmp-inventory-base-path}/v1')
@@ -100,6 +102,43 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
             ).andReturn().response
         then: 'response status is bad request'
             response.status == HttpStatus.BAD_REQUEST.value()
+    }
+
+    def 'ChHandle search endpoint test without parameters.'() {
+        given: 'An empty query object'
+            def cmHandleQueryParameters = '{ "cmHandleQueryParameters": [ ] }'
+        and: 'the service returns an empty array of results'
+            mockNetworkCmProxyDataService.filterCmHandlesByAnyProperty(*_) >> []
+        when: 'post request is performed & search is called with correct DMI plugin information'
+            def response = mvc.perform(
+                    post("$ncmpBasePathV1/ch/searches")
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(cmHandleQueryParameters)
+            ).andReturn().response
+        then: 'response status is OK.'
+            response.status == HttpStatus.OK.value()
+    }
+
+    def 'ChHandle search endpoint test with one parameter.'() {
+        given: 'A query object with a public property'
+            def cmHandleQueryParameters = '{ "cmHandleQueryParameters": [ ' +
+                     '{ "conditionName": "hasAllProperties", ' +
+                     '"conditionParameters": [ { "Color": "yellow" } ] ' +
+                     '} ] }'
+
+        and: 'the service returns an array of results with one element'
+            mockNetworkCmProxyDataService.filterCmHandlesByAnyProperty(*_) >> [ 'ChHandle' ]
+        when: 'a post request is performed & search is called with correct information'
+            def response = mvc.perform(
+                    post("$ncmpBasePathV1/ch/searches")
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(cmHandleQueryParameters)
+            ).andReturn().response
+        then: 'response status is OK.'
+            response.status == HttpStatus.OK.value()
+        and: 'the size of result list is 1'
+            def responseBody = jsonObjectMapper.convertJsonString(response.getContentAsString(), List)
+            responseBody.size() == 1
     }
 
     def 'DMI Registration: All cm-handles operations processed successfully.'() {

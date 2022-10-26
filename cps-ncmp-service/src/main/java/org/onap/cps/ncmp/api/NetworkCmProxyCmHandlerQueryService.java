@@ -40,4 +40,13 @@ public interface NetworkCmProxyCmHandlerQueryService {
      * @return collection of cm handle ids
      */
     Set<String> queryCmHandleIds(CmHandleQueryServiceParameters cmHandleQueryServiceParameters);
+
+    /**
+     * Query and return cm handles that match the given query parameters.
+     * Combines the result of different
+     *
+     * @param cmHandleQueryServiceParameters the cm handle query parameters
+     * @return collection of cm handle ids
+     */
+    Set<String> queryCmHandleIdsByPrivateFields(CmHandleQueryServiceParameters cmHandleQueryServiceParameters);
 }

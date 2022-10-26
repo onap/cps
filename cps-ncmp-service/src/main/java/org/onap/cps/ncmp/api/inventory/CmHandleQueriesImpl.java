@@ -21,8 +21,7 @@
 package org.onap.cps.ncmp.api.inventory;
 
 import static org.onap.cps.ncmp.api.impl.utils.YangDataConverter.convertYangModelCmHandleToNcmpServiceCmHandle;
-import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
-import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS;
+import static org.onap.cps.spi.FetchDescendantsOption.*;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -34,6 +33,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
+import org.onap.cps.ncmp.api.inventory.enums.PropertyType;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.FetchDescendantsOption;
@@ -53,17 +53,40 @@ public class CmHandleQueriesImpl implements CmHandleQueries {
 
 
     @Override
+    public Map<String, NcmpServiceCmHandle> queryCmHandlePrivateProperties(
+            final Map<String, String> privatePropertyQueryPairs) {
+        return queryCmHandleAnyProperties(privatePropertyQueryPairs, PropertyType.PRIVATE);
+    }
+    @Override
+    public Map<String, NcmpServiceCmHandle> queryCmHandleDmiProperties(
+            final Map<String, String> privatePropertyQueryPairs) {
+        return queryCmHandleAnyProperties(privatePropertyQueryPairs, PropertyType.DMI_PLUGIN);
+    }
+
+    @Override
     public Map<String, NcmpServiceCmHandle> queryCmHandlePublicProperties(
             final Map<String, String> publicPropertyQueryPairs) {
+        return queryCmHandleAnyProperties(publicPropertyQueryPairs, PropertyType.PUBLIC);
+    }
+
+    private  Map<String, NcmpServiceCmHandle> queryCmHandleAnyProperties(
+            final Map<String, String> publicPropertyQueryPairs,
+            final PropertyType accessType) {
         if (publicPropertyQueryPairs.isEmpty()) {
             return Collections.emptyMap();
         }
         Map<String, NcmpServiceCmHandle> cmHandleIdToNcmpServiceCmHandles = null;
         for (final Map.Entry<String, String> publicPropertyQueryPair : publicPropertyQueryPairs.entrySet()) {
-            final String cpsPath = "//public-properties[@name=\"" + publicPropertyQueryPair.getKey()
+            final String cpsPath = PropertyType.DMI_PLUGIN.equals(accessType) ?
+                    "//cm-handles[@dmi-service-name=\"" + publicPropertyQueryPair.getValue() + "\"]"
+                    : "//" + accessType.getYangContainerName() + "[@name=\""
+                    + publicPropertyQueryPair.getKey()
                     + "\" and @value=\"" + publicPropertyQueryPair.getValue() + "\"]";
 
-            final Collection<DataNode> dataNodes = queryCmHandleDataNodesByCpsPath(cpsPath, INCLUDE_ALL_DESCENDANTS);
+            final FetchDescendantsOption fetchDescendantsOption = PropertyType.DMI_PLUGIN.equals(accessType) ?
+                                                                            FETCH_DIRECT_CHILDREN_ONLY
+                                                                            : INCLUDE_ALL_DESCENDANTS;
+            final Collection<DataNode> dataNodes = queryCmHandleDataNodesByCpsPath(cpsPath, fetchDescendantsOption);
             if (cmHandleIdToNcmpServiceCmHandles == null) {
                 cmHandleIdToNcmpServiceCmHandles = collectDataNodesToNcmpServiceCmHandles(dataNodes);
             } else {

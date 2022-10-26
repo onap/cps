@@ -49,6 +49,7 @@ import org.onap.cps.spi.model.Anchor;
 import org.onap.cps.spi.model.CmHandleQueryServiceParameters;
 import org.onap.cps.spi.model.ConditionProperties;
 import org.onap.cps.spi.model.DataNode;
+import org.onap.cps.utils.ValidInventoryQueryParameters;
 import org.onap.cps.utils.ValidQueryProperties;
 import org.springframework.stereotype.Service;
 
@@ -113,6 +114,44 @@ public class NetworkCmProxyCmHandlerQueryServiceImpl implements NetworkCmProxyCm
         return moduleNameQueryResult;
     }
 
+    @Override
+    public Set<String> queryCmHandleIdsByPrivateFields(final CmHandleQueryServiceParameters cmHandleQueryServiceParameters) {
+
+        if (cmHandleQueryServiceParameters.getCmHandleQueryParameters().isEmpty()) {
+            return getAllCmHandleIds();
+        }
+
+        final Map<String, String> publicPropertyQueryPairs =
+                getPropertyPairs(cmHandleQueryServiceParameters.getCmHandleQueryParameters(),
+                        ValidQueryProperties.HAS_ALL_PROPERTIES.getQueryProperty());
+        final Map<String, NcmpServiceCmHandle> publicPropertiesQueryResult = publicPropertyQueryPairs.isEmpty()
+                ? NO_QUERY_TO_EXECUTE
+                : cmHandleQueries.queryCmHandlePublicProperties(publicPropertyQueryPairs);
+
+        final Map<String, String> privatePropertyQueryPairs =
+                getPropertyPairs(cmHandleQueryServiceParameters.getCmHandleQueryParameters(),
+                        ValidInventoryQueryParameters.HAS_ALL_ADDITIONAL_PROPERTIES.getQueryProperty());
+        final Map<String, NcmpServiceCmHandle> privatePropertiesQueryResult = privatePropertyQueryPairs.isEmpty()
+                ? NO_QUERY_TO_EXECUTE
+                : cmHandleQueries.queryCmHandlePrivateProperties(privatePropertyQueryPairs);
+
+        final Map<String, String> dmiPropertyQueryPairs =
+                getPropertyPairs(cmHandleQueryServiceParameters.getCmHandleQueryParameters(),
+                        ValidInventoryQueryParameters.CM_HANDLE_WITH_DMI_PLUGIN.getQueryProperty());
+        final Map<String, NcmpServiceCmHandle> dmiPropertiesQueryResult = dmiPropertyQueryPairs.isEmpty()
+                ? NO_QUERY_TO_EXECUTE
+                : cmHandleQueries.queryCmHandleDmiProperties(dmiPropertyQueryPairs);
+
+        final Map<String, NcmpServiceCmHandle> propertiesCombinedResult = cmHandleQueries
+                .combineCmHandleQueries(publicPropertiesQueryResult, privatePropertiesQueryResult);
+
+        final Map<String, NcmpServiceCmHandle> combinedResult = cmHandleQueries
+                .combineCmHandleQueries(propertiesCombinedResult, dmiPropertiesQueryResult);
+
+        return combinedResult.values().parallelStream().map(NcmpServiceCmHandle::getCmHandleId)
+                .collect(Collectors.toSet());
+    }
+
     private Map<String, NcmpServiceCmHandle> combineWithModuleNameQuery(
             final CmHandleQueryServiceParameters cmHandleQueryServiceParameters,
             final Map<String, NcmpServiceCmHandle> previousQueryResult) {
@@ -164,7 +203,8 @@ public class NetworkCmProxyCmHandlerQueryServiceImpl implements NetworkCmProxyCm
         }
 
         final Map<String, String> publicPropertyQueryPairs =
-                getPublicPropertyPairs(cmHandleQueryServiceParameters.getCmHandleQueryParameters());
+                getPropertyPairs(cmHandleQueryServiceParameters.getCmHandleQueryParameters(),
+                        ValidQueryProperties.HAS_ALL_PROPERTIES.getQueryProperty());
         final Map<String, NcmpServiceCmHandle> propertiesQueryResult = publicPropertyQueryPairs.isEmpty()
                 ? NO_QUERY_TO_EXECUTE : cmHandleQueries.queryCmHandlePublicProperties(publicPropertyQueryPairs);
 
@@ -195,10 +235,10 @@ public class NetworkCmProxyCmHandlerQueryServiceImpl implements NetworkCmProxyCm
         return result;
     }
 
-    private Map<String, String> getPublicPropertyPairs(final List<ConditionProperties> conditionProperties) {
+    private Map<String, String> getPropertyPairs(final List<ConditionProperties> conditionProperties,
+                                                       final String queryProperty) {
         final Map<String, String> result = new HashMap<>();
-        getConditions(conditionProperties,
-                ValidQueryProperties.HAS_ALL_PROPERTIES.getQueryProperty()).forEach(result::putAll);
+        getConditions(conditionProperties, queryProperty).forEach(result::putAll);
         return result;
     }
 
