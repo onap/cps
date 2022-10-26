@@ -27,8 +27,9 @@ import org.onap.cps.ncmp.api.NetworkCmProxyDataService
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.models.DmiPluginRegistrationResponse
-import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
+import org.onap.cps.ncmp.rest.model.CmHandleQueryParameters
 import org.onap.cps.ncmp.rest.model.CmHandlerRegistrationErrorResponse
+import org.onap.cps.ncmp.rest.model.ConditionProperties
 import org.onap.cps.ncmp.rest.model.DmiPluginRegistrationErrorResponse
 import org.onap.cps.ncmp.rest.model.RestDmiPluginRegistration
 import org.onap.cps.utils.JsonObjectMapper
@@ -100,6 +101,19 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
             ).andReturn().response
         then: 'response status is bad request'
             response.status == HttpStatus.BAD_REQUEST.value()
+    }
+
+    def 'Dmi search endpoint test.'() {
+        given: 'A dmi query object'
+            def cmHandleQueryParameters = '{ "cmHandleQueryParameters": [ { "conditionName": "hasAllAdditionalProperties", "conditionParameters": [ {"Color": "yellow"} ] } ] }'
+        when: 'post request is performed & search is called with correct DMI plugin information'
+        def response = mvc.perform(
+                post("$ncmpBasePathV1/ch/searches")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(cmHandleQueryParameters)
+        ).andReturn().response
+        then: 'response status is OK.'
+            response.status == HttpStatus.OK.value()
     }
 
     def 'DMI Registration: All cm-handles operations processed successfully.'() {

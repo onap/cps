@@ -122,3 +122,32 @@ getAllCmHandleIdsForRegisteredDmi:
         $ref: 'components.yaml#/components/responses/Forbidden'
       500:
         $ref: 'components.yaml#/components/responses/InternalServerError'
+
+getAllCmHandleIdsWithPrivatePropertyForDmi:
+  post:
+    description: Query and get CMHandleIds for private DMI Registry fields.
+    tags:
+      - network-cm-proxy-inventory
+    summary: Query for CM Handle IDs
+    operationId: filterDmiRegistryPrivateFields
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: 'components.yaml#/components/schemas/CmHandleQueryParameters'
+    responses:
+      200:
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+      401:
+        $ref: 'components.yaml#/components/responses/Unauthorized'
+      403:
+        $ref: 'components.yaml#/components/responses/Forbidden'
+      500:
+        $ref: 'components.yaml#/components/responses/InternalServerError'

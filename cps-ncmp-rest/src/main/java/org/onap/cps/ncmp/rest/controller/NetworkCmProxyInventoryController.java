@@ -21,6 +21,7 @@
 
 package org.onap.cps.ncmp.rest.controller;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -31,6 +32,7 @@ import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse;
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.Status;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistrationResponse;
 import org.onap.cps.ncmp.rest.api.NetworkCmProxyInventoryApi;
+import org.onap.cps.ncmp.rest.model.CmHandleQueryParameters;
 import org.onap.cps.ncmp.rest.model.CmHandlerRegistrationErrorResponse;
 import org.onap.cps.ncmp.rest.model.DmiPluginRegistrationErrorResponse;
 import org.onap.cps.ncmp.rest.model.RestDmiPluginRegistration;
@@ -46,6 +48,11 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
 
     private final NetworkCmProxyDataService networkCmProxyDataService;
     private final NcmpRestInputMapper ncmpRestInputMapper;
+
+    @Override
+    public ResponseEntity<List<String>> filterDmiRegistryPrivateFields(final CmHandleQueryParameters request) {
+        return ResponseEntity.ok(Collections.emptyList());
+    }
 
     /**
      * Get all cm-handle IDs under a registered DMI plugin.
