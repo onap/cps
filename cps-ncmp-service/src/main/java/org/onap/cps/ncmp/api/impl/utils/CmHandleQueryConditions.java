@@ -18,19 +18,25 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.utils;
+package org.onap.cps.ncmp.api.impl.utils;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 import lombok.Getter;
 
 @Getter
-public enum ValidQueryProperties {
+public enum CmHandleQueryConditions {
     HAS_ALL_PROPERTIES("hasAllProperties"),
     HAS_ALL_MODULES("hasAllModules"),
     WITH_CPS_PATH("cmHandleWithCpsPath");
 
-    private final String queryProperty;
+    public static final List<String> ALL_CONDITION_NAMES = Arrays.stream(CmHandleQueryConditions.values())
+        .map(CmHandleQueryConditions::getConditionName).collect(Collectors.toList());
 
-    ValidQueryProperties(final String queryProperty) {
-        this.queryProperty = queryProperty;
+    private final String conditionName;
+
+    CmHandleQueryConditions(final String conditionName) {
+        this.conditionName = conditionName;
     }
 }
