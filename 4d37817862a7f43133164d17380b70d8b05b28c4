@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9215a9eb_9e38c30f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationCacheConfigSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-26T16:43:55Z",
+      "side": 1,
+      "message": "this number needs to be high for some reason so see the object in the Cache, makes no sense and needs investigation but not a spart of this commit. If it fails again someone just put @Ignore on these tests and a Jira to look at it again",
+      "range": {
+        "startLine": 79,
+        "startChar": 91,
+        "endLine": 79,
+        "endChar": 95
+      },
+      "revId": "4d37817862a7f43133164d17380b70d8b05b28c4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
