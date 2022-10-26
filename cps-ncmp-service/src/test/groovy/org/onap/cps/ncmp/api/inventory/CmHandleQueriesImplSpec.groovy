@@ -26,6 +26,7 @@ import org.onap.cps.spi.model.DataNode
 import spock.lang.Shared
 import spock.lang.Specification
 
+import static org.onap.cps.spi.FetchDescendantsOption.FETCH_DIRECT_CHILDREN_ONLY
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
 
@@ -37,10 +38,13 @@ class CmHandleQueriesImplSpec extends Specification {
     @Shared
     def static sampleDataNodes = [new DataNode()]
 
+    def expectedYangPrivateProperty = '//additional-properties[@name=\"Contact3\" and @value=\"newemailforstore3@bookstore.com\"]/ancestor::cm-handles'
+
     def static pnfDemo = createDataNode('PNFDemo')
     def static pnfDemo2 = createDataNode('PNFDemo2')
     def static pnfDemo3 = createDataNode('PNFDemo3')
     def static pnfDemo4 = createDataNode('PNFDemo4')
+    def static pnfDemo5 = createDataNode('PNFDemo5')
 
     def static pnfDemoCmHandle = new NcmpServiceCmHandle(cmHandleId: 'PNFDemo')
     def static pnfDemo2CmHandle = new NcmpServiceCmHandle(cmHandleId: 'PNFDemo2')
@@ -67,6 +71,30 @@ class CmHandleQueriesImplSpec extends Specification {
             def returnedCmHandlesWithData = objectUnderTest.queryCmHandlePublicProperties([:])
         then: 'no cm handles are returned'
             returnedCmHandlesWithData.keySet().size() == 0
+    }
+
+    def 'Query CmHandles using empty private properties query pair.'() {
+        when: 'a query on CmHandle private properties is executed using an empty map'
+            def returnedCmHandlesWithData = objectUnderTest.queryCmHandlePrivateProperties([:])
+        then: 'no cm handles are returned'
+            returnedCmHandlesWithData.keySet().size() == 0
+    }
+
+    def 'Query CmHandles using private properties query pair.'() {
+        given: 'a DataNode exists with a certain additional-property'
+            cpsDataPersistenceService.queryDataNodes(_, _, expectedYangPrivateProperty, _) >> [pnfDemo5]
+        when: 'a query on CmHandle private properties is executed using a map'
+            def returnedCmHandlesWithData = objectUnderTest.queryCmHandlePrivateProperties(['Contact3': 'newemailforstore3@bookstore.com'])
+        then: 'one cm handle is returned'
+            returnedCmHandlesWithData.keySet().size() == 1
+    }
+    def 'Query CmHandles using dmi properties query pair.'() {
+        given: 'a DataNode exists with a certain dmi property'
+            cpsDataPersistenceService.queryDataNodes(_,_,'//cm-handles[@dmi-service-name=\"my-dmi-plugin-identifier\"]/ancestor::cm-handles', FETCH_DIRECT_CHILDREN_ONLY) >> [pnfDemo, pnfDemo2]
+        when: 'a query on CmHandle private properties is executed using a map'
+            def returnedCmHandlesWithData = objectUnderTest.queryCmHandleDmiProperties(['dmiPluginName' : 'my-dmi-plugin-identifier'])
+        then: 'one cm handle is returned'
+            returnedCmHandlesWithData.keySet().size() == 2
     }
 
     def 'Combine two query results where #scenario.'() {

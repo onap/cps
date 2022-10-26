@@ -183,4 +183,12 @@ public interface NetworkCmProxyDataService {
      * @return set of cm handle IDs
      */
     Set<String> getAllCmHandleIdsByDmiPluginIdentifier(String dmiPluginIdentifier);
+
+    /**
+     * Get all cm handle IDs by private of public properties.
+     *
+     * @param cmHandleQueryApiParameters DMI plugin identifier
+     * @return set of cm handle IDs
+     */
+    Set<String> executeCmHandleIdSearchForInventory(CmHandleQueryApiParameters cmHandleQueryApiParameters);
 }

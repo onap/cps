@@ -61,6 +61,34 @@ public class CmHandleQueryRestParametersValidator {
         );
     }
 
+    /**
+     * Validate cm handle private dmi query parameters.
+     * @param cmHandleQueryServiceParameters name of data to be validated
+     */
+    public static void validateCmHandleDmiQueryParameters(
+            final CmHandleQueryServiceParameters cmHandleQueryServiceParameters) {
+        cmHandleQueryServiceParameters.getCmHandleQueryParameters().forEach(
+                conditionApiProperty -> {
+                    if (Strings.isNullOrEmpty(conditionApiProperty.getConditionName())) {
+                        throw createDataValidationException("Missing 'conditionName' - please supply a valid name.");
+                    }
+                    if (Arrays.stream(ValidInventoryQueryParameters.values()).noneMatch(validQueryProperty ->
+                            validQueryProperty.getQueryProperty().equals(conditionApiProperty.getConditionName()))) {
+                        throw createDataValidationException(
+                                String.format("Wrong 'conditionName': %s - please supply a valid name.",
+                                        conditionApiProperty.getConditionName()));
+                    }
+                    if (conditionApiProperty.getConditionParameters().isEmpty()) {
+                        throw createDataValidationException(
+                                "Empty 'conditionsParameters' - please supply a valid condition parameter.");
+                    }
+                    conditionApiProperty.getConditionParameters().forEach(
+                            CmHandleQueryRestParametersValidator::validateConditionParameter
+                    );
+                }
+        );
+    }
+
     private static void validateConditionParameter(final Map<String, String> conditionParameter) {
         if (conditionParameter.isEmpty()) {
             throw createDataValidationException(
