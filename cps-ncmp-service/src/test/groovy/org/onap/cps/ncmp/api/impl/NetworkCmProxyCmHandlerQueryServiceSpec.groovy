@@ -165,6 +165,43 @@ class NetworkCmProxyCmHandlerQueryServiceSpec extends Specification {
             returnedCmHandlesWithData.stream().map(d -> d.cmHandleId).collect(Collectors.toSet()) == ['PNFDemo1', 'PNFDemo2', 'PNFDemo3', 'PNFDemo4'] as Set
     }
 
+
+    def 'Retrieve all CMHandleIds for empty query parameters' () {
+        given: 'We query without any parameters'
+            def cmHandleQueryParameters = new CmHandleQueryServiceParameters()
+        and: 'the inventoryPersistence returns all four CmHandleIds'
+            inventoryPersistence.getDataNode(*_) >> dmiRegistry
+        when: 'the query executed'
+            def resultSet = objectUnderTest.queryCmHandleIdsForInventory(cmHandleQueryParameters)
+        then: 'the size of the result list equals the size of all cmHandleIds.'
+            resultSet.size() == 4
+    }
+
+    def 'Retrieve CMHandleIds by different DMI properties when #scenario.' () {
+        given: 'We query without any properties'
+            def cmHandleQueryParameters = new CmHandleQueryServiceParameters()
+            def conditionProperties = createConditionProperties(property, [['some-property-key': 'some-property-value']])
+            cmHandleQueryParameters.setCmHandleQueryParameters([conditionProperties])
+        and: 'the inventoryPersistence returns all four CmHandleIds'
+            cmHandleQueries.queryCmHandleDmiProperties(*_) >> dmiProperties
+            cmHandleQueries.queryCmHandlePublicProperties(*_) >> publicProperties
+            cmHandleQueries.queryCmHandlePrivateProperties(*_) >> privateProperties
+            cmHandleQueries.combineCmHandleQueries(*_) >> combinedQueryMap
+        when: 'the query executed'
+            def resultSet = objectUnderTest.queryCmHandleIdsForInventory(cmHandleQueryParameters)
+        then: 'the expected number of results are returned.'
+            resultSet.size() == expectedCmHandleIdsSize
+        where: 'the following data is used'
+            scenario                         | property                     | publicProperties                      | dmiProperties                         | privateProperties                     | combinedQueryMap                                              || expectedCmHandleIdsSize
+            'public properties provided'     | 'hasAllProperties'           | createNcmpServiceCmHandle('PNFDemo1') | [:]                                   |        [:]                            | ['PNFDemo1' : new NcmpServiceCmHandle(cmHandleId:'PNFDemo1')] || 1
+            'private properties provided'    | 'hasAllAdditionalProperties' | [:]                                   | [:]                                   | createNcmpServiceCmHandle('PNFDemo1') | ['PNFDemo1' : new NcmpServiceCmHandle(cmHandleId:'PNFDemo1')] || 1
+            'dmi plugin properties provided' | 'cmHandleWithDmiPlugin'      | [:]                                   | createNcmpServiceCmHandle('PNFDemo1') |        [:]                            | ['PNFDemo1' : new NcmpServiceCmHandle(cmHandleId:'PNFDemo1')] || 1
+    }
+
+    def createNcmpServiceCmHandle(String cmHandleId) {
+        return [ cmHandleId : new NcmpServiceCmHandle(cmHandleId : cmHandleId)]
+    }
+
     def createConditionProperties(String conditionName, List<Map<String, String>> conditionParameters) {
         return new ConditionProperties(conditionName : conditionName, conditionParameters : conditionParameters)
     }

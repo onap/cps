@@ -202,6 +202,24 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             result == [ 'public prop' : 'some public prop' ]
     }
 
+    def 'Execute cm handle id search for inventory'() {
+        given: 'a ConditionApiProperties object'
+            def conditionApiProps = new ConditionApiProperties()
+            conditionApiProps.conditionName = 'hasAllProperties'
+            conditionApiProps.conditionParameters = [ [ 'Color': 'yellow'] ]
+            def conditionParameter = [conditionApiProps]
+            def queryApiParams = new CmHandleQueryApiParameters()
+            queryApiParams.cmHandleQueryParameters = conditionParameter
+        and: 'the system returns an set of cmHandle ids'
+            1 * mockCpsCmHandlerQueryService.queryCmHandleIdsForInventory(*_) >> [ 'cmHandle1', 'cmHandle2' ]
+        when: 'getting cm handle id set for a given dmi property'
+            def result = objectUnderTest.executeCmHandleIdSearchForInventory(queryApiParams)
+        then: 'the result returns 2 elements'
+            result.size() == 2
+            result.contains('cmHandle1')
+            result.contains('cmHandle2')
+    }
+
     def 'Get cm handle composite state'() {
         given: 'a yang modelled cm handle'
             def compositeState = new CompositeState(cmHandleState: CmHandleState.ADVISED,
