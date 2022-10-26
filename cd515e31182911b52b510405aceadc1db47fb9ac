@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "934cc0fe_ed1593aa",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/cache/AnchorDataCacheConfig.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-10-26T09:47:02Z",
+      "side": 1,
+      "message": "NB: check not required as its not been called for other config.",
+      "range": {
+        "startLine": 60,
+        "startChar": 8,
+        "endLine": 62,
+        "endChar": 9
+      },
+      "revId": "cd515e31182911b52b510405aceadc1db47fb9ac",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3aa8e09d_9f552d17",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-10-26T09:47:02Z",
+      "side": 1,
+      "message": "NB: not required , can be directly returned.",
+      "range": {
+        "startLine": 266,
+        "startChar": 8,
+        "endLine": 266,
+        "endChar": 38
+      },
+      "revId": "cd515e31182911b52b510405aceadc1db47fb9ac",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5b7a8807_201930fa",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-10-26T09:47:02Z",
+      "side": 1,
+      "message": "NB: formatting issue",
+      "range": {
+        "startLine": 307,
+        "startChar": 32,
+        "endLine": 307,
+        "endChar": 39
+      },
+      "revId": "cd515e31182911b52b510405aceadc1db47fb9ac",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fafdf4e0_e6b9e166",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-10-26T09:47:02Z",
+      "side": 1,
+      "message": "NB: immediately return",
+      "range": {
+        "startLine": 336,
+        "startChar": 8,
+        "endLine": 336,
+        "endChar": 37
+      },
+      "revId": "cd515e31182911b52b510405aceadc1db47fb9ac",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "93f5b83c_e86ebce5",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsPersistenceSpecBase.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-10-26T09:47:02Z",
+      "side": 1,
+      "message": "NB : testAnchorDataCacheMap (agreed)",
+      "range": {
+        "startLine": 69,
+        "startChar": 17,
+        "endLine": 69,
+        "endChar": 33
+      },
+      "revId": "cd515e31182911b52b510405aceadc1db47fb9ac",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
