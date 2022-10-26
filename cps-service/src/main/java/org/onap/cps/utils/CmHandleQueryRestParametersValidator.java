@@ -28,6 +28,7 @@ import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.spi.model.CmHandleQueryServiceParameters;
+import org.onap.cps.spi.model.ConditionProperties;
 
 @Slf4j
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -41,23 +42,43 @@ public class CmHandleQueryRestParametersValidator {
             final CmHandleQueryServiceParameters cmHandleQueryServiceParameters) {
         cmHandleQueryServiceParameters.getCmHandleQueryParameters().forEach(
                 conditionApiProperty -> {
-                    if (Strings.isNullOrEmpty(conditionApiProperty.getConditionName())) {
-                        throw createDataValidationException("Missing 'conditionName' - please supply a valid name.");
-                    }
                     if (Arrays.stream(ValidQueryProperties.values()).noneMatch(validQueryProperty ->
                         validQueryProperty.getQueryProperty().equals(conditionApiProperty.getConditionName()))) {
                         throw createDataValidationException(
                                 String.format("Wrong 'conditionName': %s - please supply a valid name.",
                                 conditionApiProperty.getConditionName()));
                     }
-                    if (conditionApiProperty.getConditionParameters().isEmpty()) {
-                        throw createDataValidationException(
-                                "Empty 'conditionsParameters' - please supply a valid condition parameter.");
-                    }
-                    conditionApiProperty.getConditionParameters().forEach(
-                            CmHandleQueryRestParametersValidator::validateConditionParameter
-                    );
+                    commonQueryParameterValidator(conditionApiProperty);
                 }
+        );
+    }
+
+    /**
+     * Validate cm handle private dmi query parameters.
+     * @param cmHandleQueryServiceParameters name of data to be validated
+     */
+    public static void validateCmHandleDmiQueryParameters(
+            final CmHandleQueryServiceParameters cmHandleQueryServiceParameters) {
+        cmHandleQueryServiceParameters.getCmHandleQueryParameters().forEach(
+                conditionApiProperty -> {
+                    if (Arrays.stream(ValidInventoryQueryParameters.values()).noneMatch(validQueryProperty ->
+                            validQueryProperty.getQueryProperty().equals(conditionApiProperty.getConditionName()))) {
+                        throw createDataValidationException(
+                                String.format("Wrong 'conditionName': %s - please supply a valid name.",
+                                        conditionApiProperty.getConditionName()));
+                    }
+                    commonQueryParameterValidator(conditionApiProperty);
+                }
+        );
+    }
+
+    private static void commonQueryParameterValidator(final ConditionProperties conditionApiProperty) {
+        if (conditionApiProperty.getConditionParameters().isEmpty()) {
+            throw createDataValidationException(
+                    "Empty 'conditionsParameters' - please supply a valid condition parameter.");
+        }
+        conditionApiProperty.getConditionParameters().forEach(
+                CmHandleQueryRestParametersValidator::validateConditionParameter
         );
     }
 

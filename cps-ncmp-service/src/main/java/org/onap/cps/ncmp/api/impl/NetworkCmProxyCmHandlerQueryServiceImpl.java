@@ -43,12 +43,14 @@ import org.onap.cps.ncmp.api.NetworkCmProxyCmHandlerQueryService;
 import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
 import org.onap.cps.ncmp.api.inventory.CmHandleQueries;
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
+import org.onap.cps.ncmp.api.inventory.enums.PropertyType;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.spi.model.Anchor;
 import org.onap.cps.spi.model.CmHandleQueryServiceParameters;
 import org.onap.cps.spi.model.ConditionProperties;
 import org.onap.cps.spi.model.DataNode;
+import org.onap.cps.utils.ValidInventoryQueryParameters;
 import org.onap.cps.utils.ValidQueryProperties;
 import org.springframework.stereotype.Service;
 
@@ -113,6 +115,92 @@ public class NetworkCmProxyCmHandlerQueryServiceImpl implements NetworkCmProxyCm
         return moduleNameQueryResult;
     }
 
+    @Override
+    public Set<String> queryCmHandleIdsForInventory(
+            final CmHandleQueryServiceParameters cmHandleQueryServiceParameters) {
+
+        if (cmHandleQueryServiceParameters.getCmHandleQueryParameters().isEmpty()) {
+            return getAllCmHandleIds();
+        }
+
+        final Map<String, NcmpServiceCmHandle> publicPropertiesQueryResult = queryCmHandlesByPublicProperties(
+                cmHandleQueryServiceParameters);
+        if (publicPropertiesQueryResult != null && publicPropertiesQueryResult.isEmpty()) {
+            return Collections.emptySet();
+        }
+
+        final Map<String, NcmpServiceCmHandle> privatePropertiesQueryResult = queryCmHandlesByPrivateProperties(
+                cmHandleQueryServiceParameters);
+        if (privatePropertiesQueryResult != null && privatePropertiesQueryResult.isEmpty()) {
+            return Collections.emptySet();
+        }
+
+        final Map<String, NcmpServiceCmHandle> dmiPropertiesQueryResult = queryCmHandlesByDmiPlugin(
+                cmHandleQueryServiceParameters);
+        if (dmiPropertiesQueryResult != null && dmiPropertiesQueryResult.isEmpty()) {
+            return Collections.emptySet();
+        }
+
+        final Map<String, NcmpServiceCmHandle> combinedResult =
+              combineQueryResults(publicPropertiesQueryResult, privatePropertiesQueryResult, dmiPropertiesQueryResult);
+
+        return combinedResult.keySet();
+    }
+
+    private Map<String, NcmpServiceCmHandle> queryCmHandlesByDmiPlugin(
+            final CmHandleQueryServiceParameters cmHandleQueryServiceParameters) {
+        final Map<String, String> dmiPropertyQueryPairs =
+                getPropertyPairs(cmHandleQueryServiceParameters.getCmHandleQueryParameters(),
+                        ValidInventoryQueryParameters.CM_HANDLE_WITH_DMI_PLUGIN.getQueryProperty());
+        if (dmiPropertyQueryPairs.isEmpty()) {
+            return NO_QUERY_TO_EXECUTE;
+        }
+
+        final String dmiPluginIdentifierValue = dmiPropertyQueryPairs.get(
+                PropertyType.DMI_PLUGIN.getYangContainerName());
+
+        final Set<NcmpServiceCmHandle> cmHandlesByDmiPluginIdentifier = cmHandleQueries
+                .getCmHandlesByDmiPluginIdentifier(dmiPluginIdentifierValue);
+
+        return cmHandlesByDmiPluginIdentifier.stream()
+                .collect(Collectors.toMap(NcmpServiceCmHandle::getCmHandleId, cmH -> cmH));
+    }
+
+    private Map<String, NcmpServiceCmHandle> queryCmHandlesByPrivateProperties(
+            final CmHandleQueryServiceParameters cmHandleQueryServiceParameters) {
+
+        final Map<String, String> privatePropertyQueryPairs =
+                getPropertyPairs(cmHandleQueryServiceParameters.getCmHandleQueryParameters(),
+                        ValidInventoryQueryParameters.HAS_ALL_ADDITIONAL_PROPERTIES.getQueryProperty());
+
+        return privatePropertyQueryPairs.isEmpty()
+                ? NO_QUERY_TO_EXECUTE
+                : cmHandleQueries.queryCmHandleAdditionalProperties(privatePropertyQueryPairs);
+    }
+
+    private Map<String, NcmpServiceCmHandle> queryCmHandlesByPublicProperties(
+            final CmHandleQueryServiceParameters cmHandleQueryServiceParameters) {
+
+        final Map<String, String> publicPropertyQueryPairs =
+                getPropertyPairs(cmHandleQueryServiceParameters.getCmHandleQueryParameters(),
+                        ValidQueryProperties.HAS_ALL_PROPERTIES.getQueryProperty());
+
+        return publicPropertyQueryPairs.isEmpty()
+                ? NO_QUERY_TO_EXECUTE
+                : cmHandleQueries.queryCmHandlePublicProperties(publicPropertyQueryPairs);
+    }
+
+    private Map<String, NcmpServiceCmHandle> combineQueryResults(
+            final Map<String, NcmpServiceCmHandle> publicPropertiesQueryResult,
+            final Map<String, NcmpServiceCmHandle> privatePropertiesQueryResult,
+            final Map<String, NcmpServiceCmHandle> dmiPropertiesQueryResult) {
+
+        final Map<String, NcmpServiceCmHandle> propertiesCombinedResult = cmHandleQueries
+                .combineCmHandleQueries(publicPropertiesQueryResult, privatePropertiesQueryResult);
+        return cmHandleQueries
+                .combineCmHandleQueries(propertiesCombinedResult, dmiPropertiesQueryResult);
+    }
+
     private Map<String, NcmpServiceCmHandle> combineWithModuleNameQuery(
             final CmHandleQueryServiceParameters cmHandleQueryServiceParameters,
             final Map<String, NcmpServiceCmHandle> previousQueryResult) {
@@ -164,7 +252,8 @@ public class NetworkCmProxyCmHandlerQueryServiceImpl implements NetworkCmProxyCm
         }
 
         final Map<String, String> publicPropertyQueryPairs =
-                getPublicPropertyPairs(cmHandleQueryServiceParameters.getCmHandleQueryParameters());
+                getPropertyPairs(cmHandleQueryServiceParameters.getCmHandleQueryParameters(),
+                        ValidQueryProperties.HAS_ALL_PROPERTIES.getQueryProperty());
         final Map<String, NcmpServiceCmHandle> propertiesQueryResult = publicPropertyQueryPairs.isEmpty()
                 ? NO_QUERY_TO_EXECUTE : cmHandleQueries.queryCmHandlePublicProperties(publicPropertyQueryPairs);
 
@@ -195,10 +284,10 @@ public class NetworkCmProxyCmHandlerQueryServiceImpl implements NetworkCmProxyCm
         return result;
     }
 
-    private Map<String, String> getPublicPropertyPairs(final List<ConditionProperties> conditionProperties) {
+    private Map<String, String> getPropertyPairs(final List<ConditionProperties> conditionProperties,
+                                                       final String queryProperty) {
         final Map<String, String> result = new HashMap<>();
-        getConditions(conditionProperties,
-                ValidQueryProperties.HAS_ALL_PROPERTIES.getQueryProperty()).forEach(result::putAll);
+        getConditions(conditionProperties, queryProperty).forEach(result::putAll);
         return result;
     }
 
