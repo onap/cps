@@ -23,12 +23,12 @@ package org.onap.cps.ncmp.api.impl
 import org.onap.cps.cpspath.parser.PathParsingException
 import org.onap.cps.ncmp.api.inventory.CmHandleQueries
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence
+import org.onap.cps.ncmp.api.models.CmHandleQueryServiceParameters
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.exceptions.DataInUseException
 import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.model.Anchor
-import org.onap.cps.spi.model.CmHandleQueryServiceParameters
 import org.onap.cps.spi.model.ConditionProperties
 import org.onap.cps.spi.model.DataNode
 import spock.lang.Specification
@@ -165,13 +165,55 @@ class NetworkCmProxyCmHandlerQueryServiceSpec extends Specification {
             returnedCmHandlesWithData.stream().map(d -> d.cmHandleId).collect(Collectors.toSet()) == ['PNFDemo1', 'PNFDemo2', 'PNFDemo3', 'PNFDemo4'] as Set
     }
 
+
+    def 'Retrieve all CMHandleIds for empty query parameters' () {
+        given: 'We query without any parameters'
+            def cmHandleQueryParameters = new CmHandleQueryServiceParameters()
+        and: 'the inventoryPersistence returns all four CmHandleIds'
+            inventoryPersistence.getDataNode(*_) >> dmiRegistry
+        when: 'the query executed'
+            def resultSet = objectUnderTest.queryCmHandleIdsForInventory(cmHandleQueryParameters)
+        then: 'the size of the result list equals the size of all cmHandleIds.'
+            resultSet.size() == 4
+    }
+
+    def 'Retrieve CMHandleIds by different DMI properties when #scenario.' () {
+        given: 'We query without any properties'
+            def cmHandleQueryParameters = new CmHandleQueryServiceParameters()
+            def conditionProperties = createConditionProperties(property, [['dmiPluginName': 'some-property-value']])
+            cmHandleQueryParameters.setCmHandleQueryParameters([conditionProperties])
+        and: 'the inventoryPersistence returns all four CmHandleIds'
+            cmHandleQueries.getCmHandlesByDmiPluginIdentifier(*_) >> dmiProperties
+            cmHandleQueries.queryCmHandlePublicProperties(*_) >> publicProperties
+            cmHandleQueries.queryCmHandleAdditionalProperties(*_) >> privateProperties
+            cmHandleQueries.combineCmHandleQueries(*_) >> combinedQueryMap
+        when: 'the query executed'
+            def resultSet = objectUnderTest.queryCmHandleIdsForInventory(cmHandleQueryParameters)
+        then: 'the expected number of results are returned.'
+            resultSet.size() == expectedCmHandleIdsSize
+        where: 'the following data is used'
+            scenario                                                        | property                     | publicProperties                      | dmiProperties                                    | privateProperties                     | combinedQueryMap                                              || expectedCmHandleIdsSize
+            'public properties provided'                                    | 'hasAllProperties'           | createCmHandleMap(['H1','H2'])        | [:]                                              |        [:]                            | ['PNFDemo1' : new NcmpServiceCmHandle(cmHandleId:'PNFDemo1')] || 1
+            'public properties provided but no matching CmHandle found'     | 'hasAllProperties'           | [:]                                   | [:]                                              |        [:]                            | [:]                                                           || 0
+            'private properties provided'                                   | 'hasAllAdditionalProperties' | [:]                                   | [:]                                              | createCmHandleMap('PNFDemo1') | ['PNFDemo1' : new NcmpServiceCmHandle(cmHandleId:'PNFDemo1')] || 1
+            'private properties provided but no matching CmHandle found'    | 'hasAllAdditionalProperties' | null                                  | [:]                                              | [:]                                  | [:]                                                           || 0
+            'dmi plugin properties provided'                                | 'cmHandleWithDmiPlugin'      | [:]                                   | [new NcmpServiceCmHandle(cmHandleId:'PNFDemo1')] |        [:]                            | ['PNFDemo1' : new NcmpServiceCmHandle(cmHandleId:'PNFDemo1')] || 1
+            'dmi plugin properties provided but no matching CmHandle found' | 'cmHandleWithDmiPlugin'      | null                                  | [ ]                                              | null                                  | [:]                                                           || 0
+    }
+
+    def createCmHandleMap(cmHandleIds) {
+        def cmHandleMap = [:]
+        cmHandleIds.each{ cmHandleMap[it] = new NcmpServiceCmHandle(cmHandleId : it) }
+        return cmHandleMap
+    }
+
     def createConditionProperties(String conditionName, List<Map<String, String>> conditionParameters) {
         return new ConditionProperties(conditionName : conditionName, conditionParameters : conditionParameters)
     }
 
     def static createDataNodeList(dataNodeIds) {
         def dataNodes =[]
-        dataNodeIds.forEach(id -> {dataNodes.add(new DataNode(xpath: '/dmi-registry/cm-handles[@id=\'' + id + '\']', leaves: ['id':id]))})
+        dataNodeIds.each{ dataNodes << new DataNode(xpath: "/dmi-registry/cm-handles[@id='${it}']", leaves: ['id':it]) }
         return dataNodes
     }
 }

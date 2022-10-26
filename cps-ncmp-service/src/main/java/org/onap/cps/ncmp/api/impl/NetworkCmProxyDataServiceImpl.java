@@ -25,7 +25,7 @@ package org.onap.cps.ncmp.api.impl;
 
 import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME;
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum;
-import static org.onap.cps.utils.CmHandleQueryRestParametersValidator.validateCmHandleQueryParameters;
+import static org.onap.cps.ncmp.api.impl.utils.RestQueryParametersValidator.validateCmHandleQueryParameters;
 
 import com.hazelcast.map.IMap;
 import java.time.OffsetDateTime;
@@ -45,6 +45,8 @@ import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
 import org.onap.cps.ncmp.api.impl.event.lcm.LcmEventsCmHandleStateHandler;
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations;
 import org.onap.cps.ncmp.api.impl.operations.DmiOperations;
+import org.onap.cps.ncmp.api.impl.utils.CmHandleQueryConditions;
+import org.onap.cps.ncmp.api.impl.utils.InventoryQueryConditions;
 import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.inventory.CmHandleQueries;
@@ -54,6 +56,7 @@ import org.onap.cps.ncmp.api.inventory.CompositeStateUtils;
 import org.onap.cps.ncmp.api.inventory.DataStoreSyncState;
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.api.models.CmHandleQueryApiParameters;
+import org.onap.cps.ncmp.api.models.CmHandleQueryServiceParameters;
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse;
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationError;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
@@ -64,7 +67,6 @@ import org.onap.cps.spi.exceptions.AlreadyDefinedExceptionBatch;
 import org.onap.cps.spi.exceptions.CpsException;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.onap.cps.spi.exceptions.DataValidationException;
-import org.onap.cps.spi.model.CmHandleQueryServiceParameters;
 import org.onap.cps.spi.model.ModuleDefinition;
 import org.onap.cps.spi.model.ModuleReference;
 import org.onap.cps.utils.JsonObjectMapper;
@@ -171,9 +173,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     public Set<NcmpServiceCmHandle> executeCmHandleSearch(final CmHandleQueryApiParameters cmHandleQueryApiParameters) {
         final CmHandleQueryServiceParameters cmHandleQueryServiceParameters = jsonObjectMapper.convertToValueType(
                 cmHandleQueryApiParameters, CmHandleQueryServiceParameters.class);
-
-        validateCmHandleQueryParameters(cmHandleQueryServiceParameters);
-
+        validateCmHandleQueryParameters(cmHandleQueryServiceParameters, CmHandleQueryConditions.ALL_CONDITION_NAMES);
         return networkCmProxyCmHandlerQueryService.queryCmHandles(cmHandleQueryServiceParameters);
     }
 
@@ -187,9 +187,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     public Set<String> executeCmHandleIdSearch(final CmHandleQueryApiParameters cmHandleQueryApiParameters) {
         final CmHandleQueryServiceParameters cmHandleQueryServiceParameters = jsonObjectMapper.convertToValueType(
                 cmHandleQueryApiParameters, CmHandleQueryServiceParameters.class);
-
-        validateCmHandleQueryParameters(cmHandleQueryServiceParameters);
-
+        validateCmHandleQueryParameters(cmHandleQueryServiceParameters, CmHandleQueryConditions.ALL_CONDITION_NAMES);
         return networkCmProxyCmHandlerQueryService.queryCmHandleIds(cmHandleQueryServiceParameters);
     }
 
@@ -235,6 +233,19 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         final Set<String> cmHandleIds = new HashSet<>(ncmpServiceCmHandles.size());
         ncmpServiceCmHandles.forEach(cmHandle -> cmHandleIds.add(cmHandle.getCmHandleId()));
         return cmHandleIds;
+    }
+
+    /**
+     * Get all cm handle IDs by various properties.
+     *
+     * @param cmHandleQueryServiceParameters cm handle query parameters
+     * @return set of cm handle IDs
+     */
+    @Override
+    public Set<String> executeCmHandleIdSearchForInventory(
+            final CmHandleQueryServiceParameters cmHandleQueryServiceParameters) {
+        validateCmHandleQueryParameters(cmHandleQueryServiceParameters, InventoryQueryConditions.ALL_CONDITION_NAMES);
+        return networkCmProxyCmHandlerQueryService.queryCmHandleIdsForInventory(cmHandleQueryServiceParameters);
     }
 
     /**

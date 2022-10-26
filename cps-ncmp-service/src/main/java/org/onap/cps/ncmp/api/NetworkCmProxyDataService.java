@@ -30,6 +30,7 @@ import java.util.Map;
 import java.util.Set;
 import org.onap.cps.ncmp.api.inventory.CompositeState;
 import org.onap.cps.ncmp.api.models.CmHandleQueryApiParameters;
+import org.onap.cps.ncmp.api.models.CmHandleQueryServiceParameters;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistrationResponse;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
@@ -183,4 +184,12 @@ public interface NetworkCmProxyDataService {
      * @return set of cm handle IDs
      */
     Set<String> getAllCmHandleIdsByDmiPluginIdentifier(String dmiPluginIdentifier);
+
+    /**
+     * Get all cm handle IDs by various search criteria.
+     *
+     * @param cmHandleQueryServiceParameters cm handle query parameters
+     * @return set of cm handle IDs
+     */
+    Set<String> executeCmHandleIdSearchForInventory(CmHandleQueryServiceParameters cmHandleQueryServiceParameters);
 }

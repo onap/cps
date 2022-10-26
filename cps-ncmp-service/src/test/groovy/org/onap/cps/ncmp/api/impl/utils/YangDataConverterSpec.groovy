@@ -18,9 +18,8 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.utils
+package org.onap.cps.ncmp.api.impl.utils
 
-import org.onap.cps.ncmp.api.impl.utils.YangDataConverter
 import org.onap.cps.spi.model.DataNode
 import spock.lang.Specification
 
