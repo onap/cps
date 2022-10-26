@@ -18,19 +18,25 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.utils;
+package org.onap.cps.ncmp.api.models;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Collections;
+import java.util.List;
+import javax.validation.Valid;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.Setter;
+import org.onap.cps.spi.model.ConditionProperties;
 
+@Setter
 @Getter
-public enum ValidQueryProperties {
-    HAS_ALL_PROPERTIES("hasAllProperties"),
-    HAS_ALL_MODULES("hasAllModules"),
-    WITH_CPS_PATH("cmHandleWithCpsPath");
-
-    private final String queryProperty;
-
-    ValidQueryProperties(final String queryProperty) {
-        this.queryProperty = queryProperty;
-    }
+@EqualsAndHashCode
+@JsonInclude(Include.NON_EMPTY)
+public class CmHandleQueryServiceParameters {
+    @JsonProperty("cmHandleQueryParameters")
+    @Valid
+    private List<ConditionProperties> cmHandleQueryParameters = Collections.emptyList();
 }
