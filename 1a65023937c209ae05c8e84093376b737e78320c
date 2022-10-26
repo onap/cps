@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df4a06a0_764e1b9d",
+        "filename": "cps-ncmp-rest/docs/openapi/openapi.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-10-26T14:24:41Z",
+      "side": 1,
+      "message": "NB : I have some basic questions as below :\n\n1. The client sends HTTP requests with the Authorization header that contains the word Basic word followed by a space and a base64-encoded string username:password. For example, to authorize as demo / p@55w0rd the client would send\n\nAuthorization: Basic ZGVtbzpwQDU1dzByZA\u003d\u003d\n\nWhat \"username:password\" are we using here for authorizing NCMP to CPS Proxy API ?\n\n2. How are we handling 401 “Unauthorized” response returned for requests with missing or incorrect credentials ?",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 19
+      },
+      "revId": "1a65023937c209ae05c8e84093376b737e78320c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
