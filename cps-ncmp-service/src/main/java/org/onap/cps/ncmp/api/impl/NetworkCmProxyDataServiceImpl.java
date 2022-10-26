@@ -25,6 +25,7 @@ package org.onap.cps.ncmp.api.impl;
 
 import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME;
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum;
+import static org.onap.cps.utils.CmHandleQueryRestParametersValidator.validateCmHandleDmiQueryParameters;
 import static org.onap.cps.utils.CmHandleQueryRestParametersValidator.validateCmHandleQueryParameters;
 
 import com.hazelcast.map.IMap;
@@ -235,6 +236,21 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         final Set<String> cmHandleIds = new HashSet<>(ncmpServiceCmHandles.size());
         ncmpServiceCmHandles.forEach(cmHandle -> cmHandleIds.add(cmHandle.getCmHandleId()));
         return cmHandleIds;
+    }
+
+    /**
+     * Get all cm handle IDs by various properties.
+     *
+     * @param cmHandleQueryServiceParameters cm handle query parameters
+     * @return set of cm handle IDs
+     */
+    @Override
+    public Set<String> executeCmHandleIdSearchForInventory(
+            final CmHandleQueryServiceParameters cmHandleQueryServiceParameters) {
+
+        validateCmHandleDmiQueryParameters(cmHandleQueryServiceParameters);
+
+        return networkCmProxyCmHandlerQueryService.queryCmHandleIdsForInventory(cmHandleQueryServiceParameters);
     }
 
     /**
