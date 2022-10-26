@@ -1537,6 +1537,10 @@ paths:
                 details: Internal Server Error occurred
       x-codegen-request-body-name: xpath
 components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
   schemas:
     ErrorMessage:
       title: Error
@@ -1609,3 +1613,6 @@ components:
             name: SciFi
           - code: 2
             name: kids
+
+security:
+  - basicAuth: []

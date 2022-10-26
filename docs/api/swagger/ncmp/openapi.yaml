@@ -1193,6 +1193,10 @@ paths:
                   http-code: 400
                   body: Bad Request
 components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
   schemas:
     ErrorMessage:
       title: Error
@@ -1477,3 +1481,6 @@ components:
         - conditionName: cmHandleWithCpsPath
           conditionParameters:
           - cpsPath: "//state[@data-sync-enabled='true']"
+
+security:
+  - basicAuth: []
