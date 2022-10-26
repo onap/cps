@@ -34,6 +34,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
+import org.onap.cps.ncmp.api.inventory.enums.PropertyAccessType;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.FetchDescendantsOption;
@@ -53,14 +54,27 @@ public class CmHandleQueriesImpl implements CmHandleQueries {
 
 
     @Override
+    public Map<String, NcmpServiceCmHandle> queryCmHandlePrivateProperties(
+            final Map<String, String> privatePropertyQueryPairs) {
+        return queryCmHandleAnyProperties(privatePropertyQueryPairs, PropertyAccessType.PRIVATE);
+    }
+
+    @Override
     public Map<String, NcmpServiceCmHandle> queryCmHandlePublicProperties(
             final Map<String, String> publicPropertyQueryPairs) {
+        return queryCmHandleAnyProperties(publicPropertyQueryPairs, PropertyAccessType.PUBLIC);
+    }
+
+    private  Map<String, NcmpServiceCmHandle> queryCmHandleAnyProperties(
+            final Map<String, String> publicPropertyQueryPairs,
+            final PropertyAccessType accessType) {
         if (publicPropertyQueryPairs.isEmpty()) {
             return Collections.emptyMap();
         }
         Map<String, NcmpServiceCmHandle> cmHandleIdToNcmpServiceCmHandles = null;
         for (final Map.Entry<String, String> publicPropertyQueryPair : publicPropertyQueryPairs.entrySet()) {
-            final String cpsPath = "//public-properties[@name=\"" + publicPropertyQueryPair.getKey()
+            final String cpsPath = "//" + accessType.getYangContainerName() + "[@name=\""
+                    + publicPropertyQueryPair.getKey()
                     + "\" and @value=\"" + publicPropertyQueryPair.getValue() + "\"]";
 
             final Collection<DataNode> dataNodes = queryCmHandleDataNodesByCpsPath(cpsPath, INCLUDE_ALL_DESCENDANTS);
