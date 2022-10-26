@@ -22,10 +22,13 @@ package org.onap.cps.ncmp.rest.controller
 
 import org.mapstruct.factory.Mappers
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
+import org.onap.cps.ncmp.rest.model.CmHandleQueryParameters
 import org.onap.cps.ncmp.rest.model.RestDmiPluginRegistration
 import org.onap.cps.ncmp.rest.model.RestInputCmHandle
 import org.onap.cps.ncmp.rest.model.RestModuleDefinition
 import org.onap.cps.ncmp.rest.model.RestModuleReference
+import org.onap.cps.spi.model.CmHandleQueryServiceParameters
+import org.onap.cps.spi.model.ConditionProperties
 import org.onap.cps.spi.model.ModuleDefinition
 import org.onap.cps.spi.model.ModuleReference
 import spock.lang.Specification
@@ -103,5 +106,22 @@ class NcmpRestInputMapperSpec extends Specification {
                     '    revision: revision\n' +
                     '    content: content\n' +
                     '}'
+    }
+
+    def 'Convert a CmHandleQueryParameters to a CmHandleQueryServiceParameters'() {
+        given: 'a CmHandleQueryParameters'
+            def conditionParameter = new org.onap.cps.ncmp.rest.model.ConditionProperties()
+            conditionParameter.conditionName = "hasAllProperties"
+            conditionParameter.conditionParameters = [ [ "Color" : "blue" ] as Map ] as List
+
+            def properties = [conditionParameter]
+            def cmHandleQuery = new CmHandleQueryParameters()
+            cmHandleQuery.cmHandleQueryParameters = properties
+        when: 'toCmHandleQueryServiceParameters is called'
+            def result = objectUnderTest.toCmHandleQueryServiceParameters(cmHandleQuery)
+        then: 'the result is of the correct class CmHandleQueryServiceParameters'
+            result.class == CmHandleQueryServiceParameters.class
+            result.cmHandleQueryParameters.get(0).conditionName == conditionParameter.conditionName
+            result.cmHandleQueryParameters.get(0).conditionParameters == conditionParameter.conditionParameters
     }
 }
