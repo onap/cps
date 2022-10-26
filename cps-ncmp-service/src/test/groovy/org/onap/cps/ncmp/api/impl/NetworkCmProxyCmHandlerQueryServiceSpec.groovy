@@ -22,13 +22,14 @@ package org.onap.cps.ncmp.api.impl
 
 import org.onap.cps.cpspath.parser.PathParsingException
 import org.onap.cps.ncmp.api.inventory.CmHandleQueries
+import org.onap.cps.ncmp.api.inventory.CmHandleQueriesImpl
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence
+import org.onap.cps.ncmp.api.models.CmHandleQueryServiceParameters
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.exceptions.DataInUseException
 import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.model.Anchor
-import org.onap.cps.spi.model.CmHandleQueryServiceParameters
 import org.onap.cps.spi.model.ConditionProperties
 import org.onap.cps.spi.model.DataNode
 import spock.lang.Specification
@@ -38,12 +39,14 @@ import java.util.stream.Collectors
 class NetworkCmProxyCmHandlerQueryServiceSpec extends Specification {
 
     def cmHandleQueries = Mock(CmHandleQueries)
-    def inventoryPersistence = Mock(InventoryPersistence)
+    def spyCmHandleQueries = Spy(CmHandleQueriesImpl)
+    def mockInventoryPersistence = Mock(InventoryPersistence)
 
     def static someCmHandleDataNode = new DataNode(xpath: '/dmi-registry/cm-handles[@id=\'some-cmhandle-id\']', leaves: ['id':'some-cmhandle-id'])
     def dmiRegistry = new DataNode(xpath: '/dmi-registry', childDataNodes: createDataNodeList(['PNFDemo1', 'PNFDemo2', 'PNFDemo3', 'PNFDemo4']))
 
-    def objectUnderTest = new NetworkCmProxyCmHandlerQueryServiceImpl(cmHandleQueries, inventoryPersistence)
+    def objectUnderTest = new NetworkCmProxyCmHandlerQueryServiceImpl(cmHandleQueries, mockInventoryPersistence)
+    def objectUnderTestSpy = new NetworkCmProxyCmHandlerQueryServiceImpl(spyCmHandleQueries, mockInventoryPersistence)
 
     def 'Retrieve cm handles with cpsPath when combined with no Module Query.'() {
         given: 'a cmHandleWithCpsPath condition property'
@@ -105,9 +108,9 @@ class NetworkCmProxyCmHandlerQueryServiceSpec extends Specification {
         and: 'null is returned from the state and public property queries'
             cmHandleQueries.combineCmHandleQueries(*_) >> null
         and: '#scenario from the modules query'
-            inventoryPersistence.queryAnchors(*_) >> returnedAnchors
+            mockInventoryPersistence.queryAnchors(*_) >> returnedAnchors
         and: 'the same cmHandles are returned from the persistence service layer'
-            returnedAnchors.size() * inventoryPersistence.getDataNode(*_) >> returnedCmHandles
+            returnedAnchors.size() * mockInventoryPersistence.getDataNode(*_) >> returnedCmHandles
         when: 'the query is executed for both cm handle ids and details'
             def returnedCmHandlesJustIds = objectUnderTest.queryCmHandleIds(cmHandleQueryParameters)
             def returnedCmHandlesWithData = objectUnderTest.queryCmHandles(cmHandleQueryParameters)
@@ -131,7 +134,7 @@ class NetworkCmProxyCmHandlerQueryServiceSpec extends Specification {
         and: 'cmHandles are returned from the state and public property combined queries'
             cmHandleQueries.combineCmHandleQueries(*_) >> combinedQueryMap
         and: 'cmHandles are returned from the module names query'
-            inventoryPersistence.queryAnchors(['some-module-name']) >> anchorsForModuleQuery
+            mockInventoryPersistence.queryAnchors(['some-module-name']) >> anchorsForModuleQuery
         and: 'cmHandleQueries returns a datanode result'
             2 * cmHandleQueries.queryCmHandleDataNodesByCpsPath(*_) >> [someCmHandleDataNode]
         when: 'the query is executed for both cm handle ids and details'
@@ -154,9 +157,9 @@ class NetworkCmProxyCmHandlerQueryServiceSpec extends Specification {
         given: 'We use an empty query'
             def cmHandleQueryParameters = new CmHandleQueryServiceParameters()
         and: 'the inventory persistence returns the dmi registry datanode with just ids'
-            inventoryPersistence.getDataNode("/dmi-registry", FetchDescendantsOption.FETCH_DIRECT_CHILDREN_ONLY) >> dmiRegistry
+            mockInventoryPersistence.getDataNode("/dmi-registry", FetchDescendantsOption.FETCH_DIRECT_CHILDREN_ONLY) >> dmiRegistry
         and: 'the inventory persistence returns the dmi registry datanode with data'
-            inventoryPersistence.getDataNode("/dmi-registry") >> dmiRegistry
+            mockInventoryPersistence.getDataNode("/dmi-registry") >> dmiRegistry
         when: 'the query is executed for both cm handle ids and details'
             def returnedCmHandlesJustIds = objectUnderTest.queryCmHandleIds(cmHandleQueryParameters)
             def returnedCmHandlesWithData = objectUnderTest.queryCmHandles(cmHandleQueryParameters)
@@ -165,13 +168,81 @@ class NetworkCmProxyCmHandlerQueryServiceSpec extends Specification {
             returnedCmHandlesWithData.stream().map(d -> d.cmHandleId).collect(Collectors.toSet()) == ['PNFDemo1', 'PNFDemo2', 'PNFDemo3', 'PNFDemo4'] as Set
     }
 
+
+    def 'Retrieve all CMHandleIds for empty query parameters' () {
+        given: 'We query without any parameters'
+            def cmHandleQueryParameters = new CmHandleQueryServiceParameters()
+        and: 'the inventoryPersistence returns all four CmHandleIds'
+            mockInventoryPersistence.getDataNode(*_) >> dmiRegistry
+        when: 'the query executed'
+            def resultSet = objectUnderTest.queryCmHandleIdsForInventory(cmHandleQueryParameters)
+        then: 'the size of the result list equals the size of all cmHandleIds.'
+            resultSet.size() == 4
+    }
+
+    def 'Retrieve CMHandleIds when #scenario.' () {
+        given: 'a query object created with different conditions'
+            def cmHandleQueryParameters = new CmHandleQueryServiceParameters()
+            def conditionProperties = createConditionProperties(condition, [['some-key': 'some-condition-value']])
+            cmHandleQueryParameters.setCmHandleQueryParameters([conditionProperties])
+        and: 'the inventoryPersistence returns different CmHandleIds'
+            spyCmHandleQueries.queryCmHandlePublicProperties(*_) >> cmHandlesWithMatchingPublicProperties
+            spyCmHandleQueries.queryCmHandleAdditionalProperties(*_) >> cmHandlesWithMatchingPrivateProperties
+            spyCmHandleQueries.getCmHandlesByDmiPluginIdentifier(*_) >> dmiNames
+        and: 'the underlying service called as many times as expected'
+            methodCalls * spyCmHandleQueries.combineCmHandleQueries(_, _)
+        when: 'the query executed'
+            def resultSet = objectUnderTestSpy.queryCmHandleIdsForInventory(cmHandleQueryParameters)
+        then: 'the expected number of results are returned.'
+            resultSet.size() == expectedCmHandleIdsSize
+        where: 'the following data is used'
+            scenario                                                        | condition                    | cmHandlesWithMatchingPublicProperties | dmiNames                            | cmHandlesWithMatchingPrivateProperties | combinedQueryMap                | methodCalls || expectedCmHandleIdsSize
+            'public properties provided'                                    | 'hasAllProperties'           | createCmHandleMap(['H1', 'H2'])       | [:]                                 |  null                                  | createCmHandleMap(['H1', 'H2']) | 2           || 2
+            'public properties provided but no matching CmHandle found'     | 'hasAllProperties'           | [:]                                   | [:]                                 |  [:]                                   | [  ]                            | 0           || 0
+            'private properties provided'                                   | 'hasAllAdditionalProperties' | [:]                                   | [:]                                 | createCmHandleMap(['H1', 'H2'])        | createCmHandleMap(['H1', 'H2']) | 2           || 2
+            'private properties provided but no matching CmHandle found'    | 'hasAllAdditionalProperties' | null                                  | [:]                                 |  [:]                                   | [  ]                            | 0           || 0
+    }
+
+    def 'Retrieve CMHandleIds by different DMI properties when #scenario.' () {
+        given: 'a query object created with dmi plugin as condition'
+            def cmHandleQueryParameters = new CmHandleQueryServiceParameters()
+            def conditionProperties = createConditionProperties('cmHandleWithDmiPlugin', [['dmiPluginName': 'some-condition-value']])
+            cmHandleQueryParameters.setCmHandleQueryParameters([conditionProperties])
+        and: 'the inventoryPersistence returns different CmHandleIds'
+            spyCmHandleQueries.queryCmHandlePublicProperties(*_) >> cmHandlesWithMatchingPublicProperties
+            spyCmHandleQueries.queryCmHandleAdditionalProperties(*_) >> cmHandlesWithMatchingPrivateProperties
+            spyCmHandleQueries.getCmHandlesByDmiPluginIdentifier(*_) >> dmiNames
+        and: 'the underlying service called as many times as expected'
+            methodCalls * spyCmHandleQueries.combineCmHandleQueries(_, _)
+        when: 'the query executed'
+            def resultSet = objectUnderTestSpy.queryCmHandleIdsForInventory(cmHandleQueryParameters)
+        then: 'the expected number of results are returned.'
+            resultSet.size() == expectedCmHandleIdsSize
+        where: 'the following data is used'
+            scenario                                                        | cmHandlesWithMatchingPublicProperties | dmiNames                        | cmHandlesWithMatchingPrivateProperties | combinedQueryMap                | methodCalls || expectedCmHandleIdsSize
+            'dmi plugin properties provided'                                | [:]                                   | createCmHandleSet(['H1', 'H2']) |        [:]                             | createCmHandleMap(['H1', 'H2']) | 2           || 2
+            'dmi plugin properties provided but no matching CmHandle found' | null                                  | [ ]                             | null                                   | [:]                             | 0           || 0
+    }
+
+    def createCmHandleMap(cmHandleIds) {
+        def cmHandleMap = [:]
+        cmHandleIds.each{ cmHandleMap[it] = new NcmpServiceCmHandle(cmHandleId : it) }
+        return cmHandleMap
+    }
+
+    def createCmHandleSet(cmHandleIds) {
+        def cmHandleSet = []
+        cmHandleIds.each{ cmHandleSet.add( new NcmpServiceCmHandle(cmHandleId : it)) }
+        return cmHandleSet
+    }
+
     def createConditionProperties(String conditionName, List<Map<String, String>> conditionParameters) {
         return new ConditionProperties(conditionName : conditionName, conditionParameters : conditionParameters)
     }
 
     def static createDataNodeList(dataNodeIds) {
         def dataNodes =[]
-        dataNodeIds.forEach(id -> {dataNodes.add(new DataNode(xpath: '/dmi-registry/cm-handles[@id=\'' + id + '\']', leaves: ['id':id]))})
+        dataNodeIds.each{ dataNodes << new DataNode(xpath: "/dmi-registry/cm-handles[@id='${it}']", leaves: ['id':it]) }
         return dataNodes
     }
 }

@@ -27,10 +27,12 @@ import org.onap.cps.ncmp.api.NetworkCmProxyDataService
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.models.DmiPluginRegistrationResponse
-import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
+import org.onap.cps.ncmp.rest.model.CmHandleQueryParameters
 import org.onap.cps.ncmp.rest.model.CmHandlerRegistrationErrorResponse
+import org.onap.cps.ncmp.rest.model.ConditionProperties
 import org.onap.cps.ncmp.rest.model.DmiPluginRegistrationErrorResponse
 import org.onap.cps.ncmp.rest.model.RestDmiPluginRegistration
+import org.onap.cps.ncmp.api.models.CmHandleQueryServiceParameters
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
@@ -60,6 +62,9 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
 
     DmiPluginRegistration mockDmiPluginRegistration = Mock()
 
+    CmHandleQueryServiceParameters cmHandleQueryServiceParameters = Mock()
+
+    @SpringBean
     JsonObjectMapper jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
 
     @Value('${rest.api.ncmp-inventory-base-path}/v1')
@@ -100,6 +105,30 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
             ).andReturn().response
         then: 'response status is bad request'
             response.status == HttpStatus.BAD_REQUEST.value()
+    }
+
+    def 'CmHandle search endpoint test #scenario.'() {
+        given: 'a query object'
+            def cmHandleQueryParameters = jsonObjectMapper.asJsonString(parameters)
+        and: 'the mapper service returns a converted object'
+            ncmpRestInputMapper.toCmHandleQueryServiceParameters(parameters) >> cmHandleQueryServiceParameters
+        and: 'the service returns the desired results'
+            mockNetworkCmProxyDataService.executeCmHandleIdSearchForInventory(cmHandleQueryServiceParameters) >> serviceMockResponse
+        when: 'post request is performed & search is called with the given request parameters'
+            def response = mvc.perform(
+                    post("$ncmpBasePathV1/ch/searches")
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(cmHandleQueryParameters)
+            ).andReturn().response
+        then: 'response status is OK and the response data matches the expected response.'
+            response.status == HttpStatus.OK.value()
+            def responseBody = jsonObjectMapper.convertJsonString(response.getContentAsString(), List)
+            responseBody == expectedResult
+        where:
+            scenario                                                   | parameters                    | serviceMockResponse        || expectedResult
+            'with no CmHandle in the database'                         | new CmHandleQueryParameters() | []                         || []
+            'with an empty request body all cmHandleId returned'       | new CmHandleQueryParameters() | ['cmHandle1', 'cmHandle2'] || ['cmHandle1', 'cmHandle2']
+            'with a valid query object  a certain cmHandleId returned' | createSearchRequest()         | ['cmHandle1']              || ['cmHandle1']
     }
 
     def 'DMI Registration: All cm-handles operations processed successfully.'() {
@@ -189,4 +218,21 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
         return CmHandleRegistrationResponse.createSuccessResponse(cmHandle)
     }
 
+    def createSearchRequest() {
+        def request = new CmHandleQueryParameters()
+        def conditionParameterDmi = new ConditionProperties()
+        conditionParameterDmi.conditionName("cmHandleWithDmiPlugin")
+        conditionParameterDmi.conditionParameters([ [ "dmiPluginName" : "sampleName" ] as Map ] as List)
+
+        def conditionParameterPrivate = new ConditionProperties()
+        conditionParameterPrivate.conditionName("hasAllAdditionalProperties")
+        conditionParameterPrivate.conditionParameters([ [ "Color" : "yellow" ] as Map ] as List)
+
+        def conditionParameterPublic = new ConditionProperties()
+        conditionParameterPublic.conditionName("hasAllProperties")
+        conditionParameterPublic.conditionParameters([ [ "Color" : "blue" ] as Map ] as List)
+
+        request.cmHandleQueryParameters([conditionParameterDmi, conditionParameterPrivate, conditionParameterPublic])
+        return request
+    }
 }
