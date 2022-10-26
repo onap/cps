@@ -18,44 +18,44 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.utils;
+package org.onap.cps.ncmp.api.impl.utils;
 
 import com.google.common.base.Strings;
-import java.util.Arrays;
+import java.util.Collection;
 import java.util.Map;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.ncmp.api.models.CmHandleQueryServiceParameters;
 import org.onap.cps.spi.exceptions.DataValidationException;
-import org.onap.cps.spi.model.CmHandleQueryServiceParameters;
 
 @Slf4j
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class CmHandleQueryRestParametersValidator {
+public class RestQueryParametersValidator {
 
     /**
-     * Validate cm handle query parameters.
+     * Validate query parameters.
+     *
      * @param cmHandleQueryServiceParameters name of data to be validated
+     * @param validConditionNames valid condition names
      */
     public static void validateCmHandleQueryParameters(
-            final CmHandleQueryServiceParameters cmHandleQueryServiceParameters) {
+        final CmHandleQueryServiceParameters cmHandleQueryServiceParameters,
+        final Collection<String> validConditionNames) {
         cmHandleQueryServiceParameters.getCmHandleQueryParameters().forEach(
-                conditionApiProperty -> {
-                    if (Strings.isNullOrEmpty(conditionApiProperty.getConditionName())) {
-                        throw createDataValidationException("Missing 'conditionName' - please supply a valid name.");
-                    }
-                    if (Arrays.stream(ValidQueryProperties.values()).noneMatch(validQueryProperty ->
-                        validQueryProperty.getQueryProperty().equals(conditionApiProperty.getConditionName()))) {
+                cmHandleQueryParameter -> {
+                    if (validConditionNames.stream().noneMatch(validConditionName ->
+                        validConditionName.equals(cmHandleQueryParameter.getConditionName()))) {
                         throw createDataValidationException(
                                 String.format("Wrong 'conditionName': %s - please supply a valid name.",
-                                conditionApiProperty.getConditionName()));
+                                cmHandleQueryParameter.getConditionName()));
                     }
-                    if (conditionApiProperty.getConditionParameters().isEmpty()) {
+                    if (cmHandleQueryParameter.getConditionParameters().isEmpty()) {
                         throw createDataValidationException(
                                 "Empty 'conditionsParameters' - please supply a valid condition parameter.");
                     }
-                    conditionApiProperty.getConditionParameters().forEach(
-                            CmHandleQueryRestParametersValidator::validateConditionParameter
+                    cmHandleQueryParameter.getConditionParameters().forEach(
+                            RestQueryParametersValidator::validateConditionParameter
                     );
                 }
         );
@@ -67,7 +67,7 @@ public class CmHandleQueryRestParametersValidator {
                     "Empty 'conditionsParameter' - please supply a valid condition parameter.");
         }
         if (conditionParameter.size() > 1) {
-            throw createDataValidationException("Too many name in one 'conditionsParameter' -"
+            throw createDataValidationException("Too many names in one 'conditionsParameter' -"
                     + " please supply one name in one condition parameter.");
         }
         conditionParameter.forEach((key, value) -> {
