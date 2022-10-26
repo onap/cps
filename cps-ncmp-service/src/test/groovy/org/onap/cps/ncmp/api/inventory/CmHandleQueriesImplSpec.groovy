@@ -26,6 +26,7 @@ import org.onap.cps.spi.model.DataNode
 import spock.lang.Shared
 import spock.lang.Specification
 
+import static org.onap.cps.spi.FetchDescendantsOption.FETCH_DIRECT_CHILDREN_ONLY
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
 
@@ -37,10 +38,13 @@ class CmHandleQueriesImplSpec extends Specification {
     @Shared
     def static sampleDataNodes = [new DataNode()]
 
+    def expectedYangPrivateProperty = '//additional-properties[@name=\"Contact3\" and @value=\"newemailforstore3@bookstore.com\"]/ancestor::cm-handles'
+
     def static pnfDemo = createDataNode('PNFDemo')
     def static pnfDemo2 = createDataNode('PNFDemo2')
     def static pnfDemo3 = createDataNode('PNFDemo3')
     def static pnfDemo4 = createDataNode('PNFDemo4')
+    def static pnfDemo5 = createDataNode('PNFDemo5')
 
     def static pnfDemoCmHandle = new NcmpServiceCmHandle(cmHandleId: 'PNFDemo')
     def static pnfDemo2CmHandle = new NcmpServiceCmHandle(cmHandleId: 'PNFDemo2')
@@ -69,6 +73,22 @@ class CmHandleQueriesImplSpec extends Specification {
             returnedCmHandlesWithData.keySet().size() == 0
     }
 
+    def 'Query CmHandles using empty private properties query pair.'() {
+        when: 'a query on CmHandle private properties is executed using an empty map'
+            def returnedCmHandlesWithData = objectUnderTest.queryCmHandleAdditionalProperties([:])
+        then: 'no cm handles are returned'
+            returnedCmHandlesWithData.keySet().size() == 0
+    }
+
+    def 'Query CmHandles using private properties query pair.'() {
+        given: 'a DataNode exists with a certain additional-property'
+            cpsDataPersistenceService.queryDataNodes(_, _, expectedYangPrivateProperty, _) >> [pnfDemo5]
+        when: 'a query on CmHandle private properties is executed using a map'
+            def returnedCmHandlesWithData = objectUnderTest.queryCmHandleAdditionalProperties(['Contact3': 'newemailforstore3@bookstore.com'])
+        then: 'one cm handle is returned'
+            returnedCmHandlesWithData.keySet().size() == 1
+    }
+
     def 'Combine two query results where #scenario.'() {
         when: 'two query results in the form of a map of NcmpServiceCmHandles are combined into a single query result'
             def result = objectUnderTest.combineCmHandleQueries(firstQuery, secondQuery)
@@ -95,6 +115,22 @@ class CmHandleQueriesImplSpec extends Specification {
             def result = objectUnderTest.queryCmHandlesByState(cmHandleState)
         then: 'the returned result matches the result from the persistence service'
             assert result == sampleDataNodes
+    }
+
+    def 'Check the state of a cmHandle when #scenario.'() {
+        given: 'a cm handle state to compare'
+            def cmHandleState = state
+        and: 'the persistence service returns a list of data nodes'
+            cpsDataPersistenceService.getDataNode('NCMP-Admin', 'ncmp-dmi-registry',
+                    '/dmi-registry/cm-handles[@id=\'some-cm-handle\']/state', OMIT_DESCENDANTS) >> new DataNode(leaves: ['cm-handle-state': 'READY'])
+        when: 'cm handles are compared by state'
+            def result = objectUnderTest.cmHandleHasState('some-cm-handle', cmHandleState)
+        then: 'the returned result matches the expected result from the persistence service'
+            result == expectedResult
+        where:
+            scenario                           | state                 || expectedResult
+            'the provided state matches'       | CmHandleState.READY   || true
+            'the provided state does not match'| CmHandleState.DELETED || false
     }
 
     def 'Get Cm Handles state by Cm-Handle Id'() {
