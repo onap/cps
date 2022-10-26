@@ -34,6 +34,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
+import org.onap.cps.ncmp.api.inventory.enums.PropertyType;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.FetchDescendantsOption;
@@ -51,16 +52,28 @@ public class CmHandleQueriesImpl implements CmHandleQueries {
     private static final Map<String, NcmpServiceCmHandle> NO_QUERY_TO_EXECUTE = null;
     private static final String ANCESTOR_CM_HANDLES = "/ancestor::cm-handles";
 
+    @Override
+    public Map<String, NcmpServiceCmHandle> queryCmHandleAdditionalProperties(
+            final Map<String, String> privatePropertyQueryPairs) {
+        return queryCmHandleAnyProperties(privatePropertyQueryPairs, PropertyType.ADDITIONAL);
+    }
 
     @Override
     public Map<String, NcmpServiceCmHandle> queryCmHandlePublicProperties(
             final Map<String, String> publicPropertyQueryPairs) {
-        if (publicPropertyQueryPairs.isEmpty()) {
+        return queryCmHandleAnyProperties(publicPropertyQueryPairs, PropertyType.PUBLIC);
+    }
+
+    private  Map<String, NcmpServiceCmHandle> queryCmHandleAnyProperties(
+            final Map<String, String> propertyQueryPairs,
+            final PropertyType accessType) {
+        if (propertyQueryPairs.isEmpty()) {
             return Collections.emptyMap();
         }
         Map<String, NcmpServiceCmHandle> cmHandleIdToNcmpServiceCmHandles = null;
-        for (final Map.Entry<String, String> publicPropertyQueryPair : publicPropertyQueryPairs.entrySet()) {
-            final String cpsPath = "//public-properties[@name=\"" + publicPropertyQueryPair.getKey()
+        for (final Map.Entry<String, String> publicPropertyQueryPair : propertyQueryPairs.entrySet()) {
+            final String cpsPath = "//" + accessType.getYangContainerName() + "[@name=\""
+                    + publicPropertyQueryPair.getKey()
                     + "\" and @value=\"" + publicPropertyQueryPair.getValue() + "\"]";
 
             final Collection<DataNode> dataNodes = queryCmHandleDataNodesByCpsPath(cpsPath, INCLUDE_ALL_DESCENDANTS);
