@@ -26,6 +26,7 @@ package org.onap.cps.ncmp.api;
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import org.onap.cps.ncmp.api.inventory.CompositeState;
@@ -34,6 +35,7 @@ import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistrationResponse;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.spi.FetchDescendantsOption;
+import org.onap.cps.spi.model.ConditionProperties;
 import org.onap.cps.spi.model.ModuleDefinition;
 import org.onap.cps.spi.model.ModuleReference;
 
