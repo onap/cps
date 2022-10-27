@@ -1,6 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  * Copyright (c) 2021-2022 Bell Canada.
+ * Modifications Copyright (c) 2022 Nordix Foundation
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,6 +35,7 @@ import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.Anchor;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.utils.DataMapUtils;
+import org.onap.cps.utils.PrefixResolver;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
@@ -59,6 +61,9 @@ public class CpsDataUpdatedEventFactory {
 
     @Lazy
     private final CpsDataService cpsDataService;
+
+    @Lazy
+    private final PrefixResolver prefixResolver;
 
     /**
      * Generates CPS Data Updated event. If observedTimestamp is not provided, then current timestamp is used.
@@ -87,9 +92,9 @@ public class CpsDataUpdatedEventFactory {
         return cpsDataUpdatedEvent;
     }
 
-    private Data createData(final DataNode dataNode) {
-        final var data = new Data();
-        DataMapUtils.toDataMapWithIdentifier(dataNode).forEach(data::setAdditionalProperty);
+    private Data createData(final DataNode dataNode, final String prefix) {
+        final Data data = new Data();
+        DataMapUtils.toDataMapWithIdentifier(dataNode, prefix).forEach(data::setAdditionalProperty);
         return data;
     }
 
@@ -103,7 +108,8 @@ public class CpsDataUpdatedEventFactory {
         content.withObservedTimestamp(
             DATE_TIME_FORMATTER.format(observedTimestamp == null ? OffsetDateTime.now() : observedTimestamp));
         if (dataNode != null) {
-            content.withData(createData(dataNode));
+            final String prefix = prefixResolver.getPrefix(anchor, dataNode.getXpath());
+            content.withData(createData(dataNode, prefix));
         }
         return content;
     }

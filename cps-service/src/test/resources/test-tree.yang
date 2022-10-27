@@ -33,4 +33,7 @@ module test-tree {
 
         }
     }
+    leaf topLevelLeafAddedForBranchCoverageInPrefixResolverSpec {
+        type string;
+    }
 }

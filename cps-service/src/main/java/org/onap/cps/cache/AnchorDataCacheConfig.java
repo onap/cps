@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.spi.cache;
+package org.onap.cps.cache;
 
 import com.hazelcast.config.Config;
 import com.hazelcast.config.MapConfig;
@@ -26,7 +26,6 @@ import com.hazelcast.config.NamedConfig;
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.map.IMap;
-import java.util.concurrent.TimeUnit;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -36,7 +35,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AnchorDataCacheConfig {
 
-    public static final long ANCHOR_DATA_CACHE_TTL_SECS = TimeUnit.HOURS.toSeconds(1);
     private static final MapConfig anchorDataCacheMapConfig = createMapConfig("anchorDataCacheMapConfig");
 
     /**
@@ -46,7 +44,7 @@ public class AnchorDataCacheConfig {
      */
     @Bean
     public IMap<String, AnchorDataCacheEntry> anchorDataCache() {
-        return createHazelcastInstance("hazelCastInstanceCpsRi", anchorDataCacheMapConfig)
+        return createHazelcastInstance("hazelCastInstanceCpsCore", anchorDataCacheMapConfig)
                 .getMap("anchorDataCache");
     }
 
@@ -58,7 +56,7 @@ public class AnchorDataCacheConfig {
     private Config initializeConfig(final String instanceName, final NamedConfig namedConfig) {
         final Config config = new Config(instanceName);
         config.addMapConfig((MapConfig) namedConfig);
-        config.setClusterName("cps-ri-caches");
+        config.setClusterName("cps-service-caches");
         return config;
     }
 
