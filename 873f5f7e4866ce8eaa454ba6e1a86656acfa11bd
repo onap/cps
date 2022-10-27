@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d2675618_9f17eec6",
+        "filename": "cps-ri/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-27T08:28:37Z",
+      "side": 1,
+      "message": "please extract out to common area to avoid duplication",
+      "range": {
+        "startLine": 148,
+        "startChar": 32,
+        "endLine": 149,
+        "endChar": 51
+      },
+      "revId": "873f5f7e4866ce8eaa454ba6e1a86656acfa11bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5c9437a9_d70ae6a6",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/perf/CpsToDataNodePerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-27T08:28:37Z",
+      "side": 1,
+      "message": "restore original copyright see base",
+      "range": {
+        "startLine": 1,
+        "startChar": 1,
+        "endLine": 20,
+        "endChar": 3
+      },
+      "revId": "873f5f7e4866ce8eaa454ba6e1a86656acfa11bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f62cadb2_7f1fd3da",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/perf/CpsToDataNodePerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-27T08:28:37Z",
+      "side": 1,
+      "message": "use static import",
+      "range": {
+        "startLine": 41,
+        "startChar": 10,
+        "endLine": 41,
+        "endChar": 43
+      },
+      "revId": "873f5f7e4866ce8eaa454ba6e1a86656acfa11bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
