@@ -110,6 +110,11 @@
       <groupId>org.codehaus.janino</groupId>
       <artifactId>janino</artifactId>
     </dependency>
+    <dependency>
+      <!-- Hazelcast provide Distributed Caches -->
+      <groupId>com.hazelcast</groupId>
+      <artifactId>hazelcast-spring</artifactId>
+    </dependency>
     <!-- T E S T   D E P E N D E N C I E S -->
     <dependency>
       <groupId>org.codehaus.groovy</groupId>

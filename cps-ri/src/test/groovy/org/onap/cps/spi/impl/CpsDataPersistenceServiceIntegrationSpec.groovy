@@ -81,28 +81,41 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
-    def 'StoreDataNode with descendants.'() {
+    def 'Get existing datanode with descendants.'() {
+        when: 'the node is retrieved by its xpath'
+            def dataNode = objectUnderTest.getDataNode(DATASPACE_NAME, ANCHOR_NAME1, '/parent-1', INCLUDE_ALL_DESCENDANTS)
+        then: 'the path and prefix are populated correctly'
+            assert dataNode.xpath == '/parent-1'
+        and: 'dataNode has no prefix (to be addressed by CPS-1301'
+            assert dataNode.moduleNamePrefix == null
+        and: 'the child node has the correct path'
+            assert dataNode.childDataNodes[0].xpath == '/parent-1/child-1'
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Storing and Retrieving a new DataNode with descendants.'() {
         when: 'a fragment with descendants is stored'
-            def parentXpath = "/parent-new"
-            def childXpath = "/parent-new/child-new"
-            def grandChildXpath = "/parent-new/child-new/grandchild-new"
+            def parentXpath = '/parent-new'
+            def childXpath = '/parent-new/child-new'
+            def grandChildXpath = '/parent-new/child-new/grandchild-new'
             objectUnderTest.storeDataNode(DATASPACE_NAME, ANCHOR_NAME1,
                     createDataNodeTree(parentXpath, childXpath, grandChildXpath))
         then: 'it can be retrieved by its xpath'
-            def parentFragment = getFragmentByXpath(DATASPACE_NAME, ANCHOR_NAME1, parentXpath)
-        and: 'it contains the children'
-            parentFragment.childFragments.size() == 1
-            def childFragment = parentFragment.childFragments[0]
-            childFragment.xpath == childXpath
-        and: "and its children's children"
-            childFragment.childFragments.size() == 1
-            def grandchildFragment = childFragment.childFragments[0]
-            grandchildFragment.xpath == grandChildXpath
+            def dataNode = objectUnderTest.getDataNode(DATASPACE_NAME, ANCHOR_NAME1, parentXpath, INCLUDE_ALL_DESCENDANTS)
+            assert dataNode.xpath == parentXpath
+        and: 'it has the correct child'
+            assert dataNode.childDataNodes.size() == 1
+            def childDataNode = dataNode.childDataNodes[0]
+            assert childDataNode.xpath == childXpath
+        and: 'and its grandchild'
+            assert childDataNode.childDataNodes.size() == 1
+            def grandChildDataNode = childDataNode.childDataNodes[0]
+            assert grandChildDataNode.xpath == grandChildXpath
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Store data node for multiple anchors using the same schema.'() {
-        def xpath = "/parent-new"
+        def xpath = '/parent-new'
         given: 'a fragment is stored for an anchor'
             objectUnderTest.storeDataNode(DATASPACE_NAME, ANCHOR_NAME1, createDataNodeTree(xpath))
         when: 'another fragment is stored for an other anchor, using the same schema set'
@@ -282,7 +295,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     def 'Update data node leaves.'() {
         when: 'update is performed for leaves'
             objectUnderTest.updateDataLeaves(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES,
-                    "/parent-200/child-201", ['leaf-value': 'new'])
+                    '/parent-200/child-201', ['leaf-value': 'new'])
         then: 'leaves are updated for selected data node'
             def updatedFragment = fragmentRepository.getById(DATA_NODE_202_FRAGMENT_ID)
             def updatedLeaves = getLeavesMap(updatedFragment)
@@ -311,7 +324,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Update data node and descendants by removing descendants.'() {
         given: 'data node object with leaves updated, no children'
-            def submittedDataNode = buildDataNode("/parent-200/child-201", ['leaf-value': 'new'], [])
+            def submittedDataNode = buildDataNode('/parent-200/child-201', ['leaf-value': 'new'], [])
         when: 'update data nodes and descendants is performed'
             objectUnderTest.updateDataNodeAndDescendants(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, submittedDataNode)
         then: 'leaves have been updated for selected data node'
@@ -328,8 +341,8 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Update data node and descendants with new descendants'() {
         given: 'data node object with leaves updated, having child with old content'
-            def submittedDataNode = buildDataNode("/parent-200/child-201", ['leaf-value': 'new'], [
-                  buildDataNode("/parent-200/child-201/grand-child", ['leaf-value': 'original'], [])
+            def submittedDataNode = buildDataNode('/parent-200/child-201', ['leaf-value': 'new'], [
+                  buildDataNode('/parent-200/child-201/grand-child', ['leaf-value': 'original'], [])
             ])
         when: 'update is performed including descendants'
             objectUnderTest.updateDataNodeAndDescendants(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, submittedDataNode)
@@ -348,8 +361,8 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Update data node and descendants with same descendants but changed leaf value.'() {
         given: 'data node object with leaves updated, having child with old content'
-            def submittedDataNode = buildDataNode("/parent-200/child-201", ['leaf-value': 'new'], [
-                    buildDataNode("/parent-200/child-201/grand-child", ['leaf-value': 'new'], [])
+            def submittedDataNode = buildDataNode('/parent-200/child-201', ['leaf-value': 'new'], [
+                    buildDataNode('/parent-200/child-201/grand-child', ['leaf-value': 'new'], [])
             ])
         when: 'update is performed including descendants'
             objectUnderTest.updateDataNodeAndDescendants(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, submittedDataNode)
@@ -368,8 +381,8 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Update data node and descendants with different descendants xpath'() {
         given: 'data node object with leaves updated, having child with old content'
-            def submittedDataNode = buildDataNode("/parent-200/child-201", ['leaf-value': 'new'], [
-                    buildDataNode("/parent-200/child-201/grand-child-new", ['leaf-value': 'new'], [])
+            def submittedDataNode = buildDataNode('/parent-200/child-201', ['leaf-value': 'new'], [
+                    buildDataNode('/parent-200/child-201/grand-child-new', ['leaf-value': 'new'], [])
             ])
         when: 'update is performed including descendants'
             objectUnderTest.updateDataNodeAndDescendants(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, submittedDataNode)
