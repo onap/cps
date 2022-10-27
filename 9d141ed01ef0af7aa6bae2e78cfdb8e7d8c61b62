@@ -71,6 +71,23 @@
     },
     {
       "key": {
+        "uuid": "33a67812_72e4bf89",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-27T13:37:44Z",
+      "side": 1,
+      "message": "did you forget to check in the updated version of this file?\nYou acknowledged the comments in #5 but no changes?!",
+      "revId": "9d141ed01ef0af7aa6bae2e78cfdb8e7d8c61b62",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "66bd7064_d5b9bd17",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
         "patchSetId": 6
@@ -87,6 +104,52 @@
         "startChar": 4,
         "endLine": 6,
         "endChar": 5
+      },
+      "revId": "9d141ed01ef0af7aa6bae2e78cfdb8e7d8c61b62",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d47a021b_af5cfa97",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangUtilsSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-27T13:37:44Z",
+      "side": 1,
+      "message": "remove the word \u0027json\u0027",
+      "range": {
+        "startLine": 41,
+        "startChar": 19,
+        "endLine": 41,
+        "endChar": 24
+      },
+      "revId": "9d141ed01ef0af7aa6bae2e78cfdb8e7d8c61b62",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "83e8d618_d423acb2",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangUtilsSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-27T13:37:44Z",
+      "side": 1,
+      "message": "remove this word",
+      "range": {
+        "startLine": 76,
+        "startChar": 15,
+        "endLine": 76,
+        "endChar": 20
       },
       "revId": "9d141ed01ef0af7aa6bae2e78cfdb8e7d8c61b62",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
