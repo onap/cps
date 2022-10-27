@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a578d911_804f585f",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-10-27T10:05:16Z",
+      "side": 0,
+      "message": "add modifications copyright",
+      "revId": "e5254a7b007e4a0dc59003d94f43e688c25cf7d1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
