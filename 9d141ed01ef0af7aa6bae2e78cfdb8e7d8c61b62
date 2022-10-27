@@ -88,6 +88,24 @@
     },
     {
       "key": {
+        "uuid": "a45ee01f_b14556dd",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6079
+      },
+      "writtenOn": "2022-10-27T14:46:38Z",
+      "side": 1,
+      "message": "yes, sorry about that, I made a push but forget to change fix that comments. Right now I wanted to prepare a demo for tomorrow but found a bug 😮 so I\u0027ll push that fix with code fixes and changes requested by Joseph",
+      "parentUuid": "33a67812_72e4bf89",
+      "revId": "9d141ed01ef0af7aa6bae2e78cfdb8e7d8c61b62",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "66bd7064_d5b9bd17",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
         "patchSetId": 6
