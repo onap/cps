@@ -1,5 +1,5 @@
 /*
- *  ============LICENSE_START=======================================================
+ * ============LICENSE_START========================================================
  *  Copyright (C) 2022 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,23 +18,27 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.spi.cache
+package org.onap.cps.cache;
 
-import org.onap.cps.spi.cache.AnchorDataCacheEntry
-import spock.lang.Specification
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
-class AnchorDataCacheEntrySpec extends Specification {
+public class AnchorDataCacheEntry implements Serializable {
 
-    def objectUnderTest = new AnchorDataCacheEntry()
+    private static final long serialVersionUID = 2111243947810370698L;
 
-    def 'Anchor Data Cache Properties Management.'() {
-        when: 'a property named "sample" is added to the cache'
-            objectUnderTest.setProperty('sample', 123)
-        then: 'the cache has that property'
-            assert objectUnderTest.hasProperty('sample')
-        and: 'the value is correct'
-            assert objectUnderTest.getProperty('sample') == 123
-        and: 'the cache does not have an an object called "something else"'
-            assert objectUnderTest.hasProperty('something else') == false
+    private Map<String, Serializable> properties = new HashMap<>();
+
+    public Object getProperty(final String propertyName) {
+        return properties.get(propertyName);
+    }
+
+    public void setProperty(final String propertyName, final Serializable value) {
+        properties.put(propertyName, value);
+    }
+
+    public boolean hasProperty(final String propertyName) {
+        return properties.containsKey(propertyName);
     }
 }
