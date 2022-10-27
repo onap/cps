@@ -176,12 +176,11 @@ class DataNodeBuilderSpec extends Specification {
     def 'Use of adding the module name prefix attribute of data node.'() {
         when: 'data node is built with a prefix'
             def testDataNode = new DataNodeBuilder()
-                    .withModuleNamePrefix('sampleModuleNamePrefix')
                     .withXpath(xPath)
                     .withLeaves(sampleLeaves)
                     .build()
         then: 'the result when node request is a #scenario includes the correct prefix'
-            def result = new DataMapUtils().toDataMapWithIdentifier(testDataNode)
+            def result = new DataMapUtils().toDataMapWithIdentifier(testDataNode, 'sampleModuleNamePrefix')
             result.toString() == expectedResult
         where: 'the following parameters are used'
             scenario          | xPath                                       | sampleLeaves                   | expectedResult

@@ -53,7 +53,6 @@ public class YangUtils {
 
     private static final String XPATH_DELIMITER_REGEX = "\\/";
     private static final String XPATH_NODE_KEY_ATTRIBUTES_REGEX = "\\[.*?\\]";
-    //Might cause an issue with [] inside [] in key-values
 
     /**
      * Parses jsonData into NormalizedNode according to given schema context.
@@ -124,6 +123,7 @@ public class YangUtils {
         }
         return xpathBuilder.toString();
     }
+
 
     private static String getKeyAttributesStatement(
         final YangInstanceIdentifier.NodeIdentifierWithPredicates nodeIdentifier) {

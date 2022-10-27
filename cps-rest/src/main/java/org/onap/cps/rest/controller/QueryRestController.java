@@ -25,7 +25,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.CpsQueryService;
 import org.onap.cps.rest.api.CpsQueryApi;
@@ -33,6 +32,7 @@ import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.utils.DataMapUtils;
 import org.onap.cps.utils.JsonObjectMapper;
+import org.onap.cps.utils.PrefixResolver;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,17 +45,25 @@ public class QueryRestController implements CpsQueryApi {
 
     private final CpsQueryService cpsQueryService;
     private final JsonObjectMapper jsonObjectMapper;
+    private final PrefixResolver prefixResolver;
 
     @Override
     public ResponseEntity<Object> getNodesByDataspaceAndAnchorAndCpsPath(final String dataspaceName,
-        final String anchorName, @Valid final String cpsPath, @Valid final Boolean includeDescendants) {
+        final String anchorName, final String cpsPath, final Boolean includeDescendants) {
         final FetchDescendantsOption fetchDescendantsOption = Boolean.TRUE.equals(includeDescendants)
             ? FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS : FetchDescendantsOption.OMIT_DESCENDANTS;
         final Collection<DataNode> dataNodes =
             cpsQueryService.queryDataNodes(dataspaceName, anchorName, cpsPath, fetchDescendantsOption);
-        final List<Map<String, Object>> dataNodeList = new ArrayList<>();
-        dataNodes.stream()
-            .forEach(dataNode -> dataNodeList.add(DataMapUtils.toDataMapWithIdentifier(dataNode)));
-        return new ResponseEntity<>(jsonObjectMapper.asJsonString(dataNodeList), HttpStatus.OK);
+        final List<Map<String, Object>> dataMapList = new ArrayList<>(dataNodes.size());
+        String prefix = null;
+        for (final DataNode dataNode : dataNodes) {
+            if (prefix == null) {
+                prefix = prefixResolver.getPrefix(dataspaceName, anchorName, dataNode.getXpath());
+            }
+            final Map<String, Object> dataMap = DataMapUtils.toDataMapWithIdentifier(dataNode, prefix);
+            dataMapList.add(dataMap);
+        }
+
+        return new ResponseEntity<>(jsonObjectMapper.asJsonString(dataMapList), HttpStatus.OK);
     }
 }
