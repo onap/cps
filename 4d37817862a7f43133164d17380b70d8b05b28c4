@@ -22,6 +22,30 @@
       "revId": "4d37817862a7f43133164d17380b70d8b05b28c4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a3d62c3_fd98edc1",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationCacheConfigSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-27T07:36:52Z",
+      "side": 1,
+      "message": "this is no sorted after closely reading the documentation on the put method here! https://docs.hazelcast.org/docs/4.0/javadoc/com/hazelcast/map/IMap.html#put-K-V-long-java.util.concurrent.TimeUnit-",
+      "parentUuid": "9215a9eb_9e38c30f",
+      "range": {
+        "startLine": 79,
+        "startChar": 91,
+        "endLine": 79,
+        "endChar": 95
+      },
+      "revId": "4d37817862a7f43133164d17380b70d8b05b28c4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }

@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6a8a6260_5ecc9fe4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationCacheConfigSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-27T07:36:52Z",
+      "side": 1,
+      "message": "FYI read https://docs.hazelcast.org/docs/4.0/javadoc/com/hazelcast/map/IMap.html#put-K-V-long-java.util.concurrent.TimeUnit-",
+      "range": {
+        "startLine": 78,
+        "startChar": 58,
+        "endLine": 78,
+        "endChar": 95
+      },
+      "revId": "a13a37edc2132cfef2c8f2b32329925b7b840e40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
