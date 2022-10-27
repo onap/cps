@@ -38,14 +38,13 @@ public class DataNode implements Serializable {
 
     private static final long serialVersionUID = 1482619410918597467L;
 
-    DataNode() {    }
+    DataNode() {}
 
     private String dataspace;
     private String schemaSetName;
     private String anchorName;
     private ModuleReference moduleReference;
     private String xpath;
-    @Setter(AccessLevel.PUBLIC)
     private String moduleNamePrefix;
     private Map<String, Object> leaves = Collections.emptyMap();
     private Collection<String> xpathsChildren;

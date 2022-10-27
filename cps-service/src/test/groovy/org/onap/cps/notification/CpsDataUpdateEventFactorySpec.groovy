@@ -23,7 +23,7 @@ package org.onap.cps.notification
 import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter
 import org.onap.cps.utils.DateTimeUtility
-import org.onap.cps.api.CpsAdminService
+import org.onap.cps.utils.PrefixResolver
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.event.model.Content
 import org.onap.cps.event.model.Data
@@ -37,7 +37,9 @@ class CpsDataUpdateEventFactorySpec extends Specification {
 
     def mockCpsDataService = Mock(CpsDataService)
 
-    def objectUnderTest = new CpsDataUpdatedEventFactory(mockCpsDataService)
+    def mockPrefixResolver = Mock(PrefixResolver)
+
+    def objectUnderTest = new CpsDataUpdatedEventFactory(mockCpsDataService, mockPrefixResolver)
 
     def dateTimeFormat = 'yyyy-MM-dd\'T\'HH:mm:ss.SSSZ'
 
