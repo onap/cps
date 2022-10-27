@@ -34,6 +34,7 @@ import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.Anchor;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.utils.DataMapUtils;
+import org.onap.cps.utils.PrefixResolver;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
@@ -59,6 +60,9 @@ public class CpsDataUpdatedEventFactory {
 
     @Lazy
     private final CpsDataService cpsDataService;
+
+    @Lazy
+    private final PrefixResolver prefixResolver;
 
     /**
      * Generates CPS Data Updated event. If observedTimestamp is not provided, then current timestamp is used.
@@ -88,8 +92,9 @@ public class CpsDataUpdatedEventFactory {
     }
 
     private Data createData(final DataNode dataNode) {
-        final var data = new Data();
-        DataMapUtils.toDataMapWithIdentifier(dataNode).forEach(data::setAdditionalProperty);
+        final Data data = new Data();
+        final String prefix = prefixResolver.getPrefix(dataNode);
+        DataMapUtils.toDataMapWithIdentifier(dataNode, prefix).forEach(data::setAdditionalProperty);
         return data;
     }
 

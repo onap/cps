@@ -43,10 +43,9 @@ public class DataMapUtils {
      * @param dataNode data node object
      * @return a map representing same data with the root node identifier
      */
-    public static Map<String, Object> toDataMapWithIdentifier(final DataNode dataNode) {
-        return ImmutableMap.<String, Object>builder()
-            .put(getNodeIdentifierWithPrefix(dataNode.getXpath(), dataNode.getModuleNamePrefix()), toDataMap(dataNode))
-            .build();
+    public static Map<String, Object> toDataMapWithIdentifier(final DataNode dataNode, final String prefix) {
+        final String nodeIdentifierWithPrefix = getNodeIdentifierWithPrefix(dataNode.getXpath(), prefix);
+        return ImmutableMap.<String, Object>builder().put(nodeIdentifierWithPrefix, toDataMap(dataNode)).build();
     }
 
     /**
