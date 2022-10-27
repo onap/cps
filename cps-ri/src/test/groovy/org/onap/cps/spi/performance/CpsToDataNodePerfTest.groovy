@@ -18,20 +18,19 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ri.performance
+package org.onap.cps.spi.performance
 
 import org.apache.commons.lang3.time.StopWatch
 import org.onap.cps.spi.CpsDataPersistenceService
-import org.onap.cps.spi.impl.CpsDataPersistenceServiceImpl
 import org.onap.cps.spi.impl.CpsPersistenceSpecBase
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.DataNodeBuilder
-import org.onap.cps.spi.repository.FragmentRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.jdbc.Sql
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
+import static org.onap.cps.spi.impl.CpsPersistenceSpecBase.CLEAR_DATA
 
-class CpsToDataNodePerfSpec extends CpsPersistenceSpecBase {
+class CpsToDataNodePerfTest extends CpsPersistenceSpecBase {
 
     static final String SET_DATA = '/data/fragment.sql'
 
