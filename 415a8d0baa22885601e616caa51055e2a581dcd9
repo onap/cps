@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "440895a6_5536f688",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-27T12:10:05Z",
+      "side": 1,
+      "message": "please highlight this is fro JAKARTA in teh message",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 30
+      },
+      "revId": "415a8d0baa22885601e616caa51055e2a581dcd9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5652847f_ae014bad",
+        "filename": "csit/plans/cps/test.properties",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-10-27T12:10:05Z",
+      "side": 1,
+      "message": "was this a Jakarta release?!",
+      "range": {
+        "startLine": 26,
+        "startChar": 12,
+        "endLine": 26,
+        "endChar": 33
+      },
+      "revId": "415a8d0baa22885601e616caa51055e2a581dcd9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
