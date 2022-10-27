@@ -81,7 +81,7 @@ services:
   ### Comment out this section if dmi plugin is not required ###
   ncmp-dmi-plugin:
     container_name: ncmp-dmi-plugin
-    image: ${DOCKER_REPO:-nexus3.onap.org:10003}/onap/ncmp-dmi-plugin:${DMI_VERSION:-1.2.0-SNAPSHOT-latest}
+    image: ${DOCKER_REPO:-nexus3.onap.org:10003}/onap/ncmp-dmi-plugin:${DMI_VERSION:-1.3.0-SNAPSHOT-latest}
     ports:
       - ${DMI_PORT:-8783}:8080
       - ${DMI_MANAGEMENT_PORT:-8787}:8081
