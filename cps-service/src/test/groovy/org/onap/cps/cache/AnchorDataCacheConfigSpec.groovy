@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.spi.cache
+package org.onap.cps.cache
 import com.hazelcast.core.Hazelcast
 import com.hazelcast.map.IMap
 import org.springframework.beans.factory.annotation.Autowired
@@ -39,12 +39,12 @@ class AnchorDataCacheConfigSpec extends Specification {
         and: 'there is at least 1 instance'
             assert Hazelcast.allHazelcastInstances.size() > 0
         and: 'anchorDataCache is present'
-            assert Hazelcast.allHazelcastInstances.name.contains('hazelCastInstanceCpsRi')
+            assert Hazelcast.allHazelcastInstances.name.contains('hazelCastInstanceCpsCore')
     }
 
     def 'Verify configs for Distributed Caches'(){
         given: 'the Anchor Data Cache config'
-            def anchorDataCacheConfig =  Hazelcast.getHazelcastInstanceByName('hazelCastInstanceCpsRi').config.mapConfigs.get('anchorDataCacheMapConfig')
+            def anchorDataCacheConfig =  Hazelcast.getHazelcastInstanceByName('hazelCastInstanceCpsCore').config.mapConfigs.get('anchorDataCacheMapConfig')
         expect: 'system created instance with correct config'
             assert anchorDataCacheConfig.backupCount == 3
             assert anchorDataCacheConfig.asyncBackupCount == 3

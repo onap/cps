@@ -22,7 +22,6 @@ package org.onap.cps.spi.impl
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.hibernate.StaleStateException
 import org.onap.cps.spi.FetchDescendantsOption
-import org.onap.cps.spi.cache.AnchorDataCacheEntry
 import org.onap.cps.spi.entities.AnchorEntity
 import org.onap.cps.spi.entities.FragmentEntity
 import org.onap.cps.spi.entities.FragmentExtract
@@ -35,9 +34,7 @@ import org.onap.cps.spi.repository.DataspaceRepository
 import org.onap.cps.spi.repository.FragmentRepository
 import org.onap.cps.spi.utils.SessionManager
 import org.onap.cps.utils.JsonObjectMapper
-import spock.lang.Shared
 import spock.lang.Specification
-import com.hazelcast.map.IMap;
 
 class CpsDataPersistenceServiceSpec extends Specification {
 
@@ -46,10 +43,8 @@ class CpsDataPersistenceServiceSpec extends Specification {
     def mockFragmentRepository = Mock(FragmentRepository)
     def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
     def mockSessionManager = Mock(SessionManager)
-    def mockAnchorDataCache =  Mock(IMap<String, AnchorDataCacheEntry>)
 
-    def objectUnderTest = new CpsDataPersistenceServiceImpl(
-            mockDataspaceRepository, mockAnchorRepository, mockFragmentRepository, jsonObjectMapper, mockSessionManager, mockAnchorDataCache)
+    def objectUnderTest = new CpsDataPersistenceServiceImpl(mockDataspaceRepository, mockAnchorRepository, mockFragmentRepository, jsonObjectMapper, mockSessionManager)
 
     def 'Handling of StaleStateException (caused by concurrent updates) during update data node and descendants.'() {
         given: 'the fragment repository returns a fragment entity'
@@ -191,10 +186,6 @@ class CpsDataPersistenceServiceSpec extends Specification {
 
     def mockFragmentWithJson(json) {
         def anchorName = 'some anchor'
-        def anchorDataCacheEntry = new AnchorDataCacheEntry()
-        anchorDataCacheEntry.setProperty(objectUnderTest.TOP_LEVEL_MODULE_PREFIX_PROPERTY_NAME,  'some prefix')
-        mockAnchorDataCache.containsKey(anchorName) >> true
-        mockAnchorDataCache.get(anchorName) >> anchorDataCacheEntry
         def mockAnchor = Mock(AnchorEntity)
         mockAnchor.getId() >> 123
         mockAnchor.getName() >> anchorName

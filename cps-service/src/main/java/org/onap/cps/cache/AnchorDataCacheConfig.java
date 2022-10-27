@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.spi.cache;
+package org.onap.cps.cache;
 
 import com.hazelcast.config.Config;
 import com.hazelcast.config.MapConfig;
@@ -46,7 +46,7 @@ public class AnchorDataCacheConfig {
      */
     @Bean
     public IMap<String, AnchorDataCacheEntry> anchorDataCache() {
-        return createHazelcastInstance("hazelCastInstanceCpsRi", anchorDataCacheMapConfig)
+        return createHazelcastInstance("hazelCastInstanceCpsCore", anchorDataCacheMapConfig)
                 .getMap("anchorDataCache");
     }
 
@@ -58,7 +58,7 @@ public class AnchorDataCacheConfig {
     private Config initializeConfig(final String instanceName, final NamedConfig namedConfig) {
         final Config config = new Config(instanceName);
         config.addMapConfig((MapConfig) namedConfig);
-        config.setClusterName("cps-ri-caches");
+        config.setClusterName("cps-service-caches");
         return config;
     }
 

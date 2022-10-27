@@ -40,6 +40,7 @@ import org.onap.cps.spi.exceptions.NotFoundInDataspaceException
 import org.onap.cps.spi.exceptions.SchemaSetInUseException
 import org.onap.cps.spi.exceptions.DataspaceInUseException
 import org.onap.cps.utils.JsonObjectMapper
+import org.onap.cps.utils.PrefixResolver
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
@@ -76,6 +77,9 @@ class CpsRestExceptionHandlerSpec extends Specification {
 
     @SpringBean
     CpsRestInputMapper cpsRestInputMapper = Stub()
+
+    @SpringBean
+    PrefixResolver prefixResolver = Mock()
 
     @Autowired
     MockMvc mvc

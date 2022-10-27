@@ -30,8 +30,10 @@ import org.apache.commons.lang3.StringUtils;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.rest.api.CpsDataApi;
 import org.onap.cps.spi.FetchDescendantsOption;
+import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.utils.DataMapUtils;
 import org.onap.cps.utils.JsonObjectMapper;
+import org.onap.cps.utils.PrefixResolver;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,6 +50,7 @@ public class DataRestController implements CpsDataApi {
 
     private final CpsDataService cpsDataService;
     private final JsonObjectMapper jsonObjectMapper;
+    private final PrefixResolver prefixResolver;
 
     @Override
     public ResponseEntity<String> createNode(final String dataspaceName, final String anchorName,
@@ -84,9 +87,10 @@ public class DataRestController implements CpsDataApi {
         final String xpath, final Boolean includeDescendants) {
         final FetchDescendantsOption fetchDescendantsOption = Boolean.TRUE.equals(includeDescendants)
             ? FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS : FetchDescendantsOption.OMIT_DESCENDANTS;
-        final var dataNode = cpsDataService.getDataNode(dataspaceName, anchorName, xpath,
+        final DataNode dataNode = cpsDataService.getDataNode(dataspaceName, anchorName, xpath,
             fetchDescendantsOption);
-        return new ResponseEntity<>(DataMapUtils.toDataMapWithIdentifier(dataNode), HttpStatus.OK);
+        final String prefix = prefixResolver.getPrefix(dataNode);
+        return new ResponseEntity<>(DataMapUtils.toDataMapWithIdentifier(dataNode, prefix), HttpStatus.OK);
     }
 
     @Override

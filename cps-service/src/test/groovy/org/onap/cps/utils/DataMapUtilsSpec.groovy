@@ -65,11 +65,7 @@ class DataMapUtilsSpec extends Specification {
 
     def 'Data node structure conversion to map with root node identifier.'() {
         when: 'data node structure is converted to a map with root node identifier'
-            def result = DataMapUtils.toDataMapWithIdentifier(dataNode)
-
-        then: 'root node identifier is not null'
-            result.parent != null
-
+            def result = DataMapUtils.toDataMapWithIdentifier(dataNode,dataNode.moduleNamePrefix)
         then: 'root node leaves are populated under its node identifier'
             def parentNode = result.parent
             parentNode.parentLeaf == 'parentLeafValue'
