@@ -1,7 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Bell Canada. All rights reserved.
- *  ================================================================================
+ * ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
@@ -20,7 +20,6 @@
 package org.onap.cps.notification
 
 import org.apache.kafka.clients.producer.ProducerRecord
-import org.apache.kafka.clients.producer.RecordMetadata
 import org.onap.cps.event.model.Content
 import org.onap.cps.event.model.CpsDataUpdatedEvent
 import org.spockframework.spring.SpringBean
