@@ -254,17 +254,24 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
                 fragmentEntity =
                     fragmentRepository.getByDataspaceAndAnchorAndXpath(dataspaceEntity, anchorEntity, normalizedXpath);
             } else {
-                final List<FragmentExtract> fragmentExtracts =
-                    fragmentRepository.findByAnchorIdAndParentXpath(anchorEntity.getId(), normalizedXpath);
-                log.debug("Fetched {} fragment entities by anchor {} and cps path {}.",
-                    fragmentExtracts.size(), anchorName, xpath);
-                fragmentEntity = FragmentEntityArranger.toFragmentEntityTree(anchorEntity, fragmentExtracts);
+                fragmentEntity = buildFragmentEntityFromFragmentExtracts(anchorEntity, normalizedXpath);
             }
             if (fragmentEntity == null) {
                 throw new DataNodeNotFoundException(dataspaceEntity.getName(), anchorEntity.getName(), xpath);
             }
             return fragmentEntity;
         }
+    }
+
+    private FragmentEntity buildFragmentEntityFromFragmentExtracts(final AnchorEntity anchorEntity,
+                                                                   final String normalizedXpath) {
+        final FragmentEntity fragmentEntity;
+        final List<FragmentExtract> fragmentExtracts =
+                fragmentRepository.findByAnchorIdAndParentXpath(anchorEntity.getId(), normalizedXpath);
+        log.debug("Fetched {} fragment entities by anchor {} and cps path {}.",
+                fragmentExtracts.size(), anchorEntity.getName(), normalizedXpath);
+        fragmentEntity = FragmentEntityArranger.toFragmentEntityTree(anchorEntity, fragmentExtracts);
+        return fragmentEntity;
     }
 
     @Override
@@ -285,12 +292,27 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             fragmentEntities = ancestorXpaths.isEmpty() ? Collections.emptyList()
                     : fragmentRepository.findAllByAnchorAndXpathIn(anchorEntity, ancestorXpaths);
         }
-        return fragmentEntities.stream()
-                .map(fragmentEntity -> {
-                    final DataNode dataNode = toDataNode(fragmentEntity, fetchDescendantsOption);
-                    dataNode.setModuleNamePrefix(getRootModuleNamePrefix(anchorEntity));
-                    return dataNode;
-                }).collect(Collectors.toUnmodifiableList());
+        final List<DataNode> dataNodes = new ArrayList<>(fragmentEntities.size());
+
+        for (final FragmentEntity lazyLoadingFragmentEntity : fragmentEntities) {
+            final DataNode dataNode;
+            if (FetchDescendantsOption.OMIT_DESCENDANTS.equals(fetchDescendantsOption)) {
+                dataNode = toDataNode(lazyLoadingFragmentEntity, fetchDescendantsOption);
+            } else {
+                final String normalizedXpath;
+                try {
+                    normalizedXpath = CpsPathUtil.getNormalizedXpath(lazyLoadingFragmentEntity.getXpath());
+                } catch (final PathParsingException e) {
+                    throw new CpsPathException(e.getMessage());
+                }
+                final FragmentEntity resolvedFragmentEntity = buildFragmentEntityFromFragmentExtracts(anchorEntity,
+                        normalizedXpath);
+                dataNode = toDataNode(resolvedFragmentEntity, fetchDescendantsOption);
+            }
+            dataNode.setModuleNamePrefix(getRootModuleNamePrefix(anchorEntity));
+            dataNodes.add(dataNode);
+        }
+        return dataNodes;
     }
 
     @Override
