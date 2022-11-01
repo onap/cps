@@ -73,6 +73,6 @@ INSERT INTO FRAGMENT (ID, DATASPACE_ID, ANCHOR_ID, PARENT_ID, XPATH, ATTRIBUTES)
     (14, 1001, 1003, 12, '/shops/shop[@id=''3'']/categories[@code=''2'']', '{"id" : 2, "type" : "garden centre", "name": "outdoor plants"}'),
     (16, 1001, 1003, 1, '/shops/shop[@id=''3'']/info', null),
     (17, 1001, 1003, 1, '/shops/shop[@id=''3'']/info/contact', null),
-    (18, 1001, 1003, 1, '/shops/shop[@id=''3'']/info/contact/website', '{"address" : "myshop.ie"}'),
-    (19, 1001, 1003, 12, '/shops/shop[@id=''3'']/info/contact/phonenumbers[@type=''mob'']', '{"type" : "mob", "number" : "123123456"}'),
-    (20, 1001, 1003, 12, '/shops/shop[@id=''3'']/info/contact/phonenumbers[@type=''landline'']', '{"type" : "landline", "number" : "012123456"}');
+    (18, 1001, 1003, 17, '/shops/shop[@id=''3'']/info/contact/website', '{"address" : "myshop.ie"}'),
+    (19, 1001, 1003, 17, '/shops/shop[@id=''3'']/info/contact/phonenumbers[@type=''mob'']', '{"type" : "mob", "number" : "123123456"}'),
+    (20, 1001, 1003, 17, '/shops/shop[@id=''3'']/info/contact/phonenumbers[@type=''landline'']', '{"type" : "landline", "number" : "012123456"}');
