@@ -243,28 +243,30 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         if (isRootXpath(xpath)) {
             return fragmentRepository.findFirstRootByDataspaceAndAnchor(dataspaceEntity, anchorEntity);
         } else {
-            final String normalizedXpath;
-            try {
-                normalizedXpath = CpsPathUtil.getNormalizedXpath(xpath);
-            } catch (final PathParsingException e) {
-                throw new CpsPathException(e.getMessage());
-            }
+            final String normalizedXpath = getNormalizedXpath(xpath);
             final FragmentEntity fragmentEntity;
             if (FetchDescendantsOption.OMIT_DESCENDANTS.equals(fetchDescendantsOption)) {
                 fragmentEntity =
                     fragmentRepository.getByDataspaceAndAnchorAndXpath(dataspaceEntity, anchorEntity, normalizedXpath);
             } else {
-                final List<FragmentExtract> fragmentExtracts =
-                    fragmentRepository.findByAnchorIdAndParentXpath(anchorEntity.getId(), normalizedXpath);
-                log.debug("Fetched {} fragment entities by anchor {} and cps path {}.",
-                    fragmentExtracts.size(), anchorName, xpath);
-                fragmentEntity = FragmentEntityArranger.toFragmentEntityTree(anchorEntity, fragmentExtracts);
+                fragmentEntity = buildFragmentEntityFromFragmentExtracts(anchorEntity, normalizedXpath);
             }
             if (fragmentEntity == null) {
                 throw new DataNodeNotFoundException(dataspaceEntity.getName(), anchorEntity.getName(), xpath);
             }
             return fragmentEntity;
         }
+    }
+
+    private FragmentEntity buildFragmentEntityFromFragmentExtracts(final AnchorEntity anchorEntity,
+                                                                   final String normalizedXpath) {
+        final FragmentEntity fragmentEntity;
+        final List<FragmentExtract> fragmentExtracts =
+                fragmentRepository.findByAnchorIdAndParentXpath(anchorEntity.getId(), normalizedXpath);
+        log.debug("Fetched {} fragment entities by anchor {} and cps path {}.",
+                fragmentExtracts.size(), anchorEntity.getName(), normalizedXpath);
+        fragmentEntity = FragmentEntityArranger.toFragmentEntityTree(anchorEntity, fragmentExtracts);
+        return fragmentEntity;
     }
 
     @Override
@@ -285,12 +287,32 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             fragmentEntities = ancestorXpaths.isEmpty() ? Collections.emptyList()
                     : fragmentRepository.findAllByAnchorAndXpathIn(anchorEntity, ancestorXpaths);
         }
-        return fragmentEntities.stream()
-                .map(fragmentEntity -> {
-                    final DataNode dataNode = toDataNode(fragmentEntity, fetchDescendantsOption);
-                    dataNode.setModuleNamePrefix(getRootModuleNamePrefix(anchorEntity));
-                    return dataNode;
-                }).collect(Collectors.toUnmodifiableList());
+        final List<DataNode> dataNodes = new ArrayList<>(fragmentEntities.size());
+
+        for (final FragmentEntity proxiedFragmentEntity : fragmentEntities) {
+            final DataNode dataNode;
+            if (FetchDescendantsOption.OMIT_DESCENDANTS.equals(fetchDescendantsOption)) {
+                dataNode = toDataNode(proxiedFragmentEntity, fetchDescendantsOption);
+            } else {
+                final String normalizedXpath = getNormalizedXpath(proxiedFragmentEntity.getXpath());
+                final FragmentEntity unproxiedFragmentEntity = buildFragmentEntityFromFragmentExtracts(anchorEntity,
+                        normalizedXpath);
+                dataNode = toDataNode(unproxiedFragmentEntity, fetchDescendantsOption);
+            }
+            dataNode.setModuleNamePrefix(getRootModuleNamePrefix(anchorEntity));
+            dataNodes.add(dataNode);
+        }
+        return Collections.unmodifiableList(dataNodes);
+    }
+
+    private static String getNormalizedXpath(final String xpathSource) {
+        final String normalizedXpath;
+        try {
+            normalizedXpath = CpsPathUtil.getNormalizedXpath(xpathSource);
+        } catch (final PathParsingException e) {
+            throw new CpsPathException(e.getMessage());
+        }
+        return normalizedXpath;
     }
 
     @Override
