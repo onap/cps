@@ -2,6 +2,75 @@
   "comments": [
     {
       "key": {
+        "uuid": "551731d2_0565fcf2",
+        "filename": "cps-ncmp-rest-stub/src/main/java/org/onap/cps/ncmp/rest/stub/controller/NetworkCmProxyStubController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-11-02T13:45:15Z",
+      "side": 1,
+      "message": "NB: We generally have each parameter on a new line",
+      "range": {
+        "startLine": 166,
+        "startChar": 63,
+        "endLine": 168,
+        "endChar": 115
+      },
+      "revId": "d7921fcaf1521ba38cbc1e59ef3224ebb3acee47",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "46121130_368104f5",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-11-02T13:45:15Z",
+      "side": 1,
+      "message": "NB: is this in addition to the slash above? e.g. http://something///bookstore?",
+      "range": {
+        "startLine": 466,
+        "startChar": 17,
+        "endLine": 466,
+        "endChar": 19
+      },
+      "revId": "d7921fcaf1521ba38cbc1e59ef3224ebb3acee47",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "45a3f7e5_7538b30a",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-11-02T13:45:15Z",
+      "side": 1,
+      "message": "NB: a given cm handle",
+      "range": {
+        "startLine": 201,
+        "startChar": 37,
+        "endLine": 201,
+        "endChar": 46
+      },
+      "revId": "d7921fcaf1521ba38cbc1e59ef3224ebb3acee47",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0f3b1e3d_1eb13895",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
         "patchSetId": 1
@@ -64,6 +133,29 @@
         "startChar": 0,
         "endLine": 74,
         "endChar": 5
+      },
+      "revId": "d7921fcaf1521ba38cbc1e59ef3224ebb3acee47",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ece0816d_6c8d78bd",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreResourceRequestHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-11-02T13:45:15Z",
+      "side": 1,
+      "message": "NB: Is the scope change for a test?",
+      "range": {
+        "startLine": 37,
+        "startChar": 4,
+        "endLine": 37,
+        "endChar": 14
       },
       "revId": "d7921fcaf1521ba38cbc1e59ef3224ebb3acee47",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
