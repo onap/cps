@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7faf77e8_b56da1b0",
+        "filename": "csit/plans/cps/setup.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-11-02T14:14:45Z",
+      "side": 1,
+      "message": "Add modifications copyright",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 1
+      },
+      "revId": "f2fe7c2ebd7dde4aaf367d9821c5dc700756eb61",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a04e141_dcfe0346",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-11-02T14:14:45Z",
+      "side": 1,
+      "message": "2022",
+      "range": {
+        "startLine": 4,
+        "startChar": 30,
+        "endLine": 4,
+        "endChar": 35
+      },
+      "revId": "f2fe7c2ebd7dde4aaf367d9821c5dc700756eb61",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cde70906_a31a272c",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-11-02T14:14:45Z",
+      "side": 1,
+      "message": "Why are we using snapshot?",
+      "range": {
+        "startLine": 100,
+        "startChar": 13,
+        "endLine": 100,
+        "endChar": 33
+      },
+      "revId": "f2fe7c2ebd7dde4aaf367d9821c5dc700756eb61",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
