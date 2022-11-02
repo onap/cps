@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7e0501ef_ee7f3da9",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DataMapUtilsSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-11-02T14:03:32Z",
+      "side": 1,
+      "message": "NB : space",
+      "range": {
+        "startLine": 68,
+        "startChar": 70,
+        "endLine": 68,
+        "endChar": 71
+      },
+      "revId": "14e5bf958bb2b114e3e7d8876bd6f031900c79ec",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
