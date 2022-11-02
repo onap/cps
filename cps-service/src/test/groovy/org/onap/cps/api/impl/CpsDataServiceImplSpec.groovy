@@ -66,10 +66,15 @@ class CpsDataServiceImplSpec extends Specification {
             def jsonData = TestUtils.getResourceFileContent('multiple-object-data.json')
             objectUnderTest.saveData(dataspaceName, anchorName, jsonData, observedTimestamp)
         then: 'the persistence service method is invoked with correct parameters'
-            1 * mockCpsDataPersistenceService.storeDataNode(dataspaceName, anchorName,
-                { dataNode -> dataNode.xpath == '/first-container' })
+            1 * mockCpsDataPersistenceService.storeDataNodes(dataspaceName, anchorName,
+                { dataNode -> dataNode.xpath[index] == xpath })
         and: 'data updated event is sent to notification service'
             1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, '/', Operation.CREATE, observedTimestamp)
+        where:
+            index   |   xpath
+                0   | '/first-container'
+                1   | '/last-container'
+
     }
 
     def 'Saving json data with invalid #scenario.'() {
@@ -78,7 +83,7 @@ class CpsDataServiceImplSpec extends Specification {
         then: 'a data validation exception is thrown'
             thrown(DataValidationException)
         and: 'the persistence service method is not invoked'
-            0 * mockCpsDataPersistenceService.storeDataNode(*_)
+            0 * mockCpsDataPersistenceService.storeDataNodes(*_)
         and: 'data updated event is not sent to notification service'
             0 * mockNotificationService.processDataUpdatedEvent(*_)
         where: 'the following parameters are used'
@@ -95,8 +100,8 @@ class CpsDataServiceImplSpec extends Specification {
             def jsonData = '{"branch": [{"name": "New"}]}'
             objectUnderTest.saveData(dataspaceName, anchorName, '/test-tree', jsonData, observedTimestamp)
         then: 'the persistence service method is invoked with correct parameters'
-            1 * mockCpsDataPersistenceService.addChildDataNode(dataspaceName, anchorName, '/test-tree',
-                { dataNode -> dataNode.xpath == '/test-tree/branch[@name=\'New\']' })
+            1 * mockCpsDataPersistenceService.addNewChildrenDataNodes(dataspaceName, anchorName, '/test-tree',
+                { dataNode -> dataNode.xpath[0] == '/test-tree/branch[@name=\'New\']' })
         and: 'data updated event is sent to notification service'
             1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, '/test-tree', Operation.CREATE, observedTimestamp)
     }
@@ -290,8 +295,8 @@ class CpsDataServiceImplSpec extends Specification {
         when: 'replace data method is invoked with json data #jsonData and parent node xpath #parentNodeXpath'
             objectUnderTest.updateDataNodeAndDescendants(dataspaceName, anchorName, parentNodeXpath, jsonData, observedTimestamp)
         then: 'the persistence service method is invoked with correct parameters'
-            1 * mockCpsDataPersistenceService.updateDataNodeAndDescendants(dataspaceName, anchorName,
-                { dataNode -> dataNode.xpath == expectedNodeXpath })
+            1 * mockCpsDataPersistenceService.updateDataNodesAndDescendants(dataspaceName, anchorName,
+                { dataNode -> dataNode.xpath[0] == expectedNodeXpath })
         and: 'data updated event is sent to notification service'
             1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, parentNodeXpath, Operation.UPDATE, observedTimestamp)
         where: 'following parameters were used'

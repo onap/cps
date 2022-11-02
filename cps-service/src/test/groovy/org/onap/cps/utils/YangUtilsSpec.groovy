@@ -70,14 +70,14 @@ class YangUtilsSpec extends Specification {
         when: 'json string is parsed'
             def result = YangUtils.parseJsonData(jsonData, schemaContext, parentNodeXpath)
         then: 'result is a collection of normalized nodes is returned'
-            result[index ] instanceof NormalizedNode == true
+            result[0] instanceof NormalizedNode == true
         then: 'result represents a node of expected type'
-            result[index].nodeType == QName.create('org:onap:cps:test:test-tree', '2020-02-02', nodeName)
+            result[0].nodeType == QName.create('org:onap:cps:test:test-tree', '2020-02-02', nodeName)
         where:
-            index   |        scenario            | jsonData                                                                      | parentNodeXpath                       || nodeName
-                0   |'list element as container' | '{ "branch": { "name": "B", "nest": { "name": "N", "birds": ["bird"] } } }'   | '/test-tree'                          || 'branch'
-                0   |'list element within list'  | '{ "branch": [{ "name": "B", "nest": { "name": "N", "birds": ["bird"] } }] }' | '/test-tree'                          || 'branch'
-                0   |'container element'         | '{ "nest": { "name": "N", "birds": ["bird"] } }'                              | '/test-tree/branch[@name=\'Branch\']' || 'nest'
+                      scenario                 | jsonData                                                                      | parentNodeXpath                       || nodeName
+                   'list element as container' | '{ "branch": { "name": "B", "nest": { "name": "N", "birds": ["bird"] } } }'   | '/test-tree'                          || 'branch'
+                   'list element within list'  | '{ "branch": [{ "name": "B", "nest": { "name": "N", "birds": ["bird"] } }] }' | '/test-tree'                          || 'branch'
+                   'container element'         | '{ "nest": { "name": "N", "birds": ["bird"] } }'                              | '/test-tree/branch[@name=\'Branch\']' || 'nest'
     }
 
     def 'Parsing json data fragment by xpath error scenario: #scenario.'() {

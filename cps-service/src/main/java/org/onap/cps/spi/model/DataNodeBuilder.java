@@ -45,6 +45,7 @@ import org.opendaylight.yangtools.yang.data.api.schema.ValueNode;
 @Slf4j
 public class DataNodeBuilder {
 
+    //TODO: Remove single Normalizednode
     private NormalizedNode<?, ?> normalizedNodeTree;
     private Collection<DataContainerChild<? extends YangInstanceIdentifier.PathArgument, ?>> normalizedNodeCollection;
     private String xpath;
@@ -64,7 +65,7 @@ public class DataNodeBuilder {
         return this;
     }
 
-
+    //TODO: Remove this
     /**
      * To use {@link NormalizedNode} for creating {@link DataNode}.
      *
@@ -80,12 +81,12 @@ public class DataNodeBuilder {
     /**
      * To use {@link Collection} of Normalized Nodes for creating {@link DataNode}.
      *
-     * @param dataContainerChildren used for creating the Data Node
+     * @param normalizednodecollection used for creating the Data Node
      * @return this {@link DataNodeBuilder} object
      */
     public DataNodeBuilder withNormalizedNodeCollection(final Collection<DataContainerChild<?
-            extends YangInstanceIdentifier.PathArgument, ?>> dataContainerChildren) {
-        this.normalizedNodeCollection = dataContainerChildren;
+            extends YangInstanceIdentifier.PathArgument, ?>> normalizednodecollection) {
+        this.normalizedNodeCollection = normalizednodecollection;
         return this;
     }
 
@@ -170,6 +171,7 @@ public class DataNodeBuilder {
         return dataNode;
     }
 
+    //TODO: Rename buildFromNormalizedNodeTree -> buildFromNormalizedNodeCollection
     private DataNode buildFromNormalizedNodeTree() {
         final Collection<DataNode> dataNodeCollection = buildCollectionFromNormalizedNodeTree();
         if (!dataNodeCollection.iterator().hasNext()) {
@@ -179,7 +181,7 @@ public class DataNodeBuilder {
         return dataNodeCollection.iterator().next();
     }
 
-
+    //TODO: Rename buildCollectionFromNormalizedNodeTree -> buildCollectionFromNormalizedNodeCollection
     private Collection<DataNode> buildCollectionFromNormalizedNodeTree() {
         final var parentDataNode = new DataNodeBuilder().withXpath(parentNodeXpath).build();
         for (final NormalizedNode normalizedNode: normalizedNodeCollection) {

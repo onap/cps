@@ -28,6 +28,7 @@ import static org.onap.cps.notification.Operation.DELETE;
 import static org.onap.cps.notification.Operation.UPDATE;
 
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -70,9 +71,7 @@ public class CpsDataServiceImpl implements CpsDataService {
         CpsValidator.validateNameCharacters(dataspaceName, anchorName);
         final Collection<DataNode> dataNodes =
                 buildDataNodes(dataspaceName, anchorName, ROOT_NODE_XPATH, jsonData);
-        for (final DataNode dataNode: dataNodes) {
-            cpsDataPersistenceService.storeDataNode(dataspaceName, anchorName, dataNode);
-        }
+        cpsDataPersistenceService.storeDataNodes(dataspaceName, anchorName, dataNodes);
         processDataUpdatedEventAsync(dataspaceName, anchorName, ROOT_NODE_XPATH, CREATE, observedTimestamp);
     }
 
@@ -82,9 +81,7 @@ public class CpsDataServiceImpl implements CpsDataService {
         CpsValidator.validateNameCharacters(dataspaceName, anchorName);
         final Collection<DataNode> dataNodes =
                 buildDataNodes(dataspaceName, anchorName, parentNodeXpath, jsonData);
-        for (final DataNode dataNode: dataNodes) {
-            cpsDataPersistenceService.addChildDataNode(dataspaceName, anchorName, parentNodeXpath, dataNode);
-        }
+        cpsDataPersistenceService.addNewChildrenDataNodes(dataspaceName, anchorName, parentNodeXpath, dataNodes);
         processDataUpdatedEventAsync(dataspaceName, anchorName, parentNodeXpath, CREATE, observedTimestamp);
     }
 
@@ -170,9 +167,8 @@ public class CpsDataServiceImpl implements CpsDataService {
         CpsValidator.validateNameCharacters(dataspaceName, anchorName);
         final Collection<DataNode> dataNodes =
                 buildDataNodes(dataspaceName, anchorName, parentNodeXpath, jsonData);
-        for (final DataNode dataNode: dataNodes) {
-            cpsDataPersistenceService.updateDataNodeAndDescendants(dataspaceName, anchorName, dataNode);
-        }
+        final ArrayList<DataNode> nodes = new ArrayList<>(dataNodes);
+        cpsDataPersistenceService.updateDataNodesAndDescendants(dataspaceName, anchorName, nodes);
         processDataUpdatedEventAsync(dataspaceName, anchorName, parentNodeXpath, UPDATE, observedTimestamp);
     }
 
@@ -234,18 +230,17 @@ public class CpsDataServiceImpl implements CpsDataService {
 
         final Anchor anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
         final SchemaContext schemaContext = getSchemaContext(dataspaceName, anchor.getSchemaSetName());
-
         if (ROOT_NODE_XPATH.equals(parentNodeXpath)) {
-            final Collection<DataContainerChild<? extends YangInstanceIdentifier.PathArgument, ?>> normalizedNode =
-                    YangUtils.parseJsonData(jsonData, schemaContext);
-            return new DataNodeBuilder().withNormalizedNodeCollection(normalizedNode).build();
+            final Collection<DataContainerChild<? extends YangInstanceIdentifier.PathArgument,
+                    ?>> normalizednodecollection = YangUtils.parseJsonData(jsonData, schemaContext);
+            return new DataNodeBuilder().withNormalizedNodeCollection(normalizednodecollection).build();
         }
 
-        final Collection<DataContainerChild<? extends YangInstanceIdentifier.PathArgument, ?>> normalizedNode =
-                YangUtils.parseJsonData(jsonData, schemaContext, parentNodeXpath);
+        final Collection<DataContainerChild<? extends YangInstanceIdentifier.PathArgument,
+                ?>> normalizednodecollection = YangUtils.parseJsonData(jsonData, schemaContext, parentNodeXpath);
         return new DataNodeBuilder()
                 .withParentNodeXpath(parentNodeXpath)
-                .withNormalizedNodeCollection(normalizedNode)
+                .withNormalizedNodeCollection(normalizednodecollection)
                 .build();
     }
 
@@ -263,24 +258,22 @@ public class CpsDataServiceImpl implements CpsDataService {
 
         final Anchor anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
         final SchemaContext schemaContext = getSchemaContext(dataspaceName, anchor.getSchemaSetName());
-
         if (ROOT_NODE_XPATH.equals(parentNodeXpath)) {
             final Collection<DataContainerChild<? extends YangInstanceIdentifier.PathArgument,
-                    ?>> dataContainerChildren = YangUtils.parseJsonData(jsonData, schemaContext);
+                    ?>> normalizednodecollection = YangUtils.parseJsonData(jsonData, schemaContext);
             final Collection<DataNode> dataNodes = new DataNodeBuilder()
-                    .withNormalizedNodeCollection(dataContainerChildren)
+                    .withNormalizedNodeCollection(normalizednodecollection)
                     .buildCollection();
             if (dataNodes.isEmpty()) {
                 throw new DataValidationException("Invalid data.", "No data nodes provided");
             }
             return dataNodes;
         }
-
-        final Collection<DataContainerChild<? extends YangInstanceIdentifier.PathArgument, ?>> dataContainerChildren =
-                YangUtils.parseJsonData(jsonData, schemaContext, parentNodeXpath);
+        final Collection<DataContainerChild<? extends YangInstanceIdentifier.PathArgument,
+                ?>> normalizednodecollection = YangUtils.parseJsonData(jsonData, schemaContext, parentNodeXpath);
         final Collection<DataNode> dataNodes = new DataNodeBuilder()
             .withParentNodeXpath(parentNodeXpath)
-            .withNormalizedNodeCollection(dataContainerChildren)
+            .withNormalizedNodeCollection(normalizednodecollection)
             .buildCollection();
         if (dataNodes.isEmpty()) {
             throw new DataValidationException("Invalid data.", "No data nodes provided");
