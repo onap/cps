@@ -190,6 +190,30 @@
     },
     {
       "key": {
+        "uuid": "f0c2c6cd_37d8a143",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/PrefixResolver.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-02T09:29:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "faaa185c_34a6daf9",
+      "range": {
+        "startLine": 83,
+        "startChar": 19,
+        "endLine": 83,
+        "endChar": 34
+      },
+      "revId": "83a6414931f3b9f2ad3ab61693bb2fc736ecb7d2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "32d00272_c38c9ca2",
         "filename": "cps-service/src/test/groovy/org/onap/cps/notification/CpsDataUpdateEventFactorySpec.groovy",
         "patchSetId": 6
