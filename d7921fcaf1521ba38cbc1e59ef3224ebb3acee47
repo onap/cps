@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9172adf8_ad9492eb",
+        "filename": "cps-ncmp-rest-stub/src/main/java/org/onap/cps/ncmp/rest/stub/controller/NetworkCmProxyStubController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-11-03T17:11:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "551731d2_0565fcf2",
+      "range": {
+        "startLine": 166,
+        "startChar": 63,
+        "endLine": 168,
+        "endChar": 115
+      },
+      "revId": "d7921fcaf1521ba38cbc1e59ef3224ebb3acee47",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "46121130_368104f5",
         "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2022-11-02T13:45:15Z",
       "side": 1,
       "message": "NB: is this in addition to the slash above? e.g. http://something///bookstore?",
+      "range": {
+        "startLine": 466,
+        "startChar": 17,
+        "endLine": 466,
+        "endChar": 19
+      },
+      "revId": "d7921fcaf1521ba38cbc1e59ef3224ebb3acee47",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e1d75b8f_e20e2327",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-11-03T17:11:45Z",
+      "side": 1,
+      "message": "Sorry how do you mean? Would show up as //bookstore independently as an example as in /stores/bookstore but with ancestor fill with //",
+      "parentUuid": "46121130_368104f5",
       "range": {
         "startLine": 466,
         "startChar": 17,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "85b4064e_7d888d75",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-11-03T17:11:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "45a3f7e5_7538b30a",
+      "range": {
+        "startLine": 201,
+        "startChar": 37,
+        "endLine": 201,
+        "endChar": 46
+      },
+      "revId": "d7921fcaf1521ba38cbc1e59ef3224ebb3acee47",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0f3b1e3d_1eb13895",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
         "patchSetId": 1
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "e4328fe4_2d84f26c",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-11-03T17:11:45Z",
+      "side": 1,
+      "message": "Implemented for single DataStoreType, functionality can be extended in future if necessary",
+      "parentUuid": "0f3b1e3d_1eb13895",
+      "range": {
+        "startLine": 364,
+        "startChar": 0,
+        "endLine": 378,
+        "endChar": 5
+      },
+      "revId": "d7921fcaf1521ba38cbc1e59ef3224ebb3acee47",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "096dcece_39a259e6",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreOperationalResourceRequestHandler.java",
         "patchSetId": 1
@@ -105,6 +201,30 @@
       "writtenOn": "2022-10-25T17:45:42Z",
       "side": 1,
       "message": "why are you not injecting this instead ie make this class a bean",
+      "range": {
+        "startLine": 45,
+        "startChar": 8,
+        "endLine": 45,
+        "endChar": 69
+      },
+      "revId": "d7921fcaf1521ba38cbc1e59ef3224ebb3acee47",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ee020ffa_4caf4555",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreOperationalResourceRequestHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-11-03T17:11:45Z",
+      "side": 1,
+      "message": "It is no? I still have to provide a constructor to the class though. I can\u0027t used the @RequiredArgs Annotation because I need the constructor to call the super constructor",
+      "parentUuid": "096dcece_39a259e6",
       "range": {
         "startLine": 45,
         "startChar": 8,
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "4d8d7445_e2521ff1",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreOperationalResourceRequestHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-11-03T17:11:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d4f480cf_8703de8e",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 5
+      },
+      "revId": "d7921fcaf1521ba38cbc1e59ef3224ebb3acee47",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ece0816d_6c8d78bd",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreResourceRequestHandler.java",
         "patchSetId": 1
@@ -151,6 +295,30 @@
       "writtenOn": "2022-11-02T13:45:15Z",
       "side": 1,
       "message": "NB: Is the scope change for a test?",
+      "range": {
+        "startLine": 37,
+        "startChar": 4,
+        "endLine": 37,
+        "endChar": 14
+      },
+      "revId": "d7921fcaf1521ba38cbc1e59ef3224ebb3acee47",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "66dabb1d_a19b3b3b",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreResourceRequestHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-11-03T17:11:45Z",
+      "side": 1,
+      "message": "I think I had it in for a child class then didn\u0027t need it, reverting back",
+      "parentUuid": "ece0816d_6c8d78bd",
       "range": {
         "startLine": 37,
         "startChar": 4,
@@ -186,6 +354,30 @@
     },
     {
       "key": {
+        "uuid": "17fc6523_cd37205a",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreOperationalResourceRequestHandlerFactorySpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-11-03T17:11:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "01cfa5e2_408ef4c7",
+      "range": {
+        "startLine": 35,
+        "startChar": 8,
+        "endLine": 35,
+        "endChar": 19
+      },
+      "revId": "d7921fcaf1521ba38cbc1e59ef3224ebb3acee47",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "afa89e4e_f1bf992c",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyQueryServiceImplSpec.groovy",
         "patchSetId": 1
@@ -203,6 +395,24 @@
     },
     {
       "key": {
+        "uuid": "d3c40fdd_705c332a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyQueryServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-11-03T17:11:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "afa89e4e_f1bf992c",
+      "revId": "d7921fcaf1521ba38cbc1e59ef3224ebb3acee47",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e698a910_e3fe7181",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyQueryServiceImplSpec.groovy",
         "patchSetId": 1
@@ -217,6 +427,24 @@
       "revId": "d7921fcaf1521ba38cbc1e59ef3224ebb3acee47",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a53d15bc_28b56798",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyQueryServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-11-03T17:11:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e698a910_e3fe7181",
+      "revId": "d7921fcaf1521ba38cbc1e59ef3224ebb3acee47",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
