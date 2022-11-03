@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f17c7390_3222a61c",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-11-03T14:37:17Z",
+      "side": 1,
+      "message": "NB: anchor name",
+      "range": {
+        "startLine": 170,
+        "startChar": 28,
+        "endLine": 170,
+        "endChar": 38
+      },
+      "revId": "3975a99914a229f6f04cc3a3d81162e100fd5bed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3dd6dbe9_4a098835",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-11-03T14:37:17Z",
+      "side": 1,
+      "message": "NB: valid name but we usually use #scenario instead, I\u0027m happy with either though",
+      "range": {
+        "startLine": 74,
+        "startChar": 37,
+        "endLine": 74,
+        "endChar": 51
+      },
+      "revId": "3975a99914a229f6f04cc3a3d81162e100fd5bed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
