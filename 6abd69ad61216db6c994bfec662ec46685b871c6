@@ -16,6 +16,24 @@
       "revId": "6abd69ad61216db6c994bfec662ec46685b871c6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b9fe126_b318e527",
+        "filename": "cps-rest/docs/openapi/openapi.yml",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2022-11-04T10:27:09Z",
+      "side": 0,
+      "message": "it seems there is limitation with openapi generated UI page . it does not understand {version: [1-2]} and treats it as normal url.",
+      "parentUuid": "38a43e30_6f5428b0",
+      "revId": "6abd69ad61216db6c994bfec662ec46685b871c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
