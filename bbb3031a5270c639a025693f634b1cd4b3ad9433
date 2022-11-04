@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "443a6378_c689a643",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-04T15:21:08Z",
+      "side": 1,
+      "message": "NB: private method should come after public methods",
+      "range": {
+        "startLine": 250,
+        "startChar": 3,
+        "endLine": 250,
+        "endChar": 66
+      },
+      "revId": "bbb3031a5270c639a025693f634b1cd4b3ad9433",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fc6ec3fe_cd909abb",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-04T15:21:08Z",
+      "side": 1,
+      "message": "NB: this could be done in a separate method",
+      "range": {
+        "startLine": 279,
+        "startChar": 0,
+        "endLine": 293,
+        "endChar": 55
+      },
+      "revId": "bbb3031a5270c639a025693f634b1cd4b3ad9433",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
