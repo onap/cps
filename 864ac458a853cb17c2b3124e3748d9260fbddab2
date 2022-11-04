@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "f8156d06_6c0044e8",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-04T09:24:31Z",
+      "side": 1,
+      "message": "did you rebase?\nThis is no doen in the service layer! (as per my fix we meregd yesterday)",
+      "range": {
+        "startLine": 302,
+        "startChar": 4,
+        "endLine": 302,
+        "endChar": 80
+      },
+      "revId": "864ac458a853cb17c2b3124e3748d9260fbddab2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "abe94ebe_5874d118",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-04T09:24:31Z",
+      "side": 1,
+      "message": "Legacy issue:\nWhy do we convert a PathParsingException to a CpsPathException ?!\nSeems unneceassry... We can discuss later, maybe leave it for now",
+      "range": {
+        "startLine": 312,
+        "startChar": 2,
+        "endLine": 314,
+        "endChar": 9
+      },
+      "revId": "864ac458a853cb17c2b3124e3748d9260fbddab2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c83bf4af_d21f096b",
         "filename": "cps-ri/src/test/resources/data/cps-path-query.sql",
         "patchSetId": 4
