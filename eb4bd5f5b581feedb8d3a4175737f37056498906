@@ -22,6 +22,30 @@
       "revId": "eb4bd5f5b581feedb8d3a4175737f37056498906",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1b3634d4_ab2ba55f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2022-11-08T05:17:57Z",
+      "side": 1,
+      "message": "yes to fix error code we only need to change in CpsRestExceptionHandler",
+      "parentUuid": "b23fe58e_46d67a4f",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 59
+      },
+      "revId": "eb4bd5f5b581feedb8d3a4175737f37056498906",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
