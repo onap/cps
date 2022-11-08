@@ -46,6 +46,29 @@
       "revId": "eb4bd5f5b581feedb8d3a4175737f37056498906",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c33eef05_b8359571",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-08T08:31:04Z",
+      "side": 1,
+      "message": "this seems very long for \u0027invalid json\u0027 (hard to see why it is actually invalid) just \u0027{\u0027 in the actual test shoudl suffice...",
+      "range": {
+        "startLine": 71,
+        "startChar": 34,
+        "endLine": 71,
+        "endChar": 117
+      },
+      "revId": "eb4bd5f5b581feedb8d3a4175737f37056498906",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
