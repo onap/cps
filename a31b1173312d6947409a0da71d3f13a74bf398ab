@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "bf39e1c7_b996239d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-08T13:02:53Z",
+      "side": 1,
+      "message": "include create of this in below method",
+      "range": {
+        "startLine": 279,
+        "startChar": 8,
+        "endLine": 279,
+        "endChar": 81
+      },
+      "revId": "a31b1173312d6947409a0da71d3f13a74bf398ab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da9a546e_12b9dd7b",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-08T13:02:53Z",
+      "side": 1,
+      "message": "return List\u003cDataNode\u003e isntead and tehn teh method can be called create... or convert....",
+      "range": {
+        "startLine": 284,
+        "startChar": 12,
+        "endLine": 284,
+        "endChar": 24
+      },
+      "revId": "a31b1173312d6947409a0da71d3f13a74bf398ab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "47a2f439_de483b74",
         "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationPublisherSpec.groovy",
         "patchSetId": 8
