@@ -57,6 +57,7 @@ public class FragmentEntityArranger {
         fragmentEntity.setAttributes(fragmentExtract.getAttributes());
         fragmentEntity.setParentId(fragmentExtract.getParentId());
         fragmentEntity.setChildFragments(new HashSet<>());
+        fragmentEntity.setDataspace(anchorEntity.getDataspace());
         return fragmentEntity;
     }
 
@@ -70,10 +71,7 @@ public class FragmentEntityArranger {
                 parentFragmentEntity.getChildFragments().add(fragmentEntity);
             }
         }
-        if (fragmentEntitiesWithoutParentInResultSet.iterator().hasNext()) {
-            return fragmentEntitiesWithoutParentInResultSet.iterator().next();
-        }
-        return null;
+        return fragmentEntitiesWithoutParentInResultSet.stream().findFirst().orElse(null);
     }
 
 }
