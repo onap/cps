@@ -67,4 +67,14 @@ public class DataNodeNotFoundException extends DataValidationException {
         super(DATANODE_NOT_FOUND, String.format(
             "DataNode not found for anchor %s and dataspace %s.", anchorName, dataspaceName));
     }
+
+    /**
+     * Constructor.
+     *
+     * @param anchorName the anchor name
+     */
+    public DataNodeNotFoundException(final String anchorName) {
+        super(DATANODE_NOT_FOUND, String.format(
+                "DataNode not found for anchor %s.", anchorName));
+    }
 }

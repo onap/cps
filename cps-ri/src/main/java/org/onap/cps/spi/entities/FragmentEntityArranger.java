@@ -70,10 +70,7 @@ public class FragmentEntityArranger {
                 parentFragmentEntity.getChildFragments().add(fragmentEntity);
             }
         }
-        if (fragmentEntitiesWithoutParentInResultSet.iterator().hasNext()) {
-            return fragmentEntitiesWithoutParentInResultSet.iterator().next();
-        }
-        return null;
+        return fragmentEntitiesWithoutParentInResultSet.stream().findFirst().orElse(null);
     }
 
 }
