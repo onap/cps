@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2020-2021 Nordix Foundation.
+ * Copyright (C) 2021-2022 Nordix Foundation.
  * Modifications Copyright (C) 2020-2021 Bell Canada.
  * Modifications Copyright (C) 2020-2021 Pantheon.tech.
  * ================================================================================
@@ -58,10 +58,26 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>,
     List<FragmentEntity> findRootsByDataspaceAndAnchor(@Param("dataspace") int dataspaceId,
                                                        @Param("anchor") int anchorId);
 
-    default FragmentEntity findFirstRootByDataspaceAndAnchor(@NonNull DataspaceEntity dataspaceEntity,
-                                                             @NonNull AnchorEntity anchorEntity) {
-        return findRootsByDataspaceAndAnchor(dataspaceEntity.getId(), anchorEntity.getId()).stream().findFirst()
-            .orElseThrow(() -> new DataNodeNotFoundException(dataspaceEntity.getName(), anchorEntity.getName()));
+    @Query(value = "SELECT id, anchor_id AS anchorId, xpath, parent_id AS parentId,"
+            + " CAST(attributes AS TEXT) AS attributes"
+            + " FROM FRAGMENT WHERE anchor_id = :anchorId",
+            nativeQuery = true)
+    List<FragmentExtract> findRootsByAnchorId(@Param("anchorId") int anchorId);
+
+    /**
+     * find top level fragment by anchor.
+     *
+     * @param dataspaceEntity dataspace entity
+     * @param anchorEntity anchor entity
+     * @return FragmentEntity fragment entity
+     */
+    default List<FragmentExtract> getTopLevelFragments(@NonNull DataspaceEntity dataspaceEntity,
+                                                       @NonNull AnchorEntity anchorEntity) {
+        final List<FragmentExtract> fragmentExtracts = findRootsByAnchorId(anchorEntity.getId());
+        if (fragmentExtracts.isEmpty()) {
+            throw new DataNodeNotFoundException(dataspaceEntity.getName(), anchorEntity.getName());
+        }
+        return fragmentExtracts;
     }
 
     List<FragmentEntity> findAllByAnchorAndXpathIn(@NonNull AnchorEntity anchorEntity,
