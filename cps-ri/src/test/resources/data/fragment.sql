@@ -51,7 +51,8 @@ INSERT INTO SCHEMA_SET_YANG_RESOURCES (SCHEMA_SET_ID, YANG_RESOURCE_ID) VALUES
 INSERT INTO ANCHOR (ID, NAME, DATASPACE_ID, SCHEMA_SET_ID) VALUES
     (3001, 'ANCHOR-001', 1001, 2001),
     (3003, 'ANCHOR-003', 1001, 2001),
-    (3004, 'ncmp-dmi-registry', 1002, 2001);
+    (3004, 'ncmp-dmi-registry', 1002, 2001),
+    (3005, 'ANCHOR-005', 1001, 2001);
 
 INSERT INTO FRAGMENT (ID, DATASPACE_ID, ANCHOR_ID, PARENT_ID, XPATH) VALUES
     (4001, 1001, 3001, null, '/parent-1'),
@@ -62,10 +63,10 @@ INSERT INTO FRAGMENT (ID, DATASPACE_ID, ANCHOR_ID, PARENT_ID, XPATH) VALUES
     (4006, 1001, 3001, 4004, '/parent-1/child-1/grandchild-1');
 
 INSERT INTO FRAGMENT (ID, DATASPACE_ID, ANCHOR_ID, PARENT_ID, XPATH, ATTRIBUTES) VALUES
-    (4101, 1001, 3003, null, '/parent-100', '{"parent-leaf": "parent-leaf value"}'),
-    (4102, 1001, 3003, 4101, '/parent-100/child-001', '{"first-child-leaf": "first-child-leaf value"}'),
-    (4103, 1001, 3003, 4101, '/parent-100/child-002', '{"second-child-leaf": "second-child-leaf value"}'),
-    (4104, 1001, 3003, 4103, '/parent-100/child-002/grand-child', '{"grand-child-leaf": "grand-child-leaf value"}');
+    (5009, 1001, 3005, null, '/parent-207', '{"parent-leaf": "parent-leaf value"}'),
+    (5010, 1001, 3005, 5009, '/parent-207/child-001', '{"first-child-leaf": "first-child-leaf value"}'),
+    (5011, 1001, 3005, 5009, '/parent-207/child-002', '{"second-child-leaf": "second-child-leaf value"}'),
+    (5012, 1001, 3005, 5011, '/parent-207/child-002/grand-child', '{"grand-child-leaf": "grand-child-leaf value"}');
 
 INSERT INTO FRAGMENT (ID, DATASPACE_ID, ANCHOR_ID, PARENT_ID, XPATH, ATTRIBUTES) VALUES
     (4201, 1001, 3003, null, '/parent-200', '{"leaf-value": "original"}'),
