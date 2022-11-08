@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a0a148cd_dff1cc89",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-11-08T13:24:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bf39e1c7_b996239d",
+      "range": {
+        "startLine": 279,
+        "startChar": 8,
+        "endLine": 279,
+        "endChar": 81
+      },
+      "revId": "a31b1173312d6947409a0da71d3f13a74bf398ab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da9a546e_12b9dd7b",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 8
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "da54d870_1e23fce6",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-11-08T13:24:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da9a546e_12b9dd7b",
+      "range": {
+        "startLine": 284,
+        "startChar": 12,
+        "endLine": 284,
+        "endChar": 24
+      },
+      "revId": "a31b1173312d6947409a0da71d3f13a74bf398ab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "47a2f439_de483b74",
         "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationPublisherSpec.groovy",
         "patchSetId": 8
@@ -68,6 +116,30 @@
       "revId": "a31b1173312d6947409a0da71d3f13a74bf398ab",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0767a60f_02cdad72",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/notification/NotificationPublisherSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-11-08T13:24:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "47a2f439_de483b74",
+      "range": {
+        "startLine": 4,
+        "startChar": 4,
+        "endLine": 4,
+        "endChar": 5
+      },
+      "revId": "a31b1173312d6947409a0da71d3f13a74bf398ab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
