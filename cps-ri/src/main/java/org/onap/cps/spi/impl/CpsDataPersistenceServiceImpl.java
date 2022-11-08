@@ -230,7 +230,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         final AnchorEntity anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
         if (isRootXpath(xpath)) {
-            return fragmentRepository.findFirstRootByDataspaceAndAnchor(dataspaceEntity, anchorEntity);
+            return fragmentRepository.findFirstRootByAnchor(dataspaceEntity, anchorEntity);
         } else {
             final String normalizedXpath = getNormalizedXpath(xpath);
             final FragmentEntity fragmentEntity;
@@ -500,7 +500,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
                                 final boolean onlySupportListNodeDeletion) {
         final String parentNodeXpath;
         FragmentEntity parentFragmentEntity = null;
-        boolean targetDeleted = false;
+        boolean targetDeleted;
         if (isRootXpath(targetXpath)) {
             deleteDataNodes(dataspaceName, anchorName);
             targetDeleted = true;

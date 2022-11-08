@@ -30,6 +30,7 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.FragmentEntity;
+import org.onap.cps.spi.entities.FragmentEntityArranger;
 import org.onap.cps.spi.entities.FragmentExtract;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -58,10 +59,28 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>,
     List<FragmentEntity> findRootsByDataspaceAndAnchor(@Param("dataspace") int dataspaceId,
                                                        @Param("anchor") int anchorId);
 
-    default FragmentEntity findFirstRootByDataspaceAndAnchor(@NonNull DataspaceEntity dataspaceEntity,
-                                                             @NonNull AnchorEntity anchorEntity) {
-        return findRootsByDataspaceAndAnchor(dataspaceEntity.getId(), anchorEntity.getId()).stream().findFirst()
-            .orElseThrow(() -> new DataNodeNotFoundException(dataspaceEntity.getName(), anchorEntity.getName()));
+    @Query(value = "SELECT id, anchor_id AS anchorId, xpath, parent_id AS parentId,"
+            + " CAST(attributes AS TEXT) AS attributes"
+            + " FROM FRAGMENT WHERE anchor_id = :anchorId",
+            nativeQuery = true)
+    List<FragmentExtract> findRootsByAnchorId(@Param("anchorId") int anchorId);
+
+    /**
+     * find root data node of fragment by anchor.
+     *
+     * @param anchorEntity anchor info of root fragment
+     * @return FragmentEntity fragment of root node
+     */
+    default FragmentEntity findFirstRootByAnchor(@NonNull DataspaceEntity dataspaceEntity,
+                                                 @NonNull AnchorEntity anchorEntity) {
+        final List<FragmentExtract> fragmentExtracts = findRootsByAnchorId(anchorEntity.getId());
+        if (fragmentExtracts.isEmpty()) {
+            throw new DataNodeNotFoundException(dataspaceEntity.getName(), anchorEntity.getName());
+        }
+        final FragmentEntity fragmentEntity = FragmentEntityArranger.toFragmentEntityTree(anchorEntity,
+                fragmentExtracts);
+        fragmentEntity.setDataspace(dataspaceEntity);
+        return fragmentEntity;
     }
 
     List<FragmentEntity> findAllByAnchorAndXpathIn(@NonNull AnchorEntity anchorEntity,

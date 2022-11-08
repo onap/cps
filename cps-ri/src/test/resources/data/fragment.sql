@@ -51,7 +51,8 @@ INSERT INTO SCHEMA_SET_YANG_RESOURCES (SCHEMA_SET_ID, YANG_RESOURCE_ID) VALUES
 INSERT INTO ANCHOR (ID, NAME, DATASPACE_ID, SCHEMA_SET_ID) VALUES
     (3001, 'ANCHOR-001', 1001, 2001),
     (3003, 'ANCHOR-003', 1001, 2001),
-    (3004, 'ncmp-dmi-registry', 1002, 2001);
+    (3004, 'ncmp-dmi-registry', 1002, 2001),
+    (3005, 'ANCHOR-005', 1001, 2001);
 
 INSERT INTO FRAGMENT (ID, DATASPACE_ID, ANCHOR_ID, PARENT_ID, XPATH) VALUES
     (4001, 1001, 3001, null, '/parent-1'),
@@ -102,3 +103,9 @@ INSERT INTO FRAGMENT (ID, DATASPACE_ID, ANCHOR_ID, PARENT_ID, XPATH, ATTRIBUTES)
     (5006, 1002, 3004, 5002, '/dmi-registry/cm-handles[@id=''PNFDemo3'']/public-properties[@name=''Contact'']', '{"name": "Contact3", "value": "PNF3@bookstore.com"}'),
     (5007, 1002, 3004, 5003, '/dmi-registry/cm-handles[@id=''PNFDemo4'']/public-properties[@name=''Contact'']', '{"name": "Contact", "value": "newemailforstore@bookstore.com"}'),
     (5008, 1002, 3004, 5004, '/dmi-registry/cm-handles[@id=''PNFDemo4'']/public-properties[@name=''Contact2'']', '{"name": "Contact2", "value": "newemailforstore2@bookstore.com"}');
+
+INSERT INTO FRAGMENT (ID, DATASPACE_ID, ANCHOR_ID, PARENT_ID, XPATH, ATTRIBUTES) VALUES
+    (5009, 1001, 3005, null, '/parent-207', '{"parent-leaf": "parent-leaf value"}'),
+    (5010, 1001, 3005, 5009, '/parent-207/child-001', '{"first-child-leaf": "first-child-leaf value"}'),
+    (5011, 1001, 3005, 5009, '/parent-207/child-002', '{"second-child-leaf": "second-child-leaf value"}'),
+    (5012, 1001, 3005, 5011, '/parent-207/child-002/grand-child', '{"grand-child-leaf": "grand-child-leaf value"}');
