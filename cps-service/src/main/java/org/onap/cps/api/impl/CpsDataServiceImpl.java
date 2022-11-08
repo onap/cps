@@ -55,6 +55,7 @@ import org.springframework.stereotype.Service;
 public class CpsDataServiceImpl implements CpsDataService {
 
     private static final String ROOT_NODE_XPATH = "/";
+    private static final String CM_HANDLE_XPATH_TEMPLATE = "/dmi-registry/cm-handles[@id='" + "%s" + "']";
     private static final long DEFAULT_LOCK_TIMEOUT_IN_MILLISECONDS = 300L;
 
     private final CpsDataPersistenceService cpsDataPersistenceService;
@@ -93,6 +94,18 @@ public class CpsDataServiceImpl implements CpsDataService {
     }
 
     @Override
+    public void saveListElements(final String dataspaceName, final String anchorName, final String parentNodeXpath,
+            final String jsonData, final OffsetDateTime observedTimestamp, final String cmHandleId) {
+        cpsValidator.validateNameCharacters(dataspaceName, anchorName);
+        final Collection<DataNode> listElementDataNodeCollection =
+                buildDataNodes(dataspaceName, anchorName, parentNodeXpath, jsonData);
+        cpsDataPersistenceService.addListElements(dataspaceName, anchorName, parentNodeXpath,
+                listElementDataNodeCollection);
+        processDataUpdatedEventAsync(dataspaceName, anchorName, parentNodeXpath, UPDATE, observedTimestamp,
+                List.of(cmHandleId));
+    }
+
+    @Override
     public void saveListElementsBatch(final String dataspaceName, final String anchorName, final String parentNodeXpath,
             final Collection<String> jsonDataList, final OffsetDateTime observedTimestamp) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
@@ -101,6 +114,19 @@ public class CpsDataServiceImpl implements CpsDataService {
         cpsDataPersistenceService.addMultipleLists(dataspaceName, anchorName, parentNodeXpath,
                 listElementDataNodeCollections);
         processDataUpdatedEventAsync(dataspaceName, anchorName, parentNodeXpath, UPDATE, observedTimestamp);
+    }
+
+    @Override
+    public void saveListElementsBatch(final String dataspaceName, final String anchorName, final String parentNodeXpath,
+            final Collection<String> jsonDataList, final OffsetDateTime observedTimestamp,
+            final Collection<String> dataNodeIds) {
+        cpsValidator.validateNameCharacters(dataspaceName, anchorName);
+        final Collection<Collection<DataNode>> listElementDataNodeCollections =
+                buildDataNodes(dataspaceName, anchorName, parentNodeXpath, jsonDataList);
+        cpsDataPersistenceService.addMultipleLists(dataspaceName, anchorName, parentNodeXpath,
+                listElementDataNodeCollections);
+        processDataUpdatedEventAsync(dataspaceName, anchorName, parentNodeXpath, UPDATE, observedTimestamp,
+                dataNodeIds);
     }
 
     @Override
@@ -275,6 +301,17 @@ public class CpsDataServiceImpl implements CpsDataService {
             final Operation operation, final OffsetDateTime observedTimestamp) {
         try {
             notificationService.processDataUpdatedEvent(dataspaceName, anchorName, xpath, operation, observedTimestamp);
+        } catch (final Exception exception) {
+            //If async message can't be queued for notification service, the initial request should not failed.
+            log.error("Failed to send message to notification service", exception);
+        }
+    }
+
+    private void processDataUpdatedEventAsync(final String dataspaceName, final String anchorName, final String xpath,
+            final Operation operation, final OffsetDateTime observedTimestamp, final Collection<String> dataNodeIds) {
+        try {
+            dataNodeIds.forEach(dataNodeId -> notificationService.processDataUpdatedEvent(dataspaceName, anchorName,
+                    String.format(CM_HANDLE_XPATH_TEMPLATE, dataNodeId), operation, observedTimestamp));
         } catch (final Exception exception) {
             //If async message can't be queued for notification service, the initial request should not failed.
             log.error("Failed to send message to notification service", exception);

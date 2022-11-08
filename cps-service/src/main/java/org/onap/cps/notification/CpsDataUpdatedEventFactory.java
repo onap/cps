@@ -81,6 +81,23 @@ public class CpsDataUpdatedEventFactory {
         return toCpsDataUpdatedEvent(anchor, dataNode, observedTimestamp, operation);
     }
 
+    /**
+     * Generates CPS Data Updated event. If observedTimestamp is not provided, then current timestamp is used.
+     *
+     * @param anchor            anchor
+     * @param observedTimestamp observedTimestamp
+     * @param operation         operation
+     * @param xpath xpath
+     * @return CpsDataUpdatedEvent
+     */
+    public CpsDataUpdatedEvent createCpsDataUpdatedEvent(final Anchor anchor, final OffsetDateTime observedTimestamp,
+            final Operation operation, final String xpath) {
+        final var dataNode = (operation == Operation.DELETE) ? null
+                                     : cpsDataService.getDataNode(anchor.getDataspaceName(), anchor.getName(), xpath,
+                                             FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
+        return toCpsDataUpdatedEvent(anchor, dataNode, observedTimestamp, operation);
+    }
+
     private CpsDataUpdatedEvent toCpsDataUpdatedEvent(final Anchor anchor, final DataNode dataNode,
         final OffsetDateTime observedTimestamp, final Operation operation) {
         final var cpsDataUpdatedEvent = new CpsDataUpdatedEvent();

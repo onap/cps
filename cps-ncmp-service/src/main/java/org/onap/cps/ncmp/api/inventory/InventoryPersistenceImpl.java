@@ -125,16 +125,20 @@ public class InventoryPersistenceImpl implements InventoryPersistence {
         final String cmHandleJsonData =
                 String.format("{\"cm-handles\":[%s]}", jsonObjectMapper.asJsonString(yangModelCmHandle));
         cpsDataService.saveListElements(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NCMP_DMI_REGISTRY_PARENT,
-                cmHandleJsonData, NO_TIMESTAMP);
+                cmHandleJsonData, NO_TIMESTAMP, yangModelCmHandle.getId());
     }
 
     @Override
     public void saveCmHandleBatch(final Collection<YangModelCmHandle> yangModelCmHandles) {
         final List<String> cmHandlesJsonData = new ArrayList<>();
-        yangModelCmHandles.forEach(yangModelCmHandle -> cmHandlesJsonData.add(
-                String.format("{\"cm-handles\":[%s]}", jsonObjectMapper.asJsonString(yangModelCmHandle))));
+        final List<String> cmHandlesIds = new ArrayList<>();
+        yangModelCmHandles.forEach(yangModelCmHandle -> {
+            cmHandlesJsonData.add(
+                    String.format("{\"cm-handles\":[%s]}", jsonObjectMapper.asJsonString(yangModelCmHandle)));
+            cmHandlesIds.add(yangModelCmHandle.getId());
+        });
         cpsDataService.saveListElementsBatch(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                NCMP_DMI_REGISTRY_PARENT, cmHandlesJsonData, NO_TIMESTAMP);
+                NCMP_DMI_REGISTRY_PARENT, cmHandlesJsonData, NO_TIMESTAMP, cmHandlesIds);
     }
 
     @Override

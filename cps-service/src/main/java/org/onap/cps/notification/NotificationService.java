@@ -87,7 +87,7 @@ public class NotificationService {
             if (shouldSendNotification(dataspaceName)) {
                 final var cpsDataUpdatedEvent =
                         cpsDataUpdatedEventFactory.createCpsDataUpdatedEvent(anchor,
-                                observedTimestamp, getRootNodeOperation(xpath, operation));
+                                observedTimestamp, getRootNodeOperation(xpath, operation), xpath);
                 log.debug("data updated event to be published {}", cpsDataUpdatedEvent);
                 notificationPublisher.sendNotification(cpsDataUpdatedEvent);
             }

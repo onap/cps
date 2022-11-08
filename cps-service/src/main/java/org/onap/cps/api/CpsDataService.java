@@ -75,11 +75,39 @@ public interface CpsDataService {
      * @param dataspaceName     dataspace name
      * @param anchorName        anchor name
      * @param parentNodeXpath   parent node xpath
+     * @param jsonData          json data representing list element(s)
+     * @param observedTimestamp observedTimestamp
+     * @param cmHandleId        cmHandleId
+     */
+    void saveListElements(String dataspaceName, String anchorName, String parentNodeXpath, String jsonData,
+            OffsetDateTime observedTimestamp, String cmHandleId);
+
+    /**
+     * Persists child data fragment representing one or more list elements under existing data node for the
+     * given anchor and dataspace.
+     *
+     * @param dataspaceName     dataspace name
+     * @param anchorName        anchor name
+     * @param parentNodeXpath   parent node xpath
      * @param jsonDataList      collection of json data representing list element(s)
      * @param observedTimestamp observedTimestamp
      */
     void saveListElementsBatch(String dataspaceName, String anchorName, String parentNodeXpath,
             Collection<String> jsonDataList, OffsetDateTime observedTimestamp);
+
+    /**
+     * Persists child data fragment representing one or more list elements under existing data node for the
+     * given anchor and dataspace.
+     *
+     * @param dataspaceName     dataspace name
+     * @param anchorName        anchor name
+     * @param parentNodeXpath   parent node xpath
+     * @param jsonDataList      collection of json data representing list element(s)
+     * @param observedTimestamp observedTimestamp
+     * @param cmHandleIds cmHandleIds
+     */
+    void saveListElementsBatch(String dataspaceName, String anchorName, String parentNodeXpath,
+            Collection<String> jsonDataList, OffsetDateTime observedTimestamp, Collection<String> cmHandleIds);
 
     /**
      * Retrieves datanode by XPath for given dataspace and anchor.
