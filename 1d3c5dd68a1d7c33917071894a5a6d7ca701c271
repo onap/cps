@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2a561c9a_cca7ced7",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-11-08T11:31:14Z",
+      "side": 1,
+      "message": "NB align with below",
+      "range": {
+        "startLine": 128,
+        "startChar": 93,
+        "endLine": 128,
+        "endChar": 95
+      },
+      "revId": "1d3c5dd68a1d7c33917071894a5a6d7ca701c271",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cc7bfa45_36444d3d",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-11-08T11:31:14Z",
+      "side": 1,
+      "message": "NB align with below",
+      "range": {
+        "startLine": 158,
+        "startChar": 96,
+        "endLine": 158,
+        "endChar": 98
+      },
+      "revId": "1d3c5dd68a1d7c33917071894a5a6d7ca701c271",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "290b6da7_915fde70",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/JsonParserStreamSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-11-08T11:31:14Z",
+      "side": 1,
+      "message": "And change this to 2022",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 23
+      },
+      "revId": "1d3c5dd68a1d7c33917071894a5a6d7ca701c271",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1a8bde66_8bc5db01",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/JsonParserStreamSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-11-08T11:31:14Z",
+      "side": 1,
+      "message": "Good catch thanks, just remove this line",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 50
+      },
+      "revId": "1d3c5dd68a1d7c33917071894a5a6d7ca701c271",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "670758a0_6aa38e21",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangUtilsSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-11-08T11:31:14Z",
+      "side": 1,
+      "message": "NB remove indent as functional code is not being altered",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 77,
+        "endChar": 19
+      },
+      "revId": "1d3c5dd68a1d7c33917071894a5a6d7ca701c271",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
