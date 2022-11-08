@@ -469,7 +469,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
                                 final boolean onlySupportListNodeDeletion) {
         final String parentNodeXpath;
         FragmentEntity parentFragmentEntity = null;
-        boolean targetDeleted = false;
+        boolean targetDeleted;
         if (isRootXpath(targetXpath)) {
             deleteDataNodes(dataspaceName, anchorName);
             targetDeleted = true;
