@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0d9a0398_fd5b4095",
+        "filename": "csit/plans/cps/setup.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-11-08T11:11:38Z",
+      "side": 1,
+      "message": "Add modifications copyright",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 1
+      },
+      "revId": "675c26ecf8459da9e321800951e0829b7014ecd0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f0a998f_7fc8202d",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 8
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-11-08T11:11:38Z",
+      "side": 1,
+      "message": "2021-2022",
+      "range": {
+        "startLine": 4,
+        "startChar": 30,
+        "endLine": 4,
+        "endChar": 35
+      },
+      "revId": "675c26ecf8459da9e321800951e0829b7014ecd0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
