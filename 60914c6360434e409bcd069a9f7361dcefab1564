@@ -22,6 +22,30 @@
       "revId": "60914c6360434e409bcd069a9f7361dcefab1564",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "304157d7_62bcff4c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/entities/YangResourceEntity.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 6079
+      },
+      "writtenOn": "2022-11-10T07:17:51Z",
+      "side": 1,
+      "message": "Joseph, it\u0027s a cherry-pick from master branch, Luke Gleeson is an author of an original change (from master branch). I believe the \"Nordix Foundation\" copyright is enough on that case",
+      "parentUuid": "10ad328d_bcb0c5a0",
+      "range": {
+        "startLine": 5,
+        "startChar": 1,
+        "endLine": 5,
+        "endChar": 2
+      },
+      "revId": "60914c6360434e409bcd069a9f7361dcefab1564",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
