@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "04b3ba48_714c5722",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/exceptions/CpsRestExceptionHandler.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-10T10:02:12Z",
+      "side": 1,
+      "message": "why is this exception added? In what situation would it happen?\nIf it is need (I assume it is) you need to add a test for it in CpsRestExceptionHandlerSpec",
+      "range": {
+        "startLine": 69,
+        "startChar": 59,
+        "endLine": 69,
+        "endChar": 96
+      },
+      "revId": "47a4dbab658af8d34c0a46b37c8be44080fefa48",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0614636e_6c6e3edb",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-10T10:02:12Z",
+      "side": 1,
+      "message": "for future ref (this test should be removed), please use correct indentation!\n(ask Luek about fining Intellij setting for groovy, it something liek Code Style, Groovy, label ident\u0027",
+      "range": {
+        "startLine": 159,
+        "startChar": 8,
+        "endLine": 159,
+        "endChar": 20
+      },
+      "revId": "47a4dbab658af8d34c0a46b37c8be44080fefa48",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dfee6ecd_0156924a",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-10T10:02:12Z",
+      "side": 1,
+      "message": "not suer why this tets is here.\nAny exception handling should be tested in CpsRestExceptionHandlerSpec",
+      "range": {
+        "startLine": 157,
+        "startChar": 0,
+        "endLine": 170,
+        "endChar": 5
+      },
+      "revId": "47a4dbab658af8d34c0a46b37c8be44080fefa48",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
