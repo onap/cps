@@ -91,6 +91,29 @@
       "revId": "e9a8ef447cccb8aa595478f9229f4fae0f488508",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f60fcde_79f2b899",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreOperationalResourceRequestHandlerFactorySpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-10T17:49:48Z",
+      "side": 1,
+      "message": "this is not the class that is to be tested according to the name of this spec?!\nI wil add a refactored version of thsi commit in Nordix. I think this test wont be needed",
+      "range": {
+        "startLine": 37,
+        "startChar": 30,
+        "endLine": 37,
+        "endChar": 76
+      },
+      "revId": "e9a8ef447cccb8aa595478f9229f4fae0f488508",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
