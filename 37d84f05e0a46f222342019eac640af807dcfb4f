@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "085e959c_f45f0315",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/entities/FragmentEntityArranger.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-10T10:20:21Z",
+      "side": 1,
+      "message": "for once I agree this is more readable :-)",
+      "range": {
+        "startLine": 73,
+        "startChar": 16,
+        "endLine": 73,
+        "endChar": 90
+      },
+      "revId": "37d84f05e0a46f222342019eac640af807dcfb4f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "778e89ee_8e35982b",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-10T10:20:21Z",
+      "side": 1,
+      "message": "see comment on repository method:\nit should return all fragments, then in this block you can select teh first one and convert it or somehow reuse what is already ether on lines 239 just below",
+      "range": {
+        "startLine": 233,
+        "startChar": 20,
+        "endLine": 233,
+        "endChar": 91
+      },
+      "revId": "37d84f05e0a46f222342019eac640af807dcfb4f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7455fec6_ff1a5310",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-10T10:20:21Z",
+      "side": 1,
+      "message": "I think teh repsity should return all top level Fragment Extracts.\nThe conversion to (first) fargmentEntity should be doen in the caller (just like we do for the other cases)\nso this method should be called getTopLevelFragments or something like that\nUpdate Javdox accordingly too",
+      "range": {
+        "startLine": 74,
+        "startChar": 27,
+        "endLine": 74,
+        "endChar": 48
+      },
+      "revId": "37d84f05e0a46f222342019eac640af807dcfb4f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb197a8f_e3b404d9",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-10T10:20:21Z",
+      "side": 1,
+      "message": "NB: are we no longer using parent-100 in any test, if so it coudl be deleted",
+      "range": {
+        "startLine": 59,
+        "startChar": 55,
+        "endLine": 59,
+        "endChar": 67
+      },
+      "revId": "37d84f05e0a46f222342019eac640af807dcfb4f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b514500_bb8cfde7",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-10T10:20:21Z",
+      "side": 1,
+      "message": "legacy: i feel these should be in a spearte test, it is a special (edge) case\nGive our move to new test base, maybe ignore this comment for now",
+      "range": {
+        "startLine": 247,
+        "startChar": 0,
+        "endLine": 248,
+        "endChar": 30
+      },
+      "revId": "37d84f05e0a46f222342019eac640af807dcfb4f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "12669ddc_86262c42",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsPersistenceSpecBase.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-10T10:20:21Z",
+      "side": 1,
+      "message": "TOP_LEVEL_FRAGMENT",
+      "range": {
+        "startLine": 71,
+        "startChar": 45,
+        "endLine": 71,
+        "endChar": 49
+      },
+      "revId": "37d84f05e0a46f222342019eac640af807dcfb4f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
