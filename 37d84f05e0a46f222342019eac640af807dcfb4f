@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "56e4b402_8802e9dc",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-11-10T14:06:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "778e89ee_8e35982b",
+      "range": {
+        "startLine": 233,
+        "startChar": 20,
+        "endLine": 233,
+        "endChar": 91
+      },
+      "revId": "37d84f05e0a46f222342019eac640af807dcfb4f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "19fe266b_a295f6a5",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
         "patchSetId": 4
@@ -68,6 +92,30 @@
       "revId": "37d84f05e0a46f222342019eac640af807dcfb4f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c6f7adf_dab15f8f",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-11-10T14:06:49Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "19fe266b_a295f6a5",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 2
+      },
+      "revId": "37d84f05e0a46f222342019eac640af807dcfb4f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -94,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "ecb840fe_46a6b27c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-11-10T14:06:49Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e2a49ac0_cf09a5c2",
+      "range": {
+        "startLine": 70,
+        "startChar": 4,
+        "endLine": 70,
+        "endChar": 6
+      },
+      "revId": "37d84f05e0a46f222342019eac640af807dcfb4f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7455fec6_ff1a5310",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
         "patchSetId": 4
@@ -114,6 +186,30 @@
       "revId": "37d84f05e0a46f222342019eac640af807dcfb4f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fac3402c_1aeb501e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-11-10T14:06:49Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7455fec6_ff1a5310",
+      "range": {
+        "startLine": 74,
+        "startChar": 27,
+        "endLine": 74,
+        "endChar": 48
+      },
+      "revId": "37d84f05e0a46f222342019eac640af807dcfb4f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -163,6 +259,30 @@
     },
     {
       "key": {
+        "uuid": "28b86c72_7b426394",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-11-10T14:06:49Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8b514500_bb8cfde7",
+      "range": {
+        "startLine": 247,
+        "startChar": 0,
+        "endLine": 248,
+        "endChar": 30
+      },
+      "revId": "37d84f05e0a46f222342019eac640af807dcfb4f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "12669ddc_86262c42",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsPersistenceSpecBase.groovy",
         "patchSetId": 4
@@ -183,6 +303,30 @@
       "revId": "37d84f05e0a46f222342019eac640af807dcfb4f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cfa72090_51cae91d",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsPersistenceSpecBase.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-11-10T14:06:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "12669ddc_86262c42",
+      "range": {
+        "startLine": 71,
+        "startChar": 45,
+        "endLine": 71,
+        "endChar": 49
+      },
+      "revId": "37d84f05e0a46f222342019eac640af807dcfb4f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
