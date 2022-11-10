@@ -236,6 +236,30 @@
     },
     {
       "key": {
+        "uuid": "3228450a_dfe43d9c",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-11-10T14:16:44Z",
+      "side": 1,
+      "message": "Removed parent-100 from sql file as well.",
+      "parentUuid": "bb197a8f_e3b404d9",
+      "range": {
+        "startLine": 59,
+        "startChar": 55,
+        "endLine": 59,
+        "endChar": 67
+      },
+      "revId": "37d84f05e0a46f222342019eac640af807dcfb4f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8b514500_bb8cfde7",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
         "patchSetId": 4
