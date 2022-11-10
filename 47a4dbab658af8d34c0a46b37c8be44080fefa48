@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ade2ae58_8a3d95db",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/exceptions/CpsRestExceptionHandler.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2022-11-10T11:24:21Z",
+      "side": 1,
+      "message": "org.springframework.http.converter.HttpMessageNotReadableException was not handled so CPS was throwing 500 error code for invalid JSON payload. to change HTTP error code to 400 Bad request, HttpMessageNotReadableException is handled in this exception handler. test is added in CpsRestExceptionHandlerSpec",
+      "parentUuid": "04b3ba48_714c5722",
+      "range": {
+        "startLine": 69,
+        "startChar": 59,
+        "endLine": 69,
+        "endChar": 96
+      },
+      "revId": "47a4dbab658af8d34c0a46b37c8be44080fefa48",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0614636e_6c6e3edb",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
         "patchSetId": 6
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "e3266a38_2b1d25af",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2022-11-10T11:24:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0614636e_6c6e3edb",
+      "range": {
+        "startLine": 159,
+        "startChar": 8,
+        "endLine": 159,
+        "endChar": 20
+      },
+      "revId": "47a4dbab658af8d34c0a46b37c8be44080fefa48",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dfee6ecd_0156924a",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
         "patchSetId": 6
@@ -68,6 +116,30 @@
       "revId": "47a4dbab658af8d34c0a46b37c8be44080fefa48",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1b8b8f61_8a9e54f7",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2022-11-10T11:24:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dfee6ecd_0156924a",
+      "range": {
+        "startLine": 157,
+        "startChar": 0,
+        "endLine": 170,
+        "endChar": 5
+      },
+      "revId": "47a4dbab658af8d34c0a46b37c8be44080fefa48",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
