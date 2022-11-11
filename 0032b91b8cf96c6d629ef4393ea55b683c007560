@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "04d462fe_dab776af",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-11-11T11:28:42Z",
+      "side": 1,
+      "message": "We need to set dataspace entity to Fragment as it can,t be null if so then it throws \"ConstraintViolationException\" while \"org.springframework.data.jpa.repository.JpaRepository#saveAll\"\n\nDetailed log :\n\nCpsDataPersistenceServiceIntegrationSpec.Add multiple list with a mix of existing and new elements:207-\u003eSpecInternals.thrownImpl:68-\u003eSpecInter\nnals.checkExceptionThrown:81 Expected exception of type \u0027org.onap.cps.spi.exceptions.AlreadyDefinedExceptionBatch\u0027, but got \u0027javax.validation.ConstraintViolationException\u0027",
+      "parentUuid": "1c635b74_bb500111",
+      "range": {
+        "startLine": 237,
+        "startChar": 12,
+        "endLine": 237,
+        "endChar": 57
+      },
+      "revId": "0032b91b8cf96c6d629ef4393ea55b683c007560",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "559efba2_dcbf6667",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
         "patchSetId": 5
@@ -45,6 +69,30 @@
       "revId": "0032b91b8cf96c6d629ef4393ea55b683c007560",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5ccee8d7_6aa3312e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2022-11-11T11:28:42Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "559efba2_dcbf6667",
+      "range": {
+        "startLine": 74,
+        "startChar": 55,
+        "endLine": 74,
+        "endChar": 63
+      },
+      "revId": "0032b91b8cf96c6d629ef4393ea55b683c007560",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
