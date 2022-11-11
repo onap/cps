@@ -21,6 +21,7 @@
 package org.onap.cps;
 
 import org.testcontainers.containers.PostgreSQLContainer;
+import org.testcontainers.utility.DockerImageName;
 
 /**
  * The Postgresql database test container wrapper.
@@ -30,11 +31,11 @@ import org.testcontainers.containers.PostgreSQLContainer;
  *  psql -d test -U test
  */
 public class DatabaseTestContainer extends PostgreSQLContainer<DatabaseTestContainer> {
-    private static final String IMAGE_VERSION = "postgres:14.1";
+    private static final String IMAGE_VERSION = "registry.nordix.org/onaptest/postgres:14.1";
     private static DatabaseTestContainer databaseTestContainer;
 
     private DatabaseTestContainer() {
-        super(IMAGE_VERSION);
+        super(DockerImageName.parse(IMAGE_VERSION).asCompatibleSubstituteFor("postgres"));
     }
 
     /**
