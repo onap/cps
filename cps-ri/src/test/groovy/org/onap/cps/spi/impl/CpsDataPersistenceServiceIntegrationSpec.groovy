@@ -56,7 +56,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     static final int ANCHOR_3003_ID = 3003L
     static final long ID_DATA_NODE_WITH_DESCENDANTS = 4001
     static final String XPATH_DATA_NODE_WITH_DESCENDANTS = '/parent-1'
-    static final String XPATH_DATA_NODE_WITH_LEAVES = '/parent-100'
+    static final String XPATH_DATA_NODE_WITH_LEAVES = '/parent-207'
     static final long DATA_NODE_202_FRAGMENT_ID = 4202L
     static final long CHILD_OF_DATA_NODE_202_FRAGMENT_ID = 4203L
     static final long LIST_DATA_NODE_PARENT201_FRAGMENT_ID = 4206L
@@ -69,10 +69,10 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     static DataNode existingChildDataNode
 
     def expectedLeavesByXpathMap = [
-            '/parent-100'                      : ['parent-leaf': 'parent-leaf value'],
-            '/parent-100/child-001'            : ['first-child-leaf': 'first-child-leaf value'],
-            '/parent-100/child-002'            : ['second-child-leaf': 'second-child-leaf value'],
-            '/parent-100/child-002/grand-child': ['grand-child-leaf': 'grand-child-leaf value']
+            '/parent-207'                      : ['parent-leaf': 'parent-leaf value'],
+            '/parent-207/child-001'            : ['first-child-leaf': 'first-child-leaf value'],
+            '/parent-207/child-002'            : ['second-child-leaf': 'second-child-leaf value'],
+            '/parent-207/child-002/grand-child': ['grand-child-leaf': 'grand-child-leaf value']
     ]
 
     static {
@@ -196,24 +196,24 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Add multiple list with a mix of existing and new elements'() {
         given: 'two new child list elements for an existing parent'
-            def existingDataNode = dataNodeBuilder.withXpath('/parent-100/child-001').withLeaves(['id': '001']).build()
-            def newDataNode1 = dataNodeBuilder.withXpath('/parent-100/child-new1').withLeaves(['id': 'new1']).build()
+            def existingDataNode = dataNodeBuilder.withXpath('/parent-207/child-001').withLeaves(['id': '001']).build()
+            def newDataNode1 = dataNodeBuilder.withXpath('/parent-207/child-new1').withLeaves(['id': 'new1']).build()
             def newDataNode2 = dataNodeBuilder.withXpath('/parent-200/child-new2').withLeaves(['id': 'new2']).build()
             def dataNodeList1 = [existingDataNode, newDataNode1]
             def dataNodeList2 = [newDataNode2]
         when: 'duplicate data node is requested to be added'
-            objectUnderTest.addMultipleLists(DATASPACE_NAME, ANCHOR_NAME3, '/', [dataNodeList1,dataNodeList2])
+            objectUnderTest.addMultipleLists(DATASPACE_NAME, ANCHOR_HAVING_SINGLE_TOP_LEVEL_FRAGMENT, '/', [dataNodeList1, dataNodeList2])
         then: 'already defined batch exception is thrown'
             def thrown = thrown(AlreadyDefinedExceptionBatch)
         and: 'it only contains the xpath(s) of the duplicated elements'
             assert thrown.alreadyDefinedXpaths.size() == 1
-            assert thrown.alreadyDefinedXpaths.contains('/parent-100/child-001')
+            assert thrown.alreadyDefinedXpaths.contains('/parent-207/child-001')
         and: 'it does NOT contains the xpaths of the new element that were not combined with existing elements'
-            assert !thrown.alreadyDefinedXpaths.contains('/parent-100/child-new1')
-            assert !thrown.alreadyDefinedXpaths.contains('/parent-100/child-new1')
+            assert !thrown.alreadyDefinedXpaths.contains('/parent-207/child-new1')
+            assert !thrown.alreadyDefinedXpaths.contains('/parent-207/child-new1')
         and: 'the new entity is inserted correctly'
             def dataspaceEntity = dataspaceRepository.getByName(DATASPACE_NAME)
-            def anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, ANCHOR_NAME3)
+            def anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, ANCHOR_HAVING_SINGLE_TOP_LEVEL_FRAGMENT)
             fragmentRepository.findByDataspaceAndAnchorAndXpath(dataspaceEntity, anchorEntity, '/parent-200/child-new2').isPresent()
     }
 
@@ -234,7 +234,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Get data node by xpath without descendants.'() {
         when: 'data node is requested'
-            def result = objectUnderTest.getDataNode(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES,
+            def result = objectUnderTest.getDataNode(DATASPACE_NAME, ANCHOR_HAVING_SINGLE_TOP_LEVEL_FRAGMENT,
                     inputXPath, OMIT_DESCENDANTS)
         then: 'data node is returned with no descendants'
             assert result.xpath == XPATH_DATA_NODE_WITH_LEAVES
@@ -243,7 +243,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             assertLeavesMaps(result.leaves, expectedLeavesByXpathMap[XPATH_DATA_NODE_WITH_LEAVES])
         where: 'the following data is used'
             scenario      | inputXPath
-            'some xpath'  | '/parent-100'
+            'some xpath'  | '/parent-207'
             'root xpath'  | '/'
             'empty xpath' | ''
     }
@@ -260,20 +260,20 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Get data node by xpath with all descendants.'() {
         when: 'data node is requested with all descendants'
-            def result = objectUnderTest.getDataNode(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES,
+            def result = objectUnderTest.getDataNode(DATASPACE_NAME, ANCHOR_HAVING_SINGLE_TOP_LEVEL_FRAGMENT,
                     inputXPath, INCLUDE_ALL_DESCENDANTS)
             def mappedResult = treeToFlatMapByXpath(new HashMap<>(), result)
         then: 'data node is returned with all the descendants populated'
             assert mappedResult.size() == 4
             assert result.childDataNodes.size() == 2
-            assert mappedResult.get('/parent-100/child-001').childDataNodes.size() == 0
-            assert mappedResult.get('/parent-100/child-002').childDataNodes.size() == 1
+            assert mappedResult.get('/parent-207/child-001').childDataNodes.size() == 0
+            assert mappedResult.get('/parent-207/child-002').childDataNodes.size() == 1
         and: 'extracted leaves maps are matching expected'
             mappedResult.forEach(
                     (xPath, dataNode) -> assertLeavesMaps(dataNode.leaves, expectedLeavesByXpathMap[xPath]))
         where: 'the following data is used'
             scenario      | inputXPath
-            'some xpath'  | '/parent-100'
+            'some xpath'  | '/parent-207'
             'root xpath'  | '/'
             'empty xpath' | ''
     }
