@@ -41,7 +41,7 @@ class MessagingSpec extends Specification {
         kafkaTestContainer.start()
     }
 
-    static kafkaTestContainer = new KafkaContainer(DockerImageName.parse('confluentinc/cp-kafka:6.2.1'))
+    static kafkaTestContainer = new KafkaContainer(DockerImageName.parse('registry.nordix.org/onaptest/confluentinc/cp-kafka:6.2.1').asCompatibleSubstituteFor('confluentinc/cp-kafka'))
 
     def producerConfigProperties() {
         return [('bootstrap.servers'): kafkaTestContainer.getBootstrapServers().split(',')[0],
