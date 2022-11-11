@@ -1,0 +1,234 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "52656466_5a0f72fd",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp-inventory.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-11-11T17:11:31Z",
+      "side": 1,
+      "message": "I think the idea we have is that this endpoint will be removed and replaced with the query endpoint being created below, so this whould be removed in the same commit",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 33
+      },
+      "revId": "c5a2231795402081c63703030011786cf6b5800d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "63a039ad_281ce723",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp-inventory.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-11-11T17:11:31Z",
+      "side": 1,
+      "message": "This needs to be extended to public properties also so should be a more generic name such as search cmhandleids",
+      "range": {
+        "startLine": 126,
+        "startChar": 0,
+        "endLine": 126,
+        "endChar": 42
+      },
+      "revId": "c5a2231795402081c63703030011786cf6b5800d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e2fca0cc_9da6f37e",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp-inventory.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-11-11T17:11:31Z",
+      "side": 1,
+      "message": "additional properties, public properties and registered DMI plugin (DMI plugin, DMI data plugin, DMI model plugin)",
+      "range": {
+        "startLine": 128,
+        "startChar": 47,
+        "endLine": 128,
+        "endChar": 74
+      },
+      "revId": "c5a2231795402081c63703030011786cf6b5800d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dee443eb_69cdf906",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-11-11T17:11:31Z",
+      "side": 1,
+      "message": "searchCmHandleIds",
+      "range": {
+        "startLine": 55,
+        "startChar": 40,
+        "endLine": 55,
+        "endChar": 70
+      },
+      "revId": "c5a2231795402081c63703030011786cf6b5800d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f3be2ee0_ac566a86",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-11-11T17:11:31Z",
+      "side": 1,
+      "message": "Will need team feedback on this but I think should be executeCmHandleIdSearchForInventory to keep convention with the executeCmHandleIdSearch method which already exists",
+      "range": {
+        "startLine": 58,
+        "startChar": 66,
+        "endLine": 58,
+        "endChar": 94
+      },
+      "revId": "c5a2231795402081c63703030011786cf6b5800d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "078da95b_c81c2c84",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryControllerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-11-11T17:11:31Z",
+      "side": 1,
+      "message": "typo: CmHandle\nsame in test below",
+      "range": {
+        "startLine": 107,
+        "startChar": 9,
+        "endLine": 107,
+        "endChar": 18
+      },
+      "revId": "c5a2231795402081c63703030011786cf6b5800d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e999d398_68049513",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryControllerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-11-11T17:11:31Z",
+      "side": 1,
+      "message": "I\u0027m not sure if this test is needed as it is checking a mocked result. If we keep it, I think these two tests should be merged and a table used.",
+      "range": {
+        "startLine": 109,
+        "startChar": 43,
+        "endLine": 109,
+        "endChar": 77
+      },
+      "revId": "c5a2231795402081c63703030011786cf6b5800d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b0932bf7_7d0f87aa",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryControllerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-11-11T17:11:31Z",
+      "side": 1,
+      "message": "I would say empty query parameter array",
+      "range": {
+        "startLine": 112,
+        "startChar": 65,
+        "endLine": 112,
+        "endChar": 95
+      },
+      "revId": "c5a2231795402081c63703030011786cf6b5800d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "38faa286_2a63fd95",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-11-11T17:11:31Z",
+      "side": 1,
+      "message": "/**\n     * Query and return cm handles that match the given query parameters for the Inventory Interface.\n     *\n     * @param cmHandleQueryServiceParameters the cm handle query parameters\n     * @return collection of cm handle ids\n     */\n\nTeam opinions needed",
+      "range": {
+        "startLine": 117,
+        "startChar": 5,
+        "endLine": 117,
+        "endChar": 13
+      },
+      "revId": "c5a2231795402081c63703030011786cf6b5800d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f7b1690_1c64167c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-11-11T17:11:31Z",
+      "side": 1,
+      "message": "queryCmHandleIdsForInventory\n\nTeam opinions needed",
+      "range": {
+        "startLine": 118,
+        "startChar": 23,
+        "endLine": 118,
+        "endChar": 54
+      },
+      "revId": "c5a2231795402081c63703030011786cf6b5800d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
