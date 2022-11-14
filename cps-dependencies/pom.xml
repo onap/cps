@@ -39,7 +39,7 @@
         <releaseNexusPath>/content/repositories/releases/</releaseNexusPath>
         <snapshotNexusPath>/content/repositories/snapshots/</snapshotNexusPath>
         <sonar.skip>true</sonar.skip>
-        <testcontainers.version>1.15.1</testcontainers.version>
+        <testcontainers.version>1.17.3</testcontainers.version>
         <mapstruct.version>1.4.2.Final</mapstruct.version>
     </properties>
 
