@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "f10e6d2c_dc3b51b8",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-11-15T17:07:01Z",
+      "side": 1,
+      "message": "Fragments is only used internally really so I think data nodes is better for the outward facing log\nI\u0027d also include the \", retrying using individual save operations\"",
+      "parentUuid": "5cd40a97_b1112953",
+      "range": {
+        "startLine": 188,
+        "startChar": 21,
+        "endLine": 188,
+        "endChar": 67
+      },
+      "revId": "a55fa9d2b48e34f5922ecc393a6bab6bbfbb642a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "490b4785_62d13d19",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
         "patchSetId": 9
