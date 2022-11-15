@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "50143b02_35be0ea2",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2022-11-15T16:44:48Z",
+      "side": 1,
+      "message": "updated as storeDataNodesIndividually",
+      "parentUuid": "63a88dda_591c4a6a",
+      "range": {
+        "startLine": 198,
+        "startChar": 16,
+        "endLine": 198,
+        "endChar": 29
+      },
+      "revId": "9e20d96c4841d7e2cf5bbbbd6a647d37da49367e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8500105d_caf8b282",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
         "patchSetId": 6
@@ -45,6 +69,30 @@
       "revId": "9e20d96c4841d7e2cf5bbbbd6a647d37da49367e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cfdc1b3e_fa095309",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2022-11-15T16:44:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8500105d_caf8b282",
+      "range": {
+        "startLine": 69,
+        "startChar": 38,
+        "endLine": 69,
+        "endChar": 50
+      },
+      "revId": "9e20d96c4841d7e2cf5bbbbd6a647d37da49367e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "9c078459_f39873e0",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2022-11-15T16:44:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "60b201bf_3cf31216",
+      "range": {
+        "startLine": 70,
+        "startChar": 32,
+        "endLine": 70,
+        "endChar": 48
+      },
+      "revId": "9e20d96c4841d7e2cf5bbbbd6a647d37da49367e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a5f4f0fc_047baf8b",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
         "patchSetId": 6
@@ -91,6 +163,30 @@
       "revId": "9e20d96c4841d7e2cf5bbbbd6a647d37da49367e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c22bbfc9_609493ea",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2022-11-15T16:44:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a5f4f0fc_047baf8b",
+      "range": {
+        "startLine": 71,
+        "startChar": 32,
+        "endLine": 71,
+        "endChar": 53
+      },
+      "revId": "9e20d96c4841d7e2cf5bbbbd6a647d37da49367e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "583d1f9d_0b50f581",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2022-11-15T16:44:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ff97f15_b57caa51",
+      "range": {
+        "startLine": 91,
+        "startChar": 16,
+        "endLine": 91,
+        "endChar": 21
+      },
+      "revId": "9e20d96c4841d7e2cf5bbbbd6a647d37da49367e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f10e6bb3_582821d7",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
         "patchSetId": 6
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "79cb2271_34deaae5",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2022-11-15T16:44:48Z",
+      "side": 1,
+      "message": "using ContainerNode now",
+      "parentUuid": "f10e6bb3_582821d7",
+      "range": {
+        "startLine": 115,
+        "startChar": 14,
+        "endLine": 115,
+        "endChar": 18
+      },
+      "revId": "9e20d96c4841d7e2cf5bbbbd6a647d37da49367e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "93d88908_ce62d227",
         "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangUtilsSpec.groovy",
         "patchSetId": 6
@@ -160,6 +304,30 @@
       "revId": "9e20d96c4841d7e2cf5bbbbd6a647d37da49367e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3f0db57f_1d1c6559",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangUtilsSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2022-11-15T16:44:48Z",
+      "side": 1,
+      "message": "done please check once this one again :)",
+      "parentUuid": "93d88908_ce62d227",
+      "range": {
+        "startLine": 77,
+        "startChar": 20,
+        "endLine": 77,
+        "endChar": 22
+      },
+      "revId": "9e20d96c4841d7e2cf5bbbbd6a647d37da49367e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }

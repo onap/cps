@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "97581757_afbbe784",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNodeBuilder.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2022-11-15T16:44:48Z",
+      "side": 1,
+      "message": "using interface ContainerNode",
+      "parentUuid": "dca62ab4_5613b673",
+      "range": {
+        "startLine": 49,
+        "startChar": 12,
+        "endLine": 49,
+        "endChar": 92
+      },
+      "revId": "41c5310af32ee3476750154775bfe93775de2ade",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2a220636_e6621fa4",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
         "patchSetId": 5
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "2d5e54a6_f88c92c3",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2022-11-15T16:44:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2a220636_e6621fa4",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 69
+      },
+      "revId": "41c5310af32ee3476750154775bfe93775de2ade",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a1deb886_938c75f0",
         "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangUtilsSpec.groovy",
         "patchSetId": 5
@@ -68,6 +116,30 @@
       "revId": "41c5310af32ee3476750154775bfe93775de2ade",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "40540bf7_3074ceb6",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangUtilsSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2022-11-15T16:44:48Z",
+      "side": 1,
+      "message": "addressed in patch set 6",
+      "parentUuid": "a1deb886_938c75f0",
+      "range": {
+        "startLine": 73,
+        "startChar": 19,
+        "endLine": 73,
+        "endChar": 25
+      },
+      "revId": "41c5310af32ee3476750154775bfe93775de2ade",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
