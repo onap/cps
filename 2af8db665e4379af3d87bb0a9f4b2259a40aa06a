@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "461b3924_5d6b69d9",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreRequestHandler.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-11-15T16:40:48Z",
+      "side": 1,
+      "message": "I don\u0027t think so because this is case that asyncResponseRequested \u003d\u003d true and notificationFeatureEnabled \u003d\u003d false",
+      "parentUuid": "e18eca46_482a11ed",
+      "range": {
+        "startLine": 77,
+        "startChar": 8,
+        "endLine": 79,
+        "endChar": 9
+      },
+      "revId": "2af8db665e4379af3d87bb0a9f4b2259a40aa06a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "be44646f_69bb635d",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/NetworkCmProxyQueryService.java",
         "patchSetId": 12
