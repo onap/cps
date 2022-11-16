@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a754d21f_50d5e3cd",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-11-16T13:54:56Z",
+      "side": 1,
+      "message": "Preferred not to use var",
+      "range": {
+        "startLine": 191,
+        "startChar": 14,
+        "endLine": 191,
+        "endChar": 18
+      },
+      "revId": "5c5687a99531502f1bbf573d59fbf7d84353dbb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "33688090_d059bd14",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-11-16T13:54:56Z",
+      "side": 1,
+      "message": "var",
+      "range": {
+        "startLine": 192,
+        "startChar": 14,
+        "endLine": 192,
+        "endChar": 18
+      },
+      "revId": "5c5687a99531502f1bbf573d59fbf7d84353dbb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4a507868_1a2d3de8",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsAdminPersistenceServiceSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-11-16T13:54:56Z",
+      "side": 1,
+      "message": "NB can use [ ] instead of Set.of()",
+      "range": {
+        "startLine": 85,
+        "startChar": 37,
+        "endLine": 85,
+        "endChar": 44
+      },
+      "revId": "5c5687a99531502f1bbf573d59fbf7d84353dbb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d3e1d9d1_3617038d",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsAdminServiceImplSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-11-16T13:54:56Z",
+      "side": 1,
+      "message": "NB dataspaces",
+      "range": {
+        "startLine": 102,
+        "startChar": 22,
+        "endLine": 102,
+        "endChar": 31
+      },
+      "revId": "5c5687a99531502f1bbf573d59fbf7d84353dbb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88dbad3a_9a5b01fb",
+        "filename": "docs/api/swagger/cps/openapi.yaml",
+        "patchSetId": 12
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-11-16T13:54:56Z",
+      "side": 1,
+      "message": "NB a",
+      "range": {
+        "startLine": 226,
+        "startChar": 19,
+        "endLine": 226,
+        "endChar": 22
+      },
+      "revId": "5c5687a99531502f1bbf573d59fbf7d84353dbb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
