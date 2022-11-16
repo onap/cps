@@ -155,13 +155,13 @@ TESTPLANDIR="${WORKSPACE}/${TESTPLAN}"
 source_safely "${WORKSPACE}/prepare-csit.sh"
 
 # Activate the virtualenv containing all the required libraries installed by prepare-csit.sh
-source_safely "${ROBOT_VENV}/bin/activate"
+source_safely "${ROBOT3_VENV}/bin/activate"
 
 WORKDIR=$(mktemp -d --suffix=-robot-workdir)
 cd "${WORKDIR}"
 
 # Add csit scripts to PATH
-export PATH="${PATH}:${WORKSPACE}/docker/scripts:${WORKSPACE}/scripts:${ROBOT_VENV}/bin"
+export PATH="${PATH}:${WORKSPACE}/docker/scripts:${WORKSPACE}/scripts:${ROBOT3_VENV}/bin"
 export SCRIPTS="${WORKSPACE}/scripts"
 export ROBOT_VARIABLES=
 
