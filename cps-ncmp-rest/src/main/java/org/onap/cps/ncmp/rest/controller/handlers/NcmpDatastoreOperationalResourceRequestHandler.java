@@ -27,7 +27,7 @@ import org.onap.cps.ncmp.rest.executor.CpsNcmpTaskExecutor;
 import org.onap.cps.spi.FetchDescendantsOption;
 
 @Slf4j
-public class NcmpDatastoreOperationalResourceRequestHandler extends NcmpDatastoreResourceRequestHandler {
+public class NcmpDatastoreOperationalResourceRequestHandler extends NcmpDatastoreRequestHandler {
 
     public NcmpDatastoreOperationalResourceRequestHandler(final NetworkCmProxyDataService networkCmProxyDataService,
                                                           final CpsNcmpTaskExecutor cpsNcmpTaskExecutor,
@@ -37,16 +37,14 @@ public class NcmpDatastoreOperationalResourceRequestHandler extends NcmpDatastor
     }
 
     @Override
-    public Supplier<Object> getTask(final String cmHandle,
-                                    final String resourceIdentifier,
-                                    final String optionsParamInQuery,
-                                    final String topicParamInQuery,
-                                    final String requestId,
-                                    final Boolean includeDescendant) {
+    public Supplier<Object> getTaskSupplier(final String cmHandle,
+                                            final String resourceIdentifier,
+                                            final String optionsParamInQuery,
+                                            final String topicParamInQuery,
+                                            final String requestId,
+                                            final Boolean includeDescendant) {
 
-        final FetchDescendantsOption fetchDescendantsOption =
-                Boolean.TRUE.equals(includeDescendant) ? FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
-                        : FetchDescendantsOption.OMIT_DESCENDANTS;
+        final FetchDescendantsOption fetchDescendantsOption = getFetchDescendantsOption(includeDescendant);
 
         return () -> networkCmProxyDataService.getResourceDataOperational(cmHandle, resourceIdentifier,
                 fetchDescendantsOption);
