@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "86804989_3beb0b11",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp-inventory.yml",
+        "patchSetId": 9
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-11-16T16:09:24Z",
+      "side": 0,
+      "message": "TBC with the team if it needs to be deprecated. ( Luke and Toine for more info )",
+      "revId": "87e0299bb0bfc688de6d82207477bca0bcc14850",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "30e53989_e4eda335",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryControllerSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-11-16T16:09:24Z",
+      "side": 0,
+      "message": "The below 2 tests can be combined.",
+      "revId": "87e0299bb0bfc688de6d82207477bca0bcc14850",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
