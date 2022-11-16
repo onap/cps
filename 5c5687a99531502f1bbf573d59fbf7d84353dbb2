@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "12c6eb25_eabd9fff",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 12
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-11-16T14:20:34Z",
+      "side": 1,
+      "message": "add modifications copyright",
+      "range": {
+        "startLine": 4,
+        "startChar": 2,
+        "endLine": 4,
+        "endChar": 3
+      },
+      "revId": "5c5687a99531502f1bbf573d59fbf7d84353dbb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a754d21f_50d5e3cd",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
         "patchSetId": 12
@@ -13,6 +36,30 @@
       "writtenOn": "2022-11-16T13:54:56Z",
       "side": 1,
       "message": "Preferred not to use var",
+      "range": {
+        "startLine": 191,
+        "startChar": 14,
+        "endLine": 191,
+        "endChar": 18
+      },
+      "revId": "5c5687a99531502f1bbf573d59fbf7d84353dbb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e10a45c_23b8ace1",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-11-16T14:20:34Z",
+      "side": 1,
+      "message": "Using var will cause issues in sonar later on so we don\u0027t use var at all",
+      "parentUuid": "a754d21f_50d5e3cd",
       "range": {
         "startLine": 191,
         "startChar": 14,
@@ -64,6 +111,52 @@
         "startChar": 37,
         "endLine": 85,
         "endChar": 44
+      },
+      "revId": "5c5687a99531502f1bbf573d59fbf7d84353dbb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d305a841_6a467ac3",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsAdminService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-11-16T14:20:34Z",
+      "side": 1,
+      "message": "by given dataspace name",
+      "range": {
+        "startLine": 53,
+        "startChar": 20,
+        "endLine": 53,
+        "endChar": 21
+      },
+      "revId": "5c5687a99531502f1bbf573d59fbf7d84353dbb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b654f6a3_d62103d6",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/Dataspace.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-11-16T14:20:34Z",
+      "side": 1,
+      "message": "I don\u0027t see the need for this class",
+      "range": {
+        "startLine": 33,
+        "startChar": 13,
+        "endLine": 33,
+        "endChar": 23
       },
       "revId": "5c5687a99531502f1bbf573d59fbf7d84353dbb2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
