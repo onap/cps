@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8029c2ca_6c3e9508",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryControllerSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-11-16T16:09:23Z",
+      "side": 1,
+      "message": "NB \u0027an\u0027",
+      "range": {
+        "startLine": 108,
+        "startChar": 16,
+        "endLine": 108,
+        "endChar": 19
+      },
+      "revId": "eff77180b63b09a8759ca95fe0161b11b0407399",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "76a31866_2815ba7f",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryControllerSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-11-16T16:09:23Z",
+      "side": 1,
+      "message": "NB \u0027a\u0027",
+      "range": {
+        "startLine": 123,
+        "startChar": 16,
+        "endLine": 123,
+        "endChar": 18
+      },
+      "revId": "eff77180b63b09a8759ca95fe0161b11b0407399",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "46e1c83c_5ea47148",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryControllerSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-11-16T16:09:23Z",
+      "side": 1,
+      "message": "NB: CmHandle",
+      "range": {
+        "startLine": 130,
+        "startChar": 88,
+        "endLine": 130,
+        "endChar": 96
+      },
+      "revId": "eff77180b63b09a8759ca95fe0161b11b0407399",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
