@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ebb5500f_0f268bfa",
+        "filename": "cps-rest/docs/openapi/openapi.yml",
+        "patchSetId": 10
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2022-11-17T08:06:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ee547a7_3cd39cf8",
+      "range": {
+        "startLine": 60,
+        "startChar": 3,
+        "endLine": 60,
+        "endChar": 5
+      },
+      "revId": "53582912f05ab2de30605a112d20d4f2945f2e0d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b9e4ec2d_57f99208",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
         "patchSetId": 10
@@ -36,6 +60,30 @@
       "writtenOn": "2022-11-11T16:00:33Z",
       "side": 1,
       "message": "Need to also include the module references .moduleReferences(schemaSetEntity.getYangResources().getModuleName() as list)",
+      "range": {
+        "startLine": 374,
+        "startChar": 15,
+        "endLine": 375,
+        "endChar": 80
+      },
+      "revId": "53582912f05ab2de30605a112d20d4f2945f2e0d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "828cb822_be37fb23",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2022-11-17T08:06:33Z",
+      "side": 1,
+      "message": "ModuleReference is added later in CpsModuleServiceImple.java",
+      "parentUuid": "b9e4ec2d_57f99208",
       "range": {
         "startLine": 374,
         "startChar": 15,

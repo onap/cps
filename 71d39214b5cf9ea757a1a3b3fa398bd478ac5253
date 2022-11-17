@@ -212,6 +212,30 @@
     },
     {
       "key": {
+        "uuid": "baf7b9fa_3e6dc90c",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2022-11-17T08:06:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "272e82d5_16a2361d",
+      "range": {
+        "startLine": 213,
+        "startChar": 9,
+        "endLine": 213,
+        "endChar": 20
+      },
+      "revId": "71d39214b5cf9ea757a1a3b3fa398bd478ac5253",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5cfbe301_81268106",
         "filename": "cps-service/src/main/java/org/onap/cps/api/CpsModuleService.java",
         "patchSetId": 4
@@ -235,6 +259,30 @@
     },
     {
       "key": {
+        "uuid": "6b051e81_4e758878",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsModuleService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2022-11-17T08:06:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5cfbe301_81268106",
+      "range": {
+        "startLine": 76,
+        "startChar": 20,
+        "endLine": 76,
+        "endChar": 33
+      },
+      "revId": "71d39214b5cf9ea757a1a3b3fa398bd478ac5253",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "beb01cc0_da576385",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsModulePersistenceService.java",
         "patchSetId": 4
@@ -255,6 +303,30 @@
       "revId": "71d39214b5cf9ea757a1a3b3fa398bd478ac5253",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "329ec9e8_c2ea1282",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsModulePersistenceService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2022-11-17T08:06:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "beb01cc0_da576385",
+      "range": {
+        "startLine": 58,
+        "startChar": 32,
+        "endLine": 58,
+        "endChar": 44
+      },
+      "revId": "71d39214b5cf9ea757a1a3b3fa398bd478ac5253",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
