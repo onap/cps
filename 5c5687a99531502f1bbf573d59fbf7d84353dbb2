@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "16598604_c197058c",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 12
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2022-11-17T08:06:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "12c6eb25_eabd9fff",
+      "range": {
+        "startLine": 4,
+        "startChar": 2,
+        "endLine": 4,
+        "endChar": 3
+      },
+      "revId": "5c5687a99531502f1bbf573d59fbf7d84353dbb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a754d21f_50d5e3cd",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
         "patchSetId": 12
@@ -72,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "774b1b2b_c5cae3c3",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2022-11-17T08:06:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e10a45c_23b8ace1",
+      "range": {
+        "startLine": 191,
+        "startChar": 14,
+        "endLine": 191,
+        "endChar": 18
+      },
+      "revId": "5c5687a99531502f1bbf573d59fbf7d84353dbb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "33688090_d059bd14",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
         "patchSetId": 12
@@ -95,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "b9a47b92_f5a3dabe",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2022-11-17T08:06:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "33688090_d059bd14",
+      "range": {
+        "startLine": 192,
+        "startChar": 14,
+        "endLine": 192,
+        "endChar": 18
+      },
+      "revId": "5c5687a99531502f1bbf573d59fbf7d84353dbb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4a507868_1a2d3de8",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsAdminPersistenceServiceSpec.groovy",
         "patchSetId": 12
@@ -106,6 +178,30 @@
       "writtenOn": "2022-11-16T13:54:56Z",
       "side": 1,
       "message": "NB can use [ ] instead of Set.of()",
+      "range": {
+        "startLine": 85,
+        "startChar": 37,
+        "endLine": 85,
+        "endChar": 44
+      },
+      "revId": "5c5687a99531502f1bbf573d59fbf7d84353dbb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5924af4d_eaec50e3",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsAdminPersistenceServiceSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2022-11-17T08:06:10Z",
+      "side": 1,
+      "message": "since objectUnderTest.getAllDataspaces() returning Collection, we can\u0027t use [].",
+      "parentUuid": "4a507868_1a2d3de8",
       "range": {
         "startLine": 85,
         "startChar": 37,
@@ -141,6 +237,30 @@
     },
     {
       "key": {
+        "uuid": "30aa31bf_f73a830a",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsAdminService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2022-11-17T08:06:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d305a841_6a467ac3",
+      "range": {
+        "startLine": 53,
+        "startChar": 20,
+        "endLine": 53,
+        "endChar": 21
+      },
+      "revId": "5c5687a99531502f1bbf573d59fbf7d84353dbb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b654f6a3_d62103d6",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/model/Dataspace.java",
         "patchSetId": 12
@@ -152,6 +272,30 @@
       "writtenOn": "2022-11-16T14:20:34Z",
       "side": 1,
       "message": "I don\u0027t see the need for this class",
+      "range": {
+        "startLine": 33,
+        "startChar": 13,
+        "endLine": 33,
+        "endChar": 23
+      },
+      "revId": "5c5687a99531502f1bbf573d59fbf7d84353dbb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "90ea5b61_76b72111",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/Dataspace.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2022-11-17T08:06:10Z",
+      "side": 1,
+      "message": "This model was added later on request of Toine to have consistency with other APIs",
+      "parentUuid": "b654f6a3_d62103d6",
       "range": {
         "startLine": 33,
         "startChar": 13,
@@ -187,6 +331,30 @@
     },
     {
       "key": {
+        "uuid": "0a154fd8_0f004a7d",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsAdminServiceImplSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2022-11-17T08:06:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d3e1d9d1_3617038d",
+      "range": {
+        "startLine": 102,
+        "startChar": 22,
+        "endLine": 102,
+        "endChar": 31
+      },
+      "revId": "5c5687a99531502f1bbf573d59fbf7d84353dbb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "88dbad3a_9a5b01fb",
         "filename": "docs/api/swagger/cps/openapi.yaml",
         "patchSetId": 12
@@ -207,6 +375,30 @@
       "revId": "5c5687a99531502f1bbf573d59fbf7d84353dbb2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bfe0b3b4_0aee53ea",
+        "filename": "docs/api/swagger/cps/openapi.yaml",
+        "patchSetId": 12
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2022-11-17T08:06:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "88dbad3a_9a5b01fb",
+      "range": {
+        "startLine": 226,
+        "startChar": 19,
+        "endLine": 226,
+        "endChar": 22
+      },
+      "revId": "5c5687a99531502f1bbf573d59fbf7d84353dbb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }

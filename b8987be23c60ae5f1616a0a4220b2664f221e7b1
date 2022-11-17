@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "0d5707ad_22a60630",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2022-11-17T08:06:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3b291fd7_93f5f44c",
+      "range": {
+        "startLine": 7,
+        "startChar": 28,
+        "endLine": 7,
+        "endChar": 30
+      },
+      "revId": "b8987be23c60ae5f1616a0a4220b2664f221e7b1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2626c678_64abce83",
         "filename": "cps-rest/docs/openapi/cpsAdmin.yml",
         "patchSetId": 7

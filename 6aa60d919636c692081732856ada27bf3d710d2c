@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "93f1ff15_51d1106a",
+        "filename": "cps-rest/docs/openapi/openapi.yml",
+        "patchSetId": 10
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2022-11-17T08:06:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1b25e929_1f78e157",
+      "range": {
+        "startLine": 51,
+        "startChar": 3,
+        "endLine": 51,
+        "endChar": 5
+      },
+      "revId": "6aa60d919636c692081732856ada27bf3d710d2c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "01de73b4_bffc2fa0",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
         "patchSetId": 10
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "1fdf05d4_17227803",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2022-11-17T08:06:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "01de73b4_bffc2fa0",
+      "range": {
+        "startLine": 186,
+        "startChar": 69,
+        "endLine": 186,
+        "endChar": 73
+      },
+      "revId": "6aa60d919636c692081732856ada27bf3d710d2c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b98c944b_378ad56d",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
         "patchSetId": 10
@@ -68,6 +116,30 @@
       "revId": "6aa60d919636c692081732856ada27bf3d710d2c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "025ccf51_1de6d199",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2022-11-17T08:06:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b98c944b_378ad56d",
+      "range": {
+        "startLine": 194,
+        "startChar": 0,
+        "endLine": 194,
+        "endChar": 4
+      },
+      "revId": "6aa60d919636c692081732856ada27bf3d710d2c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }

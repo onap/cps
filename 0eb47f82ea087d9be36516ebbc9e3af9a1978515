@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d5467323_3b7ffdbb",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2022-11-17T08:06:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f0d80e6f_3940a4c6",
+      "range": {
+        "startLine": 186,
+        "startChar": 69,
+        "endLine": 186,
+        "endChar": 73
+      },
+      "revId": "0eb47f82ea087d9be36516ebbc9e3af9a1978515",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6efe2018_09f7d80d",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
         "patchSetId": 9
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "3f58c145_435fd9da",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2022-11-17T08:06:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6efe2018_09f7d80d",
+      "range": {
+        "startLine": 194,
+        "startChar": 0,
+        "endLine": 194,
+        "endChar": 4
+      },
+      "revId": "0eb47f82ea087d9be36516ebbc9e3af9a1978515",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e866cb6_6d3ca94d",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsAdminPersistenceServiceSpec.groovy",
         "patchSetId": 9
@@ -68,6 +116,30 @@
       "revId": "0eb47f82ea087d9be36516ebbc9e3af9a1978515",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3f9d3af0_7dde2f63",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsAdminPersistenceServiceSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2022-11-17T08:06:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8e866cb6_6d3ca94d",
+      "range": {
+        "startLine": 76,
+        "startChar": 15,
+        "endLine": 76,
+        "endChar": 16
+      },
+      "revId": "0eb47f82ea087d9be36516ebbc9e3af9a1978515",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
