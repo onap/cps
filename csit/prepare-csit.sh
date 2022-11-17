@@ -33,19 +33,18 @@ TESTPLANDIR=${WORKSPACE}/${TESTPLAN}
 if [ -f ${WORKSPACE}/env.properties ]; then
     source ${WORKSPACE}/env.properties
 fi
-#if [ -f ${ROBOT_VENV}/bin/activate ]; then
-#    source ${ROBOT_VENV}/bin/activate
+if [ -f ${ROBOT3_VENV}/bin/activate ]; then
+    source ${ROBOT3_VENV}/bin/activate
 #else
-    rm -rf /tmp/ci-management
-    rm -f ${WORKSPACE}/env.properties
-    cd /tmp
-    source ${WORKSPACE}/install-robotframework.sh
-#fi
+#    rm -rf /tmp/ci-management
+#    rm -f ${WORKSPACE}/env.properties
+#    cd /tmp
+#    source ${WORKSPACE}/install-robotframework.sh
+fi
 
 # install eteutils
-mkdir -p ${ROBOT_VENV}/src/onap
-rm -rf ${ROBOT_VENV}/src/onap/testsuite
+mkdir -p ${ROBOT3_VENV}/src/onap
+rm -rf ${ROBOT3_VENV}/src/onap/testsuite
 python3 -m pip install --upgrade --extra-index-url="https://nexus3.onap.org/repository/PyPi.staging/simple" 'robotframework-onap==0.5.1.*' --pre
 
 pip freeze
-

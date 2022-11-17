@@ -24,7 +24,6 @@
 source_safely "${ROBOT3_VENV}/bin/activate"
 
 WORKDIR=$(mktemp -d --suffix=-robot-workdir)
-cd "${WORKDIR}"
 
 #
 # functions
@@ -159,6 +158,9 @@ TESTPLANDIR="${WORKSPACE}/${TESTPLAN}"
 
 # Run installation of prerequired libraries
 source_safely "${WORKSPACE}/prepare-csit.sh"
+
+# Swap to robot framework working direcotry
+cd "${WORKDIR}"
 
 # Add csit scripts to PATH
 export PATH="${PATH}:${WORKSPACE}/docker/scripts:${WORKSPACE}/scripts:${ROBOT3_VENV}/bin"
