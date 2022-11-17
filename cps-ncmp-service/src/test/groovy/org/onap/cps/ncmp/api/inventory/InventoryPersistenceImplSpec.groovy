@@ -196,9 +196,10 @@ class InventoryPersistenceImplSpec extends Specification {
         when: 'the method to save cmhandle is called'
             objectUnderTest.saveCmHandle(yangModelCmHandle)
         then: 'the data service method to save list elements is called once'
-            1 * mockCpsDataService.saveListElements('NCMP-Admin','ncmp-dmi-registry','/dmi-registry',_,null) >> {
+            1 * mockCpsDataService.saveListElements('NCMP-Admin','ncmp-dmi-registry','/dmi-registry',_,null, _) >> {
                 args -> {
                     assert args[3].startsWith('{"cm-handles":[{"id":"cmhandle","additional-properties":[],"public-properties":[]}]}')
+                    assert args[5] == "/dmi-registry/cm-handles[@id='cmhandle']"
                 }
             }
     }
@@ -210,11 +211,14 @@ class InventoryPersistenceImplSpec extends Specification {
         when: 'the cm handles are saved'
             objectUnderTest.saveCmHandleBatch([yangModelCmHandle1, yangModelCmHandle2])
         then: 'CPS Data Service persists both cm handles as a batch'
-            1 * mockCpsDataService.saveListElementsBatch('NCMP-Admin','ncmp-dmi-registry','/dmi-registry',_,null) >> {
+            1 * mockCpsDataService.saveListElementsBatch('NCMP-Admin','ncmp-dmi-registry','/dmi-registry',_,null, _) >> {
                 args -> {
                     def jsonDataList = (args[3] as List)
                     (jsonDataList[0] as String).contains('cmhandle1')
                     (jsonDataList[0] as String).contains('cmhandle2')
+                    def affectedXpaths = (args[5] as List)
+                    (affectedXpaths[0] as String) == "/dmi-registry/cm-handles[@id='cmhandle1']"
+                    (affectedXpaths[0] as String) == "/dmi-registry/cm-handles[@id='cmhandle2']"
                 }
             }
     }

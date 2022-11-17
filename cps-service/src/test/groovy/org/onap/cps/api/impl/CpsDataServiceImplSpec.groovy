@@ -112,6 +112,16 @@ class CpsDataServiceImplSpec extends Specification {
             1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, '/test-tree', Operation.UPDATE, observedTimestamp)
     }
 
+    def 'Saving list element data fragment under existing node with the same as affectedNodeXpath.'() {
+        given: 'schema set for given anchor and dataspace references test-tree model'
+            setupSchemaSetMocks('test-tree.yang')
+        when: 'save data method is invoked with list element json data'
+            def jsonData = '{"branch": [{"name": "A"}, {"name": "B"}]}'
+            objectUnderTest.saveListElements(dataspaceName, anchorName, '/test-tree', jsonData, observedTimestamp, '/test-tree')
+        then: 'data updated event is sent to notification service'
+            1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, '/test-tree', Operation.UPDATE, observedTimestamp)
+    }
+
     def 'Saving collection of a batch with data fragment under existing node.'() {
         given: 'schema set for given anchor and dataspace references test-tree model'
             setupSchemaSetMocks('test-tree.yang')
@@ -130,6 +140,22 @@ class CpsDataServiceImplSpec extends Specification {
             }
         and: 'data updated event is sent to notification service'
             1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, '/test-tree', Operation.UPDATE, observedTimestamp)
+    }
+
+    def 'Saving collection of a batch with data fragment under existing node with collection of affected node xpaths'() {
+        given: 'schema set for given anchor and dataspace references test-tree model'
+            setupSchemaSetMocks('test-tree.yang')
+        when: 'save data method is invoked with list element json data'
+            def jsonData = '{"branch": [{"name": "A"}, {"name": "B"}]}'
+            objectUnderTest.saveListElementsBatch(dataspaceName, anchorName, '/test-tree', [jsonData], observedTimestamp, ['/test-tree/branch[@name=\'B\']','/test-tree/branch[@name=\'A\']'])
+        then: 'data updated event is sent to notification service'
+            2 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, _, Operation.UPDATE, observedTimestamp) >> {
+                args -> {
+                    def affectedNodeXpath = args[2] as String
+                    assert affectedNodeXpath.startsWith('/test-tree/branch[@name=')
+                }
+
+            }
     }
 
     def 'Saving empty list element data fragment.'() {

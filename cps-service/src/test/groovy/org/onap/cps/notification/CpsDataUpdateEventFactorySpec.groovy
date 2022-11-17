@@ -54,7 +54,7 @@ class CpsDataUpdateEventFactorySpec extends Specification {
                     'my-dataspace', 'my-anchorname', '/', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
         when: 'CPS data updated event is created'
             def cpsDataUpdatedEvent = objectUnderTest.createCpsDataUpdatedEvent(anchor,
-                    DateTimeUtility.toOffsetDateTime(inputObservedTimestamp), Operation.CREATE)
+                    DateTimeUtility.toOffsetDateTime(inputObservedTimestamp), Operation.CREATE, '/')
         then: 'CPS data updated event is created with correct envelope'
             with(cpsDataUpdatedEvent) {
                 type == 'org.onap.cps.data-updated-event'
@@ -90,7 +90,7 @@ class CpsDataUpdateEventFactorySpec extends Specification {
             def deletionTimestamp = '2021-01-01T23:00:00.345-0400'
         when: 'a delete root data node event is created'
             def cpsDataUpdatedEvent = objectUnderTest.createCpsDataUpdatedEvent(anchor,
-                    DateTimeUtility.toOffsetDateTime(deletionTimestamp), Operation.DELETE)
+                    DateTimeUtility.toOffsetDateTime(deletionTimestamp), Operation.DELETE, '/')
         then: 'CPS data updated event is created with correct envelope'
             with(cpsDataUpdatedEvent) {
                 type == 'org.onap.cps.data-updated-event'

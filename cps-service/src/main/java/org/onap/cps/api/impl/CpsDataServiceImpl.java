@@ -93,6 +93,17 @@ public class CpsDataServiceImpl implements CpsDataService {
     }
 
     @Override
+    public void saveListElements(final String dataspaceName, final String anchorName, final String parentNodeXpath,
+            final String jsonData, final OffsetDateTime observedTimestamp, final String affectedNodeXpath) {
+        cpsValidator.validateNameCharacters(dataspaceName, anchorName);
+        final Collection<DataNode> listElementDataNodeCollection =
+                buildDataNodes(dataspaceName, anchorName, parentNodeXpath, jsonData);
+        cpsDataPersistenceService.addListElements(dataspaceName, anchorName, parentNodeXpath,
+                listElementDataNodeCollection);
+        processDataUpdatedEventAsync(dataspaceName, anchorName, UPDATE, observedTimestamp, List.of(affectedNodeXpath));
+    }
+
+    @Override
     public void saveListElementsBatch(final String dataspaceName, final String anchorName, final String parentNodeXpath,
             final Collection<String> jsonDataList, final OffsetDateTime observedTimestamp) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
@@ -101,6 +112,18 @@ public class CpsDataServiceImpl implements CpsDataService {
         cpsDataPersistenceService.addMultipleLists(dataspaceName, anchorName, parentNodeXpath,
                 listElementDataNodeCollections);
         processDataUpdatedEventAsync(dataspaceName, anchorName, parentNodeXpath, UPDATE, observedTimestamp);
+    }
+
+    @Override
+    public void saveListElementsBatch(final String dataspaceName, final String anchorName, final String parentNodeXpath,
+            final Collection<String> jsonDataList, final OffsetDateTime observedTimestamp,
+            final Collection<String> affectedNodeXpaths) {
+        cpsValidator.validateNameCharacters(dataspaceName, anchorName);
+        final Collection<Collection<DataNode>> listElementDataNodeCollections =
+                buildDataNodes(dataspaceName, anchorName, parentNodeXpath, jsonDataList);
+        cpsDataPersistenceService.addMultipleLists(dataspaceName, anchorName, parentNodeXpath,
+                listElementDataNodeCollections);
+        processDataUpdatedEventAsync(dataspaceName, anchorName, UPDATE, observedTimestamp, affectedNodeXpaths);
     }
 
     @Override
@@ -279,6 +302,14 @@ public class CpsDataServiceImpl implements CpsDataService {
             //If async message can't be queued for notification service, the initial request should not failed.
             log.error("Failed to send message to notification service", exception);
         }
+    }
+
+    private void processDataUpdatedEventAsync(final String dataspaceName, final String anchorName,
+            final Operation operation, final OffsetDateTime observedTimestamp,
+            final Collection<String> affectedNodeXpaths) {
+        affectedNodeXpaths.forEach(
+                affectedNodeXpath -> processDataUpdatedEventAsync(dataspaceName, anchorName, affectedNodeXpath,
+                        operation, observedTimestamp));
     }
 
     private SchemaContext getSchemaContext(final String dataspaceName, final String schemaSetName) {

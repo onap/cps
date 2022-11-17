@@ -71,13 +71,14 @@ public class CpsDataUpdatedEventFactory {
      * @param anchor            anchor
      * @param observedTimestamp observedTimestamp
      * @param operation         operation
+     * @param affectedNodeXpath affectedNodeXpath
      * @return CpsDataUpdatedEvent
      */
-    public CpsDataUpdatedEvent createCpsDataUpdatedEvent(final Anchor anchor,
-        final OffsetDateTime observedTimestamp, final Operation operation) {
-        final var dataNode = (operation == Operation.DELETE) ? null :
-            cpsDataService.getDataNode(anchor.getDataspaceName(), anchor.getName(),
-                "/", FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
+    public CpsDataUpdatedEvent createCpsDataUpdatedEvent(final Anchor anchor, final OffsetDateTime observedTimestamp,
+            final Operation operation, final String affectedNodeXpath) {
+        final var dataNode = (operation == Operation.DELETE) ? null
+                                     : cpsDataService.getDataNode(anchor.getDataspaceName(), anchor.getName(),
+                                             affectedNodeXpath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
         return toCpsDataUpdatedEvent(anchor, dataNode, observedTimestamp, operation);
     }
 

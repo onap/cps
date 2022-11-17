@@ -84,7 +84,7 @@ class NotificationServiceSpec extends Specification {
             def anchor = new Anchor('my-anchorname', dataspaceName, 'my-schemaset-name')
         and: 'event factory can create event successfully'
             def cpsDataUpdatedEvent = new CpsDataUpdatedEvent()
-            mockCpsDataUpdatedEventFactory.createCpsDataUpdatedEvent(anchor, myObservedTimestamp, Operation.CREATE) >>
+            mockCpsDataUpdatedEventFactory.createCpsDataUpdatedEvent(anchor, myObservedTimestamp, Operation.CREATE, '/') >>
                     cpsDataUpdatedEvent
         when: 'dataUpdatedEvent is received'
             def future = objectUnderTest.processDataUpdatedEvent(dataspaceName, anchorName,
@@ -106,7 +106,7 @@ class NotificationServiceSpec extends Specification {
             spyNotificationProperties.isEnabled() >> true
         and: 'event factory creates event if operation is #operation'
             def cpsDataUpdatedEvent = new CpsDataUpdatedEvent()
-            mockCpsDataUpdatedEventFactory.createCpsDataUpdatedEvent(anchor, myObservedTimestamp, expectedOperationInEvent) >>
+            mockCpsDataUpdatedEventFactory.createCpsDataUpdatedEvent(anchor, myObservedTimestamp, expectedOperationInEvent, xpath) >>
                     cpsDataUpdatedEvent
         when: 'dataUpdatedEvent is received for #xpath'
             def future = objectUnderTest.processDataUpdatedEvent(dataspaceName, anchorName, xpath, operation, myObservedTimestamp)
@@ -136,7 +136,7 @@ class NotificationServiceSpec extends Specification {
         given: 'notification is enabled'
             spyNotificationProperties.isEnabled() >> true
         and: 'event factory can not create event successfully'
-            mockCpsDataUpdatedEventFactory.createCpsDataUpdatedEvent(anchor, myObservedTimestamp, Operation.CREATE) >>
+            mockCpsDataUpdatedEventFactory.createCpsDataUpdatedEvent(anchor, myObservedTimestamp, Operation.CREATE, '/') >>
                     { throw new Exception("Could not create event") }
         when: 'event is sent for processing'
             def future = objectUnderTest.processDataUpdatedEvent(dataspaceName, anchorName, '/', Operation.CREATE, myObservedTimestamp)
