@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "99a30b61_6c4cbcc5",
+        "filename": "csit/prepare-csit.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-18T00:09:03Z",
+      "side": 1,
+      "message": "NB: can be removed (later)",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 43
+      },
+      "revId": "7c8bfcb29d88894da6a990c849b770f9721af130",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
