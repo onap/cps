@@ -3,6 +3,7 @@
  *  Copyright (C) 2020-2022 Nordix Foundation
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -25,6 +26,7 @@ package org.onap.cps.api.impl
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.spi.CpsAdminPersistenceService
 import org.onap.cps.spi.model.Anchor
+import org.onap.cps.spi.model.Dataspace
 import org.onap.cps.spi.utils.CpsValidator
 import spock.lang.Specification
 import java.time.OffsetDateTime
@@ -87,6 +89,22 @@ class CpsAdminServiceImplSpec extends Specification {
             result == anchor
         and: 'the CpsValidator is called on the dataspaceName, anchorName'
             1 * mockCpsValidator.validateNameCharacters('someDataspace', 'someAnchor')
+    }
+
+    def 'Retrieve dataspace.'() {
+        given: 'a dataspace is already created'
+            def dataspace = new Dataspace(name: "someDataspace")
+            mockCpsAdminPersistenceService.getDataspace('someDataspace') >> dataspace
+        expect: 'the dataspace provided by persistence service is returned as result'
+          assert objectUnderTest.getDataspace('someDataspace') == dataspace
+    }
+
+    def 'Retrieve all dataspaces.'() {
+        given: 'that all given dataspaces are already created'
+        def dataspaces = [new Dataspace(name: "test-dataspace1"), new Dataspace(name: "test-dataspace2")]
+            mockCpsAdminPersistenceService.getAllDataspaces() >> dataspaces
+        expect: 'the dataspace provided by persistence service is returned as result'
+           assert objectUnderTest.getAllDataspaces() == dataspaces
     }
 
     def 'Delete anchor.'() {

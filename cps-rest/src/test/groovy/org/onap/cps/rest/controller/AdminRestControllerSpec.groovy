@@ -3,6 +3,7 @@
  *  Copyright (C) 2020-2021 Pantheon.tech
  *  Modifications Copyright (C) 2020-2021 Bell Canada.
  *  Modifications Copyright (C) 2021-2022 Nordix Foundation
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -34,6 +35,7 @@ import org.onap.cps.api.CpsModuleService
 import org.onap.cps.spi.exceptions.AlreadyDefinedException
 import org.onap.cps.spi.exceptions.SchemaSetInUseException
 import org.onap.cps.spi.model.Anchor
+import org.onap.cps.spi.model.Dataspace
 import org.onap.cps.spi.model.SchemaSet
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
@@ -69,6 +71,7 @@ class AdminRestControllerSpec extends Specification {
     def anchorName = 'my_anchor'
     def schemaSetName = 'my_schema_set'
     def anchor = new Anchor(name: anchorName, dataspaceName: dataspaceName, schemaSetName: schemaSetName)
+    def dataspace = new Dataspace(name: dataspaceName)
 
     def 'Create new dataspace.'() {
         given: 'an endpoint'
@@ -99,6 +102,31 @@ class AdminRestControllerSpec extends Specification {
                             .andReturn().response
         then: 'dataspace creation fails'
             response.status == HttpStatus.CONFLICT.value()
+    }
+
+    def 'Get a dataspace.'() {
+        given: 'service method returns a dataspace'
+            mockCpsAdminService.getDataspace(dataspaceName) >> dataspace
+        and: 'an endpoint'
+            def getDataspaceEndpoint = "$basePath/v1/admin/dataspaces/$dataspaceName"
+        when: 'get dataspace API is invoked'
+            def response = mvc.perform(get(getDataspaceEndpoint)).andReturn().response
+        then: 'the correct dataspace is returned'
+            response.status == HttpStatus.OK.value()
+            response.getContentAsString().contains(dataspaceName)
+    }
+
+    def 'Get all dataspaces.'() {
+        given: 'service method returns all dataspace'
+            mockCpsAdminService.getAllDataspaces() >> [dataspace, new Dataspace(name: "dataspace-test2")]
+        and: 'an endpoint'
+            def getAllDataspaceEndpoint = "$basePath/v1/admin/dataspaces"
+        when: 'get all dataspace API is invoked'
+            def response = mvc.perform(get(getAllDataspaceEndpoint)).andReturn().response
+        then: 'the correct dataspace is returned'
+            response.status == HttpStatus.OK.value()
+            response.getContentAsString().contains(dataspaceName)
+            response.getContentAsString().contains("dataspace-test2")
     }
 
     def 'Create schema set from yang file.'() {
