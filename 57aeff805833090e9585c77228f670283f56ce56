@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aa09a8a5_cd54750c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-11-21T16:37:42Z",
+      "side": 1,
+      "message": "NB: of?",
+      "range": {
+        "startLine": 18,
+        "startChar": 2,
+        "endLine": 18,
+        "endChar": 13
+      },
+      "revId": "57aeff805833090e9585c77228f670283f56ce56",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3f117661_33e3d35e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-11-21T16:37:42Z",
+      "side": 1,
+      "message": "NB: Typo - Functionality",
+      "range": {
+        "startLine": 19,
+        "startChar": 12,
+        "endLine": 19,
+        "endChar": 26
+      },
+      "revId": "57aeff805833090e9585c77228f670283f56ce56",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0eb3a7ab_25135287",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp-inventory.yml",
+        "patchSetId": 13
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-11-21T16:37:42Z",
+      "side": 1,
+      "message": "DMI plugin information",
+      "range": {
+        "startLine": 128,
+        "startChar": 103,
+        "endLine": 128,
+        "endChar": 113
+      },
+      "revId": "57aeff805833090e9585c77228f670283f56ce56",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b34bb43_918aca89",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NcmpRestInputMapperSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-11-21T16:37:42Z",
+      "side": 1,
+      "message": "object",
+      "revId": "57aeff805833090e9585c77228f670283f56ce56",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
