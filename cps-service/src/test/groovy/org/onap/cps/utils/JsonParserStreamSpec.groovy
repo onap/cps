@@ -10,7 +10,7 @@ import org.opendaylight.yangtools.yang.data.codec.gson.JSONCodecFactorySupplier
 import org.opendaylight.yangtools.yang.data.codec.gson.JsonParserStream
 import org.opendaylight.yangtools.yang.data.impl.schema.Builders
 import org.opendaylight.yangtools.yang.data.impl.schema.ImmutableNormalizedNodeStreamWriter
-import org.opendaylight.yangtools.yang.data.impl.schema.builder.api.DataContainerNodeBuilder
+import org.opendaylight.yangtools.yang.data.api.schema.builder.DataContainerNodeBuilder
 import org.opendaylight.yangtools.yang.model.api.EffectiveModelContext;
 import spock.lang.Specification
 import org.onap.cps.TestUtils
@@ -38,10 +38,10 @@ class JsonParserStreamSpec extends Specification{
         then: 'result is the correct size'
             result.size() == 2
         then: 'data container child is a type of normalized node'
-            def dataContainerChild = result.getValue()[index]
+            def dataContainerChild = result.body().getAt(index)
             dataContainerChild instanceof NormalizedNode == true
         then: 'qualified name created is as expected'
-            dataContainerChild.nodeType == QName.create('org:onap:ccsdk:multiDataTree', '2020-09-15', nodeName)
+            dataContainerChild.identifier.nodeType == QName.create('org:onap:ccsdk:multiDataTree', '2020-09-15', nodeName)
         where:
             index   | nodeName
             0       | 'first-container'
