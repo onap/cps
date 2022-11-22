@@ -98,12 +98,12 @@ class E2ENetworkSliceSpec extends Specification {
             def listOfTAForCoverageArea = child.childDataNodes[0]
             listOfTAForCoverageArea.xpath == '/ran-coverage-area/pLMNIdList[@mcc=\'310\' and @mnc=\'410\']/' +
                     'coverage-area[@coverageArea=\'Washington\']'
-            listOfTAForCoverageArea.childDataNodes[0].leaves.get('nRTAC') == 234
+            listOfTAForCoverageArea.childDataNodes[0].leaves.get('nRTAC') == "234"
         and: 'list of cells in a tracking area are stored with correct xpath and child nodes '
             def listOfCellsInTrackingArea = listOfTAForCoverageArea.childDataNodes[0]
             listOfCellsInTrackingArea.xpath == '/ran-coverage-area/pLMNIdList[@mcc=\'310\' and @mnc=\'410\']/' +
                     'coverage-area[@coverageArea=\'Washington\']/coverageAreaTAList[@nRTAC=\'234\']'
-            listOfCellsInTrackingArea.childDataNodes[0].leaves.get('cellLocalId') == 15709
+            listOfCellsInTrackingArea.childDataNodes[0].leaves.get('cellLocalId') == "15709"
     }
 
     def 'E2E Coverage Area-Tracking Area & TA-Cell mapping data can be parsed for RAN inventory.'() {

@@ -26,6 +26,7 @@ import com.google.gson.JsonSyntaxException;
 import com.google.gson.stream.JsonReader;
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -36,6 +37,7 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.spi.exceptions.DataValidationException;
+import org.opendaylight.yangtools.yang.common.QName;
 import org.opendaylight.yangtools.yang.data.api.YangInstanceIdentifier;
 import org.opendaylight.yangtools.yang.data.api.schema.NormalizedNode;
 import org.opendaylight.yangtools.yang.data.codec.gson.JSONCodecFactorySupplier;
@@ -45,7 +47,10 @@ import org.opendaylight.yangtools.yang.data.impl.schema.NormalizedNodeResult;
 import org.opendaylight.yangtools.yang.model.api.DataNodeContainer;
 import org.opendaylight.yangtools.yang.model.api.DataSchemaNode;
 import org.opendaylight.yangtools.yang.model.api.EffectiveModelContext;
+import org.opendaylight.yangtools.yang.model.api.EffectiveStatementInference;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
+import org.opendaylight.yangtools.yang.model.api.stmt.SchemaNodeIdentifier;
+import org.opendaylight.yangtools.yang.model.util.SchemaInferenceStack;
 
 @Slf4j
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -62,7 +67,7 @@ public class YangUtils {
      * @return the NormalizedNode object
      */
     @SuppressWarnings("squid:S1452")  // Generic type <? ,?> is returned by external librray, opendaylight.yangtools
-    public static NormalizedNode<?, ?> parseJsonData(final String jsonData, final SchemaContext schemaContext) {
+    public static NormalizedNode parseJsonData(final String jsonData, final SchemaContext schemaContext) {
         return parseJsonData(jsonData, schemaContext, Optional.empty());
     }
 
@@ -75,22 +80,30 @@ public class YangUtils {
      * @return the NormalizedNode object
      */
     @SuppressWarnings("squid:S1452")  // Generic type <? ,?> is returned by external librray, opendaylight.yangtools
-    public static NormalizedNode<?, ?> parseJsonData(final String jsonData, final SchemaContext schemaContext,
+    public static NormalizedNode parseJsonData(final String jsonData, final SchemaContext schemaContext,
         final String parentNodeXpath) {
-        final var parentSchemaNode = getDataSchemaNodeByXpath(parentNodeXpath, schemaContext);
-        return parseJsonData(jsonData, schemaContext, Optional.of(parentSchemaNode));
+        final var dataSchemaNodeIdentifiers = getDataSchemaNodeIdentifiersByXpath(parentNodeXpath, schemaContext);
+        return parseJsonData(jsonData, schemaContext, Optional.of(dataSchemaNodeIdentifiers));
     }
 
-    private static NormalizedNode<?, ?> parseJsonData(final String jsonData, final SchemaContext schemaContext,
-        final Optional<DataSchemaNode> optionalParentSchemaNode) {
+    private static NormalizedNode parseJsonData(final String jsonData, final SchemaContext schemaContext,
+        final Optional<Collection<QName>> dataSchemaNodeIdentifiers) {
         final var jsonCodecFactory = JSONCodecFactorySupplier.DRAFT_LHOTKA_NETMOD_YANG_JSON_02
             .getShared((EffectiveModelContext) schemaContext);
         final var normalizedNodeResult = new NormalizedNodeResult();
         final var normalizedNodeStreamWriter = ImmutableNormalizedNodeStreamWriter
             .from(normalizedNodeResult);
+        EffectiveStatementInference inference = null;
 
-        try (final JsonParserStream jsonParserStream = optionalParentSchemaNode.isPresent()
-            ? JsonParserStream.create(normalizedNodeStreamWriter, jsonCodecFactory, optionalParentSchemaNode.get())
+
+        if (!dataSchemaNodeIdentifiers.isEmpty()) {
+            final EffectiveModelContext context = ((EffectiveModelContext) schemaContext);
+            inference = SchemaInferenceStack.of(context,
+                    SchemaNodeIdentifier.Absolute.of(dataSchemaNodeIdentifiers.get())).toInference();
+        }
+
+        try (final JsonParserStream jsonParserStream = dataSchemaNodeIdentifiers.isPresent()
+            ? JsonParserStream.create(normalizedNodeStreamWriter, jsonCodecFactory, inference)
             : JsonParserStream.create(normalizedNodeStreamWriter, jsonCodecFactory)
         ) {
             final var jsonReader = new JsonReader(new StringReader(jsonData));
@@ -143,10 +156,11 @@ public class YangUtils {
         }
     }
 
-    private static DataSchemaNode getDataSchemaNodeByXpath(final String parentNodeXpath,
-        final SchemaContext schemaContext) {
+    private static Collection<QName> getDataSchemaNodeIdentifiersByXpath(final String parentNodeXpath,
+                                                                      final SchemaContext schemaContext) {
         final String[] xpathNodeIdSequence = xpathToNodeIdSequence(parentNodeXpath);
-        return findDataSchemaNodeByXpathNodeIdSequence(xpathNodeIdSequence, schemaContext.getChildNodes());
+        return findDataSchemaNodeIdentifiersByXpathNodeIdSequence(xpathNodeIdSequence, schemaContext.getChildNodes(),
+                new ArrayList<>());
     }
 
     private static String[] xpathToNodeIdSequence(final String xpath) {
@@ -161,19 +175,23 @@ public class YangUtils {
         return xpathNodeIdSequence;
     }
 
-    private static DataSchemaNode findDataSchemaNodeByXpathNodeIdSequence(final String[] xpathNodeIdSequence,
-        final Collection<? extends DataSchemaNode> dataSchemaNodes) {
+    private static Collection<QName> findDataSchemaNodeIdentifiersByXpathNodeIdSequence(
+            final String[] xpathNodeIdSequence,
+            final Collection<? extends DataSchemaNode> dataSchemaNodes,
+            final Collection<QName> dataSchemaNodeIdentifiers) {
         final String currentXpathNodeId = xpathNodeIdSequence[0];
         final DataSchemaNode currentDataSchemaNode = dataSchemaNodes.stream()
             .filter(dataSchemaNode -> currentXpathNodeId.equals(dataSchemaNode.getQName().getLocalName()))
             .findFirst().orElseThrow(() -> schemaNodeNotFoundException(currentXpathNodeId));
+        dataSchemaNodeIdentifiers.add(currentDataSchemaNode.getQName());
         if (xpathNodeIdSequence.length <= 1) {
-            return currentDataSchemaNode;
+            return dataSchemaNodeIdentifiers;
         }
         if (currentDataSchemaNode instanceof DataNodeContainer) {
-            return findDataSchemaNodeByXpathNodeIdSequence(
+            return findDataSchemaNodeIdentifiersByXpathNodeIdSequence(
                 getNextLevelXpathNodeIdSequence(xpathNodeIdSequence),
-                ((DataNodeContainer) currentDataSchemaNode).getChildNodes());
+                    ((DataNodeContainer) currentDataSchemaNode).getChildNodes(),
+                    dataSchemaNodeIdentifiers);
         }
         throw schemaNodeNotFoundException(xpathNodeIdSequence[1]);
     }
