@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020 Nordix Foundation
+ *  Copyright (C) 2020-2022 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -36,9 +36,9 @@ class YangUtilsSpec extends Specification {
             def yangResourceNameToContent = TestUtils.getYangResourcesAsMap('bookstore.yang')
             def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getSchemaContext()
         when: 'the json data is parsed'
-            NormalizedNode<?, ?> result = YangUtils.parseJsonData(jsonData, schemaContext)
+            NormalizedNode result = YangUtils.parseJsonData(jsonData, schemaContext)
         then: 'the result is a normalized node of the correct type'
-            result.nodeType == QName.create('org:onap:ccsdk:sample', '2020-09-15', 'bookstore')
+            result.getIdentifier().nodeType == QName.create('org:onap:ccsdk:sample', '2020-09-15', 'bookstore')
     }
 
     def 'Parsing invalid data: #description.'() {
@@ -63,7 +63,7 @@ class YangUtilsSpec extends Specification {
         when: 'json string is parsed'
             def result = YangUtils.parseJsonData(jsonData, schemaContext, parentNodeXpath)
         then: 'result represents a node of expected type'
-            result.nodeType == QName.create('org:onap:cps:test:test-tree', '2020-02-02', nodeName)
+            result.getIdentifier().nodeType == QName.create('org:onap:cps:test:test-tree', '2020-02-02', nodeName)
         where:
             scenario                    | jsonData                                                                      | parentNodeXpath                       || nodeName
             'list element as container' | '{ "branch": { "name": "B", "nest": { "name": "N", "birds": ["bird"] } } }'   | '/test-tree'                          || 'branch'
