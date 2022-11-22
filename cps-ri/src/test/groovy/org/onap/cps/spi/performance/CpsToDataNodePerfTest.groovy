@@ -53,10 +53,10 @@ class CpsToDataNodePerfTest extends CpsPersistenceSpecBase {
             def result = objectUnderTest.getDataNode(DATASPACE_NAME, ANCHOR_NAME1, XPATH_DATA_NODE_WITH_DESCENDANTS, INCLUDE_ALL_DESCENDANTS)
             readStopWatch.stop()
             def readDurationInMillis = readStopWatch.getTime()
-        then: 'setup duration is under 8 seconds'
-            assert setupDurationInMillis < 8000
-        and: 'read duration is under 1500 milliseconds'
-            assert readDurationInMillis < 1500
+        then: 'setup duration is under 2500 milliseconds'
+            assert setupDurationInMillis < 2500
+        and: 'read duration is under 180 milliseconds'
+            assert readDurationInMillis < 180
         and: 'data node is returned with all the descendants populated'
             assert countDataNodes(result) == 1533
     }
