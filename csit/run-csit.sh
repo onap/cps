@@ -20,14 +20,21 @@
 
 # Branched from ccsdk/distribution to this repository Feb 23, 2021
 
-# Activate the virtualenv containing all the required libraries installed by prepare-csit.sh
-source_safely "${ROBOT3_VENV}/bin/activate"
-
 WORKDIR=$(mktemp -d --suffix=-robot-workdir)
 
 #
 # functions
 #
+
+# wrapper for sourcing a file
+function source_safely() {
+    [ -z "$1" ] && return 1
+    relax_set
+    . "$1"
+    load_set
+}
+# Activate the virtualenv containing all the required libraries installed by prepare-csit.sh
+source_safely "${ROBOT3_VENV}/bin/activate"
 
 function on_exit(){
     rc=$?
@@ -110,14 +117,6 @@ function harden_set() {
 function relax_set() {
     set +e
     set +o pipefail
-}
-
-# wrapper for sourcing a file
-function source_safely() {
-    [ -z "$1" ] && return 1
-    relax_set
-    . "$1"
-    load_set
 }
 
 #
