@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "455e8aaf_dbf3f018",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 17
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-24T12:23:43Z",
+      "side": 1,
+      "message": "I think we hsoudl remove this from now on",
+      "range": {
+        "startLine": 19,
+        "startChar": 15,
+        "endLine": 19,
+        "endChar": 33
+      },
+      "revId": "cd9d2246294052c3409763fa9e6c147521bbfe28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8bd76999_d21f2d93",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 17
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-24T12:23:43Z",
+      "side": 1,
+      "message": "lets discuss this, I have called meeting",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 124
+      },
+      "revId": "cd9d2246294052c3409763fa9e6c147521bbfe28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
