@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3d861f1d_ef36b02f",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-24T11:35:41Z",
+      "side": 1,
+      "message": "insert \u0027Array of\u0027 or \u0027List of\u0027",
+      "range": {
+        "startLine": 249,
+        "startChar": 42,
+        "endLine": 249,
+        "endChar": 43
+      },
+      "revId": "83eec95bb34ca4015f7da47249ca23f2af4989d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b905744_895414d4",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-24T11:35:41Z",
+      "side": 1,
+      "message": "remove this, jsut put [ ] in tehe last column",
+      "range": {
+        "startLine": 250,
+        "startChar": 42,
+        "endLine": 250,
+        "endChar": 59
+      },
+      "revId": "83eec95bb34ca4015f7da47249ca23f2af4989d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
