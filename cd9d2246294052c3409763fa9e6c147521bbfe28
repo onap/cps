@@ -25,6 +25,29 @@
     },
     {
       "key": {
+        "uuid": "2fa7a00b_eb91f556",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 17
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-24T15:06:44Z",
+      "side": 1,
+      "message": "not released yet",
+      "range": {
+        "startLine": 29,
+        "startChar": 41,
+        "endLine": 29,
+        "endChar": 65
+      },
+      "revId": "cd9d2246294052c3409763fa9e6c147521bbfe28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8bd76999_d21f2d93",
         "filename": "docs/release-notes.rst",
         "patchSetId": 17
@@ -41,6 +64,29 @@
         "startChar": 0,
         "endLine": 40,
         "endChar": 124
+      },
+      "revId": "cd9d2246294052c3409763fa9e6c147521bbfe28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a4884c5f_756603f9",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 17
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-24T15:06:44Z",
+      "side": 1,
+      "message": "remove this part",
+      "range": {
+        "startLine": 42,
+        "startChar": 15,
+        "endLine": 42,
+        "endChar": 33
       },
       "revId": "cd9d2246294052c3409763fa9e6c147521bbfe28",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",

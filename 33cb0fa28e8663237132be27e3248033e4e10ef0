@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8975f80f_3fe4c383",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceSpec.groovy",
+        "patchSetId": 18
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-24T15:06:44Z",
+      "side": 1,
+      "message": "rename to SpyCmHandleQueries",
+      "range": {
+        "startLine": 40,
+        "startChar": 8,
+        "endLine": 40,
+        "endChar": 24
+      },
+      "revId": "33cb0fa28e8663237132be27e3248033e4e10ef0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "87c5d92c_bf468545",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceSpec.groovy",
+        "patchSetId": 18
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-24T15:06:44Z",
+      "side": 1,
+      "message": "Spy \n(see coment below)",
+      "range": {
+        "startLine": 40,
+        "startChar": 26,
+        "endLine": 40,
+        "endChar": 30
+      },
+      "revId": "33cb0fa28e8663237132be27e3248033e4e10ef0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "11551d14_3a7c19df",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceSpec.groovy",
+        "patchSetId": 18
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-24T15:06:44Z",
+      "side": 1,
+      "message": "legacy: rename to mockInventoryPersistence",
+      "range": {
+        "startLine": 41,
+        "startChar": 8,
+        "endLine": 41,
+        "endChar": 29
+      },
+      "revId": "33cb0fa28e8663237132be27e3248033e4e10ef0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a9c8ed5_f96251cb",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceSpec.groovy",
+        "patchSetId": 18
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-24T15:06:44Z",
+      "side": 1,
+      "message": "use Spy tso you can combine Mock adn eas code on teh same object. Use teh REA method to combine teh result ie. do NOT mookc it",
+      "range": {
+        "startLine": 189,
+        "startChar": 12,
+        "endLine": 189,
+        "endChar": 74
+      },
+      "revId": "33cb0fa28e8663237132be27e3248033e4e10ef0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "29c8ff87_30270d45",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceSpec.groovy",
+        "patchSetId": 18
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-24T15:06:44Z",
+      "side": 1,
+      "message": "naming is incorrect (as discussed)",
+      "range": {
+        "startLine": 195,
+        "startChar": 109,
+        "endLine": 195,
+        "endChar": 217
+      },
+      "revId": "33cb0fa28e8663237132be27e3248033e4e10ef0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9764a426_4081ef67",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceSpec.groovy",
+        "patchSetId": 18
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-24T15:06:44Z",
+      "side": 1,
+      "message": "create separate test for these",
+      "range": {
+        "startLine": 200,
+        "startChar": 0,
+        "endLine": 201,
+        "endChar": 101
+      },
+      "revId": "33cb0fa28e8663237132be27e3248033e4e10ef0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bca25ce2_e5283fd4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceSpec.groovy",
+        "patchSetId": 18
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-24T15:06:44Z",
+      "side": 1,
+      "message": "simplify using Groovy to: \ndataNodeIds.each{ dataNodes \u003c\u003c new DataNode(xpath: \"/dmi-registry/cm-handles[@id\u003d\u0027${it}\u0027]\", leaves: [\u0027id\u0027:it]) }",
+      "range": {
+        "startLine": 214,
+        "startChar": 9,
+        "endLine": 214,
+        "endChar": 138
+      },
+      "revId": "33cb0fa28e8663237132be27e3248033e4e10ef0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
