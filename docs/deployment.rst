@@ -247,7 +247,7 @@ Any spring supported property can be configured by providing in ``config.additio
 | notification.data-updated.topic       |                                                                                                         |                               |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
 | config.additional.                    | Dataspaces to be enabled for publishing events to cps-temporal                                          |                               |
-| notification.data-updated.filters.    |                                                                                                         |                               |
+| notification.data-updated.filters.    | The default is []. If left blank CPS-Temporal notification wil be send to all dataspaces                |                               |
 | enabled-dataspaces                    |                                                                                                         |                               |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
 | config.additional.                    | If asynchronous messaging, user notifications, and updated event persistence should be enabled          | ``true``                      |
