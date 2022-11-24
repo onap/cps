@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3b987bdc_dd3e7897",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-24T11:53:44Z",
+      "side": 1,
+      "message": "lower case \u0027d\u0027",
+      "range": {
+        "startLine": 249,
+        "startChar": 51,
+        "endLine": 249,
+        "endChar": 52
+      },
+      "revId": "652873fb45f64a307e72adc15733ba244b0a2b77",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3705f88c_d43af22b",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-24T11:53:44Z",
+      "side": 1,
+      "message": "for",
+      "range": {
+        "startLine": 250,
+        "startChar": 95,
+        "endLine": 250,
+        "endChar": 97
+      },
+      "revId": "652873fb45f64a307e72adc15733ba244b0a2b77",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
