@@ -22,6 +22,558 @@
       "revId": "18de1d4bdad85b9ba639d2fe7b943e174b1d0f28",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb526de3_1f486a2e",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-25T11:30:58Z",
+      "side": 1,
+      "message": "nb: documentBuilder",
+      "range": {
+        "startLine": 104,
+        "startChar": 34,
+        "endLine": 104,
+        "endChar": 42
+      },
+      "revId": "18de1d4bdad85b9ba639d2fe7b943e174b1d0f28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c6468a4_8b16d0d8",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-25T11:30:58Z",
+      "side": 1,
+      "message": "NB: we prefer not to shorten names: document",
+      "range": {
+        "startLine": 151,
+        "startChar": 27,
+        "endLine": 151,
+        "endChar": 31
+      },
+      "revId": "18de1d4bdad85b9ba639d2fe7b943e174b1d0f28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dd71e6f2_899527e4",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-25T11:30:58Z",
+      "side": 1,
+      "message": "element or rootElement",
+      "range": {
+        "startLine": 152,
+        "startChar": 26,
+        "endLine": 152,
+        "endChar": 31
+      },
+      "revId": "18de1d4bdad85b9ba639d2fe7b943e174b1d0f28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a07e09a5_a9236080",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-25T11:30:58Z",
+      "side": 1,
+      "message": "propertyElement",
+      "range": {
+        "startLine": 154,
+        "startChar": 30,
+        "endLine": 154,
+        "endChar": 43
+      },
+      "revId": "18de1d4bdad85b9ba639d2fe7b943e174b1d0f28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a78a4eb5_c6e42b03",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-25T11:30:58Z",
+      "side": 1,
+      "message": "I assume this method is only used for xml use-case becasue of the xml-root element correct?\nsuggestion: getFirstChildXmlRoot",
+      "range": {
+        "startLine": 261,
+        "startChar": 40,
+        "endLine": 261,
+        "endChar": 62
+      },
+      "revId": "18de1d4bdad85b9ba639d2fe7b943e174b1d0f28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e9f17d1c_7cd647dd",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-25T11:30:58Z",
+      "side": 1,
+      "message": "this just returns the first child?!\nis that OK? You only expecting one I suppose (probably related to the ongoing work for https://jira.onap.org/browse/CPS-341, i think there is a patch almost ready for that so we need to be carefull and coordinate! (maybe a follow up user story to support multiple nodes in xml format)\nif so I think it should be reflected in the name",
+      "range": {
+        "startLine": 268,
+        "startChar": 16,
+        "endLine": 268,
+        "endChar": 29
+      },
+      "revId": "18de1d4bdad85b9ba639d2fe7b943e174b1d0f28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8bc37eb9_e34bd0b4",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-25T11:30:58Z",
+      "side": 1,
+      "message": "have you go a test that covers this secnario?",
+      "range": {
+        "startLine": 272,
+        "startChar": 14,
+        "endLine": 272,
+        "endChar": 105
+      },
+      "revId": "18de1d4bdad85b9ba639d2fe7b943e174b1d0f28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "af17728d_facb4167",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-25T11:30:58Z",
+      "side": 1,
+      "message": "I can see what you are trying to do but what really is being tested here is invalid data (format)\ninstead of swapping the files I would just test with 2 strings: \u0027{invalid json\u0027  and \u0027\u003csome invalid xml\u0027\n(the missing closing } and \u003e are deliberate)",
+      "range": {
+        "startLine": 84,
+        "startChar": 9,
+        "endLine": 84,
+        "endChar": 70
+      },
+      "revId": "18de1d4bdad85b9ba639d2fe7b943e174b1d0f28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0878cbfa_c12da682",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-25T11:30:58Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 93,
+        "startChar": 30,
+        "endLine": 93,
+        "endChar": 44
+      },
+      "revId": "18de1d4bdad85b9ba639d2fe7b943e174b1d0f28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b14ad56a_beb6435a",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-25T11:30:58Z",
+      "side": 1,
+      "message": "as explaine above:\ninvalidData",
+      "range": {
+        "startLine": 93,
+        "startChar": 46,
+        "endLine": 93,
+        "endChar": 63
+      },
+      "revId": "18de1d4bdad85b9ba639d2fe7b943e174b1d0f28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6886e6d3_4e0c1906",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-25T11:30:58Z",
+      "side": 1,
+      "message": "{invalid  json",
+      "range": {
+        "startLine": 94,
+        "startChar": 47,
+        "endLine": 94,
+        "endChar": 62
+      },
+      "revId": "18de1d4bdad85b9ba639d2fe7b943e174b1d0f28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "64986742_bbd6ca0a",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-25T11:30:58Z",
+      "side": 1,
+      "message": "\u003cinvalid xml",
+      "range": {
+        "startLine": 95,
+        "startChar": 47,
+        "endLine": 95,
+        "endChar": 59
+      },
+      "revId": "18de1d4bdad85b9ba639d2fe7b943e174b1d0f28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cff044ba_99ab6af5",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlFileUtilsSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-25T11:30:58Z",
+      "side": 1,
+      "message": "given",
+      "range": {
+        "startLine": 28,
+        "startChar": 8,
+        "endLine": 28,
+        "endChar": 12
+      },
+      "revId": "18de1d4bdad85b9ba639d2fe7b943e174b1d0f28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b78b64b9_1a3aebde",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlFileUtilsSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-25T11:30:58Z",
+      "side": 1,
+      "message": "when: \u0027the XML data is parsed\u0027",
+      "range": {
+        "startLine": 31,
+        "startChar": 8,
+        "endLine": 31,
+        "endChar": 36
+      },
+      "revId": "18de1d4bdad85b9ba639d2fe7b943e174b1d0f28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3bef4187_2e1a4369",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlFileUtilsSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-25T11:30:58Z",
+      "side": 1,
+      "message": "not true for firsttest?! See comment below",
+      "range": {
+        "startLine": 33,
+        "startChar": 30,
+        "endLine": 33,
+        "endChar": 41
+      },
+      "revId": "18de1d4bdad85b9ba639d2fe7b943e174b1d0f28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "49108555_a00348ee",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlFileUtilsSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-25T11:30:58Z",
+      "side": 1,
+      "message": "ue assert keyword (convention)",
+      "range": {
+        "startLine": 34,
+        "startChar": 12,
+        "endLine": 34,
+        "endChar": 28
+      },
+      "revId": "18de1d4bdad85b9ba639d2fe7b943e174b1d0f28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fc12ae8c_a9915c15",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlFileUtilsSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-25T11:30:58Z",
+      "side": 1,
+      "message": "|| expectedOutput",
+      "range": {
+        "startLine": 36,
+        "startChar": 120,
+        "endLine": 36,
+        "endChar": 128
+      },
+      "revId": "18de1d4bdad85b9ba639d2fe7b943e174b1d0f28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a6dae2c5_8c0d55e6",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlFileUtilsSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-25T11:30:58Z",
+      "side": 1,
+      "message": "in this case the output IS different from the input, so doesn\u0027t match what is described on line #33 \nI actually don understand what exactly is happening, (unless I study the prod code maybe) SO the point is we need a better test, possibly a separate test for this scenario?!",
+      "range": {
+        "startLine": 37,
+        "startChar": 161,
+        "endLine": 37,
+        "endChar": 217
+      },
+      "revId": "18de1d4bdad85b9ba639d2fe7b943e174b1d0f28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1a46311c_8322030f",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlFileUtilsSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-25T11:30:58Z",
+      "side": 1,
+      "message": "given",
+      "range": {
+        "startLine": 43,
+        "startChar": 8,
+        "endLine": 43,
+        "endChar": 12
+      },
+      "revId": "18de1d4bdad85b9ba639d2fe7b943e174b1d0f28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2e52784c_f6b8b65f",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlFileUtilsSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-25T11:30:58Z",
+      "side": 1,
+      "message": "maybe insert and and: block to separate and describe",
+      "range": {
+        "startLine": 46,
+        "startChar": 12,
+        "endLine": 46,
+        "endChar": 91
+      },
+      "revId": "18de1d4bdad85b9ba639d2fe7b943e174b1d0f28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "00c19d58_856fd02d",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlFileUtilsSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-25T11:30:58Z",
+      "side": 1,
+      "message": "when",
+      "range": {
+        "startLine": 47,
+        "startChar": 8,
+        "endLine": 47,
+        "endChar": 11
+      },
+      "revId": "18de1d4bdad85b9ba639d2fe7b943e174b1d0f28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "786cf4e5_b66e8de4",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlFileUtilsSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-25T11:30:58Z",
+      "side": 1,
+      "message": "need better description",
+      "range": {
+        "startLine": 49,
+        "startChar": 15,
+        "endLine": 49,
+        "endChar": 25
+      },
+      "revId": "18de1d4bdad85b9ba639d2fe7b943e174b1d0f28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cc4ea788_3c1f2fdc",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlFileUtilsSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-25T11:30:58Z",
+      "side": 1,
+      "message": "ue assert keyword (convention)",
+      "range": {
+        "startLine": 50,
+        "startChar": 12,
+        "endLine": 50,
+        "endChar": 37
+      },
+      "revId": "18de1d4bdad85b9ba639d2fe7b943e174b1d0f28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a60223dd_3124c43f",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlFileUtilsSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-25T11:30:58Z",
+      "side": 1,
+      "message": "|| expectedOutput",
+      "range": {
+        "startLine": 52,
+        "startChar": 266,
+        "endLine": 52,
+        "endChar": 274
+      },
+      "revId": "18de1d4bdad85b9ba639d2fe7b943e174b1d0f28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
