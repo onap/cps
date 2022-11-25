@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "04f535aa_4d682682",
+        "filename": "cps-rest/docs/openapi/cpsData.yml",
+        "patchSetId": 13
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-11-25T10:47:56Z",
+      "side": 1,
+      "message": "in the swagger documentation page , somehow this example is not getting rendered.\nBelow is what we see : \n\n\u003c?xml version\u003d\"1.0\" encoding\u003d\"UTF-8\"?\u003e\n\u003c!-- XML example cannot be generated; root element name is undefined --\u003e",
+      "range": {
+        "startLine": 166,
+        "startChar": 19,
+        "endLine": 166,
+        "endChar": 65
+      },
+      "revId": "18de1d4bdad85b9ba639d2fe7b943e174b1d0f28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
