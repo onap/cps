@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "25a2a5f3_d2cf4df2",
+        "filename": "cps-path-parser/src/main/antlr4/org/onap/cps/cpspath/parser/antlr4/CpsPath.g4",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-25T11:28:05Z",
+      "side": 1,
+      "message": "make a new RULE for this:\n\noperator: ( KW_AND | KW_OR )\n\nthen when the parser code is generated you wil have an exitCondition(ConditionContext ctx) method you NEED to use to store the correct operator and retain that information!\nuse the ctx to see what is was (there are many example in teh existing ode on how to do this)",
+      "range": {
+        "startLine": 42,
+        "startChar": 37,
+        "endLine": 42,
+        "endChar": 55
+      },
+      "revId": "386a900ee54241d69570431ee8dcb683e704103b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6034558f_485e6a75",
+        "filename": "cps-path-parser/src/main/antlr4/org/onap/cps/cpspath/parser/antlr4/CpsPath.g4",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-25T11:28:05Z",
+      "side": 1,
+      "message": "not in scope of this user story doi NOT change thuis now but in another user story and again, just lik the operator you need to STORE tis information to be able to use it in the DB layer!!!",
+      "range": {
+        "startLine": 46,
+        "startChar": 28,
+        "endLine": 46,
+        "endChar": 49
+      },
+      "revId": "386a900ee54241d69570431ee8dcb683e704103b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "02b43a3d_156dbede",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-25T11:28:05Z",
+      "side": 1,
+      "message": "never import .* Update import rules in intelliJ",
+      "range": {
+        "startLine": 25,
+        "startChar": 15,
+        "endLine": 25,
+        "endChar": 19
+      },
+      "revId": "386a900ee54241d69570431ee8dcb683e704103b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f2088cbb_d897477b",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-25T11:28:05Z",
+      "side": 1,
+      "message": "very vague name, please apply new rule as I suggested in my previosu comment!",
+      "range": {
+        "startLine": 97,
+        "startChar": 60,
+        "endLine": 97,
+        "endChar": 68
+      },
+      "revId": "386a900ee54241d69570431ee8dcb683e704103b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5f9b7ba2_1044b281",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-25T11:28:05Z",
+      "side": 1,
+      "message": "should not be needed, see previous comments",
+      "range": {
+        "startLine": 178,
+        "startChar": 17,
+        "endLine": 178,
+        "endChar": 32
+      },
+      "revId": "386a900ee54241d69570431ee8dcb683e704103b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c336044_78a85d86",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathQuerySpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-25T11:28:05Z",
+      "side": 1,
+      "message": "you unindented a te identation in the original test, pease restore!\nCheck with Luek how to configure your IDE to do this correctly!",
+      "range": {
+        "startLine": 33,
+        "startChar": 8,
+        "endLine": 33,
+        "endChar": 42
+      },
+      "revId": "386a900ee54241d69570431ee8dcb683e704103b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "824d21fd_c556e199",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathQuerySpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-25T11:28:05Z",
+      "side": 1,
+      "message": "you need to verify the condition operator is stored correctly\n\nif would test with following scenarios\n[@key1\u003d1] -\u003e  NO operator\n[@key1\u003d1 and key2\u003d1] -\u003e  1 operator \u003d\u003d \u0027and\u0027\n[@key1\u003d1 or key2\u003d1] -\u003e  1 operator \u003d\u003d \u0027or\u0027\n[@key1\u003d1 and key2\u003d1 or key3\u003d1] -\u003e 2 operators, \u0027and\u0027 and \u0027or\u0027 in the correct order!! (so a list is what you need as you need to maintain the original order), ALSO for the leaves, order is NOW important",
+      "range": {
+        "startLine": 127,
+        "startChar": 8,
+        "endLine": 127,
+        "endChar": 58
+      },
+      "revId": "386a900ee54241d69570431ee8dcb683e704103b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
