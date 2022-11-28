@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c001a93b_d0a8f2dd",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-11-28T10:28:16Z",
+      "side": 1,
+      "message": "I think more data needs to be asserted since it is schemasetdetails: dataspace, modulereferences",
+      "range": {
+        "startLine": 294,
+        "startChar": 0,
+        "endLine": 294,
+        "endChar": 75
+      },
+      "revId": "01c263cacb40df0ca75d3705a30fe6d47e922603",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fb18f3fd_04087fd3",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-11-28T10:28:16Z",
+      "side": 1,
+      "message": "I think this test needs to compare the object that is returned, not enough to just check the string value, would be good if multiple outcomes can be tested, eg no schema sets, 2 schema sets",
+      "range": {
+        "startLine": 217,
+        "startChar": 13,
+        "endLine": 217,
+        "endChar": 57
+      },
+      "revId": "01c263cacb40df0ca75d3705a30fe6d47e922603",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
