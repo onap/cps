@@ -444,6 +444,30 @@
     },
     {
       "key": {
+        "uuid": "5c3697cb_f9a562e6",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/CmHandleQueriesImplSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2022-11-28T15:40:49Z",
+      "side": 1,
+      "message": "this test was not required by the feature. i spotted some uncovered lines while i was creating the required tests, so i added this one as well to improve overall coverage",
+      "parentUuid": "6f69461a_081dbdf5",
+      "range": {
+        "startLine": 120,
+        "startChar": 0,
+        "endLine": 134,
+        "endChar": 5
+      },
+      "revId": "41290711af4cea96b6139c692907717ff1fe7927",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4bd5c50a_733acfda",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/CmHandleQueryRestParametersValidator.java",
         "patchSetId": 14
