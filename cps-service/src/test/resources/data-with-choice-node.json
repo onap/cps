@@ -1,0 +1,8 @@
+{
+  "container-with-choice-leaves": {
+    "leaf-1": "test",
+    "choice-case1-leaf-a": "test",
+    "choice-case1-leaf-b": "test"
+  }
+}
+
