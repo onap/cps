@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "11e9ac2d_273b21cf",
+        "filename": "cps-rest/docs/openapi/openapi.yml",
+        "patchSetId": 18
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-29T09:55:52Z",
+      "side": 1,
+      "message": "Since we already have an endpoint to POST schemaset we shoudl NOT have a separate endpoint (using admin) to GET the saem\n(we solve any TBAC issue later)",
+      "range": {
+        "startLine": 71,
+        "startChar": 2,
+        "endLine": 71,
+        "endChar": 21
+      },
+      "revId": "7dad5558afadf934cbe0b03f21fdcb1bf5410f03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f4029be_bbf4b9a3",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 18
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-29T09:55:52Z",
+      "side": 1,
+      "message": "dont think this import is used",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 27
+      },
+      "revId": "7dad5558afadf934cbe0b03f21fdcb1bf5410f03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0345b39e_4e53b056",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-29T09:55:52Z",
+      "side": 1,
+      "message": "I think this filter should be applied in the SQL not in java ie. add a new method in the repository for this",
+      "range": {
+        "startLine": 163,
+        "startChar": 84,
+        "endLine": 163,
+        "endChar": 105
+      },
+      "revId": "7dad5558afadf934cbe0b03f21fdcb1bf5410f03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
