@@ -1,0 +1,8 @@
+{
+  "compression": {
+    "compression-type": "STATIC",
+    "bitwidth": "9",
+    "exponent": "4"
+  }
+}
+
