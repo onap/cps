@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "abe1850c_c99c38e4",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNodeBuilder.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2022-11-29T11:05:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97581757_afbbe784",
+      "range": {
+        "startLine": 49,
+        "startChar": 12,
+        "endLine": 49,
+        "endChar": 92
+      },
+      "revId": "41c5310af32ee3476750154775bfe93775de2ade",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2a220636_e6621fa4",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
         "patchSetId": 5

@@ -22,6 +22,30 @@
       "revId": "7f9cc8940674183da5fb90e3fc5db72d7bda7673",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e6f5bae5_bc7a6dfb",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 539,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2022-11-29T11:05:36Z",
+      "side": 1,
+      "message": "The change was done here https://gerrit.onap.org/r/c/cps/+/132044/7/cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java \nThe default value of boolean is set to false now so I guess it makes sense to keep it like that. More info at https://java2blog.com/java-boolean-default-value/",
+      "parentUuid": "cc43aa01_93752824",
+      "range": {
+        "startLine": 539,
+        "startChar": 16,
+        "endLine": 539,
+        "endChar": 29
+      },
+      "revId": "7f9cc8940674183da5fb90e3fc5db72d7bda7673",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
