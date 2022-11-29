@@ -33,6 +33,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.utils.YangUtils;
 import org.opendaylight.yangtools.yang.data.api.YangInstanceIdentifier;
+import org.opendaylight.yangtools.yang.data.api.schema.ChoiceNode;
 import org.opendaylight.yangtools.yang.data.api.schema.DataContainerChild;
 import org.opendaylight.yangtools.yang.data.api.schema.DataContainerNode;
 import org.opendaylight.yangtools.yang.data.api.schema.LeafSetNode;
@@ -173,7 +174,9 @@ public class DataNodeBuilder {
     private static void addDataNodeFromNormalizedNode(final DataNode currentDataNode,
         final NormalizedNode<?, ?> normalizedNode) {
 
-        if (normalizedNode instanceof DataContainerNode) {
+        if (normalizedNode instanceof ChoiceNode) {
+            addChoiceNode(currentDataNode, (ChoiceNode) normalizedNode);
+        } else if (normalizedNode instanceof DataContainerNode) {
             addYangContainer(currentDataNode, (DataContainerNode<?>) normalizedNode);
         } else if (normalizedNode instanceof MapNode) {
             addDataNodeForEachListElement(currentDataNode, (MapNode) normalizedNode);
@@ -234,5 +237,14 @@ public class DataNodeBuilder {
         parentDataNode.setChildDataNodes(allChildDataNodes);
         return newChildDataNode;
     }
+
+    private static void addChoiceNode(final DataNode currentDataNode, final ChoiceNode choiceNode) {
+
+        final Collection<DataContainerChild<?, ?>> normalizedChildNodes = choiceNode.getValue();
+        for (final NormalizedNode<?, ?> normalizedNode : normalizedChildNodes) {
+            addDataNodeFromNormalizedNode(currentDataNode, normalizedNode);
+        }
+    }
+
 
 }

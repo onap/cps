@@ -1,0 +1,31 @@
+module yang-with-choice-node {
+  yang-version 1.1;
+  namespace "org:onap:cps:test:yang-with-choice-node";
+  prefix "yang-with-choice-node";
+
+  container container-1 {
+    leaf leafnode-1 {
+      type string;
+    }
+
+    leaf leafnode-2 {
+      type string;
+    }
+
+    choice choicenode-1 {
+      case case-1 {
+        leaf leafnode-3 {
+          type string;
+        }
+        leaf leafnode-4 {
+          type string;
+        }
+      }
+      case case-2 {
+        leaf leafnode-5 {
+          type string;
+        }
+      }
+    }
+  }
+}
