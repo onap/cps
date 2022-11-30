@@ -375,6 +375,30 @@
     },
     {
       "key": {
+        "uuid": "5e188359_5029d21d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-30T12:25:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3337fee9_50e93c5a",
+      "range": {
+        "startLine": 215,
+        "startChar": 12,
+        "endLine": 215,
+        "endChar": 16
+      },
+      "revId": "41290711af4cea96b6139c692907717ff1fe7927",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3e04575b_2e0ab123",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
         "patchSetId": 14
@@ -386,6 +410,30 @@
       "writtenOn": "2022-11-22T18:51:25Z",
       "side": 1,
       "message": "if the array of IDS being mocked on lome 215 is converted somehow you need to be more specific in teh assert and description what is happening...",
+      "range": {
+        "startLine": 218,
+        "startChar": 15,
+        "endLine": 218,
+        "endChar": 44
+      },
+      "revId": "41290711af4cea96b6139c692907717ff1fe7927",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e0d6d9d4_589355a0",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-30T12:25:53Z",
+      "side": 1,
+      "message": "ignore this, its oik",
+      "parentUuid": "3e04575b_2e0ab123",
       "range": {
         "startLine": 218,
         "startChar": 15,

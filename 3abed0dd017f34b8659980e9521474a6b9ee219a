@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "5e5faca3_5874f9f5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/InventoryQueryConditions.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-30T12:25:53Z",
+      "side": 1,
+      "message": "Levente is right, it is needed",
+      "parentUuid": "2ad3b79f_785dcc27",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 19
+      },
+      "revId": "3abed0dd017f34b8659980e9521474a6b9ee219a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba7c458e_bf643f0c",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/enums/PropertyType.java",
         "patchSetId": 19
@@ -96,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "4795190e_04bedd07",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/enums/PropertyType.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-30T12:25:53Z",
+      "side": 1,
+      "message": "is needed",
+      "parentUuid": "eaa96dcd_45615a70",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 19
+      },
+      "revId": "3abed0dd017f34b8659980e9521474a6b9ee219a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ab25c9c9_51c1c1f4",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/CmHandleQueryServiceParameters.java",
         "patchSetId": 19
@@ -140,6 +188,30 @@
       "revId": "3abed0dd017f34b8659980e9521474a6b9ee219a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ffbd5de3_b4100a91",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/CmHandleQueryServiceParameters.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-30T12:25:53Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "51b235cf_5d52570f",
+      "range": {
+        "startLine": 32,
+        "startChar": 7,
+        "endLine": 32,
+        "endChar": 49
+      },
+      "revId": "3abed0dd017f34b8659980e9521474a6b9ee219a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
