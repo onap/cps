@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b669bc46_aebe73e4",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryControllerSpec.groovy",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-30T09:10:01Z",
+      "side": 1,
+      "message": "we need to discuss the test modifications in this class",
+      "revId": "3a1b697f331bb10e87e7c2332373b879bfcb773c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd454eb9_adfb3a7d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/CmHandleQueryConditions.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-30T09:10:01Z",
+      "side": 1,
+      "message": "NB: I think this can be a Collection",
+      "range": {
+        "startLine": 34,
+        "startChar": 24,
+        "endLine": 34,
+        "endChar": 28
+      },
+      "revId": "3a1b697f331bb10e87e7c2332373b879bfcb773c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1fed03f_bc4c40a2",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceSpec.groovy",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-30T09:10:01Z",
+      "side": 1,
+      "message": "lets have a quick look at teh modified test in your IDE togtehr (I think they are OK though)",
+      "revId": "3a1b697f331bb10e87e7c2332373b879bfcb773c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2d54df68_ca5cb41e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-11-30T09:10:01Z",
+      "side": 1,
+      "message": "stil need to implement teh comments in made patch #14",
+      "revId": "3a1b697f331bb10e87e7c2332373b879bfcb773c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
