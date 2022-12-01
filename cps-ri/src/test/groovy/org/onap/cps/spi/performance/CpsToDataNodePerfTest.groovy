@@ -28,18 +28,19 @@ import org.onap.cps.spi.model.DataNodeBuilder
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.jdbc.Sql
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
-import static org.onap.cps.spi.impl.CpsPersistenceSpecBase.CLEAR_DATA
 
 class CpsToDataNodePerfTest extends CpsPersistenceSpecBase {
 
-    static final String SET_DATA = '/data/fragment.sql'
+    static final String PERF_TEST_DATA = '/data/perf-test.sql'
 
     @Autowired
     CpsDataPersistenceService objectUnderTest
 
-    def XPATH_DATA_NODE_WITH_DESCENDANTS = '/parent-1'
+    def PERF_TEST_PARENT = '/perf-parent-1'
 
-    @Sql([CLEAR_DATA, SET_DATA])
+    def EXPECTED_NUMBER_OF_NODES = 10051  //  1 Parent + 50 Children + 10000 Grand-children
+
+    @Sql([CLEAR_DATA, PERF_TEST_DATA])
     def 'Get data node by xpath with all descendants with many children'() {
         given: 'nodes and grandchildren have been persisted'
             def setupStopWatch = new StopWatch()
@@ -47,43 +48,65 @@ class CpsToDataNodePerfTest extends CpsPersistenceSpecBase {
             createLineage()
             setupStopWatch.stop()
             def setupDurationInMillis = setupStopWatch.getTime()
-        when: 'data node is requested with all descendants'
+        and: 'setup duration is under 8000 milliseconds'
+            assert setupDurationInMillis < 8000
+        when: 'get parent is executed with all descendants'
             def readStopWatch = new StopWatch()
             readStopWatch.start()
-            def result = objectUnderTest.getDataNode(DATASPACE_NAME, ANCHOR_NAME1, XPATH_DATA_NODE_WITH_DESCENDANTS, INCLUDE_ALL_DESCENDANTS)
+            def result = objectUnderTest.getDataNode('PERF-DATASPACE', 'PERF-ANCHOR', PERF_TEST_PARENT, INCLUDE_ALL_DESCENDANTS)
             readStopWatch.stop()
             def readDurationInMillis = readStopWatch.getTime()
-        then: 'setup duration is under 2500 milliseconds'
-            assert setupDurationInMillis < 2500
-        and: 'read duration is under 180 milliseconds'
-            assert readDurationInMillis < 180
+        then: 'read duration is under 450 milliseconds'
+            assert readDurationInMillis < 450
         and: 'data node is returned with all the descendants populated'
-            assert countDataNodes(result) == 1533
+            assert countDataNodes(result) == EXPECTED_NUMBER_OF_NODES
+        when: 'get root is executed with all descendants'
+            readStopWatch.reset()
+            readStopWatch.start()
+            result = objectUnderTest.getDataNode('PERF-DATASPACE', 'PERF-ANCHOR', '', INCLUDE_ALL_DESCENDANTS)
+            readStopWatch.stop()
+            readDurationInMillis = readStopWatch.getTime()
+        then: 'read duration is under 450 milliseconds'
+            assert readDurationInMillis < 450
+        and: 'data node is returned with all the descendants populated'
+            assert countDataNodes(result) == EXPECTED_NUMBER_OF_NODES
+        when: 'query is executed with all descendants'
+            readStopWatch.reset()
+            readStopWatch.start()
+            result = objectUnderTest.queryDataNodes('PERF-DATASPACE', 'PERF-ANCHOR', '//perf-parent-1', INCLUDE_ALL_DESCENDANTS)
+            readStopWatch.stop()
+            readDurationInMillis = readStopWatch.getTime()
+        then: 'read duration is under 450 milliseconds'
+            assert readDurationInMillis < 450
+        and: 'data node is returned with all the descendants populated'
+            assert countDataNodes(result) == EXPECTED_NUMBER_OF_NODES
     }
 
     def createLineage() {
-        def numOfChildren = 30
-        def numOfGrandChildren = 50
+        def numOfChildren = 50
+        def numOfGrandChildren = 200
         (1..numOfChildren).each {
             def childName = "perf-test-child-${it}".toString()
-            def newChild = goForthAndMultiply(XPATH_DATA_NODE_WITH_DESCENDANTS, childName, numOfGrandChildren)
-            objectUnderTest.addChildDataNode(DATASPACE_NAME, ANCHOR_NAME1, XPATH_DATA_NODE_WITH_DESCENDANTS, newChild)
+            def newChild = goForthAndMultiply(PERF_TEST_PARENT, childName, numOfGrandChildren)
+            objectUnderTest.addChildDataNode('PERF-DATASPACE', 'PERF-ANCHOR', PERF_TEST_PARENT, newChild)
         }
     }
 
     def goForthAndMultiply(parentXpath, childName, numOfGrandChildren) {
         def children = []
         (1..numOfGrandChildren).each {
-            def child = new DataNodeBuilder().withXpath("${parentXpath}/${childName}/${it}-grand-child").build()
+            def child = new DataNodeBuilder().withXpath("${parentXpath}/${childName}/${it}perf-test-grand-child").build()
             children.add(child)
         }
         return new DataNodeBuilder().withXpath("${parentXpath}/${childName}").withChildDataNodes(children).build()
     }
 
-    def countDataNodes(DataNode dataNode) {
+    def countDataNodes(dataNodes) {
         int nodeCount = 1
-        for (DataNode child : dataNode.childDataNodes) {
-            nodeCount = nodeCount + (countDataNodes(child))
+        for (DataNode parent : dataNodes) {
+            for (DataNode child : parent.childDataNodes) {
+                nodeCount = nodeCount + (countDataNodes(child))
+            }
         }
         return nodeCount
     }
