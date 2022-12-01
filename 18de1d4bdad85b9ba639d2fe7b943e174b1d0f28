@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d9283ca1_d80bd13f",
+        "filename": "cps-rest/docs/openapi/cpsData.yml",
+        "patchSetId": 13
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 6079
+      },
+      "writtenOn": "2022-12-01T16:51:57Z",
+      "side": 1,
+      "message": "@Priyank looks like Swagger has problem with generating xml example for \"unknown\" schema. We know that xml will come but format of that data is not fixed (of course we check that schema later using Yang but on API level that schema is unknown). Is it ok if we skip example for xml and keep for json?",
+      "parentUuid": "04f535aa_4d682682",
+      "range": {
+        "startLine": 166,
+        "startChar": 19,
+        "endLine": 166,
+        "endChar": 65
+      },
+      "revId": "18de1d4bdad85b9ba639d2fe7b943e174b1d0f28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bb526de3_1f486a2e",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
         "patchSetId": 13
