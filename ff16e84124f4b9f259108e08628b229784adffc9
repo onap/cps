@@ -42,6 +42,24 @@
     },
     {
       "key": {
+        "uuid": "efbbc7a6_d53d72a5",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2022-12-01T20:26:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1d85f613_d8bbd703",
+      "revId": "ff16e84124f4b9f259108e08628b229784adffc9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6beeb99a_c8b308d4",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/CmHandleQueryConditionsSpec.groovy",
         "patchSetId": 22
@@ -62,6 +80,30 @@
       "revId": "ff16e84124f4b9f259108e08628b229784adffc9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bccb7808_8f845966",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/CmHandleQueryConditionsSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2022-12-01T20:26:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6beeb99a_c8b308d4",
+      "range": {
+        "startLine": 2,
+        "startChar": 2,
+        "endLine": 3,
+        "endChar": 3
+      },
+      "revId": "ff16e84124f4b9f259108e08628b229784adffc9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -88,6 +130,30 @@
     },
     {
       "key": {
+        "uuid": "330b58a9_8c839f4a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/InventoryQueryConditionsSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2022-12-01T20:26:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "25cdee2c_cae61abd",
+      "range": {
+        "startLine": 2,
+        "startChar": 2,
+        "endLine": 3,
+        "endChar": 5
+      },
+      "revId": "ff16e84124f4b9f259108e08628b229784adffc9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1244be96_f5236653",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/RestQueryParametersValidatorSpec.groovy",
         "patchSetId": 22
@@ -111,6 +177,30 @@
     },
     {
       "key": {
+        "uuid": "a32e91ce_f67d1fc8",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/RestQueryParametersValidatorSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2022-12-01T20:26:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1244be96_f5236653",
+      "range": {
+        "startLine": 58,
+        "startChar": 67,
+        "endLine": 58,
+        "endChar": 92
+      },
+      "revId": "ff16e84124f4b9f259108e08628b229784adffc9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "687d5bc3_8a92e97b",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/RestQueryParametersValidatorSpec.groovy",
         "patchSetId": 22
@@ -131,6 +221,30 @@
       "revId": "ff16e84124f4b9f259108e08628b229784adffc9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf053eea_b93ca8f3",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/RestQueryParametersValidatorSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2022-12-01T20:26:25Z",
+      "side": 1,
+      "message": "Done, but should be a list of maps as: [[\u0027key\u0027:\u0027value\u0027]]",
+      "parentUuid": "687d5bc3_8a92e97b",
+      "range": {
+        "startLine": 68,
+        "startChar": 61,
+        "endLine": 68,
+        "endChar": 77
+      },
+      "revId": "ff16e84124f4b9f259108e08628b229784adffc9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
