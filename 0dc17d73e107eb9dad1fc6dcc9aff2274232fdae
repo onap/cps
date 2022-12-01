@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fd2f8f78_19d3bd54",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/spi/model/DataNodeBuilderSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-12-01T18:54:01Z",
+      "side": 1,
+      "message": "for this test can we use a more generic model and data instead?",
+      "revId": "0dc17d73e107eb9dad1fc6dcc9aff2274232fdae",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1a78593_a512f23d",
+        "filename": "cps-service/src/test/resources/o-ran-compression-factors.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-12-01T18:54:01Z",
+      "side": 1,
+      "message": "see comment on https://gerrit.onap.org/r/c/cps/+/132505/2/cps-service/src/test/groovy/org/onap/cps/spi/model/DataNodeBuilderSpec.groovy#143",
+      "revId": "0dc17d73e107eb9dad1fc6dcc9aff2274232fdae",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec1885f2_ad8a3b24",
+        "filename": "cps-service/src/test/resources/o-ran-compression-factors.yang",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-12-01T18:54:01Z",
+      "side": 1,
+      "message": "see comment on https://gerrit.onap.org/r/c/cps/+/132505/2/cps-service/src/test/groovy/org/onap/cps/spi/model/DataNodeBuilderSpec.groovy#143",
+      "revId": "0dc17d73e107eb9dad1fc6dcc9aff2274232fdae",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
