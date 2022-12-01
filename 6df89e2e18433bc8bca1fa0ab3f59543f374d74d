@@ -2,6 +2,98 @@
   "comments": [
     {
       "key": {
+        "uuid": "af027de3_fa82adb5",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-01T16:46:52Z",
+      "side": 1,
+      "message": "did you remove the singular version of this method?! \nPlease re-add it for backward compatibility of the Java interface!\nSimple make it call the new method with aa collection of 1",
+      "range": {
+        "startLine": 175,
+        "startChar": 29,
+        "endLine": 175,
+        "endChar": 30
+      },
+      "revId": "6df89e2e18433bc8bca1fa0ab3f59543f374d74d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "09955c7b_8cb07960",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-01T16:46:52Z",
+      "side": 1,
+      "message": "very good but do you have you test covering this scenario?!",
+      "range": {
+        "startLine": 194,
+        "startChar": 17,
+        "endLine": 194,
+        "endChar": 43
+      },
+      "revId": "6df89e2e18433bc8bca1fa0ab3f59543f374d74d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f480a705_2b09beaf",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-01T16:46:52Z",
+      "side": 1,
+      "message": "since the method now supports adding multiple children at once you should tets it with 2 new children",
+      "range": {
+        "startLine": 151,
+        "startChar": 15,
+        "endLine": 151,
+        "endChar": 20
+      },
+      "revId": "6df89e2e18433bc8bca1fa0ab3f59543f374d74d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa302ab0_d19ff371",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-01T16:46:52Z",
+      "side": 1,
+      "message": "need to keep a singular version too for backward compatibility\n(you can mark it is deprecated)",
+      "range": {
+        "startLine": 46,
+        "startChar": 22,
+        "endLine": 46,
+        "endChar": 23
+      },
+      "revId": "6df89e2e18433bc8bca1fa0ab3f59543f374d74d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a9312474_8d63b790",
         "filename": "cps-service/src/test/groovy/org/onap/cps/spi/model/DataNodeBuilderSpec.groovy",
         "patchSetId": 15
