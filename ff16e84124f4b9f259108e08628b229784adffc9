@@ -22,6 +22,161 @@
       "revId": "ff16e84124f4b9f259108e08628b229784adffc9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d85f613_d8bbd703",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-12-01T16:41:33Z",
+      "side": 1,
+      "message": "NB remove blank line",
+      "revId": "ff16e84124f4b9f259108e08628b229784adffc9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6beeb99a_c8b308d4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/CmHandleQueryConditionsSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-12-01T16:41:33Z",
+      "side": 1,
+      "message": "NB align",
+      "range": {
+        "startLine": 2,
+        "startChar": 2,
+        "endLine": 3,
+        "endChar": 3
+      },
+      "revId": "ff16e84124f4b9f259108e08628b229784adffc9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "25cdee2c_cae61abd",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/InventoryQueryConditionsSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-12-01T16:41:33Z",
+      "side": 1,
+      "message": "Nb Align",
+      "range": {
+        "startLine": 2,
+        "startChar": 2,
+        "endLine": 3,
+        "endChar": 5
+      },
+      "revId": "ff16e84124f4b9f259108e08628b229784adffc9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1244be96_f5236653",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/RestQueryParametersValidatorSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-12-01T16:41:33Z",
+      "side": 1,
+      "message": "If below is fixed this shouldn\u0027t be needed I think",
+      "range": {
+        "startLine": 58,
+        "startChar": 67,
+        "endLine": 58,
+        "endChar": 92
+      },
+      "revId": "ff16e84124f4b9f259108e08628b229784adffc9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "687d5bc3_8a92e97b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/RestQueryParametersValidatorSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-12-01T16:41:33Z",
+      "side": 1,
+      "message": "should be a map I think?, same with one below and 71, doesn\u0027t effect test outcome",
+      "range": {
+        "startLine": 68,
+        "startChar": 61,
+        "endLine": 68,
+        "endChar": 77
+      },
+      "revId": "ff16e84124f4b9f259108e08628b229784adffc9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1346f3f9_61f38a96",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 22
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-12-01T16:41:33Z",
+      "side": 1,
+      "message": "This might need to be removed as is not included in release",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 93
+      },
+      "revId": "ff16e84124f4b9f259108e08628b229784adffc9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "396838b3_06c0f047",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 22
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-12-01T16:41:33Z",
+      "side": 1,
+      "message": "Same with this",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 125
+      },
+      "revId": "ff16e84124f4b9f259108e08628b229784adffc9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
