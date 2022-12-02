@@ -234,6 +234,30 @@
     },
     {
       "key": {
+        "uuid": "8615d58f_c8188692",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 6079
+      },
+      "writtenOn": "2022-12-02T14:24:59Z",
+      "side": 1,
+      "message": "To be honest - no. That is such corner case, because can happen only if input xml data is correct with schema (after adding root node) but for some reason after parse it has only root node. So not really related with user input, but some really unexpected software behaviour",
+      "parentUuid": "8bc37eb9_e34bd0b4",
+      "range": {
+        "startLine": 272,
+        "startChar": 14,
+        "endLine": 272,
+        "endChar": 105
+      },
+      "revId": "18de1d4bdad85b9ba639d2fe7b943e174b1d0f28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "af17728d_facb4167",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
         "patchSetId": 13
@@ -475,6 +499,30 @@
       "writtenOn": "2022-11-25T11:30:58Z",
       "side": 1,
       "message": "in this case the output IS different from the input, so doesn\u0027t match what is described on line #33 \nI actually don understand what exactly is happening, (unless I study the prod code maybe) SO the point is we need a better test, possibly a separate test for this scenario?!",
+      "range": {
+        "startLine": 37,
+        "startChar": 161,
+        "endLine": 37,
+        "endChar": 217
+      },
+      "revId": "18de1d4bdad85b9ba639d2fe7b943e174b1d0f28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dba0a1c9_4bc92feb",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlFileUtilsSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6079
+      },
+      "writtenOn": "2022-12-02T14:24:59Z",
+      "side": 1,
+      "message": "Ok, then sentence wasn\u0027t clear, I agree. The case is that if xml data is wrapped by root node (deifned as module in YANG) we shouldn\u0027t add anything more",
+      "parentUuid": "a6dae2c5_8c0d55e6",
       "range": {
         "startLine": 37,
         "startChar": 161,
