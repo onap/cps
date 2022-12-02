@@ -18,24 +18,25 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.spi.model;
+package org.onap.cps.ncmp.api.impl.utils;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
-import javax.validation.Valid;
-import lombok.EqualsAndHashCode;
+import java.util.stream.Collectors;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Setter;
 
-@Setter
 @Getter
-@EqualsAndHashCode
-@JsonInclude(Include.NON_EMPTY)
-public class CmHandleQueryServiceParameters {
-    @JsonProperty("cmHandleQueryParameters")
-    @Valid
-    private List<ConditionProperties> cmHandleQueryParameters = Collections.emptyList();
+@AllArgsConstructor
+public enum InventoryQueryConditions {
+
+    HAS_ALL_PROPERTIES("hasAllProperties"),
+    HAS_ALL_ADDITIONAL_PROPERTIES("hasAllAdditionalProperties"),
+    CM_HANDLE_WITH_DMI_PLUGIN("cmHandleWithDmiPlugin");
+
+    public static final List<String> ALL_CONDITION_NAMES = Arrays.stream(InventoryQueryConditions.values())
+        .map(InventoryQueryConditions::getName).collect(Collectors.toList());
+
+    private final String name;
+
 }

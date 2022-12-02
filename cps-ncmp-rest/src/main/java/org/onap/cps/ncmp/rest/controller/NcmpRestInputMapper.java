@@ -25,8 +25,10 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.NullValueCheckStrategy;
 import org.mapstruct.NullValuePropertyMappingStrategy;
+import org.onap.cps.ncmp.api.models.CmHandleQueryServiceParameters;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
+import org.onap.cps.ncmp.rest.model.CmHandleQueryParameters;
 import org.onap.cps.ncmp.rest.model.RestDmiPluginRegistration;
 import org.onap.cps.ncmp.rest.model.RestInputCmHandle;
 import org.onap.cps.ncmp.rest.model.RestModuleDefinition;
@@ -59,4 +61,7 @@ public interface NcmpRestInputMapper {
     @InheritConfiguration(name = "toRestModuleReference")
     RestModuleDefinition toRestModuleDefinition(
             final ModuleDefinition moduleDefinition);
+
+    CmHandleQueryServiceParameters toCmHandleQueryServiceParameters(
+            final CmHandleQueryParameters cmHandleQueryParameters);
 }

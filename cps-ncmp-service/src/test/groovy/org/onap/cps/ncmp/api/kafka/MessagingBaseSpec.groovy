@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.utils
+package org.onap.cps.ncmp.api.kafka
 
 import org.apache.kafka.common.serialization.StringDeserializer
 import org.apache.kafka.common.serialization.StringSerializer
@@ -31,7 +31,7 @@ import org.testcontainers.containers.KafkaContainer
 import org.testcontainers.utility.DockerImageName
 import spock.lang.Specification
 
-class MessagingSpec extends Specification {
+class MessagingBaseSpec extends Specification {
 
     static {
         Runtime.getRuntime().addShutdownHook(new Thread(kafkaTestContainer::stop))

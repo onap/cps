@@ -16,8 +16,8 @@ CPS Release Notes
 ..      * * *   LONDON   * * *
 ..      ======================
 
-Version: 3.2.0 (not yet released)
-=================================
+Version: 3.2.1
+==============
 
 Release Data
 ------------
@@ -26,25 +26,26 @@ Release Data
 | **CPS Project**                      |                                                        |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
-| **Docker images**                    | onap/cps-and-ncmp:3.2.0                                |
+| **Docker images**                    | (not yet released)                                     |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
-| **Release designation**              | 3.2.0 London                                           |
+| **Release designation**              | 3.2.1 London                                           |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
-| **Release date**                     | (not yet released)                                     |
+| **Release date**                     |                                                        |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
 Features
 --------
-   - `CPS-1002 <https://jira.onap.org/browse/CPS-1002>`_  Query data NCMP-Operational with CPSpath
+3.2.1
+   - `CPS-1236 <https://jira.onap.org/browse/CPS-1236>`_  DMI audit support for NCMP: Filter on any properties of CM Handles
+3.2.0
    - `CPS-1185 <https://jira.onap.org/browse/CPS-1185>`_  Get all dataspaces
-   - `CPS-1186 <https://jira.onap.org/browse/CPS-1186>`_  Get all schema sets for a dataspace
    - `CPS-1187 <https://jira.onap.org/browse/CPS-1187>`_  Get single dataspace
-   - `CPS-1189 <https://jira.onap.org/browse/CPS-1189>`_  Various create endpoints should return 201 response with empty body
 
 Bug Fixes
 ---------
+3.2.0
    - `CPS-1312 <https://jira.onap.org/browse/CPS-1312>`_  CPS(/NCMP) does not have version control
    - `CPS-1350 <https://jira.onap.org/browse/CPS-1350>`_  [CPS/NCMP] Add Basic Auth to CPS/NCMP OpenAPI Definitions
 
