@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d869c91d_8993f606",
+        "filename": "cps-ri/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-02T15:34:08Z",
+      "side": 1,
+      "message": "is this effective now or not, in your email you said it wasn\u0027t?\n(if not is should be removed again, if it does work you need to introduce a variable for this in the dependency-mamagment pom)",
+      "range": {
+        "startLine": 64,
+        "startChar": 12,
+        "endLine": 64,
+        "endChar": 37
+      },
+      "revId": "b9e42bd4000534ae72d2e01c6b3261f4e7e7533f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
