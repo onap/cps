@@ -187,6 +187,30 @@
     },
     {
       "key": {
+        "uuid": "d3c40010_97c471ab",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 6079
+      },
+      "writtenOn": "2022-12-02T11:38:38Z",
+      "side": 1,
+      "message": "Oh, yes, it makes sense, if we want to add multiple nodes at one with xml as well we should probably discuss it. How it\u0027s going to be wrapped on JSON? On array?",
+      "parentUuid": "e9f17d1c_7cd647dd",
+      "range": {
+        "startLine": 268,
+        "startChar": 16,
+        "endLine": 268,
+        "endChar": 29
+      },
+      "revId": "18de1d4bdad85b9ba639d2fe7b943e174b1d0f28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8bc37eb9_e34bd0b4",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
         "patchSetId": 13
