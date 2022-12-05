@@ -97,6 +97,30 @@
     },
     {
       "key": {
+        "uuid": "1ec3cd11_a5cfc50a",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/SchemaSetRepository.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2022-12-05T14:03:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a64f14d3_4443386f",
+      "range": {
+        "startLine": 64,
+        "startChar": 47,
+        "endLine": 65,
+        "endChar": 89
+      },
+      "revId": "cfd85bf4f9b3e714eda3f702cd8cdfb773fe0140",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ae300fe5_a2ad6706",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/SchemaSetNotFoundException.java",
         "patchSetId": 20
