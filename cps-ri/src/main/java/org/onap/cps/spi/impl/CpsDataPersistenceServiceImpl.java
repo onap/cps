@@ -232,9 +232,8 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         if (isRootXpath(xpath)) {
             final List<FragmentExtract> fragmentExtracts = fragmentRepository.getTopLevelFragments(dataspaceEntity,
                     anchorEntity);
-            final FragmentEntity fragmentEntity = FragmentEntityArranger.toFragmentEntityTree(anchorEntity,
+            return FragmentEntityArranger.toFragmentEntityTree(anchorEntity,
                     fragmentExtracts);
-            return fragmentEntity;
         } else {
             final String normalizedXpath = getNormalizedXpath(xpath);
             final FragmentEntity fragmentEntity;

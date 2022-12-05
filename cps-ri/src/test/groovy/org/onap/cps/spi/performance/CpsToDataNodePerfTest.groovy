@@ -28,7 +28,6 @@ import org.onap.cps.spi.model.DataNodeBuilder
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.jdbc.Sql
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
-import static org.onap.cps.spi.impl.CpsPersistenceSpecBase.CLEAR_DATA
 
 class CpsToDataNodePerfTest extends CpsPersistenceSpecBase {
 
