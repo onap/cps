@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b7b49809_d4880784",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/spi/model/DataNodeBuilderSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-12-05T12:20:03Z",
+      "side": 1,
+      "message": "file is not yang anymore, should be data now",
+      "range": {
+        "startLine": 148,
+        "startChar": 61,
+        "endLine": 148,
+        "endChar": 88
+      },
+      "revId": "e130f43dcddc2bb29e6a1bb641456b1e4cafbcbc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2e79bd6_7177fe32",
+        "filename": "cps-service/src/test/resources/yang-with-choice-node.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-12-05T12:20:03Z",
+      "side": 1,
+      "message": "see comment on https://gerrit.onap.org/r/c/cps/+/132505/4/cps-service/src/test/groovy/org/onap/cps/spi/model/DataNodeBuilderSpec.groovy#148",
+      "revId": "e130f43dcddc2bb29e6a1bb641456b1e4cafbcbc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
