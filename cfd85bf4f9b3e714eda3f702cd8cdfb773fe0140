@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "132e71a0_4e35db4d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/SchemaSetRepository.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2022-12-05T07:28:05Z",
+      "side": 1,
+      "message": "Error will be thrown when dataspace is invalid. this function will return empty array if a valid dataspace is not having any schema set.",
+      "parentUuid": "fd6bc44d_428c2e35",
+      "range": {
+        "startLine": 64,
+        "startChar": 47,
+        "endLine": 65,
+        "endChar": 89
+      },
+      "revId": "cfd85bf4f9b3e714eda3f702cd8cdfb773fe0140",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ae300fe5_a2ad6706",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/SchemaSetNotFoundException.java",
         "patchSetId": 20
