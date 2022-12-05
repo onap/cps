@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8b9e5acd_9fc4adcc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2022-12-05T10:33:47Z",
+      "side": 1,
+      "message": "please remove empty line",
+      "revId": "7df58662d42baf4a5317a9e85d05435169fccd9f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "05231870_b81d5e69",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2022-12-05T10:33:47Z",
+      "side": 1,
+      "message": "and the extra Signed-off-by section",
+      "range": {
+        "startLine": 15,
+        "startChar": 28,
+        "endLine": 15,
+        "endChar": 35
+      },
+      "revId": "7df58662d42baf4a5317a9e85d05435169fccd9f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
