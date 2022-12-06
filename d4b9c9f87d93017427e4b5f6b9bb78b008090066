@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a09ec2be_d699e8e3",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-06T09:08:59Z",
+      "side": 1,
+      "message": "can be moved inside  first if block, even inlined with line #103",
+      "range": {
+        "startLine": 98,
+        "startChar": 8,
+        "endLine": 98,
+        "endChar": 71
+      },
+      "revId": "d4b9c9f87d93017427e4b5f6b9bb78b008090066",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bbfb9cea_8c9fcd27",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-06T09:08:59Z",
+      "side": 1,
+      "message": "van be made final",
+      "range": {
+        "startLine": 99,
+        "startChar": 8,
+        "endLine": 99,
+        "endChar": 48
+      },
+      "revId": "d4b9c9f87d93017427e4b5f6b9bb78b008090066",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
