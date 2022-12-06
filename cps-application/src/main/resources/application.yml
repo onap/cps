@@ -179,3 +179,6 @@ ncmp:
     modules-sync-watchdog:
         async-executor:
             parallelism-level: 10
+
+    avc:
+        subscription-topic: ${NCMP_CM_AVC_SUBSCRIPTION:cm-avc-subscription}
