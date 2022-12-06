@@ -1,0 +1,23 @@
+{
+  "version": "1.0",
+  "eventType": "CREATE",
+  "event": {
+    "subscription": {
+      "clientID": "SCO-9989752",
+      "name": "cm-subscription-001"
+    },
+    "dataType": {
+      "dataspace": "ALL",
+      "dataCategory": "CM",
+      "dataProvider": "CM-SERVICE",
+      "schemaName": "org.onap.ncmp:cm-network-avc-event.rfc8641",
+      "schemaVersion": "1.0"
+    },
+    "predicates": {
+      "datastore": "passthrough-operational",
+      "datastore-xpath-filter": "//_3gpp-nr-nrm-gnbdufunction:GNBDUFunction/ ",
+      "_3gpp-nr-nrm-nrcelldu": "NRCellDU"
+
+    }
+  }
+}
