@@ -1,6 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Nordix Foundation
+ *  Modifications Copyright (C) 2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -71,5 +72,30 @@ class FetchDescendantsOptionSpec extends Specification {
             fetchDescendantsOption.next()
         then: 'exception thrown'
             thrown IllegalArgumentException
+    }
+
+    def 'Create fetch descendant with  descendant using #scenario'() {
+        when: 'the next level of depth is not allowed'
+            FetchDescendantsOption fetchDescendantsOption = FetchDescendantsOption.getFetchDescendantOption(descendant)
+        then: 'fetch descendant object created'
+            assert fetchDescendantsOption.depth == expectedDepth
+        where: 'following parameters are used'
+            scenario                            | descendant || expectedDepth
+            'all descendants using number'      | '-1'       || -1
+            'all descendants using all'         | 'all'      || -1
+            'No descendants by default'         | ''         || 0
+            'No descendants using none'         | 'none'     || 0
+            'til 10th descendants using number' | '10'       || 10
+    }
+
+    def 'Create fetch descendant with invalid descendant using #scenario\''() {
+        when: 'the next level of depth is not allowed'
+            FetchDescendantsOption.getFetchDescendantOption(descendant)
+        then: 'exception thrown'
+            thrown DataValidationException
+        where: 'following parameters are used'
+            scenario          | descendant
+            'wrong number'    | '-10'
+            'wrong string'    | 'invalid'
     }
 }

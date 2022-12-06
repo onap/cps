@@ -3,7 +3,7 @@
  *  Copyright (C) 2020 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Nordix Foundation
  *  Modifications Copyright (C) 2021 Bell Canada.
- *  Modifications Copyright (C) 2022 TechMahindra Ltd.
+ *  Modifications Copyright (C) 2022-2023 TechMahindra Ltd.
  *  Modifications Copyright (C) 2022 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -147,6 +147,30 @@ class CpsRestExceptionHandlerSpec extends Specification {
             new ModelValidationException(errorMessage, errorDetails, null) || errorMessage                   | errorDetails
             new DataValidationException(errorMessage, errorDetails, null)  || errorMessage                   | errorDetails
             new CpsPathException(errorDetails)                             || CpsPathException.ERROR_MESSAGE | errorDetails
+    }
+
+    def 'Get data nodes request with invalid descendant parameter'() {
+        when: 'data get request is performed'
+        def response = mvc.perform(
+                get("$basePath/v2/dataspaces/dataspace-name/anchors/anchor-name/node")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .param('xpath', 'some xpath')
+                        .param('descendants', 'invalid_descendant')
+        ).andReturn().response
+        then: 'response code indicates bad input parameters'
+        response.status == BAD_REQUEST.value()
+    }
+
+    def 'Query data nodes request with invalid descendant parameter'() {
+        when: 'data query request is performed'
+        def response = mvc.perform(
+                get("$basePath/v2/dataspaces/dataspace-name/anchors/anchor-name/nodes/query")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .param('cps-path', 'some cps-path')
+                        .param('descendants', 'invalid_descendant')
+        ).andReturn().response
+        then: 'response code indicates bad input parameters'
+        response.status == BAD_REQUEST.value()
     }
 
     def 'Delete request with a #exceptionThrown.class.simpleName returns HTTP Status Conflict'() {

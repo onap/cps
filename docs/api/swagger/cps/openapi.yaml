@@ -1104,16 +1104,16 @@ paths:
                 status: 500
                 message: Internal Server Error
                 details: Internal Server Error occurred
-  /{apiVersion}/dataspaces/{dataspace-name}/anchors/{anchor-name}/node:
+  /v1/dataspaces/{dataspace-name}/anchors/{anchor-name}/node:
     get:
       tags:
       - cps-data
       summary: Get a node
       description: Get a node with an option to retrieve all the children for a given
         anchor and dataspace
+      deprecated: true
       operationId: getNodeByDataspaceAndAnchor
       parameters:
-      - $ref: '#/components/parameters/apiVersionInPath'
       - name: dataspace-name
         in: path
         description: dataspace-name
@@ -1148,6 +1148,101 @@ paths:
           type: boolean
           example: false
           default: false
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                dataSample:
+                  $ref: '#/components/examples/dataSample'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 400
+                message: Bad Request
+                details: The provided request is not valid
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 401
+                message: Unauthorized request
+                details: This request is unauthorized
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 403
+                message: Request Forbidden
+                details: This request is forbidden
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 500
+                message: Internal Server Error
+                details: Internal Server Error occurred
+      x-codegen-request-body-name: xpath
+  /v2/dataspaces/{dataspace-name}/anchors/{anchor-name}/node:
+    get:
+      tags:
+      - cps-data
+      summary: Get a node
+      description: Get a node with an option to retrieve all the children for a given
+        anchor and dataspace
+      operationId: getNodeByDataspaceAndAnchorV2
+      parameters:
+      - name: dataspace-name
+        in: path
+        description: dataspace-name
+        required: true
+        schema:
+          type: string
+          example: my-dataspace
+      - name: anchor-name
+        in: path
+        description: anchor-name
+        required: true
+        schema:
+          type: string
+          example: my-anchor
+      - name: xpath
+        in: query
+        description: "For more details on xpath, please refer https://docs.onap.org/projects/onap-cps/en/latest/cps-path.html"
+        required: false
+        schema:
+          type: string
+          default: /
+        examples:
+          container xpath:
+            value: /shops/bookstore
+          list attributes xpath:
+            value: "/shops/bookstore/categories[@code=1]"
+      - name: descendants
+        in: query
+        description: descendants
+        required: false
+        schema:
+          type: string
+          example: 3
+          default: none
+		  pattern: '^all$|^none$|^[0-9]+$|^-1$'
       responses:
         "200":
           description: OK
@@ -1921,6 +2016,101 @@ paths:
           type: boolean
           example: false
           default: false
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                dataSample:
+                  $ref: '#/components/examples/dataSample'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 400
+                message: Bad Request
+                details: The provided request is not valid
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 401
+                message: Unauthorized request
+                details: This request is unauthorized
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 403
+                message: Request Forbidden
+                details: This request is forbidden
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 500
+                message: Internal Server Error
+                details: Internal Server Error occurred
+      x-codegen-request-body-name: xpath
+  /v2/dataspaces/{dataspace-name}/anchors/{anchor-name}/nodes/query:
+    get:
+      tags:
+      - cps-query
+      summary: Query data nodes
+      description: Query data nodes for the given dataspace and anchor using CPS path
+      operationId: getNodesByDataspaceAndAnchorAndCpsPathV2
+      parameters:
+      - name: dataspace-name
+        in: path
+        description: dataspace-name
+        required: true
+        schema:
+          type: string
+          example: my-dataspace
+      - name: anchor-name
+        in: path
+        description: anchor-name
+        required: true
+        schema:
+          type: string
+          example: my-anchor
+      - name: cps-path
+        in: query
+        description: "For more details on cps path, please refer https://docs.onap.org/projects/onap-cps/en/latest/cps-path.html"
+        required: false
+        schema:
+          type: string
+          default: /
+        examples:
+          container cps path:
+            value: //bookstore
+          list attributes cps path:
+            value: "//categories[@code=1]"
+      - name: descendants
+        in: query
+        description: descendants
+        required: false
+        schema:
+          type: string
+		  pattern: '^all$|^none$|^[0-9]+$|^-1$'
+          example: false
+          default: none
+		  example: 3
       responses:
         "200":
           description: OK

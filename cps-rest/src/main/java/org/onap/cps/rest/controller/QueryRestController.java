@@ -49,10 +49,25 @@ public class QueryRestController implements CpsQueryApi {
     private final PrefixResolver prefixResolver;
 
     @Override
-    public ResponseEntity<Object> getNodesByDataspaceAndAnchorAndCpsPath(final String apiVersion,
-        final String dataspaceName, final String anchorName, final String cpsPath, final Boolean includeDescendants) {
+    public ResponseEntity<Object> getNodesByDataspaceAndAnchorAndCpsPath(final String dataspaceName,
+        final String anchorName, final String cpsPath, final Boolean includeDescendants) {
         final FetchDescendantsOption fetchDescendantsOption = Boolean.TRUE.equals(includeDescendants)
             ? FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS : FetchDescendantsOption.OMIT_DESCENDANTS;
+        return new ResponseEntity<>(jsonObjectMapper.asJsonString(getDataMaps(dataspaceName, anchorName, cpsPath,
+                fetchDescendantsOption)), HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<Object> getNodesByDataspaceAndAnchorAndCpsPathV2(final String dataspaceName,
+        final String anchorName, final String cpsPath, final String descendants) {
+        final FetchDescendantsOption fetchDescendantsOption =
+            FetchDescendantsOption.getFetchDescendantOption(descendants);
+        return new ResponseEntity<>(jsonObjectMapper.asJsonString(getDataMaps(dataspaceName, anchorName, cpsPath,
+            fetchDescendantsOption)), HttpStatus.OK);
+    }
+
+    private List<Map<String, Object>> getDataMaps(final String dataspaceName, final String anchorName,
+        final String cpsPath, final FetchDescendantsOption fetchDescendantsOption) {
         final Collection<DataNode> dataNodes =
             cpsQueryService.queryDataNodes(dataspaceName, anchorName, cpsPath, fetchDescendantsOption);
         final List<Map<String, Object>> dataMaps = new ArrayList<>(dataNodes.size());
@@ -64,7 +79,6 @@ public class QueryRestController implements CpsQueryApi {
             final Map<String, Object> dataMap = DataMapUtils.toDataMapWithIdentifier(dataNode, prefix);
             dataMaps.add(dataMap);
         }
-
-        return new ResponseEntity<>(jsonObjectMapper.asJsonString(dataMaps), HttpStatus.OK);
+        return dataMaps;
     }
 }
