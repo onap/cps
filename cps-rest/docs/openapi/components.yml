@@ -220,6 +220,16 @@ components:
         type: string
         enum: [v1, v2]
         default: v2
+    descendantsInQuery:
+      name: descendants
+      in: query
+      description: descendents to query depth of children. allowed values are none, all, any number starting from -1
+      required: false
+      schema:
+        type: string
+        pattern: '^all$|^none$|^[0-9]+$|^-1$'
+        default: none
+        example: 3
 
   responses:
     NotFound:
