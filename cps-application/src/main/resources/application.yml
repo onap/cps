@@ -84,16 +84,15 @@ spring:
             properties:
                 spring.deserializer.key.delegate.class: org.apache.kafka.common.serialization.StringDeserializer
                 spring.deserializer.value.delegate.class: org.springframework.kafka.support.serializer.JsonDeserializer
-                spring.json.value.default.type: org.onap.cps.ncmp.event.model.DmiAsyncRequestResponseEvent
                 spring.json.use.type.headers: false
 
     jackson:
-      default-property-inclusion: NON_NULL
-      serialization:
-        FAIL_ON_EMPTY_BEANS: false
+        default-property-inclusion: NON_NULL
+        serialization:
+            FAIL_ON_EMPTY_BEANS: false
     sql:
-      init:
-        mode: ALWAYS
+        init:
+            mode: ALWAYS
 app:
     ncmp:
         async-m2m:
