@@ -1,0 +1,257 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b482b71b_883ba541",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/SchemaSetRepository.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-06T14:49:17Z",
+      "side": 1,
+      "message": "(NB partly legacy) hese methods should have JavaDoc too?!",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 71
+      },
+      "revId": "f3de400451627acad10f417a197efa0f55763176",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f1127e1c_f5066030",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-06T14:49:17Z",
+      "side": 1,
+      "message": "NB: extract our private toSChemaSet() method to improve readability:",
+      "range": {
+        "startLine": 87,
+        "startChar": 40,
+        "endLine": 91,
+        "endChar": 9
+      },
+      "revId": "f3de400451627acad10f417a197efa0f55763176",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ccfb2995_8a58a4ea",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsModulePersistenceService.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-06T14:49:17Z",
+      "side": 1,
+      "message": "NB: plural: sets",
+      "range": {
+        "startLine": 60,
+        "startChar": 30,
+        "endLine": 60,
+        "endChar": 33
+      },
+      "revId": "f3de400451627acad10f417a197efa0f55763176",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e408003_afeeff3f",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 21
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-06T14:49:17Z",
+      "side": 1,
+      "message": "since the target method returns a collection, please test with 2 schemasets!\nI have some tips on using mocks below whihc wil make this (test) easier to setup\n\nso description should be \u0027two schema sets\u0027",
+      "range": {
+        "startLine": 97,
+        "startChar": 16,
+        "endLine": 97,
+        "endChar": 45
+      },
+      "revId": "f3de400451627acad10f417a197efa0f55763176",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df6b9be1_be21cd78",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 21
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-06T14:49:17Z",
+      "side": 1,
+      "message": "sample",
+      "range": {
+        "startLine": 98,
+        "startChar": 88,
+        "endLine": 98,
+        "endChar": 92
+      },
+      "revId": "f3de400451627acad10f417a197efa0f55763176",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "621fb828_5701c775",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 21
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-06T14:49:17Z",
+      "side": 1,
+      "message": "sampleSchemaSet",
+      "range": {
+        "startLine": 98,
+        "startChar": 16,
+        "endLine": 98,
+        "endChar": 33
+      },
+      "revId": "f3de400451627acad10f417a197efa0f55763176",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7eadc55d_de56ad9a",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 21
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-06T14:49:17Z",
+      "side": 1,
+      "message": "term like \u0027some\u0027 shoudl be used when you don\u0027t are about the value and don\u0027t test for it later.\nNow you DO assert this later so instead use word like \u0027sample,\u0027test or even \u0027my\u0027\nlike \u0027sampleSchemaSet\u0027 \n\n(I see this a a bit of a legacy issue in teh prev test too :-))",
+      "range": {
+        "startLine": 98,
+        "startChar": 56,
+        "endLine": 98,
+        "endChar": 60
+      },
+      "revId": "f3de400451627acad10f417a197efa0f55763176",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "21463213_8cf87564",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 21
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-06T14:49:17Z",
+      "side": 1,
+      "message": "the persistecne service",
+      "range": {
+        "startLine": 100,
+        "startChar": 14,
+        "endLine": 100,
+        "endChar": 33
+      },
+      "revId": "f3de400451627acad10f417a197efa0f55763176",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c533a4bb_e17b2e71",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 21
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-06T14:49:17Z",
+      "side": 1,
+      "message": "the term \u0027expected\u0027 should not be used for setup that is  more for the outcome of a test\ninstead simply say \n\u0027the created schemaset\u0027 or just\n\u0027a schemaset\u0027",
+      "range": {
+        "startLine": 100,
+        "startChar": 42,
+        "endLine": 100,
+        "endChar": 55
+      },
+      "revId": "f3de400451627acad10f417a197efa0f55763176",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "01365f09_df81d5d4",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 21
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-06T14:49:17Z",
+      "side": 1,
+      "message": "use a Mock instead\nand just define the behavior of the getModuleReferences() method!\nThis wil also make it easer to test this new method with 2 schemasets!",
+      "range": {
+        "startLine": 103,
+        "startChar": 86,
+        "endLine": 103,
+        "endChar": 150
+      },
+      "revId": "f3de400451627acad10f417a197efa0f55763176",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1eb29290_706d57ba",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 21
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-06T14:49:17Z",
+      "side": 1,
+      "message": "duplcicate from line #91 extract out (static/shared) common tets field e.g def bookStoreModuleReference",
+      "range": {
+        "startLine": 110,
+        "startChar": 66,
+        "endLine": 110,
+        "endChar": 134
+      },
+      "revId": "f3de400451627acad10f417a197efa0f55763176",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
