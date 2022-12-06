@@ -49,8 +49,8 @@ public class QueryRestController implements CpsQueryApi {
     private final PrefixResolver prefixResolver;
 
     @Override
-    public ResponseEntity<Object> getNodesByDataspaceAndAnchorAndCpsPath(final String apiVersion,
-        final String dataspaceName, final String anchorName, final String cpsPath, final Boolean includeDescendants) {
+    public ResponseEntity<Object> getNodesByDataspaceAndAnchorAndCpsPath(final String dataspaceName,
+        final String anchorName, final String cpsPath, final Boolean includeDescendants) {
         final FetchDescendantsOption fetchDescendantsOption = Boolean.TRUE.equals(includeDescendants)
             ? FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS : FetchDescendantsOption.OMIT_DESCENDANTS;
         final Collection<DataNode> dataNodes =
@@ -67,4 +67,25 @@ public class QueryRestController implements CpsQueryApi {
 
         return new ResponseEntity<>(jsonObjectMapper.asJsonString(dataMaps), HttpStatus.OK);
     }
+
+    @Override
+    public ResponseEntity<Object> getNodesByDataspaceAndAnchorAndCpsPathV2(final String dataspaceName,
+        final String anchorName, final String cpsPath, final String descendants) {
+        final FetchDescendantsOption fetchDescendantsOption =
+            FetchDescendantsOption.getFetchDescendantOption(descendants);
+        final Collection<DataNode> dataNodes =
+            cpsQueryService.queryDataNodes(dataspaceName, anchorName, cpsPath, fetchDescendantsOption);
+        final List<Map<String, Object>> dataMaps = new ArrayList<>(dataNodes.size());
+        String prefix = null;
+        for (final DataNode dataNode : dataNodes) {
+            if (prefix == null) {
+                prefix = prefixResolver.getPrefix(dataspaceName, anchorName, dataNode.getXpath());
+            }
+            final Map<String, Object> dataMap = DataMapUtils.toDataMapWithIdentifier(dataNode, prefix);
+            dataMaps.add(dataMap);
+        }
+        return new ResponseEntity<>(jsonObjectMapper.asJsonString(dataMaps), HttpStatus.OK);
+
+    }
+
 }

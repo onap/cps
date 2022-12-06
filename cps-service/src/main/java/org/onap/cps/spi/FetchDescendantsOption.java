@@ -2,6 +2,7 @@
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Pantheon.tech
  *  Copyright (C) 2022 Nordix Foundation
+ *  Modifications Copyright (C) 2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -56,6 +57,24 @@ public class FetchDescendantsOption {
                 ? INCLUDE_ALL_DESCENDANTS : new FetchDescendantsOption(depth - 1);
         validateDepth(nextDescendantsOption.depth);
         return nextDescendantsOption;
+    }
+
+    /**
+     * get fetch descendants option for given descendant.
+     *
+     * @param descendants descendants
+     * @return fetch descendants option for given descendant
+     */
+    public static FetchDescendantsOption getFetchDescendantOption(final String descendants) {
+        if (null == descendants || descendants.trim().isEmpty()
+                || "0".equals(descendants) || "none".equals(descendants)) {
+            return FetchDescendantsOption.OMIT_DESCENDANTS;
+        } else if ("-1".equals(descendants) || "all".equals(descendants)) {
+            return FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
+        } else {
+            final Integer depth = Integer.valueOf(descendants);
+            return new FetchDescendantsOption(depth);
+        }
     }
 
     private static void validateDepth(final int depth) {
