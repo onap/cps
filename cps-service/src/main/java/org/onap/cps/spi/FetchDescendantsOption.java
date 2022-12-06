@@ -2,6 +2,7 @@
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Pantheon.tech
  *  Copyright (C) 2022 Nordix Foundation
+ *  Modifications Copyright (C) 2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,7 +21,11 @@
 
 package org.onap.cps.spi;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import lombok.RequiredArgsConstructor;
+import org.onap.cps.spi.exceptions.DataValidationException;
+import org.springframework.util.StringUtils;
 
 @RequiredArgsConstructor
 public class FetchDescendantsOption {
@@ -28,6 +33,8 @@ public class FetchDescendantsOption {
     public static final FetchDescendantsOption FETCH_DIRECT_CHILDREN_ONLY = new FetchDescendantsOption(1);
     public static final FetchDescendantsOption OMIT_DESCENDANTS = new FetchDescendantsOption(0);
     public static final FetchDescendantsOption INCLUDE_ALL_DESCENDANTS = new FetchDescendantsOption(-1);
+
+    private static final Pattern DESCENDANT_PATTERN = Pattern.compile("^$|^all$|^none$|^[0-9]+$|^-1$");
 
     private final int depth;
 
@@ -56,6 +63,36 @@ public class FetchDescendantsOption {
                 ? INCLUDE_ALL_DESCENDANTS : new FetchDescendantsOption(depth - 1);
         validateDepth(nextDescendantsOption.depth);
         return nextDescendantsOption;
+    }
+
+    /**
+     * get fetch descendants option for given descendant.
+     *
+     * @param descendants descendants
+     * @return fetch descendants option for given descendant
+     */
+    public static FetchDescendantsOption getFetchDescendantOption(final String descendants) {
+        validateDescendant(descendants);
+        if (null == descendants || descendants.trim().isEmpty()
+                || "0".equals(descendants) || "none".equals(descendants)) {
+            return FetchDescendantsOption.OMIT_DESCENDANTS;
+        } else if ("-1".equals(descendants) || "all".equals(descendants)) {
+            return FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
+        } else {
+            final Integer depth = Integer.valueOf(descendants);
+            return new FetchDescendantsOption(depth);
+        }
+    }
+
+    private static void validateDescendant(final String descendant) {
+        if (!StringUtils.hasLength(descendant)) {
+            return;
+        }
+        final Matcher matcher = DESCENDANT_PATTERN.matcher(descendant);
+        if (!matcher.matches()) {
+            throw new DataValidationException("Descendant validation error.",
+                    descendant + " is not valid descendant");
+        }
     }
 
     private static void validateDepth(final int depth) {

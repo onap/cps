@@ -3,6 +3,7 @@
  *  Copyright (C) 2021-2022 Nordix Foundation
  *  Modifications Copyright (C) 2021-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
+ *  Modifications Copyright (C) 2022-2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -58,13 +59,19 @@ class QueryRestControllerSpec extends Specification {
     @Value('${rest.api.cps-base-path}')
     def basePath
 
+    def dataspaceName = 'my_dataspace'
+    def anchorName = 'my_anchor'
+    def cpsPath = 'some cps-path'
+    def dataNodeEndpointV2
+
+    def setup() {
+         dataNodeEndpointV2 = "$basePath/v2/dataspaces/$dataspaceName/anchors/$anchorName/nodes/query"
+    }
+
     def 'Query data node by cps path for the given dataspace and anchor with #scenario.'() {
         given: 'service method returns a list containing a data node'
              def dataNode1 = new DataNodeBuilder().withXpath('/xpath')
                     .withLeaves([leaf: 'value', leafList: ['leaveListElement1', 'leaveListElement2']]).build()
-            def dataspaceName = 'my_dataspace'
-            def anchorName = 'my_anchor'
-            def cpsPath = 'some cps-path'
             mockCpsQueryService.queryDataNodes(dataspaceName, anchorName, cpsPath, expectedCpsDataServiceOption) >> [dataNode1, dataNode1]
         and: 'the query endpoint'
             def dataNodeEndpoint = "$basePath/v1/dataspaces/$dataspaceName/anchors/$anchorName/nodes/query"
@@ -84,4 +91,23 @@ class QueryRestControllerSpec extends Specification {
             'no descendant explicitly'  | 'false'                  || OMIT_DESCENDANTS
             'descendants'               | 'true'                   || INCLUDE_ALL_DESCENDANTS
     }
+
+   def 'Query data node v2 api by cps path for the given dataspace and anchor with #scenario.'() {
+        given: 'service method returns a list containing a data node'
+            def dataNode1 = new DataNodeBuilder().withXpath('/xpath')
+                .withLeaves([leaf: 'value', leafList: ['leaveListElement1', 'leaveListElement2']]).build()
+            mockCpsQueryService.queryDataNodes(dataspaceName, anchorName, cpsPath, { descendantsOption -> {
+                    assert descendantsOption.depth == 2}}) >> [dataNode1, dataNode1]
+        when: 'query data nodes API is invoked'
+            def response =
+                mvc.perform(
+                        get(dataNodeEndpointV2)
+                                .param('cps-path', cpsPath)
+                                .param('descendants', '2'))
+                        .andReturn().response
+        then: 'the response contains the the datanode in json format'
+            assert response.status == HttpStatus.OK.value()
+            assert response.getContentAsString().contains('{"xpath":{"leaf":"value","leafList":["leaveListElement1","leaveListElement2"]}}')
+    }
+
 }

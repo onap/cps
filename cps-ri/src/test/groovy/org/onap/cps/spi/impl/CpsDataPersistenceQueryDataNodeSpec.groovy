@@ -3,6 +3,7 @@
  *  Copyright (C) 2021-2022 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021 Bell Canada.
+ *  Modifications Copyright (C) 2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -22,6 +23,7 @@
 package org.onap.cps.spi.impl
 
 import org.onap.cps.spi.CpsDataPersistenceService
+import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.exceptions.CpsPathException
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.jdbc.Sql
@@ -47,10 +49,12 @@ class CpsDataPersistenceQueryDataNodeSpec extends CpsPersistenceSpecBase {
                 assert it.getChildDataNodes().size() == expectedNumberOfChildNodes
             }
         where: 'the following data is used'
-            scenario                      | cpsPath                                                      | includeDescendantsOption || expectedNumberOfParentNodes | expectedNumberOfChildNodes
-            'String and no descendants'   | '/shops/shop[@id=1]/categories[@code=1]/book[@title="Dune"]' | OMIT_DESCENDANTS         || 1                           | 0
-            'Integer and descendants'     | '/shops/shop[@id=1]/categories[@code=1]/book[@price=5]'      | INCLUDE_ALL_DESCENDANTS  || 1                           | 1
-            'No condition no descendants' | '/shops/shop[@id=1]/categories'                              | OMIT_DESCENDANTS         || 3                           | 0
+            scenario                          | cpsPath                                                      | includeDescendantsOption       || expectedNumberOfParentNodes | expectedNumberOfChildNodes
+            'String and no descendants'       | '/shops/shop[@id=1]/categories[@code=1]/book[@title="Dune"]' | OMIT_DESCENDANTS               || 1                           | 0
+            'Integer and descendants'         | '/shops/shop[@id=1]/categories[@code=1]/book[@price=5]'      | INCLUDE_ALL_DESCENDANTS        || 1                           | 1
+            'No condition no descendants'     | '/shops/shop[@id=1]/categories'                              | OMIT_DESCENDANTS               || 3                           | 0
+            'Integer and level 1 descendants' | '/shops'                                                     | new FetchDescendantsOption(1)  || 1                           | 5
+            'Integer and level 2 descendants' | '/shops/shop[@id=1]'                                         | new FetchDescendantsOption(2)  || 1                           | 3
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
