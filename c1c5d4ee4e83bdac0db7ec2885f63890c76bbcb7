@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f190a50f_69d91294",
+        "filename": "cps-service/src/test/resources/yang-with-choice-node.yang",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-06T08:57:23Z",
+      "side": 1,
+      "message": "NB(Non-blocking) comment it woud be good to make to example more explicit (and dont add unnecessary constructs  like leafnode-2 and leafnode-4)\n\nsuggestion:\n\ncontainer container-with-choice-leaves {\n    leaf leaf-1 {\n      type string;\n    }\n\n    choice choicenode-1 {\n      case case-1 {\n        leaf choice-leaf-2a {\n          type string;\n        }\n      }\n      case case-2 {\n        leaf choice-leaf-2b {\n          type string;\n        }\n      }\n    }\n  }",
+      "revId": "c1c5d4ee4e83bdac0db7ec2885f63890c76bbcb7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
