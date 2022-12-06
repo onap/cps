@@ -97,7 +97,17 @@ public class DataRestController implements CpsDataApi {
     }
 
     @Override
-    public ResponseEntity<Object> updateNodeLeaves(final String apiVersion, final String dataspaceName,
+    public ResponseEntity<Object> getNodeByDataspaceAndAnchorV2(final String dataspaceName, final String anchorName,
+        final String xpath, final String descendants) {
+        final FetchDescendantsOption fetchDescendantsOption = getFetchDescendantOption(descendants);
+        final DataNode dataNode = cpsDataService.getDataNode(dataspaceName, anchorName, xpath,
+            fetchDescendantsOption);
+        final String prefix = prefixResolver.getPrefix(dataspaceName, anchorName, xpath);
+        return new ResponseEntity<>(DataMapUtils.toDataMapWithIdentifier(dataNode, prefix), HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<Object> updateNodeLeaves(final String dataspaceName,
         final String anchorName, final Object jsonData, final String parentNodeXpath, final String observedTimestamp) {
         cpsDataService.updateNodeLeaves(dataspaceName, anchorName, parentNodeXpath,
                 jsonObjectMapper.asJsonString(jsonData), toOffsetDateTime(observedTimestamp));
@@ -142,6 +152,18 @@ public class DataRestController implements CpsDataApi {
         } catch (final Exception exception) {
             throw new ValidationException(
                 String.format("observed-timestamp must be in '%s' format", ISO_TIMESTAMP_FORMAT));
+        }
+    }
+
+    private FetchDescendantsOption getFetchDescendantOption(final String descendants) {
+        if (null == descendants || descendants.trim().isEmpty()
+                || "-1".equals(descendants) || "all".equals(descendants)) {
+            return FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
+        } else if ("0".equals(descendants) || "none".equals(descendants)) {
+            return FetchDescendantsOption.OMIT_DESCENDANTS;
+        } else {
+            final Integer depth = Integer.valueOf(descendants);
+            return new FetchDescendantsOption(depth);
         }
     }
 }

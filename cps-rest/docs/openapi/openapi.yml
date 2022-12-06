@@ -104,5 +104,8 @@ paths:
   /{apiVersion}/dataspaces/{dataspace-name}/anchors/{anchor-name}/nodes/query:
     $ref: 'cpsQuery.yml#/nodesByDataspaceAndAnchorAndCpsPath'
 
+  /v2/dataspaces/{dataspace-name}/anchors/{anchor-name}/nodes/query:
+    $ref: 'cpsQueryV2.yml#/nodesByDataspaceAndAnchorAndCpsPath'
+
 security:
   - basicAuth: []
