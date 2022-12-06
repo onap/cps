@@ -2,6 +2,7 @@
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Pantheon.tech
  *  Copyright (C) 2022 Nordix Foundation
+ *  Modifications Copyright (C) 2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,7 +21,11 @@
 
 package org.onap.cps.spi;
 
+import com.google.common.base.Strings;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import lombok.RequiredArgsConstructor;
+import org.onap.cps.spi.exceptions.DataValidationException;
 
 @RequiredArgsConstructor
 public class FetchDescendantsOption {
@@ -28,6 +33,9 @@ public class FetchDescendantsOption {
     public static final FetchDescendantsOption FETCH_DIRECT_CHILDREN_ONLY = new FetchDescendantsOption(1);
     public static final FetchDescendantsOption OMIT_DESCENDANTS = new FetchDescendantsOption(0);
     public static final FetchDescendantsOption INCLUDE_ALL_DESCENDANTS = new FetchDescendantsOption(-1);
+
+    private static final Pattern FETCH_DESCENDANTS_OPTION_PATTERN =
+        Pattern.compile("^$|^all$|^none$|^[0-9]+$|^-1$");
 
     private final int depth;
 
@@ -56,6 +64,36 @@ public class FetchDescendantsOption {
                 ? INCLUDE_ALL_DESCENDANTS : new FetchDescendantsOption(depth - 1);
         validateDepth(nextDescendantsOption.depth);
         return nextDescendantsOption;
+    }
+
+    /**
+     * get fetch descendants option for given descendant.
+     *
+     * @param fetchDescendantsOptionAsString fetch descendants option string
+     * @return fetch descendants option for given descendant
+     */
+    public static FetchDescendantsOption getFetchDescendantsOption(final String fetchDescendantsOptionAsString) {
+        validateFetchDescendantsOption(fetchDescendantsOptionAsString);
+        if (Strings.isNullOrEmpty(fetchDescendantsOptionAsString)
+                || "0".equals(fetchDescendantsOptionAsString) || "none".equals(fetchDescendantsOptionAsString)) {
+            return FetchDescendantsOption.OMIT_DESCENDANTS;
+        } else if ("-1".equals(fetchDescendantsOptionAsString) || "all".equals(fetchDescendantsOptionAsString)) {
+            return FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
+        } else {
+            final Integer depth = Integer.valueOf(fetchDescendantsOptionAsString);
+            return new FetchDescendantsOption(depth);
+        }
+    }
+
+    private static void validateFetchDescendantsOption(final String fetchDescendantsOptionAsString) {
+        if (Strings.isNullOrEmpty(fetchDescendantsOptionAsString)) {
+            return;
+        }
+        final Matcher matcher = FETCH_DESCENDANTS_OPTION_PATTERN.matcher(fetchDescendantsOptionAsString);
+        if (!matcher.matches()) {
+            throw new DataValidationException("FetchDescendantsOption validation error.",
+                    fetchDescendantsOptionAsString + " is not valid fetch descendants option");
+        }
     }
 
     private static void validateDepth(final int depth) {
