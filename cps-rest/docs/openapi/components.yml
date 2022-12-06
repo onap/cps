@@ -211,6 +211,16 @@ components:
       schema:
         type: string
         example: '2021-03-21T00:10:34.030-0100'
+    depthInQuery:
+      name: depth
+      in: query
+      description: depth parameter for large query outputs
+      required: false
+      schema:
+        type: integer
+        default: 0
+        minimum: -1
+        example: 1
 
   responses:
     NotFound:
