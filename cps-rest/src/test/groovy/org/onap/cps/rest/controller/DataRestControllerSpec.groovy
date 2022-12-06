@@ -4,6 +4,7 @@
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada.
  *  Modifications Copyright (C) 2022 Deutsche Telekom AG
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -68,6 +69,7 @@ class DataRestControllerSpec extends Specification {
     def basePath
 
     def dataNodeBaseEndpoint
+    def dataNodeBaseEndpointV2
     def dataspaceName = 'my_dataspace'
     def anchorName = 'my_anchor'
     def noTimestamp = null
@@ -94,6 +96,7 @@ class DataRestControllerSpec extends Specification {
 
     def setup() {
         dataNodeBaseEndpoint = "$basePath/v1/dataspaces/$dataspaceName"
+        dataNodeBaseEndpointV2 = "$basePath/v2/dataspaces/$dataspaceName"
     }
 
     def 'Create a node: #scenario.'() {
@@ -235,6 +238,53 @@ class DataRestControllerSpec extends Specification {
             'no descendants by default' | dataNodeWithLeavesNoChildren | ''                       || OMIT_DESCENDANTS             | false                 | 'xpath'
             'no descendant explicitly'  | dataNodeWithLeavesNoChildren | 'false'                  || OMIT_DESCENDANTS             | false                 | 'xpath'
             'with descendants'          | dataNodeWithChild            | 'true'                   || INCLUDE_ALL_DESCENDANTS      | true                  | 'parent'
+    }
+
+
+    def 'Get data node using v2 api with #scenario.'() {
+        given: 'the service returns data node with #scenario'
+        def xpath = 'some xPath'
+        def endpoint = "$dataNodeBaseEndpointV2/anchors/$anchorName/node"
+        mockCpsDataService.getDataNode(dataspaceName, anchorName, xpath, _) >> dataNode
+        when: 'get request is performed through REST API'
+        def response =
+                mvc.perform(
+                        get(endpoint)
+                                .param('xpath', xpath)
+                                .param('descendants', descendants))
+                        .andReturn().response
+        then: 'a success response is returned'
+        response.status == HttpStatus.OK.value()
+        and: 'the response contains the root node identifier: #expectedRootidentifier'
+        response.contentAsString.contains(expectedRootidentifier)
+        and: 'the response contains child is #expectChildInResponse'
+        response.contentAsString.contains('"child"') == expectChildInResponse
+        where:
+        scenario                    | dataNode                     | descendants     || expectChildInResponse   | expectedRootidentifier
+        'no descendants by default' | dataNodeWithLeavesNoChildren | ''              || false                   | 'xpath'
+        'no descendant explicitly'  | dataNodeWithLeavesNoChildren | 'none'          || false                   | 'xpath'
+        'with all descendants'      | dataNodeWithChild            | 'all'           || true                    | 'parent'
+        'with one descendants'      | dataNodeWithChild            | '1'             || true                    | 'parent'
+    }
+
+    def 'Get data node using v2 api with invalid #scenario.'() {
+        given: 'the service returns data node with #scenario'
+        def xpath = 'some xPath'
+        def endpoint = "$dataNodeBaseEndpointV2/anchors/$anchorName/node"
+        when: 'get request is performed through REST API'
+        def response =
+                mvc.perform(
+                        get(endpoint)
+                                .param('xpath', xpath)
+                                .param('descendants', descendants))
+                        .andReturn().response
+        then: 'a bad request response is returned'
+        response.status == HttpStatus.BAD_REQUEST.value()
+        where:
+        scenario            || descendants
+        'string'            || 'invalid'
+        'negative number'   || '-2'
+        'number'            || '2.0'
     }
 
     def 'Update data node leaves: #scenario.'() {
