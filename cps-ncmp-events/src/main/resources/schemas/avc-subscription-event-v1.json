@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "urn:cps:org.onap.cps.ncmp.events:avc-subscription-event:v1",
+  "$ref": "#/definitions/SubscriptionEvent",
+  "definitions": {
+    "SubscriptionEvent": {
+      "description": "The payload for avc subscription event.",
+      "type": "object",
+      "properties": {
+        "version": {
+          "description": "The event type version",
+          "type": "string"
+        },
+        "eventType": {
+          "description": "The event type",
+          "type": "string",
+          "enum": ["CREATE"]
+        },
+        "event": {
+          "$ref": "#/definitions/event"
+        }
+      },
+      "required": [
+        "version",
+        "eventContent"
+      ],
+      "additionalProperties": false
+    },
+    "event": {
+      "description": "The event content.",
+      "type": "object",
+      "properties": {
+        "subscription": {
+          "description": "The subscription details.",
+          "type": "object",
+          "properties": {
+            "clientID": {
+              "description": "The clientID",
+              "type": "string"
+            },
+            "name": {
+              "description": "The name of the subscription",
+              "type": "string"
+            },
+            "isTagged": {
+              "description": "optional parameter, default is no",
+              "type": "boolean",
+              "default": false
+            }
+          },
+          "required": [
+            "dataspace",
+            "dataCategory",
+            "dataProvider",
+            "schemaName",
+            "schemaVersion"
+          ]
+        },
+        "dataType": {
+          "description": "The datatype content.",
+          "type": "object",
+          "properties": {
+            "dataspace": {
+              "description": "The dataspace name",
+              "type": "string"
+            },
+            "dataCategory": {
+              "description": "The category type of the data",
+              "type": "string"
+            },
+            "dataProvider": {
+              "description": "The provider name of the data",
+              "type": "string"
+            },
+            "schemaName": {
+              "description": "The name of the schema",
+              "type": "string"
+            },
+            "schemaVersion": {
+              "description": "The version of the schema",
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "dataspace",
+          "dataCategory",
+          "dataProvider",
+          "schemaName",
+          "schemaVersion"
+        ],
+        "predicates": {
+          "description": "Additional values to be added into the subscription",
+          "type": "object",
+          "patternProperties": {
+            ".{1,}": { "type": "string" }
+          }
+        }
+      },
+      "required": [
+        "subscription",
+        "dataType"
+      ]
+    }
+  }
+}
