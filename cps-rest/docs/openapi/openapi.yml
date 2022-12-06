@@ -2,7 +2,7 @@
 #  Copyright (C) 2021 Nordix Foundation
 #  Modifications Copyright (C) 2021 Pantheon.tech
 #  Modifications Copyright (C) 2021 Bell Canada.
-#  Modifications Copyright (C) 2022 TechMahindra Ltd.
+#  Modifications Copyright (C) 2022-2023 TechMahindra Ltd.
 #  ================================================================================
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -89,8 +89,11 @@ paths:
   /{apiVersion}/dataspaces/{dataspace-name}/schema-sets/{schema-set-name}:
     $ref: 'cpsAdmin.yml#/schemaSetBySchemaSetName'
 
-  /{apiVersion}/dataspaces/{dataspace-name}/anchors/{anchor-name}/node:
-    $ref: 'cpsData.yml#/nodeByDataspaceAndAnchor'
+  /v1/dataspaces/{dataspace-name}/anchors/{anchor-name}/node:
+    $ref: 'cpsDataV1Deprecated.yml#/nodeByDataspaceAndAnchor'
+
+  /v2/dataspaces/{dataspace-name}/anchors/{anchor-name}/node:
+    $ref: 'cpsDataV2.yml#/nodeByDataspaceAndAnchor'
 
   /{apiVersion}/dataspaces/{dataspace-name}/anchors/{anchor-name}/nodes:
     $ref: 'cpsData.yml#/nodesByDataspaceAndAnchor'
@@ -101,8 +104,11 @@ paths:
   /{apiVersion}/dataspaces/{dataspace-name}/anchors/{anchor-name}/list-nodes:
     $ref: 'cpsData.yml#/listElementByDataspaceAndAnchor'
 
-  /{apiVersion}/dataspaces/{dataspace-name}/anchors/{anchor-name}/nodes/query:
-    $ref: 'cpsQuery.yml#/nodesByDataspaceAndAnchorAndCpsPath'
+  /v1/dataspaces/{dataspace-name}/anchors/{anchor-name}/nodes/query:
+    $ref: 'cpsQueryV1Deprecated.yml#/nodesByDataspaceAndAnchorAndCpsPath'
+
+  /v2/dataspaces/{dataspace-name}/anchors/{anchor-name}/nodes/query:
+    $ref: 'cpsQueryV2.yml#/nodesByDataspaceAndAnchorAndCpsPath'
 
 security:
   - basicAuth: []
