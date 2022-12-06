@@ -1,5 +1,5 @@
 # ============LICENSE_START=======================================================
-# Copyright (C) 2022 TechMahindra Ltd.
+# Copyright (c) 2022 TechMahindra Ltd.
 # ================================================================================
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,16 +19,15 @@
 nodeByDataspaceAndAnchor:
   get:
     description: Get a node with an option to retrieve all the children for a given anchor and dataspace
-    deprecated: true
     tags:
       - cps-data
     summary: Get a node
-    operationId: getNodeByDataspaceAndAnchor
+    operationId: getNodeByDataspaceAndAnchorV2
     parameters:
       - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
       - $ref: 'components.yml#/components/parameters/anchorNameInPath'
       - $ref: 'components.yml#/components/parameters/xpathInQuery'
-      - $ref: 'components.yml#/components/parameters/includeDescendantsOptionInQuery'
+      - $ref: 'components.yml#/components/parameters/descendantsInQuery'
     responses:
       '200':
         description: OK
@@ -48,28 +47,3 @@ nodeByDataspaceAndAnchor:
       '500':
         $ref: 'components.yml#/components/responses/InternalServerError'
     x-codegen-request-body-name: xpath
-
-listElementByDataspaceAndAnchor:
-  delete:
-    description: Delete one or all list element(s) for a given anchor and dataspace
-    deprecated: true
-    tags:
-      - cps-data
-    summary: Delete one or all list element(s)
-    operationId: deleteListOrListElement
-    parameters:
-      - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
-      - $ref: 'components.yml#/components/parameters/anchorNameInPath'
-      - $ref: 'components.yml#/components/parameters/requiredXpathInQuery'
-      - $ref: 'components.yml#/components/parameters/observedTimestampInQuery'
-    responses:
-      '204':
-        $ref: 'components.yml#/components/responses/NoContent'
-      '400':
-        $ref: 'components.yml#/components/responses/BadRequest'
-      '401':
-        $ref: 'components.yml#/components/responses/Unauthorized'
-      '403':
-        $ref: 'components.yml#/components/responses/Forbidden'
-      '500':
-        $ref: 'components.yml#/components/responses/InternalServerError'

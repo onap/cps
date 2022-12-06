@@ -93,10 +93,21 @@ public class DataRestController implements CpsDataApi {
     }
 
     @Override
-    public ResponseEntity<Object> getNodeByDataspaceAndAnchor(final String apiVersion,
-        final String dataspaceName, final String anchorName, final String xpath, final Boolean includeDescendants) {
+    public ResponseEntity<Object> getNodeByDataspaceAndAnchor(final String dataspaceName,
+        final String anchorName, final String xpath, final Boolean includeDescendants) {
         final FetchDescendantsOption fetchDescendantsOption = Boolean.TRUE.equals(includeDescendants)
             ? FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS : FetchDescendantsOption.OMIT_DESCENDANTS;
+        final DataNode dataNode = cpsDataService.getDataNode(dataspaceName, anchorName, xpath,
+            fetchDescendantsOption);
+        final String prefix = prefixResolver.getPrefix(dataspaceName, anchorName, xpath);
+        return new ResponseEntity<>(DataMapUtils.toDataMapWithIdentifier(dataNode, prefix), HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<Object> getNodeByDataspaceAndAnchorV2(final String dataspaceName, final String anchorName,
+        final String xpath, final String descendants) {
+        final FetchDescendantsOption fetchDescendantsOption =
+            FetchDescendantsOption.getFetchDescendantOption(descendants);
         final DataNode dataNode = cpsDataService.getDataNode(dataspaceName, anchorName, xpath,
             fetchDescendantsOption);
         final String prefix = prefixResolver.getPrefix(dataspaceName, anchorName, xpath);
@@ -151,4 +162,5 @@ public class DataRestController implements CpsDataApi {
                 String.format("observed-timestamp must be in '%s' format", ISO_TIMESTAMP_FORMAT));
         }
     }
+
 }
