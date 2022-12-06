@@ -211,6 +211,16 @@ components:
       schema:
         type: string
         example: '2021-03-21T00:10:34.030-0100'
+    descendantsInQuery:
+      name: descendants
+      in: query
+      description: descendents to query depth of children. allowed values are none, all, any number starting from -1
+      required: false
+      schema:
+        type: string
+        pattern: '^all$|^none$|^[0-9]+$|^-1$'
+        default: none
+        example: 3
 
   responses:
     NotFound:
