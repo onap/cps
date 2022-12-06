@@ -3,6 +3,7 @@
  *  Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Nordix Foundation
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -94,6 +95,16 @@ public class DataRestController implements CpsDataApi {
     }
 
     @Override
+    public ResponseEntity<Object> getNodeByDataspaceAndAnchorV2(final String dataspaceName, final String anchorName,
+        final String xpath, final String descendants) {
+        final FetchDescendantsOption fetchDescendantsOption = getFetchDescendantOption(descendants);
+        final DataNode dataNode = cpsDataService.getDataNode(dataspaceName, anchorName, xpath,
+            fetchDescendantsOption);
+        final String prefix = prefixResolver.getPrefix(dataspaceName, anchorName, xpath);
+        return new ResponseEntity<>(DataMapUtils.toDataMapWithIdentifier(dataNode, prefix), HttpStatus.OK);
+    }
+
+    @Override
     public ResponseEntity<Object> updateNodeLeaves(final String dataspaceName,
         final String anchorName, final Object jsonData, final String parentNodeXpath, final String observedTimestamp) {
         cpsDataService.updateNodeLeaves(dataspaceName, anchorName, parentNodeXpath,
@@ -138,6 +149,18 @@ public class DataRestController implements CpsDataApi {
         } catch (final Exception exception) {
             throw new ValidationException(
                 String.format("observed-timestamp must be in '%s' format", ISO_TIMESTAMP_FORMAT));
+        }
+    }
+
+    private FetchDescendantsOption getFetchDescendantOption(final String descendants) {
+        if (null == descendants || descendants.trim().isEmpty()
+                || "-1".equals(descendants) || "all".equals(descendants)) {
+            return FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
+        } else if ("0".equals(descendants) || "none".equals(descendants)) {
+            return FetchDescendantsOption.OMIT_DESCENDANTS;
+        } else {
+            final Integer depth = Integer.valueOf(descendants);
+            return new FetchDescendantsOption(depth);
         }
     }
 }

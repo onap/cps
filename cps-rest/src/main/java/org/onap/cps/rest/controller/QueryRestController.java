@@ -2,6 +2,7 @@
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021-2022 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada.
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -65,5 +66,36 @@ public class QueryRestController implements CpsQueryApi {
         }
 
         return new ResponseEntity<>(jsonObjectMapper.asJsonString(dataMaps), HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<Object> getNodesByDataspaceAndAnchorAndCpsPathV2(final String dataspaceName,
+        final String anchorName, final String cpsPath, final String descendants) {
+        final FetchDescendantsOption fetchDescendantsOption = getFetchDescendantOption(descendants);
+        final Collection<DataNode> dataNodes =
+            cpsQueryService.queryDataNodes(dataspaceName, anchorName, cpsPath, fetchDescendantsOption);
+        final List<Map<String, Object>> dataMaps = new ArrayList<>(dataNodes.size());
+        String prefix = null;
+        for (final DataNode dataNode : dataNodes) {
+            if (prefix == null) {
+                prefix = prefixResolver.getPrefix(dataspaceName, anchorName, dataNode.getXpath());
+            }
+            final Map<String, Object> dataMap = DataMapUtils.toDataMapWithIdentifier(dataNode, prefix);
+            dataMaps.add(dataMap);
+        }
+        return new ResponseEntity<>(jsonObjectMapper.asJsonString(dataMaps), HttpStatus.OK);
+
+    }
+
+    private FetchDescendantsOption getFetchDescendantOption(final String descendants) {
+        if (null == descendants || descendants.trim().isEmpty()
+                || "-1".equals(descendants) || "all".equals(descendants)) {
+            return FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
+        } else if ("0".equals(descendants) || "none".equals(descendants)) {
+            return FetchDescendantsOption.OMIT_DESCENDANTS;
+        } else {
+            final Integer depth = Integer.valueOf(descendants);
+            return new FetchDescendantsOption(depth);
+        }
     }
 }

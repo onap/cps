@@ -74,6 +74,9 @@ paths:
   /v1/dataspaces/{dataspace-name}/anchors/{anchor-name}/node:
     $ref: 'cpsData.yml#/nodeByDataspaceAndAnchor'
 
+  /v2/dataspaces/{dataspace-name}/anchors/{anchor-name}/node:
+    $ref: 'cpsDataV2.yml#/nodeByDataspaceAndAnchor'
+
   /v1/dataspaces/{dataspace-name}/anchors/{anchor-name}/nodes:
     $ref: 'cpsData.yml#/nodesByDataspaceAndAnchor'
 
@@ -82,6 +85,9 @@ paths:
 
   /v1/dataspaces/{dataspace-name}/anchors/{anchor-name}/nodes/query:
     $ref: 'cpsQuery.yml#/nodesByDataspaceAndAnchorAndCpsPath'
+
+  /v2/dataspaces/{dataspace-name}/anchors/{anchor-name}/nodes/query:
+    $ref: 'cpsQueryV2.yml#/nodesByDataspaceAndAnchorAndCpsPath'
 
 security:
   - basicAuth: []
