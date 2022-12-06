@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "831c3fad_c4136086",
+        "filename": "cps-rest/docs/openapi/cpsData.yml",
+        "patchSetId": 13
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-12-06T13:33:36Z",
+      "side": 1,
+      "message": "Sure..\nMaybe we can keep this example and once we have some workaround we can apply the same here..\nI am happy to take a note here and move ahead 😊",
+      "parentUuid": "62f660ff_5ea2985e",
+      "range": {
+        "startLine": 166,
+        "startChar": 19,
+        "endLine": 166,
+        "endChar": 65
+      },
+      "revId": "18de1d4bdad85b9ba639d2fe7b943e174b1d0f28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bb526de3_1f486a2e",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
         "patchSetId": 13
