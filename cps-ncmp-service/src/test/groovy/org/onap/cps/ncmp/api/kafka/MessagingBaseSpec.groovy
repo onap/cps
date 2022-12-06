@@ -33,12 +33,12 @@ import spock.lang.Specification
 
 class MessagingBaseSpec extends Specification {
 
-    static {
-        Runtime.getRuntime().addShutdownHook(new Thread(kafkaTestContainer::stop))
-    }
-
     def setupSpec() {
         kafkaTestContainer.start()
+    }
+
+    def cleanupSpec() {
+        kafkaTestContainer.stop()
     }
 
     static kafkaTestContainer = new KafkaContainer(DockerImageName.parse('registry.nordix.org/onaptest/confluentinc/cp-kafka:6.2.1').asCompatibleSubstituteFor('confluentinc/cp-kafka'))
