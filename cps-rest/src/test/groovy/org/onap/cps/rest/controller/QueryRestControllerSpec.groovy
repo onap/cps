@@ -3,6 +3,7 @@
  *  Copyright (C) 2021-2022 Nordix Foundation
  *  Modifications Copyright (C) 2021-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -83,5 +84,55 @@ class QueryRestControllerSpec extends Specification {
             'no descendants by default' | ''                       || OMIT_DESCENDANTS
             'no descendant explicitly'  | 'false'                  || OMIT_DESCENDANTS
             'descendants'               | 'true'                   || INCLUDE_ALL_DESCENDANTS
+    }
+
+   def 'Query data node v2 api by cps path for the given dataspace and anchor with #scenario.'() {
+        given: 'service method returns a list containing a data node'
+            def dataNode1 = new DataNodeBuilder().withXpath('/xpath')
+                .withLeaves([leaf: 'value', leafList: ['leaveListElement1', 'leaveListElement2']]).build()
+            def dataspaceName = 'my_dataspace'
+            def anchorName = 'my_anchor'
+            def cpsPath = 'some cps-path'
+            mockCpsQueryService.queryDataNodes(dataspaceName, anchorName, cpsPath, _) >> [dataNode1, dataNode1]
+        and: 'the query endpoint'
+            def dataNodeEndpoint = "$basePath/v2/dataspaces/$dataspaceName/anchors/$anchorName/nodes/query"
+        when: 'query data nodes API is invoked'
+            def response =
+                mvc.perform(
+                        get(dataNodeEndpoint)
+                                .param('cps-path', cpsPath)
+                                .param('descendants', descendants))
+                        .andReturn().response
+        then: 'the response contains the the datanode in json format'
+            response.status == HttpStatus.OK.value()
+            response.getContentAsString().contains('{"xpath":{"leaf":"value","leafList":["leaveListElement1","leaveListElement2"]}}')
+        where: 'the following options for include descendants are provided in the request'
+            scenario                      || descendants
+            'no descendants buy default'  || ''
+            'no descendants explicitly'   || 'none'
+            'no descendants explicitly'   || '0'
+            'all descendants with string' || 'all'
+            'all descendants with number' || '-1'
+            'descendants with depth 1'    || '1'
+            'descendants with depth 2'    || '2'
+    }
+
+    def 'Query data node v2 api by cps path for invalid descendants with #scenario.'() {
+        given: 'the query endpoint'
+            def dataNodeEndpoint = "$basePath/v2/dataspaces/my_dataspace/anchors/my_anchor/nodes/query"
+        when: 'query data nodes API is invoked'
+            def response =
+                mvc.perform(
+                        get(dataNodeEndpoint)
+                                .param('cps-path', 'some cps-path')
+                                .param('descendants', descendants))
+                        .andReturn().response
+        then: 'a bad request response is returned'
+            response.status == HttpStatus.BAD_REQUEST.value()
+        where: 'the following options for include descendants are provided in the request'
+            scenario                  || descendants
+            'invalid string'          || 'invalid'
+            'invalid negative number' || '-2'
+            'invalid number'          || '2.0'
     }
 }
