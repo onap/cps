@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c3a29b5a_d49afba5",
+        "filename": "csit/pylibs.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 8049
+      },
+      "writtenOn": "2022-12-07T16:30:38Z",
+      "side": 1,
+      "message": "I have been told this specific version is needed because it supports a function that has since been removed. This was discussed during review of another (related) change here:\n\nhttps://gerrit.onap.org/r/c/testsuite/python-testing-utils/+/132593/1/robotframework-onap/requirements.txt#b15",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 30
+      },
+      "revId": "a52a51a6b09fc47b8fae4d603261c955de6f6069",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
