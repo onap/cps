@@ -39,7 +39,7 @@
         <app>org.onap.cps.Application</app>
         <java.version>11</java.version>
         <minimum-coverage>0.97</minimum-coverage>
-        <postgres.version>42.5.0</postgres.version>
+        <postgres.version>42.5.1</postgres.version>
 
         <jacoco.reportDirectory.aggregate>${project.reporting.outputDirectory}/jacoco-aggregate</jacoco.reportDirectory.aggregate>
         <sonar.coverage.jacoco.xmlReportPaths>
