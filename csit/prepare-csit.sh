@@ -20,6 +20,8 @@
 # Branched from ccsdk/distribution to this repository Feb 23, 2021
 #
 
+echo "---> prepare-csit.sh"
+
 if [ -z "$WORKSPACE" ]; then
     export WORKSPACE=`git rev-parse --show-toplevel`
 fi
@@ -35,11 +37,12 @@ if [ -f ${WORKSPACE}/env.properties ]; then
 fi
 if [ -f ${ROBOT3_VENV}/bin/activate ]; then
    source ${ROBOT3_VENV}/bin/activate
-#else
-#    rm -rf /tmp/ci-management
-#    rm -f ${WORKSPACE}/env.properties
-#    cd /tmp
-#    source ${WORKSPACE}/install-robotframework.sh
+else
+    rm -rf /tmp/ci-management
+    rm -f ${WORKSPACE}/env.properties
+    cd /tmp
+    git clone "https://gerrit.onap.org/r/ci-management"
+    source /tmp/ci-management/jjb/integration/include-raw-integration-install-robotframework-py3.sh
 fi
 
 # install eteutils
