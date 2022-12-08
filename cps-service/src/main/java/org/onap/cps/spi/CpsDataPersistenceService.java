@@ -22,6 +22,7 @@
 
 package org.onap.cps.spi;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -97,7 +98,7 @@ public interface CpsDataPersistenceService {
      * @param xpath         xpath
      * @param leaves        the leaves as a map where key is a leaf name and a value is a leaf value
      */
-    void updateDataLeaves(String dataspaceName, String anchorName, String xpath, Map<String, Object> leaves);
+    void updateDataLeaves(String dataspaceName, String anchorName, String xpath, Map<String, Serializable> leaves);
 
     /**
      * Replaces an existing data node's content including descendants.

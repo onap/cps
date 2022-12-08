@@ -46,7 +46,7 @@ public class DataNode implements Serializable {
     private ModuleReference moduleReference;
     private String xpath;
     private String moduleNamePrefix;
-    private Map<String, Object> leaves = Collections.emptyMap();
+    private Map<String, Serializable> leaves = Collections.emptyMap();
     private Collection<String> xpathsChildren;
     private Collection<DataNode> childDataNodes = Collections.emptySet();
 }
