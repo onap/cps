@@ -327,12 +327,14 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
      */
     private String getNameForChecksum(
             final String checksum, final Collection<YangResourceEntity> yangResourceEntities) {
-        return
-                yangResourceEntities.stream()
+        final Optional<String> optionalFileName = yangResourceEntities.stream()
                         .filter(entity -> StringUtils.equals(checksum, (entity.getChecksum())))
                         .findFirst()
-                        .map(YangResourceEntity::getFileName)
-                        .orElse(null);
+                        .map(YangResourceEntity::getFileName);
+        if (optionalFileName.isPresent()) {
+            return optionalFileName.get();
+        }
+        return null;
     }
 
     /**

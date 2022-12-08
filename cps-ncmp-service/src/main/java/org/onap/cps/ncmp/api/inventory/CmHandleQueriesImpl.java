@@ -47,6 +47,7 @@ public class CmHandleQueriesImpl implements CmHandleQueries {
 
     private static final String NCMP_DATASPACE_NAME = "NCMP-Admin";
     private static final String NCMP_DMI_REGISTRY_ANCHOR = "ncmp-dmi-registry";
+    private static final String DESCENDANT_PATH = "//";
 
     private final CpsDataPersistenceService cpsDataPersistenceService;
     private static final Map<String, NcmpServiceCmHandle> NO_QUERY_TO_EXECUTE = null;
@@ -72,7 +73,7 @@ public class CmHandleQueriesImpl implements CmHandleQueries {
         }
         Map<String, NcmpServiceCmHandle> cmHandleIdToNcmpServiceCmHandles = null;
         for (final Map.Entry<String, String> publicPropertyQueryPair : propertyQueryPairs.entrySet()) {
-            final String cpsPath = "//" + propertyType.getYangContainerName() + "[@name=\""
+            final String cpsPath = DESCENDANT_PATH + propertyType.getYangContainerName() + "[@name=\""
                     + publicPropertyQueryPair.getKey()
                     + "\" and @value=\"" + publicPropertyQueryPair.getValue() + "\"]";
 
