@@ -26,6 +26,8 @@ WORKDIR=$(mktemp -d --suffix=-robot-workdir)
 # functions
 #
 
+echo "---> run-csit.sh"
+
 # wrapper for sourcing a file
 function source_safely() {
     [ -z "$1" ] && return 1
