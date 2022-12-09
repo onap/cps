@@ -110,6 +110,20 @@ public class AdminRestController implements CpsAdminApi {
     }
 
     /**
+     * Get list of schema sets for a given dataspace name.
+     *
+     * @param dataspaceName dataspace name
+     * @return a {@Link ResponseEntity} of schema sets & {@link HttpStatus} OK
+     */
+    @Override
+    public ResponseEntity<List<SchemaSetDetails>> getSchemaSets(final String dataspaceName) {
+        final Collection<SchemaSet> schemaSets = cpsModuleService.getSchemaSets(dataspaceName);
+        final List<SchemaSetDetails> schemaSetDetails = schemaSets.stream().map(cpsRestInputMapper::toSchemaSetDetails)
+                .collect(Collectors.toList());
+        return new ResponseEntity<>(schemaSetDetails, HttpStatus.OK);
+    }
+
+    /**
      * Delete a {@link SchemaSet} based on given dataspace name & schemaset name.
      *
      * @param dataspaceName dataspace name

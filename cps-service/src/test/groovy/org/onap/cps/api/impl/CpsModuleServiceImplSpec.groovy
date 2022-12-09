@@ -3,6 +3,7 @@
  *  Copyright (C) 2020-2022 Nordix Foundation
  *  Modifications Copyright (C) 2020-2021 Pantheon.tech
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -30,6 +31,8 @@ import org.onap.cps.spi.exceptions.SchemaSetInUseException
 import org.onap.cps.spi.utils.CpsValidator
 import org.onap.cps.spi.model.Anchor
 import org.onap.cps.spi.model.ModuleReference
+import org.onap.cps.spi.model.SchemaSet
+import org.onap.cps.yang.YangTextSchemaSourceSet
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
 import spock.lang.Specification
 import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED
@@ -89,6 +92,25 @@ class CpsModuleServiceImplSpec extends Specification {
             result.getModuleReferences().contains(new ModuleReference('stores', '2020-09-15', 'org:onap:ccsdk:sample'))
         and: 'the CpsValidator is called on the dataspaceName and schemaSetName'
             1 * mockCpsValidator.validateNameCharacters('someDataspace', 'someSchemaSet')
+    }
+
+    def 'Get schema sets by dataspace name.'() {
+        given: 'two already present schema sets'
+            def moduleReference = new ModuleReference('sample1', '2022-12-07')
+            def sampleSchemaSet1 = new SchemaSet('testSchemaSet1', 'testDataspace', [moduleReference])
+            def sampleSchemaSet2 = new SchemaSet('testSchemaSet2', 'testDataspace', [moduleReference])
+        and: 'the persistence service returns the created schema sets'
+            mockCpsModulePersistenceService.getSchemaSetsByDataspaceName('testDataspace') >> [sampleSchemaSet1, sampleSchemaSet2]
+        and: 'yang resource cache always returns a schema source set'
+            def mockYangTextSchemaSourceSet = Mock(YangTextSchemaSourceSet)
+            mockYangTextSchemaSourceSetCache.get('testDataspace', _) >> mockYangTextSchemaSourceSet
+        when: 'get schema sets method is invoked'
+            def result = objectUnderTest.getSchemaSets('testDataspace')
+        then: 'the correct schema sets are returned'
+            assert result.size() == 2
+            assert result.containsAll(sampleSchemaSet1, sampleSchemaSet2)
+        and: 'the Cps Validator is called on the dataspaceName'
+            1 * mockCpsValidator.validateNameCharacters('testDataspace')
     }
 
     def 'Delete schema-set when cascade is allowed.'() {
