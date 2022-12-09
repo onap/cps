@@ -16,6 +16,24 @@
       "revId": "6d68fd5becf3dc0f3266aa452650332f24929b32",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a9990dd8_364bc0e1",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/spi/model/DataNodeBuilderSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2022-12-09T12:32:26Z",
+      "side": 0,
+      "message": "yes it should be container node, because basically ContainerNode holds a collection of NormalizedNodes. need to update entire file and refactor for Container Node",
+      "parentUuid": "9f9cece5_d85bd38b",
+      "revId": "6d68fd5becf3dc0f3266aa452650332f24929b32",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }

@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "f4bb68c1_c1088154",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2022-12-09T12:32:26Z",
+      "side": 1,
+      "message": "yes we decided to remove it because the new method handles backwards compatibility issue. Regardless of number of data trees in the JSON, the json is sent from the controller to saveData() method where it is sent to buildDataNodes() for parsing, in buildDataNodes() parseJsonData() is called and it returns a collection of NormalizedNodes which is then converted to a collection of DataNodes. So if there is one data tree in json it gets converted to a Collection of data nodes of size 1, if there are \u0027n\u0027 number of data trees then we get a collection of size n. Once we get the collection of data nodes we call the new method storeDataNodes() where as earlier since there was always one data node we had storeDataNode() which had one data node as its parameter. Hope this makes sense I tried to keep it as compact here. If needed we can discuss it in detail 😊",
+      "parentUuid": "af027de3_fa82adb5",
+      "range": {
+        "startLine": 175,
+        "startChar": 29,
+        "endLine": 175,
+        "endChar": 30
+      },
+      "revId": "6df89e2e18433bc8bca1fa0ab3f59543f374d74d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "09955c7b_8cb07960",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 15
@@ -45,6 +69,30 @@
       "revId": "6df89e2e18433bc8bca1fa0ab3f59543f374d74d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f087b1b_115b48cf",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2022-12-09T12:32:26Z",
+      "side": 1,
+      "message": "existing tests only cover the exceptions scenario. Will add a test to cover remaining scenarios in next patch",
+      "parentUuid": "09955c7b_8cb07960",
+      "range": {
+        "startLine": 194,
+        "startChar": 17,
+        "endLine": 194,
+        "endChar": 43
+      },
+      "revId": "6df89e2e18433bc8bca1fa0ab3f59543f374d74d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "8a066094_eddcf6a9",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2022-12-09T12:32:26Z",
+      "side": 1,
+      "message": "ok will fix in upcoming patch",
+      "parentUuid": "f480a705_2b09beaf",
+      "range": {
+        "startLine": 151,
+        "startChar": 15,
+        "endLine": 151,
+        "endChar": 20
+      },
+      "revId": "6df89e2e18433bc8bca1fa0ab3f59543f374d74d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aa302ab0_d19ff371",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
         "patchSetId": 15
@@ -91,6 +163,30 @@
       "revId": "6df89e2e18433bc8bca1fa0ab3f59543f374d74d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d8e7449f_a0dcddb8",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2022-12-09T12:32:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aa302ab0_d19ff371",
+      "range": {
+        "startLine": 46,
+        "startChar": 22,
+        "endLine": 46,
+        "endChar": 23
+      },
+      "revId": "6df89e2e18433bc8bca1fa0ab3f59543f374d74d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "4feb9f8c_a706bfd7",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/spi/model/DataNodeBuilderSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2022-12-09T12:32:26Z",
+      "side": 1,
+      "message": "yes agreed, I will update the entire test case with proper notation for container node :)",
+      "parentUuid": "a9312474_8d63b790",
+      "range": {
+        "startLine": 171,
+        "startChar": 12,
+        "endLine": 171,
+        "endChar": 52
+      },
+      "revId": "6df89e2e18433bc8bca1fa0ab3f59543f374d74d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0805cd40_47bdfb73",
         "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangUtilsSpec.groovy",
         "patchSetId": 15
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "b6320cf8_2baf08e8",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangUtilsSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2022-12-09T12:32:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0805cd40_47bdfb73",
+      "range": {
+        "startLine": 41,
+        "startChar": 15,
+        "endLine": 41,
+        "endChar": 27
+      },
+      "revId": "6df89e2e18433bc8bca1fa0ab3f59543f374d74d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "71f3f725_cb6779a7",
         "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangUtilsSpec.groovy",
         "patchSetId": 15
@@ -160,6 +304,30 @@
       "revId": "6df89e2e18433bc8bca1fa0ab3f59543f374d74d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8fa50de8_71e51b75",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangUtilsSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2022-12-09T12:32:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "71f3f725_cb6779a7",
+      "range": {
+        "startLine": 72,
+        "startChar": 15,
+        "endLine": 72,
+        "endChar": 25
+      },
+      "revId": "6df89e2e18433bc8bca1fa0ab3f59543f374d74d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
