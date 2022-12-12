@@ -140,6 +140,25 @@ class DataNodeBuilderSpec extends Specification {
             assert result.leaves['source-tp'] == '1-2-1'
     }
 
+    def 'Converting NormalizedNode (tree) to a DataNode (tree) -- with ChoiceNode.'() {
+        given: 'a schema context for expected model'
+            def yangResourceNameToContent = TestUtils.getYangResourcesAsMap('yang-with-choice-node.yang')
+            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent) getSchemaContext()
+        and: 'the json data fragment parsed into normalized node object'
+            def jsonData = TestUtils.getResourceFileContent('data-with-choice-node.json')
+            def normalizedNode = YangUtils.parseJsonData(jsonData, schemaContext)
+        when: 'the normalized node is converted to a data node'
+            def result = new DataNodeBuilder().withNormalizedNodeTree(normalizedNode).build()
+            def mappedResult = TestUtils.getFlattenMapByXpath(result)
+        then: 'the resulting data node contains only one xpath with 3 leaves'
+            mappedResult.keySet().containsAll([
+                "/container-with-choice-leaves"
+            ])
+            assert result.leaves['leaf-1'] == "test"
+            assert result.leaves['choice-case1-leaf-a'] == "test"
+            assert result.leaves['choice-case1-leaf-b'] == "test"
+    }
+
     def 'Converting NormalizedNode into DataNode collection: #scenario.'() {
         given: 'a schema context for expected model'
             def yangResourceNameToContent = TestUtils.getYangResourcesAsMap('test-tree.yang')
