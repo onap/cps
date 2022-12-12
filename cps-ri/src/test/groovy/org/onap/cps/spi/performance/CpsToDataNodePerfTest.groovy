@@ -48,16 +48,16 @@ class CpsToDataNodePerfTest extends CpsPersistenceSpecBase {
             createLineage()
             setupStopWatch.stop()
             def setupDurationInMillis = setupStopWatch.getTime()
-        and: 'setup duration is under 8000 milliseconds'
-            assert setupDurationInMillis < 8000
+        and: 'setup duration is under 10000 milliseconds'
+            assert setupDurationInMillis < 10000
         when: 'get parent is executed with all descendants'
             def readStopWatch = new StopWatch()
             readStopWatch.start()
             def result = objectUnderTest.getDataNode('PERF-DATASPACE', 'PERF-ANCHOR', PERF_TEST_PARENT, INCLUDE_ALL_DESCENDANTS)
             readStopWatch.stop()
             def readDurationInMillis = readStopWatch.getTime()
-        then: 'read duration is under 450 milliseconds'
-            assert readDurationInMillis < 450
+        then: 'read duration is under 500 milliseconds'
+            assert readDurationInMillis < 500
         and: 'data node is returned with all the descendants populated'
             assert countDataNodes(result) == EXPECTED_NUMBER_OF_NODES
         when: 'get root is executed with all descendants'
@@ -66,8 +66,8 @@ class CpsToDataNodePerfTest extends CpsPersistenceSpecBase {
             result = objectUnderTest.getDataNode('PERF-DATASPACE', 'PERF-ANCHOR', '', INCLUDE_ALL_DESCENDANTS)
             readStopWatch.stop()
             readDurationInMillis = readStopWatch.getTime()
-        then: 'read duration is under 450 milliseconds'
-            assert readDurationInMillis < 450
+        then: 'read duration is under 500 milliseconds'
+            assert readDurationInMillis < 500
         and: 'data node is returned with all the descendants populated'
             assert countDataNodes(result) == EXPECTED_NUMBER_OF_NODES
         when: 'query is executed with all descendants'
@@ -76,8 +76,8 @@ class CpsToDataNodePerfTest extends CpsPersistenceSpecBase {
             result = objectUnderTest.queryDataNodes('PERF-DATASPACE', 'PERF-ANCHOR', '//perf-parent-1', INCLUDE_ALL_DESCENDANTS)
             readStopWatch.stop()
             readDurationInMillis = readStopWatch.getTime()
-        then: 'read duration is under 450 milliseconds'
-            assert readDurationInMillis < 450
+        then: 'read duration is under 500 milliseconds'
+            assert readDurationInMillis < 500
         and: 'data node is returned with all the descendants populated'
             assert countDataNodes(result) == EXPECTED_NUMBER_OF_NODES
     }
