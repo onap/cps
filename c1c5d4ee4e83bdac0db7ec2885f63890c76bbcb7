@@ -16,6 +16,24 @@
       "revId": "c1c5d4ee4e83bdac0db7ec2885f63890c76bbcb7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e7bc3fe1_52b9b7f5",
+        "filename": "cps-service/src/test/resources/yang-with-choice-node.yang",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-12T16:09:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f190a50f_69d91294",
+      "revId": "c1c5d4ee4e83bdac0db7ec2885f63890c76bbcb7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
