@@ -3,6 +3,7 @@
  *  Copyright (C) 2021-2022 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada.
+ *  Modifications Copyright (C) 2022 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -32,6 +33,7 @@ import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.model.Anchor
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.DataNodeBuilder
+import org.onap.cps.utils.ContentType
 import org.onap.cps.yang.YangTextSchemaSourceSet
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
 import spock.lang.Specification
@@ -60,12 +62,12 @@ class CpsDataServiceImplSpec extends Specification {
     def anchor = Anchor.builder().name(anchorName).schemaSetName(schemaSetName).build()
     def observedTimestamp = OffsetDateTime.now()
 
-    def 'Saving json data.'() {
+    def 'Saving #scenario data.'() {
         given: 'schema set for given anchor and dataspace references test-tree model'
             setupSchemaSetMocks('test-tree.yang')
-        when: 'save data method is invoked with test-tree json data'
-            def jsonData = TestUtils.getResourceFileContent('test-tree.json')
-            objectUnderTest.saveData(dataspaceName, anchorName, jsonData, observedTimestamp)
+        when: 'save data method is invoked with test-tree #scenario data'
+            def data = TestUtils.getResourceFileContent(dataFile)
+            objectUnderTest.saveData(dataspaceName, anchorName, data, observedTimestamp, contentType)
         then: 'the persistence service method is invoked with correct parameters'
             1 * mockCpsDataPersistenceService.storeDataNode(dataspaceName, anchorName,
                 { dataNode -> dataNode.xpath == '/test-tree' })
@@ -73,7 +75,25 @@ class CpsDataServiceImplSpec extends Specification {
             1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
         and: 'data updated event is sent to notification service'
             1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, '/', Operation.CREATE, observedTimestamp)
+        where: 'given parameters'
+            scenario | dataFile         | contentType
+            'json'   | 'test-tree.json' | ContentType.JSON
+            'xml'    | 'test-tree.xml'  | ContentType.XML
     }
+
+    def 'Saving #scenarioDesired data with invalid data.'() {
+        given: 'schema set for given anchor and dataspace references test-tree model'
+        setupSchemaSetMocks('test-tree.yang')
+        when: 'save data method is invoked with test-tree json data'
+            objectUnderTest.saveData(dataspaceName, anchorName, invalidData, observedTimestamp, contentType)
+        then: 'a data validation exception is thrown'
+            thrown(DataValidationException)
+        where: 'given parameters'
+            scenarioDesired | invalidData             | contentType
+            'json'          | '{invalid  json'        | ContentType.XML
+            'xml'           | '<invalid xml'          | ContentType.JSON
+    }
+
 
     def 'Saving child data fragment under existing node.'() {
         given: 'schema set for given anchor and dataspace references test-tree model'
@@ -121,7 +141,7 @@ class CpsDataServiceImplSpec extends Specification {
         then: 'the persistence service method is invoked with correct parameters'
             1 * mockCpsDataPersistenceService.addMultipleLists(dataspaceName, anchorName, '/test-tree',_) >> {
                 args -> {
-                    def listElementsCollection = args[3] as Collection<Collection<DataNode>>
+                    def listElementsCollection = args   [3] as Collection<Collection<DataNode>>
                     assert listElementsCollection.size() == 1
                     def listOfXpaths = listElementsCollection.stream().flatMap(x -> x.stream()).map(it-> it.xpath).collect(Collectors.toList())
                     assert listOfXpaths.size() == 2
