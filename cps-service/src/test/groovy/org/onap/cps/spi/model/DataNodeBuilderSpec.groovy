@@ -32,7 +32,7 @@ import spock.lang.Specification
 
 class DataNodeBuilderSpec extends Specification {
 
-    Map<String, Map<String, Object>> expectedLeavesByXpathMap = [
+    Map<String, Map<String, Serializable>> expectedLeavesByXpathMap = [
             '/test-tree'                                            : [],
             '/test-tree/branch[@name=\'Left\']'                     : [name: 'Left'],
             '/test-tree/branch[@name=\'Left\']/nest'                : [name: 'Small', birds: ['Sparrow', 'Robin', 'Finch']],

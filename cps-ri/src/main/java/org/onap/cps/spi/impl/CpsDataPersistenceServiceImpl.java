@@ -24,6 +24,7 @@ package org.onap.cps.spi.impl;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ImmutableSet.Builder;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -346,7 +347,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     private DataNode toDataNode(final FragmentEntity fragmentEntity,
                                 final FetchDescendantsOption fetchDescendantsOption) {
         final List<DataNode> childDataNodes = getChildDataNodes(fragmentEntity, fetchDescendantsOption);
-        Map<String, Object> leaves = new HashMap<>();
+        Map<String, Serializable> leaves = new HashMap<>();
         if (fragmentEntity.getAttributes() != null) {
             leaves = jsonObjectMapper.convertJsonString(fragmentEntity.getAttributes(), Map.class);
         }
@@ -368,7 +369,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
 
     @Override
     public void updateDataLeaves(final String dataspaceName, final String anchorName, final String xpath,
-                                 final Map<String, Object> leaves) {
+                                 final Map<String, Serializable> leaves) {
         final FragmentEntity fragmentEntity = getFragmentWithoutDescendantsByXpath(dataspaceName, anchorName, xpath);
         fragmentEntity.setAttributes(jsonObjectMapper.asJsonString(leaves));
         fragmentRepository.save(fragmentEntity);

@@ -23,6 +23,7 @@ package org.onap.cps.spi.model;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -49,7 +50,7 @@ public class DataNodeBuilder {
     private String xpath;
     private String moduleNamePrefix;
     private String parentNodeXpath = "";
-    private Map<String, Object> leaves = Collections.emptyMap();
+    private Map<String, Serializable> leaves = Collections.emptyMap();
     private Collection<DataNode> childDataNodes = Collections.emptySet();
 
     /**
@@ -103,7 +104,7 @@ public class DataNodeBuilder {
      * @param leaves for the data node
      * @return DataNodeBuilder
      */
-    public DataNodeBuilder withLeaves(final Map<String, Object> leaves) {
+    public DataNodeBuilder withLeaves(final Map<String, Serializable> leaves) {
         this.leaves = leaves;
         return this;
     }
@@ -183,7 +184,7 @@ public class DataNodeBuilder {
         } else if (normalizedNode instanceof ValueNode) {
             final ValueNode<NormalizedNode> valuesNode = (ValueNode) normalizedNode;
             addYangLeaf(currentDataNode, valuesNode.getIdentifier().getNodeType().getLocalName(),
-                    valuesNode.body());
+                    (Serializable) valuesNode.body());
         } else if (normalizedNode instanceof LeafSetNode) {
             addYangLeafList(currentDataNode, (LeafSetNode<?>) normalizedNode);
         } else {
@@ -202,8 +203,9 @@ public class DataNodeBuilder {
         }
     }
 
-    private static void addYangLeaf(final DataNode currentDataNode, final String leafName, final Object leafValue) {
-        final Map<String, Object> leaves = new ImmutableMap.Builder<String, Object>()
+    private static void addYangLeaf(final DataNode currentDataNode, final String leafName,
+                                    final Serializable leafValue) {
+        final Map<String, Serializable> leaves = new ImmutableMap.Builder<String, Serializable>()
             .putAll(currentDataNode.getLeaves())
             .put(leafName, leafValue)
             .build();
@@ -216,7 +218,7 @@ public class DataNodeBuilder {
                 .stream()
                 .map(normalizedNode -> (normalizedNode).body())
                 .collect(Collectors.toUnmodifiableList());
-        addYangLeaf(currentDataNode, leafListName, leafListValues);
+        addYangLeaf(currentDataNode, leafListName, (Serializable) leafListValues);
     }
 
     private static void addDataNodeForEachListElement(final DataNode currentDataNode, final MapNode mapNode) {
