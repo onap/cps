@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "3410d6df_10c9bf62",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-13T11:39:00Z",
+      "side": 1,
+      "message": "the question is if anyone uses this interface as a Library, if so we have made a backward incompatible change...\nWe could go and try find out, discuss etc but its a 5 minute job to re-add the singular version of this method (and a test!)",
+      "parentUuid": "f4bb68c1_c1088154",
+      "range": {
+        "startLine": 175,
+        "startChar": 29,
+        "endLine": 175,
+        "endChar": 30
+      },
+      "revId": "6df89e2e18433bc8bca1fa0ab3f59543f374d74d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "09955c7b_8cb07960",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 15
@@ -187,6 +211,30 @@
       "revId": "6df89e2e18433bc8bca1fa0ab3f59543f374d74d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "489781c4_2be2345a",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-13T11:39:00Z",
+      "side": 1,
+      "message": "not done!",
+      "parentUuid": "d8e7449f_a0dcddb8",
+      "range": {
+        "startLine": 46,
+        "startChar": 22,
+        "endLine": 46,
+        "endChar": 23
+      },
+      "revId": "6df89e2e18433bc8bca1fa0ab3f59543f374d74d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     },
     {
       "key": {

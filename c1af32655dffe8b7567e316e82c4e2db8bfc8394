@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "de8d7374_430e39cb",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-13T11:39:00Z",
+      "side": 1,
+      "message": "Move any test depending mocks to the alternate spec for this class: org.onap.cps.spi.impl.CpsDataPersistenceServiceSpec",
+      "range": {
+        "startLine": 150,
+        "startChar": 4,
+        "endLine": 151,
+        "endChar": 66
+      },
+      "revId": "c1af32655dffe8b7567e316e82c4e2db8bfc8394",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "21b544fd_07bb2d07",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-13T11:39:00Z",
+      "side": 1,
+      "message": "Move any test depending mocks to the alternate spec for this class: org.onap.cps.spi.impl.CpsDataPersistenceServiceSpec",
+      "range": {
+        "startLine": 168,
+        "startChar": 4,
+        "endLine": 182,
+        "endChar": 0
+      },
+      "revId": "c1af32655dffe8b7567e316e82c4e2db8bfc8394",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e5170de_a84516aa",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-13T11:39:00Z",
+      "side": 1,
+      "message": "NB: children",
+      "range": {
+        "startLine": 197,
+        "startChar": 29,
+        "endLine": 197,
+        "endChar": 35
+      },
+      "revId": "c1af32655dffe8b7567e316e82c4e2db8bfc8394",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "63af16c9_1f535057",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-13T11:39:00Z",
+      "side": 1,
+      "message": "interesting way of testing this, I like it :-)",
+      "range": {
+        "startLine": 198,
+        "startChar": 49,
+        "endLine": 198,
+        "endChar": 93
+      },
+      "revId": "c1af32655dffe8b7567e316e82c4e2db8bfc8394",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "abc1ecb9_1eef8b5b",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 725,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-13T11:39:00Z",
+      "side": 1,
+      "message": "unclear what you are trying to do here. but move test first and maybe clean this up tehn I\u0027ll review again",
+      "range": {
+        "startLine": 723,
+        "startChar": 2,
+        "endLine": 725,
+        "endChar": 9
+      },
+      "revId": "c1af32655dffe8b7567e316e82c4e2db8bfc8394",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
