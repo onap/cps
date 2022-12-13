@@ -4,6 +4,7 @@
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Nordix Foundation
  *  Modifications Copyright (C) 2022 TechMahindra Ltd.
+ *  Modifications Copyright (C) 2022 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -32,11 +33,14 @@ import org.onap.cps.api.CpsDataService;
 import org.onap.cps.rest.api.CpsDataApi;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
+import org.onap.cps.utils.ContentType;
 import org.onap.cps.utils.DataMapUtils;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.onap.cps.utils.PrefixResolver;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -54,16 +58,19 @@ public class DataRestController implements CpsDataApi {
     private final PrefixResolver prefixResolver;
 
     @Override
-    public ResponseEntity<String> createNode(final String apiVersion,
-        final String dataspaceName, final String anchorName,
-        final Object jsonData, final String parentNodeXpath, final String observedTimestamp) {
-        final String jsonDataAsString = jsonObjectMapper.asJsonString(jsonData);
+    public ResponseEntity<String> createNode(@RequestHeader(value = "Content-Type") final String contentTypeHeader,
+                                             final String apiVersion,
+                                             final String dataspaceName, final String anchorName,
+                                             final String nodeData, final String parentNodeXpath,
+                                             final String observedTimestamp) {
+        final ContentType contentType = contentTypeHeader.contains(MediaType.APPLICATION_XML_VALUE) ? ContentType.XML
+                : ContentType.JSON;
         if (isRootXpath(parentNodeXpath)) {
-            cpsDataService.saveData(dataspaceName, anchorName, jsonDataAsString,
-                    toOffsetDateTime(observedTimestamp));
+            cpsDataService.saveData(dataspaceName, anchorName, nodeData,
+                    toOffsetDateTime(observedTimestamp), contentType);
         } else {
             cpsDataService.saveData(dataspaceName, anchorName, parentNodeXpath,
-                    jsonDataAsString, toOffsetDateTime(observedTimestamp));
+                    nodeData, toOffsetDateTime(observedTimestamp), contentType);
         }
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
