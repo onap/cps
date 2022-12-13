@@ -3,6 +3,7 @@
  *  Copyright (C) 2020-2022 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2022 TechMahindra Ltd.
+ *  Modifications Copyright (C) 2022 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -30,7 +31,7 @@ import org.opendaylight.yangtools.yang.data.api.schema.NormalizedNode
 import spock.lang.Specification
 
 class YangUtilsSpec extends Specification {
-    def 'Parsing a valid Json String.'() {
+    def 'Parsing a valid multicontainer Json String.'() {
         given: 'a yang model (file)'
             def jsonData = org.onap.cps.TestUtils.getResourceFileContent('multiple-object-data.json')
         and: 'a model for that data'
@@ -48,36 +49,62 @@ class YangUtilsSpec extends Specification {
             1       | 'last-container'
     }
 
+    def 'Parsing a valid #scenario String.'() {
+        given: 'a yang model (file)'
+            def fileData = org.onap.cps.TestUtils.getResourceFileContent(contentFile)
+        and: 'a model for that data'
+            def yangResourceNameToContent = TestUtils.getYangResourcesAsMap('bookstore.yang')
+            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getSchemaContext()
+        when: 'the data is parsed'
+            NormalizedNode result = YangUtils.parseData(contentType, fileData, schemaContext)
+        then: 'the result is a normalized node of the correct type'
+            if (revision) {
+                result.identifier.nodeType == QName.create(namespace, revision, localName)
+            } else {
+                result.identifier.nodeType == QName.create(namespace, localName)
+            }
+        where:
+            scenario | contentFile      | contentType      | namespace                                 | revision     | localName
+            'JSON'   | 'bookstore.json' | ContentType.JSON | 'org:onap:ccsdk:sample'                   | '2020-09-15' | 'bookstore'
+            'XML'    | 'bookstore.xml'  | ContentType.XML  | 'urn:ietf:params:xml:ns:netconf:base:1.0' | ''           | 'bookstore'
+    }
+
     def 'Parsing invalid data: #description.'() {
         given: 'a yang model (file)'
             def yangResourceNameToContent = TestUtils.getYangResourcesAsMap('bookstore.yang')
             def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getSchemaContext()
         when: 'invalid data is parsed'
-            YangUtils.parseJsonData(invalidJson, schemaContext)
+            YangUtils.parseData(contentType, invalidData, schemaContext)
         then: 'an exception is thrown'
             thrown(DataValidationException)
-        where: 'the following invalid json is provided'
-            invalidJson                                       | description
-            '{incomplete json'                                | 'incomplete json'
-            '{"test:bookstore": {"address": "Parnell st." }}' | 'json with un-modelled data'
-            '{" }'                                            | 'json with syntax exception'
+        where: 'the following invalid data is provided'
+            invalidData                                                                          | contentType      | description
+            '{incomplete json'                                                                   | ContentType.JSON | 'incomplete json'
+            '{"test:bookstore": {"address": "Parnell st." }}'                                    | ContentType.JSON | 'json with un-modelled data'
+            '{" }'                                                                               | ContentType.JSON | 'json with syntax exception'
+            '<data>'                                                                             | ContentType.XML  | 'incomplete xml'
+            '<data><bookstore><bookstore-anything>blabla</bookstore-anything></bookstore</data>' | ContentType.XML  | 'xml with invalid model'
+            ''                                                                                   | ContentType.XML  | 'empty xml'
     }
 
-    def 'Parsing json data fragment by xpath for #scenario.'() {
+    def 'Parsing data fragment by xpath for #scenario.'() {
         given: 'schema context'
             def yangResourcesMap = TestUtils.getYangResourcesAsMap('test-tree.yang')
             def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourcesMap).getSchemaContext()
         when: 'json string is parsed'
-            def result = YangUtils.parseJsonData(jsonData, schemaContext, parentNodeXpath)
+            def result = YangUtils.parseData(contentType, nodeData, schemaContext, parentNodeXpath)
         then: 'a ContainerNode holding collection of normalized nodes is returned'
             result.body().getAt(0) instanceof NormalizedNode == true
         then: 'result represents a node of expected type'
             result.body().getAt(0).getIdentifier().nodeType == QName.create('org:onap:cps:test:test-tree', '2020-02-02', nodeName)
         where:
-            scenario                    | jsonData                                                                      | parentNodeXpath                       || nodeName
-            'list element as container' | '{ "branch": { "name": "B", "nest": { "name": "N", "birds": ["bird"] } } }'   | '/test-tree'                          || 'branch'
-            'list element within list'  | '{ "branch": [{ "name": "B", "nest": { "name": "N", "birds": ["bird"] } }] }' | '/test-tree'                          || 'branch'
-            'container element'         | '{ "nest": { "name": "N", "birds": ["bird"] } }'                              | '/test-tree/branch[@name=\'Branch\']' || 'nest'
+            scenario                         | contentType      | nodeData                                                                                                                                                                                                      | parentNodeXpath                       || nodeName
+            'JSON list element as container' | ContentType.JSON | '{ "branch": { "name": "B", "nest": { "name": "N", "birds": ["bird"] } } }'                                                                                                                                   | '/test-tree'                          || 'branch'
+            'JSON list element within list'  | ContentType.JSON | '{ "branch": [{ "name": "B", "nest": { "name": "N", "birds": ["bird"] } }] }'                                                                                                                                 | '/test-tree'                          || 'branch'
+            'JSON container element'         | ContentType.JSON | '{ "nest": { "name": "N", "birds": ["bird"] } }'                                                                                                                                                              | '/test-tree/branch[@name=\'Branch\']' || 'nest'
+            'XML element test tree'          | ContentType.XML  | '<?xml version=\'1.0\' encoding=\'UTF-8\'?><branch xmlns="org:onap:cps:test:test-tree"><name>Left</name><nest><name>Small</name><birds>Sparrow</birds></nest></branch>'                                       | '/test-tree'                          || 'branch'
+            'XML element branch xpath'       | ContentType.XML  | '<?xml version=\'1.0\' encoding=\'UTF-8\'?><branch xmlns="org:onap:cps:test:test-tree"><name>Left</name><nest><name>Small</name><birds>Sparrow</birds><birds>Robin</birds></nest></branch>'                   | '/test-tree'                          || 'branch'
+            'XML container element'          | ContentType.XML  | '<?xml version=\'1.0\' encoding=\'UTF-8\'?><nest xmlns="org:onap:cps:test:test-tree"><name>Small</name><birds>Sparrow</birds></nest>'                                                                         | '/test-tree/branch[@name=\'Branch\']' || 'nest'
     }
 
     def 'Parsing json data fragment by xpath error scenario: #scenario.'() {
@@ -135,5 +162,4 @@ class YangUtilsSpec extends Specification {
             'xpath contains list attribute'                | '/test-tree/branch[@name=\'Branch\']'                               || ['test-tree','branch']
             'xpath contains list attributes with /'        | '/test-tree/branch[@name=\'/Branch\']/categories[@id=\'/broken\']'  || ['test-tree','branch','categories']
     }
-
 }
