@@ -3,6 +3,7 @@
  * Copyright (C) 2021-2023 Nordix Foundation.
  * Modifications Copyright (C) 2020-2021 Bell Canada.
  * Modifications Copyright (C) 2020-2021 Pantheon.tech.
+ * Modifications Copyright (C) 2023 TechMahindra Ltd.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -51,6 +52,10 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>,
     @Query("SELECT f FROM FragmentEntity f WHERE anchor = :anchor")
     List<FragmentExtract> findAllExtractsByAnchor(@Param("anchor") AnchorEntity anchorEntity);
 
+    List<FragmentEntity> findAllByAnchorAndXpathIn(AnchorEntity anchorEntity, Collection<String> xpath);
+
+    List<FragmentEntity> findAllByXpathIn(Collection<String> xpath);
+
     @Modifying
     @Query("DELETE FROM FragmentEntity WHERE anchor IN (:anchors)")
     void deleteByAnchorIn(@Param("anchors") Collection<AnchorEntity> anchorEntities);
@@ -59,6 +64,13 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>,
         + " AND (xpath = :parentXpath OR xpath LIKE CONCAT(:parentXpath,'/%'))")
     List<FragmentExtract> findByAnchorAndParentXpath(@Param("anchor") AnchorEntity anchorEntity,
                                                      @Param("parentXpath") String parentXpath);
+
+    @Query(value = "SELECT id, anchor_id AS anchorId, xpath, parent_id AS parentId,"
+            + " CAST(attributes AS TEXT) AS attributes"
+            + " FROM FRAGMENT WHERE "
+            + "( xpath = :parentXpath OR xpath LIKE CONCAT(:parentXpath,'/%') )",
+            nativeQuery = true)
+    List<FragmentExtract> findByParentXpath(@Param("parentXpath") String parentXpath);
 
     @Query(value = "SELECT id, anchor_id AS anchorId, xpath, parent_id AS parentId,"
         + " CAST(attributes AS TEXT) AS attributes"
@@ -94,4 +106,10 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>,
     List<FragmentExtract> findExtractsWithDescendants(@Param("anchorId") int anchorId,
                                                       @Param("xpaths") Collection<String> xpaths,
                                                       @Param("maxDepth") int maxDepth);
+
+    @Query(value = "SELECT id, anchor_id AS anchorId, xpath, parent_id AS parentId,"
+            + " CAST(attributes AS TEXT) AS attributes"
+            + " FROM FRAGMENT WHERE xpath ~ :xpathRegex",
+            nativeQuery = true)
+    List<FragmentExtract> quickFindWithDescendantsAcrossAnchor(@Param("xpathRegex") String xpathRegex);
 }
