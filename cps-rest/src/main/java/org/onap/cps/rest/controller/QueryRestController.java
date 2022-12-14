@@ -66,4 +66,11 @@ public class QueryRestController implements CpsQueryApi {
 
         return new ResponseEntity<>(jsonObjectMapper.asJsonString(dataMaps), HttpStatus.OK);
     }
+
+    @Override
+    public ResponseEntity<Object> getNodesByDataspaceAndCpsPath(final String dataspaceName,
+        final String cpsPath, final Boolean includeDescendants) {
+        // TODO: implementation in progress
+        return null; 
+    }
 }
