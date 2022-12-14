@@ -74,6 +74,31 @@ public class FragmentQueryBuilder {
     }
 
     /**
+     * Create a sql query to retrieve by anchor(id) and cps path.
+     *
+     * @param cpsPathQuery the cps path query to be transformed into a sql query
+     * @return a executable query object
+     */
+    public Query getQueryForCpsPath(final CpsPathQuery cpsPathQuery) {
+        final StringBuilder sqlStringBuilder = new StringBuilder("SELECT * FROM FRAGMENT WHERE xpath ~ :xpathRegex");
+        final Map<String, Object> queryParameters = new HashMap<>();
+        // queryParameters.put("anchorId", anchorId);
+        // sqlStringBuilder.append(" AND xpath ~ :xpathRegex");
+        final String xpathRegex = getXpathSqlRegex(cpsPathQuery, false);
+        queryParameters.put("xpathRegex", xpathRegex);
+        if (cpsPathQuery.hasLeafConditions()) {
+            sqlStringBuilder.append(" AND attributes @> :leafDataAsJson\\:\\:jsonb");
+            queryParameters.put("leafDataAsJson", jsonObjectMapper.asJsonString(
+                    cpsPathQuery.getLeavesData()));
+        }
+
+        addTextFunctionCondition(cpsPathQuery, sqlStringBuilder, queryParameters);
+        final Query query = entityManager.createNativeQuery(sqlStringBuilder.toString(), FragmentEntity.class);
+        setQueryParameters(query, queryParameters);
+        return query;
+    }
+
+    /**
      * Create a regular expression (string) for xpath based on the given cps path query.
      *
      * @param cpsPathQuery  the cps path query to determine the required regular expression
