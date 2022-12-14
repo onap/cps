@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3c4ceca2_1b4c740a",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-12-14T12:32:50Z",
+      "side": 1,
+      "message": "this is actually repeated with parseJsonData, can be placed outside?",
+      "range": {
+        "startLine": 180,
+        "startChar": 0,
+        "endLine": 182,
+        "endChar": 44
+      },
+      "revId": "a31a0f117daffbce792da6b6d5cc03d8b0c7ef63",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "497d4367_de4f8407",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-12-14T12:32:50Z",
+      "side": 1,
+      "message": "NB: this space is necessary?",
+      "range": {
+        "startLine": 144,
+        "startChar": 53,
+        "endLine": 144,
+        "endChar": 56
+      },
+      "revId": "a31a0f117daffbce792da6b6d5cc03d8b0c7ef63",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
