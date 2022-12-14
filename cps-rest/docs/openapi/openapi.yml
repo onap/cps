@@ -110,5 +110,8 @@ paths:
   /v2/dataspaces/{dataspace-name}/anchors/{anchor-name}/nodes/query:
     $ref: 'cpsQueryV2.yml#/nodesByDataspaceAndAnchorAndCpsPath'
 
+  /v2/dataspaces/{dataspace-name}/nodes/query:
+    $ref: 'cpsQueryV2.yml#/nodesByDataspaceAndCpsPath'
+
 security:
   - basicAuth: []
