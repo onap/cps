@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "4bbf789d_7cc23ec4",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2022-12-14T09:27:33Z",
+      "side": 1,
+      "message": "I have removed this particular test case as it was redundant I mentioned in the patch 16 comments. Basically I was trying to explicitly check whether storeDataNodesIndividually() throws expected exceptions but later realized it is already covered 😄",
+      "parentUuid": "de8d7374_430e39cb",
+      "range": {
+        "startLine": 150,
+        "startChar": 4,
+        "endLine": 151,
+        "endChar": 66
+      },
+      "revId": "c1af32655dffe8b7567e316e82c4e2db8bfc8394",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "21b544fd_07bb2d07",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
         "patchSetId": 17
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "cdb9b497_ae5bfee7",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2022-12-14T09:27:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "21b544fd_07bb2d07",
+      "range": {
+        "startLine": 168,
+        "startChar": 4,
+        "endLine": 182,
+        "endChar": 0
+      },
+      "revId": "c1af32655dffe8b7567e316e82c4e2db8bfc8394",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9e5170de_a84516aa",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
         "patchSetId": 17
@@ -68,6 +116,30 @@
       "revId": "c1af32655dffe8b7567e316e82c4e2db8bfc8394",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c0d54635_094018ce",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2022-12-14T09:27:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9e5170de_a84516aa",
+      "range": {
+        "startLine": 197,
+        "startChar": 29,
+        "endLine": 197,
+        "endChar": 35
+      },
+      "revId": "c1af32655dffe8b7567e316e82c4e2db8bfc8394",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -114,6 +186,30 @@
       "revId": "c1af32655dffe8b7567e316e82c4e2db8bfc8394",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ba5c2225_d3767e02",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 725,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2022-12-14T09:27:33Z",
+      "side": 1,
+      "message": "I have removed this particular test case as it was redundant I mentioned in the patch 16 comments. Basically I was trying to explicitly check whether storeDataNodesIndividually() throws expected exceptions but later realized it is already covered 😄",
+      "parentUuid": "abc1ecb9_1eef8b5b",
+      "range": {
+        "startLine": 723,
+        "startChar": 2,
+        "endLine": 725,
+        "endChar": 9
+      },
+      "revId": "c1af32655dffe8b7567e316e82c4e2db8bfc8394",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }

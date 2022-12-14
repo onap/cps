@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "2ebdfb4c_8bf4728b",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2022-12-14T09:27:33Z",
+      "side": 1,
+      "message": "added the singular method back. it now calls the new method with collection of size 1",
+      "parentUuid": "3410d6df_10c9bf62",
+      "range": {
+        "startLine": 175,
+        "startChar": 29,
+        "endLine": 175,
+        "endChar": 30
+      },
+      "revId": "6df89e2e18433bc8bca1fa0ab3f59543f374d74d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "09955c7b_8cb07960",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 15
@@ -235,6 +259,30 @@
       "revId": "6df89e2e18433bc8bca1fa0ab3f59543f374d74d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d6b68b77_32ce0ff2",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2022-12-14T09:27:33Z",
+      "side": 1,
+      "message": "Done. Also marked as deprecated",
+      "parentUuid": "489781c4_2be2345a",
+      "range": {
+        "startLine": 46,
+        "startChar": 22,
+        "endLine": 46,
+        "endChar": 23
+      },
+      "revId": "6df89e2e18433bc8bca1fa0ab3f59543f374d74d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
