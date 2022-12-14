@@ -106,6 +106,26 @@ components:
               name: SciFi
             - code: 02
               name: kids
+    dataSampleAcrossAnchors:
+      value:
+        - anchorName: bookstore1
+          dataNodes:
+            - test:bookstore:
+              bookstore-name: Chapters
+              categories:
+                - code: 01
+                  name: SciFi
+                - code: 02
+                  name: kids
+        - anchorName: bookstore2
+          dataNodes:
+            - test:bookstore:
+              bookstore-name: Chapters
+              categories:
+                - code: 01
+                  name: SciFi
+                - code: 02
+                  name: kids
 
   parameters:
     dataspaceNameInQuery:
