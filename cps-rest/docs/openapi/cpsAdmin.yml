@@ -19,27 +19,6 @@
 # ============LICENSE_END=========================================================
 
 dataspaces:
-  post:
-    description: Create a new dataspace
-    tags:
-      - cps-admin
-    summary: Create a dataspace
-    operationId: createDataspace
-    parameters:
-      - $ref: 'components.yml#/components/parameters/dataspaceNameInQuery'
-    responses:
-      '201':
-        $ref: 'components.yml#/components/responses/Created'
-      '400':
-        $ref: 'components.yml#/components/responses/BadRequest'
-      '401':
-        $ref: 'components.yml#/components/responses/Unauthorized'
-      '403':
-        $ref: 'components.yml#/components/responses/Forbidden'
-      '409':
-        $ref: 'components.yml#/components/responses/Conflict'
-      '500':
-        $ref: 'components.yml#/components/responses/InternalServerError'
   delete:
     description: Delete a dataspace
     tags:
@@ -47,6 +26,7 @@ dataspaces:
     summary: Delete a dataspace
     operationId: deleteDataspace
     parameters:
+      - $ref: 'components.yml#/components/parameters/apiVersionInPath'
       - $ref: 'components.yml#/components/parameters/dataspaceNameInQuery'
     responses:
       '204':
@@ -63,34 +43,6 @@ dataspaces:
         $ref: 'components.yml#/components/responses/InternalServerError'
 
 schemaSet:
-  post:
-    description: Create a new schema set in the given dataspace
-    tags:
-      - cps-admin
-    summary: Create a schema set
-    operationId: createSchemaSet
-    parameters:
-      - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
-      - $ref: 'components.yml#/components/parameters/schemaSetNameInQuery'
-    requestBody:
-      required: true
-      content:
-        multipart/form-data:
-          schema:
-            $ref: 'components.yml#/components/schemas/MultipartFile'
-    responses:
-      '201':
-        $ref: 'components.yml#/components/responses/Created'
-      '400':
-        $ref: 'components.yml#/components/responses/BadRequest'
-      '401':
-        $ref: 'components.yml#/components/responses/Unauthorized'
-      '403':
-        $ref: 'components.yml#/components/responses/Forbidden'
-      '409':
-        $ref: 'components.yml#/components/responses/Conflict'
-      '500':
-        $ref: 'components.yml#/components/responses/InternalServerError'
   get:
     description: Read all schema sets, given a dataspace
     tags:
@@ -98,6 +50,7 @@ schemaSet:
     summary: Get schema sets
     operationId: getSchemaSets
     parameters:
+      - $ref: 'components.yml#/components/parameters/apiVersionInPath'
       - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
     responses:
       '200':
@@ -125,6 +78,7 @@ schemaSetBySchemaSetName:
     summary: Get a schema set
     operationId: getSchemaSet
     parameters:
+      - $ref: 'components.yml#/components/parameters/apiVersionInPath'
       - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
       - $ref: 'components.yml#/components/parameters/schemaSetNameInPath'
     responses:
@@ -149,6 +103,7 @@ schemaSetBySchemaSetName:
     summary: Delete a schema set
     operationId: deleteSchemaSet
     parameters:
+      - $ref: 'components.yml#/components/parameters/apiVersionInPath'
       - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
       - $ref: 'components.yml#/components/parameters/schemaSetNameInPath'
     responses:
@@ -173,6 +128,7 @@ anchorsByDataspace:
     summary: Get anchors
     operationId: getAnchors
     parameters:
+      - $ref: 'components.yml#/components/parameters/apiVersionInPath'
       - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
     responses:
       '200':
@@ -191,29 +147,6 @@ anchorsByDataspace:
         $ref: 'components.yml#/components/responses/Forbidden'
       '500':
         $ref: 'components.yml#/components/responses/InternalServerError'
-  post:
-    description: Create a new anchor in the given dataspace
-    tags:
-      - cps-admin
-    summary: Create an anchor
-    operationId: createAnchor
-    parameters:
-      - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
-      - $ref: 'components.yml#/components/parameters/schemaSetNameInQuery'
-      - $ref: 'components.yml#/components/parameters/anchorNameInQuery'
-    responses:
-      '201':
-        $ref: 'components.yml#/components/responses/Created'
-      '400':
-        $ref: 'components.yml#/components/responses/BadRequest'
-      '401':
-        $ref: 'components.yml#/components/responses/Unauthorized'
-      '403':
-        $ref: 'components.yml#/components/responses/Forbidden'
-      '409':
-        $ref: 'components.yml#/components/responses/Conflict'
-      '500':
-        $ref: 'components.yml#/components/responses/InternalServerError'
 
 anchorByDataspaceAndAnchorName:
   get:
@@ -223,6 +156,7 @@ anchorByDataspaceAndAnchorName:
     summary: Get an anchor
     operationId: getAnchor
     parameters:
+      - $ref: 'components.yml#/components/parameters/apiVersionInPath'
       - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
       - $ref: 'components.yml#/components/parameters/anchorNameInPath'
     responses:
@@ -247,6 +181,7 @@ anchorByDataspaceAndAnchorName:
     summary: Delete an anchor
     operationId: deleteAnchor
     parameters:
+      - $ref: 'components.yml#/components/parameters/apiVersionInPath'
       - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
       - $ref: 'components.yml#/components/parameters/anchorNameInPath'
     responses:
@@ -268,6 +203,8 @@ adminDataspaces:
      - cps-admin
    summary: Get all dataspaces
    operationId: getAllDataspaces
+   parameters:
+      - $ref: 'components.yml#/components/parameters/apiVersionInPath'
    responses:
      '200':
        description: OK
@@ -294,6 +231,7 @@ adminDataspace:
    summary: Get a dataspace
    operationId: getDataspace
    parameters:
+      - $ref: 'components.yml#/components/parameters/apiVersionInPath'
       - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
    responses:
      '200':

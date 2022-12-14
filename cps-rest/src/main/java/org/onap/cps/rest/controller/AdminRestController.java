@@ -69,13 +69,25 @@ public class AdminRestController implements CpsAdminApi {
     }
 
     /**
+     * Create a dataspace without returning any response body.
+     *
+     * @param dataspaceName dataspace name
+     * @return a {@Link ResponseEntity} of created dataspace name & {@link HttpStatus} CREATED
+     */
+    @Override
+    public ResponseEntity<Void> createDataspaceV2(@NotNull @Valid final String dataspaceName) {
+        cpsAdminService.createDataspace(dataspaceName);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    /**
      * Delete a dataspace.
      *
      * @param dataspaceName name of dataspace to be deleted
      * @return a {@Link ResponseEntity} of {@link HttpStatus} NO_CONTENT
      */
     @Override
-    public ResponseEntity<Void> deleteDataspace(final String dataspaceName) {
+    public ResponseEntity<Void> deleteDataspace(final String apiVersion, final String dataspaceName) {
         cpsAdminService.deleteDataspace(dataspaceName);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
@@ -96,14 +108,31 @@ public class AdminRestController implements CpsAdminApi {
     }
 
     /**
+     * Create a {@link SchemaSet}.
+     *
+     * @param multipartFile multipart file
+     * @param schemaSetName schemaset name
+     * @param dataspaceName dataspace name
+     * @return a {@Link ResponseEntity} of created schema set without any response body & {@link HttpStatus} CREATED
+     */
+    @Override
+    public ResponseEntity<Void> createSchemaSetV2(@NotNull @Valid final String schemaSetName,
+        final String dataspaceName, @Valid final MultipartFile multipartFile) {
+        cpsModuleService.createSchemaSet(dataspaceName, schemaSetName, extractYangResourcesMap(multipartFile));
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    /**
      * Get {@link SchemaSetDetails} based on dataspace name & {@link SchemaSet} name.
      *
+     * @param apiVersion api version
      * @param dataspaceName dataspace name
      * @param schemaSetName schemaset name
      * @return a {@Link ResponseEntity} of {@Link SchemaSetDetails} & {@link HttpStatus} OK
      */
     @Override
-    public ResponseEntity<SchemaSetDetails> getSchemaSet(final String dataspaceName, final String schemaSetName) {
+    public ResponseEntity<SchemaSetDetails> getSchemaSet(final String apiVersion,
+            final String dataspaceName, final String schemaSetName) {
         final var schemaSet = cpsModuleService.getSchemaSet(dataspaceName, schemaSetName);
         final var schemaSetDetails = cpsRestInputMapper.toSchemaSetDetails(schemaSet);
         return new ResponseEntity<>(schemaSetDetails, HttpStatus.OK);
@@ -112,11 +141,12 @@ public class AdminRestController implements CpsAdminApi {
     /**
      * Get list of schema sets for a given dataspace name.
      *
+     * @param apiVersion api version
      * @param dataspaceName dataspace name
      * @return a {@Link ResponseEntity} of schema sets & {@link HttpStatus} OK
      */
     @Override
-    public ResponseEntity<List<SchemaSetDetails>> getSchemaSets(final String dataspaceName) {
+    public ResponseEntity<List<SchemaSetDetails>> getSchemaSets(final String apiVersion, final String dataspaceName) {
         final Collection<SchemaSet> schemaSets = cpsModuleService.getSchemaSets(dataspaceName);
         final List<SchemaSetDetails> schemaSetDetails = schemaSets.stream().map(cpsRestInputMapper::toSchemaSetDetails)
                 .collect(Collectors.toList());
@@ -126,12 +156,14 @@ public class AdminRestController implements CpsAdminApi {
     /**
      * Delete a {@link SchemaSet} based on given dataspace name & schemaset name.
      *
+     * @param apiVersion api version
      * @param dataspaceName dataspace name
      * @param schemaSetName schemaset name
      * @return a {@Link ResponseEntity} of {@link HttpStatus} NO_CONTENT
      */
     @Override
-    public ResponseEntity<Void> deleteSchemaSet(final String dataspaceName, final String schemaSetName) {
+    public ResponseEntity<Void> deleteSchemaSet(final String apiVersion,
+            final String dataspaceName, final String schemaSetName) {
         cpsModuleService.deleteSchemaSet(dataspaceName, schemaSetName, CASCADE_DELETE_PROHIBITED);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
@@ -152,14 +184,31 @@ public class AdminRestController implements CpsAdminApi {
     }
 
     /**
+     * Create an anchor.
+     *
+     * @param dataspaceName dataspace name
+     * @param schemaSetName schema set name
+     * @param anchorName    anchorName
+     * @return a ResponseEntity without response body & {@link HttpStatus} CREATED
+     */
+    @Override
+    public ResponseEntity<Void> createAnchorV2(final String dataspaceName, @NotNull @Valid final String schemaSetName,
+        @NotNull @Valid final String anchorName) {
+        cpsAdminService.createAnchor(dataspaceName, schemaSetName, anchorName);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    /**
      * Delete an {@link Anchor} based on given dataspace name & anchor name.
      *
+     * @param apiVersion api version
      * @param dataspaceName dataspace name
      * @param anchorName anchor name
      * @return a {@Link ResponseEntity} of {@link HttpStatus} NO_CONTENT
      */
     @Override
-    public ResponseEntity<Void> deleteAnchor(final String dataspaceName, final String anchorName) {
+    public ResponseEntity<Void> deleteAnchor(final String apiVersion,
+            final String dataspaceName, final String anchorName) {
         cpsAdminService.deleteAnchor(dataspaceName, anchorName);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
@@ -167,12 +216,14 @@ public class AdminRestController implements CpsAdminApi {
     /**
      * Get an {@link Anchor} based on given dataspace name & anchor name.
      *
+     * @param apiVersion api version
      * @param dataspaceName dataspace name
      * @param anchorName anchor name
      * @return a {@Link ResponseEntity} of an {@Link AnchorDetails} & {@link HttpStatus} OK
      */
     @Override
-    public ResponseEntity<AnchorDetails> getAnchor(final String dataspaceName, final String anchorName) {
+    public ResponseEntity<AnchorDetails> getAnchor(final String apiVersion,
+            final String dataspaceName, final String anchorName) {
         final var anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
         final var anchorDetails = cpsRestInputMapper.toAnchorDetails(anchor);
         return new ResponseEntity<>(anchorDetails, HttpStatus.OK);
@@ -181,11 +232,13 @@ public class AdminRestController implements CpsAdminApi {
     /**
      *  Get all {@link Anchor} based on given dataspace name.
      *
+     * @param apiVersion api version
      * @param dataspaceName dataspace name
      * @return a {@Link ResponseEntity} of all {@Link AnchorDetails} & {@link HttpStatus} OK
      */
     @Override
-    public ResponseEntity<List<AnchorDetails>> getAnchors(final String dataspaceName) {
+    public ResponseEntity<List<AnchorDetails>> getAnchors(final String apiVersion,
+            final String dataspaceName) {
         final Collection<Anchor> anchors = cpsAdminService.getAnchors(dataspaceName);
         final List<AnchorDetails> anchorDetails = anchors.stream().map(cpsRestInputMapper::toAnchorDetails)
             .collect(Collectors.toList());
@@ -193,7 +246,7 @@ public class AdminRestController implements CpsAdminApi {
     }
 
     @Override
-    public ResponseEntity<List<DataspaceDetails>> getAllDataspaces() {
+    public ResponseEntity<List<DataspaceDetails>> getAllDataspaces(final String apiVersion) {
         final Collection<Dataspace> dataspaces = cpsAdminService.getAllDataspaces();
         final List<DataspaceDetails> dataspaceDetails = dataspaces.stream().map(cpsRestInputMapper::toDataspaceDetails)
                 .collect(Collectors.toList());
@@ -201,7 +254,7 @@ public class AdminRestController implements CpsAdminApi {
     }
 
     @Override
-    public ResponseEntity<DataspaceDetails> getDataspace(final String dataspaceName) {
+    public ResponseEntity<DataspaceDetails> getDataspace(final String apiVersion, final String dataspaceName) {
         final Dataspace dataspace = cpsAdminService.getDataspace(dataspaceName);
         final DataspaceDetails dataspaceDetails = cpsRestInputMapper.toDataspaceDetails(dataspace);
         return new ResponseEntity<>(dataspaceDetails, HttpStatus.OK);
