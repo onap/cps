@@ -54,6 +54,7 @@ public class DataNodeBuilder {
     private String parentNodeXpath = "";
     private Map<String, Serializable> leaves = Collections.emptyMap();
     private Collection<DataNode> childDataNodes = Collections.emptySet();
+    private String anchorName;
 
     /**
      * To use parent node xpath for creating {@link DataNode}.
@@ -85,6 +86,17 @@ public class DataNodeBuilder {
      */
     public DataNodeBuilder withXpath(final String xpath) {
         this.xpath = xpath;
+        return this;
+    }
+
+    /**
+     * To use anchor name for creating {@link DataNode}.
+     *
+     * @param anchorName anchor name for the data node
+     * @return DataNodeBuilder
+     */
+    public DataNodeBuilder withAnchor(final String anchorName) {
+        this.anchorName = anchorName;
         return this;
     }
 
@@ -153,6 +165,7 @@ public class DataNodeBuilder {
         dataNode.setModuleNamePrefix(moduleNamePrefix);
         dataNode.setLeaves(leaves);
         dataNode.setChildDataNodes(childDataNodes);
+        dataNode.setAnchorName(anchorName);
         return dataNode;
     }
 
