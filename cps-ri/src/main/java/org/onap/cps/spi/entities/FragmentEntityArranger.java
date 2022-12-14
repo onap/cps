@@ -47,6 +47,22 @@ public class FragmentEntityArranger {
         return reuniteChildrenWithTheirParents(fragmentEntityPerId);
     }
 
+    /**
+     * Convert a collection of (related) FragmentExtracts into  FragmentEntities (trees) with descendants.
+     *
+     * @param fragmentExtracts FragmentExtracts to convert
+     * @return a collection of FragmentEntities (trees) with descendants.
+     */
+    public static Collection<FragmentEntity> toFragmentEntityTreesAcrossAnchors(
+            final Collection<FragmentExtract> fragmentExtracts) {
+        final Map<Long, FragmentEntity> fragmentEntityPerId = new HashMap<>();
+        for (final FragmentExtract fragmentExtract : fragmentExtracts) {
+            final FragmentEntity fragmentEntity = toFragmentEntity(fragmentExtract);
+            fragmentEntityPerId.put(fragmentEntity.getId(), fragmentEntity);
+        }
+        return reuniteChildrenWithTheirParents(fragmentEntityPerId);
+    }
+
     private static FragmentEntity toFragmentEntity(final AnchorEntity anchorEntity,
                                                    final FragmentExtract fragmentExtract) {
         final FragmentEntity fragmentEntity = new FragmentEntity();
@@ -57,6 +73,16 @@ public class FragmentEntityArranger {
         fragmentEntity.setParentId(fragmentExtract.getParentId());
         fragmentEntity.setChildFragments(new HashSet<>());
         fragmentEntity.setDataspace(anchorEntity.getDataspace());
+        return fragmentEntity;
+    }
+
+    private static FragmentEntity toFragmentEntity(final FragmentExtract fragmentExtract) {
+        final FragmentEntity fragmentEntity = new FragmentEntity();
+        fragmentEntity.setId(fragmentExtract.getId());
+        fragmentEntity.setXpath(fragmentExtract.getXpath());
+        fragmentEntity.setAttributes(fragmentExtract.getAttributes());
+        fragmentEntity.setParentId(fragmentExtract.getParentId());
+        fragmentEntity.setChildFragments(new HashSet<>());
         return fragmentEntity;
     }
 
