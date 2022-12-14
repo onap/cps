@@ -2,6 +2,7 @@
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021-2022 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada.
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -48,8 +49,8 @@ public class QueryRestController implements CpsQueryApi {
     private final PrefixResolver prefixResolver;
 
     @Override
-    public ResponseEntity<Object> getNodesByDataspaceAndAnchorAndCpsPath(final String dataspaceName,
-        final String anchorName, final String cpsPath, final Boolean includeDescendants) {
+    public ResponseEntity<Object> getNodesByDataspaceAndAnchorAndCpsPath(final String apiVersion,
+        final String dataspaceName, final String anchorName, final String cpsPath, final Boolean includeDescendants) {
         final FetchDescendantsOption fetchDescendantsOption = Boolean.TRUE.equals(includeDescendants)
             ? FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS : FetchDescendantsOption.OMIT_DESCENDANTS;
         final Collection<DataNode> dataNodes =
