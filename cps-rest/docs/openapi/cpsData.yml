@@ -1,6 +1,7 @@
 # ============LICENSE_START=======================================================
 # Copyright (c) 2021-2022 Bell Canada.
 # Modifications Copyright (C) 2021-2022 Nordix Foundation
+# Modifications Copyright (C) 2022 TechMahindra Ltd.
 # ================================================================================
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -25,6 +26,7 @@ nodeByDataspaceAndAnchor:
     summary: Get a node
     operationId: getNodeByDataspaceAndAnchor
     parameters:
+      - $ref: 'components.yml#/components/parameters/apiVersionInPath'
       - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
       - $ref: 'components.yml#/components/parameters/anchorNameInPath'
       - $ref: 'components.yml#/components/parameters/xpathInQuery'
@@ -57,6 +59,7 @@ listElementByDataspaceAndAnchor:
     summary: Add list element(s)
     operationId: addListElements
     parameters:
+      - $ref: 'components.yml#/components/parameters/apiVersionInPath'
       - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
       - $ref: 'components.yml#/components/parameters/anchorNameInPath'
       - $ref: 'components.yml#/components/parameters/requiredXpathInQuery'
@@ -88,6 +91,7 @@ listElementByDataspaceAndAnchor:
     summary: Replace list content
     operationId: replaceListContent
     parameters:
+      - $ref: 'components.yml#/components/parameters/apiVersionInPath'
       - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
       - $ref: 'components.yml#/components/parameters/anchorNameInPath'
       - $ref: 'components.yml#/components/parameters/requiredXpathInQuery'
@@ -120,6 +124,7 @@ listElementByDataspaceAndAnchor:
     summary: Delete one or all list element(s)
     operationId: deleteListOrListElement
     parameters:
+      - $ref: 'components.yml#/components/parameters/apiVersionInPath'
       - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
       - $ref: 'components.yml#/components/parameters/anchorNameInPath'
       - $ref: 'components.yml#/components/parameters/requiredXpathInQuery'
@@ -144,6 +149,7 @@ nodesByDataspaceAndAnchor:
     summary: Create a node
     operationId: createNode
     parameters:
+      - $ref: 'components.yml#/components/parameters/apiVersionInPath'
       - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
       - $ref: 'components.yml#/components/parameters/anchorNameInPath'
       - $ref: 'components.yml#/components/parameters/xpathInQuery'
@@ -177,6 +183,7 @@ nodesByDataspaceAndAnchor:
     summary: Update node leaves
     operationId: updateNodeLeaves
     parameters:
+      - $ref: 'components.yml#/components/parameters/apiVersionInPath'
       - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
       - $ref: 'components.yml#/components/parameters/anchorNameInPath'
       - $ref: 'components.yml#/components/parameters/xpathInQuery'
@@ -208,6 +215,7 @@ nodesByDataspaceAndAnchor:
     summary: Delete a data node
     operationId: deleteDataNode
     parameters:
+      - $ref: 'components.yml#/components/parameters/apiVersionInPath'
       - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
       - $ref: 'components.yml#/components/parameters/anchorNameInPath'
       - $ref: 'components.yml#/components/parameters/xpathInQuery'
@@ -230,6 +238,7 @@ nodesByDataspaceAndAnchor:
     summary: Replace a node with descendants
     operationId: replaceNode
     parameters:
+      - $ref: 'components.yml#/components/parameters/apiVersionInPath'
       - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
       - $ref: 'components.yml#/components/parameters/anchorNameInPath'
       - $ref: 'components.yml#/components/parameters/xpathInQuery'

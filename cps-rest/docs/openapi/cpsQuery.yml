@@ -1,6 +1,7 @@
 #  ============LICENSE_START=======================================================
 #  Copyright (C) 2021 Nordix Foundation
 #  Modifications Copyright (c) 2022 Bell Canada.
+#  Modifications Copyright (c) 2022 TechMahindra Ltd.
 #  ================================================================================
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -25,6 +26,7 @@ nodesByDataspaceAndAnchorAndCpsPath:
     summary: Query data nodes
     operationId: getNodesByDataspaceAndAnchorAndCpsPath
     parameters:
+      - $ref: 'components.yml#/components/parameters/apiVersionInPath'
       - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
       - $ref: 'components.yml#/components/parameters/anchorNameInPath'
       - $ref: 'components.yml#/components/parameters/cpsPathInQuery'

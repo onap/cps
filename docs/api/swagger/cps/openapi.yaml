@@ -29,6 +29,7 @@ paths:
       summary: Create a dataspace
       description: Create a new dataspace
       operationId: createDataspace
+      deprecated: true
       parameters:
       - name: dataspace-name
         in: query
@@ -95,6 +96,75 @@ paths:
                 status: 500
                 message: Internal Server Error
                 details: Internal Server Error occurred
+  /v2/dataspaces:
+    post:
+      tags:
+      - cps-admin
+      summary: Create a dataspace
+      description: Create a new dataspace
+      operationId: createDataspaceV2
+      parameters:
+      - name: dataspace-name
+        in: query
+        description: dataspace-name
+        required: true
+        schema:
+          type: string
+          example: my-dataspace
+      responses:
+        "201":
+          description: Created
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 400
+                message: Bad Request
+                details: The provided request is not valid
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 401
+                message: Unauthorized request
+                details: This request is unauthorized
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 403
+                message: Request Forbidden
+                details: This request is forbidden
+        "409":
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 409
+                message: Conflicting request
+                details: The request cannot be processed as the resource is in use.
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 500
+                message: Internal Server Error
+                details: Internal Server Error occurred
+  /{apiVersion}/dataspaces:
     delete:
       tags:
       - cps-admin
@@ -102,6 +172,14 @@ paths:
       description: Delete a dataspace
       operationId: deleteDataspace
       parameters:
+      - name: apiVersion
+        in: path
+        description: api version
+        required: true
+        schema:
+          type: string
+          enum: [v1, v2]
+          default: v2
       - name: dataspace-name
         in: query
         description: dataspace-name
@@ -163,13 +241,22 @@ paths:
                 status: 500
                 message: Internal Server Error
                 details: Internal Server Error occurred
-  /v1/admin/dataspaces:
+  /{apiVersion}/admin/dataspaces:
     get:
       tags:
       - cps-admin
       summary: Get dataspaces
       description: "Read all dataspaces"
       operationId: getAllDataspaces
+      parameters:
+      - name: apiVersion
+        in: path
+        description: api version
+        required: true
+        schema:
+          type: string
+          enum: [v1, v2]
+          default: v2
       responses:
         "200":
           description: OK
@@ -219,7 +306,7 @@ paths:
                 status: 500
                 message: Internal Server Error
                 details: Internal Server Error occurred
-  /v1/admin/dataspaces/{dataspace-name}:
+  /{apiVersion}/admin/dataspaces/{dataspace-name}:
     get:
       tags:
       - cps-admin
@@ -227,6 +314,14 @@ paths:
       description: Read an dataspace given a dataspace name
       operationId: getDataspace
       parameters:
+      - name: apiVersion
+        in: path
+        description: api version
+        required: true
+        schema:
+          type: string
+          enum: [v1, v2]
+          default: v2
       - name: dataspace-name
         in: path
         description: dataspace-name
@@ -281,7 +376,7 @@ paths:
                 status: 500
                 message: Internal Server Error
                 details: Internal Server Error occurred
-  /v1/dataspaces/{dataspace-name}/anchors:
+  /{apiVersion}/dataspaces/{dataspace-name}/anchors:
     get:
       tags:
       - cps-admin
@@ -289,6 +384,14 @@ paths:
       description: "Read all anchors, given a dataspace"
       operationId: getAnchors
       parameters:
+      - name: apiVersion
+        in: path
+        description: api version
+        required: true
+        schema:
+          type: string
+          enum: [v1, v2]
+          default: v2
       - name: dataspace-name
         in: path
         description: dataspace-name
@@ -345,10 +448,12 @@ paths:
                 status: 500
                 message: Internal Server Error
                 details: Internal Server Error occurred
+  /v1/dataspaces/{dataspace-name}/anchors:
     post:
       tags:
       - cps-admin
       summary: Create an anchor
+      deprecated: true
       description: Create a new anchor in the given dataspace
       operationId: createAnchor
       parameters:
@@ -431,7 +536,90 @@ paths:
                 status: 500
                 message: Internal Server Error
                 details: Internal Server Error occurred
-  /v1/dataspaces/{dataspace-name}/anchors/{anchor-name}:
+  /v2/dataspaces/{dataspace-name}/anchors:
+    post:
+      tags:
+      - cps-admin
+      summary: Create an anchor
+      deprecated: true
+      description: Create a new anchor in the given dataspace
+      operationId: createAnchorV2
+      parameters:
+      - name: dataspace-name
+        in: path
+        description: dataspace-name
+        required: true
+        schema:
+          type: string
+          example: my-dataspace
+      - name: schema-set-name
+        in: query
+        description: schema-set-name
+        required: true
+        schema:
+          type: string
+          example: my-schema-set
+      - name: anchor-name
+        in: query
+        description: anchor-name
+        required: true
+        schema:
+          type: string
+          example: my-anchor
+      responses:
+        "201":
+          description: Created
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 400
+                message: Bad Request
+                details: The provided request is not valid
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 401
+                message: Unauthorized request
+                details: This request is unauthorized
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 403
+                message: Request Forbidden
+                details: This request is forbidden
+        "409":
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 409
+                message: Conflicting request
+                details: The request cannot be processed as the resource is in use.
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 500
+                message: Internal Server Error
+                details: Internal Server Error occurred
+  /{apiVersion}/dataspaces/{dataspace-name}/anchors/{anchor-name}:
     get:
       tags:
       - cps-admin
@@ -439,6 +627,14 @@ paths:
       description: Read an anchor given an anchor name and a dataspace
       operationId: getAnchor
       parameters:
+      - name: apiVersion
+        in: path
+        description: api version
+        required: true
+        schema:
+          type: string
+          enum: [v1, v2]
+          default: v2
       - name: dataspace-name
         in: path
         description: dataspace-name
@@ -507,6 +703,14 @@ paths:
       description: Delete an anchor given an anchor name and a dataspace
       operationId: deleteAnchor
       parameters:
+      - name: apiVersion
+        in: path
+        description: api version
+        required: true
+        schema:
+          type: string
+          enum: [v1, v2]
+          default: v2
       - name: dataspace-name
         in: path
         description: dataspace-name
@@ -651,6 +855,88 @@ paths:
                 status: 500
                 message: Internal Server Error
                 details: Internal Server Error occurred
+  /v2/dataspaces/{dataspace-name}/schema-sets:
+    post:
+      tags:
+      - cps-admin
+      summary: Create a schema set
+      description: Create a new schema set in the given dataspace
+      operationId: createSchemaSetV2
+      parameters:
+      - name: dataspace-name
+        in: path
+        description: dataspace-name
+        required: true
+        schema:
+          type: string
+          example: my-dataspace
+      - name: schema-set-name
+        in: query
+        description: schema-set-name
+        required: true
+        schema:
+          type: string
+          example: my-schema-set
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/MultipartFile'
+        required: true
+      responses:
+        "201":
+          description: Created
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 400
+                message: Bad Request
+                details: The provided request is not valid
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 401
+                message: Unauthorized request
+                details: This request is unauthorized
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 403
+                message: Request Forbidden
+                details: This request is forbidden
+        "409":
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 409
+                message: Conflicting request
+                details: The request cannot be processed as the resource is in use.
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 500
+                message: Internal Server Error
+                details: Internal Server Error occurred
+  /{apiVersion}/dataspaces/{dataspace-name}/schema-sets:
     get:
       tags:
       - cps-admin
@@ -658,13 +944,21 @@ paths:
       description: "Read schema sets for a given dataspace"
       operationId: getSchemaSets
       parameters:
-        - name: dataspace-name
-          in: path
-          description: dataspace-name
-          required: true
-          schema:
-            type: string
-            example: my-dataspace
+      - name: apiVersion
+        in: path
+        description: api version
+        required: true
+        schema:
+          type: string
+          enum: [v1, v2]
+          default: v2
+      - name: dataspace-name
+        in: path
+        description: dataspace-name
+        required: true
+        schema:
+          type: string
+          example: my-dataspace
       responses:
         "200":
           description: OK
@@ -714,7 +1008,7 @@ paths:
                 status: 500
                 message: Internal Server Error
                 details: Internal Server Error occurred
-  /v1/dataspaces/{dataspace-name}/schema-sets/{schema-set-name}:
+  /{apiVersion}/dataspaces/{dataspace-name}/schema-sets/{schema-set-name}:
     get:
       tags:
       - cps-admin
@@ -722,6 +1016,14 @@ paths:
       description: Read a schema set given a schema set name and a dataspace
       operationId: getSchemaSet
       parameters:
+      - name: apiVersion
+        in: path
+        description: api version
+        required: true
+        schema:
+          type: string
+          enum: [v1, v2]
+          default: v2
       - name: dataspace-name
         in: path
         description: dataspace-name
@@ -790,6 +1092,14 @@ paths:
       description: Delete a schema set given a schema set name and a dataspace
       operationId: deleteSchemaSet
       parameters:
+      - name: apiVersion
+        in: path
+        description: api version
+        required: true
+        schema:
+          type: string
+          enum: [v1, v2]
+          default: v2
       - name: dataspace-name
         in: path
         description: dataspace-name
@@ -858,7 +1168,7 @@ paths:
                 status: 500
                 message: Internal Server Error
                 details: Internal Server Error occurred
-  /v1/dataspaces/{dataspace-name}/anchors/{anchor-name}/node:
+  /{apiVersion}/dataspaces/{dataspace-name}/anchors/{anchor-name}/node:
     get:
       tags:
       - cps-data
@@ -867,6 +1177,14 @@ paths:
         anchor and dataspace
       operationId: getNodeByDataspaceAndAnchor
       parameters:
+      - name: apiVersion
+        in: path
+        description: api version
+        required: true
+        schema:
+          type: string
+          enum: [v1, v2]
+          default: v2
       - name: dataspace-name
         in: path
         description: dataspace-name
@@ -952,7 +1270,7 @@ paths:
                 message: Internal Server Error
                 details: Internal Server Error occurred
       x-codegen-request-body-name: xpath
-  /v1/dataspaces/{dataspace-name}/anchors/{anchor-name}/nodes:
+  /{apiVersion}/dataspaces/{dataspace-name}/anchors/{anchor-name}/nodes:
     put:
       tags:
       - cps-data
@@ -961,6 +1279,14 @@ paths:
         \ and a parent node xpath"
       operationId: replaceNode
       parameters:
+      - name: apiVersion
+        in: path
+        description: api version
+        required: true
+        schema:
+          type: string
+          enum: [v1, v2]
+          default: v2
       - name: dataspace-name
         in: path
         description: dataspace-name
@@ -1060,6 +1386,14 @@ paths:
       description: Create a node for a given anchor and dataspace
       operationId: createNode
       parameters:
+      - name: apiVersion
+        in: path
+        description: api version
+        required: true
+        schema:
+          type: string
+          enum: [v1, v2]
+          default: v2
       - name: dataspace-name
         in: path
         description: dataspace-name
@@ -1168,6 +1502,14 @@ paths:
         xpath.
       operationId: deleteDataNode
       parameters:
+      - name: apiVersion
+        in: path
+        description: api version
+        required: true
+        schema:
+          type: string
+          enum: [v1, v2]
+          default: v2
       - name: dataspace-name
         in: path
         description: dataspace-name
@@ -1253,6 +1595,14 @@ paths:
         a parent node xpath
       operationId: updateNodeLeaves
       parameters:
+      - name: apiVersion
+        in: path
+        description: api version
+        required: true
+        schema:
+          type: string
+          enum: [v1, v2]
+          default: v2
       - name: dataspace-name
         in: path
         description: dataspace-name
@@ -1345,7 +1695,7 @@ paths:
                 status: 500
                 message: Internal Server Error
                 details: Internal Server Error occurred
-  /v1/dataspaces/{dataspace-name}/anchors/{anchor-name}/list-nodes:
+  /{apiVersion}/dataspaces/{dataspace-name}/anchors/{anchor-name}/list-nodes:
     put:
       tags:
       - cps-data
@@ -1353,6 +1703,14 @@ paths:
       description: "Replace list content under a given parent, anchor and dataspace"
       operationId: replaceListContent
       parameters:
+      - name: apiVersion
+        in: path
+        description: api version
+        required: true
+        schema:
+          type: string
+          enum: [v1, v2]
+          default: v2
       - name: dataspace-name
         in: path
         description: dataspace-name
@@ -1451,6 +1809,14 @@ paths:
       description: Add list element(s) to a list for a given anchor and dataspace
       operationId: addListElements
       parameters:
+      - name: apiVersion
+        in: path
+        description: api version
+        required: true
+        schema:
+          type: string
+          enum: [v1, v2]
+          default: v2
       - name: dataspace-name
         in: path
         description: dataspace-name
@@ -1547,6 +1913,14 @@ paths:
       description: Delete one or all list element(s) for a given anchor and dataspace
       operationId: deleteListOrListElement
       parameters:
+      - name: apiVersion
+        in: path
+        description: api version
+        required: true
+        schema:
+          type: string
+          enum: [v1, v2]
+          default: v2
       - name: dataspace-name
         in: path
         description: dataspace-name
@@ -1624,7 +1998,7 @@ paths:
                 message: Internal Server Error
                 details: Internal Server Error occurred
       deprecated: true
-  /v1/dataspaces/{dataspace-name}/anchors/{anchor-name}/nodes/query:
+  /{apiVersion}/dataspaces/{dataspace-name}/anchors/{anchor-name}/nodes/query:
     get:
       tags:
       - cps-query
@@ -1632,6 +2006,14 @@ paths:
       description: Query data nodes for the given dataspace and anchor using CPS path
       operationId: getNodesByDataspaceAndAnchorAndCpsPath
       parameters:
+      - name: apiVersion
+        in: path
+        description: api version
+        required: true
+        schema:
+          type: string
+          enum: [v1, v2]
+          default: v2
       - name: dataspace-name
         in: path
         description: dataspace-name
