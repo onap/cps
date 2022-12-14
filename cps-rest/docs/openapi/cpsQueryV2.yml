@@ -47,3 +47,34 @@ nodesByDataspaceAndAnchorAndCpsPath:
       '500':
         $ref: 'components.yml#/components/responses/InternalServerError'
     x-codegen-request-body-name: xpath
+
+nodesByDataspaceAndCpsPath:
+  get:
+    description: Query data nodes for the given dataspace across anchors using CPS path
+    tags:
+      - cps-query
+    summary: Query data nodes
+    operationId: getNodesByDataspaceAndCpsPath
+    parameters:
+      - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
+      - $ref: 'components.yml#/components/parameters/cpsPathInQuery'
+      - $ref: 'components.yml#/components/parameters/descendantsInQuery'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: object
+            examples:
+              dataSample:
+                $ref: 'components.yml#/components/examples/dataSampleAcrossAnchors'
+      '400':
+        $ref: 'components.yml#/components/responses/BadRequest'
+      '401':
+        $ref: 'components.yml#/components/responses/Unauthorized'
+      '403':
+        $ref: 'components.yml#/components/responses/Forbidden'
+      '500':
+        $ref: 'components.yml#/components/responses/InternalServerError'
+    x-codegen-request-body-name: xpath

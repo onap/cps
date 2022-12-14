@@ -2,7 +2,7 @@
  * ============LICENSE_START=======================================================
  * Copyright (c) 2021 Bell Canada.
  * Modifications Copyright (C) 2021-2023 Nordix Foundation
- * Modifications Copyright (C) 2022 TechMahindra Ltd.
+ * Modifications Copyright (C) 2022-2023 TechMahindra Ltd.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -144,11 +144,11 @@ class CpsDataPersistenceServiceSpec extends Specification {
 
     def 'Retrieving multiple data nodes.'() {
         given: 'db contains an anchor'
-           def anchorEntity = new AnchorEntity(id:123)
+           def anchorEntity = new AnchorEntity(id:123, name: 'anchor01')
            mockAnchorRepository.getByDataspaceAndName(*_) >> anchorEntity
         and: 'fragment repository returns a collection of fragments'
-            def fragmentEntity1 = new FragmentEntity(xpath: '/xpath1', childFragments: [])
-            def fragmentEntity2 = new FragmentEntity(xpath: '/xpath2', childFragments: [])
+            def fragmentEntity1 = new FragmentEntity(xpath: '/xpath1', childFragments: [], anchor: anchorEntity)
+            def fragmentEntity2 = new FragmentEntity(xpath: '/xpath2', childFragments: [], anchor: anchorEntity)
             mockFragmentRepository.findByAnchorAndMultipleCpsPaths(123, ['/xpath1', '/xpath2'] as Set<String>) >> [fragmentEntity1, fragmentEntity2]
         when: 'getting data nodes for 2 xpaths'
             def result = objectUnderTest.getDataNodes('some-dataspace', 'some-anchor', ['/xpath1', '/xpath2'], FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
