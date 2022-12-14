@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "72c89a87_fd9deaeb",
+        "filename": "cps-ncmp-rest-stub/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-12-14T12:34:28Z",
+      "side": 1,
+      "message": "add 2022 nordix",
+      "revId": "094fc71427c8d3fe5ff23dd911cbec370843333e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
