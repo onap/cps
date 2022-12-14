@@ -3,7 +3,7 @@
  *  Copyright (C) 2021-2023 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
- *  Modifications Copyright (C) 2022 TechMahindra Ltd.
+ *  Modifications Copyright (C) 2022-2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -352,6 +352,40 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         return createDataNodesFromProxiedFragmentEntities(fetchDescendantsOption, anchorEntity, fragmentEntities);
     }
 
+    @Override
+    public List<DataNode> queryDataNodesAcrossAnchors(final String dataspaceName, final String cpsPath,
+                                         final FetchDescendantsOption fetchDescendantsOption) {
+        final CpsPathQuery cpsPathQuery;
+        try {
+            cpsPathQuery = CpsPathUtil.getCpsPathQuery(cpsPath);
+        } catch (final PathParsingException e) {
+            throw new CpsPathException(e.getMessage());
+        }
+
+        Collection<FragmentEntity> fragmentEntities;
+        if (canUseRegexQuickFind(fetchDescendantsOption, cpsPathQuery)) {
+            return getDataNodesUsingRegexQuickFindAcrossAnchor(fetchDescendantsOption, cpsPathQuery);
+        }
+        fragmentEntities = fragmentRepository.findByCpsPath(cpsPathQuery);
+        if (cpsPathQuery.hasAncestorAxis()) {
+            fragmentEntities = getAncestorFragmentEntitiesAcrossAnchor(cpsPathQuery, fragmentEntities);
+        }
+        return createDataNodesFromProxiedFragmentEntitiesAcrossAnchor(fetchDescendantsOption, fragmentEntities);
+    }
+
+    private List<DataNode> getDataNodesUsingRegexQuickFindAcrossAnchor(
+            final FetchDescendantsOption fetchDescendantsOption, final CpsPathQuery cpsPathQuery) {
+        Collection<FragmentEntity> fragmentEntities;
+        final String xpathRegex = FragmentQueryBuilder.getXpathSqlRegex(cpsPathQuery, true);
+        final List<FragmentExtract> fragmentExtracts =
+                fragmentRepository.quickFindWithDescendantsAcrossAnchor(xpathRegex);
+        fragmentEntities = FragmentEntityArranger.toFragmentEntityTreesAcrossAnchor(fragmentExtracts);
+        if (cpsPathQuery.hasAncestorAxis()) {
+            fragmentEntities = getAncestorFragmentEntitiesAcrossAnchors(cpsPathQuery, fragmentEntities);
+        }
+        return createDataNodesFromFragmentEntities(fetchDescendantsOption, fragmentEntities);
+    }
+
     private static boolean canUseRegexQuickFind(final FetchDescendantsOption fetchDescendantsOption,
                                                 final CpsPathQuery cpsPathQuery) {
         return fetchDescendantsOption.equals(FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
@@ -381,6 +415,15 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             : fragmentRepository.findByAnchorAndMultipleCpsPaths(anchorId, ancestorXpaths);
     }
 
+    private Collection<FragmentEntity> getAncestorFragmentEntitiesAcrossAnchor(
+                                                                   final CpsPathQuery cpsPathQuery,
+                                                                   Collection<FragmentEntity> fragmentEntities) {
+        final Set<String> ancestorXpaths = processAncestorXpath(fragmentEntities, cpsPathQuery);
+        fragmentEntities = ancestorXpaths.isEmpty() ? Collections.emptyList()
+                : fragmentRepository.findAllByXpathIn(ancestorXpaths);
+        return fragmentEntities;
+    }
+
     private List<DataNode> createDataNodesFromProxiedFragmentEntities(
                                             final FetchDescendantsOption fetchDescendantsOption,
                                             final AnchorEntity anchorEntity,
@@ -401,6 +444,26 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         return Collections.unmodifiableList(dataNodes);
     }
 
+    private List<DataNode> createDataNodesFromProxiedFragmentEntitiesAcrossAnchor(
+            final FetchDescendantsOption fetchDescendantsOption,
+            final Collection<FragmentEntity> proxiedFragmentEntities) {
+        final List<DataNode> dataNodes = new ArrayList<>(proxiedFragmentEntities.size());
+        for (final FragmentEntity proxiedFragmentEntity : proxiedFragmentEntities) {
+            if (FetchDescendantsOption.OMIT_DESCENDANTS.equals(fetchDescendantsOption)) {
+                dataNodes.add(toDataNode(proxiedFragmentEntity, fetchDescendantsOption));
+            } else {
+                final String normalizedXpath = getNormalizedXpath(proxiedFragmentEntity.getXpath());
+                final AnchorEntity anchorEntity = proxiedFragmentEntity.getAnchor();
+                final Collection<FragmentEntity> unproxiedFragmentEntities =
+                        buildFragmentEntitiesFromFragmentExtracts(anchorEntity, normalizedXpath);
+                for (final FragmentEntity unproxiedFragmentEntity : unproxiedFragmentEntities) {
+                    dataNodes.add(toDataNode(unproxiedFragmentEntity, fetchDescendantsOption));
+                }
+            }
+        }
+        return Collections.unmodifiableList(dataNodes);
+    }
+   
     private List<DataNode> createDataNodesFromFragmentEntities(final FetchDescendantsOption fetchDescendantsOption,
                                                                final Collection<FragmentEntity> fragmentEntities) {
         final List<DataNode> dataNodes = new ArrayList<>(fragmentEntities.size());
@@ -461,6 +524,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         return new DataNodeBuilder()
                 .withXpath(fragmentEntity.getXpath())
                 .withLeaves(leaves)
+                .withAnchor(fragmentEntity.getAnchor().getName())
                 .withChildDataNodes(childDataNodes).build();
     }
 
@@ -749,6 +813,14 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         return childEntities.stream()
                 .filter(fragmentEntity -> fragmentEntity.getXpath().startsWith(listElementXpathPrefix))
                 .collect(Collectors.toMap(FragmentEntity::getXpath, fragmentEntity -> fragmentEntity));
+    }
+
+    private Collection<FragmentEntity> getAncestorFragmentEntitiesAcrossAnchors(final CpsPathQuery cpsPathQuery,
+                                                                   Collection<FragmentEntity> fragmentEntities) {
+        final Set<String> ancestorXpaths = processAncestorXpath(fragmentEntities, cpsPathQuery);
+        fragmentEntities = ancestorXpaths.isEmpty() ? Collections.emptyList()
+                : fragmentRepository.findAllByXpathIn(ancestorXpaths);
+        return fragmentEntities;
     }
 
     private static boolean isRootXpath(final String xpath) {
