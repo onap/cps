@@ -3,6 +3,7 @@
  *  Copyright (C) 2021-2022 Nordix Foundation
  *  Modifications Copyright (C) 2021-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -75,6 +76,33 @@ class QueryRestControllerSpec extends Specification {
                                     .param('cps-path', cpsPath)
                                     .param('include-descendants', includeDescendantsOption))
                             .andReturn().response
+        then: 'the response contains the the datanode in json format'
+            response.status == HttpStatus.OK.value()
+            response.getContentAsString().contains('{"xpath":{"leaf":"value","leafList":["leaveListElement1","leaveListElement2"]}}')
+        where: 'the following options for include descendants are provided in the request'
+            scenario                    | includeDescendantsOption || expectedCpsDataServiceOption
+            'no descendants by default' | ''                       || OMIT_DESCENDANTS
+            'no descendant explicitly'  | 'false'                  || OMIT_DESCENDANTS
+            'descendants'               | 'true'                   || INCLUDE_ALL_DESCENDANTS
+    }
+
+    def 'Query data node by cps path for the given dataspace across all anchors with #scenario.'() {
+        given: 'service method returns a list containing a data node'
+            def dataNode1 = new DataNodeBuilder().withXpath('/xpath')
+                .withAnchor('my_anchor')
+                .withLeaves([leaf: 'value', leafList: ['leaveListElement1', 'leaveListElement2']]).build()
+            def dataspaceName = 'my_dataspace'
+            def cpsPath = 'some cps-path'
+            mockCpsQueryService.queryDataNodesAcrossAnchors(dataspaceName, cpsPath, expectedCpsDataServiceOption) >> [dataNode1, dataNode1]
+        and: 'the query endpoint'
+            def dataNodeEndpoint = "$basePath/v2/dataspaces/$dataspaceName/nodes/query"
+        when: 'query data nodes API is invoked'
+            def response =
+                mvc.perform(
+                        get(dataNodeEndpoint)
+                                .param('cps-path', cpsPath)
+                                .param('include-descendants', includeDescendantsOption))
+                        .andReturn().response
         then: 'the response contains the the datanode in json format'
             response.status == HttpStatus.OK.value()
             response.getContentAsString().contains('{"xpath":{"leaf":"value","leafList":["leaveListElement1","leaveListElement2"]}}')
