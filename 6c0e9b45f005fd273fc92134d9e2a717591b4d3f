@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "e9687187_54300da9",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-12-14T17:02:20Z",
+      "side": 1,
+      "message": "NB: addNewChildDataNodes",
+      "range": {
+        "startLine": 93,
+        "startChar": 16,
+        "endLine": 93,
+        "endChar": 39
+      },
+      "revId": "6c0e9b45f005fd273fc92134d9e2a717591b4d3f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "88544c69_0a0615cf",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 18
@@ -41,6 +64,29 @@
         "startChar": 35,
         "endLine": 177,
         "endChar": 55
+      },
+      "revId": "6c0e9b45f005fd273fc92134d9e2a717591b4d3f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fc7c9a7e_9d952396",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-12-14T17:02:20Z",
+      "side": 1,
+      "message": "This is not a batch operation as it has failed on individually storing nodes. Also I don\u0027t think we could say that they are already defined. Perhaps a new exception for this is needed? \nTeams thoughts?",
+      "range": {
+        "startLine": 216,
+        "startChar": 22,
+        "endLine": 216,
+        "endChar": 50
       },
       "revId": "6c0e9b45f005fd273fc92134d9e2a717591b4d3f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
