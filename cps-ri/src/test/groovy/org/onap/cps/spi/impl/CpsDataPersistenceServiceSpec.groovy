@@ -2,7 +2,7 @@
  * ============LICENSE_START=======================================================
  * Copyright (c) 2021 Bell Canada.
  * Modifications Copyright (C) 2021-2023 Nordix Foundation
- * Modifications Copyright (C) 2022 TechMahindra Ltd.
+ * Modifications Copyright (C) 2022-2023 TechMahindra Ltd.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -273,7 +273,7 @@ class CpsDataPersistenceServiceSpec extends Specification {
     }
 
     def mockFragmentWithJson(json) {
-        def fragmentExtract = mockFragmentExtract(456, null, null, '/parent-01', json)
+        def fragmentExtract = mockFragmentExtract(456, null, 123, '/parent-01', json)
         mockFragmentRepository.findExtractsWithDescendants(123, ['/parent-01'] as Set, _) >> [fragmentExtract]
     }
 
