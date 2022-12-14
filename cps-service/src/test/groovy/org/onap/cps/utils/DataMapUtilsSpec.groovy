@@ -3,6 +3,7 @@
  *  Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2020-2022 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada.
+ *  Modifications Copyright (C) 2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -37,8 +38,21 @@ class DataMapUtilsSpec extends Specification {
             ),
     ])
 
+    def dataNodeWithAnchor = buildDataNodeWithAnchor(
+            "/parent", 'anchor01',[parentLeaf:'parentLeafValue', parentLeafList:['parentLeafListEntry1','parentLeafListEntry2']],[
+            buildDataNode('/parent/child-list[@id=1/2]',[listElementLeaf:'listElement1leafValue'],noChildren),
+            buildDataNode('/parent/child-list[@id=2]',[listElementLeaf:'listElement2leafValue'],noChildren),
+            buildDataNode('/parent/child-object',[childLeaf:'childLeafValue'],
+                    [buildDataNode('/parent/child-object/grand-child-object',[grandChildLeaf:'grandChildLeafValue'],noChildren)]
+            ),
+    ])
+
     static def buildDataNode(xpath,  leaves,  children) {
         return new DataNodeBuilder().withXpath(xpath).withLeaves(leaves).withChildDataNodes(children).build()
+    }
+
+    static def buildDataNodeWithAnchor(xpath, anchorName, leaves,  children) {
+        return new DataNodeBuilder().withXpath(xpath).withAnchor(anchorName).withLeaves(leaves).withChildDataNodes(children).build()
     }
 
     def 'Data node structure conversion to map.'() {
@@ -89,6 +103,24 @@ class DataMapUtilsSpec extends Specification {
             'xpath contains list attribute'         | '/bookstore/categories[@code=1]'          | 'sampleModuleName:categories'
             'xpath contains list attributes with /' | '/bookstore/categories[@code=1/2]'        | 'sampleModuleName:categories'
 
+    }
+
+    def 'Data node structure with anchor name conversion to map with root node identifier.'() {
+        when: 'data node structure is converted to a map with root node identifier'
+            def result = DataMapUtils.toDataMapWithIdentifierAndAnchor(dataNodeWithAnchor, dataNodeWithAnchor.moduleNamePrefix)
+        then: 'root node leaves are populated under its node identifier'
+            def parentNode = result.get("dataNode").parent
+            parentNode.parentLeaf == 'parentLeafValue'
+            parentNode.parentLeafList == ['parentLeafListEntry1','parentLeafListEntry2']
+
+        and: 'leaves for child element is populated under its node identifier'
+            assert parentNode.'child-object'.childLeaf == 'childLeafValue'
+
+        and: 'leaves for grandchild element is populated under its node identifier'
+            assert parentNode.'child-object'.'grand-child-object'.grandChildLeaf == 'grandChildLeafValue'
+
+        and: 'data node is associated with anchor name'
+            assert result.get('anchorName') == 'anchor01'
     }
 }
 

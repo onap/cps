@@ -67,4 +67,25 @@ public class QueryRestController implements CpsQueryApi {
 
         return new ResponseEntity<>(jsonObjectMapper.asJsonString(dataMaps), HttpStatus.OK);
     }
+
+    @Override
+    public ResponseEntity<Object> getNodesByDataspaceAndCpsPath(final String dataspaceName,
+        final String cpsPath, final Boolean includeDescendants) {
+        final FetchDescendantsOption fetchDescendantsOption = Boolean.TRUE.equals(includeDescendants)
+                ? FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS : FetchDescendantsOption.OMIT_DESCENDANTS;
+        final Collection<DataNode> dataNodes =
+                cpsQueryService.queryDataNodesAcrossAnchors(dataspaceName, cpsPath, fetchDescendantsOption);
+        final List<Map<String, Object>> dataMaps = new ArrayList<>(dataNodes.size());
+        String prefix = null;
+        for (final DataNode dataNode : dataNodes) {
+            if (prefix == null) {
+                prefix = prefixResolver.getPrefix(dataspaceName, dataNode.getAnchorName(), dataNode.getXpath());
+            }
+            final Map<String, Object> dataMap = DataMapUtils.toDataMapWithIdentifierAndAnchor(dataNode, prefix);
+            dataMaps.add(dataMap);
+        }
+
+        return new ResponseEntity<>(jsonObjectMapper.asJsonString(dataMaps), HttpStatus.OK);
+    }
+
 }
