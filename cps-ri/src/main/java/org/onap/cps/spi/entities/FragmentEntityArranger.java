@@ -50,13 +50,15 @@ public class FragmentEntityArranger {
     private static FragmentEntity toFragmentEntity(final AnchorEntity anchorEntity,
                                                    final FragmentExtract fragmentExtract) {
         final FragmentEntity fragmentEntity = new FragmentEntity();
-        fragmentEntity.setAnchor(anchorEntity);
+        if (anchorEntity != null) {
+            fragmentEntity.setAnchor(anchorEntity);
+            fragmentEntity.setDataspace(anchorEntity.getDataspace());
+        }
         fragmentEntity.setId(fragmentExtract.getId());
         fragmentEntity.setXpath(fragmentExtract.getXpath());
         fragmentEntity.setAttributes(fragmentExtract.getAttributes());
         fragmentEntity.setParentId(fragmentExtract.getParentId());
         fragmentEntity.setChildFragments(new HashSet<>());
-        fragmentEntity.setDataspace(anchorEntity.getDataspace());
         return fragmentEntity;
     }
 
