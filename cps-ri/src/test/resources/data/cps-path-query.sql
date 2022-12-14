@@ -2,6 +2,7 @@
    ============LICENSE_START=======================================================
     Copyright (C) 2021-2022 Nordix Foundation.
     Modifications Copyright (C) 2021 Bell Canada.
+    Modifications Copyright (C) 2023 TechMahindra Ltd.
    ================================================================================
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -50,6 +51,9 @@ INSERT INTO SCHEMA_SET_YANG_RESOURCES (SCHEMA_SET_ID, YANG_RESOURCE_ID) VALUES
 INSERT INTO ANCHOR (ID, NAME, DATASPACE_ID, SCHEMA_SET_ID) VALUES
     (1003, 'ANCHOR-004', 1001, 2001);
 
+INSERT INTO ANCHOR (ID, NAME, DATASPACE_ID, SCHEMA_SET_ID) VALUES
+    (1004, 'ANCHOR-005', 1001, 2001);
+
 INSERT INTO FRAGMENT (ID, DATASPACE_ID, ANCHOR_ID, PARENT_ID, XPATH, ATTRIBUTES) VALUES
     (1, 1001, 1003, null, '/shops', null),
     (2, 1001, 1003, 1, '/shops/shop[@id=''1'']', '{"id" : 1, "type" : "bookstore"}'),
@@ -76,3 +80,30 @@ INSERT INTO FRAGMENT (ID, DATASPACE_ID, ANCHOR_ID, PARENT_ID, XPATH, ATTRIBUTES)
     (18, 1001, 1003, 17, '/shops/shop[@id=''3'']/info/contact/website', '{"address" : "myshop.ie"}'),
     (19, 1001, 1003, 17, '/shops/shop[@id=''3'']/info/contact/phonenumbers[@type=''mob'']', '{"type" : "mob", "number" : "123123456"}'),
     (20, 1001, 1003, 17, '/shops/shop[@id=''3'']/info/contact/phonenumbers[@type=''landline'']', '{"type" : "landline", "number" : "012123456"}');
+
+    INSERT INTO FRAGMENT (ID, DATASPACE_ID, ANCHOR_ID, PARENT_ID, XPATH, ATTRIBUTES) VALUES
+    (41, 1001, 1004, null, '/shops', null),
+    (42, 1001, 1004, 1, '/shops/shop[@id=''1'']', '{"id" : 1, "type" : "bookstore"}'),
+    (43, 1001, 1004, 2, '/shops/shop[@id=''1'']/categories[@code=''1'']', '{"code" : 1, "type" : "bookstore", "name": "SciFi"}'),
+    (44, 1001, 1004, 2, '/shops/shop[@id=''1'']/categories[@code=''2'']', '{"code" : 2, "type" : "bookstore", "name": "Fiction"}'),
+    (71, 1001, 1004, 2, '/shops/shop[@id=''1'']/categories[@code=''string/with/slash/'']', '{"code" : "string/with/slash", "type" : "text/with/slash", "name": "Fiction"}'),
+    (45, 1001, 1004, 3, '/shops/shop[@id=''1'']/categories[@code=''1'']/book', '{"price" :  5, "title" : "Dune", "labels" : ["special offer","classics",""]}'),
+    (46, 1001, 1004, 4, '/shops/shop[@id=''1'']/categories[@code=''2'']/book', '{"price" : 15, "title" : "Chapters", "editions" : [2000,2010,2020]}'),
+    (47, 1001, 1004, 5, '/shops/shop[@id=''1'']/categories[@code=''1'']/book/author[@FirstName=''Joe'' and @Surname=''Bloggs'']', '{"FirstName" : "Joe", "Surname": "Bloggs","title": "Dune"}'),
+    (48, 1001, 1004, 6, '/shops/shop[@id=''1'']/categories[@code=''2'']/book/author[@FirstName=''Joe'' and @Surname=''Smith'']', '{"FirstName" : "Joe", "Surname": "Smith","title": "Chapters"}'),
+    (72, 1001, 1004, 6, '/shops/shop[@id=''1'']/categories[@code=''2'']/book/author[@FirstName=''Joe'' and @Address=''string[with]square[brackets]'']', '{"FirstName" : "Joe", "Address": "string[with]square[brackets]","title": "Chapters"}');
+
+    INSERT INTO FRAGMENT (ID, DATASPACE_ID, ANCHOR_ID, PARENT_ID, XPATH, ATTRIBUTES) VALUES
+    (49, 1001, 1004, 1, '/shops/shop[@id=''2'']', '{"type" : "bookstore"}'),
+    (50, 1001, 1004, 9, '/shops/shop[@id=''2'']/categories[@code=''1'']', '{"code" : 2, "type" : "bookstore", "name": "Kids"}'),
+    (51, 1001, 1004, 10, '/shops/shop[@id=''2'']/categories[@code=''2'']', '{"code" : 2, "type" : "bookstore", "name": "Fiction"}');
+
+    INSERT INTO FRAGMENT (ID, DATASPACE_ID, ANCHOR_ID, PARENT_ID, XPATH, ATTRIBUTES) VALUES
+    (52, 1001, 1004, 1, '/shops/shop[@id=''3'']', '{"type" : "garden centre"}'),
+    (53, 1001, 1004, 12, '/shops/shop[@id=''3'']/categories[@code=''1'']', '{"id" : 1, "type" : "garden centre", "name": "indoor plants"}'),
+    (54, 1001, 1004, 12, '/shops/shop[@id=''3'']/categories[@code=''2'']', '{"id" : 2, "type" : "garden centre", "name": "outdoor plants"}'),
+    (56, 1001, 1004, 1, '/shops/shop[@id=''3'']/info', null),
+    (57, 1001, 1004, 1, '/shops/shop[@id=''3'']/info/contact', null),
+    (58, 1001, 1004, 17, '/shops/shop[@id=''3'']/info/contact/website', '{"address" : "myshop.ie"}'),
+    (59, 1001, 1004, 17, '/shops/shop[@id=''3'']/info/contact/phonenumbers[@type=''mob'']', '{"type" : "mob", "number" : "123123456"}'),
+    (60, 1001, 1004, 17, '/shops/shop[@id=''3'']/info/contact/phonenumbers[@type=''landline'']', '{"type" : "landline", "number" : "012123456"}');
