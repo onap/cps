@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4ded9dd5_34a01334",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-12-14T12:11:52Z",
+      "side": 1,
+      "message": "just a thought for here and for the other v1 method names --- since v2 would be createDataspaceV2 - would it be a consistent way to make v1 methods \u0027createDataspaceV1\u0027?",
+      "range": {
+        "startLine": 66,
+        "startChar": 34,
+        "endLine": 66,
+        "endChar": 50
+      },
+      "revId": "d794381cf0710f1d9631a952f0f44810288ef4c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b9c4da4_903b3fd9",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-12-14T12:11:52Z",
+      "side": 1,
+      "message": "apiVersion is not used here ? similar for some methods below",
+      "range": {
+        "startLine": 90,
+        "startChar": 54,
+        "endLine": 90,
+        "endChar": 72
+      },
+      "revId": "d794381cf0710f1d9631a952f0f44810288ef4c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
