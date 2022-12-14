@@ -191,6 +191,19 @@ public interface CpsDataPersistenceService {
                                   String cpsPath, FetchDescendantsOption fetchDescendantsOption);
 
     /**
+     * Get a datanode by dataspace name and cps path across all anchors.
+     *
+     * @param dataspaceName          dataspace name
+     * @param cpsPath                cps path
+     * @param fetchDescendantsOption defines whether the descendants of the node(s) found by the query should be
+     *                               included in the output
+     * @return the data nodes found i.e. 0 or more data nodes
+     */
+    List<DataNode> queryDataNodesAcrossAnchors(String dataspaceName,
+                                  String cpsPath, FetchDescendantsOption fetchDescendantsOption);
+
+
+    /**
      * Starts a session which allows use of locks and batch interaction with the persistence service.
      *
      * @return Session ID string
