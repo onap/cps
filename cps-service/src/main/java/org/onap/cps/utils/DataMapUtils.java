@@ -3,6 +3,7 @@
  *  Copyright (C) 2021 Pantheon.tech
  *  Modifications (C) 2021-2022 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -46,6 +47,20 @@ public class DataMapUtils {
     public static Map<String, Object> toDataMapWithIdentifier(final DataNode dataNode, final String prefix) {
         final String nodeIdentifierWithPrefix = getNodeIdentifierWithPrefix(dataNode.getXpath(), prefix);
         return ImmutableMap.<String, Object>builder().put(nodeIdentifierWithPrefix, toDataMap(dataNode)).build();
+    }
+
+    /**
+     * Converts DataNode structure into a map including the root node identifier for a JSON response.
+     *
+     * @param dataNode data node object
+     * @return a map representing same data with the root node identifier
+     */
+    public static Map<String, Object> toDataMapWithIdentifierAndAnchor(final DataNode dataNode, final String prefix) {
+        final String nodeIdentifierWithPrefix = getNodeIdentifierWithPrefix(dataNode.getXpath(), prefix);
+        final Map<String, Object> dataMap = ImmutableMap.<String, Object>builder()
+                .put(nodeIdentifierWithPrefix, toDataMap(dataNode)).build();
+        return ImmutableMap.<String, Object>builder().put("anchorName", dataNode.getAnchorName())
+                .put("dataNode", dataMap).build();
     }
 
     /**

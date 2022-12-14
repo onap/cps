@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2020-2022 Nordix Foundation
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -42,4 +43,15 @@ public interface CpsQueryService {
     Collection<DataNode> queryDataNodes(String dataspaceName, String anchorName,
                                         String cpsPath, FetchDescendantsOption fetchDescendantsOption);
 
+    /**
+     * Get data nodes for the given dataspace across all anchors by cps path.
+     *
+     * @param dataspaceName dataspace name
+     * @param cpsPath CPS path
+     * @param fetchDescendantsOption defines whether the descendants of the node(s) found by the query should be
+     *      *                               included in the output
+     * @return a collection of data nodes
+     */
+    Collection<DataNode> queryDataNodesAcrossAnchors(String dataspaceName, String cpsPath,
+                                                     FetchDescendantsOption fetchDescendantsOption);
 }
