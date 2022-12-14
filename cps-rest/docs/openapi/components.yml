@@ -211,6 +211,15 @@ components:
       schema:
         type: string
         example: '2021-03-21T00:10:34.030-0100'
+    apiVersionInPath:
+      name: apiVersion
+      in: path
+      description: apiVersion
+      required: true
+      schema:
+        type: string
+        enum: [v1, v2]
+        default: v2
 
   responses:
     NotFound:
@@ -279,6 +288,8 @@ components:
           schema:
             type: string
             example: my-resource
+    CreatedV2:
+      description: Created without response body
     InternalServerError:
       description: Internal Server Error
       content:
