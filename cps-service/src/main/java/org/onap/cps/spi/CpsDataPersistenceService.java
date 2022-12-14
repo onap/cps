@@ -3,7 +3,7 @@
  *  Copyright (C) 2020-2023 Nordix Foundation.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2022 Bell Canada
- *  Modifications Copyright (C) 2022 TechMahindra Ltd.
+ *  Modifications Copyright (C) 2022-2023 TechMahindra Ltd.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -211,6 +211,19 @@ public interface CpsDataPersistenceService {
      */
     List<DataNode> queryDataNodes(String dataspaceName, String anchorName,
                                   String cpsPath, FetchDescendantsOption fetchDescendantsOption);
+
+    /**
+     * Get a datanode by dataspace name and cps path across all anchors.
+     *
+     * @param dataspaceName          dataspace name
+     * @param cpsPath                cps path
+     * @param fetchDescendantsOption defines whether the descendants of the node(s) found by the query should be
+     *                               included in the output
+     * @return the data nodes found i.e. 0 or more data nodes
+     */
+    List<DataNode> queryDataNodesAcrossAnchors(String dataspaceName,
+                                  String cpsPath, FetchDescendantsOption fetchDescendantsOption);
+
 
     /**
      * Starts a session which allows use of locks and batch interaction with the persistence service.

@@ -1,6 +1,7 @@
 /*-
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2021-2022 Nordix Foundation.
+ *  Modifications Copyright (C) 2023 TechMahindra Ltd.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -43,6 +44,15 @@ public class FragmentRepositoryCpsPathQueryImpl implements FragmentRepositoryCps
     @Transactional
     public List<FragmentEntity> findByAnchorAndCpsPath(final int anchorId, final CpsPathQuery cpsPathQuery) {
         final Query query = fragmentQueryBuilder.getQueryForAnchorAndCpsPath(anchorId, cpsPathQuery);
+        final List<FragmentEntity> fragmentEntities = query.getResultList();
+        log.debug("Fetched {} fragment entities by anchor and cps path.", fragmentEntities.size());
+        return fragmentEntities;
+    }
+
+    @Override
+    @Transactional
+    public List<FragmentEntity> findByCpsPath(final CpsPathQuery cpsPathQuery) {
+        final Query query = fragmentQueryBuilder.getQueryForCpsPath(cpsPathQuery);
         final List<FragmentEntity> fragmentEntities = query.getResultList();
         log.debug("Fetched {} fragment entities by anchor and cps path.", fragmentEntities.size());
         return fragmentEntities;

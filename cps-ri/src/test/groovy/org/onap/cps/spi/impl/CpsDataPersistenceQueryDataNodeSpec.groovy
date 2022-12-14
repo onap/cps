@@ -180,4 +180,20 @@ class CpsDataPersistenceQueryDataNodeSpec extends CpsPersistenceSpecBase {
             thrown(CpsPathException)
     }
 
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Cps Path query across anchors for leaf value(s) with : #scenario.'() {
+        when: 'a query is executed to get a data node by the given cps path'
+            def result = objectUnderTest.queryDataNodesAcrossAnchors(DATASPACE_NAME, cpsPath, includeDescendantsOption)
+        then: 'the correct number of parent nodes are returned'
+            result.size() == expectedNumberOfParentNodes
+        then: 'the correct data is returned'
+            result.each {
+                assert it.getChildDataNodes().size() == expectedNumberOfChildNodes
+            }
+        where: 'the following data is used'
+            scenario                      | cpsPath                                                      | includeDescendantsOption || expectedNumberOfParentNodes | expectedNumberOfChildNodes
+            'String and no descendants'   | '/shops/shop[@id=1]/categories[@code=1]/book[@title="Dune"]' | OMIT_DESCENDANTS         || 1                           | 0
+            'Integer and descendants'     | '/shops/shop[@id=1]/categories[@code=1]/book[@price=5]'      | INCLUDE_ALL_DESCENDANTS  || 1                           | 1
+            'No condition no descendants' | '/shops/shop[@id=1]/categories'                              | OMIT_DESCENDANTS         || 3                           | 0
+    }
 }
