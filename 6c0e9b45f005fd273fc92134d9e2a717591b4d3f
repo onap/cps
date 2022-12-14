@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "88544c69_0a0615cf",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-14T16:12:06Z",
+      "side": 1,
+      "message": "need to make sure we stil have a test for this could even be a mock that proves it is delegated to the plural version...",
+      "range": {
+        "startLine": 176,
+        "startChar": 16,
+        "endLine": 176,
+        "endChar": 29
+      },
+      "revId": "6c0e9b45f005fd273fc92134d9e2a717591b4d3f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d4659734_9be7dc64",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-14T16:12:06Z",
+      "side": 1,
+      "message": "NB: dataNodes  woudl be better named (we avoid using java classes in names)\nBut in anycase I would inline this on line 178 and then there is no variable name to agree on :-)",
+      "range": {
+        "startLine": 177,
+        "startChar": 35,
+        "endLine": 177,
+        "endChar": 55
+      },
+      "revId": "6c0e9b45f005fd273fc92134d9e2a717591b4d3f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aab27baf_a2bc2ec5",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 18
+      },
+      "lineNbr": 674,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-14T16:12:06Z",
+      "side": 1,
+      "message": "what exactly is the point of this method, apart from teh word Collection I dont think it does/result actuallly anything different (need to discuss)",
+      "range": {
+        "startLine": 666,
+        "startChar": 0,
+        "endLine": 674,
+        "endChar": 5
+      },
+      "revId": "6c0e9b45f005fd273fc92134d9e2a717591b4d3f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b380918c_315c181c",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 18
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-14T16:12:06Z",
+      "side": 1,
+      "message": "lets discuss",
+      "range": {
+        "startLine": 193,
+        "startChar": 2,
+        "endLine": 203,
+        "endChar": 5
+      },
+      "revId": "6c0e9b45f005fd273fc92134d9e2a717591b4d3f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "89dada54_a75fb4c6",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/spi/model/DataNodeBuilderSpec.groovy",
+        "patchSetId": 18
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-14T16:12:06Z",
+      "side": 1,
+      "message": "I think this can be simplified, we wil discuss",
+      "range": {
+        "startLine": 188,
+        "startChar": 91,
+        "endLine": 188,
+        "endChar": 122
+      },
+      "revId": "6c0e9b45f005fd273fc92134d9e2a717591b4d3f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
