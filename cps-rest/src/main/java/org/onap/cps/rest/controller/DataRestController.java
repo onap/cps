@@ -3,6 +3,7 @@
  *  Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Nordix Foundation
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -53,7 +54,8 @@ public class DataRestController implements CpsDataApi {
     private final PrefixResolver prefixResolver;
 
     @Override
-    public ResponseEntity<String> createNode(final String dataspaceName, final String anchorName,
+    public ResponseEntity<String> createNode(final String apiVersion,
+        final String dataspaceName, final String anchorName,
         final Object jsonData, final String parentNodeXpath, final String observedTimestamp) {
         final String jsonDataAsString = jsonObjectMapper.asJsonString(jsonData);
         if (isRootXpath(parentNodeXpath)) {
@@ -67,7 +69,8 @@ public class DataRestController implements CpsDataApi {
     }
 
     @Override
-    public ResponseEntity<Void> deleteDataNode(final String dataspaceName, final String anchorName,
+    public ResponseEntity<Void> deleteDataNode(final String apiVersion,
+        final String dataspaceName, final String anchorName,
         final String xpath, final String observedTimestamp) {
         cpsDataService.deleteDataNode(dataspaceName, anchorName, xpath,
             toOffsetDateTime(observedTimestamp));
@@ -75,7 +78,7 @@ public class DataRestController implements CpsDataApi {
     }
 
     @Override
-    public ResponseEntity<String> addListElements(final String parentNodeXpath,
+    public ResponseEntity<String> addListElements(final String parentNodeXpath, final String apiVersion,
         final String dataspaceName, final String anchorName, final Object jsonData, final String observedTimestamp) {
         cpsDataService.saveListElements(dataspaceName, anchorName, parentNodeXpath,
                 jsonObjectMapper.asJsonString(jsonData), toOffsetDateTime(observedTimestamp));
@@ -83,8 +86,8 @@ public class DataRestController implements CpsDataApi {
     }
 
     @Override
-    public ResponseEntity<Object> getNodeByDataspaceAndAnchor(final String dataspaceName, final String anchorName,
-        final String xpath, final Boolean includeDescendants) {
+    public ResponseEntity<Object> getNodeByDataspaceAndAnchor(final String apiVersion,
+        final String dataspaceName, final String anchorName, final String xpath, final Boolean includeDescendants) {
         final FetchDescendantsOption fetchDescendantsOption = Boolean.TRUE.equals(includeDescendants)
             ? FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS : FetchDescendantsOption.OMIT_DESCENDANTS;
         final DataNode dataNode = cpsDataService.getDataNode(dataspaceName, anchorName, xpath,
@@ -94,7 +97,7 @@ public class DataRestController implements CpsDataApi {
     }
 
     @Override
-    public ResponseEntity<Object> updateNodeLeaves(final String dataspaceName,
+    public ResponseEntity<Object> updateNodeLeaves(final String apiVersion, final String dataspaceName,
         final String anchorName, final Object jsonData, final String parentNodeXpath, final String observedTimestamp) {
         cpsDataService.updateNodeLeaves(dataspaceName, anchorName, parentNodeXpath,
                 jsonObjectMapper.asJsonString(jsonData), toOffsetDateTime(observedTimestamp));
@@ -102,7 +105,8 @@ public class DataRestController implements CpsDataApi {
     }
 
     @Override
-    public ResponseEntity<Object> replaceNode(final String dataspaceName, final String anchorName,
+    public ResponseEntity<Object> replaceNode(final String apiVersion,
+        final String dataspaceName, final String anchorName,
         final Object jsonData, final String parentNodeXpath, final String observedTimestamp) {
         cpsDataService
                 .updateDataNodeAndDescendants(dataspaceName, anchorName, parentNodeXpath,
@@ -112,7 +116,7 @@ public class DataRestController implements CpsDataApi {
 
     @Override
     public ResponseEntity<Object> replaceListContent(final String parentNodeXpath,
-        final String dataspaceName, final String anchorName, final Object jsonData,
+        final String apiVersion, final String dataspaceName, final String anchorName, final Object jsonData,
         final String observedTimestamp) {
         cpsDataService.replaceListContent(dataspaceName, anchorName, parentNodeXpath,
                 jsonObjectMapper.asJsonString(jsonData), toOffsetDateTime(observedTimestamp));

@@ -73,9 +73,7 @@ class AdminRestControllerSpec extends Specification {
     def anchor = new Anchor(name: anchorName, dataspaceName: dataspaceName, schemaSetName: schemaSetName)
     def dataspace = new Dataspace(name: dataspaceName)
 
-    def 'Create new dataspace.'() {
-        given: 'an endpoint'
-            def createDataspaceEndpoint = "$basePath/v1/dataspaces"
+    def 'Create new dataspace with #scenario.'() {
         when: 'post is invoked'
             def response =
                     mvc.perform(
@@ -86,7 +84,12 @@ class AdminRestControllerSpec extends Specification {
             1 * mockCpsAdminService.createDataspace(dataspaceName)
         and: 'dataspace is create successfully'
             response.status == HttpStatus.CREATED.value()
-    }
+            assert response.getContentAsString() == responseBody
+        where: 'following cases are tested'
+            scenario | createDataspaceEndpoint  | responseBody
+            'V1 API' | '/cps/api/v1/dataspaces' | 'my_dataspace'
+            'V2 API' | '/cps/api/v2/dataspaces' | ''
+    } 
 
     def 'Create dataspace over existing with same name.'() {
         given: 'an endpoint'
@@ -129,12 +132,10 @@ class AdminRestControllerSpec extends Specification {
             response.getContentAsString().contains("dataspace-test2")
     }
 
-    def 'Create schema set from yang file.'() {
+    def 'Create schema set from yang file with #scenario.'() {
         def yangResourceMapCapture
         given: 'single yang file'
             def multipartFile = createMultipartFile("filename.yang", "content")
-        and: 'an endpoint'
-            def schemaSetEndpoint = "$basePath/v1/dataspaces/$dataspaceName/schema-sets"
         when: 'file uploaded with schema set create request'
             def response =
                     mvc.perform(
@@ -147,15 +148,18 @@ class AdminRestControllerSpec extends Specification {
                     { args -> yangResourceMapCapture = args[2] }
             yangResourceMapCapture['filename.yang'] == 'content'
         and: 'response code indicates success'
-            response.status == HttpStatus.CREATED.value()
+            assert response.status == HttpStatus.CREATED.value()
+            assert response.getContentAsString() == responseBody
+        where: 'following cases are tested'
+            scenario | schemaSetEndpoint                                  | responseBody
+            'V1 API' | '/cps/api/v1/dataspaces/my_dataspace/schema-sets'  | 'my_schema_set'
+            'V2 API' | '/cps/api/v2/dataspaces/my_dataspace/schema-sets'  | ''
     }
 
-    def 'Create schema set from zip archive.'() {
+    def 'Create schema set from zip archive with #scenario.'() {
         def yangResourceMapCapture
         given: 'zip archive with multiple .yang files inside'
             def multipartFile = createZipMultipartFileFromResource("/yang-files-set.zip")
-        and: 'an endpoint'
-            def schemaSetEndpoint = "$basePath/v1/dataspaces/$dataspaceName/schema-sets"
         when: 'file uploaded with schema set create request'
             def response =
                     mvc.perform(
@@ -169,14 +173,17 @@ class AdminRestControllerSpec extends Specification {
             yangResourceMapCapture['assembly.yang'] == "fake assembly content 1\n"
             yangResourceMapCapture['component.yang'] == "fake component content 1\n"
         and: 'response code indicates success'
-            response.status == HttpStatus.CREATED.value()
+            assert response.status == HttpStatus.CREATED.value()
+            assert response.getContentAsString() == responseBody
+        where: 'following cases are tested'
+            scenario | schemaSetEndpoint                                 | responseBody
+            'V1 API' | '/cps/api/v1/dataspaces/my_dataspace/schema-sets' | 'my_schema_set'
+            'V2 API' | '/cps/api/v2/dataspaces/my_dataspace/schema-sets' | ''
     }
 
-    def 'Create a schema set from a yang file that is greater than 1MB.'() {
+    def 'Create a schema set from a yang file that is greater than 1MB #scenario.'() {
         given: 'a yang file greater than 1MB'
             def multipartFile = createMultipartFileFromResource("/model-over-1mb.yang")
-        and: 'an endpoint'
-            def schemaSetEndpoint = "$basePath/v1/dataspaces/$dataspaceName/schema-sets"
         when: 'a file is uploaded to the create schema set endpoint'
             def response =
                     mvc.perform(
@@ -187,7 +194,12 @@ class AdminRestControllerSpec extends Specification {
         then: 'the associated service method is invoked'
             1 * mockCpsModuleService.createSchemaSet(dataspaceName, schemaSetName, _)
         and: 'the response code indicates success'
-            response.status == HttpStatus.CREATED.value()
+            assert response.status == HttpStatus.CREATED.value()
+            assert response.getContentAsString() == responseBody
+        where: 'following cases are tested'
+            scenario | schemaSetEndpoint                                 | responseBody
+            'V1 API' | '/cps/api/v1/dataspaces/my_dataspace/schema-sets' | 'my_schema_set'
+            'V2 API' | '/cps/api/v2/dataspaces/my_dataspace/schema-sets' | ''
     }
 
     def 'Create schema set from zip archive having #caseDescriptor.'() {
@@ -293,13 +305,11 @@ class AdminRestControllerSpec extends Specification {
                    '"my_schema_set"},{"dataspaceName":"my_dataspace","moduleReferences":[],"name":"test-schemaset"}]'
     }
 
-    def 'Create Anchor.'() {
+    def 'Create Anchor with #scenario.'() {
         given: 'request parameters'
             def requestParams = new LinkedMultiValueMap<>()
             requestParams.add('schema-set-name', schemaSetName)
             requestParams.add('anchor-name', anchorName)
-        and: 'an endpoint'
-            def anchorEndpoint = "$basePath/v1/dataspaces/$dataspaceName/anchors"
         when: 'post is invoked'
             def response =
                     mvc.perform(
@@ -308,8 +318,12 @@ class AdminRestControllerSpec extends Specification {
                             .andReturn().response
         then: 'anchor is created successfully'
             1 * mockCpsAdminService.createAnchor(dataspaceName, schemaSetName, anchorName)
-            response.status == HttpStatus.CREATED.value()
-            response.getContentAsString().contains(anchorName)
+            assert response.status == HttpStatus.CREATED.value()
+            assert response.getContentAsString() == responseBody
+        where: 'following cases are tested'
+            scenario | anchorEndpoint                                | responseBody
+            'V1 API' | '/cps/api/v1/dataspaces/my_dataspace/anchors' | 'my_anchor'
+            'V2 API' | '/cps/api/v2/dataspaces/my_dataspace/anchors' | ''
     }
 
     def 'Get existing anchor.'() {
