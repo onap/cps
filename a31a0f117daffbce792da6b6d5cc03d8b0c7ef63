@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a3538ddd_f5aeb3f5",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 6079
+      },
+      "writtenOn": "2022-12-14T14:54:08Z",
+      "side": 1,
+      "message": "Well, if I place it one level above, into parseData, there will be as well that code used twice, as there are two parseData methods\npublic static NormalizedNode parseData(final ContentType contentType, final String nodeData,\n                                       final SchemaContext schemaContext)\nand\npublic static NormalizedNode parseData(final ContentType contentType, final String nodeData,\n                                       final SchemaContext schemaContext, final String parentNodeXpath)\n\n\nwe can also move it into org.onap.cps.api.impl.CpsDataServiceImpl class, but then we are moving logic outside class.",
+      "parentUuid": "3c4ceca2_1b4c740a",
+      "range": {
+        "startLine": 180,
+        "startChar": 0,
+        "endLine": 182,
+        "endChar": 44
+      },
+      "revId": "a31a0f117daffbce792da6b6d5cc03d8b0c7ef63",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "497d4367_de4f8407",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
         "patchSetId": 15
@@ -45,6 +69,30 @@
       "revId": "a31a0f117daffbce792da6b6d5cc03d8b0c7ef63",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a6ec9e2a_e123a595",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 6079
+      },
+      "writtenOn": "2022-12-14T14:54:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "497d4367_de4f8407",
+      "range": {
+        "startLine": 144,
+        "startChar": 53,
+        "endLine": 144,
+        "endChar": 56
+      },
+      "revId": "a31a0f117daffbce792da6b6d5cc03d8b0c7ef63",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
