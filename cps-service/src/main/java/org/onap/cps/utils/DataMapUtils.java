@@ -49,6 +49,20 @@ public class DataMapUtils {
     }
 
     /**
+     * Converts DataNode structure into a map including the root node identifier for a JSON response.
+     *
+     * @param dataNode data node object
+     * @return a map representing same data with the root node identifier
+     */
+    public static Map<String, Object> toDataMapWithIdentifierAndAnchor(final DataNode dataNode, final String prefix) {
+        final String nodeIdentifierWithPrefix = getNodeIdentifierWithPrefix(dataNode.getXpath(), prefix);
+        final Map<String, Object> dataMap = ImmutableMap.<String, Object>builder()
+                .put(nodeIdentifierWithPrefix, toDataMap(dataNode)).build();
+        return ImmutableMap.<String, Object>builder().put("anchorName", dataNode.getAnchorName())
+                .put("dataNode", dataMap).build();
+    }
+
+    /**
      * Converts DataNode structure into a map for a JSON response.
      *
      * @param dataNode data node object

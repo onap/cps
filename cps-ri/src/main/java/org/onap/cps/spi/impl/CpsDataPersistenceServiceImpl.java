@@ -322,6 +322,33 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         return createDataNodesFromProxiedFragmentEntities(fetchDescendantsOption, anchorEntity, fragmentEntities);
     }
 
+    @Override
+    public List<DataNode> queryDataNodesAcrossAnchors(final String dataspaceName, final String cpsPath,
+                                         final FetchDescendantsOption fetchDescendantsOption) {
+        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        final CpsPathQuery cpsPathQuery;
+        try {
+            cpsPathQuery = CpsPathUtil.getCpsPathQuery(cpsPath);
+        } catch (final PathParsingException e) {
+            throw new CpsPathException(e.getMessage());
+        }
+        final Collection<AnchorEntity> anchorEntities = anchorRepository.findAllByDataspace(dataspaceEntity);
+        final List<DataNode> dataNodeList = new ArrayList<>();
+        for (final AnchorEntity anchorEntity : anchorEntities) {
+            Collection<FragmentEntity> fragmentEntities;
+            if (canUseRegexQuickFind(fetchDescendantsOption, cpsPathQuery)) {
+                return getDataNodesUsingRegexQuickFind(fetchDescendantsOption, anchorEntity, cpsPathQuery);
+            }
+            fragmentEntities = fragmentRepository.findByAnchorAndCpsPath(anchorEntity.getId(), cpsPathQuery);
+            if (cpsPathQuery.hasAncestorAxis()) {
+                fragmentEntities = getAncestorFragmentEntities(anchorEntity, cpsPathQuery, fragmentEntities);
+            }
+            dataNodeList.addAll(createDataNodesFromProxiedFragmentEntities(
+                fetchDescendantsOption, anchorEntity, fragmentEntities));
+        }
+        return dataNodeList;
+    }
+
     private static boolean canUseRegexQuickFind(final FetchDescendantsOption fetchDescendantsOption,
                                                 final CpsPathQuery cpsPathQuery) {
         return fetchDescendantsOption.equals(FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
@@ -432,6 +459,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         return new DataNodeBuilder()
                 .withXpath(fragmentEntity.getXpath())
                 .withLeaves(leaves)
+                .withAnchor(fragmentEntity.getAnchor().getName())
                 .withChildDataNodes(childDataNodes).build();
     }
 
