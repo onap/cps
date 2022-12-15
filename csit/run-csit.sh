@@ -20,13 +20,28 @@
 
 # Branched from ccsdk/distribution to this repository Feb 23, 2021
 
+echo "---> run-csit.sh"
+
 WORKDIR=$(mktemp -d --suffix=-robot-workdir)
+
+# Version should match those used to setup robot-framework in other jobs/stages
+# Use pyenv for selecting the python version
+if [[ -d "/opt/pyenv" ]]; then
+  echo "Setup pyenv:"
+  export PYENV_ROOT="/opt/pyenv"
+  export PATH="$PYENV_ROOT/bin:$PATH"
+  pyenv versions
+  if command -v pyenv 1>/dev/null 2>&1; then
+    eval "$(pyenv init - --no-rehash)"
+    # Choose the latest numeric Python version from installed list
+    version=$(pyenv versions --bare | sed '/^[^0-9]/d' | sort -V | tail -n 1)
+    pyenv local "${version}"
+  fi
+fi
 
 #
 # functions
 #
-
-echo "---> run-csit.sh"
 
 # wrapper for sourcing a file
 function source_safely() {
@@ -192,6 +207,12 @@ SUITES=$( xargs -a testplan.txt )
 echo ROBOT_VARIABLES="${ROBOT_VARIABLES}"
 echo "Starting Robot test suites ${SUITES} ..."
 relax_set
+
+echo "Versioning information:"
+python3 --version
+pip freeze
+python3 -m robot.run --version || :
+
 python3 -m robot.run -N ${TESTPLAN} -v WORKSPACE:/tmp ${ROBOT_VARIABLES} ${TESTOPTIONS} ${SUITES}
 RESULT=$?
 load_set
