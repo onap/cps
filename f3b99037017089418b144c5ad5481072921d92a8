@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eecfbe2e_80fba79d",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-12-15T12:40:49Z",
+      "side": 1,
+      "message": "I think this should be with other topics under \u0027app\u0027",
+      "range": {
+        "startLine": 183,
+        "startChar": 0,
+        "endLine": 184,
+        "endChar": 75
+      },
+      "revId": "f3b99037017089418b144c5ad5481072921d92a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "69dfd19c_33e400a9",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/avc-subscription-event-v1.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-12-15T12:40:49Z",
+      "side": 1,
+      "message": "These are not required here. Replace with clientID and name... isTagged is optional I believe",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 27
+      },
+      "revId": "f3b99037017089418b144c5ad5481072921d92a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b85a775_dc556387",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventConsumer.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-12-15T12:40:49Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 38,
+        "startChar": 56,
+        "endLine": 38,
+        "endChar": 69
+      },
+      "revId": "f3b99037017089418b144c5ad5481072921d92a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bda397dd_03ab8254",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventConsumer.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-12-15T12:40:49Z",
+      "side": 1,
+      "message": "NB: Could be refactored to something like\n\nSubscriptionEvent event \u003d subscriptionEvent.getEvent().getSubscription();\nlog.info(\"Subscription for ClientID {} with name {} ...\",\n            event.getClientID(), event.getName());",
+      "range": {
+        "startLine": 45,
+        "startChar": 16,
+        "endLine": 48,
+        "endChar": 82
+      },
+      "revId": "f3b99037017089418b144c5ad5481072921d92a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}

@@ -2,6 +2,92 @@
   "comments": [
     {
       "key": {
+        "uuid": "7ff4ea63_37237c26",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-12-15T12:40:49Z",
+      "side": 1,
+      "message": "I think this should be with other topics under \u0027app\u0027",
+      "revId": "7b98297638e3f9f087d2511eaebeebf5b84b5197",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8cbe0ffd_396aae91",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/avc-subscription-event-v1.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-12-15T12:40:49Z",
+      "side": 1,
+      "message": "These are not required here. Replace with clientID and name... isTagged is optional I believe",
+      "range": {
+        "startLine": 52,
+        "startChar": 12,
+        "endLine": 56,
+        "endChar": 27
+      },
+      "revId": "7b98297638e3f9f087d2511eaebeebf5b84b5197",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ddb12b96_cb90e951",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventConsumer.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-12-15T12:40:49Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 38,
+        "startChar": 56,
+        "endLine": 38,
+        "endChar": 69
+      },
+      "revId": "7b98297638e3f9f087d2511eaebeebf5b84b5197",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0abc1cd5_576e9074",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventConsumer.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-12-15T12:40:49Z",
+      "side": 1,
+      "message": "NB: Could be refactored to something like\n\nSubscriptionEvent event \u003d subscriptionEvent.getEvent().getSubscription();\nlog.info(\"Subscription for ClientID {} with name {} ...\",\n\n            event.getClientID(), event.getName());",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 82
+      },
+      "revId": "7b98297638e3f9f087d2511eaebeebf5b84b5197",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0cdf96ce_32ce653b",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/avc/AvcSubscriptionEventSpec.groovy",
         "patchSetId": 6
@@ -13,6 +99,30 @@
       "writtenOn": "2022-12-15T12:26:52Z",
       "side": 1,
       "message": "since this is a (injected) bean should/needs it be initialised here at all?",
+      "range": {
+        "startLine": 44,
+        "startChar": 55,
+        "endLine": 44,
+        "endChar": 90
+      },
+      "revId": "7b98297638e3f9f087d2511eaebeebf5b84b5197",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b191e27_fbbed47a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/avc/AvcSubscriptionEventSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-12-15T12:40:49Z",
+      "side": 1,
+      "message": "I think springBeans require a constructor... I am not sure why but I think I need to initialise in my test also https://gerrit.onap.org/r/c/cps/+/132680/4/cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/notifications/avc/AvcEventProducerIntegrationSpec.groovy#1",
+      "parentUuid": "0cdf96ce_32ce653b",
       "range": {
         "startLine": 44,
         "startChar": 55,
@@ -82,6 +192,30 @@
       "writtenOn": "2022-12-15T12:26:52Z",
       "side": 1,
       "message": "nore suer why you are still using some string substituatin,c an it not just be somthing like\nsubscription-topic: test-avc-subscription",
+      "range": {
+        "startLine": 32,
+        "startChar": 28,
+        "endLine": 32,
+        "endChar": 77
+      },
+      "revId": "7b98297638e3f9f087d2511eaebeebf5b84b5197",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b4a61c32_a4521445",
+        "filename": "cps-ncmp-service/src/test/resources/application.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-12-15T12:40:49Z",
+      "side": 1,
+      "message": "Yes it could if we\u0027re sure it will remain static... in this case for testing it doesn\u0027t make sense to use substitution as it won\u0027t change much if at all",
+      "parentUuid": "416c87c0_c224f92b",
       "range": {
         "startLine": 32,
         "startChar": 28,
