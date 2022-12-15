@@ -111,6 +111,13 @@ public class CpsDataServiceImpl implements CpsDataService {
     }
 
     @Override
+    public Collection<DataNode> getDataNodes(final String dataspaceName, final String anchorName, final Collection<String> xpaths,
+                                final FetchDescendantsOption fetchDescendantsOption) {
+        cpsValidator.validateNameCharacters(dataspaceName, anchorName);
+        return cpsDataPersistenceService.getDataNode(dataspaceName, anchorName, xpaths, fetchDescendantsOption);
+    }
+
+    @Override
     public void updateNodeLeaves(final String dataspaceName, final String anchorName, final String parentNodeXpath,
         final String jsonData, final OffsetDateTime observedTimestamp) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);

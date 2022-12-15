@@ -95,6 +95,19 @@ public interface CpsDataService {
         FetchDescendantsOption fetchDescendantsOption);
 
     /**
+     * Retrieves datanodes by XPath for given dataspace and anchor.
+     *
+     * @param dataspaceName          dataspace name
+     * @param anchorName             anchor name
+     * @param xpaths                 collection of xpath
+     * @param fetchDescendantsOption defines the scope of data to fetch: either single node or all the descendant nodes
+     *                               (recursively) as well
+     * @return data node object
+     */
+    Collection<DataNode> getDataNodes(String dataspaceName, String anchorName, Collection<String> xpaths,
+                         FetchDescendantsOption fetchDescendantsOption);
+
+    /**
      * Updates data node for given dataspace and anchor using xpath to parent node.
      *
      * @param dataspaceName   dataspace name

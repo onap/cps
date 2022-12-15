@@ -220,6 +220,12 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         return toDataNode(fragmentEntity, fetchDescendantsOption);
     }
 
+    @Override
+    public Collection<DataNode> getDataNodes(final String dataspaceName, final String anchorName, final Collection<String> xpaths,
+                                final FetchDescendantsOption fetchDescendantsOption) {
+        //TODO: Custom handler for persistence
+    }
+
     private FragmentEntity getFragmentWithoutDescendantsByXpath(final String dataspaceName,
                                                                 final String anchorName,
                                                                 final String xpath) {
