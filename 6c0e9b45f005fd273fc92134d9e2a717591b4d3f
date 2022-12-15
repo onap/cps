@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b3a73668_67091092",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-15T11:27:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e9687187_54300da9",
+      "range": {
+        "startLine": 93,
+        "startChar": 16,
+        "endLine": 93,
+        "endChar": 39
+      },
+      "revId": "6c0e9b45f005fd273fc92134d9e2a717591b4d3f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "88544c69_0a0615cf",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 18
@@ -94,6 +118,30 @@
     },
     {
       "key": {
+        "uuid": "f6c04d5b_fd6d27d2",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-15T11:27:15Z",
+      "side": 1,
+      "message": "good comment but the exception handling is during storing of multiple (ie batch of nodes) and consistent with catching of other DataIntegrityViolationException  catch block assuming it is already defined.",
+      "parentUuid": "fc7c9a7e_9d952396",
+      "range": {
+        "startLine": 216,
+        "startChar": 22,
+        "endLine": 216,
+        "endChar": 50
+      },
+      "revId": "6c0e9b45f005fd273fc92134d9e2a717591b4d3f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aab27baf_a2bc2ec5",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
         "patchSetId": 18
@@ -117,6 +165,30 @@
     },
     {
       "key": {
+        "uuid": "20deb2e7_e7ebdba2",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 18
+      },
+      "lineNbr": 674,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-15T11:27:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aab27baf_a2bc2ec5",
+      "range": {
+        "startLine": 666,
+        "startChar": 0,
+        "endLine": 674,
+        "endChar": 5
+      },
+      "revId": "6c0e9b45f005fd273fc92134d9e2a717591b4d3f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b380918c_315c181c",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
         "patchSetId": 18
@@ -133,6 +205,52 @@
         "startChar": 2,
         "endLine": 203,
         "endChar": 5
+      },
+      "revId": "6c0e9b45f005fd273fc92134d9e2a717591b4d3f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "305fcf69_27bbbc7a",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNodeBuilder.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-15T11:27:15Z",
+      "side": 1,
+      "message": "should be deprecated\n(update test to get first one weher needed)",
+      "range": {
+        "startLine": 131,
+        "startChar": 20,
+        "endLine": 131,
+        "endChar": 25
+      },
+      "revId": "6c0e9b45f005fd273fc92134d9e2a717591b4d3f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e34fcc2_bbd57a7f",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNodeBuilder.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-15T11:27:15Z",
+      "side": 1,
+      "message": "I think we need to throw a new exception here!",
+      "range": {
+        "startLine": 167,
+        "startChar": 8,
+        "endLine": 167,
+        "endChar": 52
       },
       "revId": "6c0e9b45f005fd273fc92134d9e2a717591b4d3f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
