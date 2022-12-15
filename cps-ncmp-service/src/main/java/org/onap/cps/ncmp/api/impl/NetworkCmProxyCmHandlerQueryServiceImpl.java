@@ -49,7 +49,6 @@ import org.onap.cps.ncmp.api.inventory.enums.PropertyType;
 import org.onap.cps.ncmp.api.models.CmHandleQueryServiceParameters;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.spi.exceptions.DataValidationException;
-import org.onap.cps.spi.model.Anchor;
 import org.onap.cps.spi.model.ConditionProperties;
 import org.onap.cps.spi.model.DataNode;
 import org.springframework.stereotype.Service;
@@ -105,7 +104,8 @@ public class NetworkCmProxyCmHandlerQueryServiceImpl implements NetworkCmProxyCm
         if (moduleNamesForQuery.isEmpty()) {
             return combinedQueryResult.keySet();
         }
-        final Set<String> moduleNameQueryResult = getNamesOfAnchorsWithGivenModules(moduleNamesForQuery);
+        final Set<String> moduleNameQueryResult =
+                new HashSet<>(inventoryPersistence.getCmHandleIdsWithGivenModules(moduleNamesForQuery));
 
         if (combinedQueryResult == NO_QUERY_TO_EXECUTE) {
             return moduleNameQueryResult;
@@ -209,7 +209,8 @@ public class NetworkCmProxyCmHandlerQueryServiceImpl implements NetworkCmProxyCm
         if (moduleNamesForQuery.isEmpty()) {
             return previousQueryResult;
         }
-        final Collection<String> cmHandleIdsByModuleName = getNamesOfAnchorsWithGivenModules(moduleNamesForQuery);
+        final Collection<String> cmHandleIdsByModuleName =
+                inventoryPersistence.getCmHandleIdsWithGivenModules(moduleNamesForQuery);
         if (cmHandleIdsByModuleName.isEmpty()) {
             return Collections.emptyMap();
         }
@@ -258,11 +259,6 @@ public class NetworkCmProxyCmHandlerQueryServiceImpl implements NetworkCmProxyCm
                 ? NO_QUERY_TO_EXECUTE : cmHandleQueries.queryCmHandlePublicProperties(publicPropertyQueryPairs);
 
         return cmHandleQueries.combineCmHandleQueries(cpsPathQueryResult, propertiesQueryResult);
-    }
-
-    private Set<String> getNamesOfAnchorsWithGivenModules(final Collection<String> moduleNamesForQuery) {
-        final Collection<Anchor> anchors = inventoryPersistence.queryAnchors(moduleNamesForQuery);
-        return anchors.parallelStream().map(Anchor::getName).collect(Collectors.toSet());
     }
 
     private Collection<String> getModuleNamesForQuery(final List<ConditionProperties> conditionProperties) {

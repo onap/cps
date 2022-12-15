@@ -29,11 +29,9 @@ import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.exceptions.DataInUseException
 import org.onap.cps.spi.exceptions.DataValidationException
-import org.onap.cps.spi.model.Anchor
 import org.onap.cps.spi.model.ConditionProperties
 import org.onap.cps.spi.model.DataNode
 import spock.lang.Specification
-
 import java.util.stream.Collectors
 
 class NetworkCmProxyCmHandlerQueryServiceSpec extends Specification {
@@ -110,20 +108,20 @@ class NetworkCmProxyCmHandlerQueryServiceSpec extends Specification {
         and: 'null is returned from the state and public property queries'
             cmHandleQueries.combineCmHandleQueries(*_) >> null
         and: '#scenario from the modules query'
-            mockInventoryPersistence.queryAnchors(*_) >> returnedAnchors
+            mockInventoryPersistence.getCmHandleIdsWithGivenModules(*_) >> cmHandleIdsFromService
         and: 'the same cmHandles are returned from the persistence service layer'
-            returnedAnchors.size() * mockInventoryPersistence.getDataNode(*_) >> returnedCmHandles
+            cmHandleIdsFromService.size() * mockInventoryPersistence.getDataNode(*_) >> returnedCmHandles
         when: 'the query is executed for both cm handle ids and details'
             def returnedCmHandlesJustIds = objectUnderTest.queryCmHandleIds(cmHandleQueryParameters)
             def returnedCmHandlesWithData = objectUnderTest.queryCmHandles(cmHandleQueryParameters)
         then: 'the correct expected cm handles ids are returned'
-            returnedCmHandlesJustIds == expectedCmHandleIds as Set
+            returnedCmHandlesJustIds == cmHandleIdsFromService as Set
         and: 'the correct cm handle data objects are returned'
-            returnedCmHandlesWithData.stream().map(dataNode -> dataNode.cmHandleId).collect(Collectors.toSet()) == expectedCmHandleIds as Set
+            returnedCmHandlesWithData.stream().map(dataNode -> dataNode.cmHandleId).collect(Collectors.toSet()) == cmHandleIdsFromService as Set
         where: 'the following data is used'
-            scenario                  | returnedAnchors                        | returnedCmHandles    || expectedCmHandleIds
-            'One anchor returned'     | [new Anchor(name: 'some-cmhandle-id')] | someCmHandleDataNode || ['some-cmhandle-id']
-            'No anchors are returned' | []                                     | null                 || []
+            scenario                  | cmHandleIdsFromService | returnedCmHandles
+            'One anchor returned'     | ['some-cmhandle-id']   | someCmHandleDataNode
+            'No anchors are returned' | []                     | null
     }
 
     def 'Retrieve cm handles with combined queries when #scenario.'() {
@@ -136,7 +134,7 @@ class NetworkCmProxyCmHandlerQueryServiceSpec extends Specification {
         and: 'cmHandles are returned from the state and public property combined queries'
             cmHandleQueries.combineCmHandleQueries(*_) >> combinedQueryMap
         and: 'cmHandles are returned from the module names query'
-            mockInventoryPersistence.queryAnchors(['some-module-name']) >> anchorsForModuleQuery
+            mockInventoryPersistence.getCmHandleIdsWithGivenModules(['some-module-name']) >> anchorsForModuleQuery
         and: 'cmHandleQueries returns a datanode result'
             2 * cmHandleQueries.queryCmHandleDataNodesByCpsPath(*_) >> [someCmHandleDataNode]
         when: 'the query is executed for both cm handle ids and details'
@@ -147,12 +145,12 @@ class NetworkCmProxyCmHandlerQueryServiceSpec extends Specification {
         and: 'the correct cm handle data objects are returned'
             returnedCmHandlesWithData.stream().map(dataNode -> dataNode.cmHandleId).collect(Collectors.toSet()) == expectedCmHandleIds as Set
         where: 'the following data is used'
-            scenario                                 | combinedQueryMap                                                                                                           | anchorsForModuleQuery                                        || expectedCmHandleIds
-            'combined and modules queries intersect' | ['PNFDemo1' : new NcmpServiceCmHandle(cmHandleId:'PNFDemo1')]                                                              | [new Anchor(name: 'PNFDemo1'), new Anchor(name: 'PNFDemo2')] || ['PNFDemo1']
-            'only module query results exist'        | [:]                                                                                                                        | [new Anchor(name: 'PNFDemo1'), new Anchor(name: 'PNFDemo2')] || []
-            'only combined query results exist'      | ['PNFDemo1' : new NcmpServiceCmHandle(cmHandleId:'PNFDemo1'), 'PNFDemo2' : new NcmpServiceCmHandle(cmHandleId:'PNFDemo2')] | []                                                           || []
-            'neither queries return results'         | [:]                                                                                                                        | []                                                           || []
-            'none intersect'                         | ['PNFDemo1' : new NcmpServiceCmHandle(cmHandleId:'PNFDemo1')]                                                              | [new Anchor(name: 'PNFDemo2')]                               || []
+            scenario                                 | combinedQueryMap                                                                                                           | anchorsForModuleQuery    || expectedCmHandleIds
+            'combined and modules queries intersect' | ['PNFDemo1': new NcmpServiceCmHandle(cmHandleId: 'PNFDemo1')]                                                              | ['PNFDemo1', 'PNFDemo2'] || ['PNFDemo1']
+            'only module query results exist'        | [:]                                                                                                                        | ['PNFDemo1', 'PNFDemo2'] || []
+            'only combined query results exist'      | ['PNFDemo1': new NcmpServiceCmHandle(cmHandleId: 'PNFDemo1'), 'PNFDemo2': new NcmpServiceCmHandle(cmHandleId: 'PNFDemo2')] | []                       || []
+            'neither queries return results'         | [:]                                                                                                                        | []                       || []
+            'none intersect'                         | ['PNFDemo1': new NcmpServiceCmHandle(cmHandleId: 'PNFDemo1')]                                                              | ['PNFDemo2']             || []
     }
 
     def 'Retrieve cm handles when the query is empty.'() {
