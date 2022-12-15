@@ -49,7 +49,6 @@ import org.onap.cps.ncmp.api.inventory.enums.PropertyType;
 import org.onap.cps.ncmp.api.models.CmHandleQueryServiceParameters;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.spi.exceptions.DataValidationException;
-import org.onap.cps.spi.model.Anchor;
 import org.onap.cps.spi.model.ConditionProperties;
 import org.onap.cps.spi.model.DataNode;
 import org.springframework.stereotype.Service;
@@ -261,8 +260,7 @@ public class NetworkCmProxyCmHandlerQueryServiceImpl implements NetworkCmProxyCm
     }
 
     private Set<String> getNamesOfAnchorsWithGivenModules(final Collection<String> moduleNamesForQuery) {
-        final Collection<Anchor> anchors = inventoryPersistence.queryAnchors(moduleNamesForQuery);
-        return anchors.parallelStream().map(Anchor::getName).collect(Collectors.toSet());
+        return new HashSet<>(inventoryPersistence.queryAnchors(moduleNamesForQuery));
     }
 
     private Collection<String> getModuleNamesForQuery(final List<ConditionProperties> conditionProperties) {

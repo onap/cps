@@ -22,6 +22,7 @@
 package org.onap.cps.ncmp.api.inventory
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
@@ -36,7 +37,6 @@ import org.onap.cps.utils.JsonObjectMapper
 import org.onap.cps.spi.utils.CpsValidator
 import spock.lang.Shared
 import spock.lang.Specification
-
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
@@ -52,14 +52,12 @@ class InventoryPersistenceImplSpec extends Specification {
 
     def mockCpsModuleService = Mock(CpsModuleService)
 
-    def mockCpsDataPersistenceService = Mock(CpsDataPersistenceService)
-
-    def mockCpsAdminPersistenceService = Mock(CpsAdminPersistenceService)
+    def mockCpsAdminService = Mock(CpsAdminService)
 
     def mockCpsValidator = Mock(CpsValidator)
 
     def objectUnderTest = new InventoryPersistenceImpl(spiedJsonObjectMapper, mockCpsDataService, mockCpsModuleService,
-            mockCpsDataPersistenceService, mockCpsAdminPersistenceService, mockCpsValidator)
+            mockCpsAdminService, mockCpsValidator)
 
     def formattedDateAndTime = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
             .format(OffsetDateTime.of(2022, 12, 31, 20, 30, 40, 1, ZoneOffset.UTC))
@@ -84,7 +82,7 @@ class InventoryPersistenceImplSpec extends Specification {
     def "Retrieve CmHandle using datanode with #scenario."() {
         given: 'the cps data service returns a data node from the DMI registry'
             def dataNode = new DataNode(childDataNodes:childDataNodes, leaves: leaves)
-            mockCpsDataPersistenceService.getDataNode('NCMP-Admin', 'ncmp-dmi-registry', xpath, INCLUDE_ALL_DESCENDANTS) >> dataNode
+            mockCpsDataService.getDataNode('NCMP-Admin', 'ncmp-dmi-registry', xpath, INCLUDE_ALL_DESCENDANTS) >> dataNode
         when: 'retrieving the yang modelled cm handle'
             def result = objectUnderTest.getYangModelCmHandle(cmHandleId)
         then: 'the result has the correct id and service names'
@@ -111,7 +109,7 @@ class InventoryPersistenceImplSpec extends Specification {
     def "Handling missing service names as null."() {
         given: 'the cps data service returns a data node from the DMI registry with empty child and leaf attributes'
             def dataNode = new DataNode(childDataNodes:[], leaves: [:])
-            mockCpsDataPersistenceService.getDataNode('NCMP-Admin', 'ncmp-dmi-registry', xpath, INCLUDE_ALL_DESCENDANTS) >> dataNode
+            mockCpsDataService.getDataNode('NCMP-Admin', 'ncmp-dmi-registry', xpath, INCLUDE_ALL_DESCENDANTS) >> dataNode
         when: 'retrieving the yang modelled cm handle'
             def result = objectUnderTest.getYangModelCmHandle(cmHandleId)
         then: 'the service names are returned as null'
@@ -239,7 +237,7 @@ class InventoryPersistenceImplSpec extends Specification {
         when: 'the method to get data nodes is called'
             objectUnderTest.getDataNode('sample xPath')
         then: 'the data persistence service method to get data node is invoked once'
-            1 * mockCpsDataPersistenceService.getDataNode('NCMP-Admin','ncmp-dmi-registry','sample xPath', INCLUDE_ALL_DESCENDANTS)
+            1 * mockCpsDataService.getDataNode('NCMP-Admin','ncmp-dmi-registry','sample xPath', INCLUDE_ALL_DESCENDANTS)
     }
 
     def 'Get cmHandle data node'() {
@@ -248,21 +246,21 @@ class InventoryPersistenceImplSpec extends Specification {
         when: 'the method to get data nodes is called'
             objectUnderTest.getCmHandleDataNode('sample cmHandleId')
         then: 'the data persistence service method to get cmHandle data node is invoked once with expected xPath'
-            1 * mockCpsDataPersistenceService.getDataNode('NCMP-Admin','ncmp-dmi-registry',expectedXPath, INCLUDE_ALL_DESCENDANTS)
+            1 * mockCpsDataService.getDataNode('NCMP-Admin','ncmp-dmi-registry',expectedXPath, INCLUDE_ALL_DESCENDANTS)
     }
 
     def 'Query anchors'() {
         when: 'the method to query anchors is called'
             objectUnderTest.queryAnchors(['sample-module-name'])
         then: 'the admin persistence service method to query anchors is invoked once with the same parameter'
-            1 * mockCpsAdminPersistenceService.queryAnchors('NFP-Operational',['sample-module-name'])
+            1 * mockCpsAdminService.queryAnchorNames('NFP-Operational',['sample-module-name'])
     }
 
     def 'Get anchors'() {
         when: 'the method to get anchors with no parameters is called'
             objectUnderTest.getAnchors()
         then: 'the admin persistence service method to query anchors is invoked once with a specific dataspace name'
-            1 * mockCpsAdminPersistenceService.getAnchors('NFP-Operational')
+            1 * mockCpsAdminService.getAnchors('NFP-Operational')
     }
 
     def 'Replace list content'() {

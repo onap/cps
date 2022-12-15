@@ -29,11 +29,9 @@ import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.exceptions.DataInUseException
 import org.onap.cps.spi.exceptions.DataValidationException
-import org.onap.cps.spi.model.Anchor
 import org.onap.cps.spi.model.ConditionProperties
 import org.onap.cps.spi.model.DataNode
 import spock.lang.Specification
-
 import java.util.stream.Collectors
 
 class NetworkCmProxyCmHandlerQueryServiceSpec extends Specification {
@@ -121,9 +119,9 @@ class NetworkCmProxyCmHandlerQueryServiceSpec extends Specification {
         and: 'the correct cm handle data objects are returned'
             returnedCmHandlesWithData.stream().map(dataNode -> dataNode.cmHandleId).collect(Collectors.toSet()) == expectedCmHandleIds as Set
         where: 'the following data is used'
-            scenario                  | returnedAnchors                        | returnedCmHandles    || expectedCmHandleIds
-            'One anchor returned'     | [new Anchor(name: 'some-cmhandle-id')] | someCmHandleDataNode || ['some-cmhandle-id']
-            'No anchors are returned' | []                                     | null                 || []
+        scenario                  | returnedAnchors      | returnedCmHandles    || expectedCmHandleIds
+        'One anchor returned'     | ['some-cmhandle-id'] | someCmHandleDataNode || ['some-cmhandle-id']
+        'No anchors are returned' | []                   | null                 || []
     }
 
     def 'Retrieve cm handles with combined queries when #scenario.'() {
@@ -147,12 +145,12 @@ class NetworkCmProxyCmHandlerQueryServiceSpec extends Specification {
         and: 'the correct cm handle data objects are returned'
             returnedCmHandlesWithData.stream().map(dataNode -> dataNode.cmHandleId).collect(Collectors.toSet()) == expectedCmHandleIds as Set
         where: 'the following data is used'
-            scenario                                 | combinedQueryMap                                                                                                           | anchorsForModuleQuery                                        || expectedCmHandleIds
-            'combined and modules queries intersect' | ['PNFDemo1' : new NcmpServiceCmHandle(cmHandleId:'PNFDemo1')]                                                              | [new Anchor(name: 'PNFDemo1'), new Anchor(name: 'PNFDemo2')] || ['PNFDemo1']
-            'only module query results exist'        | [:]                                                                                                                        | [new Anchor(name: 'PNFDemo1'), new Anchor(name: 'PNFDemo2')] || []
-            'only combined query results exist'      | ['PNFDemo1' : new NcmpServiceCmHandle(cmHandleId:'PNFDemo1'), 'PNFDemo2' : new NcmpServiceCmHandle(cmHandleId:'PNFDemo2')] | []                                                           || []
-            'neither queries return results'         | [:]                                                                                                                        | []                                                           || []
-            'none intersect'                         | ['PNFDemo1' : new NcmpServiceCmHandle(cmHandleId:'PNFDemo1')]                                                              | [new Anchor(name: 'PNFDemo2')]                               || []
+        scenario                                 | combinedQueryMap                                                                                                           | anchorsForModuleQuery    || expectedCmHandleIds
+        'combined and modules queries intersect' | ['PNFDemo1': new NcmpServiceCmHandle(cmHandleId: 'PNFDemo1')]                                                              | ['PNFDemo1', 'PNFDemo2'] || ['PNFDemo1']
+        'only module query results exist'        | [:]                                                                                                                        | ['PNFDemo1', 'PNFDemo2'] || []
+        'only combined query results exist'      | ['PNFDemo1': new NcmpServiceCmHandle(cmHandleId: 'PNFDemo1'), 'PNFDemo2': new NcmpServiceCmHandle(cmHandleId: 'PNFDemo2')] | []                       || []
+        'neither queries return results'         | [:]                                                                                                                        | []                       || []
+        'none intersect'                         | ['PNFDemo1': new NcmpServiceCmHandle(cmHandleId: 'PNFDemo1')]                                                              | ['PNFDemo2']             || []
     }
 
     def 'Retrieve cm handles when the query is empty.'() {
