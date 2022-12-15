@@ -25,6 +25,9 @@ import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.impl.CpsPersistenceSpecBase
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.DataNodeBuilder
+import org.onap.cps.spi.repository.AnchorRepository
+import org.onap.cps.spi.repository.DataspaceRepository
+import org.onap.cps.spi.repository.FragmentRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.jdbc.Sql
 
@@ -40,6 +43,15 @@ class CpsDataPersistenceServicePerfTest extends CpsPersistenceSpecBase {
     @Autowired
     CpsDataPersistenceService objectUnderTest
 
+    @Autowired
+    DataspaceRepository dataspaceRepository
+
+    @Autowired
+    AnchorRepository anchorRepository
+
+    @Autowired
+    FragmentRepository fragmentRepository
+
     static def PERF_TEST_PARENT = '/perf-parent-1'
     static def NUMBER_OF_CHILDREN = 200
     static def NUMBER_OF_GRAND_CHILDREN = 50
@@ -48,6 +60,8 @@ class CpsDataPersistenceServicePerfTest extends CpsPersistenceSpecBase {
     static def ALLOWED_READ_TIME_AL_NODES_MS = 500
 
     def stopWatch = new StopWatch()
+    def readStopWatch = new StopWatch()
+    static def xpathsToAllGrandChildren = []
 
     @Sql([CLEAR_DATA, PERF_TEST_DATA])
     def 'Create a node with many descendants (please note, subsequent tests depend on this running first).'() {
@@ -88,6 +102,19 @@ class CpsDataPersistenceServicePerfTest extends CpsPersistenceSpecBase {
             assert countDataNodes(result) == TOTAL_NUMBER_OF_NODES
     }
 
+    def 'Performance of finding multiple xpath (new method) '() {
+        when: 'we query for all grandchildren (except 1 for fun) with the new native method'
+            xpathsToAllGrandChildren.remove(0)
+            readStopWatch.start()
+            def result = objectUnderTest.getDataNodes('PERF-DATASPACE', 'PERF-ANCHOR', xpathsToAllGrandChildren, INCLUDE_ALL_DESCENDANTS)
+            readStopWatch.stop()
+            def readDurationInMillis = readStopWatch.getTotalTimeMillis()
+        then: 'the returned number of entities equal to the number of children * number of grandchildren'
+            assert result.size() == xpathsToAllGrandChildren.size()
+        and: 'it took less then 400ms'
+            assert readDurationInMillis < 4000
+    }
+
     def 'Query many descendants by cps-path with #scenario'() {
         when: 'query is executed with all descendants'
             stopWatch.start()
@@ -107,7 +134,7 @@ class CpsDataPersistenceServicePerfTest extends CpsPersistenceSpecBase {
     def 'Delete 50 grandchildren (that have no descendants)'() {
         when: 'target nodes are deleted'
             stopWatch.start()
-            (1..50).each {
+            (1..NUMBER_OF_GRAND_CHILDREN).each {
                 def grandchildPath = "${PERF_TEST_PARENT}/perf-test-child-1/perf-test-grand-child-${it}".toString();
                 objectUnderTest.deleteDataNode('PERF-DATASPACE', 'PERF-ANCHOR', grandchildPath)
             }
@@ -152,6 +179,7 @@ class CpsDataPersistenceServicePerfTest extends CpsPersistenceSpecBase {
         def grandChildren = []
         (1..NUMBER_OF_GRAND_CHILDREN).each {
             def grandChild = new DataNodeBuilder().withXpath("${parentXpath}/${childName}/perf-test-grand-child-${it}").build()
+            xpathsToAllGrandChildren.add(grandChild.xpath)
             grandChildren.add(grandChild)
         }
         return new DataNodeBuilder().withXpath("${parentXpath}/${childName}").withChildDataNodes(grandChildren).build()

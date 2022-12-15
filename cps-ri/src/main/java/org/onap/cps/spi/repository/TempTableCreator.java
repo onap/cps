@@ -26,6 +26,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import lombok.AllArgsConstructor;
@@ -82,8 +83,10 @@ public class TempTableCreator {
                                    final String[] columnNames,
                                    final Collection<List<String>> sqlData) {
         final Collection<String> sqlInserts = new HashSet<>(sqlData.size());
-        for (final Collection<String> row : sqlData) {
-            sqlInserts.add("('" + String.join("','", row) + "')");
+        for (final Collection<String> rowValues : sqlData) {
+            final Collection<String> escapedValues =
+                    rowValues.stream().map(it -> escapeSingleQuotesByDoublingThem(it)).collect(Collectors.toList());
+            sqlInserts.add("('" + String.join("','", escapedValues) + "')");
         }
         sqlStringBuilder.append("INSERT INTO ");
         sqlStringBuilder.append(tempTableName);
@@ -92,6 +95,10 @@ public class TempTableCreator {
         sqlStringBuilder.append(") VALUES ");
         sqlStringBuilder.append(String.join(",", sqlInserts));
         sqlStringBuilder.append(";");
+    }
+
+    private static String escapeSingleQuotesByDoublingThem(final String value) {
+        return value.replace("'", "''");
     }
 
 }

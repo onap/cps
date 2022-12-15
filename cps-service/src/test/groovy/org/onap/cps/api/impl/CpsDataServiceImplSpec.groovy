@@ -193,6 +193,8 @@ class CpsDataServiceImplSpec extends Specification {
             fetchDescendantsOption << [FetchDescendantsOption.OMIT_DESCENDANTS, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS]
     }
 
+
+
     def 'Update data node leaves: #scenario.'() {
         given: 'schema set for given anchor and dataspace references test-tree model'
             setupSchemaSetMocks('test-tree.yang')
