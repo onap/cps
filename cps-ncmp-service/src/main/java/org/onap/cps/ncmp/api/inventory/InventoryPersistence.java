@@ -132,12 +132,12 @@ public interface InventoryPersistence {
     DataNode getCmHandleDataNode(String cmHandleId);
 
     /**
-     * Query anchors via module names.
+     * Query anchor names via module names.
      *
      * @param moduleNamesForQuery module names
-     * @return Collection of anchors
+     * @return Collection of anchor names
      */
-    Collection<Anchor> queryAnchors(Collection<String> moduleNamesForQuery);
+    Collection<String> queryAnchors(Collection<String> moduleNamesForQuery);
 
     /**
      * Method to get all anchors.
