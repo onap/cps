@@ -35,9 +35,9 @@ class CpsPathUtilPerfTest extends Specification {
                 CpsPathUtil.getNormalizedXpath('//child[@other-leaf=1]/leaf-name[text()="search"]/ancestor::parent')
             }
             stopWatch.stop()
-        then: 'it takes less then 1,000 milliseconds'
+        then: 'it takes less then 1,100 milliseconds'
             // In CI this actually takes about 0.3-0.5 sec  which  is approx. 50+ parser executions per millisecond!
-            assert stopWatch.getTotalTimeMillis() < 1000
+            assert stopWatch.getTotalTimeMillis() < 1100
     }
 
 }

@@ -26,6 +26,8 @@ import org.onap.cps.spi.exceptions.CpsPathException
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.jdbc.Sql
 
+import java.util.stream.Collectors
+
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
 
@@ -147,27 +149,30 @@ class CpsDataPersistenceQueryDataNodeSpec extends CpsPersistenceSpecBase {
             def result = objectUnderTest.queryDataNodes(DATASPACE_NAME, ANCHOR_FOR_SHOP_EXAMPLE, cpsPath, INCLUDE_ALL_DESCENDANTS)
         then: 'the xpaths of the retrieved data nodes are as expected'
             result.size() == expectedXPaths.size()
-            for (int i = 0; i < result.size(); i++) {
-                assert result[i].getXpath() == expectedXPaths[i]
-                assert result[i].childDataNodes.size() == expectedNumberOfChildren[i]
+            if (result.size() > 0) {
+                def resultXpaths = result.stream().map(it -> it.xpath).collect(Collectors.toSet())
+                resultXpaths.containsAll(expectedXPaths)
+                result.each {
+                    assert it.childDataNodes.size() == expectedNumberOfChildren
+                }
             }
         where: 'the following data is used'
             scenario                                    | cpsPath                                              || expectedXPaths                                                                               || expectedNumberOfChildren
-            'multiple list-ancestors'                   | '//book/ancestor::categories'                        || ["/shops/shop[@id='1']/categories[@code='1']", "/shops/shop[@id='1']/categories[@code='2']"] || [1, 1]
-            'one ancestor with list value'              | '//book/ancestor::categories[@code=1]'               || ["/shops/shop[@id='1']/categories[@code='1']"]                                               || [1]
-            'top ancestor'                              | '//shop[@id=1]/ancestor::shops'                      || ['/shops']                                                                                   || [5]
-            'list with index value in the xpath prefix' | '//categories[@code=1]/book/ancestor::shop[@id=1]'   || ["/shops/shop[@id='1']"]                                                                     || [3]
-            'ancestor with parent list'                 | '//book/ancestor::shop[@id=1]/categories[@code=2]'   || ["/shops/shop[@id='1']/categories[@code='2']"]                                               || [1]
-            'ancestor with parent'                      | '//phonenumbers[@type="mob"]/ancestor::info/contact' || ["/shops/shop[@id='3']/info/contact"]                                                        || [3]
-            'ancestor combined with text condition'     | '//book/title[text()="Dune"]/ancestor::shop'         || ["/shops/shop[@id='1']"]                                                                     || [3]
-            'ancestor with parent that does not exist'  | '//book/ancestor::parentDoesNoExist/categories'      || []                                                                                           || []
-            'ancestor does not exist'                   | '//book/ancestor::ancestorDoesNotExist'              || []                                                                                           || []
+            'multiple list-ancestors'                   | '//book/ancestor::categories'                        || ["/shops/shop[@id='1']/categories[@code='2']", "/shops/shop[@id='1']/categories[@code='1']"] || 1
+            'one ancestor with list value'              | '//book/ancestor::categories[@code=1]'               || ["/shops/shop[@id='1']/categories[@code='1']"]                                               || 1
+            'top ancestor'                              | '//shop[@id=1]/ancestor::shops'                      || ['/shops']                                                                                   || 5
+            'list with index value in the xpath prefix' | '//categories[@code=1]/book/ancestor::shop[@id=1]'   || ["/shops/shop[@id='1']"]                                                                     || 3
+            'ancestor with parent list'                 | '//book/ancestor::shop[@id=1]/categories[@code=2]'   || ["/shops/shop[@id='1']/categories[@code='2']"]                                               || 1
+            'ancestor with parent'                      | '//phonenumbers[@type="mob"]/ancestor::info/contact' || ["/shops/shop[@id='3']/info/contact"]                                                        || 3
+            'ancestor combined with text condition'     | '//book/title[text()="Dune"]/ancestor::shop'         || ["/shops/shop[@id='1']"]                                                                     || 3
+            'ancestor with parent that does not exist'  | '//book/ancestor::parentDoesNoExist/categories'      || []                                                                                           || null
+            'ancestor does not exist'                   | '//book/ancestor::ancestorDoesNotExist'              || []                                                                                           || null
     }
 
     def 'Cps Path query with syntax error throws a CPS Path Exception.'() {
         when: 'trying to execute a query with a syntax (parsing) error'
             objectUnderTest.queryDataNodes(DATASPACE_NAME, ANCHOR_FOR_SHOP_EXAMPLE, 'cpsPath that cannot be parsed' , OMIT_DESCENDANTS)
-        then: 'exception is thrown'
+        then: 'a cps path exception is thrown'
             thrown(CpsPathException)
     }
 

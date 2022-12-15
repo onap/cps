@@ -39,7 +39,8 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>, FragmentRepositoryCpsPathQuery {
+public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>, FragmentRepositoryCpsPathQuery,
+        FragmentRepositoryMultiPathQuery {
 
     Optional<FragmentEntity> findByDataspaceAndAnchorAndXpath(@NonNull DataspaceEntity dataspaceEntity,
                                                               @NonNull AnchorEntity anchorEntity,
@@ -79,9 +80,6 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>,
         }
         return fragmentExtracts;
     }
-
-    List<FragmentEntity> findAllByAnchorAndXpathIn(@NonNull AnchorEntity anchorEntity,
-                                                   @NonNull Collection<String> xpath);
 
     @Modifying
     @Query("DELETE FROM FragmentEntity fe WHERE fe.anchor IN (:anchors)")
