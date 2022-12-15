@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "8be44790_f9a819e0",
+        "filename": "cps-rest/docs/openapi/cpsData.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-12-15T13:03:28Z",
+      "side": 1,
+      "message": "This endpoint is already deprecated so we shouldn\u0027t have a v2 for it, only a deprecated v1",
+      "range": {
+        "startLine": 119,
+        "startChar": 2,
+        "endLine": 142,
+        "endChar": 72
+      },
+      "revId": "d794381cf0710f1d9631a952f0f44810288ef4c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4ded9dd5_34a01334",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
         "patchSetId": 3
@@ -13,6 +36,30 @@
       "writtenOn": "2022-12-14T12:11:52Z",
       "side": 1,
       "message": "just a thought for here and for the other v1 method names --- since v2 would be createDataspaceV2 - would it be a consistent way to make v1 methods \u0027createDataspaceV1\u0027?",
+      "range": {
+        "startLine": 66,
+        "startChar": 34,
+        "endLine": 66,
+        "endChar": 50
+      },
+      "revId": "d794381cf0710f1d9631a952f0f44810288ef4c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d0651e85_d5348d2f",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-12-15T13:03:28Z",
+      "side": 1,
+      "message": "I\u0027d agree but I\u0027m also thinking since we didnt rename the .yml files to V1 as well that its consistent",
+      "parentUuid": "4ded9dd5_34a01334",
       "range": {
         "startLine": 66,
         "startChar": 34,
@@ -45,6 +92,30 @@
       "revId": "d794381cf0710f1d9631a952f0f44810288ef4c1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d35779fe_0d58d2ab",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2022-12-15T13:03:28Z",
+      "side": 1,
+      "message": "Yeah unfortunately needs to be there because its implementing the CpsAdminApi method which has it to differentiate the api versions",
+      "parentUuid": "4b9c4da4_903b3fd9",
+      "range": {
+        "startLine": 90,
+        "startChar": 54,
+        "endLine": 90,
+        "endChar": 72
+      },
+      "revId": "d794381cf0710f1d9631a952f0f44810288ef4c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
