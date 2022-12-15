@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "8363bdd2_893b46fc",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2022-12-15T12:54:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "88544c69_0a0615cf",
+      "range": {
+        "startLine": 176,
+        "startChar": 16,
+        "endLine": 176,
+        "endChar": 29
+      },
+      "revId": "6c0e9b45f005fd273fc92134d9e2a717591b4d3f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d4659734_9be7dc64",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 18
@@ -92,6 +116,30 @@
       "revId": "6c0e9b45f005fd273fc92134d9e2a717591b4d3f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cbc6bdf4_367b5099",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2022-12-15T12:54:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d4659734_9be7dc64",
+      "range": {
+        "startLine": 177,
+        "startChar": 35,
+        "endLine": 177,
+        "endChar": 55
+      },
+      "revId": "6c0e9b45f005fd273fc92134d9e2a717591b4d3f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -212,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "2e85a301_65e9d2ab",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 18
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2022-12-15T12:54:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b380918c_315c181c",
+      "range": {
+        "startLine": 193,
+        "startChar": 2,
+        "endLine": 203,
+        "endChar": 5
+      },
+      "revId": "6c0e9b45f005fd273fc92134d9e2a717591b4d3f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "305fcf69_27bbbc7a",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNodeBuilder.java",
         "patchSetId": 18
@@ -223,6 +295,30 @@
       "writtenOn": "2022-12-15T11:27:15Z",
       "side": 1,
       "message": "should be deprecated\n(update test to get first one weher needed)",
+      "range": {
+        "startLine": 131,
+        "startChar": 20,
+        "endLine": 131,
+        "endChar": 25
+      },
+      "revId": "6c0e9b45f005fd273fc92134d9e2a717591b4d3f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6ef803dd_3c95cfb3",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNodeBuilder.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2022-12-15T12:54:42Z",
+      "side": 1,
+      "message": "as discussed we will deprecate and update the test cases to use DataNodeBuilder().buildCollection() in separate commit",
+      "parentUuid": "305fcf69_27bbbc7a",
       "range": {
         "startLine": 131,
         "startChar": 20,
@@ -258,6 +354,30 @@
     },
     {
       "key": {
+        "uuid": "7444fb05_c0670375",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNodeBuilder.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2022-12-15T12:54:42Z",
+      "side": 1,
+      "message": "yes as discussed we will take it in a separate commit",
+      "parentUuid": "3e34fcc2_bbd57a7f",
+      "range": {
+        "startLine": 167,
+        "startChar": 8,
+        "endLine": 167,
+        "endChar": 52
+      },
+      "revId": "6c0e9b45f005fd273fc92134d9e2a717591b4d3f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "89dada54_a75fb4c6",
         "filename": "cps-service/src/test/groovy/org/onap/cps/spi/model/DataNodeBuilderSpec.groovy",
         "patchSetId": 18
@@ -278,6 +398,30 @@
       "revId": "6c0e9b45f005fd273fc92134d9e2a717591b4d3f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35e09f62_b7321a46",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/spi/model/DataNodeBuilderSpec.groovy",
+        "patchSetId": 18
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2022-12-15T12:54:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "89dada54_a75fb4c6",
+      "range": {
+        "startLine": 188,
+        "startChar": 91,
+        "endLine": 188,
+        "endChar": 122
+      },
+      "revId": "6c0e9b45f005fd273fc92134d9e2a717591b4d3f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
