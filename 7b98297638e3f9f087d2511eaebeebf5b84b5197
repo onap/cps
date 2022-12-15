@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0cdf96ce_32ce653b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/avc/AvcSubscriptionEventSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-15T12:26:52Z",
+      "side": 1,
+      "message": "since this is a (injected) bean should/needs it be initialised here at all?",
+      "range": {
+        "startLine": 44,
+        "startChar": 55,
+        "endLine": 44,
+        "endChar": 90
+      },
+      "revId": "7b98297638e3f9f087d2511eaebeebf5b84b5197",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7b8ceda0_64c08989",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/avc/AvcSubscriptionEventSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-15T12:26:52Z",
+      "side": 1,
+      "message": "this ia not an validation of an interaction, if you want to do that you need to use a Mock or Spy and end up with something like\n1 * mockSubscriptionEventConsumer.consumeSubscriptionEvent(testEventSent)",
+      "range": {
+        "startLine": 58,
+        "startChar": 12,
+        "endLine": 58,
+        "endChar": 77
+      },
+      "revId": "7b98297638e3f9f087d2511eaebeebf5b84b5197",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "84f127ba_1120c939",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/avc/AvcSubscriptionEventSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-15T12:26:52Z",
+      "side": 1,
+      "message": "same issue as above and also expected the same outcome... Not suer if we can expected different outcomes as we are curently only logging.\n\nSo you probably can combine both tets into 1 using a where block to set the data category...",
+      "range": {
+        "startLine": 70,
+        "startChar": 7,
+        "endLine": 70,
+        "endChar": 77
+      },
+      "revId": "7b98297638e3f9f087d2511eaebeebf5b84b5197",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "416c87c0_c224f92b",
+        "filename": "cps-ncmp-service/src/test/resources/application.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-15T12:26:52Z",
+      "side": 1,
+      "message": "nore suer why you are still using some string substituatin,c an it not just be somthing like\nsubscription-topic: test-avc-subscription",
+      "range": {
+        "startLine": 32,
+        "startChar": 28,
+        "endLine": 32,
+        "endChar": 77
+      },
+      "revId": "7b98297638e3f9f087d2511eaebeebf5b84b5197",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
