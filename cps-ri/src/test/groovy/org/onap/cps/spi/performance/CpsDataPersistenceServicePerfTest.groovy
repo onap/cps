@@ -25,6 +25,9 @@ import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.impl.CpsPersistenceSpecBase
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.DataNodeBuilder
+import org.onap.cps.spi.repository.AnchorRepository
+import org.onap.cps.spi.repository.DataspaceRepository
+import org.onap.cps.spi.repository.FragmentRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.jdbc.Sql
 
@@ -40,6 +43,15 @@ class CpsDataPersistenceServicePerfTest extends CpsPersistenceSpecBase {
     @Autowired
     CpsDataPersistenceService objectUnderTest
 
+    @Autowired
+    DataspaceRepository dataspaceRepository
+
+    @Autowired
+    AnchorRepository anchorRepository
+
+    @Autowired
+    FragmentRepository fragmentRepository
+
     static def PERF_TEST_PARENT = '/perf-parent-1'
     static def NUMBER_OF_CHILDREN = 200
     static def NUMBER_OF_GRAND_CHILDREN = 50
@@ -48,6 +60,8 @@ class CpsDataPersistenceServicePerfTest extends CpsPersistenceSpecBase {
     static def ALLOWED_READ_TIME_AL_NODES_MS = 500
 
     def stopWatch = new StopWatch()
+    def readStopWatch = new StopWatch()
+    static def xpathsToAllGrandChildren = []
 
     @Sql([CLEAR_DATA, PERF_TEST_DATA])
     def 'Create a node with many descendants (please note, subsequent tests depend on this running first).'() {
@@ -86,6 +100,37 @@ class CpsDataPersistenceServicePerfTest extends CpsPersistenceSpecBase {
             assert readDurationInMillis < ALLOWED_READ_TIME_AL_NODES_MS
         and: 'data node is returned with all the descendants populated'
             assert countDataNodes(result) == TOTAL_NUMBER_OF_NODES
+    }
+
+
+    def 'Performance of finding multiple xpath (old method) '() {
+        given: 'a Dataspace and an Anchor entity'
+            def dataspaceEntity = dataspaceRepository.getByName('PERF-DATASPACE')
+            def anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, 'PERF-ANCHOR')
+        when: 'we query for the fragments with the old method'
+            readStopWatch.start()
+            def result = fragmentRepository.findAllByAnchorAndXpathIn(anchorEntity, xpathsToAllGrandChildren)
+            readStopWatch.stop()
+            def readDurationInMillis = readStopWatch.getTotalTimeMillis()
+        then: 'the returned number of entities equal to the number of children * number of grandchildren'
+            assert result.size() == NUMBER_OF_CHILDREN * NUMBER_OF_GRAND_CHILDREN
+        and: 'it took less then 500ms'
+            assert readDurationInMillis < 500
+    }
+
+    def 'Performance of finding multiple xpath (new method) '() {
+        given: 'a Dataspace and an Anchor entity'
+            def dataspaceEntity = dataspaceRepository.getByName('PERF-DATASPACE')
+            def anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, 'PERF-ANCHOR')
+        when: 'we query for the fragments with the new native method'
+            readStopWatch.start()
+            def result = fragmentRepository.findByAnchorAndMultipleCpsPaths(anchorEntity.getId(), xpathsToAllGrandChildren)
+            readStopWatch.stop()
+            def readDurationInMillis = readStopWatch.getTotalTimeMillis()
+        then: 'the returned number of entities equal to the number of children * number of grandchildren'
+            assert result.size() == NUMBER_OF_CHILDREN * NUMBER_OF_GRAND_CHILDREN
+        and: 'it took less then 400ms'
+            assert readDurationInMillis < 400
     }
 
     def 'Query many descendants by cps-path with #scenario'() {
@@ -152,6 +197,7 @@ class CpsDataPersistenceServicePerfTest extends CpsPersistenceSpecBase {
         def grandChildren = []
         (1..NUMBER_OF_GRAND_CHILDREN).each {
             def grandChild = new DataNodeBuilder().withXpath("${parentXpath}/${childName}/perf-test-grand-child-${it}").build()
+            xpathsToAllGrandChildren.add(grandChild.xpath)
             grandChildren.add(grandChild)
         }
         return new DataNodeBuilder().withXpath("${parentXpath}/${childName}").withChildDataNodes(grandChildren).build()
