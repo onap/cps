@@ -331,6 +331,30 @@
     },
     {
       "key": {
+        "uuid": "4f2c1154_96395bd9",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNodeBuilder.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-15T14:18:58Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6ef803dd_3c95cfb3",
+      "range": {
+        "startLine": 131,
+        "startChar": 20,
+        "endLine": 131,
+        "endChar": 25
+      },
+      "revId": "6c0e9b45f005fd273fc92134d9e2a717591b4d3f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3e34fcc2_bbd57a7f",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNodeBuilder.java",
         "patchSetId": 18
@@ -375,6 +399,30 @@
       "revId": "6c0e9b45f005fd273fc92134d9e2a717591b4d3f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9c998130_c7086f87",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNodeBuilder.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-15T14:18:58Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7444fb05_c0670375",
+      "range": {
+        "startLine": 167,
+        "startChar": 8,
+        "endLine": 167,
+        "endChar": 52
+      },
+      "revId": "6c0e9b45f005fd273fc92134d9e2a717591b4d3f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
