@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e6042df3_a63e7106",
+        "filename": "cps-rest/docs/openapi/cpsData.yml",
+        "patchSetId": 16
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-15T12:17:36Z",
+      "side": 1,
+      "message": "does this affect the impl?\n(I hoep not and then it is OK)",
+      "range": {
+        "startLine": 164,
+        "startChar": 18,
+        "endLine": 164,
+        "endChar": 55
+      },
+      "revId": "a22489e0fd9b6833b7cbefae66898141020c7e4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9c7e79e6_c1cba846",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-15T12:17:36Z",
+      "side": 1,
+      "message": "NB: could/should this be in a finally block ?!",
+      "range": {
+        "startLine": 164,
+        "startChar": 12,
+        "endLine": 164,
+        "endChar": 37
+      },
+      "revId": "a22489e0fd9b6833b7cbefae66898141020c7e4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
