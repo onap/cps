@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9e8b619b_5311d5ac",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/avc/AvcSubscriptionEventSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-16T09:22:52Z",
+      "side": 1,
+      "message": "NB, prefer: def mockSubscriptionEventConsumer \u003d Mock(SubscriptionEventConsumer)",
+      "range": {
+        "startLine": 44,
+        "startChar": 4,
+        "endLine": 44,
+        "endChar": 68
+      },
+      "revId": "ee7d388af447935eee76e7487cd51d897aafb2a4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c6f19ad7_82bd40a3",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/avc/AvcSubscriptionEventSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-16T09:22:52Z",
+      "side": 1,
+      "message": "this shoudl not be i teh test, we\u0027ll have a chat later",
+      "range": {
+        "startLine": 57,
+        "startChar": 2,
+        "endLine": 58,
+        "endChar": 81
+      },
+      "revId": "ee7d388af447935eee76e7487cd51d897aafb2a4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}

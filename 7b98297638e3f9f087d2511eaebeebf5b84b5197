@@ -225,6 +225,30 @@
       "revId": "7b98297638e3f9f087d2511eaebeebf5b84b5197",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "17be1a04_77f0f411",
+        "filename": "cps-ncmp-service/src/test/resources/application.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-16T09:22:52Z",
+      "side": 1,
+      "message": "1st rule for test: keep it as simple as possible!",
+      "parentUuid": "b4a61c32_a4521445",
+      "range": {
+        "startLine": 32,
+        "startChar": 28,
+        "endLine": 32,
+        "endChar": 77
+      },
+      "revId": "7b98297638e3f9f087d2511eaebeebf5b84b5197",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
