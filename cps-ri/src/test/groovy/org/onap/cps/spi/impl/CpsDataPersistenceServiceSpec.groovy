@@ -2,6 +2,7 @@
  * ============LICENSE_START=======================================================
  * Copyright (c) 2021 Bell Canada.
  * Modifications Copyright (C) 2021-2022 Nordix Foundation
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,6 +35,7 @@ import org.onap.cps.spi.repository.DataspaceRepository
 import org.onap.cps.spi.repository.FragmentRepository
 import org.onap.cps.spi.utils.SessionManager
 import org.onap.cps.utils.JsonObjectMapper
+import org.springframework.dao.DataIntegrityViolationException
 import spock.lang.Specification
 
 class CpsDataPersistenceServiceSpec extends Specification {
@@ -44,7 +46,28 @@ class CpsDataPersistenceServiceSpec extends Specification {
     def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
     def mockSessionManager = Mock(SessionManager)
 
-    def objectUnderTest = new CpsDataPersistenceServiceImpl(mockDataspaceRepository, mockAnchorRepository, mockFragmentRepository, jsonObjectMapper, mockSessionManager)
+    def objectUnderTest = Spy(new CpsDataPersistenceServiceImpl(mockDataspaceRepository, mockAnchorRepository, mockFragmentRepository, jsonObjectMapper, mockSessionManager))
+
+    def 'Storing data nodes individually when batch operation fails'(){
+        given: 'two data nodes and supporting repository mock behavior'
+            def dataNode1 = createDataNodeAndMockRepositoryMethodSupportingIt('xpath1','OK')
+            def dataNode2 = createDataNodeAndMockRepositoryMethodSupportingIt('xpath2','OK')
+        and: 'the batch store operation will fail'
+            mockFragmentRepository.saveAll(*_) >> { throw new DataIntegrityViolationException("Exception occurred") }
+        when: 'trying to store data nodes'
+            objectUnderTest.storeDataNodes('dataSpaceName', 'anchorName', [dataNode1, dataNode2])
+        then: 'the two data nodes are saved individually'
+            2 * mockFragmentRepository.save(_);
+    }
+
+    def 'Store single data node.'() {
+        given: 'a data node'
+            def dataNode = new DataNode()
+        when: 'storing a single data node'
+            objectUnderTest.storeDataNode('dataspace1', 'anchor1', dataNode)
+        then: 'the call is redirected to storing a collection of data nodes with just the given data node'
+            1 * objectUnderTest.storeDataNodes('dataspace1', 'anchor1', [dataNode])
+    }
 
     def 'Handling of StaleStateException (caused by concurrent updates) during update data node and descendants.'() {
         given: 'the fragment repository returns a fragment entity'
@@ -66,10 +89,10 @@ class CpsDataPersistenceServiceSpec extends Specification {
 
     def 'Handling of StaleStateException (caused by concurrent updates) during update data nodes and descendants.'() {
         given: 'the system contains and can update one datanode'
-            def dataNode1 = mockDataNodeAndFragmentEntity('/node1', 'OK')
+            def dataNode1 = createDataNodeAndMockRepositoryMethodSupportingIt('/node1', 'OK')
         and: 'the system contains two more datanodes that throw an exception while updating'
-            def dataNode2 = mockDataNodeAndFragmentEntity('/node2', 'EXCEPTION')
-            def dataNode3 = mockDataNodeAndFragmentEntity('/node3', 'EXCEPTION')
+            def dataNode2 = createDataNodeAndMockRepositoryMethodSupportingIt('/node2', 'EXCEPTION')
+            def dataNode3 = createDataNodeAndMockRepositoryMethodSupportingIt('/node3', 'EXCEPTION')
         and: 'the batch update will therefore also fail'
             mockFragmentRepository.saveAll(*_) >> { throw new StaleStateException("concurrent updates") }
         when: 'attempt batch update data nodes'
@@ -174,7 +197,7 @@ class CpsDataPersistenceServiceSpec extends Specification {
             }})
     }
 
-    def mockDataNodeAndFragmentEntity(xpath, scenario) {
+    def createDataNodeAndMockRepositoryMethodSupportingIt(xpath, scenario) {
         def dataNode = new DataNodeBuilder().withXpath(xpath).build()
         def fragmentEntity = new FragmentEntity(xpath: xpath, childFragments: [])
         mockFragmentRepository.getByDataspaceAndAnchorAndXpath(_, _, xpath) >> fragmentEntity
