@@ -90,6 +90,30 @@
     },
     {
       "key": {
+        "uuid": "e1a5958b_250ad978",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 6079
+      },
+      "writtenOn": "2022-12-16T07:44:32Z",
+      "side": 1,
+      "message": "As far as I understand both of these variables are used during parsing input process. I\u0027m not sure if declaring them above is thread safe, as we are going to use them for different inputs",
+      "parentUuid": "f1529d04_752013cc",
+      "range": {
+        "startLine": 180,
+        "startChar": 0,
+        "endLine": 182,
+        "endChar": 44
+      },
+      "revId": "a31a0f117daffbce792da6b6d5cc03d8b0c7ef63",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "497d4367_de4f8407",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
         "patchSetId": 15
