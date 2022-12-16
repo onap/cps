@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aeda10ac_e4d38d7f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-16T11:33:51Z",
+      "side": 1,
+      "message": "Still mention Anchors :-(",
+      "range": {
+        "startLine": 250,
+        "startChar": 15,
+        "endLine": 251,
+        "endChar": 41
+      },
+      "revId": "30da1ae5ac88ede99190ba0f978c01b6e3a54bc6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
