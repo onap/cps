@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "fc2d8473_d15fa5f3",
+        "filename": "cps-rest/docs/openapi/cpsData.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2022-12-16T06:37:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8be44790_f9a819e0",
+      "range": {
+        "startLine": 119,
+        "startChar": 2,
+        "endLine": 142,
+        "endChar": 72
+      },
+      "revId": "d794381cf0710f1d9631a952f0f44810288ef4c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4ded9dd5_34a01334",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
         "patchSetId": 3
