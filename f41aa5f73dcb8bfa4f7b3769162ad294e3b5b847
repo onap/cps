@@ -1,0 +1,222 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e6402c06_855ff981",
+        "filename": "cps-rest/docs/openapi/cpsAdminDeprecated.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-16T11:06:35Z",
+      "side": 1,
+      "message": "1) Luke showed us the Yaml UI for this patch yesterday and it included a deprecated methods that was using an apiVersion enum as well. I forget which method it was exactly and I cannot see it in the code, have you talked about taht with Luke, is it fixed?\n\n2) suggestion: rename this file to cpsAdminV1Deprecated",
+      "revId": "f41aa5f73dcb8bfa4f7b3769162ad294e3b5b847",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5c72712b_75094c42",
+        "filename": "cps-rest/docs/openapi/cpsDataDeprecated.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-16T11:06:35Z",
+      "side": 1,
+      "message": "insert V1 in the filename please",
+      "revId": "f41aa5f73dcb8bfa4f7b3769162ad294e3b5b847",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "611e4320_db5575fc",
+        "filename": "cps-rest/docs/openapi/openapi.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-16T11:06:35Z",
+      "side": 1,
+      "message": "since this is deprecate in v1 should you use v2 here?!\nMaybe its  a bit more complicated because you only deprecate one operation correct (POSt)\nI think it is bets shown/discussed by checking the Swagger UI for the poiint I mentioned earlier about a deprevated method having an version enum....",
+      "range": {
+        "startLine": 56,
+        "startChar": 3,
+        "endLine": 56,
+        "endChar": 15
+      },
+      "revId": "f41aa5f73dcb8bfa4f7b3769162ad294e3b5b847",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0353625f_9cee2046",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-16T11:06:35Z",
+      "side": 1,
+      "message": "use || and term \u0027expected\u0027 for outcome data:\n|| expectedResponseBody",
+      "range": {
+        "startLine": 89,
+        "startChar": 48,
+        "endLine": 89,
+        "endChar": 62
+      },
+      "revId": "f41aa5f73dcb8bfa4f7b3769162ad294e3b5b847",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e96e9811_67a2b9c8",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-16T11:06:35Z",
+      "side": 1,
+      "message": "suggestion: you could use a groovy string on  line 80: post(\"/cps/api/${apiVersion}/dataspaces\")\n\nand then simplify the table (no real need for a separate scenario column)\n\napiVersion || expectedResponseBody\n\u0027v1\u0027       || \u0027my_dataspace\u0027\n\u0027v2\u0027       || \u0027\u0027",
+      "range": {
+        "startLine": 90,
+        "startChar": 24,
+        "endLine": 90,
+        "endChar": 47
+      },
+      "revId": "f41aa5f73dcb8bfa4f7b3769162ad294e3b5b847",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "23ebe41d_1895d5f9",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-16T11:06:35Z",
+      "side": 1,
+      "message": "see sugegstion above",
+      "range": {
+        "startLine": 154,
+        "startChar": 9,
+        "endLine": 156,
+        "endChar": 78
+      },
+      "revId": "f41aa5f73dcb8bfa4f7b3769162ad294e3b5b847",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ea970264_27582575",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-16T11:06:35Z",
+      "side": 1,
+      "message": "same here",
+      "range": {
+        "startLine": 179,
+        "startChar": 0,
+        "endLine": 182,
+        "endChar": 5
+      },
+      "revId": "f41aa5f73dcb8bfa4f7b3769162ad294e3b5b847",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "19bb885c_c66eaad9",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-16T11:06:35Z",
+      "side": 1,
+      "message": "and here",
+      "range": {
+        "startLine": 200,
+        "startChar": 0,
+        "endLine": 202,
+        "endChar": 77
+      },
+      "revId": "f41aa5f73dcb8bfa4f7b3769162ad294e3b5b847",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "19560191_90b398dc",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-16T11:06:35Z",
+      "side": 1,
+      "message": "guess :-)",
+      "range": {
+        "startLine": 324,
+        "startChar": 0,
+        "endLine": 326,
+        "endChar": 73
+      },
+      "revId": "f41aa5f73dcb8bfa4f7b3769162ad294e3b5b847",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "214e7e81_79b27e0d",
+        "filename": "docs/api/swagger/cps/openapi.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 954,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-16T11:06:35Z",
+      "side": 1,
+      "message": "can you not declare the enum glocale ONCE ?! (in components?!)",
+      "range": {
+        "startLine": 947,
+        "startChar": 0,
+        "endLine": 954,
+        "endChar": 21
+      },
+      "revId": "f41aa5f73dcb8bfa4f7b3769162ad294e3b5b847",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
