@@ -500,41 +500,51 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         deleteDataNode(dataspaceName, anchorName, targetXpath, false);
     }
 
+
     private void deleteDataNode(final String dataspaceName, final String anchorName, final String targetXpath,
-                                final boolean onlySupportListNodeDeletion) {
-        final String parentNodeXpath;
-        FragmentEntity parentFragmentEntity = null;
-        boolean targetDeleted;
-        if (isRootXpath(targetXpath)) {
-            deleteDataNodes(dataspaceName, anchorName);
-            targetDeleted = true;
-        } else {
-            if (isRootContainerNodeXpath(targetXpath)) {
-                parentNodeXpath = targetXpath;
-            } else {
-                parentNodeXpath = targetXpath.substring(0, targetXpath.lastIndexOf('/'));
-            }
-            parentFragmentEntity = getFragmentWithoutDescendantsByXpath(dataspaceName, anchorName, parentNodeXpath);
-            final String lastXpathElement = targetXpath.substring(targetXpath.lastIndexOf('/'));
-            final boolean isListElement = REG_EX_PATTERN_FOR_LIST_ELEMENT_KEY_PREDICATE
-                    .matcher(lastXpathElement).find();
-            if (isListElement) {
-                targetDeleted = deleteDataNode(parentFragmentEntity, targetXpath);
-            } else {
-                targetDeleted = deleteAllListElements(parentFragmentEntity, targetXpath);
-                final boolean tryToDeleteDataNode = !targetDeleted && !onlySupportListNodeDeletion;
-                if (tryToDeleteDataNode) {
-                    targetDeleted = deleteDataNode(parentFragmentEntity, targetXpath);
-                }
-            }
+                final boolean onlySupportListNodeDeletion) {
+               String parentNodeXpath = null;
+               String newXpath = null;
+               String lastXpathElement = null;
+               FragmentEntity parentFragmentEntity = null;
+               boolean targetDeleted;
+               if (isRootXpath(targetXpath)) {
+                   deleteDataNodes(dataspaceName, anchorName);
+                       targetDeleted = true;
+                     } else {
+                            if (isRootContainerNodeXpath(targetXpath)) {
+                                parentNodeXpath = targetXpath;
+                                lastXpathElement = targetXpath.substring(targetXpath.lastIndexOf('/'));
+                                } else {
+				if(targetXpath.lastIndexOf('/')>=0 && targetXpath.substring(targetXpath.lastIndexOf('/')).contains("]") && !targetXpath.substring(targetXpath.lastIndexOf('/')).contains("[")) {
+                                              if(targetXpath.lastIndexOf('@')>=0 && targetXpath.substring(targetXpath.lastIndexOf('@')).contains("/")) {
+                                                   newXpath = targetXpath.replace(targetXpath.substring(targetXpath.lastIndexOf('@')), "");
+                                                   parentNodeXpath = newXpath.substring(0, newXpath.lastIndexOf('/'));
+                                                   lastXpathElement = newXpath.substring(newXpath.lastIndexOf('/'))+ targetXpath.substring(targetXpath.lastIndexOf('@'));
+                                                 }
+                                             }else {
+                                                   parentNodeXpath = targetXpath.substring(0, targetXpath.lastIndexOf('/'));
+                                                   lastXpathElement = targetXpath.substring(targetXpath.lastIndexOf('/'));
+                                                   }
+                                        }
+                                        parentFragmentEntity = getFragmentWithoutDescendantsByXpath(dataspaceName, anchorName, parentNodeXpath);
+                                        final boolean isListElement = REG_EX_PATTERN_FOR_LIST_ELEMENT_KEY_PREDICATE.matcher(lastXpathElement).find();
+                                        if (isListElement) {
+                                             targetDeleted = deleteDataNode(parentFragmentEntity, targetXpath);
+                                        } else {
+                                targetDeleted = deleteAllListElements(parentFragmentEntity, targetXpath);
+                                final boolean tryToDeleteDataNode = !targetDeleted && !onlySupportListNodeDeletion;
+                                if (tryToDeleteDataNode) {
+                                      targetDeleted = deleteDataNode(parentFragmentEntity, targetXpath);
+                                  }
+                                }
+                       }
+                       if (!targetDeleted) {
+                      final String additionalInformation = onlySupportListNodeDeletion ? "The target is probably not a List.": "";
+                               throw new DataNodeNotFoundException(parentFragmentEntity.getDataspace().getName(),
+                               parentFragmentEntity.getAnchor().getName(), targetXpath, additionalInformation);
+           }
         }
-        if (!targetDeleted) {
-            final String additionalInformation = onlySupportListNodeDeletion
-                    ? "The target is probably not a List." : "";
-            throw new DataNodeNotFoundException(parentFragmentEntity.getDataspace().getName(),
-                    parentFragmentEntity.getAnchor().getName(), targetXpath, additionalInformation);
-        }
-    }
 
     private boolean deleteDataNode(final FragmentEntity parentFragmentEntity, final String targetXpath) {
         final String normalizedTargetXpath = CpsPathUtil.getNormalizedXpath(targetXpath);
