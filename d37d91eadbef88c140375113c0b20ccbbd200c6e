@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7c0af3c0_0c95cafa",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 539,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-16T11:28:52Z",
+      "side": 1,
+      "message": "I need to study this but U think we have a better solution for this already somewhere else using regex. Let me look it up...\n\nyes I think the core of teh solution is in these special regex modified as part of thsi fix",
+      "range": {
+        "startLine": 539,
+        "startChar": 17,
+        "endLine": 539,
+        "endChar": 31
+      },
+      "revId": "d37d91eadbef88c140375113c0b20ccbbd200c6e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
