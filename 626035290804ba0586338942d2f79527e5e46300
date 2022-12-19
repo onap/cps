@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a6104331_ef8dfd53",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsUtilSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-12-19T16:04:29Z",
+      "side": 1,
+      "message": "the class should be CpsPathUtilSpec?? or was it intentional?",
+      "range": {
+        "startLine": 25,
+        "startChar": 6,
+        "endLine": 25,
+        "endChar": 17
+      },
+      "revId": "626035290804ba0586338942d2f79527e5e46300",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d71ed22f_824d8c0d",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsUtilSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-12-19T16:04:29Z",
+      "side": 1,
+      "message": "is it missing something ??\n#xpath",
+      "range": {
+        "startLine": 28,
+        "startChar": 25,
+        "endLine": 28,
+        "endChar": 26
+      },
+      "revId": "626035290804ba0586338942d2f79527e5e46300",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
