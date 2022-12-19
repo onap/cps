@@ -24,7 +24,6 @@ import java.util.Collection;
 import java.util.Map;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.spi.FetchDescendantsOption;
-import org.onap.cps.spi.model.Anchor;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.ModuleDefinition;
 import org.onap.cps.spi.model.ModuleReference;
@@ -132,19 +131,12 @@ public interface InventoryPersistence {
     DataNode getCmHandleDataNode(String cmHandleId);
 
     /**
-     * Query anchors via module names.
+     * get CM handles that has given module names.
      *
      * @param moduleNamesForQuery module names
-     * @return Collection of anchors
+     * @return Collection of CM handle Ids
      */
-    Collection<Anchor> queryAnchors(Collection<String> moduleNamesForQuery);
-
-    /**
-     * Method to get all anchors.
-     *
-     * @return Collection of anchors
-     */
-    Collection<Anchor> getAnchors();
+    Collection<String> getCmHandleIdsWithGivenModules(Collection<String> moduleNamesForQuery);
 
     /**
      * Replaces list content by removing all existing elements and inserting the given new elements as data nodes.

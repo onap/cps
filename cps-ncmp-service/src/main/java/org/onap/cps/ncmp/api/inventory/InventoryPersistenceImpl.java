@@ -34,15 +34,13 @@ import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
-import org.onap.cps.spi.CpsAdminPersistenceService;
-import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.exceptions.SchemaSetNotFoundException;
-import org.onap.cps.spi.model.Anchor;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.ModuleDefinition;
 import org.onap.cps.spi.model.ModuleReference;
@@ -69,9 +67,7 @@ public class InventoryPersistenceImpl implements InventoryPersistence {
 
     private final CpsModuleService cpsModuleService;
 
-    private final CpsDataPersistenceService cpsDataPersistenceService;
-
-    private final CpsAdminPersistenceService cpsAdminPersistenceService;
+    private final CpsAdminService cpsAdminService;
 
     private final CpsValidator cpsValidator;
 
@@ -161,7 +157,7 @@ public class InventoryPersistenceImpl implements InventoryPersistence {
 
     @Override
     public DataNode getDataNode(final String xpath, final FetchDescendantsOption fetchDescendantsOption) {
-        return cpsDataPersistenceService.getDataNode(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
+        return cpsDataService.getDataNode(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
                 xpath, fetchDescendantsOption);
     }
 
@@ -171,13 +167,8 @@ public class InventoryPersistenceImpl implements InventoryPersistence {
     }
 
     @Override
-    public Collection<Anchor> queryAnchors(final Collection<String> moduleNamesForQuery) {
-        return cpsAdminPersistenceService.queryAnchors(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, moduleNamesForQuery);
-    }
-
-    @Override
-    public Collection<Anchor> getAnchors() {
-        return cpsAdminPersistenceService.getAnchors(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME);
+    public Collection<String> getCmHandleIdsWithGivenModules(final Collection<String> moduleNamesForQuery) {
+        return cpsAdminService.queryAnchorNames(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, moduleNamesForQuery);
     }
 
     @Override
