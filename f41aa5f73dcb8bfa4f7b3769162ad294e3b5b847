@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "2be1b6f3_02fc58b2",
+        "filename": "cps-rest/docs/openapi/cpsAdminDeprecated.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2022-12-19T05:21:20Z",
+      "side": 1,
+      "message": "yes deprecated api issue was in cpsData.yml and it is fixed",
+      "parentUuid": "e6402c06_855ff981",
+      "revId": "f41aa5f73dcb8bfa4f7b3769162ad294e3b5b847",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5c72712b_75094c42",
         "filename": "cps-rest/docs/openapi/cpsDataDeprecated.yml",
         "patchSetId": 4
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "8942f6c0_36059026",
+        "filename": "cps-rest/docs/openapi/cpsDataDeprecated.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2022-12-19T05:21:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5c72712b_75094c42",
+      "revId": "f41aa5f73dcb8bfa4f7b3769162ad294e3b5b847",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "611e4320_db5575fc",
         "filename": "cps-rest/docs/openapi/openapi.yml",
         "patchSetId": 4
@@ -47,6 +83,30 @@
       "writtenOn": "2022-12-16T11:06:35Z",
       "side": 1,
       "message": "since this is deprecate in v1 should you use v2 here?!\nMaybe its  a bit more complicated because you only deprecate one operation correct (POSt)\nI think it is bets shown/discussed by checking the Swagger UI for the poiint I mentioned earlier about a deprevated method having an version enum....",
+      "range": {
+        "startLine": 56,
+        "startChar": 3,
+        "endLine": 56,
+        "endChar": 15
+      },
+      "revId": "f41aa5f73dcb8bfa4f7b3769162ad294e3b5b847",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a5d095a6_1c303d88",
+        "filename": "cps-rest/docs/openapi/openapi.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2022-12-19T05:21:20Z",
+      "side": 1,
+      "message": "here we are having only delete operation with v1 and v2 both",
+      "parentUuid": "611e4320_db5575fc",
       "range": {
         "startLine": 56,
         "startChar": 3,
@@ -82,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "033d16b2_b471da89",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2022-12-19T05:21:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0353625f_9cee2046",
+      "range": {
+        "startLine": 89,
+        "startChar": 48,
+        "endLine": 89,
+        "endChar": 62
+      },
+      "revId": "f41aa5f73dcb8bfa4f7b3769162ad294e3b5b847",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e96e9811_67a2b9c8",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
         "patchSetId": 4
@@ -102,6 +186,30 @@
       "revId": "f41aa5f73dcb8bfa4f7b3769162ad294e3b5b847",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1fa7e295_d5e42bcd",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2022-12-19T05:21:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e96e9811_67a2b9c8",
+      "range": {
+        "startLine": 90,
+        "startChar": 24,
+        "endLine": 90,
+        "endChar": 47
+      },
+      "revId": "f41aa5f73dcb8bfa4f7b3769162ad294e3b5b847",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -128,6 +236,30 @@
     },
     {
       "key": {
+        "uuid": "353745dd_67ac15c2",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2022-12-19T05:21:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "23ebe41d_1895d5f9",
+      "range": {
+        "startLine": 154,
+        "startChar": 9,
+        "endLine": 156,
+        "endChar": 78
+      },
+      "revId": "f41aa5f73dcb8bfa4f7b3769162ad294e3b5b847",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ea970264_27582575",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
         "patchSetId": 4
@@ -148,6 +280,30 @@
       "revId": "f41aa5f73dcb8bfa4f7b3769162ad294e3b5b847",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "519e9603_041dbf64",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2022-12-19T05:21:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ea970264_27582575",
+      "range": {
+        "startLine": 179,
+        "startChar": 0,
+        "endLine": 182,
+        "endChar": 5
+      },
+      "revId": "f41aa5f73dcb8bfa4f7b3769162ad294e3b5b847",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -174,6 +330,30 @@
     },
     {
       "key": {
+        "uuid": "dcc2d681_7b4dbcbf",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2022-12-19T05:21:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "19bb885c_c66eaad9",
+      "range": {
+        "startLine": 200,
+        "startChar": 0,
+        "endLine": 202,
+        "endChar": 77
+      },
+      "revId": "f41aa5f73dcb8bfa4f7b3769162ad294e3b5b847",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "19560191_90b398dc",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
         "patchSetId": 4
@@ -197,6 +377,30 @@
     },
     {
       "key": {
+        "uuid": "3a644e0c_d7a11600",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2022-12-19T05:21:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "19560191_90b398dc",
+      "range": {
+        "startLine": 324,
+        "startChar": 0,
+        "endLine": 326,
+        "endChar": 73
+      },
+      "revId": "f41aa5f73dcb8bfa4f7b3769162ad294e3b5b847",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "214e7e81_79b27e0d",
         "filename": "docs/api/swagger/cps/openapi.yaml",
         "patchSetId": 4
@@ -217,6 +421,30 @@
       "revId": "f41aa5f73dcb8bfa4f7b3769162ad294e3b5b847",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "006a3df9_cded3f99",
+        "filename": "docs/api/swagger/cps/openapi.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 954,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2022-12-19T05:21:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "214e7e81_79b27e0d",
+      "range": {
+        "startLine": 947,
+        "startChar": 0,
+        "endLine": 954,
+        "endChar": 21
+      },
+      "revId": "f41aa5f73dcb8bfa4f7b3769162ad294e3b5b847",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
