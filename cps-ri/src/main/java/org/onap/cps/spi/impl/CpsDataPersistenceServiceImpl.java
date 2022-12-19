@@ -79,9 +79,6 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     private final SessionManager sessionManager;
 
     private static final String REG_EX_FOR_OPTIONAL_LIST_INDEX = "(\\[@[\\s\\S]+?]){0,1})";
-    private static final Pattern REG_EX_PATTERN_FOR_LIST_ELEMENT_KEY_PREDICATE =
-            Pattern.compile("\\[(\\@([^\\/]{0,9999}))\\]$");
-    private static final String TOP_LEVEL_MODULE_PREFIX_PROPERTY_NAME = "topLevelModulePrefix";
 
     @Override
     public void addChildDataNode(final String dataspaceName, final String anchorName, final String parentNodeXpath,
@@ -550,13 +547,10 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             if (isRootContainerNodeXpath(targetXpath)) {
                 parentNodeXpath = targetXpath;
             } else {
-                parentNodeXpath = targetXpath.substring(0, targetXpath.lastIndexOf('/'));
+                parentNodeXpath = CpsPathUtil.getNormalizedParentXpath(targetXpath);
             }
             parentFragmentEntity = getFragmentWithoutDescendantsByXpath(dataspaceName, anchorName, parentNodeXpath);
-            final String lastXpathElement = targetXpath.substring(targetXpath.lastIndexOf('/'));
-            final boolean isListElement = REG_EX_PATTERN_FOR_LIST_ELEMENT_KEY_PREDICATE
-                    .matcher(lastXpathElement).find();
-            if (isListElement) {
+            if (CpsPathUtil.isPathToListElement(targetXpath)) {
                 targetDeleted = deleteDataNode(parentFragmentEntity, targetXpath);
             } else {
                 targetDeleted = deleteAllListElements(parentFragmentEntity, targetXpath);

@@ -38,6 +38,7 @@ import org.onap.cps.spi.model.DataNodeBuilder
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.jdbc.Sql
+
 import javax.validation.ConstraintViolationException
 
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
@@ -67,6 +68,10 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     static Collection<DataNode> newDataNodes = [new DataNodeBuilder().build()]
     static Collection<DataNode> existingDataNodes = [createDataNodeTree(XPATH_DATA_NODE_WITH_DESCENDANTS)]
     static Collection<DataNode> existingChildDataNodes = [createDataNodeTree('/parent-1/child-1')]
+
+    def static deleteTestParentXPath = '/parent-200'
+    def static deleteTestChildXpath = "${deleteTestParentXPath}/child-with-slash[@key='a/b']"
+    def static deleteTestGrandChildXPath = "${deleteTestChildXpath}/grandChild"
 
     def expectedLeavesByXpathMap = [
             '/parent-207'                      : ['parent-leaf': 'parent-leaf value'],
@@ -286,7 +291,8 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             scenario                 | dataspaceName  | anchorName                        | xpath           || expectedException
             'non-existing dataspace' | 'NO DATASPACE' | 'not relevant'                    | '/not relevant' || DataspaceNotFoundException
             'non-existing anchor'    | DATASPACE_NAME | 'NO ANCHOR'                       | '/not relevant' || AnchorNotFoundException
-            'non-existing xpath'     | DATASPACE_NAME | ANCHOR_FOR_DATA_NODES_WITH_LEAVES | '/NO XPATH'     || DataNodeNotFoundException
+            'non-existing xpath'     | DATASPACE_NAME | ANCHOR_FOR_DATA_NODES_WITH_LEAVES | '/NO-XPATH'     || DataNodeNotFoundException
+            'invalid xpath'          | DATASPACE_NAME | ANCHOR_FOR_DATA_NODES_WITH_LEAVES | 'INVALID XPATH' || CpsPathException
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
@@ -316,7 +322,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             scenario                 | dataspaceName  | anchorName                        | xpath                 || expectedException
             'non-existing dataspace' | 'NO DATASPACE' | 'not relevant'                    | '/not relevant'       || DataspaceNotFoundException
             'non-existing anchor'    | DATASPACE_NAME | 'NO ANCHOR'                       | '/not relevant'       || AnchorNotFoundException
-            'non-existing xpath'     | DATASPACE_NAME | ANCHOR_FOR_DATA_NODES_WITH_LEAVES | '/NON-EXISTING XPATH' || DataNodeNotFoundException
+            'non-existing xpath'     | DATASPACE_NAME | ANCHOR_FOR_DATA_NODES_WITH_LEAVES | '/NON-EXISTING-XPATH' || DataNodeNotFoundException
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
@@ -410,7 +416,8 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             scenario                 | dataspaceName  | anchorName                        | xpath                 || expectedException
             'non-existing dataspace' | 'NO DATASPACE' | 'not relevant'                    | '/not relevant'       || DataspaceNotFoundException
             'non-existing anchor'    | DATASPACE_NAME | 'NO ANCHOR'                       | '/not relevant'       || AnchorNotFoundException
-            'non-existing xpath'     | DATASPACE_NAME | ANCHOR_FOR_DATA_NODES_WITH_LEAVES | '/NON-EXISTING XPATH' || DataNodeNotFoundException
+            'non-existing xpath'     | DATASPACE_NAME | ANCHOR_FOR_DATA_NODES_WITH_LEAVES | '/NON-EXISTING-XPATH' || DataNodeNotFoundException
+            'invalid xpath'          | DATASPACE_NAME | ANCHOR_FOR_DATA_NODES_WITH_LEAVES | 'INVALID XPATH'       || CpsPathException
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
@@ -523,6 +530,25 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
+    def 'Delete data nodes with "/"-token in list key value: #scenario. (CPS-1409)'() {
+        given: 'a data nodes with list-element child with "/" in index value (and grandchild)'
+            def grandChild = new DataNodeBuilder().withXpath(deleteTestGrandChildXPath).build()
+            def child = new DataNodeBuilder().withXpath(deleteTestChildXpath).withChildDataNodes([grandChild]).build()
+            objectUnderTest.addChildDataNode(DATASPACE_NAME, ANCHOR_NAME3, deleteTestParentXPath, child)
+        and: 'number of children before delete is stored'
+            def numberOfChildrenBeforeDelete = objectUnderTest.getDataNode(DATASPACE_NAME, ANCHOR_NAME3, pathToParentOfDeletedNode, INCLUDE_ALL_DESCENDANTS).childDataNodes.size()
+        when: 'target node is deleted'
+            objectUnderTest.deleteDataNode(DATASPACE_NAME, ANCHOR_NAME3, deleteTarget)
+        then: 'one child has been deleted'
+            def numberOfChildrenAfterDelete = objectUnderTest.getDataNode(DATASPACE_NAME, ANCHOR_NAME3, pathToParentOfDeletedNode, INCLUDE_ALL_DESCENDANTS).childDataNodes.size()
+            assert numberOfChildrenAfterDelete == numberOfChildrenBeforeDelete - 1
+        where:
+            scenario                | deleteTarget              | pathToParentOfDeletedNode
+            'list element with /'   | deleteTestChildXpath      | deleteTestParentXPath
+            'child of list element' | deleteTestGrandChildXPath | deleteTestChildXpath
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
     def 'Delete list error scenario: #scenario.'() {
         when: 'attempting to delete scenario: #scenario.'
             objectUnderTest.deleteListDataNode(DATASPACE_NAME, ANCHOR_NAME3, targetXpaths)
@@ -539,7 +565,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
-    def 'Confirm deletion of #scenario.'() {
+    def 'Delete data node by xpath #scenario.'() {
         given: 'a valid data node'
             def dataNode
         and: 'data nodes are deleted'
@@ -564,7 +590,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
-    def 'Delete data node with #scenario.'() {
+    def 'Delete data node error scenario: #scenario.'() {
         when: 'data node is deleted'
             objectUnderTest.deleteDataNode(DATASPACE_NAME, ANCHOR_NAME3, datanodeXpath)
         then: 'a #expectedException is thrown'
