@@ -40,6 +40,7 @@ Features
 3.2.1
    - `CPS-1236 <https://jira.onap.org/browse/CPS-1236>`_  DMI audit support for NCMP: Filter on any properties of CM Handles
    - `CPS-1187 <https://jira.onap.org/browse/CPS-1187>`_  Added API to get all schema sets for a given dataspace.
+   - `CPS-341 <https://jira.onap.org/browse/CPS-341>`_  Added support for multiple data tree instances under 1 anchor.
 3.2.0
    - `CPS-1185 <https://jira.onap.org/browse/CPS-1185>`_  Get all dataspaces
    - `CPS-1187 <https://jira.onap.org/browse/CPS-1187>`_  Get single dataspace
