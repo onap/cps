@@ -28,7 +28,9 @@ ancestorPath : yangElement ( SLASH yangElement)* ;
 
 textFunctionCondition : SLASH leafName OB KW_TEXT_FUNCTION EQ StringLiteral CB ;
 
-prefix : ( SLASH yangElement)* SLASH containerName ;
+parent : ( SLASH yangElement)* ;
+
+prefix : parent SLASH containerName ;
 
 descendant : SLASH prefix ;
 

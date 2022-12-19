@@ -61,6 +61,11 @@ public class CpsPathBuilder extends CpsPathBaseListener {
     }
 
     @Override
+    public void exitParent(final CpsPathParser.ParentContext ctx) {
+        cpsPathQuery.setNormalizedParentPath(normalizedXpathBuilder.toString());
+    }
+
+    @Override
     public void exitIncorrectPrefix(final IncorrectPrefixContext ctx) {
         throw new PathParsingException("CPS path can only start with one or two slashes (/)");
     }

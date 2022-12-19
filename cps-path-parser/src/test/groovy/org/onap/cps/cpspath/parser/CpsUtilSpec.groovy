@@ -1,0 +1,74 @@
+/*
+ *  ============LICENSE_START=======================================================
+ *  Copyright (C) 2022 Nordix Foundation
+ *  ================================================================================
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ *
+ *  SPDX-License-Identifier: Apache-2.0
+ *  ============LICENSE_END=========================================================
+ */
+
+package org.onap.cps.cpspath.parser
+
+import spock.lang.Specification
+
+class CpsUtilSpec extends Specification {
+
+    def 'Normalized Paths for list index values using #scenario'() {
+        when: 'xpath with is parsed'
+            def result = CpsPathUtil.getNormalizedXpath(xpath)
+        then: 'normalized path uses single quotes for leave values'
+            result == "/parent/child[@common-leaf-name='123']"
+        where: 'the following xpaths are used'
+            scenario        | xpath
+            'no quotes'     | '/parent/child[@common-leaf-name=123]'
+            'double quotes' | '/parent/child[@common-leaf-name="123"]'
+            'single quotes' | "/parent/child[@common-leaf-name='123']"
+    }
+
+    def 'Normalized Parent Paths'() {
+        when: 'a given cps path with #scenario is parsed'
+            def result = CpsPathUtil.getNormalizedParentXpath(xpath)
+        then: 'the result is the expected parent path'
+            result == expectedParentPath
+        where: 'the following xpaths are used'
+            scenario                         | xpath                                 || expectedParentPath
+            'no child'                       | '/parent'                             || ''
+            'child and parent'               | '/parent/child'                       || '/parent'
+            'grand child'                    | '/parent/child/grandChild'            || '/parent/child'
+            'parent is list element'         | '/parent[@id=1]/child'                || "/parent[@id='1']"
+            'parent is list element'         | '/parent/child[@id=1]/grandChild'     || "/parent/child[@id='1']"
+            'parent is list element with /'  | "/parent/child[@id='a/b']/grandChild" || "/parent/child[@id='a/b']"
+            'parent is list element with ['  | "/parent/child[@id='a[b']/grandChild" || "/parent/child[@id='a[b']"
+            'parent is list element using "' | '/parent/child[@id="x"]/grandChild'   || "/parent/child[@id='x']"
+    }
+
+    def 'Recognizing (absolute) paths to List elements'() {
+        expect: 'check for list returns the correct values'
+            assert CpsPathUtil.isPathToListElement(xpath) == expectList
+        where: 'the following xpaths are used'
+            xpath                  || expectList
+            '/parent[@id=1]'       || true
+            '/parent[@id=1]/child' || false
+            '/parent/child[@id=1]' || true
+            '//child[@id=1]'       || false
+    }
+
+    def 'Parsing Exception'() {
+        when: 'a invalid xpath is parsed'
+            CpsPathUtil.getNormalizedXpath('///')
+        then: 'a path parsing exception is thrown'
+            thrown(PathParsingException)
+    }
+
+}

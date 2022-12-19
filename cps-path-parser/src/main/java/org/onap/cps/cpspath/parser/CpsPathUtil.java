@@ -20,6 +20,8 @@
 
 package org.onap.cps.cpspath.parser;
 
+import static org.onap.cps.cpspath.parser.CpsPathPrefixType.ABSOLUTE;
+
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -45,8 +47,29 @@ public class CpsPathUtil {
      * @return a normalized xpath String.
      */
     public static String getNormalizedXpath(final String xpathSource) {
-        final CpsPathBuilder cpsPathBuilder = getCpsPathBuilder(xpathSource);
-        return cpsPathBuilder.build().getNormalizedXpath();
+        return getCpsPathBuilder(xpathSource).build().getNormalizedXpath();
+    }
+
+    /**
+     * Returns the parent xpath.
+     *
+     * @param xpathSource xpath
+     * @return the parent xpath String.
+     */
+    public static String getNormalizedParentXpath(final String xpathSource) {
+        return getCpsPathBuilder(xpathSource).build().getNormalizedParentPath();
+    }
+
+
+    /**
+     * Returns boolean indicating xpath is an absolute path to a list element.
+     *
+     * @param xpathSource xpath
+     * @return true if xpath is an absolute path to a list element
+     */
+    public static boolean isPathToListElement(final String xpathSource) {
+        final CpsPathQuery cpsPathQuery = getCpsPathBuilder(xpathSource).build();
+        return cpsPathQuery.getCpsPathPrefixType() == ABSOLUTE && cpsPathQuery.hasLeafConditions();
     }
 
     /**
@@ -57,8 +80,7 @@ public class CpsPathUtil {
      */
 
     public static CpsPathQuery getCpsPathQuery(final String cpsPathSource) {
-        final CpsPathBuilder cpsPathBuilder = getCpsPathBuilder(cpsPathSource);
-        return cpsPathBuilder.build();
+        return getCpsPathBuilder(cpsPathSource).build();
     }
 
     private static CpsPathBuilder getCpsPathBuilder(final String cpsPathSource) {

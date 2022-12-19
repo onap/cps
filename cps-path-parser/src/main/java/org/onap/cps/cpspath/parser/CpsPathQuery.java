@@ -32,6 +32,7 @@ import lombok.Setter;
 public class CpsPathQuery {
 
     private String xpathPrefix;
+    private String normalizedParentPath;
     private String normalizedXpath;
     private CpsPathPrefixType cpsPathPrefixType = ABSOLUTE;
     private String descendantName;
