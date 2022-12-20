@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3082d4dc_cce2ad90",
+        "filename": "cps-rest/docs/openapi/cpsQuery.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-12-20T10:59:06Z",
+      "side": 1,
+      "message": "NB: is the apiVersion really required in the Query API. As I understand in the Admin/Data related API we are changing the response so we need to add the apiVersion there.\nHere I do not see any change , so was just wondering if it is actually required here.",
+      "range": {
+        "startLine": 29,
+        "startChar": 8,
+        "endLine": 29,
+        "endChar": 70
+      },
+      "revId": "897686f96f49dc4405eb3e29f2a6218dc8040c97",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
