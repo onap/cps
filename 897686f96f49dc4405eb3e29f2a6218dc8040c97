@@ -22,6 +22,30 @@
       "revId": "897686f96f49dc4405eb3e29f2a6218dc8040c97",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b149ac9c_389c04c2",
+        "filename": "cps-rest/docs/openapi/cpsQuery.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2022-12-20T12:00:07Z",
+      "side": 1,
+      "message": "when we add another api version, all APIs should be accessed with new version. although functionality of query API is not changing, we need to add apiVersion to support access of this api using v1 and v2",
+      "parentUuid": "3082d4dc_cce2ad90",
+      "range": {
+        "startLine": 29,
+        "startChar": 8,
+        "endLine": 29,
+        "endChar": 70
+      },
+      "revId": "897686f96f49dc4405eb3e29f2a6218dc8040c97",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
