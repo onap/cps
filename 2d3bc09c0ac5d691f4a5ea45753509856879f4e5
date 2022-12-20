@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d790c689_4ae6799d",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathUtilSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-12-20T12:38:02Z",
+      "side": 1,
+      "message": "as per the build its taking 5192ms in total.\nwill you change the timing?",
+      "range": {
+        "startLine": 86,
+        "startChar": 19,
+        "endLine": 86,
+        "endChar": 54
+      },
+      "revId": "2d3bc09c0ac5d691f4a5ea45753509856879f4e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
