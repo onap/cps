@@ -22,6 +22,7 @@ package org.onap.cps.cpspath.parser;
 
 import static org.onap.cps.cpspath.parser.CpsPathPrefixType.ABSOLUTE;
 
+import java.util.List;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -58,6 +59,11 @@ public class CpsPathUtil {
      */
     public static String getNormalizedParentXpath(final String xpathSource) {
         return getCpsPathBuilder(xpathSource).build().getNormalizedParentPath();
+    }
+
+    public static String[] getXpathNodeIdSequence(final String xpathSource) {
+        final List<String> containerNames = getCpsPathBuilder(xpathSource).build().getContainerNames();
+        return containerNames.toArray(new String[containerNames.size()]);
     }
 
 
