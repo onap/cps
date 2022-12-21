@@ -28,7 +28,6 @@ import com.google.gson.stream.JsonReader;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -37,6 +36,8 @@ import java.util.stream.Collectors;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.cpspath.parser.CpsPathUtil;
+import org.onap.cps.cpspath.parser.PathParsingException;
 import org.onap.cps.spi.exceptions.DataValidationException;
 import org.opendaylight.yangtools.yang.common.QName;
 import org.opendaylight.yangtools.yang.data.api.YangInstanceIdentifier;
@@ -59,9 +60,6 @@ import org.opendaylight.yangtools.yang.model.util.SchemaInferenceStack;
 @Slf4j
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class YangUtils {
-
-    private static final String XPATH_DELIMITER_REGEX = "\\/";
-    private static final String XPATH_NODE_KEY_ATTRIBUTES_REGEX = "\\[.*?\\]";
 
     /**
      * Parses jsonData into Collection of NormalizedNode according to given schema context.
@@ -170,13 +168,12 @@ public class YangUtils {
     }
 
     private static String[] xpathToNodeIdSequence(final String xpath) {
-        final String[] xpathNodeIdSequence = Arrays.stream(xpath
-                        .replaceAll(XPATH_NODE_KEY_ATTRIBUTES_REGEX, "")
-                        .split(XPATH_DELIMITER_REGEX))
-                .filter(identifier -> !identifier.isEmpty())
-                .toArray(String[]::new);
-        if (xpathNodeIdSequence.length < 1) {
-            throw new DataValidationException("Invalid xpath.", "Xpath contains no node identifiers.");
+        final String[] xpathNodeIdSequence;
+        try {
+            xpathNodeIdSequence = CpsPathUtil.getXpathNodeIdSequence(xpath);
+        } catch (final PathParsingException pathParsingException) {
+            throw new DataValidationException(pathParsingException.getMessage(), pathParsingException.getDetails(),
+                    pathParsingException);
         }
         return xpathNodeIdSequence;
     }
