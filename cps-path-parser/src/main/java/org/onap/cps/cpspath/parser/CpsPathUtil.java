@@ -60,6 +60,10 @@ public class CpsPathUtil {
         return getCpsPathBuilder(xpathSource).build().getNormalizedParentPath();
     }
 
+    public static String[] getXpathNodeIdSequence(final String xpathSource) {
+        return getCpsPathBuilder(xpathSource).build().getContainerNames().toArray(new String[0]);
+    }
+
 
     /**
      * Returns boolean indicating xpath is an absolute path to a list element.

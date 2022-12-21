@@ -161,5 +161,9 @@
       <artifactId>aspectjrt</artifactId>
       <scope>test</scope>
     </dependency>
+      <dependency>
+          <groupId>org.onap.cps</groupId>
+          <artifactId>cps-path-parser</artifactId>
+      </dependency>
   </dependencies>
 </project>
