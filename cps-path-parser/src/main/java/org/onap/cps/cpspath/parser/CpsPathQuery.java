@@ -22,6 +22,7 @@ package org.onap.cps.cpspath.parser;
 
 import static org.onap.cps.cpspath.parser.CpsPathPrefixType.ABSOLUTE;
 
+import java.util.List;
 import java.util.Map;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -34,6 +35,7 @@ public class CpsPathQuery {
     private String xpathPrefix;
     private String normalizedParentPath;
     private String normalizedXpath;
+    private List<String> containerNames;
     private CpsPathPrefixType cpsPathPrefixType = ABSOLUTE;
     private String descendantName;
     private Map<String, Object> leavesData;

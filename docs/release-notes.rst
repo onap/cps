@@ -50,6 +50,8 @@ Bug Fixes
 3.2.0
    - `CPS-1312 <https://jira.onap.org/browse/CPS-1312>`_  CPS(/NCMP) does not have version control
    - `CPS-1350 <https://jira.onap.org/browse/CPS-1350>`_  [CPS/NCMP] Add Basic Auth to CPS/NCMP OpenAPI Definitions
+   - `CPS-1433 <https://jira.onap.org/browse/CPS-1433>`_  [CPS/NCMP] Fix to allow posting data with '/'
+   - `CPS-1409 <https://jira.onap.org/browse/CPS-1409>`_  [CPS/NCMP] Fix Delete uses case with '/' in path
 
 Known Limitations, Issues and Workarounds
 -----------------------------------------

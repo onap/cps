@@ -111,6 +111,10 @@
       <artifactId>janino</artifactId>
     </dependency>
     <dependency>
+      <groupId>org.onap.cps</groupId>
+      <artifactId>cps-path-parser</artifactId>
+    </dependency>
+    <dependency>
       <!-- Hazelcast provide Distributed Caches -->
       <groupId>com.hazelcast</groupId>
       <artifactId>hazelcast-spring</artifactId>
