@@ -41,7 +41,7 @@ class JsonObjectMapperSpec extends Specification {
         then: 'the result is a valid json string (can be parsed)'
             def contentMap = new JsonSlurper().parseText(content)
         and: 'the parsed content is as expected'
-            assert contentMap.'test:bookstore'.'bookstore-name' == 'Chapters'
+            assert contentMap.'test:bookstore'.'bookstore-name' == 'Chapters/Easons'
     }
 
     def 'Map a structured object to json String error.'() {

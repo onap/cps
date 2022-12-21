@@ -44,10 +44,10 @@ Create Data Node
 
 Get Data Node by XPath
     ${uri}=             Set Variable        ${basePath}/v1/dataspaces/${dataspaceName}/anchors/${anchorName}/node
-    ${params}=          Create Dictionary   xpath=/test-tree/branch[@name='Left']/nest
+    ${params}=          Create Dictionary   xpath=/test-tree/branch[@name='LEFT/left']/nest
     ${headers}=         Create Dictionary   Authorization=${auth}
     ${response}=        Get On Session      CPS_URL   ${uri}   params=${params}   headers=${headers}   expected_status=200
     ${responseJson}=    Set Variable        ${response.json()['tree:nest']}
-    Should Be Equal As Strings              ${responseJson['name']}   Small
+    Should Be Equal As Strings              ${responseJson['name']}   SMALL/small
 
 
