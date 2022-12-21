@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "410b7d42_52d07b09",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 9
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-21T13:56:30Z",
+      "side": 1,
+      "message": "can we discuss this in standup tomorrow I am not suer why only so few parameters are under \u0027app\u0027 section...\n(we can change later and commit hsi for now)",
+      "range": {
+        "startLine": 97,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 12
+      },
+      "revId": "c2fa06471495473307b6253bfd4fbdbbd5a9b585",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce6e18f9_81f8d627",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventConsumerSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-21T13:56:30Z",
+      "side": 1,
+      "message": "Fix indentation (make sure your IntelliJ is configured correctly for this)",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 39
+      },
+      "revId": "c2fa06471495473307b6253bfd4fbdbbd5a9b585",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
