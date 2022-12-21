@@ -94,4 +94,12 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>,
            nativeQuery = true)
     List<FragmentExtract> findByAnchorIdAndParentXpath(@Param("anchorId") int anchorId,
                                                        @Param("parentXpath") String parentXpath);
+
+    @Query(value = "SELECT id, anchor_id AS anchorId, xpath, parent_id AS parentId,"
+        + " CAST(attributes AS TEXT) AS attributes"
+        + " FROM FRAGMENT WHERE anchor_id = :anchorId"
+        + " AND xpath ~ :xpathRegex",
+        nativeQuery = true)
+    List<FragmentExtract> quickFindWithDescendants(@Param("anchorId") int anchorId,
+                                                   @Param("xpathRegex") String xpathRegex);
 }

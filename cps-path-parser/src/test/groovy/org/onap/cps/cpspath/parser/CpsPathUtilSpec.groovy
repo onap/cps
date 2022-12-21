@@ -85,4 +85,5 @@ class CpsPathUtilSpec extends Specification {
             // In CI this actually takes about 3-5 sec  which  is approx. 50+ parser executions per millisecond!
             assert setupStopWatch.getTotalTimeMillis() < 10000
     }
+
 }
