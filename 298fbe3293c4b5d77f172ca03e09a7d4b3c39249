@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0791d6c2_692cc0e0",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventConsumerSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-21T15:21:43Z",
+      "side": 1,
+      "message": "nb: (for future ref) you coudl insert and \u0027and:\u0027 here\nand: \u0027with data category #dataCategory\u0027",
+      "range": {
+        "startLine": 43,
+        "startChar": 12,
+        "endLine": 43,
+        "endChar": 80
+      },
+      "revId": "298fbe3293c4b5d77f172ca03e09a7d4b3c39249",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}

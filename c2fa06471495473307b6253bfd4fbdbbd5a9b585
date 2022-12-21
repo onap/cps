@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "8b9398a1_91bbb7aa",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 9
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-21T15:21:43Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "410b7d42_52d07b09",
+      "range": {
+        "startLine": 97,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 12
+      },
+      "revId": "c2fa06471495473307b6253bfd4fbdbbd5a9b585",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ce6e18f9_81f8d627",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventConsumerSpec.groovy",
         "patchSetId": 9
