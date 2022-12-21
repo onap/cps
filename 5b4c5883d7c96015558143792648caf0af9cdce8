@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f813ae3c_a153329b",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-21T13:30:31Z",
+      "side": 1,
+      "message": "since you have named variable now, you might as well use it heer too: containerName",
+      "range": {
+        "startLine": 165,
+        "startChar": 24,
+        "endLine": 165,
+        "endChar": 37
+      },
+      "revId": "5b4c5883d7c96015558143792648caf0af9cdce8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd88d561_b0a4a379",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-21T13:30:31Z",
+      "side": 1,
+      "message": "since you have named variable now, you might as well use it heer too: containerName",
+      "range": {
+        "startLine": 168,
+        "startChar": 61,
+        "endLine": 168,
+        "endChar": 74
+      },
+      "revId": "5b4c5883d7c96015558143792648caf0af9cdce8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d3c1d83_1130ca9e",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathUtil.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-21T13:30:31Z",
+      "side": 1,
+      "message": "store this separate (extract variable) so you can get the size",
+      "range": {
+        "startLine": 64,
+        "startChar": 15,
+        "endLine": 64,
+        "endChar": 73
+      },
+      "revId": "5b4c5883d7c96015558143792648caf0af9cdce8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd204b13_f2d6ec85",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathUtil.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-21T13:30:31Z",
+      "side": 1,
+      "message": "use size of extarct var",
+      "range": {
+        "startLine": 64,
+        "startChar": 93,
+        "endLine": 64,
+        "endChar": 94
+      },
+      "revId": "5b4c5883d7c96015558143792648caf0af9cdce8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3512e2ca_130f40b3",
+        "filename": "cps-service/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-21T13:30:31Z",
+      "side": 1,
+      "message": "move up (above test dependencies)\ncheck indentation",
+      "range": {
+        "startLine": 164,
+        "startChar": 5,
+        "endLine": 167,
+        "endChar": 19
+      },
+      "revId": "5b4c5883d7c96015558143792648caf0af9cdce8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c60a363a_c7c5b8e2",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-21T13:30:31Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 171,
+        "startChar": 7,
+        "endLine": 171,
+        "endChar": 43
+      },
+      "revId": "5b4c5883d7c96015558143792648caf0af9cdce8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "97f5ccc8_d0c8056b",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-21T13:30:31Z",
+      "side": 1,
+      "message": "return directly",
+      "range": {
+        "startLine": 173,
+        "startChar": 12,
+        "endLine": 173,
+        "endChar": 33
+      },
+      "revId": "5b4c5883d7c96015558143792648caf0af9cdce8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef1049bb_d22aaa70",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-21T13:30:31Z",
+      "side": 1,
+      "message": "return empty string[]",
+      "range": {
+        "startLine": 178,
+        "startChar": 15,
+        "endLine": 178,
+        "endChar": 34
+      },
+      "revId": "5b4c5883d7c96015558143792648caf0af9cdce8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
