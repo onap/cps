@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e21dac72_30ab1b88",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2022-12-21T14:22:02Z",
+      "side": 1,
+      "message": "NB: Is scope meant to be default or should it be public?\nIf default it can be moved below public methods",
+      "revId": "41fc054ad2baa3b6b951308d0fc2ad93c893d93d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
