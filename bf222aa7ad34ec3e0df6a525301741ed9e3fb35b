@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "461400bd_2c975a7a",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-21T15:18:57Z",
+      "side": 1,
+      "message": "do you need to catch exception for invalid integer?",
+      "range": {
+        "startLine": 162,
+        "startChar": 34,
+        "endLine": 162,
+        "endChar": 62
+      },
+      "revId": "bf222aa7ad34ec3e0df6a525301741ed9e3fb35b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb88692c_44ece2a1",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-21T15:18:57Z",
+      "side": 1,
+      "message": "new to throw an exxeption for anything below -1 (ie. customer can pass -2)",
+      "range": {
+        "startLine": 162,
+        "startChar": 26,
+        "endLine": 162,
+        "endChar": 31
+      },
+      "revId": "bf222aa7ad34ec3e0df6a525301741ed9e3fb35b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "398811cf_c0e4e8f9",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-21T15:18:57Z",
+      "side": 1,
+      "message": "suggestion: extractto this in a separate (dedicated) utility class so it can be tested and covered fro all ecnatio in a very basic unit test",
+      "range": {
+        "startLine": 155,
+        "startChar": 0,
+        "endLine": 165,
+        "endChar": 5
+      },
+      "revId": "bf222aa7ad34ec3e0df6a525301741ed9e3fb35b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c73cff2_66e2fe7f",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/QueryRestController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-21T15:18:57Z",
+      "side": 1,
+      "message": "total duplication so another good reason to extract this out!",
+      "range": {
+        "startLine": 90,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 5
+      },
+      "revId": "bf222aa7ad34ec3e0df6a525301741ed9e3fb35b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bea6bdf9_7eea0996",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-21T15:18:57Z",
+      "side": 1,
+      "message": "as I mentioned before, should not be tested here bu in Spec for dedicated conversion class\nand when you have that aslo test\n-2 and \u0027invalid-value\u0027  expectiong a certain type of exception",
+      "range": {
+        "startLine": 110,
+        "startChar": 0,
+        "endLine": 117,
+        "endChar": 48
+      },
+      "revId": "bf222aa7ad34ec3e0df6a525301741ed9e3fb35b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1cdffdcf_c7855405",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceQueryDataNodeSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-21T15:18:57Z",
+      "side": 1,
+      "message": "not sure if this need to be tested here\n(there is a maintenance cost with too many tests!)\nonce the conversion is sorted in a separate class, I dont hink these tests add value",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 172
+      },
+      "revId": "bf222aa7ad34ec3e0df6a525301741ed9e3fb35b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e81926d_6b2d1c13",
+        "filename": "docs/api/swagger/cps/openapi.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 1760,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-21T15:18:57Z",
+      "side": 1,
+      "message": "dont use tabs!",
+      "range": {
+        "startLine": 1760,
+        "startChar": 0,
+        "endLine": 1760,
+        "endChar": 3
+      },
+      "revId": "bf222aa7ad34ec3e0df6a525301741ed9e3fb35b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
