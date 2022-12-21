@@ -51,36 +51,57 @@ tags:
 paths:
 
   /v1/dataspaces:
+    $ref: 'cpsAdminV1Deprecated.yml#/dataspaces'
+
+  /{apiVersion}/dataspaces:
     $ref: 'cpsAdmin.yml#/dataspaces'
 
-  /v1/admin/dataspaces:
+  /v2/dataspaces:
+    $ref: 'cpsAdminV2.yml#/dataspaces'
+
+  /{apiVersion}/admin/dataspaces:
     $ref: 'cpsAdmin.yml#/adminDataspaces'
 
-  /v1/admin/dataspaces/{dataspace-name}:
+  /{apiVersion}/admin/dataspaces/{dataspace-name}:
     $ref: 'cpsAdmin.yml#/adminDataspace'
 
   /v1/dataspaces/{dataspace-name}/anchors:
+    $ref: 'cpsAdminV1Deprecated.yml#/anchorsByDataspace'
+
+  /v2/dataspaces/{dataspace-name}/anchors:
+    $ref: 'cpsAdminV2.yml#/anchorsByDataspace'
+
+  /{apiVersion}/dataspaces/{dataspace-name}/anchors:
     $ref: 'cpsAdmin.yml#/anchorsByDataspace'
 
-  /v1/dataspaces/{dataspace-name}/anchors/{anchor-name}:
+  /{apiVersion}/dataspaces/{dataspace-name}/anchors/{anchor-name}:
     $ref: 'cpsAdmin.yml#/anchorByDataspaceAndAnchorName'
 
   /v1/dataspaces/{dataspace-name}/schema-sets:
+    $ref: 'cpsAdminV1Deprecated.yml#/schemaSet'
+
+  /v2/dataspaces/{dataspace-name}/schema-sets:
+    $ref: 'cpsAdminV2.yml#/schemaSet'
+
+  /{apiVersion}/dataspaces/{dataspace-name}/schema-sets:
     $ref: 'cpsAdmin.yml#/schemaSet'
 
-  /v1/dataspaces/{dataspace-name}/schema-sets/{schema-set-name}:
+  /{apiVersion}/dataspaces/{dataspace-name}/schema-sets/{schema-set-name}:
     $ref: 'cpsAdmin.yml#/schemaSetBySchemaSetName'
 
-  /v1/dataspaces/{dataspace-name}/anchors/{anchor-name}/node:
+  /{apiVersion}/dataspaces/{dataspace-name}/anchors/{anchor-name}/node:
     $ref: 'cpsData.yml#/nodeByDataspaceAndAnchor'
 
-  /v1/dataspaces/{dataspace-name}/anchors/{anchor-name}/nodes:
+  /{apiVersion}/dataspaces/{dataspace-name}/anchors/{anchor-name}/nodes:
     $ref: 'cpsData.yml#/nodesByDataspaceAndAnchor'
 
   /v1/dataspaces/{dataspace-name}/anchors/{anchor-name}/list-nodes:
+    $ref: 'cpsDataV1Deprecated.yml#/listElementByDataspaceAndAnchor'
+
+  /{apiVersion}/dataspaces/{dataspace-name}/anchors/{anchor-name}/list-nodes:
     $ref: 'cpsData.yml#/listElementByDataspaceAndAnchor'
 
-  /v1/dataspaces/{dataspace-name}/anchors/{anchor-name}/nodes/query:
+  /{apiVersion}/dataspaces/{dataspace-name}/anchors/{anchor-name}/nodes/query:
     $ref: 'cpsQuery.yml#/nodesByDataspaceAndAnchorAndCpsPath'
 
 security:
