@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1dbab6d2_3d4ebf7a",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-21T16:10:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1ce59a5a_1c00898f",
+      "range": {
+        "startLine": 379,
+        "startChar": 78,
+        "endLine": 379,
+        "endChar": 79
+      },
+      "revId": "41fc054ad2baa3b6b951308d0fc2ad93c893d93d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e21dac72_30ab1b88",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
         "patchSetId": 2
@@ -39,6 +63,24 @@
       "revId": "41fc054ad2baa3b6b951308d0fc2ad93c893d93d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "63c7c329_0c88166f",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-21T16:10:06Z",
+      "side": 1,
+      "message": "it was deliberately default but might as well public so I don\u0027t have to change the order\n(te next oen has to be public as it is use by a aclass in the next packagee up)",
+      "parentUuid": "e21dac72_30ab1b88",
+      "revId": "41fc054ad2baa3b6b951308d0fc2ad93c893d93d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
