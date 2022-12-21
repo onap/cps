@@ -31,14 +31,13 @@ import lombok.NoArgsConstructor;
 public class FragmentEntityArranger {
 
     /**
-     * Convert a collection of (related) FragmentExtracts into a FragmentEntity (tree) with descendants.
-     * Multiple top level nodes not yet support. If found only the first top level element is returned
+     * Convert a collection of (related) FragmentExtracts into  FragmentEntities (trees) with descendants.
      *
      * @param anchorEntity the anchor(entity) all the fragments belong to
      * @param fragmentExtracts FragmentExtracts to convert
-     * @return a FragmentEntity (tree) with descendants, null if none found.
+     * @return a collection of FragmentEntities (trees) with descendants.
      */
-    public static FragmentEntity toFragmentEntityTree(final AnchorEntity anchorEntity,
+    public static Collection<FragmentEntity> toFragmentEntityTrees(final AnchorEntity anchorEntity,
                                                       final Collection<FragmentExtract> fragmentExtracts) {
         final Map<Long, FragmentEntity> fragmentEntityPerId = new HashMap<>();
         for (final FragmentExtract fragmentExtract : fragmentExtracts) {
@@ -61,7 +60,8 @@ public class FragmentEntityArranger {
         return fragmentEntity;
     }
 
-    private static FragmentEntity reuniteChildrenWithTheirParents(final Map<Long, FragmentEntity> fragmentEntityPerId) {
+    private static Collection<FragmentEntity> reuniteChildrenWithTheirParents(
+        final Map<Long, FragmentEntity> fragmentEntityPerId) {
         final Collection<FragmentEntity> fragmentEntitiesWithoutParentInResultSet = new HashSet<>();
         for (final FragmentEntity fragmentEntity : fragmentEntityPerId.values()) {
             final FragmentEntity parentFragmentEntity = fragmentEntityPerId.get(fragmentEntity.getParentId());
@@ -71,7 +71,7 @@ public class FragmentEntityArranger {
                 parentFragmentEntity.getChildFragments().add(fragmentEntity);
             }
         }
-        return fragmentEntitiesWithoutParentInResultSet.stream().findFirst().orElse(null);
+        return fragmentEntitiesWithoutParentInResultSet;
     }
 
 }
