@@ -3,17 +3,17 @@
       "bookstore-name": "Chapters",
       "categories": [
          {
-            "code": "01",
+            "code": "01/1",
             "name": "SciFi",
             "books": [
                {
                   "authors": [
                      "Iain M. Banks"
                   ],
-                  "lang": "en",
+                  "lang": "en/it",
                   "price": "895",
                   "pub_year": "1994",
-                  "title": "Feersum Endjinn"
+                  "title": "Feersum Endjinn/Endjinn Feersum"
                },
                {
                   "authors": [

@@ -22,7 +22,9 @@ package org.onap.cps.cpspath.parser;
 
 import static org.onap.cps.cpspath.parser.CpsPathPrefixType.DESCENDANT;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import org.onap.cps.cpspath.parser.antlr4.CpsPathBaseListener;
 import org.onap.cps.cpspath.parser.antlr4.CpsPathParser;
@@ -49,6 +51,8 @@ public class CpsPathBuilder extends CpsPathBaseListener {
     final StringBuilder normalizedAncestorPathBuilder = new StringBuilder();
 
     boolean processingAncestorAxis = false;
+
+    private List<String> containerNames = new ArrayList<>();
 
     @Override
     public void exitInvalidPostFix(final CpsPathParser.InvalidPostFixContext ctx) {
@@ -146,6 +150,7 @@ public class CpsPathBuilder extends CpsPathBaseListener {
 
     CpsPathQuery build() {
         cpsPathQuery.setNormalizedXpath(normalizedXpathBuilder.toString());
+        cpsPathQuery.setContainerNames(containerNames);
         return cpsPathQuery;
     }
 
@@ -155,10 +160,12 @@ public class CpsPathBuilder extends CpsPathBaseListener {
 
     @Override
     public void exitContainerName(final CpsPathParser.ContainerNameContext ctx) {
+        final String containerName = ctx.getText();
         normalizedXpathBuilder.append("/")
-                .append(ctx.getText());
+                .append(containerName);
+        containerNames.add(containerName);
         if (processingAncestorAxis) {
-            normalizedAncestorPathBuilder.append("/").append(ctx.getText());
+            normalizedAncestorPathBuilder.append("/").append(containerName);
         }
     }
 
