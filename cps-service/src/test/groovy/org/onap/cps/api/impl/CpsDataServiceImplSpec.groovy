@@ -4,7 +4,7 @@
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada.
  *  Modifications Copyright (C) 2022 TechMahindra Ltd.
- *  ================================================================================
+ *  Modifications Copyright (C) 2022 Deutsche Telekom AG
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
@@ -33,6 +33,7 @@ import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.model.Anchor
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.DataNodeBuilder
+import org.onap.cps.utils.ContentType
 import org.onap.cps.yang.YangTextSchemaSourceSet
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
 import spock.lang.Specification
@@ -61,7 +62,7 @@ class CpsDataServiceImplSpec extends Specification {
     def anchor = Anchor.builder().name(anchorName).schemaSetName(schemaSetName).build()
     def observedTimestamp = OffsetDateTime.now()
 
-    def 'Saving json data.'() {
+    def 'Saving multicontainer json data.'() {
         given: 'schema set for given anchor and dataspace references test-tree model'
             setupSchemaSetMocks('multipleDataTree.yang')
         when: 'save data method is invoked with test-tree json data'
@@ -80,6 +81,39 @@ class CpsDataServiceImplSpec extends Specification {
                 1   | '/last-container'
 
     }
+
+    def 'Saving #scenario data.'() {
+        given: 'schema set for given anchor and dataspace references test-tree model'
+            setupSchemaSetMocks('test-tree.yang')
+        when: 'save data method is invoked with test-tree #scenario data'
+            def data = TestUtils.getResourceFileContent(dataFile)
+            objectUnderTest.saveData(dataspaceName, anchorName, data, observedTimestamp, contentType)
+        then: 'the persistence service method is invoked with correct parameters'
+            1 * mockCpsDataPersistenceService.storeDataNodes(dataspaceName, anchorName,
+                    { dataNode -> dataNode.xpath[0] == '/test-tree' })
+        and: 'the CpsValidator is called on the dataspaceName and AnchorName'
+            1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
+        and: 'data updated event is sent to notification service'
+            1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, '/', Operation.CREATE, observedTimestamp)
+        where: 'given parameters'
+            scenario | dataFile         | contentType
+            'json'   | 'test-tree.json' | ContentType.JSON
+            'xml'    | 'test-tree.xml'  | ContentType.XML
+    }
+
+    def 'Saving #scenarioDesired data with invalid data.'() {
+        given: 'schema set for given anchor and dataspace references test-tree model'
+        setupSchemaSetMocks('test-tree.yang')
+        when: 'save data method is invoked with test-tree json data'
+            objectUnderTest.saveData(dataspaceName, anchorName, invalidData, observedTimestamp, contentType)
+        then: 'a data validation exception is thrown'
+            thrown(DataValidationException)
+        where: 'given parameters'
+            scenarioDesired | invalidData             | contentType
+            'json'          | '{invalid  json'        | ContentType.XML
+            'xml'           | '<invalid xml'          | ContentType.JSON
+    }
+
 
     def 'Saving child data fragment under existing node.'() {
         given: 'schema set for given anchor and dataspace references test-tree model'
