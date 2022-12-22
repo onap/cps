@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "286bc56c_92760f2a",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/TempTableCreator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-22T15:36:53Z",
+      "side": 1,
+      "message": "that post is very old, it might have increased\nI have changed this actually even before my refactoring we were using exactly same prefix and UUISD based postfix for temp table name",
+      "parentUuid": "92fb69d8_5b10f358",
+      "range": {
+        "startLine": 56,
+        "startChar": 21,
+        "endLine": 56,
+        "endChar": 34
+      },
+      "revId": "875d8a850a369b9cf114db161c3d69264e9d6c81",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "65984fa9_1e9859db",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/performance/CpsModuleReferenceRepositoryPerfTest.groovy",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2022-12-22T15:31:13Z",
       "side": 1,
       "message": "💯",
+      "range": {
+        "startLine": 89,
+        "startChar": 52,
+        "endLine": 89,
+        "endChar": 56
+      },
+      "revId": "875d8a850a369b9cf114db161c3d69264e9d6c81",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "29ffa4bb_e416acc9",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/performance/CpsModuleReferenceRepositoryPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-22T15:36:53Z",
+      "side": 1,
+      "message": "had to increase to 5000 as second run was just over 4000...",
+      "parentUuid": "65984fa9_1e9859db",
       "range": {
         "startLine": 89,
         "startChar": 52,
