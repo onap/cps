@@ -2,6 +2,92 @@
   "comments": [
     {
       "key": {
+        "uuid": "a69803be_a48ecca1",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/avc-subscription-event-v1.json",
+        "patchSetId": 11
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-12-22T09:52:51Z",
+      "side": 1,
+      "message": "need to check the generated code.",
+      "range": {
+        "startLine": 89,
+        "startChar": 9,
+        "endLine": 94,
+        "endChar": 11
+      },
+      "revId": "298fbe3293c4b5d77f172ca03e09a7d4b3c39249",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6ed1e4aa_4c461092",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventConsumer.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-12-22T09:52:51Z",
+      "side": 1,
+      "message": "\"CM\".equals(subscriptionEvent.getEvent().getDataType().getDataCategory())",
+      "range": {
+        "startLine": 42,
+        "startChar": 12,
+        "endLine": 42,
+        "endChar": 72
+      },
+      "revId": "298fbe3293c4b5d77f172ca03e09a7d4b3c39249",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "79997c8b_a18a2986",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventConsumer.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-12-22T09:52:51Z",
+      "side": 1,
+      "message": "\"CREATE\".equals(subscriptionEvent.getEventType().value())",
+      "range": {
+        "startLine": 44,
+        "startChar": 16,
+        "endLine": 44,
+        "endChar": 56
+      },
+      "revId": "298fbe3293c4b5d77f172ca03e09a7d4b3c39249",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e479e7ef_bcaf1aee",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventConsumerSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-12-22T09:52:51Z",
+      "side": 1,
+      "message": "NB: test for kafka consumer to be done as part of a separate commit.",
+      "revId": "298fbe3293c4b5d77f172ca03e09a7d4b3c39249",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0791d6c2_692cc0e0",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventConsumerSpec.groovy",
         "patchSetId": 11
