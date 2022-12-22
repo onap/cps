@@ -98,6 +98,8 @@ app:
     ncmp:
         async-m2m:
             topic: ${NCMP_ASYNC_M2M_TOPIC:ncmp-async-m2m}
+        avc:
+            subscription-topic: ${NCMP_CM_AVC_SUBSCRIPTION:cm-avc-subscription}
     lcm:
         events:
             topic: ${LCM_EVENTS_TOPIC:ncmp-events}

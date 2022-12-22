@@ -16,6 +16,11 @@
 #  SPDX-License-Identifier: Apache-2.0
 #  ============LICENSE_END=========================================================
 
+app:
+    ncmp:
+        avc:
+            subscription-topic: test-avc-subscription
+
 ncmp:
     dmi:
         auth:
