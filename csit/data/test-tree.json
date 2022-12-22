@@ -2,11 +2,11 @@
   "test-tree": {
     "branch": [
       {
-        "name": "Left",
+        "name": "LEFT/left",
         "nest": {
-          "name": "Small",
+          "name": "SMALL/small",
           "birds": [
-            "Sparrow",
+            "SPARROW/sparrow",
             "Robin",
             "Finch"
           ]

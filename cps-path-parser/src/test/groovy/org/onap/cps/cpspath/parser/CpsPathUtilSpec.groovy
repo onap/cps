@@ -29,7 +29,7 @@ class CpsPathUtilSpec extends Specification {
         when: 'xpath with #scenario is parsed'
             def result = CpsPathUtil.getNormalizedXpath(xpath)
         then: 'normalized path uses single quotes for leave values'
-            result == "/parent/child[@common-leaf-name='123']"
+            assert result == "/parent/child[@common-leaf-name='123']"
         where: 'the following xpaths are used'
             scenario        | xpath
             'no quotes'     | '/parent/child[@common-leaf-name=123]'
@@ -41,7 +41,7 @@ class CpsPathUtilSpec extends Specification {
         when: 'a given xpath with #scenario is parsed'
             def result = CpsPathUtil.getNormalizedParentXpath(xpath)
         then: 'the result is the expected parent path'
-            result == expectedParentPath
+            assert result == expectedParentPath
         where: 'the following xpaths are used'
             scenario                         | xpath                                 || expectedParentPath
             'no child'                       | '/parent'                             || ''
@@ -52,6 +52,22 @@ class CpsPathUtilSpec extends Specification {
             'parent is list element with /'  | "/parent/child[@id='a/b']/grandChild" || "/parent/child[@id='a/b']"
             'parent is list element with ['  | "/parent/child[@id='a[b']/grandChild" || "/parent/child[@id='a[b']"
             'parent is list element using "' | '/parent/child[@id="x"]/grandChild'   || "/parent/child[@id='x']"
+    }
+
+    def 'Get node ID sequence for given xpath'() {
+        when: 'a given xpath with #scenario is parsed'
+            def result = CpsPathUtil.getXpathNodeIdSequence(xpath)
+        then: 'the result is the expected node ID sequence'
+            assert result == expectedNodeIdSequence
+        where: 'the following xpaths are used'
+            scenario                         | xpath                                 || expectedNodeIdSequence
+            'no child'                       | '/parent'                             || ["parent"]
+            'child and parent'               | '/parent/child'                       || ["parent","child"]
+            'grand child'                    | '/parent/child/grandChild'            || ["parent","child","grandChild"]
+            'parent & top is list element'   | '/parent[@id=1]/child'                || ["parent","child"]
+            'parent is list element'         | '/parent/child[@id=1]/grandChild'     || ["parent","child","grandChild"]
+            'parent is list element with /'  | "/parent/child[@id='a/b']/grandChild" || ["parent","child","grandChild"]
+            'parent is list element with ['  | "/parent/child[@id='a[b']/grandChild" || ["parent","child","grandChild"]
     }
 
     def 'Recognizing (absolute) xpaths to List elements'() {
