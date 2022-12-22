@@ -28,6 +28,5 @@ import org.onap.cps.spi.model.ModuleReference;
  */
 public interface ModuleReferenceQuery {
 
-    Collection<ModuleReference> identifyNewModuleReferences(
-        final Collection<ModuleReference> moduleReferencesToCheck);
+    Collection<ModuleReference> identifyNewModuleReferences(final Collection<ModuleReference> moduleReferencesToCheck);
 }

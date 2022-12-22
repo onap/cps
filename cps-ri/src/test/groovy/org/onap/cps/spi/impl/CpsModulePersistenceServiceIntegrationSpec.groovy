@@ -230,8 +230,9 @@ class CpsModulePersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase 
     def 'Identifying new module references where #scenario'() {
         when: 'identifyNewModuleReferences is called'
             def result = objectUnderTest.identifyNewModuleReferences(moduleReferences)
-        then: 'the correct module reference collection is returned'
-            assert result == expectedResult
+        then: 'the correct module references are returned'
+            assert result.size() == expectedResult.size()
+            assert result.containsAll(expectedResult)
         where: 'the following data is used'
             scenario                              | moduleReferences                                                                                  || expectedResult
             'new module references exist'         | toModuleReference([['some module 1' : 'some revision 1'], ['some module 2' : 'some revision 2']]) || toModuleReference([['some module 1' : 'some revision 1'], ['some module 2' : 'some revision 2']])
@@ -304,7 +305,7 @@ class CpsModulePersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase 
         def moduleReferences = [].withDefault { [:] }
         moduleReferenceAsMap.forEach(property ->
             property.forEach((moduleName, revision) -> {
-                moduleReferences.add(new ModuleReference('moduleName' : moduleName, 'revision' : revision))
+                moduleReferences.add(new ModuleReference(moduleName, revision))
             }))
         return moduleReferences
     }

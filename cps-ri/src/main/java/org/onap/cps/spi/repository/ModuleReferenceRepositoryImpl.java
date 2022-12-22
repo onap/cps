@@ -23,8 +23,8 @@ package org.onap.cps.spi.repository;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
-import java.util.UUID;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import lombok.AllArgsConstructor;
@@ -41,6 +41,8 @@ public class ModuleReferenceRepositoryImpl implements ModuleReferenceQuery {
     @PersistenceContext
     private EntityManager entityManager;
 
+    private TempTableCreator tempTableCreator;
+
     @Override
     @SneakyThrows
     public Collection<ModuleReference> identifyNewModuleReferences(
@@ -50,42 +52,18 @@ public class ModuleReferenceRepositoryImpl implements ModuleReferenceQuery {
             return Collections.emptyList();
         }
 
-        final String tempTableName = "moduleReferencesToCheckTemp"
-                + UUID.randomUUID().toString().replace("-", "");
-
-        createTemporaryTable(tempTableName);
-        insertDataIntoTable(tempTableName, moduleReferencesToCheck);
-
-        return identifyNewModuleReferencesForCmHandle(tempTableName);
-    }
-
-    private void createTemporaryTable(final String tempTableName) {
-        final StringBuilder sqlStringBuilder = new StringBuilder("CREATE TEMPORARY TABLE " + tempTableName + "(");
-        sqlStringBuilder.append(" id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,");
-        sqlStringBuilder.append(" module_name varchar NOT NULL,");
-        sqlStringBuilder.append(" revision varchar NOT NULL");
-        sqlStringBuilder.append(");");
-
-        entityManager.createNativeQuery(sqlStringBuilder.toString()).executeUpdate();
-    }
-
-    private void insertDataIntoTable(final String tempTableName, final Collection<ModuleReference> moduleReferences) {
-        final StringBuilder sqlStringBuilder = new StringBuilder("INSERT INTO  " + tempTableName);
-        sqlStringBuilder.append(" (module_name, revision) ");
-        sqlStringBuilder.append(" VALUES ");
-
-        for (final ModuleReference moduleReference : moduleReferences) {
-            sqlStringBuilder.append("('");
-            sqlStringBuilder.append(moduleReference.getModuleName());
-            sqlStringBuilder.append("', '");
-            sqlStringBuilder.append(moduleReference.getRevision());
-            sqlStringBuilder.append("'),");
+        final Collection<List<String>> sqlData = new HashSet<>(moduleReferencesToCheck.size());
+        for (final ModuleReference moduleReference : moduleReferencesToCheck) {
+            final List<String> row = new ArrayList<>(2);
+            row.add(moduleReference.getModuleName());
+            row.add(moduleReference.getRevision());
+            sqlData.add(row);
         }
 
-        // replace last ',' with ';'
-        sqlStringBuilder.replace(sqlStringBuilder.length() - 1, sqlStringBuilder.length(), ";");
+        final String tempTableName = tempTableCreator.createTemporaryTable(
+            "moduleReferencesToCheckTemp", sqlData, "module_name", "revision");
 
-        entityManager.createNativeQuery(sqlStringBuilder.toString()).executeUpdate();
+        return identifyNewModuleReferencesForCmHandle(tempTableName);
     }
 
     private Collection<ModuleReference> identifyNewModuleReferencesForCmHandle(final String tempTableName) {

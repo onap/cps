@@ -49,4 +49,5 @@ public class ModuleReference implements Serializable {
         this.revision = revision;
         this.namespace = "";
     }
+
 }
