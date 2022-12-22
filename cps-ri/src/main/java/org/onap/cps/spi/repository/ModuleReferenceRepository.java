@@ -20,16 +20,10 @@
 
 package org.onap.cps.spi.repository;
 
-import java.util.Collection;
 import org.onap.cps.spi.entities.YangResourceEntity;
-import org.onap.cps.spi.model.ModuleReference;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ModuleReferenceRepository extends JpaRepository<YangResourceEntity, Long>, ModuleReferenceQuery {
+public interface ModuleReferenceRepository extends JpaRepository<YangResourceEntity, Long>, ModuleReferenceQuery {}
 
-    Collection<ModuleReference> identifyNewModuleReferences(
-        final Collection<ModuleReference> moduleReferencesToCheck);
-
-}

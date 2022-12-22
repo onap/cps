@@ -47,26 +47,25 @@ class CpsToDataNodePerfTest extends CpsPersistenceSpecBase {
     static def ALLOWED_SETUP_TIME_MS = TimeUnit.SECONDS.toMillis(10)
     static def ALLOWED_READ_TIME_AL_NODES_MS = 500
 
-    def readStopWatch = new StopWatch()
+    def stopWatch = new StopWatch()
 
     @Sql([CLEAR_DATA, PERF_TEST_DATA])
     def 'Create a node with many descendants (please note, subsequent tests depend on this running first).'() {
         given: 'a node with a large number of descendants is created'
-            def setupStopWatch = new StopWatch()
-            setupStopWatch.start()
+            stopWatch.start()
             createLineage()
-            setupStopWatch.stop()
-            def setupDurationInMillis = setupStopWatch.getTotalTimeMillis()
+            stopWatch.stop()
+            def setupDurationInMillis = stopWatch.getTotalTimeMillis()
         and: 'setup duration is under #ALLOWED_SETUP_TIME_MS milliseconds'
             assert setupDurationInMillis < ALLOWED_SETUP_TIME_MS
     }
 
     def 'Get data node with many descendants by xpath #scenario'() {
         when: 'get parent is executed with all descendants'
-            readStopWatch.start()
+            stopWatch.start()
             def result = objectUnderTest.getDataNode('PERF-DATASPACE', 'PERF-ANCHOR', xpath, INCLUDE_ALL_DESCENDANTS)
-            readStopWatch.stop()
-            def readDurationInMillis = readStopWatch.getTotalTimeMillis()
+            stopWatch.stop()
+            def readDurationInMillis = stopWatch.getTotalTimeMillis()
         then: 'read duration is under 500 milliseconds'
             assert readDurationInMillis < ALLOWED_READ_TIME_AL_NODES_MS
         and: 'data node is returned with all the descendants populated'
@@ -79,10 +78,10 @@ class CpsToDataNodePerfTest extends CpsPersistenceSpecBase {
 
     def 'Query parent data node with many descendants by cps-path'() {
         when: 'query is executed with all descendants'
-            readStopWatch.start()
+            stopWatch.start()
             def result = objectUnderTest.queryDataNodes('PERF-DATASPACE', 'PERF-ANCHOR', '//perf-parent-1' , INCLUDE_ALL_DESCENDANTS)
-            readStopWatch.stop()
-            def readDurationInMillis = readStopWatch.getTotalTimeMillis()
+            stopWatch.stop()
+            def readDurationInMillis = stopWatch.getTotalTimeMillis()
         then: 'read duration is under 500 milliseconds'
             assert readDurationInMillis < ALLOWED_READ_TIME_AL_NODES_MS
         and: 'data node is returned with all the descendants populated'
@@ -91,10 +90,10 @@ class CpsToDataNodePerfTest extends CpsPersistenceSpecBase {
 
     def 'Query many descendants by cps-path with #scenario'() {
         when: 'query is executed with all descendants'
-            readStopWatch.start()
+            stopWatch.start()
             def result = objectUnderTest.queryDataNodes('PERF-DATASPACE', 'PERF-ANCHOR',  '//perf-test-grand-child-1', descendantsOption)
-            readStopWatch.stop()
-            def readDurationInMillis = readStopWatch.getTotalTimeMillis()
+            stopWatch.stop()
+            def readDurationInMillis = stopWatch.getTotalTimeMillis()
         then: 'read duration is under 500 milliseconds'
             assert readDurationInMillis < alowedDuration
         and: 'data node is returned with all the descendants populated'
