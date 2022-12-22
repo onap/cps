@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9d45de23_872edb04",
+        "filename": "cps-rest/docs/openapi/cpsData.yml",
+        "patchSetId": 18
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-12-22T15:04:25Z",
+      "side": 1,
+      "message": "😎",
+      "range": {
+        "startLine": 144,
+        "startChar": 8,
+        "endLine": 152,
+        "endChar": 0
+      },
+      "revId": "6ce84d98f68b45f02f16dc99423670f4a53fd946",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
