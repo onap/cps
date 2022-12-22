@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ccbce5c2_392a1bb8",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/ModuleReference.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-12-22T15:39:45Z",
+      "side": 1,
+      "message": "NB: no change in this file apart from this so maybe can remove:)",
+      "revId": "ded9f06f42bbe751bdec3d763ae5216d76df82c4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
