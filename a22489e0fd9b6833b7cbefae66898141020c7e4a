@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "444d4d87_74f60bcd",
+        "filename": "cps-rest/docs/openapi/cpsData.yml",
+        "patchSetId": 16
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-22T14:29:39Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b664365d_eb5d98d8",
+      "range": {
+        "startLine": 164,
+        "startChar": 18,
+        "endLine": 164,
+        "endChar": 55
+      },
+      "revId": "a22489e0fd9b6833b7cbefae66898141020c7e4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9c7e79e6_c1cba846",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
         "patchSetId": 16
