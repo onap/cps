@@ -57,7 +57,8 @@ else
     rm -f ${WORKSPACE}/env.properties
     cd /tmp
     git clone "https://gerrit.onap.org/r/ci-management"
-    source /tmp/ci-management/jjb/integration/include-raw-integration-install-robotframework-py3.sh
+#    source /tmp/ci-management/jjb/integration/include-raw-integration-install-robotframework-py3.sh
+    source ${WORKSPACE}/install-robotframework.sh
 fi
 
 # install eteutils
