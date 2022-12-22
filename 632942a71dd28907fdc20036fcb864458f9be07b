@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "11e0ba2e_e8611791",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/avc-subscription-event-v1.json",
+        "patchSetId": 12
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2022-12-22T11:22:15Z",
+      "side": 1,
+      "message": "does this work? \nie. Priyank can you confirm",
+      "range": {
+        "startLine": 91,
+        "startChar": 10,
+        "endLine": 92,
+        "endChar": 27
+      },
+      "revId": "632942a71dd28907fdc20036fcb864458f9be07b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
