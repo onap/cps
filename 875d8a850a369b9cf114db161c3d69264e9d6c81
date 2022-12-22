@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "92fb69d8_5b10f358",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/TempTableCreator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-12-22T15:31:13Z",
+      "side": 1,
+      "message": "I just hope postgres don\u0027t complain about the long table name.\nI was reading somewhr that it is 63bytes\nhttps://stackoverflow.com/questions/27865770/how-long-can-postgresql-table-names-be\n\nMay be it is consistently trimming the table name 😊",
+      "range": {
+        "startLine": 56,
+        "startChar": 21,
+        "endLine": 56,
+        "endChar": 34
+      },
+      "revId": "875d8a850a369b9cf114db161c3d69264e9d6c81",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "65984fa9_1e9859db",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/performance/CpsModuleReferenceRepositoryPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2022-12-22T15:31:13Z",
+      "side": 1,
+      "message": "💯",
+      "range": {
+        "startLine": 89,
+        "startChar": 52,
+        "endLine": 89,
+        "endChar": 56
+      },
+      "revId": "875d8a850a369b9cf114db161c3d69264e9d6c81",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
