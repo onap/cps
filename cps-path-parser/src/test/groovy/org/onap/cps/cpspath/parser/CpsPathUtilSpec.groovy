@@ -20,7 +20,6 @@
 
 package org.onap.cps.cpspath.parser
 
-import org.springframework.util.StopWatch
 import spock.lang.Specification
 
 class CpsPathUtilSpec extends Specification {
@@ -86,20 +85,6 @@ class CpsPathUtilSpec extends Specification {
             CpsPathUtil.getNormalizedXpath('///')
         then: 'a path parsing exception is thrown'
             thrown(PathParsingException)
-    }
-
-    def 'CPS Path Processing Performance Test.'() {
-        when: '200,000 paths are processed'
-            def stopWatch = new StopWatch()
-            stopWatch.start()
-            (1..100000).each {
-                CpsPathUtil.getNormalizedXpath('/long/path/to/see/if/it/adds/paring/time/significantly/parent/child[@common-leaf-name="123"]')
-                CpsPathUtil.getNormalizedXpath('//child[@other-leaf=1]/leaf-name[text()="search"]/ancestor::parent')
-            }
-            stopWatch.stop()
-        then: 'it takes less then 10,000 milliseconds'
-            // In CI this actually takes about 3-5 sec  which  is approx. 50+ parser executions per millisecond!
-            assert stopWatch.getTotalTimeMillis() < 10000
     }
 
 }

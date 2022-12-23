@@ -77,7 +77,7 @@ class CpsModuleReferenceRepositoryPerfTest extends CpsPersistenceSpecBase {
             def dataspaceEntity = dataspaceRepository.getByName('PERF-DATASPACE')
             SchemaSetEntity result = schemaSetRepository.getByDataspaceAndName(dataspaceEntity, 'perfSchemaSet')
             result.yangResources.size() == 200
-        and: 'identification of new module resources is fast enough (1,000 executions less then 5,000 milliseconds)'
+        and: 'identification of new module resources is fast enough (1,000 executions less then 6,000 milliseconds)'
             def stopWatch = new StopWatch()
             1000.times() {
                 def moduleReferencesToCheck = createModuleReferencesWithRandomMatchingExistingModuleReferences()
@@ -86,7 +86,7 @@ class CpsModuleReferenceRepositoryPerfTest extends CpsPersistenceSpecBase {
                 stopWatch.stop()
                 assert newModuleReferences.size() > 0 && newModuleReferences.size() < 300
             }
-            assert stopWatch.getTotalTimeMillis() < 5000
+            assert stopWatch.getTotalTimeMillis() < 6000
     }
 
     def createModuleReferencesWithRandomMatchingExistingModuleReferences() {

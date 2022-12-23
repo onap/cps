@@ -146,7 +146,7 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <configuration>
                             <excludes>
-                                <exclude>org.onap.cps.spi.performance.CpsToDataNodePerfTest</exclude>
+                                <exclude>%regex[.*PerfTest.*]</exclude>
                             </excludes>
                         </configuration>
                     </plugin>
