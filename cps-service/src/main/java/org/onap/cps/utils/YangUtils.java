@@ -38,9 +38,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
+import javax.xml.transform.TransformerException;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -75,6 +77,9 @@ import org.xml.sax.SAXException;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class YangUtils {
 
+    public static final String DATA_ROOT_NODE_NAMESPACE = "urn:ietf:params:xml:ns:netconf:base:1.0";
+    public static final String DATA_ROOT_NODE_TAG_NAME = "data";
+
     /**
      * Parses data into Collection of NormalizedNode according to given schema context.
      *
@@ -82,13 +87,13 @@ public class YangUtils {
      * @param schemaContext schema context describing associated data model
      * @return the NormalizedNode object
      */
-    public static ContainerNode parseData(final ContentType contentType, final String nodeData,
-                                           final SchemaContext schemaContext) {
+    public static ContainerNode parseData(final ContentType contentType,
+                                          final String nodeData,
+                                          final SchemaContext schemaContext) {
         if (contentType == ContentType.JSON) {
-            return parseJsonData(nodeData, schemaContext, Optional.empty());
+            return parseJsonDataWithOptionalParent(nodeData, schemaContext, Optional.empty());
         }
-        return parseXmlData(XmlFileUtils.prepareXmlContent(nodeData, schemaContext), schemaContext,
-                Optional.empty());
+        return parseXmlDataWithOptionalParent(nodeData, schemaContext, Optional.empty());
     }
 
     /**
@@ -98,19 +103,14 @@ public class YangUtils {
      * @param schemaContext schema context describing associated data model
      * @return the NormalizedNode object
      */
-    public static ContainerNode parseData(final ContentType contentType, final String nodeData,
-                                           final SchemaContext schemaContext, final String parentNodeXpath) {
-        final DataSchemaNode parentSchemaNode =
-                (DataSchemaNode) getDataSchemaNodeAndIdentifiersByXpath(parentNodeXpath, schemaContext)
-                        .get("dataSchemaNode");
-        final Collection<QName> dataSchemaNodeIdentifiers =
-                (Collection<QName>) getDataSchemaNodeAndIdentifiersByXpath(parentNodeXpath, schemaContext)
-                        .get("dataSchemaNodeIdentifiers");
+    public static ContainerNode parseData(final ContentType contentType,
+                                          final String nodeData,
+                                          final SchemaContext schemaContext,
+                                          final String parentNodeXpath) {
         if (contentType == ContentType.JSON) {
-            return parseJsonData(nodeData, schemaContext, Optional.of(dataSchemaNodeIdentifiers));
+            return parseJsonDataWithOptionalParent(nodeData, schemaContext, Optional.of(parentNodeXpath));
         }
-        return parseXmlData(XmlFileUtils.prepareXmlContent(nodeData, parentSchemaNode, parentNodeXpath), schemaContext,
-                Optional.of(dataSchemaNodeIdentifiers));
+        return parseXmlDataWithOptionalParent(nodeData, schemaContext, Optional.of(parentNodeXpath));
     }
 
     /**
@@ -121,7 +121,7 @@ public class YangUtils {
      * @return the Collection of NormalizedNode object
      */
     public static ContainerNode parseJsonData(final String jsonData, final SchemaContext schemaContext) {
-        return parseJsonData(jsonData, schemaContext, Optional.empty());
+        return parseJsonDataWithOptionalParent(jsonData, schemaContext, Optional.empty());
     }
 
     /**
@@ -132,83 +132,10 @@ public class YangUtils {
      * @param parentNodeXpath the xpath referencing the parent node current data fragment belong to
      * @return the NormalizedNode object
      */
-    public static ContainerNode parseJsonData(final String jsonData, final SchemaContext schemaContext,
-        final String parentNodeXpath) {
-        final Collection<QName> dataSchemaNodeIdentifiers =
-                (Collection<QName>) getDataSchemaNodeAndIdentifiersByXpath(parentNodeXpath, schemaContext)
-                        .get("dataSchemaNodeIdentifiers");
-        return parseJsonData(jsonData, schemaContext, Optional.of(dataSchemaNodeIdentifiers));
-    }
-
-    private static ContainerNode parseJsonData(final String jsonData, final SchemaContext schemaContext,
-        final Optional<Collection<QName>> dataSchemaNodeIdentifiers) {
-        final JSONCodecFactory jsonCodecFactory = JSONCodecFactorySupplier.DRAFT_LHOTKA_NETMOD_YANG_JSON_02
-            .getShared((EffectiveModelContext) schemaContext);
-        final DataContainerNodeBuilder<YangInstanceIdentifier.NodeIdentifier, ContainerNode> dataContainerNodeBuilder =
-                Builders.containerBuilder()
-                        .withNodeIdentifier(new YangInstanceIdentifier.NodeIdentifier(schemaContext.getQName()));
-        final NormalizedNodeStreamWriter normalizedNodeStreamWriter = ImmutableNormalizedNodeStreamWriter
-                .from(dataContainerNodeBuilder);
-        final JsonReader jsonReader = new JsonReader(new StringReader(jsonData));
-        final JsonParserStream jsonParserStream;
-
-        if (dataSchemaNodeIdentifiers.isPresent()) {
-            final EffectiveModelContext effectiveModelContext = ((EffectiveModelContext) schemaContext);
-            final EffectiveStatementInference effectiveStatementInference =
-                    SchemaInferenceStack.of(effectiveModelContext,
-                            SchemaNodeIdentifier.Absolute.of(dataSchemaNodeIdentifiers.get())).toInference();
-            jsonParserStream =
-                    JsonParserStream.create(normalizedNodeStreamWriter, jsonCodecFactory, effectiveStatementInference);
-        } else {
-            jsonParserStream = JsonParserStream.create(normalizedNodeStreamWriter, jsonCodecFactory);
-        }
-
-        try {
-            jsonParserStream.parse(jsonReader);
-            jsonParserStream.close();
-        } catch (final IOException | JsonSyntaxException exception) {
-            throw new DataValidationException(
-                    "Failed to parse json data: " + jsonData, exception.getMessage(), exception);
-        } catch (final IllegalStateException | IllegalArgumentException exception) {
-            throw new DataValidationException(
-                    "Failed to parse json data. Unsupported xpath or json data:" + jsonData, exception
-                    .getMessage(), exception);
-        }
-        return dataContainerNodeBuilder.build();
-    }
-
-    private static ContainerNode parseXmlData(final String xmlData, final SchemaContext schemaContext,
-                                               final Optional<Collection<QName>> dataSchemaNodeIdentifiers) {
-        final XMLInputFactory factory = XMLInputFactory.newInstance();
-        factory.setProperty(XMLInputFactory.SUPPORT_DTD, false);
-        final NormalizedNodeResult normalizedNodeResult = new NormalizedNodeResult();
-        final NormalizedNodeStreamWriter normalizedNodeStreamWriter = ImmutableNormalizedNodeStreamWriter
-                .from(normalizedNodeResult);
-
-        final XmlParserStream xmlParser;
-        final EffectiveModelContext effectiveModelContext = ((EffectiveModelContext) schemaContext);
-
-        if (dataSchemaNodeIdentifiers.isPresent()) {
-            final EffectiveStatementInference effectiveStatementInference =
-                    SchemaInferenceStack.of(effectiveModelContext,
-                            SchemaNodeIdentifier.Absolute.of(dataSchemaNodeIdentifiers.get())).toInference();
-            xmlParser = XmlParserStream.create(normalizedNodeStreamWriter, effectiveStatementInference);
-        } else {
-            xmlParser = XmlParserStream.create(normalizedNodeStreamWriter, effectiveModelContext);
-        }
-
-        try {
-            final XMLStreamReader reader = factory.createXMLStreamReader(new StringReader(xmlData));
-            xmlParser.parse(reader);
-            xmlParser.close();
-        } catch (final XMLStreamException | URISyntaxException | IOException
-                       | SAXException | NullPointerException exception) {
-            throw new DataValidationException(
-                    "Failed to parse xml data: " + xmlData, exception.getMessage(), exception);
-        }
-        final NormalizedNode normalizedNode = getFirstChildXmlRoot(normalizedNodeResult.getResult());
-        return Builders.containerBuilder().withChild((DataContainerChild) normalizedNode)
-                .withNodeIdentifier(new YangInstanceIdentifier.NodeIdentifier(schemaContext.getQName())).build();
+    public static ContainerNode parseJsonData(final String jsonData,
+                                              final SchemaContext schemaContext,
+                                              final String parentNodeXpath) {
+        return parseJsonDataWithOptionalParent(jsonData, schemaContext, Optional.of(parentNodeXpath));
     }
 
     /**
@@ -223,11 +150,103 @@ public class YangUtils {
 
         if (nodeIdentifier instanceof YangInstanceIdentifier.NodeIdentifierWithPredicates) {
             xpathBuilder.append(getKeyAttributesStatement(
-                    (YangInstanceIdentifier.NodeIdentifierWithPredicates) nodeIdentifier));
+                (YangInstanceIdentifier.NodeIdentifierWithPredicates) nodeIdentifier));
         }
         return xpathBuilder.toString();
     }
 
+    private static ContainerNode parseJsonDataWithOptionalParent(final String jsonData,
+                                                                 final SchemaContext schemaContext,
+                                                                 final Optional<String> parentNodeXpath) {
+        final JSONCodecFactory jsonCodecFactory = JSONCodecFactorySupplier.DRAFT_LHOTKA_NETMOD_YANG_JSON_02
+            .getShared((EffectiveModelContext) schemaContext);
+        final DataContainerNodeBuilder<YangInstanceIdentifier.NodeIdentifier, ContainerNode> dataContainerNodeBuilder =
+                Builders.containerBuilder()
+                        .withNodeIdentifier(new YangInstanceIdentifier.NodeIdentifier(
+                            QName.create(DATA_ROOT_NODE_NAMESPACE, DATA_ROOT_NODE_TAG_NAME)
+                        ));
+        final NormalizedNodeStreamWriter normalizedNodeStreamWriter = ImmutableNormalizedNodeStreamWriter
+                .from(dataContainerNodeBuilder);
+        final JsonReader jsonReader = new JsonReader(new StringReader(jsonData));
+        final JsonParserStream jsonParserStream;
+
+        if (parentNodeXpath.isPresent()) {
+            final Collection<QName> dataSchemaNodeIdentifiers
+                = getDataSchemaNodeIdentifiers(schemaContext, parentNodeXpath.get());
+            final EffectiveModelContext effectiveModelContext = ((EffectiveModelContext) schemaContext);
+            final EffectiveStatementInference effectiveStatementInference =
+                    SchemaInferenceStack.of(effectiveModelContext,
+                            SchemaNodeIdentifier.Absolute.of(dataSchemaNodeIdentifiers)).toInference();
+            jsonParserStream =
+                    JsonParserStream.create(normalizedNodeStreamWriter, jsonCodecFactory, effectiveStatementInference);
+        } else {
+            jsonParserStream = JsonParserStream.create(normalizedNodeStreamWriter, jsonCodecFactory);
+        }
+
+        try (jsonParserStream) {
+            jsonParserStream.parse(jsonReader);
+        } catch (final IOException | JsonSyntaxException exception) {
+            throw new DataValidationException(
+                    "Failed to parse json data: " + jsonData, exception.getMessage(), exception);
+        } catch (final IllegalStateException | IllegalArgumentException exception) {
+            throw new DataValidationException(
+                    "Failed to parse json data. Unsupported xpath or json data:" + jsonData, exception
+                    .getMessage(), exception);
+        }
+        return dataContainerNodeBuilder.build();
+    }
+
+    private static ContainerNode parseXmlDataWithOptionalParent(final String xmlData,
+                                                                final SchemaContext schemaContext,
+                                                                final Optional<String> parentNodeXpath) {
+        final XMLInputFactory factory = XMLInputFactory.newInstance();
+        factory.setProperty(XMLInputFactory.SUPPORT_DTD, false);
+        final NormalizedNodeResult normalizedNodeResult = new NormalizedNodeResult();
+        final NormalizedNodeStreamWriter normalizedNodeStreamWriter = ImmutableNormalizedNodeStreamWriter
+                .from(normalizedNodeResult);
+
+        final EffectiveModelContext effectiveModelContext = (EffectiveModelContext) schemaContext;
+        final XmlParserStream xmlParserStream;
+        final String preparedXmlContent;
+        try {
+            if (parentNodeXpath.isPresent()) {
+                final DataSchemaNode parentSchemaNode =
+                    (DataSchemaNode) getDataSchemaNodeAndIdentifiersByXpath(parentNodeXpath.get(), schemaContext)
+                        .get("dataSchemaNode");
+                final Collection<QName> dataSchemaNodeIdentifiers =
+                    getDataSchemaNodeIdentifiers(schemaContext, parentNodeXpath.get());
+                final EffectiveStatementInference effectiveStatementInference =
+                    SchemaInferenceStack.of(effectiveModelContext,
+                        SchemaNodeIdentifier.Absolute.of(dataSchemaNodeIdentifiers)).toInference();
+                preparedXmlContent = XmlFileUtils.prepareXmlContent(xmlData, parentSchemaNode, parentNodeXpath.get());
+                xmlParserStream = XmlParserStream.create(normalizedNodeStreamWriter, effectiveStatementInference);
+            } else {
+                preparedXmlContent = XmlFileUtils.prepareXmlContent(xmlData, schemaContext);
+                xmlParserStream = XmlParserStream.create(normalizedNodeStreamWriter, effectiveModelContext);
+            }
+
+            try (xmlParserStream;
+                 StringReader stringReader = new StringReader(preparedXmlContent)) {
+                final XMLStreamReader xmlStreamReader = factory.createXMLStreamReader(stringReader);
+                xmlParserStream.parse(xmlStreamReader);
+            }
+        } catch (final XMLStreamException | URISyntaxException | IOException | SAXException | NullPointerException
+                       | ParserConfigurationException | TransformerException exception) {
+            throw new DataValidationException(
+                "Failed to parse xml data: " + xmlData, exception.getMessage(), exception);
+        }
+        final DataContainerChild dataContainerChild =
+            (DataContainerChild) getFirstChildXmlRoot(normalizedNodeResult.getResult());
+        final YangInstanceIdentifier.NodeIdentifier nodeIdentifier =
+            new YangInstanceIdentifier.NodeIdentifier(dataContainerChild.getIdentifier().getNodeType());
+        return Builders.containerBuilder().withChild(dataContainerChild).withNodeIdentifier(nodeIdentifier).build();
+    }
+
+    private static Collection<QName> getDataSchemaNodeIdentifiers(final SchemaContext schemaContext,
+                                                                  final String parentNodeXpath) {
+        return (Collection<QName>) getDataSchemaNodeAndIdentifiersByXpath(parentNodeXpath, schemaContext)
+            .get("dataSchemaNodeIdentifiers");
+    }
 
     private static String getKeyAttributesStatement(
             final YangInstanceIdentifier.NodeIdentifierWithPredicates nodeIdentifier) {
