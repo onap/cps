@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8358b1cc_f7ec2e68",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2022-12-23T13:06:16Z",
+      "side": 1,
+      "message": "this was the generic Qname added to schemaContext -- can be replaced by a different namespace and localname",
+      "range": {
+        "startLine": 150,
+        "startChar": 45,
+        "endLine": 150,
+        "endChar": 93
+      },
+      "revId": "f12ce21a57d42c48f2ba79c8f5c55c79a5cf884e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
