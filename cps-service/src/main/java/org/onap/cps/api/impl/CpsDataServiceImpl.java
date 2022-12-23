@@ -252,8 +252,7 @@ public class CpsDataServiceImpl implements CpsDataService {
             return new DataNodeBuilder().withContainerNode(containerNode).build();
         }
 
-        final ContainerNode containerNode = YangUtils
-                .parseData(contentType, nodeData, schemaContext, parentNodeXpath);
+        final ContainerNode containerNode = YangUtils.parseData(contentType, nodeData, schemaContext, parentNodeXpath);
 
         return new DataNodeBuilder()
                 .withParentNodeXpath(parentNodeXpath)

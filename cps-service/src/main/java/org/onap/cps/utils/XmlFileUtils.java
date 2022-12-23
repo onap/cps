@@ -20,10 +20,10 @@
 
 package org.onap.cps.utils;
 
-
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.StringWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -37,6 +37,8 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import org.onap.cps.spi.exceptions.DataValidationException;
 import org.opendaylight.yangtools.yang.model.api.DataSchemaNode;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
@@ -44,6 +46,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class XmlFileUtils {
 
     private static DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -60,7 +63,6 @@ public class XmlFileUtils {
      * @return XML content wrapped by root node (if needed)
      */
     public static String prepareXmlContent(final String xmlContent, final SchemaContext schemaContext) {
-
         return addRootNodeToXmlContent(xmlContent, schemaContext.getModules().iterator().next().getName(),
                 ROOT_NODE_NAMESPACE);
 
@@ -73,13 +75,14 @@ public class XmlFileUtils {
      * @param parentSchemaNode Parent schema node
      * @return XML content wrapped by root node (if needed)
      */
-    public static String prepareXmlContent(final String xmlContent, final DataSchemaNode parentSchemaNode,
+    public static String prepareXmlContent(final String xmlContent,
+                                           final DataSchemaNode parentSchemaNode,
                                            final String xpath) {
         final String namespace = parentSchemaNode.getQName().getNamespace().toString();
         final String parentXpathPart = xpath.substring(xpath.lastIndexOf('/') + 1);
         final Matcher regexMatcher = XPATH_PROPERTY_REGEX.matcher(parentXpathPart);
         if (regexMatcher.find()) {
-            final HashMap<String, String> rootNodePropertyMap = new HashMap<String, String>();
+            final HashMap<String, String> rootNodePropertyMap = new HashMap<>();
             rootNodePropertyMap.put(regexMatcher.group(1), regexMatcher.group(2));
             return addRootNodeToXmlContent(xmlContent, parentSchemaNode.getQName().getLocalName(), namespace,
                     rootNodePropertyMap);
@@ -97,15 +100,16 @@ public class XmlFileUtils {
      * @param rootNodeProperty root node properites map
      * @return An edited content with added root node (if needed)
      */
-    public static String addRootNodeToXmlContent(final String xmlContent, final String rootNodeTagName,
+    public static String addRootNodeToXmlContent(final String xmlContent,
+                                                 final String rootNodeTagName,
                                                  final String namespace,
-                                                 final HashMap<String, String> rootNodeProperty) {
+                                                 final Map<String, String> rootNodeProperty) {
         try {
             final DocumentBuilder documentBuilder = dbFactory.newDocumentBuilder();
             final StringBuilder xmlStringBuilder = new StringBuilder();
             xmlStringBuilder.append(xmlContent);
             Document xmlDoc = documentBuilder.parse(
-                    new ByteArrayInputStream(xmlStringBuilder.toString().getBytes("utf-8")));
+                    new ByteArrayInputStream(xmlStringBuilder.toString().getBytes(StandardCharsets.UTF_8)));
             final Element root = xmlDoc.getDocumentElement();
             if (!root.getTagName().equals(rootNodeTagName) && !root.getTagName().equals(DATA_ROOT_NODE_TAG_NAME)) {
                 xmlDoc = addDataRootNode(root, rootNodeTagName, namespace, rootNodeProperty);
@@ -120,8 +124,9 @@ public class XmlFileUtils {
             }
             return xmlContent;
         } catch (SAXException | IOException | ParserConfigurationException | TransformerException exception) {
-            throw new DataValidationException("Failed to parse XML data", "Invalid xml input " + exception.getMessage(),
-                    exception);
+            throw new DataValidationException("Failed to parse XML data",
+                "Invalid xml input " + exception.getMessage(),
+                exception);
         }
     }
 
@@ -132,9 +137,10 @@ public class XmlFileUtils {
      * @param rootNodeTagName Root node tag name
      * @return XML content with root node tag added (if needed)
      */
-    public static String addRootNodeToXmlContent(final String xmlContent, final String rootNodeTagName,
+    public static String addRootNodeToXmlContent(final String xmlContent,
+                                                 final String rootNodeTagName,
                                                  final String namespace) {
-        return addRootNodeToXmlContent(xmlContent, rootNodeTagName, namespace, new HashMap<String, String>());
+        return addRootNodeToXmlContent(xmlContent, rootNodeTagName, namespace, new HashMap<>());
     }
 
     /**
@@ -144,8 +150,10 @@ public class XmlFileUtils {
      * @param tagName Root tag name to add
      * @return DOM element with a root node
      */
-    static Document addDataRootNode(final Element node, final String tagName, final String namespace,
-                                    final HashMap<String, String> rootNodeProperty) {
+    static Document addDataRootNode(final Element node,
+                                    final String tagName,
+                                    final String namespace,
+                                    final Map<String, String> rootNodeProperty) {
         try {
             final DocumentBuilder docBuilder = dbFactory.newDocumentBuilder();
             final Document document = docBuilder.newDocument();
