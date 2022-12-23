@@ -146,7 +146,8 @@ public class YangUtils {
             .getShared((EffectiveModelContext) schemaContext);
         final DataContainerNodeBuilder<YangInstanceIdentifier.NodeIdentifier, ContainerNode> dataContainerNodeBuilder =
                 Builders.containerBuilder()
-                        .withNodeIdentifier(new YangInstanceIdentifier.NodeIdentifier(schemaContext.getQName()));
+                        .withNodeIdentifier(new YangInstanceIdentifier.NodeIdentifier(
+                                QName.create("urn:ietf:params:xml:ns:netconf:base:1.0", "data")));
         final NormalizedNodeStreamWriter normalizedNodeStreamWriter = ImmutableNormalizedNodeStreamWriter
                 .from(dataContainerNodeBuilder);
         final JsonReader jsonReader = new JsonReader(new StringReader(jsonData));
@@ -208,7 +209,8 @@ public class YangUtils {
         }
         final NormalizedNode normalizedNode = getFirstChildXmlRoot(normalizedNodeResult.getResult());
         return Builders.containerBuilder().withChild((DataContainerChild) normalizedNode)
-                .withNodeIdentifier(new YangInstanceIdentifier.NodeIdentifier(schemaContext.getQName())).build();
+                .withNodeIdentifier(new YangInstanceIdentifier.NodeIdentifier(
+                        normalizedNode.getIdentifier().getNodeType())).build();
     }
 
     /**
