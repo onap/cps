@@ -20,10 +20,10 @@
 
 package org.onap.cps.utils;
 
-
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.StringWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -37,6 +37,8 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import org.onap.cps.spi.exceptions.DataValidationException;
 import org.opendaylight.yangtools.yang.model.api.DataSchemaNode;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
@@ -44,26 +46,25 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class XmlFileUtils {
 
     private static DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-    private static final String DATA_ROOT_NODE_TAG_NAME = "data";
-    private static final String ROOT_NODE_NAMESPACE = "urn:ietf:params:xml:ns:netconf:base:1.0";
-    private static final Pattern XPATH_PROPERTY_REGEX = Pattern.compile(
-            "\\[@(\\S{1,100})=['\\\"](\\S{1,100})['\\\"]\\]");
+    private static final Pattern XPATH_PROPERTY_REGEX =
+        Pattern.compile("\\[@(\\S{1,100})=['\\\"](\\S{1,100})['\\\"]\\]");
 
     /**
      * Prepare XML content.
      *
      * @param xmlContent XML content sent to store
      * @param schemaContext schema context
+     *
      * @return XML content wrapped by root node (if needed)
      */
-    public static String prepareXmlContent(final String xmlContent, final SchemaContext schemaContext) {
-
+    public static String prepareXmlContent(final String xmlContent, final SchemaContext schemaContext)
+        throws IOException, ParserConfigurationException, TransformerException, SAXException {
         return addRootNodeToXmlContent(xmlContent, schemaContext.getModules().iterator().next().getName(),
-                ROOT_NODE_NAMESPACE);
-
+                YangUtils.DATA_ROOT_NODE_NAMESPACE);
     }
 
     /**
@@ -71,15 +72,19 @@ public class XmlFileUtils {
      *
      * @param xmlContent XML content sent to store
      * @param parentSchemaNode Parent schema node
+     * @Param xpath Parent xpath
+     *
      * @return XML content wrapped by root node (if needed)
      */
-    public static String prepareXmlContent(final String xmlContent, final DataSchemaNode parentSchemaNode,
-                                           final String xpath) {
+    public static String prepareXmlContent(final String xmlContent,
+                                           final DataSchemaNode parentSchemaNode,
+                                           final String xpath)
+        throws IOException, ParserConfigurationException, TransformerException, SAXException {
         final String namespace = parentSchemaNode.getQName().getNamespace().toString();
         final String parentXpathPart = xpath.substring(xpath.lastIndexOf('/') + 1);
         final Matcher regexMatcher = XPATH_PROPERTY_REGEX.matcher(parentXpathPart);
         if (regexMatcher.find()) {
-            final HashMap<String, String> rootNodePropertyMap = new HashMap<String, String>();
+            final HashMap<String, String> rootNodePropertyMap = new HashMap<>();
             rootNodePropertyMap.put(regexMatcher.group(1), regexMatcher.group(2));
             return addRootNodeToXmlContent(xmlContent, parentSchemaNode.getQName().getLocalName(), namespace,
                     rootNodePropertyMap);
@@ -88,41 +93,30 @@ public class XmlFileUtils {
         return addRootNodeToXmlContent(xmlContent, parentSchemaNode.getQName().getLocalName(), namespace);
     }
 
-    /**
-     * Add root node to XML content.
-     *
-     * @param xmlContent xml content to add root node
-     * @param rootNodeTagName root node tag name
-     * @param namespace root node namespace
-     * @param rootNodeProperty root node properites map
-     * @return An edited content with added root node (if needed)
-     */
-    public static String addRootNodeToXmlContent(final String xmlContent, final String rootNodeTagName,
+    private static String addRootNodeToXmlContent(final String xmlContent,
+                                                 final String rootNodeTagName,
                                                  final String namespace,
-                                                 final HashMap<String, String> rootNodeProperty) {
-        try {
-            final DocumentBuilder documentBuilder = dbFactory.newDocumentBuilder();
-            final StringBuilder xmlStringBuilder = new StringBuilder();
-            xmlStringBuilder.append(xmlContent);
-            Document xmlDoc = documentBuilder.parse(
-                    new ByteArrayInputStream(xmlStringBuilder.toString().getBytes("utf-8")));
-            final Element root = xmlDoc.getDocumentElement();
-            if (!root.getTagName().equals(rootNodeTagName) && !root.getTagName().equals(DATA_ROOT_NODE_TAG_NAME)) {
-                xmlDoc = addDataRootNode(root, rootNodeTagName, namespace, rootNodeProperty);
-                xmlDoc.setXmlStandalone(true);
-                final TransformerFactory transformerFactory = TransformerFactory.newInstance();
-                transformerFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
-                transformerFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_STYLESHEET, "");
-                final Transformer transformer = transformerFactory.newTransformer();
-                final StringWriter stringWriter = new StringWriter();
-                transformer.transform(new DOMSource(xmlDoc), new StreamResult(stringWriter));
-                return stringWriter.toString();
-            }
-            return xmlContent;
-        } catch (SAXException | IOException | ParserConfigurationException | TransformerException exception) {
-            throw new DataValidationException("Failed to parse XML data", "Invalid xml input " + exception.getMessage(),
-                    exception);
+                                                 final Map<String, String> rootNodeProperty)
+        throws IOException, SAXException, ParserConfigurationException, TransformerException {
+        final DocumentBuilder documentBuilder = dbFactory.newDocumentBuilder();
+        final StringBuilder xmlStringBuilder = new StringBuilder();
+        xmlStringBuilder.append(xmlContent);
+        final Document document = documentBuilder.parse(
+                new ByteArrayInputStream(xmlStringBuilder.toString().getBytes(StandardCharsets.UTF_8)));
+        final Element root = document.getDocumentElement();
+        if (!root.getTagName().equals(rootNodeTagName)
+            && !root.getTagName().equals(YangUtils.DATA_ROOT_NODE_TAG_NAME)) {
+            final Document documentWithRootNode = addDataRootNode(root, rootNodeTagName, namespace, rootNodeProperty);
+            documentWithRootNode.setXmlStandalone(true);
+            final TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            transformerFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
+            transformerFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_STYLESHEET, "");
+            final Transformer transformer = transformerFactory.newTransformer();
+            final StringWriter stringWriter = new StringWriter();
+            transformer.transform(new DOMSource(documentWithRootNode), new StreamResult(stringWriter));
+            return stringWriter.toString();
         }
+        return xmlContent;
     }
 
     /**
@@ -132,9 +126,11 @@ public class XmlFileUtils {
      * @param rootNodeTagName Root node tag name
      * @return XML content with root node tag added (if needed)
      */
-    public static String addRootNodeToXmlContent(final String xmlContent, final String rootNodeTagName,
-                                                 final String namespace) {
-        return addRootNodeToXmlContent(xmlContent, rootNodeTagName, namespace, new HashMap<String, String>());
+    public static String addRootNodeToXmlContent(final String xmlContent,
+                                                 final String rootNodeTagName,
+                                                 final String namespace)
+        throws IOException, ParserConfigurationException, TransformerException, SAXException {
+        return addRootNodeToXmlContent(xmlContent, rootNodeTagName, namespace, new HashMap<>());
     }
 
     /**
@@ -144,8 +140,10 @@ public class XmlFileUtils {
      * @param tagName Root tag name to add
      * @return DOM element with a root node
      */
-    static Document addDataRootNode(final Element node, final String tagName, final String namespace,
-                                    final HashMap<String, String> rootNodeProperty) {
+    static Document addDataRootNode(final Element node,
+                                    final String tagName,
+                                    final String namespace,
+                                    final Map<String, String> rootNodeProperty) {
         try {
             final DocumentBuilder docBuilder = dbFactory.newDocumentBuilder();
             final Document document = docBuilder.newDocument();
