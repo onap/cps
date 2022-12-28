@@ -3,6 +3,7 @@
  *  Copyright (C) 2020-2022 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -82,17 +83,17 @@ public interface CpsDataService {
             Collection<String> jsonDataList, OffsetDateTime observedTimestamp);
 
     /**
-     * Retrieves datanode by XPath for given dataspace and anchor.
+     * Retrieves datanodes by XPath for given dataspace and anchor.
      *
      * @param dataspaceName          dataspace name
      * @param anchorName             anchor name
      * @param xpath                  xpath
      * @param fetchDescendantsOption defines the scope of data to fetch: either single node or all the descendant nodes
      *                               (recursively) as well
-     * @return data node object
+     * @return collection of data node object
      */
-    DataNode getDataNode(String dataspaceName, String anchorName, String xpath,
-        FetchDescendantsOption fetchDescendantsOption);
+    Collection<DataNode> getDataNode(String dataspaceName, String anchorName, String xpath,
+                                     FetchDescendantsOption fetchDescendantsOption);
 
     /**
      * Updates data node for given dataspace and anchor using xpath to parent node.

@@ -3,6 +3,7 @@
  *  Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Nordix Foundation
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -24,6 +25,10 @@ package org.onap.cps.rest.controller;
 
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 import javax.validation.ValidationException;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
@@ -87,10 +92,15 @@ public class DataRestController implements CpsDataApi {
         final String xpath, final Boolean includeDescendants) {
         final FetchDescendantsOption fetchDescendantsOption = Boolean.TRUE.equals(includeDescendants)
             ? FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS : FetchDescendantsOption.OMIT_DESCENDANTS;
-        final DataNode dataNode = cpsDataService.getDataNode(dataspaceName, anchorName, xpath,
+        final Collection<DataNode> dataNodes = cpsDataService.getDataNode(dataspaceName, anchorName, xpath,
             fetchDescendantsOption);
-        final String prefix = prefixResolver.getPrefix(dataspaceName, anchorName, xpath);
-        return new ResponseEntity<>(DataMapUtils.toDataMapWithIdentifier(dataNode, prefix), HttpStatus.OK);
+        final List<Map<String, Object>> dataMaps = new ArrayList<>(dataNodes.size());
+        for (final DataNode dataNode: dataNodes){
+            final String prefix = prefixResolver.getPrefix(dataspaceName, anchorName, dataNode.getXpath());
+            final Map<String, Object> dataMap = DataMapUtils.toDataMapWithIdentifier(dataNode, prefix);
+            dataMaps.add(dataMap);
+        }
+        return new ResponseEntity<>(jsonObjectMapper.asJsonString(dataMaps), HttpStatus.OK);
     }
 
     @Override

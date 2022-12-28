@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Nordix Foundation
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -174,8 +175,9 @@ public class CmHandleQueriesImpl implements CmHandleQueries {
 
     private DataNode getCmHandleState(final String cmHandleId) {
         final String xpath = "/dmi-registry/cm-handles[@id='" + cmHandleId + "']/state";
+        //TODO: check if it impacts functionality
         return cpsDataPersistenceService.getDataNode(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                xpath, OMIT_DESCENDANTS);
+                xpath, OMIT_DESCENDANTS).stream().findFirst().orElse(null);
     }
 }
 

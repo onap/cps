@@ -2,6 +2,7 @@
  * ============LICENSE_START=======================================================
  * Copyright (c) 2021-2022 Bell Canada.
  * Modifications Copyright (c) 2022 Nordix Foundation
+ * Modifications Copyright (C) 2022 TechMahindra Ltd.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,6 +26,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Collection;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
 import org.onap.cps.api.CpsDataService;
@@ -75,16 +77,16 @@ public class CpsDataUpdatedEventFactory {
      */
     public CpsDataUpdatedEvent createCpsDataUpdatedEvent(final Anchor anchor,
         final OffsetDateTime observedTimestamp, final Operation operation) {
-        final var dataNode = (operation == Operation.DELETE) ? null :
+        final Collection<DataNode> dataNodes = (operation == Operation.DELETE) ? null :
             cpsDataService.getDataNode(anchor.getDataspaceName(), anchor.getName(),
                 "/", FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
-        return toCpsDataUpdatedEvent(anchor, dataNode, observedTimestamp, operation);
+        return toCpsDataUpdatedEvent(anchor, dataNodes, observedTimestamp, operation);
     }
 
-    private CpsDataUpdatedEvent toCpsDataUpdatedEvent(final Anchor anchor, final DataNode dataNode,
+    private CpsDataUpdatedEvent toCpsDataUpdatedEvent(final Anchor anchor, final Collection<DataNode> dataNodes,
         final OffsetDateTime observedTimestamp, final Operation operation) {
         final var cpsDataUpdatedEvent = new CpsDataUpdatedEvent();
-        cpsDataUpdatedEvent.withContent(createContent(anchor, dataNode, observedTimestamp, operation));
+        cpsDataUpdatedEvent.withContent(createContent(anchor, dataNodes, observedTimestamp, operation));
         cpsDataUpdatedEvent.withId(UUID.randomUUID().toString());
         cpsDataUpdatedEvent.withSchema(EVENT_SCHEMA);
         cpsDataUpdatedEvent.withSource(EVENT_SOURCE);
@@ -98,7 +100,7 @@ public class CpsDataUpdatedEventFactory {
         return data;
     }
 
-    private Content createContent(final Anchor anchor, final DataNode dataNode,
+    private Content createContent(final Anchor anchor, final Collection<DataNode> dataNodes,
         final OffsetDateTime observedTimestamp, final Operation operation) {
         final var content = new Content();
         content.withAnchorName(anchor.getName());
@@ -107,9 +109,11 @@ public class CpsDataUpdatedEventFactory {
         content.withOperation(Content.Operation.fromValue(operation.name()));
         content.withObservedTimestamp(
             DATE_TIME_FORMATTER.format(observedTimestamp == null ? OffsetDateTime.now() : observedTimestamp));
-        if (dataNode != null) {
-            final String prefix = prefixResolver.getPrefix(anchor, dataNode.getXpath());
-            content.withData(createData(dataNode, prefix));
+        if (!dataNodes.isEmpty()) {
+            for (final DataNode dataNode: dataNodes){
+                final String prefix = prefixResolver.getPrefix(anchor, dataNode.getXpath());
+                content.withData(createData(dataNode, prefix));
+            }
         }
         return content;
     }

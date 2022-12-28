@@ -235,10 +235,10 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             def result = objectUnderTest.getDataNode(DATASPACE_NAME, ANCHOR_HAVING_SINGLE_TOP_LEVEL_FRAGMENT,
                     inputXPath, OMIT_DESCENDANTS)
         then: 'data node is returned with no descendants'
-            assert result.xpath == XPATH_DATA_NODE_WITH_LEAVES
+            assert result[0].xpath == XPATH_DATA_NODE_WITH_LEAVES
         and: 'expected leaves'
-            assert result.childDataNodes.size() == 0
-            assertLeavesMaps(result.leaves, expectedLeavesByXpathMap[XPATH_DATA_NODE_WITH_LEAVES])
+            assert result[0].childDataNodes.size() == 0
+            assertLeavesMaps(result[0].leaves, expectedLeavesByXpathMap[XPATH_DATA_NODE_WITH_LEAVES])
         where: 'the following data is used'
             scenario      | inputXPath
             'some xpath'  | '/parent-207'

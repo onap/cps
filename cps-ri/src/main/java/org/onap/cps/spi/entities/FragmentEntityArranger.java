@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Nordix Foundation
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,10 +21,8 @@
 
 package org.onap.cps.spi.entities;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
+import java.util.*;
+
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
@@ -32,20 +31,23 @@ public class FragmentEntityArranger {
 
     /**
      * Convert a collection of (related) FragmentExtracts into a FragmentEntity (tree) with descendants.
-     * Multiple top level nodes not yet support. If found only the first top level element is returned
+     *
      *
      * @param anchorEntity the anchor(entity) all the fragments belong to
      * @param fragmentExtracts FragmentExtracts to convert
-     * @return a FragmentEntity (tree) with descendants, null if none found.
+     * @return a collection of FragmentEntity (tree) with descendants, null if none found.
      */
-    public static FragmentEntity toFragmentEntityTree(final AnchorEntity anchorEntity,
-                                                      final Collection<FragmentExtract> fragmentExtracts) {
-        final Map<Long, FragmentEntity> fragmentEntityPerId = new HashMap<>();
-        for (final FragmentExtract fragmentExtract : fragmentExtracts) {
-            final FragmentEntity fragmentEntity = toFragmentEntity(anchorEntity, fragmentExtract);
-            fragmentEntityPerId.put(fragmentEntity.getId(), fragmentEntity);
+    public static Collection<FragmentEntity>toFragmentEntityTree(final AnchorEntity anchorEntity,
+                                                                  final Collection<FragmentExtract> fragmentExtracts) {
+        if (!fragmentExtracts.isEmpty()){
+            final Map<Long, FragmentEntity> fragmentEntityPerId = new HashMap<>();
+            for (final FragmentExtract fragmentExtract : fragmentExtracts) {
+                final FragmentEntity fragmentEntity = toFragmentEntity(anchorEntity, fragmentExtract);
+                fragmentEntityPerId.put(fragmentEntity.getId(), fragmentEntity);
+            }
+            return reuniteChildrenWithTheirParents(fragmentEntityPerId);
         }
-        return reuniteChildrenWithTheirParents(fragmentEntityPerId);
+        return Collections.emptySet();
     }
 
     private static FragmentEntity toFragmentEntity(final AnchorEntity anchorEntity,
@@ -61,7 +63,7 @@ public class FragmentEntityArranger {
         return fragmentEntity;
     }
 
-    private static FragmentEntity reuniteChildrenWithTheirParents(final Map<Long, FragmentEntity> fragmentEntityPerId) {
+    private static Collection<FragmentEntity> reuniteChildrenWithTheirParents(final Map<Long, FragmentEntity> fragmentEntityPerId) {
         final Collection<FragmentEntity> fragmentEntitiesWithoutParentInResultSet = new HashSet<>();
         for (final FragmentEntity fragmentEntity : fragmentEntityPerId.values()) {
             final FragmentEntity parentFragmentEntity = fragmentEntityPerId.get(fragmentEntity.getParentId());
@@ -71,7 +73,7 @@ public class FragmentEntityArranger {
                 parentFragmentEntity.getChildFragments().add(fragmentEntity);
             }
         }
-        return fragmentEntitiesWithoutParentInResultSet.stream().findFirst().orElse(null);
+        return fragmentEntitiesWithoutParentInResultSet;
     }
 
 }
