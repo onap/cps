@@ -106,10 +106,10 @@ public interface CpsDataPersistenceService {
      * @param xpath                  xpath
      * @param fetchDescendantsOption defines the scope of data to fetch: either single node or all the descendant nodes
      *                               (recursively) as well
-     * @return data node object
+     * @return collection of data node object
      */
-    DataNode getDataNode(String dataspaceName, String anchorName, String xpath,
-        FetchDescendantsOption fetchDescendantsOption);
+    Collection<DataNode> getDataNode(String dataspaceName, String anchorName, String xpath,
+                                     FetchDescendantsOption fetchDescendantsOption);
 
     /**
      * Updates leaves for existing data node.

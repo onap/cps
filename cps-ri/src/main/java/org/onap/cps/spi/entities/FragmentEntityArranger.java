@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Nordix Foundation
+ *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,10 +21,8 @@
 
 package org.onap.cps.spi.entities;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
+import java.util.*;
+
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
@@ -61,7 +60,7 @@ public class FragmentEntityArranger {
     }
 
     private static Collection<FragmentEntity> reuniteChildrenWithTheirParents(
-        final Map<Long, FragmentEntity> fragmentEntityPerId) {
+            final Map<Long, FragmentEntity> fragmentEntityPerId) {
         final Collection<FragmentEntity> fragmentEntitiesWithoutParentInResultSet = new HashSet<>();
         for (final FragmentEntity fragmentEntity : fragmentEntityPerId.values()) {
             final FragmentEntity parentFragmentEntity = fragmentEntityPerId.get(fragmentEntity.getParentId());

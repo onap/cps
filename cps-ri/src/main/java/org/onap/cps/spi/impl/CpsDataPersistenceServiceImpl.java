@@ -119,6 +119,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
 
     private void addNewChildDataNode(final String dataspaceName, final String anchorName,
                                      final String parentNodeXpath, final DataNode newChild) {
+        //TODO: check for additional impacts
         final FragmentEntity parentFragmentEntity =
             getFragmentWithoutDescendantsByXpath(dataspaceName, anchorName, parentNodeXpath);
         final FragmentEntity newChildAsFragmentEntity =
@@ -135,6 +136,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
 
     private void addChildrenDataNodes(final String dataspaceName, final String anchorName, final String parentNodeXpath,
                                       final Collection<DataNode> newChildren) {
+        //TODO: check for additional impacts
         final FragmentEntity parentFragmentEntity =
             getFragmentWithoutDescendantsByXpath(dataspaceName, anchorName, parentNodeXpath);
         final List<FragmentEntity> fragmentEntities = new ArrayList<>(newChildren.size());
@@ -249,54 +251,49 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     }
 
     @Override
-    public DataNode getDataNode(final String dataspaceName, final String anchorName, final String xpath,
-                                final FetchDescendantsOption fetchDescendantsOption) {
-        final FragmentEntity fragmentEntity = getFragmentByXpath(dataspaceName, anchorName, xpath,
+    public Collection<DataNode> getDataNode(final String dataspaceName, final String anchorName, final String xpath,
+                                            final FetchDescendantsOption fetchDescendantsOption) {
+        final Collection<FragmentEntity> fragmentEntities = getFragmentByXpath(dataspaceName, anchorName, xpath,
             fetchDescendantsOption);
-        return toDataNode(fragmentEntity, fetchDescendantsOption);
+        return toDataNodes(fragmentEntities, fetchDescendantsOption);
     }
 
     private FragmentEntity getFragmentWithoutDescendantsByXpath(final String dataspaceName,
-                                                                final String anchorName,
-                                                                final String xpath) {
-        return getFragmentByXpath(dataspaceName, anchorName, xpath, FetchDescendantsOption.OMIT_DESCENDANTS);
+                                                                            final String anchorName,
+                                                                            final String xpath) {
+        return getFragmentByXpath(dataspaceName, anchorName, xpath, FetchDescendantsOption.OMIT_DESCENDANTS)
+                .stream().findFirst().orElse(null);
     }
 
-    private FragmentEntity getFragmentByXpath(final String dataspaceName, final String anchorName,
-                                              final String xpath, final FetchDescendantsOption fetchDescendantsOption) {
+    private Collection<FragmentEntity> getFragmentByXpath(final String dataspaceName, final String anchorName,
+                                                          final String xpath, final FetchDescendantsOption fetchDescendantsOption) {
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         final AnchorEntity anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
-        final FragmentEntity fragmentEntity;
         if (isRootXpath(xpath)) {
             final List<FragmentExtract> fragmentExtracts = fragmentRepository.getTopLevelFragments(dataspaceEntity,
                     anchorEntity);
-            fragmentEntity = FragmentEntityArranger.toFragmentEntityTrees(anchorEntity, fragmentExtracts)
-                .stream().findFirst().orElse(null);
+            return FragmentEntityArranger.toFragmentEntityTrees(anchorEntity, fragmentExtracts);
         } else {
             final String normalizedXpath = getNormalizedXpath(xpath);
-            if (FetchDescendantsOption.OMIT_DESCENDANTS.equals(fetchDescendantsOption)) {
-                fragmentEntity =
-                    fragmentRepository.getByDataspaceAndAnchorAndXpath(dataspaceEntity, anchorEntity, normalizedXpath);
-            } else {
-                fragmentEntity = buildFragmentEntitiesFromFragmentExtracts(anchorEntity, normalizedXpath)
-                    .stream().findFirst().orElse(null);
+            if (normalizedXpath != null){
+                if (FetchDescendantsOption.OMIT_DESCENDANTS.equals(fetchDescendantsOption)) {
+                    return fragmentRepository.getByDataspaceAndAnchorAndXpath(dataspaceEntity, anchorEntity,
+                            normalizedXpath);
+                } else {
+                    return buildFragmentEntityFromFragmentExtracts(anchorEntity, normalizedXpath);
+                }
             }
+            else throw new DataNodeNotFoundException(dataspaceEntity.getName(), anchorEntity.getName(), xpath);
         }
-        if (fragmentEntity == null) {
-            throw new DataNodeNotFoundException(dataspaceEntity.getName(), anchorEntity.getName(), xpath);
-        }
-        return fragmentEntity;
-
     }
 
-    private Collection<FragmentEntity> buildFragmentEntitiesFromFragmentExtracts(final AnchorEntity anchorEntity,
-                                                                                 final String normalizedXpath) {
+    private Collection<FragmentEntity> buildFragmentEntityFromFragmentExtracts(final AnchorEntity anchorEntity,
+                                                                               final String normalizedXpath) {
         final List<FragmentExtract> fragmentExtracts =
                 fragmentRepository.findByAnchorIdAndParentXpath(anchorEntity.getId(), normalizedXpath);
         log.debug("Fetched {} fragment entities by anchor {} and cps path {}.",
                 fragmentExtracts.size(), anchorEntity.getName(), normalizedXpath);
         return FragmentEntityArranger.toFragmentEntityTrees(anchorEntity, fragmentExtracts);
-
     }
 
     @Override
@@ -352,23 +349,21 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         return fragmentEntities;
     }
 
-    private List<DataNode> createDataNodesFromProxiedFragmentEntities(
-                                            final FetchDescendantsOption fetchDescendantsOption,
-                                            final AnchorEntity anchorEntity,
-                                            final Collection<FragmentEntity> proxiedFragmentEntities) {
+//TODO: check functionality
+    private List<DataNode> createDataNodesFromProxiedFragmentEntities(final FetchDescendantsOption fetchDescendantsOption,
+                                                               final AnchorEntity anchorEntity,
+                                                               final Collection<FragmentEntity> proxiedFragmentEntities) {
         final List<DataNode> dataNodes = new ArrayList<>(proxiedFragmentEntities.size());
-        for (final FragmentEntity proxiedFragmentEntity : proxiedFragmentEntities) {
             if (FetchDescendantsOption.OMIT_DESCENDANTS.equals(fetchDescendantsOption)) {
-                dataNodes.add(toDataNode(proxiedFragmentEntity, fetchDescendantsOption));
+                dataNodes.addAll(toDataNodes(proxiedFragmentEntities, fetchDescendantsOption));
             } else {
-                final String normalizedXpath = getNormalizedXpath(proxiedFragmentEntity.getXpath());
-                final Collection<FragmentEntity> unproxiedFragmentEntities =
-                    buildFragmentEntitiesFromFragmentExtracts(anchorEntity, normalizedXpath);
-                for (final FragmentEntity unproxiedFragmentEntity : unproxiedFragmentEntities) {
-                    dataNodes.add(toDataNode(unproxiedFragmentEntity, fetchDescendantsOption));
+                final Collection<FragmentEntity> unproxiedFragmentEntities = new ArrayList<>();
+                for (final FragmentEntity proxiedFragmentEntity : proxiedFragmentEntities){
+                    final String normalizedXpath = getNormalizedXpath(proxiedFragmentEntity.getXpath());
+                    unproxiedFragmentEntities.addAll(buildFragmentEntityFromFragmentExtracts(anchorEntity, normalizedXpath));
                 }
+                dataNodes.addAll(toDataNodes(unproxiedFragmentEntities, fetchDescendantsOption));
             }
-        }
         return Collections.unmodifiableList(dataNodes);
     }
 
@@ -433,6 +428,25 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
                 .withXpath(fragmentEntity.getXpath())
                 .withLeaves(leaves)
                 .withChildDataNodes(childDataNodes).build();
+    }
+
+    private Collection<DataNode> toDataNodes(final Collection<FragmentEntity> fragmentEntities,
+                               final FetchDescendantsOption fetchDescendantsOption) {
+        final Collection<DataNode> dataNodes = new ArrayList<>(fragmentEntities.size());
+        if (!fragmentEntities.isEmpty()){
+            for (final FragmentEntity fragmentEntity: fragmentEntities){
+                final List<DataNode> childDataNodes = getChildDataNodes(fragmentEntity, fetchDescendantsOption);
+                final Map<String, Serializable> leaves = jsonObjectMapper.convertJsonString(fragmentEntity.getAttributes(), Map.class);
+                //TODO: test with DataNodeBuilder.buildCollection()
+                final DataNode dataNode = new DataNodeBuilder()
+                        .withXpath(fragmentEntity.getXpath())
+                        .withLeaves(leaves)
+                        .withModuleNamePrefix(fragmentEntity.getAttributes())
+                        .withChildDataNodes(childDataNodes).build();
+                dataNodes.add(dataNode);
+            }
+        }
+        return dataNodes;
     }
 
     private List<DataNode> getChildDataNodes(final FragmentEntity fragmentEntity,

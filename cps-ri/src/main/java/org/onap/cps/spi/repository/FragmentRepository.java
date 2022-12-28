@@ -3,6 +3,7 @@
  * Copyright (C) 2021-2022 Nordix Foundation.
  * Modifications Copyright (C) 2020-2021 Bell Canada.
  * Modifications Copyright (C) 2020-2021 Pantheon.tech.
+ * Modifications Copyright (C) 2022 TechMahindra Ltd.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +25,6 @@ package org.onap.cps.spi.repository;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 import javax.validation.constraints.NotNull;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.onap.cps.spi.entities.AnchorEntity;
@@ -41,15 +41,17 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>, FragmentRepositoryCpsPathQuery {
 
-    Optional<FragmentEntity> findByDataspaceAndAnchorAndXpath(@NonNull DataspaceEntity dataspaceEntity,
+    Collection<FragmentEntity> findByDataspaceAndAnchorAndXpath(@NonNull DataspaceEntity dataspaceEntity,
                                                               @NonNull AnchorEntity anchorEntity,
                                                               @NonNull String xpath);
 
-    default FragmentEntity getByDataspaceAndAnchorAndXpath(@NonNull DataspaceEntity dataspaceEntity,
+    default Collection<FragmentEntity> getByDataspaceAndAnchorAndXpath(@NonNull DataspaceEntity dataspaceEntity,
                                                            @NonNull AnchorEntity anchorEntity,
                                                            @NonNull String xpath) {
-        return findByDataspaceAndAnchorAndXpath(dataspaceEntity, anchorEntity, xpath)
-            .orElseThrow(() -> new DataNodeNotFoundException(dataspaceEntity.getName(), anchorEntity.getName(), xpath));
+        if (findByDataspaceAndAnchorAndXpath(dataspaceEntity, anchorEntity, xpath).isEmpty()){
+            throw new DataNodeNotFoundException(dataspaceEntity.getName(), anchorEntity.getName(), xpath);
+        }
+        return findByDataspaceAndAnchorAndXpath(dataspaceEntity, anchorEntity, xpath);
     }
 
     @Query(
