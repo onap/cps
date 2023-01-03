@@ -39,6 +39,7 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.spi.exceptions.DataValidationException;
 import org.opendaylight.yangtools.yang.model.api.DataSchemaNode;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
@@ -46,10 +47,11 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
 
+@Slf4j
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class XmlFileUtils {
 
-    private static DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+    private static DocumentBuilderFactory dbFactory = getDocumentBuilderFactory();
     private static final Pattern XPATH_PROPERTY_REGEX =
         Pattern.compile("\\[@(\\S{1,100})=['\\\"](\\S{1,100})['\\\"]\\]");
 
@@ -159,5 +161,18 @@ public class XmlFileUtils {
         } catch (final ParserConfigurationException exception) {
             throw new DataValidationException("Can't parse XML", "XML can't be parsed", exception);
         }
+    }
+
+    private static DocumentBuilderFactory getDocumentBuilderFactory() {
+        final DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+        try {
+            documentBuilderFactory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+            documentBuilderFactory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
+        } catch (final ParserConfigurationException exception) {
+            log.warn("Failed to create document builder factory with cause : {}", exception.getMessage());
+            throw new DataValidationException("Document Builder Misconfiguration with cause : {}",
+                    exception.getMessage());
+        }
+        return documentBuilderFactory;
     }
 }
