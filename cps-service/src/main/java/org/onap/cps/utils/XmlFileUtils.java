@@ -72,7 +72,7 @@ public class XmlFileUtils {
      *
      * @param xmlContent XML content sent to store
      * @param parentSchemaNode Parent schema node
-     * @Param xpath Parent xpath
+     * @param xpath Parent xpath
      *
      * @return XML content wrapped by root node (if needed)
      */
