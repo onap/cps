@@ -49,7 +49,8 @@ import org.xml.sax.SAXException;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class XmlFileUtils {
 
-    private static DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+    private static final DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+    private static boolean isNewDocumentBuilderFactoryInstance = true;
     private static final Pattern XPATH_PROPERTY_REGEX =
         Pattern.compile("\\[@(\\S{1,100})=['\\\"](\\S{1,100})['\\\"]\\]");
 
@@ -98,7 +99,7 @@ public class XmlFileUtils {
                                                  final String namespace,
                                                  final Map<String, String> rootNodeProperty)
         throws IOException, SAXException, ParserConfigurationException, TransformerException {
-        final DocumentBuilder documentBuilder = dbFactory.newDocumentBuilder();
+        final DocumentBuilder documentBuilder = getDocumentBuilderFactory().newDocumentBuilder();
         final StringBuilder xmlStringBuilder = new StringBuilder();
         xmlStringBuilder.append(xmlContent);
         final Document document = documentBuilder.parse(
@@ -145,8 +146,8 @@ public class XmlFileUtils {
                                     final String namespace,
                                     final Map<String, String> rootNodeProperty) {
         try {
-            final DocumentBuilder docBuilder = dbFactory.newDocumentBuilder();
-            final Document document = docBuilder.newDocument();
+            final DocumentBuilder documentBuilder = getDocumentBuilderFactory().newDocumentBuilder();
+            final Document document = documentBuilder.newDocument();
             final Element rootElement = document.createElementNS(namespace, tagName);
             for (final Map.Entry<String, String> entry : rootNodeProperty.entrySet()) {
                 final Element propertyElement = document.createElement(entry.getKey());
@@ -159,5 +160,15 @@ public class XmlFileUtils {
         } catch (final ParserConfigurationException exception) {
             throw new DataValidationException("Can't parse XML", "XML can't be parsed", exception);
         }
+    }
+
+    private static DocumentBuilderFactory getDocumentBuilderFactory() throws ParserConfigurationException {
+        if (isNewDocumentBuilderFactoryInstance) {
+            documentBuilderFactory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+            documentBuilderFactory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
+            isNewDocumentBuilderFactoryInstance = false;
+        }
+
+        return documentBuilderFactory;
     }
 }
