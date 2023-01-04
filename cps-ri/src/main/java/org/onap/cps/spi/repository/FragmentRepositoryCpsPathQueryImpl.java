@@ -1,6 +1,7 @@
 /*-
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2021-2022 Nordix Foundation.
+ * Modifications Copyright (C) 2022-2023 Tech Mahindra.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,13 +21,17 @@
 
 package org.onap.cps.spi.repository;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.cpspath.parser.CpsPathOperatorType;
 import org.onap.cps.cpspath.parser.CpsPathQuery;
 import org.onap.cps.spi.entities.FragmentEntity;
 
@@ -42,6 +47,28 @@ public class FragmentRepositoryCpsPathQueryImpl implements FragmentRepositoryCps
     @Override
     @Transactional
     public List<FragmentEntity> findByAnchorAndCpsPath(final int anchorId, final CpsPathQuery cpsPathQuery) {
+        final List<CpsPathOperatorType> operators = cpsPathQuery.getOperatorName();
+        if (operators == null) {
+            final Query query = fragmentQueryBuilder.getQueryForAnchorAndCpsPath(anchorId, cpsPathQuery);
+            final List<FragmentEntity> fragmentEntities = query.getResultList();
+            log.debug("Fetched {} fragment entities by anchor and cps path.", fragmentEntities.size());
+            return fragmentEntities;
+        }
+        if (operators.contains(CpsPathOperatorType.or)) {
+            final Map<String, Object> leaves = cpsPathQuery.getLeavesData();
+            final List<FragmentEntity> fragmentEntityList = new ArrayList<>();
+            for (final Map.Entry<String, Object> entry : leaves.entrySet()) {
+                final Map<String, Object> leaveEntry = new HashMap<>();
+                leaveEntry.put(entry.getKey(), entry.getValue());
+                final Query query = fragmentQueryBuilder.getQueryForAnchorAndCpsPathForOrOperator(anchorId,
+                                                                                                  cpsPathQuery,
+                                                                                                  leaveEntry);
+                final List<FragmentEntity> fragmentEntities = query.getResultList();
+                log.debug("Fetched {} fragment entities by anchor and cps path.", fragmentEntities.size());
+                fragmentEntityList.addAll(fragmentEntities);
+            }
+            return fragmentEntityList;
+        }
         final Query query = fragmentQueryBuilder.getQueryForAnchorAndCpsPath(anchorId, cpsPathQuery);
         final List<FragmentEntity> fragmentEntities = query.getResultList();
         log.debug("Fetched {} fragment entities by anchor and cps path.", fragmentEntities.size());
