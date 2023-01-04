@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8b854497_210b1108",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-04T13:24:09Z",
+      "side": 1,
+      "message": "not need, initiate an a static instance and use bollen to only set feature once",
+      "range": {
+        "startLine": 163,
+        "startChar": 0,
+        "endLine": 166,
+        "endChar": 5
+      },
+      "revId": "aeac569b346c807d7f00e22fd47ed2dc25ac9644",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c4c4e28b_91da2471",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-04T13:24:09Z",
+      "side": 1,
+      "message": "still done EVERY time, use (static) boolean to do this only once",
+      "range": {
+        "startLine": 170,
+        "startChar": 5,
+        "endLine": 171,
+        "endChar": 88
+      },
+      "revId": "aeac569b346c807d7f00e22fd47ed2dc25ac9644",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
