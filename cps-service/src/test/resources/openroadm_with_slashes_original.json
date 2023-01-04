@@ -1,0 +1,33 @@
+{
+  "openroadm-devices":{
+    "openroadm-device":[
+      {
+        "device-id":"C201-7-1A",
+        "ne-state":"inservice",
+        "commission-date-time":"2022-11-06T14:12:23.260487-06:00",
+        "org-openroadm-device":{
+          "degree":[
+            {
+              "degree-number":1,
+              "max-wavelengths":128,
+              "circuit-packs":[
+                {
+                  "index":1,
+                  "circuit-pack-name":"1/0"
+                }
+              ],
+              "connection-ports":[
+                {
+                  "index":1,
+                  "circuit-pack-name":"1/0",
+                  "port-name":"E1"
+                }
+              ]
+            }
+          ]
+        },
+        "status":"success"
+      }
+    ]
+  }
+}
