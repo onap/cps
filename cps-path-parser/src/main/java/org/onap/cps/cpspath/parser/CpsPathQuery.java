@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Modifications Copyright (C) 2023 Tech Mahindra.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -42,6 +43,8 @@ public class CpsPathQuery {
     private String ancestorSchemaNodeIdentifier = "";
     private String textFunctionConditionLeafName;
     private String textFunctionConditionValue;
+
+    private List<CpsPathOperatorType> operatorName;
 
     /**
      * Returns a cps path query.
