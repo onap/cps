@@ -66,19 +66,21 @@ class CpsPathQuerySpec extends Specification {
         then: 'the query has the right normalized xpath type'
             assert result.normalizedXpath == expectedNormalizedXPath
         where: 'the following data is used'
-            scenario                                              | cpsPath                                         || expectedNormalizedXPath
-            'yang container'                                      | '/cps-path'                                     || '/cps-path'
-            'descendant anywhere'                                 | '//cps-path'                                    || '//cps-path'
-            'descendant with leaf condition'                      | '//cps-path[@key=1]'                            || "//cps-path[@key='1']"
-            'descendant with leaf value and ancestor'             | '//cps-path[@key=1]/ancestor:parent[@key=1]'    || "//cps-path[@key='1']/ancestor:parent[@key='1']"
-            'parent & child'                                      | '/parent/child'                                 || '/parent/child'
-            'parent leaf of type Integer & child'                 | '/parent/child[@code=1]/child2'                 || "/parent/child[@code='1']/child2"
-            'parent leaf with double quotes'                      | '/parent/child[@code="1"]/child2'               || "/parent/child[@code='1']/child2"
-            'parent leaf with double quotes inside single quotes' | '/parent/child[@code=\'"1"\']/child2'           || "/parent/child[@code='\"1\"']/child2"
-            'parent leaf with single quotes inside double quotes' | '/parent/child[@code="\'1\'"]/child2'           || "/parent/child[@code='\\\'1\\\'']/child2"
-            'leaf with single quotes inside double quotes'        | '/parent/child[@code="\'1\'"]'                  || "/parent/child[@code='\\\'1\\\'']"
-            'leaf with more than one attribute'                   | '/parent/child[@key1=1 and @key2="abc"]'        || "/parent/child[@key1='1' and @key2='abc']"
-            'parent & child with more than one attribute'         | '/parent/child[@key1=1 and @key2="abc"]/child2' || "/parent/child[@key1='1' and @key2='abc']/child2"
+            scenario                                                      | cpsPath                                         || expectedNormalizedXPath
+            'yang container'                                              | '/cps-path'                                     || '/cps-path'
+            'descendant anywhere'                                         | '//cps-path'                                    || '//cps-path'
+            'descendant with leaf condition'                              | '//cps-path[@key=1]'                            || "//cps-path[@key='1']"
+            'descendant with leaf value and ancestor'                     | '//cps-path[@key=1]/ancestor:parent[@key=1]'    || "//cps-path[@key='1']/ancestor:parent[@key='1']"
+            'parent & child'                                              | '/parent/child'                                 || '/parent/child'
+            'parent leaf of type Integer & child'                         | '/parent/child[@code=1]/child2'                 || "/parent/child[@code='1']/child2"
+            'parent leaf with double quotes'                              | '/parent/child[@code="1"]/child2'               || "/parent/child[@code='1']/child2"
+            'parent leaf with double quotes inside single quotes'         | '/parent/child[@code=\'"1"\']/child2'           || "/parent/child[@code='\"1\"']/child2"
+            'parent leaf with single quotes inside double quotes'         | '/parent/child[@code="\'1\'"]/child2'           || "/parent/child[@code='\\\'1\\\'']/child2"
+            'leaf with single quotes inside double quotes'                | '/parent/child[@code="\'1\'"]'                  || "/parent/child[@code='\\\'1\\\'']"
+            'leaf with more than one attribute'                           | '/parent/child[@key1=1 and @key2="abc"]'        || "/parent/child[@key1='1' and @key2='abc']"
+            'parent & child with more than one attribute'                 | '/parent/child[@key1=1 and @key2="abc"]/child2' || "/parent/child[@key1='1' and @key2='abc']/child2"
+            'leaf with more than one attribute has OR operator'           | '/parent/child[@key1=1 and @key2="abc"]'        || "/parent/child[@key1='1' or @key2='abc']"
+            'parent & child with more than one attribute has OR operator' | '/parent/child[@key1=1 and @key2="abc"]/child2' || "/parent/child[@key1='1' or @key2='abc']/child2"
     }
 
     def 'Parse xpath to form the Normalized xpath containing #scenario.'() {
@@ -101,9 +103,10 @@ class CpsPathQuerySpec extends Specification {
             result.descendantName == "child"
             result.leavesData.size() == expectedNumberOfLeaves
         where: 'the following data is used'
-            scenario                  | cpsPath                                            || expectedNumberOfLeaves
-            'one attribute'           | '//child[@common-leaf-name-int=5]'                 || 1
-            'more than one attribute' | '//child[@int-leaf=5 and @leaf-name="leaf value"]' || 2
+            scenario                                  | cpsPath                                            || expectedNumberOfLeaves
+            'one attribute'                           | '//child[@common-leaf-name-int=5]'                 || 1
+            'more than one attribute'                 | '//child[@int-leaf=5 and @leaf-name="leaf value"]' || 2
+            'more than one attribute has OR operator' | '//child[@int-leaf=5 or @leaf-name="leaf value"]'  || 2
     }
 
     def 'Parse #scenario cps path with text function condition'() {
@@ -139,7 +142,6 @@ class CpsPathQuerySpec extends Specification {
             'float value'                                                       | '/parent/child[@someFloat=5.0]'
             'unmatched quotes, double quote first '                             | '/parent/child[@someString="value with unmatched quotes\']'
             'unmatched quotes, single quote first'                              | '/parent/child[@someString=\'value with unmatched quotes"]'
-            'end with descendant and more than one attribute separated by "or"' | '//child[@int-leaf=5 or @leaf-name="leaf value"]'
             'missing attribute value'                                           | '//child[@int-leaf=5 and @name]'
             'incomplete ancestor value'                                         | '//books/ancestor::'
             'invalid list element with missing ['                               | '/parent-206/child-206/grand-child-206@key="A"]'
