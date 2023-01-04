@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Modifications Copyright (C) 2023 Tech Mahindra.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -54,6 +55,8 @@ public class CpsPathBuilder extends CpsPathBaseListener {
 
     private List<String> containerNames = new ArrayList<>();
 
+    final List<CpsPathOperatorType> operators = new ArrayList<>();
+
     @Override
     public void exitInvalidPostFix(final CpsPathParser.InvalidPostFixContext ctx) {
         throw new PathParsingException(ctx.getText());
@@ -81,7 +84,7 @@ public class CpsPathBuilder extends CpsPathBaseListener {
             comparisonValue = Integer.valueOf(ctx.IntegerLiteral().getText());
         }
         if (ctx.StringLiteral() != null) {
-            final boolean wasWrappedInDoubleQuote  = ctx.StringLiteral().getText().startsWith("\"");
+            final boolean wasWrappedInDoubleQuote = ctx.StringLiteral().getText().startsWith("\"");
             comparisonValue = stripFirstAndLastCharacter(ctx.StringLiteral().getText());
             if (wasWrappedInDoubleQuote) {
                 comparisonValue = String.valueOf(comparisonValue).replace("'", "\\'");
@@ -90,10 +93,30 @@ public class CpsPathBuilder extends CpsPathBaseListener {
             throw new PathParsingException("Unsupported comparison value encountered in expression" + ctx.getText());
         }
         leavesData.put(ctx.leafName().getText(), comparisonValue);
-        appendCondition(normalizedXpathBuilder, ctx.leafName().getText(), comparisonValue);
-        if (processingAncestorAxis) {
-            appendCondition(normalizedAncestorPathBuilder, ctx.leafName().getText(), comparisonValue);
+        final char lastCharacter = normalizedXpathBuilder.charAt(normalizedXpathBuilder.length() - 1);
+        final String operatorName = operators.toString().replace("[", "").replace("]", "");
+        final String[] operatorValues = operatorName.split(",");
+        for (final String operatorValue : operatorValues) {
+            normalizedXpathBuilder.append(lastCharacter == '[' ? "" : " " + operatorValue + " ");
         }
+        normalizedXpathBuilder.append("@").append(ctx.leafName().getText()).append("='").append(comparisonValue)
+                              .append("'");
+        if (processingAncestorAxis) {
+            normalizedAncestorPathBuilder.append(lastCharacter == '[' ? "" : " and ");
+            normalizedAncestorPathBuilder.append("@").append(ctx.leafName().getText()).append("='");
+            normalizedAncestorPathBuilder.append(comparisonValue).append("'");
+        }
+    }
+
+    @Override
+    public void exitBooleanOperators(final CpsPathParser.BooleanOperatorsContext ctx) {
+        if (ctx.getText().equalsIgnoreCase("or")) {
+            operators.add(CpsPathOperatorType.or);
+        }
+        if (ctx.getText().equalsIgnoreCase("and")) {
+            operators.add(CpsPathOperatorType.and);
+        }
+        cpsPathQuery.setOperatorName(operators);
     }
 
     @Override
@@ -104,7 +127,7 @@ public class CpsPathBuilder extends CpsPathBaseListener {
     }
 
     @Override
-    public void enterMultipleLeafConditions(final MultipleLeafConditionsContext ctx)  {
+    public void enterMultipleLeafConditions(final MultipleLeafConditionsContext ctx) {
         normalizedXpathBuilder.append(OPEN_BRACKET);
         leavesData.clear();
     }
@@ -162,21 +185,10 @@ public class CpsPathBuilder extends CpsPathBaseListener {
     public void exitContainerName(final CpsPathParser.ContainerNameContext ctx) {
         final String containerName = ctx.getText();
         normalizedXpathBuilder.append("/")
-                .append(containerName);
+                              .append(containerName);
         containerNames.add(containerName);
         if (processingAncestorAxis) {
             normalizedAncestorPathBuilder.append("/").append(containerName);
         }
-    }
-
-    private void appendCondition(final StringBuilder currentNormalizedPathBuilder, final String name,
-                                final Object value) {
-        final char lastCharacter = currentNormalizedPathBuilder.charAt(currentNormalizedPathBuilder.length() - 1);
-        currentNormalizedPathBuilder.append(lastCharacter == '[' ? "" : " and ")
-                .append("@")
-                .append(name)
-                .append("='")
-                .append(value)
-                .append("'");
     }
 }
