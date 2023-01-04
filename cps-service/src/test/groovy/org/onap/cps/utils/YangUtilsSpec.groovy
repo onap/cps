@@ -28,7 +28,26 @@ import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
 import org.opendaylight.yangtools.yang.common.QName
 import org.opendaylight.yangtools.yang.data.api.schema.NormalizedNode
+import org.springframework.mock.web.MockMultipartFile
 import spock.lang.Specification
+
+import com.google.common.collect.ImmutableMap;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.Locale;
+import java.util.Map;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+import org.onap.cps.spi.exceptions.CpsException;
+import org.onap.cps.spi.exceptions.ModelValidationException;
+import org.springframework.web.multipart.MultipartFile;
+
+import lombok.Getter;
+import lombok.Setter;
 
 class YangUtilsSpec extends Specification {
     def 'Parsing a valid multicontainer Json String.'() {
@@ -161,5 +180,199 @@ class YangUtilsSpec extends Specification {
             'container xpath'                              | '/test-tree'                                                        || ['test-tree']
             'xpath contains list attribute'                | '/test-tree/branch[@name=\'Branch\']'                               || ['test-tree','branch']
             'xpath contains list attributes with /'        | '/test-tree/branch[@name=\'/Branch\']/categories[@id=\'/broken\']'  || ['test-tree','branch','categories']
+    }
+
+    def 'Parsing with modified data (CPS-1433).'() {
+        given: 'the model (zip) files'
+            def multipartFile = new MockMultipartFile("file", "TEST.ZIP", "application/zip",
+                    getClass().getResource("/owb-msa221.zip").getBytes())
+        and: 'the schema context'
+            def yangResourceNameToContent = extractYangResources(multipartFile)
+            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getSchemaContext()
+        and: 'the json data wherein "circuit-pack-name" is removed'
+            def jsonData = TestUtils.getResourceFileContent("openroadm_no_circuitPackName.json");
+        when: 'data is parsed'
+            YangUtils.parseJsonData(jsonData, schemaContext)
+        then: 'no exception is thrown'
+            noExceptionThrown()
+    }
+
+    def 'Parsing data when #errorScenario (CPS-1433).'() {
+        given: 'the model (zip) files'
+            def multipartFile = new MockMultipartFile("file", "TEST.ZIP", "application/zip",
+                    getClass().getResource("/owb-msa221.zip").getBytes())
+        and: 'the schema context'
+            def yangResourceNameToContent = extractYangResources(multipartFile)
+            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getSchemaContext()
+        and: 'the json data wherein #errorScenario'
+            def jsonData = TestUtils.getResourceFileContent(data);
+        when: 'data is parsed'
+            YangUtils.parseJsonData(jsonData, schemaContext)
+        then: 'exception is thrown'
+            thrown(exception)
+        where:
+            errorScenario                               |  data                                       |   exception
+            'data contains slashes as original'         |  "openroadm_with_slashes_original.json"     |   DataValidationException
+            'data has no slashes'                       |  "openroadm_no_slashes.json"                |   DataValidationException
+            'data with "circuit-pack-name" included'    |  "openroadm_with_circuitPackName.json"      |   DataValidationException
+    }
+
+    def 'Parsing data using sized down model (CPS-1433).'() {
+        given: 'the sized down model (zip) files'
+            def multipartFile = new MockMultipartFile("file", "TEST.ZIP", "application/zip",
+                    getClass().getResource("/sized-down-files.zip").getBytes())
+        and: 'the schema context'
+            def yangResourceNameToContent = extractYangResources(multipartFile)
+            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getSchemaContext()
+        and: 'the json data wherein #scenario'
+            def jsonData = TestUtils.getResourceFileContent(data);
+        when: 'data is parsed'
+            YangUtils.parseJsonData(jsonData, schemaContext)
+        then: 'no exception is thrown'
+            noExceptionThrown()
+        where:
+            scenario                                    |  data
+            'data contains slashes as original'         |  "openroadm_with_slashes_original.json"
+            'data has no slashes'                       |  "openroadm_no_slashes.json"
+    }
+
+//For debugging only: following class/method added to support zip file extraction
+    def extractYangResources(multipartFile) {
+        final ImmutableMap.Builder<String, String> yangResourceMapBuilder = ImmutableMap.builder();
+        final var zipFileSizeValidator = new ZipFileSizeValidator();
+        try (
+                final var inputStream = multipartFile.getInputStream();
+                final var zipInputStream = new ZipInputStream(inputStream);
+        ) {
+            ZipEntry zipEntry;
+            while ((zipEntry = zipInputStream.getNextEntry()) != null) {
+                extractZipEntryToMapIfApplicable(yangResourceMapBuilder, zipEntry, zipInputStream,
+                        zipFileSizeValidator);
+            }
+            zipInputStream.closeEntry();
+
+        } catch (final IOException e) {
+            throw new CpsException("Cannot extract resources from zip archive.", e.getMessage(), e);
+        }
+        zipFileSizeValidator.validateSizeAndEntries();
+        try {
+            final Map<String, String> yangResourceMap = yangResourceMapBuilder.build();
+            if (yangResourceMap.isEmpty()) {
+                throw new ModelValidationException("Archive contains no YANG resources.",
+                        String.format("Archive contains no files having %s extension.", YANG_FILE_EXTENSION));
+            }
+            return yangResourceMap;
+
+        } catch (final IllegalArgumentException e) {
+            throw new ModelValidationException("Invalid ZIP archive content.",
+                    "Multiple resources with same name detected.", e);
+        }
+    }
+
+    def extractZipEntryToMapIfApplicable(
+            final ImmutableMap.Builder<String, String> yangResourceMapBuilder, final ZipEntry zipEntry,
+            final ZipInputStream zipInputStream, final ZipFileSizeValidator zipFileSizeValidator) throws IOException {
+        zipFileSizeValidator.setCompressedSize(zipEntry.getCompressedSize());
+        final String yangResourceName = extractResourceNameFromPath(zipEntry.getName());
+        if (zipEntry.isDirectory() || !resourceNameEndsWithExtension(yangResourceName, ".yang")) {
+            return;
+        }
+        yangResourceMapBuilder.put(yangResourceName, extractYangResourceContent(zipInputStream, zipFileSizeValidator));
+    }
+
+    def extractResourceNameFromPath(path) {
+        return path == null ? "" : path.replaceAll("^.*[\\\\/]", "");
+    }
+
+    def resourceNameEndsWithExtension(resourceName,extension) {
+        return resourceName != null && resourceName.toLowerCase(Locale.ENGLISH).endsWith(extension);
+    }
+
+    def extractYangResourceContent(MultipartFile multipartFile) {
+        try {
+            return new String(multipartFile.getBytes(), StandardCharsets.UTF_8);
+        } catch (final IOException e) {
+            throw new CpsException("Cannot read the resource file.", e.getMessage(), e);
+        }
+    }
+
+    def extractYangResourceContent(final ZipInputStream zipInputStream,
+                                   final ZipFileSizeValidator zipFileSizeValidator) throws IOException {
+        try (final var byteArrayOutputStream = new ByteArrayOutputStream()) {
+            var totalSizeEntry = 0;
+            int numberOfBytesRead;
+            final var buffer = new byte[1024];
+            zipFileSizeValidator.incrementTotalEntryInArchive();
+            while ((numberOfBytesRead = zipInputStream.read(buffer, 0, 1024)) > 0) {
+                byteArrayOutputStream.write(buffer, 0, numberOfBytesRead);
+                totalSizeEntry += numberOfBytesRead;
+                zipFileSizeValidator.updateTotalSizeArchive(totalSizeEntry);
+                zipFileSizeValidator.validateCompresssionRatio(totalSizeEntry);
+            }
+            return byteArrayOutputStream.toString(StandardCharsets.UTF_8);
+        }
+    }
+
+
+}
+
+//For debugging only: following class/method added to support zip file extraction
+
+class ZipFileSizeValidator {
+
+    private static final int THRESHOLD_ENTRIES = 10000;
+    private static final int THRESHOLD_SIZE = 100000000;
+    private static final double THRESHOLD_RATIO = 40;
+    private static final String INVALID_ZIP = "Invalid ZIP archive content.";
+
+    private int totalSizeArchive = 0;
+    private int totalEntryInArchive = 0;
+    private long compressedSize = 0;
+
+    /**
+     * Increment the totalEntryInArchive by 1.
+     */
+    void incrementTotalEntryInArchive() {
+        totalEntryInArchive++;
+    }
+
+    /**
+     * Update the totalSizeArchive by numberOfBytesRead.
+     * @param numberOfBytesRead the number of bytes of each entry
+     */
+    void updateTotalSizeArchive(final int numberOfBytesRead) {
+        totalSizeArchive += numberOfBytesRead;
+    }
+
+    /**
+     * Validate the total Compression size of the zip.
+     * @param totalEntrySize the size of the unzipped entry.
+     */
+    void validateCompresssionRatio(final int totalEntrySize) {
+        final double compressionRatio = (double) totalEntrySize / compressedSize;
+        if (compressionRatio > THRESHOLD_RATIO) {
+            throw new ModelValidationException(INVALID_ZIP,
+                    String.format("Ratio between compressed and uncompressed data exceeds the CPS limit"
+                            + " %s.", THRESHOLD_RATIO));
+        }
+    }
+
+    /**
+     * Validate the total Size and number of entries in the zip.
+     */
+    void validateSizeAndEntries() {
+        if (totalSizeArchive > THRESHOLD_SIZE) {
+            throw new ModelValidationException(INVALID_ZIP,
+                    String.format("The uncompressed data size exceeds the CPS limit %s bytes.", THRESHOLD_SIZE));
+        }
+        if (totalEntryInArchive > THRESHOLD_ENTRIES) {
+            throw new ModelValidationException(INVALID_ZIP,
+                    String.format("The number of entries in the archive exceeds the CPS limit %s.",
+                            THRESHOLD_ENTRIES));
+        }
+    }
+
+    void setCompressedSize(newCompressedSize){
+        compressedSize = newCompressedSize;
     }
 }
