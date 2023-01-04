@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Nordix Foundation
+ * Modifications Copyright (C) 2022-2023 Tech Mahindra.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -50,7 +51,7 @@ public class FragmentQueryBuilder {
     /**
      * Create a sql query to retrieve by anchor(id) and cps path.
      *
-     * @param anchorId the id of the anchor
+     * @param anchorId     the id of the anchor
      * @param cpsPathQuery the cps path query to be transformed into a sql query
      * @return a executable query object
      */
@@ -64,7 +65,33 @@ public class FragmentQueryBuilder {
         if (cpsPathQuery.hasLeafConditions()) {
             sqlStringBuilder.append(" AND attributes @> :leafDataAsJson\\:\\:jsonb");
             queryParameters.put("leafDataAsJson", jsonObjectMapper.asJsonString(
-                cpsPathQuery.getLeavesData()));
+                    cpsPathQuery.getLeavesData()));
+        }
+
+        addTextFunctionCondition(cpsPathQuery, sqlStringBuilder, queryParameters);
+        final Query query = entityManager.createNativeQuery(sqlStringBuilder.toString(), FragmentEntity.class);
+        setQueryParameters(query, queryParameters);
+        return query;
+    }
+
+    /**
+     * Create a sql query to retrieve by anchor(id) and cps path.
+     *
+     * @param anchorId     the id of the anchor
+     * @param cpsPathQuery the cps path query to be transformed into a sql query
+     * @return a executable query object
+     */
+    public Query getQueryForAnchorAndCpsPathForOrOperator(final int anchorId, final CpsPathQuery cpsPathQuery,
+                                                          final Map<String, Object> leavesData) {
+        final StringBuilder sqlStringBuilder = new StringBuilder("SELECT * FROM FRAGMENT WHERE anchor_id = :anchorId");
+        final Map<String, Object> queryParameters = new HashMap<>();
+        queryParameters.put("anchorId", anchorId);
+        sqlStringBuilder.append(" AND xpath ~ :xpathRegex");
+        final String xpathRegex = getXpathSqlRegex(cpsPathQuery, false);
+        queryParameters.put("xpathRegex", xpathRegex);
+        if (cpsPathQuery.hasLeafConditions()) {
+            sqlStringBuilder.append(" AND attributes @> :leafDataAsJson\\:\\:jsonb");
+            queryParameters.put("leafDataAsJson", jsonObjectMapper.asJsonString(leavesData));
         }
 
         addTextFunctionCondition(cpsPathQuery, sqlStringBuilder, queryParameters);
@@ -76,7 +103,7 @@ public class FragmentQueryBuilder {
     /**
      * Create a regular expression (string) for xpath based on the given cps path query.
      *
-     * @param cpsPathQuery  the cps path query to determine the required regular expression
+     * @param cpsPathQuery       the cps path query to determine the required regular expression
      * @param includeDescendants include descendants yes or no
      * @return a string representing the required regular expression
      */
@@ -116,7 +143,7 @@ public class FragmentQueryBuilder {
             sqlStringBuilder.append(" AND (");
             sqlStringBuilder.append("attributes @> jsonb_build_object(:textLeafName, :textValue)");
             sqlStringBuilder
-                .append(" OR attributes @> jsonb_build_object(:textLeafName, json_build_array(:textValue))");
+                    .append(" OR attributes @> jsonb_build_object(:textLeafName, json_build_array(:textValue))");
             queryParameters.put("textLeafName", cpsPathQuery.getTextFunctionConditionLeafName());
             queryParameters.put("textValue", cpsPathQuery.getTextFunctionConditionValue());
             final Integer textValueAsInt = getTextValueAsInt(cpsPathQuery);
