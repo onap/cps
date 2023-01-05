@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e87eaaa_0dbc6207",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/QueryRestController.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-05T09:03:25Z",
+      "side": 1,
+      "message": "copied from above method -\u003e extract out in new private method",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 107
+      },
+      "revId": "080273c6907aea1e8992dc17c9e068ac2f215408",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "911fff8d_f2abbf4d",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/QueryRestController.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-05T09:03:25Z",
+      "side": 1,
+      "message": "copied from above method -\u003e extract out in new private method",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 86,
+        "endChar": 9
+      },
+      "revId": "080273c6907aea1e8992dc17c9e068ac2f215408",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a7b0a03_6d8af021",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-05T09:03:25Z",
+      "side": 1,
+      "message": "not sure if tis is really needed for this test but is OK I suppose.\nBut again you are copying multiple lines form an existing methods anytime you do that you should think: \"I am copying something, I should extract method to do this instead!!",
+      "range": {
+        "startLine": 91,
+        "startChar": 12,
+        "endLine": 95,
+        "endChar": 41
+      },
+      "revId": "080273c6907aea1e8992dc17c9e068ac2f215408",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4bb36cf1_0d27c4a0",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-05T09:03:25Z",
+      "side": 1,
+      "message": "especially when the production code to parse the input has been extracted out there is no need to verify all these scenarios again!¬",
+      "range": {
+        "startLine": 111,
+        "startChar": 0,
+        "endLine": 113,
+        "endChar": 93
+      },
+      "revId": "080273c6907aea1e8992dc17c9e068ac2f215408",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e4882a4_bb58b0a6",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-05T09:03:25Z",
+      "side": 1,
+      "message": "no need to iterate if the query is modified\n(this is also very important for the performance of this feature: iterating over all anchor wil result in possible thousands in queries instead of a single query, as I show you below!)",
+      "range": {
+        "startLine": 335,
+        "startChar": 0,
+        "endLine": 337,
+        "endChar": 64
+      },
+      "revId": "080273c6907aea1e8992dc17c9e068ac2f215408",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "171830b2_f924d3f4",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-05T09:03:25Z",
+      "side": 1,
+      "message": "create a variation of this query WITHOUT anchor entity\n(possibly a native query)",
+      "range": {
+        "startLine": 340,
+        "startChar": 79,
+        "endLine": 340,
+        "endChar": 91
+      },
+      "revId": "080273c6907aea1e8992dc17c9e068ac2f215408",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "38aaced8_7fa7bdda",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-05T09:03:25Z",
+      "side": 1,
+      "message": "create a variation of this query WITHOUT anchor id",
+      "range": {
+        "startLine": 342,
+        "startChar": 50,
+        "endLine": 342,
+        "endChar": 109
+      },
+      "revId": "080273c6907aea1e8992dc17c9e068ac2f215408",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7d0daa42_b5980169",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 347,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-05T09:03:25Z",
+      "side": 1,
+      "message": "this might be the most difficult part, you need to create a variation of this that works without an anchor entity object but instead the relevant fields from the relevant tables (using a sql-join if needed)\nI suggest you do some and share analysis/PoC for this BEFORE coding it...",
+      "range": {
+        "startLine": 347,
+        "startChar": 40,
+        "endLine": 347,
+        "endChar": 52
+      },
+      "revId": "080273c6907aea1e8992dc17c9e068ac2f215408",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
