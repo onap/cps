@@ -33,7 +33,7 @@ import java.util.concurrent.TimeUnit
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
 
-class CpsToDataNodePerfTest extends CpsPersistenceSpecBase {
+class CpsDataPersistenceServicePerfTest extends CpsPersistenceSpecBase {
 
     static final String PERF_TEST_DATA = '/data/perf-test.sql'
 
@@ -102,6 +102,42 @@ class CpsToDataNodePerfTest extends CpsPersistenceSpecBase {
             scenario                                        | descendantsOption        || alowedDuration
             'omit descendants                             ' | OMIT_DESCENDANTS         || 150
             'include descendants (although there are none)' | INCLUDE_ALL_DESCENDANTS  || 150
+    }
+
+    def 'Delete 50 grandchildren (that have no descendants)'() {
+        when: 'target nodes are deleted'
+            stopWatch.start()
+            (1..50).each {
+                def grandchildPath = "${PERF_TEST_PARENT}/perf-test-child-1/perf-test-grand-child-${it}".toString();
+                objectUnderTest.deleteDataNode('PERF-DATASPACE', 'PERF-ANCHOR', grandchildPath)
+            }
+            stopWatch.stop()
+            def deleteDurationInMillis = stopWatch.getTotalTimeMillis()
+        then: 'delete duration is under 1000 milliseconds'
+            assert deleteDurationInMillis < 1000
+    }
+
+    def 'Delete 5 children with grandchildren'() {
+        when: 'child nodes are deleted'
+            stopWatch.start()
+            (1..5).each {
+                def childPath = "${PERF_TEST_PARENT}/perf-test-child-${it}".toString();
+                objectUnderTest.deleteDataNode('PERF-DATASPACE', 'PERF-ANCHOR', childPath)
+            }
+            stopWatch.stop()
+            def deleteDurationInMillis = stopWatch.getTotalTimeMillis()
+        then: 'delete duration is under 10000 milliseconds'
+            assert deleteDurationInMillis < 10000
+    }
+
+    def 'Delete 1 large data node with many descendants'() {
+        when: 'parent node is deleted'
+            stopWatch.start()
+            objectUnderTest.deleteDataNode('PERF-DATASPACE', 'PERF-ANCHOR', PERF_TEST_PARENT)
+            stopWatch.stop()
+            def deleteDurationInMillis = stopWatch.getTotalTimeMillis()
+        then: 'delete duration is under 5000 milliseconds'
+            assert deleteDurationInMillis < 5000
     }
 
     def createLineage() {
