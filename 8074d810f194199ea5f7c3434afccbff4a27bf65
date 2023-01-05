@@ -1,0 +1,153 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cbd23749_e66c9f84",
+        "filename": "cps-rest/docs/openapi/cpsDataV2.yml",
+        "patchSetId": 10
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-01-05T16:13:06Z",
+      "side": 1,
+      "message": "does this need the api version?",
+      "range": {
+        "startLine": 26,
+        "startChar": 4,
+        "endLine": 26,
+        "endChar": 14
+      },
+      "revId": "8074d810f194199ea5f7c3434afccbff4a27bf65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a59b5978_4504ca31",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-01-05T16:13:06Z",
+      "side": 1,
+      "message": "I think this might be better off in the FetchDescendantOption Class, we might also need error handling for it? Maybe make an InvalidDescendantsOptionException",
+      "range": {
+        "startLine": 165,
+        "startChar": 4,
+        "endLine": 175,
+        "endChar": 5
+      },
+      "revId": "8074d810f194199ea5f7c3434afccbff4a27bf65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "731f78c6_f00f30ca",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/QueryRestController.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-01-05T16:13:06Z",
+      "side": 1,
+      "message": "same comment, in FetchDescendantOption class would remove duplicate code",
+      "range": {
+        "startLine": 90,
+        "startChar": 4,
+        "endLine": 100,
+        "endChar": 5
+      },
+      "revId": "8074d810f194199ea5f7c3434afccbff4a27bf65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "919d2343_fb2e81f2",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-01-05T16:13:06Z",
+      "side": 1,
+      "message": "indent",
+      "revId": "8074d810f194199ea5f7c3434afccbff4a27bf65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aafef4a2_148c4957",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-01-05T16:13:06Z",
+      "side": 1,
+      "message": "indent, same for rest below",
+      "revId": "8074d810f194199ea5f7c3434afccbff4a27bf65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fcbbdcb7_2cece787",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-01-05T16:13:06Z",
+      "side": 1,
+      "message": "I think custom exception is necessary here",
+      "range": {
+        "startLine": 270,
+        "startChar": 12,
+        "endLine": 270,
+        "endChar": 13
+      },
+      "revId": "8074d810f194199ea5f7c3434afccbff4a27bf65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "98b5c2dd_d2b01f4d",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-01-05T16:13:06Z",
+      "side": 1,
+      "message": "These scenarios don\u0027t seem to be testing anything as output is always the same? descendants in the expected results column but is used as an input only",
+      "range": {
+        "startLine": 111,
+        "startChar": 0,
+        "endLine": 118,
+        "endChar": 48
+      },
+      "revId": "8074d810f194199ea5f7c3434afccbff4a27bf65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
