@@ -50,7 +50,9 @@ import org.xml.sax.SAXException;
 public class XmlFileUtils {
 
     private static final DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+    private static final TransformerFactory transformerFactory = TransformerFactory.newInstance();
     private static boolean isNewDocumentBuilderFactoryInstance = true;
+    private static boolean isNewTransformerFactoryInstance = true;
     private static final Pattern XPATH_PROPERTY_REGEX =
         Pattern.compile("\\[@(\\S{1,100})=['\\\"](\\S{1,100})['\\\"]\\]");
 
@@ -109,10 +111,7 @@ public class XmlFileUtils {
             && !root.getTagName().equals(YangUtils.DATA_ROOT_NODE_TAG_NAME)) {
             final Document documentWithRootNode = addDataRootNode(root, rootNodeTagName, namespace, rootNodeProperty);
             documentWithRootNode.setXmlStandalone(true);
-            final TransformerFactory transformerFactory = TransformerFactory.newInstance();
-            transformerFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
-            transformerFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_STYLESHEET, "");
-            final Transformer transformer = transformerFactory.newTransformer();
+            final Transformer transformer = getTransformerFactory().newTransformer();
             final StringWriter stringWriter = new StringWriter();
             transformer.transform(new DOMSource(documentWithRootNode), new StreamResult(stringWriter));
             return stringWriter.toString();
@@ -170,5 +169,15 @@ public class XmlFileUtils {
         }
 
         return documentBuilderFactory;
+    }
+
+    private static TransformerFactory getTransformerFactory() {
+        if (isNewTransformerFactoryInstance) {
+            transformerFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
+            transformerFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_STYLESHEET, "");
+            isNewTransformerFactoryInstance = false;
+        }
+
+        return transformerFactory;
     }
 }
