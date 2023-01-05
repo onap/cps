@@ -49,9 +49,7 @@ import org.xml.sax.SAXException;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class XmlFileUtils {
 
-    private static final DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
     private static final TransformerFactory transformerFactory = TransformerFactory.newInstance();
-    private static boolean isNewDocumentBuilderFactoryInstance = true;
     private static boolean isNewTransformerFactoryInstance = true;
     private static final Pattern XPATH_PROPERTY_REGEX =
         Pattern.compile("\\[@(\\S{1,100})=['\\\"](\\S{1,100})['\\\"]\\]");
@@ -161,19 +159,11 @@ public class XmlFileUtils {
         }
     }
 
-    private static DocumentBuilderFactory getDocumentBuilderFactory() throws ParserConfigurationException {
-        if (isNewDocumentBuilderFactoryInstance) {
-            documentBuilderFactory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
-            documentBuilderFactory.setFeature("http://xml.org/sax/features/external-general-entities", false);
-            documentBuilderFactory.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
-            documentBuilderFactory.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
-            documentBuilderFactory.setXIncludeAware(false);
-            documentBuilderFactory.setExpandEntityReferences(false);
-            documentBuilderFactory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
-            documentBuilderFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
-            documentBuilderFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
-            isNewDocumentBuilderFactoryInstance = false;
-        }
+    private static DocumentBuilderFactory getDocumentBuilderFactory() {
+
+        final DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+        documentBuilderFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
+        documentBuilderFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
 
         return documentBuilderFactory;
     }
