@@ -49,9 +49,8 @@ import org.xml.sax.SAXException;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class XmlFileUtils {
 
-    private static final DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-    private static boolean isNewDocumentBuilderFactoryInstance = true;
     private static final TransformerFactory transformerFactory = TransformerFactory.newInstance();
+    private static boolean isNewTransformerFactoryInstance = true;
     private static final Pattern XPATH_PROPERTY_REGEX =
         Pattern.compile("\\[@(\\S{1,100})=['\\\"](\\S{1,100})['\\\"]\\]");
 
@@ -162,16 +161,21 @@ public class XmlFileUtils {
 
     private static DocumentBuilderFactory getDocumentBuilderFactory() {
 
-        if (isNewDocumentBuilderFactoryInstance) {
-            documentBuilderFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
-            documentBuilderFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
-            isNewDocumentBuilderFactoryInstance = false;
-        }
+        final DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+        documentBuilderFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
+        documentBuilderFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
 
         return documentBuilderFactory;
     }
 
     private static TransformerFactory getTransformerFactory() {
+
+        if (isNewTransformerFactoryInstance) {
+            transformerFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
+            transformerFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_STYLESHEET, "");
+            isNewTransformerFactoryInstance = false;
+        }
+
         return transformerFactory;
     }
 }
