@@ -1,0 +1,147 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "81b3b9cc_c7003657",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathOperatorType.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-01-06T14:19:17Z",
+      "side": 1,
+      "message": "Only needs to be 2023",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 23
+      },
+      "revId": "331d4371678134b5f363312e9be9e217e3592920",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f8d607e8_4187e3c7",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathOperatorType.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-01-06T14:19:17Z",
+      "side": 1,
+      "message": "remove newline",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 6
+      },
+      "revId": "331d4371678134b5f363312e9be9e217e3592920",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4ba9438f_e229ba29",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathQuery.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-01-06T14:19:17Z",
+      "side": 1,
+      "message": "Space",
+      "range": {
+        "startLine": 4,
+        "startChar": 2,
+        "endLine": 4,
+        "endChar": 3
+      },
+      "revId": "331d4371678134b5f363312e9be9e217e3592920",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b1436520_acd5a6bd",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-01-06T14:19:17Z",
+      "side": 1,
+      "message": "space and only 2023 needed",
+      "revId": "331d4371678134b5f363312e9be9e217e3592920",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c6efac73_6696b139",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-01-06T14:19:17Z",
+      "side": 1,
+      "message": "extract out common functionality with method above, a lot of duplicate code",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 5
+      },
+      "revId": "331d4371678134b5f363312e9be9e217e3592920",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "525eaf38_cc83d531",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepositoryCpsPathQueryImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-01-06T14:19:17Z",
+      "side": 1,
+      "message": "same here",
+      "revId": "331d4371678134b5f363312e9be9e217e3592920",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6ff16507_7656e7cb",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepositoryCpsPathQueryImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-01-06T14:19:17Z",
+      "side": 1,
+      "message": "bit confused as to why there is only an if for the or operator, how is the and handled?",
+      "revId": "331d4371678134b5f363312e9be9e217e3592920",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
