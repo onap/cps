@@ -3,6 +3,7 @@
  * Copyright (C) 2021-2022 Nordix Foundation.
  * Modifications Copyright (C) 2020-2021 Bell Canada.
  * Modifications Copyright (C) 2020-2021 Pantheon.tech.
+ * Modifications Copyright (C) 2023 TechMahindra Ltd.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -50,6 +51,27 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>,
                                                            @NonNull String xpath) {
         return findByDataspaceAndAnchorAndXpath(dataspaceEntity, anchorEntity, xpath)
             .orElseThrow(() -> new DataNodeNotFoundException(dataspaceEntity.getName(), anchorEntity.getName(), xpath));
+    }
+
+    Collection<FragmentEntity> findAllByDataspaceAndAnchorAndXpath(@NonNull DataspaceEntity dataspaceEntity,
+                                                                   @NonNull AnchorEntity anchorEntity,
+                                                                   @NonNull String xpath);
+
+    /**
+     * Retrieve all fragments.
+     *
+     * @param dataspaceEntity dataspace entity
+     * @param anchorEntity    anchor entity
+     * @param xpath           xpath
+     * @return                Collection of FragmentEntities
+     */
+    default Collection<FragmentEntity> getAllByDataspaceAndAnchorAndXpath(@NonNull DataspaceEntity dataspaceEntity,
+                                                                          @NonNull AnchorEntity anchorEntity,
+                                                                          @NonNull String xpath) {
+        if (findByDataspaceAndAnchorAndXpath(dataspaceEntity, anchorEntity, xpath).isEmpty()) {
+            throw new DataNodeNotFoundException(dataspaceEntity.getName(), anchorEntity.getName(), xpath);
+        }
+        return findAllByDataspaceAndAnchorAndXpath(dataspaceEntity, anchorEntity, xpath);
     }
 
     @Query(
