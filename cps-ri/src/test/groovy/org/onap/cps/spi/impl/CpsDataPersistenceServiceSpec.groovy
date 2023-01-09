@@ -165,6 +165,25 @@ class CpsDataPersistenceServiceSpec extends Specification {
             1 * mockSessionManager.lockAnchor('mySessionId', 'myDataspaceName', 'myAnchorName', 123L)
     }
 
+    def 'update data node leaves: #scenario'(){
+        given: 'A node exists for the given xpath'
+            mockFragmentRepository.getByDataspaceAndAnchorAndXpath(_, _, '/some/xpath') >> new FragmentEntity(xpath: '/some/xpath', attributes:  existingAttributes)
+        when: 'the node leaves are updated'
+            objectUnderTest.updateDataLeaves('some-dataspace', 'some-anchor', '/some/xpath', newAttributes as Map<String, Serializable>)
+        then: 'the fragment entity saved has the original and new attributes'
+            1 * mockFragmentRepository.save({fragmentEntity -> {
+                assert fragmentEntity.getXpath() == '/some/xpath'
+                assert fragmentEntity.getAttributes() == mergedAttributes
+            }})
+        where: 'the following attributes combinations are used'
+            scenario                      | existingAttributes     | newAttributes         | mergedAttributes
+            'add new leaf'                | '{"existing":"value"}' | ["new":"value"]       | '{"existing":"value","new":"value"}'
+            'update existing leaf'        | '{"existing":"value"}' | ["existing":"value2"] | '{"existing":"value2"}'
+            'update nothing with nothing' | ''                     | []                    | ''
+            'update with nothing'         | '{"existing":"value"}' | []                    | '{"existing":"value"}'
+            'update with same value'      | '{"existing":"value"}' | ["existing":"value"]  | '{"existing":"value"}'
+    }
+
     def 'update data node and descendants: #scenario'(){
         given: 'mocked responses'
             mockFragmentRepository.getByDataspaceAndAnchorAndXpath(_, _, '/test/xpath') >> new FragmentEntity(xpath: '/test/xpath', childFragments: [])
