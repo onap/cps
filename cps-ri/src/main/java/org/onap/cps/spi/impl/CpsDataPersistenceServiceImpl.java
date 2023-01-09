@@ -447,9 +447,11 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
 
     @Override
     public void updateDataLeaves(final String dataspaceName, final String anchorName, final String xpath,
-                                 final Map<String, Serializable> leaves) {
+                                 final Map<String, Serializable> updateLeaves) {
         final FragmentEntity fragmentEntity = getFragmentWithoutDescendantsByXpath(dataspaceName, anchorName, xpath);
-        fragmentEntity.setAttributes(jsonObjectMapper.asJsonString(leaves));
+        final String currentLeavesAsString = fragmentEntity.getAttributes();
+        final String updatedLeaves = mergeLeaves(updateLeaves, currentLeavesAsString);
+        fragmentEntity.setAttributes(updatedLeaves);
         fragmentRepository.save(fragmentEntity);
     }
 
@@ -693,5 +695,15 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
 
     private static boolean isRootXpath(final String xpath) {
         return "/".equals(xpath) || "".equals(xpath);
+    }
+
+    private String mergeLeaves(final Map<String, Serializable> updateLeaves, final String currentLeavesAsString) {
+        final Map<String, Serializable> currentLeavesAsMap = currentLeavesAsString.isEmpty()
+            ? new HashMap<>() : jsonObjectMapper.convertJsonString(currentLeavesAsString, Map.class);
+        currentLeavesAsMap.putAll(updateLeaves);
+        if (currentLeavesAsMap.isEmpty()) {
+            return "";
+        }
+        return jsonObjectMapper.asJsonString(currentLeavesAsMap);
     }
 }
