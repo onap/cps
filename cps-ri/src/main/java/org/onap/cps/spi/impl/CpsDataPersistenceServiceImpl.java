@@ -449,7 +449,13 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     public void updateDataLeaves(final String dataspaceName, final String anchorName, final String xpath,
                                  final Map<String, Serializable> leaves) {
         final FragmentEntity fragmentEntity = getFragmentWithoutDescendantsByXpath(dataspaceName, anchorName, xpath);
-        fragmentEntity.setAttributes(jsonObjectMapper.asJsonString(leaves));
+        final String currentAttributesAsString = fragmentEntity.getAttributes();
+        final Map<String, Serializable> attributesAsMap = currentAttributesAsString.isEmpty()
+            ? new HashMap<>() : jsonObjectMapper.convertJsonString(currentAttributesAsString, Map.class);
+        attributesAsMap.putAll(leaves);
+        if (!attributesAsMap.isEmpty()) {
+            fragmentEntity.setAttributes(jsonObjectMapper.asJsonString(attributesAsMap));
+        }
         fragmentRepository.save(fragmentEntity);
     }
 
