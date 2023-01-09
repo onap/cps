@@ -3,7 +3,7 @@
  *  Copyright (C) 2021-2023 Nordix Foundation
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
- *  Modifications Copyright (C) 2022 TechMahindra Ltd.
+ *  Modifications Copyright (C) 2022-2023 TechMahindra Ltd.
  *  Modifications Copyright (C) 2022 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -32,6 +32,7 @@ import io.micrometer.core.annotation.Timed;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -39,10 +40,13 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.api.CpsDataService;
+import org.onap.cps.cpspath.parser.CpsPathUtil;
+import org.onap.cps.cpspath.parser.PathParsingException;
 import org.onap.cps.notification.NotificationService;
 import org.onap.cps.notification.Operation;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.FetchDescendantsOption;
+import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.spi.model.Anchor;
 import org.onap.cps.spi.model.DataNode;
@@ -142,11 +146,35 @@ public class CpsDataServiceImpl implements CpsDataService {
     }
 
     @Override
+    public Collection<DataNode> getDataNodesV2(final String dataspaceName, final String anchorName, final String xpath,
+                                               final FetchDescendantsOption fetchDescendantsOption) {
+        cpsValidator.validateNameCharacters(dataspaceName, anchorName);
+        final Collection<DataNode> dataNodes;
+        if (isRootXpath(xpath)) {
+            dataNodes = getDataNodes(dataspaceName, anchorName, Collections.singletonList(xpath),
+                    fetchDescendantsOption);
+        } else {
+            final String normalizedxpath;
+            try {
+                normalizedxpath = CpsPathUtil.getNormalizedXpath(xpath);
+            } catch (final Exception e) {
+                throw new PathParsingException(e.getMessage());
+            }
+            dataNodes = getDataNodes(dataspaceName, anchorName, Collections.singletonList(normalizedxpath),
+                    fetchDescendantsOption);
+        }
+        if (dataNodes.isEmpty()) {
+            throw new DataNodeNotFoundException(dataspaceName, anchorName, xpath);
+        }
+        return dataNodes;
+    }
+
+    @Override
     @Timed(value = "cps.data.service.datanode.batch.get",
         description = "Time taken to get a batch of data nodes")
     public Collection<DataNode> getDataNodes(final String dataspaceName, final String anchorName,
                                              final Collection<String> xpaths,
-                                final FetchDescendantsOption fetchDescendantsOption) {
+                                             final FetchDescendantsOption fetchDescendantsOption) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         return cpsDataPersistenceService.getDataNodes(dataspaceName, anchorName, xpaths, fetchDescendantsOption);
     }
@@ -382,6 +410,10 @@ public class CpsDataServiceImpl implements CpsDataService {
         for (final DataNode childDataNodeUpdate : childDataNodeUpdates) {
             processDataNodeUpdate(dataspaceName, anchorName, childDataNodeUpdate);
         }
+    }
+
+    private static boolean isRootXpath(final String xpath) {
+        return "/".equals(xpath) || "".equals(xpath);
     }
 
 }
