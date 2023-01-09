@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "53ad5f37_443f4744",
+        "filename": "cps-rest/docs/openapi/cpsQueryV1Deprecated.yml",
+        "patchSetId": 10
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-01-09T12:03:26Z",
+      "side": 0,
+      "message": "Not needed because v1 is hardcoded and deprecated",
+      "parentUuid": "d452471d_3b4058de",
+      "range": {
+        "startLine": 29,
+        "startChar": 53,
+        "endLine": 29,
+        "endChar": 69
+      },
+      "revId": "5b00ef4d6ab15006b880a22dc69a936e4f784623",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1ee94d78_6fdc07f6",
         "filename": "cps-rest/docs/openapi/cpsQueryV2.yml",
         "patchSetId": 10
@@ -36,6 +60,30 @@
       "writtenOn": "2023-01-05T16:13:06Z",
       "side": 0,
       "message": "should be kept?",
+      "range": {
+        "startLine": 29,
+        "startChar": 53,
+        "endLine": 29,
+        "endChar": 69
+      },
+      "revId": "5b00ef4d6ab15006b880a22dc69a936e4f784623",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "11c9b77d_d636122a",
+        "filename": "cps-rest/docs/openapi/cpsQueryV2.yml",
+        "patchSetId": 10
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-01-09T12:03:26Z",
+      "side": 0,
+      "message": "not required because v1 and v2 are hardcoded",
+      "parentUuid": "1ee94d78_6fdc07f6",
       "range": {
         "startLine": 29,
         "startChar": 53,

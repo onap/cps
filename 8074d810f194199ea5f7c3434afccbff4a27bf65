@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "63289583_56f726a6",
+        "filename": "cps-rest/docs/openapi/cpsDataV2.yml",
+        "patchSetId": 10
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-01-09T12:03:26Z",
+      "side": 1,
+      "message": "yes we need to version this API because we are replacing existing parameter includeDescendantsOptionInQuery with descendants.",
+      "parentUuid": "cbd23749_e66c9f84",
+      "range": {
+        "startLine": 26,
+        "startChar": 4,
+        "endLine": 26,
+        "endChar": 14
+      },
+      "revId": "8074d810f194199ea5f7c3434afccbff4a27bf65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a59b5978_4504ca31",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
         "patchSetId": 10
@@ -45,6 +69,30 @@
       "revId": "8074d810f194199ea5f7c3434afccbff4a27bf65",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "500aae8f_162930d5",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-01-09T12:03:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a59b5978_4504ca31",
+      "range": {
+        "startLine": 165,
+        "startChar": 4,
+        "endLine": 175,
+        "endChar": 5
+      },
+      "revId": "8074d810f194199ea5f7c3434afccbff4a27bf65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "979a865e_62b34ced",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/QueryRestController.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-01-09T12:03:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "731f78c6_f00f30ca",
+      "range": {
+        "startLine": 90,
+        "startChar": 4,
+        "endLine": 100,
+        "endChar": 5
+      },
+      "revId": "8074d810f194199ea5f7c3434afccbff4a27bf65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "919d2343_fb2e81f2",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
         "patchSetId": 10
@@ -88,6 +160,24 @@
     },
     {
       "key": {
+        "uuid": "3d1bf5ab_0cb81752",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-01-09T12:03:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "919d2343_fb2e81f2",
+      "revId": "8074d810f194199ea5f7c3434afccbff4a27bf65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aafef4a2_148c4957",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
         "patchSetId": 10
@@ -102,6 +192,24 @@
       "revId": "8074d810f194199ea5f7c3434afccbff4a27bf65",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a7be377b_a06e6435",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-01-09T12:03:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aafef4a2_148c4957",
+      "revId": "8074d810f194199ea5f7c3434afccbff4a27bf65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -128,6 +236,30 @@
     },
     {
       "key": {
+        "uuid": "91817fc5_3f066e85",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-01-09T12:03:26Z",
+      "side": 1,
+      "message": "we are handling allowed values of descendants in yml file using regular expression. that\u0027s why custom exception is not added. will discuss and create if required.",
+      "parentUuid": "fcbbdcb7_2cece787",
+      "range": {
+        "startLine": 270,
+        "startChar": 12,
+        "endLine": 270,
+        "endChar": 13
+      },
+      "revId": "8074d810f194199ea5f7c3434afccbff4a27bf65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "98b5c2dd_d2b01f4d",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
         "patchSetId": 10
@@ -139,6 +271,30 @@
       "writtenOn": "2023-01-05T16:13:06Z",
       "side": 1,
       "message": "These scenarios don\u0027t seem to be testing anything as output is always the same? descendants in the expected results column but is used as an input only",
+      "range": {
+        "startLine": 111,
+        "startChar": 0,
+        "endLine": 118,
+        "endChar": 48
+      },
+      "revId": "8074d810f194199ea5f7c3434afccbff4a27bf65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c2ee400c_0e8a2e10",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-01-09T12:03:26Z",
+      "side": 1,
+      "message": "test cases are mainly to validating descendants for the request as it was done for above test case.",
+      "parentUuid": "98b5c2dd_d2b01f4d",
       "range": {
         "startLine": 111,
         "startChar": 0,
