@@ -3,7 +3,7 @@
  *  Copyright (C) 2021-2023 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
- *  Modifications Copyright (C) 2022 TechMahindra Ltd.
+ *  Modifications Copyright (C) 2022-2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -254,6 +254,29 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         final FragmentEntity fragmentEntity = getFragmentByXpath(dataspaceName, anchorName, xpath,
             fetchDescendantsOption);
         return toDataNode(fragmentEntity, fetchDescendantsOption);
+    }
+
+    @Override
+    public Collection<DataNode> getMultipleDataNodes(final String dataspaceName, final String anchorName,
+                                                     final String xpath,
+                                                     final FetchDescendantsOption fetchDescendantsOption) {
+        final Collection<DataNode> dataNodes;
+        if (isRootXpath(xpath)) {
+            dataNodes = getDataNodes(dataspaceName, anchorName, Collections.singletonList(xpath),
+                    fetchDescendantsOption);
+        } else {
+            try {
+                final String normalizedxpath = CpsPathUtil.getNormalizedXpath(xpath);
+                dataNodes = getDataNodes(dataspaceName, anchorName, Collections.singletonList(normalizedxpath),
+                        fetchDescendantsOption);
+            } catch (final Exception e) {
+                throw new PathParsingException(e.getMessage());
+            }
+        }
+        if (dataNodes.isEmpty()) {
+            throw new DataNodeNotFoundException(dataspaceName, anchorName, xpath);
+        }
+        return dataNodes;
     }
 
     @Override
