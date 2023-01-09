@@ -2,6 +2,7 @@
  *  ============LICENSE_START=======================================================
  *  Copyright (c) 2021-2022 Bell Canada.
  *  Modifications Copyright (c) 2022 Nordix Foundation
+ *  Modifications Copyright (C) 2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -50,8 +51,8 @@ class CpsDataUpdateEventFactorySpec extends Specification {
         and: 'cps data service returns the data node details'
             def xpath = '/xpath'
             def dataNode = new DataNodeBuilder().withXpath(xpath).withLeaves(['leafName': 'leafValue']).build()
-            mockCpsDataService.getDataNode(
-                    'my-dataspace', 'my-anchorname', '/', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
+            mockCpsDataService.getDataNodes(
+                    'my-dataspace', 'my-anchorname', '/', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> [dataNode]
         when: 'CPS data updated event is created'
             def cpsDataUpdatedEvent = objectUnderTest.createCpsDataUpdatedEvent(anchor,
                     DateTimeUtility.toOffsetDateTime(inputObservedTimestamp), Operation.CREATE)

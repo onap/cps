@@ -2,6 +2,7 @@
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022-2023 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada
+ *  Modifications Copyright (C) 2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -39,7 +40,6 @@ import spock.lang.Specification
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
-import java.util.stream.Collectors
 
 import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NO_TIMESTAMP
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
@@ -85,7 +85,7 @@ class InventoryPersistenceImplSpec extends Specification {
     def "Retrieve CmHandle using datanode with #scenario."() {
         given: 'the cps data service returns a data node from the DMI registry'
             def dataNode = new DataNode(childDataNodes:childDataNodes, leaves: leaves)
-            mockCpsDataService.getDataNode('NCMP-Admin', 'ncmp-dmi-registry', xpath, INCLUDE_ALL_DESCENDANTS) >> dataNode
+            mockCpsDataService.getDataNodes('NCMP-Admin', 'ncmp-dmi-registry', xpath, INCLUDE_ALL_DESCENDANTS) >> [dataNode]
         when: 'retrieving the yang modelled cm handle'
             def result = objectUnderTest.getYangModelCmHandle(cmHandleId)
         then: 'the result has the correct id and service names'
@@ -112,7 +112,7 @@ class InventoryPersistenceImplSpec extends Specification {
     def "Handling missing service names as null."() {
         given: 'the cps data service returns a data node from the DMI registry with empty child and leaf attributes'
             def dataNode = new DataNode(childDataNodes:[], leaves: [:])
-            mockCpsDataService.getDataNode('NCMP-Admin', 'ncmp-dmi-registry', xpath, INCLUDE_ALL_DESCENDANTS) >> dataNode
+            mockCpsDataService.getDataNodes('NCMP-Admin', 'ncmp-dmi-registry', xpath, INCLUDE_ALL_DESCENDANTS) >> [dataNode]
         when: 'retrieving the yang modelled cm handle'
             def result = objectUnderTest.getYangModelCmHandle(cmHandleId)
         then: 'the service names are returned as null'
@@ -126,7 +126,7 @@ class InventoryPersistenceImplSpec extends Specification {
     def "Retrieve multiple YangModelCmHandles"() {
         given: 'the cps data service returns 2 data nodes from the DMI registry'
             def dataNodes = [new DataNode(xpath: xpath), new DataNode(xpath: xpath2)]
-            mockCpsDataService.getDataNodes('NCMP-Admin', 'ncmp-dmi-registry', [xpath, xpath2] , INCLUDE_ALL_DESCENDANTS) >> dataNodes
+            mockCpsDataService.getDataNodesForMultipleXpaths('NCMP-Admin', 'ncmp-dmi-registry', [xpath, xpath2] , INCLUDE_ALL_DESCENDANTS) >> dataNodes
         when: 'retrieving the yang modelled cm handle'
             def results = objectUnderTest.getYangModelCmHandles([cmHandleId, cmHandleId2])
         then: 'verify both have returned and cmhandleIds are correct'
@@ -139,8 +139,8 @@ class InventoryPersistenceImplSpec extends Specification {
             def cmHandleId = 'Some-Cm-Handle'
             def dataNode = new DataNode(leaves: ['cm-handle-state': 'ADVISED'])
         and: 'cps data service returns a valid data node'
-            mockCpsDataService.getDataNode('NCMP-Admin', 'ncmp-dmi-registry',
-                    '/dmi-registry/cm-handles[@id=\'Some-Cm-Handle\']/state', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
+            mockCpsDataService.getDataNodes('NCMP-Admin', 'ncmp-dmi-registry',
+                    '/dmi-registry/cm-handles[@id=\'Some-Cm-Handle\']/state', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> [dataNode]
         when: 'get cm handle state is invoked'
             def result = objectUnderTest.getCmHandleState(cmHandleId)
         then: 'result has returned the correct cm handle state'
@@ -251,7 +251,7 @@ class InventoryPersistenceImplSpec extends Specification {
         when: 'the method to get data nodes is called'
             objectUnderTest.getDataNode('sample xPath')
         then: 'the data persistence service method to get data node is invoked once'
-            1 * mockCpsDataService.getDataNode('NCMP-Admin','ncmp-dmi-registry','sample xPath', INCLUDE_ALL_DESCENDANTS)
+            1 * mockCpsDataService.getDataNodes('NCMP-Admin','ncmp-dmi-registry','sample xPath', INCLUDE_ALL_DESCENDANTS)
     }
 
     def 'Get cmHandle data node'() {
@@ -260,7 +260,7 @@ class InventoryPersistenceImplSpec extends Specification {
         when: 'the method to get data nodes is called'
             objectUnderTest.getCmHandleDataNode('sample cmHandleId')
         then: 'the data persistence service method to get cmHandle data node is invoked once with expected xPath'
-            1 * mockCpsDataService.getDataNode('NCMP-Admin','ncmp-dmi-registry',expectedXPath, INCLUDE_ALL_DESCENDANTS)
+            1 * mockCpsDataService.getDataNodes('NCMP-Admin','ncmp-dmi-registry',expectedXPath, INCLUDE_ALL_DESCENDANTS)
     }
 
     def 'Get CM handles that has given module names'() {

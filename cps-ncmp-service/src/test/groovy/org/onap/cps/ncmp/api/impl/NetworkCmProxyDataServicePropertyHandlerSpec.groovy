@@ -2,6 +2,7 @@
  * ============LICENSE_START=======================================================
  * Copyright (C) 2022 Nordix Foundation
  * Modifications Copyright (C) 2022 Bell Canada
+ * Modifications Copyright (C) 2023 TechMahindra Ltd.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -47,11 +48,11 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
                                     new DataNodeBuilder().withXpath("/dmi-registry/cm-handles[@id='${cmHandleId}']/additional-properties[@name='additionalProp2']").withLeaves(['name': 'additionalProp2', 'value': 'additionalValue2']).build(),
                                     new DataNodeBuilder().withXpath("/dmi-registry/cm-handles[@id='${cmHandleId}']/public-properties[@name='publicProp3']").withLeaves(['name': 'publicProp3', 'value': 'publicValue3']).build(),
                                     new DataNodeBuilder().withXpath("/dmi-registry/cm-handles[@id='${cmHandleId}']/public-properties[@name='publicProp4']").withLeaves(['name': 'publicProp4', 'value': 'publicValue4']).build()]
-    def static cmHandleDataNode = new DataNode(xpath: cmHandleXpath, childDataNodes: propertyDataNodes)
+    def static cmHandleDataNodeAsCollection = [new DataNode(xpath: cmHandleXpath, childDataNodes: propertyDataNodes)]
 
     def 'Update CM Handle Public Properties: #scenario'() {
         given: 'the CPS service return a CM handle'
-            mockInventoryPersistence.getCmHandleDataNode(cmHandleId) >> cmHandleDataNode
+            mockInventoryPersistence.getCmHandleDataNode(cmHandleId) >> cmHandleDataNodeAsCollection
         and: 'an update cm handle request with public properties updates'
             def cmHandleUpdateRequest = [new NcmpServiceCmHandle(cmHandleId: cmHandleId, publicProperties: updatedPublicProperties)]
         when: 'update data node leaves is called with the update request'
@@ -73,7 +74,7 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
 
     def 'Update DMI Properties: #scenario'() {
         given: 'the CPS service return a CM handle'
-            mockInventoryPersistence.getCmHandleDataNode(cmHandleId) >> cmHandleDataNode
+            mockInventoryPersistence.getCmHandleDataNode(cmHandleId) >> cmHandleDataNodeAsCollection
         and: 'an update cm handle request with DMI properties updates'
             def cmHandleUpdateRequest = [new NcmpServiceCmHandle(cmHandleId: cmHandleId, dmiProperties: updatedDmiProperties)]
         when: 'update data node leaves is called with the update request'
@@ -97,7 +98,7 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
     def 'Update CM Handle Properties, remove all properties: #scenario'() {
         given: 'the CPS service return a CM handle'
             def cmHandleDataNode = new DataNode(xpath: cmHandleXpath, childDataNodes: originalPropertyDataNodes)
-            mockInventoryPersistence.getCmHandleDataNode(cmHandleId) >> cmHandleDataNode
+            mockInventoryPersistence.getCmHandleDataNode(cmHandleId) >> [cmHandleDataNode]
         and: 'an update cm handle request that removes all public properties(existing and non-existing)'
             def cmHandleUpdateRequest = [new NcmpServiceCmHandle(cmHandleId: cmHandleId, publicProperties: ['publicProp3': null, 'publicProp4': null])]
         when: 'update data node leaves is called with the update request'
@@ -145,7 +146,8 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
                                          new NcmpServiceCmHandle(cmHandleId: cmHandleId, publicProperties: ['publicProp1': "value"], dmiProperties: [:]),
                                          new NcmpServiceCmHandle(cmHandleId: cmHandleId, publicProperties: ['publicProp1': "value"], dmiProperties: [:])]
         and: 'data node can be found for 1st and 3rd cm-handle but not for 2nd cm-handle'
-            mockInventoryPersistence.getCmHandleDataNode(*_) >> cmHandleDataNode >> { throw new DataNodeNotFoundException('NCMP-Admin', 'ncmp-dmi-registry') } >> cmHandleDataNode
+            mockInventoryPersistence.getCmHandleDataNode(*_) >> cmHandleDataNodeAsCollection >> {
+                throw new DataNodeNotFoundException('NCMP-Admin', 'ncmp-dmi-registry') } >> cmHandleDataNodeAsCollection
         when: 'update data node leaves is called using correct parameters'
             def cmHandleResponseList = objectUnderTest.updateCmHandleProperties(cmHandleUpdateRequest)
         then: 'response has 3 values'

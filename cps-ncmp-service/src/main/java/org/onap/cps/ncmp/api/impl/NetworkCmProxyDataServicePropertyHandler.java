@@ -2,6 +2,7 @@
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada
+ *  Modifications Copyright (C) 2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -66,7 +67,8 @@ public class NetworkCmProxyDataServicePropertyHandler {
         for (final NcmpServiceCmHandle ncmpServiceCmHandle : ncmpServiceCmHandles) {
             final String cmHandleId = ncmpServiceCmHandle.getCmHandleId();
             try {
-                final DataNode existingCmHandleDataNode = inventoryPersistence.getCmHandleDataNode(cmHandleId);
+                final DataNode existingCmHandleDataNode = inventoryPersistence.getCmHandleDataNode(cmHandleId)
+                        .iterator().next();
                 processUpdates(existingCmHandleDataNode, ncmpServiceCmHandle);
                 cmHandleRegistrationResponses.add(CmHandleRegistrationResponse.createSuccessResponse(cmHandleId));
             } catch (final DataNodeNotFoundException e) {
