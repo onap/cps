@@ -25,7 +25,6 @@ import org.hibernate.StaleStateException
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.entities.AnchorEntity
 import org.onap.cps.spi.entities.FragmentEntity
-import org.onap.cps.spi.entities.FragmentExtract
 import org.onap.cps.spi.exceptions.ConcurrencyException
 import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.model.DataNode
@@ -112,10 +111,10 @@ class CpsDataPersistenceServiceSpec extends Specification {
         given: 'the db has a fragment with an attribute property JSON value of #scenario'
             mockFragmentWithJson("{\"some attribute\": ${dataString}}")
         when: 'getting the data node represented by this fragment'
-            def dataNode = objectUnderTest.getDataNode('my-dataspace', 'my-anchor',
+            def dataNode = objectUnderTest.getDataNodes('my-dataspace', 'my-anchor',
                     '/parent-01', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
         then: 'the leaf is of the correct value and data type'
-            def attributeValue = dataNode.leaves.get('some attribute')
+            def attributeValue = dataNode[0].leaves.get('some attribute')
             assert attributeValue == expectedValue
             assert attributeValue.class == expectedDataClass
         where: 'the following Data Type is passed'
@@ -136,7 +135,7 @@ class CpsDataPersistenceServiceSpec extends Specification {
         given: 'a fragment with invalid JSON'
             mockFragmentWithJson('{invalid json')
         when: 'getting the data node represented by this fragment'
-            objectUnderTest.getDataNode('my-dataspace', 'my-anchor',
+            objectUnderTest.getDataNodes('my-dataspace', 'my-anchor',
                     '/parent-01', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
         then: 'a data validation exception is thrown'
             thrown(DataValidationException)
@@ -151,7 +150,7 @@ class CpsDataPersistenceServiceSpec extends Specification {
             def fragmentEntity2 = new FragmentEntity(xpath: '/xpath2', childFragments: [])
             mockFragmentRepository.findByAnchorAndMultipleCpsPaths(123, ['/xpath1', '/xpath2'] as Set<String>) >> [fragmentEntity1, fragmentEntity2]
         when: 'getting data nodes for 2 xpaths'
-            def result = objectUnderTest.getDataNodes('some-dataspace', 'some-anchor', ['/xpath1', '/xpath2'], FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
+            def result = objectUnderTest.getDataNodesForMultipleXpaths('some-dataspace', 'some-anchor', ['/xpath1', '/xpath2'], FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
         then: '2 data nodes are returned'
             assert result.size() == 2
     }
@@ -243,10 +242,8 @@ class CpsDataPersistenceServiceSpec extends Specification {
     def mockFragmentWithJson(json) {
         def anchorEntity = new AnchorEntity(id:123)
         mockAnchorRepository.getByDataspaceAndName(*_) >> anchorEntity
-        def mockFragmentExtract = Mock(FragmentExtract)
-        mockFragmentExtract.getId() >> 456
-        mockFragmentExtract.getAttributes() >> json
-        mockFragmentRepository.findByAnchorIdAndParentXpath(*_) >> [mockFragmentExtract]
+        def fragmentEntity = new FragmentEntity(xpath: '/parent-01', childFragments: [], attributes: json)
+        mockFragmentRepository.findByAnchorAndMultipleCpsPaths(123, ['/parent-01'] as Set<String>) >> [fragmentEntity]
     }
 
 }

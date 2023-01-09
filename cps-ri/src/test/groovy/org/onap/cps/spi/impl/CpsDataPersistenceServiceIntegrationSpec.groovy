@@ -3,7 +3,7 @@
  *  Copyright (C) 2021-2023 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada.
- *  Modifications Copyright (C) 2022 TechMahindra Ltd.
+ *  Modifications Copyright (C) 2022-2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -41,6 +41,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.jdbc.Sql
 
 import javax.validation.ConstraintViolationException
+import java.nio.file.Path
 
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
@@ -82,15 +83,13 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     ]
 
     @Sql([CLEAR_DATA, SET_DATA])
-    def 'Get existing datanode with descendants.'() {
-        when: 'the node is retrieved by its xpath'
-            def dataNode = objectUnderTest.getDataNode(DATASPACE_NAME, ANCHOR_NAME1, '/parent-1', INCLUDE_ALL_DESCENDANTS)
-        then: 'the path and prefix are populated correctly'
-            assert dataNode.xpath == '/parent-1'
-        and: 'dataNode has no prefix (to be addressed by CPS-1301'
-            assert dataNode.moduleNamePrefix == null
-        and: 'the child node has the correct path'
-            assert dataNode.childDataNodes[0].xpath == '/parent-1/child-1'
+    def 'Get all datanodes with descendants .'() {
+        when: 'data nodes are retrieved by their xpath'
+            def dataNodes = objectUnderTest.getDataNodesForMultipleXpaths(DATASPACE_NAME, ANCHOR_NAME1, ['/parent-1'], INCLUDE_ALL_DESCENDANTS)
+        then: 'same data nodes are returned by getDataNodesForMultipleXpaths method'
+            assert objectUnderTest.getDataNodes(DATASPACE_NAME, ANCHOR_NAME1, '/parent-1', INCLUDE_ALL_DESCENDANTS) == dataNodes
+        and: 'the dataNodes have no prefix (to be addressed by CPS-1301)'
+            assert dataNodes[0].moduleNamePrefix == null
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
@@ -102,11 +101,11 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             def dataNodes = [createDataNodeTree(parentXpath, childXpath, grandChildXpath)]
             objectUnderTest.storeDataNodes(DATASPACE_NAME, ANCHOR_NAME1, dataNodes)
         then: 'it can be retrieved by its xpath'
-            def dataNode = objectUnderTest.getDataNode(DATASPACE_NAME, ANCHOR_NAME1, parentXpath, INCLUDE_ALL_DESCENDANTS)
-            assert dataNode.xpath == parentXpath
+            def dataNode = objectUnderTest.getDataNodes(DATASPACE_NAME, ANCHOR_NAME1, parentXpath, INCLUDE_ALL_DESCENDANTS)
+            assert dataNode[0].xpath == parentXpath
         and: 'it has the correct child'
-            assert dataNode.childDataNodes.size() == 1
-            def childDataNode = dataNode.childDataNodes[0]
+            assert dataNode[0].childDataNodes.size() == 1
+            def childDataNode = dataNode[0].childDataNodes[0]
             assert childDataNode.xpath == childXpath
         and: 'and its grandchild'
             assert childDataNode.childDataNodes.size() == 1
@@ -236,18 +235,19 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
-    def 'Get data node by xpath without descendants.'() {
-        when: 'data node is requested'
-            def result = objectUnderTest.getDataNode(DATASPACE_NAME, ANCHOR_HAVING_SINGLE_TOP_LEVEL_FRAGMENT,
-                    inputXPath, OMIT_DESCENDANTS)
-        then: 'data node is returned with no descendants'
-            assert result.xpath == XPATH_DATA_NODE_WITH_LEAVES
-        and: 'expected leaves'
-            assert result.childDataNodes.size() == 0
-            assertLeavesMaps(result.leaves, expectedLeavesByXpathMap[XPATH_DATA_NODE_WITH_LEAVES])
-        where: 'the following data is used'
+    def 'Get all data nodes by single xpath without descendants : #scenario'() {
+        when: 'data nodes are requested'
+            def result = objectUnderTest.getDataNodesForMultipleXpaths(DATASPACE_NAME, ANCHOR_WITH_MULTIPLE_TOP_LEVEL_FRAGMENTS,
+                [inputXPath], OMIT_DESCENDANTS)
+        then: 'data nodes under root are returned'
+            assert result.childDataNodes.size() == 2
+        and: 'no descendants of parent nodes are returned'
+            result.each {assert it.childDataNodes.size() == 0}
+        and: 'same data nodes are returned when V2 of get Data Nodes API is executed'
+            assert objectUnderTest.getDataNodes(DATASPACE_NAME, ANCHOR_WITH_MULTIPLE_TOP_LEVEL_FRAGMENTS,
+                inputXPath, OMIT_DESCENDANTS) == result
+        where: 'the following xpath is used'
             scenario      | inputXPath
-            'some xpath'  | '/parent-207'
             'root xpath'  | '/'
             'empty xpath' | ''
     }
@@ -255,51 +255,50 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Cps Path query with syntax error throws a CPS Path Exception.'() {
         when: 'trying to execute a query with a syntax (parsing) error'
-            objectUnderTest.getDataNode(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, 'invalid-cps-path/child' , OMIT_DESCENDANTS)
+            objectUnderTest.getDataNodes(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, 'invalid-cps-path/child' , OMIT_DESCENDANTS)
         then: 'exception is thrown'
-            def exceptionThrown = thrown(CpsPathException)
-            assert exceptionThrown.getDetails().contains('failed to parse at line 1 due to extraneous input \'invalid-cps-path\' expecting \'/\'')
+            def exceptionThrown = thrown(PathParsingException)
+            assert exceptionThrown.getMessage().contains('failed to parse at line 1 due to extraneous input \'invalid-cps-path\' expecting \'/\'')
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
-    def 'Get data node by xpath with all descendants.'() {
-        when: 'data node is requested with all descendants'
-            def result = objectUnderTest.getDataNode(DATASPACE_NAME, ANCHOR_HAVING_SINGLE_TOP_LEVEL_FRAGMENT,
-                    inputXPath, INCLUDE_ALL_DESCENDANTS)
-            def mappedResult = treeToFlatMapByXpath(new HashMap<>(), result)
-        then: 'data node is returned with all the descendants populated'
-            assert mappedResult.size() == 4
+    def 'Get all data nodes by single xpath with all descendants : #scenario'() {
+        when: 'data nodes are requested with all descendants'
+            def result = objectUnderTest.getDataNodesForMultipleXpaths(DATASPACE_NAME, ANCHOR_WITH_MULTIPLE_TOP_LEVEL_FRAGMENTS,
+                [inputXPath], INCLUDE_ALL_DESCENDANTS)
+            def mappedResult = multipleTreesToFlatMapByXpath(new HashMap<>(), result)
+        then: 'data nodes are returned with all the descendants populated'
+            assert mappedResult.size() == 8
             assert result.childDataNodes.size() == 2
-            assert mappedResult.get('/parent-207/child-001').childDataNodes.size() == 0
-            assert mappedResult.get('/parent-207/child-002').childDataNodes.size() == 1
-        and: 'extracted leaves maps are matching expected'
-            mappedResult.forEach(
-                    (xPath, dataNode) -> assertLeavesMaps(dataNode.leaves, expectedLeavesByXpathMap[xPath]))
+            assert mappedResult.get('/parent-208/child-001').childDataNodes.size() == 0
+            assert mappedResult.get('/parent-208/child-002').childDataNodes.size() == 1
+            assert mappedResult.get('/parent-209/child-001').childDataNodes.size() == 0
+            assert mappedResult.get('/parent-209/child-002').childDataNodes.size() == 1
+        and: 'same data nodes are returned when V2 of Get Data Nodes API is executed'
+            assert objectUnderTest.getDataNodes(DATASPACE_NAME, ANCHOR_WITH_MULTIPLE_TOP_LEVEL_FRAGMENTS,
+                inputXPath, INCLUDE_ALL_DESCENDANTS) == result
         where: 'the following data is used'
             scenario      | inputXPath
-            'some xpath'  | '/parent-207'
             'root xpath'  | '/'
             'empty xpath' | ''
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
-    def 'Get data node error scenario: #scenario.'() {
-        when: 'attempt to get data node with #scenario'
-            objectUnderTest.getDataNode(dataspaceName, anchorName, xpath, OMIT_DESCENDANTS)
-        then: 'a #expectedException is thrown'
+    def 'Get data nodes error scenario : #scenario.'() {
+        when: 'attempt to get data nodes with #scenario'
+            objectUnderTest.getDataNodes(dataspaceName, anchorName, xpath, OMIT_DESCENDANTS)
+        then: 'an #expectedException is thrown'
             thrown(expectedException)
         where: 'the following data is used'
-            scenario                 | dataspaceName  | anchorName                        | xpath           || expectedException
-            'non-existing dataspace' | 'NO DATASPACE' | 'not relevant'                    | '/not relevant' || DataspaceNotFoundException
-            'non-existing anchor'    | DATASPACE_NAME | 'NO ANCHOR'                       | '/not relevant' || AnchorNotFoundException
-            'non-existing xpath'     | DATASPACE_NAME | ANCHOR_FOR_DATA_NODES_WITH_LEAVES | '/NO-XPATH'     || DataNodeNotFoundException
-            'invalid xpath'          | DATASPACE_NAME | ANCHOR_FOR_DATA_NODES_WITH_LEAVES | 'INVALID XPATH' || CpsPathException
+            scenario             | dataspaceName  | anchorName                        | xpath           || expectedException
+            'non existing xpath' | DATASPACE_NAME | ANCHOR_FOR_DATA_NODES_WITH_LEAVES | '/NO-XPATH'     || DataNodeNotFoundException
+            'invalid Xpath'      | DATASPACE_NAME | ANCHOR_FOR_DATA_NODES_WITH_LEAVES | 'INVALID XPATH' || PathParsingException
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
-    def 'Get multiple data nodes by xpath.'() {
+    def 'Get data nodes for multiple xpaths.'() {
         when: 'fetch #scenario.'
-            def results = objectUnderTest.getDataNodes(DATASPACE_NAME, ANCHOR_NAME3, inputXpaths, OMIT_DESCENDANTS)
+            def results = objectUnderTest.getDataNodesForMultipleXpaths(DATASPACE_NAME, ANCHOR_NAME3, inputXpaths, OMIT_DESCENDANTS)
         then: 'the expected number of data nodes are returned'
             assert results.size() == expectedResultSize
         where: 'following parameters were used'
@@ -323,9 +322,9 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
-    def 'Get multiple data nodes error scenario: #scenario.'() {
+    def 'Get data nodes for collection of xpath error scenario : #scenario.'() {
         when: 'attempt to get data nodes with #scenario'
-            objectUnderTest.getDataNodes(dataspaceName, anchorName, ['/not-relevant'], OMIT_DESCENDANTS)
+            objectUnderTest.getDataNodesForMultipleXpaths(dataspaceName, anchorName, ['/not-relevant'], OMIT_DESCENDANTS)
         then: 'a #expectedException is thrown'
             thrown(expectedException)
         where: 'the following data is used'
@@ -599,11 +598,11 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             def child = new DataNodeBuilder().withXpath(deleteTestChildXpath).withChildDataNodes([grandChild]).build()
             objectUnderTest.addChildDataNode(DATASPACE_NAME, ANCHOR_NAME3, deleteTestParentXPath, child)
         and: 'number of children before delete is stored'
-            def numberOfChildrenBeforeDelete = objectUnderTest.getDataNode(DATASPACE_NAME, ANCHOR_NAME3, pathToParentOfDeletedNode, INCLUDE_ALL_DESCENDANTS).childDataNodes.size()
+            def numberOfChildrenBeforeDelete = objectUnderTest.getDataNodes(DATASPACE_NAME, ANCHOR_NAME3, pathToParentOfDeletedNode, INCLUDE_ALL_DESCENDANTS)[0].childDataNodes.size()
         when: 'target node is deleted'
             objectUnderTest.deleteDataNode(DATASPACE_NAME, ANCHOR_NAME3, deleteTarget)
         then: 'one child has been deleted'
-            def numberOfChildrenAfterDelete = objectUnderTest.getDataNode(DATASPACE_NAME, ANCHOR_NAME3, pathToParentOfDeletedNode, INCLUDE_ALL_DESCENDANTS).childDataNodes.size()
+            def numberOfChildrenAfterDelete = objectUnderTest.getDataNodes(DATASPACE_NAME, ANCHOR_NAME3, pathToParentOfDeletedNode, INCLUDE_ALL_DESCENDANTS)[0].childDataNodes.size()
             assert numberOfChildrenAfterDelete == numberOfChildrenBeforeDelete - 1
         where:
             scenario                | deleteTarget              | pathToParentOfDeletedNode
@@ -634,13 +633,13 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
         and: 'data nodes are deleted'
             objectUnderTest.deleteDataNode(DATASPACE_NAME, ANCHOR_NAME3, xpathForDeletion)
         when: 'verify data nodes are removed'
-            objectUnderTest.getDataNode(DATASPACE_NAME, ANCHOR_NAME3, xpathForDeletion, INCLUDE_ALL_DESCENDANTS)
+            objectUnderTest.getDataNodes(DATASPACE_NAME, ANCHOR_NAME3, xpathForDeletion, INCLUDE_ALL_DESCENDANTS)
         then:
             thrown(DataNodeNotFoundException)
         and: 'some related object is not deleted'
             if (xpathSurvivor!=null) {
-                dataNode = objectUnderTest.getDataNode(DATASPACE_NAME, ANCHOR_NAME3, xpathSurvivor, INCLUDE_ALL_DESCENDANTS)
-                assert dataNode.xpath == xpathSurvivor
+                dataNode = objectUnderTest.getDataNodes(DATASPACE_NAME, ANCHOR_NAME3, xpathSurvivor, INCLUDE_ALL_DESCENDANTS)
+                assert dataNode[0].xpath == xpathSurvivor
             }
         where: 'following parameters were used'
             scenario                               | xpathForDeletion                                  || xpathSurvivor
@@ -708,6 +707,15 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
         flatMap.put(dataNodeTree.xpath, dataNodeTree)
         dataNodeTree.childDataNodes
                 .forEach(childDataNode -> treeToFlatMapByXpath(flatMap, childDataNode))
+        return flatMap
+    }
+
+    def static multipleTreesToFlatMapByXpath(Map<String, DataNode> flatMap, Collection<DataNode> dataNodeTrees) {
+        for (DataNode dataNodeTree: dataNodeTrees){
+            flatMap.put(dataNodeTree.xpath, dataNodeTree)
+            dataNodeTree.childDataNodes
+                .forEach(childDataNode -> multipleTreesToFlatMapByXpath(flatMap, [childDataNode]))
+        }
         return flatMap
     }
 

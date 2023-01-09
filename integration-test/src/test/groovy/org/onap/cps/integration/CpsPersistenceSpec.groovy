@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2023 Nordix Foundation
+ *  Modifications Copyright (C) 2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -36,7 +37,7 @@ class CpsPersistenceSpec extends CpsIntegrationSpecBase{
         and: 'The anchor has been persisted successfully'
             cpsAdminService.getAnchor(TEST_DATASPACE, TEST_ANCHOR).getName() == TEST_ANCHOR
         and: 'The data nodes have been persisted successfully'
-            cpsDataService.getDataNode(TEST_DATASPACE, TEST_ANCHOR, '/bookstore', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS).xpath == '/bookstore'
+            cpsDataService.getDataNodes(TEST_DATASPACE, TEST_ANCHOR, '/bookstore', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS).iterator().next().xpath == '/bookstore'
     }
 
     def 'Test deletion of all test data'() {
@@ -56,6 +57,6 @@ class CpsPersistenceSpec extends CpsIntegrationSpecBase{
         when: 'data is persisted to the database'
             saveDataNodes(TEST_DATASPACE, TEST_ANCHOR, "/", "BookstoreDataNodes.json")
         then: 'the correct data is saved'
-            cpsDataService.getDataNode(TEST_DATASPACE, TEST_ANCHOR, '/bookstore', FetchDescendantsOption.OMIT_DESCENDANTS).leaves['bookstore-name'] == 'Easons'
+            cpsDataService.getDataNodes(TEST_DATASPACE, TEST_ANCHOR, '/bookstore', FetchDescendantsOption.OMIT_DESCENDANTS).iterator().next().leaves['bookstore-name'] == 'Easons'
     }
 }

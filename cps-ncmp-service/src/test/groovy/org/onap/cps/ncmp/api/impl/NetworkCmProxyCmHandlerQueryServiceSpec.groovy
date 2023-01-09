@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Nordix Foundation
+ *  Modifications Copyright (C) 2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -40,7 +41,7 @@ class NetworkCmProxyCmHandlerQueryServiceSpec extends Specification {
     def partiallyMockedCmHandleQueries = Spy(CmHandleQueriesImpl)
     def mockInventoryPersistence = Mock(InventoryPersistence)
 
-    def static someCmHandleDataNode = new DataNode(xpath: '/dmi-registry/cm-handles[@id=\'some-cmhandle-id\']', leaves: ['id':'some-cmhandle-id'])
+    def static someCmHandleDataNode = [new DataNode(xpath: '/dmi-registry/cm-handles[@id=\'some-cmhandle-id\']', leaves: ['id':'some-cmhandle-id'])]
     def dmiRegistry = new DataNode(xpath: '/dmi-registry', childDataNodes: createDataNodeList(['PNFDemo1', 'PNFDemo2', 'PNFDemo3', 'PNFDemo4']))
 
     static def queryResultCmHandleMap = createCmHandleMap(['H1', 'H2'])
@@ -136,7 +137,7 @@ class NetworkCmProxyCmHandlerQueryServiceSpec extends Specification {
         and: 'cmHandles are returned from the module names query'
             mockInventoryPersistence.getCmHandleIdsWithGivenModules(['some-module-name']) >> anchorsForModuleQuery
         and: 'cmHandleQueries returns a datanode result'
-            2 * cmHandleQueries.queryCmHandleDataNodesByCpsPath(*_) >> [someCmHandleDataNode]
+            2 * cmHandleQueries.queryCmHandleDataNodesByCpsPath(*_) >> someCmHandleDataNode
         when: 'the query is executed for both cm handle ids and details'
             def returnedCmHandlesJustIds = objectUnderTest.queryCmHandleIds(cmHandleQueryParameters)
             def returnedCmHandlesWithData = objectUnderTest.queryCmHandles(cmHandleQueryParameters)
@@ -157,9 +158,9 @@ class NetworkCmProxyCmHandlerQueryServiceSpec extends Specification {
         given: 'We use an empty query'
             def cmHandleQueryParameters = new CmHandleQueryServiceParameters()
         and: 'the inventory persistence returns the dmi registry datanode with just ids'
-            mockInventoryPersistence.getDataNode("/dmi-registry", FetchDescendantsOption.FETCH_DIRECT_CHILDREN_ONLY) >> dmiRegistry
+            mockInventoryPersistence.getDataNode("/dmi-registry", FetchDescendantsOption.FETCH_DIRECT_CHILDREN_ONLY) >> [dmiRegistry]
         and: 'the inventory persistence returns the dmi registry datanode with data'
-            mockInventoryPersistence.getDataNode("/dmi-registry") >> dmiRegistry
+            mockInventoryPersistence.getDataNode("/dmi-registry") >> [dmiRegistry]
         when: 'the query is executed for both cm handle ids and details'
             def returnedCmHandlesJustIds = objectUnderTest.queryCmHandleIds(cmHandleQueryParameters)
             def returnedCmHandlesWithData = objectUnderTest.queryCmHandles(cmHandleQueryParameters)
@@ -173,7 +174,7 @@ class NetworkCmProxyCmHandlerQueryServiceSpec extends Specification {
         given: 'We query without any parameters'
             def cmHandleQueryParameters = new CmHandleQueryServiceParameters()
         and: 'the inventoryPersistence returns all four CmHandleIds'
-            mockInventoryPersistence.getDataNode(*_) >> dmiRegistry
+            mockInventoryPersistence.getDataNode(*_) >> [dmiRegistry]
         when: 'the query executed'
             def resultSet = objectUnderTest.queryCmHandleIdsForInventory(cmHandleQueryParameters)
         then: 'the size of the result list equals the size of all cmHandleIds.'
