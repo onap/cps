@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "1fb55c9b_44b7730e",
+        "filename": "cps-rest/docs/openapi/cpsDataV2.yml",
+        "patchSetId": 10
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-01-09T13:41:42Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "63289583_56f726a6",
+      "range": {
+        "startLine": 26,
+        "startChar": 4,
+        "endLine": 26,
+        "endChar": 14
+      },
+      "revId": "8074d810f194199ea5f7c3434afccbff4a27bf65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a59b5978_4504ca31",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
         "patchSetId": 10
@@ -260,6 +284,30 @@
     },
     {
       "key": {
+        "uuid": "03159621_511f450f",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-01-09T13:41:42Z",
+      "side": 1,
+      "message": "Ah I understand, will get team input to come to decision",
+      "parentUuid": "91817fc5_3f066e85",
+      "range": {
+        "startLine": 270,
+        "startChar": 12,
+        "endLine": 270,
+        "endChar": 13
+      },
+      "revId": "8074d810f194199ea5f7c3434afccbff4a27bf65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "98b5c2dd_d2b01f4d",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
         "patchSetId": 10
@@ -295,6 +343,30 @@
       "side": 1,
       "message": "test cases are mainly to validating descendants for the request as it was done for above test case.",
       "parentUuid": "98b5c2dd_d2b01f4d",
+      "range": {
+        "startLine": 111,
+        "startChar": 0,
+        "endLine": 118,
+        "endChar": 48
+      },
+      "revId": "8074d810f194199ea5f7c3434afccbff4a27bf65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d364e7b1_ce874b28",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-01-09T13:41:42Z",
+      "side": 1,
+      "message": "Yeah but in the test above the expectedCpsDataServiceOption is being validated against the mock input given on line 75, something similar should be done on line 99 instead of _ in this test to achieve the same test result. The different cases are not being validated in this test",
+      "parentUuid": "c2ee400c_0e8a2e10",
       "range": {
         "startLine": 111,
         "startChar": 0,
