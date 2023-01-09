@@ -52,7 +52,8 @@ INSERT INTO ANCHOR (ID, NAME, DATASPACE_ID, SCHEMA_SET_ID) VALUES
     (3001, 'ANCHOR-001', 1001, 2001),
     (3003, 'ANCHOR-003', 1001, 2001),
     (3004, 'ncmp-dmi-registry', 1002, 2001),
-    (3005, 'ANCHOR-005', 1001, 2001);
+    (3005, 'ANCHOR-005', 1001, 2001),
+    (3006, 'ANCHOR-006', 1001, 2001);
 
 INSERT INTO FRAGMENT (ID, DATASPACE_ID, ANCHOR_ID, PARENT_ID, XPATH) VALUES
     (4001, 1001, 3001, null, '/parent-1'),
@@ -67,6 +68,16 @@ INSERT INTO FRAGMENT (ID, DATASPACE_ID, ANCHOR_ID, PARENT_ID, XPATH, ATTRIBUTES)
     (5010, 1001, 3005, 5009, '/parent-207/child-001', '{"first-child-leaf": "first-child-leaf value"}'),
     (5011, 1001, 3005, 5009, '/parent-207/child-002', '{"second-child-leaf": "second-child-leaf value"}'),
     (5012, 1001, 3005, 5011, '/parent-207/child-002/grand-child', '{"grand-child-leaf": "grand-child-leaf value"}');
+
+INSERT INTO FRAGMENT (ID, DATASPACE_ID, ANCHOR_ID, PARENT_ID, XPATH, ATTRIBUTES) VALUES
+    (5013, 1001, 3006, null, '/parent-208', '{"parent-leaf-1": "parent-leaf value-1"}'),
+    (5014, 1001, 3006, 5013, '/parent-208/child-001', '{"first-child-leaf": "first-child-leaf value"}'),
+    (5015, 1001, 3006, 5013, '/parent-208/child-002', '{"second-child-leaf": "second-child-leaf value"}'),
+    (5016, 1001, 3006, 5015, '/parent-208/child-002/grand-child', '{"grand-child-leaf": "grand-child-leaf value"}'),
+    (5017, 1001, 3006, null, '/parent-209', '{"parent-leaf-2": "parent-leaf value-2"}'),
+    (5018, 1001, 3006, 5017, '/parent-209/child-001', '{"first-child-leaf": "first-child-leaf value"}'),
+    (5019, 1001, 3006, 5017, '/parent-209/child-002', '{"second-child-leaf": "second-child-leaf value"}'),
+    (5020, 1001, 3006, 5019, '/parent-209/child-002/grand-child', '{"grand-child-leaf": "grand-child-leaf value"}');
 
 INSERT INTO FRAGMENT (ID, DATASPACE_ID, ANCHOR_ID, PARENT_ID, XPATH, ATTRIBUTES) VALUES
     (4201, 1001, 3003, null, '/parent-200', '{"leaf-value": "original"}'),

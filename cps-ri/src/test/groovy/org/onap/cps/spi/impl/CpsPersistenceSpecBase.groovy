@@ -60,13 +60,14 @@ class CpsPersistenceSpecBase extends Specification {
 
     static final String CLEAR_DATA = '/data/clear-all.sql'
 
-    static final String DATASPACE_NAME = 'DATASPACE-001'
-    static final String SCHEMA_SET_NAME1 = 'SCHEMA-SET-001'
-    static final String SCHEMA_SET_NAME2 = 'SCHEMA-SET-002'
-    static final String ANCHOR_NAME1 = 'ANCHOR-001'
-    static final String ANCHOR_NAME2 = 'ANCHOR-002'
-    static final String ANCHOR_NAME3 = 'ANCHOR-003'
-    static final String ANCHOR_FOR_DATA_NODES_WITH_LEAVES = 'ANCHOR-003'
-    static final String ANCHOR_FOR_SHOP_EXAMPLE = 'ANCHOR-004'
-    static final String ANCHOR_HAVING_SINGLE_TOP_LEVEL_FRAGMENT = 'ANCHOR-005'
+    static String DATASPACE_NAME = 'DATASPACE-001'
+    static String SCHEMA_SET_NAME1 = 'SCHEMA-SET-001'
+    static String SCHEMA_SET_NAME2 = 'SCHEMA-SET-002'
+    static String ANCHOR_NAME1 = 'ANCHOR-001'
+    static String ANCHOR_NAME2 = 'ANCHOR-002'
+    static String ANCHOR_NAME3 = 'ANCHOR-003'
+    static String ANCHOR_FOR_DATA_NODES_WITH_LEAVES = 'ANCHOR-003'
+    static String ANCHOR_FOR_SHOP_EXAMPLE = 'ANCHOR-004'
+    static String ANCHOR_HAVING_SINGLE_TOP_LEVEL_FRAGMENT = 'ANCHOR-005'
+    static String ANCHOR_WITH_MULTIPLE_TOP_LEVEL_FRAGMENTS = 'ANCHOR-006'
 }
