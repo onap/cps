@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Nordix Foundation
+ *  Modifications Copyright (C) 2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -217,8 +218,8 @@ public class NetworkCmProxyCmHandlerQueryServiceImpl implements NetworkCmProxyCm
         final Map<String, NcmpServiceCmHandle> queryResult = new HashMap<>(cmHandleIdsByModuleName.size());
         if (previousQueryResult == NO_QUERY_TO_EXECUTE) {
             cmHandleIdsByModuleName.forEach(cmHandleId ->
-                    queryResult.put(cmHandleId, createNcmpServiceCmHandle(
-                            inventoryPersistence.getDataNode("/dmi-registry/cm-handles[@id='" + cmHandleId + "']")))
+                    queryResult.put(cmHandleId, createNcmpServiceCmHandle(inventoryPersistence
+                            .getDataNode("/dmi-registry/cm-handles[@id='" + cmHandleId + "']").iterator().next()))
             );
             return queryResult;
         }
@@ -298,13 +299,14 @@ public class NetworkCmProxyCmHandlerQueryServiceImpl implements NetworkCmProxyCm
     }
 
     private Set<NcmpServiceCmHandle> getAllCmHandles() {
-        return inventoryPersistence.getDataNode("/dmi-registry")
-                .getChildDataNodes().stream().map(this::createNcmpServiceCmHandle).collect(Collectors.toSet());
+        final DataNode dataNode = inventoryPersistence.getDataNode("/dmi-registry").iterator().next();
+        return dataNode.getChildDataNodes().stream().map(this::createNcmpServiceCmHandle).collect(Collectors.toSet());
     }
 
     private Set<String> getAllCmHandleIds() {
-        return inventoryPersistence.getDataNode("/dmi-registry", FETCH_DIRECT_CHILDREN_ONLY)
-                .getChildDataNodes().stream().map(dataNode -> dataNode.getLeaves().get("id").toString())
+        final DataNode dataNodes = inventoryPersistence.getDataNode("/dmi-registry", FETCH_DIRECT_CHILDREN_ONLY)
+                .iterator().next();
+        return dataNodes.getChildDataNodes().stream().map(dataNode -> dataNode.getLeaves().get("id").toString())
                 .collect(Collectors.toSet());
     }
 

@@ -3,7 +3,7 @@
  *  Copyright (C) 2021-2023 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
- *  Modifications Copyright (C) 2022 TechMahindra Ltd.
+ *  Modifications Copyright (C) 2022-2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -249,17 +249,22 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     }
 
     @Override
-    public DataNode getDataNode(final String dataspaceName, final String anchorName, final String xpath,
-                                final FetchDescendantsOption fetchDescendantsOption) {
-        final FragmentEntity fragmentEntity = getFragmentByXpath(dataspaceName, anchorName, xpath,
-            fetchDescendantsOption);
-        return toDataNode(fragmentEntity, fetchDescendantsOption);
+    public Collection<DataNode> getDataNodes(final String dataspaceName, final String anchorName,
+                                             final String xpath,
+                                             final FetchDescendantsOption fetchDescendantsOption) {
+        final String targetXpath = isRootXpath(xpath) ? xpath : CpsPathUtil.getNormalizedXpath(xpath);
+        final Collection<DataNode> dataNodes = getDataNodesForMultipleXpaths(dataspaceName, anchorName,
+                Collections.singletonList(targetXpath), fetchDescendantsOption);
+        if (dataNodes.isEmpty()) {
+            throw new DataNodeNotFoundException(dataspaceName, anchorName, xpath);
+        }
+        return dataNodes;
     }
 
     @Override
-    public Collection<DataNode> getDataNodes(final String dataspaceName, final String anchorName,
-                                             final Collection<String> xpaths,
-                                             final FetchDescendantsOption fetchDescendantsOption) {
+    public Collection<DataNode> getDataNodesForMultipleXpaths(final String dataspaceName, final String anchorName,
+                                                              final Collection<String> xpaths,
+                                                              final FetchDescendantsOption fetchDescendantsOption) {
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         final AnchorEntity anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
 
@@ -271,7 +276,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             try {
                 normalizedXpaths.add(CpsPathUtil.getNormalizedXpath(xpath));
             } catch (final PathParsingException e) {
-                log.warn("Error parsing xpath \"{}\" in getDataNodes: {}", xpath, e.getMessage());
+                log.warn("Error parsing xpath \"{}\" in getDataNodesForMultipleXpaths: {}", xpath, e.getMessage());
             }
         }
         final Collection<FragmentEntity> fragmentEntities =

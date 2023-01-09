@@ -2,6 +2,7 @@
  * ============LICENSE_START=======================================================
  * Copyright (C) 2022 Nordix Foundation
  * Modifications Copyright (C) 2022 Bell Canada
+ * Modifications Copyright (C) 2023 TechMahindra Ltd.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -47,7 +48,7 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
                                     new DataNodeBuilder().withXpath("/dmi-registry/cm-handles[@id='${cmHandleId}']/additional-properties[@name='additionalProp2']").withLeaves(['name': 'additionalProp2', 'value': 'additionalValue2']).build(),
                                     new DataNodeBuilder().withXpath("/dmi-registry/cm-handles[@id='${cmHandleId}']/public-properties[@name='publicProp3']").withLeaves(['name': 'publicProp3', 'value': 'publicValue3']).build(),
                                     new DataNodeBuilder().withXpath("/dmi-registry/cm-handles[@id='${cmHandleId}']/public-properties[@name='publicProp4']").withLeaves(['name': 'publicProp4', 'value': 'publicValue4']).build()]
-    def static cmHandleDataNode = new DataNode(xpath: cmHandleXpath, childDataNodes: propertyDataNodes)
+    def static cmHandleDataNode = [new DataNode(xpath: cmHandleXpath, childDataNodes: propertyDataNodes)]
 
     def 'Update CM Handle Public Properties: #scenario'() {
         given: 'the CPS service return a CM handle'
@@ -97,7 +98,7 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
     def 'Update CM Handle Properties, remove all properties: #scenario'() {
         given: 'the CPS service return a CM handle'
             def cmHandleDataNode = new DataNode(xpath: cmHandleXpath, childDataNodes: originalPropertyDataNodes)
-            mockInventoryPersistence.getCmHandleDataNode(cmHandleId) >> cmHandleDataNode
+            mockInventoryPersistence.getCmHandleDataNode(cmHandleId) >> [cmHandleDataNode]
         and: 'an update cm handle request that removes all public properties(existing and non-existing)'
             def cmHandleUpdateRequest = [new NcmpServiceCmHandle(cmHandleId: cmHandleId, publicProperties: ['publicProp3': null, 'publicProp4': null])]
         when: 'update data node leaves is called with the update request'
