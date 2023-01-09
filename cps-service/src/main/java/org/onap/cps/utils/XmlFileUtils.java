@@ -49,6 +49,8 @@ import org.xml.sax.SAXException;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class XmlFileUtils {
 
+    private static final DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+    private static boolean isNewDocumentBuilderFactoryInstance = true;
     private static final TransformerFactory transformerFactory = TransformerFactory.newInstance();
     private static boolean isNewTransformerFactoryInstance = true;
     private static final Pattern XPATH_PROPERTY_REGEX =
@@ -161,9 +163,11 @@ public class XmlFileUtils {
 
     private static DocumentBuilderFactory getDocumentBuilderFactory() {
 
-        final DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-        documentBuilderFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
-        documentBuilderFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
+        if (isNewDocumentBuilderFactoryInstance) {
+            documentBuilderFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
+            documentBuilderFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
+            isNewDocumentBuilderFactoryInstance = false;
+        }
 
         return documentBuilderFactory;
     }
