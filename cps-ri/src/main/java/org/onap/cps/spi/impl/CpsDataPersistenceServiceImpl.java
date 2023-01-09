@@ -467,8 +467,10 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     private Collection<DataNode> toDataNodes(final Collection<FragmentEntity> fragmentEntities,
                                              final FetchDescendantsOption fetchDescendantsOption) {
         final Collection<DataNode> dataNodes = new ArrayList<>(fragmentEntities.size());
-        for (final FragmentEntity fragmentEntity : fragmentEntities) {
-            dataNodes.add(toDataNode(fragmentEntity, fetchDescendantsOption));
+        if (!fragmentEntities.isEmpty()) {
+            for (final FragmentEntity fragmentEntity : fragmentEntities) {
+                dataNodes.add(toDataNode(fragmentEntity, fetchDescendantsOption));
+            }
         }
         return dataNodes;
     }
