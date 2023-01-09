@@ -3,7 +3,7 @@
  *  Copyright (C) 2021-2022 Nordix Foundation
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
- *  Modifications Copyright (C) 2022 TechMahindra Ltd.
+ *  Modifications Copyright (C) 2022-2023 TechMahindra Ltd.
  *  Modifications Copyright (C) 2022 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -31,6 +31,7 @@ import static org.onap.cps.notification.Operation.UPDATE;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -42,6 +43,7 @@ import org.onap.cps.notification.NotificationService;
 import org.onap.cps.notification.Operation;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.FetchDescendantsOption;
+import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.spi.model.Anchor;
 import org.onap.cps.spi.model.DataNode;
@@ -130,9 +132,20 @@ public class CpsDataServiceImpl implements CpsDataService {
     }
 
     @Override
+    public Collection<DataNode> getDataNodesV2(final String dataspaceName, final String anchorName, final String xpath,
+                                               final FetchDescendantsOption fetchDescendantsOption) {
+        final Collection<DataNode> dataNodes = new ArrayList<>(getDataNodes(dataspaceName, anchorName,
+                Collections.singleton(xpath), fetchDescendantsOption));
+        if (dataNodes.isEmpty()) {
+            throw new DataNodeNotFoundException(dataspaceName, anchorName, xpath);
+        }
+        return dataNodes;
+    }
+
+    @Override
     public Collection<DataNode> getDataNodes(final String dataspaceName, final String anchorName,
                                              final Collection<String> xpaths,
-                                final FetchDescendantsOption fetchDescendantsOption) {
+                                             final FetchDescendantsOption fetchDescendantsOption) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         return cpsDataPersistenceService.getDataNodes(dataspaceName, anchorName, xpaths, fetchDescendantsOption);
     }
