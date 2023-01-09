@@ -2,6 +2,7 @@
  * ============LICENSE_START=======================================================
  * Copyright (c) 2021-2022 Bell Canada.
  * Modifications Copyright (c) 2022 Nordix Foundation
+ * Modifications Copyright (C) 2023 TechMahindra Ltd.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -76,8 +77,8 @@ public class CpsDataUpdatedEventFactory {
     public CpsDataUpdatedEvent createCpsDataUpdatedEvent(final Anchor anchor,
         final OffsetDateTime observedTimestamp, final Operation operation) {
         final var dataNode = (operation == Operation.DELETE) ? null :
-            cpsDataService.getDataNode(anchor.getDataspaceName(), anchor.getName(),
-                "/", FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
+            cpsDataService.getDataNodes(anchor.getDataspaceName(), anchor.getName(),
+                "/", FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS).iterator().next();
         return toCpsDataUpdatedEvent(anchor, dataNode, observedTimestamp, operation);
     }
 

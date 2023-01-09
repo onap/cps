@@ -3,6 +3,7 @@
  *  Copyright (C) 2021-2022 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021 Bell Canada.
+ *  Modifications Copyright (C) 2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -60,13 +61,14 @@ class CpsPersistenceSpecBase extends Specification {
 
     static final String CLEAR_DATA = '/data/clear-all.sql'
 
-    static final String DATASPACE_NAME = 'DATASPACE-001'
-    static final String SCHEMA_SET_NAME1 = 'SCHEMA-SET-001'
-    static final String SCHEMA_SET_NAME2 = 'SCHEMA-SET-002'
-    static final String ANCHOR_NAME1 = 'ANCHOR-001'
-    static final String ANCHOR_NAME2 = 'ANCHOR-002'
-    static final String ANCHOR_NAME3 = 'ANCHOR-003'
-    static final String ANCHOR_FOR_DATA_NODES_WITH_LEAVES = 'ANCHOR-003'
-    static final String ANCHOR_FOR_SHOP_EXAMPLE = 'ANCHOR-004'
-    static final String ANCHOR_HAVING_SINGLE_TOP_LEVEL_FRAGMENT = 'ANCHOR-005'
+    static def DATASPACE_NAME = 'DATASPACE-001'
+    static def SCHEMA_SET_NAME1 = 'SCHEMA-SET-001'
+    static def SCHEMA_SET_NAME2 = 'SCHEMA-SET-002'
+    static def ANCHOR_NAME1 = 'ANCHOR-001'
+    static def ANCHOR_NAME2 = 'ANCHOR-002'
+    static def ANCHOR_NAME3 = 'ANCHOR-003'
+    static def ANCHOR_FOR_DATA_NODES_WITH_LEAVES = 'ANCHOR-003'
+    static def ANCHOR_FOR_SHOP_EXAMPLE = 'ANCHOR-004'
+    static def ANCHOR_HAVING_SINGLE_TOP_LEVEL_FRAGMENT = 'ANCHOR-005'
+    static def ANCHOR_WITH_MULTIPLE_TOP_LEVEL_FRAGMENTS = 'ANCHOR-006'
 }

@@ -3,6 +3,7 @@
  *  Copyright (C) 2021-2022 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada
+ *  Modifications Copyright (C) 2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -89,11 +90,11 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
 
     def cmHandleXPath = "/dmi-registry/cm-handles[@id='testCmHandle']"
 
-    def dataNode = new DataNode(leaves: ['id': 'some-cm-handle', 'dmi-service-name': 'testDmiService'])
+    def dataNode = [new DataNode(leaves: ['id': 'some-cm-handle', 'dmi-service-name': 'testDmiService'])]
 
     def 'Write resource data for pass-through running from DMI using POST.'() {
         given: 'cpsDataService returns valid datanode'
-            mockCpsDataService.getDataNode('NCMP-Admin', 'ncmp-dmi-registry',
+            mockCpsDataService.getDataNodes('NCMP-Admin', 'ncmp-dmi-registry',
                 cmHandleXPath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
         when: 'write resource data is called'
             objectUnderTest.writeResourceDataPassThroughRunningForCmHandle('testCmHandle',
@@ -107,7 +108,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
 
     def 'Get resource data for pass-through operational from DMI.'() {
         given: 'get data node is called'
-            mockCpsDataService.getDataNode('NCMP-Admin', 'ncmp-dmi-registry',
+            mockCpsDataService.getDataNodes('NCMP-Admin', 'ncmp-dmi-registry',
                 cmHandleXPath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
         and: 'get resource data from DMI is called'
             mockDmiDataOperations.getResourceDataFromDmi(
@@ -129,7 +130,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
 
     def 'Get resource data for pass-through running from DMI.'() {
         given: 'cpsDataService returns valid data node'
-            mockCpsDataService.getDataNode('NCMP-Admin', 'ncmp-dmi-registry',
+            mockCpsDataService.getDataNodes('NCMP-Admin', 'ncmp-dmi-registry',
                 cmHandleXPath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
         and: 'DMI returns valid response and data'
             mockDmiDataOperations.getResourceDataFromDmi('testCmHandle',
@@ -233,7 +234,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
 
     def 'Update resource data for pass-through running from dmi using POST #scenario DMI properties.'() {
         given: 'cpsDataService returns valid datanode'
-            mockCpsDataService.getDataNode('NCMP-Admin', 'ncmp-dmi-registry',
+            mockCpsDataService.getDataNodes('NCMP-Admin', 'ncmp-dmi-registry',
                 cmHandleXPath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
         when: 'get resource data is called'
             objectUnderTest.writeResourceDataPassThroughRunningForCmHandle('testCmHandle',
