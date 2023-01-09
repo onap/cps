@@ -193,6 +193,18 @@ class CpsDataServiceImplSpec extends Specification {
             fetchDescendantsOption << [FetchDescendantsOption.OMIT_DESCENDANTS, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS]
     }
 
+    def 'Get all data node with option #fetchDescendantsOption using V2.'() {
+        def xpath = '/xpath'
+        def xpath2 = '/xpath'
+        def dataNode = [new DataNodeBuilder().withXpath(xpath).build(), new DataNodeBuilder().withXpath(xpath2).build()]
+        given: 'persistence service returns data for get data request'
+            mockCpsDataPersistenceService.getDataNodes(dataspaceName, anchorName, xpath, fetchDescendantsOption) >> dataNode
+        expect: 'service returns same data if uses same parameters'
+            objectUnderTest.getDataNodes(dataspaceName, anchorName, xpath, fetchDescendantsOption) == dataNode
+        where: 'all fetch options are supported'
+            fetchDescendantsOption << [FetchDescendantsOption.OMIT_DESCENDANTS, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS]
+    }
+
     def 'Update data node leaves: #scenario.'() {
         given: 'schema set for given anchor and dataspace references test-tree model'
             setupSchemaSetMocks('test-tree.yang')

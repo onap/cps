@@ -4,6 +4,7 @@
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada
  *  Modifications Copyright (C) 2022 Deutsche Telekom AG
+ *  Modifications Copyright (C) 2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -38,9 +39,9 @@ public interface CpsDataService {
     /**
      * Persists data for the given anchor and dataspace.
      *
-     * @param dataspaceName dataspace name
-     * @param anchorName    anchor name
-     * @param nodeData      node data
+     * @param dataspaceName     dataspace name
+     * @param anchorName        anchor name
+     * @param nodeData          node data
      * @param observedTimestamp observedTimestamp
      */
     void saveData(String dataspaceName, String anchorName, String nodeData, OffsetDateTime observedTimestamp);
@@ -48,9 +49,9 @@ public interface CpsDataService {
     /**
      * Persists data for the given anchor and dataspace.
      *
-     * @param dataspaceName dataspace name
-     * @param anchorName    anchor name
-     * @param nodeData      node data
+     * @param dataspaceName     dataspace name
+     * @param anchorName        anchor name
+     * @param nodeData          node data
      * @param observedTimestamp observedTimestamp
      * @param contentType       node data content type
      */
@@ -60,10 +61,10 @@ public interface CpsDataService {
     /**
      * Persists child data fragment under existing data node for the given anchor and dataspace.
      *
-     * @param dataspaceName   dataspace name
-     * @param anchorName      anchor name
-     * @param parentNodeXpath parent node xpath
-     * @param nodeData        node data
+     * @param dataspaceName     dataspace name
+     * @param anchorName        anchor name
+     * @param parentNodeXpath   parent node xpath
+     * @param nodeData          node data
      * @param observedTimestamp observedTimestamp
      */
     void saveData(String dataspaceName, String anchorName, String parentNodeXpath, String nodeData,
@@ -78,7 +79,6 @@ public interface CpsDataService {
      * @param nodeData          node data
      * @param observedTimestamp observedTimestamp
      * @param contentType       node data content type
-     *
      */
     void saveData(String dataspaceName, String anchorName, String parentNodeXpath, String nodeData,
                   OffsetDateTime observedTimestamp, ContentType contentType);
@@ -94,7 +94,7 @@ public interface CpsDataService {
      * @param observedTimestamp observedTimestamp
      */
     void saveListElements(String dataspaceName, String anchorName, String parentNodeXpath, String jsonData,
-        OffsetDateTime observedTimestamp);
+                          OffsetDateTime observedTimestamp);
 
     /**
      * Persists child data fragment representing one or more list elements under existing data node for the
@@ -123,35 +123,48 @@ public interface CpsDataService {
         FetchDescendantsOption fetchDescendantsOption);
 
     /**
+     * Retrieves all the datanodes by XPath for given dataspace and anchor.
+     *
+     * @param dataspaceName          dataspace name
+     * @param anchorName             anchor name
+     * @param xpath                  xpath
+     * @param fetchDescendantsOption defines the scope of data to fetch: either single node or all the descendant nodes
+     *                               (recursively) as well
+     * @return collection of data node object
+     */
+    Collection<DataNode> getDataNodes(String dataspaceName, String anchorName, String xpath,
+                                      FetchDescendantsOption fetchDescendantsOption);
+
+    /**
      * Updates data node for given dataspace and anchor using xpath to parent node.
      *
-     * @param dataspaceName   dataspace name
-     * @param anchorName      anchor name
-     * @param parentNodeXpath xpath to parent node
-     * @param jsonData        json data
+     * @param dataspaceName     dataspace name
+     * @param anchorName        anchor name
+     * @param parentNodeXpath   xpath to parent node
+     * @param jsonData          json data
      * @param observedTimestamp observedTimestamp
      */
     void updateNodeLeaves(String dataspaceName, String anchorName, String parentNodeXpath, String jsonData,
-        OffsetDateTime observedTimestamp);
+                          OffsetDateTime observedTimestamp);
 
     /**
      * Replaces an existing data node's content including descendants.
      *
-     * @param dataspaceName   dataspace name
-     * @param anchorName      anchor name
-     * @param parentNodeXpath xpath to parent node
-     * @param jsonData        json data
+     * @param dataspaceName     dataspace name
+     * @param anchorName        anchor name
+     * @param parentNodeXpath   xpath to parent node
+     * @param jsonData          json data
      * @param observedTimestamp observedTimestamp
      */
     void updateDataNodeAndDescendants(String dataspaceName, String anchorName, String parentNodeXpath, String jsonData,
-                                       OffsetDateTime observedTimestamp);
+                                      OffsetDateTime observedTimestamp);
 
     /**
      * Replaces multiple existing data nodes' content including descendants in a batch operation.
      *
-     * @param dataspaceName   dataspace name
-     * @param anchorName      anchor name
-     * @param nodesJsonData   map of xpath and node JSON data
+     * @param dataspaceName     dataspace name
+     * @param anchorName        anchor name
+     * @param nodesJsonData     map of xpath and node JSON data
      * @param observedTimestamp observedTimestamp
      */
     void updateDataNodesAndDescendants(String dataspaceName, String anchorName, Map<String, String> nodesJsonData,
@@ -186,9 +199,9 @@ public interface CpsDataService {
     /**
      * Deletes data node for given anchor and dataspace.
      *
-     * @param dataspaceName dataspace name
-     * @param anchorName anchor name
-     * @param dataNodeXpath data node xpath
+     * @param dataspaceName     dataspace name
+     * @param anchorName        anchor name
+     * @param dataNodeXpath     data node xpath
      * @param observedTimestamp observed timestamp
      */
     void deleteDataNode(String dataspaceName, String anchorName, String dataNodeXpath,
@@ -198,7 +211,7 @@ public interface CpsDataService {
      * Deletes all data nodes for a given anchor in a dataspace.
      *
      * @param dataspaceName     dataspace name
-     * @param anchorName       anchor name
+     * @param anchorName        anchor name
      * @param observedTimestamp observed timestamp
      */
     void deleteDataNodes(String dataspaceName, String anchorName, OffsetDateTime observedTimestamp);
@@ -206,9 +219,9 @@ public interface CpsDataService {
     /**
      * Deletes a list or a list-element under given anchor and dataspace.
      *
-     * @param dataspaceName dataspace name
-     * @param anchorName    anchor name
-     * @param listElementXpath list element xpath
+     * @param dataspaceName     dataspace name
+     * @param anchorName        anchor name
+     * @param listElementXpath  list element xpath
      * @param observedTimestamp observedTimestamp
      */
     void deleteListOrListElement(String dataspaceName, String anchorName, String listElementXpath,
@@ -223,7 +236,7 @@ public interface CpsDataService {
      * @param anchorName            anchor name
      * @param parentNodeXpath       xpath
      * @param dataNodeUpdatesAsJson json data representing data node updates
-     * @param observedTimestamp observedTimestamp
+     * @param observedTimestamp     observedTimestamp
      */
     void updateNodeLeavesAndExistingDescendantLeaves(String dataspaceName, String anchorName, String parentNodeXpath,
         String dataNodeUpdatesAsJson, OffsetDateTime observedTimestamp);
@@ -239,7 +252,6 @@ public interface CpsDataService {
      * Close session.
      *
      * @param sessionId session ID
-     *
      */
     void closeSession(String sessionId);
 
@@ -247,9 +259,9 @@ public interface CpsDataService {
      * Lock anchor with default timeout.
      * To release locks(s), the session holding the lock(s) must be closed.
      *
-     * @param sessionID session ID
+     * @param sessionID     session ID
      * @param dataspaceName dataspace name
-     * @param anchorName anchor name
+     * @param anchorName    anchor name
      */
     void lockAnchor(String sessionID, String dataspaceName, String anchorName);
 
@@ -257,9 +269,9 @@ public interface CpsDataService {
      * Lock anchor with custom timeout.
      * To release locks(s), the session holding the lock(s) must be closed.
      *
-     * @param sessionID session ID
-     * @param dataspaceName dataspace name
-     * @param anchorName anchor name
+     * @param sessionID             session ID
+     * @param dataspaceName         dataspace name
+     * @param anchorName            anchor name
      * @param timeoutInMilliseconds lock attempt timeout in milliseconds
      */
     void lockAnchor(String sessionID, String dataspaceName, String anchorName, Long timeoutInMilliseconds);

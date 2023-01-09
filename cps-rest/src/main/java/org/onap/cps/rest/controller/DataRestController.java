@@ -26,6 +26,10 @@ package org.onap.cps.rest.controller;
 
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 import javax.validation.ValidationException;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
@@ -93,14 +97,30 @@ public class DataRestController implements CpsDataApi {
     }
 
     @Override
-    public ResponseEntity<Object> getNodeByDataspaceAndAnchor(final String apiVersion,
-        final String dataspaceName, final String anchorName, final String xpath, final Boolean includeDescendants) {
+    public ResponseEntity<Object> getNodeByDataspaceAndAnchor(final String dataspaceName, final String anchorName,
+                                                              final String xpath, final Boolean includeDescendants) {
         final FetchDescendantsOption fetchDescendantsOption = Boolean.TRUE.equals(includeDescendants)
             ? FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS : FetchDescendantsOption.OMIT_DESCENDANTS;
         final DataNode dataNode = cpsDataService.getDataNode(dataspaceName, anchorName, xpath,
             fetchDescendantsOption);
-        final String prefix = prefixResolver.getPrefix(dataspaceName, anchorName, xpath);
+        final String prefix = prefixResolver.getPrefix(dataspaceName, anchorName, dataNode.getXpath());
         return new ResponseEntity<>(DataMapUtils.toDataMapWithIdentifier(dataNode, prefix), HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<Object> getNodeByDataspaceAndAnchorV2(final String dataspaceName, final String anchorName,
+                                                                final String xpath, final Boolean includeDescendants) {
+        final FetchDescendantsOption fetchDescendantsOption = Boolean.TRUE.equals(includeDescendants)
+                ? FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS : FetchDescendantsOption.OMIT_DESCENDANTS;
+        final Collection<DataNode> dataNodes = cpsDataService.getDataNodes(dataspaceName, anchorName, xpath,
+                fetchDescendantsOption);
+        final List<Map<String, Object>> dataMaps = new ArrayList<>(dataNodes.size());
+        for (final DataNode dataNode: dataNodes) {
+            final String prefix = prefixResolver.getPrefix(dataspaceName, anchorName, dataNode.getXpath());
+            final Map<String, Object> dataMap = DataMapUtils.toDataMapWithIdentifier(dataNode, prefix);
+            dataMaps.add(dataMap);
+        }
+        return new ResponseEntity<>(jsonObjectMapper.asJsonString(dataMaps), HttpStatus.OK);
     }
 
     @Override
