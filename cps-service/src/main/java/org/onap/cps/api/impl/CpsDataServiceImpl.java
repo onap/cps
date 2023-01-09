@@ -3,7 +3,7 @@
  *  Copyright (C) 2021-2022 Nordix Foundation
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
- *  Modifications Copyright (C) 2022 TechMahindra Ltd.
+ *  Modifications Copyright (C) 2022-2023 TechMahindra Ltd.
  *  Modifications Copyright (C) 2022 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -132,7 +132,7 @@ public class CpsDataServiceImpl implements CpsDataService {
     @Override
     public Collection<DataNode> getDataNodes(final String dataspaceName, final String anchorName,
                                              final Collection<String> xpaths,
-                                final FetchDescendantsOption fetchDescendantsOption) {
+                                             final FetchDescendantsOption fetchDescendantsOption) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         return cpsDataPersistenceService.getDataNodes(dataspaceName, anchorName, xpaths, fetchDescendantsOption);
     }
