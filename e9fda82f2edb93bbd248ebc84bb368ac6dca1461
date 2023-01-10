@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6dda4cd1_5388802c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 450,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-01-10T13:58:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9d7d8922_eb994ac9",
+      "range": {
+        "startLine": 450,
+        "startChar": 65,
+        "endLine": 450,
+        "endChar": 71
+      },
+      "revId": "e9fda82f2edb93bbd248ebc84bb368ac6dca1461",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8d6ab051_ff82646e",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 1
@@ -59,6 +83,30 @@
       "writtenOn": "2023-01-09T17:24:16Z",
       "side": 1,
       "message": "why do this check exactly?",
+      "range": {
+        "startLine": 456,
+        "startChar": 12,
+        "endLine": 456,
+        "endChar": 38
+      },
+      "revId": "e9fda82f2edb93bbd248ebc84bb368ac6dca1461",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f2b193fd_ebb14c99",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 456,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-01-10T13:58:27Z",
+      "side": 1,
+      "message": "jsonObjectMapper.asJsonString(**empty map**) produces \u0027\"\"\u0027 string as output where we just want blank string \u0027\u0027",
+      "parentUuid": "7c22a6df_f269b871",
       "range": {
         "startLine": 456,
         "startChar": 12,
