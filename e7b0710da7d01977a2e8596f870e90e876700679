@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "230d5412_9ecea10d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-01-10T14:19:17Z",
+      "side": 1,
+      "message": "I think we might be able to shorten this, only scenario for multiple nodes actually being returned from a provided xpath is when a root node is passed, so method could be\nif(rootnode){\ndo new stuff\n}\nelse{\ncall getFragmentByXpath and convert result to collection\n}\n\nretain if rootnode in getFragmentByXpath for the deprecated endpoint but maybe we can add a todo for when the endpoint is removed to delete that path",
+      "range": {
+        "startLine": 300,
+        "startChar": 0,
+        "endLine": 320,
+        "endChar": 5
+      },
+      "revId": "e7b0710da7d01977a2e8596f870e90e876700679",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
