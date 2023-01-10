@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2af235c6_98dcb05b",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-10T17:48:38Z",
+      "side": 1,
+      "message": "NB: keep on 1 line",
+      "range": {
+        "startLine": 153,
+        "startChar": 0,
+        "endLine": 153,
+        "endChar": 153
+      },
+      "revId": "b029b6970d7be2b8d9c07dfe934cfefba8197712",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c8f86169_28e45a69",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/performance/CpsDataPersistenceServicePerfTest.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-10T17:48:38Z",
+      "side": 1,
+      "message": "this is worrying, as discussed write a simpel test to analyse wwo fast/slow escaping the single quotes is",
+      "range": {
+        "startLine": 115,
+        "startChar": 40,
+        "endLine": 115,
+        "endChar": 46
+      },
+      "revId": "b029b6970d7be2b8d9c07dfe934cfefba8197712",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d1dfe7b7_f8239510",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-10T17:48:38Z",
+      "side": 1,
+      "message": "NB: please dont insert extra blank lines :-(",
+      "range": {
+        "startLine": 195,
+        "startChar": 0,
+        "endLine": 197,
+        "endChar": 0
+      },
+      "revId": "b029b6970d7be2b8d9c07dfe934cfefba8197712",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
