@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "00563d0b_aff39874",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-11T16:44:34Z",
+      "side": 1,
+      "message": "a lof of (brittle) code just for a stricter check on lines 270 and 282?!\nNot sure of if it is worth that, I think we need to discuss",
+      "range": {
+        "startLine": 249,
+        "startChar": 0,
+        "endLine": 259,
+        "endChar": 113
+      },
+      "revId": "eee4b4538e74468dd70ffef68164ad9353d70616",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
