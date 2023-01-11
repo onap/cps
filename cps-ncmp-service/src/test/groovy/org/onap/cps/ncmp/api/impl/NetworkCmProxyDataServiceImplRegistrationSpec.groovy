@@ -29,9 +29,12 @@ import org.onap.cps.ncmp.api.NetworkCmProxyCmHandlerQueryService
 import org.onap.cps.ncmp.api.impl.event.lcm.LcmEventsCmHandleStateHandler
 import org.onap.cps.ncmp.api.impl.exception.DmiRequestException
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations
+import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.inventory.CmHandleQueries
 import org.onap.cps.ncmp.api.inventory.CmHandleState
+import org.onap.cps.ncmp.api.inventory.CompositeState
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence
+import org.onap.cps.ncmp.api.inventory.LockReasonCategory
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
@@ -243,6 +246,18 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     }
 
     def 'Remove CmHandle Successfully: #scenario'() {
+        def dmiServiceName = 'some service name'
+        def compositeState = new CompositeState(cmHandleState: CmHandleState.ADVISED,
+                lockReason: CompositeState.LockReason.builder().lockReasonCategory(LockReasonCategory.LOCKED_MODULE_SYNC_FAILED).details("lock details").build(),
+                lastUpdateTime: 'some-timestamp',
+                dataSyncEnabled: false,
+                dataStores: null)
+        def dmiProperties = [new YangModelCmHandle.Property('Book', 'Romance Novel')]
+        def publicProperties = [new YangModelCmHandle.Property('Public Book', 'Public Romance Novel')]
+
+        def yangModelCmHandle = new YangModelCmHandle(id: 'some-cm-handle', dmiServiceName: dmiServiceName,
+                dmiProperties: dmiProperties, publicProperties: publicProperties, compositeState: compositeState)
+
         given: 'a registration'
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server',
                 removedCmHandles: ['cmhandle'])
@@ -252,7 +267,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
         when: 'registration is updated to delete cmhandle'
             def response = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'the cmHandle state is updated to "DELETING"'
-            1 * mockLcmEventsCmHandleStateHandler.updateCmHandleState(_, CmHandleState.DELETING)
+        1 * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch({ yangModelCmHandle : CmHandleState.DELETING })
         and: 'method to delete relevant schema set is called once'
             1 * mockInventoryPersistence.deleteSchemaSetWithCascade(_)
         and: 'method to delete relevant list/list element is called once'
@@ -264,7 +279,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
                 assert it.cmHandle == 'cmhandle'
             }
         and: 'the cmHandle state is updated to "DELETED"'
-            1 * mockLcmEventsCmHandleStateHandler.updateCmHandleState(_, CmHandleState.DELETED)
+        1 * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch({ yangModelCmHandle : CmHandleState.DELETED })
         where:
             scenario                                            | schemaSetExist
             'schema-set exists and can be deleted successfully' | true
