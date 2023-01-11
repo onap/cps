@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "ddcede73_02fbd1fc",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 450,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-11T13:27:34Z",
+      "side": 1,
+      "message": "fair enough , i see where you coming from and now we have mergedLeaves below the distinction is clear anyway",
+      "parentUuid": "2d5586da_96ecbe55",
+      "range": {
+        "startLine": 450,
+        "startChar": 65,
+        "endLine": 450,
+        "endChar": 77
+      },
+      "revId": "fba63a56327ab7671cb8f15a4d3213c1ee941030",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e9e30449_49e085a1",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 2
