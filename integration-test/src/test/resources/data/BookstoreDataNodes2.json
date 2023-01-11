@@ -1,0 +1,27 @@
+{
+  "bookstore": {
+    "bookstore-name": "WH Smiths",
+    "categories": [
+      {
+        "code": 1,
+        "name": "Mystery",
+        "books" : [
+          {
+            "title": "Murder on the Orient Express",
+            "lang": "English",
+            "authors": ["Agatha Christie"],
+            "pub_year": 1934,
+            "price": 12
+          },
+          {
+            "title": "The Silence of the Lambs",
+            "lang": "English",
+            "authors": ["Thomas Harris"],
+            "pub_year": 1988,
+            "price": 15
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "bookstore": {
+    "bookstore-name": "Easons",
+    "categories": [
+      {
+        "code": 1,
+        "name": "Children",
+        "books" : [
+          {
+            "title": "Matilda",
+            "lang": "English",
+            "authors": ["Roald Dahl"],
+            "pub_year": 1988,
+            "price": 10
+          },
+          {
+            "title": "The Gruffalo",
+            "lang": "English",
+            "authors": ["Julia Donaldson"],
+            "pub_year": 1999,
+            "price": 15
+          }
+        ]
+      },
+      {
+        "code": 2,
+        "name": "Thriller",
+        "books" : [
+          {
+            "title": "Annihilation",
+            "lang": "English",
+            "authors": ["Jeff VanderMeer"],
+            "pub_year": 2014,
+            "price": 15
+          }
+        ]
+      },
+      {
+        "code": 3,
+        "name": "Comedy",
+        "books" : [
+          {
+            "title": "Good Omens",
+            "lang": "English",
+            "authors": ["Neil Gaiman", "Terry Pratchett"],
+            "pub_year": 2006,
+            "price": 13
+          }
+        ]
+      }
+
+    ]
+  }
+}

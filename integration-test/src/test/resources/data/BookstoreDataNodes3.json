@@ -1,0 +1,27 @@
+{
+  "bookstore": {
+    "bookstore-name": "Dubrays",
+    "categories": [
+      {
+        "code": 1,
+        "name": "SciFi",
+        "books" : [
+          {
+            "title": "Dune",
+            "lang": "English",
+            "authors": ["Frank Herbert"],
+            "pub_year": 1965,
+            "price": 10
+          },
+          {
+            "title": "1984",
+            "lang": "English",
+            "authors": ["George Orwell"],
+            "pub_year": 1949,
+            "price": 15
+          }
+        ]
+      }
+    ]
+  }
+}

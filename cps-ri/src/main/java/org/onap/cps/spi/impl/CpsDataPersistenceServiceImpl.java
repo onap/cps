@@ -65,6 +65,7 @@ import org.onap.cps.spi.repository.FragmentQueryBuilder;
 import org.onap.cps.spi.repository.FragmentRepository;
 import org.onap.cps.spi.utils.SessionManager;
 import org.onap.cps.utils.JsonObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
@@ -78,6 +79,18 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     private final FragmentRepository fragmentRepository;
     private final JsonObjectMapper jsonObjectMapper;
     private final SessionManager sessionManager;
+
+    @Autowired
+    private CpsDataPersistenceServiceImpl(final DataspaceRepository dataspaceRepository,
+                                          final AnchorRepository anchorRepository,
+                                          final FragmentRepository fragmentRepository,
+                                          final JsonObjectMapper jsonObjectMapper) {
+        this.dataspaceRepository = dataspaceRepository;
+        this.anchorRepository = anchorRepository;
+        this.fragmentRepository = fragmentRepository;
+        this.jsonObjectMapper = jsonObjectMapper;
+        this.sessionManager = null;
+    }
 
     private static final String REG_EX_FOR_OPTIONAL_LIST_INDEX = "(\\[@[\\s\\S]+?]){0,1})";
 

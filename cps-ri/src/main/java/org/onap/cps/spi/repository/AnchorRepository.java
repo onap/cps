@@ -30,7 +30,9 @@ import org.onap.cps.spi.exceptions.AnchorNotFoundException;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface AnchorRepository extends JpaRepository<AnchorEntity, Integer> {
 
     Optional<AnchorEntity> findByDataspaceAndName(@NotNull DataspaceEntity dataspaceEntity, @NotNull String name);
