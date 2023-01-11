@@ -1,0 +1,130 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a0f8c046_886432af",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/notifications/avc/AvcEventMapper.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-11T16:59:16Z",
+      "side": 1,
+      "message": "seems misleading name, is this our own choice, our stakeholder or external, can we have  a quick discussion about this?",
+      "range": {
+        "startLine": 38,
+        "startChar": 76,
+        "endLine": 38,
+        "endChar": 87
+      },
+      "revId": "8a9e09676228a6d71a5130ee84b21cecf565d747",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "204af64b_a9f87aac",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/notifications/avc/AvcEventProducer.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-11T16:59:16Z",
+      "side": 1,
+      "message": "make final (se next comment)",
+      "range": {
+        "startLine": 46,
+        "startChar": 28,
+        "endLine": 46,
+        "endChar": 37
+      },
+      "revId": "8a9e09676228a6d71a5130ee84b21cecf565d747",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e228dce_142f0be7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/notifications/avc/AvcEventProducer.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-11T16:59:16Z",
+      "side": 1,
+      "message": "use different variable with different name to clearly separate incoming from outgoing event",
+      "range": {
+        "startLine": 48,
+        "startChar": 8,
+        "endLine": 48,
+        "endChar": 17
+      },
+      "revId": "8a9e09676228a6d71a5130ee84b21cecf565d747",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "49aed987_21c85b02",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/kafka/MessagingBaseSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-11T16:59:16Z",
+      "side": 1,
+      "message": "NB: seems simpler, any reason why it was a shutdownhook before?",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 5
+      },
+      "revId": "8a9e09676228a6d71a5130ee84b21cecf565d747",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "961527b6_11613946",
+        "filename": "cps-ncmp-service/src/test/resources/avcEvent.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-11T16:59:16Z",
+      "side": 1,
+      "message": "apply more meaningful name e.g sampleAVCInputEvent",
+      "revId": "8a9e09676228a6d71a5130ee84b21cecf565d747",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b4cdc40c_dc94bfc0",
+        "filename": "t",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-11T16:59:16Z",
+      "side": 1,
+      "message": "what is this should it have been added?!",
+      "revId": "8a9e09676228a6d71a5130ee84b21cecf565d747",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
