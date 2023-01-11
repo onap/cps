@@ -252,7 +252,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
         when: 'registration is updated to delete cmhandle'
             def response = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'the cmHandle state is updated to "DELETING"'
-            1 * mockLcmEventsCmHandleStateHandler.updateCmHandleState(_, CmHandleState.DELETING)
+        1 * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch({ _ : CmHandleState.DELETING })
         and: 'method to delete relevant schema set is called once'
             1 * mockInventoryPersistence.deleteSchemaSetWithCascade(_)
         and: 'method to delete relevant list/list element is called once'
@@ -264,7 +264,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
                 assert it.cmHandle == 'cmhandle'
             }
         and: 'the cmHandle state is updated to "DELETED"'
-            1 * mockLcmEventsCmHandleStateHandler.updateCmHandleState(_, CmHandleState.DELETED)
+        1 * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch({ _ : CmHandleState.DELETED })
         where:
             scenario                                            | schemaSetExist
             'schema-set exists and can be deleted successfully' | true

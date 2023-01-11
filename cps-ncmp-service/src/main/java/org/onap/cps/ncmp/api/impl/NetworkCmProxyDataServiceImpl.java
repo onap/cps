@@ -93,8 +93,12 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             final DmiPluginRegistration dmiPluginRegistration) {
         dmiPluginRegistration.validateDmiPluginRegistration();
         final DmiPluginRegistrationResponse dmiPluginRegistrationResponse = new DmiPluginRegistrationResponse();
-        dmiPluginRegistrationResponse.setRemovedCmHandles(
-                parseAndRemoveCmHandlesInDmiRegistration(dmiPluginRegistration.getRemovedCmHandles()));
+
+        if (!dmiPluginRegistration.getRemovedCmHandles().isEmpty()) {
+            dmiPluginRegistrationResponse.setRemovedCmHandles(
+                    parseAndRemoveCmHandlesInDmiRegistration(dmiPluginRegistration.getRemovedCmHandles()));
+        }
+
         if (!dmiPluginRegistration.getCreatedCmHandles().isEmpty()) {
             dmiPluginRegistrationResponse.setCreatedCmHandles(
                     parseAndCreateCmHandlesInDmiRegistrationAndSyncModules(dmiPluginRegistration));
@@ -321,15 +325,13 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             final List<String> tobeRemovedCmHandles) {
         final List<CmHandleRegistrationResponse> cmHandleRegistrationResponses =
                 new ArrayList<>(tobeRemovedCmHandles.size());
+
+        setState(tobeRemovedCmHandles, CmHandleState.DELETING);
+
         for (final String cmHandleId : tobeRemovedCmHandles) {
             try {
-                final YangModelCmHandle yangModelCmHandle = inventoryPersistence.getYangModelCmHandle(cmHandleId);
-                lcmEventsCmHandleStateHandler.updateCmHandleState(yangModelCmHandle,
-                        CmHandleState.DELETING);
                 deleteCmHandleFromDbAndModuleSyncMap(cmHandleId);
                 cmHandleRegistrationResponses.add(CmHandleRegistrationResponse.createSuccessResponse(cmHandleId));
-                lcmEventsCmHandleStateHandler.updateCmHandleState(yangModelCmHandle,
-                        CmHandleState.DELETED);
             } catch (final DataNodeNotFoundException dataNodeNotFoundException) {
                 log.error("Unable to find dataNode for cmHandleId : {} , caused by : {}",
                         cmHandleId, dataNodeNotFoundException.getMessage());
@@ -347,7 +349,20 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                         CmHandleRegistrationResponse.createFailureResponse(cmHandleId, exception));
             }
         }
+
+        setState(tobeRemovedCmHandles, CmHandleState.DELETED);
+
         return cmHandleRegistrationResponses;
+    }
+
+    private void setState(final List<String> tobeRemovedCmHandles, final CmHandleState cmHandleState) {
+        final Map<YangModelCmHandle, CmHandleState> cmHandleIdsToBeRemoved = new HashMap<>();
+        for (final String cmHandleId : tobeRemovedCmHandles) {
+            cmHandleIdsToBeRemoved.put(
+                    inventoryPersistence.getYangModelCmHandle(cmHandleId),
+                    cmHandleState);
+        }
+        lcmEventsCmHandleStateHandler.updateCmHandleStateBatch(cmHandleIdsToBeRemoved);
     }
 
     private void deleteCmHandleFromDbAndModuleSyncMap(final String cmHandleId) {
