@@ -51,6 +51,7 @@ import org.onap.cps.utils.ContentType;
 import org.onap.cps.utils.YangUtils;
 import org.opendaylight.yangtools.yang.data.api.schema.ContainerNode;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -66,6 +67,18 @@ public class CpsDataServiceImpl implements CpsDataService {
     private final YangTextSchemaSourceSetCache yangTextSchemaSourceSetCache;
     private final NotificationService notificationService;
     private final CpsValidator cpsValidator;
+
+    @Autowired
+    private CpsDataServiceImpl(final CpsDataPersistenceService cpsDataPersistenceService,
+                               final CpsAdminService cpsAdminService,
+                               final YangTextSchemaSourceSetCache yangTextSchemaSourceSetCache,
+                               final CpsValidator cpsValidator) {
+        this.cpsDataPersistenceService = cpsDataPersistenceService;
+        this.cpsAdminService = cpsAdminService;
+        this.yangTextSchemaSourceSetCache = yangTextSchemaSourceSetCache;
+        this.cpsValidator = cpsValidator;
+        this.notificationService = null;
+    }
 
     @Override
     public void saveData(final String dataspaceName, final String anchorName, final String nodeData,

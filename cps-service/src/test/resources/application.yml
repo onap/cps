@@ -45,6 +45,25 @@ spring:
       properties:
         spring.json.value.default.type: org.onap.cps.event.model.CpsDataUpdatedEvent
 
+  jpa:
+    ddl-auto: create
+    show-sql: false
+    properties:
+      hibernate:
+        enable_lazy_load_no_trans: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        show_sql: false
+
+    datasource:
+      url: ${DB_URL}
+      username: ${DB_USERNAME}
+      password: ${DB_PASSWORD}
+      driverClassName: org.postgresql.Driver
+      initialization-mode: always
+
+    liquibase:
+      change-log: classpath:changelog/changelog-master.yaml
 logging:
   level:
     org.apache.kafka: ERROR
