@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Copyright (C) 2021-2023 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021 Bell Canada.
  *  ================================================================================
@@ -24,6 +24,7 @@ package org.onap.cps.spi.impl
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.DatabaseTestContainer
+import org.onap.cps.spi.model.DataNodeBuilder
 import org.onap.cps.spi.repository.AnchorRepository
 import org.onap.cps.spi.repository.DataspaceRepository
 import org.onap.cps.spi.repository.FragmentRepository
@@ -69,4 +70,39 @@ class CpsPersistenceSpecBase extends Specification {
     static final String ANCHOR_FOR_DATA_NODES_WITH_LEAVES = 'ANCHOR-003'
     static final String ANCHOR_FOR_SHOP_EXAMPLE = 'ANCHOR-004'
     static final String ANCHOR_HAVING_SINGLE_TOP_LEVEL_FRAGMENT = 'ANCHOR-005'
+
+    def createLineage(cpsDataPersistenceService, numberOfChildren, numberOfGrandChildren) {
+        (1..numberOfChildren).each {
+            def childName = "perf-test-child-${it}".toString()
+            def child = goForthAndMultiply(PERF_TEST_PARENT, childName, numberOfGrandChildren)
+            cpsDataPersistenceService.addChildDataNode('PERF-DATASPACE', 'PERF-ANCHOR', PERF_TEST_PARENT, child)
+        }
+    }
+
+    def goForthAndMultiply(parentXpath, childName, numberOfGrandChildren) {
+        def grandChildren = []
+        (1..numberOfGrandChildren).each {
+            def grandChild = new DataNodeBuilder().withXpath("${parentXpath}/${childName}/perf-test-grand-child-${it}").build()
+            grandChildren.add(grandChild)
+        }
+        return new DataNodeBuilder().withXpath("${parentXpath}/${childName}").withChildDataNodes(grandChildren).build()
+    }
+
+    def createLineageWithLists(cpsDataPersistenceService, numberOfLists, numberOfListElements) {
+        (1..numberOfLists).each {
+            def listName = "perf-test-list-${it}".toString()
+            def listElements = makeListElements(PERF_TEST_PARENT, listName, numberOfListElements)
+            cpsDataPersistenceService.addListElements('PERF-DATASPACE', 'PERF-ANCHOR', PERF_TEST_PARENT, listElements)
+        }
+    }
+
+    def makeListElements(parentXpath, childName, numberOfListElements) {
+        def listElements = []
+        (1..numberOfListElements).each {
+            def key = it.toString()
+            def element = new DataNodeBuilder().withXpath("${parentXpath}/${childName}[@key='${key}']").build()
+            listElements.add(element)
+        }
+        return listElements
+    }
 }

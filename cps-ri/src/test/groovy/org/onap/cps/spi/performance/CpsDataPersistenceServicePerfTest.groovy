@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -53,7 +53,7 @@ class CpsDataPersistenceServicePerfTest extends CpsPersistenceSpecBase {
     def 'Create a node with many descendants (please note, subsequent tests depend on this running first).'() {
         given: 'a node with a large number of descendants is created'
             stopWatch.start()
-            createLineage()
+            createLineage(objectUnderTest, NUMBER_OF_CHILDREN, NUMBER_OF_GRAND_CHILDREN)
             stopWatch.stop()
             def setupDurationInMillis = stopWatch.getTotalTimeMillis()
         and: 'setup duration is under #ALLOWED_SETUP_TIME_MS milliseconds'
@@ -102,59 +102,6 @@ class CpsDataPersistenceServicePerfTest extends CpsPersistenceSpecBase {
             scenario                                        | descendantsOption        || alowedDuration
             'omit descendants                             ' | OMIT_DESCENDANTS         || 150
             'include descendants (although there are none)' | INCLUDE_ALL_DESCENDANTS  || 150
-    }
-
-    def 'Delete 50 grandchildren (that have no descendants)'() {
-        when: 'target nodes are deleted'
-            stopWatch.start()
-            (1..50).each {
-                def grandchildPath = "${PERF_TEST_PARENT}/perf-test-child-1/perf-test-grand-child-${it}".toString();
-                objectUnderTest.deleteDataNode('PERF-DATASPACE', 'PERF-ANCHOR', grandchildPath)
-            }
-            stopWatch.stop()
-            def deleteDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'delete duration is under 1000 milliseconds'
-            assert deleteDurationInMillis < 1000
-    }
-
-    def 'Delete 5 children with grandchildren'() {
-        when: 'child nodes are deleted'
-            stopWatch.start()
-            (1..5).each {
-                def childPath = "${PERF_TEST_PARENT}/perf-test-child-${it}".toString();
-                objectUnderTest.deleteDataNode('PERF-DATASPACE', 'PERF-ANCHOR', childPath)
-            }
-            stopWatch.stop()
-            def deleteDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'delete duration is under 10000 milliseconds'
-            assert deleteDurationInMillis < 10000
-    }
-
-    def 'Delete 1 large data node with many descendants'() {
-        when: 'parent node is deleted'
-            stopWatch.start()
-            objectUnderTest.deleteDataNode('PERF-DATASPACE', 'PERF-ANCHOR', PERF_TEST_PARENT)
-            stopWatch.stop()
-            def deleteDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'delete duration is under 5000 milliseconds'
-            assert deleteDurationInMillis < 5000
-    }
-
-    def createLineage() {
-        (1..NUMBER_OF_CHILDREN).each {
-            def childName = "perf-test-child-${it}".toString()
-            def child = goForthAndMultiply(PERF_TEST_PARENT, childName)
-            objectUnderTest.addChildDataNode('PERF-DATASPACE', 'PERF-ANCHOR', PERF_TEST_PARENT, child)
-        }
-    }
-
-    def goForthAndMultiply(parentXpath, childName) {
-        def grandChildren = []
-        (1..NUMBER_OF_GRAND_CHILDREN).each {
-            def grandChild = new DataNodeBuilder().withXpath("${parentXpath}/${childName}/perf-test-grand-child-${it}").build()
-            grandChildren.add(grandChild)
-        }
-        return new DataNodeBuilder().withXpath("${parentXpath}/${childName}").withChildDataNodes(grandChildren).build()
     }
 
     def countDataNodes(dataNodes) {
