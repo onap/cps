@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "108364ef_bc67126f",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/QueryRestController.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-12T10:30:23Z",
+      "side": 1,
+      "message": "these lines are a duplicate of lines 77-87 and should be extracted out in a common private method",
+      "range": {
+        "startLine": 56,
+        "startChar": 8,
+        "endLine": 68,
+        "endChar": 92
+      },
+      "revId": "a5fdfd3cbe6d06cec186e63eef14c99bfd875de6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8fb0e3bb_0d20f61e",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-12T10:30:23Z",
+      "side": 1,
+      "message": "Exception scenarios should be tested only once for one negative use-case in org.onap.cps.rest.exceptions.CpsRestExceptionHandlerSpec\n\nAll other negative scenario should covered in the new FetchDescendantsOption  (separate commit)",
+      "range": {
+        "startLine": 271,
+        "startChar": 4,
+        "endLine": 271,
+        "endChar": 64
+      },
+      "revId": "a5fdfd3cbe6d06cec186e63eef14c99bfd875de6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c5687fc5_c2249e34",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-12T10:30:23Z",
+      "side": 1,
+      "message": "descendants is an INPUT parameter not an (expeted) output so use single | instead of ||",
+      "range": {
+        "startLine": 285,
+        "startChar": 32,
+        "endLine": 285,
+        "endChar": 34
+      },
+      "revId": "a5fdfd3cbe6d06cec186e63eef14c99bfd875de6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cac1be43_a743d207",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-12T10:30:23Z",
+      "side": 1,
+      "message": "single |",
+      "range": {
+        "startLine": 133,
+        "startChar": 38,
+        "endLine": 133,
+        "endChar": 40
+      },
+      "revId": "a5fdfd3cbe6d06cec186e63eef14c99bfd875de6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6a2bbe64_11489a59",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceQueryDataNodeSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-12T10:30:23Z",
+      "side": 1,
+      "message": "level 1 descendants",
+      "range": {
+        "startLine": 56,
+        "startChar": 25,
+        "endLine": 56,
+        "endChar": 28
+      },
+      "revId": "a5fdfd3cbe6d06cec186e63eef14c99bfd875de6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f9958a2_7b7c45cd",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceQueryDataNodeSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-12T10:30:23Z",
+      "side": 1,
+      "message": "level 2 descendants",
+      "range": {
+        "startLine": 57,
+        "startChar": 25,
+        "endLine": 57,
+        "endChar": 40
+      },
+      "revId": "a5fdfd3cbe6d06cec186e63eef14c99bfd875de6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "deff6efe_2e09821f",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/FetchDescendantsOption.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-12T10:30:23Z",
+      "side": 1,
+      "message": "we won\u0027t fix it now but you should have written a UNIT test for this class. then you would NOT have to repeat tests for all the scenarios in the 2 controller tests....\n\nMaybe do this as a separate commit before closing the user story!",
+      "range": {
+        "startLine": 68,
+        "startChar": 41,
+        "endLine": 68,
+        "endChar": 65
+      },
+      "revId": "a5fdfd3cbe6d06cec186e63eef14c99bfd875de6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
