@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Nordix Foundation
+ *  Modifications Copyright (C) 2023 Tech Mahindra
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -21,12 +22,14 @@
 package org.onap.cps.spi.repository;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.cpspath.parser.CpsPathBooleanOperatorsType;
 import org.onap.cps.cpspath.parser.CpsPathPrefixType;
 import org.onap.cps.cpspath.parser.CpsPathQuery;
 import org.onap.cps.spi.entities.FragmentEntity;
@@ -54,7 +57,8 @@ public class FragmentQueryBuilder {
      * @param cpsPathQuery the cps path query to be transformed into a sql query
      * @return a executable query object
      */
-    public Query getQueryForAnchorAndCpsPath(final int anchorId, final CpsPathQuery cpsPathQuery) {
+    public Query getQueryForAnchorAndCpsPath(final int anchorId, final CpsPathQuery cpsPathQuery,
+                                             final Map<String, Object> leavesData) {
         final StringBuilder sqlStringBuilder = new StringBuilder("SELECT * FROM FRAGMENT WHERE anchor_id = :anchorId");
         final Map<String, Object> queryParameters = new HashMap<>();
         queryParameters.put("anchorId", anchorId);
@@ -62,11 +66,17 @@ public class FragmentQueryBuilder {
         final String xpathRegex = getXpathSqlRegex(cpsPathQuery, false);
         queryParameters.put("xpathRegex", xpathRegex);
         if (cpsPathQuery.hasLeafConditions()) {
-            sqlStringBuilder.append(" AND attributes @> :leafDataAsJson\\:\\:jsonb");
-            queryParameters.put("leafDataAsJson", jsonObjectMapper.asJsonString(
-                cpsPathQuery.getLeavesData()));
+            final List<String> booleanOperators = cpsPathQuery.getBooleanOperatorsTypes();
+            final CpsPathBooleanOperatorsType booleanOperatorsTypes = CpsPathBooleanOperatorsType.OR;
+            if (booleanOperators == null || !booleanOperators.contains(booleanOperatorsTypes.getValues())) {
+                sqlStringBuilder.append(" AND attributes @> :leafDataAsJson\\:\\:jsonb");
+                queryParameters.put("leafDataAsJson", jsonObjectMapper.asJsonString(
+                        cpsPathQuery.getLeavesData()));
+            } else {
+                sqlStringBuilder.append(" AND attributes @> :leafDataAsJson\\:\\:jsonb");
+                queryParameters.put("leafDataAsJson", jsonObjectMapper.asJsonString(leavesData));
+            }
         }
-
         addTextFunctionCondition(cpsPathQuery, sqlStringBuilder, queryParameters);
         final Query query = entityManager.createNativeQuery(sqlStringBuilder.toString(), FragmentEntity.class);
         setQueryParameters(query, queryParameters);
