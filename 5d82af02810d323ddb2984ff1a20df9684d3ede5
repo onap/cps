@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fc653d7c_fc265a14",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-12T14:19:03Z",
+      "side": 1,
+      "message": "not sure why this is needed but if i rmake the tets pass I can live withit :-)",
+      "range": {
+        "startLine": 97,
+        "startChar": 12,
+        "endLine": 97,
+        "endChar": 66
+      },
+      "revId": "5d82af02810d323ddb2984ff1a20df9684d3ede5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "216de286_69047607",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-12T14:19:03Z",
+      "side": 1,
+      "message": "shoudln\u0027t need the { } brackets (See base)",
+      "range": {
+        "startLine": 255,
+        "startChar": 71,
+        "endLine": 255,
+        "endChar": 101
+      },
+      "revId": "5d82af02810d323ddb2984ff1a20df9684d3ede5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ba64ea46_471aa69c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-12T14:19:03Z",
+      "side": 1,
+      "message": "shoudln\u0027t need the { } brackets (See base)",
+      "range": {
+        "startLine": 267,
+        "startChar": 71,
+        "endLine": 267,
+        "endChar": 100
+      },
+      "revId": "5d82af02810d323ddb2984ff1a20df9684d3ede5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
