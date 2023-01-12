@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Modifications Copyright (C) 2023 Tech Mahindra
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -40,13 +41,15 @@ yangElement : containerName listElementRef? ;
 
 containerName : QName ;
 
-listElementRef :  OB leafCondition ( KW_AND leafCondition)* CB ;
+listElementRef :  OB leafCondition ( booleanOperators leafCondition)* CB ;
 
-multipleLeafConditions : OB leafCondition ( KW_AND leafCondition)* CB ;
+multipleLeafConditions : OB leafCondition ( booleanOperators leafCondition)* CB ;
 
 leafCondition : AT leafName EQ ( IntegerLiteral | StringLiteral) ;
 
 leafName : QName ;
+
+booleanOperators: ( KW_AND | KW_OR ) ;
 
 invalidPostFix : (AT | CB | COLONCOLON | EQ ).+ ;
 
@@ -68,6 +71,7 @@ SLASH : '/' ;
 KW_ANCESTOR : 'ancestor' ;
 KW_AND : 'and' ;
 KW_TEXT_FUNCTION: 'text()' ;
+KW_OR : 'or' ;
 
 IntegerLiteral : FragDigits ;
 // Add below type definitions for leafvalue comparision in https://jira.onap.org/browse/CPS-440
