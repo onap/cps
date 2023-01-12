@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "9ad4cc34_c9b1b5c1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 7743
+      },
+      "writtenOn": "2023-01-12T14:40:40Z",
+      "side": 1,
+      "message": "It is needed as even create tests would enter and mockLcmEventsCmHandleStateHandler would be hit more than once causing some of the tests to fail.",
+      "parentUuid": "84d90d28_0b2af627",
+      "range": {
+        "startLine": 97,
+        "startChar": 12,
+        "endLine": 97,
+        "endChar": 66
+      },
+      "revId": "5d82af02810d323ddb2984ff1a20df9684d3ede5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "216de286_69047607",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
         "patchSetId": 2
