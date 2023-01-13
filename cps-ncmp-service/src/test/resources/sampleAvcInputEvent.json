@@ -1,0 +1,12 @@
+{
+  "eventId": "4cb32729-85e3-44d1-aa6e-c923b9b059a5",
+  "eventCorrelationId": "68f15800-8ed4-4bae-9e53-27a9e03e1911",
+  "eventTime": "2022-12-12T14:29:23.876+0000",
+  "eventTarget": "NCMP",
+  "eventType": "org.onap.cps.ncmp.event.model.AvcEvent",
+  "eventSchema": "urn:cps:org.onap.cps.ncmp.event.model.AvcEvent",
+  "eventSchemaVersion": "v1",
+  "event": {
+    "payload": "Hello world!"
+  }
+}

@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (c) 2022 Nordix Foundation.
+ * Copyright (c) 2023 Nordix Foundation.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -33,12 +33,12 @@ import spock.lang.Specification
 
 class MessagingBaseSpec extends Specification {
 
-    static {
-        Runtime.getRuntime().addShutdownHook(new Thread(kafkaTestContainer::stop))
-    }
-
     def setupSpec() {
         kafkaTestContainer.start()
+    }
+
+    def cleanupSpec() {
+        kafkaTestContainer.stop()
     }
 
     static kafkaTestContainer = new KafkaContainer(DockerImageName.parse('registry.nordix.org/onaptest/confluentinc/cp-kafka:6.2.1').asCompatibleSubstituteFor('confluentinc/cp-kafka'))
