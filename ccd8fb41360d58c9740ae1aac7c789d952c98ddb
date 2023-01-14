@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "383cd78a_e41e2778",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/performance/CpsDataPersistenceServiceDeletePerfTest.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-01-14T17:05:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9afc0bc4_be5882ed",
+      "range": {
+        "startLine": 48,
+        "startChar": 12,
+        "endLine": 48,
+        "endChar": 27
+      },
+      "revId": "ccd8fb41360d58c9740ae1aac7c789d952c98ddb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "08e0c33b_a3407b89",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/performance/CpsDataPersistenceServiceDeletePerfTest.groovy",
         "patchSetId": 4
@@ -45,6 +69,30 @@
       "revId": "ccd8fb41360d58c9740ae1aac7c789d952c98ddb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d9a5e988_048ee9ba",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/performance/CpsDataPersistenceServiceDeletePerfTest.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-01-14T17:05:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "08e0c33b_a3407b89",
+      "range": {
+        "startLine": 149,
+        "startChar": 4,
+        "endLine": 169,
+        "endChar": 5
+      },
+      "revId": "ccd8fb41360d58c9740ae1aac7c789d952c98ddb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
