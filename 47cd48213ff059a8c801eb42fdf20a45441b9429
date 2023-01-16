@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e475bf4b_7cb282a1",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/QueryRestController.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-16T18:23:32Z",
+      "side": 1,
+      "message": "no a great name.\nMaybe \u0027executeNodesByDataspaceQuery\u0027\nor \u0027getDataNodesAsListOfMaps\u0027\n\nIf you include the response create I would rename this method to\nexecuteNodesByDataspaceQueryAndCreateResponse\n\n\n(nothing wrong with long descriptive method names)",
+      "range": {
+        "startLine": 69,
+        "startChar": 38,
+        "endLine": 69,
+        "endChar": 49
+      },
+      "revId": "47cd48213ff059a8c801eb42fdf20a45441b9429",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07a43348_3dd029a9",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/QueryRestController.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-16T18:23:32Z",
+      "side": 1,
+      "message": "dataNodesAsListOfMaps",
+      "range": {
+        "startLine": 73,
+        "startChar": 40,
+        "endLine": 73,
+        "endChar": 49
+      },
+      "revId": "47cd48213ff059a8c801eb42fdf20a45441b9429",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c96bb259_1aa0e485",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-16T18:23:32Z",
+      "side": 1,
+      "message": "should not need scenarios here, just test with one of the positive scenarios e.g. \u0027all\u0027",
+      "range": {
+        "startLine": 264,
+        "startChar": 13,
+        "endLine": 268,
+        "endChar": 155
+      },
+      "revId": "47cd48213ff059a8c801eb42fdf20a45441b9429",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5174090a_b936c37f",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-16T18:23:32Z",
+      "side": 1,
+      "message": "should not need scenarios here, just test with one of the positive scenarios e.g. \u0027all\u0027",
+      "range": {
+        "startLine": 113,
+        "startChar": 0,
+        "endLine": 119,
+        "endChar": 69
+      },
+      "revId": "47cd48213ff059a8c801eb42fdf20a45441b9429",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a6e793be_88488400",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/spi/FetchDescendantsOptionSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-16T18:23:32Z",
+      "side": 1,
+      "message": "be more specific, the kind of exception is important and you are asserting for it too, imagine the reader of these descriptions cannot understand/see the java code (this actually does happen when the testresult are processed by certain tool, it will only show descriptions like this) :\n\na data validation exception is thrown",
+      "range": {
+        "startLine": 94,
+        "startChar": 15,
+        "endLine": 94,
+        "endChar": 30
+      },
+      "revId": "47cd48213ff059a8c801eb42fdf20a45441b9429",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b2ce6ec_aa655dfb",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/spi/FetchDescendantsOptionSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-16T18:23:32Z",
+      "side": 1,
+      "message": "ah, I was wondering about that, didn\u0027t spot it in the production code that the exception was thrown\nand as ewe already have controller exeception test for this exception you didnt need to add any test for that :-)",
+      "range": {
+        "startLine": 95,
+        "startChar": 19,
+        "endLine": 95,
+        "endChar": 42
+      },
+      "revId": "47cd48213ff059a8c801eb42fdf20a45441b9429",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa25333c_08d6c556",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/spi/FetchDescendantsOptionSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-16T18:23:32Z",
+      "side": 1,
+      "message": "great, no you have tested this here you dont need to repeat those variation in the controller tests as I previously commented",
+      "range": {
+        "startLine": 76,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 4
+      },
+      "revId": "47cd48213ff059a8c801eb42fdf20a45441b9429",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
