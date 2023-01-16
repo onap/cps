@@ -38,7 +38,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SynchronizationCacheConfig {
 
-    public static final int MODULE_SYNC_STARTED_TTL_SECS = 60;
+    public static final int MODULE_SYNC_STARTED_TTL_SECS = 120;
     public static final int DATA_SYNC_SEMAPHORE_TTL_SECS = 1800;
 
     private static final QueueConfig commonQueueConfig = createQueueConfig();
