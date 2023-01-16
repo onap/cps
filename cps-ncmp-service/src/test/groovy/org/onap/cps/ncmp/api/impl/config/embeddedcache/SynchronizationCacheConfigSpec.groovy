@@ -20,6 +20,7 @@
 
 package org.onap.cps.ncmp.api.impl.config.embeddedcache
 
+import com.hazelcast.collection.IQueue
 import com.hazelcast.core.Hazelcast
 import com.hazelcast.map.IMap
 import org.onap.cps.spi.model.DataNode
@@ -27,7 +28,6 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ContextConfiguration
 import spock.lang.Specification
-import java.util.concurrent.BlockingQueue
 import java.util.concurrent.TimeUnit
 
 @SpringBootTest
@@ -35,7 +35,7 @@ import java.util.concurrent.TimeUnit
 class SynchronizationCacheConfigSpec extends Specification {
 
     @Autowired
-    private BlockingQueue<DataNode> moduleSyncWorkQueue
+    private IQueue<DataNode> moduleSyncWorkQueue
 
     @Autowired
     private IMap<String, Object> moduleSyncStartedOnCmHandles

@@ -21,6 +21,7 @@
 
 package org.onap.cps.ncmp.api.inventory.sync
 
+import com.hazelcast.collection.IQueue
 import com.hazelcast.map.IMap
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.inventory.sync.executor.AsyncTaskExecutor
@@ -42,7 +43,7 @@ class ModuleSyncWatchdogSpec extends Specification {
 
     def spiedAsyncTaskExecutor = Spy(AsyncTaskExecutor)
 
-    def objectUnderTest = new ModuleSyncWatchdog(mockSyncUtils, moduleSyncWorkQueue , stubModuleSyncStartedOnCmHandles,
+    def objectUnderTest = new ModuleSyncWatchdog(mockSyncUtils, moduleSyncWorkQueue as IQueue , stubModuleSyncStartedOnCmHandles,
             mockModuleSyncTasks, spiedAsyncTaskExecutor)
 
     void setup() {

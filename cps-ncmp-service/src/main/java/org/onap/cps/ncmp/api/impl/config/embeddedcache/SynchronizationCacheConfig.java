@@ -20,6 +20,7 @@
 
 package org.onap.cps.ncmp.api.impl.config.embeddedcache;
 
+import com.hazelcast.collection.IQueue;
 import com.hazelcast.config.Config;
 import com.hazelcast.config.MapConfig;
 import com.hazelcast.config.NamedConfig;
@@ -27,7 +28,6 @@ import com.hazelcast.config.QueueConfig;
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.map.IMap;
-import java.util.concurrent.BlockingQueue;
 import org.onap.cps.spi.model.DataNode;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -38,7 +38,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SynchronizationCacheConfig {
 
-    public static final int MODULE_SYNC_STARTED_TTL_SECS = 60;
+    public static final int MODULE_SYNC_STARTED_TTL_SECS = 120;
     public static final int DATA_SYNC_SEMAPHORE_TTL_SECS = 1800;
 
     private static final QueueConfig commonQueueConfig = createQueueConfig();
@@ -51,7 +51,7 @@ public class SynchronizationCacheConfig {
      * @return queue of cm handles (data nodes) that need module sync
      */
     @Bean
-    public BlockingQueue<DataNode> moduleSyncWorkQueue() {
+    public IQueue<DataNode> moduleSyncWorkQueue() {
         return createHazelcastInstance("moduleSyncWorkQueue", commonQueueConfig)
             .getQueue("moduleSyncWorkQueue");
     }

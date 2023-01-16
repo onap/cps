@@ -161,7 +161,7 @@ logging:
         org:
             springframework: INFO
             onap:
-                cps: INFO
+                cps: DEBUG
 ncmp:
     dmi:
         auth:
