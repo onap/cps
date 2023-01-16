@@ -22,6 +22,30 @@
       "revId": "c2d50c2a677755d8b7fc14cf25d90b454a9251ce",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "38640afb_117e5c86",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/performance/CpsDataPersistenceServiceDeletePerfTest.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-01-16T18:12:46Z",
+      "side": 1,
+      "message": "Yes, I reverted while resolving a merge conflict - code is a no longer identical in the other test class. Also I\u0027m adding more test cases here for CPS-1438 (batch delete), so it may be better to refactor after.",
+      "parentUuid": "2ada150f_25eea360",
+      "range": {
+        "startLine": 159,
+        "startChar": 4,
+        "endLine": 185,
+        "endChar": 9
+      },
+      "revId": "c2d50c2a677755d8b7fc14cf25d90b454a9251ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
