@@ -88,11 +88,13 @@ public class ModuleSyncWatchdog {
     public void resetPreviouslyFailedCmHandles() {
         log.info("Processing module sync retry-watchdog waking up.");
         final List<YangModelCmHandle> failedCmHandles = syncUtils.getModuleSyncFailedCmHandles();
+        log.info("Trying to retry {} cmHandles", failedCmHandles.size());
         moduleSyncTasks.resetFailedCmHandles(failedCmHandles);
     }
 
     private void preventBusyWait() {
         try {
+            log.info("Busy waiting now");
             TimeUnit.MILLISECONDS.sleep(PREVENT_CPU_BURN_WAIT_TIME_MILLIS);
         } catch (final InterruptedException e) {
             Thread.currentThread().interrupt();
@@ -108,6 +110,7 @@ public class ModuleSyncWatchdog {
                     log.warn("Unable to add cm handle {} to the work queue", advisedCmHandle.getLeaves().get("id"));
                 }
             }
+            log.info("Work Queue Size : {}", moduleSyncWorkQueue.size());
         }
     }
 
