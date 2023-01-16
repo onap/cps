@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2ada150f_25eea360",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/performance/CpsDataPersistenceServiceDeletePerfTest.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-16T18:01:17Z",
+      "side": 1,
+      "message": "I\u0027m a bit confused, I asked you to extract common code to a testBase class and you answer \u0027Done\u0027  in patch #14\nBut ist sill all here?",
+      "range": {
+        "startLine": 159,
+        "startChar": 4,
+        "endLine": 185,
+        "endChar": 9
+      },
+      "revId": "c2d50c2a677755d8b7fc14cf25d90b454a9251ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
