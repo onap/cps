@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f13b5f50_b5611a42",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/notifications/avc/AvcEventProducer.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-16T17:56:13Z",
+      "side": 1,
+      "message": "rename to incomingEvent",
+      "range": {
+        "startLine": 46,
+        "startChar": 37,
+        "endLine": 46,
+        "endChar": 45
+      },
+      "revId": "5a9e4cbeb3ce743712c5edc9a493f9bdeccc63fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "15d79b91_0e28af0a",
+        "filename": "cps-ncmp-service/src/test/resources/avcEvent.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-16T17:56:13Z",
+      "side": 1,
+      "message": "rename file see comment in #4",
+      "revId": "5a9e4cbeb3ce743712c5edc9a493f9bdeccc63fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}

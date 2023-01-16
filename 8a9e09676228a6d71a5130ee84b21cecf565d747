@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "b0261273_2d38e21c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/notifications/avc/AvcEventMapper.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-16T17:56:13Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "63f35903_3c1613e8",
+      "range": {
+        "startLine": 38,
+        "startChar": 76,
+        "endLine": 38,
+        "endChar": 87
+      },
+      "revId": "8a9e09676228a6d71a5130ee84b21cecf565d747",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "204af64b_a9f87aac",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/notifications/avc/AvcEventProducer.java",
         "patchSetId": 4
@@ -190,6 +214,30 @@
     },
     {
       "key": {
+        "uuid": "ec5739b8_795e5a0f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/kafka/MessagingBaseSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-16T17:56:13Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "198896ab_9dc09c5a",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 5
+      },
+      "revId": "8a9e09676228a6d71a5130ee84b21cecf565d747",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "961527b6_11613946",
         "filename": "cps-ncmp-service/src/test/resources/avcEvent.json",
         "patchSetId": 4
@@ -257,6 +305,24 @@
       "revId": "8a9e09676228a6d71a5130ee84b21cecf565d747",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f9bd44d4_4771162e",
+        "filename": "t",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-16T17:56:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ceb7eddf_b7b8b5ee",
+      "revId": "8a9e09676228a6d71a5130ee84b21cecf565d747",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
