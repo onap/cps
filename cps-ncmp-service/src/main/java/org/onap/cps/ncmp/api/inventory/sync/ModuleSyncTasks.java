@@ -97,6 +97,7 @@ public class ModuleSyncTasks {
         for (final YangModelCmHandle failedCmHandle : failedCmHandles) {
             final CompositeState compositeState = failedCmHandle.getCompositeState();
             final boolean isReadyForRetry = syncUtils.isReadyForRetry(compositeState);
+            log.info("Retry for cmHandleId : {} is {}", failedCmHandle.getId(), isReadyForRetry);
             if (isReadyForRetry) {
                 final String resetCmHandleId = failedCmHandle.getId();
                 log.debug("Reset cm handle {} state to ADVISED to be re-attempted by module-sync watchdog",

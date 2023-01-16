@@ -21,11 +21,11 @@
 
 package org.onap.cps.ncmp.api.inventory.sync;
 
+import com.hazelcast.collection.IQueue;
 import com.hazelcast.map.IMap;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import lombok.Getter;
@@ -44,7 +44,7 @@ import org.springframework.stereotype.Service;
 public class ModuleSyncWatchdog {
 
     private final SyncUtils syncUtils;
-    private final BlockingQueue<DataNode> moduleSyncWorkQueue;
+    private final IQueue<DataNode> moduleSyncWorkQueue;
     private final IMap<String, Object> moduleSyncStartedOnCmHandles;
     private final ModuleSyncTasks moduleSyncTasks;
     private final AsyncTaskExecutor asyncTaskExecutor;
@@ -88,11 +88,13 @@ public class ModuleSyncWatchdog {
     public void resetPreviouslyFailedCmHandles() {
         log.info("Processing module sync retry-watchdog waking up.");
         final List<YangModelCmHandle> failedCmHandles = syncUtils.getModuleSyncFailedCmHandles();
+        log.info("Trying to retry {} cmHandles", failedCmHandles.size());
         moduleSyncTasks.resetFailedCmHandles(failedCmHandles);
     }
 
     private void preventBusyWait() {
         try {
+            log.info("Busy waiting now");
             TimeUnit.MILLISECONDS.sleep(PREVENT_CPU_BURN_WAIT_TIME_MILLIS);
         } catch (final InterruptedException e) {
             Thread.currentThread().interrupt();
@@ -108,6 +110,7 @@ public class ModuleSyncWatchdog {
                     log.warn("Unable to add cm handle {} to the work queue", advisedCmHandle.getLeaves().get("id"));
                 }
             }
+            log.info("Work Queue Size : {}", moduleSyncWorkQueue.size());
         }
     }
 
