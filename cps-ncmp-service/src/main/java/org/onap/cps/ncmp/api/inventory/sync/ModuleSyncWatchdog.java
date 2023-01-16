@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2023 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -88,11 +88,13 @@ public class ModuleSyncWatchdog {
     public void resetPreviouslyFailedCmHandles() {
         log.info("Processing module sync retry-watchdog waking up.");
         final List<YangModelCmHandle> failedCmHandles = syncUtils.getModuleSyncFailedCmHandles();
+        log.info("Retrying {} cmHandles", failedCmHandles.size());
         moduleSyncTasks.resetFailedCmHandles(failedCmHandles);
     }
 
     private void preventBusyWait() {
         try {
+            log.info("Busy waiting now");
             TimeUnit.MILLISECONDS.sleep(PREVENT_CPU_BURN_WAIT_TIME_MILLIS);
         } catch (final InterruptedException e) {
             Thread.currentThread().interrupt();
@@ -108,6 +110,7 @@ public class ModuleSyncWatchdog {
                     log.warn("Unable to add cm handle {} to the work queue", advisedCmHandle.getLeaves().get("id"));
                 }
             }
+            log.info("Work Queue Size : {}", moduleSyncWorkQueue.size());
         }
     }
 
@@ -122,7 +125,7 @@ public class ModuleSyncWatchdog {
                     moduleSyncStartedOnCmHandles.putIfAbsent(cmHandleId, VALUE_FOR_HAZELCAST_IN_PROGRESS_MAP,
                             SynchronizationCacheConfig.MODULE_SYNC_STARTED_TTL_SECS, TimeUnit.SECONDS));
             if (alreadyAddedToInProgressMap) {
-                log.debug("module sync for {} already in progress by other instance", cmHandleId);
+                log.info("module sync for {} already in progress by other instance", cmHandleId);
             } else {
                 nextBatch.add(batchCandidate);
             }

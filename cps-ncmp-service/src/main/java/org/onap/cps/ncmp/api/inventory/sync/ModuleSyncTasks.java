@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -97,6 +97,7 @@ public class ModuleSyncTasks {
         for (final YangModelCmHandle failedCmHandle : failedCmHandles) {
             final CompositeState compositeState = failedCmHandle.getCompositeState();
             final boolean isReadyForRetry = syncUtils.isReadyForRetry(compositeState);
+            log.info("Retry for cmHandleId : {} is {}", failedCmHandle.getId(), isReadyForRetry);
             if (isReadyForRetry) {
                 final String resetCmHandleId = failedCmHandle.getId();
                 log.debug("Reset cm handle {} state to ADVISED to be re-attempted by module-sync watchdog",
@@ -115,7 +116,7 @@ public class ModuleSyncTasks {
 
     private void removeResetCmHandleFromModuleSyncMap(final String resetCmHandleId) {
         if (moduleSyncStartedOnCmHandles.remove(resetCmHandleId) != null) {
-            log.debug("{} removed from in progress map", resetCmHandleId);
+            log.info("{} removed from in progress map", resetCmHandleId);
         }
     }
 }
