@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bcd4aed4_fd532f6a",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsPersistencePerfSpecBase.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-17T13:46:33Z",
+      "side": 1,
+      "message": "NB: I wouldn\u0027t ave extaracted these out (the name of the variable does not add value to the string literal)\n\nBut its OK...",
+      "range": {
+        "startLine": 29,
+        "startChar": 24,
+        "endLine": 30,
+        "endChar": 51
+      },
+      "revId": "35e5646fef7402cb922cb20ef08cfd4e032a4a2c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
