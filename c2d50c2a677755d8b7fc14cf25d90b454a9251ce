@@ -46,6 +46,30 @@
       "revId": "c2d50c2a677755d8b7fc14cf25d90b454a9251ce",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f8b9b12_cdc2a3a7",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/performance/CpsDataPersistenceServiceDeletePerfTest.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-01-17T13:19:58Z",
+      "side": 1,
+      "message": "Common code has been moved to a new base class (CpsPersistencePerfSpecBase) and refactored.",
+      "parentUuid": "38640afb_117e5c86",
+      "range": {
+        "startLine": 159,
+        "startChar": 4,
+        "endLine": 185,
+        "endChar": 9
+      },
+      "revId": "c2d50c2a677755d8b7fc14cf25d90b454a9251ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
