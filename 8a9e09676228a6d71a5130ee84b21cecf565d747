@@ -167,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "8be37f77_2528434d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/notifications/avc/AvcEventProducer.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-17T17:33:36Z",
+      "side": 1,
+      "message": "only partly done...(aslo renaming incoming event!)",
+      "parentUuid": "3d21b9f4_683d5de7",
+      "range": {
+        "startLine": 48,
+        "startChar": 8,
+        "endLine": 48,
+        "endChar": 17
+      },
+      "revId": "8a9e09676228a6d71a5130ee84b21cecf565d747",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "49aed987_21c85b02",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/kafka/MessagingBaseSpec.groovy",
         "patchSetId": 4

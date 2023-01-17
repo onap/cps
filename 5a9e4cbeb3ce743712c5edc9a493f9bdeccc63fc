@@ -39,6 +39,24 @@
       "revId": "5a9e4cbeb3ce743712c5edc9a493f9bdeccc63fc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "500b5ca1_efedef92",
+        "filename": "cps-ncmp-service/src/test/resources/sampleAvcInputEvent.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-17T17:33:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "15d79b91_0e28af0a",
+      "revId": "5a9e4cbeb3ce743712c5edc9a493f9bdeccc63fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
