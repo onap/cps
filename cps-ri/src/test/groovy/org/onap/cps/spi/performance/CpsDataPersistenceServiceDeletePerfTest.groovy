@@ -62,7 +62,7 @@ class CpsDataPersistenceServiceDeletePerfTest extends CpsPersistencePerfSpecBase
             stopWatch.stop()
             def deleteDurationInMillis = stopWatch.getTotalTimeMillis()
         then: 'delete duration is under 6000 milliseconds'
-            assert deleteDurationInMillis < 6000
+            assert deleteDurationInMillis < 300
     }
 
     def 'Delete 50 grandchildren (that have no descendants)'() {
@@ -75,7 +75,7 @@ class CpsDataPersistenceServiceDeletePerfTest extends CpsPersistencePerfSpecBase
             stopWatch.stop()
             def deleteDurationInMillis = stopWatch.getTotalTimeMillis()
         then: 'delete duration is under 500 milliseconds'
-            assert deleteDurationInMillis < 500
+            assert deleteDurationInMillis < 350
     }
 
     def 'Delete 1 large data node with many descendants'() {
@@ -109,7 +109,7 @@ class CpsDataPersistenceServiceDeletePerfTest extends CpsPersistencePerfSpecBase
             stopWatch.stop()
             def deleteDurationInMillis = stopWatch.getTotalTimeMillis()
         then: 'delete duration is under 4000 milliseconds'
-            assert deleteDurationInMillis < 4000
+            assert deleteDurationInMillis < 1000
     }
 
     def 'Delete 10 list elements with keys'() {
@@ -123,7 +123,7 @@ class CpsDataPersistenceServiceDeletePerfTest extends CpsPersistencePerfSpecBase
             stopWatch.stop()
             def deleteDurationInMillis = stopWatch.getTotalTimeMillis()
         then: 'delete duration is under 6000 milliseconds'
-            assert deleteDurationInMillis < 6000
+            assert deleteDurationInMillis < 1200
     }
 
     @Sql([CLEAR_DATA, PERF_TEST_DATA])
@@ -136,7 +136,7 @@ class CpsDataPersistenceServiceDeletePerfTest extends CpsPersistencePerfSpecBase
             stopWatch.stop()
             def deleteDurationInMillis = stopWatch.getTotalTimeMillis()
         then: 'delete duration is under 250 milliseconds'
-            assert deleteDurationInMillis < 250
+            assert deleteDurationInMillis < 200
     }
 
     @Sql([CLEAR_DATA, PERF_TEST_DATA])
