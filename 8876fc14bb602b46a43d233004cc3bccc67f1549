@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e8c58475_d7f43e23",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 14
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-01-18T12:18:13Z",
+      "side": 1,
+      "message": "removed this validation since it is duplicate. added this validation in service",
+      "parentUuid": "b3b1ecb8_a9a64054",
+      "range": {
+        "startLine": 250,
+        "startChar": 8,
+        "endLine": 250,
+        "endChar": 45
+      },
+      "revId": "8876fc14bb602b46a43d233004cc3bccc67f1549",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "83cd9485_b3f76af4",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/exceptions/CpsRestExceptionHandlerSpec.groovy",
         "patchSetId": 14
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "a3e5f850_9ee32aac",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/exceptions/CpsRestExceptionHandlerSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-01-18T12:18:13Z",
+      "side": 1,
+      "message": "ok since data validation exception is already covered so removing these redundant test cases",
+      "parentUuid": "83cd9485_b3f76af4",
+      "range": {
+        "startLine": 152,
+        "startChar": 0,
+        "endLine": 183,
+        "endChar": 0
+      },
+      "revId": "8876fc14bb602b46a43d233004cc3bccc67f1549",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0a6d95e1_32bf8942",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/FetchDescendantsOption.java",
         "patchSetId": 14
@@ -59,6 +107,30 @@
       "writtenOn": "2023-01-17T14:27:57Z",
       "side": 1,
       "message": "restore check validation from path #14\nbut extract out the compiled pattern as a constant not the regex string",
+      "range": {
+        "startLine": 80,
+        "startChar": 4,
+        "endLine": 82,
+        "endChar": 0
+      },
+      "revId": "8876fc14bb602b46a43d233004cc3bccc67f1549",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6240e1d8_fa4f15a0",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/FetchDescendantsOption.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-01-18T12:18:13Z",
+      "side": 1,
+      "message": "Ok reverted back",
+      "parentUuid": "0a6d95e1_32bf8942",
       "range": {
         "startLine": 80,
         "startChar": 4,
