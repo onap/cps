@@ -19,6 +19,23 @@
     },
     {
       "key": {
+        "uuid": "3304423e_6ff5a908",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 625,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-01-18T14:45:53Z",
+      "side": 1,
+      "message": "I think the delete list logic should be executed even if onlySupportListNodeDeletion is false. Rather, it should immediately return false if onlySupportListNodeDeletion is true. Any other opinions on this?",
+      "revId": "1c36516f516afb7ef0e515ffb5abc14c07c77a6e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0f4c3eca_ae753275",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 1
