@@ -146,11 +146,11 @@ class CpsDataPersistenceServiceSpec extends Specification {
            def anchorEntity = new AnchorEntity(id:123)
            mockAnchorRepository.getByDataspaceAndName(*_) >> anchorEntity
         and: 'fragment repository returns a collection of fragments'
-            def fragmentEntity1 = new FragmentEntity(xpath: 'xpath1', childFragments: [])
-            def fragmentEntity2 = new FragmentEntity(xpath: 'xpath2', childFragments: [])
-           mockFragmentRepository.findByAnchorAndMultipleCpsPaths(123, ['xpath1','xpath2']) >> [ fragmentEntity1, fragmentEntity2 ]
+            def fragmentEntity1 = new FragmentEntity(xpath: '/xpath1', childFragments: [])
+            def fragmentEntity2 = new FragmentEntity(xpath: '/xpath2', childFragments: [])
+            mockFragmentRepository.findByAnchorAndMultipleCpsPaths(123, _ as Collection<String>) >> [fragmentEntity1, fragmentEntity2]
         when: 'getting data nodes for 2 xpaths'
-            def result = objectUnderTest.getDataNodes('some-dataspace', 'some-anchor', ['xpath1','xpath2'],FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
+            def result = objectUnderTest.getDataNodes('some-dataspace', 'some-anchor', ['/xpath1','/xpath2'], FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
         then: '2 data nodes are returned'
             assert result.size() == 2
     }
