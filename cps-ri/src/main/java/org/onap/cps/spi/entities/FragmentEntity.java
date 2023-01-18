@@ -40,6 +40,7 @@ import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -58,6 +59,7 @@ import org.hibernate.annotations.TypeDef;
 @Entity
 @Table(name = "fragment")
 @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class FragmentEntity implements Serializable {
 
     private static final long serialVersionUID = 7737669789097119667L;
@@ -68,6 +70,7 @@ public class FragmentEntity implements Serializable {
 
     @NotNull
     @Column(columnDefinition = "text")
+    @EqualsAndHashCode.Include
     private String xpath;
 
     @Column(name = "parent_id")
