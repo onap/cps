@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Copyright (C) 2021-2023 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada.
  *  Modifications Copyright (C) 2022 TechMahindra Ltd.
@@ -293,6 +293,39 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             'non-existing anchor'    | DATASPACE_NAME | 'NO ANCHOR'                       | '/not relevant' || AnchorNotFoundException
             'non-existing xpath'     | DATASPACE_NAME | ANCHOR_FOR_DATA_NODES_WITH_LEAVES | '/NO-XPATH'     || DataNodeNotFoundException
             'invalid xpath'          | DATASPACE_NAME | ANCHOR_FOR_DATA_NODES_WITH_LEAVES | 'INVALID XPATH' || CpsPathException
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Get multiple data nodes by xpath.'() {
+        when: 'fetch #scenario.'
+            def results = objectUnderTest.getDataNodes(DATASPACE_NAME, ANCHOR_NAME3, inputXpaths, OMIT_DESCENDANTS)
+        then: 'the expected number of data nodes are returned'
+            assert results.size() == expectedResultSize
+        where: 'following parameters were used'
+            scenario                               | inputXpaths                                     || expectedResultSize
+            '1 node'                               | ["/parent-200"]                                 || 1
+            '2 unique nodes'                       | ["/parent-200", "/parent-201"]                  || 2
+            '3 unique nodes'                       | ["/parent-200", "/parent-201", "/parent-202"]   || 3
+            '1 unique node with duplicate xpath'   | ["/parent-200", "/parent-200"]                  || 1
+            '2 unique nodes with duplicate xpath'  | ["/parent-200", "/parent-202", "/parent-200"]   || 2
+            'list element with key (single quote)' | ["/parent-201/child-204[@key='A']"]             || 1
+            'list element with key (double quote)' | ['/parent-201/child-204[@key="A"]']             || 1
+            'non-existing xpath'                   | ["/NO-XPATH"]                                   || 0
+            'existing and non-existing xpaths'     | ["/parent-200", "/NO-XPATH", "/parent-201"]     || 2
+            'invalid xpath'                        | ["INVALID XPATH"]                               || 0
+            'valid and invalid xpaths'             | ["/parent-200", "INVALID XPATH", "/parent-201"] || 2
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Get multiple data nodes error scenario: #scenario.'() {
+        when: 'attempt to get data nodes with #scenario'
+            objectUnderTest.getDataNodes(dataspaceName, anchorName, ['/not-relevant'], OMIT_DESCENDANTS)
+        then: 'a #expectedException is thrown'
+            thrown(expectedException)
+        where: 'the following data is used'
+            scenario                 | dataspaceName  | anchorName     || expectedException
+            'non-existing dataspace' | 'NO DATASPACE' | 'not relevant' || DataspaceNotFoundException
+            'non-existing anchor'    | DATASPACE_NAME | 'NO ANCHOR'    || AnchorNotFoundException
     }
 
     @Sql([CLEAR_DATA, SET_DATA])

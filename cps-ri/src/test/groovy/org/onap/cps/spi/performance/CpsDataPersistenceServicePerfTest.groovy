@@ -51,8 +51,6 @@ class CpsDataPersistenceServicePerfTest extends CpsPersistencePerfSpecBase {
     static def NUMBER_OF_CHILDREN = 200
     static def NUMBER_OF_GRAND_CHILDREN = 50
     static def TOTAL_NUMBER_OF_NODES = 1 + NUMBER_OF_CHILDREN + (NUMBER_OF_CHILDREN * NUMBER_OF_GRAND_CHILDREN)  //  Parent + Children +  Grand-children
-    static def ALLOWED_SETUP_TIME_MS = TimeUnit.SECONDS.toMillis(10)
-    static def ALLOWED_READ_TIME_AL_NODES_MS = 500
 
     def stopWatch = new StopWatch()
     def readStopWatch = new StopWatch()
@@ -64,8 +62,8 @@ class CpsDataPersistenceServicePerfTest extends CpsPersistencePerfSpecBase {
             createLineage(objectUnderTest, NUMBER_OF_CHILDREN, NUMBER_OF_GRAND_CHILDREN, false)
             stopWatch.stop()
             def setupDurationInMillis = stopWatch.getTotalTimeMillis()
-        and: 'setup duration is under #ALLOWED_SETUP_TIME_MS milliseconds'
-            assert setupDurationInMillis < ALLOWED_SETUP_TIME_MS
+        and: 'setup duration is under 10 seconds'
+            assert setupDurationInMillis < 10000
     }
 
     def 'Get data node with many descendants by xpath #scenario'() {
@@ -75,7 +73,7 @@ class CpsDataPersistenceServicePerfTest extends CpsPersistencePerfSpecBase {
             stopWatch.stop()
             def readDurationInMillis = stopWatch.getTotalTimeMillis()
         then: 'read duration is under 500 milliseconds'
-            assert readDurationInMillis < ALLOWED_READ_TIME_AL_NODES_MS
+            assert readDurationInMillis < 500
         and: 'data node is returned with all the descendants populated'
             assert countDataNodes(result) == TOTAL_NUMBER_OF_NODES
         where: 'the following xPaths are used'
@@ -91,7 +89,7 @@ class CpsDataPersistenceServicePerfTest extends CpsPersistencePerfSpecBase {
             stopWatch.stop()
             def readDurationInMillis = stopWatch.getTotalTimeMillis()
         then: 'read duration is under 500 milliseconds'
-            assert readDurationInMillis < ALLOWED_READ_TIME_AL_NODES_MS
+            assert readDurationInMillis < 500
         and: 'data node is returned with all the descendants populated'
             assert countDataNodes(result) == TOTAL_NUMBER_OF_NODES
     }
@@ -115,12 +113,12 @@ class CpsDataPersistenceServicePerfTest extends CpsPersistencePerfSpecBase {
             def result = objectUnderTest.queryDataNodes(PERF_DATASPACE, PERF_ANCHOR,  '//perf-test-grand-child-1', descendantsOption)
             stopWatch.stop()
             def readDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'read duration is under 500 milliseconds'
-            assert readDurationInMillis < alowedDuration
+        then: 'read duration is under #allowedDuration milliseconds'
+            assert readDurationInMillis < allowedDuration
         and: 'data node is returned with all the descendants populated'
             assert result.size() == NUMBER_OF_CHILDREN
         where: 'the following options are used'
-            scenario                                        | descendantsOption        || alowedDuration
+            scenario                                        | descendantsOption        || allowedDuration
             'omit descendants                             ' | OMIT_DESCENDANTS         || 150
             'include descendants (although there are none)' | INCLUDE_ALL_DESCENDANTS  || 150
     }

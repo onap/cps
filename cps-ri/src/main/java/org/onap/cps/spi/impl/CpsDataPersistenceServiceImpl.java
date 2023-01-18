@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Copyright (C) 2021-2023 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2022 TechMahindra Ltd.
@@ -262,13 +262,19 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
                                              final FetchDescendantsOption fetchDescendantsOption) {
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         final AnchorEntity anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
-        final List<FragmentEntity> fragmentEntities =
-                fragmentRepository.findByAnchorAndMultipleCpsPaths(anchorEntity.getId(), xpaths);
-        final Collection<DataNode> dataNodesCollection = new ArrayList<>(fragmentEntities.size());
-        for (final FragmentEntity fragmentEntity : fragmentEntities) {
-            dataNodesCollection.add(toDataNode(fragmentEntity, fetchDescendantsOption));
+
+        final Set<String> normalizedXpaths = new HashSet<>(xpaths.size());
+        for (final String xpath : xpaths) {
+            try {
+                normalizedXpaths.add(CpsPathUtil.getNormalizedXpath(xpath));
+            } catch (final PathParsingException e) {
+                log.warn("Error parsing xpath \"{}\" in getDataNodes: {}", xpath, e.getMessage());
+            }
         }
-        return dataNodesCollection;
+
+        final List<FragmentEntity> fragmentEntities =
+                fragmentRepository.findByAnchorAndMultipleCpsPaths(anchorEntity.getId(), normalizedXpaths);
+        return toDataNodes(fragmentEntities, fetchDescendantsOption);
     }
 
     private FragmentEntity getFragmentWithoutDescendantsByXpath(final String dataspaceName,
@@ -447,6 +453,15 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
                 .withXpath(fragmentEntity.getXpath())
                 .withLeaves(leaves)
                 .withChildDataNodes(childDataNodes).build();
+    }
+
+    private Collection<DataNode> toDataNodes(final Collection<FragmentEntity> fragmentEntities,
+                                             final FetchDescendantsOption fetchDescendantsOption) {
+        final Collection<DataNode> dataNodes = new ArrayList<>(fragmentEntities.size());
+        for (final FragmentEntity fragmentEntity : fragmentEntities) {
+            dataNodes.add(toDataNode(fragmentEntity, fetchDescendantsOption));
+        }
+        return dataNodes;
     }
 
     private List<DataNode> getChildDataNodes(final FragmentEntity fragmentEntity,
