@@ -598,7 +598,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
                                 final boolean onlySupportListNodeDeletion) {
         final String parentNodeXpath;
         FragmentEntity parentFragmentEntity = null;
-        boolean targetDeleted;
+        final boolean targetDeleted;
         if (isRootXpath(targetXpath)) {
             deleteDataNodes(dataspaceName, anchorName);
             targetDeleted = true;
@@ -609,15 +609,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
                 parentNodeXpath = CpsPathUtil.getNormalizedParentXpath(targetXpath);
             }
             parentFragmentEntity = getFragmentWithoutDescendantsByXpath(dataspaceName, anchorName, parentNodeXpath);
-            if (CpsPathUtil.isPathToListElement(targetXpath)) {
-                targetDeleted = deleteDataNode(parentFragmentEntity, targetXpath);
-            } else {
-                targetDeleted = deleteAllListElements(parentFragmentEntity, targetXpath);
-                final boolean tryToDeleteDataNode = !targetDeleted && !onlySupportListNodeDeletion;
-                if (tryToDeleteDataNode) {
-                    targetDeleted = deleteDataNode(parentFragmentEntity, targetXpath);
-                }
-            }
+            targetDeleted = deleteDataNode(parentFragmentEntity, targetXpath, onlySupportListNodeDeletion);
         }
         if (!targetDeleted) {
             final String additionalInformation = onlySupportListNodeDeletion
@@ -627,25 +619,26 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         }
     }
 
-    private boolean deleteDataNode(final FragmentEntity parentFragmentEntity, final String targetXpath) {
-        final String normalizedTargetXpath = CpsPathUtil.getNormalizedXpath(targetXpath);
+    private boolean deleteDataNode(final FragmentEntity parentFragmentEntity, final String listXpath,
+                                          final boolean onlySupportListNodeDeletion) {
+        final String normalizedTargetXpath = CpsPathUtil.getNormalizedXpath(listXpath);
+
+        if (onlySupportListNodeDeletion) {
+            final String deleteTargetXpathPrefix = normalizedTargetXpath + "[";
+            if (parentFragmentEntity.getChildFragments()
+                    .removeIf(fragment -> fragment.getXpath().startsWith(deleteTargetXpathPrefix))) {
+                fragmentRepository.save(parentFragmentEntity);
+                return true;
+            }
+        }
+
         if (parentFragmentEntity.getXpath().equals(normalizedTargetXpath)) {
             fragmentRepository.delete(parentFragmentEntity);
             return true;
         }
+
         if (parentFragmentEntity.getChildFragments()
                 .removeIf(fragment -> fragment.getXpath().equals(normalizedTargetXpath))) {
-            fragmentRepository.save(parentFragmentEntity);
-            return true;
-        }
-        return false;
-    }
-
-    private boolean deleteAllListElements(final FragmentEntity parentFragmentEntity, final String listXpath) {
-        final String normalizedListXpath = CpsPathUtil.getNormalizedXpath(listXpath);
-        final String deleteTargetXpathPrefix = normalizedListXpath + "[";
-        if (parentFragmentEntity.getChildFragments()
-                .removeIf(fragment -> fragment.getXpath().startsWith(deleteTargetXpathPrefix))) {
             fragmentRepository.save(parentFragmentEntity);
             return true;
         }
