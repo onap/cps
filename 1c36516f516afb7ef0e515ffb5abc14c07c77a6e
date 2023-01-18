@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "dea5d83e_53336d9d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 617,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-01-18T15:05:56Z",
+      "side": 1,
+      "message": "To clarify, the exception is not thrown when onlySupportListNodeDeletion is true, but an xpath to a non-list node is provided.",
+      "parentUuid": "e0732416_92358495",
+      "revId": "1c36516f516afb7ef0e515ffb5abc14c07c77a6e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3304423e_6ff5a908",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 1
