@@ -74,7 +74,7 @@ class CpsDataPersistenceServicePerfTest extends CpsPersistencePerfSpecBase {
             def result = objectUnderTest.getDataNode(PERF_DATASPACE, PERF_ANCHOR, xpath, INCLUDE_ALL_DESCENDANTS)
             stopWatch.stop()
             def readDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'read duration is under 500 milliseconds'
+        then: 'read duration is under #ALLOWED_READ_TIME_AL_NODES_MS milliseconds'
             assert readDurationInMillis < ALLOWED_READ_TIME_AL_NODES_MS
         and: 'data node is returned with all the descendants populated'
             assert countDataNodes(result) == TOTAL_NUMBER_OF_NODES
@@ -90,7 +90,7 @@ class CpsDataPersistenceServicePerfTest extends CpsPersistencePerfSpecBase {
             def result = objectUnderTest.queryDataNodes(PERF_DATASPACE, PERF_ANCHOR, '//perf-parent-1' , INCLUDE_ALL_DESCENDANTS)
             stopWatch.stop()
             def readDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'read duration is under 500 milliseconds'
+        then: 'read duration is under #ALLOWED_READ_TIME_AL_NODES_MS milliseconds'
             assert readDurationInMillis < ALLOWED_READ_TIME_AL_NODES_MS
         and: 'data node is returned with all the descendants populated'
             assert countDataNodes(result) == TOTAL_NUMBER_OF_NODES
@@ -115,12 +115,12 @@ class CpsDataPersistenceServicePerfTest extends CpsPersistencePerfSpecBase {
             def result = objectUnderTest.queryDataNodes(PERF_DATASPACE, PERF_ANCHOR,  '//perf-test-grand-child-1', descendantsOption)
             stopWatch.stop()
             def readDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'read duration is under 500 milliseconds'
-            assert readDurationInMillis < alowedDuration
+        then: 'read duration is under #allowedDuration milliseconds'
+            assert readDurationInMillis < allowedDuration
         and: 'data node is returned with all the descendants populated'
             assert result.size() == NUMBER_OF_CHILDREN
         where: 'the following options are used'
-            scenario                                        | descendantsOption        || alowedDuration
+            scenario                                        | descendantsOption        || allowedDuration
             'omit descendants                             ' | OMIT_DESCENDANTS         || 150
             'include descendants (although there are none)' | INCLUDE_ALL_DESCENDANTS  || 150
     }

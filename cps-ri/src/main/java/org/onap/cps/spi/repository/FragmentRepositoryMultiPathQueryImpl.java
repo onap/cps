@@ -1,6 +1,6 @@
 /*-
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation.
+ *  Copyright (C) 2022-2023 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,6 +23,7 @@ package org.onap.cps.spi.repository;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -46,6 +47,9 @@ public class FragmentRepositoryMultiPathQueryImpl implements FragmentRepositoryM
     @Transactional
     public List<FragmentEntity> findByAnchorAndMultipleCpsPaths(final Integer anchorId,
                                                                 final Collection<String> cpsPathQueryList) {
+        if (cpsPathQueryList.isEmpty()) {
+            return Collections.emptyList();
+        }
         final Collection<List<String>> sqlData = new HashSet<>(cpsPathQueryList.size());
         for (final String query : cpsPathQueryList) {
             final List<String> row = new ArrayList<>(1);
