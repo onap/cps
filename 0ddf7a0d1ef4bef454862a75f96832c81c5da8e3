@@ -22,6 +22,30 @@
       "revId": "0ddf7a0d1ef4bef454862a75f96832c81c5da8e3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c9bb31be_989548da",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-01-18T10:11:53Z",
+      "side": 1,
+      "message": "yeah. we leave this for sometime , get some insights from it and then if somebody complains we can revert the change 😊",
+      "parentUuid": "c49a51bc_4e349eac",
+      "range": {
+        "startLine": 128,
+        "startChar": 20,
+        "endLine": 128,
+        "endChar": 24
+      },
+      "revId": "0ddf7a0d1ef4bef454862a75f96832c81c5da8e3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
