@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START========================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -38,7 +38,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SynchronizationCacheConfig {
 
-    public static final int MODULE_SYNC_STARTED_TTL_SECS = 60;
+    public static final int MODULE_SYNC_STARTED_TTL_SECS = 200;
     public static final int DATA_SYNC_SEMAPHORE_TTL_SECS = 1800;
 
     private static final QueueConfig commonQueueConfig = createQueueConfig();
