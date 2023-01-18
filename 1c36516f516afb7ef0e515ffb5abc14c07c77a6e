@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e0732416_92358495",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 617,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-01-18T14:28:30Z",
+      "side": 1,
+      "message": "This exception is no longer thrown. Note the test in org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy:564 is incorrect. There is a mistake in the scenario for \u0027valid datanode but not a list\u0027 - it references a non-existing node \u0027/parent-200/child-202\u0027, which incorrectly causes the test to pass. If you fix it to use an existing non-list node such as \u0027/parent-200/child-201\u0027, the test fails.",
+      "revId": "1c36516f516afb7ef0e515ffb5abc14c07c77a6e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f4c3eca_ae753275",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 632,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-01-18T14:28:30Z",
+      "side": 1,
+      "message": "The code here falls through, allowing non-list elements to be deleted. See above comment.",
+      "revId": "1c36516f516afb7ef0e515ffb5abc14c07c77a6e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
