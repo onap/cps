@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c49a51bc_4e349eac",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-18T10:01:26Z",
+      "side": 1,
+      "message": "NB: this might happen a lot and is expected (not really bad) Maybe should remain debug info. Lets leaf at info for now, if logs get to big and someone complains we can change",
+      "range": {
+        "startLine": 128,
+        "startChar": 20,
+        "endLine": 128,
+        "endChar": 24
+      },
+      "revId": "0ddf7a0d1ef4bef454862a75f96832c81c5da8e3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
