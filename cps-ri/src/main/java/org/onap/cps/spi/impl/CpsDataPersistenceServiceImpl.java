@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Copyright (C) 2021-2023 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2022 TechMahindra Ltd.
@@ -262,8 +262,15 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
                                              final FetchDescendantsOption fetchDescendantsOption) {
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         final AnchorEntity anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
+        final Set<String> normalizedXpaths;
+        try {
+            normalizedXpaths = xpaths.stream().map(CpsPathUtil::getNormalizedXpath).collect(Collectors.toSet());
+        } catch (final PathParsingException e) {
+            throw new CpsPathException(e.getMessage());
+        }
+
         final List<FragmentEntity> fragmentEntities =
-                fragmentRepository.findByAnchorAndMultipleCpsPaths(anchorEntity.getId(), xpaths);
+                fragmentRepository.findByAnchorAndMultipleCpsPaths(anchorEntity.getId(), normalizedXpaths);
         final Collection<DataNode> dataNodesCollection = new ArrayList<>(fragmentEntities.size());
         for (final FragmentEntity fragmentEntity : fragmentEntities) {
             dataNodesCollection.add(toDataNode(fragmentEntity, fetchDescendantsOption));
