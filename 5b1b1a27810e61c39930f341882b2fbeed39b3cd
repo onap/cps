@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5548be36_cf270381",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 9
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-01-18T09:29:42Z",
+      "side": 1,
+      "message": "NB: ideally its 2 spaces. Nothing to change here.",
+      "range": {
+        "startLine": 89,
+        "startChar": 4,
+        "endLine": 95,
+        "endChar": 24
+      },
+      "revId": "5b1b1a27810e61c39930f341882b2fbeed39b3cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "840e62b2_53068b41",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/notifications/avc/AvcEventConsumer.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-01-18T09:29:42Z",
+      "side": 1,
+      "message": "NB: can we name it AvcEventForwarder ?? @Team : what do u think ? \nAs it is esentially consuming and then producing. ( esentially an event forwarder )",
+      "range": {
+        "startLine": 37,
+        "startChar": 13,
+        "endLine": 37,
+        "endChar": 29
+      },
+      "revId": "5b1b1a27810e61c39930f341882b2fbeed39b3cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e60771b4_4ce70df1",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/notifications/avc/AvcEventProducerIntegrationSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-01-18T09:29:42Z",
+      "side": 1,
+      "message": "I think here we can explictly check that the event time is still the same. Thats our agreement that we dont change the event coming from DMI. we just change the eventId.",
+      "range": {
+        "startLine": 77,
+        "startChar": 8,
+        "endLine": 77,
+        "endChar": 11
+      },
+      "revId": "5b1b1a27810e61c39930f341882b2fbeed39b3cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
