@@ -20,6 +20,7 @@
  *  SPDX-License-Identifier: Apache-2.0
  *  ============LICENSE_END=========================================================
  */
+
 package org.onap.cps.spi.impl
 
 import com.fasterxml.jackson.databind.ObjectMapper
@@ -303,6 +304,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             assert results.size() == expectedResultSize
         where: 'following parameters were used'
             scenario                               | inputXpaths                                     || expectedResultSize
+            '0 nodes'                              | []                                              || 0
             '1 node'                               | ["/parent-200"]                                 || 1
             '2 unique nodes'                       | ["/parent-200", "/parent-201"]                  || 2
             '3 unique nodes'                       | ["/parent-200", "/parent-201", "/parent-202"]   || 3
@@ -314,6 +316,10 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             'existing and non-existing xpaths'     | ["/parent-200", "/NO-XPATH", "/parent-201"]     || 2
             'invalid xpath'                        | ["INVALID XPATH"]                               || 0
             'valid and invalid xpaths'             | ["/parent-200", "INVALID XPATH", "/parent-201"] || 2
+            'root xpath'                           | ["/"]                                           || 7
+            'empty (root) xpath'                   | [""]                                            || 7
+            'root and top-level xpaths'            | ["/", "/parent-200", "/parent-201"]             || 7
+            'root and child xpaths'                | ["/", "/parent-200/child-201"]                  || 8
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
