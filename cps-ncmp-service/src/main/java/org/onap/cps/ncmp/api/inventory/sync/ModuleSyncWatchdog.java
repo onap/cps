@@ -125,7 +125,7 @@ public class ModuleSyncWatchdog {
                     moduleSyncStartedOnCmHandles.putIfAbsent(cmHandleId, VALUE_FOR_HAZELCAST_IN_PROGRESS_MAP,
                             SynchronizationCacheConfig.MODULE_SYNC_STARTED_TTL_SECS, TimeUnit.SECONDS));
             if (alreadyAddedToInProgressMap) {
-                log.info("module sync for {} already in progress by other instance", cmHandleId);
+                log.debug("module sync for {} already in progress by other instance", cmHandleId);
             } else {
                 nextBatch.add(batchCandidate);
             }
