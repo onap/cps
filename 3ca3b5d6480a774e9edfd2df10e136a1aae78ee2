@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "a4d299e8_d9d910f9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-01-19T13:48:02Z",
+      "side": 1,
+      "message": "This commit does not use native queries",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 1
+      },
+      "revId": "3ca3b5d6480a774e9edfd2df10e136a1aae78ee2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0d49f6f9_592550c3",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/entities/FragmentEntity.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-01-19T13:48:02Z",
+      "side": 1,
+      "message": "Copyright",
+      "range": {
+        "startLine": 3,
+        "startChar": 17,
+        "endLine": 3,
+        "endChar": 21
+      },
+      "revId": "3ca3b5d6480a774e9edfd2df10e136a1aae78ee2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3d4bf1e7_d20e29c0",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/performance/CpsDataPersistenceServiceDeletePerfTest.groovy",
         "patchSetId": 2
