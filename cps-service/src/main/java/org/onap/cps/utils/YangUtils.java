@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2022 Nordix Foundation
+ *  Copyright (C) 2020-2023 Nordix Foundation
  *  Modifications Copyright (C) 2021 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2022 TechMahindra Ltd.
@@ -87,7 +87,7 @@ public class YangUtils {
      * @param schemaContext schema context describing associated data model
      * @return the NormalizedNode object
      */
-    public static ContainerNode parseData(final ContentType contentType,
+    static ContainerNode parseData(final ContentType contentType,
                                           final String nodeData,
                                           final SchemaContext schemaContext) {
         if (contentType == ContentType.JSON) {
@@ -103,7 +103,7 @@ public class YangUtils {
      * @param schemaContext schema context describing associated data model
      * @return the NormalizedNode object
      */
-    public static ContainerNode parseData(final ContentType contentType,
+    static ContainerNode parseData(final ContentType contentType,
                                           final String nodeData,
                                           final SchemaContext schemaContext,
                                           final String parentNodeXpath) {

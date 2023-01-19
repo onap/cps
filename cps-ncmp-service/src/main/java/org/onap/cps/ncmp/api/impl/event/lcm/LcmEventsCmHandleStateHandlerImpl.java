@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2022 Nordix Foundation
+ * Copyright (C) 2022-2023 Nordix Foundation
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,6 +25,7 @@ import static org.onap.cps.ncmp.api.inventory.CmHandleState.DELETED;
 import static org.onap.cps.ncmp.api.inventory.CmHandleState.LOCKED;
 import static org.onap.cps.ncmp.api.inventory.CmHandleState.READY;
 
+import io.micrometer.core.annotation.Timed;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedHashMap;
@@ -74,6 +75,8 @@ public class LcmEventsCmHandleStateHandlerImpl implements LcmEventsCmHandleState
     }
 
     @Override
+    @Timed(value = "cps.ncmp.cmhandle.state.update.batch",
+        description = "Time taken to update a batch of cm handle states")
     public void updateCmHandleStateBatch(final Map<YangModelCmHandle, CmHandleState> cmHandleStatePerCmHandle) {
         final Collection<CmHandleTransitionPair> cmHandleTransitionPairs =
                 prepareCmHandleTransitionBatch(cmHandleStatePerCmHandle);
@@ -164,7 +167,6 @@ public class LcmEventsCmHandleStateHandlerImpl implements LcmEventsCmHandleState
 
     }
 
-
     private void updateToSpecifiedCmHandleState(final YangModelCmHandle yangModelCmHandle,
             final CmHandleState targetCmHandleState) {
 
@@ -219,7 +221,6 @@ public class LcmEventsCmHandleStateHandlerImpl implements LcmEventsCmHandleState
     @Setter
     @NoArgsConstructor
     static class CmHandleTransitionPair {
-
         private YangModelCmHandle currentYangModelCmHandle;
         private YangModelCmHandle targetYangModelCmHandle;
     }

@@ -36,6 +36,8 @@ import org.onap.cps.spi.repository.SchemaSetRepository
 import org.onap.cps.spi.repository.YangResourceRepository
 import org.onap.cps.spi.utils.SessionManager
 import org.onap.cps.utils.JsonObjectMapper
+import org.onap.cps.utils.TimedYangParser
+import org.onap.cps.yang.TimedYangTextSchemaSourceSetBuilder
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -112,5 +114,15 @@ class TestConfig extends Specification{
     @Bean
     SessionManager sessionManager() {
         return Stub(SessionManager)
+    }
+
+    @Bean
+    TimedYangParser timedYangParser() {
+        return new TimedYangParser()
+    }
+
+    @Bean
+    TimedYangTextSchemaSourceSetBuilder textSchemaSourceSetBuilder() {
+        return new TimedYangTextSchemaSourceSetBuilder()
     }
 }

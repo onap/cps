@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Copyright (C) 2021-2023 Nordix Foundation
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2022 TechMahindra Ltd.
@@ -28,6 +28,7 @@ import static org.onap.cps.notification.Operation.CREATE;
 import static org.onap.cps.notification.Operation.DELETE;
 import static org.onap.cps.notification.Operation.UPDATE;
 
+import io.micrometer.core.annotation.Timed;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -48,7 +49,7 @@ import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.DataNodeBuilder;
 import org.onap.cps.spi.utils.CpsValidator;
 import org.onap.cps.utils.ContentType;
-import org.onap.cps.utils.YangUtils;
+import org.onap.cps.utils.TimedYangParser;
 import org.opendaylight.yangtools.yang.data.api.schema.ContainerNode;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
 import org.springframework.stereotype.Service;
@@ -66,6 +67,7 @@ public class CpsDataServiceImpl implements CpsDataService {
     private final YangTextSchemaSourceSetCache yangTextSchemaSourceSetCache;
     private final NotificationService notificationService;
     private final CpsValidator cpsValidator;
+    private final TimedYangParser timedYangParser;
 
     @Override
     public void saveData(final String dataspaceName, final String anchorName, final String nodeData,
@@ -74,6 +76,8 @@ public class CpsDataServiceImpl implements CpsDataService {
     }
 
     @Override
+    @Timed(value = "cps.data.service.datanode.root.save",
+        description = "Time taken to save a root data node")
     public void saveData(final String dataspaceName, final String anchorName, final String nodeData,
                          final OffsetDateTime observedTimestamp, final ContentType contentType) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
@@ -90,6 +94,8 @@ public class CpsDataServiceImpl implements CpsDataService {
     }
 
     @Override
+    @Timed(value = "cps.data.service.datanode.child.save",
+        description = "Time taken to save a child data node")
     public void saveData(final String dataspaceName, final String anchorName, final String parentNodeXpath,
                          final String nodeData, final OffsetDateTime observedTimestamp,
                          final ContentType contentType) {
@@ -101,6 +107,8 @@ public class CpsDataServiceImpl implements CpsDataService {
     }
 
     @Override
+    @Timed(value = "cps.data.service.list.element.save",
+        description = "Time taken to save a list element")
     public void saveListElements(final String dataspaceName, final String anchorName,
         final String parentNodeXpath, final String jsonData, final OffsetDateTime observedTimestamp) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
@@ -112,6 +120,8 @@ public class CpsDataServiceImpl implements CpsDataService {
     }
 
     @Override
+    @Timed(value = "cps.data.service.list.element.batch.save",
+        description = "Time taken to save a batch of list elements")
     public void saveListElementsBatch(final String dataspaceName, final String anchorName, final String parentNodeXpath,
             final Collection<String> jsonDataList, final OffsetDateTime observedTimestamp) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
@@ -123,6 +133,8 @@ public class CpsDataServiceImpl implements CpsDataService {
     }
 
     @Override
+    @Timed(value = "cps.data.service.datanode.get",
+        description = "Time taken to get a data node")
     public DataNode getDataNode(final String dataspaceName, final String anchorName, final String xpath,
         final FetchDescendantsOption fetchDescendantsOption) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
@@ -130,6 +142,8 @@ public class CpsDataServiceImpl implements CpsDataService {
     }
 
     @Override
+    @Timed(value = "cps.data.service.datanode.batch.get",
+        description = "Time taken to get a batch of data nodes")
     public Collection<DataNode> getDataNodes(final String dataspaceName, final String anchorName,
                                              final Collection<String> xpaths,
                                 final FetchDescendantsOption fetchDescendantsOption) {
@@ -138,6 +152,8 @@ public class CpsDataServiceImpl implements CpsDataService {
     }
 
     @Override
+    @Timed(value = "cps.data.service.datanode.leaves.update",
+        description = "Time taken to get a batch of data nodes")
     public void updateNodeLeaves(final String dataspaceName, final String anchorName, final String parentNodeXpath,
         final String jsonData, final OffsetDateTime observedTimestamp) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
@@ -148,6 +164,8 @@ public class CpsDataServiceImpl implements CpsDataService {
     }
 
     @Override
+    @Timed(value = "cps.data.service.datanode.leaves.descendants.leaves.update",
+        description = "Time taken to update data node leaves and existing descendants leaves")
     public void updateNodeLeavesAndExistingDescendantLeaves(final String dataspaceName, final String anchorName,
         final String parentNodeXpath,
         final String dataNodeUpdatesAsJson,
@@ -184,6 +202,8 @@ public class CpsDataServiceImpl implements CpsDataService {
     }
 
     @Override
+    @Timed(value = "cps.data.service.datanode.descendants.update",
+        description = "Time taken to update a data node and descendants")
     public void updateDataNodeAndDescendants(final String dataspaceName, final String anchorName,
                                              final String parentNodeXpath, final String jsonData,
                                              final OffsetDateTime observedTimestamp) {
@@ -196,6 +216,8 @@ public class CpsDataServiceImpl implements CpsDataService {
     }
 
     @Override
+    @Timed(value = "cps.data.service.datanode.descendants.batch.update",
+        description = "Time taken to update a batch of data nodes and descendants")
     public void updateDataNodesAndDescendants(final String dataspaceName, final String anchorName,
                                               final Map<String, String> nodesJsonData,
                                               final OffsetDateTime observedTimestamp) {
@@ -208,6 +230,8 @@ public class CpsDataServiceImpl implements CpsDataService {
     }
 
     @Override
+    @Timed(value = "cps.data.service.list.update",
+        description = "Time taken to update a list")
     public void replaceListContent(final String dataspaceName, final String anchorName, final String parentNodeXpath,
             final String jsonData, final OffsetDateTime observedTimestamp) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
@@ -217,6 +241,8 @@ public class CpsDataServiceImpl implements CpsDataService {
     }
 
     @Override
+    @Timed(value = "cps.data.service.list.batch.update",
+        description = "Time taken to update a batch of lists")
     public void replaceListContent(final String dataspaceName, final String anchorName, final String parentNodeXpath,
             final Collection<DataNode> dataNodes, final OffsetDateTime observedTimestamp) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
@@ -225,6 +251,8 @@ public class CpsDataServiceImpl implements CpsDataService {
     }
 
     @Override
+    @Timed(value = "cps.data.service.datanode.delete",
+        description = "Time taken to delete a datanode")
     public void deleteDataNode(final String dataspaceName, final String anchorName, final String dataNodeXpath,
                                final OffsetDateTime observedTimestamp) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
@@ -233,6 +261,8 @@ public class CpsDataServiceImpl implements CpsDataService {
     }
 
     @Override
+    @Timed(value = "cps.data.service.datanode.batch.delete",
+        description = "Time taken to delete a batch of datanodes")
     public void deleteDataNodes(final String dataspaceName, final String anchorName,
         final OffsetDateTime observedTimestamp) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
@@ -241,6 +271,8 @@ public class CpsDataServiceImpl implements CpsDataService {
     }
 
     @Override
+    @Timed(value = "cps.data.service.list.delete",
+        description = "Time taken to delete a list or list element")
     public void deleteListOrListElement(final String dataspaceName, final String anchorName, final String listNodeXpath,
         final OffsetDateTime observedTimestamp) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
@@ -256,11 +288,12 @@ public class CpsDataServiceImpl implements CpsDataService {
         final SchemaContext schemaContext = getSchemaContext(dataspaceName, anchor.getSchemaSetName());
 
         if (ROOT_NODE_XPATH.equals(parentNodeXpath)) {
-            final ContainerNode containerNode = YangUtils.parseData(contentType, nodeData, schemaContext);
+            final ContainerNode containerNode = timedYangParser.parseData(contentType, nodeData, schemaContext);
             return new DataNodeBuilder().withContainerNode(containerNode).build();
         }
 
-        final ContainerNode containerNode = YangUtils.parseData(contentType, nodeData, schemaContext, parentNodeXpath);
+        final ContainerNode containerNode =
+            timedYangParser.parseData(contentType, nodeData, schemaContext, parentNodeXpath);
 
         return new DataNodeBuilder()
                 .withParentNodeXpath(parentNodeXpath)
@@ -283,8 +316,9 @@ public class CpsDataServiceImpl implements CpsDataService {
 
         final Anchor anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
         final SchemaContext schemaContext = getSchemaContext(dataspaceName, anchor.getSchemaSetName());
+
         if (ROOT_NODE_XPATH.equals(parentNodeXpath)) {
-            final ContainerNode containerNode = YangUtils.parseData(contentType, nodeData, schemaContext);
+            final ContainerNode containerNode = timedYangParser.parseData(contentType, nodeData, schemaContext);
             final Collection<DataNode> dataNodes = new DataNodeBuilder()
                     .withContainerNode(containerNode)
                     .buildCollection();
@@ -293,7 +327,8 @@ public class CpsDataServiceImpl implements CpsDataService {
             }
             return dataNodes;
         }
-        final ContainerNode containerNode = YangUtils.parseData(contentType, nodeData, schemaContext, parentNodeXpath);
+        final ContainerNode containerNode =
+            timedYangParser.parseData(contentType, nodeData, schemaContext, parentNodeXpath);
         final Collection<DataNode> dataNodes = new DataNodeBuilder()
             .withParentNodeXpath(parentNodeXpath)
             .withContainerNode(containerNode)
@@ -302,7 +337,6 @@ public class CpsDataServiceImpl implements CpsDataService {
             throw new DataValidationException("Invalid data.", "No data nodes provided");
         }
         return dataNodes;
-
     }
 
     private Collection<Collection<DataNode>> buildDataNodes(final String dataspaceName, final String anchorName,

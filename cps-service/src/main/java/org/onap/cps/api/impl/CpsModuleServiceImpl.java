@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2022 Nordix Foundation
+ *  Copyright (C) 2020-2023 Nordix Foundation
  *  Modifications Copyright (C) 2020-2021 Pantheon.tech
  *  Modifications Copyright (C) 2022 Bell Canada
  *  Modifications Copyright (C) 2022 TechMahindra Ltd
@@ -23,6 +23,7 @@
 
 package org.onap.cps.api.impl;
 
+import io.micrometer.core.annotation.Timed;
 import java.util.Collection;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
@@ -36,8 +37,8 @@ import org.onap.cps.spi.model.ModuleDefinition;
 import org.onap.cps.spi.model.ModuleReference;
 import org.onap.cps.spi.model.SchemaSet;
 import org.onap.cps.spi.utils.CpsValidator;
+import org.onap.cps.yang.TimedYangTextSchemaSourceSetBuilder;
 import org.onap.cps.yang.YangTextSchemaSourceSet;
-import org.onap.cps.yang.YangTextSchemaSourceSetBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -49,13 +50,16 @@ public class CpsModuleServiceImpl implements CpsModuleService {
     private final YangTextSchemaSourceSetCache yangTextSchemaSourceSetCache;
     private final CpsAdminService cpsAdminService;
     private final CpsValidator cpsValidator;
+    private final TimedYangTextSchemaSourceSetBuilder timedYangTextSchemaSourceSetBuilder;
 
     @Override
+    @Timed(value = "cps.module.service.schemaset.create",
+        description = "Time taken to create (asn store) a schemaset")
     public void createSchemaSet(final String dataspaceName, final String schemaSetName,
         final Map<String, String> yangResourcesNameToContentMap) {
         cpsValidator.validateNameCharacters(dataspaceName, schemaSetName);
-        final var yangTextSchemaSourceSet
-            = YangTextSchemaSourceSetBuilder.of(yangResourcesNameToContentMap);
+        final YangTextSchemaSourceSet yangTextSchemaSourceSet =
+            timedYangTextSchemaSourceSetBuilder.getYangTextSchemaSourceSet(yangResourcesNameToContentMap);
         cpsModulePersistenceService.storeSchemaSet(dataspaceName, schemaSetName, yangResourcesNameToContentMap);
         yangTextSchemaSourceSetCache.updateCache(dataspaceName, schemaSetName, yangTextSchemaSourceSet);
     }
