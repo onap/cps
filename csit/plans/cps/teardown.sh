@@ -23,20 +23,20 @@
 echo '================================== docker info =========================='
 docker ps -a
 
-echo '================================== CPS-NCMP Logs ========================'
-docker logs cps-and-ncmp
+# echo '================================== CPS-NCMP Logs ========================'
+# docker logs cps-and-ncmp
 
-echo '================================== DMI Logs ============================='
-docker logs ncmp-dmi-plugin
+# echo '================================== DMI Logs ============================='
+# docker logs ncmp-dmi-plugin
 
-echo '================================== SDNC Logs ============================'
-docker logs sdnc
+# echo '================================== SDNC Logs ============================'
+# docker logs sdnc
 
-echo 'Stopping, Removing all running containers...'
-docker stop $(docker ps -aq) && docker rm $(docker ps -aq)
+# echo 'Stopping, Removing all running containers...'
+# docker stop $(docker ps -aq) && docker rm $(docker ps -aq)
 
-echo 'Removing Volumes...'
-echo y | docker volume prune
+# echo 'Removing Volumes...'
+# echo y | docker volume prune
 
-echo 'Removing Networks...'
-echo y | docker network prune
+# echo 'Removing Networks...'
+# echo y | docker network prune

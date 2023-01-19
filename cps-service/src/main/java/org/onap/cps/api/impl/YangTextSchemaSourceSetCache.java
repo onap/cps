@@ -2,7 +2,7 @@
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2022 Bell Canada
- *  Modifications Copyright (C) 2022 Nordix Foundation
+ *  Modifications Copyright (C) 2022-2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -23,7 +23,9 @@
 package org.onap.cps.api.impl;
 
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
+import io.micrometer.core.instrument.Metrics;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.spi.CpsModulePersistenceService;
 import org.onap.cps.spi.utils.CpsValidator;
@@ -45,6 +47,9 @@ public class YangTextSchemaSourceSetCache {
 
     private final CpsModulePersistenceService cpsModulePersistenceService;
     private final CpsValidator cpsValidator;
+
+    private final AtomicInteger yangSchemaCacheCounter = Metrics.gauge("cps.yangschema.cache.gauge",
+                                                                        new AtomicInteger(0));
 
     /**
      * Cache YangTextSchemaSourceSet.
@@ -74,9 +79,9 @@ public class YangTextSchemaSourceSetCache {
     public YangTextSchemaSourceSet updateCache(final String dataspaceName, final String schemaSetName,
             final YangTextSchemaSourceSet yangTextSchemaSourceSet) {
         cpsValidator.validateNameCharacters(dataspaceName, schemaSetName);
+        yangSchemaCacheCounter.incrementAndGet();
         return yangTextSchemaSourceSet;
     }
-
 
     /**
      * Remove the cached value for the given dataspace and schema-set.
@@ -87,6 +92,7 @@ public class YangTextSchemaSourceSetCache {
     @CacheEvict(key = "#p0.concat('-').concat(#p1)")
     public void removeFromCache(final String dataspaceName, final String schemaSetName) {
         cpsValidator.validateNameCharacters(dataspaceName, schemaSetName);
+        yangSchemaCacheCounter.decrementAndGet();
         // Spring provides implementation for removing object from cache
     }
 

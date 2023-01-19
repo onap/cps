@@ -136,8 +136,18 @@ class CpsRestExceptionHandlerSpec extends Specification {
                 "Anchor with name ${existingObjectName} already exists for ${dataspaceName}.")
     }
 
+    def 'Request with a schema set in use exception returns HTTP Status Conflict.'() {
+        when: 'Schema set in use exception is thrown by the service'
+            setupTestException(new SchemaSetInUseException(dataspaceName, existingObjectName))
+            def response = performTestRequest()
+        then: 'a HTTP conflict response is returned with correct message an details'
+            assertTestResponse(response, CONFLICT,
+                "Schema Set is being used.",
+                "Schema Set with name ${existingObjectName} in dataspace ${dataspaceName} is having Anchor records associated.")
+    }
+
     def 'Get request with a #exceptionThrown.class.simpleName returns HTTP Status Bad Request'() {
-        when: 'CPS validation exception is thrown by the service'
+        when: '#exceptionThrown.class.simpleName is thrown by the service'
             setupTestException(exceptionThrown)
             def response = performTestRequest()
         then: 'an HTTP Bad Request response is returned with correct message and details'
