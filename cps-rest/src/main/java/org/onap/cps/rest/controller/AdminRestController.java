@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2022 Nordix Foundation
+ *  Copyright (C) 2020-2023 Nordix Foundation
  *  Modifications Copyright (C) 2020-2021 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2022 TechMahindra Ltd.
@@ -26,6 +26,7 @@ package org.onap.cps.rest.controller;
 import static org.onap.cps.rest.utils.MultipartFileUtil.extractYangResourcesMap;
 import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED;
 
+import io.micrometer.core.annotation.Timed;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -116,6 +117,8 @@ public class AdminRestController implements CpsAdminApi {
      * @return a {@Link ResponseEntity} of created schema set without any response body & {@link HttpStatus} CREATED
      */
     @Override
+    @Timed(value = "cps.rest.admin.controller.schemaset.create",
+        description = "Time taken to create schemaset from controller")
     public ResponseEntity<Void> createSchemaSetV2(@NotNull @Valid final String schemaSetName,
         final String dataspaceName, @Valid final MultipartFile multipartFile) {
         cpsModuleService.createSchemaSet(dataspaceName, schemaSetName, extractYangResourcesMap(multipartFile));

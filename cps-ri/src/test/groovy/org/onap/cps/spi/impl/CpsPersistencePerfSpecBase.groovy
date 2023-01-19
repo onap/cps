@@ -22,6 +22,7 @@ package org.onap.cps.spi.impl
 
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.DataNodeBuilder
+import org.springframework.util.StopWatch
 
 class CpsPersistencePerfSpecBase extends CpsPersistenceSpecBase {
 
@@ -31,6 +32,18 @@ class CpsPersistencePerfSpecBase extends CpsPersistenceSpecBase {
     static final String PERF_TEST_PARENT = '/perf-parent-1'
 
     static def xpathsToAllGrandChildren = []
+
+    static def PERFORMANCE_RECORD = []
+
+    def stopWatch = new StopWatch()
+
+    def cleanupSpec() {
+        println('#############################################################################')
+        println('##             P E R F O R M A N C E   T E S T   R E S U L T S             ##')
+        println('#############################################################################')
+        PERFORMANCE_RECORD.sort().each { println(it) }
+        PERFORMANCE_RECORD.clear()
+    }
 
     def createLineage(cpsDataPersistenceService, numberOfChildren, numberOfGrandChildren, createLists) {
         xpathsToAllGrandChildren = []
@@ -70,5 +83,17 @@ class CpsPersistencePerfSpecBase extends CpsPersistenceSpecBase {
             }
         }
         return nodeCount
+    }
+
+    def recordAndAssertPerformance(String shortTitle, thresholdInMs, recordedTimeInMs) {
+        def pass = recordedTimeInMs <= thresholdInMs
+        if (shortTitle.length()>40) {
+            shortTitle = shortTitle.substring(0,40)
+        }
+        def record = String.format('%2d.%-40s limit%,7d took %,7d ms ', PERFORMANCE_RECORD.size()+1, shortTitle, thresholdInMs, recordedTimeInMs)
+        record += pass?'PASS':'FAIL'
+        PERFORMANCE_RECORD.add(record)
+        assert recordedTimeInMs <= thresholdInMs
+        return true
     }
 }
