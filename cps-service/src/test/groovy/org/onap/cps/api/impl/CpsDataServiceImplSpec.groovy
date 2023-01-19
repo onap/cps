@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Copyright (C) 2021-2023 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada.
  *  Modifications Copyright (C) 2022 TechMahindra Ltd.
@@ -34,6 +34,7 @@ import org.onap.cps.spi.model.Anchor
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.DataNodeBuilder
 import org.onap.cps.utils.ContentType
+import org.onap.cps.utils.TimedYangParser
 import org.onap.cps.yang.YangTextSchemaSourceSet
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
 import spock.lang.Specification
@@ -48,9 +49,10 @@ class CpsDataServiceImplSpec extends Specification {
     def mockYangTextSchemaSourceSetCache = Mock(YangTextSchemaSourceSetCache)
     def mockNotificationService = Mock(NotificationService)
     def mockCpsValidator = Mock(CpsValidator)
+    def timedYangParser = new TimedYangParser()
 
     def objectUnderTest = new CpsDataServiceImpl(mockCpsDataPersistenceService, mockCpsAdminService,
-            mockYangTextSchemaSourceSetCache, mockNotificationService, mockCpsValidator)
+            mockYangTextSchemaSourceSetCache, mockNotificationService, mockCpsValidator, timedYangParser)
 
     def setup() {
         mockCpsAdminService.getAnchor(dataspaceName, anchorName) >> anchor

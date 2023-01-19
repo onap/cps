@@ -27,7 +27,7 @@ import org.springframework.http.HttpStatus
 import org.springframework.test.web.servlet.MockMvc
 import spock.lang.Specification
 
-@WebMvcTest(controllers = TestController.class)
+@WebMvcTest(TestController)
 class ControllerSecuritySpec extends Specification {
 
     @Autowired

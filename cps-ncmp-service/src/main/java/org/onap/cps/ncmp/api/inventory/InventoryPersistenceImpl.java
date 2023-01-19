@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022=2023 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,6 +26,7 @@ import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NO_TIMES
 import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED;
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
 
+import io.micrometer.core.annotation.Timed;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -140,6 +141,8 @@ public class InventoryPersistenceImpl implements InventoryPersistence {
     }
 
     @Override
+    @Timed(value = "cps.ncmp.inventory.persistence.schemaset.delete",
+        description = "Time taken to delete a schemaset")
     public void deleteSchemaSetWithCascade(final String schemaSetName) {
         try {
             cpsValidator.validateNameCharacters(schemaSetName);
@@ -156,6 +159,8 @@ public class InventoryPersistenceImpl implements InventoryPersistence {
     }
 
     @Override
+    @Timed(value = "cps.ncmp.inventory.persistence.datanode.get",
+        description = "Time taken to get a data node (from ncmp dmi registry)")
     public DataNode getDataNode(final String xpath, final FetchDescendantsOption fetchDescendantsOption) {
         return cpsDataService.getDataNode(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
                 xpath, fetchDescendantsOption);
