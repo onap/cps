@@ -20,6 +20,7 @@
  *  SPDX-License-Identifier: Apache-2.0
  *  ============LICENSE_END=========================================================
  */
+
 package org.onap.cps.spi.impl
 
 import com.fasterxml.jackson.databind.ObjectMapper
@@ -252,6 +253,23 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
+    def 'Get multiple data node by xpath without descendants.'() {
+        when: 'data node is requested'
+            def results = objectUnderTest.getDataNodes(DATASPACE_NAME, ANCHOR_HAVING_SINGLE_TOP_LEVEL_FRAGMENT,
+                inputXPaths, OMIT_DESCENDANTS)
+        then: 'data node is returned with no descendants'
+            assert results[0].xpath == XPATH_DATA_NODE_WITH_LEAVES
+        and: 'expected leaves'
+            assert results[0].childDataNodes.size() == 0
+            assertLeavesMaps(results[0].leaves, expectedLeavesByXpathMap[XPATH_DATA_NODE_WITH_LEAVES])
+        where: 'the following data is used'
+            scenario      | inputXPaths
+            'some xpath'  | ['/parent-207']
+            'root xpath'  | ['/']
+            'empty xpath' | ['']
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
     def 'Cps Path query with syntax error throws a CPS Path Exception.'() {
         when: 'trying to execute a query with a syntax (parsing) error'
             objectUnderTest.getDataNode(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, 'invalid-cps-path/child' , OMIT_DESCENDANTS)
@@ -282,6 +300,27 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
+    def 'Get multiple data node by xpath with all descendants.'() {
+        when: 'data node is requested with all descendants'
+            def results = objectUnderTest.getDataNodes(DATASPACE_NAME, ANCHOR_HAVING_SINGLE_TOP_LEVEL_FRAGMENT,
+                inputXPaths, INCLUDE_ALL_DESCENDANTS)
+            def mappedResult = treeToFlatMapByXpath(new HashMap<>(), results[0])
+        then: 'data node is returned with all the descendants populated'
+            assert mappedResult.size() == 4
+            assert results[0].childDataNodes.size() == 2
+            assert mappedResult.get('/parent-207/child-001').childDataNodes.size() == 0
+            assert mappedResult.get('/parent-207/child-002').childDataNodes.size() == 1
+        and: 'extracted leaves maps are matching expected'
+            mappedResult.forEach(
+                (xPath, dataNode) -> assertLeavesMaps(dataNode.leaves, expectedLeavesByXpathMap[xPath]))
+        where: 'the following data is used'
+            scenario      | inputXPaths
+            'some xpath'  | ['/parent-207']
+            'root xpath'  | ['/']
+            'empty xpath' | ['']
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
     def 'Get data node error scenario: #scenario.'() {
         when: 'attempt to get data node with #scenario'
             objectUnderTest.getDataNode(dataspaceName, anchorName, xpath, OMIT_DESCENDANTS)
@@ -303,6 +342,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             assert results.size() == expectedResultSize
         where: 'following parameters were used'
             scenario                               | inputXpaths                                     || expectedResultSize
+            '0 nodes'                              | []                                              || 0
             '1 node'                               | ["/parent-200"]                                 || 1
             '2 unique nodes'                       | ["/parent-200", "/parent-201"]                  || 2
             '3 unique nodes'                       | ["/parent-200", "/parent-201", "/parent-202"]   || 3
@@ -314,6 +354,10 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             'existing and non-existing xpaths'     | ["/parent-200", "/NO-XPATH", "/parent-201"]     || 2
             'invalid xpath'                        | ["INVALID XPATH"]                               || 0
             'valid and invalid xpaths'             | ["/parent-200", "INVALID XPATH", "/parent-201"] || 2
+            'root xpath'                           | ["/"]                                           || 7
+            'empty (root) xpath'                   | [""]                                            || 7
+            'root and top-level xpaths'            | ["/", "/parent-200", "/parent-201"]             || 7
+            'root and child xpaths'                | ["/", "/parent-200/child-201"]                  || 8
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
