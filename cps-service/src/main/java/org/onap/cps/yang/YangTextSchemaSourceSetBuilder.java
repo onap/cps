@@ -25,6 +25,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.collect.ImmutableMap;
+import io.micrometer.core.annotation.Timed;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -58,16 +59,35 @@ public final class YangTextSchemaSourceSetBuilder {
 
     private final ImmutableMap.Builder<String, String> yangModelMap = new ImmutableMap.Builder<>();
 
+    /**
+     * Add Yang resource context.
+     *
+     * @param yangResourceNameToContent the resource content
+     * @return this builder
+     */
     public YangTextSchemaSourceSetBuilder putAll(final Map<String, String> yangResourceNameToContent) {
         this.yangModelMap.putAll(yangResourceNameToContent);
         return this;
     }
 
+    /**
+     * Build a YangTextSchemaSourceSet.
+     *
+     * @return the YangTextSchemaSourceSet
+     */
     public YangTextSchemaSourceSet build() {
         final var schemaContext = generateSchemaContext(yangModelMap.build());
         return new YangTextSchemaSourceSetImpl(schemaContext);
     }
 
+    /**
+     * Add yangResourceNameToContent and build a YangTextSchemaSourceSet.
+     *
+     * @param yangResourceNameToContent the resource content
+     * @return the YangTextSchemaSourceSet
+     */
+
+    @Timed(value = "cps.yang.model.build.time", description = "Time taken to build ODL yang Model")
     public static YangTextSchemaSourceSet of(final Map<String, String> yangResourceNameToContent) {
         return new YangTextSchemaSourceSetBuilder().putAll(yangResourceNameToContent).build();
     }

@@ -20,13 +20,21 @@
 
 package org.onap.cps;
 
+import io.micrometer.core.aop.TimedAspect;
+import io.micrometer.core.instrument.MeterRegistry;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.retry.annotation.EnableRetry;
 
 @EnableRetry
 @SpringBootApplication
 public class Application {
+
+    @Bean
+    public TimedAspect timedAspect(final MeterRegistry registry) {
+        return new TimedAspect(registry);
+    }
 
     public static void main(final String[] args) {
         SpringApplication.run(Application.class, args);

@@ -26,6 +26,7 @@ package org.onap.cps.rest.controller;
 import static org.onap.cps.rest.utils.MultipartFileUtil.extractYangResourcesMap;
 import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED;
 
+import io.micrometer.core.annotation.Timed;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -116,6 +117,7 @@ public class AdminRestController implements CpsAdminApi {
      * @return a {@Link ResponseEntity} of created schema set without any response body & {@link HttpStatus} CREATED
      */
     @Override
+    @Timed(value = "cps.create.schemaset.controller", description = "Time taken to create schemaset from controller")
     public ResponseEntity<Void> createSchemaSetV2(@NotNull @Valid final String schemaSetName,
         final String dataspaceName, @Valid final MultipartFile multipartFile) {
         cpsModuleService.createSchemaSet(dataspaceName, schemaSetName, extractYangResourcesMap(multipartFile));
@@ -164,6 +166,7 @@ public class AdminRestController implements CpsAdminApi {
     @Override
     public ResponseEntity<Void> deleteSchemaSet(final String apiVersion,
             final String dataspaceName, final String schemaSetName) {
+        cpsModuleService.deleteSchemaSet(dataspaceName, schemaSetName, CASCADE_DELETE_PROHIBITED);
         cpsModuleService.deleteSchemaSet(dataspaceName, schemaSetName, CASCADE_DELETE_PROHIBITED);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
@@ -246,6 +249,7 @@ public class AdminRestController implements CpsAdminApi {
     }
 
     @Override
+    @Timed(value = "cps.all.dataspaces.request", description = "Time taken get all dataspaces")
     public ResponseEntity<List<DataspaceDetails>> getAllDataspaces(final String apiVersion) {
         final Collection<Dataspace> dataspaces = cpsAdminService.getAllDataspaces();
         final List<DataspaceDetails> dataspaceDetails = dataspaces.stream().map(cpsRestInputMapper::toDataspaceDetails)

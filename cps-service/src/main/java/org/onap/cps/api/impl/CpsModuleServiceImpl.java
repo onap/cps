@@ -23,6 +23,7 @@
 
 package org.onap.cps.api.impl;
 
+import io.micrometer.core.annotation.Timed;
 import java.util.Collection;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
@@ -36,8 +37,8 @@ import org.onap.cps.spi.model.ModuleDefinition;
 import org.onap.cps.spi.model.ModuleReference;
 import org.onap.cps.spi.model.SchemaSet;
 import org.onap.cps.spi.utils.CpsValidator;
+import org.onap.cps.yang.TimedBuilder;
 import org.onap.cps.yang.YangTextSchemaSourceSet;
-import org.onap.cps.yang.YangTextSchemaSourceSetBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -49,16 +50,19 @@ public class CpsModuleServiceImpl implements CpsModuleService {
     private final YangTextSchemaSourceSetCache yangTextSchemaSourceSetCache;
     private final CpsAdminService cpsAdminService;
     private final CpsValidator cpsValidator;
+    private final TimedBuilder timedBuilder;
 
     @Override
+    @Timed(value = "cps.create.schemaset.moduleservice", description = "Time taken to create schemaset from service")
     public void createSchemaSet(final String dataspaceName, final String schemaSetName,
         final Map<String, String> yangResourcesNameToContentMap) {
         cpsValidator.validateNameCharacters(dataspaceName, schemaSetName);
-        final var yangTextSchemaSourceSet
-            = YangTextSchemaSourceSetBuilder.of(yangResourcesNameToContentMap);
+        final YangTextSchemaSourceSet yangTextSchemaSourceSet =
+            timedBuilder.getYangTextSchemaSourceSet(yangResourcesNameToContentMap);
         cpsModulePersistenceService.storeSchemaSet(dataspaceName, schemaSetName, yangResourcesNameToContentMap);
         yangTextSchemaSourceSetCache.updateCache(dataspaceName, schemaSetName, yangTextSchemaSourceSet);
     }
+
 
     @Override
     public void createSchemaSetFromModules(final String dataspaceName, final String schemaSetName,
