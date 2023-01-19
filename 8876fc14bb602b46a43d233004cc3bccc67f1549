@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "54063818_8cf114af",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 14
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-19T17:44:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e8c58475_d7f43e23",
+      "range": {
+        "startLine": 250,
+        "startChar": 8,
+        "endLine": 250,
+        "endChar": 45
+      },
+      "revId": "8876fc14bb602b46a43d233004cc3bccc67f1549",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "83cd9485_b3f76af4",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/exceptions/CpsRestExceptionHandlerSpec.groovy",
         "patchSetId": 14
@@ -93,6 +117,30 @@
       "revId": "8876fc14bb602b46a43d233004cc3bccc67f1549",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "545cae92_b85f0d39",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/exceptions/CpsRestExceptionHandlerSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-19T17:44:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a3e5f850_9ee32aac",
+      "range": {
+        "startLine": 152,
+        "startChar": 0,
+        "endLine": 183,
+        "endChar": 0
+      },
+      "revId": "8876fc14bb602b46a43d233004cc3bccc67f1549",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {

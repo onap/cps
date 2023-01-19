@@ -1,0 +1,257 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "019ffc8e_26d17a1f",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-19T17:44:14Z",
+      "side": 1,
+      "message": "fetchDescendantsOptionAsString",
+      "range": {
+        "startLine": 108,
+        "startChar": 41,
+        "endLine": 108,
+        "endChar": 52
+      },
+      "revId": "0f9ff97d94ff930520795622f81ac23658e0d783",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "08d39be1_0fd765c7",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/QueryRestController.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-19T17:44:14Z",
+      "side": 1,
+      "message": "fetchDescendantsOptionAsString",
+      "range": {
+        "startLine": 62,
+        "startChar": 68,
+        "endLine": 62,
+        "endChar": 79
+      },
+      "revId": "0f9ff97d94ff930520795622f81ac23658e0d783",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4d81f468_47c97426",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceQueryDataNodeSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-19T17:44:14Z",
+      "side": 1,
+      "message": "fetchDescendantsOption",
+      "range": {
+        "startLine": 52,
+        "startChar": 111,
+        "endLine": 52,
+        "endChar": 135
+      },
+      "revId": "0f9ff97d94ff930520795622f81ac23658e0d783",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "11c98f99_31e63dfd",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/FetchDescendantsOption.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-19T17:44:14Z",
+      "side": 1,
+      "message": "FETCH_DESCENDANTS_OPTION_PATTERN\n\n(see explanation below)",
+      "range": {
+        "startLine": 37,
+        "startChar": 33,
+        "endLine": 37,
+        "endChar": 52
+      },
+      "revId": "0f9ff97d94ff930520795622f81ac23658e0d783",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d36f66b1_3ca5df6f",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/FetchDescendantsOption.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-19T17:44:14Z",
+      "side": 1,
+      "message": "sorry I probably didn\u0027t focus on the naming before because of teh functional issue but I think now functionality is OK this should be changed.\n\u0027descendants\u0027 are the objects targeted by this option so lets not mix those names up but be precise\n\nthe correct name here is fetchDescendantsOptionAsString  (because you are converting it)",
+      "range": {
+        "startLine": 74,
+        "startChar": 79,
+        "endLine": 74,
+        "endChar": 90
+      },
+      "revId": "0f9ff97d94ff930520795622f81ac23658e0d783",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "543b4810_4246cb5b",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/FetchDescendantsOption.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-19T17:44:14Z",
+      "side": 1,
+      "message": "validatefetchDescendantsOption(fetchDescendantsOptionAsString)",
+      "range": {
+        "startLine": 87,
+        "startChar": 24,
+        "endLine": 87,
+        "endChar": 66
+      },
+      "revId": "0f9ff97d94ff930520795622f81ac23658e0d783",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4d8f43cb_e9956450",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/FetchDescendantsOption.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-19T17:44:14Z",
+      "side": 1,
+      "message": "NB: I prefer Strings.isNullOrEmpty() for readability\n(maybe next time)\nAlso, is this check really necessary does the matcher not handle nul/empty ?!",
+      "range": {
+        "startLine": 88,
+        "startChar": 12,
+        "endLine": 88,
+        "endChar": 46
+      },
+      "revId": "0f9ff97d94ff930520795622f81ac23658e0d783",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "40b38ec5_fb5a985f",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/spi/FetchDescendantsOptionSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-19T17:44:14Z",
+      "side": 1,
+      "message": "descendants option",
+      "range": {
+        "startLine": 77,
+        "startChar": 22,
+        "endLine": 77,
+        "endChar": 33
+      },
+      "revId": "0f9ff97d94ff930520795622f81ac23658e0d783",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3b0ba5f_2d1561a2",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/spi/FetchDescendantsOptionSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-19T17:44:14Z",
+      "side": 1,
+      "message": "fetchDescendantsOptionAsString",
+      "range": {
+        "startLine": 79,
+        "startChar": 108,
+        "endLine": 79,
+        "endChar": 118
+      },
+      "revId": "0f9ff97d94ff930520795622f81ac23658e0d783",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a8d16db_6ae9e0f9",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/spi/FetchDescendantsOptionSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-19T17:44:14Z",
+      "side": 1,
+      "message": "Groovy, use \u0027def\u0027",
+      "range": {
+        "startLine": 79,
+        "startChar": 12,
+        "endLine": 79,
+        "endChar": 35
+      },
+      "revId": "0f9ff97d94ff930520795622f81ac23658e0d783",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e110b8f_e4d4e2c7",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/spi/FetchDescendantsOptionSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-19T17:44:14Z",
+      "side": 1,
+      "message": "optional (depends on your perference): sometime for test it is clear to use the term \u0027result\u0027",
+      "range": {
+        "startLine": 79,
+        "startChar": 35,
+        "endLine": 79,
+        "endChar": 58
+      },
+      "revId": "0f9ff97d94ff930520795622f81ac23658e0d783",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
