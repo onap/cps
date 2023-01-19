@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2021-2022 Nordix Foundation.
+ * Copyright (C) 2021-2023 Nordix Foundation.
  * Modifications Copyright (C) 2021-2022 Bell Canada.
  * Modifications Copyright (C) 2021 Pantheon.tech
  * Modifications Copyright (C) 2022 TechMahindra Ltd.
@@ -30,7 +30,9 @@ import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.CpsModulePersistenceService
 import org.onap.cps.spi.model.Anchor
 import org.onap.cps.spi.utils.CpsValidator
+import org.onap.cps.utils.TimedYangParser
 import org.onap.cps.utils.YangUtils
+import org.onap.cps.yang.TimedYangTextSchemaSourceSetBuilder
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
 import spock.lang.Specification
 
@@ -41,10 +43,14 @@ class E2ENetworkSliceSpec extends Specification {
     def mockNotificationService = Mock(NotificationService)
     def mockYangTextSchemaSourceSetCache = Mock(YangTextSchemaSourceSetCache)
     def mockCpsValidator = Mock(CpsValidator)
+    def timedYangTextSchemaSourceSetBuilder = new TimedYangTextSchemaSourceSetBuilder()
+    def timedYangParser = new TimedYangParser()
+
     def cpsModuleServiceImpl = new CpsModuleServiceImpl(mockModuleStoreService,
-            mockYangTextSchemaSourceSetCache, mockCpsAdminService, mockCpsValidator)
+            mockYangTextSchemaSourceSetCache, mockCpsAdminService, mockCpsValidator,timedYangTextSchemaSourceSetBuilder)
+
     def cpsDataServiceImpl = new CpsDataServiceImpl(mockDataStoreService, mockCpsAdminService,
-            mockYangTextSchemaSourceSetCache, mockNotificationService, mockCpsValidator)
+            mockYangTextSchemaSourceSetCache, mockNotificationService, mockCpsValidator, timedYangParser)
 
     def dataspaceName = 'someDataspace'
     def anchorName = 'someAnchor'
