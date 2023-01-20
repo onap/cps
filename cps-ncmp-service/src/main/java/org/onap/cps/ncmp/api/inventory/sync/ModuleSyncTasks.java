@@ -71,13 +71,13 @@ public class ModuleSyncTasks {
                     moduleSyncService.syncAndCreateSchemaSetAndAnchor(yangModelCmHandle);
                     cmHandelStatePerCmHandle.put(yangModelCmHandle, CmHandleState.READY);
                 } catch (final Exception e) {
-                    log.warn("Processing of {} module sync failed.", cmHandleId);
+                    log.warn("Processing of {} module sync failed due to reason {}.", cmHandleId, e.getMessage());
                     syncUtils.updateLockReasonDetailsAndAttempts(compositeState,
                             LockReasonCategory.LOCKED_MODULE_SYNC_FAILED, e.getMessage());
                     setCmHandleStateLocked(yangModelCmHandle, compositeState.getLockReason());
                     cmHandelStatePerCmHandle.put(yangModelCmHandle, CmHandleState.LOCKED);
                 }
-                log.debug("{} is now in {} state", cmHandleId, compositeState.getCmHandleState().name());
+                log.info("{} is now in {} state", cmHandleId, compositeState.getCmHandleState().name());
             }
             lcmEventsCmHandleStateHandler.updateCmHandleStateBatch(cmHandelStatePerCmHandle);
         } finally {
