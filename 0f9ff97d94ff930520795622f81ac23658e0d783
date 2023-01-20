@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2dd5f9ef_659ed9dc",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-01-20T12:44:15Z",
+      "side": 1,
+      "message": "renamed",
+      "parentUuid": "019ffc8e_26d17a1f",
+      "range": {
+        "startLine": 108,
+        "startChar": 41,
+        "endLine": 108,
+        "endChar": 52
+      },
+      "revId": "0f9ff97d94ff930520795622f81ac23658e0d783",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "08d39be1_0fd765c7",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/QueryRestController.java",
         "patchSetId": 15
@@ -36,6 +60,30 @@
       "writtenOn": "2023-01-19T17:44:14Z",
       "side": 1,
       "message": "fetchDescendantsOptionAsString",
+      "range": {
+        "startLine": 62,
+        "startChar": 68,
+        "endLine": 62,
+        "endChar": 79
+      },
+      "revId": "0f9ff97d94ff930520795622f81ac23658e0d783",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "13fb2e42_cdb4d0e3",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/QueryRestController.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-01-20T12:44:15Z",
+      "side": 1,
+      "message": "renamed",
+      "parentUuid": "08d39be1_0fd765c7",
       "range": {
         "startLine": 62,
         "startChar": 68,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "a899caaf_ce203cc1",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceQueryDataNodeSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-01-20T12:44:15Z",
+      "side": 1,
+      "message": "ok changed",
+      "parentUuid": "4d81f468_47c97426",
+      "range": {
+        "startLine": 52,
+        "startChar": 111,
+        "endLine": 52,
+        "endChar": 135
+      },
+      "revId": "0f9ff97d94ff930520795622f81ac23658e0d783",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "11c98f99_31e63dfd",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/FetchDescendantsOption.java",
         "patchSetId": 15
@@ -82,6 +154,30 @@
       "writtenOn": "2023-01-19T17:44:14Z",
       "side": 1,
       "message": "FETCH_DESCENDANTS_OPTION_PATTERN\n\n(see explanation below)",
+      "range": {
+        "startLine": 37,
+        "startChar": 33,
+        "endLine": 37,
+        "endChar": 52
+      },
+      "revId": "0f9ff97d94ff930520795622f81ac23658e0d783",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f1bb4fc_fb67e85c",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/FetchDescendantsOption.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-01-20T12:44:15Z",
+      "side": 1,
+      "message": "renamed",
+      "parentUuid": "11c98f99_31e63dfd",
       "range": {
         "startLine": 37,
         "startChar": 33,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "6408dc2c_cb2c263a",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/FetchDescendantsOption.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-01-20T12:44:15Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "d36f66b1_3ca5df6f",
+      "range": {
+        "startLine": 74,
+        "startChar": 79,
+        "endLine": 74,
+        "endChar": 90
+      },
+      "revId": "0f9ff97d94ff930520795622f81ac23658e0d783",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "543b4810_4246cb5b",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/FetchDescendantsOption.java",
         "patchSetId": 15
@@ -128,6 +248,30 @@
       "writtenOn": "2023-01-19T17:44:14Z",
       "side": 1,
       "message": "validatefetchDescendantsOption(fetchDescendantsOptionAsString)",
+      "range": {
+        "startLine": 87,
+        "startChar": 24,
+        "endLine": 87,
+        "endChar": 66
+      },
+      "revId": "0f9ff97d94ff930520795622f81ac23658e0d783",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "396ded60_84f90b23",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/FetchDescendantsOption.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-01-20T12:44:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "543b4810_4246cb5b",
       "range": {
         "startLine": 87,
         "startChar": 24,
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "b0558e93_d9530743",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/FetchDescendantsOption.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-01-20T12:44:15Z",
+      "side": 1,
+      "message": "changes accordingly. checking of null using regular expression does not work",
+      "parentUuid": "4d8f43cb_e9956450",
+      "range": {
+        "startLine": 88,
+        "startChar": 12,
+        "endLine": 88,
+        "endChar": 46
+      },
+      "revId": "0f9ff97d94ff930520795622f81ac23658e0d783",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "40b38ec5_fb5a985f",
         "filename": "cps-service/src/test/groovy/org/onap/cps/spi/FetchDescendantsOptionSpec.groovy",
         "patchSetId": 15
@@ -174,6 +342,30 @@
       "writtenOn": "2023-01-19T17:44:14Z",
       "side": 1,
       "message": "descendants option",
+      "range": {
+        "startLine": 77,
+        "startChar": 22,
+        "endLine": 77,
+        "endChar": 33
+      },
+      "revId": "0f9ff97d94ff930520795622f81ac23658e0d783",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe94e79e_763b7738",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/spi/FetchDescendantsOptionSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-01-20T12:44:15Z",
+      "side": 1,
+      "message": "changed",
+      "parentUuid": "40b38ec5_fb5a985f",
       "range": {
         "startLine": 77,
         "startChar": 22,
