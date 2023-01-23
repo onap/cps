@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a46bce9f_1e38283d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-23T17:52:41Z",
+      "side": 1,
+      "message": "this is a get method, why are you talking about \u0027toDelete\u0027 here?",
+      "range": {
+        "startLine": 261,
+        "startChar": 76,
+        "endLine": 261,
+        "endChar": 84
+      },
+      "revId": "1682c6b713dd83765e811ff50cfc7124ee843a04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6380ee6e_7f466a4a",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-23T17:52:41Z",
+      "side": 1,
+      "message": "The emphasis of this tets is getting top level datanode(s)\nsuggest: \u0027Get top level data node using get for multiple data nodes\u0027",
+      "range": {
+        "startLine": 256,
+        "startChar": 27,
+        "endLine": 256,
+        "endChar": 31
+      },
+      "revId": "1682c6b713dd83765e811ff50cfc7124ee843a04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "836383df_c91e54c1",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-23T17:52:41Z",
+      "side": 1,
+      "message": "see above",
+      "range": {
+        "startLine": 261,
+        "startChar": 38,
+        "endLine": 261,
+        "endChar": 66
+      },
+      "revId": "1682c6b713dd83765e811ff50cfc7124ee843a04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "071fbc6b_dcb606ff",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-23T17:52:41Z",
+      "side": 1,
+      "message": "the whole leave this is a bit misleading and not relevant for this test.\nI probably would just hardcode the xpath anyway (for this test at least)\nalternatively use the XPATH_DATA_NODE_WITH_DESCENDANTS instead for thsi test",
+      "range": {
+        "startLine": 264,
+        "startChar": 73,
+        "endLine": 264,
+        "endChar": 100
+      },
+      "revId": "1682c6b713dd83765e811ff50cfc7124ee843a04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "999bb613_d7f6762b",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-23T17:52:41Z",
+      "side": 1,
+      "message": "no relevant for this test, can be removed",
+      "range": {
+        "startLine": 262,
+        "startChar": 0,
+        "endLine": 264,
+        "endChar": 102
+      },
+      "revId": "1682c6b713dd83765e811ff50cfc7124ee843a04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1fc4b36e_0ad06b18",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-23T17:52:41Z",
+      "side": 1,
+      "message": "see comments above, I think you need only one new tets just to cover teh root scenarios. leave and descendants functionality is tested in other existing tests, no need to combien, just foxu one tets on one aspect!",
+      "range": {
+        "startLine": 302,
+        "startChar": 0,
+        "endLine": 322,
+        "endChar": 0
+      },
+      "revId": "1682c6b713dd83765e811ff50cfc7124ee843a04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc56049c_54de0d44",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-23T17:52:41Z",
+      "side": 1,
+      "message": "I wonder if these are good enough and replace teh need for the previously commented test. Although I would like a separate test for top level element though, but then you dont need these.\n\nIe. you test this same functionality 3 times now, you cna choose whihc oen is best but I think you need only one",
+      "range": {
+        "startLine": 357,
+        "startChar": 11,
+        "endLine": 361,
+        "endChar": 5
+      },
+      "revId": "1682c6b713dd83765e811ff50cfc7124ee843a04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
