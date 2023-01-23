@@ -166,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "580062dc_bdffd269",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentNativeRepository.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-23T17:34:03Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2960bc6c_d2058080",
+      "range": {
+        "startLine": 29,
+        "startChar": 45,
+        "endLine": 29,
+        "endChar": 65
+      },
+      "revId": "5490e593cc05ea91aa6469126b910b2b52809bcc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "836b2994_5bffc8ce",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentNativeRepositoryImpl.java",
         "patchSetId": 3
@@ -330,6 +354,30 @@
     },
     {
       "key": {
+        "uuid": "8afc1299_e306d94f",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-23T17:34:03Z",
+      "side": 1,
+      "message": "or a stub :-)",
+      "parentUuid": "ecd34024_177702e9",
+      "range": {
+        "startLine": 49,
+        "startChar": 8,
+        "endLine": 49,
+        "endChar": 37
+      },
+      "revId": "5490e593cc05ea91aa6469126b910b2b52809bcc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a2f2a874_327078e7",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/performance/CpsDataPersistenceServiceDeletePerfTest.groovy",
         "patchSetId": 3
@@ -374,6 +422,30 @@
       "revId": "5490e593cc05ea91aa6469126b910b2b52809bcc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e442be76_b35b3548",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/performance/CpsDataPersistenceServiceDeletePerfTest.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-23T17:34:03Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1dc9c218_9d2edd1d",
+      "range": {
+        "startLine": 87,
+        "startChar": 40,
+        "endLine": 87,
+        "endChar": 43
+      },
+      "revId": "5490e593cc05ea91aa6469126b910b2b52809bcc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
