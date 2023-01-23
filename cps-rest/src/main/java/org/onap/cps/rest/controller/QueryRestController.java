@@ -2,7 +2,7 @@
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021-2022 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada.
- *  Modifications Copyright (C) 2022 TechMahindra Ltd.
+ *  Modifications Copyright (C) 2022-2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -49,22 +49,36 @@ public class QueryRestController implements CpsQueryApi {
     private final PrefixResolver prefixResolver;
 
     @Override
-    public ResponseEntity<Object> getNodesByDataspaceAndAnchorAndCpsPath(final String apiVersion,
-        final String dataspaceName, final String anchorName, final String cpsPath, final Boolean includeDescendants) {
+    public ResponseEntity<Object> getNodesByDataspaceAndAnchorAndCpsPath(final String dataspaceName,
+        final String anchorName, final String cpsPath, final Boolean includeDescendants) {
         final FetchDescendantsOption fetchDescendantsOption = Boolean.TRUE.equals(includeDescendants)
             ? FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS : FetchDescendantsOption.OMIT_DESCENDANTS;
+        return executeNodesByDataspaceQueryAndCreateResponse(dataspaceName, anchorName, cpsPath,
+                fetchDescendantsOption);
+    }
+
+    @Override
+    public ResponseEntity<Object> getNodesByDataspaceAndAnchorAndCpsPathV2(final String dataspaceName,
+        final String anchorName, final String cpsPath, final String fetchDescendantsOptionAsString) {
+        final FetchDescendantsOption fetchDescendantsOption =
+            FetchDescendantsOption.getFetchDescendantsOption(fetchDescendantsOptionAsString);
+        return executeNodesByDataspaceQueryAndCreateResponse(dataspaceName, anchorName, cpsPath,
+                fetchDescendantsOption);
+    }
+
+    private ResponseEntity<Object> executeNodesByDataspaceQueryAndCreateResponse(final String dataspaceName,
+             final String anchorName, final String cpsPath, final FetchDescendantsOption fetchDescendantsOption) {
         final Collection<DataNode> dataNodes =
             cpsQueryService.queryDataNodes(dataspaceName, anchorName, cpsPath, fetchDescendantsOption);
-        final List<Map<String, Object>> dataMaps = new ArrayList<>(dataNodes.size());
+        final List<Map<String, Object>> dataNodesAsListOfMaps = new ArrayList<>(dataNodes.size());
         String prefix = null;
         for (final DataNode dataNode : dataNodes) {
             if (prefix == null) {
                 prefix = prefixResolver.getPrefix(dataspaceName, anchorName, dataNode.getXpath());
             }
             final Map<String, Object> dataMap = DataMapUtils.toDataMapWithIdentifier(dataNode, prefix);
-            dataMaps.add(dataMap);
+            dataNodesAsListOfMaps.add(dataMap);
         }
-
-        return new ResponseEntity<>(jsonObjectMapper.asJsonString(dataMaps), HttpStatus.OK);
+        return new ResponseEntity<>(jsonObjectMapper.asJsonString(dataNodesAsListOfMaps), HttpStatus.OK);
     }
 }
