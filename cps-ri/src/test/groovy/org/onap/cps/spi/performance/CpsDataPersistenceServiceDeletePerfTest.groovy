@@ -61,8 +61,8 @@ class CpsDataPersistenceServiceDeletePerfTest extends CpsPersistencePerfSpecBase
             }
             stopWatch.stop()
             def deleteDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'delete duration is under 6000 milliseconds'
-            assert deleteDurationInMillis < 6000
+        then: 'delete duration is under 300 milliseconds'
+            assert deleteDurationInMillis < 300
     }
 
     def 'Delete 50 grandchildren (that have no descendants)'() {
@@ -74,8 +74,8 @@ class CpsDataPersistenceServiceDeletePerfTest extends CpsPersistencePerfSpecBase
             }
             stopWatch.stop()
             def deleteDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'delete duration is under 500 milliseconds'
-            assert deleteDurationInMillis < 500
+        then: 'delete duration is under 350 milliseconds'
+            assert deleteDurationInMillis < 350
     }
 
     def 'Delete 1 large data node with many descendants'() {
@@ -84,8 +84,8 @@ class CpsDataPersistenceServiceDeletePerfTest extends CpsPersistencePerfSpecBase
             objectUnderTest.deleteDataNode(PERF_DATASPACE, PERF_ANCHOR, PERF_TEST_PARENT)
             stopWatch.stop()
             def deleteDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'delete duration is under 2500 milliseconds'
-            assert deleteDurationInMillis < 2500
+        then: 'delete duration is under 225 milliseconds'
+            assert deleteDurationInMillis < 225
     }
 
     @Sql([CLEAR_DATA, PERF_TEST_DATA])
@@ -108,8 +108,8 @@ class CpsDataPersistenceServiceDeletePerfTest extends CpsPersistencePerfSpecBase
             }
             stopWatch.stop()
             def deleteDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'delete duration is under 4000 milliseconds'
-            assert deleteDurationInMillis < 4000
+        then: 'delete duration is under 1000 milliseconds'
+            assert deleteDurationInMillis < 1000
     }
 
     def 'Delete 10 list elements with keys'() {
@@ -122,8 +122,8 @@ class CpsDataPersistenceServiceDeletePerfTest extends CpsPersistencePerfSpecBase
             }
             stopWatch.stop()
             def deleteDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'delete duration is under 6000 milliseconds'
-            assert deleteDurationInMillis < 6000
+        then: 'delete duration is under 1200 milliseconds'
+            assert deleteDurationInMillis < 1200
     }
 
     @Sql([CLEAR_DATA, PERF_TEST_DATA])
