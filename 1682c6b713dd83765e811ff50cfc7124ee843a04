@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "bb6d3ca1_27517dd3",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-01-23T22:20:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a46bce9f_1e38283d",
+      "range": {
+        "startLine": 261,
+        "startChar": 76,
+        "endLine": 261,
+        "endChar": 84
+      },
+      "revId": "1682c6b713dd83765e811ff50cfc7124ee843a04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6380ee6e_7f466a4a",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
         "patchSetId": 3
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "ccbce333_c0cae4b2",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-01-23T22:20:25Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6380ee6e_7f466a4a",
+      "range": {
+        "startLine": 256,
+        "startChar": 27,
+        "endLine": 256,
+        "endChar": 31
+      },
+      "revId": "1682c6b713dd83765e811ff50cfc7124ee843a04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "836383df_c91e54c1",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
         "patchSetId": 3
@@ -68,6 +116,30 @@
       "revId": "1682c6b713dd83765e811ff50cfc7124ee843a04",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb32746d_cf263cd5",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-01-23T22:20:25Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "836383df_c91e54c1",
+      "range": {
+        "startLine": 261,
+        "startChar": 38,
+        "endLine": 261,
+        "endChar": 66
+      },
+      "revId": "1682c6b713dd83765e811ff50cfc7124ee843a04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +189,54 @@
     },
     {
       "key": {
+        "uuid": "543eea20_c938dc68",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-01-23T22:20:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "071fbc6b_dcb606ff",
+      "range": {
+        "startLine": 264,
+        "startChar": 73,
+        "endLine": 264,
+        "endChar": 100
+      },
+      "revId": "1682c6b713dd83765e811ff50cfc7124ee843a04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5160b0c4_27bc11ae",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-01-23T22:20:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "999bb613_d7f6762b",
+      "range": {
+        "startLine": 262,
+        "startChar": 0,
+        "endLine": 264,
+        "endChar": 102
+      },
+      "revId": "1682c6b713dd83765e811ff50cfc7124ee843a04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1fc4b36e_0ad06b18",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
         "patchSetId": 3
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "3bd675a6_d6f7179a",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-01-23T22:20:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1fc4b36e_0ad06b18",
+      "range": {
+        "startLine": 302,
+        "startChar": 0,
+        "endLine": 322,
+        "endChar": 0
+      },
+      "revId": "1682c6b713dd83765e811ff50cfc7124ee843a04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bc56049c_54de0d44",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
         "patchSetId": 3
@@ -160,6 +304,30 @@
       "revId": "1682c6b713dd83765e811ff50cfc7124ee843a04",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ac4b2a50_b494ae6c",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-01-23T22:20:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bc56049c_54de0d44",
+      "range": {
+        "startLine": 357,
+        "startChar": 11,
+        "endLine": 361,
+        "endChar": 5
+      },
+      "revId": "1682c6b713dd83765e811ff50cfc7124ee843a04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
