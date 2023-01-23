@@ -61,6 +61,7 @@ import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.DataNodeBuilder;
 import org.onap.cps.spi.repository.AnchorRepository;
 import org.onap.cps.spi.repository.DataspaceRepository;
+import org.onap.cps.spi.repository.FragmentNativeRepository;
 import org.onap.cps.spi.repository.FragmentQueryBuilder;
 import org.onap.cps.spi.repository.FragmentRepository;
 import org.onap.cps.spi.utils.SessionManager;
@@ -78,6 +79,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     private final FragmentRepository fragmentRepository;
     private final JsonObjectMapper jsonObjectMapper;
     private final SessionManager sessionManager;
+    private final FragmentNativeRepository fragmentNativeRepositoryImpl;
 
     private static final String REG_EX_FOR_OPTIONAL_LIST_INDEX = "(\\[@[\\s\\S]+?]){0,1})";
 
@@ -645,7 +647,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     private boolean deleteDataNode(final FragmentEntity parentFragmentEntity, final String targetXpath) {
         final String normalizedTargetXpath = CpsPathUtil.getNormalizedXpath(targetXpath);
         if (parentFragmentEntity.getXpath().equals(normalizedTargetXpath)) {
-            fragmentRepository.delete(parentFragmentEntity);
+            fragmentNativeRepositoryImpl.deleteFragmentEntity(parentFragmentEntity);
             return true;
         }
         if (parentFragmentEntity.getChildFragments()
