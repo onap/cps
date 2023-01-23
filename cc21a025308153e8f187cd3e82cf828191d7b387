@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5e548e88_1e5ea2ea",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/spi/FetchDescendantsOptionSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-23T10:09:46Z",
+      "side": 1,
+      "message": "NB: the point of using def was you dont have to specify a  class, I should have been clearer about that",
+      "range": {
+        "startLine": 79,
+        "startChar": 15,
+        "endLine": 79,
+        "endChar": 38
+      },
+      "revId": "cc21a025308153e8f187cd3e82cf828191d7b387",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
