@@ -32,6 +32,7 @@ import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.DataNodeBuilder
 import org.onap.cps.spi.repository.AnchorRepository
 import org.onap.cps.spi.repository.DataspaceRepository
+import org.onap.cps.spi.repository.FragmentNativeRepository
 import org.onap.cps.spi.repository.FragmentRepository
 import org.onap.cps.spi.utils.SessionManager
 import org.onap.cps.utils.JsonObjectMapper
@@ -45,8 +46,9 @@ class CpsDataPersistenceServiceSpec extends Specification {
     def mockFragmentRepository = Mock(FragmentRepository)
     def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
     def mockSessionManager = Mock(SessionManager)
+    def spiedFragmentNativeRepository = Spy(FragmentNativeRepository)
 
-    def objectUnderTest = Spy(new CpsDataPersistenceServiceImpl(mockDataspaceRepository, mockAnchorRepository, mockFragmentRepository, jsonObjectMapper, mockSessionManager))
+    def objectUnderTest = Spy(new CpsDataPersistenceServiceImpl(mockDataspaceRepository, mockAnchorRepository, mockFragmentRepository, jsonObjectMapper, mockSessionManager, spiedFragmentNativeRepository))
 
     def 'Storing data nodes individually when batch operation fails'(){
         given: 'two data nodes and supporting repository mock behavior'
