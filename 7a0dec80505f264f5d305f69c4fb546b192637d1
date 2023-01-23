@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "62d3a8d2_dab6be76",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/performance/CpsDataPersistenceServiceDeletePerfTest.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-01-23T11:43:33Z",
+      "side": 1,
+      "message": "300\nOther cases have same issue",
+      "range": {
+        "startLine": 64,
+        "startChar": 40,
+        "endLine": 64,
+        "endChar": 44
+      },
+      "revId": "7a0dec80505f264f5d305f69c4fb546b192637d1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
