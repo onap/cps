@@ -22,6 +22,30 @@
       "revId": "1dc290420be3a0a10572f60c11f0306cdb3bde9f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ac6970f6_a26e6647",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/performance/CpsPathUtilPerfTest.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-23T16:09:02Z",
+      "side": 1,
+      "message": "about 10 times lower than before?!\nI know the parsercode has changed for a long time, so we either have much more variation then previously thought or Nordix CI is running with other resources then before.\nI am OK with it for now but it is important to remember this when we have new performance issue in other areas....",
+      "parentUuid": "7d6e9325_0faf77e3",
+      "range": {
+        "startLine": 39,
+        "startChar": 52,
+        "endLine": 39,
+        "endChar": 56
+      },
+      "revId": "1dc290420be3a0a10572f60c11f0306cdb3bde9f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
