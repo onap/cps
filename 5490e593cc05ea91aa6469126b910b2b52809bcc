@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8646174d_caabf930",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/entities/FragmentEntity.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-23T16:01:36Z",
+      "side": 1,
+      "message": "very clear, thats when developers apply food naming conventions :-)",
+      "range": {
+        "startLine": 62,
+        "startChar": 19,
+        "endLine": 62,
+        "endChar": 41
+      },
+      "revId": "5490e593cc05ea91aa6469126b910b2b52809bcc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e5557590_30937263",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentNativeRepository.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-23T16:01:36Z",
+      "side": 1,
+      "message": "remove these",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 54
+      },
+      "revId": "5490e593cc05ea91aa6469126b910b2b52809bcc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c3639ee4_34d2cd5a",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentNativeRepository.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-23T16:01:36Z",
+      "side": 1,
+      "message": "I think we need javadoc here, especially to clarify the the scope for the delete in relaltion to the parameter..",
+      "range": {
+        "startLine": 28,
+        "startChar": 17,
+        "endLine": 28,
+        "endChar": 42
+      },
+      "revId": "5490e593cc05ea91aa6469126b910b2b52809bcc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e36ab90_9f0a530c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentNativeRepository.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-23T16:01:36Z",
+      "side": 1,
+      "message": "well this entity itself deleted? If so it shoudl NOT just be called fragmentEntity\nif ALL of its children are being deleted but the  (then correctly named) parentFragmentEntity isn\u0027t then teh javadoc should make that clear",
+      "range": {
+        "startLine": 29,
+        "startChar": 45,
+        "endLine": 29,
+        "endChar": 65
+      },
+      "revId": "5490e593cc05ea91aa6469126b910b2b52809bcc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "836b2994_5bffc8ce",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentNativeRepositoryImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-23T16:01:36Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 54
+      },
+      "revId": "5490e593cc05ea91aa6469126b910b2b52809bcc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f4c991c_df8eef51",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentNativeRepositoryImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-23T16:01:36Z",
+      "side": 1,
+      "message": "NB: I would not extract this one out\nIF you do want it still do remove WITH_CASCADE from the name as that is not part of this bit of SQL but a consequence off oterhparts",
+      "range": {
+        "startLine": 41,
+        "startChar": 4,
+        "endLine": 41,
+        "endChar": 99
+      },
+      "revId": "5490e593cc05ea91aa6469126b910b2b52809bcc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0fe6740e_f9b37074",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentNativeRepositoryImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-23T16:01:36Z",
+      "side": 1,
+      "message": "maybe to each plus on a new line, liek so:\n\nDROP_FRAGMENT_CONSTRAINT +\nADD_FRAGMENT_CONSTRAINT_WITH_CASCADE +\nDELETE_FRAGMENT_WITH_CASCADE +\nDROP_FRAGMENT_CONSTRAINT +\n ADD_ORIGINAL_FRAGMENT_CONSTRAINT)",
+      "range": {
+        "startLine": 54,
+        "startChar": 44,
+        "endLine": 54,
+        "endChar": 46
+      },
+      "revId": "5490e593cc05ea91aa6469126b910b2b52809bcc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ecd34024_177702e9",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-23T16:01:36Z",
+      "side": 1,
+      "message": "I dont see you spying on it so just insert a norma new instance of it...",
+      "range": {
+        "startLine": 49,
+        "startChar": 8,
+        "endLine": 49,
+        "endChar": 37
+      },
+      "revId": "5490e593cc05ea91aa6469126b910b2b52809bcc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a2f2a874_327078e7",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/performance/CpsDataPersistenceServiceDeletePerfTest.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-23T16:01:36Z",
+      "side": 1,
+      "message": "Did you test these in Nordix?\nthe routine we use is: test at least 3 times in Nordix, get the average and allow for a 30-50% margin\nroundd up to a nice number 225 seems a bit too precise, I would expect 250 or 300",
+      "range": {
+        "startLine": 87,
+        "startChar": 40,
+        "endLine": 87,
+        "endChar": 43
+      },
+      "revId": "5490e593cc05ea91aa6469126b910b2b52809bcc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
