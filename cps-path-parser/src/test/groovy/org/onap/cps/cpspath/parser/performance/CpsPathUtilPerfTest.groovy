@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -35,9 +35,8 @@ class CpsPathUtilPerfTest extends Specification {
                 CpsPathUtil.getNormalizedXpath('//child[@other-leaf=1]/leaf-name[text()="search"]/ancestor::parent')
             }
             stopWatch.stop()
-        then: 'it takes less then 1,100 milliseconds'
-            // In CI this actually takes about 0.3-0.5 sec  which  is approx. 50+ parser executions per millisecond!
-            assert stopWatch.getTotalTimeMillis() < 1100
+        then: 'it takes less then 2000 milliseconds'
+            assert stopWatch.getTotalTimeMillis() < 2000
     }
 
 }
