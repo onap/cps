@@ -264,7 +264,18 @@ public class CpsDataServiceImpl implements CpsDataService {
     @Timed(value = "cps.data.service.datanode.batch.delete",
         description = "Time taken to delete a batch of datanodes")
     public void deleteDataNodes(final String dataspaceName, final String anchorName,
-        final OffsetDateTime observedTimestamp) {
+                                final Collection<String> dataNodeXpaths, final OffsetDateTime observedTimestamp) {
+        cpsValidator.validateNameCharacters(dataspaceName, anchorName);
+        cpsDataPersistenceService.deleteDataNodes(dataspaceName, anchorName, dataNodeXpaths);
+        dataNodeXpaths.forEach(dataNodeXpath ->
+            processDataUpdatedEventAsync(dataspaceName, anchorName, dataNodeXpath, DELETE, observedTimestamp));
+    }
+
+    @Override
+    @Timed(value = "cps.data.service.datanode.all.delete",
+        description = "Time taken to delete a all datanodes")
+    public void deleteDataNodes(final String dataspaceName, final String anchorName,
+                                final OffsetDateTime observedTimestamp) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         processDataUpdatedEventAsync(dataspaceName, anchorName, ROOT_NODE_XPATH, DELETE, observedTimestamp);
         cpsDataPersistenceService.deleteDataNodes(dataspaceName, anchorName);
