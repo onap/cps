@@ -29,7 +29,6 @@ import org.onap.cps.spi.impl.CpsDataPersistenceServiceImpl
 import org.onap.cps.spi.impl.CpsModulePersistenceServiceImpl
 import org.onap.cps.spi.repository.AnchorRepository
 import org.onap.cps.spi.repository.DataspaceRepository
-import org.onap.cps.spi.repository.FragmentNativeRepository
 import org.onap.cps.spi.repository.FragmentRepository
 import org.onap.cps.spi.repository.ModuleReferenceRepository
 import org.onap.cps.spi.repository.SchemaSetRepository
@@ -70,10 +69,6 @@ class TestConfig extends Specification{
 
     @Autowired
     @Lazy
-    FragmentNativeRepository fragmentNativeRepository
-
-    @Autowired
-    @Lazy
     JsonObjectMapper jsonObjectMapper
 
     @Autowired
@@ -91,7 +86,7 @@ class TestConfig extends Specification{
 
     @Bean
     CpsDataPersistenceService cpsDataPersistenceService() {
-        return (CpsDataPersistenceService) new CpsDataPersistenceServiceImpl(dataspaceRepository, anchorRepository, fragmentRepository, jsonObjectMapper, stubbedSessionManager, fragmentNativeRepository)
+        return (CpsDataPersistenceService) new CpsDataPersistenceServiceImpl(dataspaceRepository, anchorRepository, fragmentRepository, jsonObjectMapper, stubbedSessionManager)
     }
 
     @Bean
