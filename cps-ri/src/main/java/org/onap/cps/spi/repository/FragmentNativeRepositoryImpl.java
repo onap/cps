@@ -20,13 +20,12 @@
 
 package org.onap.cps.spi.repository;
 
-import java.sql.PreparedStatement;
+import java.util.Collection;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import org.hibernate.Session;
-import org.springframework.stereotype.Repository;
+import lombok.RequiredArgsConstructor;
 
-@Repository
+@RequiredArgsConstructor
 public class FragmentNativeRepositoryImpl implements FragmentNativeRepository {
 
     private static final String DROP_FRAGMENT_CONSTRAINT
@@ -34,28 +33,62 @@ public class FragmentNativeRepositoryImpl implements FragmentNativeRepository {
     private static final String ADD_FRAGMENT_CONSTRAINT_WITH_CASCADE
             = "ALTER TABLE fragment ADD CONSTRAINT fragment_parent_id_fkey FOREIGN KEY (parent_id) "
             + "REFERENCES fragment (id) ON DELETE CASCADE;";
-    private static final String DELETE_FRAGMENT = "DELETE FROM fragment WHERE id =?;";
     private static final String ADD_ORIGINAL_FRAGMENT_CONSTRAINT
             = "ALTER TABLE fragment ADD CONSTRAINT fragment_parent_id_fkey FOREIGN KEY (parent_id) "
             + "REFERENCES fragment (id) ON DELETE NO ACTION;";
 
     @PersistenceContext
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
+
+    private final TempTableCreator tempTableCreator;
 
     @Override
     public void deleteFragmentEntity(final long fragmentEntityId) {
-        final Session session = entityManager.unwrap(Session.class);
-        session.doWork(connection -> {
-            try (PreparedStatement preparedStatement = connection.prepareStatement(
-                    DROP_FRAGMENT_CONSTRAINT
-                            + ADD_FRAGMENT_CONSTRAINT_WITH_CASCADE
-                            + DELETE_FRAGMENT
-                            + DROP_FRAGMENT_CONSTRAINT
-                            + ADD_ORIGINAL_FRAGMENT_CONSTRAINT)) {
-                preparedStatement.setLong(1, fragmentEntityId);
-                preparedStatement.executeUpdate();
-            }
-        });
+        entityManager.createNativeQuery(
+                DROP_FRAGMENT_CONSTRAINT
+                    + ADD_FRAGMENT_CONSTRAINT_WITH_CASCADE
+                    + "DELETE FROM fragment WHERE id = ?;"
+                    + DROP_FRAGMENT_CONSTRAINT
+                    + ADD_ORIGINAL_FRAGMENT_CONSTRAINT)
+            .setParameter(1, fragmentEntityId)
+            .executeUpdate();
     }
-}
 
+    @Override
+    // Accept security hotspot as temporary table name in SQL query is created internally, not from user input.
+    @SuppressWarnings("squid:S2077")
+    public void deleteByAnchorIdAndXpaths(final int anchorId, final Collection<String> xpaths) {
+        if (!xpaths.isEmpty()) {
+            final String tempTableName = tempTableCreator.createTemporaryTable("xpathsToDelete", xpaths, "xpath");
+            entityManager.createNativeQuery(
+                    DROP_FRAGMENT_CONSTRAINT
+                        + ADD_FRAGMENT_CONSTRAINT_WITH_CASCADE
+                        + "DELETE FROM fragment f USING " + tempTableName + " t"
+                        + " WHERE f.anchor_id = :anchorId AND f.xpath = t.xpath;"
+                        + DROP_FRAGMENT_CONSTRAINT
+                        + ADD_ORIGINAL_FRAGMENT_CONSTRAINT)
+                .setParameter("anchorId", anchorId)
+                .executeUpdate();
+        }
+    }
+
+    @Override
+    // Accept security hotspot as temporary table name in SQL query is created internally, not from user input.
+    @SuppressWarnings("squid:S2077")
+    public void deleteListsByAnchorIdAndXpaths(final int anchorId, final Collection<String> xpaths) {
+        if (!xpaths.isEmpty()) {
+            final String tempTableName = tempTableCreator.createTemporaryTable("xpathsToDelete", xpaths, "xpath");
+            entityManager.createNativeQuery(
+                DROP_FRAGMENT_CONSTRAINT
+                    + ADD_FRAGMENT_CONSTRAINT_WITH_CASCADE
+                    + "DELETE FROM fragment f USING " + tempTableName + " t"
+                    + " WHERE f.anchor_id = :anchorId AND f.xpath LIKE CONCAT(t.xpath, :xpathListPattern);"
+                    + DROP_FRAGMENT_CONSTRAINT
+                    + ADD_ORIGINAL_FRAGMENT_CONSTRAINT)
+                .setParameter("anchorId", anchorId)
+                .setParameter("xpathListPattern", "[%%")
+                .executeUpdate();
+        }
+    }
+
+}
