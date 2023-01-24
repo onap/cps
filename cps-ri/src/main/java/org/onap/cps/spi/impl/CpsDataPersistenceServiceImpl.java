@@ -61,7 +61,6 @@ import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.DataNodeBuilder;
 import org.onap.cps.spi.repository.AnchorRepository;
 import org.onap.cps.spi.repository.DataspaceRepository;
-import org.onap.cps.spi.repository.FragmentNativeRepository;
 import org.onap.cps.spi.repository.FragmentQueryBuilder;
 import org.onap.cps.spi.repository.FragmentRepository;
 import org.onap.cps.spi.utils.SessionManager;
@@ -79,7 +78,6 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     private final FragmentRepository fragmentRepository;
     private final JsonObjectMapper jsonObjectMapper;
     private final SessionManager sessionManager;
-    private final FragmentNativeRepository fragmentNativeRepositoryImpl;
 
     private static final String REG_EX_FOR_OPTIONAL_LIST_INDEX = "(\\[@[\\s\\S]+?]){0,1})";
 
@@ -609,6 +607,36 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
 
     @Override
     @Transactional
+    public void deleteListDataNodes(final String dataspaceName, final String anchorName,
+                                    final Collection<String> xpathsToDelete) {
+        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        final AnchorEntity anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
+
+        // Normalize xpaths and partition into list elements and not list elements.
+        final Collection<String> listElementXpaths = new ArrayList<>();
+        final Collection<String> nonListElementXpaths = new ArrayList<>();
+        for (final String xpath : xpathsToDelete) {
+            try {
+                final String normalizedXpath = CpsPathUtil.getNormalizedXpath(xpath);
+                if (CpsPathUtil.isPathToListElement(normalizedXpath)) {
+                    listElementXpaths.add(normalizedXpath);
+                } else {
+                    nonListElementXpaths.add(normalizedXpath);
+                }
+            } catch (final PathParsingException e) {
+                log.warn("Error parsing xpath \"{}\" in deleteListDataNodes: {}", xpath, e.getMessage());
+            }
+        }
+
+        // Batch delete list element nodes.
+        fragmentRepository.deleteByAnchorIdAndXpaths(anchorEntity.getId(), listElementXpaths);
+
+        // Treating each xpath in nonListElementXpaths as a list name, try to delete.
+        fragmentRepository.deleteListsByAnchorIdAndXpaths(anchorEntity.getId(), nonListElementXpaths);
+    }
+
+    @Override
+    @Transactional
     public void deleteListDataNode(final String dataspaceName, final String anchorName,
                                    final String targetXpath) {
         deleteDataNode(dataspaceName, anchorName, targetXpath, true);
@@ -656,7 +684,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     private boolean deleteDataNode(final FragmentEntity parentFragmentEntity, final String targetXpath) {
         final String normalizedTargetXpath = CpsPathUtil.getNormalizedXpath(targetXpath);
         if (parentFragmentEntity.getXpath().equals(normalizedTargetXpath)) {
-            fragmentNativeRepositoryImpl.deleteFragmentEntity(parentFragmentEntity.getId());
+            fragmentRepository.deleteFragmentEntity(parentFragmentEntity.getId());
             return true;
         }
         if (parentFragmentEntity.getChildFragments()
