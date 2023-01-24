@@ -248,6 +248,16 @@ public class CpsDataServiceImpl implements CpsDataService {
         processDataUpdatedEventAsync(dataspaceName, anchorName, listNodeXpath, DELETE, observedTimestamp);
     }
 
+    @Override
+    public void deleteListsOrListElements(final String dataspaceName, final String anchorName,
+                                          final Collection<String> listNodeXpaths,
+                                          final OffsetDateTime observedTimestamp) {
+        cpsValidator.validateNameCharacters(dataspaceName, anchorName);
+        cpsDataPersistenceService.deleteListDataNodes(dataspaceName, anchorName, listNodeXpaths);
+        listNodeXpaths.forEach(listNodeXpath ->
+            processDataUpdatedEventAsync(dataspaceName, anchorName, listNodeXpath, DELETE, observedTimestamp));
+    }
+
     private DataNode buildDataNode(final String dataspaceName, final String anchorName,
                                    final String parentNodeXpath, final String nodeData,
                                    final ContentType contentType) {

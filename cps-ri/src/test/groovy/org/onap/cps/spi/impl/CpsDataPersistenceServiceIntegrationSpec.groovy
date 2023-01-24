@@ -569,6 +569,26 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
+    def 'Delete multiple lists using scenario: #scenario.'() {
+        when: 'deleting list is executed for: #scenario.'
+            objectUnderTest.deleteListDataNodes(DATASPACE_NAME, ANCHOR_NAME3, targetXpaths)
+        then: 'only the expected children remain'
+            def parentFragment = fragmentRepository.getById(parentFragmentId)
+            def remainingChildXpaths = parentFragment.childFragments.collect { it.xpath }
+            assert remainingChildXpaths.size() == expectedRemainingChildXpaths.size()
+            assert remainingChildXpaths.containsAll(expectedRemainingChildXpaths)
+        where: 'following parameters were used'
+            scenario                          | targetXpaths                                                           | parentFragmentId                     || expectedRemainingChildXpaths
+            'delete nothing'                  | []                                                                     | LIST_DATA_NODE_PARENT203_FRAGMENT_ID || ["/parent-203/child-203", "/parent-203/child-204[@key='A']", "/parent-203/child-204[@key='B']"]
+            '1 list element'                  | ['/parent-203/child-204[@key="A"]']                                    | LIST_DATA_NODE_PARENT203_FRAGMENT_ID || ["/parent-203/child-203", "/parent-203/child-204[@key='B']"]
+            '2 list elements'                 | ['/parent-203/child-204[@key="A"]', '/parent-203/child-204[@key="B"]'] | LIST_DATA_NODE_PARENT203_FRAGMENT_ID || ["/parent-203/child-203"]
+            'whole list'                      | ['/parent-203/child-204']                                              | LIST_DATA_NODE_PARENT203_FRAGMENT_ID || ['/parent-203/child-203']
+            'list and element in same list'   | ['/parent-203/child-204', '/parent-203/child-204[@key="A"]']           | LIST_DATA_NODE_PARENT203_FRAGMENT_ID || ['/parent-203/child-203']
+            'list element under list element' | ['/parent-203/child-204[@key="B"]/grand-child-204[@key2="Y"]']         | LIST_DATA_NODE_PARENT203_FRAGMENT_ID || ["/parent-203/child-203", "/parent-203/child-204[@key='A']", "/parent-203/child-204[@key='B']"]
+            'valid datanode but not a list'   | ['/parent-203/child-203']                                              | LIST_DATA_NODE_PARENT203_FRAGMENT_ID || ["/parent-203/child-203", "/parent-203/child-204[@key='A']", "/parent-203/child-204[@key='B']"]
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
     def 'Delete data nodes with "/"-token in list key value: #scenario. (CPS-1409)'() {
         given: 'a data nodes with list-element child with "/" in index value (and grandchild)'
             def grandChild = new DataNodeBuilder().withXpath(deleteTestGrandChildXPath).build()

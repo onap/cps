@@ -20,9 +20,32 @@
 
 package org.onap.cps.spi.repository;
 
+import java.util.Collection;
+import org.checkerframework.checker.nullness.qual.NonNull;
+
 /**
  * This interface is used in delete fragment entity by id with child using native sql queries.
  */
 public interface FragmentNativeRepository {
     void deleteFragmentEntity(long fragmentEntityId);
+
+    /**
+     * Delete fragment entities for each supplied xpath.
+     * This method will delete list elements or other data nodes, but not whole lists.
+     * Non-existing xpaths will not result in an exception.
+     * @param anchorId the id of the anchor
+     * @param xpaths   xpaths of data nodes to remove
+     */
+    void deleteByAnchorIdAndXpaths(int anchorId, @NonNull Collection<String> xpaths);
+
+    /**
+     * Delete fragment entities that are list elements of each supplied list xpath.
+     * For example, if xpath '/parent/list' is provided, then list all elements in '/parent/list' will be deleted,
+     * e.g. /parent/list[@key='A'], /parent/list[@key='B'].
+     * This method will only delete whole lists by xpath; xpaths to list elements or other data nodes will be ignored.
+     * Non-existing xpaths will not result in an exception.
+     * @param anchorId   the id of the anchor
+     * @param listXpaths xpaths of whole lists to remove
+     */
+    void deleteListsByAnchorIdAndXpaths(int anchorId, @NonNull Collection<String> listXpaths);
 }

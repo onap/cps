@@ -182,13 +182,22 @@ public interface CpsDataPersistenceService {
     void deleteDataNodes(String dataspaceName, String anchorName);
 
     /**
-     * Deletes existing a single list element or the whole list.
+     * Deletes a single existing list element or the whole list.
      *
      * @param dataspaceName   dataspace name
      * @param anchorName      anchor name
      * @param targetXpath     xpath to list or list element (include [@key=value] to delete a single list element)
      */
     void deleteListDataNode(String dataspaceName, String anchorName, String targetXpath);
+
+    /**
+     * Deletes multiple list elements or whole lists.
+     *
+     * @param dataspaceName   dataspace name
+     * @param anchorName      anchor name
+     * @param targetXpaths    xpaths to lists or list elements
+     */
+    void deleteListDataNodes(String dataspaceName, String anchorName, Collection<String> targetXpaths);
 
     /**
      * Get a datanode by cps path.
