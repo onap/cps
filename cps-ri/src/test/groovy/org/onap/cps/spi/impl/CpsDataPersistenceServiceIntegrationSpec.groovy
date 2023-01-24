@@ -555,9 +555,10 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     def 'Delete list scenario: #scenario.'() {
         when: 'deleting list is executed for: #scenario.'
             objectUnderTest.deleteListDataNode(DATASPACE_NAME, ANCHOR_NAME3, targetXpaths)
-        then: 'only the expected children remain'
+        and: 'remaining children are fetched'
             def parentFragment = fragmentRepository.getById(parentFragmentId)
             def remainingChildXpaths = parentFragment.childFragments.collect { it.xpath }
+        then: 'only the expected children remain'
             assert remainingChildXpaths.size() == expectedRemainingChildXpaths.size()
             assert remainingChildXpaths.containsAll(expectedRemainingChildXpaths)
         where: 'following parameters were used'
@@ -648,6 +649,29 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             objectUnderTest.deleteDataNodes(DATASPACE_NAME, ANCHOR_NAME3)
         then: 'all data-nodes are deleted successfully'
             assert !fragmentsExistInDB(DATASPACE_1001_ID, ANCHOR_3003_ID)
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Delete multiple data nodes using scenario: #scenario.'() {
+        when: 'deleting nodes is executed for: #scenario.'
+            objectUnderTest.deleteDataNodes(DATASPACE_NAME, ANCHOR_NAME3, targetXpaths)
+        and: 'remaining children are fetched'
+            def parentFragment = fragmentRepository.getById(LIST_DATA_NODE_PARENT203_FRAGMENT_ID)
+            def remainingChildXpaths = parentFragment.childFragments.collect { it.xpath }
+        then: 'only the expected children remain'
+            assert remainingChildXpaths.size() == expectedRemainingChildXpaths.size()
+            assert remainingChildXpaths.containsAll(expectedRemainingChildXpaths)
+        where: 'following parameters were used'
+            scenario                          | targetXpaths                                                           || expectedRemainingChildXpaths
+            'delete nothing'                  | []                                                                     || ["/parent-203/child-203", "/parent-203/child-204[@key='A']", "/parent-203/child-204[@key='B']"]
+            'datanode'                        | ['/parent-203/child-203']                                              || ["/parent-203/child-204[@key='A']", "/parent-203/child-204[@key='B']"]
+            '1 list element'                  | ['/parent-203/child-204[@key="A"]']                                    || ["/parent-203/child-203", "/parent-203/child-204[@key='B']"]
+            '2 list elements'                 | ['/parent-203/child-204[@key="A"]', '/parent-203/child-204[@key="B"]'] || ["/parent-203/child-203"]
+            'whole list'                      | ['/parent-203/child-204']                                              || ['/parent-203/child-203']
+            'list and element in same list'   | ['/parent-203/child-204', '/parent-203/child-204[@key="A"]']           || ['/parent-203/child-203']
+            'list element under list element' | ['/parent-203/child-204[@key="B"]/grand-child-204[@key2="Y"]']         || ["/parent-203/child-203", "/parent-203/child-204[@key='A']", "/parent-203/child-204[@key='B']"]
+            'valid but non-existing xpath'    | ['/non-existing', '/parent-203/child-204']                             || ['/parent-203/child-203']
+            'invalid xpath'                   | ['INVALID XPATH', '/parent-203/child-204']                             || ['/parent-203/child-203']
     }
 
     def fragmentsExistInDB(dataSpaceId, anchorId) {
