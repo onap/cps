@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3ea89b2a_4808831d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-01-24T10:25:50Z",
+      "side": 1,
+      "message": "NB : We should extract it to variable for redability.",
+      "range": {
+        "startLine": 280,
+        "startChar": 26,
+        "endLine": 280,
+        "endChar": 116
+      },
+      "revId": "4111a57d03f054b46fddf030730d2e42b2755233",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
