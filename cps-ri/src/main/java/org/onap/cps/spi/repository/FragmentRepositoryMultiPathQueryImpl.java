@@ -20,28 +20,24 @@
 
 package org.onap.cps.spi.repository;
 
-
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.spi.entities.FragmentEntity;
 
-
 @Slf4j
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class FragmentRepositoryMultiPathQueryImpl implements FragmentRepositoryMultiPathQuery {
 
     @PersistenceContext
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
 
-    private TempTableCreator tempTableCreator;
+    private final TempTableCreator tempTableCreator;
 
     @Override
     @Transactional
@@ -50,24 +46,13 @@ public class FragmentRepositoryMultiPathQueryImpl implements FragmentRepositoryM
         if (cpsPathQueryList.isEmpty()) {
             return Collections.emptyList();
         }
-        final Collection<List<String>> sqlData = new HashSet<>(cpsPathQueryList.size());
-        for (final String query : cpsPathQueryList) {
-            final List<String> row = new ArrayList<>(1);
-            row.add(query);
-            sqlData.add(row);
-        }
-
         final String tempTableName = tempTableCreator.createTemporaryTable(
-                "xpathTemporaryTable", sqlData, "xpath");
-        return selectMatchingFragments(anchorId, tempTableName);
-    }
-
-    private List<FragmentEntity> selectMatchingFragments(final Integer anchorId, final String tempTableName) {
+            "xpathTemporaryTable", cpsPathQueryList, "xpath");
         final String sql = String.format(
             "SELECT * FROM FRAGMENT WHERE anchor_id = %d AND xpath IN (select xpath FROM %s);",
             anchorId, tempTableName);
         final List<FragmentEntity> fragmentEntities = entityManager.createNativeQuery(sql, FragmentEntity.class)
-                .getResultList();
+            .getResultList();
         log.debug("Fetched {} fragment entities by anchor and cps path.", fragmentEntities.size());
         return fragmentEntities;
     }

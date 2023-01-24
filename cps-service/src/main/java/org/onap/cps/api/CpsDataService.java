@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2022 Nordix Foundation
+ *  Copyright (C) 2020-2023 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada
  *  Modifications Copyright (C) 2022 Deutsche Telekom AG
@@ -199,19 +199,30 @@ public interface CpsDataService {
     /**
      * Deletes data node for given anchor and dataspace.
      *
-     * @param dataspaceName dataspace name
-     * @param anchorName anchor name
-     * @param dataNodeXpath data node xpath
+     * @param dataspaceName     dataspace name
+     * @param anchorName        anchor name
+     * @param dataNodeXpath     data node xpath
      * @param observedTimestamp observed timestamp
      */
     void deleteDataNode(String dataspaceName, String anchorName, String dataNodeXpath,
         OffsetDateTime observedTimestamp);
 
     /**
+     * Deletes multiple data nodes for given anchor and dataspace.
+     *
+     * @param dataspaceName     dataspace name
+     * @param anchorName        anchor name
+     * @param dataNodeXpaths    data node xpaths
+     * @param observedTimestamp observed timestamp
+     */
+    void deleteDataNodes(String dataspaceName, String anchorName, Collection<String> dataNodeXpaths,
+                         OffsetDateTime observedTimestamp);
+
+    /**
      * Deletes all data nodes for a given anchor in a dataspace.
      *
      * @param dataspaceName     dataspace name
-     * @param anchorName       anchor name
+     * @param anchorName        anchor name
      * @param observedTimestamp observed timestamp
      */
     void deleteDataNodes(String dataspaceName, String anchorName, OffsetDateTime observedTimestamp);

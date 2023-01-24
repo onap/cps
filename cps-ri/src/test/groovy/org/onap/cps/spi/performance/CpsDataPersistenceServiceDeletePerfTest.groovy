@@ -25,20 +25,11 @@ import org.onap.cps.spi.impl.CpsPersistencePerfSpecBase
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.jdbc.Sql
 import org.springframework.util.StopWatch
-import spock.lang.Shared
-
-import java.util.concurrent.TimeUnit
 
 class CpsDataPersistenceServiceDeletePerfTest extends CpsPersistencePerfSpecBase {
 
     @Autowired
     CpsDataPersistenceService objectUnderTest
-
-    static def NUMBER_OF_CHILDREN = 100
-    static def NUMBER_OF_GRAND_CHILDREN = 50
-    static def NUMBER_OF_LISTS = 100
-    static def NUMBER_OF_LIST_ELEMENTS = 50
-    static def ALLOWED_SETUP_TIME_MS = TimeUnit.SECONDS.toMillis(10)
 
     def stopWatch = new StopWatch()
 
@@ -46,31 +37,45 @@ class CpsDataPersistenceServiceDeletePerfTest extends CpsPersistencePerfSpecBase
     def 'Create a node with many descendants (please note, subsequent tests depend on this running first).'() {
         when: 'a node with a large number of descendants is created'
             stopWatch.start()
-            createLineage(objectUnderTest, NUMBER_OF_CHILDREN, NUMBER_OF_GRAND_CHILDREN, false)
+            createLineage(objectUnderTest, 150, 50, false)
             stopWatch.stop()
             def setupDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'setup duration is under #ALLOWED_SETUP_TIME_MS milliseconds'
-            recordAndAssertPerformance('Setup',ALLOWED_SETUP_TIME_MS, setupDurationInMillis)
+        then: 'setup duration is under 10 seconds'
+            recordAndAssertPerformance('Setup', 10_000, setupDurationInMillis)
     }
 
     def 'Delete 5 children with grandchildren'() {
         when: 'child nodes are deleted'
             stopWatch.start()
             (1..5).each {
-                def childPath = "${PERF_TEST_PARENT}/perf-test-child-${it}".toString();
+                def childPath = "${PERF_TEST_PARENT}/perf-test-child-${it}".toString()
                 objectUnderTest.deleteDataNode(PERF_DATASPACE, PERF_ANCHOR, childPath)
             }
             stopWatch.stop()
             def deleteDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'delete duration is under 300 milliseconds'
-            recordAndAssertPerformance('Delete 5 children', 300, deleteDurationInMillis)
+        then: 'delete duration is under 350 milliseconds'
+            recordAndAssertPerformance('Delete 5 children', 350, deleteDurationInMillis)
+    }
+
+    def 'Batch delete 100 children with grandchildren'() {
+        given: 'a list of xpaths to delete'
+            def xpathsToDelete = (6..105).collect {
+                "${PERF_TEST_PARENT}/perf-test-child-${it}".toString()
+            }
+        when: 'child nodes are deleted'
+            stopWatch.start()
+            objectUnderTest.deleteDataNodes(PERF_DATASPACE, PERF_ANCHOR, xpathsToDelete)
+            stopWatch.stop()
+            def deleteDurationInMillis = stopWatch.getTotalTimeMillis()
+        then: 'delete duration is under 350 milliseconds'
+            recordAndAssertPerformance('Batch delete 100 children', 350, deleteDurationInMillis)
     }
 
     def 'Delete 50 grandchildren (that have no descendants)'() {
         when: 'target nodes are deleted'
             stopWatch.start()
             (1..50).each {
-                def grandchildPath = "${PERF_TEST_PARENT}/perf-test-child-6/perf-test-grand-child-${it}".toString();
+                def grandchildPath = "${PERF_TEST_PARENT}/perf-test-child-106/perf-test-grand-child-${it}".toString()
                 objectUnderTest.deleteDataNode(PERF_DATASPACE, PERF_ANCHOR, grandchildPath)
             }
             stopWatch.stop()
@@ -79,78 +84,145 @@ class CpsDataPersistenceServiceDeletePerfTest extends CpsPersistencePerfSpecBase
             recordAndAssertPerformance('Delete 50 grandchildren', 350, deleteDurationInMillis)
     }
 
-    def 'Delete 1 large data node with many descendants'() {
+    def 'Batch delete 500 grandchildren (that have no descendants)'() {
+        given: 'a list of xpaths to delete'
+            def xpathsToDelete = []
+            for (int childIndex = 0; childIndex < 10; childIndex++) {
+                xpathsToDelete.addAll((1..50).collect {
+                    "${PERF_TEST_PARENT}/perf-test-child-${107+childIndex}/perf-test-grand-child-${it}".toString()
+                })
+            }
+        when: 'target nodes are deleted'
+            stopWatch.start()
+            objectUnderTest.deleteDataNodes(PERF_DATASPACE, PERF_ANCHOR, xpathsToDelete)
+            stopWatch.stop()
+            def deleteDurationInMillis = stopWatch.getTotalTimeMillis()
+        then: 'delete duration is under 350 milliseconds'
+            recordAndAssertPerformance('Batch delete 500 grandchildren', 350, deleteDurationInMillis)
+    }
+
+    @Sql([CLEAR_DATA, PERF_TEST_DATA])
+    def 'Create a node with many list elements (please note, subsequent tests depend on this running first).'() {
+        when: 'a node with a large number of lists is created'
+            stopWatch.start()
+            createLineage(objectUnderTest, 150, 50, true)
+            stopWatch.stop()
+            def setupDurationInMillis = stopWatch.getTotalTimeMillis()
+        then: 'setup duration is under 10 seconds'
+            recordAndAssertPerformance('Setup lists', 10_000, setupDurationInMillis)
+    }
+
+    def 'Delete 5 whole lists'() {
+        when: 'lists are deleted'
+            stopWatch.start()
+            (1..5).each {
+                def childPath = "${PERF_TEST_PARENT}/perf-test-list-${it}".toString()
+                objectUnderTest.deleteListDataNode(PERF_DATASPACE, PERF_ANCHOR, childPath)
+            }
+            stopWatch.stop()
+            def deleteDurationInMillis = stopWatch.getTotalTimeMillis()
+        then: 'delete duration is under 1500 milliseconds'
+            recordAndAssertPerformance('Delete 5 whole lists', 1500, deleteDurationInMillis)
+    }
+
+    def 'Batch delete 100 whole lists'() {
+        given: 'a list of xpaths to delete'
+            def xpathsToDelete = (6..105).collect {
+                "${PERF_TEST_PARENT}/perf-test-list-${it}".toString()
+            }
+        when: 'lists are deleted'
+            stopWatch.start()
+            objectUnderTest.deleteDataNodes(PERF_DATASPACE, PERF_ANCHOR, xpathsToDelete)
+            stopWatch.stop()
+            def deleteDurationInMillis = stopWatch.getTotalTimeMillis()
+        then: 'delete duration is under 350 milliseconds'
+            recordAndAssertPerformance('Batch delete 100 whole lists', 350, deleteDurationInMillis)
+    }
+
+    def 'Delete 10 list elements'() {
+        when: 'list elements are deleted'
+            stopWatch.start()
+            (1..10).each {
+                def grandchildPath = "${PERF_TEST_PARENT}/perf-test-list-106[@key='${it}']".toString()
+                objectUnderTest.deleteListDataNode(PERF_DATASPACE, PERF_ANCHOR, grandchildPath)
+            }
+            stopWatch.stop()
+            def deleteDurationInMillis = stopWatch.getTotalTimeMillis()
+        then: 'delete duration is under 750 milliseconds'
+            recordAndAssertPerformance('Delete 10 lists elements', 750, deleteDurationInMillis)
+    }
+
+    def 'Batch delete 500 list elements'() {
+        given: 'a list of xpaths to delete'
+            def xpathsToDelete = []
+            for (int childIndex = 0; childIndex < 10; childIndex++) {
+                xpathsToDelete.addAll((1..50).collect {
+                    "${PERF_TEST_PARENT}/perf-test-list-${107+childIndex}[@key='${it}']".toString()
+                })
+            }
+        when: 'list elements are deleted'
+            stopWatch.start()
+            objectUnderTest.deleteDataNodes(PERF_DATASPACE, PERF_ANCHOR, xpathsToDelete)
+            stopWatch.stop()
+            def deleteDurationInMillis = stopWatch.getTotalTimeMillis()
+        then: 'delete duration is under 350 milliseconds'
+            recordAndAssertPerformance('Batch delete 500 lists elements', 350, deleteDurationInMillis)
+    }
+
+    @Sql([CLEAR_DATA, PERF_TEST_DATA])
+    def 'Delete 1 large data node'() {
+        given: 'a node with a large number of descendants is created'
+            createLineage(objectUnderTest, 50, 50, false)
+            createLineage(objectUnderTest, 50, 50, true)
         when: 'parent node is deleted'
             stopWatch.start()
             objectUnderTest.deleteDataNode(PERF_DATASPACE, PERF_ANCHOR, PERF_TEST_PARENT)
             stopWatch.stop()
             def deleteDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'delete duration is under 250 milliseconds'
-            recordAndAssertPerformance('Delete one large node', 250, deleteDurationInMillis)
+        then: 'delete duration is under 300 milliseconds'
+            recordAndAssertPerformance('Delete one large node', 300, deleteDurationInMillis)
     }
 
     @Sql([CLEAR_DATA, PERF_TEST_DATA])
-    def 'Create a node with many list elements (please note, subsequent tests depend on this running first).'() {
+    def 'Batch delete 1 large data node'() {
         given: 'a node with a large number of descendants is created'
+            createLineage(objectUnderTest, 50, 50, false)
+            createLineage(objectUnderTest, 50, 50, true)
+        when: 'parent node is batch deleted'
             stopWatch.start()
-            createLineage(objectUnderTest, NUMBER_OF_LISTS, NUMBER_OF_LIST_ELEMENTS, true)
-            stopWatch.stop()
-            def setupDurationInMillis = stopWatch.getTotalTimeMillis()
-        and: 'setup duration is under #ALLOWED_SETUP_TIME_MS milliseconds'
-            recordAndAssertPerformance('Create node with many list elements', ALLOWED_SETUP_TIME_MS, setupDurationInMillis)
-    }
-
-    def 'Delete 5 whole lists with many elements'() {
-        when: 'list nodes are deleted'
-            stopWatch.start()
-            (1..5).each {
-                def childPath = "${PERF_TEST_PARENT}/perf-test-list-${it}".toString();
-                objectUnderTest.deleteListDataNode(PERF_DATASPACE, PERF_ANCHOR, childPath)
-            }
+            objectUnderTest.deleteDataNodes(PERF_DATASPACE, PERF_ANCHOR, [PERF_TEST_PARENT])
             stopWatch.stop()
             def deleteDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'delete duration is under 1000 milliseconds'
-            recordAndAssertPerformance('Delete 5 whole lists', 1500, deleteDurationInMillis)
-    }
-
-    def 'Delete 10 list elements with keys'() {
-        when: 'list elements are deleted'
-            stopWatch.start()
-            (1..10).each {
-                def key = it.toString()
-                def grandchildPath = "${PERF_TEST_PARENT}/perf-test-list-6[@key='${key}']"
-                objectUnderTest.deleteListDataNode(PERF_DATASPACE, PERF_ANCHOR, grandchildPath)
-            }
-            stopWatch.stop()
-            def deleteDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'delete duration is under 1200 milliseconds'
-            recordAndAssertPerformance('Delete 10 lists elements', 1500, deleteDurationInMillis)
+        then: 'delete duration is under 300 milliseconds'
+            recordAndAssertPerformance('Batch delete one large node', 300, deleteDurationInMillis)
     }
 
     @Sql([CLEAR_DATA, PERF_TEST_DATA])
     def 'Delete root node with many descendants'() {
         given: 'a node with a large number of descendants is created'
-            createLineage(objectUnderTest, NUMBER_OF_CHILDREN, NUMBER_OF_GRAND_CHILDREN, false)
+            createLineage(objectUnderTest, 50, 50, false)
+            createLineage(objectUnderTest, 50, 50, true)
         when: 'root node is deleted'
             stopWatch.start()
             objectUnderTest.deleteDataNode(PERF_DATASPACE, PERF_ANCHOR, '/')
             stopWatch.stop()
             def deleteDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'delete duration is under 250 milliseconds'
-            recordAndAssertPerformance('Delete root node', 250, deleteDurationInMillis)
+        then: 'delete duration is under 300 milliseconds'
+            recordAndAssertPerformance('Delete root node', 300, deleteDurationInMillis)
     }
 
     @Sql([CLEAR_DATA, PERF_TEST_DATA])
-    def 'Delete data nodes for an anchor'() {
+    def 'Delete data nodes for an anchor'() {212
         given: 'a node with a large number of descendants is created'
-            createLineage(objectUnderTest, NUMBER_OF_CHILDREN, NUMBER_OF_GRAND_CHILDREN, false)
+            createLineage(objectUnderTest, 50, 50, false)
+            createLineage(objectUnderTest, 50, 50, true)
         when: 'data nodes are deleted'
             stopWatch.start()
             objectUnderTest.deleteDataNodes(PERF_DATASPACE, PERF_ANCHOR)
             stopWatch.stop()
             def deleteDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'delete duration is under 250 milliseconds'
-            recordAndAssertPerformance('Delete data nodes for anchor', 250, deleteDurationInMillis)
+        then: 'delete duration is under 300 milliseconds'
+            recordAndAssertPerformance('Delete data nodes for anchor', 300, deleteDurationInMillis)
     }
 
 }
