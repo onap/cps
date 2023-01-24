@@ -112,18 +112,46 @@ class CpsDataPersistenceServiceDeletePerfTest extends CpsPersistencePerfSpecBase
             assert deleteDurationInMillis < 1000
     }
 
+    def 'Batch delete 5 whole lists with many elements'() {
+        given: 'a list of xpaths to delete'
+            def xpathsToDelete = (6..10).collect {
+                "${PERF_TEST_PARENT}/perf-test-list-${it}".toString()
+            }
+        when: 'list nodes are deleted'
+            stopWatch.start()
+            objectUnderTest.deleteListDataNodes(PERF_DATASPACE, PERF_ANCHOR, xpathsToDelete)
+            stopWatch.stop()
+            def deleteDurationInMillis = stopWatch.getTotalTimeMillis()
+        then: 'delete duration is under 50 milliseconds'
+            assert deleteDurationInMillis < 50
+    }
+
     def 'Delete 10 list elements with keys'() {
         when: 'list elements are deleted'
             stopWatch.start()
             (1..10).each {
                 def key = it.toString()
-                def grandchildPath = "${PERF_TEST_PARENT}/perf-test-list-6[@key='${key}']"
+                def grandchildPath = "${PERF_TEST_PARENT}/perf-test-list-11[@key='${key}']"
                 objectUnderTest.deleteListDataNode(PERF_DATASPACE, PERF_ANCHOR, grandchildPath)
             }
             stopWatch.stop()
             def deleteDurationInMillis = stopWatch.getTotalTimeMillis()
         then: 'delete duration is under 1200 milliseconds'
             assert deleteDurationInMillis < 1200
+    }
+
+    def 'Batch delete 50 list elements with keys'() {
+        given: 'a list of xpaths to delete'
+            def xpathsToDelete = (1..50).collect {
+                "${PERF_TEST_PARENT}/perf-test-list-12[@key='${it}']".toString()
+            }
+        when: 'list elements are deleted'
+            stopWatch.start()
+            objectUnderTest.deleteListDataNodes(PERF_DATASPACE, PERF_ANCHOR, xpathsToDelete)
+            stopWatch.stop()
+            def deleteDurationInMillis = stopWatch.getTotalTimeMillis()
+        then: 'delete duration is under 50 milliseconds'
+            assert deleteDurationInMillis < 50
     }
 
     @Sql([CLEAR_DATA, PERF_TEST_DATA])
