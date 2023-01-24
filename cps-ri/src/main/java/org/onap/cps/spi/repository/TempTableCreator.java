@@ -1,6 +1,6 @@
 /*-
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation.
+ *  Copyright (C) 2022-2023 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,8 +20,10 @@
 
 package org.onap.cps.spi.repository;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -61,6 +63,24 @@ public class TempTableCreator {
         insertData(sqlStringBuilder, tempTableName, columnNames, sqlData);
         entityManager.createNativeQuery(sqlStringBuilder.toString()).executeUpdate();
         return tempTableName;
+    }
+
+    /**
+     * Create a uniquely named temporary table with a single column.
+     *
+     * @param prefix     prefix for the table name (so you can recognize it)
+     * @param sqlData    data to insert (strings only); each entry is a single row of data
+     * @param columnName column name
+     * @return a unique temporary table name with given prefix
+     */
+    public String createTemporaryTable(final String prefix,
+                                       final Collection<String> sqlData,
+                                       final String columnName) {
+        final Collection<List<String>> tableData = new ArrayList<>(sqlData.size());
+        for (final String entry : sqlData) {
+            tableData.add(Collections.singletonList(entry));
+        }
+        return createTemporaryTable(prefix, tableData, columnName);
     }
 
     private static void defineColumns(final StringBuilder sqlStringBuilder, final String[] columnNames) {
