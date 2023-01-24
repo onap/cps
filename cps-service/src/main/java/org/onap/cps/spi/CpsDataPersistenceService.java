@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2022 Nordix Foundation.
+ *  Copyright (C) 2020-2023 Nordix Foundation.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2022 Bell Canada
  *  Modifications Copyright (C) 2022 TechMahindra Ltd.
@@ -174,6 +174,15 @@ public interface CpsDataPersistenceService {
     void deleteDataNode(String dataspaceName, String anchorName, String targetXpath);
 
     /**
+     * Deletes multiple dataNode, yang container or yang list or yang list element.
+     *
+     * @param dataspaceName   dataspace name
+     * @param anchorName      anchor name
+     * @param targetXpaths    xpaths of nodes to delete
+     */
+    void deleteDataNodes(String dataspaceName, String anchorName, Collection<String> targetXpaths);
+
+    /**
      * Deletes all dataNodes in a given anchor.
      *
      * @param dataspaceName   dataspace name
@@ -182,7 +191,7 @@ public interface CpsDataPersistenceService {
     void deleteDataNodes(String dataspaceName, String anchorName);
 
     /**
-     * Deletes existing a single list element or the whole list.
+     * Deletes a single existing list element or the whole list.
      *
      * @param dataspaceName   dataspace name
      * @param anchorName      anchor name

@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2021-2022 Nordix Foundation.
+ * Copyright (C) 2021-2023 Nordix Foundation.
  * Modifications Copyright (C) 2020-2021 Bell Canada.
  * Modifications Copyright (C) 2020-2021 Pantheon.tech.
  * ================================================================================
@@ -40,7 +40,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>, FragmentRepositoryCpsPathQuery,
-        FragmentRepositoryMultiPathQuery {
+        FragmentRepositoryMultiPathQuery, FragmentNativeRepository {
 
     Optional<FragmentEntity> findByDataspaceAndAnchorAndXpath(@NonNull DataspaceEntity dataspaceEntity,
                                                               @NonNull AnchorEntity anchorEntity,
