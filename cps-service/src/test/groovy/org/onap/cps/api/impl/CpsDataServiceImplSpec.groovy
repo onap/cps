@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Copyright (C) 2021-2023 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada.
  *  Modifications Copyright (C) 2022 TechMahindra Ltd.
@@ -321,6 +321,20 @@ class CpsDataServiceImplSpec extends Specification {
             1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
         and: 'data updated event is sent to notification service'
             1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, '/test-tree/branch', Operation.DELETE, observedTimestamp)
+    }
+
+    def 'Delete multiple list elements under existing node.'() {
+        given: 'schema set for given anchor and dataspace references test-tree model'
+            setupSchemaSetMocks('test-tree.yang')
+        when: 'delete multiple list data method is invoked with list element json data'
+            objectUnderTest.deleteListsOrListElements(dataspaceName, anchorName, ['/test-tree/branch[@name="A"]', '/test-tree/branch[@name="B"]'], observedTimestamp)
+        then: 'the persistence service method is invoked with correct parameters'
+            1 * mockCpsDataPersistenceService.deleteListDataNodes(dataspaceName, anchorName, ['/test-tree/branch[@name="A"]', '/test-tree/branch[@name="B"]'])
+        and: 'the CpsValidator is called on the dataspaceName and AnchorName'
+            1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
+        and: 'data updated events are sent to notification service'
+            1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, '/test-tree/branch[@name="A"]', Operation.DELETE, observedTimestamp)
+            1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, '/test-tree/branch[@name="B"]', Operation.DELETE, observedTimestamp)
     }
 
     def 'Delete data node under anchor and dataspace.'() {

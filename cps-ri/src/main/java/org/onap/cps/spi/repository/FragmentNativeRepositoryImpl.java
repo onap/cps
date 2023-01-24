@@ -20,13 +20,16 @@
 
 package org.onap.cps.spi.repository;
 
-import java.sql.PreparedStatement;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import org.hibernate.Session;
-import org.springframework.stereotype.Repository;
+import lombok.RequiredArgsConstructor;
+import org.checkerframework.checker.nullness.qual.NonNull;
 
-@Repository
+@RequiredArgsConstructor
 public class FragmentNativeRepositoryImpl implements FragmentNativeRepository {
 
     private static final String DROP_FRAGMENT_CONSTRAINT
@@ -34,28 +37,65 @@ public class FragmentNativeRepositoryImpl implements FragmentNativeRepository {
     private static final String ADD_FRAGMENT_CONSTRAINT_WITH_CASCADE
             = "ALTER TABLE fragment ADD CONSTRAINT fragment_parent_id_fkey FOREIGN KEY (parent_id) "
             + "REFERENCES fragment (id) ON DELETE CASCADE;";
-    private static final String DELETE_FRAGMENT = "DELETE FROM fragment WHERE id =?;";
     private static final String ADD_ORIGINAL_FRAGMENT_CONSTRAINT
             = "ALTER TABLE fragment ADD CONSTRAINT fragment_parent_id_fkey FOREIGN KEY (parent_id) "
             + "REFERENCES fragment (id) ON DELETE NO ACTION;";
 
     @PersistenceContext
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
+
+    private final TempTableCreator tempTableCreator;
 
     @Override
     public void deleteFragmentEntity(final long fragmentEntityId) {
-        final Session session = entityManager.unwrap(Session.class);
-        session.doWork(connection -> {
-            try (PreparedStatement preparedStatement = connection.prepareStatement(
+        entityManager.createNativeQuery(
+                DROP_FRAGMENT_CONSTRAINT
+                    + ADD_FRAGMENT_CONSTRAINT_WITH_CASCADE
+                    + "DELETE FROM fragment WHERE id = ?;"
+                    + DROP_FRAGMENT_CONSTRAINT
+                    + ADD_ORIGINAL_FRAGMENT_CONSTRAINT)
+            .setParameter(1, fragmentEntityId)
+            .executeUpdate();
+    }
+
+    @Override
+    public void deleteByAnchorIdAndXpaths(final int anchorId, final @NonNull Collection<String> xpaths) {
+        if (!xpaths.isEmpty()) {
+            final String tempTableName = createTempXpathTable(xpaths);
+            entityManager.createNativeQuery(
                     DROP_FRAGMENT_CONSTRAINT
-                            + ADD_FRAGMENT_CONSTRAINT_WITH_CASCADE
-                            + DELETE_FRAGMENT
-                            + DROP_FRAGMENT_CONSTRAINT
-                            + ADD_ORIGINAL_FRAGMENT_CONSTRAINT)) {
-                preparedStatement.setLong(1, fragmentEntityId);
-                preparedStatement.executeUpdate();
-            }
-        });
+                        + ADD_FRAGMENT_CONSTRAINT_WITH_CASCADE
+                        + "DELETE FROM fragment f USING " + tempTableName + " t "
+                        + "WHERE f.anchor_id = :anchorId AND f.xpath = t.xpath;"
+                        + DROP_FRAGMENT_CONSTRAINT
+                        + ADD_ORIGINAL_FRAGMENT_CONSTRAINT)
+                .setParameter("anchorId", anchorId)
+                .executeUpdate();
+        }
+    }
+
+    @Override
+    public void deleteListsByAnchorIdAndXpaths(final int anchorId, final @NonNull Collection<String> xpaths) {
+        if (!xpaths.isEmpty()) {
+            final String tempTableName = createTempXpathTable(xpaths);
+            entityManager.createNativeQuery(
+                    DROP_FRAGMENT_CONSTRAINT
+                        + ADD_FRAGMENT_CONSTRAINT_WITH_CASCADE
+                        + "DELETE FROM fragment f USING " + tempTableName + " t "
+                        + "WHERE f.anchor_id = :anchorId AND f.xpath LIKE CONCAT(t.xpath, :listPattern);"
+                        + DROP_FRAGMENT_CONSTRAINT
+                        + ADD_ORIGINAL_FRAGMENT_CONSTRAINT)
+                .setParameter("anchorId", anchorId)
+                .setParameter("listPattern", "[%%")
+                .executeUpdate();
+        }
+    }
+
+    private String createTempXpathTable(final Collection<String> xpaths) {
+        final Collection<List<String>> xpathTableData = new ArrayList<>(xpaths.size());
+        for (final String xpath : xpaths) {
+            xpathTableData.add(Collections.singletonList(xpath));
+        }
+        return tempTableCreator.createTemporaryTable("xpathTemporaryTable", xpathTableData, "xpath");
     }
 }
-
