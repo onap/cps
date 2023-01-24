@@ -219,13 +219,24 @@ public interface CpsDataService {
     /**
      * Deletes a list or a list-element under given anchor and dataspace.
      *
-     * @param dataspaceName dataspace name
-     * @param anchorName    anchor name
-     * @param listElementXpath list element xpath
+     * @param dataspaceName     dataspace name
+     * @param anchorName        anchor name
+     * @param listNodeXpath     xpath of list or list element
      * @param observedTimestamp observedTimestamp
      */
-    void deleteListOrListElement(String dataspaceName, String anchorName, String listElementXpath,
-        OffsetDateTime observedTimestamp);
+    void deleteListOrListElement(String dataspaceName, String anchorName, String listNodeXpath,
+                                 OffsetDateTime observedTimestamp);
+
+    /**
+     * Deletes multiple lists or list-elements under given anchor and dataspace.
+     *
+     * @param dataspaceName     dataspace name
+     * @param anchorName        anchor name
+     * @param listNodeXpaths    xpaths of lists or list elements
+     * @param observedTimestamp observedTimestamp
+     */
+    void deleteListsOrListElements(String dataspaceName, String anchorName, Collection<String> listNodeXpaths,
+                                   OffsetDateTime observedTimestamp);
 
     /**
      * Updates leaves of DataNode for given dataspace and anchor using xpath, along with the leaves of each Child Data
