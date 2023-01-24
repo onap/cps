@@ -22,6 +22,29 @@
       "revId": "be8f1f031c49ca404ed4602571caea1679c278df",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f80e16cd_f70aa47a",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-01-24T10:24:55Z",
+      "side": 1,
+      "message": "NB : We should extract it to variable for redability.",
+      "range": {
+        "startLine": 278,
+        "startChar": 26,
+        "endLine": 278,
+        "endChar": 116
+      },
+      "revId": "be8f1f031c49ca404ed4602571caea1679c278df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
