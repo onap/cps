@@ -61,7 +61,6 @@ import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.DataNodeBuilder;
 import org.onap.cps.spi.repository.AnchorRepository;
 import org.onap.cps.spi.repository.DataspaceRepository;
-import org.onap.cps.spi.repository.FragmentNativeRepository;
 import org.onap.cps.spi.repository.FragmentQueryBuilder;
 import org.onap.cps.spi.repository.FragmentRepository;
 import org.onap.cps.spi.utils.SessionManager;
@@ -79,7 +78,6 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     private final FragmentRepository fragmentRepository;
     private final JsonObjectMapper jsonObjectMapper;
     private final SessionManager sessionManager;
-    private final FragmentNativeRepository fragmentNativeRepositoryImpl;
 
     private static final String REG_EX_FOR_OPTIONAL_LIST_INDEX = "(\\[@[\\s\\S]+?]){0,1})";
 
@@ -609,6 +607,26 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
 
     @Override
     @Transactional
+    public void deleteDataNodes(final String dataspaceName, final String anchorName,
+                                final Collection<String> xpathsToDelete) {
+        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        final AnchorEntity anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
+
+        final Collection<String> normalizedXpaths = new ArrayList<>(xpathsToDelete.size());
+        for (final String xpath : xpathsToDelete) {
+            try {
+                normalizedXpaths.add(CpsPathUtil.getNormalizedXpath(xpath));
+            } catch (final PathParsingException e) {
+                log.debug("Error parsing xpath \"{}\" in deleteListDataNodes: {}", xpath, e.getMessage());
+            }
+        }
+
+        fragmentRepository.deleteByAnchorIdAndXpaths(anchorEntity.getId(), normalizedXpaths);
+        fragmentRepository.deleteListsByAnchorIdAndXpaths(anchorEntity.getId(), normalizedXpaths);
+    }
+
+    @Override
+    @Transactional
     public void deleteListDataNode(final String dataspaceName, final String anchorName,
                                    final String targetXpath) {
         deleteDataNode(dataspaceName, anchorName, targetXpath, true);
@@ -656,7 +674,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     private boolean deleteDataNode(final FragmentEntity parentFragmentEntity, final String targetXpath) {
         final String normalizedTargetXpath = CpsPathUtil.getNormalizedXpath(targetXpath);
         if (parentFragmentEntity.getXpath().equals(normalizedTargetXpath)) {
-            fragmentNativeRepositoryImpl.deleteFragmentEntity(parentFragmentEntity.getId());
+            fragmentRepository.deleteFragmentEntity(parentFragmentEntity.getId());
             return true;
         }
         if (parentFragmentEntity.getChildFragments()
