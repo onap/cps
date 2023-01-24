@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Copyright (C) 2021-2023 Nordix Foundation
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2022 TechMahindra Ltd.
@@ -246,6 +246,16 @@ public class CpsDataServiceImpl implements CpsDataService {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         cpsDataPersistenceService.deleteListDataNode(dataspaceName, anchorName, listNodeXpath);
         processDataUpdatedEventAsync(dataspaceName, anchorName, listNodeXpath, DELETE, observedTimestamp);
+    }
+
+    @Override
+    public void deleteListsOrListElements(final String dataspaceName, final String anchorName,
+                                          final Collection<String> listNodeXpaths,
+                                          final OffsetDateTime observedTimestamp) {
+        cpsValidator.validateNameCharacters(dataspaceName, anchorName);
+        cpsDataPersistenceService.deleteListDataNodes(dataspaceName, anchorName, listNodeXpaths);
+        listNodeXpaths.forEach(listNodeXpath ->
+            processDataUpdatedEventAsync(dataspaceName, anchorName, listNodeXpath, DELETE, observedTimestamp));
     }
 
     private DataNode buildDataNode(final String dataspaceName, final String anchorName,
