@@ -1,7 +1,7 @@
 # ============LICENSE_START=======================================================
 # Copyright (c) 2020 Pantheon.tech.
 # Modifications Copyright (C) 2021 Bell Canada.
-# Modifications Copyright (C) 2022 Nordix Foundation.
+# Modifications Copyright (C) 2022-2023 Nordix Foundation.
 # ================================================================================
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -30,6 +30,11 @@ services:
       POSTGRES_DB: cpsdb
       POSTGRES_USER: ${DB_USERNAME:-cps}
       POSTGRES_PASSWORD: ${DB_PASSWORD:-cps}
+    healthcheck:
+      test: ["CMD", "pg_isready"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
 
   cps-and-ncmp:
     container_name: cps-and-ncmp
@@ -103,3 +108,12 @@ services:
       notification.data-updated.enabled: 'true'
       NOTIFICATION_DATASPACE_FILTER_PATTERNS: '.*'
     restart: unless-stopped
+
+  init-db:
+    build: ../../../docker-compose/initfile
+    volumes:
+      - ./initfile:/initfile
+      - ../../../cps-ncmp-service/src/main/resources/model/:/model
+    depends_on:
+      cps-and-ncmp:
+        condition: service_started
