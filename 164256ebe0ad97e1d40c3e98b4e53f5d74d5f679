@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "4791166c_b4896bbf",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/AnchorRepository.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-01-25T17:48:38Z",
+      "side": 1,
+      "message": "Agreed and I don\u0027t know enough about Springboot to say why we need it now to be honest",
+      "parentUuid": "84a591f6_e64fa8d1",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 11
+      },
+      "revId": "164256ebe0ad97e1d40c3e98b4e53f5d74d5f679",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4d8edf3f_f154384f",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
         "patchSetId": 2
@@ -68,6 +92,30 @@
       "revId": "164256ebe0ad97e1d40c3e98b4e53f5d74d5f679",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a64353d0_631e339b",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-01-25T17:48:38Z",
+      "side": 1,
+      "message": "Changes removed",
+      "parentUuid": "4d8edf3f_f154384f",
+      "range": {
+        "startLine": 3,
+        "startChar": 23,
+        "endLine": 3,
+        "endChar": 27
+      },
+      "revId": "164256ebe0ad97e1d40c3e98b4e53f5d74d5f679",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -94,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "64e34825_dea38e40",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-01-25T17:48:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0cd13305_e98a87ec",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 5
+      },
+      "revId": "164256ebe0ad97e1d40c3e98b4e53f5d74d5f679",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9c1f24bc_472e2df0",
         "filename": "cps-service/src/test/resources/application.yml",
         "patchSetId": 2
@@ -105,6 +177,30 @@
       "writtenOn": "2023-01-25T16:36:15Z",
       "side": 1,
       "message": "2023",
+      "range": {
+        "startLine": 3,
+        "startChar": 28,
+        "endLine": 3,
+        "endChar": 34
+      },
+      "revId": "164256ebe0ad97e1d40c3e98b4e53f5d74d5f679",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "233c430d_3a849392",
+        "filename": "cps-service/src/test/resources/application.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-01-25T17:48:38Z",
+      "side": 1,
+      "message": "Changes removed",
+      "parentUuid": "9c1f24bc_472e2df0",
       "range": {
         "startLine": 3,
         "startChar": 28,
@@ -140,6 +236,30 @@
     },
     {
       "key": {
+        "uuid": "5c4469be_c188be6f",
+        "filename": "cps-service/src/test/resources/application.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-01-25T17:48:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dbf692a1_43d66c7c",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 59
+      },
+      "revId": "164256ebe0ad97e1d40c3e98b4e53f5d74d5f679",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8d1face9_39c6e8a0",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/CpsIntegrationSpecBase.groovy",
         "patchSetId": 2
@@ -160,6 +280,30 @@
       "revId": "164256ebe0ad97e1d40c3e98b4e53f5d74d5f679",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "66c5c445_9b1f9939",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-01-25T17:48:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8d1face9_39c6e8a0",
+      "range": {
+        "startLine": 3,
+        "startChar": 23,
+        "endLine": 3,
+        "endChar": 27
+      },
+      "revId": "164256ebe0ad97e1d40c3e98b4e53f5d74d5f679",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -209,6 +353,30 @@
     },
     {
       "key": {
+        "uuid": "3a375a6b_8b2d2c04",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-01-25T17:48:38Z",
+      "side": 1,
+      "message": "Had issues importing it so made a method for it",
+      "parentUuid": "d7b8e0a6_89658b50",
+      "range": {
+        "startLine": 97,
+        "startChar": 7,
+        "endLine": 97,
+        "endChar": 65
+      },
+      "revId": "164256ebe0ad97e1d40c3e98b4e53f5d74d5f679",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "04072d77_a8587340",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/CpsPersistenceSpec.groovy",
         "patchSetId": 2
@@ -229,6 +397,30 @@
       "revId": "164256ebe0ad97e1d40c3e98b4e53f5d74d5f679",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7f3cbaf5_03682b37",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/CpsPersistenceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-01-25T17:48:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "04072d77_a8587340",
+      "range": {
+        "startLine": 15,
+        "startChar": 81,
+        "endLine": 15,
+        "endChar": 121
+      },
+      "revId": "164256ebe0ad97e1d40c3e98b4e53f5d74d5f679",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -255,6 +447,30 @@
     },
     {
       "key": {
+        "uuid": "4fa45416_40b59fb6",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/TestConfig.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-01-25T17:48:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "895ed543_ef7b96c0",
+      "range": {
+        "startLine": 59,
+        "startChar": 6,
+        "endLine": 59,
+        "endChar": 39
+      },
+      "revId": "164256ebe0ad97e1d40c3e98b4e53f5d74d5f679",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a156597_86eec202",
         "filename": "integration-test/src/test/java/org/onap/cps/integration/DatabaseTestContainer.java",
         "patchSetId": 2
@@ -278,6 +494,30 @@
     },
     {
       "key": {
+        "uuid": "66bbe9ee_6faba5d0",
+        "filename": "integration-test/src/test/java/org/onap/cps/integration/DatabaseTestContainer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-01-25T17:48:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a156597_86eec202",
+      "range": {
+        "startLine": 4,
+        "startChar": 35,
+        "endLine": 4,
+        "endChar": 36
+      },
+      "revId": "164256ebe0ad97e1d40c3e98b4e53f5d74d5f679",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a4e36b4_78db001e",
         "filename": "integration-test/src/test/java/org/onap/cps/integration/DatabaseTestContainer.java",
         "patchSetId": 2
@@ -289,6 +529,30 @@
       "writtenOn": "2023-01-25T16:36:15Z",
       "side": 1,
       "message": "is this accurate? from https://gerrit.onap.org/r/c/cps/+/133007/2/integration-test/src/test/resources/hibernate.cfg.xml or https://gerrit.onap.org/r/c/cps/+/133007/2/integration-test/src/test/resources/application.yml -- i dont see where you specified that username and database is \u0027test\u0027 all seems to be the default \u0027cps\u0027 ?",
+      "range": {
+        "startLine": 31,
+        "startChar": 4,
+        "endLine": 31,
+        "endChar": 24
+      },
+      "revId": "164256ebe0ad97e1d40c3e98b4e53f5d74d5f679",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e91ce1e5_a526073a",
+        "filename": "integration-test/src/test/java/org/onap/cps/integration/DatabaseTestContainer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-01-25T17:48:38Z",
+      "side": 1,
+      "message": "It is right yeah, theyre just system properties which are set lines 59-61, the names are set by testContainers dependency in PostgreSQLContainer.class",
+      "parentUuid": "5a4e36b4_78db001e",
       "range": {
         "startLine": 31,
         "startChar": 4,
@@ -324,6 +588,30 @@
     },
     {
       "key": {
+        "uuid": "3f48e495_d8b943ea",
+        "filename": "integration-test/src/test/resources/application.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-01-25T17:48:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cdd9952c_964f14ea",
+      "range": {
+        "startLine": 20,
+        "startChar": 3,
+        "endLine": 26,
+        "endChar": 56
+      },
+      "revId": "164256ebe0ad97e1d40c3e98b4e53f5d74d5f679",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9d95fe3e_c4b22cc2",
         "filename": "integration-test/src/test/resources/liquibase/test-changelog.yaml",
         "patchSetId": 2
@@ -335,6 +623,24 @@
       "writtenOn": "2023-01-25T08:47:42Z",
       "side": 1,
       "message": "do we still need all that is in this changelog? Is it a direct copy of the production one?!",
+      "revId": "164256ebe0ad97e1d40c3e98b4e53f5d74d5f679",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8bed6892_3a9e3d32",
+        "filename": "integration-test/src/test/resources/liquibase/test-changelog.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-01-25T17:48:38Z",
+      "side": 1,
+      "message": "Pretty sure we do, its the steps to set up the cps tables, its a copy of about 30% of the production one",
+      "parentUuid": "9d95fe3e_c4b22cc2",
       "revId": "164256ebe0ad97e1d40c3e98b4e53f5d74d5f679",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
@@ -361,6 +667,30 @@
       "revId": "164256ebe0ad97e1d40c3e98b4e53f5d74d5f679",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9bb13d94_1c352e4b",
+        "filename": "pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-01-25T17:48:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "00e9335f_5adb9cd0",
+      "range": {
+        "startLine": 5,
+        "startChar": 30,
+        "endLine": 5,
+        "endChar": 40
+      },
+      "revId": "164256ebe0ad97e1d40c3e98b4e53f5d74d5f679",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
