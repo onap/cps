@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "84a591f6_e64fa8d1",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/AnchorRepository.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-25T08:47:42Z",
+      "side": 1,
+      "message": "strange we didn\u0027 t need this before?!",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 11
+      },
+      "revId": "164256ebe0ad97e1d40c3e98b4e53f5d74d5f679",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0cd13305_e98a87ec",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-25T08:47:42Z",
+      "side": 1,
+      "message": "as I mentioned create a cpsDataServiceWithMockedNotificationService instance in your base class o not modify production code to cater for testware if we can avoid it...",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 5
+      },
+      "revId": "164256ebe0ad97e1d40c3e98b4e53f5d74d5f679",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dbf692a1_43d66c7c",
+        "filename": "cps-service/src/test/resources/application.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-25T08:47:42Z",
+      "side": 1,
+      "message": "can this be move to a application.yml in teh integration-test module?",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 59
+      },
+      "revId": "164256ebe0ad97e1d40c3e98b4e53f5d74d5f679",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d71caa9e_60ece87e",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-25T08:47:42Z",
+      "side": 1,
+      "message": "I see now these are not test but common utility methods, its OK to have them here...",
+      "range": {
+        "startLine": 95,
+        "startChar": 8,
+        "endLine": 95,
+        "endChar": 38
+      },
+      "revId": "164256ebe0ad97e1d40c3e98b4e53f5d74d5f679",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "895ed543_ef7b96c0",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/TestConfig.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-25T08:47:42Z",
+      "side": 1,
+      "message": "I would use a Mock for the last argument this mean you could verify interactions if needed etc.",
+      "range": {
+        "startLine": 59,
+        "startChar": 6,
+        "endLine": 59,
+        "endChar": 39
+      },
+      "revId": "164256ebe0ad97e1d40c3e98b4e53f5d74d5f679",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cdd9952c_964f14ea",
+        "filename": "integration-test/src/test/resources/application.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-25T08:47:42Z",
+      "side": 1,
+      "message": "so this is here so I do think you can remove same from service test yml",
+      "range": {
+        "startLine": 20,
+        "startChar": 3,
+        "endLine": 26,
+        "endChar": 56
+      },
+      "revId": "164256ebe0ad97e1d40c3e98b4e53f5d74d5f679",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d95fe3e_c4b22cc2",
+        "filename": "integration-test/src/test/resources/liquibase/test-changelog.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-25T08:47:42Z",
+      "side": 1,
+      "message": "do we still need all that is in this changelog? Is it a direct copy of the production one?!",
+      "revId": "164256ebe0ad97e1d40c3e98b4e53f5d74d5f679",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
