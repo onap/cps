@@ -325,8 +325,10 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             final List<String> tobeRemovedCmHandles) {
         final List<CmHandleRegistrationResponse> cmHandleRegistrationResponses =
                 new ArrayList<>(tobeRemovedCmHandles.size());
-
-        setState(tobeRemovedCmHandles, CmHandleState.DELETING);
+        final List<YangModelCmHandle> yangModelCmHandles =
+                tobeRemovedCmHandles.stream().map(inventoryPersistence::getYangModelCmHandle)
+                        .collect(Collectors.toList());
+        updateCmHandleState(yangModelCmHandles, CmHandleState.DELETING);
 
         for (final String cmHandleId : tobeRemovedCmHandles) {
             try {
@@ -350,19 +352,19 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             }
         }
 
-        setState(tobeRemovedCmHandles, CmHandleState.DELETED);
-
+        updateCmHandleState(yangModelCmHandles, CmHandleState.DELETED);
         return cmHandleRegistrationResponses;
     }
 
-    private void setState(final List<String> tobeRemovedCmHandles, final CmHandleState cmHandleState) {
+    private void updateCmHandleState(final List<YangModelCmHandle> yangModelCmHandles,
+                                     final CmHandleState cmHandleState) {
         final Map<YangModelCmHandle, CmHandleState> cmHandleIdsToBeRemoved = new HashMap<>();
-        for (final String cmHandleId : tobeRemovedCmHandles) {
-            cmHandleIdsToBeRemoved.put(
-                    inventoryPersistence.getYangModelCmHandle(cmHandleId),
-                    cmHandleState);
+        yangModelCmHandles.stream().forEach(yangModelCmHandle ->
+                cmHandleIdsToBeRemoved.put(yangModelCmHandle, cmHandleState)
+        );
+        if (!cmHandleIdsToBeRemoved.isEmpty()) {
+            lcmEventsCmHandleStateHandler.updateCmHandleStateBatch(cmHandleIdsToBeRemoved);
         }
-        lcmEventsCmHandleStateHandler.updateCmHandleStateBatch(cmHandleIdsToBeRemoved);
     }
 
     private void deleteCmHandleFromDbAndModuleSyncMap(final String cmHandleId) {
