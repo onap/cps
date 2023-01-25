@@ -1,6 +1,6 @@
 .. This work is licensed under a Creative Commons Attribution 4.0 International License.
 .. http://creativecommons.org/licenses/by/4.0
-.. Copyright (C) 2021-2022 Nordix Foundation
+.. Copyright (C) 2021-2023 Nordix Foundation
 
 .. DO NOT CHANGE THIS LABEL FOR RELEASE NOTES - EVEN THOUGH IT GIVES A WARNING
 .. _release_notes:
@@ -38,22 +38,37 @@ Release Data
 Features
 --------
 3.2.1
-   - `CPS-1236 <https://jira.onap.org/browse/CPS-1236>`_  DMI audit support for NCMP: Filter on any properties of CM Handles
+   - `CPS-341 <https://jira.onap.org/browse/CPS-341>`_  Added support for multiple data tree instances under 1 anchor.
+   - `CPS-1002 <https://jira.onap.org/browse/CPS-1002>`_  Add CPS-E-05 endpoint for 'Query data, NCMP-Operational Datastore' using cpsPaths
+   - `CPS-1182 <https://jira.onap.org/browse/CPS-1182>`_  Upgrade Opendaylight
    - `CPS-1185 <https://jira.onap.org/browse/CPS-1185>`_  Get all dataspaces.
    - `CPS-1186 <https://jira.onap.org/browse/CPS-1186>`_  Get single dataspace.
    - `CPS-1187 <https://jira.onap.org/browse/CPS-1187>`_  Added API to get all schema sets for a given dataspace.
-   - `CPS-1171 <https://jira.onap.org/browse/CPS-1171>`_  Optimized retrieval of data nodes with many descendants.
-   - `CPS-341 <https://jira.onap.org/browse/CPS-341>`_  Added support for multiple data tree instances under 1 anchor.
+   - `CPS-1236 <https://jira.onap.org/browse/CPS-1236>`_  DMI audit support for NCMP: Filter on any properties of CM Handles
    - `CPS-1257 <https://jira.onap.org/browse/CPS-1257>`_  Added support for application/xml Content-Type (write only).
+   - `CPS-1381 <https://jira.onap.org/browse/CPS-1381>`_  Query large outputs using limit/depth/pagination
    - `CPS-1421 <https://jira.onap.org/browse/CPS-1421>`_  Optimized query for large number of hits with descendants.
+   - `CPS-1422 <https://jira.onap.org/browse/CPS-1422>`_  Fetch CM handles by collection of xpaths (CPS Core)
+   - `CPS-1424 <https://jira.onap.org/browse/CPS-1424>`_  Updating CmHandleStates using batch operation
+   - `CPS-1439 <https://jira.onap.org/browse/CPS-1439>`_  Use native query to delete data nodes
 
 Bug Fixes
 ---------
 3.2.1
-   - `CPS-1352 <https://jira.onap.org/browse/CPS-1352>`_  Handle YangChoiceNode in right format.
+   - `CPS-1171 <https://jira.onap.org/browse/CPS-1171>`_  Optimized retrieval of data nodes with many descendants.
+   - `CPS-1288 <https://jira.onap.org/browse/CPS-1288>`_  Hazelcast TTL for IMap is not working
+   - `CPS-1289 <https://jira.onap.org/browse/CPS-1289>`_  Getting wrong error code for create node api
+   - `CPS-1326 <https://jira.onap.org/browse/CPS-1326>`_  Creation of DataNodeBuilder with module name prefix is very slow
+   - `CPS-1344 <https://jira.onap.org/browse/CPS-1344>`_  Top level container (prefix) is not always the first module
    - `CPS-1350 <https://jira.onap.org/browse/CPS-1350>`_  Add Basic Auth to CPS/NCMP OpenAPI Definitions.
-   - `CPS-1433 <https://jira.onap.org/browse/CPS-1433>`_  Fix to allow posting data with '/' key fields.
+   - `CPS-1352 <https://jira.onap.org/browse/CPS-1352>`_  Handle YangChoiceNode in right format.
    - `CPS-1409 <https://jira.onap.org/browse/CPS-1409>`_  Fix Delete uses case with '/' in path.
+   - `CPS-1433 <https://jira.onap.org/browse/CPS-1433>`_  Fix to allow posting data with '/' key fields.
+   - `CPS-1442 <https://jira.onap.org/browse/CPS-1442>`_  CPS PATCH operation does not merge existing data
+   - `CPS-1446 <https://jira.onap.org/browse/CPS-1446>`_  Locked cmhandles and ready to locked state transitions causing long cmHandle discovery
+   - `CPS-1457 <https://jira.onap.org/browse/CPS-1457>`_  CpsDataPersistenceService#getDataNodes uses non-normalized xpaths
+   - `CPS-1458 <https://jira.onap.org/browse/CPS-1458>`_  CpsDataPersistenceService#getDataNodes does not handle root xpath
+   - `CPS-1460 <https://jira.onap.org/browse/CPS-1460>`_  CPS Path Processing Performance Test duration is too low
 
 3.2.0
    - `CPS-1312 <https://jira.onap.org/browse/CPS-1312>`_  CPS(/NCMP) does not have version control.
