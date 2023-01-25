@@ -15,14 +15,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # ============LICENSE_END=========================================================
-
 services:
 
   ### docker-compose up -d -> run ALL services ###
   ### to disable notifications make notification.enabled to false & comment out kafka/zookeeper services ###
 
-  dbpostgresql:
-    container_name: dbpostgresql
+  db:
+    container_name: db
     image: postgres:14.1-alpine
     ports:
       - ${DB_PORT:-5432}:5432
@@ -30,6 +29,11 @@ services:
       POSTGRES_DB: cpsdb
       POSTGRES_USER: ${DB_USERNAME:-cps}
       POSTGRES_PASSWORD: ${DB_PASSWORD:-cps}
+    healthcheck:
+      test: ["CMD", "pg_isready"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
 
   cps-and-ncmp:
     container_name: cps-and-ncmp
@@ -53,7 +57,7 @@ services:
       NCMP_TIMERS_CM-HANDLE-DATA-SYNC_SLEEP-TIME-MS: ${CMHANDLE_DATA_SYNC_SLEEP_TIME_MS:-30000}
     restart: unless-stopped
     depends_on:
-      - dbpostgresql
+      - db
 
   ### if kafka is not required comment out zookeeper and kafka ###
   zookeeper:
@@ -103,3 +107,14 @@ services:
       notification.data-updated.enabled: 'true'
       NOTIFICATION_DATASPACE_FILTER_PATTERNS: '.*'
     restart: unless-stopped
+
+  init-db:
+    build: ./initfile
+    volumes:
+      - ./initfile:/initfile
+      - ./model:/model/
+    depends_on:
+      db:
+        condition: service_healthy
+      cps-and-ncmp:
+        condition: service_started
