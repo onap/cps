@@ -30,6 +30,11 @@ services:
       POSTGRES_DB: cpsdb
       POSTGRES_USER: ${DB_USERNAME:-cps}
       POSTGRES_PASSWORD: ${DB_PASSWORD:-cps}
+    healthcheck:
+      test: ["CMD", "pg_isready"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
 
   cps-and-ncmp:
     container_name: cps-and-ncmp
@@ -103,3 +108,14 @@ services:
       notification.data-updated.enabled: 'true'
       NOTIFICATION_DATASPACE_FILTER_PATTERNS: '.*'
     restart: unless-stopped
+
+  init-db:
+    build: ./initfile
+    volumes:
+      - ./initfile:/initfile
+      - ./model:/model/
+    depends_on:
+      dbpostgresql:
+        condition: service_healthy
+      cps-and-ncmp:
+        condition: service_started
