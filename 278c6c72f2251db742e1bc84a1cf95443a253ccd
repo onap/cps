@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "111b1956_933f310e",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-25T14:47:35Z",
+      "side": 1,
+      "message": "do you really need this as te next condition on cps-and-ncmp heatly wont be trye unless the postgress (or OTHER!)is alive :-)",
+      "range": {
+        "startLine": 118,
+        "startChar": 0,
+        "endLine": 119,
+        "endChar": 34
+      },
+      "revId": "278c6c72f2251db742e1bc84a1cf95443a253ccd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "840a1db6_8460035b",
+        "filename": "docker-compose/initfile/onboardSubscriptionModel.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-25T14:47:35Z",
+      "side": 1,
+      "message": "suggestion: insert else block to log (echo) the status when it failed for troubleshooting purposes!\nOR\nonly log the (last) statuses if you reach 20 retries?!",
+      "range": {
+        "startLine": 33,
+        "startChar": 7,
+        "endLine": 34,
+        "endChar": 10
+      },
+      "revId": "278c6c72f2251db742e1bc84a1cf95443a253ccd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "56af9028_3f202b59",
+        "filename": "docker-compose/initfile/onboardSubscriptionModel.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-25T14:47:35Z",
+      "side": 1,
+      "message": "20x10 seconds, over 3 minutes, yes should be enough...",
+      "range": {
+        "startLine": 44,
+        "startChar": 10,
+        "endLine": 44,
+        "endChar": 12
+      },
+      "revId": "278c6c72f2251db742e1bc84a1cf95443a253ccd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
