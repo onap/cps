@@ -38,22 +38,23 @@ Release Data
 Features
 --------
 3.2.1
-   - `CPS-1236 <https://jira.onap.org/browse/CPS-1236>`_  DMI audit support for NCMP: Filter on any properties of CM Handles
+   - `CPS-341 <https://jira.onap.org/browse/CPS-341>`_  Added support for multiple data tree instances under 1 anchor.
+   - `CPS-1171 <https://jira.onap.org/browse/CPS-1171>`_  Optimized retrieval of data nodes with many descendants.
    - `CPS-1185 <https://jira.onap.org/browse/CPS-1185>`_  Get all dataspaces.
    - `CPS-1186 <https://jira.onap.org/browse/CPS-1186>`_  Get single dataspace.
    - `CPS-1187 <https://jira.onap.org/browse/CPS-1187>`_  Added API to get all schema sets for a given dataspace.
-   - `CPS-1171 <https://jira.onap.org/browse/CPS-1171>`_  Optimized retrieval of data nodes with many descendants.
-   - `CPS-341 <https://jira.onap.org/browse/CPS-341>`_  Added support for multiple data tree instances under 1 anchor.
+   - `CPS-1236 <https://jira.onap.org/browse/CPS-1236>`_  DMI audit support for NCMP: Filter on any properties of CM Handles
    - `CPS-1257 <https://jira.onap.org/browse/CPS-1257>`_  Added support for application/xml Content-Type (write only).
+   - `CPS-1381 <https://jira.onap.org/browse/CPS-1381>`_  Query large outputs using limit/depth/pagination
    - `CPS-1421 <https://jira.onap.org/browse/CPS-1421>`_  Optimized query for large number of hits with descendants.
 
 Bug Fixes
 ---------
 3.2.1
-   - `CPS-1352 <https://jira.onap.org/browse/CPS-1352>`_  Handle YangChoiceNode in right format.
    - `CPS-1350 <https://jira.onap.org/browse/CPS-1350>`_  Add Basic Auth to CPS/NCMP OpenAPI Definitions.
-   - `CPS-1433 <https://jira.onap.org/browse/CPS-1433>`_  Fix to allow posting data with '/' key fields.
+   - `CPS-1352 <https://jira.onap.org/browse/CPS-1352>`_  Handle YangChoiceNode in right format.
    - `CPS-1409 <https://jira.onap.org/browse/CPS-1409>`_  Fix Delete uses case with '/' in path.
+   - `CPS-1433 <https://jira.onap.org/browse/CPS-1433>`_  Fix to allow posting data with '/' key fields.
 
 3.2.0
    - `CPS-1312 <https://jira.onap.org/browse/CPS-1312>`_  CPS(/NCMP) does not have version control.
