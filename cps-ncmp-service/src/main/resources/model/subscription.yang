@@ -1,0 +1,33 @@
+module subscription {
+    yang-version 1.1;
+    namespace "org:onap:ncmp:subscription";
+
+    prefix subs;
+
+    revision "2022-10-12" {
+        description
+        "NCMP subscription model";
+    }
+
+    container subscription-registry {
+        list subscription {
+            key "clientID clientName";
+
+            leaf clientID {
+                type string;
+            }
+
+            leaf clientName {
+                type string;
+            }
+
+            leaf topic {
+                type string;
+            }
+
+            leaf isTagged {
+                type boolean;
+            }
+        }
+    }
+}
