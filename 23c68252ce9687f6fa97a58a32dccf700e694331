@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "91be8602_600cb857",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-01-25T16:00:23Z",
+      "side": 1,
+      "message": "path changed to allow bringing up of cps and ncmp with this init-container with just the docker-compose folder and not dependent on the csit archive directory",
+      "revId": "23c68252ce9687f6fa97a58a32dccf700e694331",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
