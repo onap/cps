@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "faca6cb9_e4af1c58",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-26T08:40:27Z",
+      "side": 1,
+      "message": "NB: Json",
+      "range": {
+        "startLine": 83,
+        "startChar": 24,
+        "endLine": 83,
+        "endChar": 28
+      },
+      "revId": "665e22472f9658a4d439da0323e6e8760ec60840",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}

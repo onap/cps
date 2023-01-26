@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "b1d916af_7f4150b0",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/AnchorRepository.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-26T08:40:27Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4791166c_b4896bbf",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 11
+      },
+      "revId": "164256ebe0ad97e1d40c3e98b4e53f5d74d5f679",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4d8edf3f_f154384f",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
         "patchSetId": 2
@@ -644,6 +668,24 @@
       "revId": "164256ebe0ad97e1d40c3e98b4e53f5d74d5f679",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f2e1a293_7cc30786",
+        "filename": "integration-test/src/test/resources/liquibase/test-changelog.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-26T08:40:27Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8bed6892_3a9e3d32",
+      "revId": "164256ebe0ad97e1d40c3e98b4e53f5d74d5f679",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
