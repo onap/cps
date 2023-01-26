@@ -4,12 +4,14 @@ info:
   description: NCMP Inventory API
   version: "1.0"
 servers:
-- url: /ncmpInventory
+  - url: /ncmpInventory
+security:
+  - basicAuth: []
 paths:
   /v1/ch:
     post:
       tags:
-      - network-cm-proxy-inventory
+        - network-cm-proxy-inventory
       summary: DMI notifies NCMP of new CM Handles
       description: "Register a DMI Plugin with any new, updated or removed CM Handles."
       operationId: updateDmiPluginRegistration
@@ -63,51 +65,104 @@ paths:
                 $ref: '#/components/schemas/DmiPluginRegistrationErrorResponse'
               example:
                 failedCreatedCmHandles:
-                - cmHandle: my-cm-handle-01
-                  errorCode: "00"
-                  errorText: Unknown error. <error-details>
-                - cmHandle: my-cm-handle-02
-                  errorCode: "01"
-                  errorText: cm-handle already exists
-                - cmHandle: my-cm-handle-03
-                  errorCode: "03"
-                  errorText: cm-handle has an invalid character(s) in id
+                  - cmHandle: my-cm-handle-01
+                    errorCode: "00"
+                    errorText: Unknown error. <error-details>
+                  - cmHandle: my-cm-handle-02
+                    errorCode: "01"
+                    errorText: cm-handle already exists
+                  - cmHandle: my-cm-handle-03
+                    errorCode: "03"
+                    errorText: cm-handle has an invalid character(s) in id
                 failedUpdatedCmHandles:
-                - cmHandle: my-cm-handle-01
-                  errorCode: "00"
-                  errorText: Unknown error. <error-details>
-                - cmHandle: my-cm-handle-02
-                  errorCode: "02"
-                  errorText: cm-handle does not exist
-                - cmHandle: my-cm-handle-03
-                  errorCode: "03"
-                  errorText: cm-handle has an invalid character(s) in id
+                  - cmHandle: my-cm-handle-01
+                    errorCode: "00"
+                    errorText: Unknown error. <error-details>
+                  - cmHandle: my-cm-handle-02
+                    errorCode: "02"
+                    errorText: cm-handle does not exist
+                  - cmHandle: my-cm-handle-03
+                    errorCode: "03"
+                    errorText: cm-handle has an invalid character(s) in id
                 failedRemovedCmHandles:
-                - cmHandle: my-cm-handle-01
-                  errorCode: "00"
-                  errorText: Unknown error. <error-details>
-                - cmHandle: my-cm-handle-02
-                  errorCode: "02"
-                  errorText: cm-handle does not exists
-                - cmHandle: my-cm-handle-03
-                  errorCode: "03"
-                  errorText: cm-handle has an invalid character(s) in id
+                  - cmHandle: my-cm-handle-01
+                    errorCode: "00"
+                    errorText: Unknown error. <error-details>
+                  - cmHandle: my-cm-handle-02
+                    errorCode: "02"
+                    errorText: cm-handle does not exists
+                  - cmHandle: my-cm-handle-03
+                    errorCode: "03"
+                    errorText: cm-handle has an invalid character(s) in id
   /v1/ch/cmHandles:
     get:
       tags:
-      - network-cm-proxy-inventory
+        - network-cm-proxy-inventory
       summary: "Get all cm handle IDs for a registered DMI plugin (DMI plugin, DMI\
         \ data plugin, DMI model plugin)"
       description: Get all cm handle IDs for a registered DMI plugin
       operationId: getAllCmHandleIdsForRegisteredDmi
       parameters:
-      - name: dmi-plugin-identifier
-        in: query
-        description: dmi-plugin-identifier
+        - name: dmi-plugin-identifier
+          in: query
+          description: dmi-plugin-identifier
+          required: true
+          schema:
+            type: string
+            example: my-dmi-plugin
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 401
+                message: Unauthorized error message
+                details: Unauthorized error details
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 403
+                message: Forbidden error message
+                details: Forbidden error details
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              example:
+                status: 500
+                message: Internal Server Error
+                details: Internal Server Error occurred
+  /v1/ch/searches:
+    post:
+      tags:
+        - network-cm-proxy-inventory
+      summary: Query for CM Handle IDs
+      description: "Query and get CMHandleIds for additional properties, public properties\
+        \ and registered DMI plugin (DMI plugin, DMI data plugin, DMI model plugin)."
+      operationId: searchCmHandleIds
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CmHandleQueryParameters'
         required: true
-        schema:
-          type: string
-          example: my-dmi-plugin
       responses:
         "200":
           description: OK
@@ -148,10 +203,6 @@ paths:
                 message: Internal Server Error
                 details: Internal Server Error occurred
 components:
-  securitySchemes:
-    basicAuth:
-      type: http
-      scheme: basic
   schemas:
     RestDmiPluginRegistration:
       type: object
@@ -179,14 +230,14 @@ components:
         removedCmHandles:
           type: array
           example:
-          - my-cm-handle1
-          - my-cm-handle2
-          - my-cm-handle3
+            - my-cm-handle1
+            - my-cm-handle2
+            - my-cm-handle3
           items:
             type: string
     RestInputCmHandle:
       required:
-      - cmHandle
+        - cmHandle
       type: object
       properties:
         cmHandle:
@@ -238,6 +289,45 @@ components:
         errorText:
           type: string
           example: Unknown error. <error-details>
-
-security:
-  - basicAuth: []
+    CmHandleQueryParameters:
+      title: Cm Handle query parameters for executing cm handle search
+      type: object
+      properties:
+        cmHandleQueryParameters:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConditionProperties'
+        conditions:
+          type: array
+          description: "not necessary, it is just for backward compatibility"
+          deprecated: true
+          items:
+            $ref: '#/components/schemas/OldConditionProperties'
+    ConditionProperties:
+      properties:
+        conditionName:
+          type: string
+        conditionParameters:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: string
+    OldConditionProperties:
+      properties:
+        name:
+          type: string
+        conditionParameters:
+          type: array
+          items:
+            $ref: '#/components/schemas/ModuleNameAsJsonObject'
+      deprecated: true
+    ModuleNameAsJsonObject:
+      properties:
+        moduleName:
+          type: string
+          example: my-module
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
