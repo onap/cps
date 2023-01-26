@@ -2,7 +2,7 @@
 <!--
   ============LICENSE_START=======================================================
   Copyright (c) 2020 Linux Foundation.
-  Modifications Copyright (C) 2020-2021 Nordix Foundation
+  Modifications Copyright (C) 2020-2023 Nordix Foundation
   Modifications Copyright (C) 2020-2021 Pantheon.tech
   Modifications Copyright (C) 2021-2022 Bell Canada.
   ================================================================================
@@ -61,6 +61,7 @@
         <module>cps-ncmp-rest-stub</module>
         <module>cps-path-parser</module>
         <module>cps-ri</module>
+        <module>integration-test</module>
         <module>checkstyle</module>
         <module>spotbugs</module>
         <module>cps-application</module>
