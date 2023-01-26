@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "143bfe05_feaed2c3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-26T14:29:23Z",
+      "side": 1,
+      "message": "weird, why did this change, you didn\u0027t push directly to onap by mistake did you?!",
+      "range": {
+        "startLine": 4,
+        "startChar": 12,
+        "endLine": 4,
+        "endChar": 19
+      },
+      "revId": "fed3ffb5c1837c53791cc6c70fa03bda3ae036f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2bece007_ecf6d241",
+        "filename": "docker-compose/initfile/onboardSubscriptionModel.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-26T14:29:23Z",
+      "side": 1,
+      "message": "maybe a better name can address this: ATTEMPT_COUNT",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 7
+      },
+      "revId": "fed3ffb5c1837c53791cc6c70fa03bda3ae036f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}

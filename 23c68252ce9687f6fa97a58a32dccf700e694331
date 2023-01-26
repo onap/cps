@@ -113,6 +113,30 @@
     },
     {
       "key": {
+        "uuid": "cdcafb83_52b677b2",
+        "filename": "docker-compose/initfile/onboardSubscriptionModel.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-26T14:29:23Z",
+      "side": 1,
+      "message": "maybe a better name can address this: ATTEMPT_COUNT",
+      "parentUuid": "42d97593_d42afb99",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 9
+      },
+      "revId": "23c68252ce9687f6fa97a58a32dccf700e694331",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6a945c87_4377a9ae",
         "filename": "docker-compose/initfile/onboardSubscriptionModel.sh",
         "patchSetId": 5
@@ -388,6 +412,30 @@
         "startChar": 102,
         "endLine": 58,
         "endChar": 106
+      },
+      "revId": "23c68252ce9687f6fa97a58a32dccf700e694331",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5fa4734e_7f8f7da6",
+        "filename": "docker-compose/initfile/onboardSubscriptionModel.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-26T14:29:23Z",
+      "side": 1,
+      "message": "in my opinion we dont need to describe the full command but I don\u0027t mind exactly what you use to tell the user what failed. Whatever you prefer as long the distinction between the 2 actions is clear",
+      "parentUuid": "96ca4480_34bc1bfd",
+      "range": {
+        "startLine": 57,
+        "startChar": 2,
+        "endLine": 58,
+        "endChar": 302
       },
       "revId": "23c68252ce9687f6fa97a58a32dccf700e694331",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
