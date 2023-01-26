@@ -22,6 +22,29 @@
       "revId": "665e22472f9658a4d439da0323e6e8760ec60840",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "22015a68_b63a24d6",
+        "filename": "integration-test/src/test/resources/hibernate.cfg.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-01-26T10:34:36Z",
+      "side": 1,
+      "message": "NB : It shoulsd be true?",
+      "range": {
+        "startLine": 13,
+        "startChar": 34,
+        "endLine": 13,
+        "endChar": 38
+      },
+      "revId": "665e22472f9658a4d439da0323e6e8760ec60840",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
