@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "71f2b8ed_f030f449",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/AnchorRepository.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-01-26T10:56:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a26c9fa0_3086452a",
+      "range": {
+        "startLine": 4,
+        "startChar": 31,
+        "endLine": 4,
+        "endChar": 37
+      },
+      "revId": "164256ebe0ad97e1d40c3e98b4e53f5d74d5f679",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "84a591f6_e64fa8d1",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/AnchorRepository.java",
         "patchSetId": 2
@@ -237,6 +261,30 @@
     },
     {
       "key": {
+        "uuid": "51c89ca1_2e5fcadf",
+        "filename": "cps-service/src/test/resources/application.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-01-26T10:56:44Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "233c430d_3a849392",
+      "range": {
+        "startLine": 3,
+        "startChar": 28,
+        "endLine": 3,
+        "endChar": 34
+      },
+      "revId": "164256ebe0ad97e1d40c3e98b4e53f5d74d5f679",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dbf692a1_43d66c7c",
         "filename": "cps-service/src/test/resources/application.yml",
         "patchSetId": 2
@@ -398,6 +446,30 @@
       "revId": "164256ebe0ad97e1d40c3e98b4e53f5d74d5f679",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b6a5410d_943ca999",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-01-26T10:56:44Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "3a375a6b_8b2d2c04",
+      "range": {
+        "startLine": 97,
+        "startChar": 7,
+        "endLine": 97,
+        "endChar": 65
+      },
+      "revId": "164256ebe0ad97e1d40c3e98b4e53f5d74d5f679",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -586,6 +658,30 @@
       "revId": "164256ebe0ad97e1d40c3e98b4e53f5d74d5f679",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1b3c7061_cd6df730",
+        "filename": "integration-test/src/test/java/org/onap/cps/integration/DatabaseTestContainer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-01-26T10:56:44Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e91ce1e5_a526073a",
+      "range": {
+        "startLine": 31,
+        "startChar": 4,
+        "endLine": 31,
+        "endChar": 24
+      },
+      "revId": "164256ebe0ad97e1d40c3e98b4e53f5d74d5f679",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
