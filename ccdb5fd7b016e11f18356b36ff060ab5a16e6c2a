@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f527e5d4_8a3ffdcb",
+        "filename": "csit/plans/cps/teardown.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-26T09:02:09Z",
+      "side": 1,
+      "message": "forgot to undo these",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 31
+      },
+      "revId": "ccdb5fd7b016e11f18356b36ff060ab5a16e6c2a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
