@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c89da54a_632aa1a4",
+        "filename": "releases/3.2.1.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-01-27T14:29:19Z",
+      "side": 1,
+      "message": "this should be 837 as per the logs in https://gerrit.onap.org/r/c/cps/+/133032",
+      "range": {
+        "startLine": 2,
+        "startChar": 32,
+        "endLine": 2,
+        "endChar": 35
+      },
+      "revId": "c615a47e320895b4638723ccd6e566d14cb7dbff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
