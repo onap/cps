@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "24b0974d_1d8b8f2d",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-01-27T10:48:17Z",
+      "side": 1,
+      "message": "2023",
+      "range": {
+        "startLine": 3,
+        "startChar": 22,
+        "endLine": 3,
+        "endChar": 26
+      },
+      "revId": "83ecd7e1be160acf16433ce342b4701f5c39f8e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c20e5a2c_2eb43737",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-01-27T10:48:17Z",
+      "side": 1,
+      "message": "add on \n\n[CPS-1002] - Add CPS-E-05 endpoint for \u0027Query data, NCMP-Operational Datastore\u0027 using cpsPaths\n[CPS-1421] - Optimize query for large number of hits with descendants\n[CPS-1182] - Upgrade Opendaylight\n[CPS-1422] - Fetch CM handles by collection of xpaths (CPS Core)\n[CPS-1424] - Updating CmHandleStates using batch operation\n[CPS-1439] - Use native query to delete data nodes",
+      "revId": "83ecd7e1be160acf16433ce342b4701f5c39f8e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb054ad2_b58259da",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-01-27T10:48:17Z",
+      "side": 1,
+      "message": "it was a bug but its put here as feature?",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 114
+      },
+      "revId": "83ecd7e1be160acf16433ce342b4701f5c39f8e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "61b578c0_1f7f6535",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-01-27T10:48:17Z",
+      "side": 1,
+      "message": "think the following should be included; \n\nBUGS\n[CPS-1288] - Hazelcast TTL for IMap is not working  \n[CPS-1326] - Creation of DataNodeBuilder with module name prefix is very slow \n[CPS-1344] - Top level container (prefix) is not always the first module \n[CPS-1442] - CPS PATCH operation does not merge existing data\n[CPS-1446] - Locked cmhandles and ready to locked state transitions causing long cmHandle discovery\n[CPS-1460] - CPS Path Processing Performance Test duration is too low\n[CPS-1289] - Getting wrong error code for create node api ??\n[CPS-1457] - CpsDataPersistenceService#getDataNodes uses non-normalized xpaths \n[CPS-1458] - CpsDataPersistenceService#getDataNodes does not handle root xpath",
+      "revId": "83ecd7e1be160acf16433ce342b4701f5c39f8e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
