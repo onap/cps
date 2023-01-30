@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e6583fb_4e212049",
+        "filename": "cps-application/src/main/java/org/onap/cps/Application.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-01-30T14:29:19Z",
+      "side": 1,
+      "message": "i dont see whats changed here, maybe can be removed then",
+      "revId": "88eb82d98ed690fcf32fac67a14e5f6b82cce01c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e257725a_9100e4b7",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-01-30T14:29:19Z",
+      "side": 1,
+      "message": "registration",
+      "range": {
+        "startLine": 83,
+        "startChar": 44,
+        "endLine": 83,
+        "endChar": 56
+      },
+      "revId": "88eb82d98ed690fcf32fac67a14e5f6b82cce01c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
