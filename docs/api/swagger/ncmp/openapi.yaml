@@ -22,7 +22,7 @@ paths:
           required: true
           schema:
             type: string
-            example: ncmp-datastore:operational
+            example: ncmp-datastore:running
         - name: cm-handle
           in: path
           description: "The identifier for a network function, network element, subnetwork\
@@ -162,7 +162,7 @@ paths:
           required: true
           schema:
             type: string
-            example: ncmp-datastore:operational
+            example: ncmp-datastore:running
         - name: cm-handle
           in: path
           description: "The identifier for a network function, network element, subnetwork\
@@ -285,7 +285,7 @@ paths:
           required: true
           schema:
             type: string
-            example: ncmp-datastore:operational
+            example: ncmp-datastore:running
         - name: cm-handle
           in: path
           description: "The identifier for a network function, network element, subnetwork\
@@ -405,7 +405,7 @@ paths:
           required: true
           schema:
             type: string
-            example: ncmp-datastore:operational
+            example: ncmp-datastore:running
         - name: cm-handle
           in: path
           description: "The identifier for a network function, network element, subnetwork\
@@ -521,7 +521,7 @@ paths:
           required: true
           schema:
             type: string
-            example: ncmp-datastore:operational
+            example: ncmp-datastore:running
         - name: cm-handle
           in: path
           description: "The identifier for a network function, network element, subnetwork\
@@ -639,7 +639,7 @@ paths:
           required: true
           schema:
             type: string
-            example: ncmp-datastore:operational
+            example: ncmp-datastore:running
         - name: cm-handle
           in: path
           description: "The identifier for a network function, network element, subnetwork\

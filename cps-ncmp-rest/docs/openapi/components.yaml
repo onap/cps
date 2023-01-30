@@ -538,7 +538,7 @@ components:
       required: true
       schema:
         type: string
-        example: ncmp-datastore:operational
+        example: ncmp-datastore:running
 
   responses:
     NotFound:
