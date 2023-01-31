@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "917578cb_721d7db7",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 610,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-31T14:03:24Z",
+      "side": 1,
+      "message": "I always thought it was a flaw that the client need to know whether the thing being deleted was a list or not. I see now you method handles both anyway and wonder if we cab use call is delete DataNodes and it ending up an overlaoded method of the method on line 601",
+      "range": {
+        "startLine": 610,
+        "startChar": 16,
+        "endLine": 610,
+        "endChar": 35
+      },
+      "revId": "f0aaade2d4a7955b7bb269d783f5d53c175c2122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dac487f5_95cbbdad",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentNativeRepositoryImpl.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-31T14:03:24Z",
+      "side": 1,
+      "message": "repeat reason",
+      "range": {
+        "startLine": 78,
+        "startChar": 21,
+        "endLine": 78,
+        "endChar": 36
+      },
+      "revId": "f0aaade2d4a7955b7bb269d783f5d53c175c2122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "67fd173e_e617c507",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 593,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-31T14:03:24Z",
+      "side": 1,
+      "message": "really would like if we can start using Luke\u0027s new integration test for this. The point was to avoid adding more tests like these (you can opt to do this in a separate commit but I think we should do it before closing teh story)",
+      "range": {
+        "startLine": 573,
+        "startChar": 2,
+        "endLine": 593,
+        "endChar": 5
+      },
+      "revId": "f0aaade2d4a7955b7bb269d783f5d53c175c2122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "84001015_745bef34",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/performance/CpsDataPersistenceServiceDeletePerfTest.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-31T14:03:24Z",
+      "side": 1,
+      "message": "can we make the number bigger now (eg 50) to more accurately show the speed",
+      "range": {
+        "startLine": 116,
+        "startChar": 22,
+        "endLine": 116,
+        "endChar": 24
+      },
+      "revId": "f0aaade2d4a7955b7bb269d783f5d53c175c2122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "05addb17_f18fcf6c",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/performance/CpsDataPersistenceServiceDeletePerfTest.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-31T14:03:24Z",
+      "side": 1,
+      "message": "I doing fully understand the difference with the previous test",
+      "range": {
+        "startLine": 149,
+        "startChar": 14,
+        "endLine": 149,
+        "endChar": 41
+      },
+      "revId": "f0aaade2d4a7955b7bb269d783f5d53c175c2122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "edf08174_12004c44",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-31T14:03:24Z",
+      "side": 1,
+      "message": "I see you changed teh name but not teh description. Not 100% clear why you changed teh name might be good to have a little chat",
+      "range": {
+        "startLine": 224,
+        "startChar": 54,
+        "endLine": 224,
+        "endChar": 61
+      },
+      "revId": "f0aaade2d4a7955b7bb269d783f5d53c175c2122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a980309_91feb87e",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-31T14:03:24Z",
+      "side": 1,
+      "message": "not suer if you need to be so strict I probably would have tested with 2 * and use _ for the path parameter",
+      "range": {
+        "startLine": 338,
+        "startChar": 11,
+        "endLine": 338,
+        "endChar": 13
+      },
+      "revId": "f0aaade2d4a7955b7bb269d783f5d53c175c2122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
