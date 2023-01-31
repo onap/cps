@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b9d58ec5_0935a675",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 610,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-31T14:57:21Z",
+      "side": 1,
+      "message": "agreed to rename to deleteDataNodes and make it delete anything",
+      "parentUuid": "917578cb_721d7db7",
+      "range": {
+        "startLine": 610,
+        "startChar": 16,
+        "endLine": 610,
+        "endChar": 35
+      },
+      "revId": "f0aaade2d4a7955b7bb269d783f5d53c175c2122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "dac487f5_95cbbdad",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentNativeRepositoryImpl.java",
         "patchSetId": 15
@@ -59,6 +83,30 @@
       "writtenOn": "2023-01-31T14:45:09Z",
       "side": 1,
       "message": "same comment as on patch14, just adding here for visibility",
+      "range": {
+        "startLine": 96,
+        "startChar": 14,
+        "endLine": 96,
+        "endChar": 38
+      },
+      "revId": "f0aaade2d4a7955b7bb269d783f5d53c175c2122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "98cadf37_3f368e02",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentNativeRepositoryImpl.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-31T14:57:21Z",
+      "side": 1,
+      "message": "agreed",
+      "parentUuid": "bebddf6f_b4048ead",
       "range": {
         "startLine": 96,
         "startChar": 14,
@@ -117,6 +165,29 @@
     },
     {
       "key": {
+        "uuid": "340ff5a0_9b36be82",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/performance/CpsDataPersistenceServiceDeletePerfTest.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-31T14:57:21Z",
+      "side": 1,
+      "message": "remove this part",
+      "range": {
+        "startLine": 116,
+        "startChar": 36,
+        "endLine": 116,
+        "endChar": 54
+      },
+      "revId": "f0aaade2d4a7955b7bb269d783f5d53c175c2122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "05addb17_f18fcf6c",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/performance/CpsDataPersistenceServiceDeletePerfTest.groovy",
         "patchSetId": 15
@@ -140,6 +211,29 @@
     },
     {
       "key": {
+        "uuid": "168b87bd_c814ad39",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/performance/CpsDataPersistenceServiceDeletePerfTest.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-31T14:57:21Z",
+      "side": 1,
+      "message": "use new record methods",
+      "range": {
+        "startLine": 155,
+        "startChar": 11,
+        "endLine": 155,
+        "endChar": 46
+      },
+      "revId": "f0aaade2d4a7955b7bb269d783f5d53c175c2122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "edf08174_12004c44",
         "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
         "patchSetId": 15
@@ -156,6 +250,53 @@
         "startChar": 54,
         "endLine": 224,
         "endChar": 61
+      },
+      "revId": "f0aaade2d4a7955b7bb269d783f5d53c175c2122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c506d5c_3cf4d6d1",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-31T14:57:21Z",
+      "side": 1,
+      "message": "once we agree to have one common method that can delete anything this parameter name will become generic and decision no longer needed",
+      "parentUuid": "edf08174_12004c44",
+      "range": {
+        "startLine": 224,
+        "startChar": 54,
+        "endLine": 224,
+        "endChar": 61
+      },
+      "revId": "f0aaade2d4a7955b7bb269d783f5d53c175c2122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "41f7e07b_14e94a74",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-31T14:57:21Z",
+      "side": 1,
+      "message": "insert \u0027two\u0027",
+      "range": {
+        "startLine": 337,
+        "startChar": 14,
+        "endLine": 337,
+        "endChar": 19
       },
       "revId": "f0aaade2d4a7955b7bb269d783f5d53c175c2122",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
