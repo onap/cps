@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2022 Nordix Foundation
+ *  Copyright (C) 2020-2023 Nordix Foundation
  *  Modifications Copyright (C) 2020-2021 Pantheon.tech
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2022 TechMahindra Ltd.
@@ -32,6 +32,7 @@ import org.onap.cps.spi.utils.CpsValidator
 import org.onap.cps.spi.model.Anchor
 import org.onap.cps.spi.model.ModuleReference
 import org.onap.cps.spi.model.SchemaSet
+import org.onap.cps.yang.TimedYangTextSchemaSourceSetBuilder
 import org.onap.cps.yang.YangTextSchemaSourceSet
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
 import spock.lang.Specification
@@ -44,8 +45,9 @@ class CpsModuleServiceImplSpec extends Specification {
     def mockCpsAdminService = Mock(CpsAdminService)
     def mockYangTextSchemaSourceSetCache = Mock(YangTextSchemaSourceSetCache)
     def mockCpsValidator = Mock(CpsValidator)
+    def timedYangTextSchemaSourceSetBuilder = new TimedYangTextSchemaSourceSetBuilder()
 
-    def objectUnderTest = new CpsModuleServiceImpl(mockCpsModulePersistenceService, mockYangTextSchemaSourceSetCache, mockCpsAdminService, mockCpsValidator)
+    def objectUnderTest = new CpsModuleServiceImpl(mockCpsModulePersistenceService, mockYangTextSchemaSourceSetCache, mockCpsAdminService, mockCpsValidator,timedYangTextSchemaSourceSetBuilder)
 
     def 'Create schema set.'() {
         given: 'Valid yang resource as name-to-content map'

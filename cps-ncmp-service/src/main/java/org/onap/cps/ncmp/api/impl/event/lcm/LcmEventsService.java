@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2022 Nordix Foundation
+ * Copyright (C) 2022-2023 Nordix Foundation
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@
 
 package org.onap.cps.ncmp.api.impl.event.lcm;
 
+import io.micrometer.core.annotation.Timed;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.ncmp.cmhandle.event.lcm.LcmEvent;
@@ -50,6 +51,8 @@ public class LcmEventsService {
      * @param cmHandleId Cm Handle Id
      * @param lcmEvent  Lcm Event
      */
+    @Timed(value = "cps.ncmp.lcm.events.publish",
+        description = "Time taken to publish a LCM event")
     public void publishLcmEvent(final String cmHandleId, final LcmEvent lcmEvent) {
         if (notificationsEnabled) {
             try {
