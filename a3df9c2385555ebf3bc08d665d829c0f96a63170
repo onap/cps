@@ -166,6 +166,24 @@
     },
     {
       "key": {
+        "uuid": "ffbc5176_889072a6",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-01-31T11:32:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b73f5487_b76f94ae",
+      "revId": "a3df9c2385555ebf3bc08d665d829c0f96a63170",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "602f0dc3_46c2c302",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/TestConfig.groovy",
         "patchSetId": 6
@@ -210,6 +228,30 @@
       "revId": "a3df9c2385555ebf3bc08d665d829c0f96a63170",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d3ef1009_6d9effb1",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/TestConfig.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-01-31T11:32:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "711ee763_6973b88f",
+      "range": {
+        "startLine": 119,
+        "startChar": 4,
+        "endLine": 127,
+        "endChar": 5
+      },
+      "revId": "a3df9c2385555ebf3bc08d665d829c0f96a63170",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
