@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ce7d61c6_c9ff9c5f",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-31T11:28:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "69ff6e1a_a2ace813",
+      "range": {
+        "startLine": 83,
+        "startChar": 44,
+        "endLine": 83,
+        "endChar": 57
+      },
+      "revId": "a3df9c2385555ebf3bc08d665d829c0f96a63170",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7b49c2e2_fe5db610",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/performance/CpsDataPersistenceServicePerfTest.groovy",
         "patchSetId": 6
@@ -39,6 +63,24 @@
       "revId": "a3df9c2385555ebf3bc08d665d829c0f96a63170",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "09f6dae6_162b9a3f",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/performance/CpsDataPersistenceServicePerfTest.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-31T11:28:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7b49c2e2_fe5db610",
+      "revId": "a3df9c2385555ebf3bc08d665d829c0f96a63170",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "58da5b60_1c385d45",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-31T11:28:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "001f949f_26ce16e0",
+      "range": {
+        "startLine": 57,
+        "startChar": 45,
+        "endLine": 57,
+        "endChar": 49
+      },
+      "revId": "a3df9c2385555ebf3bc08d665d829c0f96a63170",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ee4ad44_c3ebf36c",
         "filename": "docker-compose/docker-compose.yml",
         "patchSetId": 6
@@ -82,6 +148,24 @@
     },
     {
       "key": {
+        "uuid": "b73f5487_b76f94ae",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-31T11:28:58Z",
+      "side": 1,
+      "message": "IntelliJ keeps putting it back :-)",
+      "parentUuid": "8ee4ad44_c3ebf36c",
+      "revId": "a3df9c2385555ebf3bc08d665d829c0f96a63170",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "602f0dc3_46c2c302",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/TestConfig.groovy",
         "patchSetId": 6
@@ -93,6 +177,30 @@
       "writtenOn": "2023-01-30T18:06:19Z",
       "side": 1,
       "message": "I think you should be able to Autowire these instead, would follow closer to how they actually run for testing but probably not a big deal",
+      "range": {
+        "startLine": 119,
+        "startChar": 4,
+        "endLine": 127,
+        "endChar": 5
+      },
+      "revId": "a3df9c2385555ebf3bc08d665d829c0f96a63170",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "711ee763_6973b88f",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/TestConfig.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-31T11:28:58Z",
+      "side": 1,
+      "message": "as discussed taht doesn\u0027t work\ndid remove a redundant injection though",
+      "parentUuid": "602f0dc3_46c2c302",
       "range": {
         "startLine": 119,
         "startChar": 4,

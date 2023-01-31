@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c798d610_fc6c7690",
+        "filename": "cps-application/src/main/java/org/onap/cps/Application.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-31T11:28:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7629dfca_79b015fb",
+      "range": {
+        "startLine": 3,
+        "startChar": 17,
+        "endLine": 3,
+        "endChar": 22
+      },
+      "revId": "53d30c30980f9f7adeecfa18ddb7590c42ae9b4f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "13fcb40c_1ef18098",
         "filename": "cps-application/src/main/java/org/onap/cps/Application.java",
         "patchSetId": 3
@@ -65,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "a7499906_1097d4b2",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/rest/controller/ControllerSecuritySpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-31T11:28:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4377aad_84b757a9",
+      "revId": "53d30c30980f9f7adeecfa18ddb7590c42ae9b4f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "eb2fd8f4_aba0fbe6",
         "filename": "cps-application/src/test/java/org/onap/cps/rest/controller/TestController.java",
         "patchSetId": 3
@@ -76,6 +118,30 @@
       "writtenOn": "2023-01-26T11:36:36Z",
       "side": 1,
       "message": "same as previous we should keep it into into configuration file specific to micrometer.",
+      "range": {
+        "startLine": 34,
+        "startChar": 4,
+        "endLine": 38,
+        "endChar": 0
+      },
+      "revId": "53d30c30980f9f7adeecfa18ddb7590c42ae9b4f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "939da957_df9c908d",
+        "filename": "cps-application/src/test/java/org/onap/cps/rest/controller/TestController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-31T11:28:58Z",
+      "side": 1,
+      "message": "I agree for the production code but I don\u0027t think it is needed for the test code and do not want to experiment",
+      "parentUuid": "eb2fd8f4_aba0fbe6",
       "range": {
         "startLine": 34,
         "startChar": 4,
@@ -111,6 +177,30 @@
     },
     {
       "key": {
+        "uuid": "18375297_4b45f779",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-31T11:28:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8682578c_0ecaeecd",
+      "range": {
+        "startLine": 3,
+        "startChar": 23,
+        "endLine": 3,
+        "endChar": 28
+      },
+      "revId": "53d30c30980f9f7adeecfa18ddb7590c42ae9b4f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0090741d_9c5443a4",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
         "patchSetId": 3
@@ -131,6 +221,30 @@
       "revId": "53d30c30980f9f7adeecfa18ddb7590c42ae9b4f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "21677e7d_3fca11e8",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-31T11:28:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0090741d_9c5443a4",
+      "range": {
+        "startLine": 4,
+        "startChar": 32,
+        "endLine": 4,
+        "endChar": 37
+      },
+      "revId": "53d30c30980f9f7adeecfa18ddb7590c42ae9b4f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -157,6 +271,30 @@
     },
     {
       "key": {
+        "uuid": "9ce083ef_a9848b51",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-31T11:28:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "82f3806f_c99b924b",
+      "range": {
+        "startLine": 3,
+        "startChar": 22,
+        "endLine": 3,
+        "endChar": 23
+      },
+      "revId": "53d30c30980f9f7adeecfa18ddb7590c42ae9b4f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1fbc9224_f180d59e",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/exceptions/CpsRestExceptionHandlerSpec.groovy",
         "patchSetId": 3
@@ -177,6 +315,30 @@
       "revId": "53d30c30980f9f7adeecfa18ddb7590c42ae9b4f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b1b5c35_f4844257",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/exceptions/CpsRestExceptionHandlerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-31T11:28:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1fbc9224_f180d59e",
+      "range": {
+        "startLine": 4,
+        "startChar": 37,
+        "endLine": 4,
+        "endChar": 42
+      },
+      "revId": "53d30c30980f9f7adeecfa18ddb7590c42ae9b4f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -203,6 +365,30 @@
     },
     {
       "key": {
+        "uuid": "c6a68154_a9c0b32a",
+        "filename": "cps-service/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-31T11:28:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5afe2e75_a5c981ec",
+      "range": {
+        "startLine": 4,
+        "startChar": 21,
+        "endLine": 4,
+        "endChar": 26
+      },
+      "revId": "53d30c30980f9f7adeecfa18ddb7590c42ae9b4f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dbc40dad_172cdaec",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/TimedYangParser.java",
         "patchSetId": 3
@@ -223,6 +409,30 @@
       "revId": "53d30c30980f9f7adeecfa18ddb7590c42ae9b4f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1649891b_eac3c3d5",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/TimedYangParser.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-31T11:28:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dbc40dad_172cdaec",
+      "range": {
+        "startLine": 28,
+        "startChar": 1,
+        "endLine": 28,
+        "endChar": 10
+      },
+      "revId": "53d30c30980f9f7adeecfa18ddb7590c42ae9b4f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -249,6 +459,30 @@
     },
     {
       "key": {
+        "uuid": "a9858915_97dcc372",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/TimedYangTextSchemaSourceSetBuilder.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-31T11:28:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "debcb8bd_adc87d2d",
+      "range": {
+        "startLine": 27,
+        "startChar": 1,
+        "endLine": 27,
+        "endChar": 10
+      },
+      "revId": "53d30c30980f9f7adeecfa18ddb7590c42ae9b4f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "16c13430_d15b08e8",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
         "patchSetId": 3
@@ -260,6 +494,30 @@
       "writtenOn": "2023-01-26T11:36:36Z",
       "side": 1,
       "message": "NB : Do we need here real object or stub would be more suitable.\n\nor, we are trying to capture any matrix here by real objects.",
+      "range": {
+        "startLine": 52,
+        "startChar": 26,
+        "endLine": 52,
+        "endChar": 47
+      },
+      "revId": "53d30c30980f9f7adeecfa18ddb7590c42ae9b4f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0dfc7b2e_99f95a61",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-31T11:28:58Z",
+      "side": 1,
+      "message": "we need real object, test depend on this (coverage possibly too)\n(it just redirects to the static YangUtils method that were used before I made this change",
+      "parentUuid": "16c13430_d15b08e8",
       "range": {
         "startLine": 52,
         "startChar": 26,
@@ -295,6 +553,30 @@
     },
     {
       "key": {
+        "uuid": "ac4058c7_c3b2afbb",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-31T11:28:58Z",
+      "side": 1,
+      "message": "same answer as on previous :-)",
+      "parentUuid": "8a81eba5_4901c90a",
+      "range": {
+        "startLine": 48,
+        "startChar": 44,
+        "endLine": 48,
+        "endChar": 87
+      },
+      "revId": "53d30c30980f9f7adeecfa18ddb7590c42ae9b4f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5391f740_20190061",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/E2ENetworkSliceSpec.groovy",
         "patchSetId": 3
@@ -306,6 +588,30 @@
       "writtenOn": "2023-01-26T11:36:36Z",
       "side": 1,
       "message": "NB : Do we need here real object or stub would be more suitable.\n\nor, we are trying to capture any matrix here by real objects.",
+      "range": {
+        "startLine": 46,
+        "startChar": 44,
+        "endLine": 47,
+        "endChar": 46
+      },
+      "revId": "53d30c30980f9f7adeecfa18ddb7590c42ae9b4f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d5a4c0c_9d4fb072",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/E2ENetworkSliceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-31T11:28:58Z",
+      "side": 1,
+      "message": "same as before, we DO need real object",
+      "parentUuid": "5391f740_20190061",
       "range": {
         "startLine": 46,
         "startChar": 44,
@@ -338,6 +644,30 @@
       "revId": "53d30c30980f9f7adeecfa18ddb7590c42ae9b4f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7d2bb96f_58585afb",
+        "filename": "csit/plans/cps/teardown.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-01-31T11:28:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8d5a472e_2780abf8",
+      "range": {
+        "startLine": 26,
+        "startChar": 1,
+        "endLine": 42,
+        "endChar": 31
+      },
+      "revId": "53d30c30980f9f7adeecfa18ddb7590c42ae9b4f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
