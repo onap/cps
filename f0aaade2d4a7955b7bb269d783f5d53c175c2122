@@ -48,6 +48,29 @@
     },
     {
       "key": {
+        "uuid": "bebddf6f_b4048ead",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentNativeRepositoryImpl.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-01-31T14:45:09Z",
+      "side": 1,
+      "message": "same comment as on patch14, just adding here for visibility",
+      "range": {
+        "startLine": 96,
+        "startChar": 14,
+        "endLine": 96,
+        "endChar": 38
+      },
+      "revId": "f0aaade2d4a7955b7bb269d783f5d53c175c2122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "67fd173e_e617c507",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
         "patchSetId": 15
