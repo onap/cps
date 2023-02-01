@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8c97373b_b5dfff3a",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-02-01T13:55:29Z",
+      "side": 1,
+      "message": "Typo in description",
+      "range": {
+        "startLine": 276,
+        "startChar": 44,
+        "endLine": 276,
+        "endChar": 46
+      },
+      "revId": "396eed4679e18f194ca5906cf7ba28816b61be95",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
