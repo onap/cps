@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9352a675_4134c533",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/performance/CpsDataPersistenceServiceDeletePerfTest.groovy",
+        "patchSetId": 25
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-02-01T14:42:52Z",
+      "side": 1,
+      "message": "Yes, in Java too! :D",
+      "parentUuid": "514c8b8b_19ab0415",
+      "range": {
+        "startLine": 44,
+        "startChar": 48,
+        "endLine": 44,
+        "endChar": 54
+      },
+      "revId": "230b1119dec71e301ba462246c3fc53d0fc0281a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f7cb509b_c7431287",
         "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
         "patchSetId": 25
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "c94d11c4_dba858b2",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 25
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-02-01T14:42:52Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f7cb509b_c7431287",
+      "range": {
+        "startLine": 238,
+        "startChar": 9,
+        "endLine": 238,
+        "endChar": 31
+      },
+      "revId": "230b1119dec71e301ba462246c3fc53d0fc0281a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5e60fe32_fa635279",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
         "patchSetId": 25
@@ -68,6 +116,30 @@
       "revId": "230b1119dec71e301ba462246c3fc53d0fc0281a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5c30d2e5_aa682008",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 25
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-02-01T14:42:52Z",
+      "side": 1,
+      "message": "Depends if you care about exceptions:\n- deleteDataNode() throws DataNodeNotFound for non-existing xpath (can be datanode, list, list element)\n- deleteDataNodes() does not throw exception for non-existing\n- deleteListOrListElement() throws DataNodeNotFound if the list or list element doesn\u0027t exist - even if a non-list datanode with same xpath does exist\n\nUnless there\u0027s a need to specifically delete only list nodes, then yes we can redirect it.",
+      "parentUuid": "5e60fe32_fa635279",
+      "range": {
+        "startLine": 289,
+        "startChar": 0,
+        "endLine": 291,
+        "endChar": 106
+      },
+      "revId": "230b1119dec71e301ba462246c3fc53d0fc0281a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
