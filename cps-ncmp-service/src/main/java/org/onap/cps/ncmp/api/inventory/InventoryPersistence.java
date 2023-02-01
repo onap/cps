@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -152,4 +152,11 @@ public interface InventoryPersistence {
      * @param dataNodeXpath data node xpath
      */
     void deleteDataNode(String dataNodeXpath);
+
+    /**
+     * Deletes multiple data nodes for given anchor and dataspace.
+     *
+     * @param dataNodeXpaths data node xpaths
+     */
+    void deleteDataNodes(Collection<String> dataNodeXpaths);
 }

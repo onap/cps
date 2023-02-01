@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 highstreet technologies GmbH
- *  Modifications Copyright (C) 2021-2022 Nordix Foundation
+ *  Modifications Copyright (C) 2021-2023 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada
  *  ================================================================================
@@ -27,6 +27,7 @@ import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NFP_OPER
 import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum;
 import static org.onap.cps.ncmp.api.impl.utils.RestQueryParametersValidator.validateCmHandleQueryParameters;
 
+import com.google.common.collect.Lists;
 import com.hazelcast.map.IMap;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
@@ -330,25 +331,36 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                         .collect(Collectors.toList());
         updateCmHandleStateBatch(yangModelCmHandles, CmHandleState.DELETING);
 
-        for (final String cmHandleId : tobeRemovedCmHandles) {
+        for (final List<String> tobeRemovedCmHandleBatch : Lists.partition(tobeRemovedCmHandles, 100)) {
             try {
-                deleteCmHandleFromDbAndModuleSyncMap(cmHandleId);
-                cmHandleRegistrationResponses.add(CmHandleRegistrationResponse.createSuccessResponse(cmHandleId));
-            } catch (final DataNodeNotFoundException dataNodeNotFoundException) {
-                log.error("Unable to find dataNode for cmHandleId : {} , caused by : {}",
-                        cmHandleId, dataNodeNotFoundException.getMessage());
-                cmHandleRegistrationResponses.add(CmHandleRegistrationResponse
-                        .createFailureResponse(cmHandleId, RegistrationError.CM_HANDLE_DOES_NOT_EXIST));
-            } catch (final DataValidationException dataValidationException) {
-                log.error("Unable to de-register cm-handle id: {}, caused by: {}",
-                        cmHandleId, dataValidationException.getMessage());
-                cmHandleRegistrationResponses.add(CmHandleRegistrationResponse
-                        .createFailureResponse(cmHandleId, RegistrationError.CM_HANDLE_INVALID_ID));
-            } catch (final Exception exception) {
-                log.error("Unable to de-register cm-handle id : {} , caused by : {}",
-                        cmHandleId, exception.getMessage());
-                cmHandleRegistrationResponses.add(
-                        CmHandleRegistrationResponse.createFailureResponse(cmHandleId, exception));
+                deleteCmHandleFromDbAndModuleSyncMapBatch(tobeRemovedCmHandleBatch);
+                tobeRemovedCmHandleBatch.forEach(cmHandleId ->
+                    cmHandleRegistrationResponses.add(CmHandleRegistrationResponse.createSuccessResponse(cmHandleId)));
+
+            } catch (final Exception batchException) {
+                log.error("Unable to de-register cm-handle batch, retrying on each cm handle");
+                for (final String cmHandleId : tobeRemovedCmHandleBatch) {
+                    try {
+                        deleteCmHandleFromDbAndModuleSyncMap(cmHandleId);
+                        cmHandleRegistrationResponses.add(
+                            CmHandleRegistrationResponse.createSuccessResponse(cmHandleId));
+                    } catch (final DataNodeNotFoundException dataNodeNotFoundException) {
+                        log.error("Unable to find dataNode for cmHandleId : {} , caused by : {}",
+                                cmHandleId, dataNodeNotFoundException.getMessage());
+                        cmHandleRegistrationResponses.add(CmHandleRegistrationResponse
+                                .createFailureResponse(cmHandleId, RegistrationError.CM_HANDLE_DOES_NOT_EXIST));
+                    } catch (final DataValidationException dataValidationException) {
+                        log.error("Unable to de-register cm-handle id: {}, caused by: {}",
+                                cmHandleId, dataValidationException.getMessage());
+                        cmHandleRegistrationResponses.add(CmHandleRegistrationResponse
+                                .createFailureResponse(cmHandleId, RegistrationError.CM_HANDLE_INVALID_ID));
+                    } catch (final Exception exception) {
+                        log.error("Unable to de-register cm-handle id : {} , caused by : {}",
+                                cmHandleId, exception.getMessage());
+                        cmHandleRegistrationResponses.add(
+                                CmHandleRegistrationResponse.createFailureResponse(cmHandleId, exception));
+                    }
+                }
             }
         }
 
@@ -366,8 +378,20 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     private void deleteCmHandleFromDbAndModuleSyncMap(final String cmHandleId) {
         inventoryPersistence.deleteSchemaSetWithCascade(cmHandleId);
-        inventoryPersistence.deleteListOrListElement("/dmi-registry/cm-handles[@id='" + cmHandleId + "']");
+        inventoryPersistence.deleteDataNode("/dmi-registry/cm-handles[@id='" + cmHandleId + "']");
         removeDeletedCmHandleFromModuleSyncMap(cmHandleId);
+    }
+
+    private void deleteCmHandleFromDbAndModuleSyncMapBatch(final Collection<String> tobeRemovedCmHandles) {
+        tobeRemovedCmHandles.forEach(inventoryPersistence::deleteSchemaSetWithCascade);
+        inventoryPersistence.deleteDataNodes(mapCmHandleIdsToXpaths(tobeRemovedCmHandles));
+        tobeRemovedCmHandles.forEach(this::removeDeletedCmHandleFromModuleSyncMap);
+    }
+
+    private Collection<String> mapCmHandleIdsToXpaths(final Collection<String> cmHandles) {
+        return cmHandles.stream()
+            .map(cmHandleId -> "/dmi-registry/cm-handles[@id='" + cmHandleId + "']")
+            .collect(Collectors.toSet());
     }
 
     // CPS-1239 Robustness cleaning of in progress cache
