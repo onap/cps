@@ -519,6 +519,30 @@
     },
     {
       "key": {
+        "uuid": "8df2f642_1a05d883",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentNativeRepositoryImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-02-01T11:17:36Z",
+      "side": 1,
+      "message": "Suppressing exception as discussed",
+      "parentUuid": "a51ee040_cf195df9",
+      "range": {
+        "startLine": 69,
+        "startChar": 47,
+        "endLine": 69,
+        "endChar": 76
+      },
+      "revId": "b30b9d832d408f2bfee1b8cfa13d6bc7e992a2c4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "603e88a2_03d15d49",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentNativeRepositoryImpl.java",
         "patchSetId": 7
@@ -586,6 +610,30 @@
       "revId": "b30b9d832d408f2bfee1b8cfa13d6bc7e992a2c4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6f9f357a_44fb43f3",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentNativeRepositoryImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-02-01T11:17:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0917fdfe_a93674e5",
+      "range": {
+        "startLine": 81,
+        "startChar": 11,
+        "endLine": 89,
+        "endChar": 65
+      },
+      "revId": "b30b9d832d408f2bfee1b8cfa13d6bc7e992a2c4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
