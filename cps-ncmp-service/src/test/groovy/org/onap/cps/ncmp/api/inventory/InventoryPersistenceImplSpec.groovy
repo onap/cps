@@ -270,4 +270,12 @@ class InventoryPersistenceImplSpec extends Specification {
                     'sample dataNode xpath', NO_TIMESTAMP);
     }
 
+    def 'Delete multiple data nodes via xPath'() {
+        when: 'Delete data nodes method is called with multiple xpaths as parameters'
+            objectUnderTest.deleteDataNodes(['xpath1', 'xpath2'])
+        then: 'the cps data service method to delete data node is invoked once with the same xPath'
+            1 * mockCpsDataService.deleteDataNodes('NCMP-Admin', 'ncmp-dmi-registry',
+                ['xpath1', 'xpath2'], NO_TIMESTAMP);
+    }
+
 }
