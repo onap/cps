@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Copyright (C) 2021-2023 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -256,7 +256,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
         and: 'method to delete relevant schema set is called once'
             1 * mockInventoryPersistence.deleteSchemaSetWithCascade(_)
         and: 'method to delete relevant list/list element is called once'
-            1 * mockInventoryPersistence.deleteListOrListElement(_)
+            1 * mockInventoryPersistence.deleteDataNodes(_)
         and: 'successful response is received'
             assert response.getRemovedCmHandles().size() == 1
             with(response.getRemovedCmHandles().get(0)) {
@@ -275,8 +275,10 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
         given: 'a registration with three cm-handles to be deleted'
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server',
                 removedCmHandles: ['cmhandle1', 'cmhandle2', 'cmhandle3'])
+        and: 'cm-handle deletion fails on batch'
+            mockInventoryPersistence.deleteDataNodes(_) >> { throw new RuntimeException("Failed") }
         and: 'cm-handle deletion is successful for 1st and 3rd; failed for 2nd'
-            mockInventoryPersistence.deleteListOrListElement(_) >> {} >> { throw new RuntimeException("Failed") } >> {}
+            mockInventoryPersistence.deleteDataNode(_) >> {} >> { throw new RuntimeException("Failed") } >> {}
         when: 'registration is updated to delete cmhandles'
             def response = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'a response is received for all cm-handles'
@@ -315,7 +317,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
         then: 'no exception is thrown'
             noExceptionThrown()
         and: 'cm-handle is not deleted'
-            0 * mockInventoryPersistence.deleteListOrListElement(_)
+            0 * mockInventoryPersistence.deleteDataNodes(_)
         and: 'the cmHandle state is not updated to "DELETED"'
             0 * mockLcmEventsCmHandleStateHandler.updateCmHandleState(_, CmHandleState.DELETED)
         and: 'a failure response is received'
@@ -333,7 +335,8 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server',
                 removedCmHandles: ['cmhandle'])
         and: 'cm-handle deletion throws exception'
-            mockInventoryPersistence.deleteListOrListElement(_) >> { throw deleteListElementException }
+            mockInventoryPersistence.deleteDataNodes(_) >> { throw deleteListElementException }
+            mockInventoryPersistence.deleteDataNode(_) >> { throw deleteListElementException }
         when: 'registration is updated to delete cmhandle'
             def response = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'a failure response is received'
