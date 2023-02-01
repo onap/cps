@@ -184,7 +184,11 @@ public class InventoryPersistenceImpl implements InventoryPersistence {
 
     @Override
     public void deleteDataNode(final String dataNodeXpath) {
-        cpsDataService.deleteDataNode(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, dataNodeXpath,
-                NO_TIMESTAMP);
+        cpsDataService.deleteDataNode(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, dataNodeXpath, NO_TIMESTAMP);
+    }
+
+    @Override
+    public void deleteDataNodes(final Collection<String> dataNodeXpaths) {
+        cpsDataService.deleteDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, dataNodeXpaths, NO_TIMESTAMP);
     }
 }
