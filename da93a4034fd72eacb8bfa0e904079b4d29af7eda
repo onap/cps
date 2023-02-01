@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "10aa7af7_3e2d9dde",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/performance/CpsDataPersistenceServiceDeletePerfTest.groovy",
+        "patchSetId": 21
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-02-01T12:02:10Z",
+      "side": 1,
+      "message": "This batch size and timing can be increased to get more meaningful result",
+      "revId": "da93a4034fd72eacb8bfa0e904079b4d29af7eda",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6cff8aba_8550ff68",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/performance/CpsDataPersistenceServiceDeletePerfTest.groovy",
+        "patchSetId": 21
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-02-01T12:02:10Z",
+      "side": 1,
+      "message": "This batch size and timing can be increased to get more meaningful result",
+      "revId": "da93a4034fd72eacb8bfa0e904079b4d29af7eda",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d11e8d98_f1148e2f",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/performance/CpsDataPersistenceServiceDeletePerfTest.groovy",
+        "patchSetId": 21
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-02-01T12:02:10Z",
+      "side": 1,
+      "message": "Should be called \u0027Batch delete one large node\u0027",
+      "range": {
+        "startLine": 209,
+        "startChar": 39,
+        "endLine": 209,
+        "endChar": 62
+      },
+      "revId": "da93a4034fd72eacb8bfa0e904079b4d29af7eda",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
