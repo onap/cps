@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "514c8b8b_19ab0415",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/performance/CpsDataPersistenceServiceDeletePerfTest.groovy",
+        "patchSetId": 25
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-01T14:31:07Z",
+      "side": 1,
+      "message": "I didn\u0027t know that worked :-)",
+      "range": {
+        "startLine": 44,
+        "startChar": 48,
+        "endLine": 44,
+        "endChar": 54
+      },
+      "revId": "230b1119dec71e301ba462246c3fc53d0fc0281a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f7cb509b_c7431287",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 25
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-01T14:31:07Z",
+      "side": 1,
+      "message": "NB: I think we can deprecate this method soon\n(maybe apply that in the next related commit)",
+      "range": {
+        "startLine": 238,
+        "startChar": 9,
+        "endLine": 238,
+        "endChar": 31
+      },
+      "revId": "230b1119dec71e301ba462246c3fc53d0fc0281a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e60fe32_fa635279",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 25
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-01T14:31:07Z",
+      "side": 1,
+      "message": "can/should this just redirect to deleteDataNode method now?!",
+      "range": {
+        "startLine": 289,
+        "startChar": 0,
+        "endLine": 291,
+        "endChar": 106
+      },
+      "revId": "230b1119dec71e301ba462246c3fc53d0fc0281a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
