@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "05e23d2e_9229ee7b",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-02-02T07:54:46Z",
+      "side": 1,
+      "message": "It returns multiple nodes, so kept it as nodes. Should I still change it?",
+      "parentUuid": "c4177b3a_6776d729",
+      "range": {
+        "startLine": 135,
+        "startChar": 39,
+        "endLine": 135,
+        "endChar": 44
+      },
+      "revId": "0c18fa01701e30ba745d3c6a5843e29e9df0ca85",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "410679b1_77c0dcce",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
         "patchSetId": 7
@@ -45,6 +69,30 @@
       "revId": "0c18fa01701e30ba745d3c6a5843e29e9df0ca85",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1454293c_5f5eb0c6",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-02-02T07:54:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "410679b1_77c0dcce",
+      "range": {
+        "startLine": 137,
+        "startChar": 47,
+        "endLine": 137,
+        "endChar": 63
+      },
+      "revId": "0c18fa01701e30ba745d3c6a5843e29e9df0ca85",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
