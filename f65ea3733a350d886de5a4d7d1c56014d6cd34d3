@@ -22,6 +22,30 @@
       "revId": "f65ea3733a350d886de5a4d7d1c56014d6cd34d3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a6a85380_3e05fcde",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-02-02T11:26:28Z",
+      "side": 1,
+      "message": "I don\u0027t follow. The responses are based on the exceptions thrown. Or you mean to rename the method to deleteCmHandle?",
+      "parentUuid": "1cdc0a81_83066846",
+      "range": {
+        "startLine": 344,
+        "startChar": 20,
+        "endLine": 344,
+        "endChar": 105
+      },
+      "revId": "f65ea3733a350d886de5a4d7d1c56014d6cd34d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
