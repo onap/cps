@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1f89dfc9_c30f8338",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBooleanOperatorsType.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-02-02T16:46:47Z",
+      "side": 1,
+      "message": "A get from string method can be useful here",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 1
+      },
+      "revId": "addc1cf8db7dee6d7c9585c125e749f2a6296911",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd73dde8_40964651",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-02-02T16:46:47Z",
+      "side": 1,
+      "message": "Would prefer if this is not a global variable,can exist just in exitBooleanOperators()",
+      "range": {
+        "startLine": 60,
+        "startChar": 4,
+        "endLine": 60,
+        "endChar": 60
+      },
+      "revId": "addc1cf8db7dee6d7c9585c125e749f2a6296911",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2973f60b_730a7320",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-02-02T16:46:47Z",
+      "side": 1,
+      "message": "Would prefer if this is not a global variable, can be returned by exitBooleanOperators()",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 67
+      },
+      "revId": "addc1cf8db7dee6d7c9585c125e749f2a6296911",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35738b2e_ffe1bfa5",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-02-02T16:46:47Z",
+      "side": 1,
+      "message": "Dont need two paths here\nLine 120 can be replaced by ... \u003d CpsPathBooleanOperatorsType.fromString(ctx.getText())\nThen lines 119,123-128 can be removed",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 5
+      },
+      "revId": "addc1cf8db7dee6d7c9585c125e749f2a6296911",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e17b0e6f_b9e782d8",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-02-02T16:46:47Z",
+      "side": 1,
+      "message": "This is the same as cpsPathQuery.getLeavesData(), does not need to be passed in",
+      "range": {
+        "startLine": 61,
+        "startChar": 71,
+        "endLine": 61,
+        "endChar": 81
+      },
+      "revId": "addc1cf8db7dee6d7c9585c125e749f2a6296911",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "19b37931_15bee4b0",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepositoryCpsPathQueryImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-02-02T16:46:47Z",
+      "side": 1,
+      "message": "Not sure if we need if else?",
+      "range": {
+        "startLine": 58,
+        "startChar": 10,
+        "endLine": 58,
+        "endChar": 15
+      },
+      "revId": "addc1cf8db7dee6d7c9585c125e749f2a6296911",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
