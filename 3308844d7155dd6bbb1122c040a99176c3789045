@@ -25,6 +25,23 @@
     },
     {
       "key": {
+        "uuid": "fc461bf6_a4ba1c16",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/YangDataConverter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-02-02T12:12:19Z",
+      "side": 1,
+      "message": "Through this we get three different types of CmHandles being converted, it could contribute to performance issues \nDatanode -\u003e NCMP Service CM Handle -\u003e Yang Model Cm Handle\nCould be possible to convert DataNode to Yang Model Cm Handle",
+      "revId": "3308844d7155dd6bbb1122c040a99176c3789045",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9e9257f7_39684f63",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/YangDataConverter.java",
         "patchSetId": 1
@@ -69,6 +86,52 @@
       "revId": "3308844d7155dd6bbb1122c040a99176c3789045",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a6f1a6fd_8a3669fe",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/YangDataConverter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-02-02T12:12:19Z",
+      "side": 1,
+      "message": "convertDataNodesToYangModelCmHandles\nRecognise its a plural of above method but not sure original method has great name either, that one could be convertDataNodeToYangModelCmHandle",
+      "range": {
+        "startLine": 98,
+        "startChar": 48,
+        "endLine": 98,
+        "endChar": 79
+      },
+      "revId": "3308844d7155dd6bbb1122c040a99176c3789045",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "358f498e_370560a5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-02-02T12:12:19Z",
+      "side": 1,
+      "message": "Does size need to be defined? if one of the cmhandle ids are invalid then there will be empty entries in the array",
+      "range": {
+        "startLine": 112,
+        "startChar": 68,
+        "endLine": 112,
+        "endChar": 86
+      },
+      "revId": "3308844d7155dd6bbb1122c040a99176c3789045",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     },
     {
       "key": {
