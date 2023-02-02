@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6d876e9e_a0cc3aca",
+        "filename": "csit/plans/cps/setup.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-02T12:06:34Z",
+      "side": 1,
+      "message": "I thought it would be(/we woudl need) the folder ABOVE root but I see it point to cps folder itself\nIF that works fine but I would call is CPS_HOME then :-)",
+      "range": {
+        "startLine": 61,
+        "startChar": 4,
+        "endLine": 61,
+        "endChar": 8
+      },
+      "revId": "a62c4599a0df72633687c3f79e8203201c129e98",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "81a44bd1_fe362e40",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-02T12:06:34Z",
+      "side": 1,
+      "message": "you don\u0027t need the other volume anymore now?",
+      "range": {
+        "startLine": 117,
+        "startChar": 4,
+        "endLine": 117,
+        "endChar": 12
+      },
+      "revId": "a62c4599a0df72633687c3f79e8203201c129e98",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
