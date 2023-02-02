@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2023 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -28,6 +28,7 @@ import org.onap.cps.api.CpsModuleService
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.spi.CascadeDeleteAllowed
 import org.onap.cps.spi.FetchDescendantsOption
+import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.ModuleDefinition
 import org.onap.cps.spi.model.ModuleReference
@@ -38,6 +39,7 @@ import spock.lang.Specification
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
+import java.util.stream.Collectors
 
 import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NO_TIMESTAMP
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
@@ -63,6 +65,9 @@ class InventoryPersistenceImplSpec extends Specification {
     def cmHandleId = 'some-cm-handle'
     def leaves = ["dmi-service-name":"common service name","dmi-data-service-name":"data service name","dmi-model-service-name":"model service name"]
     def xpath = "/dmi-registry/cm-handles[@id='some-cm-handle']"
+
+    def cmHandleId2 = 'another-cm-handle'
+    def xpath2 = "/dmi-registry/cm-handles[@id='another-cm-handle']"
 
     @Shared
     def childDataNodesForCmHandleWithAllProperties = [new DataNode(xpath: "/dmi-registry/cm-handles[@id='some cm handle']/additional-properties[@name='name1']", leaves: ["name":"name1", "value":"value1"]),
@@ -116,6 +121,26 @@ class InventoryPersistenceImplSpec extends Specification {
             result.dmiModelServiceName == null
         and: 'the CM Handle ID is validated'
             1 * mockCpsValidator.validateNameCharacters(cmHandleId)
+    }
+
+    def "Retrieve multiple YangModelCmHandles"() {
+        given: 'the cps data service returns 2 data nodes from the DMI registry'
+            def dataNodes = [new DataNode(xpath: xpath), new DataNode(xpath: xpath2)]
+            mockCpsDataService.getDataNodes('NCMP-Admin', 'ncmp-dmi-registry', [xpath, xpath2] , INCLUDE_ALL_DESCENDANTS) >> dataNodes
+        when: 'retrieving the yang modelled cm handle'
+            def results = objectUnderTest.getYangModelCmHandles([cmHandleId, cmHandleId2])
+        then: 'verify both have returned and cmhandleIds are correct'
+            assert results.size() == 2
+            assert results.id.containsAll([cmHandleId, cmHandleId2])
+    }
+
+    def "Handling name validation errors in getYangModelCmHandles."() {
+        given: 'the cps data service returns one of two data nodes from the DMI registry with empty leaf attributes'
+            mockCpsValidator.validateNameCharacters(_) >> {throw new DataValidationException('some message', 'some detail')}
+        when:
+            objectUnderTest.getYangModelCmHandles(_)
+        then: 'exception is thrown'
+            thrown(DataValidationException)
     }
 
     def 'Get a Cm Handle Composite State'() {
