@@ -46,6 +46,29 @@
       "revId": "f65ea3733a350d886de5a4d7d1c56014d6cd34d3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe6934bb_a8893f5b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-02-02T12:40:09Z",
+      "side": 1,
+      "message": "NB got confused would prefer if these were separated:\n\u0027cm-handle deletion fails on batch\u0027\nmockInventoryPersistence.deleteDataNodes(_) \u003e\u003e { throw new RuntimeException(\"Failed\") }\nand: \u0027cm-handle deletion is successful for 1st and 3rd; failed for 2nd\u0027\nmockInventoryPersistence.deleteDataNode(_) \u003e\u003e {} \u003e\u003e { throw new RuntimeException(\"Failed\") } \u003e\u003e {}",
+      "range": {
+        "startLine": 279,
+        "startChar": 0,
+        "endLine": 279,
+        "endChar": 99
+      },
+      "revId": "f65ea3733a350d886de5a4d7d1c56014d6cd34d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
