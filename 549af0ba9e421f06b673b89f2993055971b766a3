@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "c9efcda1_40682ed7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-02T10:25:30Z",
+      "side": 1,
+      "message": "NB: Extract constant DELETE_BATCH_SIZE",
+      "range": {
+        "startLine": 334,
+        "startChar": 97,
+        "endLine": 334,
+        "endChar": 100
+      },
+      "revId": "549af0ba9e421f06b673b89f2993055971b766a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f6b1223a_584cfb4d",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 2
@@ -13,6 +36,24 @@
       "writtenOn": "2023-02-02T10:11:33Z",
       "side": 1,
       "message": "I\u0027m concerned about this:\n- If this deletes some schema sets and then throws an exception, the next line (deleteDataNodes) will not execute.\n- When it falls back to individual delete, when it tries to deleteSchemaSetWithCascade on line 380, it would fail again with SchemaSetNotFoundException, because it was already deleted here.\n- This would result in schema set being deleted, but not data node.",
+      "revId": "549af0ba9e421f06b673b89f2993055971b766a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d9d0d98c_cfd8f493",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-02T10:25:30Z",
+      "side": 1,
+      "message": "we had a similar issue before with yang resources and resolved it use this method: org.onap.cps.spi.repository.YangResourceRepository#deleteOrphans\nYou could do something similar here and ensure that fragments.deletOrphans is call at the end in a finally block (in CPS-Core!)\nBut as agreed we can do this in a follow up commit/subtask  to adres \u0027robustness issues\u0027",
+      "parentUuid": "f6b1223a_584cfb4d",
       "revId": "549af0ba9e421f06b673b89f2993055971b766a3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
@@ -47,6 +88,47 @@
       "writtenOn": "2023-02-02T10:11:33Z",
       "side": 1,
       "message": "Does this need instrumentation metric? The underlying cpsDataService.deleteDataNodes is instrumented.",
+      "revId": "549af0ba9e421f06b673b89f2993055971b766a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "48c968ce_4aa251b5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-02T10:25:30Z",
+      "side": 1,
+      "message": "instrumentation on cps service method is probably good enough",
+      "parentUuid": "4dacccee_87472c2a",
+      "revId": "549af0ba9e421f06b673b89f2993055971b766a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f4fa570_4d2ef307",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-02T10:25:30Z",
+      "side": 1,
+      "message": "NB: I think you can also do it as an array\n\n\u003e\u003e [{}, {throw...}, {} ]\n\nNot 100% sure though and maybe you current format is more readable, whatever you prefer...",
+      "range": {
+        "startLine": 280,
+        "startChar": 55,
+        "endLine": 280,
+        "endChar": 110
+      },
       "revId": "549af0ba9e421f06b673b89f2993055971b766a3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
