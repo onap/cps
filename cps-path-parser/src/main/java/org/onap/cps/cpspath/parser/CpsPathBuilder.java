@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Modifications Copyright (C) 2023 Tech Mahindra
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -24,8 +25,10 @@ import static org.onap.cps.cpspath.parser.CpsPathPrefixType.DESCENDANT;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 import org.onap.cps.cpspath.parser.antlr4.CpsPathBaseListener;
 import org.onap.cps.cpspath.parser.antlr4.CpsPathParser;
 import org.onap.cps.cpspath.parser.antlr4.CpsPathParser.AncestorAxisContext;
@@ -53,6 +56,10 @@ public class CpsPathBuilder extends CpsPathBaseListener {
     boolean processingAncestorAxis = false;
 
     private List<String> containerNames = new ArrayList<>();
+
+    final List<String> booleanOperators = new ArrayList<>();
+
+    final Queue<String> queueBooleanOperators = new LinkedList<>();
 
     @Override
     public void exitInvalidPostFix(final CpsPathParser.InvalidPostFixContext ctx) {
@@ -90,10 +97,36 @@ public class CpsPathBuilder extends CpsPathBaseListener {
             throw new PathParsingException("Unsupported comparison value encountered in expression" + ctx.getText());
         }
         leavesData.put(ctx.leafName().getText(), comparisonValue);
-        appendCondition(normalizedXpathBuilder, ctx.leafName().getText(), comparisonValue);
+        final char lastCharacter = normalizedXpathBuilder.charAt(normalizedXpathBuilder.length() - 1);
+        normalizedXpathBuilder.append(lastCharacter == '[' ? "" : " " + queueBooleanOperators.poll() + " ");
+        normalizedXpathBuilder.append("@");
+        normalizedXpathBuilder.append(ctx.leafName().getText());
+        normalizedXpathBuilder.append("='");
+        normalizedXpathBuilder.append(comparisonValue);
+        normalizedXpathBuilder.append("'");
         if (processingAncestorAxis) {
-            appendCondition(normalizedAncestorPathBuilder, ctx.leafName().getText(), comparisonValue);
+            normalizedAncestorPathBuilder.append(lastCharacter == '[' ? "" : " and ");
+            normalizedAncestorPathBuilder.append("@");
+            normalizedAncestorPathBuilder.append(ctx.leafName().getText());
+            normalizedAncestorPathBuilder.append("='");
+            normalizedAncestorPathBuilder.append(comparisonValue);
+            normalizedAncestorPathBuilder.append("'");
         }
+    }
+
+    @Override
+    public void exitBooleanOperators(final CpsPathParser.BooleanOperatorsContext ctx) {
+        if (ctx.getText().equals("or")) {
+            final CpsPathBooleanOperatorsType booleanOperatorsTypes = CpsPathBooleanOperatorsType.OR;
+            booleanOperators.add(booleanOperatorsTypes.getValues());
+            queueBooleanOperators.add(booleanOperatorsTypes.getValues());
+        }
+        if (ctx.getText().equals("and")) {
+            final CpsPathBooleanOperatorsType booleanOperatorsTypes = CpsPathBooleanOperatorsType.AND;
+            booleanOperators.add(booleanOperatorsTypes.getValues());
+            queueBooleanOperators.add(booleanOperatorsTypes.getValues());
+        }
+        cpsPathQuery.setBooleanOperatorsTypes(booleanOperators);
     }
 
     @Override
@@ -167,16 +200,5 @@ public class CpsPathBuilder extends CpsPathBaseListener {
         if (processingAncestorAxis) {
             normalizedAncestorPathBuilder.append("/").append(containerName);
         }
-    }
-
-    private void appendCondition(final StringBuilder currentNormalizedPathBuilder, final String name,
-                                final Object value) {
-        final char lastCharacter = currentNormalizedPathBuilder.charAt(currentNormalizedPathBuilder.length() - 1);
-        currentNormalizedPathBuilder.append(lastCharacter == '[' ? "" : " and ")
-                .append("@")
-                .append(name)
-                .append("='")
-                .append(value)
-                .append("'");
     }
 }
