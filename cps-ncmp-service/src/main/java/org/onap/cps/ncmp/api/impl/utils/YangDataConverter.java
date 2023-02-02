@@ -20,11 +20,16 @@
 
 package org.onap.cps.ncmp.api.impl.utils;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.inventory.CompositeState;
 import org.onap.cps.ncmp.api.inventory.CompositeStateBuilder;
@@ -32,7 +37,10 @@ import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.spi.model.DataNode;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
+@Slf4j
 public class YangDataConverter {
+
+    private static final Pattern cmHandleIdInXpathPattern = Pattern.compile("\\[@id='(.*?)']");
 
     /**
      * This method convert yang model cm handle to ncmp service cm handle.
@@ -78,9 +86,37 @@ public class YangDataConverter {
                 (String) cmHandleDataNode.getLeaves().get("dmi-service-name"),
                 (String) cmHandleDataNode.getLeaves().get("dmi-data-service-name"),
                 (String) cmHandleDataNode.getLeaves().get("dmi-model-service-name"),
-            ncmpServiceCmHandle
+                ncmpServiceCmHandle
         );
     }
+
+    /**
+     * This method convert cm handle data nodes to yang model cm handles.
+     * @param cmHandleDataNodes the datanode of the cm handle
+     * @return yang model cm handles
+     */
+    public static Collection<YangModelCmHandle> convertAllCmHandlesToYangModels(
+            final Collection<DataNode> cmHandleDataNodes) {
+        final Collection<YangModelCmHandle> yangModelCmHandles = new ArrayList<>(cmHandleDataNodes.size());
+        cmHandleDataNodes.forEach(dataNode -> {
+            final String cmHandleId = extractCmHandleIdFromXpath(dataNode.getXpath());
+            if (cmHandleId != null) {
+                yangModelCmHandles.add(convertCmHandleToYangModel(dataNode, cmHandleId));
+            }
+        });
+        return yangModelCmHandles;
+    }
+
+    private static String extractCmHandleIdFromXpath(final String xpath) {
+        final Matcher matcher = cmHandleIdInXpathPattern.matcher(xpath);
+        if (matcher.find()) {
+            return matcher.group(1);
+        } else {
+            log.error("Unexpected xpath {}", xpath);
+        }
+        return null;
+    }
+
 
     private static void populateCmHandleDetails(final DataNode cmHandleDataNode,
                                                 final NcmpServiceCmHandle ncmpServiceCmHandle) {
@@ -108,14 +144,14 @@ public class YangDataConverter {
     }
 
     private static void setDmiProperties(final List<YangModelCmHandle.Property> dmiProperties,
-                                  final NcmpServiceCmHandle ncmpServiceCmHandle) {
+                                         final NcmpServiceCmHandle ncmpServiceCmHandle) {
         final Map<String, String> dmiPropertiesMap = new LinkedHashMap<>(dmiProperties.size());
         asPropertiesMap(dmiProperties, dmiPropertiesMap);
         ncmpServiceCmHandle.setDmiProperties(dmiPropertiesMap);
     }
 
     private static void setPublicProperties(final List<YangModelCmHandle.Property> publicProperties,
-                                     final NcmpServiceCmHandle ncmpServiceCmHandle) {
+                                            final NcmpServiceCmHandle ncmpServiceCmHandle) {
         final Map<String, String> publicPropertiesMap = new LinkedHashMap<>();
         asPropertiesMap(publicProperties, publicPropertiesMap);
         ncmpServiceCmHandle.setPublicProperties(publicPropertiesMap);

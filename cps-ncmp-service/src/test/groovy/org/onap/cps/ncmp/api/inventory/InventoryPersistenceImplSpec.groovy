@@ -28,6 +28,7 @@ import org.onap.cps.api.CpsModuleService
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.spi.CascadeDeleteAllowed
 import org.onap.cps.spi.FetchDescendantsOption
+import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.ModuleDefinition
 import org.onap.cps.spi.model.ModuleReference
@@ -63,6 +64,9 @@ class InventoryPersistenceImplSpec extends Specification {
     def cmHandleId = 'some-cm-handle'
     def leaves = ["dmi-service-name":"common service name","dmi-data-service-name":"data service name","dmi-model-service-name":"model service name"]
     def xpath = "/dmi-registry/cm-handles[@id='some-cm-handle']"
+
+    def cmHandleId2 = 'another-cm-handle'
+    def xpath2 = "/dmi-registry/cm-handles[@id='another-cm-handle']"
 
     @Shared
     def childDataNodesForCmHandleWithAllProperties = [new DataNode(xpath: "/dmi-registry/cm-handles[@id='some cm handle']/additional-properties[@name='name1']", leaves: ["name":"name1", "value":"value1"]),
@@ -116,6 +120,30 @@ class InventoryPersistenceImplSpec extends Specification {
             result.dmiModelServiceName == null
         and: 'the CM Handle ID is validated'
             1 * mockCpsValidator.validateNameCharacters(cmHandleId)
+    }
+
+    def "Retrieve multiple YangModelCmHandles"() {
+        given: 'two data nodes are created'
+            def dataNode1 = new DataNode(xpath: xpath)
+            def dataNode2 = new DataNode(xpath: xpath2)
+            def dataNodes = [dataNode1, dataNode2]
+        and: 'the cps data service returns 2 data nodes from the DMI registry'
+            mockCpsDataService.getDataNodes('NCMP-Admin', 'ncmp-dmi-registry', [xpath, xpath2] , INCLUDE_ALL_DESCENDANTS) >> dataNodes
+        when: 'retrieving the yang modelled cm handle'
+            def result = objectUnderTest.getYangModelCmHandles([cmHandleId, cmHandleId2])
+        then: 'verify both returned cmhandleIds are correct'
+            assert result[0].id == cmHandleId
+            assert result[1].id == cmHandleId2
+    }
+
+    def "Handling name validation errors in getYangModelCmHandles."() {
+        given: 'the cps data service returns one of two data nodes from the DMI registry with empty leaf attributes'
+            mockCpsValidator.validateNameCharacters(_) >> {throw new DataValidationException("Name or ID Validation Error.", "some cm handle invalid token encountered at position 5")}
+        when:
+            objectUnderTest.getYangModelCmHandles(_)
+        then: 'exception is thrown'
+            thrown(DataValidationException)
+
     }
 
     def 'Get a Cm Handle Composite State'() {

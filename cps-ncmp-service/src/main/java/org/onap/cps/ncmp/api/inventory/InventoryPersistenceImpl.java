@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2023 Nordix Foundation
+ *  Copyright (C) 2022 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,13 +26,13 @@ import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NO_TIMES
 import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED;
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
 
-import io.micrometer.core.annotation.Timed;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsAdminService;
@@ -41,6 +41,7 @@ import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.spi.FetchDescendantsOption;
+import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.spi.exceptions.SchemaSetNotFoundException;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.ModuleDefinition;
@@ -75,8 +76,8 @@ public class InventoryPersistenceImpl implements InventoryPersistence {
     @Override
     public CompositeState getCmHandleState(final String cmHandleId) {
         final DataNode stateAsDataNode = cpsDataService.getDataNode(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-            String.format(CM_HANDLE_XPATH_TEMPLATE, cmHandleId) + "/state",
-            FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
+                String.format(CM_HANDLE_XPATH_TEMPLATE, cmHandleId) + "/state",
+                FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
         cpsValidator.validateNameCharacters(cmHandleId);
         return new CompositeStateBuilder().fromDataNode(stateAsDataNode).build();
     }
@@ -104,6 +105,20 @@ public class InventoryPersistenceImpl implements InventoryPersistence {
     public YangModelCmHandle getYangModelCmHandle(final String cmHandleId) {
         cpsValidator.validateNameCharacters(cmHandleId);
         return YangDataConverter.convertCmHandleToYangModel(getCmHandleDataNode(cmHandleId), cmHandleId);
+    }
+
+    @Override
+    public Collection<YangModelCmHandle> getYangModelCmHandles(final Collection<String> cmHandleIds) {
+        final Collection<String> validCmHandleIds = new ArrayList<>(cmHandleIds.size());
+        cmHandleIds.forEach(cmHandleId -> {
+            try {
+                cpsValidator.validateNameCharacters(cmHandleId);
+                validCmHandleIds.add(cmHandleId);
+            } catch (final DataValidationException dataValidationException) {
+                log.error("DataValidationException {}", dataValidationException.getMessage());
+            }
+        });
+        return YangDataConverter.convertAllCmHandlesToYangModels(getCmHandleDataNodes(validCmHandleIds));
     }
 
     @Override
@@ -141,8 +156,6 @@ public class InventoryPersistenceImpl implements InventoryPersistence {
     }
 
     @Override
-    @Timed(value = "cps.ncmp.inventory.persistence.schemaset.delete",
-        description = "Time taken to delete a schemaset")
     public void deleteSchemaSetWithCascade(final String schemaSetName) {
         try {
             cpsValidator.validateNameCharacters(schemaSetName);
@@ -159,16 +172,34 @@ public class InventoryPersistenceImpl implements InventoryPersistence {
     }
 
     @Override
-    @Timed(value = "cps.ncmp.inventory.persistence.datanode.get",
-        description = "Time taken to get a data node (from ncmp dmi registry)")
     public DataNode getDataNode(final String xpath, final FetchDescendantsOption fetchDescendantsOption) {
         return cpsDataService.getDataNode(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
                 xpath, fetchDescendantsOption);
     }
 
     @Override
+    public Collection<DataNode> getDataNodes(final Collection<String> xpaths) {
+        return getDataNodes(xpaths, INCLUDE_ALL_DESCENDANTS);
+    }
+
+    @Override
+    public Collection<DataNode> getDataNodes(final Collection<String> xpaths,
+                                             final FetchDescendantsOption fetchDescendantsOption) {
+        return cpsDataService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
+                xpaths, fetchDescendantsOption);
+    }
+
+    @Override
     public DataNode getCmHandleDataNode(final String cmHandleId) {
         return this.getDataNode(String.format(CM_HANDLE_XPATH_TEMPLATE, cmHandleId));
+    }
+
+    @Override
+    public Collection<DataNode> getCmHandleDataNodes(final Collection<String> cmHandleIds) {
+        final Collection<String> xpaths = cmHandleIds.stream().map(cmHandleId ->
+                        String.format(CM_HANDLE_XPATH_TEMPLATE, cmHandleId))
+                .collect(Collectors.toList());
+        return this.getDataNodes(xpaths);
     }
 
     @Override
