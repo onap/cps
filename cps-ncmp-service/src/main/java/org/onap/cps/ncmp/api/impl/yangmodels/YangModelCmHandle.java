@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Copyright (C) 2021-2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -114,6 +114,38 @@ public class YangModelCmHandle {
         yangModelCmHandle.setCompositeState(ncmpServiceCmHandle.getCompositeState());
         return yangModelCmHandle;
     }
+
+
+    /**
+     * Create a yangModelCmHandle without the use of NcmpServiceHandle.
+     *
+     * @param dmiServiceName      dmi service name
+     * @param dmiDataServiceName  dmi data service name
+     * @param dmiModelServiceName dmi model service name
+     * @param cmHandleId          the cm handle id
+     * @param dmiProperties       dmiProperties
+     * @param publicProperties    publicProperties
+     * @param compositeState      compositeState
+     * @return instance of yangModelCmHandle
+     */
+    public static YangModelCmHandle toYangModelCmHandleWithoutNcmpServiceHandle(final String dmiServiceName,
+                                                        final String dmiDataServiceName,
+                                                        final String dmiModelServiceName,
+                                                        final String cmHandleId,
+                                                        final Map<String, String> dmiProperties,
+                                                        final Map<String, String> publicProperties,
+                                                        final CompositeState compositeState) {
+        final YangModelCmHandle yangModelCmHandle = new YangModelCmHandle();
+        yangModelCmHandle.setId(cmHandleId);
+        yangModelCmHandle.setDmiServiceName(dmiServiceName);
+        yangModelCmHandle.setDmiDataServiceName(dmiDataServiceName);
+        yangModelCmHandle.setDmiModelServiceName(dmiModelServiceName);
+        yangModelCmHandle.setDmiProperties(asYangModelCmHandleProperties(dmiProperties));
+        yangModelCmHandle.setPublicProperties(asYangModelCmHandleProperties(publicProperties));
+        yangModelCmHandle.setCompositeState(compositeState);
+        return yangModelCmHandle;
+    }
+
 
     /**
      * Resolve a dmi service name.
