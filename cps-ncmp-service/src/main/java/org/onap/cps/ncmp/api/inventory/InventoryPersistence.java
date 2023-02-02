@@ -62,6 +62,14 @@ public interface InventoryPersistence {
     YangModelCmHandle getYangModelCmHandle(String cmHandleId);
 
     /**
+     * This method retrieves DMI service name, DMI properties and the state for a given cm handle.
+     *
+     * @param cmHandleIds a list of the ids of the cm handles
+     * @return collection of yang model cm handles
+     */
+    Collection<YangModelCmHandle> getYangModelCmHandles(Collection<String> cmHandleIds);
+
+    /**
      * Method to return module definitions by cmHandleId.
      *
      * @param cmHandleId cm handle ID
@@ -123,12 +131,37 @@ public interface InventoryPersistence {
     DataNode getDataNode(String xpath, FetchDescendantsOption fetchDescendantsOption);
 
     /**
+     * Get collection of data nodes via xpaths.
+     *
+     * @param xpaths collection of xpaths
+     * @return collection of data nodes
+     */
+    Collection<DataNode> getDataNodes(Collection<String> xpaths);
+
+    /**
+     * Get collection of data nodes via xpaths.
+     *
+     * @param xpaths collection of xpaths
+     * @param fetchDescendantsOption fetch descendants option
+     * @return collection of data nodes
+     */
+    Collection<DataNode> getDataNodes(Collection<String> xpaths, FetchDescendantsOption fetchDescendantsOption);
+
+    /**
      * Get data node of given cm handle.
      *
      * @param cmHandleId cmHandle ID
      * @return data node
      */
     DataNode getCmHandleDataNode(String cmHandleId);
+
+    /**
+     * Get collection of data nodes of given cm handles.
+     *
+     * @param cmHandleIds collection of cmHandle IDs
+     * @return collection of data nodes
+     */
+    Collection<DataNode> getCmHandleDataNodes(Collection<String> cmHandleIds);
 
     /**
      * get CM handles that has given module names.
