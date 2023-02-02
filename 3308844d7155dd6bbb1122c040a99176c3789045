@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "3e173c44_a60ec58e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/YangDataConverter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2023-02-02T12:08:33Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9e9257f7_39684f63",
+      "range": {
+        "startLine": 98,
+        "startChar": 67,
+        "endLine": 98,
+        "endChar": 79
+      },
+      "revId": "3308844d7155dd6bbb1122c040a99176c3789045",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d5acda80_55f56be9",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistenceImpl.java",
         "patchSetId": 1
@@ -68,6 +92,30 @@
       "revId": "3308844d7155dd6bbb1122c040a99176c3789045",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e56893b8_d38c5e29",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2023-02-02T12:08:33Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d5acda80_55f56be9",
+      "range": {
+        "startLine": 118,
+        "startChar": 53,
+        "endLine": 118,
+        "endChar": 54
+      },
+      "revId": "3308844d7155dd6bbb1122c040a99176c3789045",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -94,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "2c2f9709_3371b8a5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2023-02-02T12:08:33Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0b99c7d7_44a99881",
+      "range": {
+        "startLine": 159,
+        "startChar": 5,
+        "endLine": 159,
+        "endChar": 70
+      },
+      "revId": "3308844d7155dd6bbb1122c040a99176c3789045",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b2a8e0f8_d81bb2ba",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistenceImpl.java",
         "patchSetId": 1
@@ -114,6 +186,30 @@
       "revId": "3308844d7155dd6bbb1122c040a99176c3789045",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c3a56984_8e81b2df",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2023-02-02T12:08:33Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b2a8e0f8_d81bb2ba",
+      "range": {
+        "startLine": 175,
+        "startChar": 20,
+        "endLine": 175,
+        "endChar": 30
+      },
+      "revId": "3308844d7155dd6bbb1122c040a99176c3789045",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -140,6 +236,30 @@
     },
     {
       "key": {
+        "uuid": "b5d5ee0d_42451991",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2023-02-02T12:08:33Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "30c15132_a38b0869",
+      "range": {
+        "startLine": 126,
+        "startChar": 31,
+        "endLine": 126,
+        "endChar": 42
+      },
+      "revId": "3308844d7155dd6bbb1122c040a99176c3789045",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ccdf5875_acdc666d",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/InventoryPersistenceImplSpec.groovy",
         "patchSetId": 1
@@ -160,6 +280,30 @@
       "revId": "3308844d7155dd6bbb1122c040a99176c3789045",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c7f6f195_63ca8a99",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2023-02-02T12:08:33Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ccdf5875_acdc666d",
+      "range": {
+        "startLine": 135,
+        "startChar": 19,
+        "endLine": 135,
+        "endChar": 30
+      },
+      "revId": "3308844d7155dd6bbb1122c040a99176c3789045",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -206,6 +350,30 @@
       "revId": "3308844d7155dd6bbb1122c040a99176c3789045",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5eb3ba05_b1240658",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2023-02-02T12:08:33Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6e4f4935_21694b40",
+      "range": {
+        "startLine": 141,
+        "startChar": 94,
+        "endLine": 141,
+        "endChar": 181
+      },
+      "revId": "3308844d7155dd6bbb1122c040a99176c3789045",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
