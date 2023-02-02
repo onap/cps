@@ -42,6 +42,24 @@
     },
     {
       "key": {
+        "uuid": "c7730bd0_272b044d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/YangDataConverter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-02T16:59:32Z",
+      "side": 1,
+      "message": "given teh pef issue observed by Daniel, definitely worth investigating....",
+      "parentUuid": "fc461bf6_a4ba1c16",
+      "revId": "3308844d7155dd6bbb1122c040a99176c3789045",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9e9257f7_39684f63",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/YangDataConverter.java",
         "patchSetId": 1
@@ -123,6 +141,30 @@
       "writtenOn": "2023-02-02T12:12:19Z",
       "side": 1,
       "message": "Does size need to be defined? if one of the cmhandle ids are invalid then there will be empty entries in the array",
+      "range": {
+        "startLine": 112,
+        "startChar": 68,
+        "endLine": 112,
+        "endChar": 86
+      },
+      "revId": "3308844d7155dd6bbb1122c040a99176c3789045",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "63397772_fba04471",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-02T16:59:32Z",
+      "side": 1,
+      "message": "This is just giving Java some ide how much memory to reserve. Its good practise even if the new collection wont be exactly teh same size",
+      "parentUuid": "358f498e_370560a5",
       "range": {
         "startLine": 112,
         "startChar": 68,

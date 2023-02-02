@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "20014b76_ccb11594",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/YangDataConverter.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-02T16:59:32Z",
+      "side": 1,
+      "message": "I suppose it has the name for now for tetsing purposes...",
+      "range": {
+        "startLine": 99,
+        "startChar": 62,
+        "endLine": 99,
+        "endChar": 87
+      },
+      "revId": "886a0b024efaa55b4a56a1a4a2a151ffd76636b4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "84ccf145_5351b54a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-02T16:59:32Z",
+      "side": 1,
+      "message": "does this work, taht \u0027s nice",
+      "range": {
+        "startLine": 134,
+        "startChar": 19,
+        "endLine": 134,
+        "endChar": 30
+      },
+      "revId": "886a0b024efaa55b4a56a1a4a2a151ffd76636b4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
