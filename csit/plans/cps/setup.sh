@@ -58,8 +58,7 @@ export $(cut -d= -f1 $WORKSPACE/plans/cps/test.properties)
 
 ###################### setup cps-ncmp ############################
 mkdir -p $WORKSPACE/archives/dc-cps
-cp $WORKSPACE/../docker-compose/*.yml $WORKSPACE/archives/dc-cps
-cd $WORKSPACE/archives/dc-cps
+cd $ROOT/cps/docker-compose
 
 curl -L https://github.com/docker/compose/releases/download/1.29.2/docker-compose-`uname -s`-`uname -m` > docker-compose
 chmod +x docker-compose
