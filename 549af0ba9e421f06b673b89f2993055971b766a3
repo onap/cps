@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ecd4a75b_4e2f18a8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-02T10:34:25Z",
+      "side": 1,
+      "message": "i was think about extracting part out already, looks Ike SOnar is forcing you now :-)",
+      "parentUuid": "39283731_1d96cb69",
+      "revId": "549af0ba9e421f06b673b89f2993055971b766a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c9efcda1_40682ed7",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 2
@@ -35,6 +53,29 @@
         "startChar": 97,
         "endLine": 334,
         "endChar": 100
+      },
+      "revId": "549af0ba9e421f06b673b89f2993055971b766a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "73faa40a_1c957451",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-02T10:34:25Z",
+      "side": 1,
+      "message": "I think if you extract this into a new method your complexity will be OK",
+      "range": {
+        "startLine": 343,
+        "startChar": 20,
+        "endLine": 362,
+        "endChar": 21
       },
       "revId": "549af0ba9e421f06b673b89f2993055971b766a3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
