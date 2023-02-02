@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f99b4689_f5bfa1b0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/YangDataConverter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-02T11:57:32Z",
+      "side": 1,
+      "message": "SQ might complain about this, let me know if it does and blocks you",
+      "range": {
+        "startLine": 43,
+        "startChar": 76,
+        "endLine": 43,
+        "endChar": 94
+      },
+      "revId": "3308844d7155dd6bbb1122c040a99176c3789045",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e9257f7_39684f63",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/YangDataConverter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-02T11:57:32Z",
+      "side": 1,
+      "message": "ToYangModelCmHandles",
+      "range": {
+        "startLine": 98,
+        "startChar": 67,
+        "endLine": 98,
+        "endChar": 79
+      },
+      "revId": "3308844d7155dd6bbb1122c040a99176c3789045",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d5acda80_55f56be9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-02T11:57:32Z",
+      "side": 1,
+      "message": "NB: add more info e.g.\n.. in CM Handle {} Will be ignored",
+      "range": {
+        "startLine": 118,
+        "startChar": 53,
+        "endLine": 118,
+        "endChar": 54
+      },
+      "revId": "3308844d7155dd6bbb1122c040a99176c3789045",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0b99c7d7_44a99881",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-02T11:57:32Z",
+      "side": 1,
+      "message": "why did you take out my instrumentation ?!",
+      "range": {
+        "startLine": 159,
+        "startChar": 5,
+        "endLine": 159,
+        "endChar": 70
+      },
+      "revId": "3308844d7155dd6bbb1122c040a99176c3789045",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2a8e0f8_d81bb2ba",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-02T11:57:32Z",
+      "side": 1,
+      "message": "please re-add instrumenation",
+      "range": {
+        "startLine": 175,
+        "startChar": 20,
+        "endLine": 175,
+        "endChar": 30
+      },
+      "revId": "3308844d7155dd6bbb1122c040a99176c3789045",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "30c15132_a38b0869",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-02T11:57:32Z",
+      "side": 1,
+      "message": "not really...(you\u0027re only mocking)\nI would combine the given and the first and in one block in this case as it is justa little mock setup, possibly compress it like so:\n\ngiven: \u0027the cps data service returns 2 data nodes from the DMI registry\n   def dataNodes \u003d [new DataNode(xpath: xpath), new DataNode(xpath: xpath2)]\n   mockCpsDataService.getDataNodes(\u0027NCMP-Admin\u0027, \u0027ncmp-dmi-registry\u0027, [xpath, xpath2] , INCLUDE_ALL_DESCENDANTS) \u003e\u003e dataNodes",
+      "range": {
+        "startLine": 126,
+        "startChar": 31,
+        "endLine": 126,
+        "endChar": 42
+      },
+      "revId": "3308844d7155dd6bbb1122c040a99176c3789045",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ccdf5875_acdc666d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-02T11:57:32Z",
+      "side": 1,
+      "message": "be careful! your tets is orde sensitive now!\nstream the iIDS to a new collection and check the size and contains all is a safer way",
+      "range": {
+        "startLine": 135,
+        "startChar": 19,
+        "endLine": 135,
+        "endChar": 30
+      },
+      "revId": "3308844d7155dd6bbb1122c040a99176c3789045",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e4f4935_21694b40",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-02T11:57:32Z",
+      "side": 1,
+      "message": "no need for tehs strings (your not asserting them either (which is OK)\n\u0027some message\u0027\u0027some details\u0027  will do\nBTW replace \" with \u0027 wehere possibel, all teh one you added anyway :-)",
+      "range": {
+        "startLine": 141,
+        "startChar": 94,
+        "endLine": 141,
+        "endChar": 181
+      },
+      "revId": "3308844d7155dd6bbb1122c040a99176c3789045",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
