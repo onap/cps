@@ -21,6 +21,7 @@
 # $1 test options (passed on to run-csit.sh as such)
 
 export TESTOPTIONS=${1}
+export ROOT=$(git rev-parse --show-toplevel)
 export WORKSPACE=$(git rev-parse --show-toplevel)/csit
 
 rm -rf ${WORKSPACE}/archives
