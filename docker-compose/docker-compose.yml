@@ -110,13 +110,12 @@ services:
     restart: unless-stopped
 
   init-db:
-    build: ../../../docker-compose/initfile
+    build: ${CPS_HOME:-.}/docker-compose/initfile
     environment:
       CPS_CORE_PORT: ${CPS_CORE_PORT:-8883}
       CPS_CORE_MANAGEMENT_PORT: ${CPS_CORE_MANAGEMENT_PORT:-8887}
     volumes:
-      - ./initfile:/initfile
-      - ../../../cps-ncmp-service/src/main/resources/model/:/model
+      - ${CPS_HOME:-.}/cps-ncmp-service/src/main/resources/model/:/model
     depends_on:
       cps-and-ncmp:
         condition: service_started
