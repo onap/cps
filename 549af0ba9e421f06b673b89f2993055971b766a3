@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f6b1223a_584cfb4d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-02-02T10:11:33Z",
+      "side": 1,
+      "message": "I\u0027m concerned about this:\n- If this deletes some schema sets and then throws an exception, the next line (deleteDataNodes) will not execute.\n- When it falls back to individual delete, when it tries to deleteSchemaSetWithCascade on line 380, it would fail again with SchemaSetNotFoundException, because it was already deleted here.\n- This would result in schema set being deleted, but not data node.",
+      "revId": "549af0ba9e421f06b673b89f2993055971b766a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fc2d33be_40b05f2a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-02-02T10:11:33Z",
+      "side": 1,
+      "message": "NB this does not throw DataNodeNotFound or DataValidationException as previous implementation did, so those errors will not be reported (they would be logged in deleteDataNodes)",
+      "revId": "549af0ba9e421f06b673b89f2993055971b766a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4dacccee_87472c2a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-02-02T10:11:33Z",
+      "side": 1,
+      "message": "Does this need instrumentation metric? The underlying cpsDataService.deleteDataNodes is instrumented.",
+      "revId": "549af0ba9e421f06b673b89f2993055971b766a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
