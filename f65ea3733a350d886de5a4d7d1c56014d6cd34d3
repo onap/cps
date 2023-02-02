@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "a5abcaba_f402a84c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-02T12:40:54Z",
+      "side": 1,
+      "message": "well the method does 2 things always a problem when naming method and should be reconsidered in the future...\n\nmayeb\n\ndeleteCmHandleAndGetCmHandleRegistrationResponse is a better suggestion\n(in general don\u0027t shorten classnames when used in method names or variables)",
+      "parentUuid": "a6a85380_3e05fcde",
+      "range": {
+        "startLine": 344,
+        "startChar": 20,
+        "endLine": 344,
+        "endChar": 105
+      },
+      "revId": "f65ea3733a350d886de5a4d7d1c56014d6cd34d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fe6934bb_a8893f5b",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
         "patchSetId": 5
