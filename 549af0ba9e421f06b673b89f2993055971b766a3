@@ -60,6 +60,24 @@
     },
     {
       "key": {
+        "uuid": "ed4ed623_92725ecd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-02-02T10:26:06Z",
+      "side": 1,
+      "message": "This is not an issue: inventoryPersistence.deleteSchemaSetWithCascade already swallows that SchemaSetNotFoundException\nThis scenario is covered in unit test \u0027Remove CmHandle: Partial Success\u0027",
+      "parentUuid": "f6b1223a_584cfb4d",
+      "revId": "549af0ba9e421f06b673b89f2993055971b766a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fc2d33be_40b05f2a",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 2
