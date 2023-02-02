@@ -38,4 +38,18 @@ class YangDataConverterSpec extends Specification{
             assert yangModelCmHandle.dmiProperties[0].name == 'dmiProp1'
             assert yangModelCmHandle.dmiProperties[0].value == 'dmiValue1'
     }
+
+    def 'Convert multiple cm handle data nodes'(){
+        given: 'two data nodes in a collection one with private properties'
+            def dataNodeAdditionalProperties = new DataNode(xpath:'/additional-properties[@name="dmiProp1"]',
+                    leaves: ['name': 'dmiProp1', 'value': 'dmiValue1'])
+            def dataNodes = [new DataNode(xpath:'/dmi-registry/cm-handles[@id=\'some-cm-handle\']'),
+                             new DataNode(xpath:'/dmi-registry/cm-handles[@id=\'another-cm-handle\']', childDataNodes:[dataNodeAdditionalProperties])]
+        when: 'the data nodes are converted'
+            def yangModelCmHandles = YangDataConverter.convertDataNodesToYangModelCmHandles(dataNodes)
+        then: 'verify both have returned and cmhandleIds are correct'
+            assert yangModelCmHandles.size() == 2
+            assert yangModelCmHandles.id.containsAll(['some-cm-handle', 'another-cm-handle'])
+    }
+
 }
