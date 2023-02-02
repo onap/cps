@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "527e73fe_26a8b38f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-02-02T11:08:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ecd4a75b_4e2f18a8",
+      "revId": "549af0ba9e421f06b673b89f2993055971b766a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c9efcda1_40682ed7",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 2
