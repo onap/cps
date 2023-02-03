@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9445e462_a769d5d8",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 470,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-02-03T06:00:45Z",
+      "side": 1,
+      "message": "just an extra check I might have added while working on it. Just tested without it and works fine",
+      "parentUuid": "f3d660b9_5dcfd85b",
+      "range": {
+        "startLine": 470,
+        "startChar": 0,
+        "endLine": 470,
+        "endChar": 42
+      },
+      "revId": "630481ed0eefa7a90a5fe954ca1e9013a4b1ba40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ca4cb465_a9fcc117",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
         "patchSetId": 9
@@ -45,6 +69,30 @@
       "revId": "630481ed0eefa7a90a5fe954ca1e9013a4b1ba40",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da8a44f3_a42a8f54",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-02-03T06:00:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ca4cb465_a9fcc117",
+      "range": {
+        "startLine": 355,
+        "startChar": 70,
+        "endLine": 355,
+        "endChar": 90
+      },
+      "revId": "630481ed0eefa7a90a5fe954ca1e9013a4b1ba40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -105,6 +153,30 @@
       "writtenOn": "2023-02-02T14:24:40Z",
       "side": 1,
       "message": "does this run 2 tests or 4 tests?",
+      "range": {
+        "startLine": 207,
+        "startChar": 0,
+        "endLine": 207,
+        "endChar": 127
+      },
+      "revId": "630481ed0eefa7a90a5fe954ca1e9013a4b1ba40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3f372151_48e7b32c",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-02-03T06:00:45Z",
+      "side": 1,
+      "message": "just checked. It runs 2 tests as follows: FetchDescendantsOption\u003dfalse with root node xpath and FetchDescendantsOption\u003d true for a valid xpath. Instead it should run 4 times. Will fix it in next patch",
+      "parentUuid": "575170a3_887e24a8",
       "range": {
         "startLine": 207,
         "startChar": 0,
