@@ -119,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "8d4c3b13_22786f04",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsPersistenceSpecBase.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-02-03T13:17:58Z",
+      "side": 1,
+      "message": "Discussed, final is non Groovy, ok to remove",
+      "parentUuid": "bc9e32a9_af6c8e1e",
+      "range": {
+        "startLine": 63,
+        "startChar": 4,
+        "endLine": 63,
+        "endChar": 11
+      },
+      "revId": "630481ed0eefa7a90a5fe954ca1e9013a4b1ba40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1de1ba23_172ac07b",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
         "patchSetId": 9
