@@ -19,7 +19,7 @@
 app:
     ncmp:
         avc:
-            subscription-topic: test-avc-subscription
+            subscription-topic: cm-avc-subscription
 
 ncmp:
     dmi:
