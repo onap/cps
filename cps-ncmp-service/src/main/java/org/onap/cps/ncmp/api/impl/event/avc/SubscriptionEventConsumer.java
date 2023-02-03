@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -37,10 +37,11 @@ public class SubscriptionEventConsumer {
      *
      * @param subscriptionEvent the event to be consumed
      */
-    @KafkaListener(topics = "${app.ncmp.avc.subscription-topic}")
+    @KafkaListener(topics = "${app.ncmp.avc.subscription-topic}",
+            properties = {"spring.json.value.default.type=org.onap.cps.ncmp.event.model.SubscriptionEvent"})
     public void consumeSubscriptionEvent(final SubscriptionEvent subscriptionEvent) {
         if ("CM".equals(subscriptionEvent.getEvent().getDataType().getDataCategory())) {
-            log.debug("Consuming event {} ...", subscriptionEvent.toString());
+            log.debug("Consuming event {} ...", subscriptionEvent);
             if ("CREATE".equals(subscriptionEvent.getEventType().value())) {
                 log.info("Subscription for ClientID {} with name{} ...",
                         subscriptionEvent.getEvent().getSubscription().getClientID(),
