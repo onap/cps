@@ -124,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "d7cd8b30_83316f67",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-02-03T15:46:14Z",
+      "side": 1,
+      "message": "If anything we probably just don\u0027t need to capture the exception",
+      "parentUuid": "21533311_e461f31b",
+      "revId": "d48c3058d1df7a30016da8c5a5f3a71c87276d19",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "eaa93f16_fa2a6839",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
         "patchSetId": 10
