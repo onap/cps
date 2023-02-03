@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "556ebdc9_509d8760",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-02-03T15:45:16Z",
+      "side": 1,
+      "message": "agreed, missed that",
+      "parentUuid": "bdd44811_dc487504",
+      "range": {
+        "startLine": 79,
+        "startChar": 15,
+        "endLine": 79,
+        "endChar": 50
+      },
+      "revId": "d48c3058d1df7a30016da8c5a5f3a71c87276d19",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "af30e702_d5dd8ce7",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
         "patchSetId": 10
@@ -76,6 +100,24 @@
       "writtenOn": "2023-02-03T15:03:18Z",
       "side": 1,
       "message": "CpsPathUtil.getNormalizedXpath(xpath) already throws PathParsingException. Maybe it should be this?\n            } catch (final PathParsingException e) {\n                throw new CpsPathException(e.getMessage());",
+      "revId": "d48c3058d1df7a30016da8c5a5f3a71c87276d19",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "21533311_e461f31b",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-02-03T15:45:16Z",
+      "side": 1,
+      "message": "Bit confusing but CpsPathException is for the query endpoints where \"CPS Path\" is used where as the intent for this is xpath, so we want the PathParsingException to be thrown here",
+      "parentUuid": "1c036f22_84a8d5b9",
       "revId": "d48c3058d1df7a30016da8c5a5f3a71c87276d19",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
