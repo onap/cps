@@ -327,9 +327,10 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             final List<String> tobeRemovedCmHandles) {
         final List<CmHandleRegistrationResponse> cmHandleRegistrationResponses =
                 new ArrayList<>(tobeRemovedCmHandles.size());
-        final List<YangModelCmHandle> yangModelCmHandles =
-                tobeRemovedCmHandles.stream().map(inventoryPersistence::getYangModelCmHandle)
-                        .collect(Collectors.toList());
+        final Map<String, YangModelCmHandle> cmHandleIdToYangModelCmHandleMap = tobeRemovedCmHandles.stream()
+            .collect(Collectors.toMap(cmHandleId -> cmHandleId, inventoryPersistence::getYangModelCmHandle));
+
+        final Collection<YangModelCmHandle> yangModelCmHandles = cmHandleIdToYangModelCmHandleMap.values();
         updateCmHandleStateBatch(yangModelCmHandles, CmHandleState.DELETING);
 
         for (final List<String> tobeRemovedCmHandleBatch : Lists.partition(tobeRemovedCmHandles, DELETE_BATCH_SIZE)) {
@@ -348,7 +349,15 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             }
         }
 
-        updateCmHandleStateBatch(yangModelCmHandles, CmHandleState.DELETED);
+        final Collection<YangModelCmHandle> deletedYangModelCmHandles =
+            cmHandleRegistrationResponses.stream()
+                .filter(cmHandleRegistrationResponse ->
+                    cmHandleRegistrationResponse.getStatus().equals(CmHandleRegistrationResponse.Status.SUCCESS))
+                .map(CmHandleRegistrationResponse::getCmHandle)
+                .map(cmHandleIdToYangModelCmHandleMap::get)
+                .collect(Collectors.toList());
+        updateCmHandleStateBatch(deletedYangModelCmHandles, CmHandleState.DELETED);
+
         return cmHandleRegistrationResponses;
     }
 
@@ -372,11 +381,10 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         }
     }
 
-    private void updateCmHandleStateBatch(final List<YangModelCmHandle> yangModelCmHandles,
+    private void updateCmHandleStateBatch(final Collection<YangModelCmHandle> yangModelCmHandles,
                                           final CmHandleState cmHandleState) {
         final Map<YangModelCmHandle, CmHandleState> cmHandleIdsToBeRemoved = new HashMap<>();
-        yangModelCmHandles.stream().forEach(yangModelCmHandle ->
-                cmHandleIdsToBeRemoved.put(yangModelCmHandle, cmHandleState));
+        yangModelCmHandles.forEach(yangModelCmHandle -> cmHandleIdsToBeRemoved.put(yangModelCmHandle, cmHandleState));
         lcmEventsCmHandleStateHandler.updateCmHandleStateBatch(cmHandleIdsToBeRemoved);
     }
 
