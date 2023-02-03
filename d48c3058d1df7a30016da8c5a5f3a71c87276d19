@@ -22,6 +22,80 @@
       "revId": "d48c3058d1df7a30016da8c5a5f3a71c87276d19",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bdd44811_dc487504",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-02-03T15:03:18Z",
+      "side": 1,
+      "message": "Same query is executed twice. The result from line 76 could be reused here.",
+      "range": {
+        "startLine": 79,
+        "startChar": 15,
+        "endLine": 79,
+        "endChar": 50
+      },
+      "revId": "d48c3058d1df7a30016da8c5a5f3a71c87276d19",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "af30e702_d5dd8ce7",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-02-03T15:03:18Z",
+      "side": 1,
+      "message": "Should this logic be moved to cps-ri/CpsDataPersistenceServiceImpl.java? It would be more consistent with other code. I mean something like this:\n    cpsValidator.validateNameCharacters(dataspaceName, anchorName);\n    return cpsDataPersistenceService.getDataNodesV2(dataspaceName, anchorName, xpaths, fetchDescendantsOption);\n\nAny other opinions?",
+      "revId": "d48c3058d1df7a30016da8c5a5f3a71c87276d19",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1c036f22_84a8d5b9",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-02-03T15:03:18Z",
+      "side": 1,
+      "message": "CpsPathUtil.getNormalizedXpath(xpath) already throws PathParsingException. Maybe it should be this?\n            } catch (final PathParsingException e) {\n                throw new CpsPathException(e.getMessage());",
+      "revId": "d48c3058d1df7a30016da8c5a5f3a71c87276d19",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eaa93f16_fa2a6839",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-02-03T15:03:18Z",
+      "side": 1,
+      "message": "General comment: I think we should look at making root xpaths consistent everywhere. For example, on lines 328 and 358 of this file, a root xpath is defined as \"/\":\n        if (ROOT_NODE_XPATH.equals(parentNodeXpath)) {\n\nBut here (and in other classes), it\u0027s defined as \"/\" or empty string.",
+      "revId": "d48c3058d1df7a30016da8c5a5f3a71c87276d19",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
