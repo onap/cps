@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "7001e87f_0bd2a8b3",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-02-06T10:00:16Z",
+      "side": 1,
+      "message": "Sure I will fix that but I was thinking that the request is not required anymore, because earlier it was being called when I was implementing V2 from scratch but with the changes of CPS-1422 I think this is no longer required. I can see it is no longer being used anywhere and was kept from the perspective of future use. So should it be kept or removed? need team input.",
+      "parentUuid": "556ebdc9_509d8760",
+      "range": {
+        "startLine": 79,
+        "startChar": 15,
+        "endLine": 79,
+        "endChar": 50
+      },
+      "revId": "d48c3058d1df7a30016da8c5a5f3a71c87276d19",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "af30e702_d5dd8ce7",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
         "patchSetId": 10
@@ -83,6 +107,24 @@
       "writtenOn": "2023-02-03T15:03:18Z",
       "side": 1,
       "message": "Should this logic be moved to cps-ri/CpsDataPersistenceServiceImpl.java? It would be more consistent with other code. I mean something like this:\n    cpsValidator.validateNameCharacters(dataspaceName, anchorName);\n    return cpsDataPersistenceService.getDataNodesV2(dataspaceName, anchorName, xpaths, fetchDescendantsOption);\n\nAny other opinions?",
+      "revId": "d48c3058d1df7a30016da8c5a5f3a71c87276d19",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e33439e_eff408de",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-02-06T10:00:16Z",
+      "side": 1,
+      "message": "The reason for this logic being in service layer is because the persistence layer already implements getDataNodes() which was originally supposed to implement this logic but due to the requirement of CPS-1422 check for Invalid xPath and non-existing xpath is not implemented there and was moved to the service layer. Once the checks are done it calls getDataNodes on line 174. This is for team reference and we can discuss where to exactly keep/move the code 😊",
+      "parentUuid": "af30e702_d5dd8ce7",
       "revId": "d48c3058d1df7a30016da8c5a5f3a71c87276d19",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
