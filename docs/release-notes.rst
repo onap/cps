@@ -38,7 +38,12 @@ Release Data
 
 Bug Fixes
 ---------
-    -None
+3.2.2
+   - `CPS-1173 <https://jira.onap.org/browse/CPS-1173>`_  Delete Performance Improvements.    
+
+Features
+--------
+   - None
 
 Version: 3.2.1
 ==============
