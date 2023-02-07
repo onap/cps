@@ -33,4 +33,5 @@ tmp/
 /docs/docs/
 /docs/.vscode/
 
+/docker-compose/grafana/
 /metrics-reports/

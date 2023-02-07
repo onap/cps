@@ -18,7 +18,8 @@
 
 services:
 
-  ### docker-compose up -d -> run ALL services ###
+  ### docker-compose --profile dmi-service up -d -> run CPS services incl. dmi-plugin ###
+  ### docker-compose --profile dmi-stub --profile monitoring up -d -> run CPS with stubbed dmi-plugin (for registration performance testing)
   ### to disable notifications make notification.enabled to false & comment out kafka/zookeeper services ###
 
   dbpostgresql:
@@ -83,7 +84,6 @@ services:
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,CONNECTIONS_FROM_HOST:PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
 
-  ### Comment out this section if dmi plugin is not required ###
   ncmp-dmi-plugin:
     container_name: ncmp-dmi-plugin
     image: ${DOCKER_REPO:-nexus3.onap.org:10003}/onap/ncmp-dmi-plugin:${DMI_VERSION:-1.3.0-SNAPSHOT-latest}
@@ -108,6 +108,20 @@ services:
       notification.data-updated.enabled: 'true'
       NOTIFICATION_DATASPACE_FILTER_PATTERNS: '.*'
     restart: unless-stopped
+    profiles:
+      - dmi-service
+
+  ncmp-dmi-plugin-stub:
+    container_name: ncmp-dmi-plugin-stub
+    image: wiremock/wiremock:2.33.2
+    ports:
+      - ${DMI_PORT:-8783}:8080
+    volumes:
+      - ../dmi-plugin-perf-stub/mappings:/home/wiremock/mappings
+      - ../dmi-plugin-perf-stub/files:/home/wiremock/__files
+    restart: unless-stopped
+    profiles:
+      - dmi-stub
 
   init-db:
     build: ${CPS_HOME:-.}/docker-compose/initfile
@@ -119,3 +133,31 @@ services:
     depends_on:
       cps-and-ncmp:
         condition: service_started
+
+  prometheus:
+    container_name: prometheus-container
+    image: prom/prometheus:latest
+    ports:
+      - 9090:9090
+    restart: always
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    profiles:
+      - monitoring
+
+  grafana:
+    image: grafana/grafana-oss:latest
+    user: ""
+    container_name: grafana-container
+    depends_on:
+      prometheus:
+        condition: service_started
+    ports:
+      - 3000:3000
+    volumes:
+      - ./grafana/:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_SERVER_DOMAIN:localhost
+    profiles:
+      - monitoring
