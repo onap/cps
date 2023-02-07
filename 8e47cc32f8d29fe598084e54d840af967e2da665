@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "744c3a58_5981a013",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-07T16:26:00Z",
+      "side": 1,
+      "message": "nice!",
+      "range": {
+        "startLine": 10,
+        "startChar": 2,
+        "endLine": 10,
+        "endChar": 83
+      },
+      "revId": "8e47cc32f8d29fe598084e54d840af967e2da665",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3da04bc6_3fa9ee27",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/notifications/avc/SubscriptionDataEventProducerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-07T16:26:00Z",
+      "side": 1,
+      "message": "NB: align spacing",
+      "range": {
+        "startLine": 2,
+        "startChar": 2,
+        "endLine": 4,
+        "endChar": 4
+      },
+      "revId": "8e47cc32f8d29fe598084e54d840af967e2da665",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e14c9c2c_4aa979ec",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/notifications/avc/SubscriptionDataEventProducerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-07T16:26:00Z",
+      "side": 1,
+      "message": "To suggestion on the naming:\n1) since it is not a \u0027Specification\u0027 for an existing class it should not end in \u0027Spec\u0027 isntead when can use teh word \u0027Setup\u0027 or \u0027Demo\u0027 (I think I like \u0027Demo\u0027) As a positive side-affect taht might mean it won\u0027tr un automatically and you might not need teh exclude stuff you did in the pom...\n\n2)I probably would just use the term \u0027create here\u0027 (everything is \u0027data\u0027 :-)\n\nsugegstion: SubscriptionCreateProducerDemo or  SubscriptionCreateDemoProducer",
+      "range": {
+        "startLine": 37,
+        "startChar": 18,
+        "endLine": 37,
+        "endChar": 22
+      },
+      "revId": "8e47cc32f8d29fe598084e54d840af967e2da665",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a625750_01134a40",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/notifications/avc/SubscriptionDataEventProducerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-07T16:26:00Z",
+      "side": 1,
+      "message": "you are not really assert anything, instead describe what you are doing e.g\n\nand: \u0027print json data to console\u0027",
+      "range": {
+        "startLine": 54,
+        "startChar": 14,
+        "endLine": 54,
+        "endChar": 78
+      },
+      "revId": "8e47cc32f8d29fe598084e54d840af967e2da665",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e70374eb_a98a0f6b",
+        "filename": "cps-ncmp-service/src/test/java/org/onap/cps/ncmp/utils/KafkaProducerConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-07T16:26:00Z",
+      "side": 1,
+      "message": "Suggestion: KafkaDemoProdcueConfig",
+      "range": {
+        "startLine": 36,
+        "startChar": 13,
+        "endLine": 36,
+        "endChar": 32
+      },
+      "revId": "8e47cc32f8d29fe598084e54d840af967e2da665",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
