@@ -112,10 +112,10 @@ paths:
           required: true
           schema:
             type: string
-            default: v2
             enum:
               - v1
               - v2
+            default: v2
         - name: dataspace-name
           in: query
           description: dataspace-name
@@ -259,10 +259,10 @@ paths:
           required: true
           schema:
             type: string
-            default: v2
             enum:
               - v1
               - v2
+            default: v2
       responses:
         "200":
           description: OK
@@ -326,10 +326,10 @@ paths:
           required: true
           schema:
             type: string
-            default: v2
             enum:
               - v1
               - v2
+            default: v2
         - name: dataspace-name
           in: path
           description: dataspace-name
@@ -568,10 +568,10 @@ paths:
           required: true
           schema:
             type: string
-            default: v2
             enum:
               - v1
               - v2
+            default: v2
         - name: dataspace-name
           in: path
           description: dataspace-name
@@ -642,10 +642,10 @@ paths:
           required: true
           schema:
             type: string
-            default: v2
             enum:
               - v1
               - v2
+            default: v2
         - name: dataspace-name
           in: path
           description: dataspace-name
@@ -720,10 +720,10 @@ paths:
           required: true
           schema:
             type: string
-            default: v2
             enum:
               - v1
               - v2
+            default: v2
         - name: dataspace-name
           in: path
           description: dataspace-name
@@ -964,10 +964,10 @@ paths:
           required: true
           schema:
             type: string
-            default: v2
             enum:
               - v1
               - v2
+            default: v2
         - name: dataspace-name
           in: path
           description: dataspace-name
@@ -1038,10 +1038,10 @@ paths:
           required: true
           schema:
             type: string
-            default: v2
             enum:
               - v1
               - v2
+            default: v2
         - name: dataspace-name
           in: path
           description: dataspace-name
@@ -1116,10 +1116,10 @@ paths:
           required: true
           schema:
             type: string
-            default: v2
             enum:
               - v1
               - v2
+            default: v2
         - name: dataspace-name
           in: path
           description: dataspace-name
@@ -1320,11 +1320,12 @@ paths:
               value: "/shops/bookstore/categories[@code=1]"
         - name: descendants
           in: query
-          description: "Number of descendants to query. Allowed values are 'none', 'all', -1 (for all), 0 (for none) and any positive number."
+          description: "Number of descendants to query. Allowed values are 'none', 'all',\
+          \ -1 (for all), 0 (for none) and any positive number."
           required: false
           schema:
             type: string
-            example: 3
+            example: "3"
             default: none
       responses:
         "200":
@@ -1392,10 +1393,10 @@ paths:
           required: true
           schema:
             type: string
-            default: v2
             enum:
               - v1
               - v2
+            default: v2
         - name: dataspace-name
           in: path
           description: dataspace-name
@@ -1501,10 +1502,10 @@ paths:
           required: true
           schema:
             type: string
-            default: v2
             enum:
               - v1
               - v2
+            default: v2
         - name: dataspace-name
           in: path
           description: dataspace-name
@@ -1634,10 +1635,10 @@ paths:
           required: true
           schema:
             type: string
-            default: v2
             enum:
               - v1
               - v2
+            default: v2
         - name: dataspace-name
           in: path
           description: dataspace-name
@@ -1729,10 +1730,10 @@ paths:
           required: true
           schema:
             type: string
-            default: v2
             enum:
               - v1
               - v2
+            default: v2
         - name: dataspace-name
           in: path
           description: dataspace-name
@@ -1924,10 +1925,10 @@ paths:
           required: true
           schema:
             type: string
-            default: v2
             enum:
               - v1
               - v2
+            default: v2
         - name: dataspace-name
           in: path
           description: dataspace-name
@@ -2032,10 +2033,10 @@ paths:
           required: true
           schema:
             type: string
-            default: v2
             enum:
               - v1
               - v2
+            default: v2
         - name: dataspace-name
           in: path
           description: dataspace-name
@@ -2255,8 +2256,8 @@ paths:
               value: "//categories[@code=1]"
         - name: descendants
           in: query
-          description: "descendents to query depth of children. allowed values are none,\
-          \ all, any number starting from -1"
+          description: "Number of descendants to query. Allowed values are 'none', 'all',\
+          \ -1 (for all), 0 (for none) and any positive number."
           required: false
           schema:
             type: string

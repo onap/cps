@@ -40,6 +40,11 @@ Bug Fixes
 ---------
     -None
 
+Features
+--------
+3.2.2
+   - `CPS-1464 <https://jira.onap.org/browse/CPS-1464>`_  Batch delete cm handles.
+
 Version: 3.2.1
 ==============
 
