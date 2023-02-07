@@ -1,0 +1,128 @@
+# ============LICENSE_START=======================================================
+# Copyright (c) 2023 Nordix Foundation.
+# ================================================================================
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#       http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+# ============LICENSE_END=========================================================
+
+services:
+
+  ### docker-compose up -d -> run ALL services ###
+  ### to disable notifications make notification.enabled to false & comment out kafka/zookeeper services ###
+
+  dbpostgresql:
+    container_name: dbpostgresql
+    image: postgres:14.1-alpine
+    ports:
+      - ${DB_PORT:-5432}:5432
+    environment:
+      POSTGRES_DB: cpsdb
+      POSTGRES_USER: ${DB_USERNAME:-cps}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-cps}
+    healthcheck:
+      test: ["CMD", "pg_isready"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+
+  cps-and-ncmp:
+    container_name: cps-and-ncmp
+    image: ${DOCKER_REPO:-nexus3.onap.org:10003}/onap/cps-and-ncmp:${CPS_VERSION:-latest}
+    ports:
+      - ${CPS_CORE_PORT:-8883}:8080
+      - ${CPS_CORE_MANAGEMENT_PORT:-8887}:8081
+    environment:
+      CPS_USERNAME: ${CPS_CORE_USERNAME:-cpsuser}
+      CPS_PASSWORD: ${CPS_CORE_PASSWORD:-cpsr0cks!}
+      DB_HOST: ${DB_HOST:-dbpostgresql}
+      DB_USERNAME: ${DB_USERNAME:-cps}
+      DB_PASSWORD: ${DB_PASSWORD:-cps}
+      DMI_USERNAME: ${DMI_USERNAME:-cpsuser}
+      DMI_PASSWORD: ${DMI_PASSWORD:-cpsr0cks!}
+      KAFKA_BOOTSTRAP_SERVER: kafka:9092
+      notification.enabled: 'true'
+      notification.async.executor.time-out-value-in-ms: 2000
+      NOTIFICATION_DATASPACE_FILTER_PATTERNS: '.*'
+      NCMP_TIMERS_ADVISED-MODULES-SYNC_SLEEP-TIME-MS: ${ADVISED_MODULES_SYNC_SLEEP_TIME_MS:-30000}
+      NCMP_TIMERS_CM-HANDLE-DATA-SYNC_SLEEP-TIME-MS: ${CMHANDLE_DATA_SYNC_SLEEP_TIME_MS:-30000}
+    restart: unless-stopped
+    depends_on:
+      - dbpostgresql
+
+  ### if kafka is not required comment out zookeeper and kafka ###
+  zookeeper:
+    image: confluentinc/cp-zookeeper:6.2.1
+    container_name: zookeeper
+    ports:
+      - '2181:2181'
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+
+  kafka:
+    image: confluentinc/cp-kafka:6.2.1
+    container_name: kafka
+    ports:
+      - "19092:19092"
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,CONNECTIONS_FROM_HOST://localhost:19092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,CONNECTIONS_FROM_HOST:PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+
+  ncmp-dmi-plugin-stub:
+    container_name: ncmp-dmi-plugin-stub
+    image: wiremock/wiremock:2.33.2
+    ports:
+      - ${DMI_PORT:-8783}:8080
+    volumes:
+      - ../dmi-plugin-perf-stub/mappings:/home/wiremock/mappings
+      - ../dmi-plugin-perf-stub/files:/home/wiremock/__files
+    restart: unless-stopped
+
+  init-db:
+    build: initfile
+    environment:
+      CPS_CORE_PORT: ${CPS_CORE_PORT:-8883}
+      CPS_CORE_MANAGEMENT_PORT: ${CPS_CORE_MANAGEMENT_PORT:-8887}
+    volumes:
+      - ./initfile:/initfile
+      - ../cps-ncmp-service/src/main/resources/model/:/model
+    depends_on:
+      cps-and-ncmp:
+        condition: service_started
+
+  prometheus:
+    container_name: prometheus-container
+    image: prom/prometheus:latest
+    ports:
+      - 9090:9090
+    restart: always
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+
+  grafana:
+    image: grafana/grafana-oss:latest
+    user: ""
+    container_name: grafana-container
+    depends_on:
+      prometheus:
+        condition: service_started
+    ports:
+      - 3000:3000
+    volumes:
+      - ./grafana/:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_SERVER_DOMAIN:localhost
