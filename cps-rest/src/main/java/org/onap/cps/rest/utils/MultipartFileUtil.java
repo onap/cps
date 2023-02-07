@@ -136,7 +136,7 @@ public class MultipartFileUtil {
             while ((numberOfBytesRead = zipInputStream.read(buffer, 0, READ_BUFFER_SIZE)) > 0) {
                 byteArrayOutputStream.write(buffer, 0, numberOfBytesRead);
                 totalSizeEntry += numberOfBytesRead;
-                zipFileSizeValidator.updateTotalSizeArchive(totalSizeEntry);
+                zipFileSizeValidator.updateTotalSizeArchive(numberOfBytesRead);
                 zipFileSizeValidator.validateCompresssionRatio(totalSizeEntry);
             }
             return byteArrayOutputStream.toString(StandardCharsets.UTF_8);
