@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "01323333_65606956",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBooleanOperatorsType.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-07T12:41:25Z",
+      "side": 1,
+      "message": "cpsPathBooleanOperatorsType \n(be consistent instance names and classnames, you inteliJ should suggest this name anyway!)",
+      "range": {
+        "startLine": 41,
+        "startChar": 47,
+        "endLine": 41,
+        "endChar": 64
+      },
+      "revId": "d1f7de71cdcfada3ebcaf9217dd00e2e35ec9b5f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0619d92e_80f59d74",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-07T12:41:25Z",
+      "side": 1,
+      "message": "why did you remove the extracted method?!",
+      "range": {
+        "startLine": 100,
+        "startChar": 0,
+        "endLine": 114,
+        "endChar": 9
+      },
+      "revId": "d1f7de71cdcfada3ebcaf9217dd00e2e35ec9b5f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "765856bf_0ae57874",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-07T12:41:25Z",
+      "side": 1,
+      "message": "cpsPathBooleanOperatorsType \n\nagain; be consistent in naming! especially making it plural is very misleading!",
+      "range": {
+        "startLine": 119,
+        "startChar": 42,
+        "endLine": 119,
+        "endChar": 64
+      },
+      "revId": "d1f7de71cdcfada3ebcaf9217dd00e2e35ec9b5f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "754abce7_e4ff236c",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-07T12:41:25Z",
+      "side": 1,
+      "message": "something really wrong here, you are adding all possible enum values?!",
+      "range": {
+        "startLine": 120,
+        "startChar": 50,
+        "endLine": 120,
+        "endChar": 62
+      },
+      "revId": "d1f7de71cdcfada3ebcaf9217dd00e2e35ec9b5f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d3351099_8e3ef2ec",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-07T12:41:25Z",
+      "side": 1,
+      "message": "booleanOperatorsTypes",
+      "range": {
+        "startLine": 69,
+        "startChar": 31,
+        "endLine": 69,
+        "endChar": 48
+      },
+      "revId": "d1f7de71cdcfada3ebcaf9217dd00e2e35ec9b5f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f91d30e2_eba9d4d4",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-07T12:41:25Z",
+      "side": 1,
+      "message": "Null check should not be needed!\nThe collection should be empty by default NOT null and only contain validated values",
+      "range": {
+        "startLine": 71,
+        "startChar": 16,
+        "endLine": 72,
+        "endChar": 89
+      },
+      "revId": "d1f7de71cdcfada3ebcaf9217dd00e2e35ec9b5f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "22ca0892_5b0fc841",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-07T12:41:25Z",
+      "side": 1,
+      "message": "I fail to see (adn actually don\u0027t know) how do you pass on the AND/OR operators to the jsonb functionality...\nI relazie now that the AND/OR are not part of the \u0027normal\u0027 SQL but I simply haven\u0027t investigated that either\n\nI suggets you tell.show Luek and Me using a simpel SQL client how that actually works before we try to apply i to this code and we can review it...",
+      "range": {
+        "startLine": 76,
+        "startChar": 61,
+        "endLine": 76,
+        "endChar": 88
+      },
+      "revId": "d1f7de71cdcfada3ebcaf9217dd00e2e35ec9b5f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
