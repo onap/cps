@@ -94,6 +94,30 @@
     },
     {
       "key": {
+        "uuid": "6aa5f06f_be7c1ca0",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/notifications/avc/SubscriptionDataEventProducerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-02-07T17:23:38Z",
+      "side": 1,
+      "message": "or check noExceptionThrown ???",
+      "parentUuid": "3a625750_01134a40",
+      "range": {
+        "startLine": 54,
+        "startChar": 14,
+        "endLine": 54,
+        "endChar": 78
+      },
+      "revId": "8e47cc32f8d29fe598084e54d840af967e2da665",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e70374eb_a98a0f6b",
         "filename": "cps-ncmp-service/src/test/java/org/onap/cps/ncmp/utils/KafkaProducerConfig.java",
         "patchSetId": 2
