@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "02da8ea6_f2fb4bf9",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-07T16:27:48Z",
+      "side": 1,
+      "message": "NB: YOur IDE should be able to clean this kind of trailing spaces but can ignore for now",
+      "range": {
+        "startLine": 381,
+        "startChar": 18,
+        "endLine": 381,
+        "endChar": 19
+      },
+      "revId": "95ccdb630575a34c0229c08b6fdabd3a2e57f5fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
