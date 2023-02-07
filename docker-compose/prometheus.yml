@@ -1,0 +1,10 @@
+global:
+  scrape_interval: 5s
+  evaluation_interval: 5s
+
+scrape_configs:
+  - job_name: 'cps-and-ncm'
+    metrics_path: '/manage/prometheus'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['cps-and-ncmp:8081']

@@ -63,8 +63,8 @@ curl -L https://github.com/docker/compose/releases/download/1.29.2/docker-compos
 chmod +x docker-compose
 docker-compose version
 
-# start CPS/NCMP, DMI, and PostgreSQL containers with docker compose
-docker-compose up -d
+# start CPS/NCMP, DMI Plugin, and PostgreSQL containers with docker compose
+docker-compose --profile dmi-service up -d
 
 ###################### setup sdnc #######################################
 source $WORKSPACE/plans/cps/sdnc/sdnc_setup.sh
