@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "813145f9_c18cefed",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/notifications/avc/SubscriptionDataEventProducerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-02-08T11:52:50Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "3da04bc6_3fa9ee27",
+      "range": {
+        "startLine": 2,
+        "startChar": 2,
+        "endLine": 4,
+        "endChar": 4
+      },
+      "revId": "8e47cc32f8d29fe598084e54d840af967e2da665",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e14c9c2c_4aa979ec",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/notifications/avc/SubscriptionDataEventProducerSpec.groovy",
         "patchSetId": 2
@@ -68,6 +92,30 @@
       "revId": "8e47cc32f8d29fe598084e54d840af967e2da665",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c6dfee97_b0761366",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/notifications/avc/SubscriptionDataEventProducerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-02-08T11:52:50Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e14c9c2c_4aa979ec",
+      "range": {
+        "startLine": 37,
+        "startChar": 18,
+        "endLine": 37,
+        "endChar": 22
+      },
+      "revId": "8e47cc32f8d29fe598084e54d840af967e2da665",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -118,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "336212e4_8c168d73",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/notifications/avc/SubscriptionDataEventProducerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-02-08T11:52:50Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6aa5f06f_be7c1ca0",
+      "range": {
+        "startLine": 54,
+        "startChar": 14,
+        "endLine": 54,
+        "endChar": 78
+      },
+      "revId": "8e47cc32f8d29fe598084e54d840af967e2da665",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e70374eb_a98a0f6b",
         "filename": "cps-ncmp-service/src/test/java/org/onap/cps/ncmp/utils/KafkaProducerConfig.java",
         "patchSetId": 2
@@ -138,6 +210,30 @@
       "revId": "8e47cc32f8d29fe598084e54d840af967e2da665",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "792f5345_d006990c",
+        "filename": "cps-ncmp-service/src/test/java/org/onap/cps/ncmp/utils/KafkaProducerConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-02-08T11:52:50Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e70374eb_a98a0f6b",
+      "range": {
+        "startLine": 36,
+        "startChar": 13,
+        "endLine": 36,
+        "endChar": 32
+      },
+      "revId": "8e47cc32f8d29fe598084e54d840af967e2da665",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
