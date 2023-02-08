@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e3614e34_316a05e0",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 470,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-02-08T10:06:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a861350_ac64aa14",
+      "range": {
+        "startLine": 470,
+        "startChar": 0,
+        "endLine": 470,
+        "endChar": 42
+      },
+      "revId": "d48c3058d1df7a30016da8c5a5f3a71c87276d19",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bdd44811_dc487504",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
         "patchSetId": 10
