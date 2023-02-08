@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "33f83f22_24430b0a",
+        "filename": "docker-compose/prometheus.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-08T11:20:14Z",
+      "side": 1,
+      "message": "this is my local ip address, need a way of scripting this (which works in windows AND unix) if possible",
+      "range": {
+        "startLine": 10,
+        "startChar": 19,
+        "endLine": 10,
+        "endChar": 30
+      },
+      "revId": "599d78607fad6105db50c0d32d5b4d00550f8b2b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5644a1fe_83a7d0a2",
+        "filename": "docker-compose/with-grafana.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-08T11:20:14Z",
+      "side": 1,
+      "message": "duplicated \u0027code\u0027 would like to have a single file and a simpel switch to enable grafana and another switch to use stubbed dmi-plugin see blow",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 47
+      },
+      "revId": "599d78607fad6105db50c0d32d5b4d00550f8b2b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
