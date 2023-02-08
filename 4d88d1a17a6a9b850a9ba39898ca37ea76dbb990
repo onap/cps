@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a22e70c0_582d1ed3",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-08T09:04:36Z",
+      "side": 1,
+      "message": "this is not really an externally exposed feature, its OK but once we have prope E2E features I woudln\u0027t add this\ninstead we god have add a reference to \u0027General Perfromance Improvements (I\u0027ll change it online)",
+      "range": {
+        "startLine": 46,
+        "startChar": 3,
+        "endLine": 46,
+        "endChar": 82
+      },
+      "revId": "4d88d1a17a6a9b850a9ba39898ca37ea76dbb990",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
