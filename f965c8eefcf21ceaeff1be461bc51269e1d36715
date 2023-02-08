@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "127d8e19_1b92aa5d",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-02-08T17:22:58Z",
+      "side": 0,
+      "message": "More detailed unit test case is needed.",
+      "range": {
+        "startLine": 129,
+        "startChar": 26,
+        "endLine": 129,
+        "endChar": 52
+      },
+      "revId": "f965c8eefcf21ceaeff1be461bc51269e1d36715",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
