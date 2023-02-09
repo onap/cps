@@ -28,6 +28,11 @@ module subscription {
             leaf isTagged {
                 type boolean;
             }
+
+            leaf-list dmi-service-names {
+                type string;
+            }
+
         }
     }
 }
