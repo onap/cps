@@ -327,36 +327,33 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             final List<String> tobeRemovedCmHandles) {
         final List<CmHandleRegistrationResponse> cmHandleRegistrationResponses =
                 new ArrayList<>(tobeRemovedCmHandles.size());
-        final Map<String, YangModelCmHandle> cmHandleIdToYangModelCmHandleMap = tobeRemovedCmHandles.stream()
-            .collect(Collectors.toMap(cmHandleId -> cmHandleId, inventoryPersistence::getYangModelCmHandle));
+        final Collection<YangModelCmHandle> yangModelCmHandles =
+            inventoryPersistence.getYangModelCmHandles(tobeRemovedCmHandles);
 
-        final Collection<YangModelCmHandle> yangModelCmHandles = cmHandleIdToYangModelCmHandleMap.values();
         updateCmHandleStateBatch(yangModelCmHandles, CmHandleState.DELETING);
 
+        final Set<String> notDeletedCmHandles = new HashSet<>();
         for (final List<String> tobeRemovedCmHandleBatch : Lists.partition(tobeRemovedCmHandles, DELETE_BATCH_SIZE)) {
             try {
                 batchDeleteCmHandlesFromDbAndModuleSyncMap(tobeRemovedCmHandleBatch);
                 tobeRemovedCmHandleBatch.forEach(cmHandleId ->
                     cmHandleRegistrationResponses.add(CmHandleRegistrationResponse.createSuccessResponse(cmHandleId)));
 
-            } catch (final Exception batchException) {
+            } catch (final RuntimeException batchException) {
                 log.error("Unable to de-register cm-handle batch, retrying on each cm handle");
                 for (final String cmHandleId : tobeRemovedCmHandleBatch) {
                     final CmHandleRegistrationResponse cmHandleRegistrationResponse =
                         deleteCmHandleAndGetCmHandleRegistrationResponse(cmHandleId);
                     cmHandleRegistrationResponses.add(cmHandleRegistrationResponse);
+                    if (cmHandleRegistrationResponse.getStatus() != CmHandleRegistrationResponse.Status.SUCCESS) {
+                        notDeletedCmHandles.add(cmHandleId);
+                    }
                 }
             }
         }
 
-        final Collection<YangModelCmHandle> deletedYangModelCmHandles =
-            cmHandleRegistrationResponses.stream()
-                .filter(cmHandleRegistrationResponse ->
-                    cmHandleRegistrationResponse.getStatus().equals(CmHandleRegistrationResponse.Status.SUCCESS))
-                .map(CmHandleRegistrationResponse::getCmHandle)
-                .map(cmHandleIdToYangModelCmHandleMap::get)
-                .collect(Collectors.toList());
-        updateCmHandleStateBatch(deletedYangModelCmHandles, CmHandleState.DELETED);
+        yangModelCmHandles.removeIf(yangModelCmHandle -> notDeletedCmHandles.contains(yangModelCmHandle.getId()));
+        updateCmHandleStateBatch(yangModelCmHandles, CmHandleState.DELETED);
 
         return cmHandleRegistrationResponses;
     }
@@ -383,9 +380,9 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     private void updateCmHandleStateBatch(final Collection<YangModelCmHandle> yangModelCmHandles,
                                           final CmHandleState cmHandleState) {
-        final Map<YangModelCmHandle, CmHandleState> cmHandleIdsToBeRemoved = new HashMap<>();
-        yangModelCmHandles.forEach(yangModelCmHandle -> cmHandleIdsToBeRemoved.put(yangModelCmHandle, cmHandleState));
-        lcmEventsCmHandleStateHandler.updateCmHandleStateBatch(cmHandleIdsToBeRemoved);
+        final Map<YangModelCmHandle, CmHandleState> cmHandleStatePerCmHandle = new HashMap<>(yangModelCmHandles.size());
+        yangModelCmHandles.forEach(yangModelCmHandle -> cmHandleStatePerCmHandle.put(yangModelCmHandle, cmHandleState));
+        lcmEventsCmHandleStateHandler.updateCmHandleStateBatch(cmHandleStatePerCmHandle);
     }
 
     private void deleteCmHandleFromDbAndModuleSyncMap(final String cmHandleId) {
