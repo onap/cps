@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8449dfdb_cc51a010",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/notifications/avc/SubscriptionDataEventProducerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-09T09:00:46Z",
+      "side": 1,
+      "message": "Unless Gerrir is confusing me I think you still need to rename the file!",
+      "revId": "3be51876dd71c1185210b21ebb72d81f53110fa7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
