@@ -120,6 +120,122 @@
     },
     {
       "key": {
+        "uuid": "073b1604_a00abe5c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-09T09:21:21Z",
+      "side": 1,
+      "message": "i this method is not being called from anywhere (any production code) anymore it can be removed. (if it is only called form test remove tehproduction code \u0026 test)\nif it is used somewhere the comments above should be applied, I think it is quite straightforward no discussion needed...",
+      "parentUuid": "7001e87f_0bd2a8b3",
+      "range": {
+        "startLine": 79,
+        "startChar": 15,
+        "endLine": 79,
+        "endChar": 50
+      },
+      "revId": "d48c3058d1df7a30016da8c5a5f3a71c87276d19",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f7bf0fc1_61998780",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-09T09:21:21Z",
+      "side": 1,
+      "message": "remove this column (always same value , no need for column)",
+      "range": {
+        "startLine": 355,
+        "startChar": 71,
+        "endLine": 355,
+        "endChar": 89
+      },
+      "revId": "d48c3058d1df7a30016da8c5a5f3a71c87276d19",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd6a4d0d_f8485f2a",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsPersistenceSpecBase.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-09T09:21:21Z",
+      "side": 1,
+      "message": "NB: I see you removed \u0027final\u0027 ... because it is Groovy?\nif you want to apply our groovy conventions we should\u0027nt use \u0027String\u0027 either\neach line should just be \u0027static def .... \u003d ....\u0027",
+      "range": {
+        "startLine": 63,
+        "startChar": 4,
+        "endLine": 63,
+        "endChar": 17
+      },
+      "revId": "d48c3058d1df7a30016da8c5a5f3a71c87276d19",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fa39947e_4c16a635",
+        "filename": "cps-ri/src/test/resources/data/fragment.sql",
+        "patchSetId": 10
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-09T09:21:21Z",
+      "side": 1,
+      "message": "NB Discuss with Luke: we should start using the new testing framework using the service layer to insert a redabel tes model and data in a verified way... This can be done in a separate commit",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 116
+      },
+      "revId": "d48c3058d1df7a30016da8c5a5f3a71c87276d19",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c366b30f_97b0a8d8",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-09T09:21:21Z",
+      "side": 1,
+      "message": "Do we really need V\" in the method name, this comes from the REST layer it should NOT affect the service layer, if needed (only id signature is identical)  expand the method name to explain the difference \u0027V2\u0027 doesn\u0027t mean anything to a user of the service api!",
+      "range": {
+        "startLine": 149,
+        "startChar": 44,
+        "endLine": 149,
+        "endChar": 46
+      },
+      "revId": "d48c3058d1df7a30016da8c5a5f3a71c87276d19",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "af30e702_d5dd8ce7",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
         "patchSetId": 10
@@ -149,6 +265,24 @@
       "side": 1,
       "message": "The reason for this logic being in service layer is because the persistence layer already implements getDataNodes() which was originally supposed to implement this logic but due to the requirement of CPS-1422 check for Invalid xPath and non-existing xpath is not implemented there and was moved to the service layer. Once the checks are done it calls getDataNodes on line 174. This is for team reference and we can discuss where to exactly keep/move the code 😊",
       "parentUuid": "af30e702_d5dd8ce7",
+      "revId": "d48c3058d1df7a30016da8c5a5f3a71c87276d19",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7714cb56_3a005e83",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-09T09:21:21Z",
+      "side": 1,
+      "message": "I do think it is the responsibility of the ri layer to check/ignore invalid paths.\nAlso to handle rootnode should be done there so I agree with Daniel\u0027s assessment and propose to move most of this code to the RI layer",
+      "parentUuid": "1e33439e_eff408de",
       "revId": "d48c3058d1df7a30016da8c5a5f3a71c87276d19",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
@@ -219,6 +353,41 @@
       "writtenOn": "2023-02-03T15:03:18Z",
       "side": 1,
       "message": "General comment: I think we should look at making root xpaths consistent everywhere. For example, on lines 328 and 358 of this file, a root xpath is defined as \"/\":\n        if (ROOT_NODE_XPATH.equals(parentNodeXpath)) {\n\nBut here (and in other classes), it\u0027s defined as \"/\" or empty string.",
+      "revId": "d48c3058d1df7a30016da8c5a5f3a71c87276d19",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "51900dd3_dc1bdbb8",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-09T09:21:21Z",
+      "side": 1,
+      "message": "it might be that empty string is no possible everywhere. But maybe it the check is done by the same line of code in a common utility class it it probably OK ...",
+      "parentUuid": "eaa93f16_fa2a6839",
+      "revId": "d48c3058d1df7a30016da8c5a5f3a71c87276d19",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6feb79f4_75ff7051",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-09T09:21:21Z",
+      "side": 1,
+      "message": "didn\u0027t review the test as the required production code changes might impact on these...",
       "revId": "d48c3058d1df7a30016da8c5a5f3a71c87276d19",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
