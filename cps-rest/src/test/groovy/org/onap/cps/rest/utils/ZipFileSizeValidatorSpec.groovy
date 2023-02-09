@@ -32,25 +32,25 @@ class ZipFileSizeValidatorSpec extends Specification {
     def compressedFileSize = 100
 
     def setup() {
-        objectUnderTest.setTotalEntryInArchive(0)
-        objectUnderTest.setTotalSizeArchive(0)
+        objectUnderTest.setTotalYangFileEntryInArchive(0)
+        objectUnderTest.setTotalUncompressedSizeOfYangFilesInArchive(0)
         objectUnderTest.setCompressedSize(compressedFileSize)
     }
 
-    def 'Increment the total entries in Archive.'() {
-        when: 'the totalEntriesInArchive value is incremented'
-            objectUnderTest.incrementTotalEntryInArchive()
-        then: 'the totalEntriesInArchive is incremented by 1'
-            assert objectUnderTest.totalEntryInArchive == old(objectUnderTest.totalEntryInArchive) + 1
+    def 'Increment the total yang file entry count in Archive.'() {
+        when: 'the totalYangFileEntryInArchive value is incremented'
+            objectUnderTest.incrementTotalYangFileEntryCountInArchive()
+        then: 'the totalYangFileEntryInArchive is incremented by 1'
+            assert objectUnderTest.totalYangFileEntryInArchive == old(objectUnderTest.totalYangFileEntryInArchive) + 1
     }
 
-    def 'Update the total size of Archive.'() {
+    def 'Update the total uncompressed size of yang files in Archive.'() {
         given: 'the size of an entry of archive'
             def entrySize = 100
-        when: 'the totalSizeArchive is to be updated with the latest entry Size'
-            objectUnderTest.updateTotalSizeArchive(entrySize)
-        then: 'the totalSizeArchive is updated as expected'
-            assert objectUnderTest.totalSizeArchive == old(objectUnderTest.totalSizeArchive) + entrySize
+        when: 'the totalUncompressedSizeOfYangFilesInArchive is to be updated with the latest entry Size'
+            objectUnderTest.updateTotalUncompressedSizeOfYangFilesInArchive(entrySize)
+        then: 'the totalUncompressedSizeOfYangFilesInArchive is updated as expected'
+            assert objectUnderTest.totalUncompressedSizeOfYangFilesInArchive == old(objectUnderTest.totalUncompressedSizeOfYangFilesInArchive) + entrySize
     }
 
     def 'Validate the zip archive for compression ratio less that threshold compression ratio.'() {
@@ -73,29 +73,29 @@ class ZipFileSizeValidatorSpec extends Specification {
 
     def 'Validate the zip archive for thresholdSize and thresholdEntries #caseDescriptor.'() {
         given:
-            objectUnderTest.setTotalEntryInArchive(totalEntriesInArchive)
-            objectUnderTest.setTotalSizeArchive(totalSizeArchive)
+            objectUnderTest.setTotalYangFileEntryInArchive(totalYangEntriesInArchive)
+            objectUnderTest.setTotalUncompressedSizeOfYangFilesInArchive(totalUncompressedSizeofYangArchive)
         when: 'the validation is performed against the threshold size and threshold Entries count'
             objectUnderTest.validateSizeAndEntries()
         then: 'validation passes and no exception is thrown'
             noExceptionThrown()
         where: 'following cases are tested'
-            caseDescriptor              | totalSizeArchive  | totalEntriesInArchive
-            'less than threshold value' | thresholdSize - 1 | thresholdEntries - 1
-            'at threshold value'        | thresholdSize     | thresholdEntries
+            caseDescriptor              | totalUncompressedSizeofYangArchive | totalYangEntriesInArchive
+            'less than threshold value' | thresholdSize - 1                  | thresholdEntries - 1
+            'at threshold value'        | thresholdSize                      | thresholdEntries
     }
 
     def 'Validate the zip archive for thresholdSize and thresholdEntries with #caseDescriptor.'() {
         given:
-            objectUnderTest.setTotalEntryInArchive(totalEntriesInArchive)
-            objectUnderTest.setTotalSizeArchive(totalSizeArchive)
+            objectUnderTest.setTotalYangFileEntryInArchive(totalYangEntriesInArchive)
+            objectUnderTest.setTotalUncompressedSizeOfYangFilesInArchive(totalUncompressedSizeofYangArchive)
         when: 'the validation is performed against the threshold size and threshold Entries count'
             objectUnderTest.validateSizeAndEntries()
         then: 'validation fails and exception is thrown'
             thrown ModelValidationException
         where: 'following cases are tested'
-            caseDescriptor                                  | totalSizeArchive  | totalEntriesInArchive
-            'totalEntriesInArchive exceeds threshold value' | thresholdSize     | thresholdEntries + 1
-            'totalSizeArchive exceeds threshold value'      | thresholdSize + 1 | thresholdEntries
+            caseDescriptor                                  | totalUncompressedSizeofYangArchive | totalYangEntriesInArchive
+            'totalEntriesInArchive exceeds threshold value' | thresholdSize                      | thresholdEntries + 1
+            'totalSizeArchive exceeds threshold value'      | thresholdSize + 1                  | thresholdEntries
     }
 }

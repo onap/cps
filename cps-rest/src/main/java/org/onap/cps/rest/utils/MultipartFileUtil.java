@@ -127,16 +127,17 @@ public class MultipartFileUtil {
     }
 
     private static String extractYangResourceContent(final ZipInputStream zipInputStream,
-        final ZipFileSizeValidator zipFileSizeValidator) throws IOException {
+                                                     final ZipFileSizeValidator zipFileSizeValidator)
+        throws IOException {
         try (final var byteArrayOutputStream = new ByteArrayOutputStream()) {
             var totalSizeEntry = 0;
             int numberOfBytesRead;
             final var buffer = new byte[READ_BUFFER_SIZE];
-            zipFileSizeValidator.incrementTotalEntryInArchive();
+            zipFileSizeValidator.incrementTotalYangFileEntryCountInArchive();
             while ((numberOfBytesRead = zipInputStream.read(buffer, 0, READ_BUFFER_SIZE)) > 0) {
                 byteArrayOutputStream.write(buffer, 0, numberOfBytesRead);
                 totalSizeEntry += numberOfBytesRead;
-                zipFileSizeValidator.updateTotalSizeArchive(numberOfBytesRead);
+                zipFileSizeValidator.updateTotalUncompressedSizeOfYangFilesInArchive(numberOfBytesRead);
                 zipFileSizeValidator.validateCompresssionRatio(totalSizeEntry);
             }
             return byteArrayOutputStream.toString(StandardCharsets.UTF_8);
