@@ -31,11 +31,6 @@ services:
       POSTGRES_DB: cpsdb
       POSTGRES_USER: ${DB_USERNAME:-cps}
       POSTGRES_PASSWORD: ${DB_PASSWORD:-cps}
-    healthcheck:
-      test: ["CMD", "pg_isready"]
-      interval: 30s
-      timeout: 5s
-      retries: 5
 
   cps-and-ncmp:
     container_name: cps-and-ncmp
@@ -122,17 +117,6 @@ services:
     restart: unless-stopped
     profiles:
       - dmi-stub
-
-  init-db:
-    build: ${CPS_HOME:-.}/docker-compose/initfile
-    environment:
-      CPS_CORE_PORT: ${CPS_CORE_PORT:-8883}
-      CPS_CORE_MANAGEMENT_PORT: ${CPS_CORE_MANAGEMENT_PORT:-8887}
-    volumes:
-      - ${CPS_HOME:-.}/cps-ncmp-service/src/main/resources/model/:/model
-    depends_on:
-      cps-and-ncmp:
-        condition: service_started
 
   prometheus:
     container_name: prometheus-container
