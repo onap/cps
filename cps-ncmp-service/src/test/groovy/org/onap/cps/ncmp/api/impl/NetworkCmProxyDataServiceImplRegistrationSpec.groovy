@@ -74,8 +74,8 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             dmiRegistration.setCreatedCmHandles([new NcmpServiceCmHandle(cmHandleId: 'cmhandle-1', publicProperties: ['publicProp1': 'value'], dmiProperties: [:])])
             dmiRegistration.setUpdatedCmHandles([new NcmpServiceCmHandle(cmHandleId: 'cmhandle-2', publicProperties: ['publicProp1': 'value'], dmiProperties: [:])])
             dmiRegistration.setRemovedCmHandles(['cmhandle-2'])
-        and: 'any cm handle is persisted'
-            mockInventoryPersistence.getYangModelCmHandle(_) >> new YangModelCmHandle()
+        and: 'cm handles are persisted'
+            mockInventoryPersistence.getYangModelCmHandles(['cmhandle-2']) >> [new YangModelCmHandle()]
         when: 'registration is processed'
             objectUnderTest.updateDmiRegistrationAndSyncModule(dmiRegistration)
         then: 'cm-handles are removed first'
@@ -245,7 +245,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
 
     def 'Remove CmHandle Successfully: #scenario'() {
         given: 'a registration'
-            mockInventoryPersistence.getYangModelCmHandle(_) >> new YangModelCmHandle()
+            addPersistedYangModelCmHandles(['cmhandle'])
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server',
                 removedCmHandles: ['cmhandle'])
         and: '#scenario'
@@ -319,7 +319,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
 
     def 'Remove CmHandle Error Handling: Schema Set Deletion failed'() {
         given: 'a registration'
-            mockInventoryPersistence.getYangModelCmHandle('cmhandle') >> new YangModelCmHandle()
+            addPersistedYangModelCmHandles(['cmhandle'])
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server',
                 removedCmHandles: ['cmhandle'])
         and: 'schema set deletion failed with unknown error'
@@ -344,7 +344,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
 
     def 'Remove CmHandle Error Handling: #scenario'() {
         given: 'a registration'
-            mockInventoryPersistence.getYangModelCmHandle('cmhandle') >> new YangModelCmHandle()
+            addPersistedYangModelCmHandles(['cmhandle'])
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server',
                 removedCmHandles: ['cmhandle'])
         and: 'cm-handle deletion fails on batch'
@@ -378,9 +378,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     }
 
     def addPersistedYangModelCmHandles(ids) {
-        ids.each { 
-            def yangModelCmHandle = new YangModelCmHandle(id:it)
-            mockInventoryPersistence.getYangModelCmHandle(it) >> yangModelCmHandle
-        }
+        def yangModelCmHandles = ids.collect { new YangModelCmHandle(id:it) }
+        mockInventoryPersistence.getYangModelCmHandles(ids) >> yangModelCmHandles
     }
 }
