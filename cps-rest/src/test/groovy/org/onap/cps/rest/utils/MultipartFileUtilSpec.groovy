@@ -60,6 +60,18 @@ class MultipartFileUtilSpec extends Specification {
             assert result["component.yang"] == "fake component content 1\n"
     }
 
+    def 'Extract yang resources from zip archive having total size of yang files exceeds the CPS limit'() {
+        given: 'uploaded zip archive exceeds threshold size'
+            def multipartFile = multipartZipFileFromResource('/yang-files-set-oversize-ratio.zip')
+            ZipFileSizeValidator.THRESHOLD_SIZE = 1024
+        when: 'resources are extracted from zip file'
+            MultipartFileUtil.extractYangResourcesMap(multipartFile)
+        then: 'ModelValidationException is thrown indicating total size of the yang files exceeds the threshold size'
+            def thrownException = thrown(ModelValidationException)
+        and: 'exception message contains the phrase "Invalid ZIP archive content"'
+            assert thrownException.message.contains('Invalid ZIP archive content.')
+    }
+
     def 'Extract resources from zip archive having #caseDescriptor.'() {
         when: 'attempt to extract resources from zip file is performed'
             MultipartFileUtil.extractYangResourcesMap(multipartFile)
