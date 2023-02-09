@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Pantheon.tech
+ *  Modifications Copyright (C) 2023 Nordix Foundation. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -51,13 +52,25 @@ class MultipartFileUtilSpec extends Specification {
     def 'Extract yang resources from zip archive.'() {
         given: 'uploaded zip archive containing 2 yang files and 1 not yang (json) file'
             def multipartFile = new MockMultipartFile("file", "TEST.ZIP", "application/zip",
-                    getClass().getResource("/yang-files-set.zip").getBytes())
+                getClass().getResource("/yang-files-set.zip").getBytes())
         when: 'resources are extracted from zip file'
             def result = MultipartFileUtil.extractYangResourcesMap(multipartFile)
         then: 'information from yang files is extracted, not yang file (json) is ignored'
             assert result.size() == 2
             assert result["assembly.yang"] == "fake assembly content 1\n"
             assert result["component.yang"] == "fake component content 1\n"
+    }
+
+    def 'Extract yang resources from zip archive having total size of yang files exceeds the CPS limit'() {
+        given: 'uploaded zip archive exceeds threshold size'
+            def multipartFile = multipartZipFileFromResource('/yang-files-set-oversize-ratio.zip')
+            ZipFileSizeValidator.THRESHOLD_SIZE = 1024
+        when: 'resources are extracted from zip file'
+            MultipartFileUtil.extractYangResourcesMap(multipartFile)
+        then: 'ModelValidationException is thrown indicating total size of the yang files exceeds the threshold size'
+            def thrownException = thrown(ModelValidationException)
+        and: 'exception message contains the phrase "Invalid ZIP archive content"'
+            assert thrownException.message.contains('Invalid ZIP archive content.')
     }
 
     def 'Extract resources from zip archive having #caseDescriptor.'() {
@@ -91,7 +104,7 @@ class MultipartFileUtilSpec extends Specification {
 
     def multipartZipFileFromResource(resourcePath) {
         return new MockMultipartFile("file", "TEST.ZIP", "application/zip",
-                getClass().getResource(resourcePath).getBytes())
+            getClass().getResource(resourcePath).getBytes())
     }
 
     def multipartFileForIOException(extension) {

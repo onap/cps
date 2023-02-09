@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Bell Canada.
+ *  Modifications Copyright (C) 2023 Nordix Foundation. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -28,27 +29,27 @@ import org.onap.cps.spi.exceptions.ModelValidationException;
 public class ZipFileSizeValidator {
 
     private static final int THRESHOLD_ENTRIES = 10000;
-    private static final int THRESHOLD_SIZE = 100000000;
+    private static int THRESHOLD_SIZE = 100000000;/* The final keyword removed for test purposes. */
     private static final double THRESHOLD_RATIO = 40;
     private static final String INVALID_ZIP = "Invalid ZIP archive content.";
 
-    private int totalSizeArchive = 0;
-    private int totalEntryInArchive = 0;
+    private int totalUncompressedSizeOfYangFilesInArchive = 0;
+    private int totalYangFileEntryInArchive = 0;
     private long compressedSize = 0;
 
     /**
      * Increment the totalEntryInArchive by 1.
      */
-    public void incrementTotalEntryInArchive() {
-        totalEntryInArchive++;
+    public void incrementTotalYangFileEntryCountInArchive() {
+        totalYangFileEntryInArchive++;
     }
 
     /**
      * Update the totalSizeArchive by numberOfBytesRead.
      * @param numberOfBytesRead the number of bytes of each entry
      */
-    public void updateTotalSizeArchive(final int numberOfBytesRead) {
-        totalSizeArchive += numberOfBytesRead;
+    public void updateTotalUncompressedSizeOfYangFilesInArchive(final int numberOfBytesRead) {
+        totalUncompressedSizeOfYangFilesInArchive += numberOfBytesRead;
     }
 
     /**
@@ -68,13 +69,13 @@ public class ZipFileSizeValidator {
      * Validate the total Size and number of entries in the zip.
      */
     public void validateSizeAndEntries() {
-        if (totalSizeArchive > THRESHOLD_SIZE) {
+        if (totalUncompressedSizeOfYangFilesInArchive > THRESHOLD_SIZE) {
             throw new ModelValidationException(INVALID_ZIP,
-                String.format("The uncompressed data size exceeds the CPS limit %s bytes.", THRESHOLD_SIZE));
+                String.format("The total size of  uncompressed yang files exceeds the CPS limit of %s bytes.", THRESHOLD_SIZE));
         }
-        if (totalEntryInArchive > THRESHOLD_ENTRIES) {
+        if (totalYangFileEntryInArchive > THRESHOLD_ENTRIES) {
             throw new ModelValidationException(INVALID_ZIP,
-                String.format("The number of entries in the archive exceeds the CPS limit %s.",
+                String.format("The number of yang file entries in the archive exceeds the CPS limit %s.",
                     THRESHOLD_ENTRIES));
         }
     }
