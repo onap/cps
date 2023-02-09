@@ -214,6 +214,30 @@
     },
     {
       "key": {
+        "uuid": "56b1c016_b348017e",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-02-09T15:37:15Z",
+      "side": 1,
+      "message": "as Toine commented there no need of using V2, so renamed it to getMultipleDataNodes()",
+      "parentUuid": "1de1ba23_172ac07b",
+      "range": {
+        "startLine": 149,
+        "startChar": 32,
+        "endLine": 149,
+        "endChar": 46
+      },
+      "revId": "630481ed0eefa7a90a5fe954ca1e9013a4b1ba40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "575170a3_887e24a8",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
         "patchSetId": 9
