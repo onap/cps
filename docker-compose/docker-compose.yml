@@ -43,6 +43,7 @@ services:
       - ${CPS_CORE_PORT:-8883}:8080
       - ${CPS_CORE_MANAGEMENT_PORT:-8887}:8081
     environment:
+      CPS_CORE_HOST: ${CPS_CORE_HOST:-cps-and-ncmp}
       CPS_USERNAME: ${CPS_CORE_USERNAME:-cpsuser}
       CPS_PASSWORD: ${CPS_CORE_PASSWORD:-cpsr0cks!}
       DB_HOST: ${DB_HOST:-dbpostgresql}
