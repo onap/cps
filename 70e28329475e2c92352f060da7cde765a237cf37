@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "50994592_07c467d3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-02-10T23:27:35Z",
+      "side": 1,
+      "message": "According to ONAP rules, commit title should be only 50 or so characters.\nPerhaps a shorter title like \"Unit test for wrong calculation of yang file size in zip\", then a blank line and full description.\nReference: https://wiki.onap.org/display/DW/Commit+Messages",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 1
+      },
+      "revId": "70e28329475e2c92352f060da7cde765a237cf37",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eff838f8_6e4b81b4",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/ZipFileSizeValidator.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-02-10T23:27:35Z",
+      "side": 1,
+      "message": "Minor issue: 2 spaces instead of 1",
+      "range": {
+        "startLine": 76,
+        "startChar": 48,
+        "endLine": 76,
+        "endChar": 50
+      },
+      "revId": "70e28329475e2c92352f060da7cde765a237cf37",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
