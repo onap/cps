@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START========================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -25,31 +25,32 @@ import spock.lang.Specification
 
 class YangDataConverterSpec extends Specification{
 
-    def 'Convert a cm handle data node with private properties.'() {
-        given: 'a datanode with some additional (dmi, private) properties'
+    def 'Convert a cm handle data node with private and public properties.'() {
+        given: 'a datanode with some additional (dmi, private) and public properties with CmHandle state'
             def dataNodeAdditionalProperties = new DataNode(xpath:'/additional-properties[@name="dmiProp1"]',
-                leaves: ['name': 'dmiProp1', 'value': 'dmiValue1'])
-            def dataNode = new DataNode(childDataNodes:[dataNodeAdditionalProperties])
+                    leaves: ['name': 'dmiProp1', 'value': 'dmiValue1'])
+            def dataNodePublicProperties = new DataNode(xpath:'/public-properties[@name="pubProp1"]',
+                    leaves: ['name': 'pubProp1', 'value': 'pubValue1'])
+            def dataNode = new DataNode(childDataNodes:[dataNodeAdditionalProperties, dataNodePublicProperties])
         when: 'the dataNode is converted'
             def yangModelCmHandle = YangDataConverter.convertCmHandleToYangModel(dataNode,'sample-id')
         then: 'the converted object has the correct id'
             assert yangModelCmHandle.id == 'sample-id'
-        and: 'the additional (dmi, private) properties are included'
+        and: 'the additional (dmi, private) and public properties are included with CmHandle state'
             assert yangModelCmHandle.dmiProperties[0].name == 'dmiProp1'
             assert yangModelCmHandle.dmiProperties[0].value == 'dmiValue1'
+            assert yangModelCmHandle.publicProperties[0].name == 'pubProp1'
+            assert yangModelCmHandle.publicProperties[0].value == 'pubValue1'
     }
 
     def 'Convert multiple cm handle data nodes'(){
-        given: 'two data nodes in a collection one with private properties'
-            def dataNodeAdditionalProperties = new DataNode(xpath:'/additional-properties[@name="dmiProp1"]',
-                    leaves: ['name': 'dmiProp1', 'value': 'dmiValue1'])
+        given: 'two data nodes in a collection'
             def dataNodes = [new DataNode(xpath:'/dmi-registry/cm-handles[@id=\'some-cm-handle\']'),
-                             new DataNode(xpath:'/dmi-registry/cm-handles[@id=\'another-cm-handle\']', childDataNodes:[dataNodeAdditionalProperties])]
+                             new DataNode(xpath:'/dmi-registry/cm-handles[@id=\'another-cm-handle\']')]
         when: 'the data nodes are converted'
             def yangModelCmHandles = YangDataConverter.convertDataNodesToYangModelCmHandles(dataNodes)
-        then: 'verify both have returned and cmhandleIds are correct'
+        then: 'verify both have returned and CmHandleIds are correct'
             assert yangModelCmHandles.size() == 2
             assert yangModelCmHandles.id.containsAll(['some-cm-handle', 'another-cm-handle'])
     }
-
 }
