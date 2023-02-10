@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8d471800_db5dc6ad",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/ModelLoader.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-02-10T11:57:43Z",
+      "side": 1,
+      "message": "hey I was just thinking why cant we directly use the cps-service methods ?? \nLike directly injecting CpsAdminService , CpsModuleService ?? etc..\nDo we already thought about it and had some problems around it ??",
+      "revId": "09fb59f800fa375cf808bdbb551f1d12f6414bdb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
