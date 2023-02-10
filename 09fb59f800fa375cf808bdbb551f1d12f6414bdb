@@ -16,6 +16,24 @@
       "revId": "09fb59f800fa375cf808bdbb551f1d12f6414bdb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a6dd6008_e55787f4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/ModelLoader.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-02-10T12:14:36Z",
+      "side": 1,
+      "message": "hmm i did try a way to use the method and it created dependency, would that not create dependency ?",
+      "parentUuid": "8d471800_db5dc6ad",
+      "revId": "09fb59f800fa375cf808bdbb551f1d12f6414bdb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
