@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2023 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -33,7 +33,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsAdminService;
@@ -110,7 +109,7 @@ public class InventoryPersistenceImpl implements InventoryPersistence {
 
     @Override
     public Collection<YangModelCmHandle> getYangModelCmHandles(final Collection<String> cmHandleIds) {
-        final Collection<String> validCmHandleIds = new ArrayList<>();
+        final Collection<String> validCmHandleIds = new ArrayList<>(cmHandleIds.size());
         cmHandleIds.forEach(cmHandleId -> {
             try {
                 cpsValidator.validateNameCharacters(cmHandleId);
@@ -204,9 +203,8 @@ public class InventoryPersistenceImpl implements InventoryPersistence {
 
     @Override
     public Collection<DataNode> getCmHandleDataNodes(final Collection<String> cmHandleIds) {
-        final Collection<String> xpaths = cmHandleIds.stream().map(cmHandleId ->
-                        String.format(CM_HANDLE_XPATH_TEMPLATE, cmHandleId))
-                .collect(Collectors.toList());
+        final Collection<String> xpaths = new ArrayList<>(cmHandleIds.size());
+        cmHandleIds.forEach(cmHandleId -> xpaths.add("/dmi-registry/cm-handles[@id='" + cmHandleId + "']"));
         return this.getDataNodes(xpaths);
     }
 
