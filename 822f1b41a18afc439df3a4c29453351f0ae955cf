@@ -45,6 +45,29 @@
       "revId": "822f1b41a18afc439df3a4c29453351f0ae955cf",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07850f11_724f7abb",
+        "filename": "generate-metrics-report.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-02-11T16:20:03Z",
+      "side": 1,
+      "message": "--numeric-sort has weird behaviour with smaller numbers with leading decimal zeroes being printed first e.g. 0.01 before 0.1. Use smarter --general-numeric-sort instead.",
+      "range": {
+        "startLine": 97,
+        "startChar": 7,
+        "endLine": 97,
+        "endChar": 21
+      },
+      "revId": "822f1b41a18afc439df3a4c29453351f0ae955cf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
