@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f5ceeb54_d2006cb4",
+        "filename": "generate-metrics-report.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-02-11T16:13:07Z",
+      "side": 1,
+      "message": "Not needed, since only field 2 is being cut.",
+      "range": {
+        "startLine": 90,
+        "startChar": 39,
+        "endLine": 90,
+        "endChar": 56
+      },
+      "revId": "822f1b41a18afc439df3a4c29453351f0ae955cf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e257d3d_a37ec037",
+        "filename": "generate-metrics-report.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-02-11T16:13:07Z",
+      "side": 1,
+      "message": "Not needed, since only field 2 is being cut.",
+      "range": {
+        "startLine": 91,
+        "startChar": 39,
+        "endLine": 91,
+        "endChar": 56
+      },
+      "revId": "822f1b41a18afc439df3a4c29453351f0ae955cf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
