@@ -25,6 +25,53 @@
     },
     {
       "key": {
+        "uuid": "6d9789e3_6a2fbe5f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-13T09:12:55Z",
+      "side": 1,
+      "message": "agreed",
+      "parentUuid": "50994592_07c467d3",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 1
+      },
+      "revId": "70e28329475e2c92352f060da7cde765a237cf37",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a581a7dd_87c897d4",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/ZipFileSizeValidator.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-13T09:12:55Z",
+      "side": 1,
+      "message": "NB: Entries",
+      "range": {
+        "startLine": 37,
+        "startChar": 29,
+        "endLine": 37,
+        "endChar": 34
+      },
+      "revId": "70e28329475e2c92352f060da7cde765a237cf37",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "eff838f8_6e4b81b4",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/ZipFileSizeValidator.java",
         "patchSetId": 6
@@ -41,6 +88,98 @@
         "startChar": 48,
         "endLine": 76,
         "endChar": 50
+      },
+      "revId": "70e28329475e2c92352f060da7cde765a237cf37",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb777726_c5aba514",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/utils/MultipartFileUtilSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-13T09:12:55Z",
+      "side": 1,
+      "message": "keep slogan short and simple:\n\u0027Ayn Resource ZIP Limits\u0027  suffices...\n(you can add Jira ref for calirity)",
+      "range": {
+        "startLine": 64,
+        "startChar": 9,
+        "endLine": 64,
+        "endChar": 102
+      },
+      "revId": "70e28329475e2c92352f060da7cde765a237cf37",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "af38ede9_484b35cc",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/utils/MultipartFileUtilSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-13T09:12:55Z",
+      "side": 1,
+      "message": "the test does NOT fail with the original bug, you need to tets both scenarios just under and above limit to make this happen",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 64,
+        "endChar": 8
+      },
+      "revId": "70e28329475e2c92352f060da7cde765a237cf37",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7c7447e1_85f2fa8a",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/utils/MultipartFileUtilSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-13T09:12:55Z",
+      "side": 1,
+      "message": "split and change the order (aslo be more precise regarding the use case):\n\n        given: \u0027a yang file threshold of 1024 bytes\u0027\n            ZipFileSizeValidator.THRESHOLD_SIZE \u003d 1024\n        and: \u0027and a zip archive with a yang file exceeding the  threshold size\u0027\n            def multipartFile \u003d multipartZipFileFromResource(\u0027/yang-files-set-oversize-ratio.zip\u0027)",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 54
+      },
+      "revId": "70e28329475e2c92352f060da7cde765a237cf37",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7f5998ef_a377b276",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/utils/MultipartFileUtilSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-13T09:12:55Z",
+      "side": 1,
+      "message": "this message applies to ALAL validation issue not just file size, check the details instead!",
+      "range": {
+        "startLine": 73,
+        "startChar": 12,
+        "endLine": 73,
+        "endChar": 83
       },
       "revId": "70e28329475e2c92352f060da7cde765a237cf37",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
