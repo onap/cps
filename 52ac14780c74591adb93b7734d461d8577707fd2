@@ -1,0 +1,280 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f4cd285e_c546ad91",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-13T12:00:12Z",
+      "side": 1,
+      "message": "you haven\u0027t updated all the labels to use plural where needed\nJust double check all the tests you have added)",
+      "range": {
+        "startLine": 249,
+        "startChar": 0,
+        "endLine": 250,
+        "endChar": 56
+      },
+      "revId": "52ac14780c74591adb93b7734d461d8577707fd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "96f0f343_4fcb3e5e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-13T12:00:12Z",
+      "side": 1,
+      "message": "I don\u0027t think this is needed we can (should be able) to normalize an xpath whether it is root or not (if need update the CpsPathUtil.getNormalizedXpath method)",
+      "range": {
+        "startLine": 264,
+        "startChar": 0,
+        "endLine": 267,
+        "endChar": 13
+      },
+      "revId": "52ac14780c74591adb93b7734d461d8577707fd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "48144582_44453ea5",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-13T12:00:12Z",
+      "side": 1,
+      "message": "no changes anymore",
+      "range": {
+        "startLine": 6,
+        "startChar": 30,
+        "endLine": 6,
+        "endChar": 53
+      },
+      "revId": "52ac14780c74591adb93b7734d461d8577707fd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4d08e062_da028983",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-13T12:00:12Z",
+      "side": 1,
+      "message": "interesting way of testing it :-)",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 135
+      },
+      "revId": "52ac14780c74591adb93b7734d461d8577707fd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7feae9f8_79ca15ca",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-13T12:00:12Z",
+      "side": 1,
+      "message": "sine you already proofed it is the same dataNode you don\u0027t need to test all of this (again)",
+      "range": {
+        "startLine": 102,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 77
+      },
+      "revId": "52ac14780c74591adb93b7734d461d8577707fd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e744e506_fec1eb4d",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-13T12:00:12Z",
+      "side": 1,
+      "message": "use result.each{} instead",
+      "range": {
+        "startLine": 277,
+        "startChar": 19,
+        "endLine": 277,
+        "endChar": 28
+      },
+      "revId": "52ac14780c74591adb93b7734d461d8577707fd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "14b9c96c_012a4d50",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-13T12:00:12Z",
+      "side": 1,
+      "message": "printing ? can it be removed now?",
+      "range": {
+        "startLine": 308,
+        "startChar": 12,
+        "endLine": 308,
+        "endChar": 76
+      },
+      "revId": "52ac14780c74591adb93b7734d461d8577707fd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bfc9cf6f_984753ef",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-13T12:00:12Z",
+      "side": 1,
+      "message": "NB: you can use each (loops at 2 levels instead)",
+      "range": {
+        "startLine": 328,
+        "startChar": 8,
+        "endLine": 331,
+        "endChar": 87
+      },
+      "revId": "52ac14780c74591adb93b7734d461d8577707fd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "42dc5ac7_5c9e6d53",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 369,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-13T12:00:12Z",
+      "side": 1,
+      "message": "xpaths",
+      "range": {
+        "startLine": 369,
+        "startChar": 45,
+        "endLine": 369,
+        "endChar": 51
+      },
+      "revId": "52ac14780c74591adb93b7734d461d8577707fd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "101bac2e_55e597fd",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-13T12:00:12Z",
+      "side": 1,
+      "message": "ddi we agree to deprecate this or not\n\n(if it is only used by controller V1 we should deprecate it; Even better, the controller V1 method should use the new method and just return the first entry  and then this method probably could be removed (including its tests)",
+      "range": {
+        "startLine": 111,
+        "startChar": 13,
+        "endLine": 111,
+        "endChar": 24
+      },
+      "revId": "52ac14780c74591adb93b7734d461d8577707fd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1b459801_5ff4e120",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-13T12:00:12Z",
+      "side": 1,
+      "message": "should not refer to the REST interface in teh java API (doc)",
+      "range": {
+        "startLine": 115,
+        "startChar": 77,
+        "endLine": 115,
+        "endChar": 109
+      },
+      "revId": "52ac14780c74591adb93b7734d461d8577707fd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "53d8e22e_d88d6823",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-13T12:00:12Z",
+      "side": 1,
+      "message": "fix the javadox and clearly explain teh diffrent between this method and the previous one!",
+      "range": {
+        "startLine": 132,
+        "startChar": 14,
+        "endLine": 132,
+        "endChar": 43
+      },
+      "revId": "52ac14780c74591adb93b7734d461d8577707fd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
