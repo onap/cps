@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "38aa035a_b3339d22",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-02-13T16:00:47Z",
+      "side": 1,
+      "message": "NB can be kept as xpath I think",
+      "range": {
+        "startLine": 120,
+        "startChar": 85,
+        "endLine": 120,
+        "endChar": 105
+      },
+      "revId": "26cfc1211e85b9ffe0f360173ed13156b62f172e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b2ee101_7b1e2969",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-02-13T16:00:47Z",
+      "side": 1,
+      "message": "NB typo",
+      "range": {
+        "startLine": 260,
+        "startChar": 40,
+        "endLine": 260,
+        "endChar": 44
+      },
+      "revId": "26cfc1211e85b9ffe0f360173ed13156b62f172e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
