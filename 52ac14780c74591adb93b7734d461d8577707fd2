@@ -71,6 +71,30 @@
     },
     {
       "key": {
+        "uuid": "af5cf935_985b244c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-02-13T13:57:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "48144582_44453ea5",
+      "range": {
+        "startLine": 6,
+        "startChar": 30,
+        "endLine": 6,
+        "endChar": 53
+      },
+      "revId": "52ac14780c74591adb93b7734d461d8577707fd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4d08e062_da028983",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
         "patchSetId": 13
@@ -163,6 +187,30 @@
     },
     {
       "key": {
+        "uuid": "e97e27bb_1efc9512",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-02-13T13:57:45Z",
+      "side": 1,
+      "message": "removed",
+      "parentUuid": "14b9c96c_012a4d50",
+      "range": {
+        "startLine": 308,
+        "startChar": 12,
+        "endLine": 308,
+        "endChar": 76
+      },
+      "revId": "52ac14780c74591adb93b7734d461d8577707fd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bfc9cf6f_984753ef",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
         "patchSetId": 13
@@ -209,6 +257,30 @@
     },
     {
       "key": {
+        "uuid": "0fd01391_9ad67218",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 369,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-02-13T13:57:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "42dc5ac7_5c9e6d53",
+      "range": {
+        "startLine": 369,
+        "startChar": 45,
+        "endLine": 369,
+        "endChar": 51
+      },
+      "revId": "52ac14780c74591adb93b7734d461d8577707fd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "101bac2e_55e597fd",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
         "patchSetId": 13
@@ -220,6 +292,30 @@
       "writtenOn": "2023-02-13T12:00:12Z",
       "side": 1,
       "message": "ddi we agree to deprecate this or not\n\n(if it is only used by controller V1 we should deprecate it; Even better, the controller V1 method should use the new method and just return the first entry  and then this method probably could be removed (including its tests)",
+      "range": {
+        "startLine": 111,
+        "startChar": 13,
+        "endLine": 111,
+        "endChar": 24
+      },
+      "revId": "52ac14780c74591adb93b7734d461d8577707fd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7b85bd71_5a294112",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-02-13T13:57:45Z",
+      "side": 1,
+      "message": "yes, it was decided after V2 is made available, this will be deprecated",
+      "parentUuid": "101bac2e_55e597fd",
       "range": {
         "startLine": 111,
         "startChar": 13,
@@ -255,6 +351,30 @@
     },
     {
       "key": {
+        "uuid": "e3a38d15_2a12d57b",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-02-13T13:57:45Z",
+      "side": 1,
+      "message": "removed the reference to REST",
+      "parentUuid": "1b459801_5ff4e120",
+      "range": {
+        "startLine": 115,
+        "startChar": 77,
+        "endLine": 115,
+        "endChar": 109
+      },
+      "revId": "52ac14780c74591adb93b7734d461d8577707fd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "53d8e22e_d88d6823",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
         "patchSetId": 13
@@ -275,6 +395,30 @@
       "revId": "52ac14780c74591adb93b7734d461d8577707fd2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d2ac387_fa4d3af2",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-02-13T13:57:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "53d8e22e_d88d6823",
+      "range": {
+        "startLine": 132,
+        "startChar": 14,
+        "endLine": 132,
+        "endChar": 43
+      },
+      "revId": "52ac14780c74591adb93b7734d461d8577707fd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
