@@ -22,6 +22,30 @@
       "revId": "1b65fa56ce4e1e153403efbeef369c8860ba0be1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9b962a5f_fce521d0",
+        "filename": "generate-metrics-report.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-02-13T09:56:09Z",
+      "side": 1,
+      "message": "Yes. I have attached a sample report the JIRA ticket https://jira.onap.org/browse/CPS-1488",
+      "parentUuid": "ecfe8e3d_5b5985f5",
+      "range": {
+        "startLine": 78,
+        "startChar": 11,
+        "endLine": 78,
+        "endChar": 30
+      },
+      "revId": "1b65fa56ce4e1e153403efbeef369c8860ba0be1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
