@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Pantheon.tech
+ *  Modifications Copyright (C) 2023 Nordix Foundation.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -51,13 +52,39 @@ class MultipartFileUtilSpec extends Specification {
     def 'Extract yang resources from zip archive.'() {
         given: 'uploaded zip archive containing 2 yang files and 1 not yang (json) file'
             def multipartFile = new MockMultipartFile("file", "TEST.ZIP", "application/zip",
-                    getClass().getResource("/yang-files-set.zip").getBytes())
+                getClass().getResource("/yang-files-set.zip").getBytes())
         when: 'resources are extracted from zip file'
             def result = MultipartFileUtil.extractYangResourcesMap(multipartFile)
         then: 'information from yang files is extracted, not yang file (json) is ignored'
             assert result.size() == 2
             assert result["assembly.yang"] == "fake assembly content 1\n"
             assert result["component.yang"] == "fake component content 1\n"
+    }
+
+    def 'Yang file limits in zip archive: #scenario for the bug reported in CPS-1477'() {
+        given: 'a yang file size (uncompressed) limit of #threshold bytes'
+            ZipFileSizeValidator.THRESHOLD_SIZE = threshold
+        and: 'an archive with a yang file of 1083 bytes'
+            def multipartFile = multipartZipFileFromResource('/yang-files-set-total-1083-bytes.zip')
+        when: 'attempt to extract yang files'
+            def thrownException = null
+            try {
+                MultipartFileUtil.extractYangResourcesMap(multipartFile)
+            } catch (Exception e) {
+                thrownException  = e
+            }
+        then: 'ModelValidationException indicating size limit is only thrown when threshold exceeded'
+            if (thresholdExceeded) {
+                assert thrownException instanceof ModelValidationException
+                assert thrownException.details.contains('limit of ' + threshold + ' bytes')
+            } else {
+                assert thrownException == null
+            }
+        where:
+            scenario          | threshold || thresholdExceeded
+            'exceed limit'    | 1082      || true
+            'equals to limit' | 1083      || false
+            'within limit'    | 1084      || false
     }
 
     def 'Extract resources from zip archive having #caseDescriptor.'() {
@@ -91,7 +118,7 @@ class MultipartFileUtilSpec extends Specification {
 
     def multipartZipFileFromResource(resourcePath) {
         return new MockMultipartFile("file", "TEST.ZIP", "application/zip",
-                getClass().getResource(resourcePath).getBytes())
+            getClass().getResource(resourcePath).getBytes())
     }
 
     def multipartFileForIOException(extension) {
