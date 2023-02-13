@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fbd83107_bfdfedd0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/YangDataConverter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-13T10:01:22Z",
+      "side": 1,
+      "message": "Not sure if this can be static I think we might get concurrency issue then :-(\nInstead just move it outside the loop when you handle a batch!\nI cannot see exactly where it should go so quickly but I think you should be able to find out...",
+      "range": {
+        "startLine": 45,
+        "startChar": 4,
+        "endLine": 45,
+        "endChar": 99
+      },
+      "revId": "5bc6bb81214e53ec51fe4ec562d0d2d4d85ce01d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5d9408dc_bea12d9b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-13T10:01:22Z",
+      "side": 1,
+      "message": "I think you should address all the isntances where this is used ie. this template should eb deleted instead have a small static method doing the concatenation...\ncreateCmHandleXPath(id) {\n  return \"/dmi-registry/cm-handles[@id\u003d\u0027\" + id + \"\u0027]\";\n}",
+      "range": {
+        "startLine": 64,
+        "startChar": 32,
+        "endLine": 64,
+        "endChar": 56
+      },
+      "revId": "5bc6bb81214e53ec51fe4ec562d0d2d4d85ce01d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a81f1e3b_f3ad173f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-13T10:01:22Z",
+      "side": 1,
+      "message": "see prev comment extarct small static method",
+      "range": {
+        "startLine": 207,
+        "startChar": 53,
+        "endLine": 207,
+        "endChar": 105
+      },
+      "revId": "5bc6bb81214e53ec51fe4ec562d0d2d4d85ce01d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5f06e27d_89a877b5",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/YangDataConverterSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-13T10:01:22Z",
+      "side": 1,
+      "message": "jsu remind me why were these removed and now put back?!",
+      "range": {
+        "startLine": 28,
+        "startChar": 56,
+        "endLine": 28,
+        "endChar": 62
+      },
+      "revId": "5bc6bb81214e53ec51fe4ec562d0d2d4d85ce01d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
