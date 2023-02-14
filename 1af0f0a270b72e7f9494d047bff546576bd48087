@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "93211836_0d948356",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/utils/CpsValidatorImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-14T18:17:54Z",
+      "side": 1,
+      "message": "was there a separate Spec for this or was/is it covered by other test anyway?",
+      "range": {
+        "startLine": 45,
+        "startChar": 15,
+        "endLine": 45,
+        "endChar": 38
+      },
+      "revId": "1af0f0a270b72e7f9494d047bff546576bd48087",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a3c5b689_1762d74d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/SchemaSetRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-14T18:17:54Z",
+      "side": 1,
+      "message": "so Hibernate is creating the query/uppate for this, are we happy with that?! Or could we use native query to make the actual delete go faster too?",
+      "range": {
+        "startLine": 80,
+        "startChar": 10,
+        "endLine": 81,
+        "endChar": 86
+      },
+      "revId": "1af0f0a270b72e7f9494d047bff546576bd48087",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "409c16c4_699f01e9",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-14T18:17:54Z",
+      "side": 1,
+      "message": "Should we gather all (unqiue!) anchors in a Set in the loop and then call the delete AFTER the loop?!\nWill not make a difference for the NCMP scenarios since each schemaset has its own anchor but could benefit other use cases...",
+      "range": {
+        "startLine": 118,
+        "startChar": 18,
+        "endLine": 118,
+        "endChar": 44
+      },
+      "revId": "1af0f0a270b72e7f9494d047bff546576bd48087",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a7ebd3db_9345e346",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-14T18:17:54Z",
+      "side": 1,
+      "message": "candidate for the next batch operation if we need more ?!",
+      "range": {
+        "startLine": 120,
+        "startChar": 32,
+        "endLine": 120,
+        "endChar": 78
+      },
+      "revId": "1af0f0a270b72e7f9494d047bff546576bd48087",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "efe023a9_dc7cc23d",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/utils/CpsValidator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-14T18:17:54Z",
+      "side": 1,
+      "message": "is this still need would it not be covered by the signature on line #37 too?",
+      "range": {
+        "startLine": 30,
+        "startChar": 4,
+        "endLine": 30,
+        "endChar": 55
+      },
+      "revId": "1af0f0a270b72e7f9494d047bff546576bd48087",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2ad8392a_0d0ea5b0",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-14T18:17:54Z",
+      "side": 1,
+      "message": "0 anchors and still the same expected number of invocations for all above?! Might get you to explain taht :-D",
+      "range": {
+        "startLine": 189,
+        "startChar": 32,
+        "endLine": 189,
+        "endChar": 33
+      },
+      "revId": "1af0f0a270b72e7f9494d047bff546576bd48087",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
