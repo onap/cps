@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2fbf1a7d_3b01aa4f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/ModelLoader.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-02-14T09:56:30Z",
+      "side": 1,
+      "message": "Good. It is more appropriate.",
+      "range": {
+        "startLine": 41,
+        "startChar": 36,
+        "endLine": 41,
+        "endChar": 78
+      },
+      "revId": "23aac3498ae577cfccaeb5e4f5b64bd9798c667b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ade82797_95411a82",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/ModelLoader.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-02-14T09:56:30Z",
+      "side": 1,
+      "message": "not required since we are using constructor injection",
+      "range": {
+        "startLine": 43,
+        "startChar": 4,
+        "endLine": 43,
+        "endChar": 14
+      },
+      "revId": "23aac3498ae577cfccaeb5e4f5b64bd9798c667b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ea02502e_ca5dcadc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/ModelLoader.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-02-14T09:56:30Z",
+      "side": 1,
+      "message": "same as above.",
+      "range": {
+        "startLine": 46,
+        "startChar": 4,
+        "endLine": 46,
+        "endChar": 14
+      },
+      "revId": "23aac3498ae577cfccaeb5e4f5b64bd9798c667b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
