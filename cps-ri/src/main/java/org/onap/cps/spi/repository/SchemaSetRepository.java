@@ -2,6 +2,7 @@
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Pantheon.tech
  *  Modifications Copyright (C) 2022 TechMahindra Ltd.
+ *  Modifications Copyright (C) 2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -29,6 +30,9 @@ import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.SchemaSetEntity;
 import org.onap.cps.spi.exceptions.SchemaSetNotFoundException;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -70,4 +74,14 @@ public interface SchemaSetRepository extends JpaRepository<SchemaSetEntity, Inte
     default List<SchemaSetEntity> getByDataspace(@NotNull final DataspaceEntity dataspaceEntity) {
         return findByDataspace(dataspaceEntity).stream().collect(Collectors.toList());
     }
+
+    /**
+     * Delete multiple schema sets in a given dataspace.
+     * @param dataspaceEntity dataspace entity
+     * @param schemaSetNames  schema set names
+     */
+    @Modifying
+    @Query("DELETE FROM SchemaSetEntity s WHERE s.dataspace = :dataspaceEntity AND s.name IN (:schemaSetNames)")
+    void deleteByDataspaceAndNameIn(@NotNull @Param("dataspaceEntity") final DataspaceEntity dataspaceEntity,
+                                    @NotNull @Param("schemaSetNames") final Collection<String> schemaSetNames);
 }

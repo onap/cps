@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -28,4 +28,11 @@ public interface CpsValidator {
      * @param names names of data to be validated
      */
     void validateNameCharacters(final String... names);
+
+    /**
+     * Validate characters in names within cps.
+     *
+     * @param names names of data to be validated
+     */
+    void validateNameCharacters(final Iterable<String> names);
 }

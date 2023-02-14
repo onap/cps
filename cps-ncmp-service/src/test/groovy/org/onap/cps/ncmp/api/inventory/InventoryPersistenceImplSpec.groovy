@@ -243,8 +243,17 @@ class InventoryPersistenceImplSpec extends Specification {
             objectUnderTest.deleteSchemaSetWithCascade('validSchemaSetName')
         then: 'the module service to delete schemaSet is invoked once'
             1 * mockCpsModuleService.deleteSchemaSet('NFP-Operational', 'validSchemaSetName', CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED)
-        and: 'the CM Handle ID is validated'
+        and: 'the schema set name is validated'
             1 * mockCpsValidator.validateNameCharacters('validSchemaSetName')
+    }
+
+    def 'Delete multiple schema sets with valid schema set names'() {
+        when: 'the method to delete schema sets is called with valid schema set names'
+            objectUnderTest.deleteSchemaSetsWithCascade(['validSchemaSetName1', 'validSchemaSetName2'])
+        then: 'the module service to delete schema sets is invoked once'
+            1 * mockCpsModuleService.deleteSchemaSetsWithCascade('NFP-Operational', ['validSchemaSetName1', 'validSchemaSetName2'])
+        and: 'the schema set names are validated'
+            1 * mockCpsValidator.validateNameCharacters(['validSchemaSetName1', 'validSchemaSetName2'])
     }
 
     def 'Get data node via xPath'() {

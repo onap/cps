@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2022 Nordix Foundation
+ *  Copyright (C) 2020-2023 Nordix Foundation
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
@@ -68,6 +68,14 @@ public interface CpsModulePersistenceService {
      * @param schemaSetName schema set name
      */
     void deleteSchemaSet(String dataspaceName, String schemaSetName);
+
+    /**
+     * Deletes Schema Sets.
+     *
+     * @param dataspaceName  dataspace name
+     * @param schemaSetNames schema set names
+     */
+    void deleteSchemaSets(String dataspaceName, Collection<String> schemaSetNames);
 
     /**
      * Returns YANG resources per specific dataspace / schemaSetName.

@@ -167,6 +167,14 @@ public class InventoryPersistenceImpl implements InventoryPersistence {
     }
 
     @Override
+    @Timed(value = "cps.ncmp.inventory.persistence.schemaset.delete.batch",
+        description = "Time taken to delete multiple schemaset")
+    public void deleteSchemaSetsWithCascade(final Collection<String> schemaSetNames) {
+        cpsValidator.validateNameCharacters(schemaSetNames);
+        cpsModuleService.deleteSchemaSetsWithCascade(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, schemaSetNames);
+    }
+
+    @Override
     @Timed(value = "cps.ncmp.inventory.persistence.datanode.get",
             description = "Time taken to get a data node (from ncmp dmi registry)")
     public DataNode getDataNode(final String xpath) {

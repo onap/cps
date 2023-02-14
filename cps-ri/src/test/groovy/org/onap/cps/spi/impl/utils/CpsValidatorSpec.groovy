@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -45,5 +45,23 @@ class CpsValidatorSpec extends Specification {
             scenario     | name               || expectedErrorMessage
             'position 5' | 'name with spaces' || 'name with spaces invalid token encountered at position 5'
             'position 9' | 'nameWith Space'   || 'nameWith Space invalid token encountered at position 9'
+    }
+
+    def 'Validating a list of valid names.'() {
+        given: 'a list of valid names'
+            def names = ['valid-name', 'another-valid-name']
+        when: 'a list of strings is validated'
+            objectUnderTest.validateNameCharacters(names)
+        then: 'no exception is thrown'
+            noExceptionThrown()
+    }
+
+    def 'Validating a list of names with invalid names.'() {
+        given: 'a list of names with an invalid name'
+            def names = ['valid-name', 'name with spaces']
+        when: 'a list of strings is validated'
+            objectUnderTest.validateNameCharacters(names)
+        then: 'a data validation exception is thrown'
+            thrown(DataValidationException)
     }
 }
