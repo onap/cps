@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "81c67a20_5aadae77",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-02-14T11:35:44Z",
+      "side": 1,
+      "message": "This causes docker to create a bind mount, which causes permission issues running in Linux.\nThere are 3 choices here:\n- docker volume\n- bind mount\n- tmpfs volume\nIf we want persistence, a docker volume would be the easier choice. Change to:\n  - grafana:/var/lib/grafana\n\nand add a volumes section to the end of the file:\n  volumes:\n    grafana:",
+      "range": {
+        "startLine": 158,
+        "startChar": 8,
+        "endLine": 158,
+        "endChar": 35
+      },
+      "revId": "653f459d85a5e06d5bce19873d87461ea562f7a0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "75095623_6752e824",
+        "filename": "docker-compose/prometheus.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-02-14T11:35:44Z",
+      "side": 1,
+      "message": "Because the communication is between docker containers in the same network, you can just use the container\u0027s hostname and port, i.e. cps-and-ncmp:8081",
+      "range": {
+        "startLine": 10,
+        "startChar": 19,
+        "endLine": 10,
+        "endChar": 44
+      },
+      "revId": "653f459d85a5e06d5bce19873d87461ea562f7a0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
