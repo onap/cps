@@ -25,6 +25,29 @@
     },
     {
       "key": {
+        "uuid": "cfb2a450_09b2119d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/ModelLoader.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-02-14T12:16:12Z",
+      "side": 1,
+      "message": "Also I am not sure how this code would be executed ??\nonboardingRetries is initialized with 0.\nif (onboardingRetries \u003e 10) --\u003e this will always be false.\nso the control wont go inside and the counter cant increment.",
+      "range": {
+        "startLine": 72,
+        "startChar": 12,
+        "endLine": 75,
+        "endChar": 13
+      },
+      "revId": "999dd81da2f1e07a25fa15226955d4dde2ce7020",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c3830579_8cc4db62",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/ModelLoader.java",
         "patchSetId": 4
