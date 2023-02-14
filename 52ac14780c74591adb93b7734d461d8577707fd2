@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7cd866d9_5c55cc6f",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-02-14T13:37:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f4cd285e_c546ad91",
+      "range": {
+        "startLine": 249,
+        "startChar": 0,
+        "endLine": 250,
+        "endChar": 56
+      },
+      "revId": "52ac14780c74591adb93b7734d461d8577707fd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "96f0f343_4fcb3e5e",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 13
@@ -186,6 +210,30 @@
       "revId": "52ac14780c74591adb93b7734d461d8577707fd2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b9c126eb_2319e366",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-02-14T13:37:18Z",
+      "side": 1,
+      "message": "Done. Discussed with Luke and decided to remove 1st and 3rd and block. Kept the second and block as it will be needed during testing of for CPS-1301 and removing this might affect it.",
+      "parentUuid": "4c984021_0612989c",
+      "range": {
+        "startLine": 102,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 77
+      },
+      "revId": "52ac14780c74591adb93b7734d461d8577707fd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
