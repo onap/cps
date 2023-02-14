@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2022 Nordix Foundation
+ *  Copyright (C) 2020-2023 Nordix Foundation
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2022 TechMahindra Ltd.
@@ -189,6 +189,13 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
         final var schemaSetEntity =
             schemaSetRepository.getByDataspaceAndName(dataspaceEntity, schemaSetName);
         schemaSetRepository.delete(schemaSetEntity);
+    }
+
+    @Override
+    @Transactional
+    public void deleteSchemaSets(final String dataspaceName, final Collection<String> schemaSetNames) {
+        final var dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        schemaSetRepository.deleteByDataspaceAndNameIn(dataspaceEntity, schemaSetNames);
     }
 
     @Override

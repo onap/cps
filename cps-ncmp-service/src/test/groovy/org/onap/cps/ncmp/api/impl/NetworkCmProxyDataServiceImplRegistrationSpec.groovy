@@ -249,14 +249,14 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server',
                 removedCmHandles: ['cmhandle'])
         and: '#scenario'
-            mockCpsModuleService.deleteSchemaSet(_, 'cmhandle', CASCADE_DELETE_ALLOWED) >>
+            mockCpsModuleService.deleteSchemaSetsWithCascade(_, ['cmhandle']) >>
                 { if (!schemaSetExist) { throw new SchemaSetNotFoundException("", "") } }
         when: 'registration is updated to delete cmhandle'
             def response = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'the cmHandle state is updated to "DELETING"'
             1 * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(_)
         and: 'method to delete relevant schema set is called once'
-            1 * mockInventoryPersistence.deleteSchemaSetWithCascade(_)
+            1 * mockInventoryPersistence.deleteSchemaSetsWithCascade(_)
         and: 'method to delete relevant list/list element is called once'
             1 * mockInventoryPersistence.deleteDataNodes(_)
         and: 'successful response is received'
@@ -322,7 +322,9 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             addPersistedYangModelCmHandles(['cmhandle'])
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server',
                 removedCmHandles: ['cmhandle'])
-        and: 'schema set deletion failed with unknown error'
+        and: 'schema set batch deletion failed with unknown error'
+            mockInventoryPersistence.deleteSchemaSetsWithCascade(_) >> { throw new RuntimeException('Failed') }
+        and: 'schema set single deletion failed with unknown error'
             mockInventoryPersistence.deleteSchemaSetWithCascade(_) >> { throw new RuntimeException('Failed') }
         when: 'registration is updated to delete cmhandle'
             def response = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)

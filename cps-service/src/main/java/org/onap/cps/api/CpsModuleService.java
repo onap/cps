@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2022 Nordix Foundation
+ *  Copyright (C) 2020-2023 Nordix Foundation
  *  Modifications Copyright (C) 2020-2021 Pantheon.tech
  *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
@@ -80,11 +80,19 @@ public interface CpsModuleService {
      * @param dataspaceName        dataspace name
      * @param schemaSetName        schema set name
      * @param cascadeDeleteAllowed indicates the allowance to remove associated anchors and data if exist
-     * @throws DataInUseException if cascadeDeleteAllowed is set to CASCADE_DELETE_PROHIBITED and there
-     *                           is associated anchor record exists in database
+     * @throws DataInUseException  if cascadeDeleteAllowed is set to CASCADE_DELETE_PROHIBITED and there
+     *                             is associated anchor record exists in database
      */
     void deleteSchemaSet(String dataspaceName, String schemaSetName,
                          CascadeDeleteAllowed cascadeDeleteAllowed);
+
+    /**
+     * Deletes Schema Sets with cascade.
+     *
+     * @param dataspaceName        dataspace name
+     * @param schemaSetNames       schema set names
+     */
+    void deleteSchemaSetsWithCascade(String dataspaceName, Collection<String> schemaSetNames);
 
     /**
      * Retrieve module references for the given dataspace name.

@@ -114,6 +114,13 @@ public interface InventoryPersistence {
     void deleteSchemaSetWithCascade(String schemaSetName);
 
     /**
+     * Method to delete multiple schema sets.
+     *
+     * @param schemaSetNames schema set names
+     */
+    void deleteSchemaSetsWithCascade(Collection<String> schemaSetNames);
+
+    /**
      * Get data node via xpath.
      *
      * @param xpath xpath

@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2023 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -168,6 +168,14 @@ public class InventoryPersistenceImpl implements InventoryPersistence {
         } catch (final SchemaSetNotFoundException schemaSetNotFoundException) {
             log.warn("Schema set {} does not exist or already deleted", schemaSetName);
         }
+    }
+
+    @Override
+    @Timed(value = "cps.ncmp.inventory.persistence.schemaset.delete.batch",
+        description = "Time taken to delete multiple schemaset")
+    public void deleteSchemaSetsWithCascade(final Collection<String> schemaSetNames) {
+        cpsValidator.validateNameCharacters(schemaSetNames);
+        cpsModuleService.deleteSchemaSetsWithCascade(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, schemaSetNames);
     }
 
     @Override
