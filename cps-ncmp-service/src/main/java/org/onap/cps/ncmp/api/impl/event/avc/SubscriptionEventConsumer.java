@@ -22,6 +22,8 @@ package org.onap.cps.ncmp.api.impl.event.avc;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.ncmp.api.impl.yangmodels.YangModelSubscriptionEvent;
+import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.event.model.SubscriptionEvent;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
@@ -31,6 +33,8 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @RequiredArgsConstructor
 public class SubscriptionEventConsumer {
+
+    private final InventoryPersistence inventoryPersistence;
 
     /**
      * Consume the specified event.
@@ -43,12 +47,20 @@ public class SubscriptionEventConsumer {
         if ("CM".equals(subscriptionEvent.getEvent().getDataType().getDataCategory())) {
             log.debug("Consuming event {} ...", subscriptionEvent);
             if ("CREATE".equals(subscriptionEvent.getEventType().value())) {
-                log.info("Subscription for ClientID {} with name{} ...",
-                        subscriptionEvent.getEvent().getSubscription().getClientID(),
-                        subscriptionEvent.getEvent().getSubscription().getName());
+                inventoryPersistence.saveYangModelSubscription(
+                        toYangModelSubscriptionEvent(subscriptionEvent));
+                log.info("CM subscription event having client id {} is registered",
+                        subscriptionEvent.getEvent().getSubscription().getClientID());
             }
         } else {
             log.trace("Non-CM subscription event ignored");
         }
+    }
+
+    private YangModelSubscriptionEvent toYangModelSubscriptionEvent(final SubscriptionEvent subscriptionEvent) {
+        final YangModelSubscriptionEvent yangModelSubscriptionEvent = new YangModelSubscriptionEvent();
+        yangModelSubscriptionEvent.setClientId(subscriptionEvent.getEvent().getSubscription().getClientID());
+        yangModelSubscriptionEvent.setClientName(subscriptionEvent.getEvent().getSubscription().getName());
+        return yangModelSubscriptionEvent;
     }
 }

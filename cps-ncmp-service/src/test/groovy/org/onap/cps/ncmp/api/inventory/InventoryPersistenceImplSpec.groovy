@@ -26,12 +26,13 @@ import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
+import org.onap.cps.ncmp.api.impl.yangmodels.YangModelSubscriptionEvent
 import org.onap.cps.spi.CascadeDeleteAllowed
 import org.onap.cps.spi.FetchDescendantsOption
-import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.ModuleDefinition
 import org.onap.cps.spi.model.ModuleReference
+import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.JsonObjectMapper
 import org.onap.cps.spi.utils.CpsValidator
 import spock.lang.Shared
@@ -39,7 +40,6 @@ import spock.lang.Specification
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
-import java.util.stream.Collectors
 
 import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NO_TIMESTAMP
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
@@ -228,6 +228,20 @@ class InventoryPersistenceImplSpec extends Specification {
                     (jsonDataList[0] as String).contains('cmhandle1')
                     (jsonDataList[0] as String).contains('cmhandle2')
                 }
+            }
+    }
+
+    def 'Register subscription event'() {
+        given: 'subscription event represented as Yang Model'
+            def yangModelSubscriptionEvent = new YangModelSubscriptionEvent(clientID: 'SCO-9989752', clientName: 'cm-subscription-001', isTagged: false)
+        when: 'the method to save subscription event is called'
+            objectUnderTest.saveYangModelSubscription(yangModelSubscriptionEvent)
+        then: 'the data service method to save subscription event is called once'
+            1 * mockCpsDataService.saveData('NCMP-Admin', 'AVC-subscriptions', _, null, ContentType.JSON) >> {
+                args ->
+                    {
+                        assert args[2].startsWith('{"subscription-registry":{"subscription":[{"clientID":"SCO-9989752","clientName":"cm-subscription-001","isTagged":false}]}}')
+                    }
             }
     }
 
