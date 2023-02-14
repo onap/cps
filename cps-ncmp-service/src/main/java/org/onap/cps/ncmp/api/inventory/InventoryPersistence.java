@@ -23,6 +23,7 @@ package org.onap.cps.ncmp.api.inventory;
 import java.util.Collection;
 import java.util.Map;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
+import org.onap.cps.ncmp.api.impl.yangmodels.YangModelSubscriptionEvent;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.ModuleDefinition;
@@ -52,6 +53,13 @@ public interface InventoryPersistence {
      * @param cmHandleStatePerCmHandleId contains cm handle id and updated state
      */
     void saveCmHandleStateBatch(Map<String, CompositeState> cmHandleStatePerCmHandleId);
+
+    /**
+     * Method to register subscription event.
+     *
+     * @param yangModelSubscriptionEvent subscription event represented as Yang Model
+     */
+    void saveYangModelSubscription(YangModelSubscriptionEvent yangModelSubscriptionEvent);
 
     /**
      * This method retrieves DMI service name, DMI properties and the state for a given cm handle.

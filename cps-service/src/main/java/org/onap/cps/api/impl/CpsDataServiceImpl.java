@@ -60,6 +60,7 @@ import org.springframework.stereotype.Service;
 public class CpsDataServiceImpl implements CpsDataService {
 
     private static final String ROOT_NODE_XPATH = "/";
+    private static final String AVC_SUBSCRIPTION_ANCHOR = "AVC-subscriptions";
     private static final long DEFAULT_LOCK_TIMEOUT_IN_MILLISECONDS = 300L;
 
     private final CpsDataPersistenceService cpsDataPersistenceService;
@@ -84,7 +85,9 @@ public class CpsDataServiceImpl implements CpsDataService {
         final Collection<DataNode> dataNodes =
                 buildDataNodes(dataspaceName, anchorName, ROOT_NODE_XPATH, nodeData, contentType);
         cpsDataPersistenceService.storeDataNodes(dataspaceName, anchorName, dataNodes);
-        processDataUpdatedEventAsync(dataspaceName, anchorName, ROOT_NODE_XPATH, CREATE, observedTimestamp);
+        if (!AVC_SUBSCRIPTION_ANCHOR.equalsIgnoreCase(anchorName)) {
+            processDataUpdatedEventAsync(dataspaceName, anchorName, ROOT_NODE_XPATH, CREATE, observedTimestamp);
+        }
     }
 
     @Override
