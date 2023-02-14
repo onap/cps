@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "fb530068_ce04f7f2",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-02-14T09:42:25Z",
+      "side": 1,
+      "message": "CpsPathUtil.getNormalizedXpath always expects the xPath to start with /, So it works when xPath is set to \u0027/\u0027 or \u0027/bookstore\u0027 but fails when empty string is passed as xpath, that is \"\" which is one of the positive scenarios for root node xpath. So because of this there is separate block for root xpath. If we include the same in CpsPathUtil.getNormalizedXpath then it would also need to support \"\" as xpath which would defeat its purpose to check invalid xpath eg. \u0027Invalid-Xpath\u0027.\n\nRan the test cases and CpsPathUtil.getNormalizedXpath works with xpath as \u0027/\u0027 but fails when xpatrh is set to \"\"",
+      "parentUuid": "96f0f343_4fcb3e5e",
+      "range": {
+        "startLine": 264,
+        "startChar": 0,
+        "endLine": 267,
+        "endChar": 13
+      },
+      "revId": "52ac14780c74591adb93b7734d461d8577707fd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "48144582_44453ea5",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
         "patchSetId": 13
@@ -141,6 +165,30 @@
     },
     {
       "key": {
+        "uuid": "4c984021_0612989c",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-02-14T09:42:25Z",
+      "side": 1,
+      "message": "Kept this because of the CPS-1301 ticket, I guess they need to check if get API returns the module prefix or not and so I just saw the test for V1 and thought it would be needed here as well. So removing first and third \"and\" block should be fine but I think we should keep the second one. Need inputs.",
+      "parentUuid": "7feae9f8_79ca15ca",
+      "range": {
+        "startLine": 102,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 77
+      },
+      "revId": "52ac14780c74591adb93b7734d461d8577707fd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e744e506_fec1eb4d",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
         "patchSetId": 13
@@ -161,6 +209,30 @@
       "revId": "52ac14780c74591adb93b7734d461d8577707fd2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ed65c79_e7891979",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-02-14T09:42:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e744e506_fec1eb4d",
+      "range": {
+        "startLine": 277,
+        "startChar": 19,
+        "endLine": 277,
+        "endChar": 28
+      },
+      "revId": "52ac14780c74591adb93b7734d461d8577707fd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {

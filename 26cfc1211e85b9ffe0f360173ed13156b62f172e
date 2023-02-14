@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "10b9916f_e0a4d883",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-02-14T09:42:25Z",
+      "side": 1,
+      "message": "I tried with just xPath and in doing so it would just return an empty prefix. Here is the response returned\n[{\n\t\t\":interface-A\": {                //missing prefix\n\t\t\t\"domain\": \"false\",\n\t\t\t\"host-name\": \"ABC\",\n\t\t\t\"interface\": [{\n\t\t\t\t\"name\": \"Interface-A\",\n\t\t\t\t\"address\": \"10.10.10.1\",\n\t\t\t\t\"enabled\": false,\n\t\t\t\t\"subnet-mask\": \"255.255.255.100\"\n\t\t\t}]\n\t\t}\n\t}\n\n]",
+      "parentUuid": "38aa035a_b3339d22",
+      "range": {
+        "startLine": 120,
+        "startChar": 85,
+        "endLine": 120,
+        "endChar": 105
+      },
+      "revId": "26cfc1211e85b9ffe0f360173ed13156b62f172e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3b2ee101_7b1e2969",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
         "patchSetId": 14
@@ -45,6 +69,30 @@
       "revId": "26cfc1211e85b9ffe0f360173ed13156b62f172e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8e4329ff_280aa4bd",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-02-14T09:42:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3b2ee101_7b1e2969",
+      "range": {
+        "startLine": 260,
+        "startChar": 40,
+        "endLine": 260,
+        "endChar": 44
+      },
+      "revId": "26cfc1211e85b9ffe0f360173ed13156b62f172e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
