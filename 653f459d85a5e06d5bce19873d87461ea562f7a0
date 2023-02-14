@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "7d123abd_e6e79b42",
+        "filename": ".gitignore",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-02-14T12:37:15Z",
+      "side": 1,
+      "message": "Not needed if using a docker volume, see comment in docker-compose.yml",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 24
+      },
+      "revId": "653f459d85a5e06d5bce19873d87461ea562f7a0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "81c67a20_5aadae77",
         "filename": "docker-compose/docker-compose.yml",
         "patchSetId": 2
