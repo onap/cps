@@ -17,7 +17,6 @@
       "datastore": "passthrough-operational",
       "datastore-xpath-filter": "//_3gpp-nr-nrm-gnbdufunction:GNBDUFunction/ ",
       "_3gpp-nr-nrm-nrcelldu": "NRCellDU"
-
     }
   }
 }

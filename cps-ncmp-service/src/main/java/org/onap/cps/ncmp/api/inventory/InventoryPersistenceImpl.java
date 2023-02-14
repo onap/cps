@@ -41,6 +41,7 @@ import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
+import org.onap.cps.ncmp.api.impl.yangmodels.YangModelSubscriptionEvent;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.spi.exceptions.SchemaSetNotFoundException;
@@ -48,6 +49,7 @@ import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.ModuleDefinition;
 import org.onap.cps.spi.model.ModuleReference;
 import org.onap.cps.spi.utils.CpsValidator;
+import org.onap.cps.utils.ContentType;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.stereotype.Component;
 
@@ -57,19 +59,13 @@ import org.springframework.stereotype.Component;
 public class InventoryPersistenceImpl implements InventoryPersistence {
 
     private static final String NCMP_DATASPACE_NAME = "NCMP-Admin";
-
     private static final String NCMP_DMI_REGISTRY_ANCHOR = "ncmp-dmi-registry";
-
     private static final String NCMP_DMI_REGISTRY_PARENT = "/dmi-registry";
-
+    private static final String AVC_SUBSCRIPTION_ANCHOR = "AVC-subscriptions";
     private final JsonObjectMapper jsonObjectMapper;
-
     private final CpsDataService cpsDataService;
-
     private final CpsModuleService cpsModuleService;
-
     private final CpsAdminService cpsAdminService;
-
     private final CpsValidator cpsValidator;
 
     @Override
@@ -97,6 +93,13 @@ public class InventoryPersistenceImpl implements InventoryPersistence {
                 createStateJsonData(jsonObjectMapper.asJsonString(compositeState))));
         cpsDataService.updateDataNodesAndDescendants(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
                 cmHandlesJsonDataMap, OffsetDateTime.now());
+    }
+
+    @Override
+    public void saveYangModelSubscription(final YangModelSubscriptionEvent yangModelSubscriptionEvent) {
+        final String subscriptionRegistryJsonData = createSubscriptionEventJsonData(yangModelSubscriptionEvent);
+        cpsDataService.saveData(NCMP_DATASPACE_NAME, AVC_SUBSCRIPTION_ANCHOR,
+                subscriptionRegistryJsonData, NO_TIMESTAMP, ContentType.JSON);
     }
 
     @Override
@@ -246,5 +249,10 @@ public class InventoryPersistenceImpl implements InventoryPersistence {
 
     private static String createCmHandleJsonData(final String cmHandleId) {
         return "{\"cm-handles\":[" + cmHandleId + "]}";
+    }
+
+    private String createSubscriptionEventJsonData(final YangModelSubscriptionEvent yangModelSubscriptionEvent) {
+        return "{\"subscription-registry\":{\"subscription\":["
+                + jsonObjectMapper.asJsonString(yangModelSubscriptionEvent) + "]}}";
     }
 }

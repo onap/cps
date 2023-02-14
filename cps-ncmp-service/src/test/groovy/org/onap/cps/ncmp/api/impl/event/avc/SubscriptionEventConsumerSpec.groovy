@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (c) 2022 Nordix Foundation.
+ * Copyright (c) 2022-2023 Nordix Foundation.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -21,25 +21,45 @@
 package org.onap.cps.ncmp.api.impl.event.avc
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import org.onap.cps.api.CpsAdminService
+import org.onap.cps.api.CpsDataService
+import org.onap.cps.api.CpsModuleService
+import org.onap.cps.ncmp.api.inventory.InventoryPersistenceImpl
 import org.onap.cps.ncmp.api.kafka.MessagingBaseSpec
 import org.onap.cps.ncmp.event.model.SubscriptionEvent
 import org.onap.cps.ncmp.utils.TestUtils
+import org.onap.cps.spi.utils.CpsValidator
 import org.onap.cps.utils.JsonObjectMapper
-import org.springframework.beans.factory.annotation.Autowired
+import org.spockframework.spring.SpringBean
 import org.springframework.boot.test.context.SpringBootTest
 
-@SpringBootTest(classes = [SubscriptionEventConsumer, ObjectMapper, JsonObjectMapper])
+@SpringBootTest(classes = [InventoryPersistenceImpl, CpsDataService, CpsModuleService, CpsAdminService,
+        SubscriptionEventConsumer, ObjectMapper, JsonObjectMapper])
 class SubscriptionEventConsumerSpec extends MessagingBaseSpec {
 
-    def objectUnderTest = new SubscriptionEventConsumer()
+    @SpringBean
+    CpsValidator stubbedCpsValidator = Stub()
 
-    @Autowired
-    JsonObjectMapper jsonObjectMapper
+    @SpringBean
+    CpsAdminService stubbedCpsAdminService = Stub()
+
+    @SpringBean
+    CpsModuleService stubbedCpsModuleService = Stub()
+
+    @SpringBean
+    CpsDataService stubbedCpsDataService = Stub()
+
+    @SpringBean
+    InventoryPersistenceImpl stubbedInventoryPersistenceImpl = Stub()
+
+    def spiedJsonObjectMapper = Spy(new JsonObjectMapper(new ObjectMapper()))
+
+    def objectUnderTest = new SubscriptionEventConsumer(stubbedInventoryPersistenceImpl)
 
     def 'Consume valid message'() {
         given: 'an event'
             def jsonData = TestUtils.getResourceFileContent('avcSubscriptionCreationEvent.json')
-            def testEventSent = jsonObjectMapper.convertJsonString(jsonData, SubscriptionEvent.class)
+            def testEventSent = spiedJsonObjectMapper.convertJsonString(jsonData, SubscriptionEvent.class)
         and: 'dataCategory is set'
             testEventSent.getEvent().getDataType().setDataCategory(dataCategory)
         when: 'the valid event is consumed'
