@@ -68,6 +68,30 @@
       "revId": "653f459d85a5e06d5bce19873d87461ea562f7a0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6b37fc02_ed305205",
+        "filename": "docker-compose/prometheus.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-02-14T13:47:22Z",
+      "side": 1,
+      "message": "In my opinion we should stick with 8887 as trying to communicate from other docker container. Agree with hostname.\n\ncps-and-ncmp:8887",
+      "parentUuid": "75095623_6752e824",
+      "range": {
+        "startLine": 10,
+        "startChar": 19,
+        "endLine": 10,
+        "endChar": 44
+      },
+      "revId": "653f459d85a5e06d5bce19873d87461ea562f7a0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
