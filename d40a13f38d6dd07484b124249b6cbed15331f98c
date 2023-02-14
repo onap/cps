@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "90102a88_8989e336",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-14T18:04:51Z",
+      "side": 1,
+      "message": "call the NEW method and use something like. iterator.next() to get the first one, you might need to check the collection size first and return \u0027null\u0027 if it is empty to be compatible with the old behavior...",
+      "range": {
+        "startLine": 104,
+        "startChar": 49,
+        "endLine": 104,
+        "endChar": 60
+      },
+      "revId": "d40a13f38d6dd07484b124249b6cbed15331f98c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "49207880_d71557b0",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-14T18:04:51Z",
+      "side": 1,
+      "message": "remove the method on line 252 and rename this one to be just getDataNodes  (with s at the end!)",
+      "range": {
+        "startLine": 260,
+        "startChar": 32,
+        "endLine": 260,
+        "endChar": 52
+      },
+      "revId": "d40a13f38d6dd07484b124249b6cbed15331f98c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "25f21952_6d3a1a9d",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 16
