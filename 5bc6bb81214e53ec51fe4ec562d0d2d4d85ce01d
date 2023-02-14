@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "f52cadba_c6bf81e9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/YangDataConverter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-14T14:58:27Z",
+      "side": 1,
+      "message": "agreed revert is needed and since this \u0027builder\u0027 is a simple dataholder and as you have measured 100,000 of them can be initiated add only a total cost of about 30ms",
+      "parentUuid": "f850ff5b_3074a903",
+      "range": {
+        "startLine": 45,
+        "startChar": 4,
+        "endLine": 45,
+        "endChar": 99
+      },
+      "revId": "5bc6bb81214e53ec51fe4ec562d0d2d4d85ce01d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5d9408dc_bea12d9b",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistenceImpl.java",
         "patchSetId": 1
@@ -187,6 +211,30 @@
       "revId": "5bc6bb81214e53ec51fe4ec562d0d2d4d85ce01d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "749749e9_60b39bd5",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/YangDataConverterSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-14T14:58:27Z",
+      "side": 1,
+      "message": "understand now it was needed for coverage",
+      "parentUuid": "88b2e95c_23b41fc3",
+      "range": {
+        "startLine": 28,
+        "startChar": 56,
+        "endLine": 28,
+        "endChar": 62
+      },
+      "revId": "5bc6bb81214e53ec51fe4ec562d0d2d4d85ce01d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
