@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e458ac57_319e8041",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/ModelLoader.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-02-14T12:09:48Z",
+      "side": 1,
+      "message": "The class name might be more specific other than that much generic. Since the overall class tries to onboard AVC subscriptions.",
+      "range": {
+        "startLine": 41,
+        "startChar": 13,
+        "endLine": 41,
+        "endChar": 25
+      },
+      "revId": "999dd81da2f1e07a25fa15226955d4dde2ce7020",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c3830579_8cc4db62",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/ModelLoader.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-02-14T12:09:48Z",
+      "side": 1,
+      "message": "I think, we can create the dataspace if it does not exist even though this feature does not available in bash script. Then, this retry block would be unnecessary.",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 85,
+        "endChar": 9
+      },
+      "revId": "999dd81da2f1e07a25fa15226955d4dde2ce7020",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "24026138_0299ef9f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/ModelLoader.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-02-14T12:09:48Z",
+      "side": 1,
+      "message": "The try-with-resources\u0027 catch block might be more specific like:\n        } catch (FileNotFoundException e) {\n            //better debug\n        } catch (IOException e) {\n            //better debug\n        }",
+      "range": {
+        "startLine": 120,
+        "startChar": 10,
+        "endLine": 123,
+        "endChar": 9
+      },
+      "revId": "999dd81da2f1e07a25fa15226955d4dde2ce7020",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "51f9aec6_00ce9d75",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/ModelLoader.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-02-14T12:09:48Z",
+      "side": 1,
+      "message": "Returning an empty string will result in no-data model content persisted in the database having a file name related to it might not be a good approach. If the file content could not be read, then better to stop operation.",
+      "range": {
+        "startLine": 124,
+        "startChar": 8,
+        "endLine": 124,
+        "endChar": 18
+      },
+      "revId": "999dd81da2f1e07a25fa15226955d4dde2ce7020",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
