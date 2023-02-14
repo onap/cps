@@ -256,6 +256,15 @@ class InventoryPersistenceImplSpec extends Specification {
             1 * mockCpsValidator.validateNameCharacters('validSchemaSetName')
     }
 
+    def 'Delete schema sets with valid schema set names'() {
+        when: 'the method to delete schema set is called with valid schema set name'
+            objectUnderTest.deleteSchemaSetsWithCascade(['validSchemaSetName1', 'validSchemaSetName2'])
+        then: 'the module service to delete schemaSet is invoked once'
+            1 * mockCpsModuleService.deleteSchemaSetsWithCascade('NFP-Operational', ['validSchemaSetName1', 'validSchemaSetName2'])
+        and: 'the CM Handle ID is validated'
+            1 * mockCpsValidator.validateNameCharacters(['validSchemaSetName1', 'validSchemaSetName2'])
+    }
+
     def 'Get data node via xPath'() {
         when: 'the method to get data nodes is called'
             objectUnderTest.getDataNode('sample xPath')

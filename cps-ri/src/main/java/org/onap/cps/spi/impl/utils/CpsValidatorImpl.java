@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -21,6 +21,7 @@
 package org.onap.cps.spi.impl.utils;
 
 import com.google.common.collect.Lists;
+import java.util.Arrays;
 import java.util.Collection;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -37,13 +38,18 @@ public class CpsValidatorImpl implements CpsValidator {
 
     @Override
     public void validateNameCharacters(final String... names) {
+        validateNameCharacters(Arrays.asList(names));
+    }
+
+    @Override
+    public void validateNameCharacters(final Iterable<String> names) {
         for (final String name : names) {
             final Collection<Character> charactersOfName = Lists.charactersOf(name);
             for (final char unsupportedCharacter : UNSUPPORTED_NAME_CHARACTERS) {
                 if (charactersOfName.contains(unsupportedCharacter)) {
                     throw new DataValidationException("Name or ID Validation Error.",
-                            name + " invalid token encountered at position "
-                                    + (name.indexOf(unsupportedCharacter) + 1));
+                        name + " invalid token encountered at position "
+                            + (name.indexOf(unsupportedCharacter) + 1));
                 }
             }
         }

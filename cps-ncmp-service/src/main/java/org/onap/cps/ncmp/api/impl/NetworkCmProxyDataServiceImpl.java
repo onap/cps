@@ -392,7 +392,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     }
 
     private void batchDeleteCmHandlesFromDbAndModuleSyncMap(final Collection<String> tobeRemovedCmHandles) {
-        tobeRemovedCmHandles.forEach(inventoryPersistence::deleteSchemaSetWithCascade);
+        inventoryPersistence.deleteSchemaSetsWithCascade(tobeRemovedCmHandles);
         inventoryPersistence.deleteDataNodes(mapCmHandleIdsToXpaths(tobeRemovedCmHandles));
         tobeRemovedCmHandles.forEach(this::removeDeletedCmHandleFromModuleSyncMap);
     }

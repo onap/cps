@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Copyright (C) 2021-2023 Nordix Foundation
  *  Modifications Copyright (C) 2021-2022 Bell Canada.
  *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
@@ -223,7 +223,19 @@ class CpsModulePersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase 
         when: 'a schema set is deleted with cascade-prohibited option'
             objectUnderTest.deleteSchemaSet(DATASPACE_NAME, SCHEMA_SET_NAME_NO_ANCHORS)
         then: 'the schema set has been deleted'
-            schemaSetRepository.findByDataspaceAndName(dataspaceEntity, SCHEMA_SET_NAME_NO_ANCHORS).isPresent() == false
+            !schemaSetRepository.findByDataspaceAndName(dataspaceEntity, SCHEMA_SET_NAME_NO_ANCHORS).isPresent()
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Delete schema sets'() {
+        given: 'some schema sets exist'
+            schemaSetRepository.findByDataspaceAndName(dataspaceEntity, 'SCHEMA-SET-001').isPresent()
+            schemaSetRepository.findByDataspaceAndName(dataspaceEntity, 'SCHEMA-SET-002').isPresent()
+        when: 'schema sets are deleted'
+            objectUnderTest.deleteSchemaSets(DATASPACE_NAME, ['SCHEMA-SET-001', 'SCHEMA-SET-002'])
+        then: 'the schema sets have been deleted'
+            !schemaSetRepository.findByDataspaceAndName(dataspaceEntity, 'SCHEMA-SET-001').isPresent()
+            !schemaSetRepository.findByDataspaceAndName(dataspaceEntity, 'SCHEMA-SET-002').isPresent()
     }
 
     @Sql([CLEAR_DATA, SET_DATA])

@@ -167,6 +167,28 @@ class CpsModuleServiceImplSpec extends Specification {
         return anchors
     }
 
+    def 'Delete multiple schema-sets when cascade is allowed.'() {
+        given: '#numberOfAnchors anchors are associated with each schemaset'
+            mockCpsAdminService.getAnchors('my-dataspace', 'my-schemaset1') >> createAnchors(numberOfAnchors)
+            mockCpsAdminService.getAnchors('my-dataspace', 'my-schemaset2') >> createAnchors(numberOfAnchors)
+        when: 'schema set deletion is requested with cascade allowed'
+            objectUnderTest.deleteSchemaSetsWithCascade('my-dataspace', ['my-schemaset1', 'my-schemaset2'])
+        then: 'anchor deletion is called 2 * #numberOfAnchors times'
+            (2 * numberOfAnchors) * mockCpsAdminService.deleteAnchor('my-dataspace', _)
+        and: 'persistence service method is invoked with same parameters'
+            mockCpsModulePersistenceService.deleteSchemaSets('my-dataspace', _)
+        and: 'schema sets will be removed from the cache'
+            2 * mockYangTextSchemaSourceSetCache.removeFromCache('my-dataspace', _)
+        and: 'orphan yang resources are deleted'
+            1 * mockCpsModulePersistenceService.deleteUnusedYangResourceModules()
+        and: 'the CpsValidator is called on the dataspaceName'
+            1 * mockCpsValidator.validateNameCharacters('my-dataspace')
+        and: 'the CpsValidator is called on the schemaSetNames'
+            1 * mockCpsValidator.validateNameCharacters(_)
+        where: 'following parameters are used'
+            numberOfAnchors << [0, 3]
+    }
+
     def 'Get all yang resources module references.'() {
         given: 'an already present module reference'
             def moduleReferences = [new ModuleReference('some module name','some revision name')]

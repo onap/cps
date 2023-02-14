@@ -2,6 +2,7 @@
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Pantheon.tech
  *  Modifications Copyright (C) 2022 TechMahindra Ltd.
+ *  Modifications Copyright (C) 2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -70,4 +71,12 @@ public interface SchemaSetRepository extends JpaRepository<SchemaSetEntity, Inte
     default List<SchemaSetEntity> getByDataspace(@NotNull final DataspaceEntity dataspaceEntity) {
         return findByDataspace(dataspaceEntity).stream().collect(Collectors.toList());
     }
+
+    /**
+     * Delete multiple schema sets in a given dataspace.
+     * @param dataspaceEntity dataspace entity
+     * @param schemaSetNames  schema set names
+     */
+    void deleteByDataspaceAndNameIn(@NotNull final DataspaceEntity dataspaceEntity,
+                                    @NotNull final Collection<String> schemaSetNames);
 }
