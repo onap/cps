@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "25f21952_6d3a1a9d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-14T17:50:09Z",
+      "side": 1,
+      "message": "see reply on patchset #13",
+      "range": {
+        "startLine": 264,
+        "startChar": 7,
+        "endLine": 267,
+        "endChar": 16
+      },
+      "revId": "d40a13f38d6dd07484b124249b6cbed15331f98c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb25b3f9_6d24b185",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 16
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-14T17:50:09Z",
+      "side": 1,
+      "message": "NB: remove this part",
+      "range": {
+        "startLine": 98,
+        "startChar": 15,
+        "endLine": 98,
+        "endChar": 30
+      },
+      "revId": "d40a13f38d6dd07484b124249b6cbed15331f98c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb56e71b_de13687c",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 16
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-14T17:50:09Z",
+      "side": 1,
+      "message": "assert on result OR something else is not really a good solution.  You need something more complex here but probably easier (more readable) to leave it as is ie. teh lines 324-327 below...",
+      "range": {
+        "startLine": 322,
+        "startChar": 0,
+        "endLine": 323,
+        "endChar": 91
+      },
+      "revId": "d40a13f38d6dd07484b124249b6cbed15331f98c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e42aba3c_60b7866a",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 16
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-14T17:50:09Z",
+      "side": 1,
+      "message": "not sure why you are adding this to the test-title/scenario\nI think it as all to do with removing the odl method, once you do that and I think it can be done NOW you dont have to add those awkward descriptions...",
+      "range": {
+        "startLine": 352,
+        "startChar": 33,
+        "endLine": 352,
+        "endChar": 64
+      },
+      "revId": "d40a13f38d6dd07484b124249b6cbed15331f98c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b1fbea0c_cb2d0b19",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 16
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-14T17:50:09Z",
+      "side": 1,
+      "message": "not sure why you are adding this to the test-title/scenario",
+      "range": {
+        "startLine": 390,
+        "startChar": 33,
+        "endLine": 390,
+        "endChar": 56
+      },
+      "revId": "d40a13f38d6dd07484b124249b6cbed15331f98c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7875fd45_07a6477b",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-14T17:50:09Z",
+      "side": 1,
+      "message": "why not remove it now?!",
+      "range": {
+        "startLine": 111,
+        "startChar": 13,
+        "endLine": 111,
+        "endChar": 24
+      },
+      "revId": "d40a13f38d6dd07484b124249b6cbed15331f98c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4ba1a3ad_b317ecf5",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-14T17:50:09Z",
+      "side": 1,
+      "message": "Do not add such info to javadoc",
+      "range": {
+        "startLine": 130,
+        "startChar": 90,
+        "endLine": 131,
+        "endChar": 65
+      },
+      "revId": "d40a13f38d6dd07484b124249b6cbed15331f98c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
