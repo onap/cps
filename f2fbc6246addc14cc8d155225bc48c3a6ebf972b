@@ -2,6 +2,98 @@
   "comments": [
     {
       "key": {
+        "uuid": "4f1a05e8_5f5a2017",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-02-15T10:09:35Z",
+      "side": 1,
+      "message": "This will throw an exception if any name is invalid. Is this desired behaviour on a batch operation?",
+      "range": {
+        "startLine": 177,
+        "startChar": 8,
+        "endLine": 177,
+        "endChar": 60
+      },
+      "revId": "f2fbc6246addc14cc8d155225bc48c3a6ebf972b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a274393f_403ced22",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-02-15T10:09:35Z",
+      "side": 1,
+      "message": "use plural language",
+      "range": {
+        "startLine": 260,
+        "startChar": 36,
+        "endLine": 260,
+        "endChar": 46
+      },
+      "revId": "f2fbc6246addc14cc8d155225bc48c3a6ebf972b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eadbf7a3_9d4d50fd",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/utils/CpsValidatorSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-02-15T10:09:35Z",
+      "side": 1,
+      "message": "a list of valid names",
+      "range": {
+        "startLine": 51,
+        "startChar": 15,
+        "endLine": 51,
+        "endChar": 32
+      },
+      "revId": "f2fbc6246addc14cc8d155225bc48c3a6ebf972b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d07ce6f3_d0474f1f",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/utils/CpsValidatorSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-02-15T10:09:35Z",
+      "side": 1,
+      "message": "a list of names with an invalid name",
+      "range": {
+        "startLine": 60,
+        "startChar": 15,
+        "endLine": 60,
+        "endChar": 32
+      },
+      "revId": "f2fbc6246addc14cc8d155225bc48c3a6ebf972b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d0ff19c0_205e189c",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
         "patchSetId": 2
