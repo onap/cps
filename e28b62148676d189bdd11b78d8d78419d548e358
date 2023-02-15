@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a1fd10bd_260237f9",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-02-15T14:31:52Z",
+      "side": 1,
+      "message": "This loop will be optimized in a different commit.",
+      "range": {
+        "startLine": 117,
+        "startChar": 0,
+        "endLine": 122,
+        "endChar": 9
+      },
+      "revId": "e28b62148676d189bdd11b78d8d78419d548e358",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
