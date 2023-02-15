@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "105261e6_5bd4d95e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/ModelLoader.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-02-15T15:06:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cfb2a450_09b2119d",
+      "range": {
+        "startLine": 72,
+        "startChar": 12,
+        "endLine": 75,
+        "endChar": 13
+      },
+      "revId": "999dd81da2f1e07a25fa15226955d4dde2ce7020",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c3830579_8cc4db62",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/ModelLoader.java",
         "patchSetId": 4
@@ -59,6 +83,30 @@
       "writtenOn": "2023-02-14T12:09:48Z",
       "side": 1,
       "message": "I think, we can create the dataspace if it does not exist even though this feature does not available in bash script. Then, this retry block would be unnecessary.",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 85,
+        "endChar": 9
+      },
+      "revId": "999dd81da2f1e07a25fa15226955d4dde2ce7020",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "59c556aa_548f3bf1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/ModelLoader.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-02-15T15:06:57Z",
+      "side": 1,
+      "message": "NCMP dataspace is part of the set up and is expected to be there for NCMP , this class\u0027s responsibility is to only load the model in NCMP so if NCMP dataspace is not there then not to push to create the dataspace",
+      "parentUuid": "c3830579_8cc4db62",
       "range": {
         "startLine": 71,
         "startChar": 0,

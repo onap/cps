@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "632171bf_60d50abd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/ModelLoader.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-02-15T15:06:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2fbf1a7d_3b01aa4f",
+      "range": {
+        "startLine": 41,
+        "startChar": 36,
+        "endLine": 41,
+        "endChar": 78
+      },
+      "revId": "23aac3498ae577cfccaeb5e4f5b64bd9798c667b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ade82797_95411a82",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/ModelLoader.java",
         "patchSetId": 3
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "75426811_f63ba205",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/ModelLoader.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-02-15T15:06:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ade82797_95411a82",
+      "range": {
+        "startLine": 43,
+        "startChar": 4,
+        "endLine": 43,
+        "endChar": 14
+      },
+      "revId": "23aac3498ae577cfccaeb5e4f5b64bd9798c667b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ea02502e_ca5dcadc",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/ModelLoader.java",
         "patchSetId": 3
@@ -68,6 +116,30 @@
       "revId": "23aac3498ae577cfccaeb5e4f5b64bd9798c667b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a08673d5_21a17c1d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/ModelLoader.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-02-15T15:06:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ea02502e_ca5dcadc",
+      "range": {
+        "startLine": 46,
+        "startChar": 4,
+        "endLine": 46,
+        "endChar": 14
+      },
+      "revId": "23aac3498ae577cfccaeb5e4f5b64bd9798c667b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
