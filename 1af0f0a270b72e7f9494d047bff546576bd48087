@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "1be0e04c_714b2011",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/SchemaSetRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-02-15T14:28:16Z",
+      "side": 1,
+      "message": "For now, I\u0027ve added a JPQL query here that gives another 17% overall improvement.",
+      "parentUuid": "990421b5_511ab6d7",
+      "range": {
+        "startLine": 80,
+        "startChar": 10,
+        "endLine": 81,
+        "endChar": 86
+      },
+      "revId": "1af0f0a270b72e7f9494d047bff546576bd48087",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "409c16c4_699f01e9",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
         "patchSetId": 1
