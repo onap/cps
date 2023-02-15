@@ -144,6 +144,30 @@
     },
     {
       "key": {
+        "uuid": "c4c145e7_3a64ecdb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/yangmodels/YangModelSubscriptionEvent.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-02-15T12:06:13Z",
+      "side": 1,
+      "message": "And as per the Spike it is clientID , but ideally it should have been clientId\nReference : \nhttps://wiki.onap.org/display/DW/CPS-1065+Spike%3A+CM+data+notifications+from+NCMP+to+applications+including+subscriptions#CPS1065Spike:CMdatanotificationsfromNCMPtoapplicationsincludingsubscriptions-UpdateSubscription",
+      "parentUuid": "74ef1bc5_5ead85a6",
+      "range": {
+        "startLine": 44,
+        "startChar": 25,
+        "endLine": 44,
+        "endChar": 27
+      },
+      "revId": "bb74312a27c5d92faa53d315954b68a2ac6f969e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ba848cb1_19642a03",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
         "patchSetId": 1
