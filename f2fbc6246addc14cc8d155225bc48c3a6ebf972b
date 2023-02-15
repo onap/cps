@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "8b7bb0a5_da17005e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-02-15T18:32:33Z",
+      "side": 1,
+      "message": "There is a separate ticket to investigate changes in exception handling for batch de-registration: https://jira.onap.org/browse/CPS-1481",
+      "parentUuid": "56bcda26_740a1ccd",
+      "range": {
+        "startLine": 177,
+        "startChar": 8,
+        "endLine": 177,
+        "endChar": 60
+      },
+      "revId": "f2fbc6246addc14cc8d155225bc48c3a6ebf972b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a274393f_403ced22",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/InventoryPersistenceImplSpec.groovy",
         "patchSetId": 2
