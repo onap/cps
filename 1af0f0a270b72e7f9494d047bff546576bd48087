@@ -117,6 +117,30 @@
     },
     {
       "key": {
+        "uuid": "05e50b1a_98dc17c8",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/utils/CpsValidator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-15T08:39:58Z",
+      "side": 1,
+      "message": "no is different",
+      "parentUuid": "efe023a9_dc7cc23d",
+      "range": {
+        "startLine": 30,
+        "startChar": 4,
+        "endLine": 30,
+        "endChar": 55
+      },
+      "revId": "1af0f0a270b72e7f9494d047bff546576bd48087",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2ad8392a_0d0ea5b0",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
         "patchSetId": 1
@@ -128,6 +152,30 @@
       "writtenOn": "2023-02-14T18:17:54Z",
       "side": 1,
       "message": "0 anchors and still the same expected number of invocations for all above?! Might get you to explain taht :-D",
+      "range": {
+        "startLine": 189,
+        "startChar": 32,
+        "endLine": 189,
+        "endChar": 33
+      },
+      "revId": "1af0f0a270b72e7f9494d047bff546576bd48087",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c77be475_e1e4a5e7",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-15T08:39:58Z",
+      "side": 1,
+      "message": "let\u0027s see what happens when we have single query, ok for now",
+      "parentUuid": "2ad8392a_0d0ea5b0",
       "range": {
         "startLine": 189,
         "startChar": 32,
