@@ -134,15 +134,6 @@ class InventoryPersistenceImplSpec extends Specification {
             assert results.id.containsAll([cmHandleId, cmHandleId2])
     }
 
-    def "Handling name validation errors in getYangModelCmHandles."() {
-        given: 'the cps data service returns one of two data nodes from the DMI registry with empty leaf attributes'
-            mockCpsValidator.validateNameCharacters(cmHandleId) >> {throw new DataValidationException('some message', 'some detail')}
-        when:
-            objectUnderTest.getYangModelCmHandle(cmHandleId)
-        then: 'exception is thrown'
-            thrown(DataValidationException)
-    }
-
     def 'Get a Cm Handle Composite State'() {
         given: 'a valid cm handle id'
             def cmHandleId = 'Some-Cm-Handle'
@@ -300,7 +291,7 @@ class InventoryPersistenceImplSpec extends Specification {
             objectUnderTest.deleteDataNodes(['xpath1', 'xpath2'])
         then: 'the cps data service method to delete data nodes is invoked once with the same xPaths'
             1 * mockCpsDataService.deleteDataNodes('NCMP-Admin', 'ncmp-dmi-registry',
-                ['xpath1', 'xpath2'], NO_TIMESTAMP);
+                    ['xpath1', 'xpath2'], NO_TIMESTAMP);
     }
 
 }

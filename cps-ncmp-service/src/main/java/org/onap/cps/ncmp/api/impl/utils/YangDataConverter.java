@@ -91,40 +91,6 @@ public class YangDataConverter {
     }
 
     /**
-     * This method convert cm handle data node to yang model cm handle without using NcmpServiceCmHandle.
-     *
-     * @param cmHandleDataNode the datanode of the cm handle
-     * @param cmHandleId       the id of the cm handle
-     * @return yang model cm handle
-     */
-    public static YangModelCmHandle convertCmHandleToYangModelWithoutNcmpServiceCmHandle(
-            final DataNode cmHandleDataNode,
-            final String cmHandleId) {
-        final Map<String, String> dmiProperties = new LinkedHashMap<>();
-        final Map<String, String> publicProperties = new LinkedHashMap<>();
-        final CompositeStateBuilder compositeStateBuilder = new CompositeStateBuilder();
-        CompositeState compositeState = compositeStateBuilder.build();
-        for (final DataNode childDataNode : cmHandleDataNode.getChildDataNodes()) {
-            if (childDataNode.getXpath().contains("/additional-properties[@name=")) {
-                addProperty(childDataNode, dmiProperties);
-            } else if (childDataNode.getXpath().contains("/public-properties[@name=")) {
-                addProperty(childDataNode, publicProperties);
-            } else if (childDataNode.getXpath().endsWith("/state")) {
-                compositeState = compositeStateBuilder.fromDataNode(childDataNode).build();
-            }
-        }
-        return YangModelCmHandle.toYangModelCmHandleWithoutNcmpServiceHandle(
-                (String) cmHandleDataNode.getLeaves().get("dmi-service-name"),
-                (String) cmHandleDataNode.getLeaves().get("dmi-data-service-name"),
-                (String) cmHandleDataNode.getLeaves().get("dmi-model-service-name"),
-                cmHandleId,
-                dmiProperties,
-                publicProperties,
-                compositeState
-        );
-    }
-
-    /**
      * This method convert cm handle data nodes to yang model cm handles.
      * @param cmHandleDataNodes the datanode of the cm handle
      * @return yang model cm handles
@@ -134,21 +100,15 @@ public class YangDataConverter {
         final Collection<YangModelCmHandle> yangModelCmHandles = new ArrayList<>(cmHandleDataNodes.size());
         cmHandleDataNodes.forEach(dataNode -> {
             final String cmHandleId = extractCmHandleIdFromXpath(dataNode.getXpath());
-            if (cmHandleId != null) {
-                yangModelCmHandles.add(convertCmHandleToYangModelWithoutNcmpServiceCmHandle(dataNode, cmHandleId));
-            }
+            yangModelCmHandles.add(convertCmHandleToYangModel(dataNode, cmHandleId));
         });
         return yangModelCmHandles;
     }
 
     private static String extractCmHandleIdFromXpath(final String xpath) {
         final Matcher matcher = cmHandleIdInXpathPattern.matcher(xpath);
-        if (matcher.find()) {
-            return matcher.group(1);
-        } else {
-            log.error("Unexpected xpath {}", xpath);
-        }
-        return null;
+        matcher.find();
+        return matcher.group(1);
     }
 
 

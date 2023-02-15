@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2023 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -33,7 +33,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsAdminService;
@@ -62,8 +61,6 @@ public class InventoryPersistenceImpl implements InventoryPersistence {
 
     private static final String NCMP_DMI_REGISTRY_PARENT = "/dmi-registry";
 
-    private static final String CM_HANDLE_XPATH_TEMPLATE = "/dmi-registry/cm-handles[@id='" + "%s" + "']";
-
     private final JsonObjectMapper jsonObjectMapper;
 
     private final CpsDataService cpsDataService;
@@ -77,7 +74,7 @@ public class InventoryPersistenceImpl implements InventoryPersistence {
     @Override
     public CompositeState getCmHandleState(final String cmHandleId) {
         final DataNode stateAsDataNode = cpsDataService.getDataNode(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                String.format(CM_HANDLE_XPATH_TEMPLATE, cmHandleId) + "/state",
+                createCmHandleXPath(cmHandleId) + "/state",
                 FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
         cpsValidator.validateNameCharacters(cmHandleId);
         return new CompositeStateBuilder().fromDataNode(stateAsDataNode).build();
@@ -85,10 +82,9 @@ public class InventoryPersistenceImpl implements InventoryPersistence {
 
     @Override
     public void saveCmHandleState(final String cmHandleId, final CompositeState compositeState) {
-        final String cmHandleJsonData = String.format("{\"state\":%s}",
-                jsonObjectMapper.asJsonString(compositeState));
+        final String cmHandleJsonData = createStateJsonData(jsonObjectMapper.asJsonString(compositeState));
         cpsDataService.updateDataNodeAndDescendants(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                String.format(CM_HANDLE_XPATH_TEMPLATE, cmHandleId),
+                createCmHandleXPath(cmHandleId),
                 cmHandleJsonData, OffsetDateTime.now());
     }
 
@@ -96,8 +92,8 @@ public class InventoryPersistenceImpl implements InventoryPersistence {
     public void saveCmHandleStateBatch(final Map<String, CompositeState> cmHandleStatePerCmHandleId) {
         final Map<String, String> cmHandlesJsonDataMap = new HashMap<>();
         cmHandleStatePerCmHandleId.forEach((cmHandleId, compositeState) -> cmHandlesJsonDataMap.put(
-                String.format(CM_HANDLE_XPATH_TEMPLATE, cmHandleId),
-                String.format("{\"state\":%s}", jsonObjectMapper.asJsonString(compositeState))));
+                createCmHandleXPath(cmHandleId),
+                createStateJsonData(jsonObjectMapper.asJsonString(compositeState))));
         cpsDataService.updateDataNodesAndDescendants(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
                 cmHandlesJsonDataMap, OffsetDateTime.now());
     }
@@ -110,7 +106,7 @@ public class InventoryPersistenceImpl implements InventoryPersistence {
 
     @Override
     public Collection<YangModelCmHandle> getYangModelCmHandles(final Collection<String> cmHandleIds) {
-        final Collection<String> validCmHandleIds = new ArrayList<>();
+        final Collection<String> validCmHandleIds = new ArrayList<>(cmHandleIds.size());
         cmHandleIds.forEach(cmHandleId -> {
             try {
                 cpsValidator.validateNameCharacters(cmHandleId);
@@ -137,7 +133,7 @@ public class InventoryPersistenceImpl implements InventoryPersistence {
     @Override
     public void saveCmHandle(final YangModelCmHandle yangModelCmHandle) {
         final String cmHandleJsonData =
-                String.format("{\"cm-handles\":[%s]}", jsonObjectMapper.asJsonString(yangModelCmHandle));
+                createCmHandleJsonData(jsonObjectMapper.asJsonString(yangModelCmHandle));
         cpsDataService.saveListElements(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NCMP_DMI_REGISTRY_PARENT,
                 cmHandleJsonData, NO_TIMESTAMP);
     }
@@ -146,7 +142,7 @@ public class InventoryPersistenceImpl implements InventoryPersistence {
     public void saveCmHandleBatch(final Collection<YangModelCmHandle> yangModelCmHandles) {
         final List<String> cmHandlesJsonData = new ArrayList<>();
         yangModelCmHandles.forEach(yangModelCmHandle -> cmHandlesJsonData.add(
-                String.format("{\"cm-handles\":[%s]}", jsonObjectMapper.asJsonString(yangModelCmHandle))));
+                createCmHandleJsonData(jsonObjectMapper.asJsonString(yangModelCmHandle))));
         cpsDataService.saveListElementsBatch(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
                 NCMP_DMI_REGISTRY_PARENT, cmHandlesJsonData, NO_TIMESTAMP);
     }
@@ -199,14 +195,13 @@ public class InventoryPersistenceImpl implements InventoryPersistence {
 
     @Override
     public DataNode getCmHandleDataNode(final String cmHandleId) {
-        return this.getDataNode(String.format(CM_HANDLE_XPATH_TEMPLATE, cmHandleId));
+        return this.getDataNode(createCmHandleXPath(cmHandleId));
     }
 
     @Override
     public Collection<DataNode> getCmHandleDataNodes(final Collection<String> cmHandleIds) {
-        final Collection<String> xpaths = cmHandleIds.stream().map(cmHandleId ->
-                        String.format(CM_HANDLE_XPATH_TEMPLATE, cmHandleId))
-                .collect(Collectors.toList());
+        final Collection<String> xpaths = new ArrayList<>(cmHandleIds.size());
+        cmHandleIds.forEach(cmHandleId -> xpaths.add(createCmHandleXPath(cmHandleId)));
         return this.getDataNodes(xpaths);
     }
 
@@ -229,5 +224,17 @@ public class InventoryPersistenceImpl implements InventoryPersistence {
     @Override
     public void deleteDataNodes(final Collection<String> dataNodeXpaths) {
         cpsDataService.deleteDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, dataNodeXpaths, NO_TIMESTAMP);
+    }
+
+    private static String createCmHandleXPath(final String cmHandleId) {
+        return "/dmi-registry/cm-handles[@id='" + cmHandleId + "']";
+    }
+
+    private static String createStateJsonData(final String state) {
+        return "{\"state\":" + state + "}";
+    }
+
+    private static String createCmHandleJsonData(final String cmHandleId) {
+        return "{\"cm-handles\":[" + cmHandleId + "]}";
     }
 }
