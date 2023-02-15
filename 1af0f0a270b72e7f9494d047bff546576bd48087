@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d8dcf3c2_98008e85",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/utils/CpsValidatorImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-02-15T09:49:40Z",
+      "side": 1,
+      "message": "I\u0027ve added another test for this.",
+      "parentUuid": "93211836_0d948356",
+      "range": {
+        "startLine": 45,
+        "startChar": 15,
+        "endLine": 45,
+        "endChar": 38
+      },
+      "revId": "1af0f0a270b72e7f9494d047bff546576bd48087",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a3c5b689_1762d74d",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/SchemaSetRepository.java",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "1af0f0a270b72e7f9494d047bff546576bd48087",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "990421b5_511ab6d7",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/SchemaSetRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-02-15T09:49:40Z",
+      "side": 1,
+      "message": "I am investigated if we can cascade delete using native query to remove schemasets, anchors and datanodes in a single update. I will post as a separate commit.",
+      "parentUuid": "a3c5b689_1762d74d",
+      "range": {
+        "startLine": 80,
+        "startChar": 10,
+        "endLine": 81,
+        "endChar": 86
+      },
+      "revId": "1af0f0a270b72e7f9494d047bff546576bd48087",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "cd2a8666_44d23d67",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-02-15T09:49:40Z",
+      "side": 1,
+      "message": "This section will be addressed in a separate commit before closing the story.",
+      "parentUuid": "409c16c4_699f01e9",
+      "range": {
+        "startLine": 118,
+        "startChar": 18,
+        "endLine": 118,
+        "endChar": 44
+      },
+      "revId": "1af0f0a270b72e7f9494d047bff546576bd48087",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a7ebd3db_9345e346",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
         "patchSetId": 1
@@ -91,6 +163,30 @@
       "revId": "1af0f0a270b72e7f9494d047bff546576bd48087",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3a5009f_65d7881f",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-02-15T09:49:40Z",
+      "side": 1,
+      "message": "Yes, working on it in a separate commit.",
+      "parentUuid": "a7ebd3db_9345e346",
+      "range": {
+        "startLine": 120,
+        "startChar": 32,
+        "endLine": 120,
+        "endChar": 78
+      },
+      "revId": "1af0f0a270b72e7f9494d047bff546576bd48087",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -185,6 +281,30 @@
       "revId": "1af0f0a270b72e7f9494d047bff546576bd48087",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "044cf2f9_79635173",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-02-15T09:49:40Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c77be475_e1e4a5e7",
+      "range": {
+        "startLine": 189,
+        "startChar": 32,
+        "endLine": 189,
+        "endChar": 33
+      },
+      "revId": "1af0f0a270b72e7f9494d047bff546576bd48087",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
