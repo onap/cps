@@ -364,6 +364,19 @@ class CpsDataServiceImplSpec extends Specification {
             1 * mockCpsDataPersistenceService.deleteDataNodes(dataspaceName, anchorName)
     }
 
+    def 'Delete all data nodes for given dataspace and multiple anchors.'() {
+        given: 'schema set for given anchors and dataspace references test tree model'
+            setupSchemaSetMocks('test-tree.yang')
+        when: 'delete data node method is invoked with correct parameters'
+            objectUnderTest.deleteDataNodes(dataspaceName, ['anchor1', 'anchor2'], observedTimestamp)
+        then: 'data updated events are sent to notification service before the delete'
+            2 * mockNotificationService.processDataUpdatedEvent(dataspaceName, _, '/', Operation.DELETE, observedTimestamp)
+        and: 'the CpsValidator is called on the dataspace name and the anchor names'
+            2 * mockCpsValidator.validateNameCharacters(_)
+        and: 'the persistence service method is invoked with the correct parameters'
+            1 * mockCpsDataPersistenceService.deleteDataNodes(dataspaceName, _ as Collection<String>)
+    }
+
     def setupSchemaSetMocks(String... yangResources) {
         def mockYangTextSchemaSourceSet = Mock(YangTextSchemaSourceSet)
         mockYangTextSchemaSourceSetCache.get(dataspaceName, schemaSetName) >> mockYangTextSchemaSourceSet

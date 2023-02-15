@@ -47,6 +47,12 @@ public interface AnchorRepository extends JpaRepository<AnchorEntity, Integer> {
 
     Collection<AnchorEntity> findAllBySchemaSet(@NotNull SchemaSetEntity schemaSetEntity);
 
+    Collection<AnchorEntity> findAllByDataspaceAndNameIn(@NotNull DataspaceEntity dataspaceEntity,
+                                                         @NotNull Collection<String> anchorNames);
+
+    Collection<AnchorEntity> findAllByDataspaceAndSchemaSetNameIn(@NotNull DataspaceEntity dataspaceEntity,
+                                                                  @NotNull Collection<String> schemaSetNames);
+
     Integer countByDataspace(@NotNull DataspaceEntity dataspaceEntity);
 
     @Query(value = "SELECT anchor.* FROM yang_resource\n"
@@ -58,4 +64,7 @@ public interface AnchorRepository extends JpaRepository<AnchorEntity, Integer> {
         + "HAVING COUNT(DISTINCT module_name) = :sizeOfModuleNames", nativeQuery = true)
     Collection<AnchorEntity> getAnchorsByDataspaceIdAndModuleNames(@Param("dataspaceId") int dataspaceId,
         @Param("moduleNames") Collection<String> moduleNames, @Param("sizeOfModuleNames") int sizeOfModuleNames);
+
+    void deleteAllByDataspaceAndNameIn(@NotNull DataspaceEntity dataspaceEntity,
+                                       @NotNull Collection<String> anchorNames);
 }

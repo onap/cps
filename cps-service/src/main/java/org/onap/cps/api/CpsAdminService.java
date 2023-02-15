@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2022 Nordix Foundation
+ *  Copyright (C) 2020-2023 Nordix Foundation
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2022 TechMahindra Ltd.
@@ -84,13 +84,22 @@ public interface CpsAdminService {
     Collection<Anchor> getAnchors(String dataspaceName);
 
     /**
-     * Read all anchors associated the given schema-set in the given dataspace.
+     * Read all anchors associated with the given schema-set in the given dataspace.
      *
      * @param dataspaceName dataspace name
      * @param schemaSetName schema-set name
      * @return a collection of anchors
      */
     Collection<Anchor> getAnchors(String dataspaceName, String schemaSetName);
+
+    /**
+     * Read all anchors associated with the given schema-sets in the given dataspace.
+     *
+     * @param dataspaceName  dataspace name
+     * @param schemaSetNames schema-set names
+     * @return a collection of anchors
+     */
+    Collection<Anchor> getAnchors(String dataspaceName, Collection<String> schemaSetNames);
 
     /**
      * Get an anchor in the given dataspace using the anchor name.
@@ -108,6 +117,14 @@ public interface CpsAdminService {
      * @param anchorName    anchor name
      */
     void deleteAnchor(String dataspaceName, String anchorName);
+
+    /**
+     * Delete anchors by name in given dataspace.
+     *
+     * @param dataspaceName dataspace name
+     * @param anchorNames   anchor names
+     */
+    void deleteAnchors(String dataspaceName, Collection<String> anchorNames);
 
     /**
      * Query anchor names for the given module names in the provided dataspace.

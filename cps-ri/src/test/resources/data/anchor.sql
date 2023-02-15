@@ -1,7 +1,7 @@
 /*
    ============LICENSE_START=======================================================
     Copyright (C) 2020 Pantheon.tech
-    Modifications Copyright (C) 2020 Nordix Foundation.
+    Modifications Copyright (C) 2020-2023 Nordix Foundation.
     Modifications Copyright (C) 2021-2022 Bell Canada.
    ================================================================================
    Licensed under the Apache License, Version 2.0 (the "License");
@@ -32,7 +32,8 @@ INSERT INTO SCHEMA_SET (ID, NAME, DATASPACE_ID) VALUES
 
 INSERT INTO ANCHOR (ID, NAME, DATASPACE_ID, SCHEMA_SET_ID) VALUES
     (3001, 'ANCHOR-001', 1001, 2001),
-    (3002, 'ANCHOR-002', 1001, 2002);
+    (3002, 'ANCHOR-002', 1001, 2002),
+    (3003, 'ANCHOR-003', 1001, 2002);
 
 INSERT INTO FRAGMENT (ID, DATASPACE_ID, ANCHOR_ID, PARENT_ID, XPATH, ATTRIBUTES) VALUES
     (4001, 1001, 3001, null, '/xpath', '{}');

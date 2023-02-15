@@ -169,12 +169,11 @@ class CpsModuleServiceImplSpec extends Specification {
 
     def 'Delete multiple schema-sets when cascade is allowed.'() {
         given: '#numberOfAnchors anchors are associated with each schemaset'
-            mockCpsAdminService.getAnchors('my-dataspace', 'my-schemaset1') >> createAnchors(numberOfAnchors)
-            mockCpsAdminService.getAnchors('my-dataspace', 'my-schemaset2') >> createAnchors(numberOfAnchors)
+            mockCpsAdminService.getAnchors('my-dataspace', ['my-schemaset1', 'my-schemaset2']) >> createAnchors(numberOfAnchors * 2)
         when: 'schema set deletion is requested with cascade allowed'
             objectUnderTest.deleteSchemaSetsWithCascade('my-dataspace', ['my-schemaset1', 'my-schemaset2'])
-        then: 'anchor deletion is called 2 * #numberOfAnchors times'
-            (2 * numberOfAnchors) * mockCpsAdminService.deleteAnchor('my-dataspace', _)
+        then: 'anchor deletion is called #numberOfAnchors times'
+            mockCpsAdminService.deleteAnchors('my-dataspace', _)
         and: 'persistence service method is invoked with same parameters'
             mockCpsModulePersistenceService.deleteSchemaSets('my-dataspace', _)
         and: 'schema sets will be removed from the cache'

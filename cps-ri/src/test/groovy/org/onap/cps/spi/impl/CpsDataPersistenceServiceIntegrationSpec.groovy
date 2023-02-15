@@ -54,8 +54,6 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     static DataNodeBuilder dataNodeBuilder = new DataNodeBuilder()
 
     static final String SET_DATA = '/data/fragment.sql'
-    static int DATASPACE_1001_ID = 1001L
-    static int ANCHOR_3003_ID = 3003L
     static long ID_DATA_NODE_WITH_DESCENDANTS = 4001
     static String XPATH_DATA_NODE_WITH_DESCENDANTS = '/parent-1'
     static String XPATH_DATA_NODE_WITH_LEAVES = '/parent-207'
@@ -667,11 +665,23 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Delete data node for an anchor.'() {
         given: 'a data-node exists for an anchor'
-            assert fragmentsExistInDB(DATASPACE_1001_ID, ANCHOR_3003_ID)
+            assert fragmentsExistInDB(1001, 3003)
         when: 'data nodes are deleted '
             objectUnderTest.deleteDataNodes(DATASPACE_NAME, ANCHOR_NAME3)
         then: 'all data-nodes are deleted successfully'
-            assert !fragmentsExistInDB(DATASPACE_1001_ID, ANCHOR_3003_ID)
+            assert !fragmentsExistInDB(1001, 3003)
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Delete data node for multiple anchors.'() {
+        given: 'a data-node exists for an anchor'
+            assert fragmentsExistInDB(1001, 3001)
+            assert fragmentsExistInDB(1001, 3003)
+        when: 'data nodes are deleted '
+            objectUnderTest.deleteDataNodes(DATASPACE_NAME, ['ANCHOR-001', 'ANCHOR-003'])
+        then: 'all data-nodes are deleted successfully'
+            assert !fragmentsExistInDB(1001, 3001)
+            assert !fragmentsExistInDB(1001, 3003)
     }
 
     def fragmentsExistInDB(dataSpaceId, anchorId) {

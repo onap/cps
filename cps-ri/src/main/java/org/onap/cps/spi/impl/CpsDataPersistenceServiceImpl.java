@@ -607,6 +607,15 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
 
     @Override
     @Transactional
+    public void deleteDataNodes(final String dataspaceName, final Collection<String> anchorNames) {
+        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        final Collection<AnchorEntity> anchorEntities =
+            anchorRepository.findAllByDataspaceAndNameIn(dataspaceEntity, anchorNames);
+        fragmentRepository.deleteByAnchorIn(anchorEntities);
+    }
+
+    @Override
+    @Transactional
     public void deleteDataNodes(final String dataspaceName, final String anchorName,
                                 final Collection<String> xpathsToDelete) {
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);

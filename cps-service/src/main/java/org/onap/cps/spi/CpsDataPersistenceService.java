@@ -191,6 +191,14 @@ public interface CpsDataPersistenceService {
     void deleteDataNodes(String dataspaceName, String anchorName);
 
     /**
+     * Deletes all dataNodes in multiple anchors.
+     *
+     * @param dataspaceName   dataspace name
+     * @param anchorNames     anchor names
+     */
+    void deleteDataNodes(String dataspaceName, Collection<String> anchorNames);
+
+    /**
      * Deletes a single existing list element or the whole list.
      *
      * @param dataspaceName   dataspace name

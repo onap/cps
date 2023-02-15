@@ -212,13 +212,27 @@ class CpsDataPersistenceServiceDeletePerfTest extends CpsPersistencePerfSpecBase
     }
 
     @Sql([CLEAR_DATA, PERF_TEST_DATA])
-    def 'Delete data nodes for an anchor'() {212
+    def 'Delete data nodes for an anchor'() {
         given: 'a node with a large number of descendants is created'
             createLineage(objectUnderTest, 50, 50, false)
             createLineage(objectUnderTest, 50, 50, true)
         when: 'data nodes are deleted'
             stopWatch.start()
             objectUnderTest.deleteDataNodes(PERF_DATASPACE, PERF_ANCHOR)
+            stopWatch.stop()
+            def deleteDurationInMillis = stopWatch.getTotalTimeMillis()
+        then: 'delete duration is under 300 milliseconds'
+            recordAndAssertPerformance('Delete data nodes for anchor', 300, deleteDurationInMillis)
+    }
+
+    @Sql([CLEAR_DATA, PERF_TEST_DATA])
+    def 'Delete data nodes for multiple anchors'() {
+        given: 'a node with a large number of descendants is created'
+            createLineage(objectUnderTest, 50, 50, false)
+            createLineage(objectUnderTest, 50, 50, true)
+        when: 'data nodes are deleted'
+            stopWatch.start()
+            objectUnderTest.deleteDataNodes(PERF_DATASPACE, [PERF_ANCHOR])
             stopWatch.stop()
             def deleteDurationInMillis = stopWatch.getTotalTimeMillis()
         then: 'delete duration is under 300 milliseconds'

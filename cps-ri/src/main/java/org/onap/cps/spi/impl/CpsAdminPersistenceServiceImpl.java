@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2020-2022 Nordix Foundation.
+ * Copyright (C) 2020-2023 Nordix Foundation.
  * Modifications Copyright (C) 2020-2022 Bell Canada.
  * Modifications Copyright (C) 2021 Pantheon.tech
  * Modifications Copyright (C) 2022 TechMahindra Ltd.
@@ -131,6 +131,13 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
     }
 
     @Override
+    public Collection<Anchor> getAnchors(final String dataspaceName, final Collection<String> schemaSetNames) {
+        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        return anchorRepository.findAllByDataspaceAndSchemaSetNameIn(dataspaceEntity, schemaSetNames)
+            .stream().map(CpsAdminPersistenceServiceImpl::toAnchor).collect(Collectors.toSet());
+    }
+
+    @Override
     public Collection<Anchor> queryAnchors(final String dataspaceName, final Collection<String> inputModuleNames) {
         try {
             validateDataspaceAndModuleNames(dataspaceName, inputModuleNames);
@@ -155,6 +162,13 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
     public void deleteAnchor(final String dataspaceName, final String anchorName) {
         final var anchorEntity = getAnchorEntity(dataspaceName, anchorName);
         anchorRepository.delete(anchorEntity);
+    }
+
+    @Transactional
+    @Override
+    public void deleteAnchors(final String dataspaceName, final Collection<String> anchorNames) {
+        final var dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        anchorRepository.deleteAllByDataspaceAndNameIn(dataspaceEntity, anchorNames);
     }
 
     private AnchorEntity getAnchorEntity(final String dataspaceName, final String anchorName) {

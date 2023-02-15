@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Copyright (C) 2021-2023 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2022 Bell Canada
  *  Modifications Copyright (C) 2022 TechMahindra Ltd.
@@ -142,7 +142,8 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
         where: 'the following data is used'
             dataspaceName          || expectedAnchors
             DATASPACE_NAME         || [Anchor.builder().name(ANCHOR_NAME1).schemaSetName(SCHEMA_SET_NAME1).dataspaceName(DATASPACE_NAME).build(),
-                                       Anchor.builder().name(ANCHOR_NAME2).schemaSetName(SCHEMA_SET_NAME2).dataspaceName(DATASPACE_NAME).build()]
+                                       Anchor.builder().name(ANCHOR_NAME2).schemaSetName(SCHEMA_SET_NAME2).dataspaceName(DATASPACE_NAME).build(),
+                                       Anchor.builder().name(ANCHOR_NAME3).schemaSetName(SCHEMA_SET_NAME2).dataspaceName(DATASPACE_NAME).build()]
             DATASPACE_WITH_NO_DATA || []
     }
 
@@ -179,6 +180,17 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
+    def 'Get all anchors associated with multiple schemasets in a dataspace.'() {
+        when: 'anchors are retrieved by dataspace and schema-sets'
+            def anchors = objectUnderTest.getAnchors('DATASPACE-001', ['SCHEMA-SET-001', 'SCHEMA-SET-002'])
+        then: ' the response contains expected anchors'
+            anchors == Set.of(
+                new Anchor('ANCHOR-001', 'DATASPACE-001', 'SCHEMA-SET-001'),
+                new Anchor('ANCHOR-002', 'DATASPACE-001', 'SCHEMA-SET-002'),
+                new Anchor('ANCHOR-003', 'DATASPACE-001', 'SCHEMA-SET-002'))
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
     def 'Delete anchor'() {
         when: 'delete anchor action is invoked'
             objectUnderTest.deleteAnchor(DATASPACE_NAME, ANCHOR_NAME2)
@@ -196,6 +208,15 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
             scenario                   | dataspaceName  | anchorName     || expectedException
             'dataspace does not exist' | 'unknown'      | 'not-relevant' || DataspaceNotFoundException
             'anchor does not exists'   | DATASPACE_NAME | 'unknown'      || AnchorNotFoundException
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Delete multiple anchors'() {
+        when: 'delete anchors action is invoked'
+            objectUnderTest.deleteAnchors(DATASPACE_NAME, ['ANCHOR-002', 'ANCHOR-003'])
+        then: 'anchors are deleted'
+            anchorRepository.findById(3002).isEmpty()
+            anchorRepository.findById(3003).isEmpty()
     }
 
     @Sql([CLEAR_DATA, SAMPLE_DATA_FOR_ANCHORS_WITH_MODULES])
@@ -236,7 +257,7 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
         where: 'the following data is used'
             scenario                        | dataspaceName   || expectedException          | expectedMessageDetails
             'dataspace name does not exist' | 'unknown'       || DataspaceNotFoundException | 'unknown does not exist'
-            'dataspace contains an anchor'  | 'DATASPACE-001' || DataspaceInUseException    | 'contains 2 anchor(s)'
+            'dataspace contains an anchor'  | 'DATASPACE-001' || DataspaceInUseException    | 'contains 3 anchor(s)'
             'dataspace contains schemasets' | 'DATASPACE-003' || DataspaceInUseException    | 'contains 1 schemaset(s)'
     }
 }

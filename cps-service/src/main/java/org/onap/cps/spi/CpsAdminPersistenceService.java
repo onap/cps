@@ -73,13 +73,22 @@ public interface CpsAdminPersistenceService {
     void createAnchor(String dataspaceName, String schemaSetName, String anchorName);
 
     /**
-     * Read all anchors associated the given schema-set in the given dataspace.
+     * Read all anchors associated with the given schema-set in the given dataspace.
      *
      * @param dataspaceName dataspace name
      * @param schemaSetName schema-set name
      * @return a collection of anchors
      */
     Collection<Anchor> getAnchors(String dataspaceName, String schemaSetName);
+
+    /**
+     * Read all anchors associated with multiple schema-sets in the given dataspace.
+     *
+     * @param dataspaceName  dataspace name
+     * @param schemaSetNames schema-set names
+     * @return a collection of anchors
+     */
+    Collection<Anchor> getAnchors(String dataspaceName, Collection<String> schemaSetNames);
 
     /**
      * Read all anchors in the given a dataspace.
@@ -116,4 +125,12 @@ public interface CpsAdminPersistenceService {
      * @param anchorName anchor name
      */
     void deleteAnchor(String dataspaceName, String anchorName);
+
+    /**
+     * Delete anchors by name in given dataspace.
+     *
+     * @param dataspaceName dataspace name
+     * @param anchorNames   anchor names
+     */
+    void deleteAnchors(String dataspaceName, Collection<String> anchorNames);
 }

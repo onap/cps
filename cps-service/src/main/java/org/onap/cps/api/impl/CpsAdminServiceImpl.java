@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2022 Nordix Foundation
+ *  Copyright (C) 2020-2023 Nordix Foundation
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2022 TechMahindra Ltd.
@@ -87,6 +87,13 @@ public class CpsAdminServiceImpl implements CpsAdminService {
     }
 
     @Override
+    public Collection<Anchor> getAnchors(final String dataspaceName, final Collection<String> schemaSetNames) {
+        cpsValidator.validateNameCharacters(dataspaceName);
+        cpsValidator.validateNameCharacters(schemaSetNames);
+        return cpsAdminPersistenceService.getAnchors(dataspaceName, schemaSetNames);
+    }
+
+    @Override
     public Anchor getAnchor(final String dataspaceName, final String anchorName) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         return cpsAdminPersistenceService.getAnchor(dataspaceName, anchorName);
@@ -97,6 +104,14 @@ public class CpsAdminServiceImpl implements CpsAdminService {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         cpsDataService.deleteDataNodes(dataspaceName, anchorName, OffsetDateTime.now());
         cpsAdminPersistenceService.deleteAnchor(dataspaceName, anchorName);
+    }
+
+    @Override
+    public void deleteAnchors(final String dataspaceName, final Collection<String> anchorNames) {
+        cpsValidator.validateNameCharacters(dataspaceName);
+        cpsValidator.validateNameCharacters(anchorNames);
+        cpsDataService.deleteDataNodes(dataspaceName, anchorNames, OffsetDateTime.now());
+        cpsAdminPersistenceService.deleteAnchors(dataspaceName, anchorNames);
     }
 
     @Override

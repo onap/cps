@@ -26,6 +26,7 @@ package org.onap.cps.api.impl;
 import io.micrometer.core.annotation.Timed;
 import java.util.Collection;
 import java.util.Map;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.api.CpsModuleService;
@@ -114,12 +115,9 @@ public class CpsModuleServiceImpl implements CpsModuleService {
     public void deleteSchemaSetsWithCascade(final String dataspaceName, final Collection<String> schemaSetNames) {
         cpsValidator.validateNameCharacters(dataspaceName);
         cpsValidator.validateNameCharacters(schemaSetNames);
-        for (final String schemaSetName : schemaSetNames) {
-            final Collection<Anchor> anchors = cpsAdminService.getAnchors(dataspaceName, schemaSetName);
-            for (final Anchor anchor : anchors) {
-                cpsAdminService.deleteAnchor(dataspaceName, anchor.getName());
-            }
-        }
+        final Collection<String> anchorNames = cpsAdminService.getAnchors(dataspaceName, schemaSetNames)
+            .stream().map(Anchor::getName).collect(Collectors.toSet());
+        cpsAdminService.deleteAnchors(dataspaceName, anchorNames);
         cpsModulePersistenceService.deleteUnusedYangResourceModules();
         cpsModulePersistenceService.deleteSchemaSets(dataspaceName, schemaSetNames);
         for (final String schemaSetName : schemaSetNames) {

@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2022 Nordix Foundation
+ *  Copyright (C) 2020-2023 Nordix Foundation
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2022 TechMahindra Ltd.
@@ -79,6 +79,19 @@ class CpsAdminServiceImplSpec extends Specification {
             1 * mockCpsValidator.validateNameCharacters('someDataspace', 'someSchemaSet')
     }
 
+    def 'Retrieve all anchors for multiple schema-sets.'() {
+        given: 'that anchor is associated with the dataspace and schemasets'
+            def anchors = [new Anchor(), new Anchor()]
+            mockCpsAdminPersistenceService.getAnchors('someDataspace', _ as Collection<String>) >> anchors
+        when: 'get anchors is called for a dataspace name and schema set names'
+            def result = objectUnderTest.getAnchors('someDataspace', ['schemaSet1', 'schemaSet2'])
+        then: 'the collection provided by persistence service is returned as result'
+            result == anchors
+        and: 'the CpsValidator is called on the dataspace name and schema-set names'
+            1 * mockCpsValidator.validateNameCharacters('someDataspace')
+            1 * mockCpsValidator.validateNameCharacters(_)
+    }
+
     def 'Retrieve anchor for dataspace and provided anchor name.'() {
         given: 'that anchor name is associated with the dataspace'
             Anchor anchor = new Anchor()
@@ -116,6 +129,18 @@ class CpsAdminServiceImplSpec extends Specification {
              1 * mockCpsAdminPersistenceService.deleteAnchor('someDataspace','someAnchor')
         and: 'the CpsValidator is called on the dataspaceName, anchorName'
             1 * mockCpsValidator.validateNameCharacters('someDataspace', 'someAnchor')
+    }
+
+    def 'Delete multiple anchors.'() {
+        when: 'delete anchors is invoked'
+            objectUnderTest.deleteAnchors('someDataspace', ['anchor1', 'anchor2'])
+        then: 'delete data nodes is invoked on the data service with expected parameters'
+            1 * mockCpsDataService.deleteDataNodes('someDataspace', _ as Collection<String>, _ as OffsetDateTime)
+        and: 'the persistence service method is invoked with same parameters to delete anchor'
+            1 * mockCpsAdminPersistenceService.deleteAnchors('someDataspace',_ as Collection<String>)
+        and: 'the CpsValidator is called on the dataspace name and anchor names'
+            1 * mockCpsValidator.validateNameCharacters('someDataspace')
+            1 * mockCpsValidator.validateNameCharacters(_)
     }
 
     def 'Query all anchor identifiers for a dataspace and module names.'() {

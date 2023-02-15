@@ -228,6 +228,15 @@ public interface CpsDataService {
     void deleteDataNodes(String dataspaceName, String anchorName, OffsetDateTime observedTimestamp);
 
     /**
+     * Deletes all data nodes for multiple anchors in a dataspace.
+     *
+     * @param dataspaceName     dataspace name
+     * @param anchorNames       anchor names
+     * @param observedTimestamp observed timestamp
+     */
+    void deleteDataNodes(String dataspaceName, Collection<String> anchorNames, OffsetDateTime observedTimestamp);
+
+    /**
      * Deletes a list or a list-element under given anchor and dataspace.
      *
      * @param dataspaceName dataspace name
