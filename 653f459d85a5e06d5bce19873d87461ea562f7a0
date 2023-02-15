@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3bf6e7ef_5de1e933",
+        "filename": ".gitignore",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-15T08:48:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7d123abd_e6e79b42",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 24
+      },
+      "revId": "653f459d85a5e06d5bce19873d87461ea562f7a0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "81c67a20_5aadae77",
         "filename": "docker-compose/docker-compose.yml",
         "patchSetId": 2
@@ -72,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "a1e88538_9f10e3f5",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-15T08:48:11Z",
+      "side": 1,
+      "message": "all good now, thanks!",
+      "parentUuid": "ac08e82c_b4759dcd",
+      "range": {
+        "startLine": 158,
+        "startChar": 8,
+        "endLine": 158,
+        "endChar": 35
+      },
+      "revId": "653f459d85a5e06d5bce19873d87461ea562f7a0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "75095623_6752e824",
         "filename": "docker-compose/prometheus.yml",
         "patchSetId": 2
@@ -116,6 +164,30 @@
       "revId": "653f459d85a5e06d5bce19873d87461ea562f7a0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ea948219_2f9f8be7",
+        "filename": "docker-compose/prometheus.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-15T08:48:11Z",
+      "side": 1,
+      "message": "internal service needs to use internal port so 8081...",
+      "parentUuid": "6b37fc02_ed305205",
+      "range": {
+        "startLine": 10,
+        "startChar": 19,
+        "endLine": 10,
+        "endChar": 44
+      },
+      "revId": "653f459d85a5e06d5bce19873d87461ea562f7a0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
