@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f25e9b71_b8561ae2",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-02-15T09:25:11Z",
+      "side": 1,
+      "message": "This causes problems starting up docker-compose from command line, because the default value of CPS_HOME \u0027.\u0027 is wrong - CPS home is one level above docker-compose, i.e. \u0027..\u0027\nHowever, the entire line can simply be replaced with:\n  build: initfile\n\nsince docker-compose always looks for files in the same folder as the docker-compose.yml file.",
+      "range": {
+        "startLine": 127,
+        "startChar": 11,
+        "endLine": 127,
+        "endChar": 49
+      },
+      "revId": "b2c8bc6b9bfd502be01e524c24628fcd10b1e177",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "efc958cc_397e2de9",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-02-15T09:25:11Z",
+      "side": 1,
+      "message": "Similar to above this line can be replaced with:\n  - ../cps-ncmp-service/src/main/resources/model/:/model\n\nsince CPS repo root is one level above.",
+      "range": {
+        "startLine": 132,
+        "startChar": 6,
+        "endLine": 132,
+        "endChar": 22
+      },
+      "revId": "b2c8bc6b9bfd502be01e524c24628fcd10b1e177",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
