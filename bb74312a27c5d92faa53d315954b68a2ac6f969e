@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "015cd87d_147948a1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventConsumer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-02-15T11:56:18Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a0d9fee0_8e75a603",
+      "range": {
+        "startLine": 52,
+        "startChar": 25,
+        "endLine": 52,
+        "endChar": 62
+      },
+      "revId": "bb74312a27c5d92faa53d315954b68a2ac6f969e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cade2b3f_0f410689",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/yangmodels/YangModelSubscriptionEvent.java",
         "patchSetId": 1
@@ -96,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "74ef1bc5_5ead85a6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/yangmodels/YangModelSubscriptionEvent.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-02-15T11:56:18Z",
+      "side": 1,
+      "message": "I can\u0027t use clientId as yang model has an attribute named as \"clientID\", If I do so it would throw \"Unsupported xpath or json data\"\n\nCaused by: org.onap.cps.spi.exceptions.DataValidationException: Failed to parse json data. Unsupported xpath or json data:{\"subscription-registry\":{\"subscription\":[{\"clientId\":\"client id-002\",\"clientName\":\"client-name-sample\",\"isTagged\":false}]}}\n\tat org.onap.cps.utils.YangUtils.parseJsonDataWithOptionalParent(YangUtils.java:194)\n---------------------------------------------------------------------------------------------------------------------\n\nI followed it from yang model and generated org.onap.cps.ncmp.event.model.Subscription.java\n\n1. avcSubscriptionCreationEvent.json:6\n\n  \"event\": {\n    \"subscription\": {\n      \"clientID\": \"SCO-9989752\",\n      \"name\": \"cm-subscription-001\"\n    },\n\n2. org.onap.cps.ncmp.event.model.Subscription#clientID\n\n    @JsonProperty(\"clientID\")\n    @JsonPropertyDescription(\"The clientID\")\n    private String clientID;\n----------------------------------------------------------------------------------------------------------------------\n@Toine , We are using for example \"org.onap.ncmp.cmhandle.event.lcm.Event#cmHandleId\" as a coding convention and consistency.\n\nIf we want to use \"private String clientId;\", need to update yang model as well. Please suggest",
+      "parentUuid": "cade2b3f_0f410689",
+      "range": {
+        "startLine": 44,
+        "startChar": 25,
+        "endLine": 44,
+        "endChar": 27
+      },
+      "revId": "bb74312a27c5d92faa53d315954b68a2ac6f969e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ba848cb1_19642a03",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
         "patchSetId": 1
@@ -130,6 +178,30 @@
       "writtenOn": "2023-02-15T10:50:31Z",
       "side": 1,
       "message": "Done",
+      "parentUuid": "ba848cb1_19642a03",
+      "range": {
+        "startLine": 58,
+        "startChar": 17,
+        "endLine": 58,
+        "endChar": 26
+      },
+      "revId": "bb74312a27c5d92faa53d315954b68a2ac6f969e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4b3e4364_f3d8c61f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-02-15T11:56:18Z",
+      "side": 1,
+      "message": "Ack",
       "parentUuid": "ba848cb1_19642a03",
       "range": {
         "startLine": 58,
@@ -190,6 +262,30 @@
     },
     {
       "key": {
+        "uuid": "696cec6a_833514e2",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventConsumerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-02-15T11:56:18Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "fde5b935_cab7034a",
+      "range": {
+        "startLine": 41,
+        "startChar": 17,
+        "endLine": 41,
+        "endChar": 30
+      },
+      "revId": "bb74312a27c5d92faa53d315954b68a2ac6f969e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2ce2f797_284b88aa",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventConsumerSpec.groovy",
         "patchSetId": 1
@@ -224,6 +320,30 @@
       "writtenOn": "2023-02-15T10:50:31Z",
       "side": 1,
       "message": "Done",
+      "parentUuid": "2ce2f797_284b88aa",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 0
+      },
+      "revId": "bb74312a27c5d92faa53d315954b68a2ac6f969e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "16748933_c67d77b6",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventConsumerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-02-15T11:56:18Z",
+      "side": 1,
+      "message": "Ack",
       "parentUuid": "2ce2f797_284b88aa",
       "range": {
         "startLine": 43,
@@ -318,6 +438,30 @@
       "writtenOn": "2023-02-15T10:50:31Z",
       "side": 1,
       "message": "Done",
+      "parentUuid": "ba193db2_711015bb",
+      "range": {
+        "startLine": 88,
+        "startChar": 11,
+        "endLine": 88,
+        "endChar": 65
+      },
+      "revId": "bb74312a27c5d92faa53d315954b68a2ac6f969e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "34bb6cde_dab75d19",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-02-15T11:56:18Z",
+      "side": 1,
+      "message": "Ack",
       "parentUuid": "ba193db2_711015bb",
       "range": {
         "startLine": 88,
