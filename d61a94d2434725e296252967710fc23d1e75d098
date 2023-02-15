@@ -22,6 +22,30 @@
       "revId": "d61a94d2434725e296252967710fc23d1e75d098",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c59a9f8d_31f0dc6d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-02-15T12:05:32Z",
+      "side": 1,
+      "message": "It was mistake as I renamed from intellij. It does this. I corrected into next patch.",
+      "parentUuid": "20c5402d_499e172e",
+      "range": {
+        "startLine": 246,
+        "startChar": 76,
+        "endLine": 246,
+        "endChar": 79
+      },
+      "revId": "d61a94d2434725e296252967710fc23d1e75d098",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
