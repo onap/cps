@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "79e5eabd_113dd4f7",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-02-15T09:33:03Z",
+      "side": 1,
+      "message": "Would be removed as a part of https://jira.onap.org/browse/CPS-1467",
+      "parentUuid": "f25e9b71_b8561ae2",
+      "range": {
+        "startLine": 127,
+        "startChar": 11,
+        "endLine": 127,
+        "endChar": 49
+      },
+      "revId": "b2c8bc6b9bfd502be01e524c24628fcd10b1e177",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "efc958cc_397e2de9",
         "filename": "docker-compose/docker-compose.yml",
         "patchSetId": 3
@@ -41,6 +65,53 @@
         "startChar": 6,
         "endLine": 132,
         "endChar": 22
+      },
+      "revId": "b2c8bc6b9bfd502be01e524c24628fcd10b1e177",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2df2d43b_70628321",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-02-15T09:33:03Z",
+      "side": 1,
+      "message": "Would be removed as a part of https://jira.onap.org/browse/CPS-1467",
+      "parentUuid": "efc958cc_397e2de9",
+      "range": {
+        "startLine": 132,
+        "startChar": 6,
+        "endLine": 132,
+        "endChar": 22
+      },
+      "revId": "b2c8bc6b9bfd502be01e524c24628fcd10b1e177",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ddf10cad_761d4252",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-02-15T09:33:03Z",
+      "side": 1,
+      "message": "Would be removed as a part of https://jira.onap.org/browse/CPS-1467",
+      "range": {
+        "startLine": 126,
+        "startChar": 2,
+        "endLine": 135,
+        "endChar": 34
       },
       "revId": "b2c8bc6b9bfd502be01e524c24628fcd10b1e177",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
