@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "57386a6b_6709b639",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-15T08:57:50Z",
+      "side": 1,
+      "message": "yes good idea, but use \u0027for\u0027 instead of \u0027over\u0027\ngetDataNodesForMultipleXpaths?",
+      "parentUuid": "c17839ea_ad467c71",
+      "range": {
+        "startLine": 260,
+        "startChar": 32,
+        "endLine": 260,
+        "endChar": 52
+      },
+      "revId": "d40a13f38d6dd07484b124249b6cbed15331f98c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "25f21952_6d3a1a9d",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 16
@@ -342,6 +366,30 @@
       "side": 1,
       "message": "replied to it in patchset #13 comment",
       "parentUuid": "7875fd45_07a6477b",
+      "range": {
+        "startLine": 111,
+        "startChar": 13,
+        "endLine": 111,
+        "endChar": 24
+      },
+      "revId": "d40a13f38d6dd07484b124249b6cbed15331f98c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "21b9c614_1f514169",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-15T08:57:50Z",
+      "side": 1,
+      "message": "ok, and I replied again on patchset #13 too :-)",
+      "parentUuid": "eb9f17c3_d5632363",
       "range": {
         "startLine": 111,
         "startChar": 13,
