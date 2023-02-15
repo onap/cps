@@ -120,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "208bc968_bc522dac",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-02-15T07:41:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5d559bb6_dac349fc",
+      "range": {
+        "startLine": 264,
+        "startChar": 0,
+        "endLine": 267,
+        "endChar": 13
+      },
+      "revId": "52ac14780c74591adb93b7734d461d8577707fd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "48144582_44453ea5",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
         "patchSetId": 13
@@ -402,6 +426,30 @@
     },
     {
       "key": {
+        "uuid": "f1465fd7_f164a6cf",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-02-15T07:41:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bfc9cf6f_984753ef",
+      "range": {
+        "startLine": 328,
+        "startChar": 8,
+        "endLine": 331,
+        "endChar": 87
+      },
+      "revId": "52ac14780c74591adb93b7734d461d8577707fd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "42dc5ac7_5c9e6d53",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
         "patchSetId": 13
@@ -508,6 +556,30 @@
       "side": 1,
       "message": "why no remove it now as part of this patch?!",
       "parentUuid": "7b85bd71_5a294112",
+      "range": {
+        "startLine": 111,
+        "startChar": 13,
+        "endLine": 111,
+        "endChar": 24
+      },
+      "revId": "52ac14780c74591adb93b7734d461d8577707fd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f7db44ec_30bc6b15",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-02-15T07:41:22Z",
+      "side": 1,
+      "message": "now I remember the reason. This gets called by NCMP as well. Here CmHandleQueriesImpl.getCmHandleState(). Impact analysis on NCMP was taken as separate task and any code change for the same was to be done after the new version of Get API was ready. If needed we can do it in this patch. need comments on this.",
+      "parentUuid": "c4917e17_7a0afd3e",
       "range": {
         "startLine": 111,
         "startChar": 13,

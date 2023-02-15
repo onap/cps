@@ -309,6 +309,30 @@
     },
     {
       "key": {
+        "uuid": "9e97829a_d139c683",
+        "filename": "cps-ri/src/test/resources/data/fragment.sql",
+        "patchSetId": 10
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-02-15T07:41:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "daebbe1b_06899fbd",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 116
+      },
+      "revId": "d48c3058d1df7a30016da8c5a5f3a71c87276d19",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c366b30f_97b0a8d8",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
         "patchSetId": 10
