@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e9fd8c0b_74ba348d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 613,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-02-16T14:02:11Z",
+      "side": 1,
+      "message": "Ack. Will investigate an create a separate ticket for this if needed.",
+      "parentUuid": "9490956a_3cb06e55",
+      "range": {
+        "startLine": 613,
+        "startChar": 29,
+        "endLine": 613,
+        "endChar": 56
+      },
+      "revId": "fbb79a0a112da3b05989fdc3a8e88c5865f3cc9a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5dfe4514_00b9348b",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/AnchorRepository.java",
         "patchSetId": 1
@@ -60,6 +84,30 @@
       "side": 1,
       "message": "unless we want to pass in dataspaceName instead of Database entity...",
       "parentUuid": "5dfe4514_00b9348b",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 110
+      },
+      "revId": "fbb79a0a112da3b05989fdc3a8e88c5865f3cc9a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b650e301_c9f46482",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/AnchorRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-02-16T14:02:11Z",
+      "side": 1,
+      "message": "Trivial: just rename to findAllByDataspaceNameAndNameIn(dataspaceName, anchorNames);\nI will investigate if performance improves and create a separate ticket if needed.",
+      "parentUuid": "db0fa31c_ceb6e36d",
       "range": {
         "startLine": 49,
         "startChar": 0,
@@ -118,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "7c04a63b_b1bcec40",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/performance/CpsDataPersistenceServiceDeletePerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-02-16T14:02:11Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1b4e635c_70d1077e",
+      "range": {
+        "startLine": 228,
+        "startChar": 2,
+        "endLine": 241,
+        "endChar": 0
+      },
+      "revId": "fbb79a0a112da3b05989fdc3a8e88c5865f3cc9a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0e41f4f7_3fd90e99",
         "filename": "cps-ri/src/test/resources/data/anchor.sql",
         "patchSetId": 1
@@ -164,6 +236,30 @@
     },
     {
       "key": {
+        "uuid": "71ef5da2_ed886c66",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsAdminService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-02-16T14:02:11Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "47883f57_d04b4c7a",
+      "range": {
+        "startLine": 122,
+        "startChar": 13,
+        "endLine": 122,
+        "endChar": 22
+      },
+      "revId": "fbb79a0a112da3b05989fdc3a8e88c5865f3cc9a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba283476_e90e466e",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
         "patchSetId": 1
@@ -184,6 +280,30 @@
       "revId": "fbb79a0a112da3b05989fdc3a8e88c5865f3cc9a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "02fb078e_18691118",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-02-16T14:02:11Z",
+      "side": 1,
+      "message": "No, we don\u0027t have cascade delete on our entities or in DB.\nWill investigate and create a new ticket if needed.",
+      "parentUuid": "ba283476_e90e466e",
+      "range": {
+        "startLine": 121,
+        "startChar": 0,
+        "endLine": 122,
+        "endChar": 84
+      },
+      "revId": "fbb79a0a112da3b05989fdc3a8e88c5865f3cc9a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
