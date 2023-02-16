@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3deed46e_615333f8",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/entities/FragmentEntity.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-16T14:46:04Z",
+      "side": 1,
+      "message": "1) I can understand how this reduces the issue but this is not a change that will change teh system handing on to unwanted object(s) after a failure?\n\n2) Should we apply this annotation to all entities?\n\n3) wil this affect serialization of Entity\u0027s (do we need that anywhere?)",
+      "range": {
+        "startLine": 93,
+        "startChar": 4,
+        "endLine": 93,
+        "endChar": 21
+      },
+      "revId": "0f9f9df8649f7a67706bfe83c51d0c2ed11810b8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
