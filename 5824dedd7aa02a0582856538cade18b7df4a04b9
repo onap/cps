@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c01677d4_44eb909d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/ModelLoader.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-02-16T20:13:50Z",
+      "side": 1,
+      "message": "Done -moved to ncmp.init on next patch  :)",
+      "parentUuid": "d7fe0ffb_3c8c6173",
+      "range": {
+        "startLine": 21,
+        "startChar": 26,
+        "endLine": 21,
+        "endChar": 36
+      },
+      "revId": "5824dedd7aa02a0582856538cade18b7df4a04b9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cec4d5b3_7c7bb7e6",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/ModelLoader.java",
         "patchSetId": 6
@@ -36,6 +60,30 @@
       "writtenOn": "2023-02-16T16:46:38Z",
       "side": 1,
       "message": "there is no delay before you retry?\nAnd instead of recusing I think you are better off having a simple loop inside this method which also mean that onboardingRetries can become a method variable",
+      "range": {
+        "startLine": 68,
+        "startChar": 16,
+        "endLine": 68,
+        "endChar": 43
+      },
+      "revId": "5824dedd7aa02a0582856538cade18b7df4a04b9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f94148b3_faf034bb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/ModelLoader.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-02-16T20:13:50Z",
+      "side": 1,
+      "message": "I think its not needed anymore - (what does team thinks?) because in docker the application is not gonna start without the database system up , the loading of liquibase does not take a while plus the code is not ran until the application is set up and actually \u0027ready\u0027 which means that all initialisation before this is expected to have been set already",
+      "parentUuid": "cec4d5b3_7c7bb7e6",
       "range": {
         "startLine": 68,
         "startChar": 16,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "cf54b7f0_1420ce2e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/ModelLoader.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-02-16T20:13:50Z",
+      "side": 1,
+      "message": "Done - no actually, private next patch -",
+      "parentUuid": "8eff0bd1_05d85216",
+      "range": {
+        "startLine": 89,
+        "startChar": 4,
+        "endLine": 89,
+        "endChar": 11
+      },
+      "revId": "5824dedd7aa02a0582856538cade18b7df4a04b9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3b69cc4a_d2b6f150",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/ModelLoader.java",
         "patchSetId": 6
@@ -91,6 +163,30 @@
       "revId": "5824dedd7aa02a0582856538cade18b7df4a04b9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a87c655_ea427ddc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/ModelLoader.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-02-16T20:13:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3b69cc4a_d2b6f150",
+      "range": {
+        "startLine": 105,
+        "startChar": 4,
+        "endLine": 105,
+        "endChar": 11
+      },
+      "revId": "5824dedd7aa02a0582856538cade18b7df4a04b9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "d3a9a82e_55f067b7",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/models/ModelLoaderSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-02-16T20:13:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eda51bf0_889e7e09",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 0
+      },
+      "revId": "5824dedd7aa02a0582856538cade18b7df4a04b9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5cc62a66_cfbe7bb5",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/models/ModelLoaderSpec.groovy",
         "patchSetId": 6
@@ -137,6 +257,30 @@
       "revId": "5824dedd7aa02a0582856538cade18b7df4a04b9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aaa50d2b_69001d27",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/models/ModelLoaderSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-02-16T20:13:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5cc62a66_cfbe7bb5",
+      "range": {
+        "startLine": 60,
+        "startChar": 40,
+        "endLine": 60,
+        "endChar": 41
+      },
+      "revId": "5824dedd7aa02a0582856538cade18b7df4a04b9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
