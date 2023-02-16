@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d7fe0ffb_3c8c6173",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/ModelLoader.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-16T16:46:38Z",
+      "side": 1,
+      "message": "don\u0027t think this should be inside teh api package\nmaybe create an ncmp.init or ncmp.boot package instead ?",
+      "range": {
+        "startLine": 21,
+        "startChar": 26,
+        "endLine": 21,
+        "endChar": 36
+      },
+      "revId": "5824dedd7aa02a0582856538cade18b7df4a04b9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cec4d5b3_7c7bb7e6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/ModelLoader.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-16T16:46:38Z",
+      "side": 1,
+      "message": "there is no delay before you retry?\nAnd instead of recusing I think you are better off having a simple loop inside this method which also mean that onboardingRetries can become a method variable",
+      "range": {
+        "startLine": 68,
+        "startChar": 16,
+        "endLine": 68,
+        "endChar": 43
+      },
+      "revId": "5824dedd7aa02a0582856538cade18b7df4a04b9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8eff0bd1_05d85216",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/ModelLoader.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-16T16:46:38Z",
+      "side": 1,
+      "message": "does this need to be public?",
+      "range": {
+        "startLine": 89,
+        "startChar": 4,
+        "endLine": 89,
+        "endChar": 11
+      },
+      "revId": "5824dedd7aa02a0582856538cade18b7df4a04b9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b69cc4a_d2b6f150",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/ModelLoader.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-16T16:46:38Z",
+      "side": 1,
+      "message": "private ?",
+      "range": {
+        "startLine": 105,
+        "startChar": 4,
+        "endLine": 105,
+        "endChar": 11
+      },
+      "revId": "5824dedd7aa02a0582856538cade18b7df4a04b9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eda51bf0_889e7e09",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/models/ModelLoaderSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-16T16:46:38Z",
+      "side": 1,
+      "message": "its OK to reuse the constants from the class you are testing...\nGroovy can acces them even if they are private",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 0
+      },
+      "revId": "5824dedd7aa02a0582856538cade18b7df4a04b9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5cc62a66_cfbe7bb5",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/models/ModelLoaderSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-16T16:46:38Z",
+      "side": 1,
+      "message": "insert: up to 11 times",
+      "range": {
+        "startLine": 60,
+        "startChar": 40,
+        "endLine": 60,
+        "endChar": 41
+      },
+      "revId": "5824dedd7aa02a0582856538cade18b7df4a04b9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd3dfbaa_942b0654",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/models/ModelLoaderSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-16T16:46:38Z",
+      "side": 1,
+      "message": "nice :-)",
+      "range": {
+        "startLine": 61,
+        "startChar": 12,
+        "endLine": 61,
+        "endChar": 14
+      },
+      "revId": "5824dedd7aa02a0582856538cade18b7df4a04b9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
