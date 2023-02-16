@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "9490956a_3cb06e55",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 613,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-16T13:49:56Z",
+      "side": 1,
+      "message": "not or now: but I am wondering can you modify this to get pass in the databaseName instead of dataspace entity and save the DB trip executed on line 611 (and similarly in prev repo)",
+      "range": {
+        "startLine": 613,
+        "startChar": 29,
+        "endLine": 613,
+        "endChar": 56
+      },
+      "revId": "fbb79a0a112da3b05989fdc3a8e88c5865f3cc9a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5dfe4514_00b9348b",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/AnchorRepository.java",
         "patchSetId": 1
@@ -13,6 +36,30 @@
       "writtenOn": "2023-02-16T12:46:55Z",
       "side": 1,
       "message": "The auto-generated SQL is optimal, no need for handwritten queries.",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 110
+      },
+      "revId": "fbb79a0a112da3b05989fdc3a8e88c5865f3cc9a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "db0fa31c_ceb6e36d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/AnchorRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-16T13:49:56Z",
+      "side": 1,
+      "message": "unless we want to pass in dataspaceName instead of Database entity...",
+      "parentUuid": "5dfe4514_00b9348b",
       "range": {
         "startLine": 49,
         "startChar": 0,
@@ -45,6 +92,98 @@
       "revId": "fbb79a0a112da3b05989fdc3a8e88c5865f3cc9a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1b4e635c_70d1077e",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/performance/CpsDataPersistenceServiceDeletePerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-16T13:49:56Z",
+      "side": 1,
+      "message": "not really a perfromance test for multiple anchors...\nWhat we need is to actually create a 100(0) anchors or so and delete them in a loop in the prev test and in a batch here and we can compare\nNO NEED TO DO THIS NOW",
+      "range": {
+        "startLine": 228,
+        "startChar": 2,
+        "endLine": 241,
+        "endChar": 0
+      },
+      "revId": "fbb79a0a112da3b05989fdc3a8e88c5865f3cc9a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e41f4f7_3fd90e99",
+        "filename": "cps-ri/src/test/resources/data/anchor.sql",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-16T13:49:56Z",
+      "side": 1,
+      "message": "I really want to start doing this in the new service based test framework, helpfully we can do that soon.",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 37
+      },
+      "revId": "fbb79a0a112da3b05989fdc3a8e88c5865f3cc9a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "47883f57_d04b4c7a",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsAdminService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-16T13:49:56Z",
+      "side": 1,
+      "message": "NB: maybe emphasise by saying \u0027collection of anchors\u0027  or \u0027multiple\u0027",
+      "range": {
+        "startLine": 122,
+        "startChar": 13,
+        "endLine": 122,
+        "endChar": 22
+      },
+      "revId": "fbb79a0a112da3b05989fdc3a8e88c5865f3cc9a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ba283476_e90e466e",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-16T13:49:56Z",
+      "side": 1,
+      "message": "so the previous call is not cascading?!",
+      "range": {
+        "startLine": 121,
+        "startChar": 0,
+        "endLine": 122,
+        "endChar": 84
+      },
+      "revId": "fbb79a0a112da3b05989fdc3a8e88c5865f3cc9a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
