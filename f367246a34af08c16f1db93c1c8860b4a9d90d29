@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ed50828_b673a1bb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/ModelLoader.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-02-17T10:38:27Z",
+      "side": 1,
+      "message": "in the try-catch block , if there is exception  - then the exception handler would catch it and then coz of \"break\" statement it will exit the loop.\nSo no more retries will happen.\n\nPlace the \"break\" statement after createAnchor method and then test it 😊",
+      "range": {
+        "startLine": 70,
+        "startChar": 16,
+        "endLine": 76,
+        "endChar": 17
+      },
+      "revId": "f367246a34af08c16f1db93c1c8860b4a9d90d29",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
