@@ -46,6 +46,30 @@
       "revId": "0f9f9df8649f7a67706bfe83c51d0c2ed11810b8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2506c030_e2742b04",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/entities/FragmentEntity.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2023-02-17T13:30:44Z",
+      "side": 1,
+      "message": "1) Not necessary to change the system handling, when we doesn\u0027t want to log the whole tree, the  GC can remove it.\n\n2) No, the other entities doesn\u0027t have generated toString method\n\n3) No, the serialization works on a totally different way. It wouldn\u0027t effect that.\n\nThe root cause is: The lombok toString don\u0027t respect the LAZY annotation, and want to get every   children and grand children and etc. We use it on logging, if you enable the trace log you can see it, but when we disable the trace log it generated just hidden. So it isn\u0027t enough just disable the trace logging, we need to exclude this field from toString.",
+      "parentUuid": "dfea8a5b_fa336def",
+      "range": {
+        "startLine": 93,
+        "startChar": 4,
+        "endLine": 93,
+        "endChar": 21
+      },
+      "revId": "0f9f9df8649f7a67706bfe83c51d0c2ed11810b8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
