@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "28d1d4a1_5d4c1a2d",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-02-17T09:46:19Z",
+      "side": 1,
+      "message": "Sure, will change to \"cps.data.service.datanode.get\"",
+      "parentUuid": "6877661d_c08537a3",
+      "range": {
+        "startLine": 136,
+        "startChar": 19,
+        "endLine": 136,
+        "endChar": 56
+      },
+      "revId": "bca946bcf92da98c9c677901cb33ffeee8dff71e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "90975014_7ad95f66",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
         "patchSetId": 19
@@ -45,6 +69,30 @@
       "revId": "bca946bcf92da98c9c677901cb33ffeee8dff71e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6ec80290_ab3fda4a",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-02-17T09:46:19Z",
+      "side": 1,
+      "message": "\"Time taken to get data nodes for an xpath\" sounds good for this, will keep that.",
+      "parentUuid": "90975014_7ad95f66",
+      "range": {
+        "startLine": 137,
+        "startChar": 26,
+        "endLine": 137,
+        "endChar": 67
+      },
+      "revId": "bca946bcf92da98c9c677901cb33ffeee8dff71e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
