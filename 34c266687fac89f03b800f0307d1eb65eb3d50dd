@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "21687620_a34070ad",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-02-17T13:23:44Z",
+      "side": 1,
+      "message": "not needed with below comment",
+      "range": {
+        "startLine": 105,
+        "startChar": 65,
+        "endLine": 105,
+        "endChar": 83
+      },
+      "revId": "34c266687fac89f03b800f0307d1eb65eb3d50dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "910abba0_38222d77",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-02-17T13:23:44Z",
+      "side": 1,
+      "message": "I think the iterator get next should be put here instead. NCMP isn\u0027t going to support multiple root nodes yet so this makes the most sense to me",
+      "range": {
+        "startLine": 182,
+        "startChar": 15,
+        "endLine": 183,
+        "endChar": 46
+      },
+      "revId": "34c266687fac89f03b800f0307d1eb65eb3d50dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7cc3622b_044bb71c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-02-17T13:23:44Z",
+      "side": 1,
+      "message": "Keep as singular with above comment",
+      "range": {
+        "startLine": 199,
+        "startChar": 11,
+        "endLine": 199,
+        "endChar": 30
+      },
+      "revId": "34c266687fac89f03b800f0307d1eb65eb3d50dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
