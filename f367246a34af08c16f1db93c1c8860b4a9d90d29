@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "cf0e6169_73323903",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/ModelLoader.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-02-17T12:56:41Z",
+      "side": 1,
+      "message": "The retries have been increased by 1, but no re-trying call there. Also, if you would call the same method again, you could have reset retries to 0. In order to avoid, the below snippet could be useful (Also includes wait until next retry). \n\n    /**\n     * Method to onboard subscription model for NCMP.\n     */\n    public void onboardSubscriptionModel() {\n\n        for (int onboardingRetries \u003d 0; ; onboardingRetries++) {\n\n            final Dataspace ncmpDataspace \u003d cpsAdminService.getDataspace(SUBSCRIPTION_DATASPACE_NAME);\n\n            if (ncmpDataspace \u003d\u003d null \u0026\u0026 onboardingRetries \u003c 10) {\n                waitUntilNextRetry(2000);\n                continue;\n            } else if (onboardingRetries \u003d\u003d 10) {\n                log.info(\"Onboarding subscription model failed, NCMP dataspace does not exist\");\n                return;\n            } else {\n                try {\n                    createSchemaSetFromModelFile(SUBSCRIPTION_DATASPACE_NAME, SUBSCRIPTION_SCHEMASET_NAME,\n                            \"subscription.yang\", \"model/subscription.yang\");\n                    createAnchor(SUBSCRIPTION_DATASPACE_NAME, SUBSCRIPTION_ANCHOR_NAME, SUBSCRIPTION_SCHEMASET_NAME);\n                    return;\n                } catch (final Exception exception) {\n                    log.debug(\"Onboard model exception: {}\", exception.getMessage());\n                }\n            }\n        }\n\n    }\n\n    /**\n     * Waits a period of time until next retry.\n     *\n     * @param waitTimeMillis\n     */\n    private void waitUntilNextRetry(int waitTimeMillis) {\n        try {\n            Thread.sleep(2000);\n        } catch (InterruptedException e) {\n            throw new RuntimeException(e);\n        }\n    }",
+      "range": {
+        "startLine": 67,
+        "startChar": 16,
+        "endLine": 67,
+        "endChar": 36
+      },
+      "revId": "f367246a34af08c16f1db93c1c8860b4a9d90d29",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8ed50828_b673a1bb",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/ModelLoader.java",
         "patchSetId": 7
