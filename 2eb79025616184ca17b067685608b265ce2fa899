@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c407e44b_6bfa4362",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 18
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-02-17T07:57:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "90db7b04_6c5d8540",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 46
+      },
+      "revId": "2eb79025616184ca17b067685608b265ce2fa899",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f8437789_b814c95a",
         "filename": "/COMMIT_MSG",
         "patchSetId": 18
@@ -45,6 +69,30 @@
       "revId": "2eb79025616184ca17b067685608b265ce2fa899",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "95853c75_70d69d95",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 18
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-02-17T07:57:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f8437789_b814c95a",
+      "range": {
+        "startLine": 28,
+        "startChar": 2,
+        "endLine": 28,
+        "endChar": 52
+      },
+      "revId": "2eb79025616184ca17b067685608b265ce2fa899",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "06008ff3_1252a734",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 18
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-02-17T07:57:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "232979b2_1193b94a",
+      "range": {
+        "startLine": 29,
+        "startChar": 1,
+        "endLine": 31,
+        "endChar": 75
+      },
+      "revId": "2eb79025616184ca17b067685608b265ce2fa899",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dd2a04b0_fd11b61a",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
         "patchSetId": 18
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "b21a9ddc_77d964bc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-02-17T07:57:22Z",
+      "side": 1,
+      "message": "yes, intention here was to bring in support for multiple data nodes in future. Analysis for it can be done and based on that the code can be modified.",
+      "parentUuid": "dd2a04b0_fd11b61a",
+      "range": {
+        "startLine": 123,
+        "startChar": 0,
+        "endLine": 123,
+        "endChar": 51
+      },
+      "revId": "2eb79025616184ca17b067685608b265ce2fa899",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e2c3cf04_6c71d525",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandlerSpec.groovy",
         "patchSetId": 18
@@ -105,6 +201,30 @@
       "writtenOn": "2023-02-16T11:31:47Z",
       "side": 1,
       "message": "you are wrappings it in a collection again on line 100?!\nGiven the name i would NOT use [ ] here but just wherever you use the variable instead\nif need otr for better readability you cold also do this:\n\ndef static cmHandleDataNode \u003d new DataNode(xpath: cmHandleXpath, childDataNodes: propertyDataNodes)\ndef static cmHandleDataNodeAsCollection \u003d [cmHandleDataNode]\n\nThen depending on the situation in your tets you can use either",
+      "range": {
+        "startLine": 51,
+        "startChar": 34,
+        "endLine": 51,
+        "endChar": 35
+      },
+      "revId": "2eb79025616184ca17b067685608b265ce2fa899",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ddef5a76_db448af1",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandlerSpec.groovy",
+        "patchSetId": 18
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-02-17T07:57:22Z",
+      "side": 1,
+      "message": "these are 2 different data nodes. This one on line #51 is at a global level In line #100 you can see cmHandleDataNode used specifically for that test case with childDataNodes: originalPropertyDataNodes whereas on line #51 it is childDataNodes: propertyDataNodes.\n\nI can see the confusion. Even I had to confirm this twice while working on this 😄\n\nWhat can be done here is rename the one on line #51 as cmHandleDataNodeAsCollection \u003d [new DataNode(xpath: cmHandleXpath, childDataNodes: propertyDataNodes)] to avoid confusion?",
+      "parentUuid": "e2c3cf04_6c71d525",
       "range": {
         "startLine": 51,
         "startChar": 34,
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "082a6278_303b65f3",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandlerSpec.groovy",
+        "patchSetId": 18
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-02-17T07:57:22Z",
+      "side": 1,
+      "message": "replied on line #51",
+      "parentUuid": "2ce34c62_23ecd36f",
+      "range": {
+        "startLine": 101,
+        "startChar": 72,
+        "endLine": 101,
+        "endChar": 90
+      },
+      "revId": "2eb79025616184ca17b067685608b265ce2fa899",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c27b2d04_0faed394",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
         "patchSetId": 18
@@ -160,6 +304,30 @@
       "revId": "2eb79025616184ca17b067685608b265ce2fa899",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa8cd3e3_3bfd1e77",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-02-17T07:57:22Z",
+      "side": 1,
+      "message": "In the persistence layer we check if the collection is empty or not. If an empty collection is returned we throw DataNodeNotFoundException. Checked the test case as well.",
+      "parentUuid": "c27b2d04_0faed394",
+      "range": {
+        "startLine": 105,
+        "startChar": 35,
+        "endLine": 105,
+        "endChar": 54
+      },
+      "revId": "2eb79025616184ca17b067685608b265ce2fa899",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -186,6 +354,30 @@
     },
     {
       "key": {
+        "uuid": "f356654d_e2e6089f",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 18
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-02-17T07:57:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "26eb7c99_58f2fed3",
+      "range": {
+        "startLine": 86,
+        "startChar": 44,
+        "endLine": 86,
+        "endChar": 63
+      },
+      "revId": "2eb79025616184ca17b067685608b265ce2fa899",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c6d2bfb5_fd7f7966",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
         "patchSetId": 18
@@ -206,6 +398,30 @@
       "revId": "2eb79025616184ca17b067685608b265ce2fa899",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c9a00436_e45281d2",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 18
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-02-17T07:57:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c6d2bfb5_fd7f7966",
+      "range": {
+        "startLine": 265,
+        "startChar": 65,
+        "endLine": 265,
+        "endChar": 84
+      },
+      "revId": "2eb79025616184ca17b067685608b265ce2fa899",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -255,6 +471,54 @@
     },
     {
       "key": {
+        "uuid": "59fd494c_da589a4e",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 18
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-02-17T07:57:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b098f1df_247f533b",
+      "range": {
+        "startLine": 287,
+        "startChar": 48,
+        "endLine": 287,
+        "endChar": 67
+      },
+      "revId": "2eb79025616184ca17b067685608b265ce2fa899",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5fe309ea_32ccc013",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 18
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-02-17T07:57:22Z",
+      "side": 1,
+      "message": "removing multiple makes signature same as test on #325. Could modify #325 as Get data nodes for collection of xpath error scenario : #scenario.?",
+      "parentUuid": "71a483eb_74efd3a1",
+      "range": {
+        "startLine": 287,
+        "startChar": 13,
+        "endLine": 287,
+        "endChar": 21
+      },
+      "revId": "2eb79025616184ca17b067685608b265ce2fa899",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0c186b58_4272481c",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
         "patchSetId": 18
@@ -275,6 +539,30 @@
       "revId": "2eb79025616184ca17b067685608b265ce2fa899",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7b8e315e_8d843880",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 18
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-02-17T07:57:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c186b58_4272481c",
+      "range": {
+        "startLine": 299,
+        "startChar": 13,
+        "endLine": 299,
+        "endChar": 21
+      },
+      "revId": "2eb79025616184ca17b067685608b265ce2fa899",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -301,6 +589,30 @@
     },
     {
       "key": {
+        "uuid": "1503bfbd_eb286b2d",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 18
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-02-17T07:57:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa2fd354_1f4005b4",
+      "range": {
+        "startLine": 325,
+        "startChar": 39,
+        "endLine": 325,
+        "endChar": 58
+      },
+      "revId": "2eb79025616184ca17b067685608b265ce2fa899",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b2364b5d_47b30ae6",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
         "patchSetId": 18
@@ -321,6 +633,30 @@
       "revId": "2eb79025616184ca17b067685608b265ce2fa899",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88ddb4fa_c7115323",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 18
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-02-17T07:57:22Z",
+      "side": 1,
+      "message": "oh yes I just forgot to modify these test cases. These were throwing NullPointerException so I thought I will resolve it later but just forgot about that 😄",
+      "parentUuid": "b2364b5d_47b30ae6",
+      "range": {
+        "startLine": 111,
+        "startChar": 0,
+        "endLine": 143,
+        "endChar": 7
+      },
+      "revId": "2eb79025616184ca17b067685608b265ce2fa899",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -347,6 +683,30 @@
     },
     {
       "key": {
+        "uuid": "0b39780e_04984dd3",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-02-17T07:57:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "862c9b3e_79be7a66",
+      "range": {
+        "startLine": 121,
+        "startChar": 39,
+        "endLine": 121,
+        "endChar": 45
+      },
+      "revId": "2eb79025616184ca17b067685608b265ce2fa899",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "086a3c4b_e942dbf4",
         "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
         "patchSetId": 18
@@ -370,6 +730,30 @@
     },
     {
       "key": {
+        "uuid": "3bdaf839_5d705547",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-02-17T07:57:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "086a3c4b_e942dbf4",
+      "range": {
+        "startLine": 134,
+        "startChar": 39,
+        "endLine": 134,
+        "endChar": 45
+      },
+      "revId": "2eb79025616184ca17b067685608b265ce2fa899",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e9774f0_7a3f4af8",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
         "patchSetId": 18
@@ -390,6 +774,30 @@
       "revId": "2eb79025616184ca17b067685608b265ce2fa899",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bbf4548d_f57358ce",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-02-17T07:57:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e9774f0_7a3f4af8",
+      "range": {
+        "startLine": 135,
+        "startChar": 4,
+        "endLine": 135,
+        "endChar": 13
+      },
+      "revId": "2eb79025616184ca17b067685608b265ce2fa899",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
