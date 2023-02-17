@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6877661d_c08537a3",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-02-17T09:23:11Z",
+      "side": 1,
+      "message": "This metric now has the same name as line 146.\nMaybe we can rename back to \"cps.data.service.datanode.get\"?",
+      "range": {
+        "startLine": 136,
+        "startChar": 19,
+        "endLine": 136,
+        "endChar": 56
+      },
+      "revId": "bca946bcf92da98c9c677901cb33ffeee8dff71e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "90975014_7ad95f66",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-02-17T09:23:11Z",
+      "side": 1,
+      "message": "Metric description is now same as line 147.\nMaybe change to \"Time taken to get a data node\" or \"Time taken to get data nodes for an xpath\"",
+      "range": {
+        "startLine": 137,
+        "startChar": 26,
+        "endLine": 137,
+        "endChar": 67
+      },
+      "revId": "bca946bcf92da98c9c677901cb33ffeee8dff71e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
