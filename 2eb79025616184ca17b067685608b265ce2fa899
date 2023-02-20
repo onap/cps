@@ -237,6 +237,30 @@
     },
     {
       "key": {
+        "uuid": "8534cb35_529d08bf",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandlerSpec.groovy",
+        "patchSetId": 18
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-20T08:34:11Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ddef5a76_db448af1",
+      "range": {
+        "startLine": 51,
+        "startChar": 34,
+        "endLine": 51,
+        "endChar": 35
+      },
+      "revId": "2eb79025616184ca17b067685608b265ce2fa899",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2ce34c62_23ecd36f",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandlerSpec.groovy",
         "patchSetId": 18
@@ -284,6 +308,30 @@
     },
     {
       "key": {
+        "uuid": "75df106f_cbf2ec74",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandlerSpec.groovy",
+        "patchSetId": 18
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-20T08:34:11Z",
+      "side": 1,
+      "message": "renaming the original helped :-D",
+      "parentUuid": "082a6278_303b65f3",
+      "range": {
+        "startLine": 101,
+        "startChar": 72,
+        "endLine": 101,
+        "endChar": 90
+      },
+      "revId": "2eb79025616184ca17b067685608b265ce2fa899",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c27b2d04_0faed394",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
         "patchSetId": 18
@@ -319,6 +367,30 @@
       "side": 1,
       "message": "In the persistence layer we check if the collection is empty or not. If an empty collection is returned we throw DataNodeNotFoundException. Checked the test case as well.",
       "parentUuid": "c27b2d04_0faed394",
+      "range": {
+        "startLine": 105,
+        "startChar": 35,
+        "endLine": 105,
+        "endChar": 54
+      },
+      "revId": "2eb79025616184ca17b067685608b265ce2fa899",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1af83997_f73291a1",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-20T08:34:11Z",
+      "side": 1,
+      "message": "i thought the error handling might solve teh issue alright tahts good!",
+      "parentUuid": "aa8cd3e3_3bfd1e77",
       "range": {
         "startLine": 105,
         "startChar": 35,
@@ -507,6 +579,30 @@
       "side": 1,
       "message": "removing multiple makes signature same as test on #325. Could modify #325 as Get data nodes for collection of xpath error scenario : #scenario.?",
       "parentUuid": "71a483eb_74efd3a1",
+      "range": {
+        "startLine": 287,
+        "startChar": 13,
+        "endLine": 287,
+        "endChar": 21
+      },
+      "revId": "2eb79025616184ca17b067685608b265ce2fa899",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7eee6c92_f0d124cb",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 18
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-20T08:34:11Z",
+      "side": 1,
+      "message": "if the titles end up the same, are they testing the same/similar, can they be combined?",
+      "parentUuid": "5fe309ea_32ccc013",
       "range": {
         "startLine": 287,
         "startChar": 13,
