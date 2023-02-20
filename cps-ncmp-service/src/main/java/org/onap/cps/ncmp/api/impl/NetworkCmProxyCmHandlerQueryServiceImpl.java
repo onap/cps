@@ -26,6 +26,7 @@ import static org.onap.cps.ncmp.api.impl.utils.YangDataConverter.convertYangMode
 import static org.onap.cps.spi.FetchDescendantsOption.FETCH_DIRECT_CHILDREN_ONLY;
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
 
+import io.micrometer.core.annotation.Timed;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -116,6 +117,8 @@ public class NetworkCmProxyCmHandlerQueryServiceImpl implements NetworkCmProxyCm
     }
 
     @Override
+    @Timed(value = "cps.ncmp.api.impl.cmhandle.inventory",
+            description = "Time taken to get a list of strings (from cmHandleQueryServiceParameters)")
     public Set<String> queryCmHandleIdsForInventory(
             final CmHandleQueryServiceParameters cmHandleQueryServiceParameters) {
 

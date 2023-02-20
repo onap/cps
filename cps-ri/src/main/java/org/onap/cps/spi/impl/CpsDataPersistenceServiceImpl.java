@@ -25,6 +25,7 @@ package org.onap.cps.spi.impl;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ImmutableSet.Builder;
+import io.micrometer.core.annotation.Timed;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -330,6 +331,8 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     }
 
     @Override
+    @Timed(value = "cps.ncmp.spi.impl.query.data.nodes",
+            description = "Time taken to get a list of data nodes (from cps path with descendant option)")
     public List<DataNode> queryDataNodes(final String dataspaceName, final String anchorName, final String cpsPath,
                                          final FetchDescendantsOption fetchDescendantsOption) {
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
