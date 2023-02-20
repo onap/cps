@@ -44,6 +44,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 
@@ -89,6 +90,7 @@ public class FragmentEntity implements Serializable {
     @JoinColumn(name = "anchor_id")
     private AnchorEntity anchor;
 
+    @ToString.Exclude
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")
     private Set<FragmentEntity> childFragments;
