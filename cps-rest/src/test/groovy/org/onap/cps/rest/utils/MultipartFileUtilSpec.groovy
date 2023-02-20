@@ -63,7 +63,7 @@ class MultipartFileUtilSpec extends Specification {
 
     def 'Yang file limits in zip archive: #scenario for the bug reported in CPS-1477'() {
         given: 'a yang file size (uncompressed) limit of #threshold bytes'
-            ZipFileSizeValidator.THRESHOLD_SIZE = threshold
+            ZipFileSizeValidator.thresholdSize = threshold
         and: 'an archive with a yang file of 1083 bytes'
             def multipartFile = multipartZipFileFromResource('/yang-files-set-total-1083-bytes.zip')
         when: 'attempt to extract yang files'
