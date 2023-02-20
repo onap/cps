@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7d7df67a_a5797e80",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-20T16:49:45Z",
+      "side": 1,
+      "message": "\u0027Time take to query NCMP for cm handle Objects\u0027",
+      "range": {
+        "startLine": 73,
+        "startChar": 36,
+        "endLine": 73,
+        "endChar": 50
+      },
+      "revId": "6a99bde64b1077154d18944c4012d7df2781c03a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1dc7de11_44fb5e62",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-20T16:49:45Z",
+      "side": 1,
+      "message": "\u0027Time taken to query NCMP for cm handle ids\u0027",
+      "range": {
+        "startLine": 93,
+        "startChar": 23,
+        "endLine": 93,
+        "endChar": 39
+      },
+      "revId": "6a99bde64b1077154d18944c4012d7df2781c03a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0d04679f_5f28f755",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-20T16:49:45Z",
+      "side": 1,
+      "message": "describe the  use case not the code details :-)\ne.g. \u0027Time take to query the NCMP inventory for cm handle ids\u0027",
+      "range": {
+        "startLine": 121,
+        "startChar": 55,
+        "endLine": 121,
+        "endChar": 100
+      },
+      "revId": "6a99bde64b1077154d18944c4012d7df2781c03a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
