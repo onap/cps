@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "78bf6867_e6af278d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/ModelLoader.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-20T09:02:50Z",
+      "side": 1,
+      "message": "NB: No need fo JavaDoc for private methods",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 7
+      },
+      "revId": "fdbe6fce60cd9b8531b3bf385b11ac31638ef1ed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8fc6030f_1898baec",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/ModelLoader.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-20T09:02:50Z",
+      "side": 1,
+      "message": "NB: No need fo JavaDoc for private methods",
+      "range": {
+        "startLine": 109,
+        "startChar": 0,
+        "endLine": 115,
+        "endChar": 7
+      },
+      "revId": "fdbe6fce60cd9b8531b3bf385b11ac31638ef1ed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "38d4507f_946dda86",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/ModelLoaderSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-20T09:02:50Z",
+      "side": 1,
+      "message": "NB: I meant just to use objectUnderTest.SUBSCRIPTION_DATASPACE_NAME where you need it, no need to redefine here\nBut it is a matter of preference not blocking comment",
+      "range": {
+        "startLine": 45,
+        "startChar": 4,
+        "endLine": 45,
+        "endChar": 35
+      },
+      "revId": "fdbe6fce60cd9b8531b3bf385b11ac31638ef1ed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
