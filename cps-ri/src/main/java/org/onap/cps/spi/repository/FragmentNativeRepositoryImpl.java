@@ -21,8 +21,11 @@
 package org.onap.cps.spi.repository;
 
 import java.util.Collection;
+import java.util.Collections;
+import java.util.stream.Collectors;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -40,55 +43,55 @@ public class FragmentNativeRepositoryImpl implements FragmentNativeRepository {
     @PersistenceContext
     private final EntityManager entityManager;
 
-    private final TempTableCreator tempTableCreator;
-
     @Override
     public void deleteFragmentEntity(final long fragmentEntityId) {
         entityManager.createNativeQuery(
-                DROP_FRAGMENT_CONSTRAINT
-                    + ADD_FRAGMENT_CONSTRAINT_WITH_CASCADE
-                    + "DELETE FROM fragment WHERE id = ?;"
-                    + DROP_FRAGMENT_CONSTRAINT
-                    + ADD_ORIGINAL_FRAGMENT_CONSTRAINT)
+                addFragmentConstraintWithDeleteCascade("DELETE FROM fragment WHERE id = ?"))
             .setParameter(1, fragmentEntityId)
             .executeUpdate();
     }
 
     @Override
-    // Accept security hotspot as temporary table name in SQL query is created internally, not from user input.
-    @SuppressWarnings("squid:S2077")
     public void deleteByAnchorIdAndXpaths(final int anchorId, final Collection<String> xpaths) {
-        if (!xpaths.isEmpty()) {
-            final String tempTableName = tempTableCreator.createTemporaryTable("xpathsToDelete", xpaths, "xpath");
-            entityManager.createNativeQuery(
-                    DROP_FRAGMENT_CONSTRAINT
-                        + ADD_FRAGMENT_CONSTRAINT_WITH_CASCADE
-                        + "DELETE FROM fragment f USING " + tempTableName + " t"
-                        + " WHERE f.anchor_id = :anchorId AND f.xpath = t.xpath;"
-                        + DROP_FRAGMENT_CONSTRAINT
-                        + ADD_ORIGINAL_FRAGMENT_CONSTRAINT)
-                .setParameter("anchorId", anchorId)
-                .executeUpdate();
-        }
+        final String queryString = addFragmentConstraintWithDeleteCascade(
+            "DELETE FROM fragment f WHERE f.anchor_id = ? AND (f.xpath IN (:parameterPlaceholders))");
+        executeUpdateWithAnchorIdAndCollection(queryString, anchorId, xpaths);
     }
 
     @Override
-    // Accept security hotspot as temporary table name in SQL query is created internally, not from user input.
+    public void deleteListsByAnchorIdAndXpaths(final int anchorId, final Collection<String> listXpaths) {
+        final Collection<String> listXpathPatterns =
+            listXpaths.stream().map(listXpath -> listXpath + "[%").collect(Collectors.toSet());
+        final String queryString = addFragmentConstraintWithDeleteCascade(
+            "DELETE FROM fragment f WHERE f.anchor_id = ? AND (f.xpath LIKE ANY (array[:parameterPlaceholders]))");
+        executeUpdateWithAnchorIdAndCollection(queryString, anchorId, listXpathPatterns);
+    }
+
+    // Accept security hotspot as placeholders in SQL query are created internally, not from user input.
     @SuppressWarnings("squid:S2077")
-    public void deleteListsByAnchorIdAndXpaths(final int anchorId, final Collection<String> xpaths) {
-        if (!xpaths.isEmpty()) {
-            final String tempTableName = tempTableCreator.createTemporaryTable("xpathsToDelete", xpaths, "xpath");
-            entityManager.createNativeQuery(
-                DROP_FRAGMENT_CONSTRAINT
-                    + ADD_FRAGMENT_CONSTRAINT_WITH_CASCADE
-                    + "DELETE FROM fragment f USING " + tempTableName + " t"
-                    + " WHERE f.anchor_id = :anchorId AND f.xpath LIKE CONCAT(t.xpath, :xpathListPattern);"
-                    + DROP_FRAGMENT_CONSTRAINT
-                    + ADD_ORIGINAL_FRAGMENT_CONSTRAINT)
-                .setParameter("anchorId", anchorId)
-                .setParameter("xpathListPattern", "[%%")
-                .executeUpdate();
+    private void executeUpdateWithAnchorIdAndCollection(final String sqlTemplate, final int anchorId,
+                                                        final Collection<String> collection) {
+        if (!collection.isEmpty()) {
+            final String parameterPlaceholders = String.join(",", Collections.nCopies(collection.size(), "?"));
+            final String queryStringWithParameterPlaceholders =
+                sqlTemplate.replaceFirst(":parameterPlaceholders\\b", parameterPlaceholders);
+
+            final Query query = entityManager.createNativeQuery(queryStringWithParameterPlaceholders);
+            query.setParameter(1, anchorId);
+            int parameterIndex = 2;
+            for (final String parameterValue : collection) {
+                query.setParameter(parameterIndex++, parameterValue);
+            }
+            query.executeUpdate();
         }
+    }
+
+    private static String addFragmentConstraintWithDeleteCascade(final String queryString) {
+        return DROP_FRAGMENT_CONSTRAINT
+            + ADD_FRAGMENT_CONSTRAINT_WITH_CASCADE
+            + queryString + ";"
+            + DROP_FRAGMENT_CONSTRAINT
+            + ADD_ORIGINAL_FRAGMENT_CONSTRAINT;
     }
 
 }
