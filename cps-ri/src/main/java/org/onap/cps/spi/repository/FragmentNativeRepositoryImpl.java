@@ -21,6 +21,7 @@
 package org.onap.cps.spi.repository;
 
 import java.util.Collection;
+import java.util.Collections;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import lombok.RequiredArgsConstructor;
@@ -40,8 +41,6 @@ public class FragmentNativeRepositoryImpl implements FragmentNativeRepository {
     @PersistenceContext
     private final EntityManager entityManager;
 
-    private final TempTableCreator tempTableCreator;
-
     @Override
     public void deleteFragmentEntity(final long fragmentEntityId) {
         entityManager.createNativeQuery(
@@ -55,40 +54,45 @@ public class FragmentNativeRepositoryImpl implements FragmentNativeRepository {
     }
 
     @Override
-    // Accept security hotspot as temporary table name in SQL query is created internally, not from user input.
+    // Accept security hotspot as placeholders in SQL query are created internally, not from user input.
     @SuppressWarnings("squid:S2077")
     public void deleteByAnchorIdAndXpaths(final int anchorId, final Collection<String> xpaths) {
         if (!xpaths.isEmpty()) {
-            final String tempTableName = tempTableCreator.createTemporaryTable("xpathsToDelete", xpaths, "xpath");
-            entityManager.createNativeQuery(
-                    DROP_FRAGMENT_CONSTRAINT
-                        + ADD_FRAGMENT_CONSTRAINT_WITH_CASCADE
-                        + "DELETE FROM fragment f USING " + tempTableName + " t"
-                        + " WHERE f.anchor_id = :anchorId AND f.xpath = t.xpath;"
-                        + DROP_FRAGMENT_CONSTRAINT
-                        + ADD_ORIGINAL_FRAGMENT_CONSTRAINT)
-                .setParameter("anchorId", anchorId)
-                .executeUpdate();
+            final String placeholders = String.join(",", Collections.nCopies(xpaths.size(), "?"));
+            final javax.persistence.Query query = entityManager.createNativeQuery(
+                DROP_FRAGMENT_CONSTRAINT
+                    + ADD_FRAGMENT_CONSTRAINT_WITH_CASCADE
+                    + "DELETE FROM fragment f WHERE f.anchor_id = ? AND (f.xpath IN (" + placeholders + "));"
+                    + DROP_FRAGMENT_CONSTRAINT
+                    + ADD_ORIGINAL_FRAGMENT_CONSTRAINT);
+            query.setParameter(1, anchorId);
+            int paramIndex = 2;
+            for (final String xpath : xpaths) {
+                query.setParameter(paramIndex++, xpath);
+            }
+            query.executeUpdate();
         }
     }
 
     @Override
-    // Accept security hotspot as temporary table name in SQL query is created internally, not from user input.
+    // Accept security hotspot as placeholders in SQL query are created internally, not from user input.
     @SuppressWarnings("squid:S2077")
-    public void deleteListsByAnchorIdAndXpaths(final int anchorId, final Collection<String> xpaths) {
-        if (!xpaths.isEmpty()) {
-            final String tempTableName = tempTableCreator.createTemporaryTable("xpathsToDelete", xpaths, "xpath");
-            entityManager.createNativeQuery(
+    public void deleteListsByAnchorIdAndXpaths(final int anchorId, final Collection<String> listXpaths) {
+        if (!listXpaths.isEmpty()) {
+            final String placeholders = String.join(",", Collections.nCopies(listXpaths.size(), "?"));
+            final javax.persistence.Query query = entityManager.createNativeQuery(
                 DROP_FRAGMENT_CONSTRAINT
                     + ADD_FRAGMENT_CONSTRAINT_WITH_CASCADE
-                    + "DELETE FROM fragment f USING " + tempTableName + " t"
-                    + " WHERE f.anchor_id = :anchorId AND f.xpath LIKE CONCAT(t.xpath, :xpathListPattern);"
+                    + "DELETE FROM fragment f WHERE f.anchor_id = ? AND (f.xpath LIKE ANY (array["
+                    + placeholders + "]));"
                     + DROP_FRAGMENT_CONSTRAINT
-                    + ADD_ORIGINAL_FRAGMENT_CONSTRAINT)
-                .setParameter("anchorId", anchorId)
-                .setParameter("xpathListPattern", "[%%")
-                .executeUpdate();
+                    + ADD_ORIGINAL_FRAGMENT_CONSTRAINT);
+            query.setParameter(1, anchorId);
+            int paramIndex = 2;
+            for (final String listXpath : listXpaths) {
+                query.setParameter(paramIndex++, listXpath + "[%");
+            }
+            query.executeUpdate();
         }
     }
-
 }
