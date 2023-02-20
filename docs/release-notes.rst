@@ -43,7 +43,7 @@ Bug Fixes
 
 Features
 --------
-   - None
+   - CPS-1401 <https://jira.onap.org/browse/CPS-1401>- Added V2 of Get Data Node API,support to retrieve all data nodes under an anchor
 
 Version: 3.2.2
 ==============
