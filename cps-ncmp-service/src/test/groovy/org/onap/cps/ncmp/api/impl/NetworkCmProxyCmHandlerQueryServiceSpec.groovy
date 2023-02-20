@@ -48,34 +48,62 @@ class NetworkCmProxyCmHandlerQueryServiceSpec extends Specification {
     def objectUnderTest = new NetworkCmProxyCmHandlerQueryServiceImpl(cmHandleQueries, mockInventoryPersistence)
     def objectUnderTestSpy = new NetworkCmProxyCmHandlerQueryServiceImpl(partiallyMockedCmHandleQueries, mockInventoryPersistence)
 
-    def 'Retrieve cm handles with cpsPath when combined with no Module Query.'() {
+    def 'Retrieve cm handle objects with cpsPath when combined with no Module Query.'() {
         given: 'a cmHandleWithCpsPath condition property'
             def cmHandleQueryParameters = new CmHandleQueryServiceParameters()
             def conditionProperties = createConditionProperties('cmHandleWithCpsPath', [['cpsPath' : '/some/cps/path']])
             cmHandleQueryParameters.setCmHandleQueryParameters([conditionProperties])
-        and: 'cmHandleQueries returns a non null query result'
+        and: 'the query to get the cm handle datanodes including all descendants returns a datanode'
             cmHandleQueries.queryCmHandleDataNodesByCpsPath('/some/cps/path', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> [new DataNode(leaves: ['id':'some-cmhandle-id'])]
         and: 'CmHandleQueries returns cmHandles with the relevant query result'
             cmHandleQueries.combineCmHandleQueries(*_) >> ['PNFDemo1': new NcmpServiceCmHandle(cmHandleId: 'PNFDemo1'), 'PNFDemo3': new NcmpServiceCmHandle(cmHandleId: 'PNFDemo3')]
-        when: 'the query is executed for both cm handle ids and details'
-            def returnedCmHandlesJustIds = objectUnderTest.queryCmHandleIds(cmHandleQueryParameters)
+        when: 'the query is executed for cm handle details'
             def returnedCmHandlesWithData = objectUnderTest.queryCmHandles(cmHandleQueryParameters)
-        then: 'the correct expected cm handles ids are returned'
-            returnedCmHandlesJustIds == ['PNFDemo1', 'PNFDemo3'] as Set
-        and: 'the correct ncmp service cm handles are returned'
+        then: 'the correct ncmp service cm handles are returned'
             returnedCmHandlesWithData.stream().map(CmHandle -> CmHandle.cmHandleId).collect(Collectors.toSet()) == ['PNFDemo1', 'PNFDemo3'] as Set
     }
 
-    def 'Retrieve cm handles with cpsPath where #scenario.'() {
+    def 'Retrieve cm handle ids with cpsPath when combined with no Module Query.'() {
+        given: 'a cmHandleWithCpsPath condition property'
+            def cmHandleQueryParameters = new CmHandleQueryServiceParameters()
+            def conditionProperties = createConditionProperties('cmHandleWithCpsPath', [['cpsPath' : '/some/cps/path']])
+            cmHandleQueryParameters.setCmHandleQueryParameters([conditionProperties])
+        and: 'the query get the cm handle datanodes excluding all descendants returns a datanode'
+            cmHandleQueries.queryCmHandleDataNodesByCpsPath('/some/cps/path', FetchDescendantsOption.OMIT_DESCENDANTS) >> [new DataNode(leaves: ['id':'some-cmhandle-id'])]
+        and: 'CmHandleQueries returns cmHandles with the relevant query result'
+            cmHandleQueries.combineCmHandleQueries(*_) >> ['PNFDemo1': new NcmpServiceCmHandle(cmHandleId: 'PNFDemo1'), 'PNFDemo3': new NcmpServiceCmHandle(cmHandleId: 'PNFDemo3')]
+        when: 'the query is executed for cm handle ids'
+            def returnedCmHandlesJustIds = objectUnderTest.queryCmHandleIds(cmHandleQueryParameters)
+        then: 'the correct expected cm handles ids are returned'
+            returnedCmHandlesJustIds == ['PNFDemo1', 'PNFDemo3'] as Set
+    }
+
+    def 'Retrieve cm handle details with cpsPath where #scenario.'() {
         given: 'a cmHandleWithCpsPath condition property'
             def cmHandleQueryParameters = new CmHandleQueryServiceParameters()
             def conditionProperties = createConditionProperties('cmHandleWithCpsPath', [['cpsPath' : '/some/cps/path']])
             cmHandleQueryParameters.setCmHandleQueryParameters([conditionProperties])
         and: 'cmHandleQueries throws a path parsing exception'
             cmHandleQueries.queryCmHandleDataNodesByCpsPath('/some/cps/path', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> { throw thrownException }
-        when: 'the query is executed for both cm handle ids and details'
-            objectUnderTest.queryCmHandleIds(cmHandleQueryParameters)
+        when: 'the query is executed for cm handle details'
             objectUnderTest.queryCmHandles(cmHandleQueryParameters)
+        then: 'a data validation exception is thrown'
+            thrown(expectedException)
+        where: 'the following data is used'
+            scenario                           | thrownException                                          || expectedException
+            'a PathParsingException is thrown' | new PathParsingException('some message', 'some details') || DataValidationException
+            'any other Exception is thrown'    | new DataInUseException('some message', 'some details')   || DataInUseException
+    }
+
+    def 'Retrieve cm handle ids with cpsPath where #scenario.'() {
+        given: 'a cmHandleWithCpsPath condition property'
+            def cmHandleQueryParameters = new CmHandleQueryServiceParameters()
+            def conditionProperties = createConditionProperties('cmHandleWithCpsPath', [['cpsPath' : '/some/cps/path']])
+            cmHandleQueryParameters.setCmHandleQueryParameters([conditionProperties])
+        and: 'cmHandleQueries throws a path parsing exception'
+            cmHandleQueries.queryCmHandleDataNodesByCpsPath('/some/cps/path', FetchDescendantsOption.OMIT_DESCENDANTS) >> { throw thrownException }
+        when: 'the query is executed for cm handle ids'
+            objectUnderTest.queryCmHandleIds(cmHandleQueryParameters)
         then: 'a data validation exception is thrown'
             thrown(expectedException)
         where: 'the following data is used'
