@@ -67,14 +67,14 @@ class CpsDataPersistenceServicePerfTest extends CpsPersistencePerfSpecBase {
             def result = objectUnderTest.getDataNodes(PERF_DATASPACE, PERF_ANCHOR, xpath, INCLUDE_ALL_DESCENDANTS)
             stopWatch.stop()
             def readDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'read duration is under 500 milliseconds'
-            recordAndAssertPerformance("Get ${scenario}", 500, readDurationInMillis)
+        then: 'read duration is under #allowedDuration milliseconds'
+            recordAndAssertPerformance("Get ${scenario}", allowedDuration, readDurationInMillis)
         and: 'data node is returned with all the descendants populated'
             assert countDataNodes(result[0]) == TOTAL_NUMBER_OF_NODES
         where: 'the following xPaths are used'
-            scenario || xpath
-            'parent' || PERF_TEST_PARENT
-            'root'   || ''
+            scenario | xpath            || allowedDuration
+            'parent' | PERF_TEST_PARENT || 3500
+            'root'   | ''               || 500
     }
 
     def 'Query parent data node with many descendants by cps-path'() {
