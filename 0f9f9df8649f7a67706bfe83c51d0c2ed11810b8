@@ -70,6 +70,30 @@
       "revId": "0f9f9df8649f7a67706bfe83c51d0c2ed11810b8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b9171aff_d6346d48",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/entities/FragmentEntity.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-20T08:26:20Z",
+      "side": 1,
+      "message": "ok, sounds good enought ot me, lets get some more approvals and merge it!",
+      "parentUuid": "2506c030_e2742b04",
+      "range": {
+        "startLine": 93,
+        "startChar": 4,
+        "endLine": 93,
+        "endChar": 21
+      },
+      "revId": "0f9f9df8649f7a67706bfe83c51d0c2ed11810b8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
