@@ -82,7 +82,7 @@ public class CmHandleQueriesImpl implements CmHandleQueries {
                     + publicPropertyQueryPair.getKey()
                     + "\" and @value=\"" + publicPropertyQueryPair.getValue() + "\"]";
 
-            final Collection<DataNode> dataNodes = queryCmHandleDataNodesByCpsPath(cpsPath, INCLUDE_ALL_DESCENDANTS);
+            final Collection<DataNode> dataNodes = queryCmHandleDataNodesByCpsPath(cpsPath, OMIT_DESCENDANTS);
             if (cmHandleIdToNcmpServiceCmHandles == null) {
                 cmHandleIdToNcmpServiceCmHandles = collectDataNodesToNcmpServiceCmHandles(dataNodes);
             } else {
