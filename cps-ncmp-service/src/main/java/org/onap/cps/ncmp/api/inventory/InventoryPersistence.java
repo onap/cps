@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022-2023 Nordix Foundation
+ *  Modifications Copyright (C) 2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -126,7 +127,7 @@ public interface InventoryPersistence {
      * @param xpath xpath
      * @return data node
      */
-    DataNode getDataNode(String xpath);
+    Collection<DataNode> getDataNode(String xpath);
 
     /**
      * Get data node via xpath.
@@ -135,7 +136,7 @@ public interface InventoryPersistence {
      * @param fetchDescendantsOption fetch descendants option
      * @return data node
      */
-    DataNode getDataNode(String xpath, FetchDescendantsOption fetchDescendantsOption);
+    Collection<DataNode> getDataNode(String xpath, FetchDescendantsOption fetchDescendantsOption);
 
     /**
      * Get collection of data nodes via xpaths.
@@ -160,7 +161,7 @@ public interface InventoryPersistence {
      * @param cmHandleId cmHandle ID
      * @return data node
      */
-    DataNode getCmHandleDataNode(String cmHandleId);
+    Collection<DataNode> getCmHandleDataNode(String cmHandleId);
 
     /**
      * Get collection of data nodes of given cm handles.

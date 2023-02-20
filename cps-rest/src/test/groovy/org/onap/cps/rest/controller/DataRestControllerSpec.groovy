@@ -25,7 +25,9 @@
 package org.onap.cps.rest.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import groovy.json.JsonSlurper
 import org.onap.cps.api.CpsDataService
+import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.DataNodeBuilder
 import org.onap.cps.utils.ContentType
@@ -68,7 +70,7 @@ class DataRestControllerSpec extends Specification {
     @Value('${rest.api.cps-base-path}')
     def basePath
 
-    def dataNodeBaseEndpoint
+    def dataNodeBaseEndpointV1
     def dataNodeBaseEndpointV2
     def dataspaceName = 'my_dataspace'
     def anchorName = 'my_anchor'
@@ -87,21 +89,25 @@ class DataRestControllerSpec extends Specification {
     def expectedXmlData = '<?xml version=\'1.0\' encoding=\'UTF-8\'?>\n<bookstore xmlns="org:onap:ccsdk:sample">\n</bookstore>'
 
     @Shared
-    static DataNode dataNodeWithLeavesNoChildren = new DataNodeBuilder().withXpath('/xpath')
+    static DataNode dataNodeWithLeavesNoChildren = new DataNodeBuilder().withXpath('/parent-1')
         .withLeaves([leaf: 'value', leafList: ['leaveListElement1', 'leaveListElement2']]).build()
+
+    @Shared
+    static DataNode dataNodeWithLeavesNoChildren2 = new DataNodeBuilder().withXpath('/parent-2')
+        .withLeaves([leaf: 'value']).build()
 
     @Shared
     static DataNode dataNodeWithChild = new DataNodeBuilder().withXpath('/parent')
         .withChildDataNodes([new DataNodeBuilder().withXpath("/parent/child").build()]).build()
 
     def setup() {
-        dataNodeBaseEndpoint = "$basePath/v1/dataspaces/$dataspaceName"
+        dataNodeBaseEndpointV1 = "$basePath/v1/dataspaces/$dataspaceName"
         dataNodeBaseEndpointV2 = "$basePath/v2/dataspaces/$dataspaceName"
     }
 
     def 'Create a node: #scenario.'() {
         given: 'endpoint to create a node'
-            def endpoint = "$dataNodeBaseEndpoint/anchors/$anchorName/nodes"
+            def endpoint = "$dataNodeBaseEndpointV1/anchors/$anchorName/nodes"
         when: 'post is invoked with datanode endpoint and json'
             def response =
                 mvc.perform(
@@ -124,7 +130,7 @@ class DataRestControllerSpec extends Specification {
 
     def 'Create a node with observed-timestamp'() {
         given: 'endpoint to create a node'
-            def endpoint = "$dataNodeBaseEndpoint/anchors/$anchorName/nodes"
+            def endpoint = "$dataNodeBaseEndpointV1/anchors/$anchorName/nodes"
         when: 'post is invoked with datanode endpoint and json'
             def response =
                 mvc.perform(
@@ -148,7 +154,7 @@ class DataRestControllerSpec extends Specification {
 
     def 'Create a child node #scenario'() {
         given: 'endpoint to create a node'
-            def endpoint = "$dataNodeBaseEndpoint/anchors/$anchorName/nodes"
+            def endpoint = "$dataNodeBaseEndpointV1/anchors/$anchorName/nodes"
         and: 'parent node xpath'
             def parentNodeXpath = 'some xpath'
         when: 'post is invoked with datanode endpoint and json'
@@ -177,7 +183,7 @@ class DataRestControllerSpec extends Specification {
         given: 'parent node xpath '
             def parentNodeXpath = 'parent node xpath'
         when: 'list-node endpoint is invoked with post (create) operation'
-            def postRequestBuilder = post("$dataNodeBaseEndpoint/anchors/$anchorName/list-nodes")
+            def postRequestBuilder = post("$dataNodeBaseEndpointV1/anchors/$anchorName/list-nodes")
                 .contentType(MediaType.APPLICATION_JSON)
                 .param('xpath', parentNodeXpath)
                 .content(requestBodyJson)
@@ -198,9 +204,9 @@ class DataRestControllerSpec extends Specification {
 
     def 'Get data node with leaves'() {
         given: 'the service returns data node leaves'
-            def xpath = 'xpath'
-            def endpoint = "$dataNodeBaseEndpoint/anchors/$anchorName/node"
-            mockCpsDataService.getDataNode(dataspaceName, anchorName, xpath, OMIT_DESCENDANTS) >> dataNodeWithLeavesNoChildren
+            def xpath = 'parent-1'
+            def endpoint = "$dataNodeBaseEndpointV1/anchors/$anchorName/node"
+            mockCpsDataService.getDataNodes(dataspaceName, anchorName, xpath, OMIT_DESCENDANTS) >> [dataNodeWithLeavesNoChildren]
         when: 'get request is performed through REST API'
             def response =
                 mvc.perform(get(endpoint).param('xpath', xpath))
@@ -208,7 +214,7 @@ class DataRestControllerSpec extends Specification {
         then: 'a success response is returned'
             response.status == HttpStatus.OK.value()
         then: 'the response contains the the datanode in json format'
-            response.getContentAsString() == '{"xpath":{"leaf":"value","leafList":["leaveListElement1","leaveListElement2"]}}'
+            response.getContentAsString() == '{"parent-1":{"leaf":"value","leafList":["leaveListElement1","leaveListElement2"]}}'
         and: 'response contains expected leaf and value'
             response.contentAsString.contains('"leaf":"value"')
         and: 'response contains expected leaf-list and values'
@@ -218,8 +224,8 @@ class DataRestControllerSpec extends Specification {
     def 'Get data node with #scenario.'() {
         given: 'the service returns data node with #scenario'
             def xpath = 'some xPath'
-            def endpoint = "$dataNodeBaseEndpoint/anchors/$anchorName/node"
-            mockCpsDataService.getDataNode(dataspaceName, anchorName, xpath, expectedCpsDataServiceOption) >> dataNode
+            def endpoint = "$dataNodeBaseEndpointV1/anchors/$anchorName/node"
+            mockCpsDataService.getDataNodes(dataspaceName, anchorName, xpath, expectedCpsDataServiceOption) >> [dataNode]
         when: 'get request is performed through REST API'
             def response =
                 mvc.perform(
@@ -235,25 +241,68 @@ class DataRestControllerSpec extends Specification {
             response.contentAsString.contains('"child"') == expectChildInResponse
         where:
             scenario                    | dataNode                     | includeDescendantsOption || expectedCpsDataServiceOption | expectChildInResponse | expectedRootidentifier
-            'no descendants by default' | dataNodeWithLeavesNoChildren | ''                       || OMIT_DESCENDANTS             | false                 | 'xpath'
-            'no descendant explicitly'  | dataNodeWithLeavesNoChildren | 'false'                  || OMIT_DESCENDANTS             | false                 | 'xpath'
+            'no descendants by default' | dataNodeWithLeavesNoChildren | ''                       || OMIT_DESCENDANTS             | false                 | 'parent-1'
+            'no descendant explicitly'  | dataNodeWithLeavesNoChildren | 'false'                  || OMIT_DESCENDANTS             | false                 | 'parent-1'
             'with descendants'          | dataNodeWithChild            | 'true'                   || INCLUDE_ALL_DESCENDANTS      | true                  | 'parent'
     }
 
+    def 'Get all the data trees as json array with root node xPath using V2'() {
+        given: 'the service returns all data node leaves'
+            def xpath = '/'
+            def endpoint = "$dataNodeBaseEndpointV2/anchors/$anchorName/node"
+            mockCpsDataService.getDataNodes(dataspaceName, anchorName, xpath, OMIT_DESCENDANTS) >> [dataNodeWithLeavesNoChildren, dataNodeWithLeavesNoChildren2]
+        when: 'V2 of get request is performed through REST API'
+            def response =
+                mvc.perform(get(endpoint).param('xpath', xpath))
+                    .andReturn().response
+        then: 'a success response is returned'
+            response.status == HttpStatus.OK.value()
+        and: 'the response contains the datanode in json array format'
+            response.getContentAsString() == '[{"parent-1":{"leaf":"value","leafList":["leaveListElement1","leaveListElement2"]}},' +
+                '{"parent-2":{"leaf":"value"}}]'
+        and: 'the json array contains expected number of data trees'
+            def numberOfDataTrees = new JsonSlurper().parseText(response.getContentAsString()).iterator().size()
+            assert numberOfDataTrees == 2
+    }
+
+    def 'Get data node with #scenario using V2.'() {
+        given: 'the service returns data nodes with #scenario'
+            def xpath = 'some xPath'
+            def endpoint = "$dataNodeBaseEndpointV2/anchors/$anchorName/node"
+            mockCpsDataService.getDataNodes(dataspaceName, anchorName, xpath, expectedCpsDataServiceOption) >> [dataNode]
+        when: 'V2 of get request is performed through REST API'
+            def response =
+                mvc.perform(
+                    get(endpoint)
+                        .param('xpath', xpath)
+                        .param('descendants', includeDescendantsOption))
+                    .andReturn().response
+        then: 'a success response is returned'
+            response.status == HttpStatus.OK.value()
+        and: 'the response contains the root node identifier: #expectedRootidentifier'
+            response.contentAsString.contains(expectedRootidentifier)
+        and: 'the response contains child is #expectChildInResponse'
+            response.contentAsString.contains('"child"') == expectChildInResponse
+        where:
+            scenario                    | dataNode                     | includeDescendantsOption || expectedCpsDataServiceOption | expectChildInResponse | expectedRootidentifier
+            'no descendants by default' | dataNodeWithLeavesNoChildren | ''                       || OMIT_DESCENDANTS             | false                 | 'parent-1'
+            'no descendant explicitly'  | dataNodeWithLeavesNoChildren | '0'                      || OMIT_DESCENDANTS             | false                 | 'parent-1'
+            'with descendants'          | dataNodeWithChild            | '-1'                     || INCLUDE_ALL_DESCENDANTS      | true                  | 'parent'
+    }
 
     def 'Get data node using v2 api'() {
         given: 'the service returns data node'
             def xpath = 'some xPath'
             def endpoint = "$dataNodeBaseEndpointV2/anchors/$anchorName/node"
-            mockCpsDataService.getDataNode(dataspaceName, anchorName, xpath, {descendantsOption -> {
-                assert descendantsOption.depth == 2}}) >> dataNodeWithChild
+            mockCpsDataService.getDataNodes(dataspaceName, anchorName, xpath, { descendantsOption -> {
+                assert descendantsOption.depth == 2}} as FetchDescendantsOption) >> [dataNodeWithChild]
         when: 'get request is performed through REST API'
             def response =
                 mvc.perform(
-                        get(endpoint)
-                                .param('xpath', xpath)
-                                .param('descendants', '2'))
-                        .andReturn().response
+                    get(endpoint)
+                        .param('xpath', xpath)
+                        .param('descendants', '2'))
+                    .andReturn().response
         then: 'a success response is returned'
             assert response.status == HttpStatus.OK.value()
         and: 'the response contains the root node identifier'
@@ -264,7 +313,7 @@ class DataRestControllerSpec extends Specification {
 
     def 'Update data node leaves: #scenario.'() {
         given: 'endpoint to update a node '
-            def endpoint = "$dataNodeBaseEndpoint/anchors/$anchorName/nodes"
+            def endpoint = "$dataNodeBaseEndpointV1/anchors/$anchorName/nodes"
         when: 'patch request is performed'
             def response =
                 mvc.perform(
@@ -286,7 +335,7 @@ class DataRestControllerSpec extends Specification {
 
     def 'Update data node leaves with observedTimestamp'() {
         given: 'endpoint to update a node leaves '
-            def endpoint = "$dataNodeBaseEndpoint/anchors/$anchorName/nodes"
+            def endpoint = "$dataNodeBaseEndpointV1/anchors/$anchorName/nodes"
         when: 'patch request is performed'
             def response =
                 mvc.perform(
@@ -309,7 +358,7 @@ class DataRestControllerSpec extends Specification {
 
     def 'Replace data node tree: #scenario.'() {
         given: 'endpoint to replace node'
-            def endpoint = "$dataNodeBaseEndpoint/anchors/$anchorName/nodes"
+            def endpoint = "$dataNodeBaseEndpointV1/anchors/$anchorName/nodes"
         when: 'put request is performed'
             def response =
                 mvc.perform(
@@ -331,7 +380,7 @@ class DataRestControllerSpec extends Specification {
 
     def 'Update data node and descendants with observedTimestamp.'() {
         given: 'endpoint to replace node'
-            def endpoint = "$dataNodeBaseEndpoint/anchors/$anchorName/nodes"
+            def endpoint = "$dataNodeBaseEndpointV1/anchors/$anchorName/nodes"
         when: 'put request is performed'
             def response =
                 mvc.perform(
@@ -354,7 +403,7 @@ class DataRestControllerSpec extends Specification {
 
     def 'Replace list content #scenario.'() {
         when: 'list-nodes endpoint is invoked with put (update) operation'
-            def putRequestBuilder = put("$dataNodeBaseEndpoint/anchors/$anchorName/list-nodes")
+            def putRequestBuilder = put("$dataNodeBaseEndpointV1/anchors/$anchorName/list-nodes")
                 .contentType(MediaType.APPLICATION_JSON)
                 .param('xpath', 'parent xpath')
                 .content(requestBodyJson)
@@ -375,7 +424,7 @@ class DataRestControllerSpec extends Specification {
 
     def 'Delete list element #scenario.'() {
         when: 'list-nodes endpoint is invoked with delete operation'
-            def deleteRequestBuilder = delete("$dataNodeBaseEndpoint/anchors/$anchorName/list-nodes")
+            def deleteRequestBuilder = delete("$dataNodeBaseEndpointV1/anchors/$anchorName/list-nodes")
                 .param('xpath', 'list element xpath')
             if (observedTimestamp != null)
                 deleteRequestBuilder.param('observed-timestamp', observedTimestamp)
@@ -396,7 +445,7 @@ class DataRestControllerSpec extends Specification {
         given: 'data node xpath'
             def dataNodeXpath = '/dataNodeXpath'
         when: 'delete data node endpoint is invoked'
-            def deleteDataNodeRequest = delete( "$dataNodeBaseEndpoint/anchors/$anchorName/nodes")
+            def deleteDataNodeRequest = delete( "$dataNodeBaseEndpointV1/anchors/$anchorName/nodes")
                 .param('xpath', dataNodeXpath)
         and: 'observed timestamp is added to the parameters'
             if (observedTimestamp != null)

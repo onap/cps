@@ -64,13 +64,13 @@ class CpsDataPersistenceServicePerfTest extends CpsPersistencePerfSpecBase {
     def 'Get data node with many descendants by xpath #scenario'() {
         when: 'get parent is executed with all descendants'
             stopWatch.start()
-            def result = objectUnderTest.getDataNode(PERF_DATASPACE, PERF_ANCHOR, xpath, INCLUDE_ALL_DESCENDANTS)
+            def result = objectUnderTest.getDataNodes(PERF_DATASPACE, PERF_ANCHOR, xpath, INCLUDE_ALL_DESCENDANTS)
             stopWatch.stop()
             def readDurationInMillis = stopWatch.getTotalTimeMillis()
         then: 'read duration is under 500 milliseconds'
             recordAndAssertPerformance("Get ${scenario}", 500, readDurationInMillis)
         and: 'data node is returned with all the descendants populated'
-            assert countDataNodes(result) == TOTAL_NUMBER_OF_NODES
+            assert countDataNodes(result[0]) == TOTAL_NUMBER_OF_NODES
         where: 'the following xPaths are used'
             scenario || xpath
             'parent' || PERF_TEST_PARENT
@@ -93,7 +93,7 @@ class CpsDataPersistenceServicePerfTest extends CpsPersistencePerfSpecBase {
         when: 'we query for all grandchildren (except 1 for fun) with the new native method'
             xpathsToAllGrandChildren.remove(0)
             stopWatch.start()
-            def result = objectUnderTest.getDataNodes(PERF_DATASPACE, PERF_ANCHOR, xpathsToAllGrandChildren, INCLUDE_ALL_DESCENDANTS)
+            def result = objectUnderTest.getDataNodesForMultipleXpaths(PERF_DATASPACE, PERF_ANCHOR, xpathsToAllGrandChildren, INCLUDE_ALL_DESCENDANTS)
             stopWatch.stop()
             def readDurationInMillis = stopWatch.getTotalTimeMillis()
         then: 'the returned number of entities equal to the number of children * number of grandchildren'

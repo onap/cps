@@ -4,6 +4,7 @@
  *  Modifications Copyright (C) 2021-2023 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada
+ *  Modifications Copyright (C) 2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -131,8 +132,8 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     public Object getResourceDataOperational(final String cmHandleId,
                                              final String resourceIdentifier,
                                              final FetchDescendantsOption fetchDescendantsOption) {
-        return cpsDataService.getDataNode(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId, resourceIdentifier,
-                fetchDescendantsOption);
+        return cpsDataService.getDataNodes(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId, resourceIdentifier,
+                fetchDescendantsOption).iterator().next();
     }
 
     @Override

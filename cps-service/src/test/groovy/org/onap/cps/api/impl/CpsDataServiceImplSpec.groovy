@@ -3,7 +3,7 @@
  *  Copyright (C) 2021-2023 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada.
- *  Modifications Copyright (C) 2022 TechMahindra Ltd.
+ *  Modifications Copyright (C) 2022-2023 TechMahindra Ltd.
  *  Modifications Copyright (C) 2022 Deutsche Telekom AG
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -184,13 +184,27 @@ class CpsDataServiceImplSpec extends Specification {
             thrown(DataValidationException)
     }
 
-    def 'Get data node with option #fetchDescendantsOption.'() {
-        def xpath = '/xpath'
-        def dataNode = new DataNodeBuilder().withXpath(xpath).build()
+    def 'Get all data nodes #scenario.'() {
+        given: 'persistence service returns data for GET request'
+            mockCpsDataPersistenceService.getDataNodes(dataspaceName, anchorName, xpath, fetchDescendantsOption) >> dataNode
+        expect: 'service returns same data if using same parameters'
+            objectUnderTest.getDataNodes(dataspaceName, anchorName, xpath, fetchDescendantsOption) == dataNode
+        where: 'following parameters were used'
+            scenario                                   | xpath   | fetchDescendantsOption                         |   dataNode
+            'with root node xpath and descendants'     | '/'     | FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS | [new DataNodeBuilder().withXpath('/xpath-1').build(), new DataNodeBuilder().withXpath('/xpath-2').build()]
+            'with root node xpath and no descendants'  | '/'     | FetchDescendantsOption.OMIT_DESCENDANTS        | [new DataNodeBuilder().withXpath('/xpath-1').build(), new DataNodeBuilder().withXpath('/xpath-2').build()]
+            'with valid xpath and descendants'         | '/xpath'| FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS | [new DataNodeBuilder().withXpath('/xpath').build()]
+            'with valid xpath and no descendants'      | '/xpath'| FetchDescendantsOption.OMIT_DESCENDANTS        | [new DataNodeBuilder().withXpath('/xpath').build()]
+    }
+
+    def 'Get all data nodes over multiple xpaths with option #fetchDescendantsOption.'() {
+        def xpath1 = '/xpath-1'
+        def xpath2 = '/xpath-2'
+        def dataNode = [new DataNodeBuilder().withXpath(xpath1).build(), new DataNodeBuilder().withXpath(xpath2).build()]
         given: 'persistence service returns data for get data request'
-            mockCpsDataPersistenceService.getDataNode(dataspaceName, anchorName, xpath, fetchDescendantsOption) >> dataNode
+            mockCpsDataPersistenceService.getDataNodesForMultipleXpaths(dataspaceName, anchorName, [xpath1, xpath2], fetchDescendantsOption) >> dataNode
         expect: 'service returns same data if uses same parameters'
-            objectUnderTest.getDataNode(dataspaceName, anchorName, xpath, fetchDescendantsOption) == dataNode
+            objectUnderTest.getDataNodesForMultipleXpaths(dataspaceName, anchorName, [xpath1, xpath2], fetchDescendantsOption) == dataNode
         where: 'all fetch options are supported'
             fetchDescendantsOption << [FetchDescendantsOption.OMIT_DESCENDANTS, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS]
     }
