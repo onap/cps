@@ -25,6 +25,7 @@ import static org.onap.cps.ncmp.api.impl.utils.YangDataConverter.convertYangMode
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS;
 
+import io.micrometer.core.annotation.Timed;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -55,12 +56,16 @@ public class CmHandleQueriesImpl implements CmHandleQueries {
     private static final String ANCESTOR_CM_HANDLES = "/ancestor::cm-handles";
 
     @Override
+    @Timed(value = "cps.ncmp.inventory.queries.cmhandle.private.properties",
+            description = "Time taken to get a list of NcmpServiceCmHandles (from queryCmHandleAnyProperties)")
     public Map<String, NcmpServiceCmHandle> queryCmHandleAdditionalProperties(
             final Map<String, String> privatePropertyQueryPairs) {
         return queryCmHandleAnyProperties(privatePropertyQueryPairs, PropertyType.ADDITIONAL);
     }
 
     @Override
+    @Timed(value = "cps.ncmp.inventory.queries.cmhandle.public.properties",
+            description = "Time taken to get a list of NcmpServiceCmHandles (from queryCmHandleAnyProperties)")
     public Map<String, NcmpServiceCmHandle> queryCmHandlePublicProperties(
             final Map<String, String> publicPropertyQueryPairs) {
         return queryCmHandleAnyProperties(publicPropertyQueryPairs, PropertyType.PUBLIC);
@@ -115,6 +120,8 @@ public class CmHandleQueriesImpl implements CmHandleQueries {
     }
 
     @Override
+    @Timed(value = "cps.ncmp.inventory.queries.cmhandle.data.node.cps.path",
+            description = "Time taken to get a list of data nodes (from cps path with descendant option)")
     public List<DataNode> queryCmHandleDataNodesByCpsPath(final String cpsPath,
             final FetchDescendantsOption fetchDescendantsOption) {
         return cpsDataPersistenceService.queryDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,

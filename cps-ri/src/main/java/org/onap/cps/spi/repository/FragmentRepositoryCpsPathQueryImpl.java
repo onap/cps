@@ -20,6 +20,7 @@
 
 package org.onap.cps.spi.repository;
 
+import io.micrometer.core.annotation.Timed;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -41,6 +42,8 @@ public class FragmentRepositoryCpsPathQueryImpl implements FragmentRepositoryCps
 
     @Override
     @Transactional
+    @Timed(value = "cps.ri.spi.repository.find.anchor.cps.path",
+            description = "Time taken to get a list of fragmentEntitys (from cps path query)")
     public List<FragmentEntity> findByAnchorAndCpsPath(final int anchorId, final CpsPathQuery cpsPathQuery) {
         final Query query = fragmentQueryBuilder.getQueryForAnchorAndCpsPath(anchorId, cpsPathQuery);
         final List<FragmentEntity> fragmentEntities = query.getResultList();
