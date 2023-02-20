@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "0a0dadf3_f827b84b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventConsumer.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-02-20T14:50:40Z",
+      "side": 1,
+      "message": "The method name might be more specific to the functionality. e.g. consumeSubscriptionEventAndPersistItToInventory",
+      "range": {
+        "startLine": 46,
+        "startChar": 16,
+        "endLine": 46,
+        "endChar": 40
+      },
+      "revId": "99a569bb0bff37f1da50057c8a2bc7b76bd70294",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c57b3de7_67294dbd",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventConsumerSpec.groovy",
         "patchSetId": 7
