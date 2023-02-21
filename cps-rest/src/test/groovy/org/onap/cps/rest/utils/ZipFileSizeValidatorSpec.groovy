@@ -25,7 +25,7 @@ import spock.lang.Specification
 
 class ZipFileSizeValidatorSpec extends Specification {
 
-    def static thresholdSize = ZipFileSizeValidator.THRESHOLD_SIZE
+    def static thresholdSize = ZipFileSizeValidator.thresholdSize
     def static thresholdEntries = ZipFileSizeValidator.THRESHOLD_ENTRIES
     def static thresholdRatio = ZipFileSizeValidator.THRESHOLD_RATIO
 

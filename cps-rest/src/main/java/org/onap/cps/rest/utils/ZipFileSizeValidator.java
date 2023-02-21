@@ -29,7 +29,7 @@ import org.onap.cps.spi.exceptions.ModelValidationException;
 public class ZipFileSizeValidator {
 
     private static final int THRESHOLD_ENTRIES = 10000;
-    private static int THRESHOLD_SIZE = 100000000;
+    private static int thresholdSize = 100000000;
     private static final double THRESHOLD_RATIO = 40;
     private static final String INVALID_ZIP = "Invalid ZIP archive content.";
 
@@ -71,10 +71,10 @@ public class ZipFileSizeValidator {
      * Validate the total Size and number of entries in the zip.
      */
     public void validateSizeAndEntries() {
-        if (totalUncompressedSizeOfYangFilesInArchive > THRESHOLD_SIZE) {
+        if (totalUncompressedSizeOfYangFilesInArchive > thresholdSize) {
             throw new ModelValidationException(INVALID_ZIP,
                 String.format("The total size of uncompressed yang files exceeds the CPS limit of %s bytes.",
-                    THRESHOLD_SIZE));
+                        thresholdSize));
         }
         if (totalYangFileEntriesInArchive > THRESHOLD_ENTRIES) {
             throw new ModelValidationException(INVALID_ZIP,
