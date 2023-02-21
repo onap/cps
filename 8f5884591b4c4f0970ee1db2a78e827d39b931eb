@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bae21b8f_f75e3f66",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentNativeRepositoryImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-21T08:19:57Z",
+      "side": 1,
+      "message": "NB: parameterPlaceholders",
+      "range": {
+        "startLine": 61,
+        "startChar": 25,
+        "endLine": 61,
+        "endChar": 38
+      },
+      "revId": "8f5884591b4c4f0970ee1db2a78e827d39b931eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71c6168e_8ea67261",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentNativeRepositoryImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-21T08:19:57Z",
+      "side": 1,
+      "message": "NB: parameterIndex",
+      "range": {
+        "startLine": 69,
+        "startChar": 16,
+        "endLine": 69,
+        "endChar": 27
+      },
+      "revId": "8f5884591b4c4f0970ee1db2a78e827d39b931eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7ca7649b_5645dfd8",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentNativeRepositoryImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-21T08:19:57Z",
+      "side": 1,
+      "message": "more importantly is there a limitation to the number of parameters, total query size. \nI assume we never supply more then 100,is it possibel though we could accidently go over taht or by a user of teh Java API?!\nShoudl we buid in a limite a sort of MAX batch isze or jsut rely on POstgress throwing an exception if this gets too big (might be good enough)",
+      "range": {
+        "startLine": 70,
+        "startChar": 38,
+        "endLine": 70,
+        "endChar": 44
+      },
+      "revId": "8f5884591b4c4f0970ee1db2a78e827d39b931eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8c33c03c_a95ca91a",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentNativeRepositoryImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-21T08:19:57Z",
+      "side": 1,
+      "message": "obviously there is a pattern here between the to methods which I think can easily be extracted into a single private method.\nsomething like executeBatchUpdate(sqlTemplate, anchorId, targetXPaths)",
+      "range": {
+        "startLine": 81,
+        "startChar": 0,
+        "endLine": 95,
+        "endChar": 34
+      },
+      "revId": "8f5884591b4c4f0970ee1db2a78e827d39b931eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
