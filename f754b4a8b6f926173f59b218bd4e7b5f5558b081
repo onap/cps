@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "54143741_33079bcf",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/ModelLoader.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-02-21T11:13:58Z",
+      "side": 1,
+      "message": "NB: Add java docs",
+      "revId": "f754b4a8b6f926173f59b218bd4e7b5f5558b081",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e63a62a5_e4e26dc4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/SubscriptionModelLoader.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-02-21T11:13:58Z",
+      "side": 1,
+      "message": "NB : invalid yang model file:",
+      "range": {
+        "startLine": 130,
+        "startChar": 48,
+        "endLine": 130,
+        "endChar": 58
+      },
+      "revId": "f754b4a8b6f926173f59b218bd4e7b5f5558b081",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
