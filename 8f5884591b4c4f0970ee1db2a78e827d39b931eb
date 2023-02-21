@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "22f6ccff_e0afcb38",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentNativeRepositoryImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-02-21T12:01:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bae21b8f_f75e3f66",
+      "range": {
+        "startLine": 61,
+        "startChar": 25,
+        "endLine": 61,
+        "endChar": 38
+      },
+      "revId": "8f5884591b4c4f0970ee1db2a78e827d39b931eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "71c6168e_8ea67261",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentNativeRepositoryImpl.java",
         "patchSetId": 2
@@ -45,6 +69,30 @@
       "revId": "8f5884591b4c4f0970ee1db2a78e827d39b931eb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "31e384b2_4f3f2f9d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentNativeRepositoryImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-02-21T12:01:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "71c6168e_8ea67261",
+      "range": {
+        "startLine": 69,
+        "startChar": 16,
+        "endLine": 69,
+        "endChar": 27
+      },
+      "revId": "8f5884591b4c4f0970ee1db2a78e827d39b931eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -91,6 +139,30 @@
       "revId": "8f5884591b4c4f0970ee1db2a78e827d39b931eb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "97a386f4_19b9313f",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentNativeRepositoryImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-02-21T12:01:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8c33c03c_a95ca91a",
+      "range": {
+        "startLine": 81,
+        "startChar": 0,
+        "endLine": 95,
+        "endChar": 34
+      },
+      "revId": "8f5884591b4c4f0970ee1db2a78e827d39b931eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
