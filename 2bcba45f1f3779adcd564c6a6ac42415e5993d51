@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "15ae9ee0_1a23138b",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentNativeRepositoryImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-02-21T21:49:28Z",
+      "side": 1,
+      "message": "Done. (Interestingly, Sonar does not complain.)",
+      "parentUuid": "16f4fb6b_19907acb",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 0
+      },
+      "revId": "2bcba45f1f3779adcd564c6a6ac42415e5993d51",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b1ff6edf_214610b2",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentNativeRepositoryImpl.java",
         "patchSetId": 4
@@ -45,6 +69,30 @@
       "revId": "2bcba45f1f3779adcd564c6a6ac42415e5993d51",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e95d7b09_5c2a371d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentNativeRepositoryImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-02-21T21:49:28Z",
+      "side": 1,
+      "message": "Yes, unless we want a SQLGrammarException when passing an empty list.",
+      "parentUuid": "b1ff6edf_214610b2",
+      "range": {
+        "startLine": 82,
+        "startChar": 12,
+        "endLine": 82,
+        "endChar": 34
+      },
+      "revId": "2bcba45f1f3779adcd564c6a6ac42415e5993d51",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
