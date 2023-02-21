@@ -21,7 +21,6 @@
 package org.onap.cps.spi.performance
 
 import org.onap.cps.spi.impl.CpsPersistencePerfSpecBase
-import org.springframework.util.StopWatch
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.repository.AnchorRepository
 import org.onap.cps.spi.repository.DataspaceRepository
@@ -98,8 +97,8 @@ class CpsDataPersistenceServicePerfTest extends CpsPersistencePerfSpecBase {
             def readDurationInMillis = stopWatch.getTotalTimeMillis()
         then: 'the returned number of entities equal to the number of children * number of grandchildren'
             assert result.size() == xpathsToAllGrandChildren.size()
-        and: 'it took less then 4000ms'
-            recordAndAssertPerformance('Find multiple xpaths', 4000, readDurationInMillis)
+        and: 'it took less then 3000ms'
+            recordAndAssertPerformance('Find multiple xpaths', 3000, readDurationInMillis)
     }
 
     def 'Query many descendants by cps-path with #scenario'() {
@@ -117,5 +116,44 @@ class CpsDataPersistenceServicePerfTest extends CpsPersistencePerfSpecBase {
             scenario                                        | descendantsOption        || allowedDuration
             'omit descendants                             ' | OMIT_DESCENDANTS         || 150
             'include descendants (although there are none)' | INCLUDE_ALL_DESCENDANTS  || 150
+    }
+
+    def 'Update data nodes with descendants'() {
+        given: 'a list of xpaths to data nodes with descendants (xpath for each child)'
+            def xpaths = (1..20).collect {
+                "${PERF_TEST_PARENT}/perf-test-child-${it}".toString()
+            }
+        and: 'the correct number of data nodes are fetched'
+            def dataNodes = objectUnderTest.getDataNodesForMultipleXpaths(PERF_DATASPACE, PERF_ANCHOR, xpaths, INCLUDE_ALL_DESCENDANTS)
+            assert dataNodes.size() == 20
+            assert countDataNodes(dataNodes) == 20 + 20 * 50
+        when: 'the fragment entities are updated by the data nodes'
+            stopWatch.start()
+            objectUnderTest.updateDataNodesAndDescendants(PERF_DATASPACE, PERF_ANCHOR, dataNodes)
+            stopWatch.stop()
+            def updateDurationInMillis = stopWatch.getTotalTimeMillis()
+        then: 'update duration is under 600 milliseconds'
+            recordAndAssertPerformance('Update data nodes with descendants', 600, updateDurationInMillis)
+    }
+
+    def 'Update data nodes without descendants'() {
+        given: 'a list of xpaths to data nodes without descendants (xpath for each grandchild)'
+            def xpaths = []
+            for (int childIndex = 21; childIndex <= 40; childIndex++) {
+                xpaths.addAll((1..50).collect {
+                    "${PERF_TEST_PARENT}/perf-test-child-${childIndex}/perf-test-grand-child-${it}".toString()
+                })
+            }
+        and: 'the correct number of data nodes are fetched'
+            def dataNodes = objectUnderTest.getDataNodesForMultipleXpaths(PERF_DATASPACE, PERF_ANCHOR, xpaths, OMIT_DESCENDANTS)
+            assert dataNodes.size() == 20 * 50
+            assert countDataNodes(dataNodes) == 20 * 50
+        when: 'the fragment entities are updated by the data nodes'
+            stopWatch.start()
+            objectUnderTest.updateDataNodesAndDescendants(PERF_DATASPACE, PERF_ANCHOR, dataNodes)
+            stopWatch.stop()
+            def updateDurationInMillis = stopWatch.getTotalTimeMillis()
+        then: 'update duration is under 1400 milliseconds'
+            recordAndAssertPerformance('Update data nodes without descendants', 1400, updateDurationInMillis)
     }
 }

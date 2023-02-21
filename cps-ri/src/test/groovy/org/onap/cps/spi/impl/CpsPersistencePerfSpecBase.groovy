@@ -75,12 +75,18 @@ class CpsPersistencePerfSpecBase extends CpsPersistenceSpecBase {
         return grandChildren
     }
 
-    def countDataNodes(dataNodes) {
-        int nodeCount = 1
+    def countDataNodes(Collection<DataNode> dataNodes) {
+        int nodeCount = 0
         for (DataNode parent : dataNodes) {
-            for (DataNode child : parent.childDataNodes) {
-                nodeCount = nodeCount + (countDataNodes(child))
-            }
+            nodeCount = nodeCount + countDataNodes(parent)
+        }
+        return nodeCount
+    }
+
+    def countDataNodes(DataNode dataNode) {
+        int nodeCount = 1
+        for (DataNode child : dataNode.childDataNodes) {
+            nodeCount = nodeCount + countDataNodes(child)
         }
         return nodeCount
     }
