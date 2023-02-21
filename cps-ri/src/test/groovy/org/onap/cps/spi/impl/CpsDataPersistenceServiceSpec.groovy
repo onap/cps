@@ -88,15 +88,17 @@ class CpsDataPersistenceServiceSpec extends Specification {
     }
 
     def 'Handling of StaleStateException (caused by concurrent updates) during update data nodes and descendants.'() {
-        given: 'the system contains and can update one datanode'
-            def dataNode1 = createDataNodeAndMockRepositoryMethodSupportingIt('/node1', 'OK')
-        and: 'the system contains two more datanodes that throw an exception while updating'
-            def dataNode2 = createDataNodeAndMockRepositoryMethodSupportingIt('/node2', 'EXCEPTION')
-            def dataNode3 = createDataNodeAndMockRepositoryMethodSupportingIt('/node3', 'EXCEPTION')
+        given: 'the system can update one datanode and has two more datanodes that throw an exception while updating'
+            def dataNodes = createDataNodesAndMockRepositoryMethodSupportingThem([
+                '/node1': 'OK',
+                '/node2': 'EXCEPTION',
+                '/node3': 'EXCEPTION'])
+        and: 'db contains an anchor'
+            mockAnchorRepository.getByDataspaceAndName(*_) >> new AnchorEntity(id:123)
         and: 'the batch update will therefore also fail'
             mockFragmentRepository.saveAll(*_) >> { throw new StaleStateException("concurrent updates") }
         when: 'attempt batch update data nodes'
-            objectUnderTest.updateDataNodesAndDescendants('some-dataspace', 'some-anchor', [dataNode1, dataNode2, dataNode3])
+            objectUnderTest.updateDataNodesAndDescendants('some-dataspace', 'some-anchor', dataNodes)
         then: 'concurrency exception is thrown'
             def thrown = thrown(ConcurrencyException)
             assert thrown.message == 'Concurrent Transactions'
@@ -199,7 +201,9 @@ class CpsDataPersistenceServiceSpec extends Specification {
 
     def 'update data node and descendants: #scenario'(){
         given: 'mocked responses'
-            mockFragmentRepository.getByDataspaceAndAnchorAndXpath(_, _, '/test/xpath') >> new FragmentEntity(xpath: '/test/xpath', childFragments: [])
+            mockAnchorRepository.getByDataspaceAndName(_, _) >> new AnchorEntity(id:123)
+            mockFragmentRepository.findByAnchorAndMultipleCpsPaths(_, [] as Set) >> []
+            mockFragmentRepository.findByAnchorAndMultipleCpsPaths(_, ['/test/xpath'] as Set) >> [new FragmentEntity(xpath: '/test/xpath', childFragments: [])]
         when: 'replace data node tree'
             objectUnderTest.updateDataNodesAndDescendants('dataspaceName', 'anchorName', dataNodes)
         then: 'call fragment repository save all method'
@@ -211,9 +215,12 @@ class CpsDataPersistenceServiceSpec extends Specification {
     }
 
     def 'update data nodes and descendants'() {
-        given: 'the fragment repository returns a fragment entity related to the xpath input'
-            mockFragmentRepository.getByDataspaceAndAnchorAndXpath(_, _, '/test/xpath1') >> new FragmentEntity(xpath: '/test/xpath1', childFragments: [])
-            mockFragmentRepository.getByDataspaceAndAnchorAndXpath(_, _, '/test/xpath2') >> new FragmentEntity(xpath: '/test/xpath2', childFragments: [])
+        given: 'the fragment repository returns fragment entities related to the xpath inputs'
+            mockFragmentRepository.findByAnchorAndMultipleCpsPaths(_, ['/test/xpath1', '/test/xpath2'] as Set) >> [
+                new FragmentEntity(xpath: '/test/xpath1', childFragments: []),
+                new FragmentEntity(xpath: '/test/xpath2', childFragments: [])]
+        and: 'db contains an anchor'
+            mockAnchorRepository.getByDataspaceAndName(*_) >> new AnchorEntity(id:123)
         and: 'some data nodes with descendants'
             def dataNode1 = new DataNode(xpath: '/test/xpath1', leaves: ['id': 'testId1'], childDataNodes: [new DataNode(xpath: '/test/xpath1/child', leaves: ['id': 'childTestId1'])])
             def dataNode2 = new DataNode(xpath: '/test/xpath2', leaves: ['id': 'testId2'], childDataNodes: [new DataNode(xpath: '/test/xpath2/child', leaves: ['id': 'childTestId2'])])
@@ -237,6 +244,25 @@ class CpsDataPersistenceServiceSpec extends Specification {
             mockFragmentRepository.save(fragmentEntity) >> { throw new StaleStateException("concurrent updates") }
         }
         return dataNode
+    }
+
+    def createDataNodesAndMockRepositoryMethodSupportingThem(Map<String, String> xpathToScenarioMap) {
+        def dataNodes = []
+        def fragmentEntities = []
+        xpathToScenarioMap.each {
+            def xpath = it.key
+            def scenario = it.value
+            def dataNode = new DataNodeBuilder().withXpath(xpath).build()
+            dataNodes.add(dataNode)
+            def fragmentEntity = new FragmentEntity(xpath: xpath, childFragments: [])
+            fragmentEntities.add(fragmentEntity)
+            mockFragmentRepository.getByDataspaceAndAnchorAndXpath(_, _, xpath) >> fragmentEntity
+            if ('EXCEPTION' == scenario) {
+                mockFragmentRepository.save(fragmentEntity) >> { throw new StaleStateException("concurrent updates") }
+            }
+        }
+        mockFragmentRepository.findByAnchorAndMultipleCpsPaths(_, xpathToScenarioMap.keySet()) >> fragmentEntities
+        return dataNodes
     }
 
     def mockFragmentWithJson(json) {

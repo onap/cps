@@ -108,7 +108,6 @@ class CpsDataPersistenceServicePerfTest extends CpsPersistencePerfSpecBase {
             stopWatch.stop()
             def readDurationInMillis = stopWatch.getTotalTimeMillis()
         then: 'read duration is under #allowedDuration milliseconds'
-            assert readDurationInMillis < allowedDuration
             recordAndAssertPerformance("Query many descendants by cpspath (${scenario})", allowedDuration, readDurationInMillis)
         and: 'data node is returned with all the descendants populated'
             assert result.size() == NUMBER_OF_CHILDREN
@@ -153,7 +152,7 @@ class CpsDataPersistenceServicePerfTest extends CpsPersistencePerfSpecBase {
             objectUnderTest.updateDataNodesAndDescendants(PERF_DATASPACE, PERF_ANCHOR, dataNodes)
             stopWatch.stop()
             def updateDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'update duration is under 1400 milliseconds'
-            recordAndAssertPerformance('Update data nodes without descendants', 1400, updateDurationInMillis)
+        then: 'update duration is under 600 milliseconds'
+            recordAndAssertPerformance('Update data nodes without descendants', 600, updateDurationInMillis)
     }
 }
