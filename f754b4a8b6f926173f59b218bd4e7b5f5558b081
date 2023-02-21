@@ -19,6 +19,52 @@
     },
     {
       "key": {
+        "uuid": "2c09db9e_559983d0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/ModelLoader.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-21T18:20:06Z",
+      "side": 1,
+      "message": "use full name: applicationReadyEvent",
+      "range": {
+        "startLine": 31,
+        "startChar": 59,
+        "endLine": 31,
+        "endChar": 64
+      },
+      "revId": "f754b4a8b6f926173f59b218bd4e7b5f5558b081",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ffb58aa7_0fca9e68",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/SubscriptionModelLoader.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-21T18:20:06Z",
+      "side": 1,
+      "message": "should we log a warning or even error in an else block?!",
+      "range": {
+        "startLine": 113,
+        "startChar": 8,
+        "endLine": 113,
+        "endChar": 31
+      },
+      "revId": "f754b4a8b6f926173f59b218bd4e7b5f5558b081",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e63a62a5_e4e26dc4",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/SubscriptionModelLoader.java",
         "patchSetId": 14
@@ -35,6 +81,167 @@
         "startChar": 48,
         "endLine": 130,
         "endChar": 58
+      },
+      "revId": "f754b4a8b6f926173f59b218bd4e7b5f5558b081",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fbef3679_1de6872c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/SubscriptionModelLoaderSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-21T18:20:06Z",
+      "side": 1,
+      "message": "applicationReadyEvent",
+      "range": {
+        "startLine": 51,
+        "startChar": 8,
+        "endLine": 51,
+        "endChar": 14
+      },
+      "revId": "f754b4a8b6f926173f59b218bd4e7b5f5558b081",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d97bad25_cb71ccaf",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/SubscriptionModelLoaderSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-21T18:20:06Z",
+      "side": 1,
+      "message": "should NOT be testing internal variables it is NOT part of the behavior from a client point of view. And this might  prevent the solution evolving in the future!\nYou can only assert consequences and since this is a test using mocks maybe you cannot\nEven assert logging is debatable...\n\nI think you testign the positive scenario proving the service methdsd are called and the negative test taht assert teh retry mechanism is probaly good enough",
+      "range": {
+        "startLine": 112,
+        "startChar": 35,
+        "endLine": 112,
+        "endChar": 54
+      },
+      "revId": "f754b4a8b6f926173f59b218bd4e7b5f5558b081",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2094293_39c3b9ba",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/SubscriptionModelLoaderSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-21T18:20:06Z",
+      "side": 1,
+      "message": "dont assert internal variables",
+      "range": {
+        "startLine": 128,
+        "startChar": 35,
+        "endLine": 128,
+        "endChar": 54
+      },
+      "revId": "f754b4a8b6f926173f59b218bd4e7b5f5558b081",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "89ea22cb_23d5f4dc",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/SubscriptionModelLoaderSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-21T18:20:06Z",
+      "side": 1,
+      "message": "dont assert internal variables",
+      "range": {
+        "startLine": 140,
+        "startChar": 28,
+        "endLine": 140,
+        "endChar": 47
+      },
+      "revId": "f754b4a8b6f926173f59b218bd4e7b5f5558b081",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7464912c_b7bde2f5",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/SubscriptionModelLoaderSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-21T18:20:06Z",
+      "side": 1,
+      "message": "dont assert internal variables",
+      "range": {
+        "startLine": 147,
+        "startChar": 35,
+        "endLine": 147,
+        "endChar": 51
+      },
+      "revId": "f754b4a8b6f926173f59b218bd4e7b5f5558b081",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dffec7f4_11b07f54",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/SubscriptionModelLoaderSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-21T18:20:06Z",
+      "side": 1,
+      "message": "dont assert internal variables",
+      "range": {
+        "startLine": 159,
+        "startChar": 35,
+        "endLine": 159,
+        "endChar": 51
+      },
+      "revId": "f754b4a8b6f926173f59b218bd4e7b5f5558b081",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "87a0f9bf_b4457d37",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/SubscriptionModelLoaderSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-21T18:20:06Z",
+      "side": 1,
+      "message": "its IS OKish to control a test using internal variabel but I stil wonder if it is really needed to do it this way...",
+      "range": {
+        "startLine": 174,
+        "startChar": 12,
+        "endLine": 174,
+        "endChar": 53
       },
       "revId": "f754b4a8b6f926173f59b218bd4e7b5f5558b081",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
