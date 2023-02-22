@@ -93,6 +93,30 @@
       "revId": "2bcba45f1f3779adcd564c6a6ac42415e5993d51",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "30739d87_a3e358ea",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentNativeRepositoryImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-22T09:48:44Z",
+      "side": 1,
+      "message": "ok, was just wondering if that can actually happen",
+      "parentUuid": "e95d7b09_5c2a371d",
+      "range": {
+        "startLine": 82,
+        "startChar": 12,
+        "endLine": 82,
+        "endChar": 34
+      },
+      "revId": "2bcba45f1f3779adcd564c6a6ac42415e5993d51",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
