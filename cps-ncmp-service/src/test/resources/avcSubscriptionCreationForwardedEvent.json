@@ -1,0 +1,43 @@
+{
+  "version": "1.0",
+  "eventType": "subscriptionCreated",
+  "event": {
+    "subscription": {
+      "clientID": "SCO-9989752",
+      "name": "cm-subscription-001"
+    },
+    "dataType": {
+      "dataspace": "ALL",
+      "dataCategory": "CM",
+      "dataProvider": "CM-SERVICE",
+      "schemaName": "org.onap.dmi:cm-network-avc-event.rfc8641",
+      "schemaVersion": "1.0"
+    },
+    "predicates": {
+      "targets": [{
+        "cmhandle": "sdsd",
+        "cmhandle - properties": {
+          "prop1": "prop - value"
+        }
+      },
+        {
+          "cmhandle": "slada",
+          "cmhandle - properties": {
+            "prop - x": "prop - valuex"
+          }
+        },
+        {
+          "cmhandle": "ccde3",
+          "cmhandle - properties": {
+            "prop - y": "prop - valuey"
+          }
+        }
+      ],
+      "datastore": "passthrough-operational",
+      "datastore-xpath-filter": "//_3gpp-nr-nrm-gnbdufunction:GNBDUFunction/",
+      "_3gpp-nr-nrm-nrcelldu": "NRCellDU",
+      "_3gpp-nr-nrm-gnbcuupfunction": "GNBCUUPFunction",
+      "_3gpp-nr-nrm-nrsectorcarrier": "NRSectorCarrier"
+    }
+  }
+}

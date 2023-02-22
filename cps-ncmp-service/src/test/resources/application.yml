@@ -20,6 +20,7 @@ app:
     ncmp:
         avc:
             subscription-topic: cm-avc-subscription
+            forwarded-subscription-topic: ncmp-dmi-cm-avc-subscription
 
 ncmp:
     dmi:
