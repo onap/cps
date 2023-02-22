@@ -21,6 +21,7 @@
 package org.onap.cps.ncmp.api.impl.notifications.avc
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import org.onap.cps.ncmp.event.model.ForwardedEvent
 import org.onap.cps.ncmp.event.model.SubscriptionEvent
 import org.onap.cps.ncmp.utils.KafkaDemoProducerConfig
 import org.onap.cps.ncmp.utils.TestUtils
@@ -39,8 +40,14 @@ class SubscriptionCreateProducerDemo extends Specification {
     @Value('${app.ncmp.avc.subscription-topic}')
     String subscriptionTopic;
 
+    @Value('${app.ncmp.avc.forwarded-subscription-topic}')
+    String subscriptionCreationForwardedEventTopic;
+
     @Autowired
     KafkaTemplate<String, SubscriptionEvent> kafkaTemplate
+
+    @Autowired
+    KafkaTemplate<String, ForwardedEvent> kafkaSubscriptionCreateForwardedEventTemplate
 
     @Autowired
     JsonObjectMapper jsonObjectMapper
@@ -53,5 +60,16 @@ class SubscriptionCreateProducerDemo extends Specification {
             kafkaTemplate.send(subscriptionTopic, "request-Id-98765", testEventSent);
         and: 'print json data to console'
             println(jsonData);
+    }
+
+    def 'produce subscription creation forwarded event for testing'() {
+        given: 'avc subscription creation forwarded event data'
+            def messageKey= UUID.randomUUID().toString()
+            def messageValueJson = TestUtils.getResourceFileContent('avcSubscriptionCreationForwardedEvent.json')
+            def messageValue = jsonObjectMapper.convertJsonString(messageValueJson, ForwardedEvent.class)
+        and: 'avc subscription creation forwarded event is published to the corresponding topic'
+            kafkaSubscriptionCreateForwardedEventTemplate.send(subscriptionCreationForwardedEventTopic, messageKey, messageValue);
+        and: 'print json data to console'
+            println(messageValueJson);
     }
 }

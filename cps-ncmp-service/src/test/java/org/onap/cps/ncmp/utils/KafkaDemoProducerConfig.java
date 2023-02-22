@@ -24,6 +24,7 @@ import java.util.HashMap;
 import java.util.Map;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
+import org.onap.cps.ncmp.event.model.ForwardedEvent;
 import org.onap.cps.ncmp.event.model.SubscriptionEvent;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -50,8 +51,30 @@ public class KafkaDemoProducerConfig {
         return new DefaultKafkaProducerFactory<>(configProps);
     }
 
+    /**
+     * Setups kafka producer configurations.
+     *
+     * @return kafka producer factory object of forwarded subscription event
+     */
+    @Bean
+    public ProducerFactory<String, ForwardedEvent> subscriptionCrateForwardedEventProducerFactory() {
+        final Map<String, Object> configProps = new HashMap<>();
+
+        configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,
+                "PLAINTEXT://localhost:9092,CONNECTIONS_FROM_HOST://localhost:19092");
+        configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+        configProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
+
+        return new DefaultKafkaProducerFactory<>(configProps);
+    }
+
     @Bean
     public KafkaTemplate<String, SubscriptionEvent> kafkaTemplate() {
         return new KafkaTemplate<>(producerFactory());
+    }
+
+    @Bean
+    public KafkaTemplate<String, ForwardedEvent> kafkaSubscriptionCreateForwardedEventTemplate() {
+        return new KafkaTemplate<>(subscriptionCrateForwardedEventProducerFactory());
     }
 }
