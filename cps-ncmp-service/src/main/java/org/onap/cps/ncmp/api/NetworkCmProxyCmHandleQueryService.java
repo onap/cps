@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,18 +20,18 @@
 
 package org.onap.cps.ncmp.api;
 
-import java.util.Set;
+import java.util.Collection;
 import org.onap.cps.ncmp.api.models.CmHandleQueryServiceParameters;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 
-public interface NetworkCmProxyCmHandlerQueryService {
+public interface NetworkCmProxyCmHandleQueryService {
     /**
      * Query and return cm handles that match the given query parameters.
      *
      * @param cmHandleQueryServiceParameters the cm handle query parameters
      * @return collection of cm handles
      */
-    Set<NcmpServiceCmHandle> queryCmHandles(CmHandleQueryServiceParameters cmHandleQueryServiceParameters);
+    Collection<NcmpServiceCmHandle> queryCmHandles(CmHandleQueryServiceParameters cmHandleQueryServiceParameters);
 
     /**
      * Query and return cm handles that match the given query parameters.
@@ -39,7 +39,7 @@ public interface NetworkCmProxyCmHandlerQueryService {
      * @param cmHandleQueryServiceParameters the cm handle query parameters
      * @return collection of cm handle ids
      */
-    Set<String> queryCmHandleIds(CmHandleQueryServiceParameters cmHandleQueryServiceParameters);
+    Collection<String> queryCmHandleIds(CmHandleQueryServiceParameters cmHandleQueryServiceParameters);
 
     /**
      * Query and return cm handles that match the given query parameters.
@@ -47,5 +47,5 @@ public interface NetworkCmProxyCmHandlerQueryService {
      * @param cmHandleQueryServiceParameters the cm handle query parameters
      * @return collection of cm handle ids
      */
-    Set<String> queryCmHandleIdsForInventory(CmHandleQueryServiceParameters cmHandleQueryServiceParameters);
+    Collection<String> queryCmHandleIdsForInventory(CmHandleQueryServiceParameters cmHandleQueryServiceParameters);
 }

@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Copyright (C) 2021-2023 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada
  *  Modifications Copyright (C) 2023 TechMahindra Ltd.
@@ -24,7 +24,7 @@
 package org.onap.cps.ncmp.api.impl
 
 import com.hazelcast.map.IMap
-import org.onap.cps.ncmp.api.NetworkCmProxyCmHandlerQueryService
+import org.onap.cps.ncmp.api.NetworkCmProxyCmHandleQueryService
 import org.onap.cps.ncmp.api.impl.event.lcm.LcmEventsCmHandleStateHandler
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.inventory.CmHandleQueries
@@ -66,7 +66,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     def mockInventoryPersistence = Mock(InventoryPersistence)
     def mockCmHandleQueries = Mock(CmHandleQueries)
     def mockDmiPluginRegistration = Mock(DmiPluginRegistration)
-    def mockCpsCmHandlerQueryService = Mock(NetworkCmProxyCmHandlerQueryService)
+    def mockCpsCmHandlerQueryService = Mock(NetworkCmProxyCmHandleQueryService)
     def mockLcmEventsCmHandleStateHandler = Mock(LcmEventsCmHandleStateHandler)
     def stubModuleSyncStartedOnCmHandles = Stub(IMap<String, Object>)
 
@@ -281,7 +281,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
         when: 'execute cm handle search is called'
             def result = objectUnderTest.executeCmHandleIdSearch(cmHandleQueryApiParameters)
         then: 'result is the same collection as returned by the CPS Data Service'
-            assert result == ['cm-handle-id-1'] as Set
+            assert result == ['cm-handle-id-1']
     }
 
     def 'Getting module definitions.'() {
@@ -350,9 +350,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
 
     def 'Get all cm handle IDs by DMI plugin identifier.' () {
         given: 'cm handle queries service returns cm handles'
-            1 * mockCmHandleQueries.getCmHandlesByDmiPluginIdentifier('some-dmi-plugin-identifier')
-                    >> [new NcmpServiceCmHandle(cmHandleId: 'cm-handle-1'),
-                        new NcmpServiceCmHandle(cmHandleId: 'cm-handle-2')]
+            1 * mockCmHandleQueries.getCmHandleIdsByDmiPluginIdentifier('some-dmi-plugin-identifier') >> ['cm-handle-1','cm-handle-2']
         when: 'cm handle Ids are requested with dmi plugin identifier'
             def result = objectUnderTest.getAllCmHandleIdsByDmiPluginIdentifier('some-dmi-plugin-identifier')
         then: 'the result size is correct'
