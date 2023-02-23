@@ -158,7 +158,7 @@ class NetworkCmProxyCmHandlerQueryServiceSpec extends Specification {
         given: 'We use an empty query'
             def cmHandleQueryParameters = new CmHandleQueryServiceParameters()
         and: 'the inventory persistence returns the dmi registry datanode with just ids'
-            mockInventoryPersistence.getDataNode("/dmi-registry", FetchDescendantsOption.FETCH_DIRECT_CHILDREN_ONLY) >> [dmiRegistry]
+            mockInventoryPersistence.getDataNode("/dmi-registry", FetchDescendantsOption.DIRECT_CHILDREN_ONLY) >> [dmiRegistry]
         and: 'the inventory persistence returns the dmi registry datanode with data'
             mockInventoryPersistence.getDataNode("/dmi-registry") >> [dmiRegistry]
         when: 'the query is executed for both cm handle ids and details'

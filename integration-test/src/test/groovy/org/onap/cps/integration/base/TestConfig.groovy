@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.integration
+package org.onap.cps.integration.base
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.notification.NotificationService

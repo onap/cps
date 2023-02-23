@@ -24,7 +24,7 @@ package org.onap.cps.ncmp.api.impl;
 import static org.onap.cps.ncmp.api.impl.utils.RestQueryParametersValidator.validateCpsPathConditionProperties;
 import static org.onap.cps.ncmp.api.impl.utils.RestQueryParametersValidator.validateModuleNameConditionProperties;
 import static org.onap.cps.ncmp.api.impl.utils.YangDataConverter.convertYangModelCmHandleToNcmpServiceCmHandle;
-import static org.onap.cps.spi.FetchDescendantsOption.FETCH_DIRECT_CHILDREN_ONLY;
+import static org.onap.cps.spi.FetchDescendantsOption.DIRECT_CHILDREN_ONLY;
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
 
 import java.util.ArrayList;
@@ -304,7 +304,7 @@ public class NetworkCmProxyCmHandlerQueryServiceImpl implements NetworkCmProxyCm
     }
 
     private Set<String> getAllCmHandleIds() {
-        final DataNode dataNodes = inventoryPersistence.getDataNode("/dmi-registry", FETCH_DIRECT_CHILDREN_ONLY)
+        final DataNode dataNodes = inventoryPersistence.getDataNode("/dmi-registry", DIRECT_CHILDREN_ONLY)
                 .iterator().next();
         return dataNodes.getChildDataNodes().stream().map(dataNode -> dataNode.getLeaves().get("id").toString())
                 .collect(Collectors.toSet());
