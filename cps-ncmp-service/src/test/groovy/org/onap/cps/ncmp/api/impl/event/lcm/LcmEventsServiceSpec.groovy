@@ -20,13 +20,14 @@
 
 package org.onap.cps.ncmp.api.impl.event.lcm
 
+import org.onap.cps.ncmp.api.impl.event.EventsPublisher
 import org.onap.ncmp.cmhandle.event.lcm.LcmEvent
 import org.springframework.kafka.KafkaException
 import spock.lang.Specification
 
 class LcmEventsServiceSpec extends Specification {
 
-    def mockLcmEventsPublisher = Mock(LcmEventsPublisher)
+    def mockLcmEventsPublisher = Mock(EventsPublisher)
 
     def objectUnderTest = new LcmEventsService(mockLcmEventsPublisher)
 

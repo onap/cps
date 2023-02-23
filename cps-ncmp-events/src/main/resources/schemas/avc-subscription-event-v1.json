@@ -29,6 +29,7 @@
     "event": {
       "description": "The event content.",
       "type": "object",
+      "javaType": "InnerSubscriptionEvent",
       "properties": {
         "subscription": {
           "description": "The subscription details.",
@@ -88,12 +89,26 @@
         ],
         "predicates": {
           "description": "Additional values to be added into the subscription",
-          "existingJavaType" : "java.util.Map<String,Object>",
-          "type" : "object"
-          }
+          "type" : "object",
+          "properties": {
+            "targets": {
+              "description": "CM Handles to be targeted by the subscription",
+              "type" : "array"
+            },
+            "datastore": {
+              "description": "datastore which is to be used by the subscription",
+              "type": "string"
+            },
+            "xpath-filter": {
+              "description": "filter to be applied to the CM Handles through this event",
+              "type": "string"
+            }
+          },
+          "required": ["datastore"]
         }
-      },
-      "required": [
+      }
+    },
+    "required": [
         "subscription",
         "dataType"
       ]
