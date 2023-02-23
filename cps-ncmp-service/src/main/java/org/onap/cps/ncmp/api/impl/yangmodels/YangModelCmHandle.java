@@ -25,9 +25,12 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.Strings;
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -161,6 +164,19 @@ public class YangModelCmHandle {
             return dmiModelServiceName;
         }
         return dmiServiceName;
+    }
+
+    /**
+     * Return the dmi (private) properties of the CMHandle.
+     *
+     * @return dmi service name
+     */
+    public Map<String, Serializable> dmiPropertiesAsMap() {
+        if (this.dmiProperties != null) {
+            return this.dmiProperties.stream().collect(Collectors.toMap(Property::getName, Property::getValue));
+        } else {
+            return new HashMap<>();
+        }
     }
 
     private static List<Property> asYangModelCmHandleProperties(final Map<String, String> propertiesAsMap) {
