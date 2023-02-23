@@ -88,12 +88,25 @@
         ],
         "predicates": {
           "description": "Additional values to be added into the subscription",
-          "existingJavaType" : "java.util.Map<String,Object>",
-          "type" : "object"
-          }
+          "type" : "object",
+          "properties": {
+            "targets": {
+              "description": "CM Handles to be targeted by the subscription",
+              "type" : "array"
+            },
+            "datastore": {
+              "description": "datastore which is to be used by the subscription",
+              "type": "string"
+            },
+            "datastore-xpath-filter": {
+              "description": "filter to be applied to the CM Handles through this event"
+            }
+          },
+          "required": ["datastore"]
         }
-      },
-      "required": [
+      }
+    },
+    "required": [
         "subscription",
         "dataType"
       ]
