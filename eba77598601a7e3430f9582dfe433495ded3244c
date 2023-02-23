@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "44fcfe90_ca3b38a9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-02-23T10:20:37Z",
+      "side": 1,
+      "message": "this should also have the omit descendants option",
+      "range": {
+        "startLine": 223,
+        "startChar": 74,
+        "endLine": 224,
+        "endChar": 93
+      },
+      "revId": "eba77598601a7e3430f9582dfe433495ded3244c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6151694a_25b98719",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-02-23T10:20:37Z",
+      "side": 1,
+      "message": "this also needs to have descendants option",
+      "range": {
+        "startLine": 263,
+        "startChar": 56,
+        "endLine": 263,
+        "endChar": 85
+      },
+      "revId": "eba77598601a7e3430f9582dfe433495ded3244c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c289dd8_d6d7d0fc",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-02-23T10:20:37Z",
+      "side": 1,
+      "message": "this test should be extended to include some or all cmhandle object details (state, public properties , etc)",
+      "range": {
+        "startLine": 64,
+        "startChar": 12,
+        "endLine": 64,
+        "endChar": 146
+      },
+      "revId": "eba77598601a7e3430f9582dfe433495ded3244c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9415e104_b521666d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandlerQueryServiceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-02-23T10:20:37Z",
+      "side": 1,
+      "message": "same here and for the rest where cmhandle datanodes are being tested",
+      "range": {
+        "startLine": 129,
+        "startChar": 0,
+        "endLine": 129,
+        "endChar": 146
+      },
+      "revId": "eba77598601a7e3430f9582dfe433495ded3244c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
