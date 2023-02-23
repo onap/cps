@@ -23,6 +23,7 @@ package org.onap.cps.ncmp.api.impl.event.lcm;
 import io.micrometer.core.annotation.Timed;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.ncmp.api.impl.event.EventsPublisher;
 import org.onap.ncmp.cmhandle.event.lcm.LcmEvent;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.KafkaException;
@@ -37,7 +38,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class LcmEventsService {
 
-    private final LcmEventsPublisher lcmEventsPublisher;
+    private final EventsPublisher<LcmEvent> eventsPublisher;
 
     @Value("${app.lcm.events.topic:ncmp-events}")
     private String topicName;
@@ -56,7 +57,7 @@ public class LcmEventsService {
     public void publishLcmEvent(final String cmHandleId, final LcmEvent lcmEvent) {
         if (notificationsEnabled) {
             try {
-                lcmEventsPublisher.publishEvent(topicName, cmHandleId, lcmEvent);
+                eventsPublisher.publishEvent(topicName, cmHandleId, lcmEvent);
             } catch (final KafkaException e) {
                 log.error("Unable to publish message to topic : {} and cause : {}", topicName, e.getMessage());
             }

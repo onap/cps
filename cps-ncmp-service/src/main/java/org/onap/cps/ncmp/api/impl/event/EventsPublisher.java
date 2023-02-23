@@ -18,11 +18,10 @@
  * ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.event.lcm;
+package org.onap.cps.ncmp.api.impl.event;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.onap.ncmp.cmhandle.event.lcm.LcmEvent;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Service;
@@ -30,36 +29,36 @@ import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 
 /**
- * LcmEventsPublisher to publish the LcmEvents on event of CREATE, UPDATE and DELETE.
+ * EventsPublisher to publish events.
  */
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class LcmEventsPublisher {
+public class EventsPublisher<T> {
 
-    private final KafkaTemplate<String, LcmEvent> lcmEventKafkaTemplate;
+    private final KafkaTemplate<String, T> eventKafkaTemplate;
 
     /**
      * LCM Event publisher.
      *
      * @param topicName valid topic name
      * @param eventKey  message key
-     * @param lcmEvent message payload
+     * @param event message payload
      */
-    public void publishEvent(final String topicName, final String eventKey, final LcmEvent lcmEvent) {
-        final ListenableFuture<SendResult<String, LcmEvent>> lcmEventFuture =
-                lcmEventKafkaTemplate.send(topicName, eventKey, lcmEvent);
+    public void publishEvent(final String topicName, final String eventKey, final T event) {
+        final ListenableFuture<SendResult<String, T>> eventFuture =
+                eventKafkaTemplate.send(topicName, eventKey, event);
 
-        lcmEventFuture.addCallback(new ListenableFutureCallback<>() {
+        eventFuture.addCallback(new ListenableFutureCallback<>() {
             @Override
             public void onFailure(final Throwable throwable) {
                 log.error("Unable to publish event to topic : {} due to {}", topicName, throwable.getMessage());
             }
 
             @Override
-            public void onSuccess(final SendResult<String, LcmEvent> sendResult) {
-                log.debug("Successfully published event to topic : {} , LcmEvent : {}",
+            public void onSuccess(final SendResult<String, T> sendResult) {
+                log.debug("Successfully published event to topic : {} , Event : {}",
                         sendResult.getRecordMetadata().topic(), sendResult.getProducerRecord().value());
             }
         });
