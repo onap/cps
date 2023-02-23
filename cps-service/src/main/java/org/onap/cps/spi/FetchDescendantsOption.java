@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Pantheon.tech
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2023 Nordix Foundation
  *  Modifications Copyright (C) 2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -30,14 +30,23 @@ import org.onap.cps.spi.exceptions.DataValidationException;
 @RequiredArgsConstructor
 public class FetchDescendantsOption {
 
-    public static final FetchDescendantsOption FETCH_DIRECT_CHILDREN_ONLY = new FetchDescendantsOption(1);
-    public static final FetchDescendantsOption OMIT_DESCENDANTS = new FetchDescendantsOption(0);
-    public static final FetchDescendantsOption INCLUDE_ALL_DESCENDANTS = new FetchDescendantsOption(-1);
+    public static final FetchDescendantsOption FETCH_DIRECT_CHILDREN_ONLY
+        = new FetchDescendantsOption(1, "DirectChildrenOnly");
+    public static final FetchDescendantsOption OMIT_DESCENDANTS
+        = new FetchDescendantsOption(0, "OmitDescendants");
+    public static final FetchDescendantsOption INCLUDE_ALL_DESCENDANTS
+        = new FetchDescendantsOption(-1, "IncludeAllDescendants");
+
+    FetchDescendantsOption(final int depth) {
+        this(depth, "Depth=" + depth);
+    }
 
     private static final Pattern FETCH_DESCENDANTS_OPTION_PATTERN =
         Pattern.compile("^$|^all$|^none$|^[0-9]+$|^-1$");
 
     private final int depth;
+
+    private final String optionName;
 
     /**
      * Has next depth.
@@ -83,6 +92,11 @@ public class FetchDescendantsOption {
             final Integer depth = Integer.valueOf(fetchDescendantsOptionAsString);
             return new FetchDescendantsOption(depth);
         }
+    }
+
+    @Override
+    public String toString() {
+        return optionName;
     }
 
     private static void validateFetchDescendantsOption(final String fetchDescendantsOptionAsString) {

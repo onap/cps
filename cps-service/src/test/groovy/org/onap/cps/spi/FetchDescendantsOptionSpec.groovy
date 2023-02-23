@@ -21,15 +21,15 @@
 
 package org.onap.cps.spi
 
-import org.onap.cps.spi.exceptions.DataValidationException
 import spock.lang.Specification
 
 class FetchDescendantsOptionSpec extends Specification {
-    def 'Check has next descendant for fetch descendant option: #scenario'() {
+
+    def 'Has next descendant for fetch descendant option: #scenario'() {
         when: 'fetch descendant option with #depth depth'
             def fetchDescendantsOption = new FetchDescendantsOption(depth)
         then: 'next level descendants available: #expectedHasNext'
-            fetchDescendantsOption.hasNext() == expectedHasNext
+            assert fetchDescendantsOption.hasNext() == expectedHasNext
         where: 'following parameters are used'
             scenario                  | depth || expectedHasNext
             'omit descendants'        | 0     || false
@@ -38,7 +38,7 @@ class FetchDescendantsOptionSpec extends Specification {
             'include all descendants' | -1    || true
     }
 
-    def 'Check has next descendant for fetch descendant option: invalid depth'() {
+    def 'Has next descendant for fetch descendant option: invalid depth'() {
         given: 'fetch descendant option with -2 depth'
             def fetchDescendantsOption = new FetchDescendantsOption(-2)
         when: 'next level descendants not available'
@@ -47,7 +47,7 @@ class FetchDescendantsOptionSpec extends Specification {
             thrown IllegalArgumentException
     }
 
-    def 'Get next descendant for fetch descendant option: #scenario'() {
+    def 'Next descendant for fetch descendant option: #scenario.'() {
         when: 'fetch descendant option with #depth depth'
             def fetchDescendantsOption = new FetchDescendantsOption(depth)
         then: 'the next level of depth is as expected'
@@ -58,14 +58,14 @@ class FetchDescendantsOptionSpec extends Specification {
             'second child'            | 2
     }
 
-    def 'Get next descendant for fetch descendant option: include all descendants'() {
+    def 'Next descendant for fetch descendant option: include all descendants.'() {
         when: 'fetch descendant option with -1 depth'
             def fetchDescendantsOption = new FetchDescendantsOption(-1)
         then: 'the next level of depth is as expected'
             fetchDescendantsOption.next().depth == -1
     }
 
-    def 'Get next descendant for fetch descendant option: omit descendants'() {
+    def 'Next descendant for fetch descendant option: omit descendants.'() {
         given: 'fetch descendant option with 0 depth'
             def fetchDescendantsOption = new FetchDescendantsOption(0)
         when: 'the next level of depth is not allowed'
@@ -74,7 +74,7 @@ class FetchDescendantsOptionSpec extends Specification {
             thrown IllegalArgumentException
     }
 
-    def 'Create fetch descendant option with  descendant using #scenario'() {
+    def 'Create fetch descendant option with  descendant using #scenario.'() {
         when: 'the next level of depth is not allowed'
            def FetchDescendantsOption fetchDescendantsOption = FetchDescendantsOption.getFetchDescendantsOption(fetchDescendantsOptionAsString)
         then: 'fetch descendant object created'
@@ -87,4 +87,16 @@ class FetchDescendantsOptionSpec extends Specification {
             'No descendants using none'         | 'none'                         || 0
             'til 10th descendants using number' | '10'                           || 10
     }
+
+    def 'String values.'() {
+        expect: 'fetch descendant option with #depth depth'
+            assert fetchDescendantsOption.toString() == expectedStringValue
+        where: 'the following option is used'
+            fetchDescendantsOption                            || expectedStringValue
+            FetchDescendantsOption.OMIT_DESCENDANTS           || 'OmitDescendants'
+            FetchDescendantsOption.FETCH_DIRECT_CHILDREN_ONLY || 'FetchDirectChildrenOnly'
+            FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS    || 'IncludeAllDescendants'
+            new FetchDescendantsOption(2)                     || 'Depth=2'
+    }
+
 }
