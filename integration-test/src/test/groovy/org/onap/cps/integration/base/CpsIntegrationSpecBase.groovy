@@ -18,15 +18,15 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.integration
+package org.onap.cps.integration.base
 
 import org.onap.cps.api.impl.CpsAdminServiceImpl
 import org.onap.cps.api.impl.CpsDataServiceImpl
 import org.onap.cps.api.impl.CpsModuleServiceImpl
-import org.onap.cps.spi.CascadeDeleteAllowed
+import org.onap.cps.integration.DatabaseTestContainer
+import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.repository.DataspaceRepository
 import org.onap.cps.spi.impl.utils.CpsValidatorImpl
-import org.onap.cps.utils.ContentType
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.boot.autoconfigure.domain.EntityScan
@@ -37,8 +37,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 import org.testcontainers.spock.Testcontainers
 import spock.lang.Shared
 import spock.lang.Specification
-
-import java.time.OffsetDateTime
 
 @SpringBootTest(classes = [TestConfig, CpsAdminServiceImpl, CpsValidatorImpl])
 @Testcontainers
@@ -63,50 +61,35 @@ class CpsIntegrationSpecBase extends Specification {
     @Lazy
     CpsModuleServiceImpl cpsModuleService
 
-
-    def static TEST_DATASPACE = 'testDataspace'
+    def static GENERAL_TEST_DATASPACE = 'generalTestDataSpace'
+    def static BOOKSTORE_DATASPACE = 'bookstoreDataspace'
     def static BOOKSTORE_SCHEMA_SET = 'bookstoreSchemaSet'
-    def static TEST_ANCHOR = 'testAnchor'
+    def static BOOKSTORE_ANCHOR = 'bookstoreAnchor'
 
-    def createDataspaceSchemaSetAnchor(String dataspaceName, String schemaSetName, String schemaSetFileName, String anchorName) {
-        cpsAdminService.createDataspace(dataspaceName)
-        createSchemaSetAnchor(dataspaceName, schemaSetName, schemaSetFileName, anchorName)
-    }
+    def static initialized = false
 
-    def createSchemaSetAnchor(String dataspaceName, String schemaSetName, String schemaSetFileName, String anchorName) {
-        def bookstoreFileContent = readResourceFile(schemaSetFileName)
-        cpsModuleService.createSchemaSet(dataspaceName, schemaSetName, [(schemaSetFileName) : bookstoreFileContent])
-        cpsAdminService.createAnchor(dataspaceName, schemaSetName, anchorName)
-    }
-
-    def saveDataNodes(String dataspaceName, String anchorName, String parentNodeXpath, String dataNodesFileName) {
-        def dataNodesAsJSON = readResourceFile(dataNodesFileName)
-        if (isRootXpath(parentNodeXpath)) {
-            cpsDataService.saveData(dataspaceName, anchorName, dataNodesAsJSON,
-                OffsetDateTime.now(), ContentType.JSON);
-        } else {
-            cpsDataService.saveData(dataspaceName, anchorName, parentNodeXpath,
-                dataNodesAsJSON, OffsetDateTime.now(), ContentType.JSON);
+    def setup() {
+        if (!initialized) {
+            cpsAdminService.createDataspace(GENERAL_TEST_DATASPACE)
+            def bookstoreModelFileContent = readResourceFile('bookstore.yang')
+            cpsModuleService.createSchemaSet(GENERAL_TEST_DATASPACE, BOOKSTORE_SCHEMA_SET, [bookstore : bookstoreModelFileContent])
+            initialized = true;
         }
     }
 
-    def deleteAllFromTestDataspace() {
-        def anchors = cpsAdminService.getAnchors(TEST_DATASPACE)
-        for(anchor in anchors) {
-            cpsDataService.deleteDataNodes(TEST_DATASPACE, anchor.getName(), OffsetDateTime.now())
-            cpsAdminService.deleteAnchor(TEST_DATASPACE, anchor.getName())
-        }
-        def schemaSets = cpsModuleService.getSchemaSets(TEST_DATASPACE)
-        for(schemaSet in schemaSets) {
-            cpsModuleService.deleteSchemaSet(TEST_DATASPACE, schemaSet.getName(), CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED)
-        }
+    def static countDataNodesInTree(DataNode dataNode) {
+        return 1 + countDataNodesInTree(dataNode.getChildDataNodes())
     }
 
-    def static readResourceFile(String filename) {
+    def static countDataNodesInTree(Collection<DataNode> dataNodes) {
+        int nodeCount = 0
+        for (DataNode parent : dataNodes) {
+            nodeCount += countDataNodesInTree(parent)
+        }
+        return nodeCount
+    }
+
+    def static readResourceFile(filename) {
         return new File('src/test/resources/data/' + filename).text
-    }
-
-    def static isRootXpath(final String xpath) {
-        return "/".equals(xpath);
     }
 }

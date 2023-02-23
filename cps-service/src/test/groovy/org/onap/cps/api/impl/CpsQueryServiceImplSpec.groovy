@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Copyright (C) 2021-2023 Nordix Foundation
  *  Modifications Copyright (C) 2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -45,7 +45,7 @@ class CpsQueryServiceImplSpec extends Specification {
             1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
         where: 'all fetch descendants options are supported'
             fetchDescendantsOption << [FetchDescendantsOption.OMIT_DESCENDANTS, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS,
-                FetchDescendantsOption.FETCH_DIRECT_CHILDREN_ONLY, new FetchDescendantsOption(10)]
+                                       FetchDescendantsOption.DIRECT_CHILDREN_ONLY, new FetchDescendantsOption(10)]
     }
 
 }
