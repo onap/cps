@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Copyright (C) 2021-2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -106,5 +106,19 @@ class YangModelCmHandleSpec extends Specification {
 
     }
 
+    def 'Get dmi properties from CMHandle'() {
+        given: 'a yang model cm handle with dmi properties'
+            def cmHandle = new YangModelCmHandle(id: 'cmhandle',
+                dmiProperties: [new YangModelCmHandle.Property('dmiProperty1', 'value1'), new YangModelCmHandle.Property('dmiProperty2', 'value2')])
+        expect: 'the dmi properties can be returned as a map of string pairings'
+            cmHandle.dmiPropertiesAsMap() == ['dmiProperty1': 'value1', 'dmiProperty2': 'value2']
+    }
+
+    def 'Get dmi properties from CMHandle where dmi properties are uninitialized'() {
+        given: 'a yang model cm handle without dmi properties'
+            def cmHandle = new YangModelCmHandle(id: 'cmhandle')
+        expect: 'the dmi properties are returned as an empty map'
+            cmHandle.dmiPropertiesAsMap() == [:]
+    }
 
 }
