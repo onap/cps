@@ -167,7 +167,7 @@ public interface NetworkCmProxyDataService {
      * @param cmHandleQueryApiParameters the cm handle query parameters
      * @return collection of cm handle ids
      */
-    Set<String> executeCmHandleIdSearch(CmHandleQueryApiParameters cmHandleQueryApiParameters);
+    Collection<String> executeCmHandleIdSearch(CmHandleQueryApiParameters cmHandleQueryApiParameters);
 
     /**
      * Set the data sync enabled flag, along with the data sync state to true or false based on the cm handle id.
@@ -189,7 +189,8 @@ public interface NetworkCmProxyDataService {
      * Get all cm handle IDs by various search criteria.
      *
      * @param cmHandleQueryServiceParameters cm handle query parameters
-     * @return set of cm handle IDs
+     * @return collection of cm handle IDs
      */
-    Set<String> executeCmHandleIdSearchForInventory(CmHandleQueryServiceParameters cmHandleQueryServiceParameters);
+    Collection<String> executeCmHandleIdSearchForInventory(CmHandleQueryServiceParameters
+                                                               cmHandleQueryServiceParameters);
 }
