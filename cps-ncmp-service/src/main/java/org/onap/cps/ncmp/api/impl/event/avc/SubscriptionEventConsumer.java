@@ -22,7 +22,9 @@ package org.onap.cps.ncmp.api.impl.event.avc;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.ncmp.event.model.InnerSubscriptionEvent;
 import org.onap.cps.ncmp.event.model.SubscriptionEvent;
+import org.onap.cps.spi.exceptions.OperationNotYetSupportedException;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
@@ -32,6 +34,8 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class SubscriptionEventConsumer {
 
+    private final SubscriptionEventForwarder subscriptionEventForwarder;
+
     /**
      * Consume the specified event.
      *
@@ -40,12 +44,19 @@ public class SubscriptionEventConsumer {
     @KafkaListener(topics = "${app.ncmp.avc.subscription-topic}",
             properties = {"spring.json.value.default.type=org.onap.cps.ncmp.event.model.SubscriptionEvent"})
     public void consumeSubscriptionEvent(final SubscriptionEvent subscriptionEvent) {
-        if ("CM".equals(subscriptionEvent.getEvent().getDataType().getDataCategory())) {
+        final InnerSubscriptionEvent event = subscriptionEvent.getEvent();
+        final String eventDatastore = event.getPredicates().getDatastore();
+        if (!(eventDatastore.equals("passthrough-running") || eventDatastore.equals("passthrough-operational"))) {
+            throw new OperationNotYetSupportedException(
+                "passthrough datastores are currently only supported for event subscriptions");
+        }
+        if ("CM".equals(event.getDataType().getDataCategory())) {
             log.debug("Consuming event {} ...", subscriptionEvent);
             if ("CREATE".equals(subscriptionEvent.getEventType().value())) {
                 log.info("Subscription for ClientID {} with name{} ...",
-                        subscriptionEvent.getEvent().getSubscription().getClientID(),
-                        subscriptionEvent.getEvent().getSubscription().getName());
+                        event.getSubscription().getClientID(),
+                        event.getSubscription().getName());
+                subscriptionEventForwarder.forwardCreateSubscriptionEvent(subscriptionEvent);
             }
         } else {
             log.trace("Non-CM subscription event ignored");

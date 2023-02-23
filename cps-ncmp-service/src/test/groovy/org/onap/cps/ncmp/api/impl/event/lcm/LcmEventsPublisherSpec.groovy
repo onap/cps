@@ -22,6 +22,7 @@ package org.onap.cps.ncmp.api.impl.event.lcm
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.apache.kafka.clients.consumer.KafkaConsumer
+import org.onap.cps.ncmp.api.impl.event.EventsPublisher
 import org.onap.cps.ncmp.api.kafka.MessagingBaseSpec
 import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.utils.JsonObjectMapper
@@ -35,7 +36,7 @@ import org.testcontainers.spock.Testcontainers
 
 import java.time.Duration
 
-@SpringBootTest(classes = [LcmEventsPublisher, ObjectMapper, JsonObjectMapper])
+@SpringBootTest(classes = [EventsPublisher, ObjectMapper, JsonObjectMapper])
 @Testcontainers
 @DirtiesContext
 class LcmEventsPublisherSpec extends MessagingBaseSpec {
@@ -45,7 +46,7 @@ class LcmEventsPublisherSpec extends MessagingBaseSpec {
     def testTopic = 'ncmp-events-test'
 
     @SpringBean
-    LcmEventsPublisher lcmEventsPublisher = new LcmEventsPublisher(kafkaTemplate)
+    EventsPublisher<LcmEvent> lcmEventsPublisher = new EventsPublisher(kafkaTemplate)
 
     @Autowired
     JsonObjectMapper jsonObjectMapper
