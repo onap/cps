@@ -22,6 +22,7 @@ package org.onap.cps.ncmp.api.kafka
 
 import org.apache.kafka.common.serialization.StringDeserializer
 import org.apache.kafka.common.serialization.StringSerializer
+import org.spockframework.spring.SpringBean
 import org.springframework.kafka.core.DefaultKafkaProducerFactory
 import org.springframework.kafka.core.KafkaTemplate
 import org.springframework.kafka.support.serializer.JsonSerializer
@@ -62,7 +63,8 @@ class MessagingBaseSpec extends Specification {
         ]
     }
 
-    def kafkaTemplate = new KafkaTemplate<>(new DefaultKafkaProducerFactory<Integer, String>(producerConfigProperties()))
+    @SpringBean
+    KafkaTemplate kafkaTemplate = new KafkaTemplate<>(new DefaultKafkaProducerFactory<Integer, String>(producerConfigProperties()))
 
     @DynamicPropertySource
     static void registerKafkaProperties(DynamicPropertyRegistry dynamicPropertyRegistry) {
