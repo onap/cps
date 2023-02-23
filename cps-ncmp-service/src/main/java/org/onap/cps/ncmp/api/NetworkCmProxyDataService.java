@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 highstreet technologies GmbH
- *  Modifications Copyright (C) 2021-2022 Nordix Foundation
+ *  Modifications Copyright (C) 2021-2023 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
@@ -27,7 +27,6 @@ import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum
 
 import java.util.Collection;
 import java.util.Map;
-import java.util.Set;
 import org.onap.cps.ncmp.api.inventory.CompositeState;
 import org.onap.cps.ncmp.api.models.CmHandleQueryApiParameters;
 import org.onap.cps.ncmp.api.models.CmHandleQueryServiceParameters;
@@ -159,7 +158,7 @@ public interface NetworkCmProxyDataService {
      * @param cmHandleQueryApiParameters the cm handle query parameters
      * @return collection of cm handles
      */
-    Set<NcmpServiceCmHandle> executeCmHandleSearch(CmHandleQueryApiParameters cmHandleQueryApiParameters);
+    Collection<NcmpServiceCmHandle> executeCmHandleSearch(CmHandleQueryApiParameters cmHandleQueryApiParameters);
 
     /**
      * Query and return cm handle ids that match the given query parameters.
@@ -167,7 +166,7 @@ public interface NetworkCmProxyDataService {
      * @param cmHandleQueryApiParameters the cm handle query parameters
      * @return collection of cm handle ids
      */
-    Set<String> executeCmHandleIdSearch(CmHandleQueryApiParameters cmHandleQueryApiParameters);
+    Collection<String> executeCmHandleIdSearch(CmHandleQueryApiParameters cmHandleQueryApiParameters);
 
     /**
      * Set the data sync enabled flag, along with the data sync state to true or false based on the cm handle id.
@@ -181,15 +180,16 @@ public interface NetworkCmProxyDataService {
      * Get all cm handle IDs by DMI plugin identifier.
      *
      * @param dmiPluginIdentifier DMI plugin identifier
-     * @return set of cm handle IDs
+     * @return collection of cm handle IDs
      */
-    Set<String> getAllCmHandleIdsByDmiPluginIdentifier(String dmiPluginIdentifier);
+    Collection<String> getAllCmHandleIdsByDmiPluginIdentifier(String dmiPluginIdentifier);
 
     /**
      * Get all cm handle IDs by various search criteria.
      *
      * @param cmHandleQueryServiceParameters cm handle query parameters
-     * @return set of cm handle IDs
+     * @return collection of cm handle IDs
      */
-    Set<String> executeCmHandleIdSearchForInventory(CmHandleQueryServiceParameters cmHandleQueryServiceParameters);
+    Collection<String> executeCmHandleIdSearchForInventory(CmHandleQueryServiceParameters
+                                                               cmHandleQueryServiceParameters);
 }

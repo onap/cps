@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,10 +20,9 @@
 
 package org.onap.cps.ncmp.api.inventory;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
 
@@ -33,10 +32,9 @@ public interface CmHandleQueries {
      * Query CmHandles based on additional (private) properties.
      *
      * @param additionalPropertyQueryPairs private properties for query
-     * @return CmHandles which have these private properties
+     * @return Ids of CmHandles which have these private properties
      */
-    Map<String, NcmpServiceCmHandle> queryCmHandleAdditionalProperties(
-            Map<String, String> additionalPropertyQueryPairs);
+    Collection<String> queryCmHandleAdditionalProperties(Map<String, String> additionalPropertyQueryPairs);
 
     /**
      * Query CmHandles based on public properties.
@@ -44,18 +42,7 @@ public interface CmHandleQueries {
      * @param publicPropertyQueryPairs public properties for query
      * @return CmHandles which have these public properties
      */
-    Map<String, NcmpServiceCmHandle> queryCmHandlePublicProperties(
-            Map<String, String> publicPropertyQueryPairs);
-
-    /**
-     * Combine Maps of CmHandles.
-     *
-     * @param firstQuery  first CmHandles Map
-     * @param secondQuery second CmHandles Map
-     * @return combined Map of CmHandles
-     */
-    Map<String, NcmpServiceCmHandle> combineCmHandleQueries(Map<String, NcmpServiceCmHandle> firstQuery,
-            Map<String, NcmpServiceCmHandle> secondQuery);
+    Collection<String> queryCmHandlePublicProperties(Map<String, String> publicPropertyQueryPairs);
 
     /**
      * Method which returns cm handles by the cm handles state.
@@ -96,5 +83,5 @@ public interface CmHandleQueries {
      * @param dmiPluginIdentifier DMI plugin identifier
      * @return set of cm handles
      */
-    Set<NcmpServiceCmHandle> getCmHandlesByDmiPluginIdentifier(String dmiPluginIdentifier);
+    Collection<String> getCmHandleIdsByDmiPluginIdentifier(String dmiPluginIdentifier);
 }

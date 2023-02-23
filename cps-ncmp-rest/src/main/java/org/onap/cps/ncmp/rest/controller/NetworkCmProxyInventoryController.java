@@ -22,8 +22,8 @@
 package org.onap.cps.ncmp.rest.controller;
 
 import io.micrometer.core.annotation.Timed;
+import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -55,7 +55,7 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
         final CmHandleQueryServiceParameters cmHandleQueryServiceParameters = ncmpRestInputMapper
                 .toCmHandleQueryServiceParameters(cmHandleQueryParameters);
 
-        final Set<String> cmHandleIds = networkCmProxyDataService
+        final Collection<String> cmHandleIds = networkCmProxyDataService
                 .executeCmHandleIdSearchForInventory(cmHandleQueryServiceParameters);
         return ResponseEntity.ok(List.copyOf(cmHandleIds));
     }
@@ -68,7 +68,7 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
      */
     @Override
     public ResponseEntity<List<String>> getAllCmHandleIdsForRegisteredDmi(final String dmiPluginIdentifier) {
-        final Set<String> cmHandleIds =
+        final Collection<String> cmHandleIds =
                 networkCmProxyDataService.getAllCmHandleIdsByDmiPluginIdentifier(dmiPluginIdentifier);
         return ResponseEntity.ok(List.copyOf(cmHandleIds));
     }

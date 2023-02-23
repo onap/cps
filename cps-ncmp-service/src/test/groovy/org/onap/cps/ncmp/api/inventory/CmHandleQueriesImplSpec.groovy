@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2023 Nordix Foundation
  *  Modifications Copyright (C) 2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,7 +21,6 @@
 
 package org.onap.cps.ncmp.api.inventory
 
-import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.model.DataNode
 import spock.lang.Shared
@@ -46,18 +45,14 @@ class CmHandleQueriesImplSpec extends Specification {
     def static pnfDemo4 = createDataNode('PNFDemo4')
     def static pnfDemo5 = createDataNode('PNFDemo5')
 
-    def static pnfDemoCmHandle = new NcmpServiceCmHandle(cmHandleId: 'PNFDemo')
-    def static pnfDemo2CmHandle = new NcmpServiceCmHandle(cmHandleId: 'PNFDemo2')
-    def static pnfDemo3CmHandle = new NcmpServiceCmHandle(cmHandleId: 'PNFDemo3')
-
     def 'Query CmHandles with public properties query pair.'() {
         given: 'the DataNodes queried for a given cpsPath are returned from the persistence service.'
             mockResponses()
         when: 'a query on cmhandle public properties is performed with a public property pair'
-            def returnedCmHandlesWithData = objectUnderTest.queryCmHandlePublicProperties(publicPropertyPairs)
+            def result = objectUnderTest.queryCmHandlePublicProperties(publicPropertyPairs)
         then: 'the correct cm handle data objects are returned'
-            returnedCmHandlesWithData.keySet().containsAll(expectedCmHandleIds)
-            returnedCmHandlesWithData.keySet().size() == expectedCmHandleIds.size()
+            result.containsAll(expectedCmHandleIds)
+            result.size() == expectedCmHandleIds.size()
         where: 'the following data is used'
             scenario                         | publicPropertyPairs                                                                           || expectedCmHandleIds
             'single property matches'        | ['Contact' : 'newemailforstore@bookstore.com']                                                || ['PNFDemo', 'PNFDemo2', 'PNFDemo4']
@@ -68,41 +63,25 @@ class CmHandleQueriesImplSpec extends Specification {
 
     def 'Query CmHandles using empty public properties query pair.'() {
         when: 'a query on CmHandle public properties is executed using an empty map'
-            def returnedCmHandlesWithData = objectUnderTest.queryCmHandlePublicProperties([:])
+            def result = objectUnderTest.queryCmHandlePublicProperties([:])
         then: 'no cm handles are returned'
-            returnedCmHandlesWithData.keySet().size() == 0
+            result.size() == 0
     }
 
     def 'Query CmHandles using empty private properties query pair.'() {
         when: 'a query on CmHandle private properties is executed using an empty map'
-            def returnedCmHandlesWithData = objectUnderTest.queryCmHandleAdditionalProperties([:])
+            def result = objectUnderTest.queryCmHandleAdditionalProperties([:])
         then: 'no cm handles are returned'
-            returnedCmHandlesWithData.keySet().size() == 0
+            result.size() == 0
     }
 
     def 'Query CmHandles by a private field\'s value.'() {
         given: 'a data node exists with a certain additional-property'
             cpsDataPersistenceService.queryDataNodes(_, _, dataNodeWithPrivateField, _) >> [pnfDemo5]
         when: 'a query on CmHandle private properties is executed using a map'
-            def returnedCmHandlesWithData = objectUnderTest.queryCmHandleAdditionalProperties(['Contact3': 'newemailforstore3@bookstore.com'])
+            def result = objectUnderTest.queryCmHandleAdditionalProperties(['Contact3': 'newemailforstore3@bookstore.com'])
         then: 'one cm handle is returned'
-            returnedCmHandlesWithData.keySet().size() == 1
-    }
-
-    def 'Combine two query results where #scenario.'() {
-        when: 'two query results in the form of a map of NcmpServiceCmHandles are combined into a single query result'
-            def result = objectUnderTest.combineCmHandleQueries(firstQuery, secondQuery)
-        then: 'the returned result is the same as the expected result'
-            result == expectedResult
-        where:
-            scenario                                                     | firstQuery                                                 | secondQuery                                                || expectedResult
-            'two queries with unique and non unique entries exist'       | ['PNFDemo': pnfDemoCmHandle, 'PNFDemo2': pnfDemo2CmHandle] | ['PNFDemo': pnfDemoCmHandle, 'PNFDemo3': pnfDemo3CmHandle] || ['PNFDemo': pnfDemoCmHandle]
-            'the first query contains entries and second query is empty' | ['PNFDemo': pnfDemoCmHandle, 'PNFDemo2': pnfDemo2CmHandle] | [:]                                                        || [:]
-            'the second query contains entries and first query is empty' | [:]                                                        | ['PNFDemo': pnfDemoCmHandle, 'PNFDemo3': pnfDemo3CmHandle] || [:]
-            'the first query contains entries and second query is null'  | ['PNFDemo': pnfDemoCmHandle, 'PNFDemo2': pnfDemo2CmHandle] | null                                                       || ['PNFDemo': pnfDemoCmHandle, 'PNFDemo2': pnfDemo2CmHandle]
-            'the second query contains entries and first query is null'  | null                                                       | ['PNFDemo': pnfDemoCmHandle, 'PNFDemo3': pnfDemo3CmHandle] || ['PNFDemo': pnfDemoCmHandle, 'PNFDemo3': pnfDemo3CmHandle]
-            'both queries are empty'                                     | [:]                                                        | [:]                                                        || [:]
-            'both queries are null'                                      | null                                                       | null                                                       || null
+            result.size() == 1
     }
 
     def 'Get CmHandles by it\'s state.'() {
@@ -175,11 +154,11 @@ class CmHandleQueriesImplSpec extends Specification {
         given: 'the DataNodes queried for a given cpsPath are returned from the persistence service.'
             mockResponses()
         when: 'cm Handles are fetched for a given dmi plugin identifier'
-            def result = objectUnderTest.getCmHandlesByDmiPluginIdentifier('my-dmi-plugin-identifier')
+            def result = objectUnderTest.getCmHandleIdsByDmiPluginIdentifier('my-dmi-plugin-identifier')
         then: 'result is the correct size'
             assert result.size() == 3
         and: 'result contains the correct cm handles'
-            assert result.cmHandleId.containsAll('PNFDemo', 'PNFDemo2', 'PNFDemo4')
+            assert result.containsAll('PNFDemo', 'PNFDemo2', 'PNFDemo4')
     }
 
     void mockResponses() {
