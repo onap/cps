@@ -42,7 +42,7 @@ import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsDataService;
-import org.onap.cps.ncmp.api.NetworkCmProxyCmHandlerQueryService;
+import org.onap.cps.ncmp.api.NetworkCmProxyCmHandleQueryService;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
 import org.onap.cps.ncmp.api.impl.event.lcm.LcmEventsCmHandleStateHandler;
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations;
@@ -86,7 +86,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     private final NetworkCmProxyDataServicePropertyHandler networkCmProxyDataServicePropertyHandler;
     private final InventoryPersistence inventoryPersistence;
     private final CmHandleQueries cmHandleQueries;
-    private final NetworkCmProxyCmHandlerQueryService networkCmProxyCmHandlerQueryService;
+    private final NetworkCmProxyCmHandleQueryService networkCmProxyCmHandleQueryService;
     private final LcmEventsCmHandleStateHandler lcmEventsCmHandleStateHandler;
     private final CpsDataService cpsDataService;
     private final IMap<String, Object> moduleSyncStartedOnCmHandles;
@@ -181,7 +181,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         final CmHandleQueryServiceParameters cmHandleQueryServiceParameters = jsonObjectMapper.convertToValueType(
                 cmHandleQueryApiParameters, CmHandleQueryServiceParameters.class);
         validateCmHandleQueryParameters(cmHandleQueryServiceParameters, CmHandleQueryConditions.ALL_CONDITION_NAMES);
-        return networkCmProxyCmHandlerQueryService.queryCmHandles(cmHandleQueryServiceParameters);
+        return networkCmProxyCmHandleQueryService.queryCmHandles(cmHandleQueryServiceParameters);
     }
 
     /**
@@ -191,11 +191,11 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
      * @return cm handle ids
      */
     @Override
-    public Set<String> executeCmHandleIdSearch(final CmHandleQueryApiParameters cmHandleQueryApiParameters) {
+    public Collection<String> executeCmHandleIdSearch(final CmHandleQueryApiParameters cmHandleQueryApiParameters) {
         final CmHandleQueryServiceParameters cmHandleQueryServiceParameters = jsonObjectMapper.convertToValueType(
                 cmHandleQueryApiParameters, CmHandleQueryServiceParameters.class);
         validateCmHandleQueryParameters(cmHandleQueryServiceParameters, CmHandleQueryConditions.ALL_CONDITION_NAMES);
-        return networkCmProxyCmHandlerQueryService.queryCmHandleIds(cmHandleQueryServiceParameters);
+        return networkCmProxyCmHandleQueryService.queryCmHandleIds(cmHandleQueryServiceParameters);
     }
 
     /**
@@ -249,10 +249,10 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
      * @return set of cm handle IDs
      */
     @Override
-    public Set<String> executeCmHandleIdSearchForInventory(
+    public Collection<String> executeCmHandleIdSearchForInventory(
             final CmHandleQueryServiceParameters cmHandleQueryServiceParameters) {
         validateCmHandleQueryParameters(cmHandleQueryServiceParameters, InventoryQueryConditions.ALL_CONDITION_NAMES);
-        return networkCmProxyCmHandlerQueryService.queryCmHandleIdsForInventory(cmHandleQueryServiceParameters);
+        return networkCmProxyCmHandleQueryService.queryCmHandleIdsForInventory(cmHandleQueryServiceParameters);
     }
 
     /**
@@ -426,4 +426,5 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             return CmHandleRegistrationResponse.createFailureResponses(cmHandleIds, exception);
         }
     }
+
 }
