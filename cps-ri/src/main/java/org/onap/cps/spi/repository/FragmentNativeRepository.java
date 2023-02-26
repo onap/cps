@@ -38,13 +38,12 @@ public interface FragmentNativeRepository {
     void deleteByAnchorIdAndXpaths(int anchorId, Collection<String> xpaths);
 
     /**
-     * Delete fragment entities that are list elements of each supplied list xpath.
-     * For example, if xpath '/parent/list' is provided, then list all elements in '/parent/list' will be deleted,
+     * Delete fragment entities whose xpaths match the given SQL LIKE patterns.
+     * For example, if xpath pattern '/parent/list[%' is provided, then all elements in '/parent/list' will be deleted,
      * e.g. /parent/list[@key='A'], /parent/list[@key='B'].
-     * This method will only delete whole lists by xpath; xpaths to list elements or other data nodes will be ignored.
      * Non-existing xpaths will not result in an exception.
      * @param anchorId   the id of the anchor
-     * @param listXpaths xpaths of whole lists to remove
+     * @param xpathPatterns xpath patterns
      */
-    void deleteListsByAnchorIdAndXpaths(int anchorId, Collection<String> listXpaths);
+    void deleteByAnchorIdAndXpathPatterns(int anchorId, Collection<String> xpathPatterns);
 }

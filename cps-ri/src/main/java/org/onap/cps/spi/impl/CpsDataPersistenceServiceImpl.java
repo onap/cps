@@ -621,17 +621,32 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         final AnchorEntity anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
 
-        final Collection<String> normalizedXpaths = new ArrayList<>(xpathsToDelete.size());
+        final Set<String> normalizedXPathsToDelete = new HashSet<>(xpathsToDelete.size());
+        final Set<String> normalizedXPathsToListElements = new HashSet<>();
         for (final String xpath : xpathsToDelete) {
             try {
-                normalizedXpaths.add(CpsPathUtil.getNormalizedXpath(xpath));
+                final CpsPathQuery cpsPathQuery = CpsPathUtil.getCpsPathQuery(xpath);
+                final String normalizedXpath = cpsPathQuery.getNormalizedXpath();
+                normalizedXPathsToDelete.add(normalizedXpath);
+                if (cpsPathQuery.isPathToListElement()) {
+                    normalizedXPathsToListElements.add(normalizedXpath);
+                }
             } catch (final PathParsingException e) {
                 log.debug("Error parsing xpath \"{}\": {}", xpath, e.getMessage());
             }
         }
 
-        fragmentRepository.deleteByAnchorIdAndXpaths(anchorEntity.getId(), normalizedXpaths);
-        fragmentRepository.deleteListsByAnchorIdAndXpaths(anchorEntity.getId(), normalizedXpaths);
+        fragmentRepository.deleteByAnchorIdAndXpaths(anchorEntity.getId(), normalizedXPathsToDelete);
+        deletePotentialWholeLists(anchorEntity.getId(), normalizedXPathsToDelete, normalizedXPathsToListElements);
+    }
+
+    private void deletePotentialWholeLists(final int anchorId, final Collection<String> normalizedXPathsToDelete,
+                                           final Set<String> normalizedXPathsToListElements) {
+        final Collection<String> potentialListXPathPatterns = normalizedXPathsToDelete.stream()
+            .filter(xpath -> !normalizedXPathsToListElements.contains(xpath))
+            .map(xpath -> xpath + "[%")
+            .collect(Collectors.toList());
+        fragmentRepository.deleteByAnchorIdAndXpathPatterns(anchorId, potentialListXPathPatterns);
     }
 
     @Override

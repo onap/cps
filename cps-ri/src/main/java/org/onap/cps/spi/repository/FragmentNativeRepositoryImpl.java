@@ -22,7 +22,6 @@ package org.onap.cps.spi.repository;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.stream.Collectors;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -59,12 +58,10 @@ public class FragmentNativeRepositoryImpl implements FragmentNativeRepository {
     }
 
     @Override
-    public void deleteListsByAnchorIdAndXpaths(final int anchorId, final Collection<String> listXpaths) {
-        final Collection<String> listXpathPatterns =
-            listXpaths.stream().map(listXpath -> listXpath + "[%").collect(Collectors.toSet());
+    public void deleteByAnchorIdAndXpathPatterns(final int anchorId, final Collection<String> xpathPatterns) {
         final String queryString = addFragmentConstraintWithDeleteCascade(
             "DELETE FROM fragment f WHERE f.anchor_id = ? AND (f.xpath LIKE ANY (array[:parameterPlaceholders]))");
-        executeUpdateWithAnchorIdAndCollection(queryString, anchorId, listXpathPatterns);
+        executeUpdateWithAnchorIdAndCollection(queryString, anchorId, xpathPatterns);
     }
 
     // Accept security hotspot as placeholders in SQL query are created internally, not from user input.
