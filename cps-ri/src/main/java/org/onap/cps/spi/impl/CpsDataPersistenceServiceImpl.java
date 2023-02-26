@@ -631,11 +631,12 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             try {
                 normalizedXpaths.add(CpsPathUtil.getNormalizedXpath(xpath));
             } catch (final PathParsingException e) {
-                log.debug("Error parsing xpath \"{}\" in deleteDataNodes: {}", xpath, e.getMessage());
+                log.debug("Error parsing xpath \"{}\": {}", xpath, e.getMessage());
             }
         }
 
         fragmentRepository.deleteByAnchorIdAndXpaths(anchorEntity.getId(), normalizedXpaths);
+        normalizedXpaths.removeIf(CpsPathUtil::isPathToListElement);
         fragmentRepository.deleteListsByAnchorIdAndXpaths(anchorEntity.getId(), normalizedXpaths);
     }
 

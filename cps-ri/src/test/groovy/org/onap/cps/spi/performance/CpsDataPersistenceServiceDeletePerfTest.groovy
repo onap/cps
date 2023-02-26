@@ -165,8 +165,8 @@ class CpsDataPersistenceServiceDeletePerfTest extends CpsPersistencePerfSpecBase
             objectUnderTest.deleteDataNodes(PERF_DATASPACE, PERF_ANCHOR, xpathsToDelete)
             stopWatch.stop()
             def deleteDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'delete duration is under 125 milliseconds'
-            recordAndAssertPerformance('Batch delete 500 lists elements', 125, deleteDurationInMillis)
+        then: 'delete duration is under 60 milliseconds'
+            recordAndAssertPerformance('Batch delete 500 lists elements', 60, deleteDurationInMillis)
     }
 
     @Sql([CLEAR_DATA, PERF_TEST_DATA])
