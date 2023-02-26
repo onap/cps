@@ -621,17 +621,23 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         final AnchorEntity anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
 
-        final Collection<String> normalizedXpaths = new ArrayList<>(xpathsToDelete.size());
+        final Set<String> normalizedXPathsToDelete = new HashSet<>(xpathsToDelete.size());
+        final Set<String> normalizedXpathsToPotentialLists = new HashSet<>();
         for (final String xpath : xpathsToDelete) {
             try {
-                normalizedXpaths.add(CpsPathUtil.getNormalizedXpath(xpath));
+                final CpsPathQuery cpsPathQuery = CpsPathUtil.getCpsPathQuery(xpath);
+                final String normalizedXpath = cpsPathQuery.getNormalizedXpath();
+                normalizedXPathsToDelete.add(normalizedXpath);
+                if (!cpsPathQuery.isPathToListElement()) {
+                    normalizedXpathsToPotentialLists.add(normalizedXpath);
+                }
             } catch (final PathParsingException e) {
                 log.debug("Error parsing xpath \"{}\": {}", xpath, e.getMessage());
             }
         }
 
-        fragmentRepository.deleteByAnchorIdAndXpaths(anchorEntity.getId(), normalizedXpaths);
-        fragmentRepository.deleteListsByAnchorIdAndXpaths(anchorEntity.getId(), normalizedXpaths);
+        fragmentRepository.deleteByAnchorIdAndXpaths(anchorEntity.getId(), normalizedXPathsToDelete);
+        fragmentRepository.deleteListsByAnchorIdAndXpaths(anchorEntity.getId(), normalizedXpathsToPotentialLists);
     }
 
     @Override
