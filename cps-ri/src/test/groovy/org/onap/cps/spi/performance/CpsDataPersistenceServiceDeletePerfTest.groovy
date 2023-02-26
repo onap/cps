@@ -24,14 +24,11 @@ import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.impl.CpsPersistencePerfSpecBase
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.jdbc.Sql
-import org.springframework.util.StopWatch
 
 class CpsDataPersistenceServiceDeletePerfTest extends CpsPersistencePerfSpecBase {
 
     @Autowired
     CpsDataPersistenceService objectUnderTest
-
-    def stopWatch = new StopWatch()
 
     @Sql([CLEAR_DATA, PERF_TEST_DATA])
     def 'Create a node with many descendants (please note, subsequent tests depend on this running first).'() {
@@ -165,8 +162,8 @@ class CpsDataPersistenceServiceDeletePerfTest extends CpsPersistencePerfSpecBase
             objectUnderTest.deleteDataNodes(PERF_DATASPACE, PERF_ANCHOR, xpathsToDelete)
             stopWatch.stop()
             def deleteDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'delete duration is under 125 milliseconds'
-            recordAndAssertPerformance('Batch delete 500 lists elements', 125, deleteDurationInMillis)
+        then: 'delete duration is under 60 milliseconds'
+            recordAndAssertPerformance('Batch delete 500 lists elements', 60, deleteDurationInMillis)
     }
 
     @Sql([CLEAR_DATA, PERF_TEST_DATA])

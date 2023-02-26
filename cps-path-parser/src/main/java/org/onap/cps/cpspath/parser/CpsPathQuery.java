@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Copyright (C) 2021-2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -78,6 +78,15 @@ public class CpsPathQuery {
      */
     public boolean hasTextFunctionCondition() {
         return textFunctionConditionLeafName != null;
+    }
+
+    /**
+     * Returns boolean indicating xpath is an absolute path to a list element.
+     *
+     * @return true if xpath is an absolute path to a list element
+     */
+    public boolean isPathToListElement() {
+        return cpsPathPrefixType == ABSOLUTE && hasLeafConditions();
     }
 
 }
