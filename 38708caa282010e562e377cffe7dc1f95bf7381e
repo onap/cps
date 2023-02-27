@@ -117,6 +117,30 @@
     },
     {
       "key": {
+        "uuid": "1c4bd2be_6ba1aaa1",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/spi/FetchDescendantsOptionSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-27T16:03:07Z",
+      "side": 1,
+      "message": "ok, i\u0027ll fix that",
+      "parentUuid": "02619f6e_a420020e",
+      "range": {
+        "startLine": 92,
+        "startChar": 46,
+        "endLine": 92,
+        "endChar": 52
+      },
+      "revId": "38708caa282010e562e377cffe7dc1f95bf7381e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4290a8e6_1a1dea7e",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
         "patchSetId": 3
@@ -128,6 +152,30 @@
       "writtenOn": "2023-02-27T14:40:22Z",
       "side": 1,
       "message": "is this needed here ??",
+      "range": {
+        "startLine": 93,
+        "startChar": 62,
+        "endLine": 93,
+        "endChar": 67
+      },
+      "revId": "38708caa282010e562e377cffe7dc1f95bf7381e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5463ea6c_ca938266",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-27T16:03:07Z",
+      "side": 1,
+      "message": "pretty sure it is to get the CONTENT of the file\n(I just moved this code, it was creted/copied before by Luke)",
+      "parentUuid": "4290a8e6_1a1dea7e",
       "range": {
         "startLine": 93,
         "startChar": 62,
