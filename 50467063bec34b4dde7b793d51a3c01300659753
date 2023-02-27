@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4dcd287f_a8eb9c93",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/avc-subscription-event-v1.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-02-27T17:10:06Z",
+      "side": 1,
+      "message": "what\u0027s the \"type\" of this.\nString..right ?",
+      "range": {
+        "startLine": 101,
+        "startChar": 13,
+        "endLine": 101,
+        "endChar": 35
+      },
+      "revId": "50467063bec34b4dde7b793d51a3c01300659753",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
