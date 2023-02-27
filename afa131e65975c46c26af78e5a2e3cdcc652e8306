@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "17cfbd36_15472abf",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 515,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-02-27T10:09:23Z",
+      "side": 1,
+      "message": "NB: not sure if this line is needed, adds context but think can be gotten from Map name and creates a new list that isn\u0027t used after",
+      "range": {
+        "startLine": 515,
+        "startChar": 0,
+        "endLine": 515,
+        "endChar": 74
+      },
+      "revId": "afa131e65975c46c26af78e5a2e3cdcc652e8306",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
