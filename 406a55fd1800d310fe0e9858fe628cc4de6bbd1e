@@ -22,6 +22,29 @@
       "revId": "406a55fd1800d310fe0e9858fe628cc4de6bbd1e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f996ab0_777f5adf",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 640,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-27T09:25:44Z",
+      "side": 1,
+      "message": "I have 2 suggestions here\n.Although it is relatively fast you are \u0027normalizing\u0027 the same paths at least twice. Look at the CpsPathUtil methods you\u0027ll see what I mean. \nThere is already a method that return CpsPathQuery object and then check what each of them is and what to do of them usign some new method on the CpsPatHQuery object (thats where the knowledge should remain) ie. something like\n\nfor (xpath : xpaths) {\n   cpsPathQuery \u003d CpsPathUtil.getCpsPathQuery(xpath)\n   if cpsPathQuery.isAbslutPathToContainer() {\n     xPathsToContainers.add(xPath)\n   } else {\n     cpsPathQuery.isAbslutPathToList() {\n        xPathsToListContainers.add(xPath)\n     }\n   }\n}",
+      "range": {
+        "startLine": 629,
+        "startChar": 0,
+        "endLine": 640,
+        "endChar": 98
+      },
+      "revId": "406a55fd1800d310fe0e9858fe628cc4de6bbd1e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
