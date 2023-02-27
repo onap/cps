@@ -22,6 +22,30 @@
       "revId": "afa131e65975c46c26af78e5a2e3cdcc652e8306",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "94b21742_d966f449",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 515,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-27T11:24:25Z",
+      "side": 1,
+      "message": "its really a point to an existing collection (doesn\u0027t create anything new if taht\u0027s wat you though)",
+      "parentUuid": "17cfbd36_15472abf",
+      "range": {
+        "startLine": 515,
+        "startChar": 0,
+        "endLine": 515,
+        "endChar": 74
+      },
+      "revId": "afa131e65975c46c26af78e5a2e3cdcc652e8306",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
