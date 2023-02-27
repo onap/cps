@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "adf32192_035c60fc",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/BookstoreSpecBase.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-27T13:40:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "11939561_75e69aba",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 54
+      },
+      "revId": "6a4cf91622d568c56080fc392990a0a992045ab8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a05e65cc_b691d30e",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2023-02-27T09:29:28Z",
       "side": 1,
       "message": "Should this not be BOOKSTORE_DATASPACE",
+      "range": {
+        "startLine": 75,
+        "startChar": 45,
+        "endLine": 75,
+        "endChar": 67
+      },
+      "revId": "6a4cf91622d568c56080fc392990a0a992045ab8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d048fb6_d5309e0f",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-27T13:40:22Z",
+      "side": 1,
+      "message": "thought about that but decide against it.",
+      "parentUuid": "a05e65cc_b691d30e",
       "range": {
         "startLine": 75,
         "startChar": 45,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "4cf9d7cc_e5bfe8dc",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsAdminServiceIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-27T13:40:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fba21eeb_167ef4ac",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 54
+      },
+      "revId": "6a4cf91622d568c56080fc392990a0a992045ab8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d39e75de_f980f334",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsAdminServiceIntegrationSpec.groovy",
         "patchSetId": 1
@@ -91,6 +163,30 @@
       "revId": "6a4cf91622d568c56080fc392990a0a992045ab8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0b6c8d66_635c8098",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsAdminServiceIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-27T13:40:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d39e75de_f980f334",
+      "range": {
+        "startLine": 58,
+        "startChar": 89,
+        "endLine": 58,
+        "endChar": 90
+      },
+      "revId": "6a4cf91622d568c56080fc392990a0a992045ab8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
