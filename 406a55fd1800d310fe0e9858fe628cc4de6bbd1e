@@ -45,6 +45,30 @@
       "revId": "406a55fd1800d310fe0e9858fe628cc4de6bbd1e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df12e936_08c55d90",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 640,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-27T10:45:27Z",
+      "side": 1,
+      "message": "for (xpath : xpaths) {\n   cpsPathQuery \u003d CpsPathUtil.getCpsPathQuery(xpath)\n   normalizedXPathsToDelete.add(cpsPathQuery.xPath)\n   if (!cpsPathQuery.isPathToListElement() {\n        normalizedXPathsToListElements.add(xPath)\n   }\n}\nfragmentRepository.deleteFragmentsByAnchorIdAndXPath(...)\ndeletePotentialWholeList(...)\n\n\n\n\nprivate deletePotentialWholeList(normalizedXPathsToDelete, normalizedXPathsToListElements) {\n  xPathsToPotentialList \u003d normalizedXPathsToDelete.removeAll(normalizedXPathsToListElements)\n  potentiaListXPathPatterns \u003d xPathsToPotentialList.stream( concat with [%]).collection\n  fragmentRepository.deleteFragmentsByAnchorIdAndXPathPattern(xPathPatterns)\n}",
+      "parentUuid": "1f996ab0_777f5adf",
+      "range": {
+        "startLine": 629,
+        "startChar": 0,
+        "endLine": 640,
+        "endChar": 98
+      },
+      "revId": "406a55fd1800d310fe0e9858fe628cc4de6bbd1e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
