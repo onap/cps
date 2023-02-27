@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "751f8999_928b1144",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-27T08:49:48Z",
+      "side": 1,
+      "message": "I am confused :-)\nWhat is a list v. a container v. a list element ?!\nCan you explain this during standup maybe?",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 66
+      },
+      "revId": "406a55fd1800d310fe0e9858fe628cc4de6bbd1e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
