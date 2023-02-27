@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fdf430b2_772afeee",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 643,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-27T17:28:08Z",
+      "side": 1,
+      "message": "NB: private method should come after all public methods",
+      "range": {
+        "startLine": 643,
+        "startChar": 4,
+        "endLine": 643,
+        "endChar": 12
+      },
+      "revId": "fa74688ca04a9fa44b139e2544b7933b03f0e1db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae3b6b84_0cbfb4a8",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentNativeRepository.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-27T17:28:08Z",
+      "side": 1,
+      "message": "very good, many might have forgotten to update the JavaDoc details!",
+      "range": {
+        "startLine": 41,
+        "startChar": 6,
+        "endLine": 42,
+        "endChar": 119
+      },
+      "revId": "fa74688ca04a9fa44b139e2544b7933b03f0e1db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
