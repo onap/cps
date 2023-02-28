@@ -1,0 +1,2206 @@
+  {
+    "dmi-reg:dmi-registry": {
+      "cm-handles": [
+        {
+          "id": "d35681e68d9f4d40bcd9741cec3c1ac9",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.142+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "62396d08b9b94334b56473786eca4be5",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "OtherNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.142+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "c92c48208fca4bf3b31cd992b71d4c9a",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.145+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "3945e8da2a3247b9886f53a497fe9165",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.144+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "6e7de18778eb40d38537922ba7bd7a22",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.140+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "6ffc19b5604c439ca744ba22aab0fe78",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.139+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "1ea8a1a7fe7d43b0986e361e92a4e2d5",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.146+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "a3dc81d1dc864d54a7065450cfc2ab7f",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.144+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "4821dd74b0c348d8888dac7e0b5bc572",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.146+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "da8a83c2d89d445687ae749bb19aba2f",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.148+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "c4d285fc4146417e8a556089a2f44b04",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.147+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "7360b88b3ed94cd892fbac05c770c4bb",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.149+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "f1e90d8f4df146158948ccd07b80989b",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.143+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "25a210ce973f4bb8853815f14f844604",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.148+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "a79bde36421147cc8251dd33a0450a45",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.145+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "b50f339c3bf148d49c852660cc03e8dc",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.139+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "889bf691856f4f3b869f5271e109afb2",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.142+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "bb9e9daa4a8041468d371f7e6651b9f0",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.145+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "774938f40f3945f3bad6edac0ef65eca",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.141+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "9c11634b244c4116a1271c1f49c7d5d6",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.141+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "f3ec9e95cca14c24858923c6c951cfc4",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.142+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "d74018115c6a42479312c899ca3c79f6",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.147+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "4e555f79c3d84ca28a96efaa6a02fb0e",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.140+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "9ca8c9540d534875964d15aca97bd74b",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.142+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "b3e3828537dc43e99db426caf3dbf30d",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.146+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "ab512daf85a548fe8ca1727e5ac17d49",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.147+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "62d869827ba441019201598ec6ea9d3a",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.142+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "ccc8e8bb95c84ebe8505253d62e35c26",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.148+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "42984d93ca654b74bed424516eaeda2d",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.146+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "900ccb8f9d6c43d58866ed171c807395",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.149+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "46daa7c1c19c47408b60f554314ba558",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.140+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "bb3fc60c98534c88aec4c3848b91bc30",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.145+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "ee13185964fa4088b72eb8c7f88f2b7b",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.144+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "e53d141b6ba64149a2313aa6f51fcda3",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.140+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "9204108251064ee2ab28c5536d1cba76",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.141+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "bdcfb38971a54ecdbc2ce64e3232bdf0",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.140+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "e1a527f0dde34dacb0965706800f10af",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.148+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "7f9c9477a2d14b338f1d7c33d2f0098a",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.146+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "16f7bb8657774092b19794553613af27",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.140+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "10d6dc3060af442e8430ea281c803c65",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.141+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "42e39d56f49b4779bb32b0dfb2c0c455",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.143+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "9eaf470816dc475a8fe6b4dec2db7888",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.146+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "43fdd7f5ae8547a8a3ab9a59db8e8054",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.139+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "b6dd3638dcb2439aa738f77d768849be",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.146+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "5d509ce498244a138770db6a47912aa3",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.140+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "071093df881846b2869c07be64385635",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.148+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "f68e3f4855cc46e282c3629b02ac2a83",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.148+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "a6417524c1a942179482cfa48b5a70a9",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.142+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "3b3443f1e5a24bc9923b8a3cadb2ec93",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.140+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "9f073d0ad0de4b0c9b0c31cb82053ea9",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.145+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "91c3dfc7a13a4b0bb69036f63f38a8ce",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.144+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "d25961b3780944008892ef39b841f77a",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.141+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "b5fb05b2a9144909a5883ba7e36caea6",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.143+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "d084f6f264184276a5c2e3bc21897965",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.139+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "4ea6211037e44468ae4807bd67c0fc15",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.148+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "60bae48ce3534b198ddf4472f56c3cf7",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.147+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "f82c8c5af9ad4c3cb7950c78246fe03a",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.149+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "17ff0246f66c49898eb44dc79fd9abae",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.140+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "3fd76b196dea4432b11463a45b5a0a93",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.147+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "e39c3b119fda4341a5d4f62a922fcb11",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.149+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "248db600414c46a4b815d157dd81c764",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.141+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "9157815adc3a4a5ab7fb8383715fa9d9",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.147+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "01e0f58ee1c14daeaf681438a2a3630a",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.144+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "a44dc19ab44b4fbf9c37a0fda5848d98",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.141+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "95b95e7cb17d4bac900e5480c670fbc9",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.142+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "5c5028e088e4421e89a4e4f24a45afb9",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.143+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "63330988f326498f82ab436ae3df76e8",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.140+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "448848884d03424186d0c7a50dd514b1",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.142+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "02370f9b3ba445a8a2f14ab3d34cd7ca",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.141+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "021c94fc12df4769abdf37278c6e7267",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.144+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "6b0687c210444926975342f0f444062c",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.139+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "8896fcc6d47b4714b1180d878b6c9f7f",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.148+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "11b49878d1694d2cb72502a9edf174b5",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.149+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "e0df2456ec574ae6bbf0fc33897bef28",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.147+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "4f6e4d640bfb4398860bcc1037605665",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.139+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "c201b79c7be24f4fbf53166a85b570f0",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.143+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "4bd45ec5e1d340b1a71117faef0d1860",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.145+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "6009ab1f119a483896468b168239dbd6",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.143+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "f1715d74e9bc44dca292f8a22f83d2c5",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.140+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "4677b0398a3946c792f9332c40f22541",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.140+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "93825d89fb5344259afa291e283693bc",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.146+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "e5d79cf6f3f54f9880ed37d105a90f4a",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.142+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "315ba4cbd2c147739c429b508191710c",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.143+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "f56e7149d46b42f5960895c04d5ebcf1",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.147+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "f399672781af41bba6942a957e0e93a6",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.145+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "664246da28524d0598325c43f49662d0",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.149+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "e6cd35518fa144a4a3d5b52619d767a0",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.146+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "fc10389533cf4a36bf971b076100dcfe",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.147+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "6bc7fdc848764882b08d53355657af64",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.142+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "01297df4d9c4421a882719f8f495ec99",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.140+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "861725b29e724ab9be3de27b204221d2",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.139+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "0b64e96a82c647f7a1212e1cff9d3799",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.141+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "0c3a8844f1ce48abb03d31d081339a9c",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.144+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "d80068db38e249ac92c24c701c550e58",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.143+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "8b49499bb41f4bdcbde2233821e5de0e",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.142+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "57e022bc78384c43904bed377f20223a",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.139+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "101d72097f8a48ab8c7400cd474a500d",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.144+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "aecc43e5448242f886b044fec17ab204",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.145+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "05c03815c6a842bdaf7c8359be85674a",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.148+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        },
+        {
+          "id": "a7a7b791345641e1a8714cf9511bfd7a",
+          "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
+          "dmi-data-service-name": "",
+          "dmi-model-service-name": "",
+          "additional-properties": [
+            {
+              "name": "neType",
+              "value": "RadioNode"
+            }
+          ],
+          "state": {
+            "cm-handle-state": "READY",
+            "last-update-time": "2023-03-01T19:15:02.143+0000",
+            "data-sync-enabled": false,
+            "datastores": {
+              "operational": {
+                "sync-state": "NONE_REQUESTED"
+              }
+            }
+          }
+        }
+      ]
+    }
+  }

@@ -270,7 +270,8 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         return toDataNodes(fragmentEntities, fetchDescendantsOption);
     }
 
-    private Collection<FragmentEntity> getFragmentEntities(final String dataspaceName, final String anchorName,
+    private Collection<FragmentEntity> getFragmentEntities(final String dataspaceName,
+                                                           final String anchorName,
                                                            final Collection<String> xpaths) {
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         final AnchorEntity anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
@@ -286,16 +287,30 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
                 log.warn("Error parsing xpath \"{}\": {}", xpath, e.getMessage());
             }
         }
-        final Collection<FragmentEntity> fragmentEntities =
-            new HashSet<>(fragmentRepository.findByAnchorAndMultipleCpsPaths(anchorEntity.getId(), normalizedXpaths));
+
+        final Collection<FragmentEntity> fragmentEntities
+            = getFragmentEntitiesWithDescendants(anchorEntity, normalizedXpaths);
 
         if (haveRootXpath) {
-            final List<FragmentExtract> fragmentExtracts = fragmentRepository.getTopLevelFragments(dataspaceEntity,
-                anchorEntity);
+            final List<FragmentExtract> fragmentExtracts
+                = fragmentRepository.getTopLevelFragments(dataspaceEntity, anchorEntity);
             fragmentEntities.addAll(FragmentEntityArranger.toFragmentEntityTrees(anchorEntity, fragmentExtracts));
         }
 
         return fragmentEntities;
+    }
+
+    private Collection<FragmentEntity> getFragmentEntitiesWithDescendants(final AnchorEntity anchorEntity,
+                                                                          final Collection<String> normalizedXpaths) {
+        final Collection<String> childXpathPatterns =
+            normalizedXpaths.stream().map(xpath -> xpath + "/%").collect(Collectors.toSet());
+
+        final Collection<FragmentExtract> fragmentExtracts =
+            fragmentRepository.findByAnchorIdAndParentXpathsAndDescendantsPathPatterns(
+                anchorEntity.getId(),
+                normalizedXpaths,
+                String.join(FragmentRepository.LIST_DELIMITER, childXpathPatterns));
+        return FragmentEntityArranger.toFragmentEntityTrees(anchorEntity, fragmentExtracts);
     }
 
     private FragmentEntity getFragmentEntity(final String dataspaceName, final String anchorName, final String xpath) {

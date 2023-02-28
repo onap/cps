@@ -42,6 +42,8 @@ import org.springframework.stereotype.Repository;
 public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>, FragmentRepositoryCpsPathQuery,
         FragmentRepositoryMultiPathQuery, FragmentNativeRepository {
 
+    public static final String LIST_DELIMITER = "~^~";
+
     Optional<FragmentEntity> findByDataspaceAndAnchorAndXpath(@NonNull DataspaceEntity dataspaceEntity,
                                                               @NonNull AnchorEntity anchorEntity,
                                                               @NonNull String xpath);
@@ -92,6 +94,17 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>,
            nativeQuery = true)
     List<FragmentExtract> findByAnchorIdAndParentXpath(@Param("anchorId") int anchorId,
                                                        @Param("parentXpath") String parentXpath);
+
+    @Query(value = "SELECT id, anchor_id AS anchorId, xpath, parent_id AS parentId,"
+        + " CAST(attributes AS TEXT) AS attributes"
+        + " FROM FRAGMENT WHERE anchor_id = :anchorId"
+        + " AND ( xpath IN (:parentXpaths)"
+        + " OR xpath LIKE ANY (string_to_array(:descendantsPathPatternsAsDelimitedString,'~^~')) )",
+        nativeQuery = true)
+    List<FragmentExtract> findByAnchorIdAndParentXpathsAndDescendantsPathPatterns(
+        @Param("anchorId") int anchorId,
+        @Param("parentXpaths") Collection<String> parentXpaths,
+        @Param("descendantsPathPatternsAsDelimitedString") String descendantsPathPatternsAsDelimitedString);
 
     @Query(value = "SELECT id, anchor_id AS anchorId, xpath, parent_id AS parentId,"
         + " CAST(attributes AS TEXT) AS attributes"
