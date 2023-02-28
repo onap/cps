@@ -20,10 +20,12 @@
 
 package org.onap.cps.integration.base
 
+import org.onap.cps.api.CpsQueryService
 import org.onap.cps.api.impl.CpsAdminServiceImpl
 import org.onap.cps.api.impl.CpsDataServiceImpl
 import org.onap.cps.api.impl.CpsModuleServiceImpl
 import org.onap.cps.integration.DatabaseTestContainer
+import org.onap.cps.spi.exceptions.DataspaceNotFoundException
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.repository.DataspaceRepository
 import org.onap.cps.spi.impl.utils.CpsValidatorImpl
@@ -61,8 +63,12 @@ class CpsIntegrationSpecBase extends Specification {
     @Lazy
     CpsModuleServiceImpl cpsModuleService
 
-    def static GENERAL_TEST_DATASPACE = 'generalTestDataSpace'
-    def static BOOKSTORE_DATASPACE = 'bookstoreDataspace'
+    @Autowired
+    @Lazy
+    CpsQueryService cpsQueryService
+
+    def static GENERAL_TEST_DATASPACE = 'generalTestDataspace'
+    def static FUNCTIONAL_TEST_DATASPACE = 'functionalTestDataspace'
     def static BOOKSTORE_SCHEMA_SET = 'bookstoreSchemaSet'
     def static BOOKSTORE_ANCHOR = 'bookstoreAnchor'
 
@@ -71,7 +77,7 @@ class CpsIntegrationSpecBase extends Specification {
     def setup() {
         if (!initialized) {
             cpsAdminService.createDataspace(GENERAL_TEST_DATASPACE)
-            def bookstoreModelFileContent = readResourceFile('bookstore.yang')
+            def bookstoreModelFileContent = readResourceDataFile('bookstore/bookstore.yang')
             cpsModuleService.createSchemaSet(GENERAL_TEST_DATASPACE, BOOKSTORE_SCHEMA_SET, [bookstore : bookstoreModelFileContent])
             initialized = true;
         }
@@ -89,7 +95,16 @@ class CpsIntegrationSpecBase extends Specification {
         return nodeCount
     }
 
-    def static readResourceFile(filename) {
+    def static readResourceDataFile(filename) {
         return new File('src/test/resources/data/' + filename).text
+    }
+
+    def dataspaceExists(dataspaceName) {
+        try {
+            cpsAdminService.getDataspace(dataspaceName)
+        } catch (DataspaceNotFoundException e) {
+            return false
+        }
+        return true
     }
 }

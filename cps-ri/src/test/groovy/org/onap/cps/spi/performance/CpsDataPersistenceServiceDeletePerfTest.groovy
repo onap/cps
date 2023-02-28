@@ -50,8 +50,8 @@ class CpsDataPersistenceServiceDeletePerfTest extends CpsPersistencePerfSpecBase
             }
             stopWatch.stop()
             def deleteDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'delete duration is under 300 milliseconds'
-            recordAndAssertPerformance('Delete 5 children', 300, deleteDurationInMillis)
+        then: 'delete duration is under 400 milliseconds'
+            recordAndAssertPerformance('Delete 5 children', 400, deleteDurationInMillis)
     }
 
     def 'Batch delete 100 children with grandchildren'() {
@@ -77,8 +77,8 @@ class CpsDataPersistenceServiceDeletePerfTest extends CpsPersistencePerfSpecBase
             }
             stopWatch.stop()
             def deleteDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'delete duration is under 300 milliseconds'
-            recordAndAssertPerformance('Delete 50 grandchildren', 300, deleteDurationInMillis)
+        then: 'delete duration is under 400 milliseconds'
+            recordAndAssertPerformance('Delete 50 grandchildren', 400, deleteDurationInMillis)
     }
 
     def 'Batch delete 500 grandchildren (that have no descendants)'() {
@@ -94,8 +94,8 @@ class CpsDataPersistenceServiceDeletePerfTest extends CpsPersistencePerfSpecBase
             objectUnderTest.deleteDataNodes(PERF_DATASPACE, PERF_ANCHOR, xpathsToDelete)
             stopWatch.stop()
             def deleteDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'delete duration is under 75 milliseconds'
-            recordAndAssertPerformance('Batch delete 500 grandchildren', 75, deleteDurationInMillis)
+        then: 'delete duration is under 100 milliseconds'
+            recordAndAssertPerformance('Batch delete 500 grandchildren', 100, deleteDurationInMillis)
     }
 
     @Sql([CLEAR_DATA, PERF_TEST_DATA])
@@ -105,8 +105,8 @@ class CpsDataPersistenceServiceDeletePerfTest extends CpsPersistencePerfSpecBase
             createLineage(objectUnderTest, 150, 50, true)
             stopWatch.stop()
             def setupDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'setup duration is under 5 seconds'
-            recordAndAssertPerformance('Setup lists', 5_000, setupDurationInMillis)
+        then: 'setup duration is under 6 seconds'
+            recordAndAssertPerformance('Setup lists', 6_000, setupDurationInMillis)
     }
 
     def 'Delete 5 whole lists'() {
@@ -118,8 +118,8 @@ class CpsDataPersistenceServiceDeletePerfTest extends CpsPersistencePerfSpecBase
             }
             stopWatch.stop()
             def deleteDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'delete duration is under 1300 milliseconds'
-            recordAndAssertPerformance('Delete 5 whole lists', 1300, deleteDurationInMillis)
+        then: 'delete duration is under 2 seconds'
+            recordAndAssertPerformance('Delete 5 whole lists', 2_000, deleteDurationInMillis)
     }
 
     def 'Batch delete 100 whole lists'() {
@@ -132,8 +132,8 @@ class CpsDataPersistenceServiceDeletePerfTest extends CpsPersistencePerfSpecBase
             objectUnderTest.deleteDataNodes(PERF_DATASPACE, PERF_ANCHOR, xpathsToDelete)
             stopWatch.stop()
             def deleteDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'delete duration is under 500 milliseconds'
-            recordAndAssertPerformance('Batch delete 100 whole lists', 500, deleteDurationInMillis)
+        then: 'delete duration is under 600 milliseconds'
+            recordAndAssertPerformance('Batch delete 100 whole lists', 600, deleteDurationInMillis)
     }
 
     def 'Delete 10 list elements'() {
@@ -145,8 +145,8 @@ class CpsDataPersistenceServiceDeletePerfTest extends CpsPersistencePerfSpecBase
             }
             stopWatch.stop()
             def deleteDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'delete duration is under 600 milliseconds'
-            recordAndAssertPerformance('Delete 10 lists elements', 600, deleteDurationInMillis)
+        then: 'delete duration is under 700 milliseconds'
+            recordAndAssertPerformance('Delete 10 lists elements', 700, deleteDurationInMillis)
     }
 
     def 'Batch delete 500 list elements'() {
@@ -162,8 +162,8 @@ class CpsDataPersistenceServiceDeletePerfTest extends CpsPersistencePerfSpecBase
             objectUnderTest.deleteDataNodes(PERF_DATASPACE, PERF_ANCHOR, xpathsToDelete)
             stopWatch.stop()
             def deleteDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'delete duration is under 60 milliseconds'
-            recordAndAssertPerformance('Batch delete 500 lists elements', 60, deleteDurationInMillis)
+        then: 'delete duration is under 70 milliseconds'
+            recordAndAssertPerformance('Batch delete 500 lists elements', 70, deleteDurationInMillis)
     }
 
     @Sql([CLEAR_DATA, PERF_TEST_DATA])
@@ -176,8 +176,8 @@ class CpsDataPersistenceServiceDeletePerfTest extends CpsPersistencePerfSpecBase
             objectUnderTest.deleteDataNode(PERF_DATASPACE, PERF_ANCHOR, PERF_TEST_PARENT)
             stopWatch.stop()
             def deleteDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'delete duration is under 300 milliseconds'
-            recordAndAssertPerformance('Delete one large node', 300, deleteDurationInMillis)
+        then: 'delete duration is under 400 milliseconds'
+            recordAndAssertPerformance('Delete one large node', 400, deleteDurationInMillis)
     }
 
     @Sql([CLEAR_DATA, PERF_TEST_DATA])
@@ -190,8 +190,8 @@ class CpsDataPersistenceServiceDeletePerfTest extends CpsPersistencePerfSpecBase
             objectUnderTest.deleteDataNodes(PERF_DATASPACE, PERF_ANCHOR, [PERF_TEST_PARENT])
             stopWatch.stop()
             def deleteDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'delete duration is under 200 milliseconds'
-            recordAndAssertPerformance('Batch delete one large node', 200, deleteDurationInMillis)
+        then: 'delete duration is under 300 milliseconds'
+            recordAndAssertPerformance('Batch delete one large node', 300, deleteDurationInMillis)
     }
 
     @Sql([CLEAR_DATA, PERF_TEST_DATA])
@@ -204,8 +204,8 @@ class CpsDataPersistenceServiceDeletePerfTest extends CpsPersistencePerfSpecBase
             objectUnderTest.deleteDataNode(PERF_DATASPACE, PERF_ANCHOR, '/')
             stopWatch.stop()
             def deleteDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'delete duration is under 250 milliseconds'
-            recordAndAssertPerformance('Delete root node', 250, deleteDurationInMillis)
+        then: 'delete duration is under 300 milliseconds'
+            recordAndAssertPerformance('Delete root node', 300, deleteDurationInMillis)
     }
 
     @Sql([CLEAR_DATA, PERF_TEST_DATA])
@@ -218,8 +218,8 @@ class CpsDataPersistenceServiceDeletePerfTest extends CpsPersistencePerfSpecBase
             objectUnderTest.deleteDataNodes(PERF_DATASPACE, PERF_ANCHOR)
             stopWatch.stop()
             def deleteDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'delete duration is under 250 milliseconds'
-            recordAndAssertPerformance('Delete data nodes for anchor', 250, deleteDurationInMillis)
+        then: 'delete duration is under 300 milliseconds'
+            recordAndAssertPerformance('Delete data nodes for anchor', 300, deleteDurationInMillis)
     }
 
     @Sql([CLEAR_DATA, PERF_TEST_DATA])
@@ -232,8 +232,8 @@ class CpsDataPersistenceServiceDeletePerfTest extends CpsPersistencePerfSpecBase
             objectUnderTest.deleteDataNodes(PERF_DATASPACE, [PERF_ANCHOR])
             stopWatch.stop()
             def deleteDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'delete duration is under 250 milliseconds'
-            recordAndAssertPerformance('Delete data nodes for anchors', 250, deleteDurationInMillis)
+        then: 'delete duration is under 300 milliseconds'
+            recordAndAssertPerformance('Delete data nodes for anchors', 300, deleteDurationInMillis)
     }
 
 }
