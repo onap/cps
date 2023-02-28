@@ -21,10 +21,10 @@
 
 package org.onap.cps.integration.functional
 
-import org.onap.cps.integration.base.BookstoreSpecBase
+import org.onap.cps.integration.base.FunctionalSpecBase
 import org.onap.cps.spi.FetchDescendantsOption
 
-class CpsDataServiceIntegrationSpec extends BookstoreSpecBase {
+class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
 
     def objectUnderTest
 
@@ -32,7 +32,7 @@ class CpsDataServiceIntegrationSpec extends BookstoreSpecBase {
 
     def 'Read bookstore top-level container(s) using #fetchDescendantsOption.'() {
         when: 'get data nodes for bookstore container'
-            def result = objectUnderTest.getDataNodes(BOOKSTORE_DATASPACE, BOOKSTORE_ANCHOR, '/bookstore', fetchDescendantsOption)
+            def result = objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE, BOOKSTORE_ANCHOR, '/bookstore', fetchDescendantsOption)
         then: 'the tree consist ouf of #expectNumberOfDataNodes data nodes'
             assert countDataNodesInTree(result) == expectNumberOfDataNodes
         and: 'the top level data node has the expected attribute and value'

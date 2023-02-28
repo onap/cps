@@ -62,9 +62,11 @@ class CpsIntegrationSpecBase extends Specification {
     CpsModuleServiceImpl cpsModuleService
 
     def static GENERAL_TEST_DATASPACE = 'generalTestDataSpace'
-    def static BOOKSTORE_DATASPACE = 'bookstoreDataspace'
+    def static FUNCTIONAL_TEST_DATASPACE = 'functionalTestDataspace'
+    def static PERFORMANCE_TEST_DATASPACE = 'performanceTestDataSpace'
     def static BOOKSTORE_SCHEMA_SET = 'bookstoreSchemaSet'
     def static BOOKSTORE_ANCHOR = 'bookstoreAnchor'
+    def static LARGE_SCHEMA_SET = 'largeSchemaSet'
 
     def static initialized = false
 
