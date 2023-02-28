@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "547bd042_c45d756a",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/avc-subscription-event-v1.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-02-28T09:58:46Z",
+      "side": 1,
+      "message": "I just implemented the model that was given: https://wiki.onap.org/pages/viewpage.action?pageId\u003d162104625#CPS1431:ForwardSubscriptionInformationtoDMIPlugin(s)-Assumptions",
+      "parentUuid": "c8756337_b52a3cf0",
+      "range": {
+        "startLine": 101,
+        "startChar": 13,
+        "endLine": 101,
+        "endChar": 35
+      },
+      "revId": "50467063bec34b4dde7b793d51a3c01300659753",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e145860c_4f2d6065",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventConsumer.java",
         "patchSetId": 3
