@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ffe54e37_06807899",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/QueryRestController.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-02-28T08:48:57Z",
+      "side": 1,
+      "message": "made changes and per V2 api we are using fetchDescendantsOptionAsString",
+      "parentUuid": "8eea8fb6_980d23ce",
+      "range": {
+        "startLine": 87,
+        "startChar": 36,
+        "endLine": 87,
+        "endChar": 44
+      },
+      "revId": "5e991eea1d09cc26f7409dd67fecd677c8dfedc9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "aec4397f_8d46bf1c",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/entities/FragmentEntityArranger.java",
         "patchSetId": 13
@@ -36,6 +60,30 @@
       "writtenOn": "2023-02-17T15:31:16Z",
       "side": 1,
       "message": "I\u0027d extract out the common code between these two methods",
+      "range": {
+        "startLine": 40,
+        "startChar": 4,
+        "endLine": 64,
+        "endChar": 5
+      },
+      "revId": "5e991eea1d09cc26f7409dd67fecd677c8dfedc9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e0e1f343_fade5764",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/entities/FragmentEntityArranger.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-02-28T08:48:57Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "aec4397f_8d46bf1c",
       "range": {
         "startLine": 40,
         "startChar": 4,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "6ab23b03_679a3da5",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-02-28T08:48:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bafc1474_88ce5ea9",
+      "range": {
+        "startLine": 332,
+        "startChar": 4,
+        "endLine": 374,
+        "endChar": 5
+      },
+      "revId": "5e991eea1d09cc26f7409dd67fecd677c8dfedc9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "17c380f4_f8dafec9",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 13
@@ -82,6 +154,30 @@
       "writtenOn": "2023-02-17T15:31:16Z",
       "side": 1,
       "message": "move down after getDataNodesUsingRegexQuickFind and extract out common methods",
+      "range": {
+        "startLine": 376,
+        "startChar": 4,
+        "endLine": 387,
+        "endChar": 5
+      },
+      "revId": "5e991eea1d09cc26f7409dd67fecd677c8dfedc9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a369363_4fc5f0e0",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-02-28T08:48:57Z",
+      "side": 1,
+      "message": "done. this method merged with getDataNodesUsingRegexQuickFind",
+      "parentUuid": "17c380f4_f8dafec9",
       "range": {
         "startLine": 376,
         "startChar": 4,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "5c18e3e2_3cf65ecb",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 457,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-02-28T08:48:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0d28d473_1c15fd88",
+      "range": {
+        "startLine": 457,
+        "startChar": 0,
+        "endLine": 457,
+        "endChar": 3
+      },
+      "revId": "5e991eea1d09cc26f7409dd67fecd677c8dfedc9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a49f08e3_74a6e553",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
         "patchSetId": 13
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "66f173d9_6c6c16a1",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-02-28T08:48:57Z",
+      "side": 1,
+      "message": "Ok done",
+      "parentUuid": "a49f08e3_74a6e553",
+      "range": {
+        "startLine": 78,
+        "startChar": 38,
+        "endLine": 78,
+        "endChar": 55
+      },
+      "revId": "5e991eea1d09cc26f7409dd67fecd677c8dfedc9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "088bebb5_a8e9a430",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
         "patchSetId": 13
@@ -151,6 +295,30 @@
       "writtenOn": "2023-02-17T15:31:16Z",
       "side": 1,
       "message": "remove whitespace",
+      "range": {
+        "startLine": 121,
+        "startChar": 103,
+        "endLine": 121,
+        "endChar": 104
+      },
+      "revId": "5e991eea1d09cc26f7409dd67fecd677c8dfedc9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dab7973c_7b7d8188",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-02-28T08:48:57Z",
+      "side": 1,
+      "message": "Removed",
+      "parentUuid": "088bebb5_a8e9a430",
       "range": {
         "startLine": 121,
         "startChar": 103,
