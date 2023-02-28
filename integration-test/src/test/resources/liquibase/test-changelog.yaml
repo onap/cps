@@ -354,19 +354,6 @@ databaseChangeLog:
             indexName: FKI_SCHEMA_NODE_ID_TO_ID
             tableName: fragment
   - changeSet:
-      id: 1-21
-      author: cps
-      changes:
-        - createIndex:
-            columns:
-              - column:
-                  name: xpath
-              - column:
-                  name: dataspace_id
-            indexName: UQ_FRAGMENT_XPATH
-            tableName: fragment
-            unique: true
-  - changeSet:
       id: 1-22
       author: cps
       changes:

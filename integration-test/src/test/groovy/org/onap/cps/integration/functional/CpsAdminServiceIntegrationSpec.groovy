@@ -88,7 +88,7 @@ class CpsAdminServiceIntegrationSpec extends CpsIntegrationSpecBase {
             objectUnderTest.createAnchor(GENERAL_TEST_DATASPACE, BOOKSTORE_SCHEMA_SET, 'anchor1')
             objectUnderTest.createAnchor(GENERAL_TEST_DATASPACE, BOOKSTORE_SCHEMA_SET, 'anchor2')
         and: '1 anchor with "other" schema set is created'
-            def bookstoreModelFileContent = readResourceFile('bookstore.yang')
+            def bookstoreModelFileContent = readResourceDataFile('bookstore/bookstore.yang')
             cpsModuleService.createSchemaSet(GENERAL_TEST_DATASPACE, 'otherSchemaSet', [someFileName: bookstoreModelFileContent])
             objectUnderTest.createAnchor(GENERAL_TEST_DATASPACE, 'otherSchemaSet', 'anchor3')
         then: 'there are 3 anchors in the general test database'

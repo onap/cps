@@ -22,7 +22,7 @@ package org.onap.cps.integration.base
 
 import java.time.OffsetDateTime
 
-class BookstoreSpecBase extends CpsIntegrationSpecBase {
+class FunctionalSpecBase extends CpsIntegrationSpecBase {
 
     def static initialized = false
 
@@ -35,15 +35,15 @@ class BookstoreSpecBase extends CpsIntegrationSpecBase {
     }
 
     def setupBookstoreInfraStructure() {
-        cpsAdminService.createDataspace(BOOKSTORE_DATASPACE)
-        def bookstoreYangModelAsString = readResourceFile('bookstore.yang')
-        cpsModuleService.createSchemaSet(BOOKSTORE_DATASPACE, BOOKSTORE_SCHEMA_SET, [bookstore : bookstoreYangModelAsString])
-        cpsAdminService.createAnchor(BOOKSTORE_DATASPACE, BOOKSTORE_SCHEMA_SET, BOOKSTORE_ANCHOR)
+        cpsAdminService.createDataspace(FUNCTIONAL_TEST_DATASPACE)
+        def bookstoreYangModelAsString = readResourceDataFile('bookstore/bookstore.yang')
+        cpsModuleService.createSchemaSet(FUNCTIONAL_TEST_DATASPACE, BOOKSTORE_SCHEMA_SET, [bookstore: bookstoreYangModelAsString])
+        cpsAdminService.createAnchor(FUNCTIONAL_TEST_DATASPACE, BOOKSTORE_SCHEMA_SET, BOOKSTORE_ANCHOR)
     }
 
     def addBookstoreData() {
-        def bookstoreJsonData = readResourceFile('BookstoreDataNodes.json')
-        cpsDataService.saveData(BOOKSTORE_DATASPACE, BOOKSTORE_ANCHOR, bookstoreJsonData, OffsetDateTime.now())
+        def bookstoreJsonData = readResourceDataFile('bookstore/bookstoreData.json')
+        cpsDataService.saveData(FUNCTIONAL_TEST_DATASPACE, BOOKSTORE_ANCHOR, bookstoreJsonData, OffsetDateTime.now())
     }
 
 }
