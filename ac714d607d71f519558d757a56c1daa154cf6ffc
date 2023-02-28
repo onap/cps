@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9960a0f3_3c2bb76f",
+        "filename": "integration-test/src/test/resources/data/largeModel.yang",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-28T18:30:53Z",
+      "side": 1,
+      "message": "TODO/TBC: Use Ahila\u0027s Model instead",
+      "revId": "ac714d607d71f519558d757a56c1daa154cf6ffc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d62b9346_6d659b1f",
+        "filename": "integration-test/src/test/resources/data/largeModelData.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-28T18:30:53Z",
+      "side": 1,
+      "message": "TODO/TBC: Use Ahila\u0027s Data instead",
+      "revId": "ac714d607d71f519558d757a56c1daa154cf6ffc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5954dbb6_42d8149f",
+        "filename": "integration-test/src/test/resources/liquibase/test-changelog.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-02-28T18:30:53Z",
+      "side": 1,
+      "message": "For faster execution Luke has only use part of the :Liquibase steps from CPS (and NCMP) Bu also missed updates like this incorrect constraint which was dropped later.\n\nNeed to discuss best way forward, I have some thought on this but need input from team... \nPlease reply with your comment on this to help me decide!",
+      "range": {
+        "startLine": 356,
+        "startChar": 4,
+        "endLine": 356,
+        "endChar": 14
+      },
+      "revId": "ac714d607d71f519558d757a56c1daa154cf6ffc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
