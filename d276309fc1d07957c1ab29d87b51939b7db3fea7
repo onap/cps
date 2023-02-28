@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "457f9d90_3ccfdf56",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 624,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2023-02-28T15:10:30Z",
+      "side": 1,
+      "message": "It can still be a Collection",
+      "range": {
+        "startLine": 624,
+        "startChar": 14,
+        "endLine": 624,
+        "endChar": 17
+      },
+      "revId": "d276309fc1d07957c1ab29d87b51939b7db3fea7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3dbb5d73_84c73c4d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 624,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2023-02-28T15:10:30Z",
+      "side": 1,
+      "message": "Why use Set, can the input contains any duplications? ArrayList is more effective than HashSet.",
+      "range": {
+        "startLine": 624,
+        "startChar": 57,
+        "endLine": 624,
+        "endChar": 64
+      },
+      "revId": "d276309fc1d07957c1ab29d87b51939b7db3fea7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0128d9f_917b802e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 625,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2023-02-28T15:10:30Z",
+      "side": 1,
+      "message": "NB: normalizedXPathsToPotentialLists",
+      "range": {
+        "startLine": 625,
+        "startChar": 26,
+        "endLine": 625,
+        "endChar": 58
+      },
+      "revId": "d276309fc1d07957c1ab29d87b51939b7db3fea7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d0337464_55455591",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/performance/CpsDataPersistenceServiceDeletePerfTest.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 8056
+      },
+      "writtenOn": "2023-02-28T15:10:30Z",
+      "side": 1,
+      "message": "not necessary, you have one in the base class",
+      "range": {
+        "startLine": 34,
+        "startChar": 4,
+        "endLine": 34,
+        "endChar": 35
+      },
+      "revId": "d276309fc1d07957c1ab29d87b51939b7db3fea7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
