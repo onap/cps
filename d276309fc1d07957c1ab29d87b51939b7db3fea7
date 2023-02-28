@@ -72,6 +72,54 @@
     },
     {
       "key": {
+        "uuid": "68d6ff2d_78efc7c8",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 624,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-02-28T16:30:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f9ac6590_24eef3cc",
+      "range": {
+        "startLine": 624,
+        "startChar": 14,
+        "endLine": 624,
+        "endChar": 17
+      },
+      "revId": "d276309fc1d07957c1ab29d87b51939b7db3fea7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5def9755_011f1455",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 624,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-02-28T16:30:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3dbb5d73_84c73c4d",
+      "range": {
+        "startLine": 624,
+        "startChar": 57,
+        "endLine": 624,
+        "endChar": 64
+      },
+      "revId": "d276309fc1d07957c1ab29d87b51939b7db3fea7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a0128d9f_917b802e",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 3
@@ -115,6 +163,30 @@
       "revId": "d276309fc1d07957c1ab29d87b51939b7db3fea7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f5a3ddb9_0e7f4eab",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/performance/CpsDataPersistenceServiceDeletePerfTest.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-02-28T16:30:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d0337464_55455591",
+      "range": {
+        "startLine": 34,
+        "startChar": 4,
+        "endLine": 34,
+        "endChar": 35
+      },
+      "revId": "d276309fc1d07957c1ab29d87b51939b7db3fea7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
