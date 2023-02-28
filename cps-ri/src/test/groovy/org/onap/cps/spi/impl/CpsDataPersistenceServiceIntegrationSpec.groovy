@@ -31,7 +31,6 @@ import org.onap.cps.spi.entities.FragmentEntity
 import org.onap.cps.spi.exceptions.AlreadyDefinedExceptionBatch
 import org.onap.cps.spi.exceptions.AnchorNotFoundException
 import org.onap.cps.spi.exceptions.CpsAdminException
-import org.onap.cps.spi.exceptions.CpsPathException
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.spi.exceptions.DataspaceNotFoundException
 import org.onap.cps.spi.model.DataNode
@@ -41,7 +40,6 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.jdbc.Sql
 
 import javax.validation.ConstraintViolationException
-import java.nio.file.Path
 
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
@@ -57,7 +55,6 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     static final String SET_DATA = '/data/fragment.sql'
     static long ID_DATA_NODE_WITH_DESCENDANTS = 4001
     static String XPATH_DATA_NODE_WITH_DESCENDANTS = '/parent-1'
-    static String XPATH_DATA_NODE_WITH_LEAVES = '/parent-207'
     static long DATA_NODE_202_FRAGMENT_ID = 4202L
     static long CHILD_OF_DATA_NODE_202_FRAGMENT_ID = 4203L
     static long LIST_DATA_NODE_PARENT201_FRAGMENT_ID = 4206L
@@ -309,6 +306,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             '2 unique nodes with duplicate xpath'  | ["/parent-200", "/parent-202", "/parent-200"]   || 2
             'list element with key (single quote)' | ["/parent-201/child-204[@key='A']"]             || 1
             'list element with key (double quote)' | ['/parent-201/child-204[@key="A"]']             || 1
+            'whole list (not implemented)'         | ["/parent-201/child-204"]                       || 0
             'non-existing xpath'                   | ["/NO-XPATH"]                                   || 0
             'existing and non-existing xpaths'     | ["/parent-200", "/NO-XPATH", "/parent-201"]     || 2
             'invalid xpath'                        | ["INVALID XPATH"]                               || 0
@@ -453,7 +451,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             'non-existing dataspace' | 'NO DATASPACE' | 'not relevant'                    | '/not relevant'       || DataspaceNotFoundException
             'non-existing anchor'    | DATASPACE_NAME | 'NO ANCHOR'                       | '/not relevant'       || AnchorNotFoundException
             'non-existing xpath'     | DATASPACE_NAME | ANCHOR_FOR_DATA_NODES_WITH_LEAVES | '/NON-EXISTING-XPATH' || DataNodeNotFoundException
-            'invalid xpath'          | DATASPACE_NAME | ANCHOR_FOR_DATA_NODES_WITH_LEAVES | 'INVALID XPATH'       || CpsPathException
+            'invalid xpath'          | DATASPACE_NAME | ANCHOR_FOR_DATA_NODES_WITH_LEAVES | 'INVALID XPATH'       || PathParsingException
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
@@ -585,8 +583,20 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             'whole list'                      | ['/parent-203/child-204']                                              || ['/parent-203/child-203']
             'list and element in same list'   | ['/parent-203/child-204', '/parent-203/child-204[@key="A"]']           || ['/parent-203/child-203']
             'list element under list element' | ['/parent-203/child-204[@key="B"]/grand-child-204[@key2="Y"]']         || ["/parent-203/child-203", "/parent-203/child-204[@key='A']", "/parent-203/child-204[@key='B']"]
-            'valid but non-existing xpath'    | ['/non-existing', '/parent-203/child-204']                             || ['/parent-203/child-203']
             'invalid xpath'                   | ['INVALID XPATH', '/parent-203/child-204']                             || ['/parent-203/child-203']
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Delete multiple data nodes error scenario: #scenario.'() {
+        when: 'deleting nodes is executed for: #scenario.'
+            objectUnderTest.deleteDataNodes(dataspaceName, anchorName, targetXpaths)
+        then: 'a #expectedException is thrown'
+            thrown(expectedException)
+        where: 'the following data is used'
+            scenario                 | dataspaceName  | anchorName     | targetXpaths            || expectedException
+            'non-existing dataspace' | 'NO DATASPACE' | 'not relevant' | ['/not relevant']       || DataspaceNotFoundException
+            'non-existing anchor'    | DATASPACE_NAME | 'NO ANCHOR'    | ['/not relevant']       || AnchorNotFoundException
+            'non-existing datanode'  | DATASPACE_NAME | ANCHOR_NAME3   | ['/NON-EXISTING-XPATH'] || DataNodeNotFoundException
     }
 
     @Sql([CLEAR_DATA, SET_DATA])

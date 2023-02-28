@@ -100,4 +100,12 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>,
         nativeQuery = true)
     List<FragmentExtract> quickFindWithDescendants(@Param("anchorId") int anchorId,
                                                    @Param("xpathRegex") String xpathRegex);
+
+    @Query("SELECT f.xpath FROM FragmentEntity f WHERE f.anchor = :anchor AND f.xpath IN :xpaths")
+    List<String> findAllXpathByAnchorAndXpathIn(@Param("anchor") AnchorEntity anchorEntity,
+                                                @Param("xpaths") Collection<String> xpaths);
+
+    boolean existsByAnchor(AnchorEntity anchorEntity);
+
+    boolean existsByAnchorAndXpathStartsWith(AnchorEntity anchorEntity, String xpath);
 }

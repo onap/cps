@@ -57,6 +57,7 @@ import org.onap.cps.spi.exceptions.ConcurrencyException;
 import org.onap.cps.spi.exceptions.CpsAdminException;
 import org.onap.cps.spi.exceptions.CpsPathException;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
+import org.onap.cps.spi.exceptions.DataNodeNotFoundExceptionBatch;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.DataNodeBuilder;
 import org.onap.cps.spi.repository.AnchorRepository;
@@ -307,7 +308,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             fragmentEntity = FragmentEntityArranger.toFragmentEntityTrees(anchorEntity, fragmentExtracts)
                 .stream().findFirst().orElse(null);
         } else {
-            final String normalizedXpath = getNormalizedXpath(xpath);
+            final String normalizedXpath = CpsPathUtil.getNormalizedXpath(xpath);
             fragmentEntity =
                 fragmentRepository.getByDataspaceAndAnchorAndXpath(dataspaceEntity, anchorEntity, normalizedXpath);
         }
@@ -389,7 +390,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             if (FetchDescendantsOption.OMIT_DESCENDANTS.equals(fetchDescendantsOption)) {
                 dataNodes.add(toDataNode(proxiedFragmentEntity, fetchDescendantsOption));
             } else {
-                final String normalizedXpath = getNormalizedXpath(proxiedFragmentEntity.getXpath());
+                final String normalizedXpath = CpsPathUtil.getNormalizedXpath(proxiedFragmentEntity.getXpath());
                 final Collection<FragmentEntity> unproxiedFragmentEntities =
                     buildFragmentEntitiesFromFragmentExtracts(anchorEntity, normalizedXpath);
                 for (final FragmentEntity unproxiedFragmentEntity : unproxiedFragmentEntities) {
@@ -407,16 +408,6 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             dataNodes.add(toDataNode(fragmentEntity, fetchDescendantsOption));
         }
         return Collections.unmodifiableList(dataNodes);
-    }
-
-    private static String getNormalizedXpath(final String xpathSource) {
-        final String normalizedXpath;
-        try {
-            normalizedXpath = CpsPathUtil.getNormalizedXpath(xpathSource);
-        } catch (final PathParsingException e) {
-            throw new CpsPathException(e.getMessage());
-        }
-        return normalizedXpath;
     }
 
     @Override
@@ -621,23 +612,30 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         final AnchorEntity anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
 
-        final Collection<String> normalizedXPathsToDelete = new ArrayList<>(xpathsToDelete.size());
-        final Collection<String> normalizedXpathsToPotentialLists = new ArrayList<>();
+        final Collection<String> remainingXpathsToDelete = new HashSet<>(xpathsToDelete.size());
         for (final String xpath : xpathsToDelete) {
             try {
-                final CpsPathQuery cpsPathQuery = CpsPathUtil.getCpsPathQuery(xpath);
-                final String normalizedXpath = cpsPathQuery.getNormalizedXpath();
-                normalizedXPathsToDelete.add(normalizedXpath);
-                if (!cpsPathQuery.isPathToListElement()) {
-                    normalizedXpathsToPotentialLists.add(normalizedXpath);
-                }
+                remainingXpathsToDelete.add(CpsPathUtil.getNormalizedXpath(xpath));
             } catch (final PathParsingException e) {
                 log.debug("Error parsing xpath \"{}\": {}", xpath, e.getMessage());
             }
         }
 
-        fragmentRepository.deleteByAnchorIdAndXpaths(anchorEntity.getId(), normalizedXPathsToDelete);
-        fragmentRepository.deleteListsByAnchorIdAndXpaths(anchorEntity.getId(), normalizedXpathsToPotentialLists);
+        final Collection<String> xpathsToContainerDataNodes =
+            fragmentRepository.findAllXpathByAnchorAndXpathIn(anchorEntity, remainingXpathsToDelete);
+        remainingXpathsToDelete.removeAll(xpathsToContainerDataNodes);
+
+        final Collection<String> xpathsToListDataNodes = remainingXpathsToDelete.stream()
+            .filter(xpath -> fragmentRepository.existsByAnchorAndXpathStartsWith(anchorEntity, xpath + "["))
+            .collect(Collectors.toList());
+        remainingXpathsToDelete.removeAll(xpathsToListDataNodes);
+
+        if (!remainingXpathsToDelete.isEmpty()) {
+            throw new DataNodeNotFoundExceptionBatch(dataspaceName, anchorName, remainingXpathsToDelete);
+        }
+
+        fragmentRepository.deleteByAnchorIdAndXpaths(anchorEntity.getId(), xpathsToContainerDataNodes);
+        fragmentRepository.deleteListsByAnchorIdAndXpaths(anchorEntity.getId(), xpathsToListDataNodes);
     }
 
     @Override
