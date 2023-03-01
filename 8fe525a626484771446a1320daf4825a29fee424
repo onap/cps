@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2466bdb5_378ade6b",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-01T10:45:56Z",
+      "side": 1,
+      "message": "AS discussed: the method need to thrown an exception defined in the SPI interface. PLease revert this part...",
+      "range": {
+        "startLine": 311,
+        "startChar": 43,
+        "endLine": 311,
+        "endChar": 81
+      },
+      "revId": "8fe525a626484771446a1320daf4825a29fee424",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
