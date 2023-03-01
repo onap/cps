@@ -75,10 +75,10 @@ class CpsDataPersistenceServicePerfTest extends CpsPersistencePerfSpecBase {
         where: 'the following xPaths are used'
             scenario                      | xpath            | fetchDescendantsOption  | expectedNodeCount      || allowedDuration
             'large node omit descendants' | PERF_TEST_PARENT | OMIT_DESCENDANTS        | 1                      || 30
-            'root xpath omit descendants' | '/'              | OMIT_DESCENDANTS        | 1                      || 350
+            'root xpath omit descendants' | '/'              | OMIT_DESCENDANTS        | 1                      || 15
             'large node direct children'  | PERF_TEST_PARENT | DIRECT_CHILDREN_ONLY    | 1 + NUMBER_OF_CHILDREN || 30
-            'root xpath direct children'  | '/'              | DIRECT_CHILDREN_ONLY    | 1 + NUMBER_OF_CHILDREN || 350
-            'large node all descendants'  | PERF_TEST_PARENT | INCLUDE_ALL_DESCENDANTS | TOTAL_NUMBER_OF_NODES  || 3500
+            'root xpath direct children'  | '/'              | DIRECT_CHILDREN_ONLY    | 1 + NUMBER_OF_CHILDREN || 30
+            'large node all descendants'  | PERF_TEST_PARENT | INCLUDE_ALL_DESCENDANTS | TOTAL_NUMBER_OF_NODES  || 100
             'root xpath all descendants'  | '/'              | INCLUDE_ALL_DESCENDANTS | TOTAL_NUMBER_OF_NODES  || 350
     }
 
@@ -98,7 +98,7 @@ class CpsDataPersistenceServicePerfTest extends CpsPersistencePerfSpecBase {
             scenario              | descendantsOption        || allowedDuration
             'omit descendants'    | OMIT_DESCENDANTS         || 500
             'direct children'     | DIRECT_CHILDREN_ONLY     || 3500
-            'include descendants' | INCLUDE_ALL_DESCENDANTS  || 3500
+            'include descendants' | INCLUDE_ALL_DESCENDANTS  || 500
     }
 
     def 'Performance of finding multiple xpaths: 200 nodes with descendants'() {
@@ -120,7 +120,7 @@ class CpsDataPersistenceServicePerfTest extends CpsPersistencePerfSpecBase {
             scenario              | descendantsOption       | expectedResultSize || allowedDuration
             'omit descendants'    | OMIT_DESCENDANTS        | 200                || 30
             'direct children'     | DIRECT_CHILDREN_ONLY    | 10200              || 350
-            'include descendants' | INCLUDE_ALL_DESCENDANTS | 10200              || 3500
+            'include descendants' | INCLUDE_ALL_DESCENDANTS | 10200              || 200
     }
 
     def 'Query parent data node with many descendants by cps-path'() {

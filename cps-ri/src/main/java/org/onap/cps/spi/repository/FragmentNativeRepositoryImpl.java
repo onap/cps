@@ -20,13 +20,16 @@
 
 package org.onap.cps.spi.repository;
 
+import java.math.BigInteger;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.stream.Collectors;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import lombok.RequiredArgsConstructor;
+import org.onap.cps.spi.entities.FragmentExtract;
 
 @RequiredArgsConstructor
 public class FragmentNativeRepositoryImpl implements FragmentNativeRepository {
@@ -94,4 +97,80 @@ public class FragmentNativeRepositoryImpl implements FragmentNativeRepository {
             + ADD_ORIGINAL_FRAGMENT_CONSTRAINT;
     }
 
+    @Override
+    public List<FragmentExtract> findExtractsByAnchorIdAndParentXpathIn(final int anchorId,
+                                                                        final Collection<String> xpaths) {
+        if (xpaths.isEmpty()) {
+            return Collections.emptyList();
+        }
+
+        final Collection<String> xpathPatterns =
+            xpaths.stream().map(listXpath -> listXpath + "/%").collect(Collectors.toSet());
+
+        final String sqlTemplate =
+            "SELECT id, anchor_id AS anchorId, xpath, parent_id AS parentId, CAST(attributes AS TEXT) AS attributes "
+                + "FROM fragment f WHERE f.anchor_id = ? "
+                + "AND (f.xpath IN (:parameterPlaceholders) OR f.xpath LIKE ANY (array[:parameterPlaceholders]))";
+
+        final String parameterPlaceholders = String.join(",", Collections.nCopies(xpaths.size(), "?"));
+        final String queryStringWithParameterPlaceholders =
+            sqlTemplate.replaceAll(":parameterPlaceholders\\b", parameterPlaceholders);
+
+        final Query query = entityManager.createNativeQuery(queryStringWithParameterPlaceholders);
+        query.setParameter(1, anchorId);
+        int parameterIndex = 2;
+        for (final String parameterValue : xpaths) {
+            query.setParameter(parameterIndex++, parameterValue);
+        }
+        for (final String parameterValue : xpathPatterns) {
+            query.setParameter(parameterIndex++, parameterValue);
+        }
+
+        final List<Object[]> rows = query.getResultList();
+        return rows.stream()
+            .map(row -> (FragmentExtract) new FragmentExtractImpl(row))
+            .collect(Collectors.toList());
+    }
+
+    private static class FragmentExtractImpl implements FragmentExtract {
+
+        private final Long id;
+        private final Long anchorId;
+        private final String xpath;
+        private final Long parentId;
+        private final String attributes;
+
+        FragmentExtractImpl(final Object[] row) {
+            id = ((BigInteger) row[0]).longValue();
+            anchorId = (row[1] == null ? null : ((BigInteger) row[1]).longValue());
+            xpath = (row[2] == null ? null : (String) row[2]);
+            parentId = (row[3] == null ? null : ((BigInteger) row[3]).longValue());
+            attributes = (row[4] == null ? null : (String) row[4]);
+        }
+
+        @Override
+        public Long getId() {
+            return id;
+        }
+
+        @Override
+        public Long getAnchorId() {
+            return anchorId;
+        }
+
+        @Override
+        public String getXpath() {
+            return xpath;
+        }
+
+        @Override
+        public Long getParentId() {
+            return parentId;
+        }
+
+        @Override
+        public String getAttributes() {
+            return attributes;
+        }
+    }
 }
