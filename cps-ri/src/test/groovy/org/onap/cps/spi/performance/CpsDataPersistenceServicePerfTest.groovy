@@ -28,6 +28,7 @@ import org.onap.cps.spi.repository.FragmentRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.jdbc.Sql
 
+import static org.onap.cps.spi.FetchDescendantsOption.DIRECT_CHILDREN_ONLY
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
 
@@ -47,7 +48,7 @@ class CpsDataPersistenceServicePerfTest extends CpsPersistencePerfSpecBase {
 
     static def NUMBER_OF_CHILDREN = 200
     static def NUMBER_OF_GRAND_CHILDREN = 50
-    static def TOTAL_NUMBER_OF_NODES = 1 + NUMBER_OF_CHILDREN + (NUMBER_OF_CHILDREN * NUMBER_OF_GRAND_CHILDREN)  //  Parent + Children +  Grand-children
+    static def TOTAL_NUMBER_OF_NODES = 1 + NUMBER_OF_CHILDREN + (NUMBER_OF_CHILDREN * NUMBER_OF_GRAND_CHILDREN)
 
     @Sql([CLEAR_DATA, PERF_TEST_DATA])
     def 'Create a node with many descendants (please note, subsequent tests depend on this running first).'() {
@@ -60,20 +61,66 @@ class CpsDataPersistenceServicePerfTest extends CpsPersistencePerfSpecBase {
             recordAndAssertPerformance('Setup', 10000, setupDurationInMillis)
     }
 
-    def 'Get data node with many descendants by xpath #scenario'() {
+    def 'Get data node with many descendants by xpath: #scenario'() {
         when: 'get parent is executed with all descendants'
             stopWatch.start()
-            def result = objectUnderTest.getDataNodes(PERF_DATASPACE, PERF_ANCHOR, xpath, INCLUDE_ALL_DESCENDANTS)
+            def result = objectUnderTest.getDataNodes(PERF_DATASPACE, PERF_ANCHOR, xpath, fetchDescendantsOption)
             stopWatch.stop()
             def readDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'read duration is under #allowedDuration milliseconds'
+        then: 'data node is returned with all the descendants populated'
+            assert result.size() == 1
+            assert countDataNodes(result) == expectedNodeCount
+        and: 'read duration is under #allowedDuration milliseconds'
             recordAndAssertPerformance("Get ${scenario}", allowedDuration, readDurationInMillis)
-        and: 'data node is returned with all the descendants populated'
-            assert countDataNodes(result[0]) == TOTAL_NUMBER_OF_NODES
         where: 'the following xPaths are used'
-            scenario | xpath            || allowedDuration
-            'parent' | PERF_TEST_PARENT || 3500
-            'root'   | ''               || 500
+            scenario                      | xpath            | fetchDescendantsOption  | expectedNodeCount      || allowedDuration
+            'large node omit descendants' | PERF_TEST_PARENT | OMIT_DESCENDANTS        | 1                      || 30
+            'root xpath omit descendants' | '/'              | OMIT_DESCENDANTS        | 1                      || 350
+            'large node direct children'  | PERF_TEST_PARENT | DIRECT_CHILDREN_ONLY    | 1 + NUMBER_OF_CHILDREN || 30
+            'root xpath direct children'  | '/'              | DIRECT_CHILDREN_ONLY    | 1 + NUMBER_OF_CHILDREN || 350
+            'large node all descendants'  | PERF_TEST_PARENT | INCLUDE_ALL_DESCENDANTS | TOTAL_NUMBER_OF_NODES  || 3500
+            'root xpath all descendants'  | '/'              | INCLUDE_ALL_DESCENDANTS | TOTAL_NUMBER_OF_NODES  || 350
+    }
+
+    def 'Performance of finding multiple xpaths: 10,000 nodes with no descendants'() {
+        when: 'we query for all grandchildren (except 1 for fun)'
+            xpathsToAllGrandChildren.remove(0)
+            stopWatch.start()
+            def result = objectUnderTest.getDataNodesForMultipleXpaths(PERF_DATASPACE, PERF_ANCHOR, xpathsToAllGrandChildren, descendantsOption)
+            stopWatch.stop()
+            def readDurationInMillis = stopWatch.getTotalTimeMillis()
+        then: 'the returned number of entities equal to the number of children * number of grandchildren'
+            assert result.size() == xpathsToAllGrandChildren.size()
+            assert countDataNodes(result) == xpathsToAllGrandChildren.size()
+        and: 'it took less then #allowedDuration ms'
+            recordAndAssertPerformance("Get 10,000 grandchildren ${scenario}", allowedDuration, readDurationInMillis)
+        where: 'the following options are used'
+            scenario              | descendantsOption        || allowedDuration
+            'omit descendants'    | OMIT_DESCENDANTS         || 500
+            'direct children'     | DIRECT_CHILDREN_ONLY     || 3500
+            'include descendants' | INCLUDE_ALL_DESCENDANTS  || 3500
+    }
+
+    def 'Performance of finding multiple xpaths: 200 nodes with descendants'() {
+        given: 'a list of xpaths to get'
+            def xpaths = (1..200).collect {
+                "${PERF_TEST_PARENT}/perf-test-child-${it}".toString()
+            }
+        when: 'we query for multiple children'
+            stopWatch.start()
+            def result = objectUnderTest.getDataNodesForMultipleXpaths(PERF_DATASPACE, PERF_ANCHOR, xpaths, descendantsOption)
+            stopWatch.stop()
+            def readDurationInMillis = stopWatch.getTotalTimeMillis()
+        then: 'the returned number of entities equal to the number of children * number of grandchildren'
+            assert result.size() == 200
+            assert countDataNodes(result) == expectedResultSize
+        and: 'it took less then #allowedDuration ms'
+            recordAndAssertPerformance("Get 100 children ${scenario}", allowedDuration, readDurationInMillis)
+        where: 'the following options are used'
+            scenario              | descendantsOption       | expectedResultSize || allowedDuration
+            'omit descendants'    | OMIT_DESCENDANTS        | 200                || 30
+            'direct children'     | DIRECT_CHILDREN_ONLY    | 10200              || 350
+            'include descendants' | INCLUDE_ALL_DESCENDANTS | 10200              || 3500
     }
 
     def 'Query parent data node with many descendants by cps-path'() {
@@ -86,19 +133,6 @@ class CpsDataPersistenceServicePerfTest extends CpsPersistencePerfSpecBase {
             recordAndAssertPerformance('Query with many descendants', 500, readDurationInMillis)
         and: 'data node is returned with all the descendants populated'
             assert countDataNodes(result) == TOTAL_NUMBER_OF_NODES
-    }
-
-    def 'Performance of finding multiple xpaths'() {
-        when: 'we query for all grandchildren (except 1 for fun) with the new native method'
-            xpathsToAllGrandChildren.remove(0)
-            stopWatch.start()
-            def result = objectUnderTest.getDataNodesForMultipleXpaths(PERF_DATASPACE, PERF_ANCHOR, xpathsToAllGrandChildren, INCLUDE_ALL_DESCENDANTS)
-            stopWatch.stop()
-            def readDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'the returned number of entities equal to the number of children * number of grandchildren'
-            assert result.size() == xpathsToAllGrandChildren.size()
-        and: 'it took less then 3000ms'
-            recordAndAssertPerformance('Find multiple xpaths', 3000, readDurationInMillis)
     }
 
     def 'Query many descendants by cps-path with #scenario'() {
