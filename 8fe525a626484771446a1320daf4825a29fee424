@@ -22,6 +22,121 @@
       "revId": "8fe525a626484771446a1320daf4825a29fee424",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0735eb91_53766b5c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-03-01T10:47:36Z",
+      "side": 1,
+      "message": "revert",
+      "range": {
+        "startLine": 393,
+        "startChar": 47,
+        "endLine": 393,
+        "endChar": 59
+      },
+      "revId": "8fe525a626484771446a1320daf4825a29fee424",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "26488030_3d0dcc54",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 615,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-03-01T10:47:36Z",
+      "side": 1,
+      "message": "rename to deleteChecklist",
+      "range": {
+        "startLine": 615,
+        "startChar": 33,
+        "endLine": 615,
+        "endChar": 56
+      },
+      "revId": "8fe525a626484771446a1320daf4825a29fee424",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d6fd51b0_919d6474",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 624,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-03-01T10:47:36Z",
+      "side": 1,
+      "message": "rename to xpathsToExistingContainers",
+      "range": {
+        "startLine": 624,
+        "startChar": 33,
+        "endLine": 624,
+        "endChar": 59
+      },
+      "revId": "8fe525a626484771446a1320daf4825a29fee424",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0cc6cf57_b3c214b3",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 628,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-03-01T10:47:36Z",
+      "side": 1,
+      "message": "xpathsToExistingLists",
+      "range": {
+        "startLine": 628,
+        "startChar": 33,
+        "endLine": 628,
+        "endChar": 54
+      },
+      "revId": "8fe525a626484771446a1320daf4825a29fee424",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6cab6269_3b596ab6",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-03-01T10:47:36Z",
+      "side": 1,
+      "message": "Unused",
+      "range": {
+        "startLine": 108,
+        "startChar": 0,
+        "endLine": 108,
+        "endChar": 4
+      },
+      "revId": "8fe525a626484771446a1320daf4825a29fee424",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
