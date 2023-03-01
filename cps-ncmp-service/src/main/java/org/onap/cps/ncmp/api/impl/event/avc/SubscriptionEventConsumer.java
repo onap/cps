@@ -26,11 +26,12 @@ import org.onap.cps.ncmp.event.model.SubscriptionEvent;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
-
 @Component
 @Slf4j
 @RequiredArgsConstructor
 public class SubscriptionEventConsumer {
+
+    private final SubscriptionEventForwardProducer subscriptionEventForwardProducer;
 
     /**
      * Consume the specified event.
@@ -46,6 +47,11 @@ public class SubscriptionEventConsumer {
                 log.info("Subscription for ClientID {} with name{} ...",
                         subscriptionEvent.getEvent().getSubscription().getClientID(),
                         subscriptionEvent.getEvent().getSubscription().getName());
+                // TODO : Delete subscriptionEventForwardProducer along with line below
+                //  As for testing purpose only we are forwarding subscription to dmi-plugin
+                // Need to be removed once @Luke would deliver CPS-1431
+                // (Forward Subscription Information to DMI Plugin(s))
+                subscriptionEventForwardProducer.forwardSubscriptionEventMessage(subscriptionEvent);
             }
         } else {
             log.trace("Non-CM subscription event ignored");

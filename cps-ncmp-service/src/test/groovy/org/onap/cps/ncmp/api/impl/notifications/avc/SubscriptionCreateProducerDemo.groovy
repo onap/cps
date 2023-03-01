@@ -47,10 +47,12 @@ class SubscriptionCreateProducerDemo extends Specification {
 
     def 'produce subscription creation data event for testing'() {
         given: 'avc subscription creation event data'
-            def jsonData = TestUtils.getResourceFileContent('avcSubscriptionCreationEvent.json')
+            //TODO : revert back filename to 'avcSubscriptionCreationEvent.json' and delete 'avcSubscriptionForwardEvent.json'
+            // once CPS-1431 (Forward Subscription Information to DMI Plugin(s)) will be delivered.
+            def jsonData = TestUtils.getResourceFileContent('avcSubscriptionForwardEvent.json')
             def testEventSent = jsonObjectMapper.convertJsonString(jsonData, SubscriptionEvent.class)
         and: 'test event is sent'
-            kafkaTemplate.send(subscriptionTopic, "request-Id-98765", testEventSent);
+            kafkaTemplate.send(subscriptionTopic, testEventSent);
         and: 'print json data to console'
             println(jsonData);
     }
