@@ -62,9 +62,11 @@ public class FragmentQueryBuilder {
         final String xpathRegex = getXpathSqlRegex(cpsPathQuery, false);
         queryParameters.put("xpathRegex", xpathRegex);
         if (cpsPathQuery.hasLeafConditions()) {
-            sqlStringBuilder.append(" AND attributes @> :leafDataAsJson\\:\\:jsonb");
-            queryParameters.put("leafDataAsJson", jsonObjectMapper.asJsonString(
-                cpsPathQuery.getLeavesData()));
+            sqlStringBuilder.append(" AND attributes @> jsonb_build_object(:leafName, :leafValue) ");
+            for (final Map.Entry<String, Object> entry : cpsPathQuery.getLeavesData().entrySet()) {
+                queryParameters.put("leafName", jsonObjectMapper.asJsonString(entry.getKey()));
+                queryParameters.put("leafValue", jsonObjectMapper.asJsonString(entry.getValue()));
+            }
         }
 
         addTextFunctionCondition(cpsPathQuery, sqlStringBuilder, queryParameters);

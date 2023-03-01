@@ -60,9 +60,12 @@ INSERT INTO FRAGMENT (ID, DATASPACE_ID, ANCHOR_ID, PARENT_ID, XPATH, ATTRIBUTES)
     (6, 1001, 1003, 4, '/shops/shop[@id=''1'']/categories[@code=''2'']/book', '{"price" : 15, "title" : "Chapters", "editions" : [2000,2010,2020]}'),
     (7, 1001, 1003, 5, '/shops/shop[@id=''1'']/categories[@code=''1'']/book/author[@FirstName=''Joe'' and @Surname=''Bloggs'']', '{"FirstName" : "Joe", "Surname": "Bloggs","title": "Dune"}'),
     (8, 1001, 1003, 6, '/shops/shop[@id=''1'']/categories[@code=''2'']/book/author[@FirstName=''Joe'' and @Surname=''Smith'']', '{"FirstName" : "Joe", "Surname": "Smith","title": "Chapters"}'),
-    (32, 1001, 1003, 6, '/shops/shop[@id=''1'']/categories[@code=''2'']/book/author[@FirstName=''Joe'' and @Address=''string[with]square[brackets]'']', '{"FirstName" : "Joe", "Address": "string[with]square[brackets]","title": "Chapters"}');
+    (32, 1001, 1003, 6, '/shops/shop[@id=''1'']/categories[@code=''2'']/book/author[@FirstName=''Joe'' and @Address=''string[with]square[brackets]'']', '{"FirstName" : "Joe", "Address": "string[with]square[brackets]","title": "Chapters"}'),
+    (40, 1001, 1003, 6, '/shops/shop[@id=''1'']/categories[@code=''2'']/book/author[@FirstName=''Jane'']', '{"FirstName" : "Jane", "Surname": "Smith","title": "Chapters"}'),
+    (49, 1001, 1003, 6, '/shops/shop[@id=''1'']/categories[@code=''2'']/book/author[@FirstName=''John'']', '{"FirstName" : "John", "Surname": "Rudra","title": "title"}');
 
-    INSERT INTO FRAGMENT (ID, DATASPACE_ID, ANCHOR_ID, PARENT_ID, XPATH, ATTRIBUTES) VALUES
+
+INSERT INTO FRAGMENT (ID, DATASPACE_ID, ANCHOR_ID, PARENT_ID, XPATH, ATTRIBUTES) VALUES
     (9, 1001, 1003, 1, '/shops/shop[@id=''2'']', '{"type" : "bookstore"}'),
     (10, 1001, 1003, 9, '/shops/shop[@id=''2'']/categories[@code=''1'']', '{"code" : 2, "type" : "bookstore", "name": "Kids"}'),
     (11, 1001, 1003, 10, '/shops/shop[@id=''2'']/categories[@code=''2'']', '{"code" : 2, "type" : "bookstore", "name": "Fiction"}');

@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Modifications Copyright (C) Tech Mahindra
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -24,8 +25,10 @@ import static org.onap.cps.cpspath.parser.CpsPathPrefixType.DESCENDANT;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 import org.onap.cps.cpspath.parser.antlr4.CpsPathBaseListener;
 import org.onap.cps.cpspath.parser.antlr4.CpsPathParser;
 import org.onap.cps.cpspath.parser.antlr4.CpsPathParser.AncestorAxisContext;
@@ -53,6 +56,11 @@ public class CpsPathBuilder extends CpsPathBaseListener {
     boolean processingAncestorAxis = false;
 
     private List<String> containerNames = new ArrayList<>();
+
+    final List<String> booleanOperators = new ArrayList<>();
+
+    final Queue<String> queueBooleanOperators = new LinkedList<>();
+
 
     @Override
     public void exitInvalidPostFix(final CpsPathParser.InvalidPostFixContext ctx) {
@@ -90,10 +98,25 @@ public class CpsPathBuilder extends CpsPathBaseListener {
             throw new PathParsingException("Unsupported comparison value encountered in expression" + ctx.getText());
         }
         leavesData.put(ctx.leafName().getText(), comparisonValue);
-        appendCondition(normalizedXpathBuilder, ctx.leafName().getText(), comparisonValue);
+        final char lastCharacter = normalizedXpathBuilder.charAt(normalizedXpathBuilder.length() - 1);
+        normalizedXpathBuilder.append(lastCharacter == '[' ? "" : " " + queueBooleanOperators.poll() + " ");
+        normalizedXpathBuilder.append("@");
+        normalizedXpathBuilder.append(ctx.leafName().getText());
+        normalizedXpathBuilder.append("='");
+        normalizedXpathBuilder.append(comparisonValue);
+        normalizedXpathBuilder.append("'");
         if (processingAncestorAxis) {
             appendCondition(normalizedAncestorPathBuilder, ctx.leafName().getText(), comparisonValue);
         }
+    }
+
+    @Override
+    public void exitBooleanOperators(final CpsPathParser.BooleanOperatorsContext ctx) {
+        final CpsPathBooleanOperatorType cpsPathBooleanOperatorType = CpsPathBooleanOperatorType.fromString(
+                ctx.getText());
+        booleanOperators.add(cpsPathBooleanOperatorType.getValues());
+        queueBooleanOperators.add(cpsPathBooleanOperatorType.getValues());
+        cpsPathQuery.setBooleanOperatorsType(booleanOperators);
     }
 
     @Override
