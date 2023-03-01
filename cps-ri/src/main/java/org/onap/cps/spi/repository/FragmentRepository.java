@@ -101,6 +101,8 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>,
     List<FragmentExtract> quickFindWithDescendants(@Param("anchorId") int anchorId,
                                                    @Param("xpathRegex") String xpathRegex);
 
+    List<FragmentEntity> findAllByAnchorAndParentIdIsNull(AnchorEntity anchorEntity);
+
     @Query("SELECT f.xpath FROM FragmentEntity f WHERE f.anchor = :anchor AND f.xpath IN :xpaths")
     List<String> findAllXpathByAnchorAndXpathIn(@Param("anchor") AnchorEntity anchorEntity,
                                                 @Param("xpaths") Collection<String> xpaths);

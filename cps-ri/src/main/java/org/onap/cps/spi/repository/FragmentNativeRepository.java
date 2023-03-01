@@ -21,6 +21,8 @@
 package org.onap.cps.spi.repository;
 
 import java.util.Collection;
+import java.util.List;
+import org.onap.cps.spi.entities.FragmentExtract;
 
 /**
  * This interface is used in delete fragment entity by id with child using native sql queries.
@@ -47,4 +49,6 @@ public interface FragmentNativeRepository {
      * @param listXpaths xpaths of whole lists to remove
      */
     void deleteListsByAnchorIdAndXpaths(int anchorId, Collection<String> listXpaths);
+
+    List<FragmentExtract> findExtractsByAnchorIdAndParentXpathIn(int anchorId, Collection<String> xpaths);
 }
