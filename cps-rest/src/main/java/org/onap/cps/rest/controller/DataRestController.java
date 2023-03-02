@@ -24,6 +24,7 @@
 
 package org.onap.cps.rest.controller;
 
+import io.micrometer.core.annotation.Timed;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -97,6 +98,8 @@ public class DataRestController implements CpsDataApi {
     }
 
     @Override
+    @Timed(value = "cps.data.controller.datanode.get.v1",
+            description = "Time taken to get data node")
     public ResponseEntity<Object> getNodeByDataspaceAndAnchor(final String dataspaceName,
         final String anchorName, final String xpath, final Boolean includeDescendants) {
         final FetchDescendantsOption fetchDescendantsOption = Boolean.TRUE.equals(includeDescendants)
@@ -108,6 +111,8 @@ public class DataRestController implements CpsDataApi {
     }
 
     @Override
+    @Timed(value = "cps.data.controller.datanode.get.v2",
+            description = "Time taken to get data node")
     public ResponseEntity<Object> getNodeByDataspaceAndAnchorV2(final String dataspaceName, final String anchorName,
                                                                 final String xpath,
                                                                 final String fetchDescendantsOptionAsString) {

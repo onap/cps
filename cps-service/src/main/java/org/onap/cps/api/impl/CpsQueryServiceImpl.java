@@ -20,6 +20,7 @@
 
 package org.onap.cps.api.impl;
 
+import io.micrometer.core.annotation.Timed;
 import java.util.Collection;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.CpsQueryService;
@@ -37,6 +38,8 @@ public class CpsQueryServiceImpl implements CpsQueryService {
     private final CpsValidator cpsValidator;
 
     @Override
+    @Timed(value = "cps.data.service.datanode.query",
+            description = "Time taken to query data nodes")
     public Collection<DataNode> queryDataNodes(final String dataspaceName, final String anchorName,
         final String cpsPath, final FetchDescendantsOption fetchDescendantsOption) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
