@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "12288206_4324de76",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/QueryRestController.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-03-02T11:31:38Z",
+      "side": 1,
+      "message": "Sorry if I\u0027m wrong, not too familiar on the prefixes but should this be inside the for loop? prefix will only match first datanode",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 77,
+        "endChar": 29
+      },
+      "revId": "70f688b281c20b6f52ef2dcac6694e9ed8fae89f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "205f51f8_df2e3b01",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-03-02T11:31:38Z",
+      "side": 1,
+      "message": "NB: some/cps/path to path expected structure",
+      "range": {
+        "startLine": 119,
+        "startChar": 27,
+        "endLine": 119,
+        "endChar": 40
+      },
+      "revId": "70f688b281c20b6f52ef2dcac6694e9ed8fae89f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e6eb28f3_634cf178",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-03-02T11:31:38Z",
+      "side": 1,
+      "message": "would create a second datanode instead of using the same one twice",
+      "range": {
+        "startLine": 120,
+        "startChar": 129,
+        "endLine": 120,
+        "endChar": 138
+      },
+      "revId": "70f688b281c20b6f52ef2dcac6694e9ed8fae89f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2662fc7f_0a86ae48",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-03-02T11:31:38Z",
+      "side": 1,
+      "message": "I think instead of having a null with null checks a boolean acrossAllAnchors should be passed down instead, anchorName can be an empty string",
+      "range": {
+        "startLine": 362,
+        "startChar": 45,
+        "endLine": 362,
+        "endChar": 49
+      },
+      "revId": "70f688b281c20b6f52ef2dcac6694e9ed8fae89f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "217f9139_778adeb1",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepositoryCpsPathQueryImpl.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-03-02T11:31:38Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 57,
+        "startChar": 48,
+        "endLine": 57,
+        "endChar": 61
+      },
+      "revId": "70f688b281c20b6f52ef2dcac6694e9ed8fae89f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "03f1e4b9_e95036f4",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceQueryDataNodeSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-03-02T11:31:38Z",
+      "side": 1,
+      "message": "bit confused by this phrasing, why is it parent nodes?",
+      "range": {
+        "startLine": 187,
+        "startChar": 37,
+        "endLine": 187,
+        "endChar": 49
+      },
+      "revId": "70f688b281c20b6f52ef2dcac6694e9ed8fae89f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6bcbd532_5bfde901",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceQueryDataNodeSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-03-02T11:31:38Z",
+      "side": 1,
+      "message": "align",
+      "range": {
+        "startLine": 221,
+        "startChar": 51,
+        "endLine": 221,
+        "endChar": 53
+      },
+      "revId": "70f688b281c20b6f52ef2dcac6694e9ed8fae89f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
