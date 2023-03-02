@@ -25,6 +25,7 @@ package org.onap.cps.spi.impl;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ImmutableSet.Builder;
+import io.micrometer.core.annotation.Timed;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -80,7 +81,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     private final JsonObjectMapper jsonObjectMapper;
     private final SessionManager sessionManager;
 
-    private static final String REG_EX_FOR_OPTIONAL_LIST_INDEX = "(\\[@[\\s\\S]+?]){0,1})";
+    private static final String REG_EX_FOR_OPTIONAL_LIST_INDEX = "(\\[@[\\s\\S]+?])?)";
 
     @Override
     public void addChildDataNode(final String dataspaceName, final String anchorName, final String parentNodeXpath,
@@ -250,6 +251,8 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     }
 
     @Override
+    @Timed(value = "cps.data.persistence.service.datanode.get",
+            description = "Time taken to get a data node")
     public Collection<DataNode> getDataNodes(final String dataspaceName, final String anchorName,
                                              final String xpath,
                                              final FetchDescendantsOption fetchDescendantsOption) {
@@ -263,6 +266,8 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     }
 
     @Override
+    @Timed(value = "cps.data.persistence.service.datanode.batch.get",
+            description = "Time taken to get data nodes")
     public Collection<DataNode> getDataNodesForMultipleXpaths(final String dataspaceName, final String anchorName,
                                                               final Collection<String> xpaths,
                                                               final FetchDescendantsOption fetchDescendantsOption) {
@@ -270,6 +275,8 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         return toDataNodes(fragmentEntities, fetchDescendantsOption);
     }
 
+    @Timed(value = "cps.data.persistence.service.get.fragment.xpath",
+            description = "Time taken to get fragment")
     private Collection<FragmentEntity> getFragmentEntities(final String dataspaceName, final String anchorName,
                                                            final Collection<String> xpaths) {
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
@@ -330,6 +337,8 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     }
 
     @Override
+    @Timed(value = "cps.data.persistence.service.datanode.query",
+            description = "Time taken to query data nodes")
     public List<DataNode> queryDataNodes(final String dataspaceName, final String anchorName, final String cpsPath,
                                          final FetchDescendantsOption fetchDescendantsOption) {
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);

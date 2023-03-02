@@ -22,6 +22,7 @@
 
 package org.onap.cps.rest.controller;
 
+import io.micrometer.core.annotation.Timed;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -49,6 +50,8 @@ public class QueryRestController implements CpsQueryApi {
     private final PrefixResolver prefixResolver;
 
     @Override
+    @Timed(value = "cps.data.controller.datanode.query.v1",
+            description = "Time taken to query data nodes")
     public ResponseEntity<Object> getNodesByDataspaceAndAnchorAndCpsPath(final String dataspaceName,
         final String anchorName, final String cpsPath, final Boolean includeDescendants) {
         final FetchDescendantsOption fetchDescendantsOption = Boolean.TRUE.equals(includeDescendants)
@@ -58,6 +61,8 @@ public class QueryRestController implements CpsQueryApi {
     }
 
     @Override
+    @Timed(value = "cps.data.controller.datanode.query.v2",
+            description = "Time taken to query data nodes")
     public ResponseEntity<Object> getNodesByDataspaceAndAnchorAndCpsPathV2(final String dataspaceName,
         final String anchorName, final String cpsPath, final String fetchDescendantsOptionAsString) {
         final FetchDescendantsOption fetchDescendantsOption =
