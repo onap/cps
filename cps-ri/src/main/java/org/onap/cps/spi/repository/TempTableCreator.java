@@ -60,6 +60,7 @@ public class TempTableCreator {
         final StringBuilder sqlStringBuilder = new StringBuilder("CREATE TEMPORARY TABLE ");
         sqlStringBuilder.append(tempTableName);
         defineColumns(sqlStringBuilder, columnNames);
+        sqlStringBuilder.append(" ON COMMIT DROP;");
         insertData(sqlStringBuilder, tempTableName, columnNames, sqlData);
         entityManager.createNativeQuery(sqlStringBuilder.toString()).executeUpdate();
         return tempTableName;
@@ -95,7 +96,7 @@ public class TempTableCreator {
                 sqlStringBuilder.append(",");
             }
         }
-        sqlStringBuilder.append(");");
+        sqlStringBuilder.append(")");
     }
 
     private static void insertData(final StringBuilder sqlStringBuilder,
