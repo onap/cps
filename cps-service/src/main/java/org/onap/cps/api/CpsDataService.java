@@ -138,7 +138,9 @@ public interface CpsDataService {
                                                        FetchDescendantsOption fetchDescendantsOption);
 
     /**
-     * Updates data node for given dataspace and anchor using xpath to parent node.
+     * Updates data node for given dataspace and anchor using xpath to parent node. The PATCH operation can currently
+     * update one top level data node. The method will throw DataValidationException when more than one top level data
+     * nodes are provided in jsonData
      *
      * @param dataspaceName   dataspace name
      * @param anchorName      anchor name

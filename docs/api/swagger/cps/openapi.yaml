@@ -1720,8 +1720,8 @@ paths:
       tags:
         - cps-data
       summary: Update node leaves
-      description: Update a data node leaves for a given dataspace and anchor and
-        a parent node xpath
+      description: Update a data node leaves for a given dataspace and anchor and a parent node xpath. The Patch
+        opeartion is currently supported for one top level data node.
       operationId: updateNodeLeaves
       parameters:
         - name: apiVersion
