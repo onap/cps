@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "af49b3ae_15647845",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/SubscriptionModelLoader.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-03-03T13:59:31Z",
+      "side": 1,
+      "message": "We need to disuss this at some stage.\nPersonally I woudn\u0027t take this extreme step of not starting the application coz we are unable to create schema-set/anchor when there are APIs which can be used to create schema-set and anchor using them.\n\nBut for now I will proceed looking at other part of the patch.",
+      "parentUuid": "226edeb4_11957b4d",
+      "range": {
+        "startLine": 59,
+        "startChar": 12,
+        "endLine": 59,
+        "endChar": 91
+      },
+      "revId": "a54aec0304ecdcc067e8e57f15fa6922df335600",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "62a8f4a0_cb3755d0",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/SubscriptionModelLoader.java",
         "patchSetId": 15
