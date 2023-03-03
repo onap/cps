@@ -31,30 +31,13 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class FragmentNativeRepositoryImpl implements FragmentNativeRepository {
 
-    private static final String DROP_FRAGMENT_CONSTRAINT
-            = "ALTER TABLE fragment DROP CONSTRAINT fragment_parent_id_fkey;";
-    private static final String ADD_FRAGMENT_CONSTRAINT_WITH_CASCADE
-            = "ALTER TABLE fragment ADD CONSTRAINT fragment_parent_id_fkey FOREIGN KEY (parent_id) "
-            + "REFERENCES fragment (id) ON DELETE CASCADE;";
-    private static final String ADD_ORIGINAL_FRAGMENT_CONSTRAINT
-            = "ALTER TABLE fragment ADD CONSTRAINT fragment_parent_id_fkey FOREIGN KEY (parent_id) "
-            + "REFERENCES fragment (id) ON DELETE NO ACTION;";
-
     @PersistenceContext
     private final EntityManager entityManager;
 
     @Override
-    public void deleteFragmentEntity(final long fragmentEntityId) {
-        entityManager.createNativeQuery(
-                addFragmentConstraintWithDeleteCascade("DELETE FROM fragment WHERE id = ?"))
-            .setParameter(1, fragmentEntityId)
-            .executeUpdate();
-    }
-
-    @Override
     public void deleteByAnchorIdAndXpaths(final int anchorId, final Collection<String> xpaths) {
-        final String queryString = addFragmentConstraintWithDeleteCascade(
-            "DELETE FROM fragment f WHERE f.anchor_id = ? AND (f.xpath IN (:parameterPlaceholders))");
+        final String queryString =
+            "DELETE FROM fragment f WHERE f.anchor_id = ? AND (f.xpath IN (:parameterPlaceholders))";
         executeUpdateWithAnchorIdAndCollection(queryString, anchorId, xpaths);
     }
 
@@ -62,8 +45,8 @@ public class FragmentNativeRepositoryImpl implements FragmentNativeRepository {
     public void deleteListsByAnchorIdAndXpaths(final int anchorId, final Collection<String> listXpaths) {
         final Collection<String> listXpathPatterns =
             listXpaths.stream().map(listXpath -> listXpath + "[%").collect(Collectors.toSet());
-        final String queryString = addFragmentConstraintWithDeleteCascade(
-            "DELETE FROM fragment f WHERE f.anchor_id = ? AND (f.xpath LIKE ANY (array[:parameterPlaceholders]))");
+        final String queryString =
+            "DELETE FROM fragment f WHERE f.anchor_id = ? AND (f.xpath LIKE ANY (array[:parameterPlaceholders]))";
         executeUpdateWithAnchorIdAndCollection(queryString, anchorId, listXpathPatterns);
     }
 
@@ -84,14 +67,6 @@ public class FragmentNativeRepositoryImpl implements FragmentNativeRepository {
             }
             query.executeUpdate();
         }
-    }
-
-    private static String addFragmentConstraintWithDeleteCascade(final String queryString) {
-        return DROP_FRAGMENT_CONSTRAINT
-            + ADD_FRAGMENT_CONSTRAINT_WITH_CASCADE
-            + queryString + ";"
-            + DROP_FRAGMENT_CONSTRAINT
-            + ADD_ORIGINAL_FRAGMENT_CONSTRAINT;
     }
 
 }
