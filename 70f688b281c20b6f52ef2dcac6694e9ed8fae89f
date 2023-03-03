@@ -94,6 +94,30 @@
     },
     {
       "key": {
+        "uuid": "0a11d84b_90dcf7d6",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-03-03T15:34:47Z",
+      "side": 1,
+      "message": "Actually looking again maybe using a static variable for null eg final static AnchorEntity ACROSS_ANCHOR_QUERY \u003d null;",
+      "parentUuid": "2662fc7f_0a86ae48",
+      "range": {
+        "startLine": 362,
+        "startChar": 45,
+        "endLine": 362,
+        "endChar": 49
+      },
+      "revId": "70f688b281c20b6f52ef2dcac6694e9ed8fae89f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "217f9139_778adeb1",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepositoryCpsPathQueryImpl.java",
         "patchSetId": 14
@@ -156,6 +180,52 @@
         "startChar": 51,
         "endLine": 221,
         "endChar": 53
+      },
+      "revId": "70f688b281c20b6f52ef2dcac6694e9ed8fae89f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "346ed2d9_773aba3c",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceQueryDataNodeSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-03-03T15:34:47Z",
+      "side": 1,
+      "message": "This doesn\u0027t prove that the functionality can search across anchors though, we need test cases where data from multiple anchors are queried, this test is the same as the previous test basically",
+      "range": {
+        "startLine": 222,
+        "startChar": 0,
+        "endLine": 230,
+        "endChar": 214
+      },
+      "revId": "70f688b281c20b6f52ef2dcac6694e9ed8fae89f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c4aef5b_cadbb51b",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsQueryService.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-03-03T15:34:47Z",
+      "side": 1,
+      "message": "align",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 66
       },
       "revId": "70f688b281c20b6f52ef2dcac6694e9ed8fae89f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
