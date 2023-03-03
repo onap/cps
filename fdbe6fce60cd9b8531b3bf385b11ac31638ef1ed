@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2e7e1951_69f1c7bd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/ModelLoader.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-03-03T14:44:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "78bf6867_e6af278d",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 7
+      },
+      "revId": "fdbe6fce60cd9b8531b3bf385b11ac31638ef1ed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8fc6030f_1898baec",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/ModelLoader.java",
         "patchSetId": 12
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "81209f18_f3bd62b5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/ModelLoader.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-03-03T14:44:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8fc6030f_1898baec",
+      "range": {
+        "startLine": 109,
+        "startChar": 0,
+        "endLine": 115,
+        "endChar": 7
+      },
+      "revId": "fdbe6fce60cd9b8531b3bf385b11ac31638ef1ed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "38d4507f_946dda86",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/ModelLoaderSpec.groovy",
         "patchSetId": 12
@@ -68,6 +116,30 @@
       "revId": "fdbe6fce60cd9b8531b3bf385b11ac31638ef1ed",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "271cb11a_3bb273cd",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/ModelLoaderSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-03-03T14:44:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "38d4507f_946dda86",
+      "range": {
+        "startLine": 45,
+        "startChar": 4,
+        "endLine": 45,
+        "endChar": 35
+      },
+      "revId": "fdbe6fce60cd9b8531b3bf385b11ac31638ef1ed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
