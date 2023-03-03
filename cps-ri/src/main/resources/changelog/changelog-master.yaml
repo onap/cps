@@ -50,3 +50,5 @@ databaseChangeLog:
       file: changelog/db/changes/16-insert-cm-handle-state.yaml
   - include:
       file: changelog/db/changes/17-add-index-to-schema-set-yang-resources.yaml
+  - include:
+      file: changelog/db/changes/18-cascade-delete-fragment-children.yaml
