@@ -159,9 +159,14 @@ public class CpsDataServiceImpl implements CpsDataService {
     public void updateNodeLeaves(final String dataspaceName, final String anchorName, final String parentNodeXpath,
         final String jsonData, final OffsetDateTime observedTimestamp) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
-        final DataNode dataNode = buildDataNode(dataspaceName, anchorName, parentNodeXpath, jsonData, ContentType.JSON);
-        cpsDataPersistenceService
-            .updateDataLeaves(dataspaceName, anchorName, dataNode.getXpath(), dataNode.getLeaves());
+        final Collection<DataNode> dataNodesInPatch = buildDataNodes(dataspaceName, anchorName, parentNodeXpath, jsonData,
+                ContentType.JSON);
+        if (dataNodesInPatch.size() > 1) {
+            throw new DataValidationException("Operation is not supported for multiple data nodes",
+                    "Number of data nodes present: " + dataNodesInPatch.size());
+        }
+        cpsDataPersistenceService.updateDataLeaves(dataspaceName, anchorName,
+                dataNodesInPatch.iterator().next().getXpath(), dataNodesInPatch.iterator().next().getLeaves());
         processDataUpdatedEventAsync(dataspaceName, anchorName, parentNodeXpath, UPDATE, observedTimestamp);
     }
 
