@@ -39,7 +39,7 @@ Release Data
 Bug Fixes
 ---------
 3.2.6
-    - None
+    - `CPS-1526 <https://jira.onap.org/browse/CPS-1526>`_ Fix response message for PATCH operation
 
 Features
 --------
@@ -228,6 +228,9 @@ Known Limitations, Issues and Workarounds
 
 For upgrading, CPS uses Liquibase for database upgrades. CPS/NCMP currently only supports upgrading from Liquibase changelog 11 to Liquibase changelog 16.
 This is from commit CPS-506: List all known modules and revision to CPS-1312: Default CMHandles to READY during upgrade or from ONAP release Honolulu to Kohn.
+
+CPS core Patch operation currently supports updating data of one top level data node. When performing Patch on multiple top level data nodes at once
+a 400 Bad Request is sent as response. This is part of commit CPS-1526.
 
 ..      ====================
 ..      * * *   KOHN   * * *
