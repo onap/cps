@@ -26,7 +26,6 @@ import java.util.Collection;
  * This interface is used in delete fragment entity by id with child using native sql queries.
  */
 public interface FragmentNativeRepository {
-    void deleteFragmentEntity(long fragmentEntityId);
 
     /**
      * Delete fragment entities for each supplied xpath.
