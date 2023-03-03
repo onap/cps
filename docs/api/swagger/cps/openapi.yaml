@@ -1720,7 +1720,7 @@ paths:
       tags:
         - cps-data
       summary: Update node leaves
-      description: Update a data node leaves for a given dataspace and anchor and
+      description: Update leaf nodes of one top level data node for a given dataspace and anchor and
         a parent node xpath
       operationId: updateNodeLeaves
       parameters:
