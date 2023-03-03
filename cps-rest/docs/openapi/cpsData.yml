@@ -131,7 +131,7 @@ nodesByDataspaceAndAnchor:
       '500':
         $ref: 'components.yml#/components/responses/InternalServerError'
   patch:
-    description: Update a data node leaves for a given dataspace and anchor and a parent node xpath
+    description: Update leaf nodes of one top level data node for a given dataspace and anchor and a parent node xpath
     tags:
       - cps-data
     summary: Update node leaves
