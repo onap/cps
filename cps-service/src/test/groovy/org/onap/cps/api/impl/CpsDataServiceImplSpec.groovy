@@ -240,6 +240,17 @@ class CpsDataServiceImplSpec extends Specification {
             'one leaf'        | '{"name": "some-name"}'
     }
 
+    def 'Update multiple data nodes' () {
+        given: 'schema set for given dataspace and anchor refers multipleDataTree model'
+            setupSchemaSetMocks('multipleDataTree.yang')
+        and: 'json string with multiple data trees'
+            def updatedJsonData = '{"first-container":{"a-leaf":"a-new-Value"},"last-container":{"x-leaf":"x-new-value"}}'
+        when: 'update operation is performed on multiple data nodes'
+            objectUnderTest.updateNodeLeaves(dataspaceName, anchorName, '/', updatedJsonData, observedTimestamp)
+        then: 'expected exception is thrown'
+            thrown(DataValidationException)
+    }
+
     def 'Update Bookstore node leaves' () {
         given: 'a DMI registry model'
             setupSchemaSetMocks('bookstore.yang')
