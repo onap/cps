@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "db2e6495_b6a455b7",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/avc-subscription-event-v1.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-03-03T16:58:48Z",
+      "side": 1,
+      "message": "so in the generated code it will be List\u003cObject\u003e\nWe intend to use the same schema for : \nEDM to NCMP consumption\nand\nNCMP to DMI-Plugins forward ( by adding the private properties information )\nCorrect ?",
+      "range": {
+        "startLine": 96,
+        "startChar": 24,
+        "endLine": 96,
+        "endChar": 29
+      },
+      "revId": "b758f0a1479b23e83aaf1c326eb7b298a2e51e6b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "82a8e8eb_0ffcd5ec",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventForwarder.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-03-03T16:58:48Z",
+      "side": 1,
+      "message": "how about DMI_AVC_SUBSCRIPTION_TOPIC_PREFIX ?? As its not a topic.",
+      "range": {
+        "startLine": 53,
+        "startChar": 32,
+        "endLine": 53,
+        "endChar": 58
+      },
+      "revId": "b758f0a1479b23e83aaf1c326eb7b298a2e51e6b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "385a175b_e8694bbe",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventForwarder.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-03-03T16:58:48Z",
+      "side": 1,
+      "message": "here , do you also want to check for wildcard i.e * and reject the message or that comes at a later stage ?",
+      "revId": "b758f0a1479b23e83aaf1c326eb7b298a2e51e6b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
