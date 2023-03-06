@@ -77,3 +77,9 @@ NCMP CM Handle Querying
 
 The CM Handle searches endpoints can be used to query for CM Handles or CM Handle IDs.
 This endpoint is described in detail in :doc:`ncmp-cmhandle-querying`.
+
+NCMP Inventory CM Handle Querying
+=================================
+
+The CM Handle searches ncmp inventory endpoints can be used to query for CM Handles or CM Handle IDs.
+This endpoint is described in detail in :doc:`ncmp-inventory-querying`.
