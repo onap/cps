@@ -26,15 +26,11 @@ import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 
 public interface NetworkCmProxyCmHandleQueryService {
     /**
-     * Query and return cm handles that match the given query parameters.
-     *
-     * @param cmHandleQueryServiceParameters the cm handle query parameters
-     * @return collection of cm handles
-     */
-    Collection<NcmpServiceCmHandle> queryCmHandles(CmHandleQueryServiceParameters cmHandleQueryServiceParameters);
-
-    /**
-     * Query and return cm handles that match the given query parameters.
+     * Query and return cm handle ids that match the given query parameters.
+     * Supported query types:
+     *      public properties
+     *      modules
+     *      cps-path
      *
      * @param cmHandleQueryServiceParameters the cm handle query parameters
      * @return collection of cm handle ids
@@ -42,10 +38,29 @@ public interface NetworkCmProxyCmHandleQueryService {
     Collection<String> queryCmHandleIds(CmHandleQueryServiceParameters cmHandleQueryServiceParameters);
 
     /**
-     * Query and return cm handles that match the given query parameters.
+     * Query and return cm handle ids that match the given query parameters.
+     * Supported query types:
+     *      public properties
+     *      private (additional) properties
+     *      dmi-names
+     *      modules
+     *      cps-path
+     * The inventory interface also allows conditions on private (additional) properties and dmi names
      *
      * @param cmHandleQueryServiceParameters the cm handle query parameters
      * @return collection of cm handle ids
      */
     Collection<String> queryCmHandleIdsForInventory(CmHandleQueryServiceParameters cmHandleQueryServiceParameters);
+
+    /**
+     * Query and return cm handle objects that match the given query parameters.
+     * Supported query types:
+     *      public properties
+     *      modules
+     *      cps-path
+     *
+     * @param cmHandleQueryServiceParameters the cm handle query parameters
+     * @return collection of cm handles
+     */
+    Collection<NcmpServiceCmHandle> queryCmHandles(CmHandleQueryServiceParameters cmHandleQueryServiceParameters);
 }
