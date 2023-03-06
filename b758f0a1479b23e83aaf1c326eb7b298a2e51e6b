@@ -62,6 +62,75 @@
       "revId": "b758f0a1479b23e83aaf1c326eb7b298a2e51e6b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9706662f_2d48eb92",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventForwarder.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-03-06T11:14:03Z",
+      "side": 1,
+      "message": "😊 unsure abt this.\nLets have a call to discuss this.",
+      "range": {
+        "startLine": 70,
+        "startChar": 38,
+        "endLine": 70,
+        "endChar": 63
+      },
+      "revId": "b758f0a1479b23e83aaf1c326eb7b298a2e51e6b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "725e80c3_906816b3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventForwarder.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-03-06T11:14:03Z",
+      "side": 1,
+      "message": "I see that we are duplicating the publisher code. ( lcm , avc etc ) \nWe need to look at writing a common publisher that can handle multiple messages.",
+      "range": {
+        "startLine": 79,
+        "startChar": 4,
+        "endLine": 96,
+        "endChar": 5
+      },
+      "revId": "b758f0a1479b23e83aaf1c326eb7b298a2e51e6b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "81d6a8e8_f53fb2b1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/yangmodels/YangModelCmHandle.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-03-06T11:14:03Z",
+      "side": 1,
+      "message": "I feel this code should not be here.\nYangModelCmHandle is a model/pojo class.\nI dont think we should be putting logics in here.\n\nI see other helper methods as well before you introduced this method here.\n\nIf you like an idea of creating a new helper class then write this method thr.\n\nAlso we can think/disucss about other ideas.",
+      "range": {
+        "startLine": 169,
+        "startChar": 4,
+        "endLine": 179,
+        "endChar": 5
+      },
+      "revId": "b758f0a1479b23e83aaf1c326eb7b298a2e51e6b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
