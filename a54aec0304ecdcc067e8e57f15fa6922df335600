@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "13d099b0_942e7551",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/SubscriptionModelLoader.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-03-06T09:56:02Z",
+      "side": 1,
+      "message": "Decision Made.\nThis is as expected.",
+      "parentUuid": "af49b3ae_15647845",
+      "range": {
+        "startLine": 59,
+        "startChar": 12,
+        "endLine": 59,
+        "endChar": 91
+      },
+      "revId": "a54aec0304ecdcc067e8e57f15fa6922df335600",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "62a8f4a0_cb3755d0",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/SubscriptionModelLoader.java",
         "patchSetId": 15
