@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7f389b40_ec42cb9f",
+        "filename": "cps-ncmp-service/src/test/java/org/onap/cps/ncmp/utils/KafkaDemoProducerConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-03-06T12:54:07Z",
+      "side": 1,
+      "message": "we dont have to duplicate this.\nyou can as well use the producerFactory()",
+      "range": {
+        "startLine": 54,
+        "startChar": 4,
+        "endLine": 70,
+        "endChar": 0
+      },
+      "revId": "bd61db3bf4b5c0b163c09b72e24b20e84f698e66",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
