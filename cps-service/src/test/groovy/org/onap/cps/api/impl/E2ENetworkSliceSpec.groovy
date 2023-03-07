@@ -90,7 +90,7 @@ class E2ENetworkSliceSpec extends Specification {
             def jsonData = TestUtils.getResourceFileContent('e2e/basic/cps-Cavsta-Data.txt')
         and : 'all the further dependencies are mocked '
             mockCpsAdminService.getAnchor(dataspaceName, anchorName) >>
-                    new Anchor().builder().name(anchorName).schemaSetName(schemaSetName).build()
+                    new Anchor().builder().name(anchorName).schemaSetName(schemaSetName).dataspaceName(dataspaceName).build()
             mockYangTextSchemaSourceSetCache.get(dataspaceName, schemaSetName) >>
                     YangTextSchemaSourceSetBuilder.of(yangResourcesNameToContentMap)
             mockModuleStoreService.getYangSchemaResources(dataspaceName, schemaSetName) >> schemaContext
@@ -123,7 +123,7 @@ class E2ENetworkSliceSpec extends Specification {
             def jsonData = TestUtils.getResourceFileContent('e2e/basic/cps-ran-inventory-data.json')
         and : 'all the further dependencies are mocked '
             mockCpsAdminService.getAnchor('someDataspace', 'someAnchor') >>
-                    new Anchor().builder().name('someAnchor').schemaSetName('someSchemaSet').build()
+                    new Anchor().builder().name('someAnchor').schemaSetName('someSchemaSet').dataspaceName(dataspaceName).build()
             mockYangTextSchemaSourceSetCache.get('someDataspace', 'someSchemaSet') >> YangTextSchemaSourceSetBuilder.of(yangResourcesNameToContentMap)
             mockModuleStoreService.getYangSchemaResources('someDataspace', 'someSchemaSet') >> schemaContext
         when: 'saveData method is invoked'
