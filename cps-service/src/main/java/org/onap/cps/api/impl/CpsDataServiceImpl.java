@@ -30,9 +30,7 @@ import static org.onap.cps.notification.Operation.UPDATE;
 
 import io.micrometer.core.annotation.Timed;
 import java.time.OffsetDateTime;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -81,10 +79,10 @@ public class CpsDataServiceImpl implements CpsDataService {
     public void saveData(final String dataspaceName, final String anchorName, final String nodeData,
                          final OffsetDateTime observedTimestamp, final ContentType contentType) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
-        final Collection<DataNode> dataNodes =
-                buildDataNodes(dataspaceName, anchorName, ROOT_NODE_XPATH, nodeData, contentType);
+        final Anchor anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
+        final Collection<DataNode> dataNodes = buildDataNodes(anchor, ROOT_NODE_XPATH, nodeData, contentType);
         cpsDataPersistenceService.storeDataNodes(dataspaceName, anchorName, dataNodes);
-        processDataUpdatedEventAsync(dataspaceName, anchorName, ROOT_NODE_XPATH, CREATE, observedTimestamp);
+        processDataUpdatedEventAsync(anchor, ROOT_NODE_XPATH, CREATE, observedTimestamp);
     }
 
     @Override
@@ -100,10 +98,10 @@ public class CpsDataServiceImpl implements CpsDataService {
                          final String nodeData, final OffsetDateTime observedTimestamp,
                          final ContentType contentType) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
-        final Collection<DataNode> dataNodes =
-                buildDataNodes(dataspaceName, anchorName, parentNodeXpath, nodeData, contentType);
+        final Anchor anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
+        final Collection<DataNode> dataNodes = buildDataNodes(anchor, parentNodeXpath, nodeData, contentType);
         cpsDataPersistenceService.addChildDataNodes(dataspaceName, anchorName, parentNodeXpath, dataNodes);
-        processDataUpdatedEventAsync(dataspaceName, anchorName, parentNodeXpath, CREATE, observedTimestamp);
+        processDataUpdatedEventAsync(anchor, parentNodeXpath, CREATE, observedTimestamp);
     }
 
     @Override
@@ -112,11 +110,12 @@ public class CpsDataServiceImpl implements CpsDataService {
     public void saveListElements(final String dataspaceName, final String anchorName,
         final String parentNodeXpath, final String jsonData, final OffsetDateTime observedTimestamp) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
+        final Anchor anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
         final Collection<DataNode> listElementDataNodeCollection =
-            buildDataNodes(dataspaceName, anchorName, parentNodeXpath, jsonData, ContentType.JSON);
+            buildDataNodes(anchor, parentNodeXpath, jsonData, ContentType.JSON);
         cpsDataPersistenceService.addListElements(dataspaceName, anchorName, parentNodeXpath,
             listElementDataNodeCollection);
-        processDataUpdatedEventAsync(dataspaceName, anchorName, parentNodeXpath, UPDATE, observedTimestamp);
+        processDataUpdatedEventAsync(anchor, parentNodeXpath, UPDATE, observedTimestamp);
     }
 
     @Override
@@ -125,11 +124,12 @@ public class CpsDataServiceImpl implements CpsDataService {
     public void saveListElementsBatch(final String dataspaceName, final String anchorName, final String parentNodeXpath,
             final Collection<String> jsonDataList, final OffsetDateTime observedTimestamp) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
+        final Anchor anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
         final Collection<Collection<DataNode>> listElementDataNodeCollections =
-                buildDataNodes(dataspaceName, anchorName, parentNodeXpath, jsonDataList, ContentType.JSON);
+                buildDataNodes(anchor, parentNodeXpath, jsonDataList, ContentType.JSON);
         cpsDataPersistenceService.addMultipleLists(dataspaceName, anchorName, parentNodeXpath,
                 listElementDataNodeCollections);
-        processDataUpdatedEventAsync(dataspaceName, anchorName, parentNodeXpath, UPDATE, observedTimestamp);
+        processDataUpdatedEventAsync(anchor, parentNodeXpath, UPDATE, observedTimestamp);
     }
 
     @Override
@@ -159,10 +159,11 @@ public class CpsDataServiceImpl implements CpsDataService {
     public void updateNodeLeaves(final String dataspaceName, final String anchorName, final String parentNodeXpath,
         final String jsonData, final OffsetDateTime observedTimestamp) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
-        final DataNode dataNode = buildDataNode(dataspaceName, anchorName, parentNodeXpath, jsonData, ContentType.JSON);
-        cpsDataPersistenceService
-            .updateDataLeaves(dataspaceName, anchorName, dataNode.getXpath(), dataNode.getLeaves());
-        processDataUpdatedEventAsync(dataspaceName, anchorName, parentNodeXpath, UPDATE, observedTimestamp);
+        final Anchor anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
+        final DataNode dataNode = buildDataNode(anchor, parentNodeXpath, jsonData, ContentType.JSON);
+        cpsDataPersistenceService.updateDataLeaves(dataspaceName, anchorName, dataNode.getXpath(),
+            dataNode.getLeaves());
+        processDataUpdatedEventAsync(anchor, parentNodeXpath, UPDATE, observedTimestamp);
     }
 
     @Override
@@ -173,13 +174,13 @@ public class CpsDataServiceImpl implements CpsDataService {
         final String dataNodeUpdatesAsJson,
         final OffsetDateTime observedTimestamp) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
+        final Anchor anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
         final Collection<DataNode> dataNodeUpdates =
-            buildDataNodes(dataspaceName, anchorName,
-                parentNodeXpath, dataNodeUpdatesAsJson, ContentType.JSON);
+            buildDataNodes(anchor, parentNodeXpath, dataNodeUpdatesAsJson, ContentType.JSON);
         for (final DataNode dataNodeUpdate : dataNodeUpdates) {
-            processDataNodeUpdate(dataspaceName, anchorName, dataNodeUpdate);
+            processDataNodeUpdate(anchor, dataNodeUpdate);
         }
-        processDataUpdatedEventAsync(dataspaceName, anchorName, parentNodeXpath, UPDATE, observedTimestamp);
+        processDataUpdatedEventAsync(anchor, parentNodeXpath, UPDATE, observedTimestamp);
     }
 
     @Override
@@ -210,11 +211,10 @@ public class CpsDataServiceImpl implements CpsDataService {
                                              final String parentNodeXpath, final String jsonData,
                                              final OffsetDateTime observedTimestamp) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
-        final Collection<DataNode> dataNodes =
-                buildDataNodes(dataspaceName, anchorName, parentNodeXpath, jsonData, ContentType.JSON);
-        final ArrayList<DataNode> nodes = new ArrayList<>(dataNodes);
-        cpsDataPersistenceService.updateDataNodesAndDescendants(dataspaceName, anchorName, nodes);
-        processDataUpdatedEventAsync(dataspaceName, anchorName, parentNodeXpath, UPDATE, observedTimestamp);
+        final Anchor anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
+        final Collection<DataNode> dataNodes = buildDataNodes(anchor, parentNodeXpath, jsonData, ContentType.JSON);
+        cpsDataPersistenceService.updateDataNodesAndDescendants(dataspaceName, anchorName, dataNodes);
+        processDataUpdatedEventAsync(anchor, parentNodeXpath, UPDATE, observedTimestamp);
     }
 
     @Override
@@ -224,11 +224,11 @@ public class CpsDataServiceImpl implements CpsDataService {
                                               final Map<String, String> nodesJsonData,
                                               final OffsetDateTime observedTimestamp) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
-        final List<DataNode> dataNodes = buildDataNodes(dataspaceName, anchorName, nodesJsonData);
+        final Anchor anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
+        final Collection<DataNode> dataNodes = buildDataNodes(anchor, nodesJsonData);
         cpsDataPersistenceService.updateDataNodesAndDescendants(dataspaceName, anchorName, dataNodes);
         nodesJsonData.keySet().forEach(nodeXpath ->
-            processDataUpdatedEventAsync(dataspaceName, anchorName, nodeXpath,
-                UPDATE, observedTimestamp));
+            processDataUpdatedEventAsync(anchor, nodeXpath, UPDATE, observedTimestamp));
     }
 
     @Override
@@ -237,8 +237,9 @@ public class CpsDataServiceImpl implements CpsDataService {
     public void replaceListContent(final String dataspaceName, final String anchorName, final String parentNodeXpath,
             final String jsonData, final OffsetDateTime observedTimestamp) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
+        final Anchor anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
         final Collection<DataNode> newListElements =
-                buildDataNodes(dataspaceName, anchorName, parentNodeXpath, jsonData, ContentType.JSON);
+            buildDataNodes(anchor, parentNodeXpath, jsonData, ContentType.JSON);
         replaceListContent(dataspaceName, anchorName, parentNodeXpath, newListElements, observedTimestamp);
     }
 
@@ -248,8 +249,9 @@ public class CpsDataServiceImpl implements CpsDataService {
     public void replaceListContent(final String dataspaceName, final String anchorName, final String parentNodeXpath,
             final Collection<DataNode> dataNodes, final OffsetDateTime observedTimestamp) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
+        final Anchor anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
         cpsDataPersistenceService.replaceListContent(dataspaceName, anchorName, parentNodeXpath, dataNodes);
-        processDataUpdatedEventAsync(dataspaceName, anchorName, parentNodeXpath, UPDATE, observedTimestamp);
+        processDataUpdatedEventAsync(anchor, parentNodeXpath, UPDATE, observedTimestamp);
     }
 
     @Override
@@ -258,8 +260,9 @@ public class CpsDataServiceImpl implements CpsDataService {
     public void deleteDataNode(final String dataspaceName, final String anchorName, final String dataNodeXpath,
                                final OffsetDateTime observedTimestamp) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
+        final Anchor anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
         cpsDataPersistenceService.deleteDataNode(dataspaceName, anchorName, dataNodeXpath);
-        processDataUpdatedEventAsync(dataspaceName, anchorName, dataNodeXpath, DELETE, observedTimestamp);
+        processDataUpdatedEventAsync(anchor, dataNodeXpath, DELETE, observedTimestamp);
     }
 
     @Override
@@ -269,8 +272,9 @@ public class CpsDataServiceImpl implements CpsDataService {
                                 final Collection<String> dataNodeXpaths, final OffsetDateTime observedTimestamp) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         cpsDataPersistenceService.deleteDataNodes(dataspaceName, anchorName, dataNodeXpaths);
+        final Anchor anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
         dataNodeXpaths.forEach(dataNodeXpath ->
-            processDataUpdatedEventAsync(dataspaceName, anchorName, dataNodeXpath, DELETE, observedTimestamp));
+            processDataUpdatedEventAsync(anchor, dataNodeXpath, DELETE, observedTimestamp));
     }
 
     @Override
@@ -279,7 +283,8 @@ public class CpsDataServiceImpl implements CpsDataService {
     public void deleteDataNodes(final String dataspaceName, final String anchorName,
                                 final OffsetDateTime observedTimestamp) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
-        processDataUpdatedEventAsync(dataspaceName, anchorName, ROOT_NODE_XPATH, DELETE, observedTimestamp);
+        final Anchor anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
+        processDataUpdatedEventAsync(anchor, ROOT_NODE_XPATH, DELETE, observedTimestamp);
         cpsDataPersistenceService.deleteDataNodes(dataspaceName, anchorName);
     }
 
@@ -290,8 +295,8 @@ public class CpsDataServiceImpl implements CpsDataService {
                                 final OffsetDateTime observedTimestamp) {
         cpsValidator.validateNameCharacters(dataspaceName);
         cpsValidator.validateNameCharacters(anchorNames);
-        for (final String anchorName : anchorNames) {
-            processDataUpdatedEventAsync(dataspaceName, anchorName, ROOT_NODE_XPATH, DELETE, observedTimestamp);
+        for (final Anchor anchor : cpsAdminService.getAnchors(dataspaceName, anchorNames)) {
+            processDataUpdatedEventAsync(anchor, ROOT_NODE_XPATH, DELETE, observedTimestamp);
         }
         cpsDataPersistenceService.deleteDataNodes(dataspaceName, anchorNames);
     }
@@ -302,16 +307,14 @@ public class CpsDataServiceImpl implements CpsDataService {
     public void deleteListOrListElement(final String dataspaceName, final String anchorName, final String listNodeXpath,
         final OffsetDateTime observedTimestamp) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
+        final Anchor anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
         cpsDataPersistenceService.deleteListDataNode(dataspaceName, anchorName, listNodeXpath);
-        processDataUpdatedEventAsync(dataspaceName, anchorName, listNodeXpath, DELETE, observedTimestamp);
+        processDataUpdatedEventAsync(anchor, listNodeXpath, DELETE, observedTimestamp);
     }
 
-    private DataNode buildDataNode(final String dataspaceName, final String anchorName,
-                                   final String parentNodeXpath, final String nodeData,
+    private DataNode buildDataNode(final Anchor anchor, final String parentNodeXpath, final String nodeData,
                                    final ContentType contentType) {
-
-        final Anchor anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
-        final SchemaContext schemaContext = getSchemaContext(dataspaceName, anchor.getSchemaSetName());
+        final SchemaContext schemaContext = getSchemaContext(anchor);
 
         if (ROOT_NODE_XPATH.equals(parentNodeXpath)) {
             final ContainerNode containerNode = timedYangParser.parseData(contentType, nodeData, schemaContext);
@@ -327,21 +330,15 @@ public class CpsDataServiceImpl implements CpsDataService {
                 .build();
     }
 
-    private List<DataNode> buildDataNodes(final String dataspaceName, final String anchorName,
-                                          final Map<String, String> nodesJsonData) {
+    private Collection<DataNode> buildDataNodes(final Anchor anchor, final Map<String, String> nodesJsonData) {
         return nodesJsonData.entrySet().stream().map(nodeJsonData ->
-            buildDataNode(dataspaceName, anchorName, nodeJsonData.getKey(),
+            buildDataNode(anchor, nodeJsonData.getKey(),
                 nodeJsonData.getValue(), ContentType.JSON)).collect(Collectors.toList());
     }
 
-    private Collection<DataNode> buildDataNodes(final String dataspaceName,
-                                                final String anchorName,
-                                                final String parentNodeXpath,
-                                                final String nodeData,
-                                                final ContentType contentType) {
-
-        final Anchor anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
-        final SchemaContext schemaContext = getSchemaContext(dataspaceName, anchor.getSchemaSetName());
+    private Collection<DataNode> buildDataNodes(final Anchor anchor, final String parentNodeXpath,
+                                                final String nodeData, final ContentType contentType) {
+        final SchemaContext schemaContext = getSchemaContext(anchor);
 
         if (ROOT_NODE_XPATH.equals(parentNodeXpath)) {
             final ContainerNode containerNode = timedYangParser.parseData(contentType, nodeData, schemaContext);
@@ -365,37 +362,38 @@ public class CpsDataServiceImpl implements CpsDataService {
         return dataNodes;
     }
 
-    private Collection<Collection<DataNode>> buildDataNodes(final String dataspaceName, final String anchorName,
-            final String parentNodeXpath, final Collection<String> nodeDataList, final ContentType contentType) {
+    private Collection<Collection<DataNode>> buildDataNodes(final Anchor anchor, final String parentNodeXpath,
+                                                            final Collection<String> nodeDataList,
+                                                            final ContentType contentType) {
         return nodeDataList.stream()
-                .map(nodeData -> buildDataNodes(dataspaceName, anchorName, parentNodeXpath, nodeData, contentType))
-                .collect(Collectors.toList());
+            .map(nodeData -> buildDataNodes(anchor, parentNodeXpath, nodeData, contentType))
+            .collect(Collectors.toList());
     }
 
-    private void processDataUpdatedEventAsync(final String dataspaceName, final String anchorName, final String xpath,
-            final Operation operation, final OffsetDateTime observedTimestamp) {
+    private void processDataUpdatedEventAsync(final Anchor anchor, final String xpath,
+                                              final Operation operation, final OffsetDateTime observedTimestamp) {
         try {
-            notificationService.processDataUpdatedEvent(dataspaceName, anchorName, xpath, operation, observedTimestamp);
+            notificationService.processDataUpdatedEvent(anchor, xpath, operation, observedTimestamp);
         } catch (final Exception exception) {
             //If async message can't be queued for notification service, the initial request should not failed.
             log.error("Failed to send message to notification service", exception);
         }
     }
 
-    private SchemaContext getSchemaContext(final String dataspaceName, final String schemaSetName) {
-        return yangTextSchemaSourceSetCache.get(dataspaceName, schemaSetName).getSchemaContext();
+    private SchemaContext getSchemaContext(final Anchor anchor) {
+        return yangTextSchemaSourceSetCache
+            .get(anchor.getDataspaceName(), anchor.getSchemaSetName()).getSchemaContext();
     }
 
-    private void processDataNodeUpdate(final String dataspaceName, final String anchorName,
-                                       final DataNode dataNodeUpdate) {
+    private void processDataNodeUpdate(final Anchor anchor, final DataNode dataNodeUpdate) {
         if (dataNodeUpdate == null) {
             return;
         }
-        cpsDataPersistenceService.updateDataLeaves(dataspaceName, anchorName, dataNodeUpdate.getXpath(),
-            dataNodeUpdate.getLeaves());
+        cpsDataPersistenceService.updateDataLeaves(anchor.getDataspaceName(), anchor.getName(),
+            dataNodeUpdate.getXpath(), dataNodeUpdate.getLeaves());
         final Collection<DataNode> childDataNodeUpdates = dataNodeUpdate.getChildDataNodes();
         for (final DataNode childDataNodeUpdate : childDataNodeUpdates) {
-            processDataNodeUpdate(dataspaceName, anchorName, childDataNodeUpdate);
+            processDataNodeUpdate(anchor, childDataNodeUpdate);
         }
     }
 

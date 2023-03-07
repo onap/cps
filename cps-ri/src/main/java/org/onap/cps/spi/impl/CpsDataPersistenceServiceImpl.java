@@ -486,7 +486,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
 
     @Override
     public void updateDataNodesAndDescendants(final String dataspaceName, final String anchorName,
-                                              final List<DataNode> updatedDataNodes) {
+                                              final Collection<DataNode> updatedDataNodes) {
         final AnchorEntity anchorEntity = getAnchorEntity(dataspaceName, anchorName);
 
         final Map<String, DataNode> xpathToUpdatedDataNode = updatedDataNodes.stream()
