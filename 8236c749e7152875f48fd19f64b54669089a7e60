@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "47d0b126_074ff078",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-03-07T10:45:04Z",
+      "side": 1,
+      "message": "we usually create this section as part of preparing for the next release.\nDo it as part of Step-7\nYou can remove this from this commit.",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 14
+      },
+      "revId": "8236c749e7152875f48fd19f64b54669089a7e60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "99f64b93_91d29cd0",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-03-07T10:45:04Z",
+      "side": 1,
+      "message": "these should be part of 3.2.3 right ?? Since we are releasing 3.2.3.\nCorrect?",
+      "range": {
+        "startLine": 42,
+        "startChar": 3,
+        "endLine": 42,
+        "endChar": 96
+      },
+      "revId": "8236c749e7152875f48fd19f64b54669089a7e60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da597b74_de66dc50",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-03-07T10:45:04Z",
+      "side": 1,
+      "message": "these should be part of 3.2.3 right ?? Since we are releasing 3.2.3.\nCorrect?",
+      "range": {
+        "startLine": 46,
+        "startChar": 3,
+        "endLine": 46,
+        "endChar": 88
+      },
+      "revId": "8236c749e7152875f48fd19f64b54669089a7e60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
