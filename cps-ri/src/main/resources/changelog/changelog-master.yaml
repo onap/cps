@@ -1,6 +1,6 @@
 # ============LICENSE_START=======================================================
 # Copyright (c) 2021 Bell Canada.
-# Modifications Copyright (C) 2022 Nordix Foundation.
+# Modifications Copyright (C) 2022-2023 Nordix Foundation.
 # ================================================================================
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -48,3 +48,5 @@ databaseChangeLog:
       file: changelog/db/changes/15-rename-column-yang-resource-table.yaml
   - include:
       file: changelog/db/changes/16-insert-cm-handle-state.yaml
+  - include:
+      file: changelog/db/changes/17-add-index-to-schema-set-yang-resources.yaml
