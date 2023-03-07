@@ -32,18 +32,19 @@ Release Data
 | **Release designation**              | 3.2.3 London                                           |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
-| **Release date**                     | Not been released yet                                  |
+| **Release date**                     | 2023 March 07                                          |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
 
 Bug Fixes
 ---------
 3.2.3
-   - None
+   - `CPS-1494 <https://jira.onap.org/browse/CPS-1494>`_ NCMP Inventory Performance Improvements
 
 Features
 --------
-   - CPS-1401 <https://jira.onap.org/browse/CPS-1401>- Added V2 of Get Data Node API,support to retrieve all data nodes under an anchor
+    - `CPS-1401 <https://jira.onap.org/browse/CPS-1401>`_ Added V2 of Get Data Node API,support to retrieve all data nodes under an anchor
+    - `CPS-1502 <https://jira.onap.org/browse/CPS-1502>`_ Delete Performance Improvements
 
 Version: 3.2.2
 ==============
