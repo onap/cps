@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a69ca510_bf62708c",
+        "filename": "releases/3.2.3-container.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-03-07T11:46:18Z",
+      "side": 1,
+      "message": "whis is this reference??\nuse 02bffef6d216ed03206526d49a4fb20124bfafe9 from the patch https://gerrit.onap.org/r/c/cps/+/133217 where you ran the stage release job.",
+      "range": {
+        "startLine": 5,
+        "startChar": 5,
+        "endLine": 5,
+        "endChar": 45
+      },
+      "revId": "0d73c749a0091783e2ec1feafbad9eaa157bb60d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
