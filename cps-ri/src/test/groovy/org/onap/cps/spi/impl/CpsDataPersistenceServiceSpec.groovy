@@ -24,6 +24,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import org.hibernate.StaleStateException
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.entities.AnchorEntity
+import org.onap.cps.spi.entities.DataspaceEntity
 import org.onap.cps.spi.entities.FragmentEntity
 import org.onap.cps.spi.exceptions.ConcurrencyException
 import org.onap.cps.spi.exceptions.DataValidationException
@@ -49,7 +50,9 @@ class CpsDataPersistenceServiceSpec extends Specification {
             mockFragmentRepository, jsonObjectMapper, mockSessionManager))
 
     def 'Storing data nodes individually when batch operation fails'(){
-        given: 'two data nodes and supporting repository mock behavior'
+        given: 'db contains an anchor'
+            mockAnchorRepository.getByDataspaceAndName(_, _) >> new AnchorEntity(id: 123, dataspace: new DataspaceEntity(id: 1))
+        and: 'two data nodes and supporting repository mock behavior'
             def dataNode1 = createDataNodeAndMockRepositoryMethodSupportingIt('xpath1','OK')
             def dataNode2 = createDataNodeAndMockRepositoryMethodSupportingIt('xpath2','OK')
         and: 'the batch store operation will fail'
@@ -57,11 +60,13 @@ class CpsDataPersistenceServiceSpec extends Specification {
         when: 'trying to store data nodes'
             objectUnderTest.storeDataNodes('dataSpaceName', 'anchorName', [dataNode1, dataNode2])
         then: 'the two data nodes are saved individually'
-            2 * mockFragmentRepository.save(_);
+            2 * mockFragmentRepository.save(_)
     }
 
     def 'Store single data node.'() {
-        given: 'a data node'
+        given: 'db contains an anchor'
+            mockAnchorRepository.getByDataspaceAndName(_, _) >> new AnchorEntity(id: 123, dataspace: new DataspaceEntity(id: 1))
+        and: 'a data node'
             def dataNode = new DataNode()
         when: 'storing a single data node'
             objectUnderTest.storeDataNode('dataspace1', 'anchor1', dataNode)
@@ -71,7 +76,7 @@ class CpsDataPersistenceServiceSpec extends Specification {
 
     def 'Handling of StaleStateException (caused by concurrent updates) during update data node and descendants.'() {
         given: 'the fragment repository returns a fragment entity'
-            mockFragmentRepository.getByDataspaceAndAnchorAndXpath(*_) >> {
+            mockFragmentRepository.getByAnchorAndXpath(*_) >> {
                 def fragmentEntity = new FragmentEntity()
                 fragmentEntity.setChildFragments([new FragmentEntity()] as Set<FragmentEntity>)
                 return fragmentEntity
@@ -182,7 +187,7 @@ class CpsDataPersistenceServiceSpec extends Specification {
 
     def 'update data node leaves: #scenario'(){
         given: 'A node exists for the given xpath'
-            mockFragmentRepository.getByDataspaceAndAnchorAndXpath(_, _, '/some/xpath') >> new FragmentEntity(xpath: '/some/xpath', attributes:  existingAttributes)
+            mockFragmentRepository.getByAnchorAndXpath(_, '/some/xpath') >> new FragmentEntity(xpath: '/some/xpath', attributes:  existingAttributes)
         when: 'the node leaves are updated'
             objectUnderTest.updateDataLeaves('some-dataspace', 'some-anchor', '/some/xpath', newAttributes as Map<String, Serializable>)
         then: 'the fragment entity saved has the original and new attributes'
@@ -215,12 +220,13 @@ class CpsDataPersistenceServiceSpec extends Specification {
     }
 
     def 'update data nodes and descendants'() {
-        given: 'the fragment repository returns fragment entities related to the xpath inputs'
+        given: 'db contains an anchor'
+            def anchorEntity = new AnchorEntity(id: 123, dataspace: new DataspaceEntity(id: 1))
+            mockAnchorRepository.getByDataspaceAndName(_, _) >> anchorEntity
+        and: 'the fragment repository returns fragment entities related to the xpath inputs'
             mockFragmentRepository.findByAnchorAndMultipleCpsPaths(_, ['/test/xpath1', '/test/xpath2'] as Set) >> [
-                new FragmentEntity(xpath: '/test/xpath1', childFragments: []),
-                new FragmentEntity(xpath: '/test/xpath2', childFragments: [])]
-        and: 'db contains an anchor'
-            mockAnchorRepository.getByDataspaceAndName(*_) >> new AnchorEntity(id:123)
+                new FragmentEntity(xpath: '/test/xpath1', childFragments: [], anchor: anchorEntity),
+                new FragmentEntity(xpath: '/test/xpath2', childFragments: [], anchor: anchorEntity)]
         and: 'some data nodes with descendants'
             def dataNode1 = new DataNode(xpath: '/test/xpath1', leaves: ['id': 'testId1'], childDataNodes: [new DataNode(xpath: '/test/xpath1/child', leaves: ['id': 'childTestId1'])])
             def dataNode2 = new DataNode(xpath: '/test/xpath2', leaves: ['id': 'testId2'], childDataNodes: [new DataNode(xpath: '/test/xpath2/child', leaves: ['id': 'childTestId2'])])
@@ -239,7 +245,7 @@ class CpsDataPersistenceServiceSpec extends Specification {
     def createDataNodeAndMockRepositoryMethodSupportingIt(xpath, scenario) {
         def dataNode = new DataNodeBuilder().withXpath(xpath).build()
         def fragmentEntity = new FragmentEntity(xpath: xpath, childFragments: [])
-        mockFragmentRepository.getByDataspaceAndAnchorAndXpath(_, _, xpath) >> fragmentEntity
+        mockFragmentRepository.getByAnchorAndXpath(_, xpath) >> fragmentEntity
         if ('EXCEPTION' == scenario) {
             mockFragmentRepository.save(fragmentEntity) >> { throw new StaleStateException("concurrent updates") }
         }
@@ -256,7 +262,7 @@ class CpsDataPersistenceServiceSpec extends Specification {
             dataNodes.add(dataNode)
             def fragmentEntity = new FragmentEntity(xpath: xpath, childFragments: [])
             fragmentEntities.add(fragmentEntity)
-            mockFragmentRepository.getByDataspaceAndAnchorAndXpath(_, _, xpath) >> fragmentEntity
+            mockFragmentRepository.getByAnchorAndXpath(_, xpath) >> fragmentEntity
             if ('EXCEPTION' == scenario) {
                 mockFragmentRepository.save(fragmentEntity) >> { throw new StaleStateException("concurrent updates") }
             }

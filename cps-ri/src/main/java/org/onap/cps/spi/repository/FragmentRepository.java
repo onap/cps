@@ -25,10 +25,8 @@ package org.onap.cps.spi.repository;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
-import javax.validation.constraints.NotNull;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.onap.cps.spi.entities.AnchorEntity;
-import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.FragmentEntity;
 import org.onap.cps.spi.entities.FragmentExtract;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
@@ -42,48 +40,21 @@ import org.springframework.stereotype.Repository;
 public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>, FragmentRepositoryCpsPathQuery,
         FragmentRepositoryMultiPathQuery, FragmentNativeRepository {
 
-    Optional<FragmentEntity> findByDataspaceAndAnchorAndXpath(@NonNull DataspaceEntity dataspaceEntity,
-                                                              @NonNull AnchorEntity anchorEntity,
-                                                              @NonNull String xpath);
+    Optional<FragmentEntity> findByAnchorAndXpath(@NonNull AnchorEntity anchorEntity, @NonNull String xpath);
 
-    default FragmentEntity getByDataspaceAndAnchorAndXpath(@NonNull DataspaceEntity dataspaceEntity,
-                                                           @NonNull AnchorEntity anchorEntity,
-                                                           @NonNull String xpath) {
-        return findByDataspaceAndAnchorAndXpath(dataspaceEntity, anchorEntity, xpath)
-            .orElseThrow(() -> new DataNodeNotFoundException(dataspaceEntity.getName(), anchorEntity.getName(), xpath));
+    default FragmentEntity getByAnchorAndXpath(@NonNull AnchorEntity anchorEntity, @NonNull String xpath) {
+        return findByAnchorAndXpath(anchorEntity, xpath).orElseThrow(() ->
+            new DataNodeNotFoundException(anchorEntity.getDataspace().getName(), anchorEntity.getName(), xpath));
     }
 
-    @Query(
-        value = "SELECT * FROM FRAGMENT WHERE anchor_id = :anchor AND dataspace_id = :dataspace AND parent_id is NULL",
-        nativeQuery = true)
-    List<FragmentEntity> findRootsByDataspaceAndAnchor(@Param("dataspace") int dataspaceId,
-                                                       @Param("anchor") int anchorId);
+    boolean existsByAnchorId(int anchorId);
 
-    @Query(value = "SELECT id, anchor_id AS anchorId, xpath, parent_id AS parentId,"
-            + " CAST(attributes AS TEXT) AS attributes"
-            + " FROM FRAGMENT WHERE anchor_id = :anchorId",
-            nativeQuery = true)
-    List<FragmentExtract> findRootsByAnchorId(@Param("anchorId") int anchorId);
-
-    /**
-     * find top level fragment by anchor.
-     *
-     * @param dataspaceEntity dataspace entity
-     * @param anchorEntity anchor entity
-     * @return FragmentEntity fragment entity
-     */
-    default List<FragmentExtract> getTopLevelFragments(DataspaceEntity dataspaceEntity,
-                                                       AnchorEntity anchorEntity) {
-        final List<FragmentExtract> fragmentExtracts = findRootsByAnchorId(anchorEntity.getId());
-        if (fragmentExtracts.isEmpty()) {
-            throw new DataNodeNotFoundException(dataspaceEntity.getName(), anchorEntity.getName());
-        }
-        return fragmentExtracts;
-    }
+    @Query("SELECT f FROM FragmentEntity f WHERE f.anchor = :anchor")
+    List<FragmentExtract> findAllExtractsByAnchor(@Param("anchor") AnchorEntity anchorEntity);
 
     @Modifying
     @Query("DELETE FROM FragmentEntity fe WHERE fe.anchor IN (:anchors)")
-    void deleteByAnchorIn(@NotNull @Param("anchors") Collection<AnchorEntity> anchorEntities);
+    void deleteByAnchorIn(@NonNull @Param("anchors") Collection<AnchorEntity> anchorEntities);
 
     @Query(value = "SELECT id, anchor_id AS anchorId, xpath, parent_id AS parentId,"
         + " CAST(attributes AS TEXT) AS attributes"
