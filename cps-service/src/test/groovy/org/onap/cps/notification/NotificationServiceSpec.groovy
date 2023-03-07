@@ -1,7 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (c) 2021-2022 Bell Canada.
- *  Modifications Copyright (C) 2022 Nordix Foundation
+ *  Modifications Copyright (C) 2022-2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -72,7 +72,7 @@ class NotificationServiceSpec extends Specification {
         given: 'notification is disabled'
             spyNotificationProperties.isEnabled() >> false
         when: 'dataUpdatedEvent is received'
-            objectUnderTest.processDataUpdatedEvent(dataspaceName, anchorName, '/', Operation.CREATE, myObservedTimestamp)
+            objectUnderTest.processDataUpdatedEvent(anchor, '/', Operation.CREATE, myObservedTimestamp)
         then: 'the notification is not sent'
             0 * mockNotificationPublisher.sendNotification(_)
     }
@@ -84,11 +84,9 @@ class NotificationServiceSpec extends Specification {
             def anchor = new Anchor('my-anchorname', dataspaceName, 'my-schemaset-name')
         and: 'event factory can create event successfully'
             def cpsDataUpdatedEvent = new CpsDataUpdatedEvent()
-            mockCpsDataUpdatedEventFactory.createCpsDataUpdatedEvent(anchor, myObservedTimestamp, Operation.CREATE) >>
-                    cpsDataUpdatedEvent
+            mockCpsDataUpdatedEventFactory.createCpsDataUpdatedEvent(anchor, myObservedTimestamp, Operation.CREATE) >> cpsDataUpdatedEvent
         when: 'dataUpdatedEvent is received'
-            def future = objectUnderTest.processDataUpdatedEvent(dataspaceName, anchorName,
-                '/', Operation.CREATE, myObservedTimestamp)
+            def future = objectUnderTest.processDataUpdatedEvent(anchor, '/', Operation.CREATE, myObservedTimestamp)
         and: 'wait for async processing to complete'
             future.get(10, TimeUnit.SECONDS)
         then: 'async process completed successfully'
@@ -109,7 +107,7 @@ class NotificationServiceSpec extends Specification {
             mockCpsDataUpdatedEventFactory.createCpsDataUpdatedEvent(anchor, myObservedTimestamp, expectedOperationInEvent) >>
                     cpsDataUpdatedEvent
         when: 'dataUpdatedEvent is received for #xpath'
-            def future = objectUnderTest.processDataUpdatedEvent(dataspaceName, anchorName, xpath, operation, myObservedTimestamp)
+            def future = objectUnderTest.processDataUpdatedEvent(anchor, xpath, operation, myObservedTimestamp)
         and: 'wait for async processing to complete'
             future.get(10, TimeUnit.SECONDS)
         then: 'async process completed successfully'
@@ -139,7 +137,7 @@ class NotificationServiceSpec extends Specification {
             mockCpsDataUpdatedEventFactory.createCpsDataUpdatedEvent(anchor, myObservedTimestamp, Operation.CREATE) >>
                     { throw new Exception("Could not create event") }
         when: 'event is sent for processing'
-            def future = objectUnderTest.processDataUpdatedEvent(dataspaceName, anchorName, '/', Operation.CREATE, myObservedTimestamp)
+            def future = objectUnderTest.processDataUpdatedEvent(anchor, '/', Operation.CREATE, myObservedTimestamp)
         and: 'wait for async processing to complete'
             future.get(10, TimeUnit.SECONDS)
         then: 'async process completed successfully'
