@@ -61,7 +61,7 @@ class CpsDataServiceImplSpec extends Specification {
     def dataspaceName = 'some-dataspace'
     def anchorName = 'some-anchor'
     def schemaSetName = 'some-schema-set'
-    def anchor = Anchor.builder().name(anchorName).schemaSetName(schemaSetName).build()
+    def anchor = Anchor.builder().name(anchorName).dataspaceName(dataspaceName).schemaSetName(schemaSetName).build()
     def observedTimestamp = OffsetDateTime.now()
 
     def 'Saving multicontainer json data.'() {
@@ -76,7 +76,7 @@ class CpsDataServiceImplSpec extends Specification {
         and: 'the CpsValidator is called on the dataspaceName and AnchorName'
             1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
         and: 'data updated event is sent to notification service'
-            1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, '/', Operation.CREATE, observedTimestamp)
+            1 * mockNotificationService.processDataUpdatedEvent(anchor, '/', Operation.CREATE, observedTimestamp)
         where:
             index   |   xpath
                 0   | '/first-container'
@@ -96,7 +96,7 @@ class CpsDataServiceImplSpec extends Specification {
         and: 'the CpsValidator is called on the dataspaceName and AnchorName'
             1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
         and: 'data updated event is sent to notification service'
-            1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, '/', Operation.CREATE, observedTimestamp)
+            1 * mockNotificationService.processDataUpdatedEvent(anchor, '/', Operation.CREATE, observedTimestamp)
         where: 'given parameters'
             scenario | dataFile         | contentType
             'json'   | 'test-tree.json' | ContentType.JSON
@@ -129,7 +129,7 @@ class CpsDataServiceImplSpec extends Specification {
         and: 'the CpsValidator is called on the dataspaceName and AnchorName'
             1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
         and: 'data updated event is sent to notification service'
-            1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, '/test-tree', Operation.CREATE, observedTimestamp)
+            1 * mockNotificationService.processDataUpdatedEvent(anchor, '/test-tree', Operation.CREATE, observedTimestamp)
     }
 
     def 'Saving list element data fragment under existing node.'() {
@@ -151,7 +151,7 @@ class CpsDataServiceImplSpec extends Specification {
         and: 'the CpsValidator is called on the dataspaceName and AnchorName'
             1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
         and: 'data updated event is sent to notification service'
-            1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, '/test-tree', Operation.UPDATE, observedTimestamp)
+            1 * mockNotificationService.processDataUpdatedEvent(anchor, '/test-tree', Operation.UPDATE, observedTimestamp)
     }
 
     def 'Saving collection of a batch with data fragment under existing node.'() {
@@ -171,7 +171,7 @@ class CpsDataServiceImplSpec extends Specification {
                 }
             }
         and: 'data updated event is sent to notification service'
-            1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, '/test-tree', Operation.UPDATE, observedTimestamp)
+            1 * mockNotificationService.processDataUpdatedEvent(anchor, '/test-tree', Operation.UPDATE, observedTimestamp)
     }
 
     def 'Saving empty list element data fragment.'() {
@@ -219,7 +219,7 @@ class CpsDataServiceImplSpec extends Specification {
         and: 'the CpsValidator is called on the dataspaceName and AnchorName'
             1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
         and: 'data updated event is sent to notification service'
-            1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, parentNodeXpath, Operation.UPDATE, observedTimestamp)
+            1 * mockNotificationService.processDataUpdatedEvent(anchor, parentNodeXpath, Operation.UPDATE, observedTimestamp)
         where: 'following parameters were used'
             scenario         | parentNodeXpath | jsonData                        || expectedNodeXpath                   | leaves
             'top level node' | '/'             | '{"test-tree": {"branch": []}}' || '/test-tree'                        | Collections.emptyMap()
@@ -254,7 +254,7 @@ class CpsDataServiceImplSpec extends Specification {
         and: 'the CpsValidator is called on the dataspaceName and AnchorName'
             1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
         and: 'the data updated event is sent to the notification service'
-            1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, '/bookstore', Operation.UPDATE, observedTimestamp)
+            1 * mockNotificationService.processDataUpdatedEvent(anchor, '/bookstore', Operation.UPDATE, observedTimestamp)
     }
 
     def 'Replace data node using singular data node: #scenario.'() {
@@ -266,7 +266,7 @@ class CpsDataServiceImplSpec extends Specification {
             1 * mockCpsDataPersistenceService.updateDataNodesAndDescendants(dataspaceName, anchorName,
                 { dataNode -> dataNode.xpath[0] == expectedNodeXpath })
         and: 'data updated event is sent to notification service'
-            1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, parentNodeXpath, Operation.UPDATE, observedTimestamp)
+            1 * mockNotificationService.processDataUpdatedEvent(anchor, parentNodeXpath, Operation.UPDATE, observedTimestamp)
         and: 'the CpsValidator is called on the dataspaceName and AnchorName'
             1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
         where: 'following parameters were used'
@@ -284,8 +284,8 @@ class CpsDataServiceImplSpec extends Specification {
             1 * mockCpsDataPersistenceService.updateDataNodesAndDescendants(dataspaceName, anchorName,
                 { dataNode -> dataNode.xpath == expectedNodeXpath})
         and: 'data updated event is sent to notification service'
-            1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, nodesJsonData.keySet()[0], Operation.UPDATE, observedTimestamp)
-            1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, nodesJsonData.keySet()[1], Operation.UPDATE, observedTimestamp)
+            1 * mockNotificationService.processDataUpdatedEvent(anchor, nodesJsonData.keySet()[0], Operation.UPDATE, observedTimestamp)
+            1 * mockNotificationService.processDataUpdatedEvent(anchor, nodesJsonData.keySet()[1], Operation.UPDATE, observedTimestamp)
         and: 'the CpsValidator is called on the dataspaceName and AnchorName'
             1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
         where: 'following parameters were used'
@@ -313,7 +313,7 @@ class CpsDataServiceImplSpec extends Specification {
         and: 'the CpsValidator is called on the dataspaceName and AnchorName twice'
             2 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
         and: 'data updated event is sent to notification service'
-            1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, '/test-tree', Operation.UPDATE, observedTimestamp)
+            1 * mockNotificationService.processDataUpdatedEvent(anchor, '/test-tree', Operation.UPDATE, observedTimestamp)
     }
 
     def 'Replace whole list content with empty list element.'() {
@@ -336,7 +336,7 @@ class CpsDataServiceImplSpec extends Specification {
         and: 'the CpsValidator is called on the dataspaceName and AnchorName'
             1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
         and: 'data updated event is sent to notification service'
-            1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, '/test-tree/branch', Operation.DELETE, observedTimestamp)
+            1 * mockNotificationService.processDataUpdatedEvent(anchor, '/test-tree/branch', Operation.DELETE, observedTimestamp)
     }
 
     def 'Delete multiple list elements under existing node.'() {
@@ -349,7 +349,7 @@ class CpsDataServiceImplSpec extends Specification {
         and: 'the CpsValidator is called on the dataspaceName and AnchorName'
             1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
         and: 'two data updated events are sent to notification service'
-            2 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, _, Operation.DELETE, observedTimestamp)
+            2 * mockNotificationService.processDataUpdatedEvent(anchor, _, Operation.DELETE, observedTimestamp)
     }
 
     def 'Delete data node under anchor and dataspace.'() {
@@ -362,7 +362,7 @@ class CpsDataServiceImplSpec extends Specification {
         and: 'the CpsValidator is called on the dataspaceName and AnchorName'
             1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
         and: 'data updated event is sent to notification service'
-            1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, '/data-node', Operation.DELETE, observedTimestamp)
+            1 * mockNotificationService.processDataUpdatedEvent(anchor, '/data-node', Operation.DELETE, observedTimestamp)
     }
 
     def 'Delete all data nodes for a given anchor and dataspace.'() {
@@ -371,7 +371,7 @@ class CpsDataServiceImplSpec extends Specification {
         when: 'delete data node method is invoked with correct parameters'
             objectUnderTest.deleteDataNodes(dataspaceName, anchorName, observedTimestamp)
         then: 'data updated event is sent to notification service before the delete'
-            1 * mockNotificationService.processDataUpdatedEvent(dataspaceName, anchorName, '/', Operation.DELETE, observedTimestamp)
+            1 * mockNotificationService.processDataUpdatedEvent(anchor, '/', Operation.DELETE, observedTimestamp)
         and: 'the CpsValidator is called on the dataspaceName and AnchorName'
             1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
         and: 'the persistence service method is invoked with the correct parameters'
@@ -381,10 +381,13 @@ class CpsDataServiceImplSpec extends Specification {
     def 'Delete all data nodes for given dataspace and multiple anchors.'() {
         given: 'schema set for given anchors and dataspace references test tree model'
             setupSchemaSetMocks('test-tree.yang')
+            mockCpsAdminService.getAnchors(dataspaceName, ['anchor1', 'anchor2']) >>
+                [new Anchor(name: 'anchor1', dataspaceName: dataspaceName),
+                 new Anchor(name: 'anchor2', dataspaceName: dataspaceName)]
         when: 'delete data node method is invoked with correct parameters'
             objectUnderTest.deleteDataNodes(dataspaceName, ['anchor1', 'anchor2'], observedTimestamp)
         then: 'data updated events are sent to notification service before the delete'
-            2 * mockNotificationService.processDataUpdatedEvent(dataspaceName, _, '/', Operation.DELETE, observedTimestamp)
+            2 * mockNotificationService.processDataUpdatedEvent(_, '/', Operation.DELETE, observedTimestamp)
         and: 'the CpsValidator is called on the dataspace name and the anchor names'
             2 * mockCpsValidator.validateNameCharacters(_)
         and: 'the persistence service method is invoked with the correct parameters'
