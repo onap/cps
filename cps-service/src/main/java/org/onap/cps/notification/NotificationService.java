@@ -1,7 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  * Copyright (c) 2021-2022 Bell Canada.
- * Modifications Copyright (C) 2022 Nordix Foundation
+ * Modifications Copyright (C) 2022-2023 Nordix Foundation
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -70,21 +70,19 @@ public class NotificationService {
     /**
      * Process Data Updated Event and publishes the notification.
      *
-     * @param dataspaceName     dataspaceName
-     * @param anchorName        anchorName
+     * @param anchor            anchor
      * @param xpath             xpath of changed data node
      * @param operation         operation
      * @param observedTimestamp observedTimestamp
      * @return future
      */
     @Async("notificationExecutor")
-    public Future<Void> processDataUpdatedEvent(final String dataspaceName, final String anchorName,
-            final String xpath, final Operation operation, final OffsetDateTime observedTimestamp) {
+    public Future<Void> processDataUpdatedEvent(final Anchor anchor, final String xpath, final Operation operation,
+                                                final OffsetDateTime observedTimestamp) {
 
-        final Anchor anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
         log.debug("process data updated event for anchor '{}'", anchor);
         try {
-            if (shouldSendNotification(dataspaceName)) {
+            if (shouldSendNotification(anchor.getDataspaceName())) {
                 final var cpsDataUpdatedEvent =
                         cpsDataUpdatedEventFactory.createCpsDataUpdatedEvent(anchor,
                                 observedTimestamp, getRootNodeOperation(xpath, operation));

@@ -153,7 +153,7 @@ public interface CpsDataPersistenceService {
      * @param anchorName    anchor name
      * @param dataNodes     data nodes
      */
-    void updateDataNodesAndDescendants(String dataspaceName, String anchorName, final List<DataNode> dataNodes);
+    void updateDataNodesAndDescendants(String dataspaceName, String anchorName, final Collection<DataNode> dataNodes);
 
     /**
      * Replaces list content by removing all existing elements and inserting the given new elements
