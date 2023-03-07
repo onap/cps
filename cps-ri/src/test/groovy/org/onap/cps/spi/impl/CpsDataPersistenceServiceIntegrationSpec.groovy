@@ -70,13 +70,6 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     def static deleteTestChildXpath = "${deleteTestParentXPath}/child-with-slash[@key='a/b']"
     def static deleteTestGrandChildXPath = "${deleteTestChildXpath}/grandChild"
 
-    def expectedLeavesByXpathMap = [
-            '/parent-207'                      : ['parent-leaf': 'parent-leaf value'],
-            '/parent-207/child-001'            : ['first-child-leaf': 'first-child-leaf value'],
-            '/parent-207/child-002'            : ['second-child-leaf': 'second-child-leaf value'],
-            '/parent-207/child-002/grand-child': ['grand-child-leaf': 'grand-child-leaf value']
-    ]
-
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Get all datanodes with descendants .'() {
         when: 'data nodes are retrieved by their xpath'
@@ -187,7 +180,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
         and: 'the (grand)child node of the new list entry is also present'
             def dataspaceEntity = dataspaceRepository.getByName(DATASPACE_NAME)
             def anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, ANCHOR_NAME3)
-            def grandChildFragmentEntity = fragmentRepository.findByDataspaceAndAnchorAndXpath(dataspaceEntity, anchorEntity, grandChild.xpath)
+            def grandChildFragmentEntity = fragmentRepository.findByAnchorAndXpath(anchorEntity, grandChild.xpath)
             assert grandChildFragmentEntity.isPresent()
     }
 
@@ -212,7 +205,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
         and: 'the new entity is inserted correctly'
             def dataspaceEntity = dataspaceRepository.getByName(DATASPACE_NAME)
             def anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, ANCHOR_HAVING_SINGLE_TOP_LEVEL_FRAGMENT)
-            fragmentRepository.findByDataspaceAndAnchorAndXpath(dataspaceEntity, anchorEntity, '/parent-200/child-new2').isPresent()
+            fragmentRepository.findByAnchorAndXpath(anchorEntity, '/parent-200/child-new2').isPresent()
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
@@ -674,27 +667,27 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Delete data node for an anchor.'() {
         given: 'a data-node exists for an anchor'
-            assert fragmentsExistInDB(1001, 3003)
+            assert fragmentsExistInDB(3003)
         when: 'data nodes are deleted '
             objectUnderTest.deleteDataNodes(DATASPACE_NAME, ANCHOR_NAME3)
         then: 'all data-nodes are deleted successfully'
-            assert !fragmentsExistInDB(1001, 3003)
+            assert !fragmentsExistInDB(3003)
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Delete data node for multiple anchors.'() {
         given: 'a data-node exists for an anchor'
-            assert fragmentsExistInDB(1001, 3001)
-            assert fragmentsExistInDB(1001, 3003)
+            assert fragmentsExistInDB(3001)
+            assert fragmentsExistInDB(3003)
         when: 'data nodes are deleted '
             objectUnderTest.deleteDataNodes(DATASPACE_NAME, ['ANCHOR-001', 'ANCHOR-003'])
         then: 'all data-nodes are deleted successfully'
-            assert !fragmentsExistInDB(1001, 3001)
-            assert !fragmentsExistInDB(1001, 3003)
+            assert !fragmentsExistInDB(3001)
+            assert !fragmentsExistInDB(3003)
     }
 
-    def fragmentsExistInDB(dataSpaceId, anchorId) {
-        !fragmentRepository.findRootsByDataspaceAndAnchor(dataSpaceId, anchorId).isEmpty()
+    def fragmentsExistInDB(anchorId) {
+        fragmentRepository.existsByAnchorId(anchorId)
     }
 
     static Collection<DataNode> toDataNodes(xpaths) {
@@ -708,19 +701,6 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
 
     static Map<String, Object> getLeavesMap(FragmentEntity fragmentEntity) {
         return jsonObjectMapper.convertJsonString(fragmentEntity.attributes, Map<String, Object>.class)
-    }
-
-    def static assertLeavesMaps(actualLeavesMap, expectedLeavesMap) {
-        expectedLeavesMap.forEach((key, value) -> {
-            def actualValue = actualLeavesMap[key]
-            if (value instanceof Collection<?> && actualValue instanceof Collection<?>) {
-                assert value.size() == actualValue.size()
-                assert value.containsAll(actualValue)
-            } else {
-                assert value == actualValue
-            }
-        })
-        return true
     }
 
     def static treeToFlatMapByXpath(Map<String, DataNode> flatMap, DataNode dataNodeTree) {
@@ -756,9 +736,8 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     def getFragmentByXpath(dataspaceName, anchorName, xpath) {
         def dataspace = dataspaceRepository.getByName(dataspaceName)
         def anchor = anchorRepository.getByDataspaceAndName(dataspace, anchorName)
-        return fragmentRepository.findByDataspaceAndAnchorAndXpath(dataspace, anchor, xpath).orElseThrow()
+        return fragmentRepository.findByAnchorAndXpath(anchor, xpath).orElseThrow()
     }
-
 
     def createChildListAllHavingAttributeValue(parentXpath, tag, Collection keys, boolean addGrandChild) {
         def listElementAsDataNodes = keysToXpaths(parentXpath, keys).collect {
