@@ -21,11 +21,10 @@
 package org.onap.cps.integration.performance.ncmp
 
 import java.util.stream.Collectors
-
+import org.onap.cps.integration.performance.base.NcmpRegistryPerfTestBase
+import org.springframework.dao.DataAccessResourceFailureException
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
-
-import org.onap.cps.integration.performance.base.NcmpRegistryPerfTestBase
 
 class CmHandleQueryPerfTest extends NcmpRegistryPerfTestBase {
 
@@ -52,14 +51,13 @@ class CmHandleQueryPerfTest extends NcmpRegistryPerfTestBase {
             assert countDataNodesInTree(result) == 5 * 999
     }
 
-    def 'Multiple get limitation: 32,764 (~ 2^15) xpaths.'() {
+    def 'Multiple get limit exceeded: 32,764 (~ 2^15) xpaths.'() {
         given: 'more than 32,764 xpaths)'
-            def xpaths = []
-            (0..32_765).each { xpaths.add("/size/of/this/path/does/not/matter/for/limit[@id='" + it + "']") }
-        when: 'get single get is executed to get all the parent objects and their descendants'
+            def xpaths = (0..32_764).collect(i -> "/size/of/this/path/does/not/matter/for/limit[@id='" + i + "']")
+        when: 'single get is executed to get all the parent objects and their descendants'
             cpsDataService.getDataNodesForMultipleXpaths(NCMP_PERFORMANCE_TEST_DATASPACE, REGISTRY_ANCHOR, xpaths, INCLUDE_ALL_DESCENDANTS)
-        then: 'no exception is thrown (limit is not present in current implementation)'
-            noExceptionThrown()
+        then: 'an exception is thrown'
+            thrown(DataAccessResourceFailureException.class)
     }
 
 }

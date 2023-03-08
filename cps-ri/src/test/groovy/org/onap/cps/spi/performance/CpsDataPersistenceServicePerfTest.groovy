@@ -72,8 +72,8 @@ class CpsDataPersistenceServicePerfTest extends CpsPersistencePerfSpecBase {
             assert countDataNodes(result[0]) == TOTAL_NUMBER_OF_NODES
         where: 'the following xPaths are used'
             scenario | xpath            || allowedDuration
-            'parent' | PERF_TEST_PARENT || 5000
-            'root'   | ''               || 500
+            'parent' | PERF_TEST_PARENT || 500
+            'root'   | '/'              || 500
     }
 
     def 'Query parent data node with many descendants by cps-path'() {
@@ -82,8 +82,8 @@ class CpsDataPersistenceServicePerfTest extends CpsPersistencePerfSpecBase {
             def result = objectUnderTest.queryDataNodes(PERF_DATASPACE, PERF_ANCHOR, '//perf-parent-1' , INCLUDE_ALL_DESCENDANTS)
             stopWatch.stop()
             def readDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'read duration is under 500 milliseconds'
-            recordAndAssertPerformance('Query with many descendants', 500, readDurationInMillis)
+        then: 'read duration is under 350 milliseconds'
+            recordAndAssertPerformance('Query with many descendants', 350, readDurationInMillis)
         and: 'data node is returned with all the descendants populated'
             assert countDataNodes(result) == TOTAL_NUMBER_OF_NODES
     }
@@ -97,8 +97,8 @@ class CpsDataPersistenceServicePerfTest extends CpsPersistencePerfSpecBase {
             def readDurationInMillis = stopWatch.getTotalTimeMillis()
         then: 'the returned number of entities equal to the number of children * number of grandchildren'
             assert result.size() == xpathsToAllGrandChildren.size()
-        and: 'it took less then 5000ms'
-            recordAndAssertPerformance('Find multiple xpaths', 5000, readDurationInMillis)
+        and: 'it took less then 1000ms'
+            recordAndAssertPerformance('Find multiple xpaths', 1000, readDurationInMillis)
     }
 
     def 'Query many descendants by cps-path with #scenario'() {
@@ -131,8 +131,8 @@ class CpsDataPersistenceServicePerfTest extends CpsPersistencePerfSpecBase {
             objectUnderTest.updateDataNodesAndDescendants(PERF_DATASPACE, PERF_ANCHOR, dataNodes)
             stopWatch.stop()
             def updateDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'update duration is under 900 milliseconds'
-            recordAndAssertPerformance('Update data nodes with descendants', 900, updateDurationInMillis)
+        then: 'update duration is under 500 milliseconds'
+            recordAndAssertPerformance('Update data nodes with descendants', 500, updateDurationInMillis)
     }
 
     def 'Update data nodes without descendants'() {
