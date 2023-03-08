@@ -25,6 +25,7 @@ import org.hibernate.StaleStateException
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.entities.AnchorEntity
 import org.onap.cps.spi.entities.FragmentEntity
+import org.onap.cps.spi.entities.FragmentExtract
 import org.onap.cps.spi.exceptions.ConcurrencyException
 import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.model.DataNode
@@ -148,9 +149,10 @@ class CpsDataPersistenceServiceSpec extends Specification {
            def anchorEntity = new AnchorEntity(id:123)
            mockAnchorRepository.getByDataspaceAndName(*_) >> anchorEntity
         and: 'fragment repository returns a collection of fragments'
-            def fragmentEntity1 = new FragmentEntity(xpath: '/xpath1', childFragments: [])
-            def fragmentEntity2 = new FragmentEntity(xpath: '/xpath2', childFragments: [])
-            mockFragmentRepository.findByAnchorAndMultipleCpsPaths(123, ['/xpath1', '/xpath2'] as Set<String>) >> [fragmentEntity1, fragmentEntity2]
+            mockFragmentRepository.findExtractsWithDescendants(123, ['/xpath1', '/xpath2'] as Set, _) >> [
+                mockFragmentExtract(1, null, 123, '/xpath1', null),
+                mockFragmentExtract(2, null, 123, '/xpath2', null)
+            ]
         when: 'getting data nodes for 2 xpaths'
             def result = objectUnderTest.getDataNodesForMultipleXpaths('some-dataspace', 'some-anchor', ['/xpath1', '/xpath2'], FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
         then: '2 data nodes are returned'
@@ -202,8 +204,10 @@ class CpsDataPersistenceServiceSpec extends Specification {
     def 'update data node and descendants: #scenario'(){
         given: 'mocked responses'
             mockAnchorRepository.getByDataspaceAndName(_, _) >> new AnchorEntity(id:123)
-            mockFragmentRepository.findByAnchorAndMultipleCpsPaths(_, [] as Set) >> []
-            mockFragmentRepository.findByAnchorAndMultipleCpsPaths(_, ['/test/xpath'] as Set) >> [new FragmentEntity(xpath: '/test/xpath', childFragments: [])]
+            mockFragmentRepository.findExtractsWithDescendants(_, [] as Set, _) >> []
+            mockFragmentRepository.findExtractsWithDescendants(_, ['/test/xpath'] as Set, _) >> [
+                mockFragmentExtract(1, null, 123, '/test/xpath', null)
+            ]
         when: 'replace data node tree'
             objectUnderTest.updateDataNodesAndDescendants('dataspaceName', 'anchorName', dataNodes)
         then: 'call fragment repository save all method'
@@ -216,9 +220,10 @@ class CpsDataPersistenceServiceSpec extends Specification {
 
     def 'update data nodes and descendants'() {
         given: 'the fragment repository returns fragment entities related to the xpath inputs'
-            mockFragmentRepository.findByAnchorAndMultipleCpsPaths(_, ['/test/xpath1', '/test/xpath2'] as Set) >> [
-                new FragmentEntity(xpath: '/test/xpath1', childFragments: []),
-                new FragmentEntity(xpath: '/test/xpath2', childFragments: [])]
+            mockFragmentRepository.findExtractsWithDescendants(123, ['/test/xpath1', '/test/xpath2'] as Set, _) >> [
+                mockFragmentExtract(1, null, 123, '/test/xpath1', null),
+                mockFragmentExtract(2, null, 123, '/test/xpath2', null)
+            ]
         and: 'db contains an anchor'
             mockAnchorRepository.getByDataspaceAndName(*_) >> new AnchorEntity(id:123)
         and: 'some data nodes with descendants'
@@ -248,28 +253,41 @@ class CpsDataPersistenceServiceSpec extends Specification {
 
     def createDataNodesAndMockRepositoryMethodSupportingThem(Map<String, String> xpathToScenarioMap) {
         def dataNodes = []
-        def fragmentEntities = []
+        def fragmentExtracts = []
+        def fragmentId = 1
         xpathToScenarioMap.each {
             def xpath = it.key
             def scenario = it.value
             def dataNode = new DataNodeBuilder().withXpath(xpath).build()
             dataNodes.add(dataNode)
-            def fragmentEntity = new FragmentEntity(xpath: xpath, childFragments: [])
-            fragmentEntities.add(fragmentEntity)
+            def fragmentExtract = mockFragmentExtract(fragmentId, null, null, xpath, null)
+            fragmentExtracts.add(fragmentExtract)
+            def fragmentEntity = new FragmentEntity(id: fragmentId, xpath: xpath, childFragments: [])
             mockFragmentRepository.getByDataspaceAndAnchorAndXpath(_, _, xpath) >> fragmentEntity
             if ('EXCEPTION' == scenario) {
                 mockFragmentRepository.save(fragmentEntity) >> { throw new StaleStateException("concurrent updates") }
             }
+            fragmentId++
         }
-        mockFragmentRepository.findByAnchorAndMultipleCpsPaths(_, xpathToScenarioMap.keySet()) >> fragmentEntities
+        mockFragmentRepository.findExtractsWithDescendants(_, xpathToScenarioMap.keySet(), _) >> fragmentExtracts
         return dataNodes
     }
 
     def mockFragmentWithJson(json) {
         def anchorEntity = new AnchorEntity(id:123)
         mockAnchorRepository.getByDataspaceAndName(*_) >> anchorEntity
-        def fragmentEntity = new FragmentEntity(xpath: '/parent-01', childFragments: [], attributes: json)
-        mockFragmentRepository.findByAnchorAndMultipleCpsPaths(123, ['/parent-01'] as Set<String>) >> [fragmentEntity]
+        def fragmentExtract = mockFragmentExtract(456, null, null, '/parent-01', json)
+        mockFragmentRepository.findExtractsWithDescendants(123, ['/parent-01'] as Set, _) >> [fragmentExtract]
+    }
+
+    def mockFragmentExtract(id, parentId, anchorId, xpath, attributes) {
+        def fragmentExtract = Mock(FragmentExtract)
+        fragmentExtract.getId() >> id
+        fragmentExtract.getParentId() >> parentId
+        fragmentExtract.getAnchorId() >> anchorId
+        fragmentExtract.getXpath() >> xpath
+        fragmentExtract.getAttributes() >> attributes
+        return fragmentExtract
     }
 
 }

@@ -25,8 +25,6 @@ package org.onap.cps.spi.repository;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
-import javax.validation.constraints.NotNull;
-import org.checkerframework.checker.nullness.qual.NonNull;
 import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.FragmentEntity;
@@ -40,15 +38,15 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>, FragmentRepositoryCpsPathQuery,
-        FragmentRepositoryMultiPathQuery, FragmentNativeRepository {
+        FragmentNativeRepository {
 
-    Optional<FragmentEntity> findByDataspaceAndAnchorAndXpath(@NonNull DataspaceEntity dataspaceEntity,
-                                                              @NonNull AnchorEntity anchorEntity,
-                                                              @NonNull String xpath);
+    Optional<FragmentEntity> findByDataspaceAndAnchorAndXpath(DataspaceEntity dataspaceEntity,
+                                                              AnchorEntity anchorEntity,
+                                                              String xpath);
 
-    default FragmentEntity getByDataspaceAndAnchorAndXpath(@NonNull DataspaceEntity dataspaceEntity,
-                                                           @NonNull AnchorEntity anchorEntity,
-                                                           @NonNull String xpath) {
+    default FragmentEntity getByDataspaceAndAnchorAndXpath(DataspaceEntity dataspaceEntity,
+                                                           AnchorEntity anchorEntity,
+                                                           String xpath) {
         return findByDataspaceAndAnchorAndXpath(dataspaceEntity, anchorEntity, xpath)
             .orElseThrow(() -> new DataNodeNotFoundException(dataspaceEntity.getName(), anchorEntity.getName(), xpath));
     }
@@ -82,8 +80,8 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>,
     }
 
     @Modifying
-    @Query("DELETE FROM FragmentEntity fe WHERE fe.anchor IN (:anchors)")
-    void deleteByAnchorIn(@NotNull @Param("anchors") Collection<AnchorEntity> anchorEntities);
+    @Query("DELETE FROM FragmentEntity WHERE anchor IN (:anchors)")
+    void deleteByAnchorIn(@Param("anchors") Collection<AnchorEntity> anchorEntities);
 
     @Query(value = "SELECT id, anchor_id AS anchorId, xpath, parent_id AS parentId,"
         + " CAST(attributes AS TEXT) AS attributes"
@@ -101,9 +99,30 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>,
     List<FragmentExtract> quickFindWithDescendants(@Param("anchorId") int anchorId,
                                                    @Param("xpathRegex") String xpathRegex);
 
-    @Query("SELECT f.xpath FROM FragmentEntity f WHERE f.anchor = :anchor AND f.xpath IN :xpaths")
+    @Query("SELECT xpath FROM FragmentEntity WHERE anchor = :anchor AND xpath IN :xpaths")
     List<String> findAllXpathByAnchorAndXpathIn(@Param("anchor") AnchorEntity anchorEntity,
                                                 @Param("xpaths") Collection<String> xpaths);
 
     boolean existsByAnchorAndXpathStartsWith(AnchorEntity anchorEntity, String xpath);
+
+    @Query("SELECT xpath FROM FragmentEntity WHERE anchor = :anchor AND parentId IS NULL")
+    List<String> findAllXpathByAnchorAndParentIdIsNull(@Param("anchor") AnchorEntity anchorEntity);
+
+    @Query(value
+        = "WITH RECURSIVE parent_search AS ("
+        + "  SELECT id, 0 AS depth "
+        + "    FROM fragment "
+        + "   WHERE anchor_id = :anchorId AND xpath IN :xpaths "
+        + "   UNION "
+        + "  SELECT c.id, depth + 1 "
+        + "    FROM fragment c INNER JOIN parent_search p ON c.parent_id = p.id"
+        + "   WHERE depth <= (SELECT CASE WHEN :maxDepth = -1 THEN " + Integer.MAX_VALUE + " ELSE :maxDepth END) "
+        + ") "
+        + "SELECT f.id, anchor_id AS anchorId, xpath, f.parent_id AS parentId, CAST(attributes AS TEXT) AS attributes "
+        + "FROM fragment f INNER JOIN parent_search p ON f.id = p.id",
+        nativeQuery = true
+    )
+    List<FragmentExtract> findExtractsWithDescendants(@Param("anchorId") int anchorId,
+                                                      @Param("xpaths") Collection<String> xpaths,
+                                                      @Param("maxDepth") int maxDepth);
 }

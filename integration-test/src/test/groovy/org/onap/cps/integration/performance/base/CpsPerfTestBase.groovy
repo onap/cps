@@ -20,6 +20,8 @@
 
 package org.onap.cps.integration.performance.base
 
+import org.onap.cps.spi.FetchDescendantsOption
+
 import java.time.OffsetDateTime
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
 import org.onap.cps.rest.utils.MultipartFileUtil
@@ -44,9 +46,19 @@ class CpsPerfTestBase extends PerfTestBase {
     }
 
     def createInitialData() {
+        createWarmupData()
         createLargeBookstoresData()
         addOpenRoadModel()
         addOpenRoadData()
+    }
+
+    def createWarmupData() {
+        def data = "{\"bookstore\":{}}"
+        stopWatch.start()
+        addAnchorsWithData(1, CpsIntegrationSpecBase.BOOKSTORE_SCHEMA_SET, 'warmup', data)
+        stopWatch.stop()
+        def durationInMillis = stopWatch.getTotalTimeMillis()
+        recordAndAssertPerformance('Creating warmup anchor with tiny data tree', 250, durationInMillis)
     }
 
     def createLargeBookstoresData() {
@@ -80,7 +92,17 @@ class CpsPerfTestBase extends PerfTestBase {
             cpsAdminService.createAnchor(CPS_PERFORMANCE_TEST_DATASPACE, schemaSetName, anchorNamePrefix + it)
             cpsDataService.saveData(CPS_PERFORMANCE_TEST_DATASPACE, anchorNamePrefix + it, data, OffsetDateTime.now())
         }
+    }
 
+    def 'Warm the database'() {
+        when: 'get data nodes for 5 anchors'
+            stopWatch.start()
+            def result = cpsDataService.getDataNodes(CPS_PERFORMANCE_TEST_DATASPACE, 'warmup1', '/', FetchDescendantsOption.OMIT_DESCENDANTS)
+            assert countDataNodesInTree(result) == 1
+            stopWatch.stop()
+            def durationInMillis = stopWatch.getTotalTimeMillis()
+        then: 'all data is read within #durationLimit ms'
+            recordAndAssertPerformance("Warming database", 15_000, durationInMillis)
     }
 
 }
