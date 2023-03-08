@@ -76,6 +76,14 @@ public class FetchDescendantsOption {
     }
 
     /**
+     * Get depth.
+     * @return depth: -1 for all descendants, 0 for no descendants, or positive value for fixed level of descendants
+     */
+    public int getDepth() {
+        return depth;
+    }
+
+    /**
      * get fetch descendants option for given descendant.
      *
      * @param fetchDescendantsOptionAsString fetch descendants option string
