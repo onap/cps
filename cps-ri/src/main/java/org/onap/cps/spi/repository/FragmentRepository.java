@@ -40,7 +40,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>, FragmentRepositoryCpsPathQuery,
-        FragmentRepositoryMultiPathQuery, FragmentNativeRepository {
+        FragmentNativeRepository {
 
     Optional<FragmentEntity> findByDataspaceAndAnchorAndXpath(@NonNull DataspaceEntity dataspaceEntity,
                                                               @NonNull AnchorEntity anchorEntity,
@@ -106,4 +106,30 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>,
                                                 @Param("xpaths") Collection<String> xpaths);
 
     boolean existsByAnchorAndXpathStartsWith(AnchorEntity anchorEntity, String xpath);
+
+    @Query("SELECT f.xpath FROM FragmentEntity f WHERE f.anchor = :anchor AND f.parentId IS NULL")
+    List<String> findAllXpathByAnchorAndParentIdIsNull(@Param("anchor") AnchorEntity anchorEntity);
+
+    @Query(value
+        = "WITH RECURSIVE descendants AS ("
+        + "  SELECT id, parent_id, 0 AS depth "
+        + "  FROM fragment "
+        + "  WHERE anchor_id = :anchorId "
+        + "    AND xpath IN (:xpaths) "
+        + "  UNION "
+        + "  SELECT f.id, f.parent_id, d.depth + 1 "
+        + "  FROM fragment f "
+        + "    INNER JOIN descendants d ON f.parent_id = d.id"
+        + ") "
+        + "SELECT "
+        + "  f.id, f.anchor_id AS anchorId, f.xpath, f.parent_id AS parentId, CAST(f.attributes AS TEXT) AS attributes "
+        + "FROM descendants d "
+        + "  INNER JOIN fragment f ON d.id = f.id "
+        + "WHERE "
+        + "  depth <= :maxDepth\n",
+        nativeQuery = true
+    )
+    List<FragmentExtract> findExtractsWithDescendantsByAnchorIdAndXpaths(@Param("anchorId") int anchorId,
+                                                                         @Param("xpaths") Collection<String> xpaths,
+                                                                         @Param("maxDepth") int maxDepth);
 }
