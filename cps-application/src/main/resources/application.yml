@@ -102,6 +102,9 @@ app:
     lcm:
         events:
             topic: ${LCM_EVENTS_TOPIC:ncmp-events}
+    dmi:
+        cm-events:
+            topic: ${DMI_CM_EVENTS_TOPIC:dmi-cm-events}
 
 
 notification:

@@ -44,7 +44,7 @@ public class AvcEventConsumer {
      * @param avcEvent the event to be consumed and produced.
      */
     @KafkaListener(
-            topics = "dmi-cm-events",
+            topics = "${app.dmi.cm-events.topic}",
             properties = {"spring.json.value.default.type=org.onap.cps.ncmp.event.model.AvcEvent"})
     public void consumeAndForward(final AvcEvent avcEvent) {
         log.debug("Consuming AVC event {} ...", avcEvent);
