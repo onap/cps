@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f4685f69_b64b8b80",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-03-08T19:50:56Z",
+      "side": 1,
+      "message": "Due to JPA inserting each Collection element as a query parameter, this limits collection size to 65,533:\n- JDBC Postgres driver has a limit of 65,535 parameters per query\n- 1 used for anchorId\n- 1 used for maxDepth\n- leaving 65,533 for xpaths\nThere is a workaround that completely removes this limit, but I will address it in a future patch.",
+      "revId": "9f9eadd0d6a7bf886d654c8fd01ade48b155405a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
