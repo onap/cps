@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "089c481b_60f9a3b4",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/avc-subscription-event-v1.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-03-08T17:38:58Z",
+      "side": 1,
+      "message": "Yes, this allows us to have the following if you get me, so we don\u0027t have t define a new schema for forwarded subscriptions:\n[\"cmhandle1\",\"cmhandle2\"]\nand\n[{\"cmhandle1\" : {\"shape\":\"circle\"}},\n{\"cmhandle2\" : {\"shape\":\"square\"}}]",
+      "parentUuid": "db2e6495_b6a455b7",
+      "range": {
+        "startLine": 96,
+        "startChar": 24,
+        "endLine": 96,
+        "endChar": 29
+      },
+      "revId": "b758f0a1479b23e83aaf1c326eb7b298a2e51e6b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "82a8e8eb_0ffcd5ec",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventForwarder.java",
         "patchSetId": 5
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "09ccf860_96914526",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventForwarder.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-03-08T17:38:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "82a8e8eb_0ffcd5ec",
+      "range": {
+        "startLine": 53,
+        "startChar": 32,
+        "endLine": 53,
+        "endChar": 58
+      },
+      "revId": "b758f0a1479b23e83aaf1c326eb7b298a2e51e6b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "385a175b_e8694bbe",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventForwarder.java",
         "patchSetId": 5
@@ -62,6 +110,24 @@
       "revId": "b758f0a1479b23e83aaf1c326eb7b298a2e51e6b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "553dc825_9e35eeaa",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventForwarder.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-03-08T17:38:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "385a175b_e8694bbe",
+      "revId": "b758f0a1479b23e83aaf1c326eb7b298a2e51e6b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -88,6 +154,30 @@
     },
     {
       "key": {
+        "uuid": "702b239e_0e628279",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventForwarder.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-03-08T17:38:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9706662f_2d48eb92",
+      "range": {
+        "startLine": 70,
+        "startChar": 38,
+        "endLine": 70,
+        "endChar": 63
+      },
+      "revId": "b758f0a1479b23e83aaf1c326eb7b298a2e51e6b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "725e80c3_906816b3",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventForwarder.java",
         "patchSetId": 5
@@ -111,6 +201,30 @@
     },
     {
       "key": {
+        "uuid": "78cbc527_4c9b4ac3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventForwarder.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-03-08T17:38:58Z",
+      "side": 1,
+      "message": "Meant to do this then forgot, done",
+      "parentUuid": "725e80c3_906816b3",
+      "range": {
+        "startLine": 79,
+        "startChar": 4,
+        "endLine": 96,
+        "endChar": 5
+      },
+      "revId": "b758f0a1479b23e83aaf1c326eb7b298a2e51e6b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "81d6a8e8_f53fb2b1",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/yangmodels/YangModelCmHandle.java",
         "patchSetId": 5
@@ -131,6 +245,30 @@
       "revId": "b758f0a1479b23e83aaf1c326eb7b298a2e51e6b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dea19a85_59f2540a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/yangmodels/YangModelCmHandle.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-03-08T17:38:58Z",
+      "side": 1,
+      "message": "I put it here because asYangModelCmHandleProperties is below with a similar function but realised its private so planning on moving",
+      "parentUuid": "81d6a8e8_f53fb2b1",
+      "range": {
+        "startLine": 169,
+        "startChar": 4,
+        "endLine": 179,
+        "endChar": 5
+      },
+      "revId": "b758f0a1479b23e83aaf1c326eb7b298a2e51e6b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
