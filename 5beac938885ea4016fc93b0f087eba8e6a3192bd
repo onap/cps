@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "b5196c75_35e41829",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 647,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-03-08T17:54:54Z",
+      "side": 1,
+      "message": "Incorrect, it\u0027s used by deleteListDataNode on line 672. The original behavior was to throw DataNodeNotFoundException if a list or list element with that xpath does not exist (though deleteListDataNode also has surprising behavior like allowing root xpath to be deleted). We should probably deprecate the list-specific API functions. But in the meantime, this change keeps the behavior exactly the same, as shown in the unit tests.",
+      "parentUuid": "0cd90e1c_f6e09d9c",
+      "range": {
+        "startLine": 647,
+        "startChar": 12,
+        "endLine": 647,
+        "endChar": 35
+      },
+      "revId": "5beac938885ea4016fc93b0f087eba8e6a3192bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b3f24919_1c02eb28",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
         "patchSetId": 2
@@ -82,6 +106,30 @@
       "writtenOn": "2023-03-08T16:59:23Z",
       "side": 1,
       "message": "this increased, do we understand why, is it acceptable.\nSmall discussion needed maybe..",
+      "range": {
+        "startLine": 80,
+        "startChar": 40,
+        "endLine": 80,
+        "endChar": 44
+      },
+      "revId": "5beac938885ea4016fc93b0f087eba8e6a3192bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "029df763_6e97fb15",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/performance/CpsDataPersistenceServiceDeletePerfTest.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-03-08T17:54:54Z",
+      "side": 1,
+      "message": "Not sure why exactly. But I think it is acceptable. See other test cases:\n- whole list deletion is 10x faster\n- list element deletion is 4x faster\n- deleting large node is 33% faster\nI think it\u0027s worth taking the hit here. This change essentially equalizes performance, so deleting 50 grandchildren (leaf nodes) takes roughly the same time now as deleting 50 list elements.",
+      "parentUuid": "264a6cb6_86a3341a",
       "range": {
         "startLine": 80,
         "startChar": 40,
