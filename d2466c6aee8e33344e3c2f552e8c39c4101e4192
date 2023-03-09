@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "47356188_c13fb33e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-09T12:53:07Z",
+      "side": 1,
+      "message": "NB: I might have extracted this out in is own variable for readability",
+      "range": {
+        "startLine": 88,
+        "startChar": 28,
+        "endLine": 88,
+        "endChar": 71
+      },
+      "revId": "d2466c6aee8e33344e3c2f552e8c39c4101e4192",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb962a2e_d93c42b1",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-09T12:53:07Z",
+      "side": 1,
+      "message": "like you I prefer the for-loop, easier to read :-)",
+      "range": {
+        "startLine": 108,
+        "startChar": 8,
+        "endLine": 108,
+        "endChar": 60
+      },
+      "revId": "d2466c6aee8e33344e3c2f552e8c39c4101e4192",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c979d2de_074730f3",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-09T12:53:07Z",
+      "side": 1,
+      "message": "those \\\\ tokens in the original, were they redundant?!\nHow did you discover this?!",
+      "range": {
+        "startLine": 411,
+        "startChar": 0,
+        "endLine": 412,
+        "endChar": 73
+      },
+      "revId": "d2466c6aee8e33344e3c2f552e8c39c4101e4192",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "02573002_ec2d8e62",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 595,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-09T12:53:07Z",
+      "side": 1,
+      "message": "agreed!",
+      "range": {
+        "startLine": 595,
+        "startChar": 20,
+        "endLine": 595,
+        "endChar": 24
+      },
+      "revId": "d2466c6aee8e33344e3c2f552e8c39c4101e4192",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f02b044f_2d18e584",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-09T12:53:07Z",
+      "side": 1,
+      "message": "NB: you probably don\u0027t know but long time back we agreed to remove redundant (IDE specific) annotations. \n(when we touch a class that has them)\nI always have some doubts but I do think these fall under that and if you want you can now remove them)",
+      "range": {
+        "startLine": 43,
+        "startChar": 50,
+        "endLine": 43,
+        "endChar": 58
+      },
+      "revId": "d2466c6aee8e33344e3c2f552e8c39c4101e4192",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "92aadde3_3abf26e7",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-09T12:53:07Z",
+      "side": 1,
+      "message": "bit confused what this does, might need better name: haveFragmentsForAchorId()\nis it only used in test?!",
+      "range": {
+        "startLine": 50,
+        "startChar": 4,
+        "endLine": 50,
+        "endChar": 43
+      },
+      "revId": "d2466c6aee8e33344e3c2f552e8c39c4101e4192",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e9eb3680_b3fc3d65",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-09T12:53:07Z",
+      "side": 1,
+      "message": "If really would prefer not to use just \u0027f\u0027 here, below does exactly the same don\u0027t it?!\n\n\"SELECT * FROM FragmentEntity WHERE anchor \u003d :anchor\"",
+      "range": {
+        "startLine": 52,
+        "startChar": 19,
+        "endLine": 52,
+        "endChar": 20
+      },
+      "revId": "d2466c6aee8e33344e3c2f552e8c39c4101e4192",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "af1d7226_018015d6",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-09T12:53:07Z",
+      "side": 1,
+      "message": "NonNull v. NotNull, see my previous comment do we need these at all or I they just for IDE warnings/checks?!",
+      "range": {
+        "startLine": 57,
+        "startChar": 26,
+        "endLine": 57,
+        "endChar": 34
+      },
+      "revId": "d2466c6aee8e33344e3c2f552e8c39c4101e4192",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7c488a6e_b37d8c7c",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-09T12:53:07Z",
+      "side": 1,
+      "message": "if this is used by several test and doesn\u0027t conflict with mocking in other test you can define this once in the common setup()\n\nIn testware it is OK that common method do a buit more then strictly needed for all other methods... \nmy goal in test is always to minimize number of lines to maintain a long as readability is not affected...",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 128
+      },
+      "revId": "d2466c6aee8e33344e3c2f552e8c39c4101e4192",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
