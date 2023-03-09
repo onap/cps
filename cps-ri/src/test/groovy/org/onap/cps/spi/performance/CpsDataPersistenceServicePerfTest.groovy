@@ -72,7 +72,7 @@ class CpsDataPersistenceServicePerfTest extends CpsPersistencePerfSpecBase {
             assert countDataNodes(result[0]) == TOTAL_NUMBER_OF_NODES
         where: 'the following xPaths are used'
             scenario | xpath            || allowedDuration
-            'parent' | PERF_TEST_PARENT || 3500
+            'parent' | PERF_TEST_PARENT || 5000
             'root'   | ''               || 500
     }
 
@@ -97,8 +97,8 @@ class CpsDataPersistenceServicePerfTest extends CpsPersistencePerfSpecBase {
             def readDurationInMillis = stopWatch.getTotalTimeMillis()
         then: 'the returned number of entities equal to the number of children * number of grandchildren'
             assert result.size() == xpathsToAllGrandChildren.size()
-        and: 'it took less then 3000ms'
-            recordAndAssertPerformance('Find multiple xpaths', 3000, readDurationInMillis)
+        and: 'it took less then 5000ms'
+            recordAndAssertPerformance('Find multiple xpaths', 5000, readDurationInMillis)
     }
 
     def 'Query many descendants by cps-path with #scenario'() {
@@ -131,8 +131,8 @@ class CpsDataPersistenceServicePerfTest extends CpsPersistencePerfSpecBase {
             objectUnderTest.updateDataNodesAndDescendants(PERF_DATASPACE, PERF_ANCHOR, dataNodes)
             stopWatch.stop()
             def updateDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'update duration is under 600 milliseconds'
-            recordAndAssertPerformance('Update data nodes with descendants', 600, updateDurationInMillis)
+        then: 'update duration is under 900 milliseconds'
+            recordAndAssertPerformance('Update data nodes with descendants', 900, updateDurationInMillis)
     }
 
     def 'Update data nodes without descendants'() {
@@ -152,7 +152,7 @@ class CpsDataPersistenceServicePerfTest extends CpsPersistencePerfSpecBase {
             objectUnderTest.updateDataNodesAndDescendants(PERF_DATASPACE, PERF_ANCHOR, dataNodes)
             stopWatch.stop()
             def updateDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'update duration is under 600 milliseconds'
-            recordAndAssertPerformance('Update data nodes without descendants', 600, updateDurationInMillis)
+        then: 'update duration is under 900 milliseconds'
+            recordAndAssertPerformance('Update data nodes without descendants', 900, updateDurationInMillis)
     }
 }

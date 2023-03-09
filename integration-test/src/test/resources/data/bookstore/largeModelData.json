@@ -1,0 +1,513 @@
+{
+  "bookstore": {
+    "bookstore-name": "Easons",
+    "categories": [
+      {
+        "code": 1,
+        "name": "Children",
+        "books" : [
+          {
+            "title": "Matilda",
+            "lang": "English",
+            "authors": ["Roald Dahl"],
+            "pub_year": 1988,
+            "price": 10
+          },
+          {
+            "title": "The Gruffalo",
+            "lang": "English",
+            "authors": ["Julia Donaldson"],
+            "pub_year": 1999,
+            "price": 15
+          }
+        ]
+      },
+      {
+        "code": 2,
+        "name": "Thriller",
+        "books" : [
+          {
+            "title": "Annihilation",
+            "lang": "English",
+            "authors": ["Jeff VanderMeer"],
+            "pub_year": 2014,
+            "price": 15
+          }
+        ]
+      },
+      {
+        "code": 3,
+        "name": "Comedy",
+        "books" : [
+          {
+            "title": "Good Omens",
+            "lang": "English",
+            "authors": ["Neil Gaiman", "Terry Pratchett"],
+            "pub_year": 2006,
+            "price": 13
+          }
+        ]
+      },
+      {
+        "code": 4,
+        "name": "Children",
+        "books" : [
+          {
+            "title": "Matilda",
+            "lang": "English",
+            "authors": ["Roald Dahl"],
+            "pub_year": 1988,
+            "price": 10
+          },
+          {
+            "title": "The Gruffalo",
+            "lang": "English",
+            "authors": ["Julia Donaldson"],
+            "pub_year": 1999,
+            "price": 15
+          }
+        ]
+      },
+      {
+        "code": 5,
+        "name": "Thriller",
+        "books" : [
+          {
+            "title": "Annihilation",
+            "lang": "English",
+            "authors": ["Jeff VanderMeer"],
+            "pub_year": 2014,
+            "price": 15
+          }
+        ]
+      },
+      {
+        "code": 6,
+        "name": "Comedy",
+        "books" : [
+          {
+            "title": "Good Omens",
+            "lang": "English",
+            "authors": ["Neil Gaiman", "Terry Pratchett"],
+            "pub_year": 2006,
+            "price": 13
+          }
+        ]
+      },
+      {
+        "code": 7,
+        "name": "Children",
+        "books" : [
+          {
+            "title": "Matilda",
+            "lang": "English",
+            "authors": ["Roald Dahl"],
+            "pub_year": 1988,
+            "price": 10
+          },
+          {
+            "title": "The Gruffalo",
+            "lang": "English",
+            "authors": ["Julia Donaldson"],
+            "pub_year": 1999,
+            "price": 15
+          }
+        ]
+      },
+      {
+        "code": 8,
+        "name": "Thriller",
+        "books" : [
+          {
+            "title": "Annihilation",
+            "lang": "English",
+            "authors": ["Jeff VanderMeer"],
+            "pub_year": 2014,
+            "price": 15
+          }
+        ]
+      },
+      {
+        "code": 9,
+        "name": "Comedy",
+        "books" : [
+          {
+            "title": "Good Omens",
+            "lang": "English",
+            "authors": ["Neil Gaiman", "Terry Pratchett"],
+            "pub_year": 2006,
+            "price": 13
+          }
+        ]
+      },
+      {
+        "code": 10,
+        "name": "Children",
+        "books" : [
+          {
+            "title": "Matilda",
+            "lang": "English",
+            "authors": ["Roald Dahl"],
+            "pub_year": 1988,
+            "price": 10
+          },
+          {
+            "title": "The Gruffalo",
+            "lang": "English",
+            "authors": ["Julia Donaldson"],
+            "pub_year": 1999,
+            "price": 15
+          }
+        ]
+      },
+      {
+        "code": 11,
+        "name": "Thriller",
+        "books" : [
+          {
+            "title": "Annihilation",
+            "lang": "English",
+            "authors": ["Jeff VanderMeer"],
+            "pub_year": 2014,
+            "price": 15
+          }
+        ]
+      },
+      {
+        "code": 12,
+        "name": "Comedy",
+        "books" : [
+          {
+            "title": "Good Omens",
+            "lang": "English",
+            "authors": ["Neil Gaiman", "Terry Pratchett"],
+            "pub_year": 2006,
+            "price": 13
+          }
+        ]
+      },
+      {
+        "code": 13,
+        "name": "Children",
+        "books" : [
+          {
+            "title": "Matilda",
+            "lang": "English",
+            "authors": ["Roald Dahl"],
+            "pub_year": 1988,
+            "price": 10
+          },
+          {
+            "title": "The Gruffalo",
+            "lang": "English",
+            "authors": ["Julia Donaldson"],
+            "pub_year": 1999,
+            "price": 15
+          }
+        ]
+      },
+      {
+        "code": 14,
+        "name": "Thriller",
+        "books" : [
+          {
+            "title": "Annihilation",
+            "lang": "English",
+            "authors": ["Jeff VanderMeer"],
+            "pub_year": 2014,
+            "price": 15
+          }
+        ]
+      },
+      {
+        "code": 15,
+        "name": "Comedy",
+        "books" : [
+          {
+            "title": "Good Omens",
+            "lang": "English",
+            "authors": ["Neil Gaiman", "Terry Pratchett"],
+            "pub_year": 2006,
+            "price": 13
+          }
+        ]
+      },
+      {
+        "code": 16,
+        "name": "Children",
+        "books" : [
+          {
+            "title": "Matilda",
+            "lang": "English",
+            "authors": ["Roald Dahl"],
+            "pub_year": 1988,
+            "price": 10
+          },
+          {
+            "title": "The Gruffalo",
+            "lang": "English",
+            "authors": ["Julia Donaldson"],
+            "pub_year": 1999,
+            "price": 15
+          }
+        ]
+      },
+      {
+        "code": 17,
+        "name": "Thriller",
+        "books" : [
+          {
+            "title": "Annihilation",
+            "lang": "English",
+            "authors": ["Jeff VanderMeer"],
+            "pub_year": 2014,
+            "price": 15
+          }
+        ]
+      },
+      {
+        "code": 18,
+        "name": "Comedy",
+        "books" : [
+          {
+            "title": "Good Omens",
+            "lang": "English",
+            "authors": ["Neil Gaiman", "Terry Pratchett"],
+            "pub_year": 2006,
+            "price": 13
+          }
+        ]
+      },
+      {
+        "code": 19,
+        "name": "Children",
+        "books" : [
+          {
+            "title": "Matilda",
+            "lang": "English",
+            "authors": ["Roald Dahl"],
+            "pub_year": 1988,
+            "price": 10
+          },
+          {
+            "title": "The Gruffalo",
+            "lang": "English",
+            "authors": ["Julia Donaldson"],
+            "pub_year": 1999,
+            "price": 15
+          }
+        ]
+      },
+      {
+        "code": 20,
+        "name": "Thriller",
+        "books" : [
+          {
+            "title": "Annihilation",
+            "lang": "English",
+            "authors": ["Jeff VanderMeer"],
+            "pub_year": 2014,
+            "price": 15
+          }
+        ]
+      },
+      {
+        "code": 21,
+        "name": "Comedy",
+        "books" : [
+          {
+            "title": "Good Omens",
+            "lang": "English",
+            "authors": ["Neil Gaiman", "Terry Pratchett"],
+            "pub_year": 2006,
+            "price": 13
+          }
+        ]
+      },
+      {
+        "code": 22,
+        "name": "Children",
+        "books" : [
+          {
+            "title": "Matilda",
+            "lang": "English",
+            "authors": ["Roald Dahl"],
+            "pub_year": 1988,
+            "price": 10
+          },
+          {
+            "title": "The Gruffalo",
+            "lang": "English",
+            "authors": ["Julia Donaldson"],
+            "pub_year": 1999,
+            "price": 15
+          }
+        ]
+      },
+      {
+        "code": 23,
+        "name": "Thriller",
+        "books" : [
+          {
+            "title": "Annihilation",
+            "lang": "English",
+            "authors": ["Jeff VanderMeer"],
+            "pub_year": 2014,
+            "price": 15
+          }
+        ]
+      },
+      {
+        "code": 24,
+        "name": "Comedy",
+        "books" : [
+          {
+            "title": "Good Omens",
+            "lang": "English",
+            "authors": ["Neil Gaiman", "Terry Pratchett"],
+            "pub_year": 2006,
+            "price": 13
+          }
+        ]
+      },
+      {
+        "code": 25,
+        "name": "Children",
+        "books" : [
+          {
+            "title": "Matilda",
+            "lang": "English",
+            "authors": ["Roald Dahl"],
+            "pub_year": 1988,
+            "price": 10
+          },
+          {
+            "title": "The Gruffalo",
+            "lang": "English",
+            "authors": ["Julia Donaldson"],
+            "pub_year": 1999,
+            "price": 15
+          }
+        ]
+      },
+      {
+        "code": 26,
+        "name": "Thriller",
+        "books" : [
+          {
+            "title": "Annihilation",
+            "lang": "English",
+            "authors": ["Jeff VanderMeer"],
+            "pub_year": 2014,
+            "price": 15
+          }
+        ]
+      },
+      {
+        "code": 27,
+        "name": "Comedy",
+        "books" : [
+          {
+            "title": "Good Omens",
+            "lang": "English",
+            "authors": ["Neil Gaiman", "Terry Pratchett"],
+            "pub_year": 2006,
+            "price": 13
+          }
+        ]
+      },
+      {
+        "code": 28,
+        "name": "Children",
+        "books" : [
+          {
+            "title": "Matilda",
+            "lang": "English",
+            "authors": ["Roald Dahl"],
+            "pub_year": 1988,
+            "price": 10
+          },
+          {
+            "title": "The Gruffalo",
+            "lang": "English",
+            "authors": ["Julia Donaldson"],
+            "pub_year": 1999,
+            "price": 15
+          }
+        ]
+      },
+      {
+        "code": 29,
+        "name": "Thriller",
+        "books" : [
+          {
+            "title": "Annihilation",
+            "lang": "English",
+            "authors": ["Jeff VanderMeer"],
+            "pub_year": 2014,
+            "price": 15
+          }
+        ]
+      },
+      {
+        "code": 30,
+        "name": "Comedy",
+        "books" : [
+          {
+            "title": "Good Omens",
+            "lang": "English",
+            "authors": ["Neil Gaiman", "Terry Pratchett"],
+            "pub_year": 2006,
+            "price": 13
+          }
+        ]
+      },
+      {
+        "code": 31,
+        "name": "Children",
+        "books" : [
+          {
+            "title": "Matilda",
+            "lang": "English",
+            "authors": ["Roald Dahl"],
+            "pub_year": 1988,
+            "price": 10
+          },
+          {
+            "title": "The Gruffalo",
+            "lang": "English",
+            "authors": ["Julia Donaldson"],
+            "pub_year": 1999,
+            "price": 15
+          }
+        ]
+      },
+      {
+        "code": 32,
+        "name": "Thriller",
+        "books" : [
+          {
+            "title": "Annihilation",
+            "lang": "English",
+            "authors": ["Jeff VanderMeer"],
+            "pub_year": 2014,
+            "price": 15
+          }
+        ]
+      },
+      {
+        "code": 33,
+        "name": "Comedy",
+        "books" : [
+          {
+            "title": "Good Omens",
+            "lang": "English",
+            "authors": ["Neil Gaiman", "Terry Pratchett"],
+            "pub_year": 2006,
+            "price": 13
+          }
+        ]
+      }
+    ]
+  }
+}
