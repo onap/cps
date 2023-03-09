@@ -16,6 +16,24 @@
       "revId": "911e540750bad088ca7bda23d9fff2ab9bfa102c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c468f6cc_d5951915",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistence.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-03-09T09:43:58Z",
+      "side": 1,
+      "message": "Yeah I\u0027d agree",
+      "parentUuid": "3817df96_258cd88b",
+      "revId": "911e540750bad088ca7bda23d9fff2ab9bfa102c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
