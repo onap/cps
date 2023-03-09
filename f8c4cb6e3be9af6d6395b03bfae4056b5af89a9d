@@ -94,6 +94,29 @@
     },
     {
       "key": {
+        "uuid": "24fc420d_afbf4b32",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-03-09T12:44:44Z",
+      "side": 0,
+      "message": "Dataspace is not needed in these methods (since AnchorEntity references DataspaceEntity, and Anchor IDs are unique anyway).",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 0
+      },
+      "revId": "f8c4cb6e3be9af6d6395b03bfae4056b5af89a9d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "982b03e1_2c58600f",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
         "patchSetId": 1
