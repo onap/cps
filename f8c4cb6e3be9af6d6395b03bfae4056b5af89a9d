@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0631edbe_c5060ed1",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-03-09T12:41:44Z",
+      "side": 0,
+      "message": "Fix intelli-j warning about regex: {0,1} can be replaced with ?",
+      "range": {
+        "startLine": 83,
+        "startChar": 83,
+        "endLine": 83,
+        "endChar": 88
+      },
+      "revId": "f8c4cb6e3be9af6d6395b03bfae4056b5af89a9d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "98242fba_9f8d2e85",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 443,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-03-09T12:41:44Z",
+      "side": 0,
+      "message": "Fix intelli-j warning about regex: \\\\/ can be replaced with /",
+      "range": {
+        "startLine": 443,
+        "startChar": 43,
+        "endLine": 443,
+        "endChar": 46
+      },
+      "revId": "f8c4cb6e3be9af6d6395b03bfae4056b5af89a9d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "27986076_f27c8646",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 630,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-03-09T12:41:44Z",
+      "side": 0,
+      "message": "This should be a warning, same as other methods reporting invalid xpaths",
+      "range": {
+        "startLine": 630,
+        "startChar": 20,
+        "endLine": 630,
+        "endChar": 25
+      },
+      "revId": "f8c4cb6e3be9af6d6395b03bfae4056b5af89a9d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "982b03e1_2c58600f",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-03-09T12:41:44Z",
+      "side": 0,
+      "message": "This was used by integration tests to see if any fragments exist in an anchor. It can be simplified to existsByAnchorId",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 86
+      },
+      "revId": "f8c4cb6e3be9af6d6395b03bfae4056b5af89a9d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ddf5025_f7ff62f6",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-03-09T12:41:44Z",
+      "side": 0,
+      "message": "Can be simplified using JPQL. Also note the name is incorrect, it finds everything in the anchor.",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 79
+      },
+      "revId": "f8c4cb6e3be9af6d6395b03bfae4056b5af89a9d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4c3180d7_e9013242",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-03-09T12:41:44Z",
+      "side": 0,
+      "message": "This method is not needed, the code calling it already throws DataNodeNotFoundException if nothing was returned.",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 5
+      },
+      "revId": "f8c4cb6e3be9af6d6395b03bfae4056b5af89a9d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ca07e3f_63bb7eb2",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-03-09T12:41:44Z",
+      "side": 0,
+      "message": "Should be @NonNull",
+      "range": {
+        "startLine": 86,
+        "startChar": 26,
+        "endLine": 86,
+        "endChar": 34
+      },
+      "revId": "f8c4cb6e3be9af6d6395b03bfae4056b5af89a9d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "53c97654_742bde17",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-03-09T12:41:44Z",
+      "side": 0,
+      "message": "Remove unused code",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 0
+      },
+      "revId": "f8c4cb6e3be9af6d6395b03bfae4056b5af89a9d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba908e71_8f245dee",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 726,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-03-09T12:41:44Z",
+      "side": 0,
+      "message": "Remove unused code.",
+      "range": {
+        "startLine": 713,
+        "startChar": 0,
+        "endLine": 726,
+        "endChar": 0
+      },
+      "revId": "f8c4cb6e3be9af6d6395b03bfae4056b5af89a9d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
