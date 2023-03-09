@@ -2,6 +2,98 @@
   "comments": [
     {
       "key": {
+        "uuid": "a1f52043_eae711ec",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-09T10:08:05Z",
+      "side": 1,
+      "message": "I hope soon we dont need to handle this separately anymore\n(bot not for this commit)",
+      "range": {
+        "startLine": 290,
+        "startChar": 8,
+        "endLine": 290,
+        "endChar": 26
+      },
+      "revId": "9f9eadd0d6a7bf886d654c8fd01ade48b155405a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fd27eead_9525176d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-09T10:08:05Z",
+      "side": 1,
+      "message": "suggestion: can you not handle this in SQL instead?\nIf you prefer to handel it in Java use a different term e.g. \nslqRecursionLevel \u003d getSqlRecursionLevel(fetchDescandantsOption)",
+      "range": {
+        "startLine": 301,
+        "startChar": 0,
+        "endLine": 306,
+        "endChar": 5
+      },
+      "revId": "9f9eadd0d6a7bf886d654c8fd01ade48b155405a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9fda7fea_5d7c4fdb",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-09T10:08:05Z",
+      "side": 1,
+      "message": "NB: partial legacy issue (now bene copied too), no need to alise with singel letter when only one tabel is used in a query ie. this query can be simplified to \n\nSELECT xpath FROM FragmentEntity WHERE anchor \u003d :anchor AND xpath IN :xpaths",
+      "range": {
+        "startLine": 104,
+        "startChar": 47,
+        "endLine": 104,
+        "endChar": 48
+      },
+      "revId": "9f9eadd0d6a7bf886d654c8fd01ade48b155405a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dcd39f11_4ad9750f",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-09T10:08:05Z",
+      "side": 1,
+      "message": "NB: no need for f. see prev comemnt",
+      "range": {
+        "startLine": 110,
+        "startChar": 19,
+        "endLine": 110,
+        "endChar": 21
+      },
+      "revId": "9f9eadd0d6a7bf886d654c8fd01ade48b155405a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f4685f69_b64b8b80",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
         "patchSetId": 4
@@ -16,6 +108,92 @@
       "revId": "9f9eadd0d6a7bf886d654c8fd01ade48b155405a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "73c7ce89_edb2b39a",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-09T10:08:05Z",
+      "side": 1,
+      "message": "need to switch to new framework soon!",
+      "range": {
+        "startLine": 318,
+        "startChar": 12,
+        "endLine": 318,
+        "endChar": 84
+      },
+      "revId": "9f9eadd0d6a7bf886d654c8fd01ade48b155405a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4bd35d16_71aa5f48",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-09T10:08:05Z",
+      "side": 1,
+      "message": "I think any of the test you had to modify should NOT be covered by (positive) integration test.\nMocks should only be used for test around difficult error scenarios that cannot easily be setup using correct data...\n\nWe can deal with this later as a separate activity",
+      "revId": "9f9eadd0d6a7bf886d654c8fd01ade48b155405a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b8b63b8a_661db4a9",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/performance/CpsDataPersistenceServicePerfTest.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-09T10:08:05Z",
+      "side": 1,
+      "message": "we need to be carful settign these to close... What di you measure?",
+      "range": {
+        "startLine": 116,
+        "startChar": 90,
+        "endLine": 116,
+        "endChar": 93
+      },
+      "revId": "9f9eadd0d6a7bf886d654c8fd01ade48b155405a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e49a0ed1_e61dde69",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/FetchDescendantsOption.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-09T10:08:05Z",
+      "side": 1,
+      "message": "maybe document teh -1 case, something like\n\u0027-1 represent \u0027all descendants\u0027",
+      "range": {
+        "startLine": 78,
+        "startChar": 7,
+        "endLine": 80,
+        "endChar": 37
+      },
+      "revId": "9f9eadd0d6a7bf886d654c8fd01ade48b155405a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
