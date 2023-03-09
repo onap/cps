@@ -109,7 +109,7 @@ public class SubscriptionModelLoader implements ModelLoader {
     }
 
     private String getFileContentAsString() {
-        try (InputStream inputStream = ClassLoader.getSystemClassLoader()
+        try (InputStream inputStream = getClass().getClassLoader()
                 .getResourceAsStream("model/subscription.yang")) {
             return new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
         } catch (final Exception exception) {
