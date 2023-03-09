@@ -600,3 +600,18 @@ databaseChangeLog:
       rollback:
         - sql:
             sql: alter table yang_resource rename column file_name to name
+
+  - changeSet:
+      author: cps
+      id: 1-41
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: schema_set_id
+            indexName: FKI_SCHEMA_SET_YANG_RESOURCES_SCHEMA_SET_ID_FK
+            tableName: schema_set_yang_resources
+      rollback:
+        - dropIndex:
+            indexName: FKI_SCHEMA_SET_YANG_RESOURCES_SCHEMA_SET_ID_FK
+            tableName: schema_set_yang_resources
