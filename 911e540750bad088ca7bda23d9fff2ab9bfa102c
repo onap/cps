@@ -34,6 +34,52 @@
       "revId": "911e540750bad088ca7bda23d9fff2ab9bfa102c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c233a252_6299a146",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-03-09T16:36:30Z",
+      "side": 1,
+      "message": "NB: Was using this for comparison and realised its wrong, a cmhandle object is passed instead of a cmhandleid",
+      "range": {
+        "startLine": 250,
+        "startChar": 62,
+        "endLine": 250,
+        "endChar": 72
+      },
+      "revId": "911e540750bad088ca7bda23d9fff2ab9bfa102c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4ca0518_d14e0497",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-03-09T16:36:30Z",
+      "side": 1,
+      "message": "I\u0027m not sure if this is right, should the subscription-registry bit not be created on the start up of the application like how dmi-registry for cmhandles is? What happens if two are saved?",
+      "range": {
+        "startLine": 244,
+        "startChar": 51,
+        "endLine": 244,
+        "endChar": 76
+      },
+      "revId": "911e540750bad088ca7bda23d9fff2ab9bfa102c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
