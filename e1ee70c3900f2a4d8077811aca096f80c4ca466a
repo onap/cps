@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c0101fd6_d4d4bdc9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/EventsPublisher.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-03-09T12:14:48Z",
+      "side": 1,
+      "message": "👍 Good.",
+      "range": {
+        "startLine": 40,
+        "startChar": 18,
+        "endLine": 40,
+        "endChar": 42
+      },
+      "revId": "e1ee70c3900f2a4d8077811aca096f80c4ca466a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "946bcd7d_e26f8438",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventForwarderSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-03-09T12:14:48Z",
+      "side": 1,
+      "message": "is it private ?? \nWhile forwarding we are putting in the private properties..right ?",
+      "range": {
+        "startLine": 51,
+        "startChar": 47,
+        "endLine": 51,
+        "endChar": 53
+      },
+      "revId": "e1ee70c3900f2a4d8077811aca096f80c4ca466a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7c3b6732_c6f7e91a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventForwarderSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-03-09T12:14:48Z",
+      "side": 1,
+      "message": "here we can also add the test for wildcard as well. right ?",
+      "revId": "e1ee70c3900f2a4d8077811aca096f80c4ca466a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0354ffbe_ebc03dfe",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/yangmodels/YangModelCmHandleSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-03-09T12:14:48Z",
+      "side": 1,
+      "message": "NB: what happened here ??",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 27
+      },
+      "revId": "e1ee70c3900f2a4d8077811aca096f80c4ca466a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}

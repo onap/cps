@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "0b1b2fa9_9cbbedeb",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/avc-subscription-event-v1.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-03-09T12:14:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "089c481b_60f9a3b4",
+      "range": {
+        "startLine": 96,
+        "startChar": 24,
+        "endLine": 96,
+        "endChar": 29
+      },
+      "revId": "b758f0a1479b23e83aaf1c326eb7b298a2e51e6b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "82a8e8eb_0ffcd5ec",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventForwarder.java",
         "patchSetId": 5
