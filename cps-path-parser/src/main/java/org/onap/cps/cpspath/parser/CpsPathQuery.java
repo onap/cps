@@ -42,6 +42,7 @@ public class CpsPathQuery {
     private String ancestorSchemaNodeIdentifier = "";
     private String textFunctionConditionLeafName;
     private String textFunctionConditionValue;
+    private List<String> angularOperatorTypes;
 
     /**
      * Returns a cps path query.

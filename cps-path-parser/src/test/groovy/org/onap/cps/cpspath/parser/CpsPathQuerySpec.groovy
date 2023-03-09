@@ -101,9 +101,10 @@ class CpsPathQuerySpec extends Specification {
             result.descendantName == "child"
             result.leavesData.size() == expectedNumberOfLeaves
         where: 'the following data is used'
-            scenario                  | cpsPath                                            || expectedNumberOfLeaves
-            'one attribute'           | '//child[@common-leaf-name-int=5]'                 || 1
-            'more than one attribute' | '//child[@int-leaf=5 and @leaf-name="leaf value"]' || 2
+            scenario                              | cpsPath                                            || expectedNumberOfLeaves
+            'one attribute'                       | '//child[@common-leaf-name-int=5]'                 || 1
+            'more than one attribute'             | '//child[@int-leaf=5 and @leaf-name="leaf value"]' || 2
+            'one attribute with angular operator' | '//child[@common-leaf-name-int>5]'                 || 1
     }
 
     def 'Parse #scenario cps path with text function condition'() {

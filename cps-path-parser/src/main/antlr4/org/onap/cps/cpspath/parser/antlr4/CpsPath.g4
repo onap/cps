@@ -44,11 +44,13 @@ listElementRef :  OB leafCondition ( KW_AND leafCondition)* CB ;
 
 multipleLeafConditions : OB leafCondition ( KW_AND leafCondition)* CB ;
 
-leafCondition : AT leafName EQ ( IntegerLiteral | StringLiteral) ;
+leafCondition : AT leafName EQ ( IntegerLiteral | StringLiteral) | AT leafName angularOperators  IntegerLiteral ;
 
 leafName : QName ;
 
-invalidPostFix : (AT | CB | COLONCOLON | EQ ).+ ;
+angularOperators : ( GT | LT | EQ ) ;
+
+invalidPostFix : (AT | CB | COLONCOLON | angularOperators ).+ ;
 
 /*
  * Lexer Rules
@@ -62,6 +64,8 @@ COLONCOLON : '::' ;
 EQ : '=' ;
 OB : '[' ;
 SLASH : '/' ;
+GT : '>' ;
+LT : '<' ;
 
 // KEYWORDS
 

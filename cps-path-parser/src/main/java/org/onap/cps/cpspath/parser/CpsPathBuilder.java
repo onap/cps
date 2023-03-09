@@ -54,6 +54,8 @@ public class CpsPathBuilder extends CpsPathBaseListener {
 
     private List<String> containerNames = new ArrayList<>();
 
+    final List<String> angularOperators = new ArrayList<>();
+
     @Override
     public void exitInvalidPostFix(final CpsPathParser.InvalidPostFixContext ctx) {
         throw new PathParsingException(ctx.getText());
@@ -94,6 +96,13 @@ public class CpsPathBuilder extends CpsPathBaseListener {
         if (processingAncestorAxis) {
             appendCondition(normalizedAncestorPathBuilder, ctx.leafName().getText(), comparisonValue);
         }
+    }
+
+    @Override
+    public void exitAngularOperators(final CpsPathParser.AngularOperatorsContext ctx) {
+        final CpsPathAngularOperatorType angularOperatorsTypes = CpsPathAngularOperatorType.fromString(ctx.getText());
+        angularOperators.add(angularOperatorsTypes.getLabels());
+        cpsPathQuery.setAngularOperatorTypes(angularOperators);
     }
 
     @Override

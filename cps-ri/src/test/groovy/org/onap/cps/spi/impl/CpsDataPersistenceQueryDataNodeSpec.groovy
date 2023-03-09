@@ -145,6 +145,7 @@ class CpsDataPersistenceQueryDataNodeSpec extends CpsPersistenceSpecBase {
             'one partial key leaf'                | '//author[@FirstName="Joe"]'                   || ["/shops/shop[@id='1']/categories[@code='1']/book/author[@FirstName='Joe' and @Surname='Bloggs']", "/shops/shop[@id='1']/categories[@code='2']/book/author[@FirstName='Joe' and @Surname='Smith']"]
             'one non key leaf'                    | '//author[@title="Dune"]'                      || ["/shops/shop[@id='1']/categories[@code='1']/book/author[@FirstName='Joe' and @Surname='Bloggs']"]
             'mix of partial key and non key leaf' | '//author[@FirstName="Joe" and @title="Dune"]' || ["/shops/shop[@id='1']/categories[@code='1']/book/author[@FirstName='Joe' and @Surname='Bloggs']"]
+            'cps having angular operators'        | '//categories[@code=2]/books[@price>300]'      || ["/shops/shop[@id='1']/categories[@code='2']/books[@price>150]"]
     }
 
     @Sql([CLEAR_DATA, SET_DATA])

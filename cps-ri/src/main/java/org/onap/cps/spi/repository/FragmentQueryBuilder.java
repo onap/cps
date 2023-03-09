@@ -62,15 +62,41 @@ public class FragmentQueryBuilder {
         final String xpathRegex = getXpathSqlRegex(cpsPathQuery, false);
         queryParameters.put("xpathRegex", xpathRegex);
         if (cpsPathQuery.hasLeafConditions()) {
-            sqlStringBuilder.append(" AND attributes @> :leafDataAsJson\\:\\:jsonb");
+            sqlStringBuilder.append(" AND (");
+            sqlStringBuilder.append(" attributes @> :leafDataAsJson\\:\\:jsonb");
             queryParameters.put("leafDataAsJson", jsonObjectMapper.asJsonString(
-                cpsPathQuery.getLeavesData()));
+                    cpsPathQuery.getLeavesData()));
+            final Integer valueAsInt = getValueAsInt(cpsPathQuery);
+            if (valueAsInt != null) {
+                sqlStringBuilder.append(
+                        " OR attributes->> (jsonb_build_object(:leafName, :leafValue)->> :leafValue)");
+                for (final Map.Entry<String, Object> entry : cpsPathQuery.getLeavesData().entrySet()) {
+                    queryParameters.put("leafName", jsonObjectMapper.asJsonString(entry.getKey()));
+                    queryParameters.put("leafValue", jsonObjectMapper.asJsonString(entry.getValue()));
+                }
+                sqlStringBuilder.append(")");
+            }
         }
 
         addTextFunctionCondition(cpsPathQuery, sqlStringBuilder, queryParameters);
         final Query query = entityManager.createNativeQuery(sqlStringBuilder.toString(), FragmentEntity.class);
         setQueryParameters(query, queryParameters);
         return query;
+    }
+
+    private static Integer getValueAsInt(final CpsPathQuery cpsPathQuery) {
+        try {
+            final Map<String, Object> leaves = cpsPathQuery.getLeavesData();
+            for (final Map.Entry<String, Object> entry : leaves.entrySet()) {
+                final Object v = entry.getValue();
+                if (v instanceof Integer) {
+                    return (Integer) v;
+                }
+            }
+            return null;
+        } catch (final NumberFormatException e) {
+            return null;
+        }
     }
 
     /**
