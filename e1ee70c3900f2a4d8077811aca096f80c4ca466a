@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "15f8edfa_f4e0ecf4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventForwarderSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-03-09T17:20:40Z",
+      "side": 1,
+      "message": "Yep! fixed",
+      "parentUuid": "946bcd7d_e26f8438",
+      "range": {
+        "startLine": 51,
+        "startChar": 47,
+        "endLine": 51,
+        "endChar": 53
+      },
+      "revId": "e1ee70c3900f2a4d8077811aca096f80c4ca466a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7c3b6732_c6f7e91a",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventForwarderSpec.groovy",
         "patchSetId": 7
@@ -65,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "9eb8ef89_e613385c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventForwarderSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-03-09T17:20:40Z",
+      "side": 1,
+      "message": "Yep, forgot to test, added",
+      "parentUuid": "7c3b6732_c6f7e91a",
+      "revId": "e1ee70c3900f2a4d8077811aca096f80c4ca466a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0354ffbe_ebc03dfe",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/yangmodels/YangModelCmHandleSpec.groovy",
         "patchSetId": 7
@@ -76,6 +118,30 @@
       "writtenOn": "2023-03-09T12:14:48Z",
       "side": 1,
       "message": "NB: what happened here ??",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 27
+      },
+      "revId": "e1ee70c3900f2a4d8077811aca096f80c4ca466a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "74d5af37_c607fc64",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/yangmodels/YangModelCmHandleSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-03-09T17:20:40Z",
+      "side": 1,
+      "message": "Edited the file then reset it, if you compare with base its the same :)",
+      "parentUuid": "0354ffbe_ebc03dfe",
       "range": {
         "startLine": 3,
         "startChar": 18,
