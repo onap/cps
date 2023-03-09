@@ -32,14 +32,19 @@ Release Data
 | **Release designation**              | 3.2.4 London                                           |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
-| **Release date**                     | Not been released yet                                  |
+| **Release date**                     | 2023 March 09                                          |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
 
 Bug Fixes
 ---------
 3.2.4
-   - None
+    - `CPS-1533 <https://jira.onap.org/browse/CPS-1533>`_ Fix for Temp tables cause Out of shared memory errors in Postgres
+    - `CPS-1537 <https://jira.onap.org/browse/CPS-1537>`_ NCMP failed to start due to issue in SubscriptionModelLoader
+
+Features
+--------
+    - None
 
 Version: 3.2.3
 ==============
