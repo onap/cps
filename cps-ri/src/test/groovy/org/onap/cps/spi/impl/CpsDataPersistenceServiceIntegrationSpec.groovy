@@ -25,7 +25,6 @@ package org.onap.cps.spi.impl
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.common.collect.ImmutableSet
-import org.onap.cps.cpspath.parser.PathParsingException
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.entities.FragmentEntity
 import org.onap.cps.spi.exceptions.AlreadyDefinedExceptionBatch
@@ -253,8 +252,8 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
         when: 'trying to execute a query with a syntax (parsing) error'
             objectUnderTest.getDataNodes(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, 'invalid-cps-path/child' , OMIT_DESCENDANTS)
         then: 'exception is thrown'
-            def exceptionThrown = thrown(PathParsingException)
-            assert exceptionThrown.getMessage().contains('failed to parse at line 1 due to extraneous input \'invalid-cps-path\' expecting \'/\'')
+            def exceptionThrown = thrown(CpsPathException)
+            assert exceptionThrown.getDetails() == "failed to parse at line 1 due to extraneous input 'invalid-cps-path' expecting '/'"
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
@@ -288,7 +287,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
         where: 'the following data is used'
             scenario             | dataspaceName  | anchorName                        | xpath           || expectedException
             'non existing xpath' | DATASPACE_NAME | ANCHOR_FOR_DATA_NODES_WITH_LEAVES | '/NO-XPATH'     || DataNodeNotFoundException
-            'invalid Xpath'      | DATASPACE_NAME | ANCHOR_FOR_DATA_NODES_WITH_LEAVES | 'INVALID XPATH' || PathParsingException
+            'invalid Xpath'      | DATASPACE_NAME | ANCHOR_FOR_DATA_NODES_WITH_LEAVES | 'INVALID XPATH' || CpsPathException
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
@@ -667,9 +666,9 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
         then: 'a #expectedException is thrown'
             thrown(expectedException)
         where: 'the following parameters were used'
-            scenario                                        | datanodeXpath                                    | expectedException
-            'valid data node, non existent child node'      | '/parent-203/child-non-existent'                 | DataNodeNotFoundException
-            'invalid list element'                          | '/parent-206/child-206/grand-child-206@key="A"]' | PathParsingException
+            scenario                                   | datanodeXpath                                    | expectedException
+            'valid data node, non existent child node' | '/parent-203/child-non-existent'                 | DataNodeNotFoundException
+            'invalid list element'                     | '/parent-206/child-206/grand-child-206@key="A"]' | CpsPathException
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
