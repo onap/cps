@@ -32,14 +32,14 @@ Release Data
 | **Release designation**              | 3.2.5 London                                           |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
-| **Release date**                     | Not been released yet                                  |
+| **Release date**                     | 2023 March 10                                          |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
 
 Bug Fixes
 ---------
 3.2.5
-    - None
+    - `CPS-1537 <https://jira.onap.org/browse/CPS-1537>`_ Introduce control switch for model loader functionality.
 
 Features
 --------
