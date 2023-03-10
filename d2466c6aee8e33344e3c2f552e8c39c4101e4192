@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "59b051f9_427dbb26",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-03-10T17:13:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "47356188_c13fb33e",
+      "range": {
+        "startLine": 88,
+        "startChar": 28,
+        "endLine": 88,
+        "endChar": 71
+      },
+      "revId": "d2466c6aee8e33344e3c2f552e8c39c4101e4192",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "eb962a2e_d93c42b1",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 1
@@ -68,6 +92,30 @@
       "revId": "d2466c6aee8e33344e3c2f552e8c39c4101e4192",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "44acf843_b23661ab",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-03-10T17:13:48Z",
+      "side": 1,
+      "message": "Yes, redundant. IntelliJ is pretty smart!",
+      "parentUuid": "c979d2de_074730f3",
+      "range": {
+        "startLine": 411,
+        "startChar": 0,
+        "endLine": 412,
+        "endChar": 73
+      },
+      "revId": "d2466c6aee8e33344e3c2f552e8c39c4101e4192",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +165,30 @@
     },
     {
       "key": {
+        "uuid": "b8bbbd8d_c28d18c9",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-03-10T17:13:48Z",
+      "side": 1,
+      "message": "Fixed. Removed all @NonNull\u0027s",
+      "parentUuid": "f02b044f_2d18e584",
+      "range": {
+        "startLine": 43,
+        "startChar": 50,
+        "endLine": 43,
+        "endChar": 58
+      },
+      "revId": "d2466c6aee8e33344e3c2f552e8c39c4101e4192",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "92aadde3_3abf26e7",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
         "patchSetId": 1
@@ -137,6 +209,30 @@
       "revId": "d2466c6aee8e33344e3c2f552e8c39c4101e4192",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "27490ef6_27591e09",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-03-10T17:13:48Z",
+      "side": 1,
+      "message": "Yes, it\u0027s only used in tests. It has the perfect name since it\u0027s a JPA-generated query (i.e. query is generated from method name, so we cannot rename). The method checks if any fragments exist under the given anchor.",
+      "parentUuid": "92aadde3_3abf26e7",
+      "range": {
+        "startLine": 50,
+        "startChar": 4,
+        "endLine": 50,
+        "endChar": 43
+      },
+      "revId": "d2466c6aee8e33344e3c2f552e8c39c4101e4192",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -163,6 +259,30 @@
     },
     {
       "key": {
+        "uuid": "61f1ee1d_fc7692a4",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-03-10T17:13:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e9eb3680_b3fc3d65",
+      "range": {
+        "startLine": 52,
+        "startChar": 19,
+        "endLine": 52,
+        "endChar": 20
+      },
+      "revId": "d2466c6aee8e33344e3c2f552e8c39c4101e4192",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "af1d7226_018015d6",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
         "patchSetId": 1
@@ -186,6 +306,30 @@
     },
     {
       "key": {
+        "uuid": "586d0e7a_7c73f626",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-03-10T17:13:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "af1d7226_018015d6",
+      "range": {
+        "startLine": 57,
+        "startChar": 26,
+        "endLine": 57,
+        "endChar": 34
+      },
+      "revId": "d2466c6aee8e33344e3c2f552e8c39c4101e4192",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7c488a6e_b37d8c7c",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
         "patchSetId": 1
@@ -206,6 +350,30 @@
       "revId": "d2466c6aee8e33344e3c2f552e8c39c4101e4192",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ba8b0c6_ccf2a737",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-03-10T17:13:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7c488a6e_b37d8c7c",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 128
+      },
+      "revId": "d2466c6aee8e33344e3c2f552e8c39c4101e4192",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
