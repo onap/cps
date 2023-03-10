@@ -30,6 +30,7 @@ import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.ncmp.api.impl.exception.NcmpStartUpException;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.stereotype.Component;
@@ -45,6 +46,9 @@ public class SubscriptionModelLoader implements ModelLoader {
     private static final String SUBSCRIPTION_ANCHOR_NAME = "AVC-Subscriptions";
     private static final String SUBSCRIPTION_SCHEMASET_NAME = "subscriptions";
 
+    @Value("${ncmp.model-loader.subscription:false}")
+    private boolean subscriptionModelLoaderEnabled;
+
     /**
      * Method calls boarding subscription model when Application is ready.
      *
@@ -53,7 +57,11 @@ public class SubscriptionModelLoader implements ModelLoader {
     @Override
     public void onApplicationEvent(@NonNull final ApplicationReadyEvent applicationReadyEvent) {
         try {
-            onboardSubscriptionModel();
+            if (subscriptionModelLoaderEnabled) {
+                onboardSubscriptionModel();
+            } else {
+                log.info("Subscription Model Loader is disabled");
+            }
         } catch (final NcmpStartUpException ncmpStartUpException) {
             log.debug("Onboarding model for NCMP failed: {} ", ncmpStartUpException.getMessage());
             SpringApplication.exit(applicationReadyEvent.getApplicationContext(), () -> 1);

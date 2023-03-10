@@ -67,7 +67,9 @@ class SubscriptionModelLoaderSpec extends Specification {
     }
 
     def 'Onboard subscription model successfully via application ready event'() {
-        when: 'the application is ready'
+        when:'model loader is enabled'
+            objectUnderTest.subscriptionModelLoaderEnabled = true
+        and: 'the application is ready'
             objectUnderTest.onApplicationEvent(applicationReadyEvent)
         then: 'the module service to create schema set is called once'
             1 * mockCpsModuleService.createSchemaSet(SUBSCRIPTION_DATASPACE_NAME, SUBSCRIPTION_SCHEMASET_NAME,sampleYangContentMap)

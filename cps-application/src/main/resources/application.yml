@@ -184,3 +184,6 @@ ncmp:
     modules-sync-watchdog:
         async-executor:
             parallelism-level: 10
+
+    model-loader:
+        subscription: false
