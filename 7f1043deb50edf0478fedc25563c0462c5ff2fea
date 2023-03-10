@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4fa0ebf0_d6ac1c44",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/GetPerfTest.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-03-10T17:52:22Z",
+      "side": 1,
+      "message": "As discussed in call with Toine, the first query takes a ridiculous amount of time. The DB needs to warmed up before running tests. CPS-1524 will address this.",
+      "range": {
+        "startLine": 45,
+        "startChar": 77,
+        "endLine": 45,
+        "endChar": 83
+      },
+      "revId": "7f1043deb50edf0478fedc25563c0462c5ff2fea",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
