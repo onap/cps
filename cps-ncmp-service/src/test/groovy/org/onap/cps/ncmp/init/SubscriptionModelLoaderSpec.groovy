@@ -26,6 +26,7 @@ import ch.qos.logback.core.read.ListAppender
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.onap.cps.api.CpsAdminService
+import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.ncmp.api.impl.exception.NcmpStartUpException
 import org.onap.cps.spi.exceptions.AlreadyDefinedException
@@ -39,11 +40,13 @@ class SubscriptionModelLoaderSpec extends Specification {
 
     def mockCpsAdminService = Mock(CpsAdminService)
     def mockCpsModuleService = Mock(CpsModuleService)
-    def objectUnderTest = new SubscriptionModelLoader(mockCpsAdminService, mockCpsModuleService)
+    def mockCpsDataService = Mock(CpsDataService)
+    def objectUnderTest = new SubscriptionModelLoader(mockCpsAdminService, mockCpsModuleService, mockCpsDataService)
 
     def SUBSCRIPTION_DATASPACE_NAME = objectUnderTest.SUBSCRIPTION_DATASPACE_NAME;
     def SUBSCRIPTION_ANCHOR_NAME = objectUnderTest.SUBSCRIPTION_ANCHOR_NAME;
     def SUBSCRIPTION_SCHEMASET_NAME = objectUnderTest.SUBSCRIPTION_SCHEMASET_NAME;
+    def SUBSCRIPTION_REGISTRY_DATANODE_NAME = objectUnderTest.SUBSCRIPTION_REGISTRY_DATANODE_NAME;
 
     def sampleYangContentMap = ['subscription.yang':'module subscription { *sample content* }']
 
@@ -75,6 +78,8 @@ class SubscriptionModelLoaderSpec extends Specification {
             1 * mockCpsModuleService.createSchemaSet(SUBSCRIPTION_DATASPACE_NAME, SUBSCRIPTION_SCHEMASET_NAME,sampleYangContentMap)
         and: 'the admin service to create an anchor set is called once'
             1 * mockCpsAdminService.createAnchor(SUBSCRIPTION_DATASPACE_NAME, SUBSCRIPTION_SCHEMASET_NAME, SUBSCRIPTION_ANCHOR_NAME)
+        and: 'the data service to create a top level datanode is called once'
+            1 * mockCpsDataService.saveData(SUBSCRIPTION_DATASPACE_NAME, SUBSCRIPTION_ANCHOR_NAME, '{"' + SUBSCRIPTION_REGISTRY_DATANODE_NAME + '":{}}', _)
     }
 
     def 'Create schema set from model file'() {

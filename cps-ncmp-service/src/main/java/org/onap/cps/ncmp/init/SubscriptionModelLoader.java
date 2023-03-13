@@ -22,11 +22,13 @@ package org.onap.cps.ncmp.init;
 
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.time.OffsetDateTime;
 import java.util.Map;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsAdminService;
+import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.ncmp.api.impl.exception.NcmpStartUpException;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
@@ -42,9 +44,11 @@ public class SubscriptionModelLoader implements ModelLoader {
 
     private final CpsAdminService cpsAdminService;
     private final CpsModuleService cpsModuleService;
+    private final CpsDataService cpsDataService;
     private static final String SUBSCRIPTION_DATASPACE_NAME = "NCMP-Admin";
     private static final String SUBSCRIPTION_ANCHOR_NAME = "AVC-Subscriptions";
     private static final String SUBSCRIPTION_SCHEMASET_NAME = "subscriptions";
+    private static final String SUBSCRIPTION_REGISTRY_DATANODE_NAME = "subscription-registry";
 
     @Value("${ncmp.model-loader.subscription:false}")
     private boolean subscriptionModelLoaderEnabled;
@@ -76,6 +80,8 @@ public class SubscriptionModelLoader implements ModelLoader {
         if (!yangResourceContentMap.get("subscription.yang").isEmpty()) {
             createSchemaSet(SUBSCRIPTION_DATASPACE_NAME, SUBSCRIPTION_SCHEMASET_NAME, yangResourceContentMap);
             createAnchor(SUBSCRIPTION_DATASPACE_NAME, SUBSCRIPTION_SCHEMASET_NAME, SUBSCRIPTION_ANCHOR_NAME);
+            createTopLevelDataNode(SUBSCRIPTION_DATASPACE_NAME, SUBSCRIPTION_ANCHOR_NAME,
+                SUBSCRIPTION_REGISTRY_DATANODE_NAME);
         }
     }
 
@@ -114,6 +120,20 @@ public class SubscriptionModelLoader implements ModelLoader {
             throw new NcmpStartUpException("Creating anchor failed", exception.getMessage());
         }
         return true;
+    }
+
+    private void createTopLevelDataNode(final String dataspaceName,
+                                        final String anchorName,
+                                        final String dataNodeName) {
+        final String nodeData = "{\"" + dataNodeName + "\":{}}";
+        try {
+            cpsDataService.saveData(dataspaceName, anchorName, nodeData, OffsetDateTime.now());
+        } catch (final AlreadyDefinedException exception) {
+            log.info("Creating new data node {} failed as data node already exists", dataNodeName);
+        } catch (final Exception exception) {
+            log.debug("Creating data node for subscription model failed: {} ", exception.getMessage());
+            throw new NcmpStartUpException("Creating data node failed", exception.getMessage());
+        }
     }
 
     private String getFileContentAsString() {
