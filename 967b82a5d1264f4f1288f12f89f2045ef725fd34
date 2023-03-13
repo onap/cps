@@ -121,6 +121,30 @@
     },
     {
       "key": {
+        "uuid": "ddc61557_990ca25d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-13T12:52:51Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "654dbf29_687ddbc0",
+      "range": {
+        "startLine": 13,
+        "startChar": 12,
+        "endLine": 13,
+        "endChar": 48
+      },
+      "revId": "967b82a5d1264f4f1288f12f89f2045ef725fd34",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "31a56c23_efa59c33",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
         "patchSetId": 1
@@ -132,6 +156,30 @@
       "writtenOn": "2023-03-13T11:59:34Z",
       "side": 1,
       "message": "are these teh target (existign) nodes or teh new(updates) nodes in the patch submitted?",
+      "range": {
+        "startLine": 162,
+        "startChar": 35,
+        "endLine": 162,
+        "endChar": 45
+      },
+      "revId": "967b82a5d1264f4f1288f12f89f2045ef725fd34",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "99e808ac_deec8bc1",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-13T12:52:51Z",
+      "side": 1,
+      "message": "dataNodesInPatch",
+      "parentUuid": "31a56c23_efa59c33",
       "range": {
         "startLine": 162,
         "startChar": 35,
@@ -179,6 +227,30 @@
       "side": 1,
       "message": "Ack",
       "parentUuid": "01f2c945_6ac85f97",
+      "range": {
+        "startLine": 164,
+        "startChar": 12,
+        "endLine": 164,
+        "endChar": 33
+      },
+      "revId": "967b82a5d1264f4f1288f12f89f2045ef725fd34",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "84008b1a_dc4e5157",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-13T12:52:51Z",
+      "side": 1,
+      "message": "suggestion (for JavaDoc);\n\u0027The patch operation can currently only support 1 toplevel datanode\u0027\nDatavaladiontexception will be trhown if more then 1 toplevel datanode is provided in the jsonData",
+      "parentUuid": "68169b66_d52a68bc",
       "range": {
         "startLine": 164,
         "startChar": 12,
