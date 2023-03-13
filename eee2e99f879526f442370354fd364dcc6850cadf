@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "22a27973_820c3a0f",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-13T08:48:37Z",
+      "side": 1,
+      "message": "NB: if you go in again please remove all redundant @NotNull annotations",
+      "range": {
+        "startLine": 86,
+        "startChar": 26,
+        "endLine": 86,
+        "endChar": 34
+      },
+      "revId": "eee2e99f879526f442370354fd364dcc6850cadf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "898af791_83243c33",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-13T08:48:37Z",
+      "side": 1,
+      "message": "NB: don\u0027t fully understand the query but would like to! maybe during standup or other chat you can give a brief explanation",
+      "range": {
+        "startLine": 115,
+        "startChar": 13,
+        "endLine": 119,
+        "endChar": 37
+      },
+      "revId": "eee2e99f879526f442370354fd364dcc6850cadf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d1d74fd3_6cd2ba2c",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-13T08:48:37Z",
+      "side": 1,
+      "message": "can you start adding delete functional use-cases into our new framework please?\nCan be done as separate commit",
+      "range": {
+        "startLine": 318,
+        "startChar": 12,
+        "endLine": 318,
+        "endChar": 105
+      },
+      "revId": "eee2e99f879526f442370354fd364dcc6850cadf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a4490d55_9aded303",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-13T08:48:37Z",
+      "side": 1,
+      "message": "need to discus with team, would like to remove test \u0027duplicated\u0027 by integration tests. But then we need to make develops run integration tets locally before submitting too or start paying more attention to Nordix CI build...\nI\u0027ll plan a meeting to discuss updating tets-strategy soon...",
+      "range": {
+        "startLine": 152,
+        "startChar": 0,
+        "endLine": 155,
+        "endChar": 13
+      },
+      "revId": "eee2e99f879526f442370354fd364dcc6850cadf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e9d1222d_5c843b6f",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/GetPerfTest.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-13T08:48:37Z",
+      "side": 1,
+      "message": "any more findings on warm-up or stopwatch issues we were discussing last Thursday?!",
+      "range": {
+        "startLine": 45,
+        "startChar": 77,
+        "endLine": 45,
+        "endChar": 83
+      },
+      "revId": "eee2e99f879526f442370354fd364dcc6850cadf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5270795b_16c5812d",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/CmHandleQueryPerfTest.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-13T08:48:37Z",
+      "side": 1,
+      "message": "no need for this test since we functional working test and below you have a tets that should what happens if the limit is broken",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 5
+      },
+      "revId": "eee2e99f879526f442370354fd364dcc6850cadf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dad23dc4_72b920e5",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/CmHandleQueryPerfTest.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-13T08:48:37Z",
+      "side": 1,
+      "message": "i thought you said it was 64000 befoer?",
+      "range": {
+        "startLine": 63,
+        "startChar": 38,
+        "endLine": 63,
+        "endChar": 44
+      },
+      "revId": "eee2e99f879526f442370354fd364dcc6850cadf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
