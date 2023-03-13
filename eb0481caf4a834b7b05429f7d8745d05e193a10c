@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "60c26c9b_9425187f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventForwarder.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-03-13T14:23:09Z",
+      "side": 1,
+      "message": "Guys , I was thinking to have that feature toggle used atleast for the notification and subscription related stories.\nSince our model is optionally available in some env. so can we use that feature here as well before publishing the event.\n\neither use the same flag for now i.e\nncmp.model-loader.subscription and control the flow or we can as well have other flags.\nWhat do u guys think???",
+      "revId": "eb0481caf4a834b7b05429f7d8745d05e193a10c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
