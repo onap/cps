@@ -70,15 +70,14 @@ remove_handles_and_record_time() {
         --location 'http://localhost:8883/ncmpInventory/v1/ch' \
         --header 'Authorization: Basic Y3BzdXNlcjpjcHNyMGNrcyE=' \
         --header 'Content-Type: application/json' \
-        --header 'Cookie: JSESSIONID=node018g80wfn6qfk9yihx8pne7bc31.node0' \
         --data @$REMOVE_REQUEST >> $REPORT_FILE
 }
 
 create_request_bodies() {
     local CREATE_SIZE=$1
     local REMOVE_SIZE=$2
-    echo -n '{"dmiPlugin": "http://ncmp-dmi-plugin-stub:8783","createdCmHandles":[' > $CREATE_REQUEST
-    echo -n '{"dmiPlugin": "http://ncmp-dmi-plugin-stub:8783","removedCmHandles":[' > $REMOVE_REQUEST
+    echo -n '{"dmiPlugin": "http://ncmp-dmi-plugin-stub:8080","createdCmHandles":[' > $CREATE_REQUEST
+    echo -n '{"dmiPlugin": "http://ncmp-dmi-plugin-stub:8080","removedCmHandles":[' > $REMOVE_REQUEST
     for i in $(seq 1 $CREATE_SIZE); do
         local CMHANDLE=$(uuidgen | tr -d '-')
         echo -n "{\"cmHandle\": \"$CMHANDLE\",\"cmHandleProperties\":{\"neType\":\"RadioNode\"}}" \
@@ -141,22 +140,16 @@ test_deregistration() {
 cleanup() {
     rm -f "$CREATE_REQUEST" "$REMOVE_REQUEST"
     stop_docker
+    popd
 }
 trap cleanup EXIT
+
+pushd -- "$(dirname -- "${BASH_SOURCE[0]}")"
 
 mkdir -p $(dirname $REPORT_FILE)
 echo -e "Removed\tTotal\tTime" > $REPORT_FILE
 
-# Delete N/N: 100/100, 200/200... 20000/20000
-for number_to_delete in 100 200 300 400 500 600 700 800 900 1000 2000 3000 4000 5000 10000 15000 20000; do
+for number_to_delete in 100 500 1000 5000 10000 20000; do
     test_deregistration $number_to_delete $number_to_delete
-done
-# Delete N/C: 1000/5000, 2000/5000... 5000/5000
-for number_to_delete in 1000 2000 3000 4000 5000; do
-    test_deregistration $number_to_delete 5000
-done
-# Delete C/N: 1000/1000, 1000/2000... 1000/5000
-for total in 1000 2000 3000 4000 5000; do
-    test_deregistration 1000 $total
 done
 
