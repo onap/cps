@@ -97,6 +97,53 @@
     },
     {
       "key": {
+        "uuid": "654dbf29_687ddbc0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-13T11:59:34Z",
+      "side": 1,
+      "message": "OK tahts is clearer now thanks.\nBut I don\u0027t see anything in the code related to checking this path...\nIf I understand correctly multipel patch in witha a dedicated xpath in the URL will work.\n\nLet me lok at teh code-change again...",
+      "parentUuid": "5eac0f46_8a90c199",
+      "range": {
+        "startLine": 13,
+        "startChar": 12,
+        "endLine": 13,
+        "endChar": 48
+      },
+      "revId": "967b82a5d1264f4f1288f12f89f2045ef725fd34",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "31a56c23_efa59c33",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-13T11:59:34Z",
+      "side": 1,
+      "message": "are these teh target (existign) nodes or teh new(updates) nodes in the patch submitted?",
+      "range": {
+        "startLine": 162,
+        "startChar": 35,
+        "endLine": 162,
+        "endChar": 45
+      },
+      "revId": "967b82a5d1264f4f1288f12f89f2045ef725fd34",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "01f2c945_6ac85f97",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
         "patchSetId": 1
