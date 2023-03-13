@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "5eac0f46_8a90c199",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-03-13T11:52:08Z",
+      "side": 1,
+      "message": "by xpath set to \"/\" I meant the xpath in the curl request. Basically if I want to update multiple data trees at once the xpath in the request will be \"/\".\nIf I want to update individual data trees then I would use something like: /tree-1, /tree-2. But to update both tree-1 and tree-2 at once I would be using \"/\"",
+      "parentUuid": "4572bb0e_f3ab3533",
+      "range": {
+        "startLine": 13,
+        "startChar": 12,
+        "endLine": 13,
+        "endChar": 48
+      },
+      "revId": "967b82a5d1264f4f1288f12f89f2045ef725fd34",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "01f2c945_6ac85f97",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
         "patchSetId": 1
@@ -211,6 +235,30 @@
       "revId": "967b82a5d1264f4f1288f12f89f2045ef725fd34",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5d52e087_bed71663",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-03-13T11:52:08Z",
+      "side": 1,
+      "message": "just checked with Lee Anjella, yes we do need this a part of setup process for the test.",
+      "parentUuid": "9394c055_d713f6dd",
+      "range": {
+        "startLine": 245,
+        "startChar": 8,
+        "endLine": 245,
+        "endChar": 52
+      },
+      "revId": "967b82a5d1264f4f1288f12f89f2045ef725fd34",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
