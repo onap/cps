@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "50d94613_9eb83f61",
+        "filename": "cps-ncmp-service/src/main/resources/model/subscription.yang",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-03-13T16:22:31Z",
+      "side": 1,
+      "message": "So this is how it looks now.\n\nmodule: subscription\n  +--rw subscription-registry\n     +--rw subscription* [clientID clientName]\n        +--rw clientID             string\n        +--rw clientName           string\n        +--rw topic?               string\n        +--rw isTagged?            boolean\n        +--rw predicates\n        |  +--rw targets*     string\n        |  +--rw datastore?   string\n        +--rw respondedCmHandle* [cmHandleId]\n           +--rw cmHandleId    string\n           +--rw status?       string",
+      "revId": "f7c63ececfc3e11e290e8704a9bdd2f83b8129ef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
