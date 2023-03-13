@@ -6,7 +6,7 @@ module subscription {
 
     revision "2022-10-12" {
         description
-        "NCMP subscription model";
+            "NCMP subscription model";
     }
 
     container subscription-registry {
@@ -29,8 +29,26 @@ module subscription {
                 type boolean;
             }
 
-            leaf-list dmi-service-names {
-                type string;
+            container predicates {
+                leaf-list cmHandleIds {
+                    type string;
+                }
+
+                leaf datastore {
+                    type string;
+                }
+            }
+
+            list respondedCmHandle {
+                key "cmHandleId";
+
+                leaf cmHandleId {
+                    type string;
+                }
+
+                leaf status {
+                    type string;
+                }
             }
 
         }
