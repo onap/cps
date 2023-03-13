@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "4572bb0e_f3ab3533",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-13T11:16:40Z",
+      "side": 1,
+      "message": "did buit I don\u0027t get is  the \"with xpath set to \"/\" \"  which xpath exactly are you referring to is this part of the patch of something else. Lee Anjella showed me the operation is only executes on teh first element if a singel patch has 2 or more updates...",
+      "parentUuid": "34add5da_16600562",
+      "range": {
+        "startLine": 13,
+        "startChar": 12,
+        "endLine": 13,
+        "endChar": 48
+      },
+      "revId": "967b82a5d1264f4f1288f12f89f2045ef725fd34",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "01f2c945_6ac85f97",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
         "patchSetId": 1
