@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "21679d2b_5b502703",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-13T10:20:05Z",
+      "side": 1,
+      "message": "there is nothing in the code about this ie. there is no check on root path or not\nI am a bit confused, is the path operation simply not supported for more then one top level node in the patch or not. \nMaybe a quick chat/call is needed to explain and agree exactly\nIt is also important that it is clearly documented in the API (yaml files)",
+      "range": {
+        "startLine": 13,
+        "startChar": 12,
+        "endLine": 13,
+        "endChar": 48
+      },
+      "revId": "967b82a5d1264f4f1288f12f89f2045ef725fd34",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "01f2c945_6ac85f97",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-13T10:20:05Z",
+      "side": 1,
+      "message": "need to update the JavaDoc and relevant REST API documentation with this limitation!",
+      "range": {
+        "startLine": 164,
+        "startChar": 12,
+        "endLine": 164,
+        "endChar": 33
+      },
+      "revId": "967b82a5d1264f4f1288f12f89f2045ef725fd34",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "54e57ea2_37b5f1d0",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-13T10:20:05Z",
+      "side": 1,
+      "message": "fix identation",
+      "range": {
+        "startLine": 243,
+        "startChar": 1,
+        "endLine": 243,
+        "endChar": 41
+      },
+      "revId": "967b82a5d1264f4f1288f12f89f2045ef725fd34",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2343d5dd_a185be7a",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-13T10:20:05Z",
+      "side": 1,
+      "message": "do you still need this, since you thrown an exception at validation?",
+      "range": {
+        "startLine": 245,
+        "startChar": 8,
+        "endLine": 245,
+        "endChar": 52
+      },
+      "revId": "967b82a5d1264f4f1288f12f89f2045ef725fd34",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
