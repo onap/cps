@@ -22,6 +22,75 @@
       "revId": "b541f6cd3f554bef5f17ebaa047a946378dd6c1b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2da9db80_41346957",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-03-13T10:22:35Z",
+      "side": 1,
+      "message": "Agree with Toine it can be avoided here.",
+      "range": {
+        "startLine": 416,
+        "startChar": 10,
+        "endLine": 416,
+        "endChar": 16
+      },
+      "revId": "b541f6cd3f554bef5f17ebaa047a946378dd6c1b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "039009ec_f8bda2ed",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 628,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-03-13T10:22:35Z",
+      "side": 1,
+      "message": "NB : Can be extracted into var for more redable",
+      "range": {
+        "startLine": 628,
+        "startChar": 12,
+        "endLine": 628,
+        "endChar": 87
+      },
+      "revId": "b541f6cd3f554bef5f17ebaa047a946378dd6c1b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "98a3ea50_7584d282",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 630,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-03-13T10:22:35Z",
+      "side": 1,
+      "message": "NB : Not needed",
+      "range": {
+        "startLine": 630,
+        "startChar": 12,
+        "endLine": 630,
+        "endChar": 19
+      },
+      "revId": "b541f6cd3f554bef5f17ebaa047a946378dd6c1b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
