@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "235917ae_a91d0930",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/EventsPublisher.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-03-13T17:14:33Z",
+      "side": 1,
+      "message": "It might be better to parametrize class with \u003cK,V\u003e since the String might be Integer or something else in the future.",
+      "range": {
+        "startLine": 38,
+        "startChar": 12,
+        "endLine": 38,
+        "endChar": 31
+      },
+      "revId": "7549776fb3b82de2d14ae60e1bddf74bf62f8f79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bea9b6b4_191711e1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventForwarder.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-03-13T17:14:33Z",
+      "side": 1,
+      "message": "It might be better to read this value from properties.",
+      "range": {
+        "startLine": 49,
+        "startChar": 68,
+        "endLine": 49,
+        "endChar": 98
+      },
+      "revId": "7549776fb3b82de2d14ae60e1bddf74bf62f8f79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "94313a60_343350a0",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventConsumerSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-03-13T17:14:33Z",
+      "side": 1,
+      "message": "It might be better to have at least one unit test that read an actual expected message from the topic.",
+      "range": {
+        "startLine": 33,
+        "startChar": 6,
+        "endLine": 33,
+        "endChar": 61
+      },
+      "revId": "7549776fb3b82de2d14ae60e1bddf74bf62f8f79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
