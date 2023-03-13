@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6efbbd97_dda0f8ab",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/base/CpsPerfTestBase.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-03-13T14:42:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d7d12b9d_44c110f6",
+      "range": {
+        "startLine": 98,
+        "startChar": 34,
+        "endLine": 98,
+        "endChar": 43
+      },
+      "revId": "7c4a9a27ec26e3154e4e5787fc71f5212762008c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ebf0fd27_938cc655",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/base/CpsPerfTestBase.groovy",
         "patchSetId": 11
@@ -45,6 +69,30 @@
       "revId": "7c4a9a27ec26e3154e4e5787fc71f5212762008c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e4b6113e_fd9ba576",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/base/CpsPerfTestBase.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-03-13T14:42:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ebf0fd27_938cc655",
+      "range": {
+        "startLine": 104,
+        "startChar": 39,
+        "endLine": 104,
+        "endChar": 56
+      },
+      "revId": "7c4a9a27ec26e3154e4e5787fc71f5212762008c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
