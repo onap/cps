@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "34add5da_16600562",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-03-13T11:08:17Z",
+      "side": 1,
+      "message": "yeah as of now update for only one data tree is supported when xpath is set to root. \nAnd when we try to update multiple data trees at once with xpath set to \"/\" the operation fails.\nSure we can discuss it over call. I can explain better there. Also this can be referred: https://wiki.onap.org/display/DW/Support+CPS+Core+Patch+operation+across+multiple+data+trees",
+      "parentUuid": "21679d2b_5b502703",
+      "range": {
+        "startLine": 13,
+        "startChar": 12,
+        "endLine": 13,
+        "endChar": 48
+      },
+      "revId": "967b82a5d1264f4f1288f12f89f2045ef725fd34",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "01f2c945_6ac85f97",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2023-03-13T10:20:05Z",
       "side": 1,
       "message": "need to update the JavaDoc and relevant REST API documentation with this limitation!",
+      "range": {
+        "startLine": 164,
+        "startChar": 12,
+        "endLine": 164,
+        "endChar": 33
+      },
+      "revId": "967b82a5d1264f4f1288f12f89f2045ef725fd34",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "68169b66_d52a68bc",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-03-13T11:08:17Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "01f2c945_6ac85f97",
       "range": {
         "startLine": 164,
         "startChar": 12,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "d573ff62_0a5fb334",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-03-13T11:08:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "54e57ea2_37b5f1d0",
+      "range": {
+        "startLine": 243,
+        "startChar": 1,
+        "endLine": 243,
+        "endChar": 41
+      },
+      "revId": "967b82a5d1264f4f1288f12f89f2045ef725fd34",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2343d5dd_a185be7a",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
         "patchSetId": 1
@@ -82,6 +154,30 @@
       "writtenOn": "2023-03-13T10:20:05Z",
       "side": 1,
       "message": "do you still need this, since you thrown an exception at validation?",
+      "range": {
+        "startLine": 245,
+        "startChar": 8,
+        "endLine": 245,
+        "endChar": 52
+      },
+      "revId": "967b82a5d1264f4f1288f12f89f2045ef725fd34",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9394c055_d713f6dd",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-03-13T11:08:17Z",
+      "side": 1,
+      "message": "Sorry I did not understand this comment. Could you let me know in bit more detail 😊",
+      "parentUuid": "2343d5dd_a185be7a",
       "range": {
         "startLine": 245,
         "startChar": 8,
