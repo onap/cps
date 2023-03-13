@@ -16,6 +16,29 @@
       "revId": "f7c63ececfc3e11e290e8704a9bdd2f83b8129ef",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c224235e_d979a0a7",
+        "filename": "cps-ncmp-service/src/main/resources/model/subscription.yang",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-13T17:21:02Z",
+      "side": 1,
+      "message": "I am just worried about one thing, we might have a limitation 32K cm handles for one subscription related to some postgress/optimization we had to do recently. I assume that is good enough for now. But maybe if a subscription is to be able to spent multiple dmi-plugisn with each 20K cm hanldes it might NOT be good enough. \nNeed to check ith Tony/Kieran. Alternatives are a different structure, other DB (ie Neo4J to scale that big) etc....",
+      "range": {
+        "startLine": 42,
+        "startChar": 17,
+        "endLine": 42,
+        "endChar": 34
+      },
+      "revId": "f7c63ececfc3e11e290e8704a9bdd2f83b8129ef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
