@@ -184,6 +184,24 @@
     },
     {
       "key": {
+        "uuid": "dcf86bd2_8fa003d5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventForwarder.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-03-13T16:38:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f4a01a3f_96b8096a",
+      "revId": "eb0481caf4a834b7b05429f7d8745d05e193a10c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a44c0598_f683dffc",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsPublisherSpec.groovy",
         "patchSetId": 8
