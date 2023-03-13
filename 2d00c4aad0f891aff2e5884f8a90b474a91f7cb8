@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "2921b659_898da490",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-13T11:45:21Z",
+      "side": 1,
+      "message": "OK, bit strange I thought \u0027select *\u0027 would do the same",
+      "parentUuid": "4e6be916_28e1f10f",
+      "range": {
+        "startLine": 51,
+        "startChar": 19,
+        "endLine": 51,
+        "endChar": 20
+      },
+      "revId": "2d00c4aad0f891aff2e5884f8a90b474a91f7cb8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b3ba9f1e_1e04243b",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
         "patchSetId": 3
@@ -319,6 +343,30 @@
       "side": 1,
       "message": "Done. And fixed in other tests too.",
       "parentUuid": "e33a1d1d_1426bf4b",
+      "range": {
+        "startLine": 229,
+        "startChar": 0,
+        "endLine": 230,
+        "endChar": 86
+      },
+      "revId": "2d00c4aad0f891aff2e5884f8a90b474a91f7cb8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "756d3dcf_a519fb9d",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-13T11:45:21Z",
+      "side": 1,
+      "message": "cool!",
+      "parentUuid": "d7bf9bb1_3dd1d998",
       "range": {
         "startLine": 229,
         "startChar": 0,
