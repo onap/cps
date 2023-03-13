@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "40c72f2b_c775c114",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventConsumer.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-03-13T16:23:45Z",
+      "side": 1,
+      "message": "I think keeping it as debug as before is fine because its saying the event is only being consumed and the output of the whole subscription event to the log will be too large to have happening consistently",
+      "parentUuid": "ef0bf018_50bc875b",
+      "range": {
+        "startLine": 54,
+        "startChar": 14,
+        "endLine": 54,
+        "endChar": 21
+      },
+      "revId": "eb0481caf4a834b7b05429f7d8745d05e193a10c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "23cecde3_46ab5b02",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventConsumer.java",
         "patchSetId": 8
@@ -45,6 +69,30 @@
       "revId": "eb0481caf4a834b7b05429f7d8745d05e193a10c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5f97a3e4_b2edc411",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventConsumer.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-03-13T16:23:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "23cecde3_46ab5b02",
+      "range": {
+        "startLine": 56,
+        "startChar": 63,
+        "endLine": 56,
+        "endChar": 65
+      },
+      "revId": "eb0481caf4a834b7b05429f7d8745d05e193a10c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -100,6 +148,42 @@
     },
     {
       "key": {
+        "uuid": "f4a01a3f_96b8096a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventForwarder.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-03-13T16:23:45Z",
+      "side": 1,
+      "message": "We decided in call to just have the notifications flag as the forwarding of the event to DMIs is not dependent on persisting the event",
+      "parentUuid": "f4dc94bb_d35632dc",
+      "revId": "eb0481caf4a834b7b05429f7d8745d05e193a10c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "395757af_78f2d51a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventForwarder.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-03-13T16:23:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0d03b28e_0309b831",
+      "revId": "eb0481caf4a834b7b05429f7d8745d05e193a10c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a44c0598_f683dffc",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsPublisherSpec.groovy",
         "patchSetId": 8
@@ -123,6 +207,30 @@
     },
     {
       "key": {
+        "uuid": "0648587f_ea3449b2",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsPublisherSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-03-13T16:23:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a44c0598_f683dffc",
+      "range": {
+        "startLine": 3,
+        "startChar": 17,
+        "endLine": 3,
+        "endChar": 21
+      },
+      "revId": "eb0481caf4a834b7b05429f7d8745d05e193a10c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "964e03b7_88818df1",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsServiceSpec.groovy",
         "patchSetId": 8
@@ -143,6 +251,30 @@
       "revId": "eb0481caf4a834b7b05429f7d8745d05e193a10c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f805b4d_671adc6f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsServiceSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-03-13T16:23:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "964e03b7_88818df1",
+      "range": {
+        "startLine": 3,
+        "startChar": 19,
+        "endLine": 3,
+        "endChar": 22
+      },
+      "revId": "eb0481caf4a834b7b05429f7d8745d05e193a10c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
