@@ -37,7 +37,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>, FragmentRepositoryCpsPathQuery,
-        FragmentRepositoryMultiPathQuery, FragmentNativeRepository {
+        FragmentNativeRepository {
 
     Optional<FragmentEntity> findByAnchorAndXpath(AnchorEntity anchorEntity, String xpath);
 
@@ -68,9 +68,30 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>,
     List<FragmentExtract> quickFindWithDescendants(@Param("anchorId") int anchorId,
                                                    @Param("xpathRegex") String xpathRegex);
 
-    @Query("SELECT xpath FROM FragmentEntity f WHERE anchor = :anchor AND xpath IN :xpaths")
+    @Query("SELECT xpath FROM FragmentEntity WHERE anchor = :anchor AND xpath IN :xpaths")
     List<String> findAllXpathByAnchorAndXpathIn(@Param("anchor") AnchorEntity anchorEntity,
                                                 @Param("xpaths") Collection<String> xpaths);
 
     boolean existsByAnchorAndXpathStartsWith(AnchorEntity anchorEntity, String xpath);
+
+    @Query("SELECT xpath FROM FragmentEntity WHERE anchor = :anchor AND parentId IS NULL")
+    List<String> findAllXpathByAnchorAndParentIdIsNull(@Param("anchor") AnchorEntity anchorEntity);
+
+    @Query(value
+        = "WITH RECURSIVE parent_search AS ("
+        + "  SELECT id, 0 AS depth "
+        + "    FROM fragment "
+        + "   WHERE anchor_id = :anchorId AND xpath IN :xpaths "
+        + "   UNION "
+        + "  SELECT c.id, depth + 1 "
+        + "    FROM fragment c INNER JOIN parent_search p ON c.parent_id = p.id"
+        + "   WHERE depth <= (SELECT CASE WHEN :maxDepth = -1 THEN " + Integer.MAX_VALUE + " ELSE :maxDepth END) "
+        + ") "
+        + "SELECT f.id, anchor_id AS anchorId, xpath, f.parent_id AS parentId, CAST(attributes AS TEXT) AS attributes "
+        + "FROM fragment f INNER JOIN parent_search p ON f.id = p.id",
+        nativeQuery = true
+    )
+    List<FragmentExtract> findExtractsWithDescendants(@Param("anchorId") int anchorId,
+                                                      @Param("xpaths") Collection<String> xpaths,
+                                                      @Param("maxDepth") int maxDepth);
 }
