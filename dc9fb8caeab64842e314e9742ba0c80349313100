@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "35623f07_5891e643",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-03-14T11:25:27Z",
+      "side": 1,
+      "message": "patch",
+      "range": {
+        "startLine": 12,
+        "startChar": 12,
+        "endLine": 12,
+        "endChar": 18
+      },
+      "revId": "dc9fb8caeab64842e314e9742ba0c80349313100",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2d4d5e3c_23b54568",
+        "filename": "cps-rest/docs/openapi/cpsData.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-03-14T11:25:27Z",
+      "side": 1,
+      "message": "i think you can keep the original and then add another sentence to indicate the limitation",
+      "range": {
+        "startLine": 134,
+        "startChar": 3,
+        "endLine": 134,
+        "endChar": 118
+      },
+      "revId": "dc9fb8caeab64842e314e9742ba0c80349313100",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e8c217da_45a3f490",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-03-14T11:25:27Z",
+      "side": 1,
+      "message": "you can remove this",
+      "range": {
+        "startLine": 248,
+        "startChar": 68,
+        "endLine": 248,
+        "endChar": 119
+      },
+      "revId": "dc9fb8caeab64842e314e9742ba0c80349313100",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
