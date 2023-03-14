@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a55e6b49_1d44e60d",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/avc-event-schema-v1.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-03-14T18:09:32Z",
+      "side": 1,
+      "message": "Is Event required attribute for avc-schema-v1? If it is, then it might be added to the bottom of the array.",
+      "range": {
+        "startLine": 42,
+        "startChar": 7,
+        "endLine": 42,
+        "endChar": 15
+      },
+      "revId": "c02ce941b719f18a50a291e850231da4a7a64238",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
