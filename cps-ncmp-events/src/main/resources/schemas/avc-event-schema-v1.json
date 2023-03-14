@@ -47,11 +47,14 @@
         "eventType",
         "eventSchema",
         "eventSchemaVersion"
-      ]
+      ],
+      "additionalProperties": false
     },
     "Event": {
       "description": "The AVC event content.",
-      "type": "object"
+      "type": "object",
+      "existingJavaType": "java.lang.Object",
+      "additionalProperties": false
     }
   }
 }
