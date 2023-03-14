@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5ef46a18_64e5d0fe",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-03-14T10:29:52Z",
+      "side": 1,
+      "message": "Make all of the nulls QUERY_ACROSS_ANCHORS",
+      "range": {
+        "startLine": 338,
+        "startChar": 80,
+        "endLine": 338,
+        "endChar": 84
+      },
+      "revId": "aa47868a8b271a49b95c7dc8582e5cd9a519ee52",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c79419be_c5c0d6c0",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceQueryDataNodeSpec.groovy",
+        "patchSetId": 18
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-03-14T10:29:52Z",
+      "side": 1,
+      "message": "NB: typo",
+      "range": {
+        "startLine": 189,
+        "startChar": 15,
+        "endLine": 189,
+        "endChar": 23
+      },
+      "revId": "aa47868a8b271a49b95c7dc8582e5cd9a519ee52",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
