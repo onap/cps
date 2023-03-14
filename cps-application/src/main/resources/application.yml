@@ -99,6 +99,9 @@ app:
             topic: ${NCMP_ASYNC_M2M_TOPIC:ncmp-async-m2m}
         avc:
             subscription-topic: ${NCMP_CM_AVC_SUBSCRIPTION:cm-avc-subscription}
+            subscription-forward-topic: ${NCMP_FORWARD_CM_AVC_SUBSCRIPTION:ncmp-dmi-cm-avc-subscription}
+            subscription-response-topic: ${NCMP_RESPONSE_CM_AVC_SUBSCRIPTION:dmi-ncmp-cm-avc-subscription}
+            subscription-outcome-topic: ${NCMP_OUTCOME_CM_AVC_SUBSCRIPTION:cm-avc-subscription-response}
     lcm:
         events:
             topic: ${LCM_EVENTS_TOPIC:ncmp-events}
@@ -180,6 +183,8 @@ ncmp:
             sleep-time-ms: 300000
         cm-handle-data-sync:
             sleep-time-ms: 30000
+        subscription-response:
+            delay-time-ms: 30000
 
     modules-sync-watchdog:
         async-executor:
