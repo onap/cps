@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "148ff6d9_da77850f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/EventsPublisher.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-03-14T17:16:21Z",
+      "side": 1,
+      "message": "I think can be updated later if needed, as at the moment it is only possible to use the string",
+      "parentUuid": "235917ae_a91d0930",
+      "range": {
+        "startLine": 38,
+        "startChar": 12,
+        "endLine": 38,
+        "endChar": 31
+      },
+      "revId": "7549776fb3b82de2d14ae60e1bddf74bf62f8f79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bea9b6b4_191711e1",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventForwarder.java",
         "patchSetId": 9
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "e6b0ec9c_4cb1afa7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventForwarder.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-03-14T17:16:21Z",
+      "side": 1,
+      "message": "Tried implementing it and for some reason it was being assigned null for all except the last topic, I\u0027m going to be making another commit on this with some more error scenarios so I will add it there if thats ok",
+      "parentUuid": "bea9b6b4_191711e1",
+      "range": {
+        "startLine": 49,
+        "startChar": 68,
+        "endLine": 49,
+        "endChar": 98
+      },
+      "revId": "7549776fb3b82de2d14ae60e1bddf74bf62f8f79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "94313a60_343350a0",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventConsumerSpec.groovy",
         "patchSetId": 9
@@ -59,6 +107,30 @@
       "writtenOn": "2023-03-13T17:14:33Z",
       "side": 1,
       "message": "It might be better to have at least one unit test that read an actual expected message from the topic.",
+      "range": {
+        "startLine": 33,
+        "startChar": 6,
+        "endLine": 33,
+        "endChar": 61
+      },
+      "revId": "7549776fb3b82de2d14ae60e1bddf74bf62f8f79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d43bda5f_08f3ee0b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventConsumerSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-03-14T17:16:21Z",
+      "side": 1,
+      "message": "I get what you\u0027re point and usually I would but since the event is defined by the eventschema object I think its is ok as that makes the contract for the layout of the message if you get me",
+      "parentUuid": "94313a60_343350a0",
       "range": {
         "startLine": 33,
         "startChar": 6,
