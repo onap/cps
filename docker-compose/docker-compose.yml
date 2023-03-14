@@ -148,3 +148,10 @@ services:
 
 volumes:
   grafana:
+
+  consumer:
+    image: taion809/kafka-cli:latest
+    container_name: kafka-consumer
+    command: kafka-console-consumer.sh --bootstrap-server kafka:9092 --topic cm-avc-subscription-response
+    links:
+      - kafka
