@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "0845c78e_b670fcc1",
+        "filename": "cps-rest/docs/openapi/cpsData.yml",
+        "patchSetId": 10
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-03-15T10:33:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "93625d53_b4a85579",
+      "range": {
+        "startLine": 134,
+        "startChar": 101,
+        "endLine": 134,
+        "endChar": 110
+      },
+      "revId": "7d73acdce0ca871257eaa1489fa44f4d7051c88b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ddb239ef_f984e1bd",
         "filename": "cps-rest/docs/openapi/cpsData.yml",
         "patchSetId": 10
@@ -71,6 +95,54 @@
     },
     {
       "key": {
+        "uuid": "f1bac3b4_94b9a1a9",
+        "filename": "cps-rest/docs/openapi/cpsData.yml",
+        "patchSetId": 10
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-03-15T10:33:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "caf8b5d9_42c88fc5",
+      "range": {
+        "startLine": 135,
+        "startChar": 74,
+        "endLine": 135,
+        "endChar": 79
+      },
+      "revId": "7d73acdce0ca871257eaa1489fa44f4d7051c88b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d86c7696_65b32df5",
+        "filename": "cps-rest/docs/openapi/cpsData.yml",
+        "patchSetId": 10
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-03-15T10:33:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ddb239ef_f984e1bd",
+      "range": {
+        "startLine": 135,
+        "startChar": 17,
+        "endLine": 135,
+        "endChar": 27
+      },
+      "revId": "7d73acdce0ca871257eaa1489fa44f4d7051c88b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e6ab5a30_f62997ea",
         "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
         "patchSetId": 10
@@ -91,6 +163,30 @@
       "revId": "7d73acdce0ca871257eaa1489fa44f4d7051c88b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71b403d8_86cf8fd0",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-03-15T10:33:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e6ab5a30_f62997ea",
+      "range": {
+        "startLine": 141,
+        "startChar": 84,
+        "endLine": 141,
+        "endChar": 104
+      },
+      "revId": "7d73acdce0ca871257eaa1489fa44f4d7051c88b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -137,6 +233,54 @@
       "revId": "7d73acdce0ca871257eaa1489fa44f4d7051c88b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0b26d4bb_65ea6dcb",
+        "filename": "docs/api/swagger/cps/openapi.yaml",
+        "patchSetId": 10
+      },
+      "lineNbr": 1724,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-03-15T10:33:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b2d81fd6_faffd77c",
+      "range": {
+        "startLine": 1724,
+        "startChar": 65,
+        "endLine": 1724,
+        "endChar": 69
+      },
+      "revId": "7d73acdce0ca871257eaa1489fa44f4d7051c88b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f1865b8d_420cb5a8",
+        "filename": "docs/api/swagger/cps/openapi.yaml",
+        "patchSetId": 10
+      },
+      "lineNbr": 1724,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-03-15T10:33:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e08df070_d4f088df",
+      "range": {
+        "startLine": 1724,
+        "startChar": 8,
+        "endLine": 1724,
+        "endChar": 17
+      },
+      "revId": "7d73acdce0ca871257eaa1489fa44f4d7051c88b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
