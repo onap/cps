@@ -1,0 +1,182 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cbc8ae8e_764b55c6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/NetworkCmProxyCmHandleQueryService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-03-15T14:44:12Z",
+      "side": 1,
+      "message": "Double check but I\u0027m pretty sure it doesn\u0027t support these",
+      "range": {
+        "startLine": 46,
+        "startChar": 12,
+        "endLine": 47,
+        "endChar": 20
+      },
+      "revId": "333d4a5c5b6ae26a4792c6e96f402071c18a3c3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4dabd244_ee6c8a11",
+        "filename": "docs/ncmp-inventory-querying.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-03-15T14:44:12Z",
+      "side": 1,
+      "message": "Doesn\u0027t have this endpoint, only the searches one",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 164
+      },
+      "revId": "333d4a5c5b6ae26a4792c6e96f402071c18a3c3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa9994c0_7eefc148",
+        "filename": "docs/ncmp-inventory-querying.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-03-15T14:44:12Z",
+      "side": 1,
+      "message": "This is this for this endpoint\n HAS_ALL_PROPERTIES(\"hasAllProperties\"),\n    HAS_ALL_ADDITIONAL_PROPERTIES(\"hasAllAdditionalProperties\"),\n    CM_HANDLE_WITH_DMI_PLUGIN(\"cmHandleWithDmiPlugin\");",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 77
+      },
+      "revId": "333d4a5c5b6ae26a4792c6e96f402071c18a3c3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7254f2e8_ce06d040",
+        "filename": "docs/ncmp-inventory-querying.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-03-15T14:44:12Z",
+      "side": 1,
+      "message": "{\n      \n        {\n          \"conditionName\": \"hasAllProperties\",\n          \"conditionParameters\": [\n            {\n              \"Color\": \"yellow\"\n            },\n            {\n              \"Shape\": \"circle\"\n            },\n            {\n              \"Size\": \"small\"\n            }\n          ]\n        },\n        {\n          \"conditionName\": \"hasAllAdditionalProperties\",\n          \"conditionParameters\": [\n            {\n              \"Color\": \"yellow\"\n            },\n            {\n              \"Shape\": \"circle\"\n            },\n            {\n              \"Size\": \"small\"\n            }\n          ]\n        },\n        {\n          \"conditionName\": \"cmHandleWithDmiPlugin\",\n          \"conditionParameters\": [\n            {\n              \"dmiPluginName\": \"dmiPlugin1\"\n            }\n          ]\n        }\n      ]\n    }",
+      "range": {
+        "startLine": 49,
+        "startChar": 4,
+        "endLine": 88,
+        "endChar": 5
+      },
+      "revId": "333d4a5c5b6ae26a4792c6e96f402071c18a3c3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cfdeb8e5_46e6ba06",
+        "filename": "docs/ncmp-inventory-querying.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-03-15T14:44:12Z",
+      "side": 1,
+      "message": "Remove",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 115,
+        "endChar": 5
+      },
+      "revId": "333d4a5c5b6ae26a4792c6e96f402071c18a3c3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e6f559f_72a270ce",
+        "filename": "docs/ncmp-inventory-querying.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-03-15T14:44:12Z",
+      "side": 1,
+      "message": "Keep and either add to or duplicate for additional properties. additional properties is the outward facing name btw so \"private\" shouldn\u0027t be used",
+      "range": {
+        "startLine": 117,
+        "startChar": 0,
+        "endLine": 141,
+        "endChar": 5
+      },
+      "revId": "333d4a5c5b6ae26a4792c6e96f402071c18a3c3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5d699544_08003cc1",
+        "filename": "docs/ncmp-inventory-querying.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-03-15T14:44:12Z",
+      "side": 1,
+      "message": "Remove",
+      "range": {
+        "startLine": 143,
+        "startChar": 0,
+        "endLine": 161,
+        "endChar": 5
+      },
+      "revId": "333d4a5c5b6ae26a4792c6e96f402071c18a3c3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8126eeda_d6a861d7",
+        "filename": "docs/ncmp-inventory-querying.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-03-15T14:44:12Z",
+      "side": 1,
+      "message": "Add one for DMI Plugin name, will return all cmhandles which has that dmi name for any of the following leaves dmi-service-name, dmi-data-service-name, dmi-model-service-name",
+      "revId": "333d4a5c5b6ae26a4792c6e96f402071c18a3c3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
