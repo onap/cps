@@ -30,7 +30,7 @@ Logging Configuration
 CPS Log pattern
 ---------------
 
-.. code-block:: java
+.. code-block::
 
    <pattern>
        {
@@ -50,7 +50,7 @@ Change logging level
 
 - Curl command 1. Check current log level of "logging.level.org.onap.cps" if it is set to it's default value (INFO)
 
-.. code-block:: java
+.. code-block:: bash
 
     curl --location --request GET 'http://{cps-service-name:cps-management-port}/manage/loggers/org.onap.cps' \
     --header 'Content-Type: application/json; charset=utf-8'
@@ -68,7 +68,7 @@ Change logging level
 .. note::
    Below-mentioned endpoint  will change the log level at runtime. After executing the curl command "effectiveLevel" will set and applied immediately without restarting CPS service.
 
-.. code-block:: java
+.. code-block:: bash
 
     curl --location --request POST 'http://{cps-service-name:cps-management-port}/manage/loggers/org.onap.cps' \
     --header 'Content-Type: application/json; charset=utf-8' \
@@ -80,7 +80,7 @@ Change logging level
 
 - Curl command 3. Verify if log level of "logging.level.org.onap.cps" is changed from 'INFO' to 'DEBUG'
 
-.. code-block:: java
+.. code-block:: bash
 
     curl --location --request GET 'http://{cps-service-name:cps-management-port}/manage/loggers/org.onap.cps' \
     --header 'Content-Type: application/json; charset=utf-8'
@@ -109,7 +109,7 @@ Measure Execution Time of CPS Service
 
 Execute CPS service that you want to calculate total elapsed time and log as shown below
 
-.. code-block:: xml
+.. code-block::
 
    2022-01-28 18:39:17.679 DEBUG [cps-application,e17da1571e518c59,e17da1571e518c59] 11128 --- [tp1901272535-29] o.onap.cps.aop.CpsLoggingAspectService   : Execution time of : DataspaceRepository.getByName() with argument[s] = [test42] having result = org.onap.cps.spi.entities.DataspaceEntity@68ded236 :: 205 ms
 

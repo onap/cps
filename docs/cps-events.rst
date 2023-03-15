@@ -27,7 +27,7 @@ Event header
         "eventTarget"           : "test-topic",
         "eventType"             : "org.onap.cps.ncmp.event.model.DmiAsyncRequestResponseEvent",
         "eventSchema"           : "urn:cps:org.onap.cps.ncmp.event.model.DmiAsyncRequestResponseEvent:v1",
-        "forwarded-Event"       : { ... }
+        "forwarded-Event"       : { }
     }
 
 Forwarded-Event Payload
@@ -46,7 +46,7 @@ Forwarded-Event Payload
         "response-data-schema"  : "urn:cps:org.onap.cps.ncmp.event.model.DmiAsyncRequestResponseEvent:v1",
         "response-status"       : "OK",
         "response-code"         : "200",
-        "response-data"         : { ... }
+        "response-data"         : { }
     }
 
 
@@ -77,7 +77,7 @@ Events header
 ^^^^^^^^^^^^^
 *Event header prototype for all event types*
 
-.. code-block:: json
+.. code-block::
 
   {
       "eventId"                : "00001",
@@ -86,8 +86,8 @@ Events header
       "eventSource"            : "org.onap.ncmp",
       "eventType"              : "org.onap.ncmp.cmhandle-lcm-event.create",
       "eventSchema"            : "org.onap.ncmp:cmhandle-lcm-event",
-      "eventSchemaVersion"	   : "1.0"
-      "event": ....
+      "eventSchemaVersion"     : "1.0",
+      "event"                  : ...
   }
 
 Events payload
