@@ -21,7 +21,6 @@
 package org.onap.cps.integration.performance.cps
 
 import org.onap.cps.integration.performance.base.CpsPerfTestBase
-import org.springframework.dao.DataAccessResourceFailureException
 
 import static org.onap.cps.spi.FetchDescendantsOption.DIRECT_CHILDREN_ONLY
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS

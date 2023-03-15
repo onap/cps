@@ -159,7 +159,7 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
     @Override
     public Collection<SchemaSet> getSchemaSetsByDataspaceName(final String dataspaceName) {
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
-        final List<SchemaSetEntity> schemaSetEntities = schemaSetRepository.getByDataspace(dataspaceEntity);
+        final List<SchemaSetEntity> schemaSetEntities = schemaSetRepository.findAllByDataspace(dataspaceEntity);
         return schemaSetEntities.stream()
                 .map(CpsModulePersistenceServiceImpl::toSchemaSet).collect(Collectors.toList());
     }

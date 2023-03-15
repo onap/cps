@@ -658,8 +658,11 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             throw new DataNodeNotFoundExceptionBatch(dataspaceName, anchorName, deleteChecklist);
         }
 
-        fragmentRepository.deleteByAnchorIdAndXpaths(anchorEntity.getId(), xpathsToExistingContainers);
-        fragmentRepository.deleteListsByAnchorIdAndXpaths(anchorEntity.getId(), xpathsToExistingLists);
+        fragmentRepository.deleteByAnchorIdAndXpathIn(anchorEntity.getId(), xpathsToExistingContainers);
+
+        final Collection<String> listXpathPatterns
+            = xpathsToExistingLists.stream().map(xpath -> xpath + "[%").collect(Collectors.toList());
+        fragmentRepository.deleteByAnchorIdAndXpathLikeAny(anchorEntity.getId(), listXpathPatterns);
     }
 
     @Override

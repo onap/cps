@@ -24,7 +24,6 @@ package org.onap.cps.spi.repository;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.SchemaSetEntity;
 import org.onap.cps.spi.exceptions.SchemaSetNotFoundException;
@@ -44,7 +43,7 @@ public interface SchemaSetRepository extends JpaRepository<SchemaSetEntity, Inte
      * @param dataspaceEntity dataspace entity
      * @return list of schema set entity
      */
-    Collection<SchemaSetEntity> findByDataspace(DataspaceEntity dataspaceEntity);
+    List<SchemaSetEntity> findAllByDataspace(DataspaceEntity dataspaceEntity);
 
     Integer countByDataspace(DataspaceEntity dataspaceEntity);
 
@@ -61,24 +60,19 @@ public interface SchemaSetRepository extends JpaRepository<SchemaSetEntity, Inte
             .orElseThrow(() -> new SchemaSetNotFoundException(dataspaceEntity.getName(), schemaSetName));
     }
 
-    /**
-     * Gets all schema sets for a given dataspace.
-     *
-     * @param dataspaceEntity dataspace entity
-     * @return list of schema set entity
-     * @throws SchemaSetNotFoundException if SchemaSet not found
-     */
-    default List<SchemaSetEntity> getByDataspace(final DataspaceEntity dataspaceEntity) {
-        return findByDataspace(dataspaceEntity).stream().collect(Collectors.toList());
-    }
+    @Modifying
+    @Query(value = "DELETE FROM schema_set WHERE dataspace_id = :dataspaceId AND name = ANY (:schemaSetNames)",
+        nativeQuery = true)
+    void deleteByDataspaceIdAndNameIn(@Param("dataspaceId") final int dataspaceId,
+                                      @Param("schemaSetNames") final String[] schemaSetNames);
 
     /**
      * Delete multiple schema sets in a given dataspace.
      * @param dataspaceEntity dataspace entity
      * @param schemaSetNames  schema set names
      */
-    @Modifying
-    @Query("DELETE FROM SchemaSetEntity s WHERE s.dataspace = :dataspaceEntity AND s.name IN (:schemaSetNames)")
-    void deleteByDataspaceAndNameIn(@Param("dataspaceEntity") DataspaceEntity dataspaceEntity,
-                                    @Param("schemaSetNames") Collection<String> schemaSetNames);
+    default void deleteByDataspaceAndNameIn(final DataspaceEntity dataspaceEntity,
+                                            final Collection<String> schemaSetNames) {
+        deleteByDataspaceIdAndNameIn(dataspaceEntity.getId(), schemaSetNames.toArray(new String[0]));
+    }
 }
