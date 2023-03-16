@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Nordix Foundation
+ *  Modifications Copyright (C) 2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -21,7 +22,10 @@
 package org.onap.cps.spi.repository;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -62,15 +66,45 @@ public class FragmentQueryBuilder {
         final String xpathRegex = getXpathSqlRegex(cpsPathQuery, false);
         queryParameters.put("xpathRegex", xpathRegex);
         if (cpsPathQuery.hasLeafConditions()) {
-            sqlStringBuilder.append(" AND attributes @> :leafDataAsJson\\:\\:jsonb");
-            queryParameters.put("leafDataAsJson", jsonObjectMapper.asJsonString(
-                cpsPathQuery.getLeavesData()));
+            sqlStringBuilder.append(" AND ");
+            final Integer valueAsInt = getValueAsInt(cpsPathQuery);
+            final List<String> angularOperatorTypes = cpsPathQuery.getAngularOperatorTypes();
+            if (!(angularOperatorTypes == null)) {
+                final Queue<String> operatorsQueue = new LinkedList<>(angularOperatorTypes);
+                if (valueAsInt != null && (!(operatorsQueue.isEmpty()))) {
+                    cpsPathQuery.getLeavesData().forEach((key, value) -> {
+                        sqlStringBuilder.append(" (attributes ->>");
+                        sqlStringBuilder.append("'" + key + "')\\:\\:int");
+                        sqlStringBuilder.append(" " + operatorsQueue.poll() + " ");
+                        sqlStringBuilder.append("'" + jsonObjectMapper.asJsonString(value) + "'");
+                    });
+                }
+            } else {
+                sqlStringBuilder.append(" attributes @> :leafDataAsJson\\:\\:jsonb");
+                queryParameters.put("leafDataAsJson", jsonObjectMapper.asJsonString(
+                        cpsPathQuery.getLeavesData()));
+            }
         }
 
         addTextFunctionCondition(cpsPathQuery, sqlStringBuilder, queryParameters);
         final Query query = entityManager.createNativeQuery(sqlStringBuilder.toString(), FragmentEntity.class);
         setQueryParameters(query, queryParameters);
         return query;
+    }
+
+    private static Integer getValueAsInt(final CpsPathQuery cpsPathQuery) {
+        try {
+            final Map<String, Object> leaves = cpsPathQuery.getLeavesData();
+            for (final Map.Entry<String, Object> entry : leaves.entrySet()) {
+                final Object v = entry.getValue();
+                if (v instanceof Integer) {
+                    return (Integer) v;
+                }
+            }
+            return null;
+        } catch (final NumberFormatException e) {
+            return null;
+        }
     }
 
     /**
