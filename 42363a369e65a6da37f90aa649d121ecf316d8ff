@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "c01bd3ed_070406e9",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 21
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-03-20T15:19:24Z",
+      "side": 1,
+      "message": "this is not rendered properly in the documentation i guess. If you can double-check this.\n\nBelow is how it is rendered.\n\n[\n  {\n    \"anchorName\": \"bookstore1\",\n    \"dataNodes\": [\n      {\n        \"test:bookstore\": null,\n        \"bookstore-name\": \"Chapters\",\n        \"categories\": [\n          {\n            \"code\": 1,\n            \"name\": \"SciFi\"\n          },\n          {\n            \"code\": 2,\n            \"name\": \"kids\"\n          }\n        ]\n      }\n    ]\n  },\n  {\n    \"anchorName\": \"bookstore2\",\n    \"dataNodes\": [\n      {\n        \"test:bookstore\": null,\n        \"bookstore-name\": \"Chapters\",\n        \"categories\": [\n          {\n            \"code\": 1,\n            \"name\": \"SciFi\"\n          },\n          {\n            \"code\": 2,\n            \"name\": \"kids\"\n          }\n        ]\n      }\n    ]\n  }\n]\n\nI have issue with this \"test:bookstore\": null.",
+      "range": {
+        "startLine": 121,
+        "startChar": 4,
+        "endLine": 140,
+        "endChar": 28
+      },
+      "revId": "42363a369e65a6da37f90aa649d121ecf316d8ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5715abbb_78f7dcdd",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
         "patchSetId": 21
