@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "5715abbb_78f7dcdd",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
+        "patchSetId": 21
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-03-20T14:33:09Z",
+      "side": 1,
+      "message": "NB: duplicate",
+      "range": {
+        "startLine": 133,
+        "startChar": 41,
+        "endLine": 133,
+        "endChar": 44
+      },
+      "revId": "42363a369e65a6da37f90aa649d121ecf316d8ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6251300c_f97d5942",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
         "patchSetId": 21
