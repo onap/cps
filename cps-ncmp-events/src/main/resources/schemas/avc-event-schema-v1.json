@@ -19,8 +19,8 @@
           "description": "The time of the AVC event. The expected format is 'yyyy-MM-dd'T'HH:mm:ss.SSSZ'.",
           "type": "string"
         },
-        "eventTarget": {
-          "description": "The target of the AVC event.",
+        "eventSource": {
+          "description": "The source of the AVC event.",
           "type": "string"
         },
         "eventType": {
@@ -43,7 +43,7 @@
         "eventId",
         "eventCorrelationId",
         "eventTime",
-        "eventTarget",
+        "eventSource",
         "eventType",
         "eventSchema",
         "eventSchemaVersion"

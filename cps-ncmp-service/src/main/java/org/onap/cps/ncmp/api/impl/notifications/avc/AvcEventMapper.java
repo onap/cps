@@ -38,7 +38,7 @@ public interface AvcEventMapper {
     @Mapping(source = "eventCorrelationId", target = "eventCorrelationId")
     @Mapping(source = "eventSchema", target = "eventSchema")
     @Mapping(source = "eventSchemaVersion", target = "eventSchemaVersion")
-    @Mapping(source = "eventTarget", target = "eventTarget")
+    @Mapping(source = "eventSource", target = "eventSource")
     @Mapping(source = "eventType", target = "eventType")
     AvcEvent toOutgoingAvcEvent(AvcEvent incomingAvcEvent);
 

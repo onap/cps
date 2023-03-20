@@ -77,7 +77,7 @@ class AvcEventProducerIntegrationSpec extends MessagingBaseSpec {
         and: 'timestamps match'
             assert testEventSent.eventTime == convertedAvcEvent.getEventTime()
         and: 'target matches'
-            assert testEventSent.eventTarget == convertedAvcEvent.getEventTarget()
+            assert testEventSent.eventSource == convertedAvcEvent.getEventSource()
     }
 
 }
