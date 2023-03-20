@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5e24ba69_d97dab68",
+        "filename": "cps-ncmp-service/src/main/resources/model/subscription.yang",
+        "patchSetId": 6
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-03-20T10:46:36Z",
+      "side": 1,
+      "message": "Not sure this is needed? We would then have 2 lists of ids, could just do another status for no response yet",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 17
+      },
+      "revId": "e5c9b7ce07d3a16e96d14bc44c151bd2634ecba6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8591dc48_c86de542",
+        "filename": "cps-ncmp-service/src/main/resources/model/subscription.yang",
+        "patchSetId": 6
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-03-20T10:46:36Z",
+      "side": 1,
+      "message": "Can be named targets to match the event schema",
+      "range": {
+        "startLine": 42,
+        "startChar": 17,
+        "endLine": 42,
+        "endChar": 35
+      },
+      "revId": "e5c9b7ce07d3a16e96d14bc44c151bd2634ecba6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb97c2c5_1cdcf4a2",
+        "filename": "cps-ncmp-service/src/main/resources/model/subscription.yang",
+        "patchSetId": 6
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-03-20T10:46:36Z",
+      "side": 1,
+      "message": "I think this can be moved inside the predicates container",
+      "range": {
+        "startLine": 42,
+        "startChar": 12,
+        "endLine": 52,
+        "endChar": 13
+      },
+      "revId": "e5c9b7ce07d3a16e96d14bc44c151bd2634ecba6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
