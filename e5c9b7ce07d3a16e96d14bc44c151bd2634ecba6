@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "f189b6de_87fe917a",
+        "filename": "cps-ncmp-service/src/main/resources/model/subscription.yang",
+        "patchSetId": 6
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-03-21T12:25:21Z",
+      "side": 1,
+      "message": "Currently, in SubscriptionEvent model class, we do .getPredicates().getTargets() to collect cmHandleIdsTocmHandlePropertyMap list. Thus, respondedCmHandle must be inside predicates and renamed to targets. Then, there would no need to have another list in the predicates as the Luke commented.",
+      "parentUuid": "4006dd8e_1524d1de",
+      "range": {
+        "startLine": 42,
+        "startChar": 17,
+        "endLine": 42,
+        "endChar": 35
+      },
+      "revId": "e5c9b7ce07d3a16e96d14bc44c151bd2634ecba6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bb97c2c5_1cdcf4a2",
         "filename": "cps-ncmp-service/src/main/resources/model/subscription.yang",
         "patchSetId": 6
