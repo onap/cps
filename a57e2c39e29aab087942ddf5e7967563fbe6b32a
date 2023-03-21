@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "41f9e9e1_359281d6",
+        "filename": "cps-path-parser/src/main/antlr4/org/onap/cps/cpspath/parser/antlr4/CpsPath.g4",
+        "patchSetId": 19
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2023-03-21T16:18:07Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "c3e576a4_c8e4525a",
+      "range": {
+        "startLine": 4,
+        "startChar": 31,
+        "endLine": 4,
+        "endChar": 32
+      },
+      "revId": "a57e2c39e29aab087942ddf5e7967563fbe6b32a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "263e4b39_82d1d7d5",
         "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBooleanOperatorType.java",
         "patchSetId": 19
@@ -45,6 +69,30 @@
       "revId": "a57e2c39e29aab087942ddf5e7967563fbe6b32a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "844e4ab3_be8627ef",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBooleanOperatorType.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2023-03-21T16:18:07Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "263e4b39_82d1d7d5",
+      "range": {
+        "startLine": 38,
+        "startChar": 7,
+        "endLine": 38,
+        "endChar": 48
+      },
+      "revId": "a57e2c39e29aab087942ddf5e7967563fbe6b32a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "82d6133a_cb94ff4f",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2023-03-21T16:18:07Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "e79aa354_d99ccbc1",
+      "range": {
+        "startLine": 4,
+        "startChar": 30,
+        "endLine": 4,
+        "endChar": 34
+      },
+      "revId": "a57e2c39e29aab087942ddf5e7967563fbe6b32a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "214fc471_0e4e6636",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceQueryDataNodeSpec.groovy",
         "patchSetId": 19
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "80a47cff_b1281e6b",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceQueryDataNodeSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2023-03-21T16:18:07Z",
+      "side": 1,
+      "message": "Joe is under different list-category",
+      "parentUuid": "214fc471_0e4e6636",
+      "range": {
+        "startLine": 149,
+        "startChar": 0,
+        "endLine": 149,
+        "endChar": 251
+      },
+      "revId": "a57e2c39e29aab087942ddf5e7967563fbe6b32a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c08d9d1b_5309e0aa",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceQueryDataNodeSpec.groovy",
         "patchSetId": 19
@@ -114,6 +210,30 @@
       "revId": "a57e2c39e29aab087942ddf5e7967563fbe6b32a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "97c6aa48_3c8a13a2",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceQueryDataNodeSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2023-03-21T16:18:07Z",
+      "side": 1,
+      "message": "corrected the expected xapths",
+      "parentUuid": "c08d9d1b_5309e0aa",
+      "range": {
+        "startLine": 152,
+        "startChar": 12,
+        "endLine": 152,
+        "endChar": 251
+      },
+      "revId": "a57e2c39e29aab087942ddf5e7967563fbe6b32a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
