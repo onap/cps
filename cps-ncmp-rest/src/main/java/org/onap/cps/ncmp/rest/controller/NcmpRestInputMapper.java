@@ -62,6 +62,9 @@ public interface NcmpRestInputMapper {
     RestModuleDefinition toRestModuleDefinition(
             final ModuleDefinition moduleDefinition);
 
+    @Mapping(source = "cmHandleQueryParameters", target = "cmHandleQueryParameters",
+            nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS,
+            nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.SET_TO_DEFAULT)
     CmHandleQueryServiceParameters toCmHandleQueryServiceParameters(
             final CmHandleQueryParameters cmHandleQueryParameters);
 }
