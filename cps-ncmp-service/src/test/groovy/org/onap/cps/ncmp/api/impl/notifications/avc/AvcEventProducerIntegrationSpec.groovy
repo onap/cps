@@ -56,8 +56,10 @@ class AvcEventProducerIntegrationSpec extends MessagingBaseSpec {
     def kafkaConsumer = new KafkaConsumer<>(consumerConfigProperties('ncmp-group'))
 
     def 'Consume and forward valid message'() {
-        given: 'consumer has a subscription'
-            kafkaConsumer.subscribe(['cm-events'] as List<String>)
+        given: 'consumer has a subscription on a topic'
+            def cmEventsTopic = 'cm-events'
+            avcEventProducer.cmEventsTopic = cmEventsTopic
+            kafkaConsumer.subscribe([cmEventsTopic] as List<String>)
         and: 'an event is sent'
             def jsonData = TestUtils.getResourceFileContent('sampleAvcInputEvent.json')
             def testEventSent = jsonObjectMapper.convertJsonString(jsonData, AvcEvent.class)
