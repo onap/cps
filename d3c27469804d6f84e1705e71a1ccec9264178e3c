@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e30b7ca8_b524f311",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventResponseConsumer.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-03-21T12:14:09Z",
+      "side": 1,
+      "message": "Firstly, the reason is to have a stack data structure but having thread-safe that use a pessimistic lock that all provided by LinkedBlockingDeque. Also, it is handy to push and pop easily while checking the stack size.",
+      "parentUuid": "160b50bb_e8088c40",
+      "range": {
+        "startLine": 46,
+        "startChar": 16,
+        "endLine": 46,
+        "endChar": 35
+      },
+      "revId": "d3c27469804d6f84e1705e71a1ccec9264178e3c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7ca51e10_7cc4cbb8",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventResponseConsumer.java",
         "patchSetId": 6
@@ -45,6 +69,30 @@
       "revId": "d3c27469804d6f84e1705e71a1ccec9264178e3c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e668c3da_c431359b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventResponseConsumer.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-03-21T12:14:09Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7ca51e10_7cc4cbb8",
+      "range": {
+        "startLine": 64,
+        "startChar": 28,
+        "endLine": 64,
+        "endChar": 33
+      },
+      "revId": "d3c27469804d6f84e1705e71a1ccec9264178e3c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "8a2c099d_9be56519",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/SubscriptionEventOutcome.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-03-21T12:14:09Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "3cd0950d_cbb14775",
+      "range": {
+        "startLine": 4,
+        "startChar": 4,
+        "endLine": 4,
+        "endChar": 48
+      },
+      "revId": "d3c27469804d6f84e1705e71a1ccec9264178e3c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f5e312cd_e04fdd74",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/SubscriptionEventOutcome.java",
         "patchSetId": 6
@@ -91,6 +163,30 @@
       "revId": "d3c27469804d6f84e1705e71a1ccec9264178e3c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4dc18716_4ae71a82",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/SubscriptionEventOutcome.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-03-21T12:14:09Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f5e312cd_e04fdd74",
+      "range": {
+        "startLine": 37,
+        "startChar": 12,
+        "endLine": 37,
+        "endChar": 21
+      },
+      "revId": "d3c27469804d6f84e1705e71a1ccec9264178e3c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "8f30b50b_ce9627fd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/SubscriptionEventOutcome.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-03-21T12:14:09Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c1da3ba6_6524a58f",
+      "range": {
+        "startLine": 38,
+        "startChar": 12,
+        "endLine": 38,
+        "endChar": 21
+      },
+      "revId": "d3c27469804d6f84e1705e71a1ccec9264178e3c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f8ba0ebc_7ded19dc",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/SubscriptionEventOutcomeStatus.java",
         "patchSetId": 6
@@ -131,6 +251,24 @@
       "revId": "d3c27469804d6f84e1705e71a1ccec9264178e3c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "099a29c5_557eb5c5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/SubscriptionEventOutcomeStatus.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-03-21T12:14:09Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f8ba0ebc_7ded19dc",
+      "revId": "d3c27469804d6f84e1705e71a1ccec9264178e3c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -154,6 +292,30 @@
       "revId": "d3c27469804d6f84e1705e71a1ccec9264178e3c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9270f671_d1e4e25e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/SubscriptionEventResponse.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-03-21T12:14:09Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ba3a485b_b320c5dd",
+      "range": {
+        "startLine": 35,
+        "startChar": 12,
+        "endLine": 35,
+        "endChar": 21
+      },
+      "revId": "d3c27469804d6f84e1705e71a1ccec9264178e3c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
