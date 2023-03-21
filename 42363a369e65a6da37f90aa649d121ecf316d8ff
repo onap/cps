@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6727fdb2_6e1495ba",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 21
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-03-21T10:27:16Z",
+      "side": 1,
+      "message": "Thanks for finding. now it is corrected and this structure is changed",
+      "parentUuid": "c01bd3ed_070406e9",
+      "range": {
+        "startLine": 121,
+        "startChar": 4,
+        "endLine": 140,
+        "endChar": 28
+      },
+      "revId": "42363a369e65a6da37f90aa649d121ecf316d8ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5715abbb_78f7dcdd",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
         "patchSetId": 21
