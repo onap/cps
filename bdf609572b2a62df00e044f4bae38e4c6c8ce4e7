@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cb6cc9db_f2ce4e96",
+        "filename": "cps-ncmp-service/src/test/resources/application.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-03-21T11:39:01Z",
+      "side": 1,
+      "message": "NB 23",
+      "range": {
+        "startLine": 2,
+        "startChar": 24,
+        "endLine": 2,
+        "endChar": 26
+      },
+      "revId": "bdf609572b2a62df00e044f4bae38e4c6c8ce4e7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
