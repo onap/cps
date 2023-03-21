@@ -2,6 +2,7 @@
    ============LICENSE_START=======================================================
     Copyright (C) 2021-2022 Nordix Foundation.
     Modifications Copyright (C) 2021 Bell Canada.
+    Modifications Copyright (C) 2023 TechMahindra Ltd.
    ================================================================================
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -75,4 +76,6 @@ INSERT INTO FRAGMENT (ID, DATASPACE_ID, ANCHOR_ID, PARENT_ID, XPATH, ATTRIBUTES)
     (17, 1001, 1003, 1, '/shops/shop[@id=''3'']/info/contact', null),
     (18, 1001, 1003, 17, '/shops/shop[@id=''3'']/info/contact/website', '{"address" : "myshop.ie"}'),
     (19, 1001, 1003, 17, '/shops/shop[@id=''3'']/info/contact/phonenumbers[@type=''mob'']', '{"type" : "mob", "number" : "123123456"}'),
-    (20, 1001, 1003, 17, '/shops/shop[@id=''3'']/info/contact/phonenumbers[@type=''landline'']', '{"type" : "landline", "number" : "012123456"}');
+    (20, 1001, 1003, 17, '/shops/shop[@id=''3'']/info/contact/phonenumbers[@type=''landline'']', '{"type" : "landline", "number" : "012123456"}'),
+    (66, 1001, 1003, 6, '/stores/bookstore[@id=''4'']/lists[@code=''3'']/textbook[@price>''800'']', '{"price" : 950, "title" : "max"}'),
+    (67, 1001, 1003, 6, '/stores/bookstore[@id=''4'']/lists[@code=''4'']/textbook[@price<''400'']', '{"price" : 350, "title" : "passion"}');
