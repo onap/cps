@@ -40,6 +40,7 @@ public interface AvcEventMapper {
     @Mapping(source = "eventSchemaVersion", target = "eventSchemaVersion")
     @Mapping(source = "eventSource", target = "eventSource")
     @Mapping(source = "eventType", target = "eventType")
+    @Mapping(source = "event", target = "event")
     AvcEvent toOutgoingAvcEvent(AvcEvent incomingAvcEvent);
 
     @Named("avcEventId")
