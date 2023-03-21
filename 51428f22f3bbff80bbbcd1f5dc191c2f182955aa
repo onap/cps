@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5c89725c_f491cbfd",
+        "filename": "cps-ncmp-service/src/main/resources/model/subscription.yang",
+        "patchSetId": 9
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2023-03-21T14:30:12Z",
+      "side": 1,
+      "message": "NB: 2023-21-03",
+      "range": {
+        "startLine": 7,
+        "startChar": 14,
+        "endLine": 7,
+        "endChar": 24
+      },
+      "revId": "51428f22f3bbff80bbbcd1f5dc191c2f182955aa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
