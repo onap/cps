@@ -23,6 +23,7 @@ package org.onap.cps.ncmp.api.impl.notifications.avc;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.event.model.AvcEvent;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
@@ -38,6 +39,9 @@ public class AvcEventProducer {
 
     private final AvcEventMapper avcEventMapper;
 
+    @Value("${app.ncmp.avc.cm-events-topic}")
+    private final String cmEventsTopic;
+
     /**
      * Sends message to the configured topic with a message key.
      *
@@ -46,7 +50,7 @@ public class AvcEventProducer {
     public void sendMessage(final AvcEvent incomingAvcEvent) {
         // generate new event id while keeping other data
         final AvcEvent outgoingAvcEvent = avcEventMapper.toOutgoingAvcEvent(incomingAvcEvent);
-        log.debug("Forwarding AVC event {} to topic {} ", outgoingAvcEvent.getEventId(), "cm-events");
-        kafkaTemplate.send("cm-events", outgoingAvcEvent.getEventId(), outgoingAvcEvent);
+        log.debug("Forwarding AVC event {} to topic {} ", outgoingAvcEvent.getEventId(), cmEventsTopic);
+        kafkaTemplate.send(cmEventsTopic, outgoingAvcEvent.getEventId(), outgoingAvcEvent);
     }
 }
