@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "1ed4411b_81458e57",
+        "filename": "cps-ncmp-service/src/main/resources/model/subscription.yang",
+        "patchSetId": 6
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2023-03-21T13:26:46Z",
+      "side": 1,
+      "message": "Agree with Luke here, having a \u0027Pending Response\u0027 status would allow for a differentiation between the target and the responded cmHandles in the same list.",
+      "parentUuid": "a0e62dec_266e4989",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 17
+      },
+      "revId": "e5c9b7ce07d3a16e96d14bc44c151bd2634ecba6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8591dc48_c86de542",
         "filename": "cps-ncmp-service/src/main/resources/model/subscription.yang",
         "patchSetId": 6
