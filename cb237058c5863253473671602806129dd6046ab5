@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a44aa8b_d38597d4",
+        "filename": "test-tools/test-deregistration.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-21T11:06:38Z",
+      "side": 1,
+      "message": "not sure if we nee dthis many variations, how long does it take to run this whole script on a laptop now.\nIf its fast enough it doesnt matter but I suspect we coudl do witha faster test, and jsut cover\n\n100 500 1000 5000 10000 and 20000",
+      "range": {
+        "startLine": 151,
+        "startChar": 24,
+        "endLine": 151,
+        "endChar": 101
+      },
+      "revId": "cb237058c5863253473671602806129dd6046ab5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa3cc75c_9f49a1f9",
+        "filename": "test-tools/test-deregistration.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-21T11:06:38Z",
+      "side": 1,
+      "message": "again not sure how valuable this is, the use case is really about de-registering ALL cm-handles.\nIts OK to leave here, maybe commented out by default",
+      "range": {
+        "startLine": 154,
+        "startChar": 0,
+        "endLine": 162,
+        "endChar": 0
+      },
+      "revId": "cb237058c5863253473671602806129dd6046ab5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
