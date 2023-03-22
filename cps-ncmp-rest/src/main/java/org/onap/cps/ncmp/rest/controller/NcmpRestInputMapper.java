@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -62,6 +62,9 @@ public interface NcmpRestInputMapper {
     RestModuleDefinition toRestModuleDefinition(
             final ModuleDefinition moduleDefinition);
 
+    @Mapping(source = "cmHandleQueryParameters", target = "cmHandleQueryParameters",
+            nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS,
+            nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.SET_TO_DEFAULT)
     CmHandleQueryServiceParameters toCmHandleQueryServiceParameters(
             final CmHandleQueryParameters cmHandleQueryParameters);
 }
