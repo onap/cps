@@ -32,13 +32,14 @@ Release Data
 | **Release designation**              | 3.2.6 London                                           |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
-| **Release date**                     | Not been released yet                                  |
+| **Release date**                     | 2023 March 10                                          |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
 
 Bug Fixes
 ---------
 3.2.6
+    - `CPS-1396 <https://jira.onap.org/browse/CPS-1396>`_ Query data nodes across all anchors under one dataspace
     - `CPS-1526 <https://jira.onap.org/browse/CPS-1526>`_ Fix response message for PATCH operation
 
 Features
