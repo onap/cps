@@ -1,0 +1,251 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "187b0294_cd74273c",
+        "filename": "docs/ncmp-inventory-querying.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-03-22T14:20:04Z",
+      "side": 1,
+      "message": "only one now",
+      "range": {
+        "startLine": 18,
+        "startChar": 40,
+        "endLine": 18,
+        "endChar": 48
+      },
+      "revId": "6de78a34549ba7e683e546a7ec27a8c6277f6804",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ced07b69_e76931ee",
+        "filename": "docs/ncmp-inventory-querying.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-03-22T14:20:04Z",
+      "side": 1,
+      "message": "See previous comment, should be \nhasAllProperties\nhasAllAdditionalProperties\ncmHandleWithDmiPlugin",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 77
+      },
+      "revId": "6de78a34549ba7e683e546a7ec27a8c6277f6804",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6f416437_66034bbd",
+        "filename": "docs/ncmp-inventory-querying.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-03-22T14:20:04Z",
+      "side": 1,
+      "message": "This needs to be updated based on new json body below, see below comment first",
+      "range": {
+        "startLine": 43,
+        "startChar": 58,
+        "endLine": 43,
+        "endChar": 252
+      },
+      "revId": "6de78a34549ba7e683e546a7ec27a8c6277f6804",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d3b20d57_e8634392",
+        "filename": "docs/ncmp-inventory-querying.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-03-22T14:20:04Z",
+      "side": 1,
+      "message": "On second thought we should change this to something different to not confuse\n{\n              \"Price\": \"5\"\n            },\n            {\n              \"Year\": \"2021\"\n            },\n            {\n              \"Quantity\": \"7\"\n            }\n}",
+      "range": {
+        "startLine": 66,
+        "startChar": 12,
+        "endLine": 74,
+        "endChar": 13
+      },
+      "revId": "6de78a34549ba7e683e546a7ec27a8c6277f6804",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "de10d46b_1e9c32e1",
+        "filename": "docs/ncmp-inventory-querying.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-03-22T14:20:04Z",
+      "side": 1,
+      "message": "public properties",
+      "range": {
+        "startLine": 91,
+        "startChar": 130,
+        "endLine": 91,
+        "endChar": 140
+      },
+      "revId": "6de78a34549ba7e683e546a7ec27a8c6277f6804",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f05c5f0_12465761",
+        "filename": "docs/ncmp-inventory-querying.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-03-22T14:20:04Z",
+      "side": 1,
+      "message": "additional properties",
+      "range": {
+        "startLine": 117,
+        "startChar": 140,
+        "endLine": 117,
+        "endChar": 150
+      },
+      "revId": "6de78a34549ba7e683e546a7ec27a8c6277f6804",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d9d9e7e_1d92664d",
+        "filename": "docs/ncmp-inventory-querying.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-03-22T14:20:04Z",
+      "side": 1,
+      "message": "update for price year wuantity and same with values",
+      "range": {
+        "startLine": 117,
+        "startChar": 384,
+        "endLine": 117,
+        "endChar": 429
+      },
+      "revId": "6de78a34549ba7e683e546a7ec27a8c6277f6804",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9023f23a_a57ebd31",
+        "filename": "docs/ncmp-inventory-querying.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-03-22T14:20:04Z",
+      "side": 1,
+      "message": "Make same as above suggestion price, year quantity",
+      "range": {
+        "startLine": 126,
+        "startChar": 0,
+        "endLine": 134,
+        "endChar": 13
+      },
+      "revId": "6de78a34549ba7e683e546a7ec27a8c6277f6804",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd00f2c0_b35d5f5d",
+        "filename": "docs/ncmp-inventory-querying.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-03-22T14:20:04Z",
+      "side": 1,
+      "message": "CM Handles with DMI Plugins",
+      "revId": "6de78a34549ba7e683e546a7ec27a8c6277f6804",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f2362c39_ebd0a797",
+        "filename": "docs/ncmp-inventory-querying.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-03-22T14:20:04Z",
+      "side": 1,
+      "message": "...dmiPluginName. The CM Handles returned will have this DMI Plugin Name value in at least one of the following related leaves: dmi-service-name, dmi-data-service-name and dmi-model-service-name. For the example request a CM Handle will be returned if it has my-dmi-plugin as a value in at least one of the aforementioned leaves.",
+      "range": {
+        "startLine": 143,
+        "startChar": 46,
+        "endLine": 143,
+        "endChar": 469
+      },
+      "revId": "6de78a34549ba7e683e546a7ec27a8c6277f6804",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "94d90d00_e607c599",
+        "filename": "docs/ncmp-inventory-querying.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-03-22T14:20:04Z",
+      "side": 1,
+      "message": "cmHandleWithDmiPlugin",
+      "range": {
+        "startLine": 143,
+        "startChar": 10,
+        "endLine": 143,
+        "endChar": 16
+      },
+      "revId": "6de78a34549ba7e683e546a7ec27a8c6277f6804",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
