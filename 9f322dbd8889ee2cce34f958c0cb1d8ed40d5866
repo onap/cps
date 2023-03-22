@@ -22,6 +22,30 @@
       "revId": "9f322dbd8889ee2cce34f958c0cb1d8ed40d5866",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6d3934a4_db975e16",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NcmpRestInputMapper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2023-03-22T15:20:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c293259f_83a4275c",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 40
+      },
+      "revId": "9f322dbd8889ee2cce34f958c0cb1d8ed40d5866",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
