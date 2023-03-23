@@ -17,7 +17,7 @@ module subscription {
                 type string;
             }
 
-            leaf clientName {
+            leaf subscriptionName {
                 type string;
             }
 
