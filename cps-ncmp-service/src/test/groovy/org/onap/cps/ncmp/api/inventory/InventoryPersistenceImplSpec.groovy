@@ -265,7 +265,7 @@ class InventoryPersistenceImplSpec extends Specification {
 
     def 'Get cmHandle data node'() {
         given: 'expected xPath to get cmHandle data node'
-            def expectedXPath = '/dmi-registry/cm-handles[@id=\'sample cmHandleId\']';
+            def expectedXPath = '/dmi-registry/cm-handles[@id=\'sample cmHandleId\']'
         when: 'the method to get data nodes is called'
             objectUnderTest.getCmHandleDataNode('sample cmHandleId')
         then: 'the data persistence service method to get cmHandle data node is invoked once with expected xPath'
@@ -284,7 +284,7 @@ class InventoryPersistenceImplSpec extends Specification {
             objectUnderTest.replaceListContent('sample xpath', [new DataNode()])
         then: 'the cps data service method to replace list content is invoked once with same parameters'
             1 * mockCpsDataService.replaceListContent('NCMP-Admin', 'ncmp-dmi-registry',
-                    'sample xpath', [new DataNode()], NO_TIMESTAMP);
+                    'sample xpath', [new DataNode()], NO_TIMESTAMP)
     }
 
     def 'Delete data node via xPath'() {
@@ -292,7 +292,7 @@ class InventoryPersistenceImplSpec extends Specification {
             objectUnderTest.deleteDataNode('sample dataNode xpath')
         then: 'the cps data service method to delete data node is invoked once with the same xPath'
             1 * mockCpsDataService.deleteDataNode('NCMP-Admin', 'ncmp-dmi-registry',
-                    'sample dataNode xpath', NO_TIMESTAMP);
+                    'sample dataNode xpath', NO_TIMESTAMP)
     }
 
     def 'Delete multiple data nodes via xPath'() {
@@ -300,7 +300,7 @@ class InventoryPersistenceImplSpec extends Specification {
             objectUnderTest.deleteDataNodes(['xpath1', 'xpath2'])
         then: 'the cps data service method to delete data nodes is invoked once with the same xPaths'
             1 * mockCpsDataService.deleteDataNodes('NCMP-Admin', 'ncmp-dmi-registry',
-                    ['xpath1', 'xpath2'], NO_TIMESTAMP);
+                    ['xpath1', 'xpath2'], NO_TIMESTAMP)
     }
 
 }

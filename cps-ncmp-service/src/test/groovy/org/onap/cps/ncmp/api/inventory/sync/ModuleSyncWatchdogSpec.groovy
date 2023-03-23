@@ -46,7 +46,7 @@ class ModuleSyncWatchdogSpec extends Specification {
             mockModuleSyncTasks, spiedAsyncTaskExecutor)
 
     void setup() {
-        spiedAsyncTaskExecutor.setupThreadPool();
+        spiedAsyncTaskExecutor.setupThreadPool()
     }
 
     def 'Module sync advised cm handles with #scenario.'() {

@@ -20,11 +20,15 @@
 
 package org.onap.cps.ncmp.api.impl.notifications.avc;
 
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
+import org.onap.cps.ncmp.api.impl.yangmodels.YangModelSubscriptionEvent;
 import org.onap.cps.ncmp.event.model.AvcEvent;
+import org.onap.cps.ncmp.event.model.SubscriptionEvent;
 
 
 /**
@@ -33,14 +37,7 @@ import org.onap.cps.ncmp.event.model.AvcEvent;
 @Mapper(componentModel = "spring")
 public interface AvcEventMapper {
 
-    @Mapping(source = "eventTime", target = "eventTime")
     @Mapping(source = "eventId", target = "eventId", qualifiedByName = "avcEventId")
-    @Mapping(source = "eventCorrelationId", target = "eventCorrelationId")
-    @Mapping(source = "eventSchema", target = "eventSchema")
-    @Mapping(source = "eventSchemaVersion", target = "eventSchemaVersion")
-    @Mapping(source = "eventSource", target = "eventSource")
-    @Mapping(source = "eventType", target = "eventType")
-    @Mapping(source = "event", target = "event")
     AvcEvent toOutgoingAvcEvent(AvcEvent incomingAvcEvent);
 
     @Named("avcEventId")
@@ -48,4 +45,22 @@ public interface AvcEventMapper {
         return UUID.randomUUID().toString();
     }
 
+    @Mapping(source = "event.subscription.clientID", target = "clientId")
+    @Mapping(source = "event.subscription.name", target = "subscriptionName")
+    @Mapping(source = "event.subscription.isTagged", target = "tagged", qualifiedByName = "mapIsTagged")
+    @Mapping(source = "event.predicates.targets",
+        target = "predicates.targetCmHandles", qualifiedByName = "mapTargetsToCmHandleTargets")
+    @Mapping(source = "event.predicates.datastore", target = "predicates.datastore")
+    YangModelSubscriptionEvent toYangModelSubscriptionEvent(SubscriptionEvent subscriptionEvent);
+
+    @Named("mapTargetsToCmHandleTargets")
+    default List<YangModelSubscriptionEvent.TargetCmHandle> mapTargetsToCmHandleTargets(List<Object> targets) {
+        return targets.stream().map(
+            target -> new YangModelSubscriptionEvent.TargetCmHandle(target.toString())).collect(Collectors.toList());
+    }
+
+    @Named("mapIsTagged")
+    default boolean mapIsTagged(Boolean isTagged) {
+        return (isTagged == null) ? false : isTagged;
+    }
 }

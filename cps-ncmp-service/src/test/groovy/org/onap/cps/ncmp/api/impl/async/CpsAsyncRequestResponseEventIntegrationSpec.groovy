@@ -43,7 +43,7 @@ class NcmpAsyncRequestResponseEventProducerIntegrationSpec extends MessagingBase
 
     @SpringBean
     NcmpAsyncRequestResponseEventProducer cpsAsyncRequestResponseEventProducerService =
-        new NcmpAsyncRequestResponseEventProducer(kafkaTemplate);
+        new NcmpAsyncRequestResponseEventProducer(kafkaTemplate)
 
     @SpringBean
     NcmpAsyncRequestResponseEventMapper ncmpAsyncRequestResponseEventMapper =

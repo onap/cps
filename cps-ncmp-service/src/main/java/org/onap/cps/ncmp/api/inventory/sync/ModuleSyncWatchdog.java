@@ -53,7 +53,7 @@ public class ModuleSyncWatchdog {
     private static final String VALUE_FOR_HAZELCAST_IN_PROGRESS_MAP = "Started";
     private static final long ASYNC_TASK_TIMEOUT_IN_MILLISECONDS = TimeUnit.MINUTES.toMillis(5);
     @Getter
-    private AtomicInteger batchCounter = new AtomicInteger(1);
+    private final AtomicInteger batchCounter = new AtomicInteger(1);
 
     /**
      * Check DB for any cm handles in 'ADVISED' state.

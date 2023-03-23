@@ -54,7 +54,7 @@ class NcmpRestInputMapperSpec extends Specification {
             result.createdCmHandles[0].publicProperties == expectedPublicProperties
         where: 'the following parameters are used'
             scenario                    | dmiProperties                            | publicProperties                                         || expectedDmiProperties                     | expectedPublicProperties
-            'dmi and public properties' | ['Property-Example': 'example property'] | ['Public-Property-Example': 'public example property']   || ['Property-Example': 'example property']  | ['Public-Property-Example': 'public example property']
+            'dmi and public properties' | ['TargetCmHandle-Example': 'example property'] | ['Public-TargetCmHandle-Example': 'public example property']   || ['TargetCmHandle-Example': 'example property']  | ['Public-TargetCmHandle-Example': 'public example property']
             'no properties'             | null                                     | null                                                     || [:]                                       | [:]
     }
 

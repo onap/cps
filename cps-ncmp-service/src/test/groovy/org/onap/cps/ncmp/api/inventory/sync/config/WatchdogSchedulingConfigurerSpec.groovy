@@ -33,9 +33,9 @@ import spock.lang.Specification
 class WatchdogSchedulingConfigurerSpec extends Specification {
 
     @Autowired
-    private ConfigurableApplicationContext applicationContext;
+    private ConfigurableApplicationContext applicationContext
 
-    def watchdogSchedulingConfigurer;
+    def watchdogSchedulingConfigurer
 
     @BeforeEach
     void setup() {

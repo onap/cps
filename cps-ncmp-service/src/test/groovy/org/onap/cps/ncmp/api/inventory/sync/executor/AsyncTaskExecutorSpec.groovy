@@ -41,7 +41,7 @@ class AsyncTaskExecutorSpec extends Specification {
     def 'Task completion with #caseDescriptor.'() {
         when: 'task completion is handled'
             def irrelevantResponse = null
-            objectUnderTest.handleTaskCompletion(irrelevantResponse, exception);
+            objectUnderTest.handleTaskCompletion(irrelevantResponse, exception)
         then: 'any exception is swallowed by the task completion (logged)'
             noExceptionThrown()
         where: 'following cases are tested'

@@ -57,6 +57,6 @@ class NcmpConfigurationSpec extends Specification{
             def lastMessageConverter = result.getMessageConverters().get(result.getMessageConverters().size()-1)
             lastMessageConverter instanceof MappingJackson2HttpMessageConverter
         and: 'the jackson media converters supports the expected media types'
-            lastMessageConverter.getSupportedMediaTypes() == [MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN];
+            lastMessageConverter.getSupportedMediaTypes() == [MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN]
     }
 }

@@ -21,6 +21,9 @@
 package org.onap.cps.ncmp.api.impl.event.avc
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import org.onap.cps.ncmp.api.impl.notifications.avc.AvcEventMapper
+import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionPersistence
+import org.onap.cps.ncmp.api.impl.yangmodels.YangModelSubscriptionEvent
 import org.onap.cps.ncmp.api.kafka.MessagingBaseSpec
 import org.onap.cps.ncmp.event.model.SubscriptionEvent
 import org.onap.cps.ncmp.utils.TestUtils
@@ -32,13 +35,17 @@ import org.springframework.boot.test.context.SpringBootTest
 @SpringBootTest(classes = [ObjectMapper, JsonObjectMapper])
 class SubscriptionEventConsumerSpec extends MessagingBaseSpec {
 
-    def subscriptionEventForwarder = Mock(SubscriptionEventForwarder)
-    def objectUnderTest = new SubscriptionEventConsumer(subscriptionEventForwarder)
+    def mockSubscriptionEventForwarder = Mock(SubscriptionEventForwarder)
+    def mockAvcEventMapper = Mock(AvcEventMapper)
+    def mockSubscriptionPersistence = Mock(SubscriptionPersistence)
+    def objectUnderTest = new SubscriptionEventConsumer(mockSubscriptionEventForwarder, mockAvcEventMapper, mockSubscriptionPersistence)
+
+    def yangModelSubscriptionEvent = new YangModelSubscriptionEvent()
 
     @Autowired
     JsonObjectMapper jsonObjectMapper
 
-    def 'Consume and forward valid CM create message'() {
+    def 'Consume, persist and forward valid CM create message'() {
         given: 'an event with data category CM'
             def jsonData = TestUtils.getResourceFileContent('avcSubscriptionCreationEvent.json')
             def testEventSent = jsonObjectMapper.convertJsonString(jsonData, SubscriptionEvent.class)
@@ -46,8 +53,12 @@ class SubscriptionEventConsumerSpec extends MessagingBaseSpec {
             objectUnderTest.notificationFeatureEnabled = true
         when: 'the valid event is consumed'
             objectUnderTest.consumeSubscriptionEvent(testEventSent)
-        then: 'the event is forwarded'
-            1 * subscriptionEventForwarder.forwardCreateSubscriptionEvent(testEventSent)
+        then: 'the event is mapped to a yangModelSubscription'
+            1 * mockAvcEventMapper.toYangModelSubscriptionEvent(testEventSent) >> yangModelSubscriptionEvent
+        and: 'the event is persisted'
+            1 * mockSubscriptionPersistence.saveSubscriptionEvent(yangModelSubscriptionEvent)
+        and: 'the event is forwarded'
+            1 * mockSubscriptionEventForwarder.forwardCreateSubscriptionEvent(testEventSent)
     }
 
     def 'Consume valid CM create message where notifications are disabled'() {
@@ -58,8 +69,12 @@ class SubscriptionEventConsumerSpec extends MessagingBaseSpec {
             objectUnderTest.notificationFeatureEnabled = false
         when: 'the valid event is consumed'
             objectUnderTest.consumeSubscriptionEvent(testEventSent)
-        then: 'the event is forwarded'
-            0 * subscriptionEventForwarder.forwardCreateSubscriptionEvent(testEventSent)
+        then: 'the event is mapped to a yangModelSubscription'
+            1 * mockAvcEventMapper.toYangModelSubscriptionEvent(testEventSent) >> yangModelSubscriptionEvent
+        and: 'the event is persisted'
+            1 * mockSubscriptionPersistence.saveSubscriptionEvent(yangModelSubscriptionEvent)
+        and: 'the event is not forwarded'
+            0 * mockSubscriptionEventForwarder.forwardCreateSubscriptionEvent(*_)
     }
 
     def 'Consume valid FM message'() {
@@ -73,7 +88,7 @@ class SubscriptionEventConsumerSpec extends MessagingBaseSpec {
         then: 'no exception is thrown'
             noExceptionThrown()
         and: 'No event is forwarded'
-            0 * subscriptionEventForwarder.forwardCreateSubscriptionEvent(*_)
+            0 * mockSubscriptionEventForwarder.forwardCreateSubscriptionEvent(*_)
     }
 
     def 'Consume event with wrong datastore causes an exception'() {

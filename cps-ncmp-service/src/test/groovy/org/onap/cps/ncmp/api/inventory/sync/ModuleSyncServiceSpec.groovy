@@ -85,7 +85,7 @@ class ModuleSyncServiceSpec extends Specification {
 
     def 'Delete Schema Set for CmHandle with other exception' () {
         given: 'an exception other than SchemaSetNotFoundException is thrown'
-            UnsupportedOperationException unsupportedOperationException = new UnsupportedOperationException();
+            UnsupportedOperationException unsupportedOperationException = new UnsupportedOperationException()
             1 * mockCpsModuleService.deleteSchemaSet(*_) >> { throw unsupportedOperationException }
         when: 'delete schema set if exists is called'
             objectUnderTest.deleteSchemaSetIfExists('some-cmhandle-id')

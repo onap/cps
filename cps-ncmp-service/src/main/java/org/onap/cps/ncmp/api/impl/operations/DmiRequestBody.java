@@ -53,15 +53,15 @@ public class DmiRequestBody {
         }
     }
 
-    private OperationEnum operation;
-    private String dataType;
-    private String data;
+    private final OperationEnum operation;
+    private final String dataType;
+    private final String data;
     @JsonProperty("cmHandleProperties")
     private Map<String, String> dmiProperties;
-    private String requestId;
+    private final String requestId;
 
     /**
-     * Set DMI Properties by converting a list of YangModelCmHandle.Property objects.
+     * Set DMI Properties by converting a list of YangModelCmHandle.TargetCmHandle objects.
      *
      * @param yangModelCmHandleProperties list of cm handle dmi properties
      */

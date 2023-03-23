@@ -37,7 +37,7 @@ import spock.lang.Specification
 class SubscriptionCreateProducerDemo extends Specification {
 
     @Value('${app.ncmp.avc.subscription-topic}')
-    String subscriptionTopic;
+    String subscriptionTopic
 
     @Autowired
     KafkaTemplate<String, SubscriptionEvent> kafkaTemplate
@@ -50,8 +50,8 @@ class SubscriptionCreateProducerDemo extends Specification {
             def jsonData = TestUtils.getResourceFileContent('avcSubscriptionCreationEvent.json')
             def testEventSent = jsonObjectMapper.convertJsonString(jsonData, SubscriptionEvent.class)
         and: 'test event is sent'
-            kafkaTemplate.send(subscriptionTopic, "request-Id-98765", testEventSent);
+            kafkaTemplate.send(subscriptionTopic, "request-Id-98765", testEventSent)
         and: 'print json data to console'
-            println(jsonData);
+            println(jsonData)
     }
 }

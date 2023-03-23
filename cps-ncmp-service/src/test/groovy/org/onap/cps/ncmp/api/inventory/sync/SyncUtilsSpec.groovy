@@ -135,7 +135,7 @@ class SyncUtilsSpec extends Specification{
     def 'Get resource data through DMI Operations #scenario'() {
         given: 'the inventory persistence service returns a collection of data nodes'
             def jsonString = '{"stores:bookstore":{"categories":[{"code":"01"}]}}'
-            JsonNode jsonNode = jsonObjectMapper.convertToJsonNode(jsonString);
+            JsonNode jsonNode = jsonObjectMapper.convertToJsonNode(jsonString)
             def responseEntity = new ResponseEntity<>(jsonNode, HttpStatus.OK)
             mockDmiDataOperations.getResourceDataFromDmi('cm-handle-123', DmiOperations.DataStoreEnum.PASSTHROUGH_OPERATIONAL, _) >> responseEntity
         when: 'get resource data is called'

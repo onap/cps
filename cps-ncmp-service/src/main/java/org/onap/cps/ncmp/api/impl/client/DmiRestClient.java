@@ -37,8 +37,8 @@ import org.springframework.web.client.RestTemplate;
 @AllArgsConstructor
 public class DmiRestClient {
 
-    private RestTemplate restTemplate;
-    private DmiProperties dmiProperties;
+    private final RestTemplate restTemplate;
+    private final DmiProperties dmiProperties;
 
     /**
      * Sends POST operation to DMI with json body containing module references.

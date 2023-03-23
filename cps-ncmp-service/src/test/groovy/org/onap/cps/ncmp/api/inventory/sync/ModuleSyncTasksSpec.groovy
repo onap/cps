@@ -162,6 +162,6 @@ class ModuleSyncTasksSpec extends Specification {
     }
 
     def resetModuleSyncStartedOnCmHandles(moduleSyncStartedOnCmHandles) {
-        moduleSyncStartedOnCmHandles.clear();
+        moduleSyncStartedOnCmHandles.clear()
     }
 }
