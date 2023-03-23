@@ -11,13 +11,13 @@ module subscription {
 
     container subscription-registry {
         list subscription {
-            key "clientID clientName";
+            key "clientID subscriptionName";
 
             leaf clientID {
                 type string;
             }
 
-            leaf clientName {
+            leaf subscriptionName {
                 type string;
             }
 
