@@ -20,6 +20,8 @@
 
 package org.onap.cps.ncmp.api.impl.event.avc;
 
+import com.hazelcast.map.IMap;
+import java.time.OffsetDateTime;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -45,6 +47,7 @@ public class SubscriptionEventForwarder {
 
     private final InventoryPersistence inventoryPersistence;
     private final EventsPublisher<SubscriptionEvent> eventsPublisher;
+    private final IMap<String, OffsetDateTime> dmiResponseTimeOutMap;
 
     private static final String DMI_AVC_SUBSCRIPTION_TOPIC_PREFIX = "ncmp-dmi-cm-avc-subscription-";
 
@@ -66,9 +69,11 @@ public class SubscriptionEventForwarder {
             inventoryPersistence.getYangModelCmHandles(cmHandleTargetsAsStrings);
         final Map<String, Map<String, Map<String, String>>> dmiNameCmHandleMap =
             organizeByDmiName(yangModelCmHandles);
+        final OffsetDateTime dmiResponseTimeOutStart = OffsetDateTime.now();
         dmiNameCmHandleMap.forEach((dmiName, cmHandlePropertiesMap) -> {
-            subscriptionEvent.getEvent().getPredicates().setTargets(Collections.singletonList(cmHandlePropertiesMap));
             final String eventKey = createEventKey(subscriptionEvent, dmiName);
+            dmiResponseTimeOutMap.put(eventKey, dmiResponseTimeOutStart);
+            subscriptionEvent.getEvent().getPredicates().setTargets(Collections.singletonList(cmHandlePropertiesMap));
             eventsPublisher.publishEvent(DMI_AVC_SUBSCRIPTION_TOPIC_PREFIX + dmiName, eventKey, subscriptionEvent);
         });
     }

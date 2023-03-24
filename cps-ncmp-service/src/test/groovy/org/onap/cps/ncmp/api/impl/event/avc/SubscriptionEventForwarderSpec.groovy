@@ -21,6 +21,10 @@
 package org.onap.cps.ncmp.api.impl.event.avc
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.hazelcast.config.Config
+import com.hazelcast.instance.impl.HazelcastInstanceFactory
+import com.hazelcast.instance.impl.HazelcastInstanceImpl
+import com.hazelcast.map.IMap
 import org.onap.cps.ncmp.api.impl.event.EventsPublisher
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence
@@ -31,18 +35,26 @@ import org.onap.cps.spi.exceptions.OperationNotYetSupportedException
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.kafka.core.KafkaTemplate
-import org.springframework.util.concurrent.ListenableFuture;
+import java.time.OffsetDateTime
+import com.hazelcast.core.Hazelcast
+
 
 @SpringBootTest(classes = [ObjectMapper, JsonObjectMapper])
 class SubscriptionEventForwarderSpec extends MessagingBaseSpec {
 
     def mockInventoryPersistence = Mock(InventoryPersistence)
     def mockSubscriptionEventPublisher = Mock(EventsPublisher<SubscriptionEvent>)
-    def objectUnderTest = new SubscriptionEventForwarder(mockInventoryPersistence, mockSubscriptionEventPublisher)
+    def static hazelcastInstance = HazelcastInstanceFactory
+        .getOrCreateHazelcastInstance(new Config('hazelcastInstanceName'))
+    IMap<String, OffsetDateTime> dmiResponseTimeOutMap = hazelcastInstance.getMap('mapInstanceName')
+    def objectUnderTest = new SubscriptionEventForwarder(mockInventoryPersistence, mockSubscriptionEventPublisher, dmiResponseTimeOutMap)
 
     @Autowired
     JsonObjectMapper jsonObjectMapper
+
+    def cleanupSpec() {
+        HazelcastInstanceFactory.getHazelcastInstance('hazelcastInstanceName').shutdown()
+    }
 
     def 'Forward valid CM create subscription'() {
         given: 'an event'
@@ -70,6 +82,9 @@ class SubscriptionEventForwarderSpec extends MessagingBaseSpec {
                     targets["CMHandle3"] == ["shape":"triangle"]
                 }
             )
+        and: 'the dmi response timeout map contains two entries with the correct key and timeout'
+            assert objectUnderTest.dmiResponseTimeOutMap.keySet().containsAll( ['SCO-9989752-cm-subscription-001-DMIName1', "SCO-9989752-cm-subscription-001-DMIName2"])
+            assert objectUnderTest.dmiResponseTimeOutMap.values().size() == 2
     }
 
     def 'Forward CM create subscription where target CM Handles are #scenario'() {
