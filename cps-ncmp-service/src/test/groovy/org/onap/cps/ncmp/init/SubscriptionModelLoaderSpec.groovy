@@ -23,8 +23,10 @@ package org.onap.cps.ncmp.init
 import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.Logger
 import ch.qos.logback.core.read.ListAppender
+
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
+
 import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
@@ -32,9 +34,11 @@ import org.onap.cps.ncmp.api.impl.exception.NcmpStartUpException
 import org.onap.cps.spi.exceptions.AlreadyDefinedException
 import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.exceptions.SchemaSetNotFoundException
+
 import org.springframework.boot.SpringApplication
-import org.slf4j.LoggerFactory
 import org.springframework.boot.context.event.ApplicationReadyEvent
+
+import org.slf4j.LoggerFactory
 import spock.lang.Specification
 
 class SubscriptionModelLoaderSpec extends Specification {
@@ -44,10 +48,10 @@ class SubscriptionModelLoaderSpec extends Specification {
     def mockCpsDataService = Mock(CpsDataService)
     def objectUnderTest = new SubscriptionModelLoader(mockCpsAdminService, mockCpsModuleService, mockCpsDataService)
 
-    def SUBSCRIPTION_DATASPACE_NAME = objectUnderTest.SUBSCRIPTION_DATASPACE_NAME;
-    def SUBSCRIPTION_ANCHOR_NAME = objectUnderTest.SUBSCRIPTION_ANCHOR_NAME;
-    def SUBSCRIPTION_SCHEMASET_NAME = objectUnderTest.SUBSCRIPTION_SCHEMASET_NAME;
-    def SUBSCRIPTION_REGISTRY_DATANODE_NAME = objectUnderTest.SUBSCRIPTION_REGISTRY_DATANODE_NAME;
+    def SUBSCRIPTION_DATASPACE_NAME = objectUnderTest.SUBSCRIPTION_DATASPACE_NAME
+    def SUBSCRIPTION_ANCHOR_NAME = objectUnderTest.SUBSCRIPTION_ANCHOR_NAME
+    def SUBSCRIPTION_SCHEMASET_NAME = objectUnderTest.SUBSCRIPTION_SCHEMASET_NAME
+    def SUBSCRIPTION_REGISTRY_DATANODE_NAME = objectUnderTest.SUBSCRIPTION_REGISTRY_DATANODE_NAME
 
     def sampleYangContentMap = ['subscription.yang':'module subscription { *sample content* }']
 
@@ -67,7 +71,7 @@ class SubscriptionModelLoaderSpec extends Specification {
 
     @AfterEach
     void teardown() {
-        ((Logger) LoggerFactory.getLogger(SubscriptionModelLoader.class)).detachAndStopAllAppenders();
+        ((Logger) LoggerFactory.getLogger(SubscriptionModelLoader.class)).detachAndStopAllAppenders()
     }
 
     def 'Onboard subscription model successfully via application ready event'() {
@@ -82,6 +86,18 @@ class SubscriptionModelLoaderSpec extends Specification {
         and: 'the data service to create a top level datanode is called once'
             1 * mockCpsDataService.saveData(SUBSCRIPTION_DATASPACE_NAME, SUBSCRIPTION_ANCHOR_NAME, '{"' + SUBSCRIPTION_REGISTRY_DATANODE_NAME + '":{}}', _)
     }
+
+    def 'No subscription model onboarding when subscription model loader is disabled' () {
+        when: 'application is ready'
+            objectUnderTest.onApplicationEvent(applicationReadyEvent)
+        then: 'the module service to create schema set was not called'
+            0 * mockCpsModuleService.createSchemaSet(SUBSCRIPTION_DATASPACE_NAME, SUBSCRIPTION_SCHEMASET_NAME,sampleYangContentMap)
+        and: 'the admin service to create an anchor set was not called'
+            0 * mockCpsAdminService.createAnchor(SUBSCRIPTION_DATASPACE_NAME, SUBSCRIPTION_SCHEMASET_NAME, SUBSCRIPTION_ANCHOR_NAME)
+        and: 'the data service to create a top level datanode was not called'
+            0 * mockCpsDataService.saveData(SUBSCRIPTION_DATASPACE_NAME, SUBSCRIPTION_ANCHOR_NAME, '{"' + SUBSCRIPTION_REGISTRY_DATANODE_NAME + '":{}}', _)
+    }
+
 
     def 'Create schema set from model file'() {
         given: 'the method to create yang resource to content map returns the correct map'
@@ -111,7 +127,7 @@ class SubscriptionModelLoaderSpec extends Specification {
             def yangResourceToContentMap = objectUnderTest.createYangResourceToContentMap()
         and: 'creating a schema set throws an exception'
             mockCpsModuleService.createSchemaSet(SUBSCRIPTION_DATASPACE_NAME, SUBSCRIPTION_SCHEMASET_NAME, yangResourceToContentMap) >>
-                    { throw new NcmpStartUpException("Creating schema set failed", ""); }
+                    { throw new NcmpStartUpException("Creating schema set failed", "") }
         when: 'the method to onboard model is called'
             objectUnderTest.onboardSubscriptionModel()
         then: 'the log message contains the correct exception message'
@@ -147,7 +163,7 @@ class SubscriptionModelLoaderSpec extends Specification {
     def 'Create top level node fails due to an AlreadyDefined exception'() {
         given: 'the saving of the node data will throw an Already Defined exception'
             mockCpsDataService.saveData(*_) >>
-                { AlreadyDefinedException.forDataNode('/xpath', "sampleContextName", null) }
+                { throw AlreadyDefinedException.forDataNode('/xpath', "sampleContextName", null) }
         when: 'the method to onboard model is called'
             objectUnderTest.onboardSubscriptionModel()
         then: 'no exception thrown'
