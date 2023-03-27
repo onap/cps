@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Modifications Copyright (C) 2023 TechMahindra Ltd
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -101,9 +102,10 @@ class CpsPathQuerySpec extends Specification {
             result.descendantName == "child"
             result.leavesData.size() == expectedNumberOfLeaves
         where: 'the following data is used'
-            scenario                  | cpsPath                                            || expectedNumberOfLeaves
-            'one attribute'           | '//child[@common-leaf-name-int=5]'                 || 1
-            'more than one attribute' | '//child[@int-leaf=5 and @leaf-name="leaf value"]' || 2
+            scenario                              | cpsPath                                            || expectedNumberOfLeaves
+            'one attribute'                       | '//child[@common-leaf-name-int=5]'                 || 1
+            'more than one attribute'             | '//child[@int-leaf=5 and @leaf-name="leaf value"]' || 2
+            'one attribute with angular operator' | '//child[@common-leaf-name-int>5]'                 || 1
     }
 
     def 'Parse #scenario cps path with text function condition'() {
