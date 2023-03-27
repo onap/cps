@@ -69,7 +69,7 @@ public class ModuleSyncWatchdog {
         while (!moduleSyncWorkQueue.isEmpty()) {
             if (batchCounter.get() <= asyncTaskParallelismLevel) {
                 final Collection<DataNode> nextBatch = prepareNextBatch();
-                log.debug("Processing module sync batch of {}. {} batch(es) active.",
+                log.info("Processing module sync batch of {}. {} batch(es) active.",
                         nextBatch.size(), batchCounter.get());
                 asyncTaskExecutor.executeTask(() ->
                                 moduleSyncTasks.performModuleSync(nextBatch, batchCounter),
@@ -118,15 +118,16 @@ public class ModuleSyncWatchdog {
         final Collection<DataNode> nextBatchCandidates = new HashSet<>(MODULE_SYNC_BATCH_SIZE);
         final Collection<DataNode> nextBatch = new HashSet<>(MODULE_SYNC_BATCH_SIZE);
         moduleSyncWorkQueue.drainTo(nextBatchCandidates, MODULE_SYNC_BATCH_SIZE);
-        log.debug("nextBatchCandidates size : {}", nextBatchCandidates.size());
+        log.info("nextBatchCandidates size : {}", nextBatchCandidates.size());
         for (final DataNode batchCandidate : nextBatchCandidates) {
             final String cmHandleId = String.valueOf(batchCandidate.getLeaves().get("id"));
             final boolean alreadyAddedToInProgressMap = VALUE_FOR_HAZELCAST_IN_PROGRESS_MAP.equals(
                     moduleSyncStartedOnCmHandles.putIfAbsent(cmHandleId, VALUE_FOR_HAZELCAST_IN_PROGRESS_MAP,
                             SynchronizationCacheConfig.MODULE_SYNC_STARTED_TTL_SECS, TimeUnit.SECONDS));
             if (alreadyAddedToInProgressMap) {
-                log.debug("module sync for {} already in progress by other instance", cmHandleId);
+                log.info("module sync for {} already in progress by other instance", cmHandleId);
             } else {
+                log.info("Adding cmHandle : {} to current batch", cmHandleId);
                 nextBatch.add(batchCandidate);
             }
         }
