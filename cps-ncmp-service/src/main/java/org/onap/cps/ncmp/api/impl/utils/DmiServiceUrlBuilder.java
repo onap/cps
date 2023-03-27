@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,16 +20,12 @@
 
 package org.onap.cps.ncmp.api.impl.utils;
 
-import static org.onap.cps.ncmp.api.impl.operations.RequiredDmiService.DATA;
-
 import java.util.HashMap;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.apache.logging.log4j.util.Strings;
 import org.apache.logging.log4j.util.TriConsumer;
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration;
-import org.onap.cps.ncmp.api.impl.operations.DmiOperations;
-import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.spi.utils.CpsValidator;
 import org.springframework.stereotype.Component;
 import org.springframework.util.LinkedMultiValueMap;
@@ -52,13 +48,21 @@ public class DmiServiceUrlBuilder {
      */
     public String getDmiDatastoreUrl(final MultiValueMap<String, String> queryParams,
                                      final Map<String, Object> uriVariables) {
-        final UriComponentsBuilder uriComponentsBuilder = getCmHandleUrl()
-                .pathSegment("data")
-                .pathSegment("ds")
-                .pathSegment("{dataStore}")
-                .queryParams(queryParams)
-                .uriVariables(uriVariables);
-        return uriComponentsBuilder.buildAndExpand().toUriString();
+        return getUriComponentsBuilder(getResourceDataBasePathUriBuilder(), queryParams, uriVariables)
+                .buildAndExpand().toUriString();
+    }
+
+    /**
+     * This method creates the dmi service url for bulk request.
+     *
+     * @param queryParams  query param map as key,value pair
+     * @param uriVariables uri param map as key (placeholder),value pair
+     * @return {@code String} dmi service url as string
+     */
+    public String getBulkRequestUrl(final MultiValueMap<String, String> queryParams,
+                                    final Map<String, Object> uriVariables) {
+        return getUriComponentsBuilder(getBulkResourceDataBasePathUriBuilder(), queryParams, uriVariables)
+                .buildAndExpand().toUriString();
     }
 
     /**
@@ -66,7 +70,7 @@ public class DmiServiceUrlBuilder {
      *
      * @return {@code UriComponentsBuilder} dmi service url builder object
      */
-    public UriComponentsBuilder getCmHandleUrl() {
+    public UriComponentsBuilder getResourceDataBasePathUriBuilder() {
         return UriComponentsBuilder.newInstance()
                 .path("{dmiServiceName}")
                 .pathSegment("{dmiBasePath}")
@@ -76,23 +80,36 @@ public class DmiServiceUrlBuilder {
     }
 
     /**
+     * This method creates the dmi service url builder object with path variables for batch of cm handles.
+     *
+     * @return {@code UriComponentsBuilder} dmi service url builder object
+     */
+    public UriComponentsBuilder getBulkResourceDataBasePathUriBuilder() {
+        return UriComponentsBuilder.newInstance()
+                .path("{dmiServiceName}")
+                .pathSegment("{dmiBasePath}")
+                .pathSegment("v1")
+                .pathSegment("batch");
+    }
+
+    /**
      * This method populates uri variables.
      *
-     * @param yangModelCmHandle get dmi service name
+     * @param dataStoreName data store name 
+     * @param dmiServiceName dmi service name
      * @param cmHandleId        cm handle id for dmi registration
      * @return {@code String} dmi service url as string
      */
-    public Map<String, Object> populateUriVariables(final YangModelCmHandle yangModelCmHandle,
-                                                    final String cmHandleId,
-                                                    final DmiOperations.DataStoreEnum dataStore) {
+    public Map<String, Object> populateUriVariables(final String dataStoreName,
+                                                    final String dmiServiceName,
+                                                    final String cmHandleId) {
         cpsValidator.validateNameCharacters(cmHandleId);
         final Map<String, Object> uriVariables = new HashMap<>();
         final String dmiBasePath = dmiProperties.getDmiBasePath();
-        uriVariables.put("dmiServiceName",
-                yangModelCmHandle.resolveDmiServiceName(DATA));
+        uriVariables.put("dmiServiceName", dmiServiceName);
         uriVariables.put("dmiBasePath", dmiBasePath);
         uriVariables.put("cmHandleId", cmHandleId);
-        uriVariables.put("dataStore", dataStore.getValue());
+        uriVariables.put("dataStore", dataStoreName);
         return uriVariables;
     }
 
@@ -123,5 +140,16 @@ public class DmiServiceUrlBuilder {
                 paramMap.add(paramName, paramValue);
             }
         };
+    }
+
+    private UriComponentsBuilder getUriComponentsBuilder(final UriComponentsBuilder uriComponentsBuilder,
+                                                         final MultiValueMap<String, String> queryParams,
+                                                         final Map<String, Object> uriVariables) {
+        return uriComponentsBuilder
+                .pathSegment("data")
+                .pathSegment("ds")
+                .pathSegment("{dataStore}")
+                .queryParams(queryParams)
+                .uriVariables(uriVariables);
     }
 }
