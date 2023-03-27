@@ -58,12 +58,21 @@ abstract class DmiOperationsBaseSpec extends Specification {
     def static resourceIdentifier = 'parent/child'
 
     def mockYangModelCmHandleRetrieval(dmiProperties) {
+        populateYangModelCmHandle(dmiProperties)
+        mockInventoryPersistence.getYangModelCmHandle(cmHandleId) >> yangModelCmHandle
+    }
+
+    def mockYangModelCmHandleCollectionRetrieval(dmiProperties) {
+        populateYangModelCmHandle(dmiProperties)
+        mockInventoryPersistence.getYangModelCmHandles(_) >> [yangModelCmHandle]
+    }
+
+    def populateYangModelCmHandle(dmiProperties) {
         yangModelCmHandle.dmiDataServiceName = dmiServiceName
         yangModelCmHandle.dmiServiceName = dmiServiceName
         yangModelCmHandle.dmiProperties = dmiProperties
         yangModelCmHandle.id = cmHandleId
         yangModelCmHandle.compositeState = new CompositeState()
         yangModelCmHandle.compositeState.cmHandleState = CmHandleState.READY
-        mockInventoryPersistence.getYangModelCmHandle(cmHandleId) >> yangModelCmHandle
     }
 }
