@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5eed694f_f74244d8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/notifications/avc/AvcEventMapper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-03-27T11:08:31Z",
+      "side": 1,
+      "message": "NB: Maybe another line is needed like below:\nMapper for converting incoming {@link SubscriptionEvent} to outgoing {@link YangModelSubscriptionEvent}.",
+      "range": {
+        "startLine": 35,
+        "startChar": 3,
+        "endLine": 35,
+        "endChar": 80
+      },
+      "revId": "c32b84543b6034d674fef28e2fb89d8bee694ca0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "501a9383_a4a4eba3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/notifications/avc/AvcEventMapper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-03-27T11:08:31Z",
+      "side": 1,
+      "message": "I am not sure if this method is necessary. Since, isTagged is already false in the model object like this:\n    @JsonProperty(\"isTagged\")\n    @JsonPropertyDescription(\"optional parameter, default is no\")\n    private Boolean isTagged \u003d false;",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 5
+      },
+      "revId": "c32b84543b6034d674fef28e2fb89d8bee694ca0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e81ffb4_2bf0ad0c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/subscriptions/SubscriptionPersistenceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-03-27T11:08:31Z",
+      "side": 1,
+      "message": "I wonder, why we dont provide a timestamp for this opertion?",
+      "range": {
+        "startLine": 49,
+        "startChar": 69,
+        "endLine": 49,
+        "endChar": 81
+      },
+      "revId": "c32b84543b6034d674fef28e2fb89d8bee694ca0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "11dcadac_e7cdbd3b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/yangmodels/YangModelSubscriptionEvent.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-03-27T11:08:31Z",
+      "side": 1,
+      "message": "Is it needed to be @JsonInclude(JsonInclude.Include.NON_NULL) ?",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 30
+      },
+      "revId": "c32b84543b6034d674fef28e2fb89d8bee694ca0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c7fea2c6_8c3894da",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/yangmodels/YangModelSubscriptionEvent.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-03-27T11:08:31Z",
+      "side": 1,
+      "message": "Is @JsonInclude(JsonInclude.Include.NON_NULL) needed here?",
+      "range": {
+        "startLine": 72,
+        "startChar": 4,
+        "endLine": 72,
+        "endChar": 9
+      },
+      "revId": "c32b84543b6034d674fef28e2fb89d8bee694ca0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
