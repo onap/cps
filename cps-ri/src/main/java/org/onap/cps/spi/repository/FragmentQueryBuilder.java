@@ -22,12 +22,16 @@
 package org.onap.cps.spi.repository;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
 import org.onap.cps.cpspath.parser.CpsPathPrefixType;
 import org.onap.cps.cpspath.parser.CpsPathQuery;
 import org.onap.cps.spi.entities.FragmentEntity;
@@ -62,12 +66,19 @@ public class FragmentQueryBuilder {
         sqlStringBuilder.append(" AND xpath ~ :xpathRegex");
         final String xpathRegex = getXpathSqlRegex(cpsPathQuery, false);
         queryParameters.put("xpathRegex", xpathRegex);
+        final List<String> queryBooleanOperatorsType = cpsPathQuery.getBooleanOperatorsType();
         if (cpsPathQuery.hasLeafConditions()) {
-            sqlStringBuilder.append(" AND attributes @> :leafDataAsJson\\:\\:jsonb");
-            queryParameters.put("leafDataAsJson", jsonObjectMapper.asJsonString(
-                cpsPathQuery.getLeavesData()));
+            sqlStringBuilder.append(" AND ");
+            final Queue<String> booleanOperatorsQueue = (queryBooleanOperatorsType == null) ? null : new LinkedList<>(
+                    queryBooleanOperatorsType);
+            cpsPathQuery.getLeavesData().entrySet().forEach(entry -> {
+                sqlStringBuilder.append(" attributes @> ");
+                sqlStringBuilder.append("'" + jsonObjectMapper.asJsonString(entry) + "'");
+                if (!CollectionUtils.isEmpty(booleanOperatorsQueue)) {
+                    sqlStringBuilder.append(" " + booleanOperatorsQueue.poll() + " ");
+                }
+            });
         }
-
         addTextFunctionCondition(cpsPathQuery, sqlStringBuilder, queryParameters);
         final Query query = entityManager.createNativeQuery(sqlStringBuilder.toString(), FragmentEntity.class);
         setQueryParameters(query, queryParameters);
