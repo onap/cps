@@ -23,17 +23,13 @@
 
 package org.onap.cps.ncmp.rest.controller;
 
-import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.CREATE;
-import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.DELETE;
-import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.PATCH;
-import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.UPDATE;
-
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
+import org.onap.cps.ncmp.api.impl.operations.OperationEnum;
 import org.onap.cps.ncmp.api.inventory.CompositeState;
 import org.onap.cps.ncmp.api.models.CmHandleQueryApiParameters;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
@@ -99,6 +95,25 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
                 optionsParamInQuery, topicParamInQuery, includeDescendants);
     }
 
+    @Override
+    public ResponseEntity<Object> getResourceDataForCmHandleBatch(final String resourceIdentifier,
+                                                               final String topicParamInQuery,
+                                                               final String datastoreName,
+                                                               final Object requestBody,
+                                                               final String optionsParamInQuery,
+                                                               final Boolean includeDescendants) {
+
+        final NcmpDatastoreRequestHandler ncmpDatastoreRequestHandler =
+                ncmpDatastoreResourceRequestHandlerFactory.getNcmpDatastoreResourceRequestHandler(
+                        DatastoreType.fromDatastoreName(datastoreName));
+
+        final List<String> cmHandleIds = jsonObjectMapper.convertJsonString(jsonObjectMapper.asJsonString(requestBody),
+                List.class);
+
+        return ncmpDatastoreRequestHandler.executeRequest(cmHandleIds, resourceIdentifier,
+                optionsParamInQuery, topicParamInQuery, includeDescendants);
+    }
+
     /**
      * Query resource data from datastore.
      *
@@ -148,7 +163,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
 
         final Object responseObject = networkCmProxyDataService
                 .writeResourceDataPassThroughRunningForCmHandle(
-                        cmHandle, resourceIdentifier, PATCH,
+                        cmHandle, resourceIdentifier, OperationEnum.PATCH,
                         jsonObjectMapper.asJsonString(requestBody), contentType);
         return ResponseEntity.ok(responseObject);
     }
@@ -173,7 +188,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         validateDataStore(DatastoreType.PASSTHROUGH_RUNNING, datastoreName);
 
         networkCmProxyDataService.writeResourceDataPassThroughRunningForCmHandle(cmHandle,
-                resourceIdentifier, CREATE, jsonObjectMapper.asJsonString(requestBody), contentType);
+                resourceIdentifier, OperationEnum.CREATE, jsonObjectMapper.asJsonString(requestBody), contentType);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
@@ -197,7 +212,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         validateDataStore(DatastoreType.PASSTHROUGH_RUNNING, datastoreName);
 
         networkCmProxyDataService.writeResourceDataPassThroughRunningForCmHandle(cmHandle,
-                resourceIdentifier, UPDATE, jsonObjectMapper.asJsonString(requestBody), contentType);
+                resourceIdentifier, OperationEnum.UPDATE, jsonObjectMapper.asJsonString(requestBody), contentType);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -219,7 +234,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         validateDataStore(DatastoreType.PASSTHROUGH_RUNNING, datastoreName);
 
         networkCmProxyDataService.writeResourceDataPassThroughRunningForCmHandle(cmHandle,
-                resourceIdentifier, DELETE, NO_BODY, contentType);
+                resourceIdentifier, OperationEnum.DELETE, NO_BODY, contentType);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 

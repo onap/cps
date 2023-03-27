@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Copyright (C) 2021-2023 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,7 +24,7 @@ package org.onap.cps.ncmp.api.impl.client;
 import lombok.AllArgsConstructor;
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration.DmiProperties;
 import org.onap.cps.ncmp.api.impl.exception.HttpClientRequestException;
-import org.onap.cps.ncmp.api.impl.operations.DmiRequestBody;
+import org.onap.cps.ncmp.api.impl.operations.OperationEnum;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -43,14 +43,14 @@ public class DmiRestClient {
     /**
      * Sends POST operation to DMI with json body containing module references.
      * @param dmiResourceUrl dmi resource url
-     * @param jsonData json data body
+     * @param requestBodyAsJsonString json data body
      * @param operation the type of operation being executed (for error reporting only)
      * @return response entity of type String
      */
     public ResponseEntity<Object> postOperationWithJsonData(final String dmiResourceUrl,
-                                                            final String jsonData,
-                                                            final DmiRequestBody.OperationEnum operation) {
-        final var httpEntity = new HttpEntity<>(jsonData, configureHttpHeaders(new HttpHeaders()));
+                                                            final String requestBodyAsJsonString,
+                                                            final OperationEnum operation) {
+        final var httpEntity = new HttpEntity<>(requestBodyAsJsonString, configureHttpHeaders(new HttpHeaders()));
         try {
             return restTemplate.postForEntity(dmiResourceUrl, httpEntity, Object.class);
         } catch (final HttpStatusCodeException httpStatusCodeException) {

@@ -2,7 +2,7 @@
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021 highstreet technologies GmbH
- *  Modifications Copyright (C) 2021-2022 Nordix Foundation
+ *  Modifications Copyright (C) 2021-2023 Nordix Foundation
  *  Modifications Copyright (C) 2021-2022 Bell Canada.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -28,6 +28,8 @@ import org.mapstruct.factory.Mappers
 import org.onap.cps.TestUtils
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService
 import org.onap.cps.ncmp.api.NetworkCmProxyQueryService
+import org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants
+import org.onap.cps.ncmp.api.impl.operations.OperationEnum
 import org.onap.cps.ncmp.api.inventory.CmHandleState
 import org.onap.cps.ncmp.api.inventory.CompositeState
 import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
@@ -39,12 +41,10 @@ import org.onap.cps.ncmp.rest.controller.handlers.NcmpDatastoreOperationalResour
 import org.onap.cps.ncmp.rest.controller.handlers.NcmpDatastorePassthroughOperationalResourceRequestHandler
 import org.onap.cps.ncmp.rest.controller.handlers.NcmpDatastorePassthroughRunningResourceRequestHandler
 import org.onap.cps.ncmp.rest.controller.handlers.NcmpDatastoreResourceRequestHandlerFactory
-import org.onap.cps.ncmp.rest.exceptions.InvalidDatastoreException
 import org.onap.cps.ncmp.rest.executor.CpsNcmpTaskExecutor
 import org.onap.cps.ncmp.rest.mapper.CmHandleStateMapper
 import org.onap.cps.ncmp.rest.util.DeprecationHelper
 import org.onap.cps.spi.FetchDescendantsOption
-import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.model.ModuleDefinition
 import org.onap.cps.spi.model.ModuleReference
 import org.onap.cps.utils.JsonObjectMapper
@@ -55,20 +55,14 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
-import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder
 import spock.lang.Shared
 import spock.lang.Specification
-
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 
 import static org.onap.cps.ncmp.api.inventory.CompositeState.DataStores
 import static org.onap.cps.ncmp.api.inventory.CompositeState.Operational
-import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.CREATE
-import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.UPDATE
-import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.PATCH
-import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.DELETE
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
@@ -78,8 +72,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 @WebMvcTest(NetworkCmProxyController)
 class NetworkCmProxyControllerSpec extends Specification {
 
-    public static final int TIMEOUT_IN_MS = 2000
-    public static final boolean NOTIFICATION_ENABLED = true
+    private static final int TIMEOUT_IN_MS = 2000
+    private static final boolean NOTIFICATION_ENABLED = true
 
     @Autowired
     MockMvc mvc
@@ -115,6 +109,7 @@ class NetworkCmProxyControllerSpec extends Specification {
     def ncmpBasePathV1
 
     def requestBody = '{"some-key":"some-value"}'
+    def bulkRequestBody = '["testCmHandle"]'
 
     @Shared
     def NO_TOPIC = null
@@ -154,7 +149,7 @@ class NetworkCmProxyControllerSpec extends Specification {
                     .contentType(MediaType.APPLICATION_JSON)
             ).andReturn().response
         then: 'the NCMP data service is called with getResourceDataOperationalForCmHandle'
-            1 * mockNetworkCmProxyDataService.getResourceDataOperationalForCmHandle('testCmHandle',
+            1 * mockNetworkCmProxyDataService.getResourceDataForCmHandle(DatastoreType.PASSTHROUGH_OPERATIONAL.datastoreName, 'testCmHandle',
                 'parent/child',
                 '(a=1,b=2)',
                 NO_TOPIC,
@@ -205,6 +200,44 @@ class NetworkCmProxyControllerSpec extends Specification {
             'invalid non-empty topic value in url' | 'passthrough-running'     | '&topic=1_5_*_#'
     }
 
+    def 'Get bulk resource data for #datastoreName from dmi service.'() {
+        given: 'bulk resource data url'
+            def getUrl = "$ncmpBasePathV1/batch/data/ds/${datastoreName}" +
+                    "?resourceIdentifier=parent/child&options=(a=1,b=2)&topic=myTopic"
+        when: 'post data resource request is performed'
+            def response = mvc.perform(
+                    post(getUrl)
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(bulkRequestBody)
+            ).andReturn().response
+        then: 'the NCMP data service is called with getResourceDataForCmHandleBatch'
+            1 * mockNetworkCmProxyDataService.getResourceDataForCmHandleBatch(datastoreName, ['testCmHandle'],
+                    'parent/child',
+                    '(a=1,b=2)',
+                    'myTopic',
+                    _)
+        and: 'response status is Ok'
+            response.status == HttpStatus.OK.value()
+        where: 'the following data stores are used'
+            datastoreName << [DatastoreType.PASSTHROUGH_RUNNING.datastoreName, DatastoreType.PASSTHROUGH_OPERATIONAL.datastoreName]
+    }
+
+    def 'Get bulk resource data for non-supported #datastoreName from dmi service.'() {
+        given: 'bulk resource data url'
+            def getUrl = "$ncmpBasePathV1/batch/data/ds/ncmp-datastore:operational" +
+                    "?resourceIdentifier=parent/child&options=(a=1,b=2)&topic=myTopic"
+        when: 'post data resource request is performed'
+            def response = mvc.perform(
+                    post(getUrl)
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(bulkRequestBody)
+            ).andReturn().response
+        then: 'response status code is 501 not implemented'
+            response.status == HttpStatus.NOT_IMPLEMENTED.value()
+        where: 'the following data store is un-supported'
+            datastoreName << [DatastoreType.OPERATIONAL.datastoreName]
+    }
+
     def 'Query Resource Data from operational.'() {
         given: 'the query resource data url'
             def getUrl = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:operational/query" +
@@ -244,7 +277,7 @@ class NetworkCmProxyControllerSpec extends Specification {
             def getUrl = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:passthrough-running" +
                 "?resourceIdentifier=" + resourceIdentifier + "&options=(a=1,b=2)"
         and: 'ncmp service returns json object'
-            mockNetworkCmProxyDataService.getResourceDataPassThroughRunningForCmHandle('testCmHandle',
+            mockNetworkCmProxyDataService.getResourceDataForCmHandle(DatastoreType.PASSTHROUGH_RUNNING.datastoreName, 'testCmHandle',
                 resourceIdentifier,
                 '(a=1,b=2)',
                 NO_TOPIC,
@@ -279,7 +312,7 @@ class NetworkCmProxyControllerSpec extends Specification {
             ).andReturn().response
         then: 'ncmp service method to update resource is called'
             1 * mockNetworkCmProxyDataService.writeResourceDataPassThroughRunningForCmHandle('testCmHandle',
-                'parent/child', UPDATE, requestBody, 'application/json;charset=UTF-8')
+                'parent/child', OperationEnum.UPDATE, requestBody, 'application/json;charset=UTF-8')
         and: 'the response status is OK'
             response.status == HttpStatus.OK.value()
     }
@@ -295,7 +328,7 @@ class NetworkCmProxyControllerSpec extends Specification {
             ).andReturn().response
         then: 'ncmp service method to create resource called'
             1 * mockNetworkCmProxyDataService.writeResourceDataPassThroughRunningForCmHandle('testCmHandle',
-                'parent/child', CREATE, requestBody, 'application/json;charset=UTF-8')
+                'parent/child', OperationEnum.CREATE, requestBody, 'application/json;charset=UTF-8')
         and: 'resource is created'
             response.status == HttpStatus.CREATED.value()
     }
@@ -453,7 +486,7 @@ class NetworkCmProxyControllerSpec extends Specification {
             ).andReturn().response
         then: 'ncmp service method to update resource is called'
             1 * mockNetworkCmProxyDataService.writeResourceDataPassThroughRunningForCmHandle('testCmHandle',
-                'parent/child', PATCH, requestBody, 'application/json;charset=UTF-8')
+                'parent/child', OperationEnum.PATCH, requestBody, 'application/json;charset=UTF-8')
         and: 'the response status is OK'
             response.status == HttpStatus.OK.value()
     }
@@ -468,7 +501,7 @@ class NetworkCmProxyControllerSpec extends Specification {
                     .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)).andReturn().response
         then: 'the ncmp service method to delete resource is called (with null as body)'
             1 * mockNetworkCmProxyDataService.writeResourceDataPassThroughRunningForCmHandle('testCmHandle',
-                'parent/child', DELETE, null, 'application/json;charset=UTF-8')
+                'parent/child', OperationEnum.DELETE, null, 'application/json;charset=UTF-8')
         and: 'the response is No Content'
             response.status == HttpStatus.NO_CONTENT.value()
     }
@@ -531,7 +564,7 @@ class NetworkCmProxyControllerSpec extends Specification {
                     .contentType(MediaType.APPLICATION_JSON)
             ).andReturn().response
         then: 'the NCMP data service is called with getResourceDataOperational with #descendantsOption'
-            1 * mockNetworkCmProxyDataService.getResourceDataOperational('testCmHandle',
+            1 * mockNetworkCmProxyDataService.getResourceDataForCmHandle(DmiRegistryConstants.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, 'testCmHandle',
                 'parent/child',
                 descendantsOption)
         and: 'response status is Ok'

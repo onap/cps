@@ -22,6 +22,7 @@ package org.onap.cps.ncmp.api.impl.events.avcsubscription
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.ncmp.api.impl.events.EventsPublisher
+import org.onap.cps.ncmp.api.impl.utils.DmiServiceNameOrganizer
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence
 import org.onap.cps.ncmp.api.kafka.MessagingBaseSpec
@@ -37,7 +38,8 @@ class SubscriptionEventForwarderSpec extends MessagingBaseSpec {
 
     def mockInventoryPersistence = Mock(InventoryPersistence)
     def mockSubscriptionEventPublisher = Mock(EventsPublisher<SubscriptionEvent>)
-    def objectUnderTest = new SubscriptionEventForwarder(mockInventoryPersistence, mockSubscriptionEventPublisher)
+    def spiedDmiServiceNameOrganizer = Spy(DmiServiceNameOrganizer)
+    def objectUnderTest = new SubscriptionEventForwarder(mockInventoryPersistence, mockSubscriptionEventPublisher, spiedDmiServiceNameOrganizer)
 
     @Autowired
     JsonObjectMapper jsonObjectMapper
