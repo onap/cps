@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Modifications Copyright (C) 2023 TechMahindra Ltd
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -44,9 +45,11 @@ listElementRef :  OB leafCondition ( KW_AND leafCondition)* CB ;
 
 multipleLeafConditions : OB leafCondition ( KW_AND leafCondition)* CB ;
 
-leafCondition : AT leafName EQ ( IntegerLiteral | StringLiteral) ;
+leafCondition : AT leafName EQ ( IntegerLiteral | StringLiteral) | AT leafName angularOperators  IntegerLiteral ;
 
 leafName : QName ;
+
+angularOperators : ( GT | LT | GE | LE ) ;
 
 invalidPostFix : (AT | CB | COLONCOLON | EQ ).+ ;
 
@@ -62,6 +65,10 @@ COLONCOLON : '::' ;
 EQ : '=' ;
 OB : '[' ;
 SLASH : '/' ;
+GT : '>' ;
+LT : '<' ;
+GE : '>=' ;
+LE : '<=' ;
 
 // KEYWORDS
 

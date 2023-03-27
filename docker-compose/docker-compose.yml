@@ -47,7 +47,7 @@ services:
       DMI_USERNAME: ${DMI_USERNAME:-cpsuser}
       DMI_PASSWORD: ${DMI_PASSWORD:-cpsr0cks!}
       KAFKA_BOOTSTRAP_SERVER: kafka:9092
-      notification.enabled: 'true'
+      notification.enabled: 'false'
       notification.async.executor.time-out-value-in-ms: 2000
       NOTIFICATION_DATASPACE_FILTER_PATTERNS: '.*'
       NCMP_TIMERS_ADVISED-MODULES-SYNC_SLEEP-TIME-MS: ${ADVISED_MODULES_SYNC_SLEEP_TIME_MS:-30000}
