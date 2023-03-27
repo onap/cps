@@ -23,10 +23,10 @@
 
 package org.onap.cps.ncmp.rest.controller;
 
-import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.CREATE;
-import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.DELETE;
-import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.PATCH;
-import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.UPDATE;
+import static org.onap.cps.ncmp.api.impl.operations.OperationEnum.CREATE;
+import static org.onap.cps.ncmp.api.impl.operations.OperationEnum.DELETE;
+import static org.onap.cps.ncmp.api.impl.operations.OperationEnum.PATCH;
+import static org.onap.cps.ncmp.api.impl.operations.OperationEnum.UPDATE;
 
 import java.util.Collection;
 import java.util.List;
@@ -92,10 +92,29 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
                                                              final Boolean includeDescendants) {
 
         final NcmpDatastoreRequestHandler ncmpDatastoreRequestHandler =
-                ncmpDatastoreResourceRequestHandlerFactory.getNcmpDatastoreResourceRequestHandler(
+                ncmpDatastoreResourceRequestHandlerFactory.getNcmpResourceRequestHandler(
                         DatastoreType.fromDatastoreName(datastoreName));
 
         return ncmpDatastoreRequestHandler.executeRequest(cmHandle, resourceIdentifier,
+                optionsParamInQuery, topicParamInQuery, includeDescendants);
+    }
+
+    @Override
+    public ResponseEntity<Object> getResourceDataForCmHandleBatch(final String resourceIdentifier,
+                                                                  final String topicParamInQuery,
+                                                                  final String datastoreName,
+                                                                  final Object requestBody,
+                                                                  final String optionsParamInQuery,
+                                                                  final Boolean includeDescendants) {
+
+        final NcmpDatastoreRequestHandler ncmpDatastoreRequestHandler =
+                ncmpDatastoreResourceRequestHandlerFactory.getNcmpResourceRequestHandler(
+                        DatastoreType.fromDatastoreName(datastoreName));
+
+        final List<String> cmHandleIds = jsonObjectMapper.convertJsonString(jsonObjectMapper.asJsonString(requestBody),
+                List.class);
+
+        return ncmpDatastoreRequestHandler.executeRequest(cmHandleIds, resourceIdentifier,
                 optionsParamInQuery, topicParamInQuery, includeDescendants);
     }
 
@@ -119,11 +138,11 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
                                                                final String topicParamInQuery,
                                                                final Boolean includeDescendants) {
         validateDataStore(DatastoreType.OPERATIONAL, datastoreName);
-        final NcmpDatastoreRequestHandler ncmpDatastoreRequestHandler =
-            ncmpDatastoreResourceRequestHandlerFactory.getNcmpDatastoreResourceQueryHandler();
+        final NcmpDatastoreRequestHandler ncmpCachedResourceRequestHandler =
+            ncmpDatastoreResourceRequestHandlerFactory.getNcmpResourceRequestHandler(
+                    DatastoreType.fromDatastoreName(datastoreName));
 
-        return ncmpDatastoreRequestHandler.executeRequest(cmHandle, cpsPath, optionsParamInQuery,
-            topicParamInQuery, includeDescendants);
+        return ncmpCachedResourceRequestHandler.executeRequest(cmHandle, cpsPath, includeDescendants);
     }
 
     /**

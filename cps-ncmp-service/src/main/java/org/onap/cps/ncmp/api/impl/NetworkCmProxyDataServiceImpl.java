@@ -25,7 +25,6 @@
 package org.onap.cps.ncmp.api.impl;
 
 import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME;
-import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum;
 import static org.onap.cps.ncmp.api.impl.utils.RestQueryParametersValidator.validateCmHandleQueryParameters;
 
 import com.google.common.collect.Lists;
@@ -46,7 +45,7 @@ import org.onap.cps.ncmp.api.NetworkCmProxyCmHandleQueryService;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
 import org.onap.cps.ncmp.api.impl.events.lcm.LcmEventsCmHandleStateHandler;
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations;
-import org.onap.cps.ncmp.api.impl.operations.DmiOperations;
+import org.onap.cps.ncmp.api.impl.operations.OperationEnum;
 import org.onap.cps.ncmp.api.impl.utils.CmHandleQueryConditions;
 import org.onap.cps.ncmp.api.impl.utils.InventoryQueryConditions;
 import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
@@ -115,38 +114,41 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     }
 
     @Override
-    public Object getResourceDataOperationalForCmHandle(final String cmHandleId,
-                                                        final String resourceIdentifier,
-                                                        final String optionsParamInQuery,
-                                                        final String topicParamInQuery,
-                                                        final String requestId) {
-        final ResponseEntity<?> responseEntity = dmiDataOperations.getResourceDataFromDmi(cmHandleId,
+    public Object getResourceDataForCmHandle(final String dataStoreName,
+                                             final String cmHandleId,
+                                             final String resourceIdentifier,
+                                             final String optionsParamInQuery,
+                                             final String topicParamInQuery,
+                                             final String requestId) {
+        final ResponseEntity<?> responseEntity = dmiDataOperations.getResourceDataFromDmi(dataStoreName, cmHandleId,
                 resourceIdentifier,
                 optionsParamInQuery,
-                DmiOperations.DataStoreEnum.PASSTHROUGH_OPERATIONAL,
-                requestId, topicParamInQuery);
+                topicParamInQuery,
+                requestId);
         return responseEntity.getBody();
     }
 
     @Override
-    public Object getResourceDataOperational(final String cmHandleId,
+    public Object getResourceDataForCmHandle(final String dataStoreName,
+                                             final String cmHandleId,
                                              final String resourceIdentifier,
                                              final FetchDescendantsOption fetchDescendantsOption) {
-        return cpsDataService.getDataNodes(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId, resourceIdentifier,
+        return cpsDataService.getDataNodes(dataStoreName, cmHandleId, resourceIdentifier,
                 fetchDescendantsOption).iterator().next();
     }
 
     @Override
-    public Object getResourceDataPassThroughRunningForCmHandle(final String cmHandleId,
-                                                               final String resourceIdentifier,
-                                                               final String optionsParamInQuery,
-                                                               final String topicParamInQuery,
-                                                               final String requestId) {
-        final ResponseEntity<?> responseEntity = dmiDataOperations.getResourceDataFromDmi(cmHandleId,
+    public Object getResourceDataForCmHandleBatch(final String dataStoreName,
+                                              final List<String> cmHandleIds,
+                                              final String resourceIdentifier,
+                                              final String optionsParamInQuery,
+                                              final String topicParamInQuery,
+                                              final String requestId) {
+        final ResponseEntity<?> responseEntity = dmiDataOperations.getResourceDataFromDmi(dataStoreName, cmHandleIds,
                 resourceIdentifier,
                 optionsParamInQuery,
-                DmiOperations.DataStoreEnum.PASSTHROUGH_RUNNING,
-                requestId, topicParamInQuery);
+                topicParamInQuery,
+                requestId);
         return responseEntity.getBody();
     }
 

@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,21 +20,28 @@
 
 package org.onap.cps.ncmp.rest.controller.handlers
 
+import org.spockframework.spring.SpringBean
 import spock.lang.Specification
 
 class NcmpDatastoreRequestHandlerFactorySpec extends Specification {
 
-    def objectUnderTest = new NcmpDatastoreResourceRequestHandlerFactory(null, null, null)
+    @SpringBean
+    NcmpCachedResourceRequestHandler mockNcmpCachedResourceRequestHandler = new NcmpCachedResourceRequestHandler(null)
+
+    @SpringBean
+    NcmpPassthroughResourceRequestHandler mockNcmpPassthroughResourceRequestHandler = new NcmpPassthroughResourceRequestHandler()
+
+    def objectUnderTest = new NcmpDatastoreResourceRequestHandlerFactory(mockNcmpCachedResourceRequestHandler, mockNcmpPassthroughResourceRequestHandler)
 
     def 'Creating ncmp datastore request handlers.'() {
         when: 'a ncmp datastore request handler is created for #datastoreType'
-            def result = objectUnderTest.getNcmpDatastoreResourceRequestHandler(datastoreType)
+            def result = objectUnderTest.getNcmpResourceRequestHandler(datastoreType)
         then: 'the result is of the expected class'
             result.class == expectedClass
         where: 'the following type of datastore is used'
             datastoreType                         || expectedClass
-            DatastoreType.OPERATIONAL             || NcmpDatastoreOperationalResourceRequestHandler
-            DatastoreType.PASSTHROUGH_OPERATIONAL || NcmpDatastorePassthroughOperationalResourceRequestHandler
-            DatastoreType.PASSTHROUGH_RUNNING     || NcmpDatastorePassthroughRunningResourceRequestHandler
+            DatastoreType.OPERATIONAL             || NcmpCachedResourceRequestHandler
+            DatastoreType.PASSTHROUGH_OPERATIONAL || NcmpPassthroughResourceRequestHandler
+            DatastoreType.PASSTHROUGH_RUNNING     || NcmpPassthroughResourceRequestHandler
     }
 }
