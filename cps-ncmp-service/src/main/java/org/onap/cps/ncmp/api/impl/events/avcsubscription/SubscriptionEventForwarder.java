@@ -22,7 +22,6 @@ package org.onap.cps.ncmp.api.impl.events.avcsubscription;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -30,7 +29,7 @@ import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.impl.events.EventsPublisher;
-import org.onap.cps.ncmp.api.impl.operations.RequiredDmiService;
+import org.onap.cps.ncmp.api.impl.utils.DmiServiceNameOrganizer;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.event.model.SubscriptionEvent;
@@ -45,6 +44,7 @@ public class SubscriptionEventForwarder {
 
     private final InventoryPersistence inventoryPersistence;
     private final EventsPublisher<SubscriptionEvent> eventsPublisher;
+    private final DmiServiceNameOrganizer dmiServiceNameOrganizer;
 
     private static final String DMI_AVC_SUBSCRIPTION_TOPIC_PREFIX = "ncmp-dmi-cm-avc-subscription-";
 
@@ -56,38 +56,24 @@ public class SubscriptionEventForwarder {
     public void forwardCreateSubscriptionEvent(final SubscriptionEvent subscriptionEvent) {
         final List<Object> cmHandleTargets = subscriptionEvent.getEvent().getPredicates().getTargets();
         if (cmHandleTargets == null || cmHandleTargets.isEmpty()
-            || cmHandleTargets.stream().anyMatch(id -> ((String) id).contains("*"))) {
+                || cmHandleTargets.stream().anyMatch(id -> ((String) id).contains("*"))) {
             throw new OperationNotYetSupportedException(
-                "CMHandle targets are required. \"Wildcard\" operations are not yet supported");
+                    "CMHandle targets are required. \"Wildcard\" operations are not yet supported");
         }
         final List<String> cmHandleTargetsAsStrings = cmHandleTargets.stream().map(
-            Objects::toString).collect(Collectors.toList());
+                Objects::toString).collect(Collectors.toList());
         final Collection<YangModelCmHandle> yangModelCmHandles =
-            inventoryPersistence.getYangModelCmHandles(cmHandleTargetsAsStrings);
-        final Map<String, Map<String, Map<String, String>>> dmiNameCmHandleMap =
-            organizeByDmiName(yangModelCmHandles);
-        dmiNameCmHandleMap.forEach((dmiName, cmHandlePropertiesMap) -> {
-            subscriptionEvent.getEvent().getPredicates().setTargets(Collections.singletonList(cmHandlePropertiesMap));
-            final String eventKey = createEventKey(subscriptionEvent, dmiName);
-            eventsPublisher.publishEvent(DMI_AVC_SUBSCRIPTION_TOPIC_PREFIX + dmiName, eventKey, subscriptionEvent);
-        });
-    }
+                inventoryPersistence.getYangModelCmHandles(cmHandleTargetsAsStrings);
 
-    private Map<String, Map<String, Map<String, String>>> organizeByDmiName(
-        final Collection<YangModelCmHandle> yangModelCmHandles) {
-        final Map<String, Map<String, Map<String, String>>> dmiNameCmHandlePropertiesMap = new HashMap<>();
-        yangModelCmHandles.forEach(cmHandle -> {
-            final String dmiName = cmHandle.resolveDmiServiceName(RequiredDmiService.DATA);
-            if (!dmiNameCmHandlePropertiesMap.containsKey(dmiName)) {
-                final Map<String, Map<String, String>> cmHandleDmiPropertiesMap = new HashMap<>();
-                cmHandleDmiPropertiesMap.put(cmHandle.getId(), dmiPropertiesAsMap(cmHandle));
-                dmiNameCmHandlePropertiesMap.put(cmHandle.getDmiDataServiceName(), cmHandleDmiPropertiesMap);
-            } else {
-                dmiNameCmHandlePropertiesMap.get(cmHandle.getDmiDataServiceName())
-                    .put(cmHandle.getId(), dmiPropertiesAsMap(cmHandle));
-            }
+        final Map<String, Map<String, Map<String, String>>> dmiServiceNameCmHandlePropertiesMap
+                = dmiServiceNameOrganizer.organizeByDmiServiceName(yangModelCmHandles);
+        dmiServiceNameCmHandlePropertiesMap.forEach((dmiServiceName, cmHandlePropertiesMap) -> {
+            subscriptionEvent.getEvent().getPredicates().setTargets(Collections
+                    .singletonList(cmHandlePropertiesMap));
+            final String eventKey = createEventKey(subscriptionEvent, dmiServiceName);
+            eventsPublisher.publishEvent(DMI_AVC_SUBSCRIPTION_TOPIC_PREFIX + dmiServiceName, eventKey,
+                    subscriptionEvent);
         });
-        return dmiNameCmHandlePropertiesMap;
     }
 
     private String createEventKey(final SubscriptionEvent subscriptionEvent, final String dmiName) {
@@ -96,11 +82,6 @@ public class SubscriptionEventForwarder {
             + subscriptionEvent.getEvent().getSubscription().getName()
             + "-"
             + dmiName;
-    }
-
-    public Map<String, String> dmiPropertiesAsMap(final YangModelCmHandle yangModelCmHandle) {
-        return yangModelCmHandle.getDmiProperties().stream().collect(
-            Collectors.toMap(YangModelCmHandle.Property::getName, YangModelCmHandle.Property::getValue));
     }
 
 }

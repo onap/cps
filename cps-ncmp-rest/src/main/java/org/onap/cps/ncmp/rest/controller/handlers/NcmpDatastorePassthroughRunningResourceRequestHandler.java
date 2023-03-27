@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,6 +20,9 @@
 
 package org.onap.cps.ncmp.rest.controller.handlers;
 
+import static org.onap.cps.ncmp.api.impl.operations.DmiOperations.DataStoreEnum.PASSTHROUGH_RUNNING;
+
+import java.util.List;
 import java.util.function.Supplier;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
@@ -37,14 +40,28 @@ public class NcmpDatastorePassthroughRunningResourceRequestHandler extends NcmpD
     }
 
     @Override
-    public Supplier<Object> getTaskSupplier(final String cmHandle,
+    public Supplier<Object> getTaskSupplier(final String cmHandleId,
                                             final String resourceIdentifier,
                                             final String optionsParamInQuery,
                                             final String topicParamInQuery,
                                             final String requestId,
                                             final Boolean includeDescendant) {
 
-        return () -> networkCmProxyDataService.getResourceDataPassThroughRunningForCmHandle(
-                cmHandle, resourceIdentifier, optionsParamInQuery, topicParamInQuery, requestId);
+        return () -> networkCmProxyDataService.getResourceDataForCmHandle(
+                PASSTHROUGH_RUNNING.getValue(),
+                cmHandleId, resourceIdentifier, optionsParamInQuery, topicParamInQuery, requestId);
+    }
+
+    @Override
+    public Supplier<Object> getTaskSupplier(final List<String> cmHandleIds,
+                                            final String resourceIdentifier,
+                                            final String optionsParamInQuery,
+                                            final String topicParamInQuery,
+                                            final String requestId,
+                                            final Boolean includeDescendant) {
+
+        return () -> networkCmProxyDataService.getResourceDataForCmHandleBatch(
+                PASSTHROUGH_RUNNING.getValue(), cmHandleIds, resourceIdentifier,
+                optionsParamInQuery, topicParamInQuery, requestId);
     }
 }

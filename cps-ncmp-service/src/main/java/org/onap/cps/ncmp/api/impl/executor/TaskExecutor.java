@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2023 Nordix Foundation
+ *  Copyright (C) 2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.rest.executor;
+package org.onap.cps.ncmp.api.impl.executor;
 
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
@@ -29,26 +29,17 @@ import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
-public class CpsNcmpTaskExecutor {
+public class TaskExecutor {
 
     /**
-     * Execute task asynchronously and publish response to supplied topic.
+     * Execute task asynchronously.
      *
-     * @param taskSupplier functional method is get() task need to executed asynchronously
-     * @param timeOutInMillis the time out value in milliseconds
+     * @param taskSupplier    functional method is get() task need to executed asynchronously
+     * @param timeOutInMillis the timeout value in milliseconds
      */
-    public void executeTask(final Supplier<Object> taskSupplier, final int timeOutInMillis) {
-        CompletableFuture.supplyAsync(taskSupplier::get)
-            .orTimeout(timeOutInMillis, MILLISECONDS)
-            .whenCompleteAsync(this::handleTaskCompletion);
-    }
-
-    private void handleTaskCompletion(final Object response, final Throwable throwable) {
-        if (throwable == null) {
-            log.info("Async task completed successfully. {}", response == null ? "" : response);
-        } else {
-            log.error("Async task failed. caused by : {}", throwable.getMessage());
-        }
+    public CompletableFuture<Object> executeTask(final Supplier<Object> taskSupplier, final long timeOutInMillis) {
+        return CompletableFuture.supplyAsync(taskSupplier::get)
+                .orTimeout(timeOutInMillis, MILLISECONDS);
     }
 }
 

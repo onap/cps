@@ -23,10 +23,10 @@
 
 package org.onap.cps.ncmp.api;
 
-import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum;
-
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
+import org.onap.cps.ncmp.api.impl.operations.OperationEnum;
 import org.onap.cps.ncmp.api.inventory.CompositeState;
 import org.onap.cps.ncmp.api.models.CmHandleQueryApiParameters;
 import org.onap.cps.ncmp.api.models.CmHandleQueryServiceParameters;
@@ -51,50 +51,55 @@ public interface NetworkCmProxyDataService {
     DmiPluginRegistrationResponse updateDmiRegistrationAndSyncModule(DmiPluginRegistration dmiPluginRegistration);
 
     /**
-     * Get resource data for data store pass-through operational
-     * using dmi.
+     * Get resource data for given data store using dmi.
      *
-     * @param cmHandleId cm handle identifier
-     * @param resourceIdentifier resource identifier
+     * @param dataStoreName       data store name
+     * @param cmHandleId          cm handle identifier
+     * @param resourceIdentifier  resource identifier
      * @param optionsParamInQuery options query
-     * @param topicParamInQuery topic name for (triggering) async responses
-     * @param requestId unique requestId for async request
+     * @param topicParamInQuery   topic name for (triggering) async responses
+     * @param requestId           unique requestId for async request
      * @return {@code Object} resource data
      */
-    Object getResourceDataOperationalForCmHandle(String cmHandleId,
-                                                 String resourceIdentifier,
-                                                 String optionsParamInQuery,
-                                                 String topicParamInQuery,
-                                                 String requestId);
+    Object getResourceDataForCmHandle(String dataStoreName,
+                                      String cmHandleId,
+                                      String resourceIdentifier,
+                                      String optionsParamInQuery,
+                                      String topicParamInQuery,
+                                      String requestId);
 
     /**
      * Get resource data for operational.
      *
+     * @param dataStoreName       data store name
      * @param cmHandleId cm handle identifier
      * @param resourceIdentifier resource identifier
      * @Link FetchDescendantsOption fetch descendants option
      * @return {@code Object} resource data
      */
-    Object getResourceDataOperational(String cmHandleId,
+    Object getResourceDataForCmHandle(String dataStoreName,
+                                      String cmHandleId,
                                       String resourceIdentifier,
                                       FetchDescendantsOption fetchDescendantsOption);
 
     /**
-     * Get resource data for data store pass-through running
-     * using dmi.
+     * Get resource data for given data store using dmi.
      *
-     * @param cmHandleId cm handle identifier
-     * @param resourceIdentifier resource identifier
+     * @param dataStoreName       data store name
+     * @param cmHandleIds         cm handle identifiers
+     * @param resourceIdentifier  resource identifier
      * @param optionsParamInQuery options query
-     * @param topicParamInQuery topic name for (triggering) async responses
-     * @param requestId unique requestId for async request
+     * @param topicParamInQuery   topic name for (triggering) async responses
+     * @param requestId           unique requestId for async request
      * @return {@code Object} resource data
      */
-    Object getResourceDataPassThroughRunningForCmHandle(String cmHandleId,
-                                                        String resourceIdentifier,
-                                                        String optionsParamInQuery,
-                                                        String topicParamInQuery,
-                                                        String requestId);
+    Object getResourceDataForCmHandleBatch(String dataStoreName,
+                                       List<String> cmHandleIds,
+                                       String resourceIdentifier,
+                                       String optionsParamInQuery,
+                                       String topicParamInQuery,
+                                       String requestId);
+
 
     /**
      * Write resource data for data store pass-through running

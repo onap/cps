@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Copyright (C) 2021-2023 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -23,6 +23,7 @@ package org.onap.cps.ncmp.api.impl.client
 
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration
 import org.onap.cps.ncmp.api.impl.exception.HttpClientRequestException
+import org.onap.cps.ncmp.api.impl.operations.OperationEnum
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -33,11 +34,6 @@ import org.springframework.test.context.ContextConfiguration
 import org.springframework.web.client.HttpServerErrorException
 import org.springframework.web.client.RestTemplate
 import spock.lang.Specification
-
-import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.READ
-import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.PATCH
-import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.CREATE
-
 
 @SpringBootTest
 @ContextConfiguration(classes = [NcmpConfiguration.DmiProperties, DmiRestClient])
@@ -56,7 +52,7 @@ class DmiRestClientSpec extends Specification {
         given: 'the rest template returns a valid response entity'
             mockRestTemplate.postForEntity(resourceUrl, _ as HttpEntity, Object.class) >> mockResponseEntity
         when: 'POST operation is invoked'
-            def result = objectUnderTest.postOperationWithJsonData(resourceUrl, 'json-data', READ)
+            def result = objectUnderTest.postOperationWithJsonData(resourceUrl, 'json-data', OperationEnum.READ)
         then: 'the output of the method is equal to the output from the test template'
             result == mockResponseEntity
     }
@@ -75,7 +71,7 @@ class DmiRestClientSpec extends Specification {
             assert thrown.message == "Unable to ${operation} resource data."
             assert thrown.details == 'server response'
         where: 'the following operation is executed'
-            operation << [CREATE, READ, PATCH]
+            operation << [OperationEnum.CREATE, OperationEnum.READ, OperationEnum.PATCH]
     }
 
 }
