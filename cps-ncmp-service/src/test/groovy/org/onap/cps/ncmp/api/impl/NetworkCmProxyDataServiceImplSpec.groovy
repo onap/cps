@@ -115,11 +115,11 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
                 'testCmHandle',
                 'testResourceId',
                 OPTIONS_PARAM,
-                PASSTHROUGH_OPERATIONAL,
+                PASSTHROUGH_OPERATIONAL.value,
                 NO_REQUEST_ID,
                 NO_TOPIC) >> new ResponseEntity<>('dmi-response', HttpStatus.OK)
         when: 'get resource data operational for cm-handle is called'
-            def response = objectUnderTest.getResourceDataOperationalForCmHandle('testCmHandle',
+            def response = objectUnderTest.getResourceDataForCmHandle(PASSTHROUGH_OPERATIONAL.value, 'testCmHandle',
                 'testResourceId',
                 OPTIONS_PARAM,
                 NO_TOPIC,
@@ -136,11 +136,11 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             mockDmiDataOperations.getResourceDataFromDmi('testCmHandle',
                 'testResourceId',
                 OPTIONS_PARAM,
-                PASSTHROUGH_RUNNING,
+                PASSTHROUGH_RUNNING.value,
                 NO_REQUEST_ID,
                 NO_TOPIC) >> new ResponseEntity<>('{dmi-response}', HttpStatus.OK)
         when: 'get resource data is called'
-            def response = objectUnderTest.getResourceDataPassThroughRunningForCmHandle('testCmHandle',
+            def response = objectUnderTest.getResourceDataForCmHandle(PASSTHROUGH_RUNNING.value, 'testCmHandle',
                 'testResourceId',
                 OPTIONS_PARAM,
                 NO_TOPIC,

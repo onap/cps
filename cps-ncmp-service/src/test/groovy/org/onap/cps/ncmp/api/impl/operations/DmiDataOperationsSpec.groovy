@@ -67,7 +67,7 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             dmiServiceUrlBuilder.getDmiDatastoreUrl(_, _) >> expectedUrl
         when: 'get resource data is invoked'
             def result = objectUnderTest.getResourceDataFromDmi(cmHandleId, resourceIdentifier,
-                    options, dataStore, NO_REQUEST_ID, NO_TOPIC)
+                    options, dataStore.value, NO_REQUEST_ID, NO_TOPIC)
         then: 'the result is the response from the DMI service'
             assert result == responseFromDmi
         where: 'the following parameters are used'
@@ -89,7 +89,7 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             mockDmiRestClient.postOperationWithJsonData(expectedUrl, '{"operation":"read","cmHandleProperties":{"prop1":"val1"}}', READ) >> responseFromDmi
             dmiServiceUrlBuilder.getDmiDatastoreUrl(_, _) >> expectedUrl
         when: 'get resource data is invoked'
-            def result = objectUnderTest.getResourceDataFromDmi(cmHandleId, PASSTHROUGH_OPERATIONAL, NO_REQUEST_ID)
+            def result = objectUnderTest.getResourceDataFromDmi(cmHandleId, PASSTHROUGH_OPERATIONAL.value, NO_REQUEST_ID)
         then: 'the result is the response from the DMI service'
             assert result == responseFromDmi
     }
