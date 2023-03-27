@@ -22,12 +22,16 @@
 package org.onap.cps.spi.repository;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
 import org.onap.cps.cpspath.parser.CpsPathPrefixType;
 import org.onap.cps.cpspath.parser.CpsPathQuery;
 import org.onap.cps.spi.entities.FragmentEntity;
@@ -63,9 +67,25 @@ public class FragmentQueryBuilder {
         final String xpathRegex = getXpathSqlRegex(cpsPathQuery, false);
         queryParameters.put("xpathRegex", xpathRegex);
         if (cpsPathQuery.hasLeafConditions()) {
-            sqlStringBuilder.append(" AND attributes @> :leafDataAsJson\\:\\:jsonb");
+            sqlStringBuilder.append(" AND (");
+            sqlStringBuilder.append(" attributes @> :leafDataAsJson\\:\\:jsonb");
             queryParameters.put("leafDataAsJson", jsonObjectMapper.asJsonString(
-                cpsPathQuery.getLeavesData()));
+                    cpsPathQuery.getLeavesData()));
+            final List<String> angularOperatorTypes = cpsPathQuery.getAngularOperatorTypes();
+            final Queue<String> angularOperatorQueue = (angularOperatorTypes == null) ? null : new LinkedList<>(
+                    angularOperatorTypes);
+            if ((!(angularOperatorQueue == null))) {
+                cpsPathQuery.getLeavesData().forEach((key, value) -> {
+                    sqlStringBuilder.append(" OR (attributes ->>");
+                    sqlStringBuilder.append("'" + key + "')\\:\\:int");
+                    if (!CollectionUtils.isEmpty(angularOperatorQueue)) {
+                        sqlStringBuilder.append(" " + angularOperatorQueue.poll() + " ");
+                        sqlStringBuilder.append(
+                                "'" + jsonObjectMapper.asJsonString(value) + "'");
+                    }
+                });
+            }
+            sqlStringBuilder.append(")");
         }
 
         addTextFunctionCondition(cpsPathQuery, sqlStringBuilder, queryParameters);
