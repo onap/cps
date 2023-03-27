@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2023 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,10 +21,11 @@
 
 package org.onap.cps.ncmp.api.inventory.sync
 
+import static org.onap.cps.ncmp.api.impl.operations.DataStoreEnum.PASSTHROUGH_OPERATIONAL
+
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations
-import org.onap.cps.ncmp.api.impl.operations.DmiOperations
 import org.onap.cps.ncmp.api.inventory.CmHandleQueries
 import org.onap.cps.ncmp.api.inventory.CmHandleState
 import org.onap.cps.ncmp.api.inventory.CompositeState
@@ -38,7 +39,6 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import spock.lang.Shared
 import spock.lang.Specification
-
 import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter
 import java.util.stream.Collectors
@@ -137,7 +137,7 @@ class SyncUtilsSpec extends Specification{
             def jsonString = '{"stores:bookstore":{"categories":[{"code":"01"}]}}'
             JsonNode jsonNode = jsonObjectMapper.convertToJsonNode(jsonString);
             def responseEntity = new ResponseEntity<>(jsonNode, HttpStatus.OK)
-            mockDmiDataOperations.getResourceDataFromDmi('cm-handle-123', DmiOperations.DataStoreEnum.PASSTHROUGH_OPERATIONAL, _) >> responseEntity
+            mockDmiDataOperations.getResourceDataFromDmi(PASSTHROUGH_OPERATIONAL.value, 'cm-handle-123', _) >> responseEntity
         when: 'get resource data is called'
             def result = objectUnderTest.getResourceData('cm-handle-123')
         then: 'the returned data is correct'

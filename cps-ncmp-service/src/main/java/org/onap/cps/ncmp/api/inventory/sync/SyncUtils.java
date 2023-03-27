@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022 -2023 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,6 +21,8 @@
 
 package org.onap.cps.ncmp.api.inventory.sync;
 
+import static org.onap.cps.ncmp.api.impl.operations.DataStoreEnum.PASSTHROUGH_OPERATIONAL;
+
 import com.fasterxml.jackson.databind.JsonNode;
 import java.time.Duration;
 import java.time.OffsetDateTime;
@@ -37,7 +39,6 @@ import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations;
-import org.onap.cps.ncmp.api.impl.operations.DmiOperations;
 import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.inventory.CmHandleQueries;
@@ -167,7 +168,8 @@ public class SyncUtils {
      */
     public String getResourceData(final String cmHandleId) {
         final ResponseEntity<Object> resourceDataResponseEntity = dmiDataOperations.getResourceDataFromDmi(
-                cmHandleId, DmiOperations.DataStoreEnum.PASSTHROUGH_OPERATIONAL,
+                PASSTHROUGH_OPERATIONAL.getValue(),
+                cmHandleId,
                 UUID.randomUUID().toString());
         if (resourceDataResponseEntity.getStatusCode().is2xxSuccessful()) {
             return getFirstResource(resourceDataResponseEntity.getBody());

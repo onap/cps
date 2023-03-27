@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Copyright (C) 2021-2023 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,7 +21,6 @@
 
 package org.onap.cps.ncmp.api.impl.operations;
 
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient;
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration;
@@ -34,17 +33,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class DmiOperations {
 
-    @Getter
-    public enum DataStoreEnum {
-        PASSTHROUGH_OPERATIONAL("ncmp-datastore:passthrough-operational"),
-        PASSTHROUGH_RUNNING("ncmp-datastore:passthrough-running");
-        private final String value;
-
-        DataStoreEnum(final String value) {
-            this.value = value;
-        }
-    }
-
     protected final InventoryPersistence inventoryPersistence;
     protected final JsonObjectMapper jsonObjectMapper;
     protected final NcmpConfiguration.DmiProperties dmiProperties;
@@ -52,7 +40,7 @@ public class DmiOperations {
     protected final DmiServiceUrlBuilder dmiServiceUrlBuilder;
 
     String getDmiResourceUrl(final String dmiServiceName, final String cmHandle, final String resourceName) {
-        return dmiServiceUrlBuilder.getCmHandleUrl()
+        return dmiServiceUrlBuilder.getResourceDataBasePathUriBuilder()
                 .pathSegment("{resourceName}")
                 .buildAndExpand(dmiServiceName, dmiProperties.getDmiBasePath(), cmHandle, resourceName).toUriString();
     }
