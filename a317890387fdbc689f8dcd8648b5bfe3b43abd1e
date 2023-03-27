@@ -45,6 +45,29 @@
       "revId": "a317890387fdbc689f8dcd8648b5bfe3b43abd1e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fdaa6c4e_7e07764a",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-27T09:29:18Z",
+      "side": 1,
+      "message": "need to filter on Dataspace name! Not any matching path in any dataspace would be valid!!!\nUSe the Database ID or entity to filter correctly",
+      "range": {
+        "startLine": 332,
+        "startChar": 78,
+        "endLine": 332,
+        "endChar": 105
+      },
+      "revId": "a317890387fdbc689f8dcd8648b5bfe3b43abd1e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
