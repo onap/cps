@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Copyright (C) 2021-2023 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -25,6 +25,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient;
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration;
+import org.onap.cps.ncmp.api.impl.executor.CpsNcmpTaskExecutor;
 import org.onap.cps.ncmp.api.impl.utils.DmiServiceUrlBuilder;
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
 import org.onap.cps.utils.JsonObjectMapper;
@@ -33,6 +34,8 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 @Service
 public class DmiOperations {
+
+    protected static final long DEFAULT_ASYNC_TASK_EXECUTOR_TIMEOUT_IN_MILLISECONDS = 3000L;
 
     @Getter
     public enum DataStoreEnum {
@@ -50,6 +53,7 @@ public class DmiOperations {
     protected final NcmpConfiguration.DmiProperties dmiProperties;
     protected final DmiRestClient dmiRestClient;
     protected final DmiServiceUrlBuilder dmiServiceUrlBuilder;
+    protected final CpsNcmpTaskExecutor cpsNcmpTaskExecutor;
 
     String getDmiResourceUrl(final String dmiServiceName, final String cmHandle, final String resourceName) {
         return dmiServiceUrlBuilder.getCmHandleUrl()

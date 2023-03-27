@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -47,7 +47,8 @@ public class NcmpDatastoreOperationalQueryHandler extends NcmpDatastoreRequestHa
                                             final String requestId,
                                             final Boolean includeDescendant) {
 
-        final FetchDescendantsOption fetchDescendantsOption = getFetchDescendantsOption(includeDescendant);
+        final FetchDescendantsOption fetchDescendantsOption =
+                TaskManagementDefaultHandler.getFetchDescendantsOption(includeDescendant);
 
         return () -> networkCmProxyQueryService.queryResourceDataOperational(cmHandle, resourceIdentifier,
             fetchDescendantsOption);

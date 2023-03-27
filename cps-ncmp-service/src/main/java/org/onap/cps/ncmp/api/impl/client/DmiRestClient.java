@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Copyright (C) 2021-2023 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,6 +21,7 @@
 
 package org.onap.cps.ncmp.api.impl.client;
 
+import java.util.List;
 import lombok.AllArgsConstructor;
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration.DmiProperties;
 import org.onap.cps.ncmp.api.impl.exception.HttpClientRequestException;
@@ -48,7 +49,7 @@ public class DmiRestClient {
      * @return response entity of type String
      */
     public ResponseEntity<Object> postOperationWithJsonData(final String dmiResourceUrl,
-                                                            final String jsonData,
+                                                            final List<String> jsonData,
                                                             final DmiRequestBody.OperationEnum operation) {
         final var httpEntity = new HttpEntity<>(jsonData, configureHttpHeaders(new HttpHeaders()));
         try {

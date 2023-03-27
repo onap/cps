@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -46,12 +46,12 @@ class DmiServiceUrlBuilderSpec extends Specification {
         given: 'uri variables'
             dmiProperties.dmiBasePath = 'dmi'
             def uriVars = objectUnderTest.populateUriVariables(yangModelCmHandle,
-                    "cmHandle", PASSTHROUGH_RUNNING)
+                    "cmHandle", PASSTHROUGH_RUNNING.value)
         and: 'query params'
                             def uriQueries = objectUnderTest.populateQueryParams(resourceId,
                     'optionsParamInQuery', topic)
         when: 'a dmi datastore service url is generated'
-            def dmiServiceUrl = objectUnderTest.getDmiDatastoreUrl(uriQueries, uriVars)
+            def dmiServiceUrl = objectUnderTest.getDmiDatastoreUrl(uriQueries, uriVars, false)
         then: 'service url is generated as expected'
             assert dmiServiceUrl == expectedDmiServiceUrl
         where: 'the following parameters are used'
@@ -66,12 +66,12 @@ class DmiServiceUrlBuilderSpec extends Specification {
         given: 'uri variables are created'
             dmiProperties.dmiBasePath = dmiBasePath
             def uriVars = objectUnderTest.populateUriVariables(yangModelCmHandle,
-                    "cmHandle", PASSTHROUGH_RUNNING)
+                    "cmHandle", PASSTHROUGH_RUNNING.value)
         and: 'null query params'
             def uriQueries = objectUnderTest.populateQueryParams(null,
                     null, null)
         when: 'a dmi datastore service url is generated'
-            def dmiServiceUrl = objectUnderTest.getDmiDatastoreUrl(uriQueries, uriVars)
+            def dmiServiceUrl = objectUnderTest.getDmiDatastoreUrl(uriQueries, uriVars, false)
         then: 'the created dmi service url matches the expected'
             assert dmiServiceUrl == expectedDmiServiceUrl
         where: 'the following parameters are used'

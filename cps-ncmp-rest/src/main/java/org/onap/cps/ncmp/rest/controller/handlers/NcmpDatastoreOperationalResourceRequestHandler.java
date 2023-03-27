@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -19,6 +19,8 @@
  */
 
 package org.onap.cps.ncmp.rest.controller.handlers;
+
+import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME;
 
 import java.util.function.Supplier;
 import lombok.extern.slf4j.Slf4j;
@@ -44,10 +46,11 @@ public class NcmpDatastoreOperationalResourceRequestHandler extends NcmpDatastor
                                             final String requestId,
                                             final Boolean includeDescendant) {
 
-        final FetchDescendantsOption fetchDescendantsOption = getFetchDescendantsOption(includeDescendant);
+        final FetchDescendantsOption fetchDescendantsOption =
+                TaskManagementDefaultHandler.getFetchDescendantsOption(includeDescendant);
 
-        return () -> networkCmProxyDataService.getResourceDataOperational(cmHandle, resourceIdentifier,
-                fetchDescendantsOption);
+        return () -> networkCmProxyDataService.getResourceDataForCmHandle(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME,
+                cmHandle, resourceIdentifier, fetchDescendantsOption);
     }
 
 }

@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Copyright (C) 2021-2023 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -56,7 +56,7 @@ class DmiRestClientSpec extends Specification {
         given: 'the rest template returns a valid response entity'
             mockRestTemplate.postForEntity(resourceUrl, _ as HttpEntity, Object.class) >> mockResponseEntity
         when: 'POST operation is invoked'
-            def result = objectUnderTest.postOperationWithJsonData(resourceUrl, 'json-data', READ)
+            def result = objectUnderTest.postOperationWithJsonData(resourceUrl, ['json-data'] as List<String>, READ)
         then: 'the output of the method is equal to the output from the test template'
             result == mockResponseEntity
     }
@@ -67,7 +67,7 @@ class DmiRestClientSpec extends Specification {
             def httpServerErrorException = new HttpServerErrorException(HttpStatus.FORBIDDEN, 'status text', serverResponse, null)
             mockRestTemplate.postForEntity(*_) >> { throw httpServerErrorException }
         when: 'POST operation is invoked'
-            def result = objectUnderTest.postOperationWithJsonData('some url', 'some json', operation)
+            def result = objectUnderTest.postOperationWithJsonData('some url', ['some json'] as List<String>, operation)
         then: 'a Http Client Exception is thrown'
             def thrown = thrown(HttpClientRequestException)
         and: 'the exception has the relevant details from the error response'

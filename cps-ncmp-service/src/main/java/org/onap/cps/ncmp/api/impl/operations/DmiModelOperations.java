@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Copyright (C) 2021-2023 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -27,11 +27,13 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient;
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration;
+import org.onap.cps.ncmp.api.impl.executor.CpsNcmpTaskExecutor;
 import org.onap.cps.ncmp.api.impl.utils.DmiServiceUrlBuilder;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
@@ -55,8 +57,10 @@ public class DmiModelOperations extends DmiOperations {
     public DmiModelOperations(final InventoryPersistence inventoryPersistence,
                               final JsonObjectMapper jsonObjectMapper,
                               final NcmpConfiguration.DmiProperties dmiProperties,
-                              final DmiRestClient dmiRestClient, final DmiServiceUrlBuilder dmiServiceUrlBuilder) {
-        super(inventoryPersistence, jsonObjectMapper, dmiProperties, dmiRestClient, dmiServiceUrlBuilder);
+                              final DmiRestClient dmiRestClient, final DmiServiceUrlBuilder dmiServiceUrlBuilder,
+                              final CpsNcmpTaskExecutor cpsNcmpTaskExecutor) {
+        super(inventoryPersistence, jsonObjectMapper, dmiProperties, dmiRestClient, dmiServiceUrlBuilder,
+                cpsNcmpTaskExecutor);
     }
 
     /**
@@ -98,17 +102,18 @@ public class DmiModelOperations extends DmiOperations {
      * Get resources from DMI for modules.
      *
      * @param dmiServiceName dmi service name
-     * @param jsonData module names and revisions as JSON
+     * @param jsonRequestBody module names and revisions as JSON
      * @param cmHandle cmHandle
      * @param resourceName name of the resource(s)
      * @return {@code ResponseEntity} response entity
      */
     private ResponseEntity<Object> getResourceFromDmiWithJsonData(final String dmiServiceName,
-                                                                  final String jsonData,
+                                                                  final String jsonRequestBody,
                                                                   final String cmHandle,
                                                                   final String resourceName) {
         final String dmiResourceDataUrl = getDmiResourceUrl(dmiServiceName, cmHandle, resourceName);
-        return dmiRestClient.postOperationWithJsonData(dmiResourceDataUrl, jsonData, DmiRequestBody.OperationEnum.READ);
+        return dmiRestClient.postOperationWithJsonData(dmiResourceDataUrl, Collections.singletonList(jsonRequestBody),
+                DmiRequestBody.OperationEnum.READ);
     }
 
     private static String getRequestBodyToFetchYangResources(final Collection<ModuleReference> newModuleReferences,

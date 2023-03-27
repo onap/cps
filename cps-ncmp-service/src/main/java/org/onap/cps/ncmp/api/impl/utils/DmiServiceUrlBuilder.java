@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -28,7 +28,6 @@ import lombok.RequiredArgsConstructor;
 import org.apache.logging.log4j.util.Strings;
 import org.apache.logging.log4j.util.TriConsumer;
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration;
-import org.onap.cps.ncmp.api.impl.operations.DmiOperations;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.spi.utils.CpsValidator;
 import org.springframework.stereotype.Component;
@@ -51,9 +50,13 @@ public class DmiServiceUrlBuilder {
      * @return {@code String} dmi service url as string
      */
     public String getDmiDatastoreUrl(final MultiValueMap<String, String> queryParams,
-                                     final Map<String, Object> uriVariables) {
-        final UriComponentsBuilder uriComponentsBuilder = getCmHandleUrl()
-                .pathSegment("data")
+                                     final Map<String, Object> uriVariables, final boolean isBulkRequest) {
+        final UriComponentsBuilder uriComponentsBuilder
+                = isBulkRequest ? getCmHandleBatchRequestUrl().pathSegment("data")
+                .pathSegment("ds")
+                .pathSegment("{dataStore}")
+                .queryParams(queryParams)
+                .uriVariables(uriVariables) : getCmHandleUrl().pathSegment("data")
                 .pathSegment("ds")
                 .pathSegment("{dataStore}")
                 .queryParams(queryParams)
@@ -76,6 +79,19 @@ public class DmiServiceUrlBuilder {
     }
 
     /**
+     * This method creates the dmi service url builder object with path variables for batch of ch handles.
+     *
+     * @return {@code UriComponentsBuilder} dmi service url builder object
+     */
+    public UriComponentsBuilder getCmHandleBatchRequestUrl() {
+        return UriComponentsBuilder.newInstance()
+                .path("{dmiServiceName}")
+                .pathSegment("{dmiBasePath}")
+                .pathSegment("v1")
+                .pathSegment("batch");
+    }
+
+    /**
      * This method populates uri variables.
      *
      * @param yangModelCmHandle get dmi service name
@@ -84,7 +100,7 @@ public class DmiServiceUrlBuilder {
      */
     public Map<String, Object> populateUriVariables(final YangModelCmHandle yangModelCmHandle,
                                                     final String cmHandleId,
-                                                    final DmiOperations.DataStoreEnum dataStore) {
+                                                    final String dataStoreName) {
         cpsValidator.validateNameCharacters(cmHandleId);
         final Map<String, Object> uriVariables = new HashMap<>();
         final String dmiBasePath = dmiProperties.getDmiBasePath();
@@ -92,7 +108,7 @@ public class DmiServiceUrlBuilder {
                 yangModelCmHandle.resolveDmiServiceName(DATA));
         uriVariables.put("dmiBasePath", dmiBasePath);
         uriVariables.put("cmHandleId", cmHandleId);
-        uriVariables.put("dataStore", dataStore.getValue());
+        uriVariables.put("dataStore", dataStoreName);
         return uriVariables;
     }
 

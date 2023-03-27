@@ -2,7 +2,7 @@
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021 highstreet technologies GmbH
- *  Modifications Copyright (C) 2021-2022 Nordix Foundation
+ *  Modifications Copyright (C) 2021-2023 Nordix Foundation
  *  Modifications Copyright (C) 2021-2022 Bell Canada.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -28,6 +28,7 @@ import org.mapstruct.factory.Mappers
 import org.onap.cps.TestUtils
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService
 import org.onap.cps.ncmp.api.NetworkCmProxyQueryService
+import org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants
 import org.onap.cps.ncmp.api.inventory.CmHandleState
 import org.onap.cps.ncmp.api.inventory.CompositeState
 import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
@@ -154,7 +155,7 @@ class NetworkCmProxyControllerSpec extends Specification {
                     .contentType(MediaType.APPLICATION_JSON)
             ).andReturn().response
         then: 'the NCMP data service is called with getResourceDataOperationalForCmHandle'
-            1 * mockNetworkCmProxyDataService.getResourceDataOperationalForCmHandle('testCmHandle',
+            1 * mockNetworkCmProxyDataService.getResourceDataForCmHandle(DatastoreType.PASSTHROUGH_OPERATIONAL.datastoreName, 'testCmHandle',
                 'parent/child',
                 '(a=1,b=2)',
                 NO_TOPIC,
@@ -244,7 +245,7 @@ class NetworkCmProxyControllerSpec extends Specification {
             def getUrl = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:passthrough-running" +
                 "?resourceIdentifier=" + resourceIdentifier + "&options=(a=1,b=2)"
         and: 'ncmp service returns json object'
-            mockNetworkCmProxyDataService.getResourceDataPassThroughRunningForCmHandle('testCmHandle',
+            mockNetworkCmProxyDataService.getResourceDataForCmHandle(DatastoreType.PASSTHROUGH_RUNNING.datastoreName, 'testCmHandle',
                 resourceIdentifier,
                 '(a=1,b=2)',
                 NO_TOPIC,
@@ -531,7 +532,7 @@ class NetworkCmProxyControllerSpec extends Specification {
                     .contentType(MediaType.APPLICATION_JSON)
             ).andReturn().response
         then: 'the NCMP data service is called with getResourceDataOperational with #descendantsOption'
-            1 * mockNetworkCmProxyDataService.getResourceDataOperational('testCmHandle',
+            1 * mockNetworkCmProxyDataService.getResourceDataForCmHandle(DmiRegistryConstants.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, 'testCmHandle',
                 'parent/child',
                 descendantsOption)
         and: 'response status is Ok'
