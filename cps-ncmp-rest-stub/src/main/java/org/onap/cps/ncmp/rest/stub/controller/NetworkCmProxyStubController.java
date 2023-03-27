@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Bell Canada
- *  Modifications Copyright (c) 2022 Nordix Foundation
+ *  Modifications Copyright (c) 2022-2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -31,14 +31,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.ncmp.rest.api.NetworkCmProxyApi;
 import org.onap.cps.ncmp.rest.controller.handlers.DatastoreType;
 import org.onap.cps.ncmp.rest.model.CmHandleQueryParameters;
-import org.onap.cps.ncmp.rest.model.RestModuleDefinition;
-import org.onap.cps.ncmp.rest.model.RestModuleReference;
 import org.onap.cps.ncmp.rest.model.RestOutputCmHandle;
-import org.onap.cps.ncmp.rest.model.RestOutputCmHandleCompositeState;
-import org.onap.cps.ncmp.rest.model.RestOutputCmHandlePublicProperties;
+import org.onap.cps.ncmp.rest.stub.handlers.NetworkCmProxyApiStubDefaultImpl;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.HttpStatus;
@@ -49,9 +45,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequestMapping("${rest.api.ncmp-stub-base-path}")
-public class NetworkCmProxyStubController implements NetworkCmProxyApi {
-
-    public static final String ASYNC_REQUEST_ID = "requestId";
+public class NetworkCmProxyStubController implements NetworkCmProxyApiStubDefaultImpl {
 
     @Value("${stub.path}")
     private String pathToResponseFiles;
@@ -87,23 +81,6 @@ public class NetworkCmProxyStubController implements NetworkCmProxyApi {
     }
 
     @Override
-    public ResponseEntity<Void> createResourceDataRunningForCmHandle(final String datastoreName,
-                                                                     final String resourceIdentifier,
-                                                                     final String cmHandleId,
-                                                                     final Object body,
-                                                                     final String contentType) {
-        return new ResponseEntity<>(HttpStatus.CREATED);
-    }
-
-    @Override
-    public ResponseEntity<Void> deleteResourceDataRunningForCmHandle(final String datastoreName,
-                                                                     final String cmHandleId,
-                                                                     final String resourceIdentifier,
-                                                                     final String contentType) {
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
-
-    @Override
     public ResponseEntity<List<RestOutputCmHandle>> searchCmHandles(
             final CmHandleQueryParameters cmHandleQueryParameters) {
         List<RestOutputCmHandle> restOutputCmHandles = null;
@@ -120,78 +97,12 @@ public class NetworkCmProxyStubController implements NetworkCmProxyApi {
         return ResponseEntity.ok(restOutputCmHandles);
     }
 
-    @Override
-    public ResponseEntity<Object> setDataSyncEnabledFlagForCmHandle(final String cmHandleId,
-                                                                    final Boolean dataSyncEnabled) {
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-    }
-
-    @Override
-    public ResponseEntity<List<String>> searchCmHandleIds(
-            final CmHandleQueryParameters cmHandleQueryParameters) {
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-    }
-
-    @Override
-    public ResponseEntity<RestOutputCmHandlePublicProperties> getCmHandlePublicPropertiesByCmHandleId(
-            final String cmHandleId) {
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-    }
-
-    @Override
-    public ResponseEntity<RestOutputCmHandleCompositeState> getCmHandleStateByCmHandleId(final String cmHandle) {
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-    }
-
-    @Override
-    public ResponseEntity<List<RestModuleDefinition>> getModuleDefinitionsByCmHandleId(final String cmHandle) {
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-    }
-
-    @Override
-    public ResponseEntity<List<RestModuleReference>> getModuleReferencesByCmHandle(final String cmHandleId) {
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-    }
-
-    @Override
-    public ResponseEntity<Object> patchResourceDataRunningForCmHandle(final String datastoreName,
-                                                                      final String resourceIdentifier,
-                                                                      final String cmHandleId,
-                                                                      final Object body,
-                                                                      final String contentType) {
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-    }
-
-    @Override
-    public ResponseEntity<Object> queryResourceDataForCmHandle(final String datastoreName,
-                                                               final String cmHandle,
-                                                               final String cpsPath,
-                                                               final String options,
-                                                               final String topic,
-                                                               final Boolean includeDescendants) {
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-    }
-
-    @Override
-    public ResponseEntity<RestOutputCmHandle> retrieveCmHandleDetailsById(final String cmHandleId) {
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-    }
-
-    @Override
-    public ResponseEntity<Object> updateResourceDataRunningForCmHandle(final String datastoreName,
-                                                                       final String resourceIdentifier,
-                                                                       final String cmHandleId,
-                                                                       final Object body,
-                                                                       final String contentType) {
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-    }
-
     private ResponseEntity<Map<String, Object>> populateAsyncResponse(final String topicParamInQuery) {
         final Map<String, Object> responseData;
-        if (topicParamInQuery != null) {
-            responseData = getAsyncResponseData();
-        } else {
+        if (topicParamInQuery == null) {
             responseData = null;
+        } else {
+            responseData = getAsyncResponseData();
         }
         return ResponseEntity.ok().body(responseData);
     }
