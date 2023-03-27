@@ -26,6 +26,7 @@ package org.onap.cps.ncmp.api.impl
 import com.hazelcast.map.IMap
 import org.onap.cps.ncmp.api.NetworkCmProxyCmHandleQueryService
 import org.onap.cps.ncmp.api.impl.events.lcm.LcmEventsCmHandleStateHandler
+import org.onap.cps.ncmp.api.impl.operations.OperationEnum
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.inventory.CmHandleQueries
 import org.onap.cps.ncmp.api.inventory.CmHandleState
@@ -54,8 +55,6 @@ import spock.lang.Specification
 
 import static org.onap.cps.ncmp.api.impl.operations.DmiOperations.DataStoreEnum.PASSTHROUGH_OPERATIONAL
 import static org.onap.cps.ncmp.api.impl.operations.DmiOperations.DataStoreEnum.PASSTHROUGH_RUNNING
-import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.CREATE
-import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.UPDATE
 
 class NetworkCmProxyDataServiceImplSpec extends Specification {
 
@@ -94,32 +93,30 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
 
     def 'Write resource data for pass-through running from DMI using POST.'() {
         given: 'cpsDataService returns valid datanode'
-            mockCpsDataService.getDataNodes('NCMP-Admin', 'ncmp-dmi-registry',
-                cmHandleXPath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
+            mockDataNode()
         when: 'write resource data is called'
             objectUnderTest.writeResourceDataPassThroughRunningForCmHandle('testCmHandle',
-                'testResourceId', CREATE,
+                'testResourceId', OperationEnum.CREATE,
                 '{some-json}', 'application/json')
         then: 'DMI called with correct data'
             1 * mockDmiDataOperations.writeResourceDataPassThroughRunningFromDmi('testCmHandle', 'testResourceId',
-                CREATE, '{some-json}', 'application/json')
+                    OperationEnum.CREATE, '{some-json}', 'application/json')
                 >> { new ResponseEntity<>(HttpStatus.CREATED) }
     }
 
     def 'Get resource data for pass-through operational from DMI.'() {
         given: 'get data node is called'
-            mockCpsDataService.getDataNodes('NCMP-Admin', 'ncmp-dmi-registry',
-                cmHandleXPath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
+            mockDataNode()
         and: 'get resource data from DMI is called'
             mockDmiDataOperations.getResourceDataFromDmi(
                 'testCmHandle',
                 'testResourceId',
                 OPTIONS_PARAM,
-                PASSTHROUGH_OPERATIONAL,
+                PASSTHROUGH_OPERATIONAL.value,
                 NO_REQUEST_ID,
                 NO_TOPIC) >> new ResponseEntity<>('dmi-response', HttpStatus.OK)
         when: 'get resource data operational for cm-handle is called'
-            def response = objectUnderTest.getResourceDataOperationalForCmHandle('testCmHandle',
+            def response = objectUnderTest.getResourceDataForCmHandle(PASSTHROUGH_OPERATIONAL.value, 'testCmHandle',
                 'testResourceId',
                 OPTIONS_PARAM,
                 NO_TOPIC,
@@ -130,23 +127,44 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
 
     def 'Get resource data for pass-through running from DMI.'() {
         given: 'cpsDataService returns valid data node'
-            mockCpsDataService.getDataNodes('NCMP-Admin', 'ncmp-dmi-registry',
-                cmHandleXPath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
+            mockDataNode()
         and: 'DMI returns valid response and data'
             mockDmiDataOperations.getResourceDataFromDmi('testCmHandle',
                 'testResourceId',
                 OPTIONS_PARAM,
-                PASSTHROUGH_RUNNING,
+                PASSTHROUGH_RUNNING.value,
                 NO_REQUEST_ID,
                 NO_TOPIC) >> new ResponseEntity<>('{dmi-response}', HttpStatus.OK)
         when: 'get resource data is called'
-            def response = objectUnderTest.getResourceDataPassThroughRunningForCmHandle('testCmHandle',
+            def response = objectUnderTest.getResourceDataForCmHandle(PASSTHROUGH_RUNNING.value, 'testCmHandle',
                 'testResourceId',
                 OPTIONS_PARAM,
                 NO_TOPIC,
                 NO_REQUEST_ID)
         then: 'get resource data returns expected response'
             response == '{dmi-response}'
+    }
+
+    def 'Get bulk resource data for #datastoreName from DMI.'() {
+        given: 'cpsDataService returns valid data node'
+            mockDataNode()
+        and: 'DMI returns valid response and data'
+            mockDmiDataOperations.getResourceDataFromDmi(['testCmHandle'],
+                    'testResourceId',
+                    OPTIONS_PARAM,
+                    datastoreName,
+                    'requestId',
+                    'some topic') >> new ResponseEntity<>('{dmi-bulk-response}', HttpStatus.OK)
+        when: 'get batch resource data is called'
+            def response = objectUnderTest.getResourceDataForCmHandleBatch(datastoreName, ['testCmHandle'],
+                    'testResourceId',
+                    OPTIONS_PARAM,
+                    'some topic',
+                    'requestId')
+        then: 'get bulk resource data returns expected response'
+            response == '{dmi-bulk-response}'
+        where: 'the following data stores are used'
+            datastoreName << [PASSTHROUGH_RUNNING.value, PASSTHROUGH_OPERATIONAL.value]
     }
 
     def 'Getting Yang Resources.'() {
@@ -238,11 +256,11 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
                 cmHandleXPath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
         when: 'get resource data is called'
             objectUnderTest.writeResourceDataPassThroughRunningForCmHandle('testCmHandle',
-                'testResourceId', UPDATE,
+                'testResourceId', OperationEnum.UPDATE,
                 '{some-json}', 'application/json')
         then: 'DMI called with correct data'
             1 * mockDmiDataOperations.writeResourceDataPassThroughRunningFromDmi('testCmHandle', 'testResourceId',
-                UPDATE, '{some-json}', 'application/json')
+                    OperationEnum.UPDATE, '{some-json}', 'application/json')
                 >> { new ResponseEntity<>(HttpStatus.OK) }
     }
 
@@ -364,5 +382,10 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             .operationalDataStore(CompositeState.Operational.builder()
                 .dataStoreSyncState(DataStoreSyncState.NONE_REQUESTED)
                 .lastSyncTime('some-timestamp').build()).build()
+    }
+
+    def mockDataNode() {
+        mockCpsDataService.getDataNodes('NCMP-Admin', 'ncmp-dmi-registry',
+                cmHandleXPath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
     }
 }

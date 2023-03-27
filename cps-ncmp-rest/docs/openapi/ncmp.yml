@@ -1,5 +1,5 @@
 #  ============LICENSE_START=======================================================
-#  Copyright (C) 2021-2022 Nordix Foundation
+#  Copyright (C) 2021-2023 Nordix Foundation
 #  Modifications Copyright (C) 2021 Pantheon.tech
 #  Modifications Copyright (C) 2021-2022 Bell Canada
 #  ================================================================================
@@ -189,6 +189,43 @@ resourceDataForCmHandle:
         $ref: 'components.yaml#/components/responses/Forbidden'
       404:
         $ref: 'components.yaml#/components/responses/NotFound'
+      500:
+        $ref: 'components.yaml#/components/responses/InternalServerError'
+      502:
+        $ref: 'components.yaml#/components/responses/BadGateway'
+
+getResourceDataForCmHandleBatch:
+  post:
+    tags:
+      - network-cm-proxy
+    summary: Get resource data for batch of cm handles
+    description: This request will be handled asynchronously using messaging to the supplied topic. The rest response will be an acknowledge with a requestId to identify the relevant messages.
+    operationId: getResourceDataForCmHandleBatch
+    parameters:
+      - $ref: 'components.yaml#/components/parameters/datastoreName'
+      - $ref: 'components.yaml#/components/parameters/resourceIdentifierInQuery'
+      - $ref: 'components.yaml#/components/parameters/optionsParamInQuery'
+      - $ref: 'components.yaml#/components/parameters/requiredTopicParamInQuery'
+      - $ref: 'components.yaml#/components/parameters/includeDescendantsOptionInQuery'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+    responses:
+      200:
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: object
+      400:
+        $ref: 'components.yaml#/components/responses/BadRequest'
+      401:
+        $ref: 'components.yaml#/components/responses/Unauthorized'
+      403:
+        $ref: 'components.yaml#/components/responses/Forbidden'
       500:
         $ref: 'components.yaml#/components/responses/InternalServerError'
       502:

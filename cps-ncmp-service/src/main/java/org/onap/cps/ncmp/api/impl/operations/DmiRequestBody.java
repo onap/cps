@@ -22,7 +22,6 @@ package org.onap.cps.ncmp.api.impl.operations;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,24 +33,6 @@ import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 @Getter
 @Builder
 public class DmiRequestBody {
-    public enum OperationEnum {
-        READ("read"),
-        CREATE("create"),
-        UPDATE("update"),
-        PATCH("patch"),
-        DELETE("delete");
-        private final String value;
-
-        OperationEnum(final String value) {
-            this.value = value;
-        }
-
-        @Override
-        @JsonValue
-        public String toString() {
-            return String.valueOf(value);
-        }
-    }
 
     private OperationEnum operation;
     private String dataType;

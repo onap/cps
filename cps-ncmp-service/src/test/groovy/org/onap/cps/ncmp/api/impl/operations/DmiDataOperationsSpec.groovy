@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Copyright (C) 2021-2023 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -23,6 +23,8 @@ package org.onap.cps.ncmp.api.impl.operations
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration
+import org.onap.cps.ncmp.api.impl.executor.TaskExecutor
+import org.onap.cps.ncmp.api.impl.utils.DmiServiceNameOrganizer
 import org.onap.cps.ncmp.api.impl.utils.DmiServiceUrlBuilder
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
@@ -34,9 +36,6 @@ import spock.lang.Shared
 
 import static org.onap.cps.ncmp.api.impl.operations.DmiOperations.DataStoreEnum.PASSTHROUGH_OPERATIONAL
 import static org.onap.cps.ncmp.api.impl.operations.DmiOperations.DataStoreEnum.PASSTHROUGH_RUNNING
-import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.CREATE
-import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.READ
-import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.UPDATE
 import org.springframework.http.HttpStatus
 
 @SpringBootTest
@@ -45,14 +44,21 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
 
     @SpringBean
     DmiServiceUrlBuilder dmiServiceUrlBuilder = Mock()
+    @SpringBean
+    TaskExecutor spiedTaskExecutor = Spy()
     def dmiServiceBaseUrl = "${dmiServiceName}/dmi/v1/ch/${cmHandleId}/data/ds/ncmp-datastore:"
     def NO_TOPIC = null
     def NO_REQUEST_ID = null
     @Shared
     def OPTIONS_PARAM = '(a=1,b=2)'
+    @Shared
+    def expectedBulkRequestAsJson = '{"operation": "read","data": {"fe1c1f1a070c4ce5bbfda7198592a0d3": {"neType": "RadioNode"},"b8e42eed0d9541ed8d8839e8eb86b3e0": {"neType": "RadioNode"}},"requestId": "bbb67474-f705-410a-93d1-b2844e7f45fd"}'
 
     @SpringBean
     JsonObjectMapper spiedJsonObjectMapper = Spy(new JsonObjectMapper(new ObjectMapper()))
+
+    @SpringBean
+    DmiServiceNameOrganizer spiedDmiServiceNameOrganizer = Spy()
 
     @Autowired
     DmiDataOperations objectUnderTest
@@ -63,11 +69,11 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
         and: 'a positive response from DMI service when it is called with the expected parameters'
             def responseFromDmi = new ResponseEntity<Object>(HttpStatus.OK)
             def expectedUrl = dmiServiceBaseUrl + "${expectedDatastoreInUrl}?resourceIdentifier=${resourceIdentifier}${expectedOptionsInUrl}"
-            mockDmiRestClient.postOperationWithJsonData(expectedUrl, expectedJson, READ) >> responseFromDmi
+            mockDmiRestClient.postOperationWithJsonData(expectedUrl, expectedJson, OperationEnum.READ) >> responseFromDmi
             dmiServiceUrlBuilder.getDmiDatastoreUrl(_, _) >> expectedUrl
         when: 'get resource data is invoked'
             def result = objectUnderTest.getResourceDataFromDmi(cmHandleId, resourceIdentifier,
-                    options, dataStore, NO_REQUEST_ID, NO_TOPIC)
+                    options, dataStore.value, NO_REQUEST_ID, NO_TOPIC)
         then: 'the result is the response from the DMI service'
             assert result == responseFromDmi
         where: 'the following parameters are used'
@@ -80,16 +86,35 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             'datastore running with properties'    | [yangModelCmHandleProperty] | PASSTHROUGH_RUNNING     | OPTIONS_PARAM || '{"operation":"read","cmHandleProperties":{"prop1":"val1"}}' | 'passthrough-running'     | '&options=(a=1,b=2)'
     }
 
+    def 'call get bulk resource data for #dataStore from DMI service with topic #scenario.'() {
+        given: 'collection of yang model cm Handles'
+            mockYangModelCmHandleCollectionRetrieval([yangModelCmHandleProperty])
+        and: 'a positive response from DMI service when it is called with the expected parameters'
+            def responseFromDmi = new ResponseEntity<Object>(HttpStatus.ACCEPTED)
+            def expectedDmiBulkResourceDataUrl = "ncmp/v1/batch/data/ds/${dataStore}?resourceIdentifier=parent/child%26options=(a=1,b=2)&topic=my-topic-name&options=(fields=schemas/schema)"
+            mockDmiRestClient.postOperationWithJsonData(expectedDmiBulkResourceDataUrl, expectedBulkRequestAsJson, OperationEnum.READ) >> responseFromDmi
+            dmiServiceUrlBuilder.getBulkRequestUrl(_, _) >> expectedDmiBulkResourceDataUrl
+        when: 'get resource data for bulk cm handle is invoked'
+            def result = objectUnderTest.getResourceDataFromDmi([cmHandleId], resourceIdentifier,
+                    OPTIONS_PARAM, dataStore.value, 'requestId', 'some-topic')
+        then: 'the result is the response from the DMI service'
+            assert result == responseFromDmi
+        where: 'the following parameters are used'
+            scenario                | dataStore
+            'datastore operational' | PASSTHROUGH_OPERATIONAL
+            'datastore running'     | PASSTHROUGH_RUNNING
+    }
+
     def 'call get all resource data.'() {
         given: 'the system returns a cm handle with a sample property'
             mockYangModelCmHandleRetrieval([yangModelCmHandleProperty])
         and: 'a positive response from DMI service when it is called with the expected parameters'
             def responseFromDmi = new ResponseEntity<Object>(HttpStatus.OK)
             def expectedUrl = dmiServiceBaseUrl + "passthrough-operational?resourceIdentifier=/"
-            mockDmiRestClient.postOperationWithJsonData(expectedUrl, '{"operation":"read","cmHandleProperties":{"prop1":"val1"}}', READ) >> responseFromDmi
+            mockDmiRestClient.postOperationWithJsonData(expectedUrl, '{"operation":"read","cmHandleProperties":{"prop1":"val1"}}', OperationEnum.READ) >> responseFromDmi
             dmiServiceUrlBuilder.getDmiDatastoreUrl(_, _) >> expectedUrl
         when: 'get resource data is invoked'
-            def result = objectUnderTest.getResourceDataFromDmi(cmHandleId, PASSTHROUGH_OPERATIONAL, NO_REQUEST_ID)
+            def result = objectUnderTest.getResourceDataFromDmi(cmHandleId, PASSTHROUGH_OPERATIONAL.value, NO_REQUEST_ID)
         then: 'the result is the response from the DMI service'
             assert result == responseFromDmi
     }
@@ -109,7 +134,7 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             assert result == responseFromDmi
         where: 'the following operation is performed'
             operation || expectedOperationInUrl
-            CREATE    || 'create'
-            UPDATE    || 'update'
+            OperationEnum.CREATE    || 'create'
+            OperationEnum.UPDATE    || 'update'
     }
 }
