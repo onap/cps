@@ -194,6 +194,46 @@ resourceDataForCmHandle:
       502:
         $ref: 'components.yaml#/components/responses/BadGateway'
 
+resourceDataForCmHandleBatch:
+  get:
+    tags:
+      - network-cm-proxy
+    summary: Get resource data for batch of cm handles
+    description: Get resource data for given batch of cm handles
+    operationId: resourceDataForCmHandleBatch
+    parameters:
+      - $ref: 'components.yaml#/components/parameters/datastoreName'
+      - $ref: 'components.yaml#/components/parameters/resourceIdentifierInQuery'
+      - $ref: 'components.yaml#/components/parameters/optionsParamInQuery'
+      - $ref: 'components.yaml#/components/parameters/requiredTopicParamInQuery'
+      - $ref: 'components.yaml#/components/parameters/includeDescendantsOptionInQuery'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+        application/yang-data+json:
+          schema:
+            type: object
+    responses:
+      200:
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: object
+      400:
+        $ref: 'components.yaml#/components/responses/BadRequest'
+      401:
+        $ref: 'components.yaml#/components/responses/Unauthorized'
+      403:
+        $ref: 'components.yaml#/components/responses/Forbidden'
+      500:
+        $ref: 'components.yaml#/components/responses/InternalServerError'
+      502:
+        $ref: 'components.yaml#/components/responses/BadGateway'
+
 queryResourceDataForCmHandle:
   get:
     tags:

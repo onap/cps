@@ -46,7 +46,7 @@ class DmiServiceUrlBuilderSpec extends Specification {
         given: 'uri variables'
             dmiProperties.dmiBasePath = 'dmi'
             def uriVars = objectUnderTest.populateUriVariables(yangModelCmHandle,
-                    "cmHandle", PASSTHROUGH_RUNNING)
+                    "cmHandle", PASSTHROUGH_RUNNING.value)
         and: 'query params'
                             def uriQueries = objectUnderTest.populateQueryParams(resourceId,
                     'optionsParamInQuery', topic)
@@ -66,7 +66,7 @@ class DmiServiceUrlBuilderSpec extends Specification {
         given: 'uri variables are created'
             dmiProperties.dmiBasePath = dmiBasePath
             def uriVars = objectUnderTest.populateUriVariables(yangModelCmHandle,
-                    "cmHandle", PASSTHROUGH_RUNNING)
+                    "cmHandle", PASSTHROUGH_RUNNING.value)
         and: 'null query params'
             def uriQueries = objectUnderTest.populateQueryParams(null,
                     null, null)
