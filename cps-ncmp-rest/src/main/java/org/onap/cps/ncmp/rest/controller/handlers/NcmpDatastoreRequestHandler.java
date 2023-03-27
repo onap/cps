@@ -20,7 +20,9 @@
 
 package org.onap.cps.ncmp.rest.controller.handlers;
 
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.function.Supplier;
 import lombok.RequiredArgsConstructor;
@@ -28,27 +30,17 @@ import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
 import org.onap.cps.ncmp.rest.executor.CpsNcmpTaskExecutor;
 import org.onap.cps.ncmp.rest.util.TopicValidator;
-import org.onap.cps.spi.FetchDescendantsOption;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 @RequiredArgsConstructor
 @Slf4j
-public abstract class NcmpDatastoreRequestHandler {
-
-    private static final String NO_REQUEST_ID = null;
-    private static final String NO_TOPIC = null;
+public class NcmpDatastoreRequestHandler implements NcmpRequestHandler {
 
     protected final NetworkCmProxyDataService networkCmProxyDataService;
     protected final CpsNcmpTaskExecutor cpsNcmpTaskExecutor;
     protected final int timeOutInMilliSeconds;
     protected final boolean notificationFeatureEnabled;
-
-    protected abstract Supplier<Object> getTaskSupplier(final String cmHandle,
-                                                        final String resourceIdentifier,
-                                                        final String optionsParamInQuery,
-                                                        final String topicParamInQuery,
-                                                        final String requestId,
-                                                        final Boolean includeDescendant);
 
     /**
      * Execute a request on a datastore.
@@ -60,6 +52,7 @@ public abstract class NcmpDatastoreRequestHandler {
      * @param includeDescendants  whether include descendants
      * @return the response entity
      */
+    @Override
     public ResponseEntity<Object> executeRequest(final String cmHandleId,
                                                  final String resourceIdentifier,
                                                  final String optionsParamInQuery,
@@ -83,6 +76,46 @@ public abstract class NcmpDatastoreRequestHandler {
         return executeTaskSync(taskSupplier);
     }
 
+    /**
+     * Execute a request on a datastore.
+     *
+     * @param cmHandleIds         list of cm handles
+     * @param resourceIdentifier  the resource identifier
+     * @param optionsParamInQuery the options param in query
+     * @param topicParamInQuery   the topic param in query
+     * @param includeDescendants  whether include descendants
+     * @return the response entity
+     */
+    @Override
+    public ResponseEntity<Object> executeRequest(final List<String> cmHandleIds,
+                                                 final String resourceIdentifier,
+                                                 final String optionsParamInQuery,
+                                                 final String topicParamInQuery,
+                                                 final Boolean includeDescendants) {
+
+        final boolean asyncResponseRequested = topicParamInQuery != null;
+        if (asyncResponseRequested && notificationFeatureEnabled) {
+            final String requestId = UUID.randomUUID().toString();
+            final Supplier<Object> taskSupplier = getTaskSupplier(cmHandleIds, resourceIdentifier,
+                    optionsParamInQuery,
+                    topicParamInQuery, requestId, includeDescendants);
+            if (((Optional) taskSupplier.get()).isPresent()) {
+                return executeTaskAsync(topicParamInQuery, requestId, taskSupplier);
+            } else {
+                return new ResponseEntity<>(Map.of("error", "Unable to execute request as "
+                        + "datastore is not implemented."), HttpStatus.NOT_IMPLEMENTED);
+            }
+        }
+
+        if (asyncResponseRequested) {
+            return new ResponseEntity<>(Map.of("pre-condition", "Asynchronous request is unavailable "
+                    + "as notification feature is currently disabled."), HttpStatus.PRECONDITION_REQUIRED);
+        } else {
+            return new ResponseEntity<>(Map.of("error", "Unable to execute request as "
+                    + "topic is mandatory."), HttpStatus.BAD_REQUEST);
+        }
+    }
+
     protected ResponseEntity<Object> executeTaskAsync(final String topicParamInQuery,
                                                       final String requestId,
                                                       final Supplier<Object> taskSupplier) {
@@ -97,10 +130,4 @@ public abstract class NcmpDatastoreRequestHandler {
     protected ResponseEntity<Object> executeTaskSync(final Supplier<Object> taskSupplier) {
         return ResponseEntity.ok(taskSupplier.get());
     }
-
-    protected static FetchDescendantsOption getFetchDescendantsOption(final Boolean includeDescendant) {
-        return Boolean.TRUE.equals(includeDescendant) ? FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
-            : FetchDescendantsOption.OMIT_DESCENDANTS;
-    }
-
 }

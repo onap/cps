@@ -137,7 +137,7 @@ class SyncUtilsSpec extends Specification{
             def jsonString = '{"stores:bookstore":{"categories":[{"code":"01"}]}}'
             JsonNode jsonNode = jsonObjectMapper.convertToJsonNode(jsonString);
             def responseEntity = new ResponseEntity<>(jsonNode, HttpStatus.OK)
-            mockDmiDataOperations.getResourceDataFromDmi('cm-handle-123', DmiOperations.DataStoreEnum.PASSTHROUGH_OPERATIONAL, _) >> responseEntity
+            mockDmiDataOperations.getResourceDataFromDmi('cm-handle-123', DmiOperations.DataStoreEnum.PASSTHROUGH_OPERATIONAL.value, _) >> responseEntity
         when: 'get resource data is called'
             def result = objectUnderTest.getResourceData('cm-handle-123')
         then: 'the returned data is correct'
