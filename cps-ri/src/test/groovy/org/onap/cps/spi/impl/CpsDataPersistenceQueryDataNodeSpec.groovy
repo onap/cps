@@ -141,10 +141,16 @@ class CpsDataPersistenceQueryDataNodeSpec extends CpsPersistenceSpecBase {
                 assert result[i].getXpath() == expectedXPaths[i]
             }
         where: 'the following data is used'
-            scenario                              | cpsPath                                        || expectedXPaths
-            'one partial key leaf'                | '//author[@FirstName="Joe"]'                   || ["/shops/shop[@id='1']/categories[@code='1']/book/author[@FirstName='Joe' and @Surname='Bloggs']", "/shops/shop[@id='1']/categories[@code='2']/book/author[@FirstName='Joe' and @Surname='Smith']"]
-            'one non key leaf'                    | '//author[@title="Dune"]'                      || ["/shops/shop[@id='1']/categories[@code='1']/book/author[@FirstName='Joe' and @Surname='Bloggs']"]
-            'mix of partial key and non key leaf' | '//author[@FirstName="Joe" and @title="Dune"]' || ["/shops/shop[@id='1']/categories[@code='1']/book/author[@FirstName='Joe' and @Surname='Bloggs']"]
+            scenario                                                            | cpsPath                                                              || expectedXPaths
+            'one partial key leaf'                                              | '//author[@FirstName="Joe"]'                                         || ["/shops/shop[@id='1']/categories[@code='1']/book/author[@FirstName='Joe' and @Surname='Bloggs']", "/shops/shop[@id='1']/categories[@code='2']/book/author[@FirstName='Joe' and @Surname='Smith']"]
+            'one non key leaf'                                                  | '//author[@title="Dune"]'                                            || ["/shops/shop[@id='1']/categories[@code='1']/book/author[@FirstName='Joe' and @Surname='Bloggs']"]
+            'mix of partial key and non key leaf'                               | '//author[@FirstName="Joe" and @title="Dune"]'                       || ["/shops/shop[@id='1']/categories[@code='1']/book/author[@FirstName='Joe' and @Surname='Bloggs']"]
+            'mix of partial key and non key leaf with OR operator'              | '//author[@FirstName="Jane" or @title="xyz"]'                        || ["/shops/shop[@id='1']/categories[@code='2']/book/author[@FirstName='Jane']"]
+            'mix of  partial key and non leaf value with OR operator'           | '//author[@FirstName="Jane" or @title="crime"]'                      || ["/shops/shop[@id='1']/categories[@code='2']/book/author[@FirstName='Jane']"]
+            'multiple leaf condition with combination of multiple AND operator' | '//author[@FirstName="Joe" and @title="Dune" and @Surname="Bloggs"]' || ["/shops/shop[@id='1']/categories[@code='1']/book/author[@FirstName='Joe' and @Surname='Bloggs']"]
+            'multiple leaf condition with combination of and/or operator'       | '//author[@Firstname="Jane" or @title="crime" and @Surname="keil" ]' || ["/shops/shop[@id='1']/categories[@code='2']/book/author[@FirstName='Jane']"]
+            'multiple leaf condition with combination of or/and operator'       | '//author[@FirstName="John" or @title="none" and @Surname= "keil"]'  || ["/shops/shop[@id='1']/categories[@code='2']/book/author[@FirstName='John'  and @Surname='keil' ]"]
+            'multiple leaf condition with combination of multiple AND operator' | '//author[@FirstName="Jane" or @Surname="none" or @title = "crime"]' || ["/shops/shop[@id='1']/categories[@code='2']/book/author[@FirstName='Jane']"]
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
@@ -161,16 +167,18 @@ class CpsDataPersistenceQueryDataNodeSpec extends CpsPersistenceSpecBase {
                 }
             }
         where: 'the following data is used'
-            scenario                                    | cpsPath                                              || expectedXPaths                                                                               || expectedNumberOfChildren
-            'multiple list-ancestors'                   | '//book/ancestor::categories'                        || ["/shops/shop[@id='1']/categories[@code='2']", "/shops/shop[@id='1']/categories[@code='1']"] || 1
-            'one ancestor with list value'              | '//book/ancestor::categories[@code=1]'               || ["/shops/shop[@id='1']/categories[@code='1']"]                                               || 1
-            'top ancestor'                              | '//shop[@id=1]/ancestor::shops'                      || ['/shops']                                                                                   || 5
-            'list with index value in the xpath prefix' | '//categories[@code=1]/book/ancestor::shop[@id=1]'   || ["/shops/shop[@id='1']"]                                                                     || 3
-            'ancestor with parent list'                 | '//book/ancestor::shop[@id=1]/categories[@code=2]'   || ["/shops/shop[@id='1']/categories[@code='2']"]                                               || 1
-            'ancestor with parent'                      | '//phonenumbers[@type="mob"]/ancestor::info/contact' || ["/shops/shop[@id='3']/info/contact"]                                                        || 3
-            'ancestor combined with text condition'     | '//book/title[text()="Dune"]/ancestor::shop'         || ["/shops/shop[@id='1']"]                                                                     || 3
-            'ancestor with parent that does not exist'  | '//book/ancestor::parentDoesNoExist/categories'      || []                                                                                           || null
-            'ancestor does not exist'                   | '//book/ancestor::ancestorDoesNotExist'              || []                                                                                           || null
+            scenario                                                | cpsPath                                                              || expectedXPaths                                                                                    || expectedNumberOfChildren
+            'multiple list-ancestors'                               | '//book/ancestor::categories'                                        || ["/shops/shop[@id='1']/categories[@code='2']", "/shops/shop[@id='1']/categories[@code='1']"]      || 1
+            'one ancestor with list value'                          | '//book/ancestor::categories[@code=1]'                               || ["/shops/shop[@id='1']/categories[@code='1']"]                                                    || 1
+            'top ancestor'                                          | '//shop[@id=1]/ancestor::shops'                                      || ['/shops']                                                                                        || 5
+            'list with index value in the xpath prefix'             | '//categories[@code=1]/book/ancestor::shop[@id=1]'                   || ["/shops/shop[@id='1']"]                                                                          || 3
+            'ancestor with parent list'                             | '//book/ancestor::shop[@id=1]/categories[@code=2]'                   || ["/shops/shop[@id='1']/categories[@code='2']"]                                                    || 1
+            'ancestor with list elements has OR operator non-value' | '//phonenumbers[@type="mob" or @number=1231]/ancestor::info/contact' || ["/shops/shop[@id='3']/info/contact"]                                                             || 3
+            'ancestor with parent'                                  | '//phonenumbers[@type="mob"]/ancestor::info/contact'                 || ["/shops/shop[@id='3']/info/contact"]                                                             || 3
+            'ancestor with list elements has OR operator'           | '//author[@Surname="Smith" or @title="Chapters"]/ancestor::book'     || ["/shops/shop[@id='1']/categories[@code='2']/book/author[@FirstName='Joe' and @Surname='Smith']"] || 4
+            'ancestor combined with text condition'                 | '//book/title[text()="Dune"]/ancestor::shop'                         || ["/shops/shop[@id='1']"]                                                                          || 3
+            'ancestor with parent that does not exist'              | '//book/ancestor::parentDoesNoExist/categories'                      || []                                                                                                || null
+            'ancestor does not exist'                               | '//book/ancestor::ancestorDoesNotExist'                              || []                                                                                                || null
     }
 
     def 'Cps Path query with syntax error throws a CPS Path Exception.'() {
