@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "db4d022a_b962ada1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-27T08:24:26Z",
+      "side": 1,
+      "message": "I do wonder a bit about this solution. (Is all of it in just this commit?)\n\nWHy not a simple single thread that times out after 30 seconds...\nBut maybe this solution is simplet  tehn I think and a good ides. I just dont get it, a little quick chat might help...",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 13
+      },
+      "revId": "32f1e574170da406435341d13e109289a72c3a8a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "077ae97f_fe917087",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventForwarder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-27T08:24:26Z",
+      "side": 1,
+      "message": "instead of naming it \u0027Map\u0027 try to name maps so it becomes clear what key and value are \ne.g. eventKeyToRequestStartTime  OR\nrequestStartTimePerEventKey",
+      "range": {
+        "startLine": 50,
+        "startChar": 65,
+        "endLine": 50,
+        "endChar": 68
+      },
+      "revId": "32f1e574170da406435341d13e109289a72c3a8a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
