@@ -25,6 +25,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient;
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration;
+import org.onap.cps.ncmp.api.impl.executor.CpsNcmpAsyncTaskExecutor;
 import org.onap.cps.ncmp.api.impl.utils.DmiServiceUrlBuilder;
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
 import org.onap.cps.utils.JsonObjectMapper;
@@ -50,6 +51,7 @@ public class DmiOperations {
     protected final NcmpConfiguration.DmiProperties dmiProperties;
     protected final DmiRestClient dmiRestClient;
     protected final DmiServiceUrlBuilder dmiServiceUrlBuilder;
+    protected final CpsNcmpAsyncTaskExecutor cpsNcmpAsyncTaskExecutor;
 
     String getDmiResourceUrl(final String dmiServiceName, final String cmHandle, final String resourceName) {
         return dmiServiceUrlBuilder.getCmHandleUrl()

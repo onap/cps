@@ -47,7 +47,8 @@ public class NcmpDatastoreOperationalQueryHandler extends NcmpDatastoreRequestHa
                                             final String requestId,
                                             final Boolean includeDescendant) {
 
-        final FetchDescendantsOption fetchDescendantsOption = getFetchDescendantsOption(includeDescendant);
+        final FetchDescendantsOption fetchDescendantsOption =
+                TaskManagementDefaultHandler.getFetchDescendantsOption(includeDescendant);
 
         return () -> networkCmProxyQueryService.queryResourceDataOperational(cmHandle, resourceIdentifier,
             fetchDescendantsOption);

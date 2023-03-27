@@ -23,6 +23,7 @@ package org.onap.cps.ncmp.api.impl.operations
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration
+import org.onap.cps.ncmp.api.impl.executor.CpsNcmpAsyncTaskExecutor
 import org.onap.cps.ncmp.api.impl.utils.DmiServiceUrlBuilder
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
@@ -45,6 +46,8 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
 
     @SpringBean
     DmiServiceUrlBuilder dmiServiceUrlBuilder = Mock()
+    @SpringBean
+    CpsNcmpAsyncTaskExecutor cpsNcmpAsyncTaskExecutor = Mock()
     def dmiServiceBaseUrl = "${dmiServiceName}/dmi/v1/ch/${cmHandleId}/data/ds/ncmp-datastore:"
     def NO_TOPIC = null
     def NO_REQUEST_ID = null
@@ -63,11 +66,11 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
         and: 'a positive response from DMI service when it is called with the expected parameters'
             def responseFromDmi = new ResponseEntity<Object>(HttpStatus.OK)
             def expectedUrl = dmiServiceBaseUrl + "${expectedDatastoreInUrl}?resourceIdentifier=${resourceIdentifier}${expectedOptionsInUrl}"
-            mockDmiRestClient.postOperationWithJsonData(expectedUrl, expectedJson, READ) >> responseFromDmi
-            dmiServiceUrlBuilder.getDmiDatastoreUrl(_, _) >> expectedUrl
+            mockDmiRestClient.postOperationWithJsonData(expectedUrl, [expectedJson] as List<String>, READ) >> responseFromDmi
+            dmiServiceUrlBuilder.getDmiDatastoreUrl(_, _, _) >> expectedUrl
         when: 'get resource data is invoked'
             def result = objectUnderTest.getResourceDataFromDmi(cmHandleId, resourceIdentifier,
-                    options, dataStore, NO_REQUEST_ID, NO_TOPIC)
+                    options, dataStore.value, NO_REQUEST_ID, NO_TOPIC)
         then: 'the result is the response from the DMI service'
             assert result == responseFromDmi
         where: 'the following parameters are used'
@@ -86,10 +89,10 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
         and: 'a positive response from DMI service when it is called with the expected parameters'
             def responseFromDmi = new ResponseEntity<Object>(HttpStatus.OK)
             def expectedUrl = dmiServiceBaseUrl + "passthrough-operational?resourceIdentifier=/"
-            mockDmiRestClient.postOperationWithJsonData(expectedUrl, '{"operation":"read","cmHandleProperties":{"prop1":"val1"}}', READ) >> responseFromDmi
-            dmiServiceUrlBuilder.getDmiDatastoreUrl(_, _) >> expectedUrl
+            mockDmiRestClient.postOperationWithJsonData(expectedUrl, ['{"operation":"read","cmHandleProperties":{"prop1":"val1"}}'] as List<String>, READ) >> responseFromDmi
+            dmiServiceUrlBuilder.getDmiDatastoreUrl(_, _, _) >> expectedUrl
         when: 'get resource data is invoked'
-            def result = objectUnderTest.getResourceDataFromDmi(cmHandleId, PASSTHROUGH_OPERATIONAL, NO_REQUEST_ID)
+            def result = objectUnderTest.getResourceDataFromDmi(cmHandleId, PASSTHROUGH_OPERATIONAL.value, NO_REQUEST_ID)
         then: 'the result is the response from the DMI service'
             assert result == responseFromDmi
     }
@@ -101,8 +104,8 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             def expectedUrl = dmiServiceBaseUrl + "passthrough-running?resourceIdentifier=${resourceIdentifier}"
             def expectedJson = '{"operation":"' + expectedOperationInUrl + '","dataType":"some data type","data":"requestData","cmHandleProperties":{"prop1":"val1"}}'
             def responseFromDmi = new ResponseEntity<Object>(HttpStatus.OK)
-            dmiServiceUrlBuilder.getDmiDatastoreUrl(_, _) >> expectedUrl
-            mockDmiRestClient.postOperationWithJsonData(expectedUrl, expectedJson, operation) >> responseFromDmi
+            dmiServiceUrlBuilder.getDmiDatastoreUrl(_, _, _) >> expectedUrl
+            mockDmiRestClient.postOperationWithJsonData(expectedUrl, [expectedJson] as List<String>, operation) >> responseFromDmi
         when: 'write resource method is invoked'
             def result = objectUnderTest.writeResourceDataPassThroughRunningFromDmi(cmHandleId, 'parent/child', operation, 'requestData', 'some data type')
         then: 'the result is the response from the DMI service'

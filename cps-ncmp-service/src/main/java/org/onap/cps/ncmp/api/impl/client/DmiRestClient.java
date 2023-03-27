@@ -21,6 +21,7 @@
 
 package org.onap.cps.ncmp.api.impl.client;
 
+import java.util.List;
 import lombok.AllArgsConstructor;
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration.DmiProperties;
 import org.onap.cps.ncmp.api.impl.exception.HttpClientRequestException;
@@ -48,7 +49,7 @@ public class DmiRestClient {
      * @return response entity of type String
      */
     public ResponseEntity<Object> postOperationWithJsonData(final String dmiResourceUrl,
-                                                            final String jsonData,
+                                                            final List<String> jsonData,
                                                             final DmiRequestBody.OperationEnum operation) {
         final var httpEntity = new HttpEntity<>(jsonData, configureHttpHeaders(new HttpHeaders()));
         try {
