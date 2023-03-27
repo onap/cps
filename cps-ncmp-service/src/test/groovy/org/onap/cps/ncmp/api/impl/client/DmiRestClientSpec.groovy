@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Copyright (C) 2021-2023 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -34,10 +34,9 @@ import org.springframework.web.client.HttpServerErrorException
 import org.springframework.web.client.RestTemplate
 import spock.lang.Specification
 
-import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.READ
-import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.PATCH
-import static org.onap.cps.ncmp.api.impl.operations.DmiRequestBody.OperationEnum.CREATE
-
+import static org.onap.cps.ncmp.api.impl.operations.OperationEnum.READ
+import static org.onap.cps.ncmp.api.impl.operations.OperationEnum.PATCH
+import static org.onap.cps.ncmp.api.impl.operations.OperationEnum.CREATE
 
 @SpringBootTest
 @ContextConfiguration(classes = [NcmpConfiguration.DmiProperties, DmiRestClient])
