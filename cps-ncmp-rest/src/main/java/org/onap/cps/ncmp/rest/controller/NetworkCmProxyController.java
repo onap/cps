@@ -99,6 +99,24 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
                 optionsParamInQuery, topicParamInQuery, includeDescendants);
     }
 
+    @Override
+    public ResponseEntity<Object> getResourceDataForCmHandles(final String resourceIdentifier,
+                                                              final String datastoreName,
+                                                              final Object requestBody,
+                                                              final String optionsParamInQuery,
+                                                              final String topicParamInQuery,
+                                                              final Boolean includeDescendants) {
+        final NcmpDatastoreRequestHandler ncmpDatastoreRequestHandler =
+                ncmpDatastoreResourceRequestHandlerFactory.getNcmpDatastoreResourceRequestHandler(
+                        DatastoreType.fromDatastoreName(datastoreName));
+
+        final List<String> cmHandleIds = jsonObjectMapper.convertJsonString(jsonObjectMapper.asJsonString(requestBody),
+                List.class);
+
+        return ncmpDatastoreRequestHandler.executeRequest(cmHandleIds, resourceIdentifier,
+                optionsParamInQuery, topicParamInQuery, includeDescendants);
+    }
+
     /**
      * Query resource data from datastore.
      *

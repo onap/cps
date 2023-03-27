@@ -20,9 +20,11 @@
 
 package org.onap.cps.ncmp.rest.controller.handlers;
 
+import java.util.List;
 import java.util.function.Supplier;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
+import org.onap.cps.ncmp.api.impl.operations.DmiOperations;
 import org.onap.cps.ncmp.rest.executor.CpsNcmpTaskExecutor;
 
 @Slf4j
@@ -44,8 +46,22 @@ public class NcmpDatastorePassthroughOperationalResourceRequestHandler extends N
                                             final String requestId,
                                             final Boolean includeDescendant) {
 
-        return () -> networkCmProxyDataService.getResourceDataOperationalForCmHandle(
+        return () -> networkCmProxyDataService.getResourceDataForCmHandle(
+                DmiOperations.DataStoreEnum.PASSTHROUGH_OPERATIONAL.getValue(),
                 cmHandle, resourceIdentifier, optionsParamInQuery, topicParamInQuery, requestId);
+    }
+
+    @Override
+    public Supplier<Object> getTaskSupplier(final List<String> cmHandleIds,
+                                            final String resourceIdentifier,
+                                            final String optionsParamInQuery,
+                                            final String topicParamInQuery,
+                                            final String requestId,
+                                            final Boolean includeDescendant) {
+
+        return () -> networkCmProxyDataService.getResourceDataForCmHandles(
+                DmiOperations.DataStoreEnum.PASSTHROUGH_OPERATIONAL.getValue(), cmHandleIds, resourceIdentifier,
+                optionsParamInQuery, topicParamInQuery, requestId);
     }
 
 }

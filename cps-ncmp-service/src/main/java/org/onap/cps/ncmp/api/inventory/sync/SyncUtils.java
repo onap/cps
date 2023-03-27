@@ -167,7 +167,7 @@ public class SyncUtils {
      */
     public String getResourceData(final String cmHandleId) {
         final ResponseEntity<Object> resourceDataResponseEntity = dmiDataOperations.getResourceDataFromDmi(
-                cmHandleId, DmiOperations.DataStoreEnum.PASSTHROUGH_OPERATIONAL,
+                cmHandleId, DmiOperations.DataStoreEnum.PASSTHROUGH_OPERATIONAL.getValue(),
                 UUID.randomUUID().toString());
         if (resourceDataResponseEntity.getStatusCode().is2xxSuccessful()) {
             return getFirstResource(resourceDataResponseEntity.getBody());
