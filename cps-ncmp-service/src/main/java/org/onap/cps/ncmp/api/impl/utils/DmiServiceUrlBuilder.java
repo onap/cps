@@ -28,7 +28,6 @@ import lombok.RequiredArgsConstructor;
 import org.apache.logging.log4j.util.Strings;
 import org.apache.logging.log4j.util.TriConsumer;
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration;
-import org.onap.cps.ncmp.api.impl.operations.DmiOperations;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.spi.utils.CpsValidator;
 import org.springframework.stereotype.Component;
@@ -84,7 +83,7 @@ public class DmiServiceUrlBuilder {
      */
     public Map<String, Object> populateUriVariables(final YangModelCmHandle yangModelCmHandle,
                                                     final String cmHandleId,
-                                                    final DmiOperations.DataStoreEnum dataStore) {
+                                                    final String dataStoreName) {
         cpsValidator.validateNameCharacters(cmHandleId);
         final Map<String, Object> uriVariables = new HashMap<>();
         final String dmiBasePath = dmiProperties.getDmiBasePath();
@@ -92,7 +91,7 @@ public class DmiServiceUrlBuilder {
                 yangModelCmHandle.resolveDmiServiceName(DATA));
         uriVariables.put("dmiBasePath", dmiBasePath);
         uriVariables.put("cmHandleId", cmHandleId);
-        uriVariables.put("dataStore", dataStore.getValue());
+        uriVariables.put("dataStore", dataStoreName);
         return uriVariables;
     }
 
