@@ -1,7 +1,7 @@
 {
   "request": {
     "method": "POST",
-    "urlPattern": "/dmi/v1/ch/batch/data/ds/.*"
+    "urlPattern": "/dmi/v1/batch/data/ds/.*"
   },
   "response": {
     "status": 200,
