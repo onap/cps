@@ -141,10 +141,16 @@ class CpsDataPersistenceQueryDataNodeSpec extends CpsPersistenceSpecBase {
                 assert result[i].getXpath() == expectedXPaths[i]
             }
         where: 'the following data is used'
-            scenario                              | cpsPath                                        || expectedXPaths
-            'one partial key leaf'                | '//author[@FirstName="Joe"]'                   || ["/shops/shop[@id='1']/categories[@code='1']/book/author[@FirstName='Joe' and @Surname='Bloggs']", "/shops/shop[@id='1']/categories[@code='2']/book/author[@FirstName='Joe' and @Surname='Smith']"]
-            'one non key leaf'                    | '//author[@title="Dune"]'                      || ["/shops/shop[@id='1']/categories[@code='1']/book/author[@FirstName='Joe' and @Surname='Bloggs']"]
-            'mix of partial key and non key leaf' | '//author[@FirstName="Joe" and @title="Dune"]' || ["/shops/shop[@id='1']/categories[@code='1']/book/author[@FirstName='Joe' and @Surname='Bloggs']"]
+            scenario                                                            | cpsPath                                                              || expectedXPaths
+            'one partial key leaf'                                              | '//author[@FirstName="Joe"]'                                         || ["/shops/shop[@id='1']/categories[@code='1']/book/author[@FirstName='Joe' and @Surname='Bloggs']", "/shops/shop[@id='1']/categories[@code='2']/book/author[@FirstName='Joe' and @Surname='Smith']"]
+            'one non key leaf'                                                  | '//author[@title="Dune"]'                                            || ["/shops/shop[@id='1']/categories[@code='1']/book/author[@FirstName='Joe' and @Surname='Bloggs']"]
+            'mix of partial key and non key leaf'                               | '//author[@FirstName="Joe" and @title="Dune"]'                       || ["/shops/shop[@id='1']/categories[@code='1']/book/author[@FirstName='Joe' and @Surname='Bloggs']"]
+            'mix of partial key and non key leaf with OR operator'              | '//author[@FirstName="Jane" or @title="xyz"]'                        || ["/shops/shop[@id='1']/categories[@code='2']/book/author[@FirstName='Jane']"]
+            'mix of  partial key and non leaf value with OR operator'           | '//author[@FirstName="Jane" or @title="crime"]'                      || ["/shops/shop[@id='1']/categories[@code='2']/book/author[@FirstName='Jane']"]
+            'multiple leaf condition with combination of multiple AND operator' | '//author[@FirstName="Joe" and @title="Dune" and @Surname="Bloggs"]' || ["/shops/shop[@id='1']/categories[@code='1']/book/author[@FirstName='Joe' and @Surname='Bloggs']"]
+            'multiple leaf condition with combination of and/or operator'       | '//author[@Firstname="Jane" or @title="crime" and @Surname="keil" ]' || ["/shops/shop[@id='1']/categories[@code='2']/book/author[@FirstName='Jane']"]
+            'multiple leaf condition with combination of or/and operator'       | '//author[@FirstName="John" or @title="none" and @Surname= "keil"]'  || ["/shops/shop[@id='1']/categories[@code='2']/book/author[@FirstName='John'  and @Surname='keil' ]"]
+            'multiple leaf condition with combination of multiple AND operator' | '//author[@FirstName="Jane" or @Surname="none" or @title = "crime"]' || ["/shops/shop[@id='1']/categories[@code='2']/book/author[@FirstName='Jane']"]
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
