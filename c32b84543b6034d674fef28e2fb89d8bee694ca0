@@ -25,6 +25,29 @@
     },
     {
       "key": {
+        "uuid": "ae171dd3_25119771",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/notifications/avc/AvcEventMapper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-03-28T09:53:34Z",
+      "side": 1,
+      "message": "Sry.. remind me , why are we having this mapping method in the AvcEventMapper ? \nI think we could have a separate mapper class , maybe we call it SubscriptionEventMapper (if it suits )",
+      "range": {
+        "startLine": 54,
+        "startChar": 4,
+        "endLine": 54,
+        "endChar": 97
+      },
+      "revId": "c32b84543b6034d674fef28e2fb89d8bee694ca0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "501a9383_a4a4eba3",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/notifications/avc/AvcEventMapper.java",
         "patchSetId": 2
@@ -94,6 +117,23 @@
     },
     {
       "key": {
+        "uuid": "1e7e984b_3be42dd4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/yangmodels/YangModelSubscriptionEvent.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-03-28T09:53:34Z",
+      "side": 1,
+      "message": "i think we should also introduce subscriptionName to the equals and hashcode.\nSo annotate this with @EqualsAndHashCode.Include as well.\nWould be later used in object equality.",
+      "revId": "c32b84543b6034d674fef28e2fb89d8bee694ca0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c7fea2c6_8c3894da",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/yangmodels/YangModelSubscriptionEvent.java",
         "patchSetId": 2
@@ -110,6 +150,29 @@
         "startChar": 4,
         "endLine": 72,
         "endChar": 9
+      },
+      "revId": "c32b84543b6034d674fef28e2fb89d8bee694ca0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4005f2fa_d443ae1d",
+        "filename": "cps-ncmp-service/src/main/resources/model/subscription.yang",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-03-28T09:53:34Z",
+      "side": 1,
+      "message": "change this is subscriptionName as well.",
+      "range": {
+        "startLine": 14,
+        "startChar": 26,
+        "endLine": 14,
+        "endChar": 36
       },
       "revId": "c32b84543b6034d674fef28e2fb89d8bee694ca0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
