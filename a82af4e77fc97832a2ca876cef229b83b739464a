@@ -229,6 +229,29 @@
       "revId": "a82af4e77fc97832a2ca876cef229b83b739464a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7d467941_65e6a392",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-28T10:01:26Z",
+      "side": 1,
+      "message": "create singleton set, use same method\n\n(order wil NOT be maintained)",
+      "range": {
+        "startLine": 136,
+        "startChar": 43,
+        "endLine": 136,
+        "endChar": 56
+      },
+      "revId": "a82af4e77fc97832a2ca876cef229b83b739464a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
