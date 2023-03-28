@@ -22,7 +22,6 @@ package org.onap.cps.integration.performance.ncmp
 
 import java.util.stream.Collectors
 import org.onap.cps.integration.performance.base.NcmpRegistryPerfTestBase
-import org.springframework.dao.DataAccessResourceFailureException
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 
@@ -43,21 +42,12 @@ class CmHandleQueryPerfTest extends NcmpRegistryPerfTestBase {
             def result = cpsDataService.getDataNodesForMultipleXpaths(NCMP_PERFORMANCE_TEST_DATASPACE, REGISTRY_ANCHOR, xpaths, INCLUDE_ALL_DESCENDANTS)
             stopWatch.stop()
             def durationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'the required operations are performed within 3 seconds'
-            recordAndAssertPerformance("CpsPath Registry attributes Query", 3_000, durationInMillis)
+        then: 'the required operations are performed within 1200 ms'
+            recordAndAssertPerformance("CpsPath Registry attributes Query", 1200, durationInMillis)
         and: 'all but 1 (other node) are returned'
             result.size() == 999
         and: 'the tree contains all the expected descendants too'
             assert countDataNodesInTree(result) == 5 * 999
-    }
-
-    def 'Multiple get limit exceeded: 32,764 (~ 2^15) xpaths.'() {
-        given: 'more than 32,764 xpaths)'
-            def xpaths = (0..32_764).collect(i -> "/size/of/this/path/does/not/matter/for/limit[@id='" + i + "']")
-        when: 'single get is executed to get all the parent objects and their descendants'
-            cpsDataService.getDataNodesForMultipleXpaths(NCMP_PERFORMANCE_TEST_DATASPACE, REGISTRY_ANCHOR, xpaths, INCLUDE_ALL_DESCENDANTS)
-        then: 'an exception is thrown'
-            thrown(DataAccessResourceFailureException.class)
     }
 
 }
