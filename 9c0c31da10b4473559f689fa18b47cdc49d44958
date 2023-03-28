@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ffa36515_b26a9240",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/SubscriptionModelLoaderSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-28T08:51:07Z",
+      "side": 1,
+      "message": "don\u0027t mess with imports if you dont have to (distracting)",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 31
+      },
+      "revId": "9c0c31da10b4473559f689fa18b47cdc49d44958",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c9f21962_0092ee70",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/SubscriptionModelLoaderSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-28T08:51:07Z",
+      "side": 1,
+      "message": "add when loader is DISABLED",
+      "range": {
+        "startLine": 91,
+        "startChar": 8,
+        "endLine": 91,
+        "endChar": 36
+      },
+      "revId": "9c0c31da10b4473559f689fa18b47cdc49d44958",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "45ae23ad_c9d0cc10",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/SubscriptionModelLoaderSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-28T08:51:07Z",
+      "side": 1,
+      "message": "USe *_  or _* to accept any parameters, betert way of ensuring it isn\u0027t called at all",
+      "range": {
+        "startLine": 94,
+        "startChar": 53,
+        "endLine": 94,
+        "endChar": 130
+      },
+      "revId": "9c0c31da10b4473559f689fa18b47cdc49d44958",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
