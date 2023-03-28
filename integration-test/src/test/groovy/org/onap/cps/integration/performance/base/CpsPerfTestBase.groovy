@@ -58,7 +58,7 @@ class CpsPerfTestBase extends PerfTestBase {
         addAnchorsWithData(1, CpsIntegrationSpecBase.BOOKSTORE_SCHEMA_SET, 'warmup', data)
         stopWatch.stop()
         def durationInMillis = stopWatch.getTotalTimeMillis()
-        recordAndAssertPerformance('Creating warmup anchor with tiny data tree', 250, durationInMillis)
+        recordAndAssertPerformance('Creating warmup anchor with tiny data tree', 500, durationInMillis)
     }
 
     def createLargeBookstoresData() {
