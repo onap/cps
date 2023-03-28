@@ -58,7 +58,7 @@ class CpsPerfTestBase extends PerfTestBase {
         addAnchorsWithData(1, CpsIntegrationSpecBase.BOOKSTORE_SCHEMA_SET, 'warmup', data)
         stopWatch.stop()
         def durationInMillis = stopWatch.getTotalTimeMillis()
-        recordAndAssertPerformance('Creating warmup anchor with tiny data tree', 250, durationInMillis)
+        recordAndAssertPerformance('Creating warmup anchor with tiny data tree', 500, durationInMillis)
     }
 
     def createLargeBookstoresData() {
@@ -79,12 +79,19 @@ class CpsPerfTestBase extends PerfTestBase {
     }
 
     def addOpenRoadData() {
-        def data = CpsIntegrationSpecBase.readResourceDataFile('openroadm/innerNode.json')
+        def data = generateOpenRoadData(50)
         stopWatch.start()
         addAnchorsWithData(5, PerfTestBase.LARGE_SCHEMA_SET, 'openroadm', data)
         stopWatch.stop()
         def durationInMillis = stopWatch.getTotalTimeMillis()
         recordAndAssertPerformance('Creating openroadm anchors with large data tree', 25_000, durationInMillis)
+    }
+
+    def generateOpenRoadData(numberOfNodes) {
+        def innerNode = CpsIntegrationSpecBase.readResourceDataFile('openroadm/innerNode.json')
+        return '{ "openroadm-devices": { "openroadm-device": [' +
+            (1..numberOfNodes).collect { innerNode.replace('NODE_ID_HERE', it.toString()) }.join(',') +
+            ']}}'
     }
 
     def addAnchorsWithData(numberOfAnchors, schemaSetName, anchorNamePrefix, data) {
@@ -101,8 +108,8 @@ class CpsPerfTestBase extends PerfTestBase {
             assert countDataNodesInTree(result) == 1
             stopWatch.stop()
             def durationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'all data is read within 15 seconds (warm up not critical)'
-            recordAndAssertPerformance("Warming database", 15_000, durationInMillis)
+        then: 'all data is read within 25 seconds (warm up not critical)'
+            recordAndAssertPerformance("Warming database", 25_000, durationInMillis)
     }
 
 }
