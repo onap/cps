@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cd5dd3b8_4443d74c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-03-28T16:14:04Z",
+      "side": 1,
+      "message": "Since getLeavesData is a Map, this code will fail if the SAME leaf key is used more than once, e.g.\n  \u0027//author[@FirstName\u003d\"Jane\" or @FirstName\u003d\"John\"]\u0027\n\nIt will produce invalid SQL:\n  SELECT * FROM FRAGMENT WHERE anchor_id \u003d ? AND xpath ~ ? AND  attributes @\u003e \u0027{\"FirstName\":\"John\"}\u0027 OR\n\n  o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 0, SQLState: 42601\n  o.h.engine.jdbc.spi.SqlExceptionHelper   : ERROR: syntax error at end of input\n\nThis would need changes to the cps-path-parser to fix.",
+      "range": {
+        "startLine": 73,
+        "startChar": 47,
+        "endLine": 80,
+        "endChar": 15
+      },
+      "revId": "7aa96b825c55228c98a2424bff3877b531736af3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "29555fb8_86ac7afd",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-03-28T16:14:04Z",
+      "side": 1,
+      "message": "This method needs to be updated too!\nPerhaps it would be easier to refactor both methods together, since they only differ by anchorId condition.",
+      "range": {
+        "startLine": 98,
+        "startChar": 54,
+        "endLine": 103,
+        "endChar": 9
+      },
+      "revId": "7aa96b825c55228c98a2424bff3877b531736af3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b75083f4_16c0793c",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceQueryDataNodeSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-03-28T16:14:04Z",
+      "side": 1,
+      "message": "Please add a test case for using the same leaf key, e.g.\n  \u0027same leaf key with or operator\u0027 | \u0027//author[@FirstName\u003d\"Jane\" or @FirstName\u003d\"John\"]\u0027 || [\"/shops/shop[@id\u003d\u00271\u0027]/categories[@code\u003d\u00272\u0027]/book/author[@FirstName\u003d\u0027Jane\u0027]\", \"/shops/shop[@id\u003d\u00271\u0027]/categories[@code\u003d\u00272\u0027]/book/author[@FirstName\u003d\u0027John\u0027 and @Surname\u003d\u0027keil\u0027 ]\"]\n\nNote: code will fail in this case.",
+      "revId": "7aa96b825c55228c98a2424bff3877b531736af3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
