@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "27bb6467_16d6c951",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-03-28T16:40:09Z",
+      "side": 1,
+      "message": "After discussing with Toine, we agree duplicate leaf key is not a blocking issue. A separate story can be done later to add support for duplicate leaf keys if needed.",
+      "parentUuid": "cd5dd3b8_4443d74c",
+      "range": {
+        "startLine": 73,
+        "startChar": 47,
+        "endLine": 80,
+        "endChar": 15
+      },
+      "revId": "7aa96b825c55228c98a2424bff3877b531736af3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "29555fb8_86ac7afd",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
         "patchSetId": 22
@@ -62,6 +86,24 @@
       "revId": "7aa96b825c55228c98a2424bff3877b531736af3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "52d00221_1da7213b",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceQueryDataNodeSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-03-28T16:40:09Z",
+      "side": 1,
+      "message": "After discussing with Toine, we agree this is not a blocking issue now. The code can be merged without this. A separate story can be done later to add support for duplicate leaf keys if needed.",
+      "parentUuid": "b75083f4_16c0793c",
+      "revId": "7aa96b825c55228c98a2424bff3877b531736af3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
