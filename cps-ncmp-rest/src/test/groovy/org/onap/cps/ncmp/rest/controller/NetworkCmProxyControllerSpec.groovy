@@ -565,6 +565,21 @@ class NetworkCmProxyControllerSpec extends Specification {
             'invalid datastore'     | 'DELETE'  | 'invalid'
     }
 
+    def 'Validate the behaviour of adding a batch of CmHandle IDs.'() {
+        given: 'an endpoint for adding a batch of cm handle IDs'
+            def url = "$ncmpBasePathV1/ch/batch/data/ds/test-datastore?topic=test"
+        and: 'a request body'
+            def body = '{"CmHandles": []}'
+        when: 'the endpoint is invoked'
+            def response = mvc.perform(
+                    post(url)
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(body)
+            ).andReturn().response
+        then: 'the response status code is 501'
+            assert response.status == 501
+    }
+
     def executeRestOperation(operation, url) {
         if (operation == 'POST') {
             return post(url).contentType(MediaType.APPLICATION_JSON_VALUE).content(requestBody)

@@ -154,6 +154,19 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     }
 
     /**
+     * Accept collection of cm handles for Get operation.
+     *
+     * @param datastoreName       name of the datastore
+     * @param body                the request body
+     * @param topic               topic query parameter
+     * @return {@code ResponseEntity} response from dmi plugin
+     */
+    @Override
+    public ResponseEntity<Void> addCmHandleBatch(final String datastoreName, final Object body, final String topic) {
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+    }
+
+    /**
      * Create resource data in datastore pass-through running for given cm-handle.
      *
      * @param resourceIdentifier resource identifier

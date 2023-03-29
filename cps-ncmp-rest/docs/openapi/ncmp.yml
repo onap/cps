@@ -465,3 +465,23 @@ setDataSyncEnabledFlag:
         $ref: 'components.yaml#/components/responses/InternalServerError'
       502:
         $ref: 'components.yaml#/components/responses/BadGateway'
+
+addCmHandleBatch:
+  post:
+    tags:
+      - network-cm-proxy
+    summary: Get a collection of CMHandles
+    description: An interface to accept collection of cm handles for Get operation.
+    operationId: addCmHandleBatch
+    parameters:
+      - $ref: 'components.yaml#/components/parameters/datastoreName'
+      - $ref: 'components.yaml#/components/parameters/topicParamInQuery'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+    responses:
+      501:
+        $ref: 'components.yaml#/components/responses/NotImplemented'
