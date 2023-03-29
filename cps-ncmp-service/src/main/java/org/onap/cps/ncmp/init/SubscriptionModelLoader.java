@@ -45,9 +45,11 @@ public class SubscriptionModelLoader implements ModelLoader {
     private final CpsAdminService cpsAdminService;
     private final CpsModuleService cpsModuleService;
     private final CpsDataService cpsDataService;
+    private static final String SUBSCRIPTION_YANG = "subscription.yang";
     private static final String SUBSCRIPTION_DATASPACE_NAME = "NCMP-Admin";
     private static final String SUBSCRIPTION_ANCHOR_NAME = "AVC-Subscriptions";
     private static final String SUBSCRIPTION_SCHEMASET_NAME = "subscriptions";
+    private static final String MODEL_SUBSCRIPTION_YANG = "model/subscription.yang";
     private static final String SUBSCRIPTION_REGISTRY_DATANODE_NAME = "subscription-registry";
 
     @Value("${ncmp.model-loader.subscription:false}")
@@ -62,7 +64,7 @@ public class SubscriptionModelLoader implements ModelLoader {
     public void onApplicationEvent(@NonNull final ApplicationReadyEvent applicationReadyEvent) {
         try {
             if (subscriptionModelLoaderEnabled) {
-                onboardSubscriptionModel();
+                onboardSubscriptionModel(createYangResourceToContentMap());
             } else {
                 log.info("Subscription Model Loader is disabled");
             }
@@ -75,13 +77,16 @@ public class SubscriptionModelLoader implements ModelLoader {
     /**
      * Method to onboard subscription model for NCMP.
      */
-    private void onboardSubscriptionModel() {
-        final Map<String, String> yangResourceContentMap = createYangResourceToContentMap();
-        if (!yangResourceContentMap.get("subscription.yang").isEmpty()) {
+    private void onboardSubscriptionModel(final Map<String, String> yangResourceContentMap) {
+        if (yangResourceContentMap.containsKey(SUBSCRIPTION_YANG)
+                && !(yangResourceContentMap.get(SUBSCRIPTION_YANG).isEmpty()
+                || yangResourceContentMap.get(SUBSCRIPTION_YANG).isBlank())) {
             createSchemaSet(SUBSCRIPTION_DATASPACE_NAME, SUBSCRIPTION_SCHEMASET_NAME, yangResourceContentMap);
             createAnchor(SUBSCRIPTION_DATASPACE_NAME, SUBSCRIPTION_SCHEMASET_NAME, SUBSCRIPTION_ANCHOR_NAME);
             createTopLevelDataNode(SUBSCRIPTION_DATASPACE_NAME, SUBSCRIPTION_ANCHOR_NAME,
                 SUBSCRIPTION_REGISTRY_DATANODE_NAME);
+        } else {
+            log.info("Received map doesn't contain the specified key or the value of the specified key is empty/blank");
         }
     }
 
@@ -129,24 +134,25 @@ public class SubscriptionModelLoader implements ModelLoader {
         try {
             cpsDataService.saveData(dataspaceName, anchorName, nodeData, OffsetDateTime.now());
         } catch (final AlreadyDefinedException exception) {
-            log.info("Creating new data node {} failed as data node already exists", dataNodeName);
+            log.info("Creating new data node '{}' failed as data node already exists", dataNodeName);
         } catch (final Exception exception) {
             log.debug("Creating data node for subscription model failed: {}", exception.getMessage());
             throw new NcmpStartUpException("Creating data node failed", exception.getMessage());
         }
     }
 
-    private String getFileContentAsString() {
-        try (InputStream inputStream = getClass().getClassLoader()
-                .getResourceAsStream("model/subscription.yang")) {
+    private String getFileContentAsString(final String fileName) {
+        try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream(fileName)) {
             return new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
         } catch (final Exception exception) {
-            log.debug("Onboarding failed as unable to read file: {}", exception.getCause().toString());
-            throw new NcmpStartUpException("Onboarding failed as unable to read file: {}", exception.getMessage());
+            final String failedMsgKey = "Onboarding failed as unable to read file: ";
+            log.debug(failedMsgKey + "{}, for the reason {}", fileName, exception.getMessage());
+            throw new NcmpStartUpException(failedMsgKey + fileName, exception.getMessage());
         }
     }
 
     private Map<String, String> createYangResourceToContentMap() {
-        return Map.of("subscription.yang", getFileContentAsString());
+        return Map.of(SubscriptionModelLoader.SUBSCRIPTION_YANG,
+                getFileContentAsString(SubscriptionModelLoader.MODEL_SUBSCRIPTION_YANG));
     }
 }
