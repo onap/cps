@@ -87,6 +87,11 @@ public class NetworkCmProxyStubController implements NetworkCmProxyApi {
     }
 
     @Override
+    public ResponseEntity<Void> addCmHandleBatch(final String datastoreName, final Object body, final String topic) {
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+    }
+
+    @Override
     public ResponseEntity<Void> createResourceDataRunningForCmHandle(final String datastoreName,
                                                                      final String resourceIdentifier,
                                                                      final String cmHandleId,

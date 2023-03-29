@@ -112,8 +112,8 @@ services:
     ports:
       - ${DMI_PORT:-8783}:8080
     volumes:
-      - ../dmi-plugin-perf-stub/mappings:/home/wiremock/mappings
-      - ../dmi-plugin-perf-stub/files:/home/wiremock/__files
+      - ../dmi-plugin-stub/mappings:/home/wiremock/mappings
+      - ../dmi-plugin-stub/files:/home/wiremock/__files
     restart: unless-stopped
     profiles:
       - dmi-stub
