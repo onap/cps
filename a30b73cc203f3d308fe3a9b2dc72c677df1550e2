@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "4d96a0c2_a50fe57b",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-03-29T16:08:28Z",
+      "side": 1,
+      "message": "I agree with Luke, we should not have two different methods, since appendCondition only supports AND.",
+      "parentUuid": "1e27941d_ce0e3485",
+      "range": {
+        "startLine": 100,
+        "startChar": 8,
+        "endLine": 103,
+        "endChar": 9
+      },
+      "revId": "a30b73cc203f3d308fe3a9b2dc72c677df1550e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a878fe89_c12d53b4",
         "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
         "patchSetId": 23
@@ -65,6 +89,70 @@
         "startChar": 4,
         "endLine": 197,
         "endChar": 5
+      },
+      "revId": "a30b73cc203f3d308fe3a9b2dc72c677df1550e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "49fb8711_f7e3539d",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-03-29T16:08:28Z",
+      "side": 1,
+      "message": "Agreed. This method only supports AND but not OR. I\u0027m guessing this will cause problems, but I can\u0027t verify right now because of the bug in FragmentQueryBuilder.java:76",
+      "parentUuid": "a878fe89_c12d53b4",
+      "range": {
+        "startLine": 188,
+        "startChar": 4,
+        "endLine": 197,
+        "endChar": 5
+      },
+      "revId": "a30b73cc203f3d308fe3a9b2dc72c677df1550e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a10990c6_43cb8ed9",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-03-29T16:08:28Z",
+      "side": 1,
+      "message": "Because of operator precedence in SQL, we need to bracket the leaf conditions check.\nExample:\n\nQuery for Smith:\n  //author[@Surname\u003d\"Smith\"]\n\nreturns 1 author (Joe Smith):\n  /shops/shop[@id\u003d\u00271\u0027]/categories[@code\u003d\u00272\u0027]/book/author[@FirstName\u003d\u0027Joe\u0027 and @Surname\u003d\u0027Smith\u0027]\n\nQuery for author of Dune:\n  //author[@title\u003d\"Dune\"]\n\nreturns 1 author (Joe Bloggs):\n  /shops/shop[@id\u003d\u00271\u0027]/categories[@code\u003d\u00271\u0027]/book/author[@FirstName\u003d\u0027Joe\u0027 and @Surname\u003d\u0027Bloggs\u0027]\n\nBut query for Smith or Dune:\n  //author[@Surname\u003d\"Smith\" or @title\u003d\"Dune\"]\n\nreturns 3 authors! (1 duplicated)\n  /shops/shop[@id\u003d\u00271\u0027]/categories[@code\u003d\u00271\u0027]/book/author[@FirstName\u003d\u0027Joe\u0027 and @Surname\u003d\u0027Bloggs\u0027]\n  /shops/shop[@id\u003d\u00271\u0027]/categories[@code\u003d\u00272\u0027]/book/author[@FirstName\u003d\u0027Joe\u0027 and @Surname\u003d\u0027Smith\u0027]\n  /shops/shop[@id\u003d\u00271\u0027]/categories[@code\u003d\u00272\u0027]/book/author[@FirstName\u003d\u0027Joe\u0027 and @Surname\u003d\u0027Smith\u0027]\n\nLooking at the SQL:\n    SELECT * FROM FRAGMENT \n    WHERE\n        anchor_id \u003d ? \n        AND xpath ~ ? \n        AND attributes @\u003e \u0027{\"title\":\"Dune\"}\u0027\n         OR attributes @\u003e \u0027{\"Surname\":\"Smith\"}\u0027\n\nI think the attribute conditions need to be bracketed, like this:\n    SELECT * FROM FRAGMENT \n    WHERE\n        anchor_id \u003d ? \n        AND xpath ~ ? \n        AND (attributes @\u003e \u0027{\"title\":\"Dune\"}\u0027\n         OR attributes @\u003e \u0027{\"Surname\":\"Smith\"}\u0027)",
+      "revId": "a30b73cc203f3d308fe3a9b2dc72c677df1550e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "59f3c868_2cacaf86",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceQueryDataNodeSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-03-29T16:08:28Z",
+      "side": 1,
+      "message": "OR",
+      "range": {
+        "startLine": 153,
+        "startChar": 66,
+        "endLine": 153,
+        "endChar": 69
       },
       "revId": "a30b73cc203f3d308fe3a9b2dc72c677df1550e2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
