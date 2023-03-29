@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da640cb5_5c0b593c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/SubscriptionModelLoader.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-03-29T18:29:23Z",
+      "side": 1,
+      "message": "Added this to just avoid the static creation of map at line 79 left side",
+      "range": {
+        "startLine": 80,
+        "startChar": 42,
+        "endLine": 80,
+        "endChar": 90
+      },
+      "revId": "7c916507b01ff5564a05e10276ad1919743287fa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cfaa5b0f_b24ed922",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/SubscriptionModelLoader.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-03-29T18:29:23Z",
+      "side": 1,
+      "message": "Added this to made easy to write test case for negative scenario and to make this method generic.",
+      "range": {
+        "startLine": 144,
+        "startChar": 42,
+        "endLine": 144,
+        "endChar": 63
+      },
+      "revId": "7c916507b01ff5564a05e10276ad1919743287fa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
