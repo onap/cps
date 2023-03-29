@@ -465,3 +465,12 @@ setDataSyncEnabledFlag:
         $ref: 'components.yaml#/components/responses/InternalServerError'
       502:
         $ref: 'components.yaml#/components/responses/BadGateway'
+
+addCmHandleBatch:
+  post:
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object

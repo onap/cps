@@ -60,5 +60,9 @@ paths:
 
   /v1/ch/{cm-handle}/data-sync:
     $ref: 'ncmp.yml#/setDataSyncEnabledFlag'
+
+  /v1/ch/batch/data/ds/:
+    $ref: 'ncmp.yml#/addCmHandleBatch'
+
 security:
   - basicAuth: []
