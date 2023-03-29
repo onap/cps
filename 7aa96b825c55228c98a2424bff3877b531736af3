@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "5ba88074_15ef9a0c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2023-03-29T07:22:51Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "29555fb8_86ac7afd",
+      "range": {
+        "startLine": 98,
+        "startChar": 54,
+        "endLine": 103,
+        "endChar": 9
+      },
+      "revId": "7aa96b825c55228c98a2424bff3877b531736af3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b75083f4_16c0793c",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceQueryDataNodeSpec.groovy",
         "patchSetId": 22
