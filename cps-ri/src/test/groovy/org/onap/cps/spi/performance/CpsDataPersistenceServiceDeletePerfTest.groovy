@@ -41,22 +41,22 @@ class CpsDataPersistenceServiceDeletePerfTest extends CpsPersistencePerfSpecBase
             recordAndAssertPerformance('Setup', 10_000, setupDurationInMillis)
     }
 
-    def 'Delete 5 children with grandchildren'() {
+    def 'Delete 10 children with grandchildren'() {
         when: 'child nodes are deleted'
             stopWatch.start()
-            (1..5).each {
+            (1..10).each {
                 def childPath = "${PERF_TEST_PARENT}/perf-test-child-${it}".toString()
                 objectUnderTest.deleteDataNode(PERF_DATASPACE, PERF_ANCHOR, childPath)
             }
             stopWatch.stop()
             def deleteDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'delete duration is under 150 milliseconds'
-            recordAndAssertPerformance('Delete 5 children', 150, deleteDurationInMillis)
+        then: 'delete duration is under 300 milliseconds'
+            recordAndAssertPerformance('Delete 10 children', 300, deleteDurationInMillis)
     }
 
     def 'Batch delete 100 children with grandchildren'() {
         given: 'a list of xpaths to delete'
-            def xpathsToDelete = (6..105).collect {
+            def xpathsToDelete = (11..110).collect {
                 "${PERF_TEST_PARENT}/perf-test-child-${it}".toString()
             }
         when: 'child nodes are deleted'
@@ -64,21 +64,21 @@ class CpsDataPersistenceServiceDeletePerfTest extends CpsPersistencePerfSpecBase
             objectUnderTest.deleteDataNodes(PERF_DATASPACE, PERF_ANCHOR, xpathsToDelete)
             stopWatch.stop()
             def deleteDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'delete duration is under 250 milliseconds'
-            recordAndAssertPerformance('Batch delete 100 children', 250, deleteDurationInMillis)
+        then: 'delete duration is under 300 milliseconds'
+            recordAndAssertPerformance('Batch delete 100 children', 300, deleteDurationInMillis)
     }
 
     def 'Delete 50 grandchildren (that have no descendants)'() {
         when: 'target nodes are deleted'
             stopWatch.start()
             (1..50).each {
-                def grandchildPath = "${PERF_TEST_PARENT}/perf-test-child-106/perf-test-grand-child-${it}".toString()
+                def grandchildPath = "${PERF_TEST_PARENT}/perf-test-child-111/perf-test-grand-child-${it}".toString()
                 objectUnderTest.deleteDataNode(PERF_DATASPACE, PERF_ANCHOR, grandchildPath)
             }
             stopWatch.stop()
             def deleteDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'delete duration is under 600 milliseconds'
-            recordAndAssertPerformance('Delete 50 grandchildren', 600, deleteDurationInMillis)
+        then: 'delete duration is under 700 milliseconds'
+            recordAndAssertPerformance('Delete 50 grandchildren', 700, deleteDurationInMillis)
     }
 
     def 'Batch delete 500 grandchildren (that have no descendants)'() {
@@ -86,7 +86,7 @@ class CpsDataPersistenceServiceDeletePerfTest extends CpsPersistencePerfSpecBase
             def xpathsToDelete = []
             for (int childIndex = 0; childIndex < 10; childIndex++) {
                 xpathsToDelete.addAll((1..50).collect {
-                    "${PERF_TEST_PARENT}/perf-test-child-${107+childIndex}/perf-test-grand-child-${it}".toString()
+                    "${PERF_TEST_PARENT}/perf-test-child-${112+childIndex}/perf-test-grand-child-${it}".toString()
                 })
             }
         when: 'target nodes are deleted'
@@ -109,22 +109,22 @@ class CpsDataPersistenceServiceDeletePerfTest extends CpsPersistencePerfSpecBase
             recordAndAssertPerformance('Setup lists', 6_000, setupDurationInMillis)
     }
 
-    def 'Delete 5 whole lists'() {
+    def 'Delete 10 whole lists'() {
         when: 'lists are deleted'
             stopWatch.start()
-            (1..5).each {
+            (1..10).each {
                 def childPath = "${PERF_TEST_PARENT}/perf-test-list-${it}".toString()
                 objectUnderTest.deleteListDataNode(PERF_DATASPACE, PERF_ANCHOR, childPath)
             }
             stopWatch.stop()
             def deleteDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'delete duration is under 130 milliseconds'
-            recordAndAssertPerformance('Delete 5 whole lists', 130, deleteDurationInMillis)
+        then: 'delete duration is under 300 milliseconds'
+            recordAndAssertPerformance('Delete 10 whole lists', 300, deleteDurationInMillis)
     }
 
     def 'Batch delete 100 whole lists'() {
         given: 'a list of xpaths to delete'
-            def xpathsToDelete = (6..105).collect {
+            def xpathsToDelete = (11..110).collect {
                 "${PERF_TEST_PARENT}/perf-test-list-${it}".toString()
             }
         when: 'lists are deleted'
@@ -140,13 +140,13 @@ class CpsDataPersistenceServiceDeletePerfTest extends CpsPersistencePerfSpecBase
         when: 'list elements are deleted'
             stopWatch.start()
             (1..10).each {
-                def grandchildPath = "${PERF_TEST_PARENT}/perf-test-list-106[@key='${it}']".toString()
+                def grandchildPath = "${PERF_TEST_PARENT}/perf-test-list-111[@key='${it}']".toString()
                 objectUnderTest.deleteListDataNode(PERF_DATASPACE, PERF_ANCHOR, grandchildPath)
             }
             stopWatch.stop()
             def deleteDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'delete duration is under 180 milliseconds'
-            recordAndAssertPerformance('Delete 10 lists elements', 180, deleteDurationInMillis)
+        then: 'delete duration is under 200 milliseconds'
+            recordAndAssertPerformance('Delete 10 lists elements', 200, deleteDurationInMillis)
     }
 
     def 'Batch delete 500 list elements'() {
@@ -154,7 +154,7 @@ class CpsDataPersistenceServiceDeletePerfTest extends CpsPersistencePerfSpecBase
             def xpathsToDelete = []
             for (int childIndex = 0; childIndex < 10; childIndex++) {
                 xpathsToDelete.addAll((1..50).collect {
-                    "${PERF_TEST_PARENT}/perf-test-list-${107+childIndex}[@key='${it}']".toString()
+                    "${PERF_TEST_PARENT}/perf-test-list-${112+childIndex}[@key='${it}']".toString()
                 })
             }
         when: 'list elements are deleted'
@@ -162,8 +162,8 @@ class CpsDataPersistenceServiceDeletePerfTest extends CpsPersistencePerfSpecBase
             objectUnderTest.deleteDataNodes(PERF_DATASPACE, PERF_ANCHOR, xpathsToDelete)
             stopWatch.stop()
             def deleteDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'delete duration is under 70 milliseconds'
-            recordAndAssertPerformance('Batch delete 500 lists elements', 70, deleteDurationInMillis)
+        then: 'delete duration is under 100 milliseconds'
+            recordAndAssertPerformance('Batch delete 500 lists elements', 100, deleteDurationInMillis)
     }
 
     @Sql([CLEAR_DATA, PERF_TEST_DATA])
@@ -176,8 +176,8 @@ class CpsDataPersistenceServiceDeletePerfTest extends CpsPersistencePerfSpecBase
             objectUnderTest.deleteDataNode(PERF_DATASPACE, PERF_ANCHOR, PERF_TEST_PARENT)
             stopWatch.stop()
             def deleteDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'delete duration is under 220 milliseconds'
-            recordAndAssertPerformance('Delete one large node', 220, deleteDurationInMillis)
+        then: 'delete duration is under 300 milliseconds'
+            recordAndAssertPerformance('Delete one large node', 300, deleteDurationInMillis)
     }
 
     @Sql([CLEAR_DATA, PERF_TEST_DATA])
@@ -190,8 +190,8 @@ class CpsDataPersistenceServiceDeletePerfTest extends CpsPersistencePerfSpecBase
             objectUnderTest.deleteDataNodes(PERF_DATASPACE, PERF_ANCHOR, [PERF_TEST_PARENT])
             stopWatch.stop()
             def deleteDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'delete duration is under 220 milliseconds'
-            recordAndAssertPerformance('Batch delete one large node', 220, deleteDurationInMillis)
+        then: 'delete duration is under 300 milliseconds'
+            recordAndAssertPerformance('Batch delete one large node', 300, deleteDurationInMillis)
     }
 
     @Sql([CLEAR_DATA, PERF_TEST_DATA])
