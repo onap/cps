@@ -97,6 +97,30 @@
     },
     {
       "key": {
+        "uuid": "e56d23ab_8ed26b23",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-03-30T10:34:23Z",
+      "side": 1,
+      "message": "Thanks for the explanation, that kinda makes sense now. The original code here is confusing too!\nBut I\u0027d like to see a test using OR with ancestor-axis, just to make sure that case is not affected, e.g.\n  //author[@Surname\u003d\"Smith\" or @title\u003d\"Dune\"]/ancestor::book\n\nwhich should return two different ancestors.",
+      "parentUuid": "9e28597b_4e26a00d",
+      "range": {
+        "startLine": 100,
+        "startChar": 8,
+        "endLine": 103,
+        "endChar": 9
+      },
+      "revId": "a30b73cc203f3d308fe3a9b2dc72c677df1550e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a878fe89_c12d53b4",
         "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
         "patchSetId": 23
@@ -132,6 +156,30 @@
       "side": 1,
       "message": "Agreed. This method only supports AND but not OR. I\u0027m guessing this will cause problems, but I can\u0027t verify right now because of the bug in FragmentQueryBuilder.java:76",
       "parentUuid": "a878fe89_c12d53b4",
+      "range": {
+        "startLine": 188,
+        "startChar": 4,
+        "endLine": 197,
+        "endChar": 5
+      },
+      "revId": "a30b73cc203f3d308fe3a9b2dc72c677df1550e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d2504abc_5061eaf6",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-03-30T10:34:23Z",
+      "side": 1,
+      "message": "As per explanation for line 103, this code is only used for compound keys. Maybe this method needs a new name, e.g. appendConditionForCompoundKey",
+      "parentUuid": "49fb8711_f7e3539d",
       "range": {
         "startLine": 188,
         "startChar": 4,
