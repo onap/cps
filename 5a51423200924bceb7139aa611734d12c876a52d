@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a4d2be7c_7135238b",
+        "filename": "cps-ri/src/test/resources/data/cps-path-query.sql",
+        "patchSetId": 24
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-30T14:48:54Z",
+      "side": 1,
+      "message": "We should no longer be using this tets framework in teh RI module.\nDon\u0027t change this dat, dont add test. INstead add new tests in \n\nsrc/test/groovy/org/onap/cps/integration/functional\n\nYou will see some existing tests already there for Admin and Data Service, YOu can add a new class for QueryService using same or similar baseclasses! \n\nIf need you can add more data to the bookstore model or data use there (see src/test/resources/data/bookstore)",
+      "revId": "5a51423200924bceb7139aa611734d12c876a52d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
