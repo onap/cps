@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Copyright (C) 2021-2023 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021 Bell Canada.
  *  Modifications Copyright (C) 2023 TechMahindra Ltd.
@@ -25,6 +25,7 @@ package org.onap.cps.spi.impl
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.DatabaseTestContainer
+import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.repository.AnchorRepository
 import org.onap.cps.spi.repository.DataspaceRepository
 import org.onap.cps.spi.repository.FragmentRepository
@@ -71,4 +72,21 @@ class CpsPersistenceSpecBase extends Specification {
     static def ANCHOR_FOR_SHOP_EXAMPLE = 'ANCHOR-004'
     static def ANCHOR_HAVING_SINGLE_TOP_LEVEL_FRAGMENT = 'ANCHOR-005'
     static def ANCHOR_WITH_MULTIPLE_TOP_LEVEL_FRAGMENTS = 'ANCHOR-006'
+
+
+    def countDataNodes(Collection<DataNode> dataNodes) {
+        int nodeCount = 0
+        for (DataNode parent : dataNodes) {
+            nodeCount = nodeCount + countDataNodes(parent)
+        }
+        return nodeCount
+    }
+
+    def countDataNodes(DataNode dataNode) {
+        int nodeCount = 1
+        for (DataNode child : dataNode.childDataNodes) {
+            nodeCount = nodeCount + countDataNodes(child)
+        }
+        return nodeCount
+    }
 }

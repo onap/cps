@@ -20,7 +20,6 @@
 
 package org.onap.cps.spi.impl
 
-import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.DataNodeBuilder
 import org.springframework.util.StopWatch
 
@@ -73,22 +72,6 @@ class CpsPersistencePerfSpecBase extends CpsPersistenceSpecBase {
             grandChildren.add(grandChild)
         }
         return grandChildren
-    }
-
-    def countDataNodes(Collection<DataNode> dataNodes) {
-        int nodeCount = 0
-        for (DataNode parent : dataNodes) {
-            nodeCount = nodeCount + countDataNodes(parent)
-        }
-        return nodeCount
-    }
-
-    def countDataNodes(DataNode dataNode) {
-        int nodeCount = 1
-        for (DataNode child : dataNode.childDataNodes) {
-            nodeCount = nodeCount + countDataNodes(child)
-        }
-        return nodeCount
     }
 
     def recordAndAssertPerformance(String shortTitle, thresholdInMs, recordedTimeInMs) {
