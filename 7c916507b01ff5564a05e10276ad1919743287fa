@@ -231,6 +231,52 @@
       "revId": "7c916507b01ff5564a05e10276ad1919743287fa",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3fbf37e0_5ad5aee0",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/SubscriptionModelLoaderSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-30T08:09:25Z",
+      "side": 1,
+      "message": "thsi is not testign any code we have created neiterh is it describing behaviot specifi tho this call ie. this test is not needed...",
+      "range": {
+        "startLine": 122,
+        "startChar": 1,
+        "endLine": 128,
+        "endChar": 0
+      },
+      "revId": "7c916507b01ff5564a05e10276ad1919743287fa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e9a6561_de8ac2d6",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/SubscriptionModelLoaderSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-30T08:09:25Z",
+      "side": 1,
+      "message": "you have changed the production code and forced all these test on it... Although a good exercise non if this is needed if you instead are more critical on the need of check in the production codes in the first place, see my comment there...",
+      "range": {
+        "startLine": 212,
+        "startChar": 4,
+        "endLine": 249,
+        "endChar": 5
+      },
+      "revId": "7c916507b01ff5564a05e10276ad1919743287fa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
