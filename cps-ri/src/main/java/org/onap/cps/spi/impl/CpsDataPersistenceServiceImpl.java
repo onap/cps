@@ -304,13 +304,6 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         return fragmentEntity;
     }
 
-    private Collection<FragmentEntity> buildFragmentEntitiesFromFragmentExtracts(final AnchorEntity anchorEntity,
-                                                                                 final String normalizedXpath) {
-        final List<FragmentExtract> fragmentExtracts =
-            fragmentRepository.findByAnchorAndParentXpath(anchorEntity, normalizedXpath);
-        return FragmentEntityArranger.toFragmentEntityTrees(anchorEntity, fragmentExtracts);
-    }
-
     @Override
     @Timed(value = "cps.data.persistence.service.datanode.query",
             description = "Time taken to query data nodes")
@@ -388,7 +381,8 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
                 final AnchorEntity anchorEntityForFragmentExtract = (anchorEntity == ALL_ANCHORS)
                         ? proxiedFragmentEntity.getAnchor() : anchorEntity;
                 final Collection<FragmentEntity> unproxiedFragmentEntities =
-                    buildFragmentEntitiesFromFragmentExtracts(anchorEntityForFragmentExtract, normalizedXpath);
+                    getFragmentEntities(anchorEntityForFragmentExtract, Collections.singletonList(normalizedXpath),
+                        FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
                 for (final FragmentEntity unproxiedFragmentEntity : unproxiedFragmentEntities) {
                     dataNodes.add(toDataNode(unproxiedFragmentEntity, fetchDescendantsOption));
                 }
