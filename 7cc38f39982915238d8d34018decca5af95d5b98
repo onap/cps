@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0a139829_78bb8d0c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/SubscriptionModelLoaderSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-30T14:38:02Z",
+      "side": 1,
+      "message": "NB: this coudl be done on line 54",
+      "range": {
+        "startLine": 60,
+        "startChar": 31,
+        "endLine": 60,
+        "endChar": 83
+      },
+      "revId": "7cc38f39982915238d8d34018decca5af95d5b98",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
