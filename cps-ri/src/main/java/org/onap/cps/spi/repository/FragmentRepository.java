@@ -60,18 +60,6 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>,
     @Query("DELETE FROM FragmentEntity WHERE anchor IN (:anchors)")
     void deleteByAnchorIn(@Param("anchors") Collection<AnchorEntity> anchorEntities);
 
-    @Query("SELECT f FROM FragmentEntity f WHERE anchor = :anchor"
-        + " AND (xpath = :parentXpath OR xpath LIKE CONCAT(:parentXpath,'/%'))")
-    List<FragmentExtract> findByAnchorAndParentXpath(@Param("anchor") AnchorEntity anchorEntity,
-                                                     @Param("parentXpath") String parentXpath);
-
-    @Query(value = "SELECT id, anchor_id AS anchorId, xpath, parent_id AS parentId,"
-            + " CAST(attributes AS TEXT) AS attributes"
-            + " FROM FRAGMENT WHERE "
-            + "( xpath = :parentXpath OR xpath LIKE CONCAT(:parentXpath,'/%') )",
-            nativeQuery = true)
-    List<FragmentExtract> findByParentXpath(@Param("parentXpath") String parentXpath);
-
     @Query(value = "SELECT id, anchor_id AS anchorId, xpath, parent_id AS parentId,"
         + " CAST(attributes AS TEXT) AS attributes"
         + " FROM FRAGMENT WHERE anchor_id = :anchorId"
