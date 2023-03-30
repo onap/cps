@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ec88eef7_6fc1a0a9",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/base/CpsPerfTestBase.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-03-30T14:05:26Z",
+      "side": 1,
+      "message": "The original openroadm json data had 25 device nodes. I\u0027ve doubled it here, since the getDataNodes tests were running too quickly :D",
+      "range": {
+        "startLine": 82,
+        "startChar": 40,
+        "endLine": 82,
+        "endChar": 42
+      },
+      "revId": "a0aa4daaf2db65f253e0e3c7e38b3998291cf6fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "719f7105_10952a4a",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/QueryPerfTest.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-03-30T14:05:26Z",
+      "side": 1,
+      "message": "I wanna keep this test, but it throws a NullPointerException. It will be fixed in CPS-1582. We can uncomment the test after.",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 150
+      },
+      "revId": "a0aa4daaf2db65f253e0e3c7e38b3998291cf6fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
