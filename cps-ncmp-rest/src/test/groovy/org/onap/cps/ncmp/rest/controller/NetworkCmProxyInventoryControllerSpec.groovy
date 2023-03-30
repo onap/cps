@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021-2022 Bell Canada
- *  Modifications Copyright (C) 2021-2022 Nordix Foundation
+ *  Modifications Copyright (C) 2021-2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -127,6 +127,48 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
             scenario             | serviceMockResponse
             'empty response'     | []
             'populates response' | ['cmHandle1', 'cmHandle2']
+    }
+
+    def 'CmHandle search endpoint test #scenario with blank cmHandleQueryParameters.'() {
+        given: 'a query object'
+        def cmHandleQueryParameters = "{}"
+        and: 'the mapper service returns a converted object'
+        ncmpRestInputMapper.toCmHandleQueryServiceParameters(_) >> cmHandleQueryServiceParameters
+        and: 'the service returns the desired results'
+        mockNetworkCmProxyDataService.executeCmHandleIdSearchForInventory(cmHandleQueryServiceParameters) >> serviceMockResponse
+        when: 'post request is performed & search is called with the given request parameters'
+        def response = mvc.perform(
+                post("$ncmpBasePathV1/ch/searches")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(cmHandleQueryParameters)
+        ).andReturn().response
+        then: 'response status is OK'
+        assert response.status == HttpStatus.OK.value()
+        and: 'the response data matches the service response.'
+        jsonObjectMapper.convertJsonString(response.getContentAsString(), List) == serviceMockResponse
+        where: 'the service respond with'
+        scenario             | serviceMockResponse
+        'empty response'     | []
+        'populates response' | ['cmHandle1', 'cmHandle2']
+    }
+
+    def 'CmHandle search endpoint Error Handling.'() {
+        given: 'the mapper service returns a converted object'
+        ncmpRestInputMapper.toCmHandleQueryServiceParameters(_) >> cmHandleQueryServiceParameters
+        and: 'the service returns the desired results'
+        mockNetworkCmProxyDataService.executeCmHandleIdSearchForInventory(cmHandleQueryServiceParameters) >> []
+        when: 'post request is performed & search is called with the given request parameters'
+        def response = mvc.perform(
+                post("$ncmpBasePathV1/ch/searches")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(cmHandleQueryParameters)
+        ).andReturn().response
+        then: 'response status is BAD_REQUEST'
+        assert response.status == HttpStatus.BAD_REQUEST.value()
+        where: 'the cmHandleQueryParameters are'
+        scenario          | cmHandleQueryParameters
+        'empty string'    | ""
+        'non-json string' | "this is a test"
     }
 
     def 'DMI Registration: All cm-handles operations processed successfully.'() {
