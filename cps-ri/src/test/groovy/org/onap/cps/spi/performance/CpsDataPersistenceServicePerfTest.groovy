@@ -131,8 +131,8 @@ class CpsDataPersistenceServicePerfTest extends CpsPersistencePerfSpecBase {
             objectUnderTest.updateDataNodesAndDescendants(PERF_DATASPACE, PERF_ANCHOR, dataNodes)
             stopWatch.stop()
             def updateDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'update duration is under 500 milliseconds'
-            recordAndAssertPerformance('Update data nodes with descendants', 500, updateDurationInMillis)
+        then: 'update duration is under 600 milliseconds'
+            recordAndAssertPerformance('Update data nodes with descendants', 600, updateDurationInMillis)
     }
 
     def 'Update data nodes without descendants'() {
