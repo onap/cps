@@ -25,6 +25,99 @@
     },
     {
       "key": {
+        "uuid": "72bdbd06_c8e19e9b",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/base/CpsPerfTestBase.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-30T16:17:45Z",
+      "side": 1,
+      "message": "cool!",
+      "parentUuid": "ec88eef7_6fc1a0a9",
+      "range": {
+        "startLine": 82,
+        "startChar": 40,
+        "endLine": 82,
+        "endChar": 42
+      },
+      "revId": "a0aa4daaf2db65f253e0e3c7e38b3998291cf6fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8f5a409f_99027f56",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/GetPerfTest.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-30T16:17:45Z",
+      "side": 1,
+      "message": "did you get someone from teh other team maybe to work on removing this limit?",
+      "range": {
+        "startLine": 84,
+        "startChar": 0,
+        "endLine": 92,
+        "endChar": 0
+      },
+      "revId": "a0aa4daaf2db65f253e0e3c7e38b3998291cf6fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1422c429_61badea8",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/QueryPerfTest.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-30T16:17:45Z",
+      "side": 1,
+      "message": "I think it is important to include the fact we count/read them, there is a good reason line 40 is done beforre the stopwatch is stopped! (lazy loading effects etc)\n\nse.g \u0027Query and count/read data nodes\u0027",
+      "range": {
+        "startLine": 36,
+        "startChar": 15,
+        "endLine": 36,
+        "endChar": 30
+      },
+      "revId": "a0aa4daaf2db65f253e0e3c7e38b3998291cf6fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dd853f43_aea50da8",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/QueryPerfTest.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-30T16:17:45Z",
+      "side": 1,
+      "message": "NB: cpsPath",
+      "range": {
+        "startLine": 38,
+        "startChar": 96,
+        "endLine": 38,
+        "endChar": 103
+      },
+      "revId": "a0aa4daaf2db65f253e0e3c7e38b3998291cf6fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "719f7105_10952a4a",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/QueryPerfTest.groovy",
         "patchSetId": 6
@@ -45,6 +138,93 @@
       "revId": "a0aa4daaf2db65f253e0e3c7e38b3998291cf6fe",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a676ee64_9c005607",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/QueryPerfTest.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-30T16:17:45Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "719f7105_10952a4a",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 150
+      },
+      "revId": "a0aa4daaf2db65f253e0e3c7e38b3998291cf6fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8a98a535_8cb3d53b",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/QueryPerfTest.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-30T16:17:45Z",
+      "side": 1,
+      "message": "Mention the reason you are using anchor e.g.\n\n\nquery data nodes (using a fresh anchor with similar dat for each test)",
+      "range": {
+        "startLine": 71,
+        "startChar": 4,
+        "endLine": 71,
+        "endChar": 32
+      },
+      "revId": "a0aa4daaf2db65f253e0e3c7e38b3998291cf6fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd458d06_00631bcb",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/QueryPerfTest.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-30T16:17:45Z",
+      "side": 1,
+      "message": "as per line 71",
+      "range": {
+        "startLine": 87,
+        "startChar": 15,
+        "endLine": 87,
+        "endChar": 30
+      },
+      "revId": "a0aa4daaf2db65f253e0e3c7e38b3998291cf6fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "27942c24_42d71e37",
+        "filename": "integration-test/src/test/resources/data/openroadm/innerNode.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-03-30T16:17:45Z",
+      "side": 1,
+      "message": "I assume/saw you are no created the required number of copies in Java, Clever!",
+      "revId": "a0aa4daaf2db65f253e0e3c7e38b3998291cf6fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
