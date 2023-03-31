@@ -216,6 +216,30 @@
     },
     {
       "key": {
+        "uuid": "da3ca921_1e888b19",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-03-31T12:15:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d2504abc_5061eaf6",
+      "range": {
+        "startLine": 188,
+        "startChar": 4,
+        "endLine": 197,
+        "endChar": 5
+      },
+      "revId": "a30b73cc203f3d308fe3a9b2dc72c677df1550e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a10990c6_43cb8ed9",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
         "patchSetId": 23
