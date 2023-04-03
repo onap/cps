@@ -16,6 +16,24 @@
       "revId": "aa3b2d66f489528e7773e2db584d41807dadfcb0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "442e46e3_30979103",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/notifications/avc/AvcEventMapper.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-04-03T15:09:22Z",
+      "side": 0,
+      "message": "Yeah the mapper can figure it out, sorry meant to put it back anyway but slipped my mind",
+      "parentUuid": "0a0fdc1d_09520cf8",
+      "revId": "aa3b2d66f489528e7773e2db584d41807dadfcb0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }

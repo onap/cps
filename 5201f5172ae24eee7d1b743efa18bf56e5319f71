@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7f964347_84ee5737",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventConsumer.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-04-03T15:09:22Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ab46d83a_236250e0",
+      "range": {
+        "startLine": 54,
+        "startChar": 41,
+        "endLine": 54,
+        "endChar": 82
+      },
+      "revId": "5201f5172ae24eee7d1b743efa18bf56e5319f71",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b5af5baf_9a76058b",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/yangmodels/YangModelSubscriptionEvent.java",
         "patchSetId": 3
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "9607fd62_31fc1f92",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/yangmodels/YangModelSubscriptionEvent.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-04-03T15:09:22Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b5af5baf_9a76058b",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 49
+      },
+      "revId": "5201f5172ae24eee7d1b743efa18bf56e5319f71",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3d3a3d14_56b49b4b",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/subscriptions/SubscriptionPersistenceSpec.groovy",
         "patchSetId": 3
@@ -68,6 +116,30 @@
       "revId": "5201f5172ae24eee7d1b743efa18bf56e5319f71",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f672aca_3ff5f2e6",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/subscriptions/SubscriptionPersistenceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-04-03T15:09:22Z",
+      "side": 1,
+      "message": "Yeah my bad, should have done that way",
+      "parentUuid": "3d3a3d14_56b49b4b",
+      "range": {
+        "startLine": 45,
+        "startChar": 12,
+        "endLine": 49,
+        "endChar": 61
+      },
+      "revId": "5201f5172ae24eee7d1b743efa18bf56e5319f71",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
