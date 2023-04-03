@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ab46d83a_236250e0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventConsumer.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-04-03T10:13:51Z",
+      "side": 1,
+      "message": "NB: Having @Payload before this might be useful to show it is the value in the Kafka message.",
+      "range": {
+        "startLine": 54,
+        "startChar": 41,
+        "endLine": 54,
+        "endChar": 82
+      },
+      "revId": "5201f5172ae24eee7d1b743efa18bf56e5319f71",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b5af5baf_9a76058b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/yangmodels/YangModelSubscriptionEvent.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-04-03T10:13:51Z",
+      "side": 1,
+      "message": "NB: Having @ToString annotation might be good for logging and debugging.",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 49
+      },
+      "revId": "5201f5172ae24eee7d1b743efa18bf56e5319f71",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
