@@ -51,8 +51,8 @@ public class FragmentRepositoryCpsPathQueryImpl implements FragmentRepositoryCps
 
     @Override
     @Transactional
-    public List<FragmentEntity> findByCpsPath(final CpsPathQuery cpsPathQuery) {
-        final Query query = fragmentQueryBuilder.getQueryForCpsPath(cpsPathQuery);
+    public List<FragmentEntity> findByDataspaceAndCpsPath(final int dataspaceId, final CpsPathQuery cpsPathQuery) {
+        final Query query = fragmentQueryBuilder.getQueryForDataspaceAndCpsPath(dataspaceId, cpsPathQuery);
         final List<FragmentEntity> fragmentEntities = query.getResultList();
         log.debug("Fetched {} fragment entities by cps path across all anchors.", fragmentEntities.size());
         return fragmentEntities;
