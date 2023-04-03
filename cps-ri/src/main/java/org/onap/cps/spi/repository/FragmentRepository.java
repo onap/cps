@@ -27,6 +27,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import org.onap.cps.spi.entities.AnchorEntity;
+import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.FragmentEntity;
 import org.onap.cps.spi.entities.FragmentExtract;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
@@ -54,7 +55,8 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>,
 
     List<FragmentEntity> findAllByAnchorAndXpathIn(AnchorEntity anchorEntity, Collection<String> xpath);
 
-    List<FragmentEntity> findAllByXpathIn(Collection<String> xpath);
+    @Query("SELECT f FROM FragmentEntity f WHERE dataspace = :dataspace AND xpath IN :xpaths")
+    List<FragmentEntity> findAllByXpathIn(@Param("dataspace") DataspaceEntity dataspace, @Param("xpaths") Collection<String> xpaths);
 
     @Modifying
     @Query("DELETE FROM FragmentEntity WHERE anchor IN (:anchors)")
