@@ -22,6 +22,8 @@ package org.onap.cps.ncmp.api.impl.event.avc;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionPersistence;
+import org.onap.cps.ncmp.api.impl.yangmodels.YangModelSubscriptionEvent;
 import org.onap.cps.ncmp.event.model.InnerSubscriptionEvent;
 import org.onap.cps.ncmp.event.model.SubscriptionEvent;
 import org.onap.cps.spi.exceptions.OperationNotYetSupportedException;
@@ -36,6 +38,8 @@ import org.springframework.stereotype.Component;
 public class SubscriptionEventConsumer {
 
     private final SubscriptionEventForwarder subscriptionEventForwarder;
+    private final SubscriptionEventMapper subscriptionEventMapper;
+    private final SubscriptionPersistence subscriptionPersistence;
 
     @Value("${notification.enabled:true}")
     private boolean notificationFeatureEnabled;
@@ -56,6 +60,7 @@ public class SubscriptionEventConsumer {
         }
         if ("CM".equals(event.getDataType().getDataCategory())) {
             log.debug("Consuming event {} ...", subscriptionEvent);
+            persistSubscriptionEvent(subscriptionEvent);
             if ("CREATE".equals(subscriptionEvent.getEventType().value())) {
                 log.info("Subscription for ClientID {} with name {} ...",
                         event.getSubscription().getClientID(),
@@ -68,4 +73,11 @@ public class SubscriptionEventConsumer {
             log.trace("Non-CM subscription event ignored");
         }
     }
+
+    private void persistSubscriptionEvent(final SubscriptionEvent subscriptionEvent) {
+        final YangModelSubscriptionEvent yangModelSubscriptionEvent =
+            subscriptionEventMapper.toYangModelSubscriptionEvent(subscriptionEvent);
+        subscriptionPersistence.saveSubscriptionEvent(yangModelSubscriptionEvent);
+    }
+
 }

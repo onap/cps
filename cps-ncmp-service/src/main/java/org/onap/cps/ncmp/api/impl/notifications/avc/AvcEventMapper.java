@@ -33,14 +33,7 @@ import org.onap.cps.ncmp.event.model.AvcEvent;
 @Mapper(componentModel = "spring")
 public interface AvcEventMapper {
 
-    @Mapping(source = "eventTime", target = "eventTime")
     @Mapping(source = "eventId", target = "eventId", qualifiedByName = "avcEventId")
-    @Mapping(source = "eventCorrelationId", target = "eventCorrelationId")
-    @Mapping(source = "eventSchema", target = "eventSchema")
-    @Mapping(source = "eventSchemaVersion", target = "eventSchemaVersion")
-    @Mapping(source = "eventSource", target = "eventSource")
-    @Mapping(source = "eventType", target = "eventType")
-    @Mapping(source = "event", target = "event")
     AvcEvent toOutgoingAvcEvent(AvcEvent incomingAvcEvent);
 
     @Named("avcEventId")

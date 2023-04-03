@@ -244,7 +244,7 @@ public class InventoryPersistenceImpl implements InventoryPersistence {
         return "{\"state\":" + state + "}";
     }
 
-    private static String createCmHandleJsonData(final String cmHandleId) {
-        return "{\"cm-handles\":[" + cmHandleId + "]}";
+    private static String createCmHandleJsonData(final String yangModelCmHandleAsJson) {
+        return "{\"cm-handles\":[" + yangModelCmHandleAsJson + "]}";
     }
 }
