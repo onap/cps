@@ -329,7 +329,9 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         if (canUseRegexQuickFind(fetchDescendantsOption, cpsPathQuery)) {
             return getDataNodesUsingRegexQuickFind(fetchDescendantsOption, anchorEntity, cpsPathQuery);
         }
-        fragmentEntities = (anchorEntity == ALL_ANCHORS) ? fragmentRepository.findByCpsPath(cpsPathQuery)
+        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        fragmentEntities = (anchorEntity == ALL_ANCHORS) ? fragmentRepository
+                .findByDataspaceAndCpsPath(dataspaceEntity.getId(), cpsPathQuery)
                 : fragmentRepository.findByAnchorAndCpsPath(anchorEntity.getId(), cpsPathQuery);
         if (cpsPathQuery.hasAncestorAxis()) {
             final Collection<String> ancestorXpaths = processAncestorXpath(fragmentEntities, cpsPathQuery);
@@ -360,6 +362,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         final List<FragmentExtract> fragmentExtracts = (anchorEntity == ALL_ANCHORS)
                 ? fragmentRepository.quickFindWithDescendantsAcrossAnchor(xpathRegex) :
             fragmentRepository.quickFindWithDescendants(anchorEntity.getId(), xpathRegex);
+
         fragmentEntities = FragmentEntityArranger.toFragmentEntityTrees(anchorEntity, fragmentExtracts);
         if (cpsPathQuery.hasAncestorAxis()) {
             final Collection<String> ancestorXpaths = processAncestorXpath(fragmentEntities, cpsPathQuery);
