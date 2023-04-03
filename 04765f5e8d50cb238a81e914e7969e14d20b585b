@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f7b13250_86ba7bf2",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryControllerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-04-03T09:16:53Z",
+      "side": 1,
+      "message": "these 2 tests are not properly indended.",
+      "revId": "04765f5e8d50cb238a81e914e7969e14d20b585b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
