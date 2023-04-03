@@ -80,10 +80,12 @@ public class FragmentQueryBuilder {
      * @param cpsPathQuery the cps path query to be transformed into a sql query
      * @return a executable query object
      */
-    public Query getQueryForCpsPath(final CpsPathQuery cpsPathQuery) {
-        final StringBuilder sqlStringBuilder = new StringBuilder("SELECT * FROM FRAGMENT WHERE xpath ~ :xpathRegex");
+    public Query getQueryForDataspaceAndCpsPath(final int dataspaceId, final CpsPathQuery cpsPathQuery) {
+        final StringBuilder sqlStringBuilder = new StringBuilder("SELECT * FROM FRAGMENT WHERE dataspace_id = "
+                + ":dataspaceId AND xpath ~ :xpathRegex");
         final Map<String, Object> queryParameters = new HashMap<>();
         final String xpathRegex = getXpathSqlRegex(cpsPathQuery, false);
+        queryParameters.put("dataspaceId", dataspaceId);
         queryParameters.put("xpathRegex", xpathRegex);
         if (cpsPathQuery.hasLeafConditions()) {
             sqlStringBuilder.append(" AND attributes @> :leafDataAsJson\\:\\:jsonb");
