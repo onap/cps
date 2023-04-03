@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2023 Nordix Foundation
+ *  Modifications Copyright (C) 2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -27,6 +28,9 @@ import org.onap.cps.spi.exceptions.CpsPathException
 import spock.lang.Ignore
 
 import static org.onap.cps.spi.FetchDescendantsOption.DIRECT_CHILDREN_ONLY
+import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
+import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
+
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
 
@@ -187,7 +191,6 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
             thrown(CpsPathException)
     }
 
-    @Ignore
     def 'Cps Path query across anchors with #scenario.'() {
         when: 'a query is executed to get a data nodes across anchors by the given CpsPath'
             def result = objectUnderTest.queryDataNodesAcrossAnchors(FUNCTIONAL_TEST_DATASPACE_1, cpsPath, OMIT_DESCENDANTS)
@@ -213,7 +216,6 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
             'ancestor combined with text condition'     | '//books/title[text()="Matilda"]/ancestor::bookstore' || ["/bookstore"]
     }
 
-    @Ignore
     def 'Cps Path query across anchors with #scenario descendants.'() {
         when: 'a query is executed to get a data node by the given cps path'
             def result = objectUnderTest.queryDataNodesAcrossAnchors(FUNCTIONAL_TEST_DATASPACE_1, '/bookstore', fetchDescendantsOption)
@@ -228,7 +230,6 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
             'all'    | INCLUDE_ALL_DESCENDANTS || 17
     }
 
-    @Ignore
     def 'Cps Path query across anchors with ancestors and #scenario descendants.'() {
         when: 'a query is executed to get a data node by the given cps path'
             def result = objectUnderTest.queryDataNodesAcrossAnchors(FUNCTIONAL_TEST_DATASPACE_1, '//books/ancestor::bookstore', fetchDescendantsOption)
@@ -249,5 +250,4 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
         then: 'a cps path exception is thrown'
             thrown(CpsPathException)
     }
-
 }
