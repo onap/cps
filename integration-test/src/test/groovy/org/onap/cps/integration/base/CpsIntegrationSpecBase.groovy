@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2023 Nordix Foundation
+ *  Modifications Copyright (C) 2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -71,6 +72,7 @@ class CpsIntegrationSpecBase extends Specification {
     def static FUNCTIONAL_TEST_DATASPACE = 'functionalTestDataspace'
     def static BOOKSTORE_SCHEMA_SET = 'bookstoreSchemaSet'
     def static BOOKSTORE_ANCHOR = 'bookstoreAnchor'
+    def static BOOKSTORE_ANCHOR_2 = 'bookstoreAnchor2'
 
     def static initialized = false
 
