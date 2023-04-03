@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0a0fdc1d_09520cf8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/notifications/avc/AvcEventMapper.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-04-03T10:26:47Z",
+      "side": 0,
+      "message": "NB: do we need to bring this back ??\nI think it should work out of the box as the names are the same.",
+      "revId": "aa3b2d66f489528e7773e2db584d41807dadfcb0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}

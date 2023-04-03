@@ -45,6 +45,29 @@
       "revId": "5201f5172ae24eee7d1b743efa18bf56e5319f71",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3d3a3d14_56b49b4b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/subscriptions/SubscriptionPersistenceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-04-03T10:26:47Z",
+      "side": 1,
+      "message": "NB: do we not get an option to instantiate this the groovy way. i.e in one line ??\ndef yangModelSubscriptionEvent \u003d new YangModelSubscriptionEvent(clientId: ....., subscriptionName: .... );",
+      "range": {
+        "startLine": 45,
+        "startChar": 12,
+        "endLine": 49,
+        "endChar": 61
+      },
+      "revId": "5201f5172ae24eee7d1b743efa18bf56e5319f71",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
