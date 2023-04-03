@@ -21,14 +21,13 @@
 package org.onap.cps.ncmp.init;
 
 import java.util.Map;
-import lombok.NonNull;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 
 public interface ModelLoader extends ApplicationListener<ApplicationReadyEvent> {
 
     @Override
-    void onApplicationEvent(@NonNull ApplicationReadyEvent applicationReadyEvent);
+    void onApplicationEvent(ApplicationReadyEvent applicationReadyEvent);
 
     /**
      * Create schema set.
