@@ -30,10 +30,10 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 
 /**
  * Entity to store a dataspace.
@@ -44,12 +44,14 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "dataspace")
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class DataspaceEntity implements Serializable {
 
     private static final long serialVersionUID = 8395254649813051882L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
     private Integer id;
 
     @NotNull

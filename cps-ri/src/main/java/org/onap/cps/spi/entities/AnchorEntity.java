@@ -32,6 +32,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -46,12 +47,14 @@ import lombok.Setter;
 @Builder
 @Entity
 @Table(name = "anchor")
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class AnchorEntity implements Serializable {
 
     private static final long serialVersionUID = -8049987915308262518L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
     private Integer id;
 
     @NotNull
