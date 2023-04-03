@@ -16,6 +16,29 @@
       "revId": "04765f5e8d50cb238a81e914e7969e14d20b585b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5c0ec586_08e1c1ff",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryControllerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-04-03T11:05:24Z",
+      "side": 1,
+      "message": "NB: The controller action is being called with only \"{}\" empty json. However, there are two possible mocked outcome [], and [\u0027cmHandle1\u0027, \u0027cmHandle2] are obtained is confusing for me but overall idea is OK.",
+      "range": {
+        "startLine": 140,
+        "startChar": 0,
+        "endLine": 144,
+        "endChar": 30
+      },
+      "revId": "04765f5e8d50cb238a81e914e7969e14d20b585b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
