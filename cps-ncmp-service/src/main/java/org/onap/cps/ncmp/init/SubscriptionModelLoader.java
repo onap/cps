@@ -31,6 +31,7 @@ import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.ncmp.api.impl.exception.NcmpStartUpException;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
+import org.onap.cps.spi.model.Dataspace;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -61,6 +62,7 @@ public class SubscriptionModelLoader implements ModelLoader {
      */
     @Override
     public void onApplicationEvent(final ApplicationReadyEvent applicationReadyEvent) {
+        checkNcmpDataspaceExists();
         try {
             if (subscriptionModelLoaderEnabled) {
                 onboardSubscriptionModel(createYangResourceToContentMap());
@@ -70,6 +72,21 @@ public class SubscriptionModelLoader implements ModelLoader {
         } catch (final NcmpStartUpException ncmpStartUpException) {
             log.debug("Onboarding model for NCMP failed: {} ", ncmpStartUpException.getMessage());
             SpringApplication.exit(applicationReadyEvent.getApplicationContext(), () -> 1);
+        }
+    }
+
+    private void checkNcmpDataspaceExists() {
+        boolean ncmpDataspaceExists = false;
+        while (!ncmpDataspaceExists) {
+            final Dataspace ncmpDataspace = cpsAdminService.getDataspace(SUBSCRIPTION_DATASPACE_NAME);
+            if (ncmpDataspace != null) {
+                ncmpDataspaceExists = true;
+            }
+            try {
+                Thread.sleep(10000);
+            } catch (final InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
         }
     }
 
