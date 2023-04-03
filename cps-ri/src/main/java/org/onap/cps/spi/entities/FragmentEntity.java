@@ -88,6 +88,7 @@ public class FragmentEntity implements Serializable {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "anchor_id")
+    @EqualsAndHashCode.Include
     private AnchorEntity anchor;
 
     @ToString.Exclude
