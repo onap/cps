@@ -20,9 +20,13 @@
 
 package org.onap.cps.integration.base
 
-import java.time.OffsetDateTime
-
 class FunctionalSpecBase extends CpsIntegrationSpecBase {
+
+    def static FUNCTIONAL_TEST_DATASPACE_1 = 'functionalTestDataspace1'
+    def static FUNCTIONAL_TEST_DATASPACE_2 = 'functionalTestDataspace2'
+    def static NUMBER_OF_ANCHORS_PER_DATASPACE_WITH_BOOKSTORE_DATA = 2
+    def static BOOKSTORE_ANCHOR_1 = 'bookstoreAnchor1'
+    def static BOOKSTORE_ANCHOR_2 = 'bookstoreAnchor2'
 
     def static initialized = false
 
@@ -35,15 +39,17 @@ class FunctionalSpecBase extends CpsIntegrationSpecBase {
     }
 
     def setupBookstoreInfraStructure() {
-        cpsAdminService.createDataspace(FUNCTIONAL_TEST_DATASPACE)
+        cpsAdminService.createDataspace(FUNCTIONAL_TEST_DATASPACE_1)
+        cpsAdminService.createDataspace(FUNCTIONAL_TEST_DATASPACE_2)
         def bookstoreYangModelAsString = readResourceDataFile('bookstore/bookstore.yang')
-        cpsModuleService.createSchemaSet(FUNCTIONAL_TEST_DATASPACE, BOOKSTORE_SCHEMA_SET, [bookstore: bookstoreYangModelAsString])
-        cpsAdminService.createAnchor(FUNCTIONAL_TEST_DATASPACE, BOOKSTORE_SCHEMA_SET, BOOKSTORE_ANCHOR)
+        cpsModuleService.createSchemaSet(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_SCHEMA_SET, [bookstore: bookstoreYangModelAsString])
+        cpsModuleService.createSchemaSet(FUNCTIONAL_TEST_DATASPACE_2, BOOKSTORE_SCHEMA_SET, [bookstore: bookstoreYangModelAsString])
     }
 
     def addBookstoreData() {
         def bookstoreJsonData = readResourceDataFile('bookstore/bookstoreData.json')
-        cpsDataService.saveData(FUNCTIONAL_TEST_DATASPACE, BOOKSTORE_ANCHOR, bookstoreJsonData, OffsetDateTime.now())
+        addAnchorsWithData(NUMBER_OF_ANCHORS_PER_DATASPACE_WITH_BOOKSTORE_DATA, FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_SCHEMA_SET, 'bookstoreAnchor', bookstoreJsonData)
+        addAnchorsWithData(NUMBER_OF_ANCHORS_PER_DATASPACE_WITH_BOOKSTORE_DATA, FUNCTIONAL_TEST_DATASPACE_2, BOOKSTORE_SCHEMA_SET, 'bookstoreAnchor', bookstoreJsonData)
     }
 
 }

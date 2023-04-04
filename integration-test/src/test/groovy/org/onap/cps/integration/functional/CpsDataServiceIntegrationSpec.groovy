@@ -33,7 +33,7 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Read bookstore top-level container(s) using #fetchDescendantsOption.'() {
         when: 'get data nodes for bookstore container'
-            def result = objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE, BOOKSTORE_ANCHOR, '/bookstore', fetchDescendantsOption)
+            def result = objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore', fetchDescendantsOption)
         then: 'the tree consist ouf of #expectNumberOfDataNodes data nodes'
             assert countDataNodesInTree(result) == expectNumberOfDataNodes
         and: 'the top level data node has the expected attribute and value'
@@ -48,11 +48,11 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Read bookstore top-level container(s) has correct dataspace and anchor.'() {
         when: 'get data nodes for bookstore container'
-            def result = objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE, BOOKSTORE_ANCHOR, '/bookstore', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
+            def result = objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
         then: 'the correct dataspace was queried'
-            assert result.dataspace.toSet() == [FUNCTIONAL_TEST_DATASPACE].toSet()
+            assert result.dataspace.toSet() == [FUNCTIONAL_TEST_DATASPACE_1].toSet()
         and: 'the correct anchor was queried'
-            assert result.anchorName.toSet() == [BOOKSTORE_ANCHOR].toSet()
+            assert result.anchorName.toSet() == [BOOKSTORE_ANCHOR_1].toSet()
     }
 
 }
