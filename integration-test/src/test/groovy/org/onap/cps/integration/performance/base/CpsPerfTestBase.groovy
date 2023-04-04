@@ -20,11 +20,8 @@
 
 package org.onap.cps.integration.performance.base
 
-import org.onap.cps.spi.FetchDescendantsOption
-
-import java.time.OffsetDateTime
-import org.onap.cps.integration.base.CpsIntegrationSpecBase
 import org.onap.cps.rest.utils.MultipartFileUtil
+import org.onap.cps.spi.FetchDescendantsOption
 import org.springframework.web.multipart.MultipartFile
 
 class CpsPerfTestBase extends PerfTestBase {
@@ -41,8 +38,8 @@ class CpsPerfTestBase extends PerfTestBase {
 
     def setupPerformanceInfraStructure() {
         cpsAdminService.createDataspace(CPS_PERFORMANCE_TEST_DATASPACE)
-        def modelAsString = CpsIntegrationSpecBase.readResourceDataFile('bookstore/bookstore.yang')
-        cpsModuleService.createSchemaSet(CPS_PERFORMANCE_TEST_DATASPACE, CpsIntegrationSpecBase.BOOKSTORE_SCHEMA_SET, [bookstore: modelAsString])
+        def modelAsString = readResourceDataFile('bookstore/bookstore.yang')
+        cpsModuleService.createSchemaSet(CPS_PERFORMANCE_TEST_DATASPACE, BOOKSTORE_SCHEMA_SET, [bookstore: modelAsString])
     }
 
     def createInitialData() {
@@ -55,16 +52,16 @@ class CpsPerfTestBase extends PerfTestBase {
     def createWarmupData() {
         def data = "{\"bookstore\":{}}"
         stopWatch.start()
-        addAnchorsWithData(1, CpsIntegrationSpecBase.BOOKSTORE_SCHEMA_SET, 'warmup', data)
+        addAnchorsWithData(1,  CPS_PERFORMANCE_TEST_DATASPACE, BOOKSTORE_SCHEMA_SET, 'warmup', data)
         stopWatch.stop()
         def durationInMillis = stopWatch.getTotalTimeMillis()
         recordAndAssertPerformance('Creating warmup anchor with tiny data tree', 500, durationInMillis)
     }
 
     def createLargeBookstoresData() {
-        def data = CpsIntegrationSpecBase.readResourceDataFile('bookstore/largeModelData.json')
+        def data = readResourceDataFile('bookstore/largeModelData.json')
         stopWatch.start()
-        addAnchorsWithData(5, CpsIntegrationSpecBase.BOOKSTORE_SCHEMA_SET, 'bookstore', data)
+        addAnchorsWithData(5, CPS_PERFORMANCE_TEST_DATASPACE, BOOKSTORE_SCHEMA_SET, 'bookstore', data)
         stopWatch.stop()
         def durationInMillis = stopWatch.getTotalTimeMillis()
         recordAndAssertPerformance('Creating bookstore anchors with large data tree', 3_000, durationInMillis)
@@ -75,30 +72,23 @@ class CpsPerfTestBase extends PerfTestBase {
         def multipartFile = Mock(MultipartFile)
         multipartFile.getOriginalFilename() >> file.getName()
         multipartFile.getInputStream() >> new FileInputStream(file)
-        cpsModuleService.createSchemaSet(CPS_PERFORMANCE_TEST_DATASPACE, PerfTestBase.LARGE_SCHEMA_SET, MultipartFileUtil.extractYangResourcesMap(multipartFile))
+        cpsModuleService.createSchemaSet(CPS_PERFORMANCE_TEST_DATASPACE, LARGE_SCHEMA_SET, MultipartFileUtil.extractYangResourcesMap(multipartFile))
     }
 
     def addOpenRoadData() {
         def data = generateOpenRoadData(50)
         stopWatch.start()
-        addAnchorsWithData(5, PerfTestBase.LARGE_SCHEMA_SET, 'openroadm', data)
+        addAnchorsWithData(5, CPS_PERFORMANCE_TEST_DATASPACE, LARGE_SCHEMA_SET, 'openroadm', data)
         stopWatch.stop()
         def durationInMillis = stopWatch.getTotalTimeMillis()
         recordAndAssertPerformance('Creating openroadm anchors with large data tree', 25_000, durationInMillis)
     }
 
     def generateOpenRoadData(numberOfNodes) {
-        def innerNode = CpsIntegrationSpecBase.readResourceDataFile('openroadm/innerNode.json')
+        def innerNode = readResourceDataFile('openroadm/innerNode.json')
         return '{ "openroadm-devices": { "openroadm-device": [' +
             (1..numberOfNodes).collect { innerNode.replace('NODE_ID_HERE', it.toString()) }.join(',') +
             ']}}'
-    }
-
-    def addAnchorsWithData(numberOfAnchors, schemaSetName, anchorNamePrefix, data) {
-        (1..numberOfAnchors).each {
-            cpsAdminService.createAnchor(CPS_PERFORMANCE_TEST_DATASPACE, schemaSetName, anchorNamePrefix + it)
-            cpsDataService.saveData(CPS_PERFORMANCE_TEST_DATASPACE, anchorNamePrefix + it, data, OffsetDateTime.now())
-        }
     }
 
     def 'Warm the database'() {
