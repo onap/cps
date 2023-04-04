@@ -45,10 +45,49 @@
             "authors": ["Neil Gaiman", "Terry Pratchett"],
             "pub_year": 2006,
             "price": 13
+          },
+          {
+            "title": "A Book with No Language",
+            "lang": "",
+            "authors": ["Joe Bloggs"],
+            "pub_year": 2023,
+            "price": 20
+          }
+        ]
+      },
+      {
+        "code": 4,
+        "name": "Computing",
+        "books" : [
+          {
+            "title": "Debian GNU/Linux",
+            "lang": "German",
+            "authors": ["Peter H. Ganten", "Wulf Alex"],
+            "pub_year": 2007,
+            "price": 39
+          },
+          {
+            "title": "Logarithm tables",
+            "lang": "N/A",
+            "authors": ["Joe Bloggs [author]"],
+            "pub_year": 2009,
+            "price": 11
+          }
+        ]
+      },
+      {
+        "code": 5,
+        "name": "Science fiction",
+        "books" : [
+          {
+            "title": "Catching Fire: The Hunger Games [Book 2]",
+            "lang": "English",
+            "authors": ["Suzanne Collins"],
+            "pub_year": 2009,
+            "price": 29
           }
         ]
       }
-
     ]
   }
 }
