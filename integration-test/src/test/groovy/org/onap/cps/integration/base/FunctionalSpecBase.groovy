@@ -20,8 +20,6 @@
 
 package org.onap.cps.integration.base
 
-import java.time.OffsetDateTime
-
 class FunctionalSpecBase extends CpsIntegrationSpecBase {
 
     def static initialized = false
@@ -38,12 +36,15 @@ class FunctionalSpecBase extends CpsIntegrationSpecBase {
         cpsAdminService.createDataspace(FUNCTIONAL_TEST_DATASPACE)
         def bookstoreYangModelAsString = readResourceDataFile('bookstore/bookstore.yang')
         cpsModuleService.createSchemaSet(FUNCTIONAL_TEST_DATASPACE, BOOKSTORE_SCHEMA_SET, [bookstore: bookstoreYangModelAsString])
-        cpsAdminService.createAnchor(FUNCTIONAL_TEST_DATASPACE, BOOKSTORE_SCHEMA_SET, BOOKSTORE_ANCHOR)
+
+        cpsAdminService.createDataspace(FUNCTIONAL_TEST_DUMMY_DATASPACE)
+        cpsModuleService.createSchemaSet(FUNCTIONAL_TEST_DUMMY_DATASPACE, BOOKSTORE_SCHEMA_SET, [bookstore: bookstoreYangModelAsString])
     }
 
     def addBookstoreData() {
         def bookstoreJsonData = readResourceDataFile('bookstore/bookstoreData.json')
-        cpsDataService.saveData(FUNCTIONAL_TEST_DATASPACE, BOOKSTORE_ANCHOR, bookstoreJsonData, OffsetDateTime.now())
+        addAnchorsWithData(2, FUNCTIONAL_TEST_DATASPACE, BOOKSTORE_SCHEMA_SET, 'bookstoreAnchor', bookstoreJsonData)
+        addAnchorsWithData(1, FUNCTIONAL_TEST_DUMMY_DATASPACE, BOOKSTORE_SCHEMA_SET, 'bookstoreAnchor', bookstoreJsonData)
     }
 
 }
