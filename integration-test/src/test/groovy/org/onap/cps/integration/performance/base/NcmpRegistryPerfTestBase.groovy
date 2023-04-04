@@ -40,12 +40,12 @@ class NcmpRegistryPerfTestBase extends PerfTestBase {
 
     def setupPerformanceInfraStructure() {
         cpsAdminService.createDataspace(NCMP_PERFORMANCE_TEST_DATASPACE)
-        def modelAsString = CpsIntegrationSpecBase.readResourceDataFile('ncmp-registry/dmi-registry@2022-05-10.yang')
+        def modelAsString = readResourceDataFile('ncmp-registry/dmi-registry@2022-05-10.yang')
         cpsModuleService.createSchemaSet(NCMP_PERFORMANCE_TEST_DATASPACE, REGISTRY_SCHEMA_SET, [registry: modelAsString])
     }
 
     def createInitialData() {
-        def data = CpsIntegrationSpecBase.readResourceDataFile('ncmp-registry/1000-cmhandles.json')
+        def data = readResourceDataFile('ncmp-registry/1000-cmhandles.json')
         cpsAdminService.createAnchor(NCMP_PERFORMANCE_TEST_DATASPACE, REGISTRY_SCHEMA_SET, REGISTRY_ANCHOR)
         cpsDataService.saveData(NCMP_PERFORMANCE_TEST_DATASPACE, REGISTRY_ANCHOR, data, OffsetDateTime.now())
     }
