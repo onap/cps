@@ -20,11 +20,9 @@
 
 package org.onap.cps.integration.performance.base
 
-import org.onap.cps.spi.FetchDescendantsOption
-
-import java.time.OffsetDateTime
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
 import org.onap.cps.rest.utils.MultipartFileUtil
+import org.onap.cps.spi.FetchDescendantsOption
 import org.springframework.web.multipart.MultipartFile
 
 class CpsPerfTestBase extends PerfTestBase {
@@ -85,13 +83,6 @@ class CpsPerfTestBase extends PerfTestBase {
         stopWatch.stop()
         def durationInMillis = stopWatch.getTotalTimeMillis()
         recordAndAssertPerformance('Creating openroadm anchors with large data tree', 25_000, durationInMillis)
-    }
-
-    def addAnchorsWithData(numberOfAnchors, schemaSetName, anchorNamePrefix, data) {
-        (1..numberOfAnchors).each {
-            cpsAdminService.createAnchor(CPS_PERFORMANCE_TEST_DATASPACE, schemaSetName, anchorNamePrefix + it)
-            cpsDataService.saveData(CPS_PERFORMANCE_TEST_DATASPACE, anchorNamePrefix + it, data, OffsetDateTime.now())
-        }
     }
 
     def 'Warm the database'() {
