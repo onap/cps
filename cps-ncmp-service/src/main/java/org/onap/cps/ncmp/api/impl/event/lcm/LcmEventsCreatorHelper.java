@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2022 Nordix Foundation
+ * Copyright (C) 2022-2023 Nordix Foundation
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -177,10 +177,8 @@ public class LcmEventsCreatorHelper {
     private static boolean hasDataSyncEnabledFlagChanged(final NcmpServiceCmHandle targetNcmpServiceCmHandle,
             final NcmpServiceCmHandle existingNcmpServiceCmHandle) {
 
-        final Boolean targetDataSyncFlag = targetNcmpServiceCmHandle.getCompositeState() == null
-                                          ? null : targetNcmpServiceCmHandle.getCompositeState().getDataSyncEnabled();
-        final Boolean existingDataSyncFlag = existingNcmpServiceCmHandle.getCompositeState() == null
-                                          ? null : existingNcmpServiceCmHandle.getCompositeState().getDataSyncEnabled();
+        final Boolean targetDataSyncFlag = targetNcmpServiceCmHandle.getCompositeState().getDataSyncEnabled();
+        final Boolean existingDataSyncFlag = existingNcmpServiceCmHandle.getCompositeState().getDataSyncEnabled();
 
         if (targetDataSyncFlag == null) {
             return existingDataSyncFlag != null;

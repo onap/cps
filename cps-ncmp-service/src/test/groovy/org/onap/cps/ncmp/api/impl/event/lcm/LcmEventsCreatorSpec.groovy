@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2022 Nordix Foundation
+ * Copyright (C) 2022-2023 Nordix Foundation
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,11 +36,11 @@ class LcmEventsCreatorSpec extends Specification {
     def cmHandleId = 'test-cm-handle'
 
     def 'Map the LcmEvent for #operation'() {
-        given: 'NCMP cm handle details with current and old details'
+        given: 'NCMP cm handle details with current and old properties'
             def existingNcmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, compositeState: new CompositeState(dataSyncEnabled: true, cmHandleState: existingCmHandleState),
-                publicProperties: ['publicProperty1': 'value1', 'publicProperty2': 'value2', 'publicProperty3': 'value3'])
-            def targetNcmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, compositeState: new CompositeState(dataSyncEnabled: false, cmHandleState: targetCmHandleState),
-                publicProperties: ['publicProperty1': 'value1', 'publicProperty2': 'value22'])
+                    publicProperties: existingPublicProperties)
+            def targetNcmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, compositeState: new CompositeState(dataSyncEnabled: true, cmHandleState: targetCmHandleState),
+                publicProperties: targetPublicProperties)
         when: 'the event is populated'
             def result = objectUnderTest.populateLcmEvent(cmHandleId, targetNcmpServiceCmHandle, existingNcmpServiceCmHandle)
         then: 'event header is mapped correctly'
@@ -49,21 +49,31 @@ class LcmEventsCreatorSpec extends Specification {
             assert result.eventType == LcmEventType.UPDATE.eventType
         and: 'event payload is mapped correctly with correct cmhandle id'
             assert result.event.cmHandleId == cmHandleId
-        and: 'it should have correct old values'
+        and: 'it should have correct old state and properties'
             assert result.event.oldValues.cmHandleState == expectedExistingCmHandleState
-            assert result.event.oldValues.dataSyncEnabled == true
-        and: 'the correct new values'
+            assert result.event.oldValues.cmHandleProperties == [expectedExistingPublicProperties]
+        and: 'the correct new state and properties'
+            assert result.event.newValues.cmHandleProperties == [expectedTargetPublicProperties]
             assert result.event.newValues.cmHandleState == expectedTargetCmHandleState
-            assert result.event.newValues.dataSyncEnabled == false
-        and: 'cmhandle properties are just the one which are differing'
-            assert result.event.oldValues.cmHandleProperties == [['publicProperty2': 'value2', 'publicProperty3': 'value3']]
-            assert result.event.newValues.cmHandleProperties == [['publicProperty2': 'value22']]
         where: 'following parameters are provided'
-            operation  | existingCmHandleState | targetCmHandleState || expectedExistingCmHandleState | expectedTargetCmHandleState
-            'UPDATE'   | ADVISED               | READY               || Values.CmHandleState.ADVISED  | Values.CmHandleState.READY
-            'DELETING' | READY                 | DELETING            || Values.CmHandleState.READY    | Values.CmHandleState.DELETING
+            operation   | existingCmHandleState | targetCmHandleState | existingPublicProperties                                    | targetPublicProperties         || expectedExistingPublicProperties                            | expectedTargetPublicProperties  | expectedExistingCmHandleState | expectedTargetCmHandleState
+            'UPDATE'    | ADVISED               | READY               | ['publicProperty1': 'value1', 'publicProperty2': 'value2']  | ['publicProperty1': 'value11'] || ['publicProperty1': 'value1', 'publicProperty2': 'value2']  | ['publicProperty1': 'value11']  | Values.CmHandleState.ADVISED  | Values.CmHandleState.READY
+            'DELETING'  | READY                 | DELETING            | ['publicProperty1': 'value3', 'publicProperty2': 'value4']  | ['publicProperty1': 'value33'] || ['publicProperty1': 'value3', 'publicProperty2': 'value4']  | ['publicProperty1': 'value33']  | Values.CmHandleState.READY    | Values.CmHandleState.DELETING
+            'CHANGE'    | READY                 | READY               | ['publicProperty1': 'value3', 'publicProperty2': 'value4']  | ['publicProperty1': 'value33'] || ['publicProperty1': 'value3', 'publicProperty2': 'value4']  | ['publicProperty1': 'value33']  | null                          | null
+    }
 
-
+    def 'Map the LcmEvent for all properties NO CHANGE'() {
+        given: 'NCMP cm handle details without any changes'
+            def publicProperties = ['publicProperty1': 'value3', 'publicProperty2': 'value4']
+            def existingNcmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, compositeState: new CompositeState(dataSyncEnabled: true, cmHandleState: READY),
+                    publicProperties: publicProperties)
+            def targetNcmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, compositeState: new CompositeState(dataSyncEnabled: true, cmHandleState: READY),
+                    publicProperties: publicProperties)
+        when: 'the event is populated'
+            def result = objectUnderTest.populateLcmEvent(cmHandleId, targetNcmpServiceCmHandle, existingNcmpServiceCmHandle)
+        then: 'Properties are just the one which are same'
+            assert result.event.oldValues == null
+            assert result.event.newValues == null
     }
 
     def 'Map the LcmEvent for operation CREATE'() {
