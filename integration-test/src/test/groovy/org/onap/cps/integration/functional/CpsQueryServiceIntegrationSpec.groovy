@@ -24,6 +24,7 @@ import org.onap.cps.api.CpsQueryService
 import org.onap.cps.integration.base.FunctionalSpecBase
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.exceptions.CpsPathException
+import spock.lang.Ignore
 
 import static org.onap.cps.spi.FetchDescendantsOption.DIRECT_CHILDREN_ONLY
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
@@ -37,7 +38,7 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Query bookstore using CPS path where #scenario.'() {
         when: 'query data nodes for bookstore container'
-            def result = objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE, BOOKSTORE_ANCHOR, cpsPath, INCLUDE_ALL_DESCENDANTS)
+            def result = objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, cpsPath, INCLUDE_ALL_DESCENDANTS)
         then: 'the result contains expected number of nodes'
             assert result.size() == expectedResultSize
         and: 'the result contains the expected leaf values'
@@ -54,7 +55,7 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Cps Path query for leaf value(s) with #scenario.'() {
         when: 'a query is executed to get a data node by the given cps path'
-            def result = objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE, BOOKSTORE_ANCHOR, cpsPath, fetchDescendantsOption)
+            def result = objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, cpsPath, fetchDescendantsOption)
         then: 'the correct number of parent nodes are returned'
             assert result.size() == expectedNumberOfParentNodes
         and: 'the correct total number of data nodes are returned'
@@ -70,7 +71,7 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Query for attribute by cps path with cps paths that return no data because of #scenario.'() {
         when: 'a query is executed to get data nodes for the given cps path'
-            def result = objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE, BOOKSTORE_ANCHOR, cpsPath, OMIT_DESCENDANTS)
+            def result = objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, cpsPath, OMIT_DESCENDANTS)
         then: 'no data is returned'
             assert result.isEmpty()
         where: 'following cps queries are performed'
@@ -82,7 +83,7 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Cps Path query using descendant anywhere and #type (further) descendants.'() {
         when: 'a query is executed to get a data node by the given cps path'
-            def result = objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE, BOOKSTORE_ANCHOR, '/bookstore/categories[@code="1"]', fetchDescendantsOption)
+            def result = objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore/categories[@code="1"]', fetchDescendantsOption)
         then: 'the data node has the correct number of children'
             assert result[0].childDataNodes.xpath.sort() == expectedChildNodes.sort()
         where: 'the following data is used'
@@ -94,14 +95,14 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Cps Path query for all books.'() {
         when: 'a query is executed to get all books'
-            def result = objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE, BOOKSTORE_ANCHOR, '//books', OMIT_DESCENDANTS)
+            def result = objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '//books', OMIT_DESCENDANTS)
         then: 'the expected number of books are returned'
             assert result.size() == 9
     }
 
     def 'Cps Path query using descendant anywhere with #scenario.'() {
         when: 'a query is executed to get a data node by the given cps path'
-            def result = objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE, BOOKSTORE_ANCHOR, cpsPath, OMIT_DESCENDANTS)
+            def result = objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, cpsPath, OMIT_DESCENDANTS)
         then: 'xpaths of the retrieved data nodes are as expected'
             def bookTitles = result.collect { it.getLeaves().get('title') }
             assert bookTitles.sort() == expectedBookTitles.sort()
@@ -123,7 +124,7 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Cps Path query using descendant anywhere with #scenario condition for a container element.'() {
         when: 'a query is executed to get a data node by the given cps path'
-            def result = objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE, BOOKSTORE_ANCHOR, cpsPath, OMIT_DESCENDANTS)
+            def result = objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, cpsPath, OMIT_DESCENDANTS)
         then: 'book titles from the retrieved data nodes are as expected'
             def bookTitles = result.collect { it.getLeaves().get('title') }
             assert bookTitles.sort() == expectedBookTitles.sort()
@@ -138,7 +139,7 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Cps Path query using descendant anywhere with #scenario condition(s) for a list element.'() {
         when: 'a query is executed to get a data node by the given cps path'
-            def result = objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE, BOOKSTORE_ANCHOR, cpsPath, INCLUDE_ALL_DESCENDANTS)
+            def result = objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, cpsPath, INCLUDE_ALL_DESCENDANTS)
         then: 'xpaths of the retrieved data nodes are as expected'
             result.xpath.toList() == ["/bookstore/premises/addresses[@house-number='2' and @street='Main Street']"]
         where: 'the following data is used'
@@ -151,7 +152,7 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Query for attribute by cps path of type ancestor with #scenario.'() {
         when: 'the given cps path is parsed'
-            def result = objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE, BOOKSTORE_ANCHOR, cpsPath, OMIT_DESCENDANTS)
+            def result = objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, cpsPath, OMIT_DESCENDANTS)
         then: 'the xpaths of the retrieved data nodes are as expected'
             assert result.xpath.sort() == expectedXPaths.sort()
         where: 'the following data is used'
@@ -169,7 +170,7 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Query for attribute by cps path of type ancestor with #scenario descendants.'() {
         when: 'the given cps path is parsed'
-            def result = objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE, BOOKSTORE_ANCHOR, '//books/ancestor::bookstore', fetchDescendantsOption)
+            def result = objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '//books/ancestor::bookstore', fetchDescendantsOption)
         then: 'the xpaths of the retrieved data nodes are as expected'
             assert countDataNodesInTree(result) == expectedNumberOfNodes
         where: 'the following data is used'
@@ -181,7 +182,70 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Cps Path query with syntax error throws a CPS Path Exception.'() {
         when: 'trying to execute a query with a syntax (parsing) error'
-            objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE, BOOKSTORE_ANCHOR, 'cpsPath that cannot be parsed' , OMIT_DESCENDANTS)
+            objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, 'cpsPath that cannot be parsed' , OMIT_DESCENDANTS)
+        then: 'a cps path exception is thrown'
+            thrown(CpsPathException)
+    }
+
+    @Ignore
+    def 'Cps Path query across anchors with #scenario.'() {
+        when: 'a query is executed to get a data nodes across anchors by the given CpsPath'
+            def result = objectUnderTest.queryDataNodesAcrossAnchors(FUNCTIONAL_TEST_DATASPACE_1, cpsPath, OMIT_DESCENDANTS)
+        then: 'the correct dataspace is queried'
+            assert result.dataspace.toSet() == [FUNCTIONAL_TEST_DATASPACE_1].toSet()
+        and: 'correct anchors are queried'
+            assert result.anchorName.toSet() == [BOOKSTORE_ANCHOR_1, BOOKSTORE_ANCHOR_2].toSet()
+        and: 'the correct number of nodes is returned'
+            assert result.size() == expectedXpathsPerAnchor.size() * NUMBER_OF_ANCHORS_PER_DATASPACE_WITH_BOOKSTORE_DATA
+        and: 'the queried nodes have expected xpaths'
+            assert result.xpath.toSet() == expectedXpathsPerAnchor.toSet()
+        where: 'the following data is used'
+            scenario                                    | cpsPath                                               || expectedXpathsPerAnchor
+            'container node'                            | '/bookstore'                                          || ["/bookstore"]
+            'list node'                                 | '/bookstore/categories'                               || ["/bookstore/categories[@code='1']", "/bookstore/categories[@code='2']", "/bookstore/categories[@code='3']", "/bookstore/categories[@code='4']"]
+            'string leaf-condition'                     | '/bookstore[@bookstore-name="Easons"]'                || ["/bookstore"]
+            'integer leaf-condition'                    | '/bookstore/categories[@code="1"]/books[@price=15]'   || ["/bookstore/categories[@code='1']/books[@title='The Gruffalo']"]
+            'multiple list-ancestors'                   | '//books/ancestor::categories'                        || ["/bookstore/categories[@code='1']", "/bookstore/categories[@code='2']", "/bookstore/categories[@code='3']", "/bookstore/categories[@code='4']"]
+            'one ancestor with list value'              | '//books/ancestor::categories[@code="1"]'             || ["/bookstore/categories[@code='1']"]
+            'list with index value in the xpath prefix' | '//categories[@code="1"]/books/ancestor::bookstore'   || ["/bookstore"]
+            'ancestor with parent list'                 | '//books/ancestor::bookstore/categories'              || ["/bookstore/categories[@code='1']", "/bookstore/categories[@code='2']", "/bookstore/categories[@code='3']", "/bookstore/categories[@code='4']"]
+            'ancestor with parent list element'         | '//books/ancestor::bookstore/categories[@code="2"]'   || ["/bookstore/categories[@code='2']"]
+            'ancestor combined with text condition'     | '//books/title[text()="Matilda"]/ancestor::bookstore' || ["/bookstore"]
+    }
+
+    @Ignore
+    def 'Cps Path query across anchors with #scenario descendants.'() {
+        when: 'a query is executed to get a data node by the given cps path'
+            def result = objectUnderTest.queryDataNodesAcrossAnchors(FUNCTIONAL_TEST_DATASPACE_1, '/bookstore', fetchDescendantsOption)
+        then: 'the correct dataspace was queried'
+            assert result.dataspace.toSet() == [FUNCTIONAL_TEST_DATASPACE_1].toSet()
+        and: 'correct number of datanodes are returned'
+            assert countDataNodesInTree(result) == expectedNumberOfNodesPerAnchor * NUMBER_OF_ANCHORS_PER_DATASPACE_WITH_BOOKSTORE_DATA
+        where: 'the following data is used'
+            scenario | fetchDescendantsOption  || expectedNumberOfNodesPerAnchor
+            'no'     | OMIT_DESCENDANTS        || 1
+            'direct' | DIRECT_CHILDREN_ONLY    || 6
+            'all'    | INCLUDE_ALL_DESCENDANTS || 17
+    }
+
+    @Ignore
+    def 'Cps Path query across anchors with ancestors and #scenario descendants.'() {
+        when: 'a query is executed to get a data node by the given cps path'
+            def result = objectUnderTest.queryDataNodesAcrossAnchors(FUNCTIONAL_TEST_DATASPACE_1, '//books/ancestor::bookstore', fetchDescendantsOption)
+        then: 'the correct dataspace was queried'
+            assert result.dataspace.toSet() == [FUNCTIONAL_TEST_DATASPACE_1].toSet()
+        and: 'correct number of datanodes are returned'
+            assert countDataNodesInTree(result) == expectedNumberOfNodesPerAnchor * NUMBER_OF_ANCHORS_PER_DATASPACE_WITH_BOOKSTORE_DATA
+        where: 'the following data is used'
+            scenario | fetchDescendantsOption  || expectedNumberOfNodesPerAnchor
+            'no'     | OMIT_DESCENDANTS        || 1
+            'direct' | DIRECT_CHILDREN_ONLY    || 6
+            'all'    | INCLUDE_ALL_DESCENDANTS || 17
+    }
+
+    def 'Cps Path query across anchors with syntax error throws a CPS Path Exception.'() {
+        when: 'trying to execute a query with a syntax (parsing) error'
+            objectUnderTest.queryDataNodesAcrossAnchors(FUNCTIONAL_TEST_DATASPACE_1, 'cpsPath that cannot be parsed' , OMIT_DESCENDANTS)
         then: 'a cps path exception is thrown'
             thrown(CpsPathException)
     }
