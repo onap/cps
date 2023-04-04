@@ -21,37 +21,37 @@ module stores {
             type string;
         }
 
-    list categories {
+        list categories {
 
-        key "code";
+            key "code";
 
-        leaf code {
-            type string;
-        }
-
-        leaf name {
-            type string;
-        }
-
-        list books {
-            key title;
-
-            leaf title {
+            leaf code {
                 type string;
             }
-            leaf lang {
+
+            leaf name {
                 type string;
             }
-            leaf-list authors {
-                type string;
-            }
-            leaf pub_year {
-                type year;
-            }
-            leaf price {
-                type uint64;
+
+            list books {
+                key title;
+
+                leaf title {
+                    type string;
+                }
+                leaf lang {
+                    type string;
+                }
+                leaf-list authors {
+                    type string;
+                }
+                leaf-list editions {
+                    type year;
+                }
+                leaf price {
+                    type uint64;
+                }
             }
         }
-    }
     }
 }
