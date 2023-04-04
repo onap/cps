@@ -32,6 +32,10 @@
 
     <artifactId>cps-ri</artifactId>
 
+    <properties>
+        <minimum-coverage>0.94</minimum-coverage>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
