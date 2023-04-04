@@ -40,6 +40,8 @@ import org.testcontainers.spock.Testcontainers
 import spock.lang.Shared
 import spock.lang.Specification
 
+import java.time.OffsetDateTime
+
 @SpringBootTest(classes = [TestConfig, CpsAdminServiceImpl, CpsValidatorImpl])
 @Testcontainers
 @EnableAutoConfiguration
@@ -69,8 +71,9 @@ class CpsIntegrationSpecBase extends Specification {
 
     def static GENERAL_TEST_DATASPACE = 'generalTestDataspace'
     def static FUNCTIONAL_TEST_DATASPACE = 'functionalTestDataspace'
+    def static FUNCTIONAL_TEST_DUMMY_DATASPACE = 'functionalTestDummyDataspace'
     def static BOOKSTORE_SCHEMA_SET = 'bookstoreSchemaSet'
-    def static BOOKSTORE_ANCHOR = 'bookstoreAnchor'
+    def static BOOKSTORE_ANCHOR = 'bookstoreAnchor1'
 
     def static initialized = false
 
@@ -106,5 +109,12 @@ class CpsIntegrationSpecBase extends Specification {
             return false
         }
         return true
+    }
+
+    def addAnchorsWithData(numberOfAnchors, dataspaceName, schemaSetName, anchorNamePrefix, data) {
+        (1..numberOfAnchors).each {
+            cpsAdminService.createAnchor(dataspaceName, schemaSetName, anchorNamePrefix + it)
+            cpsDataService.saveData(dataspaceName, anchorNamePrefix + it, data, OffsetDateTime.now())
+        }
     }
 }
