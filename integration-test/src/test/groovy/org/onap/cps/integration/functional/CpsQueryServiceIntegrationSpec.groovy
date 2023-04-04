@@ -22,16 +22,11 @@ package org.onap.cps.integration.functional
 
 import org.onap.cps.api.CpsQueryService
 import org.onap.cps.integration.base.FunctionalSpecBase
-import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.exceptions.CpsPathException
-import org.springframework.test.context.jdbc.Sql
-
-import java.util.stream.Collectors
 
 import static org.onap.cps.spi.FetchDescendantsOption.DIRECT_CHILDREN_ONLY
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
-import static org.onap.cps.spi.FetchDescendantsOption.getFetchDescendantsOption
 
 class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
 
@@ -52,8 +47,36 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
             })
         where:
             scenario                                      | cpsPath                                    || expectedResultSize | expectedLeaves
-            'the and condition is used'                   | '//books[@lang="English" and @price=15]'   || 2                  | [lang:"English", price:15]
-            'the and is used where result does not exist' | '//books[@lang="English" and @price=1000]' || 0                  | []
+            'the AND condition is used'                   | '//books[@lang="English" and @price=15]'   || 2                  | [lang:"English", price:15]
+            'the AND is used where result does not exist' | '//books[@lang="English" and @price=1000]' || 0                  | []
+    }
+
+    def 'Cps Path query for all books.'() {
+        when: 'a query is executed to get all books'
+            def result = objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE, BOOKSTORE_ANCHOR, '//books', OMIT_DESCENDANTS)
+        then: 'the expected number of books are returned'
+            assert result.size() == 7
+    }
+
+    def 'Cps Path query using descendant anywhere with #scenario.'() {
+        when: 'a query is executed to get a data node by the given cps path'
+            def result = objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE, BOOKSTORE_ANCHOR, cpsPath, OMIT_DESCENDANTS)
+        then: 'xpaths of the retrieved data nodes are as expected'
+            assert result.xpath.sort() == expectedXPaths.sort()
+        where: 'the following data is used'
+            scenario                                                  | cpsPath                                     || expectedXPaths
+            'descendant with string leaf condition'                   | '//categories[@code="2"]'                   || ["/bookstore/categories[@code='2']"]
+            'descendant with text condition on leaf'                  | '//books/title[text()="Matilda"]'           || ["/bookstore/categories[@code='1']/books[@title='Matilda']"]
+            'descendant with text condition case mismatch'            | '//books/title[text()="matilda"]'           || []
+            'descendant with text condition on int leaf'              | '//books/price[text()="10"]'                || ["/bookstore/categories[@code='1']/books[@title='Matilda']"]
+            'descendant with text condition on leaf-list'             | '//books/authors[text()="Terry Pratchett"]' || ["/bookstore/categories[@code='3']/books[@title='Good Omens']"]
+            'descendant with text condition partial match'            | '//books/authors[text()="Terry"]'           || []
+            'descendant with text condition (existing) empty string'  | '//books/lang[text()=""]'                   || ["/bookstore/categories[@code='3']/books[@title='A Book with No Language']"]
+            'descendant with text condition on int leaf-list'         | '//books/editions[text()="2000"]'           || ["/bookstore/categories[@code='1']/books[@title='Matilda']"]
+            'descendant name match of leaf containing /'              | '//books[@lang="N/A"]'                      || ["/bookstore/categories[@code='4']/books[@title='Logarithm tables']"]
+            'descendant with text condition on leaf containing /'     | '//books/lang[text()="N/A"]'                || ["/bookstore/categories[@code='4']/books[@title='Logarithm tables']"]
+            'descendant name match of key containing /'               | '//books[@title="Debian GNU/Linux"]'        || ["/bookstore/categories[@code='4']/books[@title='Debian GNU/Linux']"]
+            'descendant with text condition on key containing /'      | '//books/title[text()="Debian GNU/Linux"]'  || ["/bookstore/categories[@code='4']/books[@title='Debian GNU/Linux']"]
     }
 
     def 'Query for attribute by cps path of type ancestor with #scenario.'() {
@@ -63,11 +86,11 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
             assert result.xpath.sort() == expectedXPaths.sort()
         where: 'the following data is used'
             scenario                                    | cpsPath                                               || expectedXPaths
-            'multiple list-ancestors'                   | '//books/ancestor::categories'                        || ["/bookstore/categories[@code='1']", "/bookstore/categories[@code='2']", "/bookstore/categories[@code='3']"]
+            'multiple list-ancestors'                   | '//books/ancestor::categories'                        || ["/bookstore/categories[@code='1']", "/bookstore/categories[@code='2']", "/bookstore/categories[@code='3']", "/bookstore/categories[@code='4']"]
             'one ancestor with list value'              | '//books/ancestor::categories[@code="1"]'             || ["/bookstore/categories[@code='1']"]
             'top ancestor'                              | '//books/ancestor::bookstore'                         || ["/bookstore"]
             'list with index value in the xpath prefix' | '//categories[@code="1"]/books/ancestor::bookstore'   || ["/bookstore"]
-            'ancestor with parent list'                 | '//books/ancestor::bookstore/categories'              || ["/bookstore/categories[@code='1']", "/bookstore/categories[@code='2']", "/bookstore/categories[@code='3']"]
+            'ancestor with parent list'                 | '//books/ancestor::bookstore/categories'              || ["/bookstore/categories[@code='1']", "/bookstore/categories[@code='2']", "/bookstore/categories[@code='3']", "/bookstore/categories[@code='4']"]
             'ancestor with parent'                      | '//books/ancestor::bookstore/categories[@code="2"]'   || ["/bookstore/categories[@code='2']"]
             'ancestor combined with text condition'     | '//books/title[text()="Matilda"]/ancestor::bookstore' || ["/bookstore"]
             'ancestor with parent that does not exist'  | '//books/ancestor::parentDoesNoExist/categories'      || []
@@ -82,8 +105,8 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
         where: 'the following data is used'
             scenario | fetchDescendantsOption  || expectedNumberOfNodes
             'no'     | OMIT_DESCENDANTS        || 1
-            'direct' | DIRECT_CHILDREN_ONLY    || 4
-            'all'    | INCLUDE_ALL_DESCENDANTS || 8
+            'direct' | DIRECT_CHILDREN_ONLY    || 5
+            'all'    | INCLUDE_ALL_DESCENDANTS || 12
     }
 
     def 'Cps Path query with syntax error throws a CPS Path Exception.'() {

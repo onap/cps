@@ -21,12 +21,13 @@
 
 package org.onap.cps.integration.functional
 
+import org.onap.cps.api.CpsDataService
 import org.onap.cps.integration.base.FunctionalSpecBase
 import org.onap.cps.spi.FetchDescendantsOption
 
 class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
 
-    def objectUnderTest
+    CpsDataService objectUnderTest
 
     def setup() { objectUnderTest = cpsDataService }
 
@@ -40,8 +41,9 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
         where: 'the following option is used'
             fetchDescendantsOption                         || expectNumberOfDataNodes
             FetchDescendantsOption.OMIT_DESCENDANTS        || 1
-            FetchDescendantsOption.DIRECT_CHILDREN_ONLY    || 4
-            FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS || 8
-            new FetchDescendantsOption(2)                  || 8
+            FetchDescendantsOption.DIRECT_CHILDREN_ONLY    || 5
+            FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS || 12
+            new FetchDescendantsOption(2)                  || 12
     }
+
 }

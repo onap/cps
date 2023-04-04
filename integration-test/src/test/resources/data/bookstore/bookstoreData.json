@@ -10,14 +10,14 @@
             "title": "Matilda",
             "lang": "English",
             "authors": ["Roald Dahl"],
-            "pub_year": 1988,
+            "editions": [1988, 2000],
             "price": 10
           },
           {
             "title": "The Gruffalo",
             "lang": "English",
             "authors": ["Julia Donaldson"],
-            "pub_year": 1999,
+            "editions": [1999],
             "price": 15
           }
         ]
@@ -30,7 +30,7 @@
             "title": "Annihilation",
             "lang": "English",
             "authors": ["Jeff VanderMeer"],
-            "pub_year": 2014,
+            "editions": [2014],
             "price": 15
           }
         ]
@@ -43,12 +43,38 @@
             "title": "Good Omens",
             "lang": "English",
             "authors": ["Neil Gaiman", "Terry Pratchett"],
-            "pub_year": 2006,
+            "editions": [2006],
             "price": 13
+          },
+          {
+            "title": "A Book with No Language",
+            "lang": "",
+            "authors": ["Joe Bloggs"],
+            "editions": [2023],
+            "price": 20
+          }
+        ]
+      },
+      {
+        "code": 4,
+        "name": "Computing",
+        "books" : [
+          {
+            "title": "Debian GNU/Linux",
+            "lang": "German",
+            "authors": ["Peter H. Ganten", "Wulf Alex"],
+            "editions": [2007, 2013, 2021],
+            "price": 39
+          },
+          {
+            "title": "Logarithm tables",
+            "lang": "N/A",
+            "authors": ["Joe Bloggs"],
+            "editions": [2009],
+            "price": 11
           }
         ]
       }
-
     ]
   }
 }
