@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "91f6f79d_d688a86d",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2023-04-04T11:02:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "10d3cf61_254ef150",
+      "range": {
+        "startLine": 100,
+        "startChar": 0,
+        "endLine": 104,
+        "endChar": 9
+      },
+      "revId": "5a51423200924bceb7139aa611734d12c876a52d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9dcb6e96_b66b7edd",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceQueryDataNodeSpec.groovy",
         "patchSetId": 24
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "b47534ae_f1b5106a",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceQueryDataNodeSpec.groovy",
+        "patchSetId": 24
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2023-04-04T11:02:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9dcb6e96_b66b7edd",
+      "range": {
+        "startLine": 178,
+        "startChar": 143,
+        "endLine": 178,
+        "endChar": 238
+      },
+      "revId": "5a51423200924bceb7139aa611734d12c876a52d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a4d2be7c_7135238b",
         "filename": "cps-ri/src/test/resources/data/cps-path-query.sql",
         "patchSetId": 24
@@ -62,6 +110,24 @@
       "revId": "5a51423200924bceb7139aa611734d12c876a52d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1ffc4a5_eb029e28",
+        "filename": "cps-ri/src/test/resources/data/cps-path-query.sql",
+        "patchSetId": 24
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2023-04-04T11:02:28Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "a4d2be7c_7135238b",
+      "revId": "5a51423200924bceb7139aa611734d12c876a52d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
