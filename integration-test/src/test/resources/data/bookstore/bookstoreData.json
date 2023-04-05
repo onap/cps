@@ -45,10 +45,23 @@
             "authors": ["Neil Gaiman", "Terry Pratchett"],
             "pub_year": 2006,
             "price": 13
+          },
+          {
+            "title": "The Colour of Magic",
+            "lang": "English",
+            "authors": ["Terry Pratchett"],
+            "pub_year": 1983,
+            "price": 12
+          },
+          {
+            "title": "The Light Fantastic",
+            "lang": "English",
+            "authors": ["Terry Pratchett"],
+            "pub_year": 1986,
+            "price": 14
           }
         ]
       }
-
     ]
   }
 }

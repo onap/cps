@@ -22,16 +22,11 @@ package org.onap.cps.integration.functional
 
 import org.onap.cps.api.CpsQueryService
 import org.onap.cps.integration.base.FunctionalSpecBase
-import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.exceptions.CpsPathException
-import org.springframework.test.context.jdbc.Sql
-
-import java.util.stream.Collectors
 
 import static org.onap.cps.spi.FetchDescendantsOption.DIRECT_CHILDREN_ONLY
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
-import static org.onap.cps.spi.FetchDescendantsOption.getFetchDescendantsOption
 
 class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
 
@@ -52,8 +47,23 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
             })
         where:
             scenario                                      | cpsPath                                    || expectedResultSize | expectedLeaves
-            'the and condition is used'                   | '//books[@lang="English" and @price=15]'   || 2                  | [lang:"English", price:15]
-            'the and is used where result does not exist' | '//books[@lang="English" and @price=1000]' || 0                  | []
+            'the AND condition is used'                   | '//books[@lang="English" and @price=15]'   || 2                  | [lang:"English", price:15]
+            'the AND is used where result does not exist' | '//books[@lang="English" and @price=1000]' || 0                  | []
+    }
+
+    def 'Cps Path query using descendant anywhere with #scenario condition for a container element.'() {
+        when: 'a query is executed to get a data node by the given cps path'
+            def result = objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE, BOOKSTORE_ANCHOR, cpsPath, OMIT_DESCENDANTS)
+        then: 'book titles from the retrieved data nodes are as expected'
+            def bookTitles = result.collect { it.getLeaves().get('title') }
+            assert bookTitles.sort() == expectedBookTitles.sort()
+        where: 'the following data is used'
+            scenario                   | cpsPath                                                     || expectedBookTitles
+            'one leaf'                 | '//books[@pub_year=1986]'                                   || ['The Light Fantastic']
+            'one text'                 | '//books/authors[text()="Terry Pratchett"]'                 || ['Good Omens', 'The Colour of Magic', 'The Light Fantastic']
+            'more than one leaf'       | '//books[@price=12 and @pub_year=1983]'                     || ['The Colour of Magic']
+            'leaves reversed in order' | '//books[@pub_year=1983 and @price=12]'                     || ['The Colour of Magic']
+            'leaf and text'            | '//books[@pub_year=1986]/authors[text()="Terry Pratchett"]' || ['The Light Fantastic']
     }
 
     def 'Query for attribute by cps path of type ancestor with #scenario.'() {
@@ -83,7 +93,7 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
             scenario | fetchDescendantsOption  || expectedNumberOfNodes
             'no'     | OMIT_DESCENDANTS        || 1
             'direct' | DIRECT_CHILDREN_ONLY    || 4
-            'all'    | INCLUDE_ALL_DESCENDANTS || 8
+            'all'    | INCLUDE_ALL_DESCENDANTS || 10
     }
 
     def 'Cps Path query with syntax error throws a CPS Path Exception.'() {
