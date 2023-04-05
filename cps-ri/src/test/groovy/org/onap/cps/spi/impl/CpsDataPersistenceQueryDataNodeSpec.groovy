@@ -38,24 +38,6 @@ class CpsDataPersistenceQueryDataNodeSpec extends CpsPersistenceSpecBase {
     static final String SET_DATA = '/data/cps-path-query.sql'
 
     @Sql([CLEAR_DATA, SET_DATA])
-    def 'Cps Path query using descendant anywhere with #scenario condition(s) for a container element.'() {
-        when: 'a query is executed to get a data node by the given cps path'
-            def result = objectUnderTest.queryDataNodes(DATASPACE_NAME, ANCHOR_FOR_SHOP_EXAMPLE, cpsPath, OMIT_DESCENDANTS)
-        then: 'the correct number of data nodes are retrieved'
-            result.size() == expectedXPaths.size()
-        and: 'xpaths of the retrieved data nodes are as expected'
-            for (int i = 0; i < result.size(); i++) {
-                assert result[i].getXpath() == expectedXPaths[i]
-            }
-        where: 'the following data is used'
-            scenario                   | cpsPath                                               || expectedXPaths
-            'one leaf'                 | '//author[@FirstName="Joe"]'                          || ["/shops/shop[@id='1']/categories[@code='1']/book/author[@FirstName='Joe' and @Surname='Bloggs']", "/shops/shop[@id='1']/categories[@code='2']/book/author[@FirstName='Joe' and @Surname='Smith']"]
-            'more than one leaf'       | '//author[@FirstName="Joe" and @Surname="Bloggs"]'    || ["/shops/shop[@id='1']/categories[@code='1']/book/author[@FirstName='Joe' and @Surname='Bloggs']"]
-            'leaves reversed in order' | '//author[@Surname="Bloggs" and @FirstName="Joe"]'    || ["/shops/shop[@id='1']/categories[@code='1']/book/author[@FirstName='Joe' and @Surname='Bloggs']"]
-            'leaf and text condition'  | '//author[@FirstName="Joe"]/Surname[text()="Bloggs"]' || ["/shops/shop[@id='1']/categories[@code='1']/book/author[@FirstName='Joe' and @Surname='Bloggs']"]
-    }
-
-    @Sql([CLEAR_DATA, SET_DATA])
     def 'Cps Path query using descendant anywhere with #scenario condition(s) for a list element.'() {
         when: 'a query is executed to get a data node by the given cps path'
             def result = objectUnderTest.queryDataNodes(DATASPACE_NAME, ANCHOR_FOR_SHOP_EXAMPLE, cpsPath, OMIT_DESCENDANTS)

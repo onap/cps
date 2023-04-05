@@ -65,7 +65,7 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
             'integer and descendants'              | '/bookstore/categories[@code="1"]/books[@price=15]'        | INCLUDE_ALL_DESCENDANTS        || 1                           | 1
             'no condition and no descendants'      | '/bookstore/categories'                                    | OMIT_DESCENDANTS               || 4                           | 4
             'no condition and level 1 descendants' | '/bookstore'                                               | new FetchDescendantsOption(1)  || 1                           | 5
-            'no condition and level 2 descendants' | '/bookstore'                                               | new FetchDescendantsOption(2)  || 1                           | 12
+            'no condition and level 2 descendants' | '/bookstore'                                               | new FetchDescendantsOption(2)  || 1                           | 14
     }
 
     def 'Query for attribute by cps path with cps paths that return no data because of #scenario.'() {
@@ -96,7 +96,7 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
         when: 'a query is executed to get all books'
             def result = objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE, BOOKSTORE_ANCHOR, '//books', OMIT_DESCENDANTS)
         then: 'the expected number of books are returned'
-            assert result.size() == 7
+            assert result.size() == 9
     }
 
     def 'Cps Path query using descendant anywhere with #scenario.'() {
@@ -111,7 +111,7 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
             'text condition on leaf'                 | '//books/title[text()="Matilda"]'           || ["Matilda"]
             'text condition case mismatch'           | '//books/title[text()="matilda"]'           || []
             'text condition on int leaf'             | '//books/price[text()="10"]'                || ["Matilda"]
-            'text condition on leaf-list'            | '//books/authors[text()="Terry Pratchett"]' || ["Good Omens"]
+            'text condition on leaf-list'            | '//books/authors[text()="Terry Pratchett"]' || ["Good Omens", "The Colour of Magic", "The Light Fantastic"]
             'text condition partial match'           | '//books/authors[text()="Terry"]'           || []
             'text condition (existing) empty string' | '//books/lang[text()=""]'                   || ["A Book with No Language"]
             'text condition on int leaf-list'        | '//books/editions[text()="2000"]'           || ["Matilda"]
@@ -119,6 +119,21 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
             'text condition on leaf containing /'    | '//books/lang[text()="N/A"]'                || ["Logarithm tables"]
             'match of key containing /'              | '//books[@title="Debian GNU/Linux"]'        || ["Debian GNU/Linux"]
             'text condition on key containing /'     | '//books/title[text()="Debian GNU/Linux"]'  || ["Debian GNU/Linux"]
+    }
+
+    def 'Cps Path query using descendant anywhere with #scenario condition for a container element.'() {
+        when: 'a query is executed to get a data node by the given cps path'
+            def result = objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE, BOOKSTORE_ANCHOR, cpsPath, OMIT_DESCENDANTS)
+        then: 'book titles from the retrieved data nodes are as expected'
+            def bookTitles = result.collect { it.getLeaves().get('title') }
+            assert bookTitles.sort() == expectedBookTitles.sort()
+        where: 'the following data is used'
+            scenario                   | cpsPath                                                || expectedBookTitles
+            'one leaf'                 | '//books[@price=14]'                                   || ['The Light Fantastic']
+            'one text'                 | '//books/authors[text()="Terry Pratchett"]'            || ['Good Omens', 'The Colour of Magic', 'The Light Fantastic']
+            'more than one leaf'       | '//books[@price=12 and @lang="English"]'               || ['The Colour of Magic']
+            'leaves reversed in order' | '//books[@lang="English" and @price=12]'               || ['The Colour of Magic']
+            'leaf and text'            | '//books[@price=14]/authors[text()="Terry Pratchett"]' || ['The Light Fantastic']
     }
 
     def 'Query for attribute by cps path of type ancestor with #scenario.'() {
@@ -148,7 +163,7 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
             scenario | fetchDescendantsOption  || expectedNumberOfNodes
             'no'     | OMIT_DESCENDANTS        || 1
             'direct' | DIRECT_CHILDREN_ONLY    || 5
-            'all'    | INCLUDE_ALL_DESCENDANTS || 12
+            'all'    | INCLUDE_ALL_DESCENDANTS || 14
     }
 
     def 'Cps Path query with syntax error throws a CPS Path Exception.'() {

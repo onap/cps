@@ -47,6 +47,20 @@
             "price": 13
           },
           {
+            "title": "The Colour of Magic",
+            "lang": "English",
+            "authors": ["Terry Pratchett"],
+            "editions": [1983],
+            "price": 12
+          },
+          {
+            "title": "The Light Fantastic",
+            "lang": "English",
+            "authors": ["Terry Pratchett"],
+            "editions": [1986],
+            "price": 14
+          },
+          {
             "title": "A Book with No Language",
             "lang": "",
             "authors": ["Joe Bloggs"],
