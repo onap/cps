@@ -458,6 +458,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         return new DataNodeBuilder()
                 .withXpath(fragmentEntity.getXpath())
                 .withLeaves(leaves)
+                .withDataspace(fragmentEntity.getAnchor().getDataspace().getName())
                 .withAnchor(fragmentEntity.getAnchor().getName())
                 .withChildDataNodes(childDataNodes).build();
     }
