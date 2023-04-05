@@ -43,7 +43,7 @@ Bug Fixes
 
 Features
 --------
-    - None
+    - `CPS-1006 <https://jira.onap.org/browse/CPS-1006>`_ Extend CPS PATCH API to allow update of leaves for multiple data nodes
 
 Version: 3.3.1
 ==============

@@ -320,36 +320,6 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
-    def 'Update data node leaves.'() {
-        when: 'update is performed for leaves'
-            objectUnderTest.updateDataLeaves(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES,
-                    '/parent-200/child-201', ['leaf-value': 'new'])
-        then: 'leaves are updated for selected data node'
-            def updatedFragment = fragmentRepository.getReferenceById(DATA_NODE_202_FRAGMENT_ID)
-            def updatedLeaves = getLeavesMap(updatedFragment)
-            assert updatedLeaves.size() == 1
-            assert updatedLeaves.'leaf-value' == 'new'
-        and: 'existing child entry remains as is'
-            def childFragment = updatedFragment.childFragments.iterator().next()
-            def childLeaves = getLeavesMap(childFragment)
-            assert childFragment.id == CHILD_OF_DATA_NODE_202_FRAGMENT_ID
-            assert childLeaves.'leaf-value' == 'original'
-    }
-
-    @Sql([CLEAR_DATA, SET_DATA])
-    def 'Update data leaves error scenario: #scenario.'() {
-        when: 'attempt to update data node for #scenario'
-            objectUnderTest.updateDataLeaves(dataspaceName, anchorName, xpath, ['leaf-name': 'leaf-value'])
-        then: 'a #expectedException is thrown'
-            thrown(expectedException)
-        where: 'the following data is used'
-            scenario                 | dataspaceName  | anchorName                        | xpath                 || expectedException
-            'non-existing dataspace' | 'NO DATASPACE' | 'not relevant'                    | '/not relevant'       || DataspaceNotFoundException
-            'non-existing anchor'    | DATASPACE_NAME | 'NO ANCHOR'                       | '/not relevant'       || AnchorNotFoundException
-            'non-existing xpath'     | DATASPACE_NAME | ANCHOR_FOR_DATA_NODES_WITH_LEAVES | '/NON-EXISTING-XPATH' || DataNodeNotFoundException
-    }
-
-    @Sql([CLEAR_DATA, SET_DATA])
     def 'Update data nodes and descendants by removing descendants.'() {
         given: 'data nodes with leaves updated, no children'
             def submittedDataNodes = [buildDataNode('/parent-200/child-201', ['leaf-value': 'new'], [])]
