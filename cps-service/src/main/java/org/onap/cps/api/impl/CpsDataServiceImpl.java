@@ -31,6 +31,7 @@ import static org.onap.cps.notification.Operation.UPDATE;
 import io.micrometer.core.annotation.Timed;
 import java.time.OffsetDateTime;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Map;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -162,13 +163,9 @@ public class CpsDataServiceImpl implements CpsDataService {
         final Anchor anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
         final Collection<DataNode> dataNodesInPatch = buildDataNodes(anchor, parentNodeXpath, jsonData,
                 ContentType.JSON);
-        if (dataNodesInPatch.size() > 1) {
-            throw new DataValidationException("Operation is not supported for multiple data nodes",
-                    "Number of data nodes present: " + dataNodesInPatch.size());
-        }
-        cpsDataPersistenceService.updateDataLeaves(dataspaceName, anchorName,
-                dataNodesInPatch.iterator().next().getXpath(),
-            dataNodesInPatch.iterator().next().getLeaves());
+        final Map<String, DataNode> xpathToUpdatedDataNode = dataNodesInPatch.stream()
+                .collect(Collectors.toMap(DataNode::getXpath, dataNode -> dataNode));
+        cpsDataPersistenceService.batchUpdateDataLeaves(dataspaceName, anchorName, xpathToUpdatedDataNode);
         processDataUpdatedEventAsync(anchor, parentNodeXpath, UPDATE, observedTimestamp);
     }
 
@@ -395,8 +392,8 @@ public class CpsDataServiceImpl implements CpsDataService {
         if (dataNodeUpdate == null) {
             return;
         }
-        cpsDataPersistenceService.updateDataLeaves(anchor.getDataspaceName(), anchor.getName(),
-            dataNodeUpdate.getXpath(), dataNodeUpdate.getLeaves());
+        cpsDataPersistenceService.batchUpdateDataLeaves(anchor.getDataspaceName(), anchor.getName(),
+                Collections.singletonMap(dataNodeUpdate.getXpath(), dataNodeUpdate));
         final Collection<DataNode> childDataNodeUpdates = dataNodeUpdate.getChildDataNodes();
         for (final DataNode childDataNodeUpdate : childDataNodeUpdates) {
             processDataNodeUpdate(anchor, childDataNodeUpdate);
