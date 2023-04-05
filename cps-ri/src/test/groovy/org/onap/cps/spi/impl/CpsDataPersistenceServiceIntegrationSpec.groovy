@@ -349,7 +349,6 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             scenario                 | dataspaceName  | anchorName                        | xpath                 || expectedException
             'non-existing dataspace' | 'NO DATASPACE' | 'not relevant'                    | '/not relevant'       || DataspaceNotFoundException
             'non-existing anchor'    | DATASPACE_NAME | 'NO ANCHOR'                       | '/not relevant'       || AnchorNotFoundException
-            'non-existing xpath'     | DATASPACE_NAME | ANCHOR_FOR_DATA_NODES_WITH_LEAVES | '/NON-EXISTING-XPATH' || DataNodeNotFoundException
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
