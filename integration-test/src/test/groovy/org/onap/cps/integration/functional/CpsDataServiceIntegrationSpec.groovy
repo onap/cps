@@ -23,6 +23,10 @@ package org.onap.cps.integration.functional
 
 import org.onap.cps.integration.base.FunctionalSpecBase
 import org.onap.cps.spi.FetchDescendantsOption
+import org.onap.cps.spi.model.DataNode
+import org.onap.cps.spi.model.DataNodeBuilder
+
+import java.time.OffsetDateTime
 
 class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
 
@@ -43,5 +47,14 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
             FetchDescendantsOption.DIRECT_CHILDREN_ONLY    || 4
             FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS || 8
             new FetchDescendantsOption(2)                  || 8
+    }
+
+    def 'Update data node leaves.'() {
+        when: 'update is performed for leaves'
+            objectUnderTest.updateNodeLeaves(FUNCTIONAL_TEST_DATASPACE, BOOKSTORE_ANCHOR, "/bookstore", "{'book-store:categories':{'code':'1','name':'Science'}}", OffsetDateTime.now())
+        then: 'the updated data nodes are retrieved'
+            def result = cpsDataService.getDataNodes(FUNCTIONAL_TEST_DATASPACE, BOOKSTORE_ANCHOR, "/bookstore/categories[@code='1']", FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
+        and: 'the leaf values are updated as expected'
+            assert result.leaves['name'] == ['Science']
     }
 }
