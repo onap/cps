@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8552a072_389abc25",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-04-05T11:36:44Z",
+      "side": 1,
+      "message": "This is querying across dataspaces, causing queries with ancestor-axis to return results across all dataspaces. It should be:\n  fragmentRepository.findAllByDataspaceAndXpathIn(dataspace, ancestorXpaths)",
+      "range": {
+        "startLine": 378,
+        "startChar": 68,
+        "endLine": 378,
+        "endChar": 119
+      },
+      "revId": "538e8c0112589ba36c620c43d5c4c28afafc978f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
