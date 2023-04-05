@@ -77,6 +77,7 @@ Features
     - `CPS-1627 <https://jira.onap.org/browse/CPS-1627>`_ Dependency versions uplift because of vulnerability issues
     - `CPS-1629 <https://jira.onap.org/browse/CPS-1629>`_ Ordering of leaf elements to support combination of AND/OR in cps-path
     - `CPS-1637 <https://jira.onap.org/browse/CPS-1637>`_ Extend hazelcast to work on kubernetes
+    - `CPS-1006 <https://jira.onap.org/browse/CPS-1006>`_ Extend CPS PATCH API to update more than one item in a list
 
 Version: 3.3.0
 ==============

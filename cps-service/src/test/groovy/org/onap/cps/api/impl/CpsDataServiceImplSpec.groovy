@@ -215,15 +215,15 @@ class CpsDataServiceImplSpec extends Specification {
         when: 'update data method is invoked with json data #jsonData and parent node xpath #parentNodeXpath'
             objectUnderTest.updateNodeLeaves(dataspaceName, anchorName, parentNodeXpath, jsonData, observedTimestamp)
         then: 'the persistence service method is invoked with correct parameters'
-            1 * mockCpsDataPersistenceService.updateDataLeaves(dataspaceName, anchorName, expectedNodeXpath, leaves)
+            1 * mockCpsDataPersistenceService.batchUpdateDataLeaves(dataspaceName, anchorName, {dataNode -> dataNode.keySet()[0] == expectedNodeXpath})
         and: 'the CpsValidator is called on the dataspaceName and AnchorName'
             1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
         and: 'data updated event is sent to notification service'
             1 * mockNotificationService.processDataUpdatedEvent(anchor, parentNodeXpath, Operation.UPDATE, observedTimestamp)
         where: 'following parameters were used'
-            scenario         | parentNodeXpath | jsonData                        || expectedNodeXpath                   | leaves
-            'top level node' | '/'             | '{"test-tree": {"branch": []}}' || '/test-tree'                        | Collections.emptyMap()
-            'level 2 node'   | '/test-tree'    | '{"branch": [{"name":"Name"}]}' || '/test-tree/branch[@name=\'Name\']' | ['name': 'Name']
+            scenario         | parentNodeXpath | jsonData                        || expectedNodeXpath
+            'top level node' | '/'             | '{"test-tree": {"branch": []}}' || '/test-tree'
+            'level 2 node'   | '/test-tree'    | '{"branch": [{"name":"Name"}]}' || '/test-tree/branch[@name=\'Name\']'
     }
 
     def 'Update list-element data node with : #scenario.'() {
@@ -244,11 +244,21 @@ class CpsDataServiceImplSpec extends Specification {
         given: 'schema set for given dataspace and anchor refers multipleDataTree model'
             setupSchemaSetMocks('multipleDataTree.yang')
         and: 'json string with multiple data trees'
+            def parentNodeXpath = '/'
             def updatedJsonData = '{"first-container":{"a-leaf":"a-new-Value"},"last-container":{"x-leaf":"x-new-value"}}'
         when: 'update operation is performed on multiple data nodes'
-            objectUnderTest.updateNodeLeaves(dataspaceName, anchorName, '/', updatedJsonData, observedTimestamp)
-        then: 'expected exception is thrown'
-            thrown(DataValidationException)
+            objectUnderTest.updateNodeLeaves(dataspaceName, anchorName, parentNodeXpath, updatedJsonData, observedTimestamp)
+        then: 'the persistence service method is invoked with correct parameters'
+            1 * mockCpsDataPersistenceService.batchUpdateDataLeaves(dataspaceName, anchorName, {dataNode -> dataNode.keySet()[index] == expectedNodeXpath})
+        and: 'the CpsValidator is called on the dataspaceName and AnchorName'
+            1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
+        and: 'data updated event is sent to notification service'
+            1 * mockNotificationService.processDataUpdatedEvent(anchor, parentNodeXpath, Operation.UPDATE, observedTimestamp)
+        where: 'the following parameters were used'
+            index | expectedNodeXpath
+            0     | '/first-container'
+            1     | '/last-container'
+
     }
 
     def 'Update Bookstore node leaves' () {
@@ -260,8 +270,9 @@ class CpsDataServiceImplSpec extends Specification {
             objectUnderTest.updateNodeLeavesAndExistingDescendantLeaves(dataspaceName, anchorName,
                 '/bookstore', jsonData, observedTimestamp)
         then: 'the persistence service method is invoked with correct parameters'
-            1 * mockCpsDataPersistenceService.updateDataLeaves(dataspaceName, anchorName,
-                "/bookstore/categories[@code='01']", ['name':'Romance', 'code': '01'])
+            1 * mockCpsDataPersistenceService.batchUpdateDataLeaves(dataspaceName, anchorName,
+                    {updatedDataNodesPerXPath -> updatedDataNodesPerXPath.keySet()
+                                                .iterator().next() == "/bookstore/categories[@code='01']"})
         and: 'the CpsValidator is called on the dataspaceName and AnchorName'
             1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
         and: 'the data updated event is sent to the notification service'

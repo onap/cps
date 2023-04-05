@@ -116,14 +116,14 @@ public interface CpsDataPersistenceService {
                                                        FetchDescendantsOption fetchDescendantsOption);
 
     /**
-     * Updates leaves for existing data node.
+     * Updates data leaves for multiple data nodes.
      *
-     * @param dataspaceName dataspace name
-     * @param anchorName    anchor name
-     * @param xpath         xpath
-     * @param leaves        the leaves as a map where key is a leaf name and a value is a leaf value
+     * @param dataspaceName              dataspace name
+     * @param anchorName                 anchor name
+     * @param updatedLeavesPerXPath      Map of xPaths to updated leaf nodes
      */
-    void updateDataLeaves(String dataspaceName, String anchorName, String xpath, Map<String, Serializable> leaves);
+    void batchUpdateDataLeaves(String dataspaceName, String anchorName,
+                               Map<String, Map<String, Serializable>> updatedLeavesPerXPath);
 
     /**
      * Replaces multiple existing data nodes' content including descendants in a batch operation.
