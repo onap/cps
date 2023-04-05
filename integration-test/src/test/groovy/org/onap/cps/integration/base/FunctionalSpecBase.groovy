@@ -27,6 +27,7 @@ class FunctionalSpecBase extends CpsIntegrationSpecBase {
     def static NUMBER_OF_ANCHORS_PER_DATASPACE_WITH_BOOKSTORE_DATA = 2
     def static BOOKSTORE_ANCHOR_1 = 'bookstoreAnchor1'
     def static BOOKSTORE_ANCHOR_2 = 'bookstoreAnchor2'
+    def static BOOKSTORE_ANCHOR_FOR_PATCH = 'bookstoreAnchor2'
 
     def static initialized = false
 

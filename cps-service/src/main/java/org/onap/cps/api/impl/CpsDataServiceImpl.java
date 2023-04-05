@@ -162,13 +162,9 @@ public class CpsDataServiceImpl implements CpsDataService {
         final Anchor anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
         final Collection<DataNode> dataNodesInPatch = buildDataNodes(anchor, parentNodeXpath, jsonData,
                 ContentType.JSON);
-        if (dataNodesInPatch.size() > 1) {
-            throw new DataValidationException("Operation is not supported for multiple data nodes",
-                    "Number of data nodes present: " + dataNodesInPatch.size());
-        }
-        cpsDataPersistenceService.updateDataLeaves(dataspaceName, anchorName,
-                dataNodesInPatch.iterator().next().getXpath(),
-            dataNodesInPatch.iterator().next().getLeaves());
+        final Map<String, DataNode> xpathToUpdatedDataNode = dataNodesInPatch.stream()
+                .collect(Collectors.toMap(DataNode::getXpath, dataNode -> dataNode));
+        cpsDataPersistenceService.batchUpdateDataLeaves(dataspaceName, anchorName, xpathToUpdatedDataNode);
         processDataUpdatedEventAsync(anchor, parentNodeXpath, UPDATE, observedTimestamp);
     }
 
@@ -390,7 +386,8 @@ public class CpsDataServiceImpl implements CpsDataService {
         return yangTextSchemaSourceSetCache
             .get(anchor.getDataspaceName(), anchor.getSchemaSetName()).getSchemaContext();
     }
-
+    
+    //TODO(arpit): refactor
     private void processDataNodeUpdate(final Anchor anchor, final DataNode dataNodeUpdate) {
         if (dataNodeUpdate == null) {
             return;
