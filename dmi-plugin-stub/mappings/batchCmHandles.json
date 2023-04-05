@@ -1,0 +1,13 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPattern": "/dmi/v1/ch/batch/data/ds/.*"
+  },
+  "response": {
+    "status": 200,
+    "bodyFileName": "batchResponse.json",
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}
