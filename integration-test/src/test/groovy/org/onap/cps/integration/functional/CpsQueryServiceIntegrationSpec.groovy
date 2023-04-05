@@ -24,14 +24,10 @@ import org.onap.cps.api.CpsQueryService
 import org.onap.cps.integration.base.FunctionalSpecBase
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.exceptions.CpsPathException
-import org.springframework.test.context.jdbc.Sql
-
-import java.util.stream.Collectors
 
 import static org.onap.cps.spi.FetchDescendantsOption.DIRECT_CHILDREN_ONLY
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
-import static org.onap.cps.spi.FetchDescendantsOption.getFetchDescendantsOption
 
 class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
 
@@ -52,8 +48,48 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
             })
         where:
             scenario                                      | cpsPath                                    || expectedResultSize | expectedLeaves
-            'the and condition is used'                   | '//books[@lang="English" and @price=15]'   || 2                  | [lang:"English", price:15]
-            'the and is used where result does not exist' | '//books[@lang="English" and @price=1000]' || 0                  | []
+            'the AND condition is used'                   | '//books[@lang="English" and @price=15]'   || 2                  | [lang:"English", price:15]
+            'the AND is used where result does not exist' | '//books[@lang="English" and @price=1000]' || 0                  | []
+    }
+
+    def 'Cps Path query for leaf value(s) with #scenario.'() {
+        when: 'a query is executed to get a data node by the given cps path'
+            def result = objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE, BOOKSTORE_ANCHOR, cpsPath, fetchDescendantsOption)
+        then: 'the correct number of parent nodes are returned'
+            assert result.size() == expectedNumberOfParentNodes
+        and: 'the correct total number of data nodes are returned'
+            assert countDataNodesInTree(result) == expectedTotalNumberOfNodes
+        where: 'the following data is used'
+            scenario                               | cpsPath                                                    | fetchDescendantsOption         || expectedNumberOfParentNodes | expectedTotalNumberOfNodes
+            'string and no descendants'            | '/bookstore/categories[@code="1"]/books[@title="Matilda"]' | OMIT_DESCENDANTS               || 1                           | 1
+            'integer and descendants'              | '/bookstore/categories[@code="1"]/books[@price=15]'        | INCLUDE_ALL_DESCENDANTS        || 1                           | 1
+            'no condition and no descendants'      | '/bookstore/categories'                                    | OMIT_DESCENDANTS               || 3                           | 3
+            'no condition and level 1 descendants' | '/bookstore'                                               | new FetchDescendantsOption(1)  || 1                           | 4
+            'no condition and level 2 descendants' | '/bookstore'                                               | new FetchDescendantsOption(2)  || 1                           | 8
+    }
+
+    def 'Query for attribute by cps path with cps paths that return no data because of #scenario.'() {
+        when: 'a query is executed to get data nodes for the given cps path'
+            def result = objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE, BOOKSTORE_ANCHOR, cpsPath, OMIT_DESCENDANTS)
+        then: 'no data is returned'
+            assert result.isEmpty()
+        where: 'following cps queries are performed'
+            scenario                         | cpsPath
+            'cps path is incomplete'         | '/bookstore[@title="Matilda"]'
+            'leaf value does not exist'      | '/bookstore/categories[@code="1"]/books[@title=\'does not exist\']'
+            'incomplete end of xpath prefix' | '/bookstore/categories/books[@price=15]'
+    }
+
+    def 'Cps Path query using descendant anywhere and #type (further) descendants.'() {
+        when: 'a query is executed to get a data node by the given cps path'
+            def result = objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE, BOOKSTORE_ANCHOR, '/bookstore/categories[@code="1"]', fetchDescendantsOption)
+        then: 'the data node has the correct number of children'
+            assert result[0].childDataNodes.xpath.sort() == expectedChildNodes.sort()
+        where: 'the following data is used'
+            type      | fetchDescendantsOption   || expectedChildNodes
+            'omit'    | OMIT_DESCENDANTS         || []
+            'include' | INCLUDE_ALL_DESCENDANTS  || ["/bookstore/categories[@code='1']/books[@title='Matilda']",
+                                                     "/bookstore/categories[@code='1']/books[@title='The Gruffalo']"]
     }
 
     def 'Query for attribute by cps path of type ancestor with #scenario.'() {
