@@ -40,9 +40,11 @@ public class FragmentEntityArranger {
     public static Collection<FragmentEntity> toFragmentEntityTrees(final AnchorEntity anchorEntity,
                                                       final Collection<FragmentExtract> fragmentExtracts) {
         final Map<Long, FragmentEntity> fragmentEntityPerId = new HashMap<>();
-        for (final FragmentExtract fragmentExtract : fragmentExtracts) {
-            final FragmentEntity fragmentEntity = toFragmentEntity(anchorEntity, fragmentExtract);
-            fragmentEntityPerId.put(fragmentEntity.getId(), fragmentEntity);
+        if (fragmentExtracts !=  null) {
+            for (final FragmentExtract fragmentExtract : fragmentExtracts) {
+                final FragmentEntity fragmentEntity = toFragmentEntity(anchorEntity, fragmentExtract);
+                fragmentEntityPerId.put(fragmentEntity.getId(), fragmentEntity);
+            }
         }
         return reuniteChildrenWithTheirParents(fragmentEntityPerId);
     }

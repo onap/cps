@@ -24,6 +24,12 @@ package org.onap.cps.integration.functional
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.integration.base.FunctionalSpecBase
 import org.onap.cps.spi.FetchDescendantsOption
+import org.onap.cps.spi.exceptions.AnchorNotFoundException
+import org.onap.cps.spi.exceptions.DataspaceNotFoundException
+import org.onap.cps.spi.model.DataNode
+import org.onap.cps.spi.model.DataNodeBuilder
+
+import java.time.OffsetDateTime
 
 class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
 
@@ -55,4 +61,16 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
             assert result.anchorName.toSet() == [BOOKSTORE_ANCHOR].toSet()
     }
 
+
+    def 'Update multiple data node leaves.'() {
+        given:
+            def jsonData =  "{'book-store:books':{'lang':'English/French','price':100,'title':'Matilda','authors':['RoaldDahl'],'pub_year':1988}}"
+        when: 'update is performed for leaves'
+            objectUnderTest.updateNodeLeaves(FUNCTIONAL_TEST_DATASPACE, BOOKSTORE_ANCHOR, "/bookstore/categories[@code='1']", jsonData, OffsetDateTime.now())
+        then: 'the updated data nodes are retrieved'
+            def result = cpsDataService.getDataNodes(FUNCTIONAL_TEST_DATASPACE, BOOKSTORE_ANCHOR, "/bookstore/categories[@code=1]/books[@title='Matilda']", FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
+        and: 'the leaf values are updated as expected'
+            assert result.leaves['lang'] == ['English/French']
+            assert result.leaves['price'] == [100]
+    }
 }

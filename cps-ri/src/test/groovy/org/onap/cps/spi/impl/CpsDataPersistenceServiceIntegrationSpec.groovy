@@ -25,7 +25,9 @@ package org.onap.cps.spi.impl
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.common.collect.ImmutableSet
+import org.onap.cps.cpspath.parser.PathParsingException
 import org.onap.cps.spi.CpsDataPersistenceService
+import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.entities.FragmentEntity
 import org.onap.cps.spi.exceptions.AlreadyDefinedExceptionBatch
 import org.onap.cps.spi.exceptions.AnchorNotFoundException
@@ -350,6 +352,35 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             'non-existing dataspace' | 'NO DATASPACE' | 'not relevant'                    | '/not relevant'       || DataspaceNotFoundException
             'non-existing anchor'    | DATASPACE_NAME | 'NO ANCHOR'                       | '/not relevant'       || AnchorNotFoundException
             'non-existing xpath'     | DATASPACE_NAME | ANCHOR_FOR_DATA_NODES_WITH_LEAVES | '/NON-EXISTING-XPATH' || DataNodeNotFoundException
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Update multiple data node leaves.'() {
+        given: 'Data nodes to be updated'
+            def dataNode1 = buildDataNode('/parent-208',["parent-leaf-1": "parent-leaf updated-value-1"],[])
+            def dataNode2 = buildDataNode('/parent-209', ["parent-leaf-2": "parent-leaf updated-value-2"],[])
+        when: 'update is performed for leaves'
+            objectUnderTest.updateMultipleDataLeaves(DATASPACE_NAME, ANCHOR_WITH_MULTIPLE_TOP_LEVEL_FRAGMENTS,[dataNode1,dataNode2])
+        then: 'leaves are updated for selected data node'
+            def updatedDataNodes = objectUnderTest.getDataNodes(DATASPACE_NAME, ANCHOR_WITH_MULTIPLE_TOP_LEVEL_FRAGMENTS, '/', INCLUDE_ALL_DESCENDANTS)
+            assert updatedDataNodes.size() == 2
+            assert updatedDataNodes[index].getLeaves().values().iterator().next() == expectedValue
+        where: 'following data was used'
+            index    ||  expectedValue
+            0        ||  "parent-leaf updated-value-1"
+            1        ||  "parent-leaf updated-value-2"
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
+    def 'Update multiple data leaves error scenario: #scenario.'() {
+        when: 'attempt to update data node for #scenario'
+            objectUnderTest.updateMultipleDataLeaves(dataspaceName, anchorName, [dataNode])
+        then: 'a #expectedException is thrown'
+            thrown(expectedException)
+        where: 'the following data is used'
+            scenario                 | dataspaceName  | anchorName                        | xpath                 | dataNode                                       || expectedException
+            'non-existing dataspace' | 'NO DATASPACE' | 'not relevant'                    | '/not relevant'       | new DataNodeBuilder().withXpath(xpath).build() || DataspaceNotFoundException
+            'non-existing anchor'    | DATASPACE_NAME | 'NO ANCHOR'                       | '/not relevant'       | new DataNodeBuilder().withXpath(xpath).build() || AnchorNotFoundException
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
