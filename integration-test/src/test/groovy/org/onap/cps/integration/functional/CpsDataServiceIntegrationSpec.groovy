@@ -24,6 +24,10 @@ package org.onap.cps.integration.functional
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.integration.base.FunctionalSpecBase
 import org.onap.cps.spi.FetchDescendantsOption
+import org.onap.cps.spi.exceptions.AnchorNotFoundException
+import org.onap.cps.spi.exceptions.DataspaceNotFoundException
+
+import java.time.OffsetDateTime
 
 class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
 
@@ -55,4 +59,29 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
             assert result.anchorName.toSet() == [BOOKSTORE_ANCHOR].toSet()
     }
 
+
+    def 'Update multiple data node leaves.'() {
+        given: 'Updated json for bookstore data'
+            def jsonData =  "{'book-store:books':{'lang':'English/French','price':100,'title':'Matilda','authors':['RoaldDahl'],'pub_year':1988}}"
+        when: 'update is performed for leaves'
+            objectUnderTest.updateNodeLeaves(FUNCTIONAL_TEST_DATASPACE, BOOKSTORE_ANCHOR, "/bookstore/categories[@code='1']", jsonData, OffsetDateTime.now())
+        then: 'the updated data nodes are retrieved'
+            def result = cpsDataService.getDataNodes(FUNCTIONAL_TEST_DATASPACE, BOOKSTORE_ANCHOR, "/bookstore/categories[@code=1]/books[@title='Matilda']", FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
+        and: 'the leaf values are updated as expected'
+            assert result.leaves['lang'] == ['English/French']
+            assert result.leaves['price'] == [100]
+    }
+
+    def 'Update multiple data leaves error scenario: #scenario.'() {
+        given: 'Updated json for bookstore data'
+            def jsonData =  "{'book-store:books':{'lang':'English/French','price':100,'title':'Matilda','authors':['RoaldDahl'],'pub_year':1988}}"
+        when: 'attempt to update data node for #scenario'
+            objectUnderTest.updateNodeLeaves(dataspaceName, anchorName, xpath, jsonData, OffsetDateTime.now())
+        then: 'a #expectedException is thrown'
+            thrown(expectedException)
+        where: 'the following data is used'
+            scenario                 | dataspaceName                | anchorName                 | xpath                 || expectedException
+            'non-existing dataspace' | 'non-existing-dataspace'     | 'not-relevant'             | '/not relevant'       || DataspaceNotFoundException
+            'non-existing anchor'    | FUNCTIONAL_TEST_DATASPACE    | 'non-existing-anchor'      | '/not relevant'       || AnchorNotFoundException
+    }
 }

@@ -77,6 +77,63 @@ class CpsDataPersistenceServiceSpec extends Specification {
             1 * objectUnderTest.storeDataNodes('dataspace1', 'anchor1', [dataNode])
     }
 
+    def 'Handling of StaleStateException (caused by concurrent updates) during patch operation for data nodes.'() {
+        given: 'the system can update one datanode and has two more datanodes that throw an exception while updating'
+            def dataNodes = createDataNodesAndMockRepositoryMethodSupportingThem([
+                    '/node1': 'OK',
+                    '/node2': 'EXCEPTION',
+                    '/node3': 'EXCEPTION'])
+        and: 'the batch update will therefore also fail'
+            mockFragmentRepository.saveAll(*_) >> { throw new StaleStateException("concurrent updates") }
+        when: 'attempt batch update data nodes'
+            objectUnderTest.updateMultipleDataLeaves('some-dataspace', 'some-anchor', dataNodes)
+        then: 'concurrency exception is thrown'
+            def thrown = thrown(ConcurrencyException)
+            assert thrown.message == 'Concurrent Transactions'
+        and: 'it does not contain the successfull datanode'
+            assert !thrown.details.contains('/node1')
+        and: 'it contains the failed datanodes'
+            assert thrown.details.contains('/node2')
+            assert thrown.details.contains('/node3')
+    }
+
+    def 'update data node and descendants: #scenario'(){
+        given: 'the fragment repository returns fragment entities related to the xpath inputs'
+            mockFragmentRepository.findExtractsWithDescendants(_, [] as Set, _) >> []
+            mockFragmentRepository.findExtractsWithDescendants(_, ['/test/xpath'] as Set, _) >> [
+                    mockFragmentExtract(1, null, 123, '/test/xpath', "{\"id\":\"testId1\"}")
+            ]
+        when: 'replace data node tree'
+            objectUnderTest.updateMultipleDataLeaves('dataspaceName', 'anchorName', dataNodes)
+        then: 'call fragment repository save all method'
+            1 * mockFragmentRepository.saveAll({fragmentEntities -> assert fragmentEntities as List == expectedFragmentEntities})
+        where: 'the following Data Type is passed'
+            scenario                         | dataNodes                                                                          || expectedFragmentEntities
+            'empty data node list'           | []                                                                                 || []
+            'one data node in list'          | [new DataNode(xpath: '/test/xpath', leaves: ['id': 'testId'])] || [new FragmentEntity(xpath: '/test/xpath', attributes: '{"id":"testId"}')]
+    }
+
+    def 'update data nodes and descendants'() {
+        given: 'the fragment repository returns fragment entities related to the xpath inputs'
+            mockFragmentRepository.findExtractsWithDescendants(123, ['/test/xpath1', '/test/xpath2'] as Set, _) >> [
+                    mockFragmentExtract(1, null, 123, '/test/xpath1', "{\"id\":\"testId1\"}"),
+                    mockFragmentExtract(2, null, 123, '/test/xpath2', "{\"id\":\"testId1\"}")
+            ]
+        and: 'some data nodes with descendants'
+            def dataNode1 = new DataNode(xpath: '/test/xpath1', leaves: ['id': 'newTestId1'])
+            def dataNode2 = new DataNode(xpath: '/test/xpath2', leaves: ['id': 'newTestId2'])
+        when: 'the fragment entities are update by the data nodes'
+            objectUnderTest.updateMultipleDataLeaves('dataspaceName', 'anchorName', [dataNode1, dataNode2])
+        then: 'call fragment repository save all method is called with the updated fragments'
+            1 * mockFragmentRepository.saveAll({fragmentEntities -> {
+                fragmentEntities.containsAll([
+                        new FragmentEntity(xpath: '/test/xpath1', attributes: '{"id":"newTestId1"}'),
+                        new FragmentEntity(xpath: '/test/xpath2', attributes: '{"id":"newTestId2"}')
+                ])
+                assert fragmentEntities.size() == 2
+            }})
+    }
+
     def 'Handling of StaleStateException (caused by concurrent updates) during update data node and descendants.'() {
         given: 'the fragment repository returns a fragment entity'
             mockFragmentRepository.getByAnchorAndXpath(*_) >> {
@@ -203,7 +260,7 @@ class CpsDataPersistenceServiceSpec extends Specification {
             'update with same value'      | '{"existing":"value"}' | ["existing":"value"]  | '{"existing":"value"}'
     }
 
-    def 'update data node and descendants: #scenario'(){
+    def 'Replace data node and descendants: #scenario'(){
         given: 'the fragment repository returns fragment entities related to the xpath inputs'
             mockFragmentRepository.findExtractsWithDescendants(_, [] as Set, _) >> []
             mockFragmentRepository.findExtractsWithDescendants(_, ['/test/xpath'] as Set, _) >> [
@@ -219,7 +276,7 @@ class CpsDataPersistenceServiceSpec extends Specification {
             'one data node in list'          | [new DataNode(xpath: '/test/xpath', leaves: ['id': 'testId'], childDataNodes: [])] || [new FragmentEntity(xpath: '/test/xpath', attributes: '{"id":"testId"}', childFragments: [])]
     }
 
-    def 'update data nodes and descendants'() {
+    def 'Replace data nodes and descendants'() {
         given: 'the fragment repository returns fragment entities related to the xpath inputs'
             mockFragmentRepository.findExtractsWithDescendants(123, ['/test/xpath1', '/test/xpath2'] as Set, _) >> [
                 mockFragmentExtract(1, null, 123, '/test/xpath1', null),
