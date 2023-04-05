@@ -138,9 +138,7 @@ public interface CpsDataService {
                                                        FetchDescendantsOption fetchDescendantsOption);
 
     /**
-     * Updates data node for given dataspace and anchor using xpath to parent node. This method can currently
-     * update only one top level data node. The method will throw DataValidationException when more than one top level
-     * data nodes are provided in jsonData
+     * Updates multiple data nodes for given dataspace and anchor using xpath to parent node.
      *
      * @param dataspaceName   dataspace name
      * @param anchorName      anchor name
@@ -154,10 +152,10 @@ public interface CpsDataService {
     /**
      * Replaces an existing data node's content including descendants.
      *
-     * @param dataspaceName   dataspace name
-     * @param anchorName      anchor name
-     * @param parentNodeXpath xpath to parent node
-     * @param jsonData        json data
+     * @param dataspaceName     dataspace name
+     * @param anchorName        anchor name
+     * @param parentNodeXpath   xpath to parent node
+     * @param jsonData          json data
      * @param observedTimestamp observedTimestamp
      */
     void updateDataNodeAndDescendants(String dataspaceName, String anchorName, String parentNodeXpath, String jsonData,

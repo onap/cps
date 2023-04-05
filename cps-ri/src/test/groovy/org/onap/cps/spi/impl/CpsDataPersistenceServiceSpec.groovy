@@ -38,6 +38,7 @@ import org.onap.cps.spi.utils.SessionManager
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.dao.DataIntegrityViolationException
 import spock.lang.Specification
+import java.util.stream.Collectors
 
 class CpsDataPersistenceServiceSpec extends Specification {
 
@@ -77,6 +78,53 @@ class CpsDataPersistenceServiceSpec extends Specification {
             1 * objectUnderTest.storeDataNodes('dataspace1', 'anchor1', [dataNode])
     }
 
+    def 'Handling of StaleStateException (caused by concurrent updates) during patch operation for data nodes.'() {
+        given: 'the system can update one datanode and has two more datanodes that throw an exception while updating'
+            def dataNodes = createDataNodesAndMockRepositoryMethodSupportingThem([
+                    '/node1': 'OK',
+                    '/node2': 'EXCEPTION',
+                    '/node3': 'EXCEPTION'])
+            def xpathToUpdatedLeaves = dataNodes.stream()
+                    .collect(Collectors.toMap(DataNode::getXpath, DataNode::getLeaves))
+        and: 'the batch update will therefore also fail'
+            mockFragmentRepository.saveAll(*_) >> { throw new StaleStateException("concurrent updates") }
+        when: 'attempt batch update data nodes'
+            objectUnderTest.batchUpdateDataLeaves('some-dataspace', 'some-anchor', xpathToUpdatedLeaves)
+        then: 'concurrency exception is thrown'
+            def thrown = thrown(ConcurrencyException)
+            assert thrown.message == 'Concurrent Transactions'
+        and: 'it does not contain the successful datanode'
+            assert !thrown.details.contains('/node1')
+        and: 'it contains the failed datanodes'
+            assert thrown.details.contains('/node2')
+            assert thrown.details.contains('/node3')
+    }
+
+    def 'Batch update data node leaves and descendants: #scenario'(){
+        given: 'the fragment repository returns fragment entities related to the xpath inputs'
+            mockFragmentRepository.findExtractsWithDescendants(_, [] as Set, _) >> []
+            mockFragmentRepository.findExtractsWithDescendants(_, ['/test/xpath'] as Set, _) >> [
+                    mockFragmentExtract(1, null, 123, '/test/xpath', "{\"id\":\"testId1\"}")
+            ]
+            mockFragmentRepository.findExtractsWithDescendants(123, ['/test/xpath1', '/test/xpath2'] as Set, _) >> [
+                    mockFragmentExtract(1, null, 123, '/test/xpath1', "{\"id\":\"testId1\"}"),
+                    mockFragmentExtract(2, null, 123, '/test/xpath2', "{\"id\":\"testId1\"}")
+            ]
+        when: 'replace data node tree'
+            objectUnderTest.batchUpdateDataLeaves('dataspaceName', 'anchorName',
+                    dataNodes.stream().collect(Collectors.toMap(DataNode::getXpath, DataNode::getLeaves)))
+        then: 'call fragment repository save all method'
+            1 * mockFragmentRepository.saveAll({fragmentEntities ->
+                assert fragmentEntities as List == expectedFragmentEntities
+                assert fragmentEntities.size() == expectedSize
+            })
+        where: 'the following Data Type is passed'
+            scenario                         | dataNodes                                                                                                                              | expectedSize || expectedFragmentEntities
+            'empty data node list'           | []                                                                                                                                     | 0            || []
+            'one data node in list'          | [new DataNode(xpath: '/test/xpath', leaves: ['id': 'testId'])]                                                                         | 1            || [new FragmentEntity(xpath: '/test/xpath', attributes: '{"id":"testId"}')]
+            'multiple data nodes'            | [new DataNode(xpath: '/test/xpath1', leaves: ['id': 'newTestId1']), new DataNode(xpath: '/test/xpath2', leaves: ['id': 'newTestId2'])] | 2            || [new FragmentEntity(xpath: '/test/xpath1', attributes: '{"id":"newTestId1"}'), new FragmentEntity(xpath: '/test/xpath2', attributes: '{"id":"newTestId2"}')]
+    }
+
     def 'Handling of StaleStateException (caused by concurrent updates) during update data nodes and descendants.'() {
         given: 'the system can update one datanode and has two more datanodes that throw an exception while updating'
             def dataNodes = createDataNodesAndMockRepositoryMethodSupportingThem([
@@ -90,7 +138,7 @@ class CpsDataPersistenceServiceSpec extends Specification {
         then: 'concurrency exception is thrown'
             def thrown = thrown(ConcurrencyException)
             assert thrown.message == 'Concurrent Transactions'
-        and: 'it does not contain the successfull datanode'
+        and: 'it does not contain the successful datanode'
             assert !thrown.details.contains('/node1')
         and: 'it contains the failed datanodes'
             assert thrown.details.contains('/node2')
@@ -166,26 +214,7 @@ class CpsDataPersistenceServiceSpec extends Specification {
             1 * mockSessionManager.lockAnchor('mySessionId', 'myDataspaceName', 'myAnchorName', 123L)
     }
 
-    def 'update data node leaves: #scenario'(){
-        given: 'A node exists for the given xpath'
-            mockFragmentRepository.getByAnchorAndXpath(_, '/some/xpath') >> new FragmentEntity(xpath: '/some/xpath', attributes:  existingAttributes)
-        when: 'the node leaves are updated'
-            objectUnderTest.updateDataLeaves('some-dataspace', 'some-anchor', '/some/xpath', newAttributes as Map<String, Serializable>)
-        then: 'the fragment entity saved has the original and new attributes'
-            1 * mockFragmentRepository.save({fragmentEntity -> {
-                assert fragmentEntity.getXpath() == '/some/xpath'
-                assert fragmentEntity.getAttributes() == mergedAttributes
-            }})
-        where: 'the following attributes combinations are used'
-            scenario                      | existingAttributes     | newAttributes         | mergedAttributes
-            'add new leaf'                | '{"existing":"value"}' | ["new":"value"]       | '{"existing":"value","new":"value"}'
-            'update existing leaf'        | '{"existing":"value"}' | ["existing":"value2"] | '{"existing":"value2"}'
-            'update nothing with nothing' | ''                     | []                    | ''
-            'update with nothing'         | '{"existing":"value"}' | []                    | '{"existing":"value"}'
-            'update with same value'      | '{"existing":"value"}' | ["existing":"value"]  | '{"existing":"value"}'
-    }
-
-    def 'update data node and descendants: #scenario'(){
+    def 'Replace data node and descendants: #scenario'(){
         given: 'the fragment repository returns fragment entities related to the xpath inputs'
             mockFragmentRepository.findExtractsWithDescendants(_, [] as Set, _) >> []
             mockFragmentRepository.findExtractsWithDescendants(_, ['/test/xpath'] as Set, _) >> [
@@ -201,7 +230,7 @@ class CpsDataPersistenceServiceSpec extends Specification {
             'one data node in list'          | [new DataNode(xpath: '/test/xpath', leaves: ['id': 'testId'], childDataNodes: [])] || [new FragmentEntity(xpath: '/test/xpath', attributes: '{"id":"testId"}', childFragments: [])]
     }
 
-    def 'update data nodes and descendants'() {
+    def 'Replace data nodes and descendants'() {
         given: 'the fragment repository returns fragment entities related to the xpath inputs'
             mockFragmentRepository.findExtractsWithDescendants(123, ['/test/xpath1', '/test/xpath2'] as Set, _) >> [
                 mockFragmentExtract(1, null, 123, '/test/xpath1', null),
