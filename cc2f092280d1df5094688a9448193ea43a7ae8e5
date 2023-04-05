@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b35c66b3_d9b63224",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsDataServiceIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-04-05T18:14:24Z",
+      "side": 1,
+      "message": "I have added 2 more books to bookstore.json, that is why we have 10 nodes instead of 8.",
+      "revId": "cc2f092280d1df5094688a9448193ea43a7ae8e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
