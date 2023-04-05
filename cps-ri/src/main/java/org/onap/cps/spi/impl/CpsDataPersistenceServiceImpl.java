@@ -494,6 +494,30 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     }
 
     @Override
+    public void updateMultipleDataLeaves(final String dataspaceName, final String anchorName,
+                                         final Collection<DataNode> dataNodes) {
+        final AnchorEntity anchorEntity = getAnchorEntity(dataspaceName, anchorName);
+
+        final Map<String, DataNode> xpathToUpdatedDataNodes = dataNodes.stream()
+                .collect(Collectors.toMap(DataNode::getXpath, dataNode -> dataNode));
+        final Collection<String> xpaths = xpathToUpdatedDataNodes.keySet();
+        final Collection<FragmentEntity> fragmentEntities = getFragmentEntities(anchorEntity, xpaths,
+                FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
+
+        for (final FragmentEntity fragmentEntity : fragmentEntities) {
+            final DataNode dataNode = xpathToUpdatedDataNodes.get(fragmentEntity.getXpath());
+            final String mergedLeaves = mergeLeaves(dataNode.getLeaves(), fragmentEntity.getAttributes());
+            fragmentEntity.setAttributes(mergedLeaves);
+        }
+
+        try {
+            fragmentRepository.saveAll(fragmentEntities);
+        } catch (final StaleStateException staleStateException) {
+            retryUpdateDataNodesIndividually(anchorEntity, fragmentEntities);
+        }
+    }
+
+    @Override
     public void updateDataNodeAndDescendants(final String dataspaceName, final String anchorName,
                                              final DataNode dataNode) {
         final AnchorEntity anchorEntity = getAnchorEntity(dataspaceName, anchorName);
@@ -735,9 +759,13 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     }
 
     private String mergeLeaves(final Map<String, Serializable> updateLeaves, final String currentLeavesAsString) {
-        final Map<String, Serializable> currentLeavesAsMap = currentLeavesAsString.isEmpty()
-            ? new HashMap<>() : jsonObjectMapper.convertJsonString(currentLeavesAsString, Map.class);
-        currentLeavesAsMap.putAll(updateLeaves);
+        Map<String, Serializable> currentLeavesAsMap = new HashMap<>();
+        if (currentLeavesAsString != null) {
+            currentLeavesAsMap = currentLeavesAsString.isEmpty()
+                    ? new HashMap<>() : jsonObjectMapper.convertJsonString(currentLeavesAsString, Map.class);
+            currentLeavesAsMap.putAll(updateLeaves);
+        }
+
         if (currentLeavesAsMap.isEmpty()) {
             return "";
         }
