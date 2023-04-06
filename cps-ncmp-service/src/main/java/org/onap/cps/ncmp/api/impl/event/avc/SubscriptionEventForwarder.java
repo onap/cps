@@ -20,12 +20,17 @@
 
 package org.onap.cps.ncmp.api.impl.event.avc;
 
+import com.hazelcast.map.IMap;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -35,6 +40,7 @@ import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.event.model.SubscriptionEvent;
 import org.onap.cps.spi.exceptions.OperationNotYetSupportedException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 
@@ -45,8 +51,14 @@ public class SubscriptionEventForwarder {
 
     private final InventoryPersistence inventoryPersistence;
     private final EventsPublisher<SubscriptionEvent> eventsPublisher;
+    private final IMap<String, Set<String>> forwardedSubscriptionEventCache;
+
+    private final ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
 
     private static final String DMI_AVC_SUBSCRIPTION_TOPIC_PREFIX = "ncmp-dmi-cm-avc-subscription-";
+
+    @Value("${ncmp.subscription-forwarding.dmi-response-timeout:30}")
+    private int dmiResponseTimeoutInSeconds;
 
     /**
      * Forward subscription event.
@@ -55,26 +67,46 @@ public class SubscriptionEventForwarder {
      */
     public void forwardCreateSubscriptionEvent(final SubscriptionEvent subscriptionEvent) {
         final List<Object> cmHandleTargets = subscriptionEvent.getEvent().getPredicates().getTargets();
+
         if (cmHandleTargets == null || cmHandleTargets.isEmpty()
             || cmHandleTargets.stream().anyMatch(id -> ((String) id).contains("*"))) {
             throw new OperationNotYetSupportedException(
                 "CMHandle targets are required. \"Wildcard\" operations are not yet supported");
         }
+
+        final Map<String, Map<String, Map<String, String>>> dmiNameCmHandleMap =
+            organizeByDmiName(cmHandleTargets);
+        startResponseTimeout(subscriptionEvent, dmiNameCmHandleMap.keySet());
+        forwardEventToDmis(dmiNameCmHandleMap, subscriptionEvent);
+    }
+
+    private void forwardEventToDmis(final Map<String, Map<String, Map<String, String>>> dmiNameCmHandleMap,
+                                    final SubscriptionEvent subscriptionEvent) {
+        dmiNameCmHandleMap.forEach((dmiName, cmHandlePropertiesMap) -> {
+            subscriptionEvent.getEvent().getPredicates().setTargets(Collections.singletonList(cmHandlePropertiesMap));
+            final String eventKey = createEventKey(subscriptionEvent, dmiName);
+            eventsPublisher.publishEvent(
+                DMI_AVC_SUBSCRIPTION_TOPIC_PREFIX + dmiName, eventKey, subscriptionEvent);
+        });
+    }
+
+    private void startResponseTimeout(final SubscriptionEvent subscriptionEvent, final Set<String> dmisToRespond) {
+        final String subscriptionEventId = subscriptionEvent.getEvent().getSubscription().getClientID()
+            + subscriptionEvent.getEvent().getSubscription().getName();
+
+        forwardedSubscriptionEventCache.put(subscriptionEventId, dmisToRespond);
+        final ResponseTimeoutTask responseTimeoutTask =
+            new ResponseTimeoutTask(forwardedSubscriptionEventCache, subscriptionEventId);
+        executorService.schedule(responseTimeoutTask, dmiResponseTimeoutInSeconds, TimeUnit.SECONDS);
+    }
+
+    private Map<String, Map<String, Map<String, String>>> organizeByDmiName(final List<Object> cmHandleTargets) {
+
         final List<String> cmHandleTargetsAsStrings = cmHandleTargets.stream().map(
             Objects::toString).collect(Collectors.toList());
         final Collection<YangModelCmHandle> yangModelCmHandles =
             inventoryPersistence.getYangModelCmHandles(cmHandleTargetsAsStrings);
-        final Map<String, Map<String, Map<String, String>>> dmiNameCmHandleMap =
-            organizeByDmiName(yangModelCmHandles);
-        dmiNameCmHandleMap.forEach((dmiName, cmHandlePropertiesMap) -> {
-            subscriptionEvent.getEvent().getPredicates().setTargets(Collections.singletonList(cmHandlePropertiesMap));
-            final String eventKey = createEventKey(subscriptionEvent, dmiName);
-            eventsPublisher.publishEvent(DMI_AVC_SUBSCRIPTION_TOPIC_PREFIX + dmiName, eventKey, subscriptionEvent);
-        });
-    }
 
-    private Map<String, Map<String, Map<String, String>>> organizeByDmiName(
-        final Collection<YangModelCmHandle> yangModelCmHandles) {
         final Map<String, Map<String, Map<String, String>>> dmiNameCmHandlePropertiesMap = new HashMap<>();
         yangModelCmHandles.forEach(cmHandle -> {
             final String dmiName = cmHandle.resolveDmiServiceName(RequiredDmiService.DATA);
@@ -98,7 +130,7 @@ public class SubscriptionEventForwarder {
             + dmiName;
     }
 
-    public Map<String, String> dmiPropertiesAsMap(final YangModelCmHandle yangModelCmHandle) {
+    private Map<String, String> dmiPropertiesAsMap(final YangModelCmHandle yangModelCmHandle) {
         return yangModelCmHandle.getDmiProperties().stream().collect(
             Collectors.toMap(YangModelCmHandle.Property::getName, YangModelCmHandle.Property::getValue));
     }
