@@ -16,6 +16,47 @@
       "revId": "cc2f092280d1df5094688a9448193ea43a7ae8e5",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "acc75d19_2430b2f2",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsDataServiceIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-06T12:52:59Z",
+      "side": 1,
+      "message": "sounds good",
+      "parentUuid": "b35c66b3_d9b63224",
+      "revId": "cc2f092280d1df5094688a9448193ea43a7ae8e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "549932e5_6d03734f",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-06T12:52:59Z",
+      "side": 1,
+      "message": "suggestion: you can reduce the duplication in the tabel by just define the \u0027expectedTtitle\u0027\nthen on line 56 you could \nA) assert using contains() function\nB) use a gString to create the expected xPath and assert whole string\n\nI would say A is good enough and is easier to read... (unless you deliberately create another book with same title in a differnt category)",
+      "range": {
+        "startLine": 58,
+        "startChar": 104,
+        "endLine": 58,
+        "endChar": 118
+      },
+      "revId": "cc2f092280d1df5094688a9448193ea43a7ae8e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
