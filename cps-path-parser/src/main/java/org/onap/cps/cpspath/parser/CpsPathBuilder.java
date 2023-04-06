@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Modifications Copyright (C) 2023 TechMahindra Ltd
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -24,8 +25,11 @@ import static org.onap.cps.cpspath.parser.CpsPathPrefixType.DESCENDANT;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
+import org.apache.commons.collections4.CollectionUtils;
 import org.onap.cps.cpspath.parser.antlr4.CpsPathBaseListener;
 import org.onap.cps.cpspath.parser.antlr4.CpsPathParser;
 import org.onap.cps.cpspath.parser.antlr4.CpsPathParser.AncestorAxisContext;
@@ -54,6 +58,10 @@ public class CpsPathBuilder extends CpsPathBaseListener {
 
     private List<String> containerNames = new ArrayList<>();
 
+    final List<String> angularOperators = new ArrayList<>();
+
+    final Queue<String> angularOperatorsQueue = new LinkedList<>();
+
     @Override
     public void exitInvalidPostFix(final CpsPathParser.InvalidPostFixContext ctx) {
         throw new PathParsingException(ctx.getText());
@@ -81,7 +89,7 @@ public class CpsPathBuilder extends CpsPathBaseListener {
             comparisonValue = Integer.valueOf(ctx.IntegerLiteral().getText());
         }
         if (ctx.StringLiteral() != null) {
-            final boolean wasWrappedInDoubleQuote  = ctx.StringLiteral().getText().startsWith("\"");
+            final boolean wasWrappedInDoubleQuote = ctx.StringLiteral().getText().startsWith("\"");
             comparisonValue = stripFirstAndLastCharacter(ctx.StringLiteral().getText());
             if (wasWrappedInDoubleQuote) {
                 comparisonValue = String.valueOf(comparisonValue).replace("'", "\\'");
@@ -90,10 +98,22 @@ public class CpsPathBuilder extends CpsPathBaseListener {
             throw new PathParsingException("Unsupported comparison value encountered in expression" + ctx.getText());
         }
         leavesData.put(ctx.leafName().getText(), comparisonValue);
-        appendCondition(normalizedXpathBuilder, ctx.leafName().getText(), comparisonValue);
+        if (CollectionUtils.isEmpty(angularOperatorsQueue)) {
+            appendCondition(normalizedXpathBuilder, ctx.leafName().getText(), comparisonValue);
+        } else {
+            appendAngularOperatorCondition(normalizedXpathBuilder, ctx.leafName().getText(), comparisonValue);
+        }
         if (processingAncestorAxis) {
             appendCondition(normalizedAncestorPathBuilder, ctx.leafName().getText(), comparisonValue);
         }
+    }
+
+    @Override
+    public void exitAngularOperators(final CpsPathParser.AngularOperatorsContext ctx) {
+        final CpsPathAngularOperatorType angularOperatorsTypes = CpsPathAngularOperatorType.fromString(ctx.getText());
+        angularOperators.add(angularOperatorsTypes.getLabels());
+        angularOperatorsQueue.add(angularOperatorsTypes.getLabels());
+        cpsPathQuery.setAngularOperatorTypes(angularOperators);
     }
 
     @Override
@@ -178,5 +198,17 @@ public class CpsPathBuilder extends CpsPathBaseListener {
                 .append("='")
                 .append(value)
                 .append("'");
+    }
+
+    private void appendAngularOperatorCondition(final StringBuilder currentNormalizedPathBuilder, final String name,
+                                                final Object value) {
+        final char lastCharacter = currentNormalizedPathBuilder.charAt(currentNormalizedPathBuilder.length() - 1);
+        currentNormalizedPathBuilder.append(lastCharacter == '[' ? "" : " and ")
+                                    .append("@")
+                                    .append(name)
+                                    .append(angularOperatorsQueue.poll())
+                                    .append("'")
+                                    .append(value)
+                                    .append("'");
     }
 }
