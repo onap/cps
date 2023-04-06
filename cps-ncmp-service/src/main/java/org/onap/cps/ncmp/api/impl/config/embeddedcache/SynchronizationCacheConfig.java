@@ -20,17 +20,13 @@
 
 package org.onap.cps.ncmp.api.impl.config.embeddedcache;
 
-import com.hazelcast.config.Config;
 import com.hazelcast.config.MapConfig;
-import com.hazelcast.config.NamedConfig;
 import com.hazelcast.config.QueueConfig;
-import com.hazelcast.core.Hazelcast;
-import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.map.IMap;
 import java.util.concurrent.BlockingQueue;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.cache.HazelcastCacheConfig;
 import org.onap.cps.spi.model.DataNode;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -39,18 +35,12 @@ import org.springframework.context.annotation.Configuration;
  */
 @Slf4j
 @Configuration
-public class SynchronizationCacheConfig {
+public class SynchronizationCacheConfig extends HazelcastCacheConfig {
 
     public static final int MODULE_SYNC_STARTED_TTL_SECS = 600;
     public static final int DATA_SYNC_SEMAPHORE_TTL_SECS = 1800;
 
-    @Value("${hazelcast.mode.kubernetes.enabled}")
-    private boolean cacheKubernetesEnabled;
-
-    @Value("${hazelcast.mode.kubernetes.service-name}")
-    private String cacheKubernetesServiceName;
-
-    private static final QueueConfig commonQueueConfig = createQueueConfig();
+    private static final QueueConfig commonQueueConfig = createQueueConfig("defaultQueueConfig");
     private static final MapConfig moduleSyncStartedConfig = createMapConfig("moduleSyncStartedConfig");
     private static final MapConfig dataSyncSemaphoresConfig = createMapConfig("dataSyncSemaphoresConfig");
 
@@ -61,7 +51,8 @@ public class SynchronizationCacheConfig {
      */
     @Bean
     public BlockingQueue<DataNode> moduleSyncWorkQueue() {
-        return createHazelcastInstance("moduleSyncWorkQueue", commonQueueConfig)
+        return createHazelcastInstance("moduleSyncWorkQueue", commonQueueConfig,
+            "synchronization-caches")
             .getQueue("moduleSyncWorkQueue");
     }
 
@@ -72,7 +63,8 @@ public class SynchronizationCacheConfig {
      */
     @Bean
     public IMap<String, Object> moduleSyncStartedOnCmHandles() {
-        return createHazelcastInstance("moduleSyncStartedOnCmHandles", moduleSyncStartedConfig)
+        return createHazelcastInstance("moduleSyncStartedOnCmHandles", moduleSyncStartedConfig,
+            "synchronization-caches")
             .getMap("moduleSyncStartedOnCmHandles");
     }
 
@@ -83,48 +75,8 @@ public class SynchronizationCacheConfig {
      */
     @Bean
     public IMap<String, Boolean> dataSyncSemaphores() {
-        return createHazelcastInstance("dataSyncSemaphores", dataSyncSemaphoresConfig)
+        return createHazelcastInstance("dataSyncSemaphores", dataSyncSemaphoresConfig,
+            "synchronization-caches")
             .getMap("dataSyncSemaphores");
     }
-
-    private HazelcastInstance createHazelcastInstance(
-        final String hazelcastInstanceName, final NamedConfig namedConfig) {
-        return Hazelcast.newHazelcastInstance(initializeConfig(hazelcastInstanceName, namedConfig));
-    }
-
-    private Config initializeConfig(final String instanceName, final NamedConfig namedConfig) {
-        final Config config = new Config(instanceName);
-        if (namedConfig instanceof MapConfig) {
-            config.addMapConfig((MapConfig) namedConfig);
-        }
-        if (namedConfig instanceof QueueConfig) {
-            config.addQueueConfig((QueueConfig) namedConfig);
-        }
-        config.setClusterName("synchronization-caches");
-        updateDiscoveryMode(config);
-        return config;
-    }
-
-    private static QueueConfig createQueueConfig() {
-        final QueueConfig commonQueueConfig = new QueueConfig("defaultQueueConfig");
-        commonQueueConfig.setBackupCount(3);
-        commonQueueConfig.setAsyncBackupCount(3);
-        return commonQueueConfig;
-    }
-
-    private static MapConfig createMapConfig(final String configName) {
-        final MapConfig mapConfig = new MapConfig(configName);
-        mapConfig.setBackupCount(3);
-        mapConfig.setAsyncBackupCount(3);
-        return mapConfig;
-    }
-
-    private void updateDiscoveryMode(final Config config) {
-        if (cacheKubernetesEnabled) {
-            log.info("Enabling kubernetes mode with service-name : {}", cacheKubernetesServiceName);
-            config.getNetworkConfig().getJoin().getKubernetesConfig().setEnabled(true)
-                    .setProperty("service-name", cacheKubernetesServiceName);
-        }
-    }
-
 }

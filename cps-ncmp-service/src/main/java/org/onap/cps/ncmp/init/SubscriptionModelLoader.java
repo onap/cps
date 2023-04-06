@@ -52,10 +52,10 @@ public class SubscriptionModelLoader implements ModelLoader {
     private static final String SUBSCRIPTION_SCHEMASET_NAME = "subscriptions";
     private static final String SUBSCRIPTION_REGISTRY_DATANODE_NAME = "subscription-registry";
 
-    @Value("${ncmp.model-loader.maximumAttemptCount:20}")
+    @Value("${ncmp.model-loader.maximum-attempt-count:20}")
     private int maximumAttemptCount;
 
-    @Value("${ncmp.model-loader.retryTimeMs:1000}")
+    @Value("${ncmp.timers.model-loader.retry-time-ms:1000}")
     private long retryTimeMs;
 
     @Value("${ncmp.model-loader.subscription:false}")
@@ -99,7 +99,7 @@ public class SubscriptionModelLoader implements ModelLoader {
                 }
             } else {
                 throw new NcmpStartUpException("Retrieval of NCMP dataspace fails",
-                        "NCMP dataspace does not exist");
+                    "NCMP dataspace does not exist");
             }
         }
     }
@@ -139,7 +139,7 @@ public class SubscriptionModelLoader implements ModelLoader {
      */
     @Override
     public boolean createAnchor(final String dataspaceName, final String schemaSetName,
-                             final String anchorName) {
+                                final String anchorName) {
         try {
             cpsAdminService.createAnchor(dataspaceName, schemaSetName, anchorName);
         } catch (final AlreadyDefinedException exception) {
