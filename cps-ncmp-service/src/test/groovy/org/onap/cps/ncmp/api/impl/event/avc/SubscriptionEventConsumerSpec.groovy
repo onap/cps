@@ -50,6 +50,8 @@ class SubscriptionEventConsumerSpec extends MessagingBaseSpec {
             def testEventSent = jsonObjectMapper.convertJsonString(jsonData, SubscriptionEvent.class)
         and: 'notifications are enabled'
             objectUnderTest.notificationFeatureEnabled = true
+        and: 'subscription model loader is enabled'
+            objectUnderTest.subscriptionModelLoaderEnabled = true
         when: 'the valid event is consumed'
             objectUnderTest.consumeSubscriptionEvent(testEventSent)
         then: 'the event is mapped to a yangModelSubscription'
@@ -60,18 +62,20 @@ class SubscriptionEventConsumerSpec extends MessagingBaseSpec {
             1 * mockSubscriptionEventForwarder.forwardCreateSubscriptionEvent(testEventSent)
     }
 
-    def 'Consume and persist valid CM create message where notifications are disabled'() {
+    def 'Consume valid CM create message where notifications and model loader are disabled'() {
         given: 'an event with data category CM'
             def jsonData = TestUtils.getResourceFileContent('avcSubscriptionCreationEvent.json')
             def testEventSent = jsonObjectMapper.convertJsonString(jsonData, SubscriptionEvent.class)
         and: 'notifications are disabled'
             objectUnderTest.notificationFeatureEnabled = false
+        and: 'subscription model loader is disabled'
+            objectUnderTest.subscriptionModelLoaderEnabled = false
         when: 'the valid event is consumed'
             objectUnderTest.consumeSubscriptionEvent(testEventSent)
-        then: 'the event is mapped to a yangModelSubscription'
-            1 * mockSubscriptionEventMapper.toYangModelSubscriptionEvent(testEventSent) >> yangModelSubscriptionEvent
-        and: 'the event is persisted'
-            1 * mockSubscriptionPersistence.saveSubscriptionEvent(yangModelSubscriptionEvent)
+        then: 'the event is not mapped to a yangModelSubscription'
+            0 * mockSubscriptionEventMapper.toYangModelSubscriptionEvent(*_) >> yangModelSubscriptionEvent
+        and: 'the event is not persisted'
+            0 * mockSubscriptionPersistence.saveSubscriptionEvent(*_)
         and: 'the event is not forwarded'
             0 * mockSubscriptionEventForwarder.forwardCreateSubscriptionEvent(*_)
     }

@@ -44,6 +44,9 @@ public class SubscriptionEventConsumer {
     @Value("${notification.enabled:true}")
     private boolean notificationFeatureEnabled;
 
+    @Value("${ncmp.model-loader.subscription:false}")
+    private boolean subscriptionModelLoaderEnabled;
+
     /**
      * Consume the specified event.
      *
@@ -60,7 +63,9 @@ public class SubscriptionEventConsumer {
         }
         if ("CM".equals(event.getDataType().getDataCategory())) {
             log.debug("Consuming event {} ...", subscriptionEvent);
-            persistSubscriptionEvent(subscriptionEvent);
+            if (subscriptionModelLoaderEnabled) {
+                persistSubscriptionEvent(subscriptionEvent);
+            }
             if ("CREATE".equals(subscriptionEvent.getEventType().value())) {
                 log.info("Subscription for ClientID {} with name {} ...",
                         event.getSubscription().getClientID(),
