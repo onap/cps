@@ -51,8 +51,8 @@ public class SubscriptionModelLoader implements ModelLoader {
     private static final String SUBSCRIPTION_SCHEMASET_NAME = "subscriptions";
     private static final String SUBSCRIPTION_REGISTRY_DATANODE_NAME = "subscription-registry";
 
-    @Value("${ncmp.model-loader.subscription:false}")
-    private boolean subscriptionModelLoaderEnabled;
+    @Value("${ncmp.model-loader.subscription:true}")
+    private boolean subscriptionModelLoaderEnabled = true;
 
     /**
      * Method calls boarding subscription model when Application is ready.
