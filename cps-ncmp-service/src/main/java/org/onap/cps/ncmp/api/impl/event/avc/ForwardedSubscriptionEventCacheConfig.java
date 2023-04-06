@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START========================================================
- *  Copyright (C) 2022-2023 Nordix Foundation
+ *  Copyright (C) 2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -18,29 +18,34 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.cache;
+package org.onap.cps.ncmp.api.impl.event.avc;
 
 import com.hazelcast.config.MapConfig;
 import com.hazelcast.map.IMap;
+import java.util.Set;
+import org.onap.cps.cache.HazelcastCacheConfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Core infrastructure of the hazelcast distributed cache for anchor data config use cases.
+ * Core infrastructure of the hazelcast distributed cache for subscription forward config use cases.
  */
 @Configuration
-public class AnchorDataCacheConfig extends HazelcastCacheConfig {
+public class ForwardedSubscriptionEventCacheConfig extends HazelcastCacheConfig {
 
-    private static final MapConfig anchorDataCacheMapConfig = createMapConfig("anchorDataCacheMapConfig");
+    private static final MapConfig forwardedSubscriptionEventCacheMapConfig =
+        createMapConfig("forwardedSubscriptionEventCacheMapConfig");
 
     /**
-     * Distributed instance of anchor data cache that contains module prefix by anchor name as properties.
+     * Distributed instance of forwarded subscription information cache that contains subscription event
+     * id by dmi names as properties.
      *
-     * @return configured map of anchor data cache
+     * @return configured map of subscription event ids as keys to sets of dmi names for values
      */
     @Bean
-    public IMap<String, AnchorDataCacheEntry> anchorDataCache() {
-        return createHazelcastInstance("hazelCastInstanceCpsCore", anchorDataCacheMapConfig,
-            "cps-service-caches").getMap("anchorDataCache");
+    public IMap<String, Set<String>> forwardedSubscriptionEventCache() {
+        return createHazelcastInstance("hazelCastInstanceSubscriptionEvents",
+            forwardedSubscriptionEventCacheMapConfig, "cps-ncmp-service-caches")
+            .getMap("forwardedSubscriptionEventCache");
     }
 }
