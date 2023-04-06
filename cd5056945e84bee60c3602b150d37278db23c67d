@@ -22,6 +22,30 @@
       "revId": "cd5056945e84bee60c3602b150d37278db23c67d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bdbe2e1b_e1f2eb85",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-04-06T11:28:02Z",
+      "side": 1,
+      "message": "Actually while rendering in the form of JSON object and sending as event , null should not be present because we already have a property to exclude NULL configured in the ObjectMapper.\nRavi also showed me the event generated. I doesnt have anything which is null.\nSo the output would still be the same.",
+      "parentUuid": "c2c630a6_31386327",
+      "range": {
+        "startLine": 59,
+        "startChar": 42,
+        "endLine": 59,
+        "endChar": 65
+      },
+      "revId": "cd5056945e84bee60c3602b150d37278db23c67d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
