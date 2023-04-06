@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c2c630a6_31386327",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-06T11:24:48Z",
+      "side": 1,
+      "message": "I am a bit worried about this, you have chnaged the behavior?\nPlease explain why you are expecting null here now, it seems incorrect to me",
+      "range": {
+        "startLine": 59,
+        "startChar": 42,
+        "endLine": 59,
+        "endChar": 65
+      },
+      "revId": "cd5056945e84bee60c3602b150d37278db23c67d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
