@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "09c6275c_f8747150",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-06T12:47:31Z",
+      "side": 1,
+      "message": "agreed no need to verify all data in details , number of returned book or similar should suffice\n\n(only queries that return just one unique datanode coudl still use the xpath check to verify the correct data is returned)",
+      "parentUuid": "31dc8fb5_5345f12a",
+      "revId": "cdbcef19aefca954fed6364d54f96c628c238bbc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0e986646_3104e82a",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2023-04-05T21:29:13Z",
       "side": 1,
       "message": "As bookstore.yang is our reference model, can we modify it to add additional fields, e.g. a list of integers for \u0027edition\u0027?",
+      "revId": "cdbcef19aefca954fed6364d54f96c628c238bbc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4a9bfa8c_3eee733b",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-06T12:47:31Z",
+      "side": 1,
+      "message": "sure, thats the idea: our won test model (and test data) that we can evolve as need for testign purposes",
+      "parentUuid": "0e986646_3104e82a",
       "revId": "cdbcef19aefca954fed6364d54f96c628c238bbc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
@@ -50,6 +86,47 @@
       "revId": "cdbcef19aefca954fed6364d54f96c628c238bbc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe810635_65bb8ea2",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-06T12:47:31Z",
+      "side": 1,
+      "message": "That is a known limitation, it is mentioned in the \u0027General notes\u0027 here: https://docs.onap.org/projects/onap-cps/en/latest/cps-path.html",
+      "parentUuid": "e443cad4_af8ea353",
+      "revId": "cdbcef19aefca954fed6364d54f96c628c238bbc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "412fa145_893aa690",
+        "filename": "integration-test/src/test/resources/data/bookstore/bookstoreData.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-06T12:47:31Z",
+      "side": 1,
+      "message": "a picture book I suppose :-D",
+      "range": {
+        "startLine": 50,
+        "startChar": 22,
+        "endLine": 51,
+        "endChar": 23
+      },
+      "revId": "cdbcef19aefca954fed6364d54f96c628c238bbc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
