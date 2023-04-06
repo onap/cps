@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Modifications Copyright (C) 2023 TechMahindra Ltd
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -70,6 +71,10 @@ class CpsPathQuerySpec extends Specification {
             'yang container'                                      | '/cps-path'                                     || '/cps-path'
             'descendant anywhere'                                 | '//cps-path'                                    || '//cps-path'
             'descendant with leaf condition'                      | '//cps-path[@key=1]'                            || "//cps-path[@key='1']"
+            'descendant with leaf condition with ">" operator'    | '//cps-path[@key>9]'                            || "//cps-path[@key>'9']"
+            'descendant with leaf condition with "<" operator'    | '//cps-path[@key<10]'                           || "//cps-path[@key<'10']"
+            'descendant with leaf condition with ">=" operator'   | '//cps-path[@key>=9]'                           || "//cps-path[@key>='9']"
+            'descendant with leaf condition with "<=" operator'   | '//cps-path[@key<=10]'                          || "//cps-path[@key<='10']"
             'descendant with leaf value and ancestor'             | '//cps-path[@key=1]/ancestor:parent[@key=1]'    || "//cps-path[@key='1']/ancestor:parent[@key='1']"
             'parent & child'                                      | '/parent/child'                                 || '/parent/child'
             'parent leaf of type Integer & child'                 | '/parent/child[@code=1]/child2'                 || "/parent/child[@code='1']/child2"
@@ -104,6 +109,22 @@ class CpsPathQuerySpec extends Specification {
             scenario                  | cpsPath                                            || expectedNumberOfLeaves
             'one attribute'           | '//child[@common-leaf-name-int=5]'                 || 1
             'more than one attribute' | '//child[@int-leaf=5 and @leaf-name="leaf value"]' || 2
+    }
+
+    def 'Parse cps path that contains Integer attribute Value with angular operators #scenario.'() {
+        when: 'the given cps path is parsed'
+            def result = CpsPathQuery.createFrom(cpsPath)
+        then: 'the query has the right xpath type'
+            result.cpsPathPrefixType == DESCENDANT
+        and: 'the right parameters are set'
+            result.descendantName == "child"
+            result.angularOperatorTypes == expectedAngularOperator
+        where: 'the following data is used'
+            scenario                                   | cpsPath                              || expectedAngularOperator
+            'one attribute with ">" angular operator'  | '//child[@common-leaf-name-int>15]'  || [">"]
+            'one attribute with "<" angular operator'  | '//child[@common-leaf-name-int<10]'  || ["<"]
+            'one attribute with ">=" angular operator' | '//child[@common-leaf-name-int>=15]' || [">="]
+            'one attribute with "<=" angular operator' | '//child[@common-leaf-name-int<=10]' || ["<="]
     }
 
     def 'Parse #scenario cps path with text function condition'() {
