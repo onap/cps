@@ -100,6 +100,8 @@ app:
         avc:
             subscription-topic: ${NCMP_CM_AVC_SUBSCRIPTION:cm-avc-subscription}
             cm-events-topic: ${NCMP_CM_EVENTS_TOPIC:cm-events}
+        subscription-forwarding:
+            dmi-response-timeout: ${NCMP_SUBSCRIPTION_DMI_RESPONSE_TIMEOUT:30}
     lcm:
         events:
             topic: ${LCM_EVENTS_TOPIC:ncmp-events}
@@ -187,4 +189,4 @@ ncmp:
             parallelism-level: 10
 
     model-loader:
-        subscription: false
+        subscription: true

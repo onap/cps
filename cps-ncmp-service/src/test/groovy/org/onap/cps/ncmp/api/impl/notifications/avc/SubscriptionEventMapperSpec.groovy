@@ -48,7 +48,7 @@ class SubscriptionEventMapperSpec extends Specification {
             def result = objectUnderTest.toYangModelSubscriptionEvent(testEventToMap)
         then: 'the resulting yang model subscription event contains the correct clientId'
             assert result.clientId == "SCO-9989752"
-        and: 'client name'
+        and: 'subscription name'
             assert result.subscriptionName == "cm-subscription-001"
         and: 'is tagged value is false'
             assert !result.isTagged
