@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Modifications Copyright (C) 2023 TechMahindra Ltd
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -125,6 +126,20 @@ class CpsPathQuerySpec extends Specification {
             'descendant with leaf value'              | '//child[@other-leaf=1]/leaf-name[text()="search"]'                  || true                 | false
             'descendant anywhere and ancestor'        | '//someContainer/leaf-name[text()="search"]/ancestor::parent'        || false                | true
             'descendant with leaf value and ancestor' | '//child[@other-leaf=1]/leaf-name[text()="search"]/ancestor::parent' || true                 | true
+    }
+
+    def 'Parse #scenario cps path with contains function condition'() {
+        when: 'the given cps path is parsed'
+            def result = CpsPathQuery.createFrom(cpsPath)
+        then: 'the query has the right xpath type'
+            result.cpsPathPrefixType == DESCENDANT
+        and: 'the right contains function condition is set'
+            result.hasContainsFunctionCondition()
+            result.containsFunctionConditionLeafName == 'lang'
+            result.containsFunctionConditionValue == 'en'
+        where: 'the following data is used'
+            scenario                           | cpsPath
+            'cps-path with contains condition' | '//someContainer[contains(@lang,"en")]'
     }
 
     def 'Parse cps path with error: #scenario.'() {
