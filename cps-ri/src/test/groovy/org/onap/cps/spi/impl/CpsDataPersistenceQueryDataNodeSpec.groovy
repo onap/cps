@@ -97,19 +97,21 @@ class CpsDataPersistenceQueryDataNodeSpec extends CpsPersistenceSpecBase {
                 assert result[i].getXpath() == expectedXPaths[i]
             }
         where: 'the following data is used'
-            scenario                                                 | cpsPath                                                || expectedXPaths
-            'fully unique descendant name'                           | '//categories[@code=2]'                                || ["/shops/shop[@id='1']/categories[@code='2']", "/shops/shop[@id='2']/categories[@code='1']", "/shops/shop[@id='2']/categories[@code='2']"]
-            'descendant name match end of other node'                | '//book'                                               || ["/shops/shop[@id='1']/categories[@code='1']/book", "/shops/shop[@id='1']/categories[@code='2']/book"]
-            'descendant with text condition on leaf'                 | '//book/title[text()="Chapters"]'                      || ["/shops/shop[@id='1']/categories[@code='2']/book"]
-            'descendant with text condition case mismatch'           | '//book/title[text()="chapters"]'                      || []
-            'descendant with text condition on int leaf'             | '//book/price[text()="5"]'                             || ["/shops/shop[@id='1']/categories[@code='1']/book"]
-            'descendant with text condition on leaf-list'            | '//book/labels[text()="special offer"]'                || ["/shops/shop[@id='1']/categories[@code='1']/book"]
-            'descendant with text condition partial match'           | '//book/labels[text()="special"]'                      || []
-            'descendant with text condition (existing) empty string' | '//book/labels[text()=""]'                             || ["/shops/shop[@id='1']/categories[@code='1']/book"]
-            'descendant with text condition on int leaf-list'        | '//book/editions[text()="2000"]'                       || ["/shops/shop[@id='1']/categories[@code='2']/book"]
-            'descendant name match of leaf containing /'             | '//categories/type[text()="text/with/slash"]'          || ["/shops/shop[@id='1']/categories[@code='string/with/slash/']"]
-            'descendant with text condition on leaf containing /'    | '//categories[@code=\'string/with/slash\']'            || ["/shops/shop[@id='1']/categories[@code='string/with/slash/']"]
-            'descendant with text condition on leaf containing ['    | '//book/author[@Address="String[with]square[bracket]"]'|| []
+            scenario                                                 | cpsPath                                                 || expectedXPaths
+            'fully unique descendant name'                           | '//categories[@code=2]'                                 || ["/shops/shop[@id='1']/categories[@code='2']", "/shops/shop[@id='2']/categories[@code='1']", "/shops/shop[@id='2']/categories[@code='2']"]
+            'descendant name match end of other node'                | '//book'                                                || ["/shops/shop[@id='1']/categories[@code='1']/book", "/shops/shop[@id='1']/categories[@code='2']/book"]
+            'descendant with text condition on leaf'                 | '//book/title[text()="Chapters"]'                       || ["/shops/shop[@id='1']/categories[@code='2']/book"]
+            'descendant with text condition case mismatch'           | '//book/title[text()="chapters"]'                       || []
+            'descendant with text condition on int leaf'             | '//book/price[text()="5"]'                              || ["/shops/shop[@id='1']/categories[@code='1']/book"]
+            'descendant with text condition on leaf-list'            | '//book/labels[text()="special offer"]'                 || ["/shops/shop[@id='1']/categories[@code='1']/book"]
+            'descendant with text condition partial match'           | '//book/labels[text()="special"]'                       || []
+            'descendant with text condition (existing) empty string' | '//book/labels[text()=""]'                              || ["/shops/shop[@id='1']/categories[@code='1']/book"]
+            'descendant with text condition on int leaf-list'        | '//book/editions[text()="2000"]'                        || ["/shops/shop[@id='1']/categories[@code='2']/book"]
+            'descendant name match of leaf containing /'             | '//categories/type[text()="text/with/slash"]'           || ["/shops/shop[@id='1']/categories[@code='string/with/slash/']"]
+            'descendant with text condition on leaf containing /'    | '//categories[@code=\'string/with/slash\']'             || ["/shops/shop[@id='1']/categories[@code='string/with/slash/']"]
+            'descendant with text condition on leaf containing ['    | '//book/author[@Address="String[with]square[bracket]"]' || []
+            'descendant with contains condition on int leaf'         | '//book[contains(@price,"5")]'                          || ["/shops/shop[@id='1']/categories[@code='1']/book", "/shops/shop[@id='1']/categories[@code='2']/book"]
+            'descendant with contains condition on leaf-list'        | '//book[contains(@labels,"special offer")]'             || ["/shops/shop[@id='1']/categories[@code='1']/book"]
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
