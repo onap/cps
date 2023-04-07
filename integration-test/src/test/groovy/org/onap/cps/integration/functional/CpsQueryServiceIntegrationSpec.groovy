@@ -23,6 +23,8 @@ package org.onap.cps.integration.functional
 import org.onap.cps.integration.base.FunctionalSpecBase
 import org.onap.cps.spi.FetchDescendantsOption
 
+import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
+
 class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
 
     def objectUnderTest
@@ -44,5 +46,17 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
             scenario                                      | cpsPath                                    || expectedResultSize | expectedLeaves
             'the and condition is used'                   | '//books[@lang="English" and @price=15]'   || 2                  | [lang:"English", price:15]
             'the and is used where result does not exist' | '//books[@lang="English" and @price=1000]' || 0                  | []
+    }
+
+    def 'cps-path query using combinations of operator #scenario.'() {
+        when: 'a query is executed to get response by the given cps path'
+            def result = objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE, BOOKSTORE_ANCHOR, cpspath, OMIT_DESCENDANTS)
+        then: 'the cps-path of queryDataNodes has the expectedLeaves'
+            assert result.size() == expectedResultsize
+        where: 'the following data is used'
+            scenario                        | cpspath                           | expectedResultsize
+            'The "contains" condition'      | '//books[contains(@title,"Mat")]' | 1
+            '"contains" with leaf-list'     | '//books[contains(@title,"ti")]'  | 2
+            '"contains" with Integer Value' | '//books[contains(@price,"15")]'  | 2
     }
 }
