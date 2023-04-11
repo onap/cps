@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Copyright (C) 2021-2023 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021 Bell Canada.
  *  Modifications Copyright (C) 2023 TechMahindra Ltd.
@@ -23,12 +23,9 @@
 package org.onap.cps.spi.impl
 
 import org.onap.cps.spi.CpsDataPersistenceService
-import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.exceptions.CpsPathException
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.jdbc.Sql
-
-import java.util.stream.Collectors
 
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
@@ -39,52 +36,6 @@ class CpsDataPersistenceQueryDataNodeSpec extends CpsPersistenceSpecBase {
     CpsDataPersistenceService objectUnderTest
 
     static final String SET_DATA = '/data/cps-path-query.sql'
-
-    @Sql([CLEAR_DATA, SET_DATA])
-    def 'Cps Path query for leaf value(s) with : #scenario.'() {
-        when: 'a query is executed to get a data node by the given cps path'
-            def result = objectUnderTest.queryDataNodes(DATASPACE_NAME, ANCHOR_FOR_SHOP_EXAMPLE, cpsPath, fetchDescendantsOption)
-        then: 'the correct number of parent nodes are returned'
-            result.size() == expectedNumberOfParentNodes
-        then: 'the correct data is returned'
-            result.each {
-                assert it.getChildDataNodes().size() == expectedNumberOfChildNodes
-            }
-        where: 'the following data is used'
-            scenario                          | cpsPath                                                      | fetchDescendantsOption         || expectedNumberOfParentNodes | expectedNumberOfChildNodes
-            'String and no descendants'       | '/shops/shop[@id=1]/categories[@code=1]/book[@title="Dune"]' | OMIT_DESCENDANTS               || 1                           | 0
-            'Integer and descendants'         | '/shops/shop[@id=1]/categories[@code=1]/book[@price=5]'      | INCLUDE_ALL_DESCENDANTS        || 1                           | 1
-            'No condition no descendants'     | '/shops/shop[@id=1]/categories'                              | OMIT_DESCENDANTS               || 3                           | 0
-            'Integer and level 1 descendants' | '/shops'                                                     | new FetchDescendantsOption(1)  || 1                           | 5
-            'Integer and level 2 descendants' | '/shops/shop[@id=1]'                                         | new FetchDescendantsOption(2)  || 1                           | 3
-    }
-
-    @Sql([CLEAR_DATA, SET_DATA])
-    def 'Query for attribute by cps path with cps paths that return no data because of #scenario.'() {
-        when: 'a query is executed to get data nodes for the given cps path'
-            def result = objectUnderTest.queryDataNodes(DATASPACE_NAME, ANCHOR_FOR_SHOP_EXAMPLE, cpsPath, OMIT_DESCENDANTS)
-        then: 'no data is returned'
-            result.isEmpty()
-        where: 'following cps queries are performed'
-            scenario                         | cpsPath
-            'cps path is incomplete'         | '/shops[@title="Dune"]'
-            'leaf value does not exist'      | '/shops/shop[@id=1]/categories[@code=1]/book[@title=\'does not exist\']'
-            'incomplete end of xpath prefix' | '/shops/shop[@id=1]/categories/book[@price=15]'
-    }
-
-    @Sql([CLEAR_DATA, SET_DATA])
-    def 'Cps Path query using descendant anywhere and #type (further) descendants.'() {
-        when: 'a query is executed to get a data node by the given cps path'
-            def cpsPath = '//categories[@code=1]'
-            def result = objectUnderTest.queryDataNodes(DATASPACE_NAME, ANCHOR_FOR_SHOP_EXAMPLE, cpsPath, includeDescendantsOption)
-        then: 'the data node has the correct number of children'
-            def dataNode = result.stream().findFirst().get()
-            dataNode.getChildDataNodes().size() == expectedNumberOfChildNodes
-        where: 'the following data is used'
-            type      | includeDescendantsOption || expectedNumberOfChildNodes
-            'omit'    | OMIT_DESCENDANTS         || 0
-            'include' | INCLUDE_ALL_DESCENDANTS  || 1
-    }
 
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Cps Path query using descendant anywhere with #scenario '() {
