@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cadb7756_9b7bbae4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiDataOperations.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-04-11T12:32:44Z",
+      "side": 0,
+      "message": "Important: Please ignore this file as we already discussed in team metting and push updated code very soon. others files are open for review.",
+      "revId": "da0192e77e40239a1f3ffb3d71dcf958e6e7cc8f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
