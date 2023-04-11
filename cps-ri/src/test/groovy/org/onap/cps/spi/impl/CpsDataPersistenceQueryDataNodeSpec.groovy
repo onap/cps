@@ -131,23 +131,6 @@ class CpsDataPersistenceQueryDataNodeSpec extends CpsPersistenceSpecBase {
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
-    def 'Cps Path query using descendant anywhere with #scenario condition(s) for a list element.'() {
-        when: 'a query is executed to get a data node by the given cps path'
-            def result = objectUnderTest.queryDataNodes(DATASPACE_NAME, ANCHOR_FOR_SHOP_EXAMPLE, cpsPath, OMIT_DESCENDANTS)
-        then: 'the correct number of data nodes are retrieved'
-            result.size() == expectedXPaths.size()
-        and: 'xpaths of the retrieved data nodes are as expected'
-            for (int i = 0; i < result.size(); i++) {
-                assert result[i].getXpath() == expectedXPaths[i]
-            }
-        where: 'the following data is used'
-            scenario                              | cpsPath                                        || expectedXPaths
-            'one partial key leaf'                | '//author[@FirstName="Joe"]'                   || ["/shops/shop[@id='1']/categories[@code='1']/book/author[@FirstName='Joe' and @Surname='Bloggs']", "/shops/shop[@id='1']/categories[@code='2']/book/author[@FirstName='Joe' and @Surname='Smith']"]
-            'one non key leaf'                    | '//author[@title="Dune"]'                      || ["/shops/shop[@id='1']/categories[@code='1']/book/author[@FirstName='Joe' and @Surname='Bloggs']"]
-            'mix of partial key and non key leaf' | '//author[@FirstName="Joe" and @title="Dune"]' || ["/shops/shop[@id='1']/categories[@code='1']/book/author[@FirstName='Joe' and @Surname='Bloggs']"]
-    }
-
-    @Sql([CLEAR_DATA, SET_DATA])
     def 'Cps Path query across anchors for leaf value(s) with : #scenario.'() {
         when: 'a query is executed to get a data node by the given cps path'
             def result = objectUnderTest.queryDataNodesAcrossAnchors(DATASPACE_NAME, cpsPath, includeDescendantsOption)

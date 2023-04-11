@@ -56,6 +56,19 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
             'the and is used where result does not exist' | '//books[@lang="English" and @price=1000]' || 0                  | []
     }
 
+    def 'Cps Path query using descendant anywhere with #scenario condition(s) for a list element.'() {
+        when: 'a query is executed to get a data node by the given cps path'
+            def result = objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE, BOOKSTORE_ANCHOR, cpsPath, INCLUDE_ALL_DESCENDANTS)
+        then: 'xpaths of the retrieved data nodes are as expected'
+            result.xpath.sort() == expectedXPaths.sort()
+        where: 'the following data is used'
+            scenario                              | cpsPath                                                    || expectedXPaths
+            'full composite key'                  | '//addresses[@house_number=2 and @street="Main Street"]'   || ["/bookstore/premises/addresses[@house_number='2' and @street='Main Street']"]
+            'one partial key leaf'                | '//addresses[@house_number=2]'                             || ["/bookstore/premises/addresses[@house_number='2' and @street='Main Street']"]
+            'one non key leaf'                    | '//addresses[@street="Main Street"]'                       || ["/bookstore/premises/addresses[@house_number='2' and @street='Main Street']"]
+            'mix of partial key and non key leaf' | '//addresses[@street="Main Street" and @county="Kildare"]' || ["/bookstore/premises/addresses[@house_number='2' and @street='Main Street']"]
+    }
+
     def 'Query for attribute by cps path of type ancestor with #scenario.'() {
         when: 'the given cps path is parsed'
             def result = objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE, BOOKSTORE_ANCHOR, cpsPath, OMIT_DESCENDANTS)
