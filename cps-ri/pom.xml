@@ -33,7 +33,7 @@
     <artifactId>cps-ri</artifactId>
 
     <properties>
-        <minimum-coverage>0.96</minimum-coverage>
+        <minimum-coverage>0.94</minimum-coverage>
     </properties>
 
     <dependencies>

@@ -21,6 +21,25 @@ module stores {
             type string;
         }
 
+        container premises {
+            list addresses {
+                key "house-number street";
+
+                leaf house-number {
+                    type uint16;
+                }
+                leaf street {
+                    type string;
+                }
+                leaf town {
+                    type string;
+                }
+                leaf county {
+                    type string;
+                }
+            }
+        }
+
         list categories {
 
             key "code";
