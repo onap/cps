@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "da13a2a6_1bce33ab",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 461,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-04-11T09:23:19Z",
+      "side": 1,
+      "message": "I haven\u0027t done any memory testing around this, but I\u0027d assume only very small memory increase, since dataspace string is much smaller than xpath, leaves, etc.",
+      "parentUuid": "85025850_2c19f507",
+      "range": {
+        "startLine": 461,
+        "startChar": 57,
+        "endLine": 461,
+        "endChar": 82
+      },
+      "revId": "4f85ba1b2c456614471657159a5d261aa862c19b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee8877fb_2c8c87be",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNodeBuilder.java",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "4f85ba1b2c456614471657159a5d261aa862c19b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "674c1741_d8a058be",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNodeBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-04-11T09:23:19Z",
+      "side": 1,
+      "message": "Yes, legacy issue - the method already exists in the API.",
+      "parentUuid": "ee8877fb_2c8c87be",
+      "range": {
+        "startLine": 180,
+        "startChar": 20,
+        "endLine": 180,
+        "endChar": 29
+      },
+      "revId": "4f85ba1b2c456614471657159a5d261aa862c19b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
