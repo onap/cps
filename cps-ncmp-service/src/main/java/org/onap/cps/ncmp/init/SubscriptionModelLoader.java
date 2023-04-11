@@ -31,6 +31,7 @@ import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.ncmp.api.impl.exception.NcmpStartUpException;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
+import org.onap.cps.spi.model.Dataspace;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -63,6 +64,7 @@ public class SubscriptionModelLoader implements ModelLoader {
     public void onApplicationEvent(final ApplicationReadyEvent applicationReadyEvent) {
         try {
             if (subscriptionModelLoaderEnabled) {
+                checkNcmpDataspaceExists();
                 onboardSubscriptionModel(createYangResourceToContentMap());
             } else {
                 log.info("Subscription Model Loader is disabled");
@@ -73,6 +75,29 @@ public class SubscriptionModelLoader implements ModelLoader {
         }
     }
 
+    private void checkNcmpDataspaceExists() {
+        boolean ncmpDataspaceExists = false;
+        int attemptCount = 0;
+        while (!ncmpDataspaceExists) {
+            final Dataspace ncmpDataspace = cpsAdminService.getDataspace(SUBSCRIPTION_DATASPACE_NAME);
+            if (ncmpDataspace != null) {
+                ncmpDataspaceExists = true;
+            }
+            if (attemptCount < 20) {
+                try {
+                    Thread.sleep(10000);
+                    attemptCount++;
+                    log.info("Retrieving NCMP dataspace... {} attempt(s) ", attemptCount);
+                } catch (final InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+            } else {
+                throw new NcmpStartUpException("Retrieval of NCMP dataspace fails",
+                        "NCMP dataspace does not exist");
+            }
+        }
+    }
+
     /**
      * Method to onboard subscription model for NCMP.
      */
@@ -80,7 +105,7 @@ public class SubscriptionModelLoader implements ModelLoader {
         createSchemaSet(SUBSCRIPTION_DATASPACE_NAME, SUBSCRIPTION_SCHEMASET_NAME, yangResourceContentMap);
         createAnchor(SUBSCRIPTION_DATASPACE_NAME, SUBSCRIPTION_SCHEMASET_NAME, SUBSCRIPTION_ANCHOR_NAME);
         createTopLevelDataNode(SUBSCRIPTION_DATASPACE_NAME, SUBSCRIPTION_ANCHOR_NAME,
-            SUBSCRIPTION_REGISTRY_DATANODE_NAME);
+                SUBSCRIPTION_REGISTRY_DATANODE_NAME);
     }
 
 
@@ -108,7 +133,7 @@ public class SubscriptionModelLoader implements ModelLoader {
      */
     @Override
     public boolean createAnchor(final String dataspaceName, final String schemaSetName,
-                             final String anchorName) {
+                                final String anchorName) {
         try {
             cpsAdminService.createAnchor(dataspaceName, schemaSetName, anchorName);
         } catch (final AlreadyDefinedException exception) {

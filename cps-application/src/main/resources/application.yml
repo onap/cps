@@ -187,4 +187,4 @@ ncmp:
             parallelism-level: 10
 
     model-loader:
-        subscription: false
+        subscription: true
