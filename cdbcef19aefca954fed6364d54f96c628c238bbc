@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "617ae737_8d7ab460",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-04-11T11:57:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "09c6275c_f8747150",
+      "revId": "cdbcef19aefca954fed6364d54f96c628c238bbc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0e986646_3104e82a",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
         "patchSetId": 1
@@ -72,6 +90,24 @@
     },
     {
       "key": {
+        "uuid": "11f6adf8_2eb99972",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-04-11T11:57:03Z",
+      "side": 1,
+      "message": "Done. I have added an integer leaf-list called \"editions\" to the model.",
+      "parentUuid": "4a9bfa8c_3eee733b",
+      "revId": "cdbcef19aefca954fed6364d54f96c628c238bbc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e443cad4_af8ea353",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
         "patchSetId": 1
@@ -104,6 +140,24 @@
       "revId": "cdbcef19aefca954fed6364d54f96c628c238bbc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dfe41b10_fc0b1de4",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-04-11T11:57:03Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "fe810635_65bb8ea2",
+      "revId": "cdbcef19aefca954fed6364d54f96c628c238bbc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
