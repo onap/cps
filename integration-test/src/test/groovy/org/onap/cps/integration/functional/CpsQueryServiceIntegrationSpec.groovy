@@ -64,8 +64,8 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
             'string and no descendants'            | '/bookstore/categories[@code="1"]/books[@title="Matilda"]' | OMIT_DESCENDANTS               || 1                           | 1
             'integer and descendants'              | '/bookstore/categories[@code="1"]/books[@price=15]'        | INCLUDE_ALL_DESCENDANTS        || 1                           | 1
             'no condition and no descendants'      | '/bookstore/categories'                                    | OMIT_DESCENDANTS               || 4                           | 4
-            'no condition and level 1 descendants' | '/bookstore'                                               | new FetchDescendantsOption(1)  || 1                           | 5
-            'no condition and level 2 descendants' | '/bookstore'                                               | new FetchDescendantsOption(2)  || 1                           | 14
+            'no condition and level 1 descendants' | '/bookstore'                                               | new FetchDescendantsOption(1)  || 1                           | 6
+            'no condition and level 2 descendants' | '/bookstore'                                               | new FetchDescendantsOption(2)  || 1                           | 17
     }
 
     def 'Query for attribute by cps path with cps paths that return no data because of #scenario.'() {
@@ -136,6 +136,19 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
             'leaf and text'            | '//books[@price=14]/authors[text()="Terry Pratchett"]' || ['The Light Fantastic']
     }
 
+    def 'Cps Path query using descendant anywhere with #scenario condition(s) for a list element.'() {
+        when: 'a query is executed to get a data node by the given cps path'
+            def result = objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE, BOOKSTORE_ANCHOR, cpsPath, INCLUDE_ALL_DESCENDANTS)
+        then: 'xpaths of the retrieved data nodes are as expected'
+            result.xpath.sort() == expectedXPaths.sort()
+        where: 'the following data is used'
+            scenario                              | cpsPath                                                    || expectedXPaths
+            'full composite key'                  | '//addresses[@house_number=2 and @street="Main Street"]'   || ["/bookstore/premises/addresses[@house_number='2' and @street='Main Street']"]
+            'one partial key leaf'                | '//addresses[@house_number=2]'                             || ["/bookstore/premises/addresses[@house_number='2' and @street='Main Street']"]
+            'one non key leaf'                    | '//addresses[@street="Main Street"]'                       || ["/bookstore/premises/addresses[@house_number='2' and @street='Main Street']"]
+            'mix of partial key and non key leaf' | '//addresses[@street="Main Street" and @county="Kildare"]' || ["/bookstore/premises/addresses[@house_number='2' and @street='Main Street']"]
+    }
+
     def 'Query for attribute by cps path of type ancestor with #scenario.'() {
         when: 'the given cps path is parsed'
             def result = objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE, BOOKSTORE_ANCHOR, cpsPath, OMIT_DESCENDANTS)
@@ -162,8 +175,8 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
         where: 'the following data is used'
             scenario | fetchDescendantsOption  || expectedNumberOfNodes
             'no'     | OMIT_DESCENDANTS        || 1
-            'direct' | DIRECT_CHILDREN_ONLY    || 5
-            'all'    | INCLUDE_ALL_DESCENDANTS || 14
+            'direct' | DIRECT_CHILDREN_ONLY    || 6
+            'all'    | INCLUDE_ALL_DESCENDANTS || 17
     }
 
     def 'Cps Path query with syntax error throws a CPS Path Exception.'() {
