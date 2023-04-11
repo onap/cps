@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "967e4c84_3da67f7d",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceQueryDataNodeSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-04-11T09:41:20Z",
+      "side": 1,
+      "message": "No, coverage is not affected by moving these tests.",
+      "parentUuid": "285bd8cb_dc608889",
+      "revId": "c62dbd7d3538392c6b72e73631f026fef198715c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c217c2b5_8ca43cfc",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
         "patchSetId": 1
@@ -51,6 +69,24 @@
       "revId": "c62dbd7d3538392c6b72e73631f026fef198715c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2595c4bf_c93b3f76",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-04-11T09:41:20Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8bbea948_07b3434c",
+      "revId": "c62dbd7d3538392c6b72e73631f026fef198715c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
