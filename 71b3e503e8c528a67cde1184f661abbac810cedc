@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a21cdc5c_833a181d",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 8
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-11T08:56:14Z",
+      "side": 1,
+      "message": "Put only in required module",
+      "range": {
+        "startLine": 41,
+        "startChar": 8,
+        "endLine": 41,
+        "endChar": 49
+      },
+      "revId": "71b3e503e8c528a67cde1184f661abbac810cedc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
