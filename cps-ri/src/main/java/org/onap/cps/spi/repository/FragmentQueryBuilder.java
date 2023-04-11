@@ -60,15 +60,24 @@ public class FragmentQueryBuilder {
         final Map<String, Object> queryParameters = new HashMap<>();
         queryParameters.put("anchorId", anchorId);
         sqlStringBuilder.append(" AND xpath ~ :xpathRegex");
+        return getQuery(cpsPathQuery, sqlStringBuilder, queryParameters);
+    }
+
+    private Query getQuery(final CpsPathQuery cpsPathQuery, final StringBuilder sqlStringBuilder,
+                           final Map<String, Object> queryParameters) {
         final String xpathRegex = getXpathSqlRegex(cpsPathQuery, false);
         queryParameters.put("xpathRegex", xpathRegex);
         if (cpsPathQuery.hasLeafConditions()) {
             sqlStringBuilder.append(" AND attributes @> :leafDataAsJson\\:\\:jsonb");
             queryParameters.put("leafDataAsJson", jsonObjectMapper.asJsonString(
-                cpsPathQuery.getLeavesData()));
+                    cpsPathQuery.getLeavesData()));
         }
-
-        addTextFunctionCondition(cpsPathQuery, sqlStringBuilder, queryParameters);
+        if (cpsPathQuery.hasTextFunctionCondition()) {
+            addTextFunctionCondition(cpsPathQuery, sqlStringBuilder, queryParameters);
+        }
+        if (cpsPathQuery.hasContainsFunctionCondition()) {
+            addContainsFunctionCondition(cpsPathQuery, sqlStringBuilder);
+        }
         final Query query = entityManager.createNativeQuery(sqlStringBuilder.toString(), FragmentEntity.class);
         setQueryParameters(query, queryParameters);
         return query;
@@ -83,18 +92,7 @@ public class FragmentQueryBuilder {
     public Query getQueryForCpsPath(final CpsPathQuery cpsPathQuery) {
         final StringBuilder sqlStringBuilder = new StringBuilder("SELECT * FROM FRAGMENT WHERE xpath ~ :xpathRegex");
         final Map<String, Object> queryParameters = new HashMap<>();
-        final String xpathRegex = getXpathSqlRegex(cpsPathQuery, false);
-        queryParameters.put("xpathRegex", xpathRegex);
-        if (cpsPathQuery.hasLeafConditions()) {
-            sqlStringBuilder.append(" AND attributes @> :leafDataAsJson\\:\\:jsonb");
-            queryParameters.put("leafDataAsJson", jsonObjectMapper.asJsonString(
-                    cpsPathQuery.getLeavesData()));
-        }
-
-        addTextFunctionCondition(cpsPathQuery, sqlStringBuilder, queryParameters);
-        final Query query = entityManager.createNativeQuery(sqlStringBuilder.toString(), FragmentEntity.class);
-        setQueryParameters(query, queryParameters);
-        return query;
+        return getQuery(cpsPathQuery, sqlStringBuilder, queryParameters);
     }
 
     /**
@@ -151,6 +149,16 @@ public class FragmentQueryBuilder {
                 queryParameters.put("textValueAsInt", textValueAsInt);
             }
             sqlStringBuilder.append(")");
+        }
+    }
+
+    private static void addContainsFunctionCondition(final CpsPathQuery cpsPathQuery,
+                                                     final StringBuilder sqlStringBuilder) {
+        if (cpsPathQuery.hasContainsFunctionCondition()) {
+            sqlStringBuilder.append(" AND attributes ->>");
+            sqlStringBuilder.append("'" + cpsPathQuery.getContainsFunctionConditionLeafName() + "'");
+            sqlStringBuilder.append(" LIKE ");
+            sqlStringBuilder.append("'%" + cpsPathQuery.getContainsFunctionConditionValue() + "%'");
         }
     }
 
