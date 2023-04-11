@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2023 Nordix Foundation
+ *  Modifications Copyright (C) 2023 TechMahindra Ltd
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -22,16 +23,11 @@ package org.onap.cps.integration.functional
 
 import org.onap.cps.api.CpsQueryService
 import org.onap.cps.integration.base.FunctionalSpecBase
-import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.exceptions.CpsPathException
-import org.springframework.test.context.jdbc.Sql
-
-import java.util.stream.Collectors
 
 import static org.onap.cps.spi.FetchDescendantsOption.DIRECT_CHILDREN_ONLY
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
-import static org.onap.cps.spi.FetchDescendantsOption.getFetchDescendantsOption
 
 class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
 
@@ -84,6 +80,18 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
             'no'     | OMIT_DESCENDANTS        || 1
             'direct' | DIRECT_CHILDREN_ONLY    || 4
             'all'    | INCLUDE_ALL_DESCENDANTS || 8
+    }
+
+    def 'Query for attribute by cps path using contains condition #scenario.'() {
+        when: 'a query is executed to get response by the given cps path'
+            def result = objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE, BOOKSTORE_ANCHOR, cpspath, OMIT_DESCENDANTS)
+        then: 'the cps-path of queryDataNodes has the expectedLeaves'
+            assert result.size() == expectedResultsize
+        where: 'the following data is used'
+            scenario                             | cpspath                           | expectedResultsize
+            'The "contains" condition with leaf' | '//books[contains(@title,"Mat")]' | 1
+            '"contains" with case-sensitive'     | '//books[contains(@title,"Ti")]'  | 0
+            '"contains" with Integer Value'      | '//books[contains(@price,"15")]'  | 2
     }
 
     def 'Cps Path query with syntax error throws a CPS Path Exception.'() {
