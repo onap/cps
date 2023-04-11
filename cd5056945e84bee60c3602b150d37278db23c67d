@@ -25,6 +25,29 @@
     },
     {
       "key": {
+        "uuid": "771e505f_9a0f9763",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-11T14:25:39Z",
+      "side": 1,
+      "message": "maybe this should no longer be tested here (same for line 59)",
+      "range": {
+        "startLine": 55,
+        "startChar": 12,
+        "endLine": 55,
+        "endChar": 65
+      },
+      "revId": "cd5056945e84bee60c3602b150d37278db23c67d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c2c630a6_31386327",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorSpec.groovy",
         "patchSetId": 2
@@ -83,6 +106,30 @@
       "writtenOn": "2023-04-06T17:38:42Z",
       "side": 1,
       "message": "From this class we are not discarding keys that has null values. At this stage if there is no change we get \u0027null\u0027 assigned to both old and new values. \n\nNote: I have not changed the behaviour, that\u0027s coming through existing logic, We get null if there is no change. So, I am expecting \u0027null\u0027 here as there is no diff between new and old value of \u0027dataSyncEnabled\u0027.",
+      "parentUuid": "bdbe2e1b_e1f2eb85",
+      "range": {
+        "startLine": 59,
+        "startChar": 42,
+        "endLine": 59,
+        "endChar": 65
+      },
+      "revId": "cd5056945e84bee60c3602b150d37278db23c67d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec24406b_f99c8539",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/lcm/LcmEventsCreatorSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-11T14:25:39Z",
+      "side": 1,
+      "message": "maybe we can discus in a follow up meeting please",
       "parentUuid": "bdbe2e1b_e1f2eb85",
       "range": {
         "startLine": 59,
