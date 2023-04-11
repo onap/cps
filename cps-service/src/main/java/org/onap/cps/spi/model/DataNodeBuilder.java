@@ -2,7 +2,7 @@
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Bell Canada. All rights reserved.
  *  Modifications Copyright (C) 2021 Pantheon.tech
- *  Modifications Copyright (C) 2022 Nordix Foundation.
+ *  Modifications Copyright (C) 2022-2023 Nordix Foundation.
  *  Modifications Copyright (C) 2022-2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -54,6 +54,7 @@ public class DataNodeBuilder {
     private String parentNodeXpath = "";
     private Map<String, Serializable> leaves = Collections.emptyMap();
     private Collection<DataNode> childDataNodes = Collections.emptySet();
+    private String dataspaceName;
     private String anchorName;
 
     /**
@@ -86,6 +87,17 @@ public class DataNodeBuilder {
      */
     public DataNodeBuilder withXpath(final String xpath) {
         this.xpath = xpath;
+        return this;
+    }
+
+    /**
+     * To use dataspace name for creating {@link DataNode}.
+     *
+     * @param dataspaceName dataspace name for the data node
+     * @return DataNodeBuilder
+     */
+    public DataNodeBuilder withDataspace(final String dataspaceName) {
+        this.dataspaceName = dataspaceName;
         return this;
     }
 
@@ -165,6 +177,7 @@ public class DataNodeBuilder {
         dataNode.setModuleNamePrefix(moduleNamePrefix);
         dataNode.setLeaves(leaves);
         dataNode.setChildDataNodes(childDataNodes);
+        dataNode.setDataspace(dataspaceName);
         dataNode.setAnchorName(anchorName);
         return dataNode;
     }

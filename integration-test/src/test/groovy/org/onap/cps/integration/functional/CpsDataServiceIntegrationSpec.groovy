@@ -21,12 +21,13 @@
 
 package org.onap.cps.integration.functional
 
+import org.onap.cps.api.CpsDataService
 import org.onap.cps.integration.base.FunctionalSpecBase
 import org.onap.cps.spi.FetchDescendantsOption
 
 class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
 
-    def objectUnderTest
+    CpsDataService objectUnderTest
 
     def setup() { objectUnderTest = cpsDataService }
 
@@ -44,4 +45,14 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
             FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS || 8
             new FetchDescendantsOption(2)                  || 8
     }
+
+    def 'Read bookstore top-level container(s) has correct dataspace and anchor.'() {
+        when: 'get data nodes for bookstore container'
+            def result = objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE, BOOKSTORE_ANCHOR, '/bookstore', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
+        then: 'the correct dataspace was queried'
+            assert result.dataspace.toSet() == [FUNCTIONAL_TEST_DATASPACE].toSet()
+        and: 'the correct anchor was queried'
+            assert result.anchorName.toSet() == [BOOKSTORE_ANCHOR].toSet()
+    }
+
 }
