@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "896a4eb2_9efc6e62",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-04-12T14:53:30Z",
+      "side": 1,
+      "message": "Prefix not needed",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 17
+      },
+      "revId": "e7f10c76e907351e408220738657d063aa36c705",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "80108de0_a3b7d252",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreOperationalQueryHandler.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-04-12T14:53:30Z",
+      "side": 1,
+      "message": "cmHandleId",
+      "range": {
+        "startLine": 43,
+        "startChar": 57,
+        "endLine": 43,
+        "endChar": 65
+      },
+      "revId": "e7f10c76e907351e408220738657d063aa36c705",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ada5c7d_34639b08",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreOperationalResourceRequestHandler.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-04-12T14:53:30Z",
+      "side": 1,
+      "message": "cmHandleId",
+      "range": {
+        "startLine": 42,
+        "startChar": 57,
+        "endLine": 42,
+        "endChar": 65
+      },
+      "revId": "e7f10c76e907351e408220738657d063aa36c705",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35e566a7_96a959b4",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastorePassthroughOperationalResourceRequestHandler.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-04-12T14:53:30Z",
+      "side": 1,
+      "message": "cmHandleId",
+      "range": {
+        "startLine": 43,
+        "startChar": 57,
+        "endLine": 43,
+        "endChar": 65
+      },
+      "revId": "e7f10c76e907351e408220738657d063aa36c705",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "41daf6fa_5c0ff4c5",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastorePassthroughRunningResourceRequestHandler.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-04-12T14:53:30Z",
+      "side": 1,
+      "message": "cmHandleId",
+      "range": {
+        "startLine": 43,
+        "startChar": 57,
+        "endLine": 43,
+        "endChar": 65
+      },
+      "revId": "e7f10c76e907351e408220738657d063aa36c705",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c508977_3abe7f82",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreRequestHandler.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-04-12T14:53:30Z",
+      "side": 1,
+      "message": "An if-statement would be cleaner here.",
+      "range": {
+        "startLine": 129,
+        "startChar": 0,
+        "endLine": 132,
+        "endChar": 47
+      },
+      "revId": "e7f10c76e907351e408220738657d063aa36c705",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e97d6df_d3ec4eb5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-04-12T14:53:30Z",
+      "side": 1,
+      "message": "indentation",
+      "range": {
+        "startLine": 122,
+        "startChar": 45,
+        "endLine": 122,
+        "endChar": 56
+      },
+      "revId": "e7f10c76e907351e408220738657d063aa36c705",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fa37142a_9a4934b1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-04-12T14:53:30Z",
+      "side": 1,
+      "message": "Side note: I think we should get rid of this iterator().next() stuff, it\u0027s confusing. Maybe have a helper method \"getSingleDataNode\" (out of scope for this story though)",
+      "range": {
+        "startLine": 137,
+        "startChar": 39,
+        "endLine": 137,
+        "endChar": 57
+      },
+      "revId": "e7f10c76e907351e408220738657d063aa36c705",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
