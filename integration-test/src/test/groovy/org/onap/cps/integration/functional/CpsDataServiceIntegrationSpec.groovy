@@ -41,9 +41,9 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
         where: 'the following option is used'
             fetchDescendantsOption                         || expectNumberOfDataNodes
             FetchDescendantsOption.OMIT_DESCENDANTS        || 1
-            FetchDescendantsOption.DIRECT_CHILDREN_ONLY    || 4
-            FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS || 8
-            new FetchDescendantsOption(2)                  || 8
+            FetchDescendantsOption.DIRECT_CHILDREN_ONLY    || 5
+            FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS || 12
+            new FetchDescendantsOption(2)                  || 12
     }
 
     def 'Read bookstore top-level container(s) has correct dataspace and anchor.'() {
