@@ -14,4 +14,5 @@ python3 -m pip install --upgrade pip
 
 echo "Installing Python Requirements"
 python3 -m pip install -r ${WORKSPACE}/pylibs.txt
+python3 -m pip install robotframework-confluentkafkalibrary
 python3 -m pip freeze
