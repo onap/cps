@@ -94,6 +94,23 @@
     },
     {
       "key": {
+        "uuid": "9b48cd82_90b9fe24",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastorePassthroughRunningResourceRequestHandler.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-12T16:07:39Z",
+      "side": 1,
+      "message": "PLease see my file comment on patch #5 I still think these are needless ubclass, all we need is an extra parameter!",
+      "revId": "e7f10c76e907351e408220738657d063aa36c705",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "41daf6fa_5c0ff4c5",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastorePassthroughRunningResourceRequestHandler.java",
         "patchSetId": 8
@@ -117,6 +134,29 @@
     },
     {
       "key": {
+        "uuid": "bdb400a0_a68dc4d4",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastorePassthroughRunningResourceRequestHandler.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-12T16:07:39Z",
+      "side": 1,
+      "message": "don\u0027t hardcode this, see file comment I think this can be done much simpler",
+      "range": {
+        "startLine": 64,
+        "startChar": 15,
+        "endLine": 64,
+        "endChar": 35
+      },
+      "revId": "e7f10c76e907351e408220738657d063aa36c705",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0c508977_3abe7f82",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreRequestHandler.java",
         "patchSetId": 8
@@ -128,6 +168,30 @@
       "writtenOn": "2023-04-12T14:53:30Z",
       "side": 1,
       "message": "An if-statement would be cleaner here.",
+      "range": {
+        "startLine": 129,
+        "startChar": 0,
+        "endLine": 132,
+        "endChar": 47
+      },
+      "revId": "e7f10c76e907351e408220738657d063aa36c705",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5cfa7849_c12463a1",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreRequestHandler.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-12T16:07:39Z",
+      "side": 1,
+      "message": "agreed if statemenet wil make it easier to read",
+      "parentUuid": "0c508977_3abe7f82",
       "range": {
         "startLine": 129,
         "startChar": 0,
@@ -179,6 +243,139 @@
         "startChar": 39,
         "endLine": 137,
         "endChar": 57
+      },
+      "revId": "e7f10c76e907351e408220738657d063aa36c705",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "32cd2a25_929a2fe8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-12T16:07:39Z",
+      "side": 1,
+      "message": "we really need a separate task to handle multiple roots correctly, tech Mahindra have only implemeeted the CPS COre side, they are not interested in NCMP\n\nBut agreed out of scope!",
+      "parentUuid": "fa37142a_9a4934b1",
+      "range": {
+        "startLine": 137,
+        "startChar": 39,
+        "endLine": 137,
+        "endChar": 57
+      },
+      "revId": "e7f10c76e907351e408220738657d063aa36c705",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "253d1827_bad5e342",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/executor/CpsNcmpTaskExecutor.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-12T16:07:39Z",
+      "side": 1,
+      "message": "there is nothing CPS NCMP specific about this class so I would just call is TaskExecutor",
+      "range": {
+        "startLine": 32,
+        "startChar": 13,
+        "endLine": 32,
+        "endChar": 20
+      },
+      "revId": "e7f10c76e907351e408220738657d063aa36c705",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b573fce8_28c42ca3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiDataOperations.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-12T16:07:39Z",
+      "side": 1,
+      "message": "this is the class we should not review yet, correct?!",
+      "revId": "e7f10c76e907351e408220738657d063aa36c705",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8e7b1e07_3c7dbfbb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiDataOperations.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-12T16:07:39Z",
+      "side": 1,
+      "message": "not an enum anymore :-)",
+      "range": {
+        "startLine": 105,
+        "startChar": 49,
+        "endLine": 105,
+        "endChar": 53
+      },
+      "revId": "e7f10c76e907351e408220738657d063aa36c705",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bce87853_3e5cd7e4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiModelOperations.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-12T16:07:39Z",
+      "side": 1,
+      "message": "this will probably need to be be reverted based on dicussion we had earlier this week",
+      "range": {
+        "startLine": 115,
+        "startChar": 75,
+        "endLine": 115,
+        "endChar": 116
+      },
+      "revId": "e7f10c76e907351e408220738657d063aa36c705",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "db2de90a_bb3d7531",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/DmiServiceUrlBuilder.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-12T16:07:39Z",
+      "side": 1,
+      "message": "as discussed I think clearly separate method is better",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 82
       },
       "revId": "e7f10c76e907351e408220738657d063aa36c705",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
