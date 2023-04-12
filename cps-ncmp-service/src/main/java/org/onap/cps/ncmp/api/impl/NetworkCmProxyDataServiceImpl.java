@@ -44,7 +44,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.ncmp.api.NetworkCmProxyCmHandleQueryService;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
-import org.onap.cps.ncmp.api.impl.event.lcm.LcmEventsCmHandleStateHandler;
+import org.onap.cps.ncmp.api.impl.events.lcm.LcmEventsCmHandleStateHandler;
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations;
 import org.onap.cps.ncmp.api.impl.operations.DmiOperations;
 import org.onap.cps.ncmp.api.impl.utils.CmHandleQueryConditions;

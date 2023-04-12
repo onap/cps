@@ -18,9 +18,9 @@
  * ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.event.lcm
+package org.onap.cps.ncmp.api.impl.events.lcm
 
-import org.onap.cps.ncmp.api.impl.event.EventsPublisher
+import org.onap.cps.ncmp.api.impl.events.EventsPublisher
 import org.onap.ncmp.cmhandle.event.lcm.LcmEvent
 import org.springframework.kafka.KafkaException
 import spock.lang.Specification
