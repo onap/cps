@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2023 Nordix Foundation
+ *  Modifications Copyright (C) 2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -120,6 +121,34 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
             'no'     | OMIT_DESCENDANTS        || 1
             'direct' | DIRECT_CHILDREN_ONLY    || 4
             'all'    | INCLUDE_ALL_DESCENDANTS || 8
+    }
+
+    def 'cps-path query using combinations of Angular Operators #scenario.'() {
+        when: 'a query is executed to get response by the given cps path'
+            def result = objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE, BOOKSTORE_ANCHOR, cpspath, OMIT_DESCENDANTS)
+        then: 'the result contains expected number of nodes'
+            assert result.size() == expectedResultSize
+        and: 'the cps-path of queryDataNodes has the expectedLeaves'
+            assert result.leaves == expectedLeaves
+        where: 'the following data is used'
+            scenario                                         | cpspath                     || expectedResultSize | expectedLeaves
+            'the ">" condition'                              | '//books[@price>13]'        || 2                  | [[lang: "English", price: 15, title: "The Gruffalo", authors: ["Julia Donaldson"], pub_year: 1999],
+                                                                                                                    [lang: "English", price: 15, title: "Annihilation", authors: ["Jeff VanderMeer"], pub_year: 2014]]
+
+            'the "<" condition '                             | '//books[@price<15]'        || 2                  | [[lang: "English", price: 10, title: "Matilda", authors: ["Roald Dahl"], pub_year: 1988],
+                                                                                                                    [lang: "English", price: 13, title: "Good Omens", authors: ["Terry Pratchett", "Neil Gaiman"], pub_year: 2006]]
+
+            'the "<=" condition'                             | '//books[@price<=15 ]'      || 4                  | [[lang: "English", price: 15, title: "The Gruffalo", authors: ["Julia Donaldson"], pub_year: 1999],
+                                                                                                                    [lang: "English", price: 10, title: "Matilda", authors: ["Roald Dahl"], pub_year: 1988],
+                                                                                                                    [lang: "English", price: 15, title: "Annihilation", authors: ["Jeff VanderMeer"], pub_year: 2014],
+                                                                                                                    [lang: "English", price: 13, title: "Good Omens", authors: ["Terry Pratchett", "Neil Gaiman"], pub_year: 2006]]
+
+            'the ">=" condition'                             | '//books[@pub_year>=1985 ]' || 4                  | [[lang: "English", price: 15, title: "The Gruffalo", authors: ["Julia Donaldson"], pub_year: 1999],
+                                                                                                                    [lang: "English", price: 10, title: "Matilda", authors: ["Roald Dahl"], pub_year: 1988],
+                                                                                                                    [lang: "English", price: 15, title: "Annihilation", authors: ["Jeff VanderMeer"], pub_year: 2014],
+                                                                                                                    [lang: "English", price: 13, title: "Good Omens", authors: ["Terry Pratchett", "Neil Gaiman"], pub_year: 2006]]
+
+            'the "<" condition  where result does not exist' | '//books[@price<5 ]'        || 0                  | []
     }
 
     def 'Cps Path query with syntax error throws a CPS Path Exception.'() {
