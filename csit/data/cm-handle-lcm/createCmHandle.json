@@ -1,0 +1,17 @@
+{
+  "dmiDataPlugin":"dminame1",
+  "dmiModelPlugin":"x",
+  "createdCmHandles": [
+    {
+      "cmHandle": "CMHandle1",
+      "cmHandleProperties": {
+        "Books": "Social Media"
+      },
+      "publicCmHandleProperties": {
+        "Color": "yellow",
+        "Size": "small",
+        "Shape": "cube"
+      }
+    }
+  ]
+}

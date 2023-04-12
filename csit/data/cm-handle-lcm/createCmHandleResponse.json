@@ -1,0 +1,13 @@
+{
+  "cmHandleId":"CMHandle1",
+  "newValues":{
+    "cmHandleState":"ADVISED",
+    "cmHandleProperties":[
+      {
+        "Shape":"cube",
+        "Size":"small",
+        "Color":"yellow"
+      }
+    ]
+  }
+}
