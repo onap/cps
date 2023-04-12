@@ -18,7 +18,7 @@
  * ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.event.lcm;
+package org.onap.cps.ncmp.api.impl.events.lcm;
 
 public enum LcmEventType {
 

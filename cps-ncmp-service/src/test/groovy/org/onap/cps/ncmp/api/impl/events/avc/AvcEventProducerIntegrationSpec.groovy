@@ -18,12 +18,11 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.notifications.avc
+package org.onap.cps.ncmp.api.impl.events.avc
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.apache.kafka.clients.consumer.KafkaConsumer
 import org.mapstruct.factory.Mappers
-import org.onap.cps.ncmp.api.impl.async.NcmpAsyncRequestResponseEventMapper
 import org.onap.cps.ncmp.api.kafka.MessagingBaseSpec
 import org.onap.cps.ncmp.event.model.AvcEvent
 import org.onap.cps.ncmp.utils.TestUtils

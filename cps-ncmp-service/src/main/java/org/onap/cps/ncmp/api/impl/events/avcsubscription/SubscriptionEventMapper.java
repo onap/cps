@@ -18,7 +18,7 @@
  * ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.event.avc;
+package org.onap.cps.ncmp.api.impl.events.avcsubscription;
 
 import java.util.List;
 import java.util.stream.Collectors;

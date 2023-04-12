@@ -18,10 +18,10 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.event.avc
+package org.onap.cps.ncmp.api.impl.events.avcsubscription
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import org.onap.cps.ncmp.api.impl.event.EventsPublisher
+import org.onap.cps.ncmp.api.impl.events.EventsPublisher
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence
 import org.onap.cps.ncmp.api.kafka.MessagingBaseSpec
@@ -31,8 +31,6 @@ import org.onap.cps.spi.exceptions.OperationNotYetSupportedException
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.kafka.core.KafkaTemplate
-import org.springframework.util.concurrent.ListenableFuture;
 
 @SpringBootTest(classes = [ObjectMapper, JsonObjectMapper])
 class SubscriptionEventForwarderSpec extends MessagingBaseSpec {
