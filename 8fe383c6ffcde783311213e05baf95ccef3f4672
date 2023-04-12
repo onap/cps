@@ -16,6 +16,24 @@
       "revId": "8fe383c6ffcde783311213e05baf95ccef3f4672",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a7d683db_909621f2",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceQueryDataNodeSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-04-12T17:10:57Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a653279c_5e994ded",
+      "revId": "8fe383c6ffcde783311213e05baf95ccef3f4672",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }

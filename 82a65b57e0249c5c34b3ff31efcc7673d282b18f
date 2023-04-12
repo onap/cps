@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "af741fb5_caa98448",
+        "filename": "cps-ri/pom.xml",
+        "patchSetId": 14
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-04-12T17:10:57Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "dc608062_55021ea8",
+      "range": {
+        "startLine": 36,
+        "startChar": 25,
+        "endLine": 36,
+        "endChar": 29
+      },
+      "revId": "82a65b57e0249c5c34b3ff31efcc7673d282b18f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4b202f87_7f06434e",
         "filename": "cps-ri/src/test/resources/data/cps-path-query.sql",
         "patchSetId": 14
@@ -65,6 +89,30 @@
     },
     {
       "key": {
+        "uuid": "33361da1_4c7702cf",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-04-12T17:10:57Z",
+      "side": 1,
+      "message": "It\u0027s another dataspace containing the same data, so we can detect bugs like querying across dataspaces.\nMaybe FUNCTIONAL_TEST_DATASPACE_1 and FUNCTIONAL_TEST_DATASPACE_2 would be better names?\n(I moved this to the FunctionalSpecBase class)",
+      "parentUuid": "50a2b731_7774340d",
+      "range": {
+        "startLine": 74,
+        "startChar": 15,
+        "endLine": 74,
+        "endChar": 47
+      },
+      "revId": "82a65b57e0249c5c34b3ff31efcc7673d282b18f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "16706c46_83fb67b5",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
         "patchSetId": 14
@@ -85,6 +133,30 @@
       "revId": "82a65b57e0249c5c34b3ff31efcc7673d282b18f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b88a28ea_5a5c6210",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-04-12T17:10:57Z",
+      "side": 1,
+      "message": "Done. (Also moved this to the FunctionalSpecBase class)",
+      "parentUuid": "16706c46_83fb67b5",
+      "range": {
+        "startLine": 76,
+        "startChar": 15,
+        "endLine": 76,
+        "endChar": 32
+      },
+      "revId": "82a65b57e0249c5c34b3ff31efcc7673d282b18f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -111,6 +183,30 @@
     },
     {
       "key": {
+        "uuid": "b32f600c_58b2bb02",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-04-12T17:10:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "247797e3_6737e00f",
+      "range": {
+        "startLine": 195,
+        "startChar": 66,
+        "endLine": 195,
+        "endChar": 70
+      },
+      "revId": "82a65b57e0249c5c34b3ff31efcc7673d282b18f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "489db27a_76e36eb1",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
         "patchSetId": 14
@@ -131,6 +227,30 @@
       "revId": "82a65b57e0249c5c34b3ff31efcc7673d282b18f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc1ae4c7_89ca5b63",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-04-12T17:10:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "489db27a_76e36eb1",
+      "range": {
+        "startLine": 222,
+        "startChar": 50,
+        "endLine": 222,
+        "endChar": 52
+      },
+      "revId": "82a65b57e0249c5c34b3ff31efcc7673d282b18f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
