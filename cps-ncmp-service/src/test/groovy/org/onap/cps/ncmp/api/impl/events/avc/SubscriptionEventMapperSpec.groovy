@@ -18,11 +18,11 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.notifications.avc
+package org.onap.cps.ncmp.api.impl.events.avc
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.mapstruct.factory.Mappers
-import org.onap.cps.ncmp.api.impl.event.avc.SubscriptionEventMapper
+import org.onap.cps.ncmp.api.impl.events.avcsubscription.SubscriptionEventMapper
 import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionStatus
 import org.onap.cps.ncmp.event.model.SubscriptionEvent
 import org.onap.cps.ncmp.utils.TestUtils
