@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2023 Nordix Foundation
+ *  Modifications Copyright (C) 2023 TechMahindra Ltd
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -50,6 +51,30 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
             scenario                                      | cpsPath                                    || expectedResultSize | expectedLeaves
             'the AND condition is used'                   | '//books[@lang="English" and @price=15]'   || 2                  | [lang:"English", price:15]
             'the AND is used where result does not exist' | '//books[@lang="English" and @price=1000]' || 0                  | []
+    }
+
+    def 'Cps Path query using combinations of OR operator #scenario.'() {
+        when: 'a query is executed to get response by the given cps path'
+            def result = objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE, BOOKSTORE_ANCHOR, cpspath, OMIT_DESCENDANTS)
+        then: 'the result contains expected number of nodes'
+            assert result.size() == expectedResultSize
+        and: 'the cps-path of queryDataNodes has the expectedLeaves'
+            assert result.leaves == expectedLeaves
+        where: 'the following data is used'
+            scenario                                | cpspath                                                        || expectedResultSize | expectedLeaves
+            'the "OR" condition'                    | '//books[@lang="English" or @price=15]'                        || 4                  | [[lang: "English", price: 15, title: "The Gruffalo", authors: ["Julia Donaldson"], pub_year: 1999],
+                                                                                                                                              [lang: "English", price: 10, title: "Matilda", authors: ["Roald Dahl"], pub_year: 1988],
+                                                                                                                                              [lang: "English", price: 15, title: "Annihilation", authors: ["Jeff VanderMeer"], pub_year: 2014],
+                                                                                                                                              [lang: "English", price: 13, title: "Good Omens", authors: ["Terry Pratchett", "Neil Gaiman"], pub_year: 2006]]
+            'the "OR" condition with non-json data' | '//books[@title="xyz" or @price=15]'                           || 2                  | [[lang: "English", price: 15, title: "The Gruffalo", authors: ["Julia Donaldson"], pub_year: 1999],
+                                                                                                                                              [lang: "English", price: 15, title: "Annihilation", authors: ["Jeff VanderMeer"], pub_year: 2014]]
+            'combination of AND/OR'                 | '//books[@pub_year=2014 and @price=15 or @title="Good Omens"]' || 2                  | [[lang: "English", price: 15, title: "Annihilation", authors: ["Jeff VanderMeer"], pub_year: 2014],
+                                                                                                                                              [lang: "English", price: 13, title: "Good Omens", authors: ["Terry Pratchett", "Neil Gaiman"], pub_year: 2006]]
+            'combination of OR/AND'                 | '//books[@title="Good Omens" or @price=15 and @pub_year=1999]' || 1                  | [[lang: "English", price: 15, title: "The Gruffalo", authors: ["Julia Donaldson"], pub_year: 1999]]
+            'combination of multiple AND'           | '//books[@lang="English" and @price=15 and @pub_year=2014 ]'   || 1                  | [[lang: "English", price: 15, title: "Annihilation", authors: ["Jeff VanderMeer"], pub_year: 2014]]
+            'combination of multiple OR'            | '//books[ @title="Matilda" or @price=15 or @pub_year=2000]'    || 3                  | [[lang: "English", price: 15, title: "The Gruffalo", authors: ["Julia Donaldson"], pub_year: 1999],
+                                                                                                                                              [lang: "English", price: 10, title: "Matilda", authors: ["Roald Dahl"], pub_year: 1988],
+                                                                                                                                              [lang: "English", price: 15, title: "Annihilation", authors: ["Jeff VanderMeer"], pub_year: 2014]]
     }
 
     def 'Cps Path query for leaf value(s) with #scenario.'() {
