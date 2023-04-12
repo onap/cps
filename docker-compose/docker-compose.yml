@@ -46,7 +46,7 @@ services:
       DB_PASSWORD: ${DB_PASSWORD:-cps}
       DMI_USERNAME: ${DMI_USERNAME:-cpsuser}
       DMI_PASSWORD: ${DMI_PASSWORD:-cpsr0cks!}
-      KAFKA_BOOTSTRAP_SERVER: kafka:9092
+      KAFKA_BOOTSTRAP_SERVER: kafka:29092
       notification.enabled: 'true'
       notification.async.executor.time-out-value-in-ms: 2000
       NOTIFICATION_DATASPACE_FILTER_PATTERNS: '.*'
@@ -69,14 +69,14 @@ services:
     image: confluentinc/cp-kafka:6.2.1
     container_name: kafka
     ports:
-      - "19092:19092"
+      - '9092:9092'
     depends_on:
       - zookeeper
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,CONNECTIONS_FROM_HOST://localhost:19092
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,CONNECTIONS_FROM_HOST:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,CONNECTIONS_FROM_HOST://localhost:9092
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
 
   ncmp-dmi-plugin:
@@ -97,9 +97,10 @@ services:
       SDNC_USERNAME: ${SDNC_USERNAME:-admin}
       SDNC_PASSWORD: ${SDNC_PASSWORD:-Kp8bJ4SXszM0WXlhak3eHlcse2gAw84vaoGGmJvUy2U}
       DMI_SERVICE_URL: ${DMI_SERVICE_URL:-http://ncmp-dmi-plugin:8783}
+      DMI_SERVICE_NAME: ${DMI_SERVICE_NAME:-dminame1}
       DMI_USERNAME: ${DMI_USERNAME:-cpsuser}
       DMI_PASSWORD: ${DMI_PASSWORD:-cpsr0cks!}
-      KAFKA_BOOTSTRAP_SERVER: kafka:9092
+      KAFKA_BOOTSTRAP_SERVER: kafka:29092
       notification.data-updated.enabled: 'true'
       NOTIFICATION_DATASPACE_FILTER_PATTERNS: '.*'
     restart: unless-stopped
@@ -112,7 +113,7 @@ services:
     ports:
       - ${DMI_DEMO_STUB_PORT:-8784}:8092
     environment:
-      KAFKA_BOOTSTRAP_SERVER: kafka:9092
+      KAFKA_BOOTSTRAP_SERVER: kafka:29092
       NCMP_CONSUMER_GROUP_ID: ncmp-group
       NCMP_ASYNC_M2M_TOPIC: ncmp-async-m2m
     restart: unless-stopped
