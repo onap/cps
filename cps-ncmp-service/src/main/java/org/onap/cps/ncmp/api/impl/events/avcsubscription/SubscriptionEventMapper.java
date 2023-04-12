@@ -18,7 +18,7 @@
  * ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.event.avc;
+package org.onap.cps.ncmp.api.impl.events.avcsubscription;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -47,6 +47,6 @@ public interface SubscriptionEventMapper {
 
     @Named("mapIsTagged")
     default boolean mapIsTagged(Boolean isTagged) {
-        return (isTagged == null) ? false : isTagged;
+        return isTagged != null && isTagged;
     }
 }

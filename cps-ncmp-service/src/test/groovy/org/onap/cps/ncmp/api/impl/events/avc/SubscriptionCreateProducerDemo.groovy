@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.notifications.avc
+package org.onap.cps.ncmp.api.impl.events.avc
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.ncmp.event.model.SubscriptionEvent
