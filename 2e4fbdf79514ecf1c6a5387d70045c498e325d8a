@@ -45,6 +45,30 @@
       "revId": "2e4fbdf79514ecf1c6a5387d70045c498e325d8a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9610d094_c8e788c6",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/QueryPerfTest.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-04-12T10:16:09Z",
+      "side": 1,
+      "message": "Yes, FIXME tags are commonly used to mark places where a bug is suspected, but which the developer wants to deal with later.",
+      "parentUuid": "af420375_803aef79",
+      "range": {
+        "startLine": 65,
+        "startChar": 15,
+        "endLine": 65,
+        "endChar": 20
+      },
+      "revId": "2e4fbdf79514ecf1c6a5387d70045c498e325d8a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
