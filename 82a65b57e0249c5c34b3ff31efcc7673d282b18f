@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dc608062_55021ea8",
+        "filename": "cps-ri/pom.xml",
+        "patchSetId": 14
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-12T16:20:42Z",
+      "side": 1,
+      "message": "this is more like what I expected :-)",
+      "range": {
+        "startLine": 36,
+        "startChar": 25,
+        "endLine": 36,
+        "endChar": 29
+      },
+      "revId": "82a65b57e0249c5c34b3ff31efcc7673d282b18f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b202f87_7f06434e",
+        "filename": "cps-ri/src/test/resources/data/cps-path-query.sql",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-12T16:20:42Z",
+      "side": 1,
+      "message": "good riddance :-)",
+      "revId": "82a65b57e0249c5c34b3ff31efcc7673d282b18f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "50a2b731_7774340d",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-12T16:20:42Z",
+      "side": 1,
+      "message": "what is this one for? Not clear from name",
+      "range": {
+        "startLine": 74,
+        "startChar": 15,
+        "endLine": 74,
+        "endChar": 47
+      },
+      "revId": "82a65b57e0249c5c34b3ff31efcc7673d282b18f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16706c46_83fb67b5",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-12T16:20:42Z",
+      "side": 1,
+      "message": "I think the \"1\" needs to be in the name to: BOOKSTORE_ANCHOR_1",
+      "range": {
+        "startLine": 76,
+        "startChar": 15,
+        "endLine": 76,
+        "endChar": 32
+      },
+      "revId": "82a65b57e0249c5c34b3ff31efcc7673d282b18f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "247797e3_6737e00f",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-12T16:20:42Z",
+      "side": 1,
+      "message": "magic number maybe extract out a \u0027constant\u0027 to explain\n\nie. def numberOfAnchorsWithBookstoreData\n\nalternatively explain the multiplication in the label (line #194)\nor do both :-)",
+      "range": {
+        "startLine": 195,
+        "startChar": 66,
+        "endLine": 195,
+        "endChar": 70
+      },
+      "revId": "82a65b57e0249c5c34b3ff31efcc7673d282b18f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "489db27a_76e36eb1",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-12T16:20:42Z",
+      "side": 1,
+      "message": "this is the same \u0027magic\u0027 number correct?",
+      "range": {
+        "startLine": 222,
+        "startChar": 50,
+        "endLine": 222,
+        "endChar": 52
+      },
+      "revId": "82a65b57e0249c5c34b3ff31efcc7673d282b18f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
