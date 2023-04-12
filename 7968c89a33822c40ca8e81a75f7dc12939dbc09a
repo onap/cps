@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fe62e6c0_4ca4d946",
+        "filename": "csit/data/testTreePatchExample.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-04-12T09:39:33Z",
+      "side": 1,
+      "message": "if you are just patching the name then other part of the payload is not required.\nThats y we use patch.",
+      "range": {
+        "startLine": 4,
+        "startChar": 4,
+        "endLine": 4,
+        "endChar": 21
+      },
+      "revId": "7968c89a33822c40ca8e81a75f7dc12939dbc09a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
