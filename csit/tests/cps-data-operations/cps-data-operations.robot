@@ -53,7 +53,7 @@ NCMP Data Operation, forwarded to DMI, response on Client Topic
         Sleep                            5                         wait some time to get published a message to the client topic
 
 Consume cloud event from client topic
-    ${group_id}=         Create Consumer     port=19092               auto_offset_reset=earliest
+    ${group_id}=         Create Consumer     auto_offset_reset=earliest
     Subscribe Topic      topics=${topic}     group_id=${group_id}
     ${messages}=         Poll                group_id=${group_id}     only_value=false
     ${event}                        Set Variable                      ${messages}[0]
