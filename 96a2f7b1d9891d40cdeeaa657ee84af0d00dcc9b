@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cc9b4092_fec7269e",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-12T08:51:39Z",
+      "side": 1,
+      "message": "Suggestion for LATER: split this tets in text() function tests and normal attribute conditions (which some probably are already covered elsewhere)",
+      "range": {
+        "startLine": 110,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 122
+      },
+      "revId": "96a2f7b1d9891d40cdeeaa657ee84af0d00dcc9b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
