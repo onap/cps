@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "2870c2d3_4e4a739e",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-04-12T15:49:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1e0cb9e2_1695e214",
+      "range": {
+        "startLine": 145,
+        "startChar": 114,
+        "endLine": 145,
+        "endChar": 128
+      },
+      "revId": "2ea188957646dddeed5debab03a3d4aff99de606",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ab8ad662_cceab241",
         "filename": "integration-test/src/test/resources/data/bookstore/bookstore.yang",
         "patchSetId": 6
@@ -68,6 +92,30 @@
       "revId": "2ea188957646dddeed5debab03a3d4aff99de606",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc31d946_fd71dc2f",
+        "filename": "integration-test/src/test/resources/data/bookstore/bookstore.yang",
+        "patchSetId": 6
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-04-12T15:49:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ab8ad662_cceab241",
+      "range": {
+        "startLine": 28,
+        "startChar": 26,
+        "endLine": 28,
+        "endChar": 27
+      },
+      "revId": "2ea188957646dddeed5debab03a3d4aff99de606",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
