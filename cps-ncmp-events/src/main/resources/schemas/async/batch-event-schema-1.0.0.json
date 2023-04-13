@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "urn:cps:org.onap.cps.ncmp.events.async:batch-event-schema:1.0.0",
+  "$ref": "#/definitions/BatchDataResponseEvent",
+  "definitions": {
+    "BatchDataResponseEvent": {
+      "description": "The payload of batch event.",
+      "type": "object",
+      "javaType" : "org.onap.cps.ncmp.events.async.v1.BatchDataResponseEvent",
+      "properties": {
+        "event": {
+          "description": "The payload content of the requested data.",
+          "type": "object",
+          "javaType" : "org.onap.cps.ncmp.events.async.v1.BatchDataEvent",
+          "properties": {
+            "batch-responses": {
+              "description": "An array of batch responses which contains both success and failure",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "operationId": {
+                    "description": "Used to distinguish multiple operations using same cmhandleId",
+                    "type": "string"
+                  },
+                  "ids": {
+                    "description": "Id's of the cmhandles",
+                    "type": "array"
+                  },
+                  "status-code": {
+                    "description": "which says success or failure (0-99) are for success and (100-199) are for failure",
+                    "type": "string"
+                  },
+                  "status-message": {
+                    "description": "Human readable message, Which says what the response has",
+                    "type": "string"
+                  },
+                  "data": {
+                    "description": "Contains the requested data response.",
+                    "type": "object",
+                    "existingJavaType": "java.lang.Object",
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "operationId",
+                  "ids",
+                  "status-code",
+                  "status-message"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": [
+            "batch-responses"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "event"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

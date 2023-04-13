@@ -97,6 +97,8 @@ app:
     ncmp:
         async-m2m:
             topic: ${NCMP_ASYNC_M2M_TOPIC:ncmp-async-m2m}
+            consumer-group-id:
+                batch-event: ${NCMP_BATCH_EVENT_CONSUMER_GROUP_ID:ncmp-batch-event-group}
         avc:
             subscription-topic: ${NCMP_CM_AVC_SUBSCRIPTION:cm-avc-subscription}
             subscription-forward-topic: ${NCMP_FORWARD_CM_AVC_SUBSCRIPTION:ncmp-dmi-cm-avc-subscription}

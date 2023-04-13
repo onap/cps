@@ -1,0 +1,46 @@
+{
+  "event":{
+    "batch-responses":[
+      {
+        "operationId":"1",
+        "ids":[
+          "123",
+          "124"
+        ],
+        "status-code":1,
+        "status-message":"Batch operation success on the above cmhandle ids ",
+        "data":{
+          "ietf-netconf-monitoring:netconf-state":{
+            "schemas":{
+              "schema":[
+                {
+                  "identifier":"ietf-tls-server",
+                  "version":"2016-11-02",
+                  "format":"ietf-netconf-monitoring:yang",
+                  "namespace":"urn:ietf:params:xml:ns:yang:ietf-tls-server",
+                  "location":[
+                    "NETCONF"
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      },
+      {
+        "operationId":"101",
+        "ids":[
+          "456",
+          "457"
+        ],
+        "status-code":101,
+        "status-message":"cmHandle(s) do not exist",
+        "data":{
+          "error":{
+            "message":"cmHandle(s) do not exist"
+          }
+        }
+      }
+    ]
+  }
+}
