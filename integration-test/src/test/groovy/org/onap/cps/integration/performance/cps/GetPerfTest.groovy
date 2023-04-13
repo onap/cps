@@ -81,13 +81,4 @@ class GetPerfTest extends CpsPerfTestBase {
             'openroadm top element' | 'openroadm'  | '/openroadm-devices' || 1000          | 1 + 50 * 86
     }
 
-    def 'Multiple get limit exceeded: 32,764 (~ 2^15) xpaths.'() {
-        given: 'more than 32,764 xpaths)'
-            def xpaths = (0..32_764).collect { "/size/of/this/path/does/not/matter/for/limit[@id='" + it + "']" }
-        when: 'single get is executed to get all the parent objects and their descendants'
-            cpsDataService.getDataNodesForMultipleXpaths(CPS_PERFORMANCE_TEST_DATASPACE, 'bookstore1', xpaths, INCLUDE_ALL_DESCENDANTS)
-        then: 'an exception is thrown'
-            thrown(DataAccessResourceFailureException.class)
-    }
-
 }

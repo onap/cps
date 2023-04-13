@@ -21,9 +21,14 @@
 
 package org.onap.cps.integration.functional
 
+import java.time.OffsetDateTime
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.integration.base.FunctionalSpecBase
 import org.onap.cps.spi.FetchDescendantsOption
+import org.springframework.dao.DataAccessResourceFailureException
+import org.springframework.transaction.TransactionSystemException
+
+import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 
 class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
 
@@ -53,6 +58,33 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
             assert result.dataspace.toSet() == [FUNCTIONAL_TEST_DATASPACE_1].toSet()
         and: 'the correct anchor was queried'
             assert result.anchorName.toSet() == [BOOKSTORE_ANCHOR_1].toSet()
+    }
+
+    def 'Multiple get limit exceeded: 32,764 (~ 2^15) xpaths.'() {
+        given: 'more than 32,764 xpaths'
+            def xpaths = (0..32_764).collect { "/size/of/this/path/does/not/matter/for/limit[@id='" + it + "']" }
+        when: 'single operation is executed to get all datanodes with given xpaths'
+            objectUnderTest.getDataNodesForMultipleXpaths(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, xpaths, INCLUDE_ALL_DESCENDANTS)
+        then: 'a database exception is thrown'
+            thrown(DataAccessResourceFailureException.class)
+    }
+
+    def 'Delete multiple datanodes limit exceeded: 32,767 (~ 2^15) xpaths.'() {
+        given: 'more than 32,767 xpaths'
+            def xpaths = (0..32_767).collect { "/size/of/this/path/does/not/matter/for/limit[@id='" + it + "']" }
+        when: 'single operation is executed to delete all datanodes with given xpaths'
+            objectUnderTest.deleteDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, xpaths, OffsetDateTime.now())
+        then: 'a database exception is thrown'
+            thrown(TransactionSystemException.class)
+    }
+
+    def 'Delete datanodes from multiple anchors limit exceeded: 32,766 (~ 2^15) anchors.'() {
+        given: 'more than 32,766 anchor names'
+            def anchorNames = (0..32_766).collect { "size-of-this-name-does-not-matter-for-limit-" + it }
+        when: 'single operation is executed to delete all datanodes in given anchors'
+            objectUnderTest.deleteDataNodes(FUNCTIONAL_TEST_DATASPACE_1, anchorNames, OffsetDateTime.now())
+        then: 'a database exception is thrown'
+            thrown(DataAccessResourceFailureException.class)
     }
 
 }
