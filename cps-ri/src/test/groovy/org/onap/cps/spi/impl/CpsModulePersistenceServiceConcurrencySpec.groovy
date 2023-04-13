@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Bell Canada.
+ *  Modifications Copyright (C) 2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -88,7 +89,7 @@ class CpsModulePersistenceServiceConcurrencySpec extends CpsPersistenceSpecBase 
     def 'Store new schema set, retry mechanism'() {
         given: 'no pre-existing schemaset in database'
             dataspaceRepositoryMock.getByName(_) >> new DataspaceEntity()
-            yangResourceRepositoryMock.findAllByChecksumIn(_) >> Collections.emptyList()
+            yangResourceRepositoryMock.findAllByChecksumIn(_ as Collection<String>) >> Collections.emptyList()
         when: 'a new schemaset is stored'
             objectUnderTest.storeSchemaSet(DATASPACE_NAME, SCHEMA_SET_NAME_NEW, newYangResourcesNameToContentMap)
         then: ' duplicated yang resource exception is thrown '
@@ -104,7 +105,7 @@ class CpsModulePersistenceServiceConcurrencySpec extends CpsPersistenceSpecBase 
             def listOfExistingModulesModuleReference = [moduleReferenceForExistingModule]
         and: 'no pre-existing schemaset in database'
             dataspaceRepositoryMock.getByName(_) >> new DataspaceEntity()
-            yangResourceRepositoryMock.findAllByChecksumIn(_) >> Collections.emptyList()
+            yangResourceRepositoryMock.findAllByChecksumIn(_ as Collection<String>) >> Collections.emptyList()
         when: 'a new schemaset is stored from a module'
             objectUnderTest.storeSchemaSetFromModules(DATASPACE_NAME, "newSchemaSetName" , mapOfNewModules, listOfExistingModulesModuleReference)
         then: ' duplicated yang resource exception is thrown '

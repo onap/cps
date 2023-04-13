@@ -21,7 +21,6 @@
 package org.onap.cps.integration.performance.cps
 
 import org.onap.cps.integration.performance.base.CpsPerfTestBase
-import org.springframework.dao.DataAccessResourceFailureException
 
 class CpsAdminServiceLimits extends CpsPerfTestBase {
 
@@ -31,20 +30,20 @@ class CpsAdminServiceLimits extends CpsPerfTestBase {
 
     def 'Get anchors from multiple schema set names limit exceeded: 32,766 (~ 2^15) schema set names.'() {
         given: 'more than 32,766 schema set names'
-            def schemaSetNames = (0..32_766).collect { "size-of-this-name-does-not-matter-for-limit-" + it }
+            def schemaSetNames = (0..40_000).collect { "size-of-this-name-does-not-matter-for-limit-" + it }
         when: 'single get is executed to get all the anchors'
-            objectUnderTest.getAnchors(CPS_PERFORMANCE_TEST_DATASPACE, schemaSetNames)
-        then: 'a database exception is thrown'
-            thrown(DataAccessResourceFailureException.class)
+            objectUnderTest.getAnchors(GENERAL_TEST_DATASPACE, schemaSetNames)
+        then: 'a database exception is not thrown'
+            noExceptionThrown()
     }
 
     def 'Querying anchor names limit exceeded: 32,766 (~ 2^15) modules.'() {
         given: 'more than 32,766 module names'
-            def moduleNames = (0..32_766).collect { "size-of-this-name-does-not-matter-for-limit-" + it }
+            def moduleNames = (0..40_000).collect { "size-of-this-name-does-not-matter-for-limit-" + it }
         when: 'single query is executed to get all the anchors'
-            objectUnderTest.queryAnchorNames(CPS_PERFORMANCE_TEST_DATASPACE, moduleNames)
-        then: 'a database exception is thrown'
-            thrown(DataAccessResourceFailureException.class)
+            objectUnderTest.queryAnchorNames(GENERAL_TEST_DATASPACE, moduleNames)
+        then: 'a database exception is not thrown'
+            noExceptionThrown()
     }
 
 }
