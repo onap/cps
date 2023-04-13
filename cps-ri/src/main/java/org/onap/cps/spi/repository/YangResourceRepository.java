@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Pantheon.tech
- *  Modifications Copyright (C) 2021-2022 Nordix Foundation
+ *  Modifications Copyright (C) 2021-2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -23,7 +23,6 @@ package org.onap.cps.spi.repository;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
-import javax.validation.constraints.NotNull;
 import org.onap.cps.spi.entities.YangResourceEntity;
 import org.onap.cps.spi.entities.YangResourceModuleReference;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -36,7 +35,7 @@ import org.springframework.stereotype.Repository;
 public interface YangResourceRepository extends JpaRepository<YangResourceEntity, Long>,
     YangResourceNativeRepository, SchemaSetYangResourceRepository {
 
-    List<YangResourceEntity> findAllByChecksumIn(@NotNull Set<String> checksum);
+    List<YangResourceEntity> findAllByChecksumIn(Set<String> checksum);
 
     @Query(value = "SELECT DISTINCT\n"
         + "yang_resource.module_name AS module_name,\n"
