@@ -23,6 +23,7 @@ package org.onap.cps.ncmp.api.impl.events.avc
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.apache.kafka.clients.consumer.KafkaConsumer
 import org.mapstruct.factory.Mappers
+import org.onap.cps.ncmp.api.impl.events.EventsPublisher
 import org.onap.cps.ncmp.api.kafka.MessagingBaseSpec
 import org.onap.cps.ncmp.event.model.AvcEvent
 import org.onap.cps.ncmp.utils.TestUtils
@@ -35,19 +36,19 @@ import org.testcontainers.spock.Testcontainers
 
 import java.time.Duration
 
-@SpringBootTest(classes = [AvcEventProducer, AvcEventConsumer, ObjectMapper, JsonObjectMapper])
+@SpringBootTest(classes = [EventsPublisher, AvcEventConsumer, ObjectMapper, JsonObjectMapper])
 @Testcontainers
 @DirtiesContext
-class AvcEventProducerIntegrationSpec extends MessagingBaseSpec {
+class AvcEventConsumerSpec extends MessagingBaseSpec {
 
     @SpringBean
     AvcEventMapper avcEventMapper = Mappers.getMapper(AvcEventMapper.class)
 
     @SpringBean
-    AvcEventProducer avcEventProducer = new AvcEventProducer(kafkaTemplate, avcEventMapper)
+    EventsPublisher eventsPublisher = new EventsPublisher<AvcEvent>(kafkaTemplate)
 
     @SpringBean
-    AvcEventConsumer acvEventConsumer = new AvcEventConsumer(avcEventProducer)
+    AvcEventConsumer acvEventConsumer = new AvcEventConsumer(eventsPublisher, avcEventMapper)
 
     @Autowired
     JsonObjectMapper jsonObjectMapper
@@ -57,7 +58,7 @@ class AvcEventProducerIntegrationSpec extends MessagingBaseSpec {
     def 'Consume and forward valid message'() {
         given: 'consumer has a subscription on a topic'
             def cmEventsTopic = 'cm-events'
-            avcEventProducer.cmEventsTopic = cmEventsTopic
+            acvEventConsumer.cmEventsTopic = cmEventsTopic
             kafkaConsumer.subscribe([cmEventsTopic] as List<String>)
         and: 'an event is sent'
             def jsonData = TestUtils.getResourceFileContent('sampleAvcInputEvent.json')

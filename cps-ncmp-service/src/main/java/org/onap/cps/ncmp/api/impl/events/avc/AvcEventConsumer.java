@@ -22,7 +22,9 @@ package org.onap.cps.ncmp.api.impl.events.avc;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.ncmp.api.impl.events.EventsPublisher;
 import org.onap.cps.ncmp.event.model.AvcEvent;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
@@ -36,7 +38,13 @@ import org.springframework.stereotype.Component;
 @ConditionalOnProperty(name = "notification.enabled", havingValue = "true", matchIfMissing = true)
 public class AvcEventConsumer {
 
-    private final AvcEventProducer avcEventProducer;
+
+    @Value("${app.ncmp.avc.cm-events-topic}")
+    private String cmEventsTopic;
+
+    private final EventsPublisher<AvcEvent> eventsPublisher;
+    private final AvcEventMapper avcEventMapper;
+
 
     /**
      * Consume the specified event.
@@ -48,6 +56,7 @@ public class AvcEventConsumer {
             properties = {"spring.json.value.default.type=org.onap.cps.ncmp.event.model.AvcEvent"})
     public void consumeAndForward(final AvcEvent avcEvent) {
         log.debug("Consuming AVC event {} ...", avcEvent);
-        avcEventProducer.sendMessage(avcEvent);
+        final AvcEvent outgoingAvcEvent = avcEventMapper.toOutgoingAvcEvent(avcEvent);
+        eventsPublisher.publishEvent(cmEventsTopic, outgoingAvcEvent.getEventId(), outgoingAvcEvent);
     }
 }
