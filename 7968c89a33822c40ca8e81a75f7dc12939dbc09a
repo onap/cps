@@ -22,6 +22,30 @@
       "revId": "7968c89a33822c40ca8e81a75f7dc12939dbc09a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "076ae75c_f557a553",
+        "filename": "csit/data/testTreePatchExample.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-04-13T11:48:41Z",
+      "side": 1,
+      "message": "I have tried to patch entire payload. Thus, I have added the other parts of the payload while doing a get operation.",
+      "parentUuid": "fe62e6c0_4ca4d946",
+      "range": {
+        "startLine": 4,
+        "startChar": 4,
+        "endLine": 4,
+        "endChar": 21
+      },
+      "revId": "7968c89a33822c40ca8e81a75f7dc12939dbc09a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
