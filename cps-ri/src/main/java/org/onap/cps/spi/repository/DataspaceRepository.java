@@ -1,6 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Bell Canada. All rights reserved.
+ *  Modifications Copyright (C) 2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,7 +21,6 @@
 package org.onap.cps.spi.repository;
 
 import java.util.Optional;
-import javax.validation.constraints.NotNull;
 import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.exceptions.DataspaceNotFoundException;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -29,7 +29,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DataspaceRepository extends JpaRepository<DataspaceEntity, Integer> {
 
-    Optional<DataspaceEntity> findByName(@NotNull String name);
+    Optional<DataspaceEntity> findByName(String name);
 
     /**
      * Get a dataspace by name.
@@ -38,7 +38,7 @@ public interface DataspaceRepository extends JpaRepository<DataspaceEntity, Inte
      * @param name the name of the dataspace
      * @return the Dataspace found
      */
-    default DataspaceEntity getByName(@NotNull final String name) {
+    default DataspaceEntity getByName(final String name) {
         return findByName(name).orElseThrow(() -> new DataspaceNotFoundException(name));
     }
 }
