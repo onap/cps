@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2ced7a53_b3dbe431",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsAdminServiceIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-04-13T20:56:07Z",
+      "side": 1,
+      "message": "Setting the exact type here allows the IDE (Intelli-J) to do auto-completion, etc. The IDE does not know the type when using\n def objectUnderTest",
+      "range": {
+        "startLine": 31,
+        "startChar": 4,
+        "endLine": 31,
+        "endChar": 35
+      },
+      "revId": "6c61c50310250241a205abe6a1e46627d39642df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
