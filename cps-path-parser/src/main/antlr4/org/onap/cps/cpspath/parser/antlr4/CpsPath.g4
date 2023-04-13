@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Modifications Copyright (C) 2023 TechMahindra Ltd
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,13 +21,15 @@
 
 grammar CpsPath ;
 
-cpsPath : ( prefix | descendant | incorrectPrefix ) multipleLeafConditions? textFunctionCondition? ancestorAxis? invalidPostFix?;
+cpsPath : ( prefix | descendant | incorrectPrefix ) multipleLeafConditions? textFunctionCondition? containsFunctionCondition? ancestorAxis? invalidPostFix?;
 
 ancestorAxis : SLASH KW_ANCESTOR COLONCOLON ancestorPath ;
 
 ancestorPath : yangElement ( SLASH yangElement)* ;
 
 textFunctionCondition : SLASH leafName OB KW_TEXT_FUNCTION EQ StringLiteral CB ;
+
+containsFunctionCondition : OB KW_CONTAINS_FUNCTION OP AT leafName COMMA StringLiteral CP CB ;
 
 parent : ( SLASH yangElement)* ;
 
@@ -62,6 +65,10 @@ COLONCOLON : '::' ;
 EQ : '=' ;
 OB : '[' ;
 SLASH : '/' ;
+COMMA : ',' ;
+OP : '(' ;
+CP : ')' ;
+KW_CONTAINS_FUNCTION: 'contains' ;
 
 // KEYWORDS
 
