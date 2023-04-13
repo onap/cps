@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (c) 2022 Nordix Foundation.
+ * Copyright (c) 2022-2023 Nordix Foundation.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -23,6 +23,7 @@ package org.onap.cps.ncmp.api.impl.async
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.apache.kafka.clients.consumer.KafkaConsumer
 import org.mapstruct.factory.Mappers
+import org.onap.cps.ncmp.api.impl.events.EventsPublisher
 import org.onap.cps.ncmp.api.kafka.MessagingBaseSpec
 import org.onap.cps.ncmp.event.model.DmiAsyncRequestResponseEvent
 import org.onap.cps.ncmp.event.model.NcmpAsyncRequestResponseEvent
@@ -36,14 +37,15 @@ import org.testcontainers.spock.Testcontainers
 
 import java.time.Duration
 
-@SpringBootTest(classes = [NcmpAsyncRequestResponseEventProducer, NcmpAsyncRequestResponseEventConsumer, ObjectMapper, JsonObjectMapper])
+@SpringBootTest(classes = [EventsPublisher, NcmpAsyncRequestResponseEventConsumer, ObjectMapper, JsonObjectMapper])
 @Testcontainers
 @DirtiesContext
 class NcmpAsyncRequestResponseEventProducerIntegrationSpec extends MessagingBaseSpec {
 
     @SpringBean
-    NcmpAsyncRequestResponseEventProducer cpsAsyncRequestResponseEventProducerService =
-        new NcmpAsyncRequestResponseEventProducer(kafkaTemplate);
+    EventsPublisher cpsAsyncRequestResponseEventPublisher =
+        new EventsPublisher<NcmpAsyncRequestResponseEvent>(kafkaTemplate);
+
 
     @SpringBean
     NcmpAsyncRequestResponseEventMapper ncmpAsyncRequestResponseEventMapper =
@@ -51,7 +53,7 @@ class NcmpAsyncRequestResponseEventProducerIntegrationSpec extends MessagingBase
 
     @SpringBean
     NcmpAsyncRequestResponseEventConsumer ncmpAsyncRequestResponseEventConsumer =
-            new NcmpAsyncRequestResponseEventConsumer(cpsAsyncRequestResponseEventProducerService,
+            new NcmpAsyncRequestResponseEventConsumer(cpsAsyncRequestResponseEventPublisher,
                     ncmpAsyncRequestResponseEventMapper)
 
     @Autowired
