@@ -25,7 +25,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import javax.validation.constraints.NotNull;
 import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.SchemaSetEntity;
 import org.onap.cps.spi.exceptions.SchemaSetNotFoundException;
@@ -38,17 +37,16 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface SchemaSetRepository extends JpaRepository<SchemaSetEntity, Integer> {
 
-    Optional<SchemaSetEntity> findByDataspaceAndName(@NotNull DataspaceEntity dataspaceEntity,
-        @NotNull String schemaSetName);
+    Optional<SchemaSetEntity> findByDataspaceAndName(DataspaceEntity dataspaceEntity, String schemaSetName);
 
     /**
      * Gets schema sets by dataspace.
      * @param dataspaceEntity dataspace entity
      * @return list of schema set entity
      */
-    Collection<SchemaSetEntity> findByDataspace(@NotNull DataspaceEntity dataspaceEntity);
+    Collection<SchemaSetEntity> findByDataspace(DataspaceEntity dataspaceEntity);
 
-    Integer countByDataspace(@NotNull DataspaceEntity dataspaceEntity);
+    Integer countByDataspace(DataspaceEntity dataspaceEntity);
 
     /**
      * Gets a schema set by dataspace and schema set name.
@@ -58,8 +56,7 @@ public interface SchemaSetRepository extends JpaRepository<SchemaSetEntity, Inte
      * @return schema set entity
      * @throws SchemaSetNotFoundException if SchemaSet not found
      */
-    default SchemaSetEntity getByDataspaceAndName(@NotNull final DataspaceEntity dataspaceEntity,
-        @NotNull final String schemaSetName) {
+    default SchemaSetEntity getByDataspaceAndName(final DataspaceEntity dataspaceEntity, final String schemaSetName) {
         return findByDataspaceAndName(dataspaceEntity, schemaSetName)
             .orElseThrow(() -> new SchemaSetNotFoundException(dataspaceEntity.getName(), schemaSetName));
     }
@@ -71,7 +68,7 @@ public interface SchemaSetRepository extends JpaRepository<SchemaSetEntity, Inte
      * @return list of schema set entity
      * @throws SchemaSetNotFoundException if SchemaSet not found
      */
-    default List<SchemaSetEntity> getByDataspace(@NotNull final DataspaceEntity dataspaceEntity) {
+    default List<SchemaSetEntity> getByDataspace(final DataspaceEntity dataspaceEntity) {
         return findByDataspace(dataspaceEntity).stream().collect(Collectors.toList());
     }
 
@@ -82,6 +79,6 @@ public interface SchemaSetRepository extends JpaRepository<SchemaSetEntity, Inte
      */
     @Modifying
     @Query("DELETE FROM SchemaSetEntity s WHERE s.dataspace = :dataspaceEntity AND s.name IN (:schemaSetNames)")
-    void deleteByDataspaceAndNameIn(@NotNull @Param("dataspaceEntity") final DataspaceEntity dataspaceEntity,
-                                    @NotNull @Param("schemaSetNames") final Collection<String> schemaSetNames);
+    void deleteByDataspaceAndNameIn(@Param("dataspaceEntity") DataspaceEntity dataspaceEntity,
+                                    @Param("schemaSetNames") Collection<String> schemaSetNames);
 }

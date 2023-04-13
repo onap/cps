@@ -22,7 +22,6 @@ package org.onap.cps.spi.repository;
 
 import java.util.Collection;
 import java.util.Optional;
-import javax.validation.constraints.NotNull;
 import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.SchemaSetEntity;
@@ -35,25 +34,24 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AnchorRepository extends JpaRepository<AnchorEntity, Integer> {
 
-    Optional<AnchorEntity> findByDataspaceAndName(@NotNull DataspaceEntity dataspaceEntity, @NotNull String name);
+    Optional<AnchorEntity> findByDataspaceAndName(DataspaceEntity dataspaceEntity, String name);
 
-    default AnchorEntity getByDataspaceAndName(@NotNull DataspaceEntity dataspace,
-        @NotNull String anchorName) {
+    default AnchorEntity getByDataspaceAndName(DataspaceEntity dataspace, String anchorName) {
         return findByDataspaceAndName(dataspace, anchorName)
             .orElseThrow(() -> new AnchorNotFoundException(anchorName, dataspace.getName()));
     }
 
-    Collection<AnchorEntity> findAllByDataspace(@NotNull DataspaceEntity dataspaceEntity);
+    Collection<AnchorEntity> findAllByDataspace(DataspaceEntity dataspaceEntity);
 
-    Collection<AnchorEntity> findAllBySchemaSet(@NotNull SchemaSetEntity schemaSetEntity);
+    Collection<AnchorEntity> findAllBySchemaSet(SchemaSetEntity schemaSetEntity);
 
-    Collection<AnchorEntity> findAllByDataspaceAndNameIn(@NotNull DataspaceEntity dataspaceEntity,
-                                                         @NotNull Collection<String> anchorNames);
+    Collection<AnchorEntity> findAllByDataspaceAndNameIn(DataspaceEntity dataspaceEntity,
+                                                         Collection<String> anchorNames);
 
-    Collection<AnchorEntity> findAllByDataspaceAndSchemaSetNameIn(@NotNull DataspaceEntity dataspaceEntity,
-                                                                  @NotNull Collection<String> schemaSetNames);
+    Collection<AnchorEntity> findAllByDataspaceAndSchemaSetNameIn(DataspaceEntity dataspaceEntity,
+                                                                  Collection<String> schemaSetNames);
 
-    Integer countByDataspace(@NotNull DataspaceEntity dataspaceEntity);
+    Integer countByDataspace(DataspaceEntity dataspaceEntity);
 
     @Query(value = "SELECT anchor.* FROM yang_resource\n"
         + "JOIN schema_set_yang_resources ON schema_set_yang_resources.yang_resource_id = yang_resource.id\n"
@@ -65,6 +63,6 @@ public interface AnchorRepository extends JpaRepository<AnchorEntity, Integer> {
     Collection<AnchorEntity> getAnchorsByDataspaceIdAndModuleNames(@Param("dataspaceId") int dataspaceId,
         @Param("moduleNames") Collection<String> moduleNames, @Param("sizeOfModuleNames") int sizeOfModuleNames);
 
-    void deleteAllByDataspaceAndNameIn(@NotNull DataspaceEntity dataspaceEntity,
-                                       @NotNull Collection<String> anchorNames);
+    void deleteAllByDataspaceAndNameIn(DataspaceEntity dataspaceEntity,
+                                       Collection<String> anchorNames);
 }
