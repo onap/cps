@@ -34,7 +34,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AnchorRepository extends JpaRepository<AnchorEntity, Integer> {
 
-    Optional<AnchorEntity> findByDataspaceAndName(DataspaceEntity dataspaceEntity, String name);
+    Optional<AnchorEntity> findByDataspaceAndName(DataspaceEntity dataspaceEntity, String anchorName);
 
     default AnchorEntity getByDataspaceAndName(DataspaceEntity dataspace, String anchorName) {
         return findByDataspaceAndName(dataspace, anchorName)
@@ -45,11 +45,27 @@ public interface AnchorRepository extends JpaRepository<AnchorEntity, Integer> {
 
     Collection<AnchorEntity> findAllBySchemaSet(SchemaSetEntity schemaSetEntity);
 
-    Collection<AnchorEntity> findAllByDataspaceAndNameIn(DataspaceEntity dataspaceEntity,
-                                                         Collection<String> anchorNames);
+    @Query(value = "SELECT * FROM anchor WHERE dataspace_id = :dataspaceId AND name = ANY (:anchorNames)",
+        nativeQuery = true)
+    Collection<AnchorEntity> findAllByDataspaceIdAndNameIn(@Param("dataspaceId") int dataspaceId,
+                                                           @Param("anchorNames") String[] anchorNames);
 
-    Collection<AnchorEntity> findAllByDataspaceAndSchemaSetNameIn(DataspaceEntity dataspaceEntity,
-                                                                  Collection<String> schemaSetNames);
+    default Collection<AnchorEntity> findAllByDataspaceAndNameIn(final DataspaceEntity dataspaceEntity,
+                                                                 final Collection<String> anchorNames) {
+        return findAllByDataspaceIdAndNameIn(dataspaceEntity.getId(), anchorNames.toArray(new String[0]));
+    }
+
+    @Query(value = "SELECT a.* FROM anchor a"
+        + " LEFT OUTER JOIN schema_set s ON a.schema_set_id = s.id"
+        + " WHERE a.dataspace_id = :dataspaceId AND s.name = ANY (:schemaSetNames)",
+        nativeQuery = true)
+    Collection<AnchorEntity> findAllByDataspaceIdAndSchemaSetNameIn(@Param("dataspaceId") int dataspaceId,
+                                                                    @Param("schemaSetNames") String[] schemaSetNames);
+
+    default Collection<AnchorEntity> findAllByDataspaceAndSchemaSetNameIn(final DataspaceEntity dataspaceEntity,
+                                                                          final Collection<String> schemaSetNames) {
+        return findAllByDataspaceIdAndSchemaSetNameIn(dataspaceEntity.getId(), schemaSetNames.toArray(new String[0]));
+    }
 
     Integer countByDataspace(DataspaceEntity dataspaceEntity);
 
@@ -57,12 +73,25 @@ public interface AnchorRepository extends JpaRepository<AnchorEntity, Integer> {
         + "JOIN schema_set_yang_resources ON schema_set_yang_resources.yang_resource_id = yang_resource.id\n"
         + "JOIN schema_set ON schema_set.id = schema_set_yang_resources.schema_set_id\n"
         + "JOIN anchor ON anchor.schema_set_id = schema_set.id\n"
-        + "WHERE schema_set.dataspace_id = :dataspaceId AND module_name IN (:moduleNames)\n"
+        + "WHERE schema_set.dataspace_id = :dataspaceId AND module_name = ANY (:moduleNames)\n"
         + "GROUP BY anchor.id, anchor.name, anchor.dataspace_id, anchor.schema_set_id\n"
         + "HAVING COUNT(DISTINCT module_name) = :sizeOfModuleNames", nativeQuery = true)
     Collection<AnchorEntity> getAnchorsByDataspaceIdAndModuleNames(@Param("dataspaceId") int dataspaceId,
-        @Param("moduleNames") Collection<String> moduleNames, @Param("sizeOfModuleNames") int sizeOfModuleNames);
+                                                                   @Param("moduleNames") String[] moduleNames,
+                                                                   @Param("sizeOfModuleNames") int sizeOfModuleNames);
 
-    void deleteAllByDataspaceAndNameIn(DataspaceEntity dataspaceEntity,
-                                       Collection<String> anchorNames);
+    default Collection<AnchorEntity> getAnchorsByDataspaceIdAndModuleNames(final int dataspaceId,
+                                                                           final Collection<String> moduleNames,
+                                                                           final int sizeOfModuleNames) {
+        final String[] moduleNamesArray = moduleNames.toArray(new String[0]);
+        return getAnchorsByDataspaceIdAndModuleNames(dataspaceId, moduleNamesArray, sizeOfModuleNames);
+    }
+
+    void deleteAllByDataspaceIdAndNameIn(int dataspaceId, String[] anchorNames);
+
+    default void deleteAllByDataspaceAndNameIn(final DataspaceEntity dataspaceEntity,
+                                               final Collection<String> anchorNames) {
+        deleteAllByDataspaceIdAndNameIn(dataspaceEntity.getId(), anchorNames.toArray(new String[0]));
+    }
+
 }

@@ -21,7 +21,7 @@
 
 package org.onap.cps.spi.entities;
 
-import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
+import io.hypersistence.utils.hibernate.type.json.JsonBinaryType;
 import java.io.Serializable;
 import java.util.Set;
 import javax.persistence.CascadeType;

@@ -35,7 +35,11 @@ import org.springframework.stereotype.Repository;
 public interface YangResourceRepository extends JpaRepository<YangResourceEntity, Long>,
     YangResourceNativeRepository, SchemaSetYangResourceRepository {
 
-    List<YangResourceEntity> findAllByChecksumIn(Set<String> checksum);
+    List<YangResourceEntity> findAllByChecksumIn(String[] checksums);
+
+    default List<YangResourceEntity> findAllByChecksumIn(final Collection<String> checksums) {
+        return findAllByChecksumIn(checksums.toArray(new String[0]));
+    }
 
     @Query(value = "SELECT DISTINCT\n"
         + "yang_resource.module_name AS module_name,\n"
@@ -86,9 +90,14 @@ public interface YangResourceRepository extends JpaRepository<YangResourceEntity
         + "schema_set.id\n"
         + "JOIN yang_resource ON yang_resource.id = schema_set_yang_resources.yang_resource_id\n"
         + "WHERE\n"
-        + "dataspace.name = :dataspaceName and yang_resource.module_Name IN (:moduleNames)", nativeQuery = true)
+        + "dataspace.name = :dataspaceName and yang_resource.module_Name = ANY (:moduleNames)", nativeQuery = true)
     Set<YangResourceModuleReference> findAllModuleReferencesByDataspaceAndModuleNames(
-            @Param("dataspaceName") String dataspaceName, @Param("moduleNames") Collection<String> moduleNames);
+            @Param("dataspaceName") String dataspaceName, @Param("moduleNames") String[] moduleNames);
+
+    default Set<YangResourceModuleReference> findAllModuleReferencesByDataspaceAndModuleNames(
+        final String dataspaceName, final Collection<String> moduleNames) {
+        return findAllModuleReferencesByDataspaceAndModuleNames(dataspaceName, moduleNames.toArray(new String[0]));
+    }
 
     @Modifying
     @Query(value = "DELETE FROM yang_resource yr WHERE NOT EXISTS "

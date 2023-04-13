@@ -84,7 +84,7 @@ class CpsModulePersistenceServiceSpec extends Specification {
 
     def 'Store schema set error scenario: #scenario.'() {
         given: 'no yang resource are currently saved'
-            yangResourceRepositoryMock.findAllByChecksumIn(_) >> Collections.emptyList()
+            yangResourceRepositoryMock.findAllByChecksumIn(_ as Collection<String>) >> Collections.emptyList()
         and: 'persisting yang resource raises db constraint exception (in case of concurrent requests for example)'
             yangResourceRepositoryMock.saveAll(_) >> { throw dbException }
         when: 'attempt to store schema set '
