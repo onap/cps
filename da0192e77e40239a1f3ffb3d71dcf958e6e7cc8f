@@ -22,6 +22,30 @@
       "revId": "da0192e77e40239a1f3ffb3d71dcf958e6e7cc8f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "19c7a1ba_d3ed94fc",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-04-13T13:29:57Z",
+      "side": 0,
+      "message": "There is another a way around other than changing this. if the \"kafka\" hostname could be added to /etc/hosts in a way like \"127.0.0.1 kafka\", then it could be resolved to localhost\u0027s IP when robotframework-confluentkafkalibrary built-in package try to access it. Otherwise, it may not be possible to make it run. Since built-in lib robotframework-confluentkafkalibrary can not be able resolve \"kafka\" hostname to connect it.",
+      "parentUuid": "86ef244d_5688ed5e",
+      "range": {
+        "startLine": 78,
+        "startChar": 34,
+        "endLine": 78,
+        "endChar": 56
+      },
+      "revId": "da0192e77e40239a1f3ffb3d71dcf958e6e7cc8f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
