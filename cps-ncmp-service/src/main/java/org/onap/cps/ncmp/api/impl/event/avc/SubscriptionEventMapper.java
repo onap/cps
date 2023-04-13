@@ -33,7 +33,7 @@ public interface SubscriptionEventMapper {
 
     @Mapping(source = "event.subscription.clientID", target = "clientId")
     @Mapping(source = "event.subscription.name", target = "subscriptionName")
-    @Mapping(source = "event.subscription.isTagged", target = "tagged", qualifiedByName = "mapIsTagged")
+    @Mapping(source = "event.subscription.isTagged", target = "tagged")
     @Mapping(source = "event.predicates.targets",
         target = "predicates.targetCmHandles", qualifiedByName = "mapTargetsToCmHandleTargets")
     @Mapping(source = "event.predicates.datastore", target = "predicates.datastore")
@@ -43,10 +43,5 @@ public interface SubscriptionEventMapper {
     default List<YangModelSubscriptionEvent.TargetCmHandle> mapTargetsToCmHandleTargets(List<Object> targets) {
         return targets.stream().map(
             target -> new YangModelSubscriptionEvent.TargetCmHandle(target.toString())).collect(Collectors.toList());
-    }
-
-    @Named("mapIsTagged")
-    default boolean mapIsTagged(Boolean isTagged) {
-        return (isTagged == null) ? false : isTagged;
     }
 }
