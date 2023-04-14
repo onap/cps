@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "0cbf2dd2_cf3a8adb",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsAdminServiceIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-04-14T10:43:30Z",
+      "side": 1,
+      "message": "Reverted",
+      "parentUuid": "1560bf63_9141fd6a",
+      "range": {
+        "startLine": 31,
+        "startChar": 4,
+        "endLine": 31,
+        "endChar": 35
+      },
+      "revId": "6c61c50310250241a205abe6a1e46627d39642df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d1a167fb_3fb07d47",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/CpsAdminServiceLimits.groovy",
         "patchSetId": 2
@@ -96,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "1d98ab1b_ec090d09",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/CpsAdminServiceLimits.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-04-14T10:43:30Z",
+      "side": 1,
+      "message": "Reverted",
+      "parentUuid": "6f6583b6_aa2c1b5a",
+      "range": {
+        "startLine": 29,
+        "startChar": 4,
+        "endLine": 29,
+        "endChar": 20
+      },
+      "revId": "6c61c50310250241a205abe6a1e46627d39642df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "333d65a4_ba9e4513",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/CpsDataServiceLimits.groovy",
         "patchSetId": 2
@@ -131,6 +179,30 @@
       "side": 1,
       "message": "As before, IDE does not know type using \u0027def\u0027",
       "parentUuid": "333d65a4_ba9e4513",
+      "range": {
+        "startLine": 33,
+        "startChar": 4,
+        "endLine": 33,
+        "endChar": 18
+      },
+      "revId": "6c61c50310250241a205abe6a1e46627d39642df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "594f2b1d_08f7ff80",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/CpsDataServiceLimits.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-04-14T10:43:30Z",
+      "side": 1,
+      "message": "Reverted",
+      "parentUuid": "962d414b_1c914259",
       "range": {
         "startLine": 33,
         "startChar": 4,
