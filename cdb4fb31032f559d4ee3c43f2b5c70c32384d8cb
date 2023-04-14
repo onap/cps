@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0a921737_0541818d",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 30
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-04-14T11:42:53Z",
+      "side": 1,
+      "message": "For \"combination of OR/AND\"; the expected list should include price 15 and edition 1983, right?\nIf it is yes, then how does the result list include price:15-edition:2014, and price:15-edition:1999?",
+      "range": {
+        "startLine": 76,
+        "startChar": 86,
+        "endLine": 76,
+        "endChar": 113
+      },
+      "revId": "cdb4fb31032f559d4ee3c43f2b5c70c32384d8cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
