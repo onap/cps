@@ -22,6 +22,30 @@
       "revId": "e23a2240c841aee58b551b4c95306f50bc4304c6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2ef6add6_f0892f0b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avc/AvcEventConsumer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-04-14T12:16:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4016161d_13c658fa",
+      "range": {
+        "startLine": 43,
+        "startChar": 19,
+        "endLine": 43,
+        "endChar": 32
+      },
+      "revId": "e23a2240c841aee58b551b4c95306f50bc4304c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
