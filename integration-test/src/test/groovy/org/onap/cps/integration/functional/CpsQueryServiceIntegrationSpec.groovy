@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2023 Nordix Foundation
+ *  Modifications Copyright (C) 2023 TechMahindra Ltd
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -122,6 +123,21 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
             'text condition on key containing /'     | '//books/title[text()="Debian GNU/Linux"]'  || ["Debian GNU/Linux"]
     }
 
+    def 'Query for attribute by cps path using contains condition #scenario.'() {
+        when: 'a query is executed to get response by the given cps path'
+            def result = objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, cpspath, OMIT_DESCENDANTS)
+        then: 'the cps-path of queryDataNodes has the expectedLeaves'
+            assert result.size() == expectedResultsize
+        and: 'xpaths of the retrieved data nodes are as expected'
+            def bookTitles = result.collect { it.getLeaves().get('title') }
+            assert bookTitles.sort() == expectedBookTitles.sort()
+        where: 'the following data is used'
+            scenario                                 | cpspath                           | expectedResultsize || expectedBookTitles
+            'contains condition with leaf'           | '//books[contains(@title,"Mat")]' | 1                  || ["Matilda"]
+            'contains condition with case-sensitive' | '//books[contains(@title,"Ti")]'  | 0                  || []
+            'contains condition with Integer Value'  | '//books[contains(@price,"15")]'  | 2                  || ["Annihilation", "The Gruffalo"]
+    }
+
     def 'Cps Path query using descendant anywhere with #scenario condition for a container element.'() {
         when: 'a query is executed to get a data node by the given cps path'
             def result = objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, cpsPath, OMIT_DESCENDANTS)
@@ -129,12 +145,13 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
             def bookTitles = result.collect { it.getLeaves().get('title') }
             assert bookTitles.sort() == expectedBookTitles.sort()
         where: 'the following data is used'
-            scenario                   | cpsPath                                                || expectedBookTitles
-            'one leaf'                 | '//books[@price=14]'                                   || ['The Light Fantastic']
-            'one text'                 | '//books/authors[text()="Terry Pratchett"]'            || ['Good Omens', 'The Colour of Magic', 'The Light Fantastic']
-            'more than one leaf'       | '//books[@price=12 and @lang="English"]'               || ['The Colour of Magic']
-            'leaves reversed in order' | '//books[@lang="English" and @price=12]'               || ['The Colour of Magic']
-            'leaf and text'            | '//books[@price=14]/authors[text()="Terry Pratchett"]' || ['The Light Fantastic']
+            scenario                           | cpsPath                                                || expectedBookTitles
+            'one leaf'                         | '//books[@price=14]'                                   || ['The Light Fantastic']
+            'one text'                         | '//books/authors[text()="Terry Pratchett"]'            || ['Good Omens', 'The Colour of Magic', 'The Light Fantastic']
+            'more than one leaf'               | '//books[@price=12 and @lang="English"]'               || ['The Colour of Magic']
+            'leaves reversed in order'         | '//books[@lang="English" and @price=12]'               || ['The Colour of Magic']
+            'leaf and text'                    | '//books[@price=14]/authors[text()="Terry Pratchett"]' || ['The Light Fantastic']
+            'one leaf with contains condition' | '//books[contains(@price,"13")]'                       || ['Good Omens']
     }
 
     def 'Cps Path query using descendant anywhere with #scenario condition(s) for a list element.'() {

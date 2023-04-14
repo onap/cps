@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021-2023 Nordix Foundation
+ *  Modifications Copyright (C) 2023 TechMahindra Ltd
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -42,6 +43,8 @@ public class CpsPathQuery {
     private String ancestorSchemaNodeIdentifier = "";
     private String textFunctionConditionLeafName;
     private String textFunctionConditionValue;
+    private String containsFunctionConditionLeafName;
+    private String containsFunctionConditionValue;
 
     /**
      * Returns a cps path query.
@@ -78,6 +81,15 @@ public class CpsPathQuery {
      */
     public boolean hasTextFunctionCondition() {
         return textFunctionConditionLeafName != null;
+    }
+
+    /**
+     * Has contains function condition been included in cpsPath.
+     *
+     * @return boolean value.
+     */
+    public boolean hasContainsFunctionCondition() {
+        return containsFunctionConditionLeafName != null;
     }
 
     /**

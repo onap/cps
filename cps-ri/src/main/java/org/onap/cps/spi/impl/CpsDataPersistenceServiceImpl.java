@@ -348,8 +348,9 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     private static boolean canUseRegexQuickFind(final FetchDescendantsOption fetchDescendantsOption,
                                                 final CpsPathQuery cpsPathQuery) {
         return fetchDescendantsOption.equals(FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
-            && !cpsPathQuery.hasLeafConditions()
-            && !cpsPathQuery.hasTextFunctionCondition();
+                && !cpsPathQuery.hasLeafConditions()
+                && !cpsPathQuery.hasTextFunctionCondition()
+                && !cpsPathQuery.hasContainsFunctionCondition();
     }
 
     private List<DataNode> getDataNodesUsingRegexQuickFind(final FetchDescendantsOption fetchDescendantsOption,
