@@ -1,0 +1,9 @@
+Verified+1: ONAP Jobbuilder <onap-jobbuilder@jenkins.onap.org>
+Code-Review+1: Daniel Hanrahan <daniel.hanrahan@est.tech>
+Code-Review+1: Halil Cakal <halil.cakal@est.tech>
+Code-Review+2: Luke Gleeson <luke.gleeson@est.tech>
+Submitted-by: Luke Gleeson <luke.gleeson@est.tech>
+Submitted-at: Fri, 14 Apr 2023 14:33:58 +0000
+Reviewed-on: https://gerrit.onap.org/r/c/cps/+/132852
+Project: cps
+Branch: refs/heads/master
