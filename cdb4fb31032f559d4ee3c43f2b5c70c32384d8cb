@@ -46,6 +46,30 @@
       "revId": "cdb4fb31032f559d4ee3c43f2b5c70c32384d8cb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f37c6f5f_d95d50ed",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 30
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2023-04-14T13:04:26Z",
+      "side": 1,
+      "message": "Yes, removed the AND/OR combinations . This task will be taking along with same keys support",
+      "parentUuid": "4be0b467_9d4a46b8",
+      "range": {
+        "startLine": 76,
+        "startChar": 86,
+        "endLine": 76,
+        "endChar": 113
+      },
+      "revId": "cdb4fb31032f559d4ee3c43f2b5c70c32384d8cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
