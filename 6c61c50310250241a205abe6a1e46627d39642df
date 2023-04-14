@@ -22,6 +22,76 @@
       "revId": "6c61c50310250241a205abe6a1e46627d39642df",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1560bf63_9141fd6a",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsAdminServiceIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-04-14T09:20:02Z",
+      "side": 1,
+      "message": "NB: I am able to compile it into intellij. Can we revert it back if needed we can connect.",
+      "parentUuid": "2ced7a53_b3dbe431",
+      "range": {
+        "startLine": 31,
+        "startChar": 4,
+        "endLine": 31,
+        "endChar": 35
+      },
+      "revId": "6c61c50310250241a205abe6a1e46627d39642df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d1a167fb_3fb07d47",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/CpsAdminServiceLimits.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-04-14T09:20:02Z",
+      "side": 1,
+      "message": "NB : def",
+      "range": {
+        "startLine": 29,
+        "startChar": 4,
+        "endLine": 29,
+        "endChar": 20
+      },
+      "revId": "6c61c50310250241a205abe6a1e46627d39642df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "333d65a4_ba9e4513",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/CpsDataServiceLimits.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-04-14T09:20:02Z",
+      "side": 1,
+      "message": "NB: def (it\u0027s good to be Consistent)",
+      "range": {
+        "startLine": 33,
+        "startChar": 4,
+        "endLine": 33,
+        "endChar": 18
+      },
+      "revId": "6c61c50310250241a205abe6a1e46627d39642df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
