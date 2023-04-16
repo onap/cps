@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #  ============LICENSE_START=======================================================
 #  Copyright (C) 2021 Pantheon.tech
 #  Modifications Copyright (C) 2021-2022 Bell Canada
@@ -188,6 +189,8 @@ ncmp:
 
     model-loader:
         subscription: false
+        maximumAttemptCount: 20
+        retryTime: 1000
 
 # Custom Hazelcast Config.
 hazelcast:
