@@ -32,6 +32,7 @@ import org.onap.cps.ncmp.api.impl.exception.NcmpStartUpException
 import org.onap.cps.spi.exceptions.AlreadyDefinedException
 import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.exceptions.SchemaSetNotFoundException
+import org.onap.cps.spi.model.Dataspace
 import org.springframework.boot.SpringApplication
 import org.slf4j.LoggerFactory
 import org.springframework.boot.context.event.ApplicationReadyEvent
@@ -73,9 +74,11 @@ class SubscriptionModelLoaderSpec extends Specification {
     }
 
     def 'Onboard subscription model successfully via application ready event'() {
-        when:'model loader is enabled'
+        given: 'dataspace is ready for use'
+            mockCpsAdminService.getDataspace('NCMP-Admin') >> new Dataspace('NCMP-Admin')
+        and:'model loader is enabled'
             objectUnderTest.subscriptionModelLoaderEnabled = true
-        and: 'the application is ready'
+        when: 'the application is ready'
             objectUnderTest.onApplicationEvent(applicationReadyEvent)
         then: 'the module service to create schema set is called once'
             1 * mockCpsModuleService.createSchemaSet('NCMP-Admin', 'subscriptions',sampleYangContentMap)
@@ -90,6 +93,8 @@ class SubscriptionModelLoaderSpec extends Specification {
             objectUnderTest.subscriptionModelLoaderEnabled = false
         and: 'application is ready'
             objectUnderTest.onApplicationEvent(applicationReadyEvent)
+        and: 'dataspace is ready for use'
+            mockCpsAdminService.getDataspace('NCMP-Admin') >> new Dataspace('NCMP-Admin')
         then: 'the module service to create schema set was not called'
             0 * mockCpsModuleService.createSchemaSet(*_)
         and: 'the admin service to create an anchor set was not called'
@@ -98,11 +103,30 @@ class SubscriptionModelLoaderSpec extends Specification {
             0 * mockCpsDataService.saveData(*_)
     }
 
+    def 'Onboard subscription model fails as NCMP dataspace does not exist' () {
+        given: 'model loader is enabled'
+            objectUnderTest.subscriptionModelLoaderEnabled = true
+        when: 'the application is ready'
+            objectUnderTest.onApplicationEvent(applicationReadyEvent)
+        then: 'the module service to create schema set was not called'
+            0 * mockCpsModuleService.createSchemaSet(*_)
+        and: 'the admin service to create an anchor set was not called'
+            0 * mockCpsAdminService.createAnchor(*_)
+        and: 'the data service to create a top level datanode was not called'
+            0 * mockCpsDataService.saveData(*_)
+        and: 'the log message contains the correct exception message'
+            def logs = appender.list.toString()
+            assert logs.contains("Retrieval of NCMP dataspace fails")
+    }
+
+
     def 'Exception occurred while schema set creation' () {
         given: 'creating a schema set throws an exception'
             mockCpsModuleService.createSchemaSet(*_) >>  { throw new DataValidationException(*_) }
         and: 'model loader is enabled'
             objectUnderTest.subscriptionModelLoaderEnabled = true
+        and: 'dataspace is ready for use'
+            mockCpsAdminService.getDataspace('NCMP-Admin') >> new Dataspace('NCMP-Admin')
         when: 'application is ready'
             objectUnderTest.onApplicationEvent(applicationReadyEvent)
         then: 'the admin service to create an anchor set was not called'
