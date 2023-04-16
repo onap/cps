@@ -188,6 +188,8 @@ ncmp:
 
     model-loader:
         subscription: false
+        maximumAttemptCount: 20
+        retryTime: 1000
 
 # Custom Hazelcast Config.
 hazelcast:

@@ -4,7 +4,7 @@ module subscription {
 
     prefix subs;
 
-    revision "2023-21-03" {
+    revision "2023-03-21" {
         description
             "NCMP subscription model";
     }
