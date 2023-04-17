@@ -98,6 +98,7 @@ public class FragmentQueryBuilder {
             sqlStringBuilder.append(")");
         }
         addTextFunctionCondition(cpsPathQuery, sqlStringBuilder, queryParameters);
+        addContainsFunctionCondition(cpsPathQuery, sqlStringBuilder, queryParameters);
         final Query query = entityManager.createNativeQuery(sqlStringBuilder.toString(), FragmentEntity.class);
         setQueryParameters(query, queryParameters);
         return query;
@@ -157,6 +158,16 @@ public class FragmentQueryBuilder {
                 queryParameters.put("textValueAsInt", textValueAsInt);
             }
             sqlStringBuilder.append(")");
+        }
+    }
+
+    private static void addContainsFunctionCondition(final CpsPathQuery cpsPathQuery,
+                                                     final StringBuilder sqlStringBuilder,
+                                                     final Map<String, Object> queryParameters) {
+        if (cpsPathQuery.hasContainsFunctionCondition()) {
+            sqlStringBuilder.append(" AND attributes ->> :containsLeafName LIKE CONCAT('%',:containsValue,'%') ");
+            queryParameters.put("containsLeafName", cpsPathQuery.getContainsFunctionConditionLeafName());
+            queryParameters.put("containsValue", cpsPathQuery.getContainsFunctionConditionValue());
         }
     }
 

@@ -44,6 +44,8 @@ public class CpsPathQuery {
     private String textFunctionConditionLeafName;
     private String textFunctionConditionValue;
     private List<String> booleanOperatorsType;
+    private String containsFunctionConditionLeafName;
+    private String containsFunctionConditionValue;
 
     /**
      * Returns a cps path query.
@@ -80,6 +82,15 @@ public class CpsPathQuery {
      */
     public boolean hasTextFunctionCondition() {
         return textFunctionConditionLeafName != null;
+    }
+
+    /**
+     * Has contains function condition been included in cpsPath.
+     *
+     * @return boolean value.
+     */
+    public boolean hasContainsFunctionCondition() {
+        return containsFunctionConditionLeafName != null;
     }
 
     /**
