@@ -31,7 +31,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.collections4.CollectionUtils;
 import org.onap.cps.cpspath.parser.CpsPathPrefixType;
 import org.onap.cps.cpspath.parser.CpsPathQuery;
 import org.onap.cps.spi.entities.FragmentEntity;
@@ -91,7 +90,7 @@ public class FragmentQueryBuilder {
             cpsPathQuery.getLeavesData().entrySet().forEach(entry -> {
                 sqlStringBuilder.append(" attributes @> ");
                 sqlStringBuilder.append("'" + jsonObjectMapper.asJsonString(entry) + "'");
-                if (!CollectionUtils.isEmpty(booleanOperatorsQueue)) {
+                if (!(booleanOperatorsQueue == null || booleanOperatorsQueue.isEmpty())) {
                     sqlStringBuilder.append(" " + booleanOperatorsQueue.poll() + " ");
                 }
             });
