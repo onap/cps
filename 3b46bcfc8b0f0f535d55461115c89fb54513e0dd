@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bd906267_9d598b27",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/FunctionalSpecBase.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-04-17T11:15:10Z",
+      "side": 1,
+      "message": "This creates 2 anchors per dataspace so we are creating a total of 4 anchors(2 for FUNCTIONAL_TEST_DATASPACE_1 and 2 for FUNCTIONAL_TEST_DATASPACE_2) but then we are only using bookstoreAnchor1(of FUNCTIONAL_TEST_DATASPACE_1) and bookstoreAnchor2(of FUNCTIONAL_TEST_DATASPACE_2) leaving bookstoreAnchor2(of FUNCTIONAL_TEST_DATASPACE_1) and bookstoreAnchor1(of FUNCTIONAL_TEST_DATASPACE_2) unused.\n\nNow for this code commit I am using bookstoreAnchor2(of FUNCTIONAL_TEST_DATASPACE_1).\n\nSo it is better to hardcode the number of anchors needed at line 52 and 53 respectively and avoid creating unnecessary anchors.",
+      "range": {
+        "startLine": 27,
+        "startChar": 4,
+        "endLine": 27,
+        "endChar": 70
+      },
+      "revId": "3b46bcfc8b0f0f535d55461115c89fb54513e0dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
