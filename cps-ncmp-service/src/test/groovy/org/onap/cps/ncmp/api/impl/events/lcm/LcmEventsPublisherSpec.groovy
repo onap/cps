@@ -18,11 +18,11 @@
  * ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.event.lcm
+package org.onap.cps.ncmp.api.impl.events.lcm
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.apache.kafka.clients.consumer.KafkaConsumer
-import org.onap.cps.ncmp.api.impl.event.EventsPublisher
+import org.onap.cps.ncmp.api.impl.events.EventsPublisher
 import org.onap.cps.ncmp.api.kafka.MessagingBaseSpec
 import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.utils.JsonObjectMapper

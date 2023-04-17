@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2023 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,7 +24,7 @@ package org.onap.cps.ncmp.api.inventory.sync
 import com.hazelcast.config.Config
 import com.hazelcast.instance.impl.HazelcastInstanceFactory
 import com.hazelcast.map.IMap
-import org.onap.cps.ncmp.api.impl.event.lcm.LcmEventsCmHandleStateHandler
+import org.onap.cps.ncmp.api.impl.events.lcm.LcmEventsCmHandleStateHandler
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.inventory.CmHandleState
 import org.onap.cps.ncmp.api.inventory.CompositeState

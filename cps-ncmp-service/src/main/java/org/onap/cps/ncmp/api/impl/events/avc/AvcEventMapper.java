@@ -18,7 +18,7 @@
  * ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.notifications.avc;
+package org.onap.cps.ncmp.api.impl.events.avc;
 
 import java.util.UUID;
 import org.mapstruct.Mapper;
