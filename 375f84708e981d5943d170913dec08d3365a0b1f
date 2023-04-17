@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f94763d9_cdaf0552",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/CpsAdminServiceLimits.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-17T08:53:17Z",
+      "side": 1,
+      "message": "I think this class needs to end in Spec or Test for it to alasy run. I wil address that later",
+      "range": {
+        "startLine": 26,
+        "startChar": 6,
+        "endLine": 26,
+        "endChar": 28
+      },
+      "revId": "375f84708e981d5943d170913dec08d3365a0b1f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
