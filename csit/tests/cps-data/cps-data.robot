@@ -1,7 +1,7 @@
 # ============LICENSE_START=======================================================
 # Copyright (c) 2021 Pantheon.tech.
 # Modifications Copyright (C) 2022 Bell Canada.
-# Modifications Copyright (C) 2022 Nordix Foundation.
+# Modifications Copyright (C) 2022-2023 Nordix Foundation.
 # ================================================================================
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -41,6 +41,23 @@ Create Data Node
     ${jsonData}=        Get Binary File     ${DATADIR}${/}test-tree.json
     ${response}=        POST On Session     CPS_URL   ${uri}   headers=${headers}   data=${jsonData}
     Should Be Equal As Strings              ${response.status_code}   201
+
+Patch Data Node
+    ${uri}=             Set Variable        ${basePath}/v1/dataspaces/${dataspaceName}/anchors/${anchorName}/nodes
+    ${params}=          Create Dictionary   xpath=/test-tree/branch[@name='Right']
+    ${headers}          Create Dictionary   Content-Type=application/json   Authorization=${auth}
+    ${jsonData}=        Get Binary File     ${DATADIR}${/}testTreePatchExample.json
+    ${response}=        PATCH On Session    CPS_URL   ${uri}  params=${params}   headers=${headers}   data=${jsonData}
+    Should Be Equal As Strings              ${response.status_code}   200
+
+Get Updated Data Node by XPath
+    ${uri}=             Set Variable        ${basePath}/v1/dataspaces/${dataspaceName}/anchors/${anchorName}/node
+    ${params}=          Create Dictionary   xpath=/test-tree/branch[@name='Right']/nest
+    ${headers}=         Create Dictionary   Authorization=${auth}
+    ${response}=        Get On Session      CPS_URL   ${uri}   params=${params}   headers=${headers}   expected_status=200
+    ${responseJson}=    Set Variable        ${response.json()['tree:nest']}
+    Should Be Equal As Strings              ${responseJson['name']}   Bigger
+    Should Be Equal As Strings              ${responseJson['birds']}   ['Falcon', 'Eagle', 'Pigeon']
 
 Get Data Node by XPath
     ${uri}=             Set Variable        ${basePath}/v1/dataspaces/${dataspaceName}/anchors/${anchorName}/node
