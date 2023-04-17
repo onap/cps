@@ -150,6 +150,12 @@ public class CpsPathBuilder extends CpsPathBaseListener {
     }
 
     @Override
+    public void exitContainsFunctionCondition(final CpsPathParser.ContainsFunctionConditionContext ctx) {
+        cpsPathQuery.setContainsFunctionConditionLeafName(ctx.leafName().getText());
+        cpsPathQuery.setContainsFunctionConditionValue(stripFirstAndLastCharacter(ctx.StringLiteral().getText()));
+    }
+
+    @Override
     public void enterListElementRef(final CpsPathParser.ListElementRefContext ctx) {
         normalizedXpathBuilder.append(OPEN_BRACKET);
         if (processingAncestorAxis) {
