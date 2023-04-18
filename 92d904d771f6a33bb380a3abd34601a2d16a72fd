@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "648a5f56_7934b672",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-04-18T13:05:56Z",
+      "side": 1,
+      "message": "I think we want to set back to false for the moment",
+      "range": {
+        "startLine": 190,
+        "startChar": 22,
+        "endLine": 190,
+        "endChar": 26
+      },
+      "revId": "92d904d771f6a33bb380a3abd34601a2d16a72fd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "06f3bfed_974c15c9",
         "filename": "cps-ncmp-service/src/main/resources/model/subscription.yang",
         "patchSetId": 3
@@ -16,6 +39,29 @@
       "revId": "92d904d771f6a33bb380a3abd34601a2d16a72fd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f631c669_c89d5858",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/SubscriptionModelLoaderSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-04-18T13:05:56Z",
+      "side": 1,
+      "message": "Is this test going to take 200 seconds to complete? If so can we extract the retry attempts and wait time out and shorten it",
+      "range": {
+        "startLine": 106,
+        "startChar": 4,
+        "endLine": 120,
+        "endChar": 5
+      },
+      "revId": "92d904d771f6a33bb380a3abd34601a2d16a72fd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
