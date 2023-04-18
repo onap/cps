@@ -60,6 +60,7 @@ Querying
 .. toctree::
    :maxdepth: 1
 
+   xpath.rst
    cps-path.rst
 
 .. Below Label is used by documentation for other CPS components to link here, do not remove even if it gives a warning
