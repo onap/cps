@@ -85,16 +85,31 @@ public class FragmentQueryBuilder {
         queryParameters.put("xpathRegex", xpathRegex);
         final List<String> queryBooleanOperatorsType = cpsPathQuery.getBooleanOperatorsType();
         if (cpsPathQuery.hasLeafConditions()) {
-            sqlStringBuilder.append(" AND (");
-            final Queue<String> booleanOperatorsQueue = (queryBooleanOperatorsType == null) ? null : new LinkedList<>(
-                    queryBooleanOperatorsType);
-            cpsPathQuery.getLeavesData().entrySet().forEach(entry -> {
-                sqlStringBuilder.append(" attributes @> ");
-                sqlStringBuilder.append("'" + jsonObjectMapper.asJsonString(entry) + "'");
-                if (!CollectionUtils.isEmpty(booleanOperatorsQueue)) {
-                    sqlStringBuilder.append(" " + booleanOperatorsQueue.poll() + " ");
-                }
-            });
+            sqlStringBuilder.append(" AND ( ");
+            final List<String> angularOperatorTypes = cpsPathQuery.getAngularOperatorType();
+            final Queue<String> angularOperatorQueue = (angularOperatorTypes == null) ? null : new LinkedList<>(
+                    angularOperatorTypes);
+            if ((angularOperatorQueue == null)) {
+                final Queue<String> booleanOperatorsQueue = (queryBooleanOperatorsType == null) ? null :
+                        new LinkedList<>(
+                                queryBooleanOperatorsType);
+                cpsPathQuery.getLeavesData().entrySet().forEach(entry -> {
+                    sqlStringBuilder.append(" attributes @> ");
+                    sqlStringBuilder.append("'").append(jsonObjectMapper.asJsonString(entry)).append("'");
+                    if (!CollectionUtils.isEmpty(booleanOperatorsQueue)) {
+                        sqlStringBuilder.append(" ").append(booleanOperatorsQueue.poll()).append(" ");
+                    }
+                });
+            } else {
+                cpsPathQuery.getLeavesData().forEach((key, value) -> {
+                    sqlStringBuilder.append(" (attributes ->>");
+                    sqlStringBuilder.append("'").append(key).append("')\\:\\:int");
+                    if (!CollectionUtils.isEmpty(angularOperatorQueue)) {
+                        sqlStringBuilder.append(" ").append(angularOperatorQueue.poll()).append(" ");
+                        sqlStringBuilder.append("'").append(jsonObjectMapper.asJsonString(value)).append("'");
+                    }
+                });
+            }
             sqlStringBuilder.append(")");
         }
         addTextFunctionCondition(cpsPathQuery, sqlStringBuilder, queryParameters);

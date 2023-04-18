@@ -29,6 +29,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
+import org.apache.commons.collections4.CollectionUtils;
 import org.onap.cps.cpspath.parser.antlr4.CpsPathBaseListener;
 import org.onap.cps.cpspath.parser.antlr4.CpsPathParser;
 import org.onap.cps.cpspath.parser.antlr4.CpsPathParser.AncestorAxisContext;
@@ -60,6 +61,10 @@ public class CpsPathBuilder extends CpsPathBaseListener {
     final List<String> booleanOperators = new ArrayList<>();
 
     final Queue<String> booleanOperatorsQueue = new LinkedList<>();
+
+    final List<String> angularOperators = new ArrayList<>();
+
+    final Queue<String> angularOperatorsQueue = new LinkedList<>();
 
     @Override
     public void exitInvalidPostFix(final CpsPathParser.InvalidPostFixContext ctx) {
@@ -98,7 +103,12 @@ public class CpsPathBuilder extends CpsPathBaseListener {
         }
         leavesData.put(ctx.leafName().getText(), comparisonValue);
         final String booleanOperator = booleanOperatorsQueue.poll();
-        appendCondition(normalizedXpathBuilder, ctx.leafName().getText(), booleanOperator, comparisonValue);
+        if (CollectionUtils.isEmpty(angularOperatorsQueue)) {
+            appendCondition(normalizedXpathBuilder, ctx.leafName().getText(), booleanOperator, comparisonValue);
+        } else {
+            appendAngularOperatorCondition(normalizedXpathBuilder, ctx.leafName().getText(), booleanOperator,
+                                           comparisonValue);
+        }
         if (processingAncestorAxis) {
             appendCondition(normalizedAncestorPathBuilder, ctx.leafName().getText(), booleanOperator, comparisonValue);
         }
@@ -111,6 +121,14 @@ public class CpsPathBuilder extends CpsPathBaseListener {
         booleanOperators.add(cpsPathBooleanOperatorType.getValues());
         booleanOperatorsQueue.add(cpsPathBooleanOperatorType.getValues());
         cpsPathQuery.setBooleanOperatorsType(booleanOperators);
+    }
+
+    @Override
+    public void exitAngularOperators(final CpsPathParser.AngularOperatorsContext ctx) {
+        final CpsPathAngularOperatorType angularOperatorsTypes = CpsPathAngularOperatorType.fromString(ctx.getText());
+        angularOperators.add(angularOperatorsTypes.getLabels());
+        angularOperatorsQueue.add(angularOperatorsTypes.getLabels());
+        cpsPathQuery.setAngularOperatorType(angularOperators);
     }
 
     @Override
@@ -193,6 +211,19 @@ public class CpsPathBuilder extends CpsPathBaseListener {
                                     .append("@")
                                     .append(name)
                                     .append("='")
+                                    .append(value)
+                                    .append("'");
+    }
+
+    private void appendAngularOperatorCondition(final StringBuilder currentNormalizedPathBuilder, final String name,
+                                                final String booleanOperator, final Object value) {
+        final String angularOperator = angularOperatorsQueue.poll();
+        final char lastCharacter = currentNormalizedPathBuilder.charAt(currentNormalizedPathBuilder.length() - 1);
+        currentNormalizedPathBuilder.append(lastCharacter == '[' ? "" : " " + booleanOperator + " ")
+                                    .append("@")
+                                    .append(name)
+                                    .append(angularOperator)
+                                    .append("'")
                                     .append(value)
                                     .append("'");
     }
