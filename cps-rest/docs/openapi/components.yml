@@ -191,7 +191,7 @@ components:
     xpathInQuery:
       name: xpath
       in: query
-      description: For more details on xpath, please refer https://docs.onap.org/projects/onap-cps/en/latest/cps-path.html
+      description: For more details on xpath, please refer https://docs.onap.org/projects/onap-cps/en/latest/xpath.html
       required: false
       schema:
         type: string
@@ -204,7 +204,7 @@ components:
     requiredXpathInQuery:
       name: xpath
       in: query
-      description: For more details on xpath, please refer https://docs.onap.org/projects/onap-cps/en/latest/cps-path.html
+      description: For more details on xpath, please refer https://docs.onap.org/projects/onap-cps/en/latest/xpath.html
       required: true
       schema:
         type: string

@@ -61,6 +61,7 @@ Querying
    :maxdepth: 1
 
    cps-path.rst
+   xpath.rst
 
 .. Below Label is used by documentation for other CPS components to link here, do not remove even if it gives a warning
 .. _cps_ncmp_modelling:
