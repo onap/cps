@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3d8f4b64_a3222163",
+        "filename": "docs/modeling.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-18T17:26:46Z",
+      "side": 1,
+      "message": "NB: would change the order as cpsPath is \u0027based on\u0027 xPath",
+      "range": {
+        "startLine": 63,
+        "startChar": 2,
+        "endLine": 64,
+        "endChar": 12
+      },
+      "revId": "23fd74d79eb3a3fabed3939c56339f3dcbacff14",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4542a99e_fe568473",
+        "filename": "docs/xpath.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-18T17:26:46Z",
+      "side": 1,
+      "message": "retrieve\n\n(avoid mix up with terms like \u0027query\u0027 and parsing is not really relevant)",
+      "range": {
+        "startLine": 18,
+        "startChar": 71,
+        "endLine": 18,
+        "endChar": 86
+      },
+      "revId": "23fd74d79eb3a3fabed3939c56339f3dcbacff14",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b0b91a83_1fb0afb0",
+        "filename": "docs/xpath.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-18T17:26:46Z",
+      "side": 1,
+      "message": "Datanodes as defined by Yang (RFC6020)\n- container\n- list\n- leaf (a leaf cannot be addressed using an xPath)",
+      "range": {
+        "startLine": 143,
+        "startChar": 0,
+        "endLine": 146,
+        "endChar": 19
+      },
+      "revId": "23fd74d79eb3a3fabed3939c56339f3dcbacff14",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "edc709c8_2fe3c85c",
+        "filename": "docs/xpath.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-18T17:26:46Z",
+      "side": 1,
+      "message": "See RFC6020 for te proper term and good definition:\n\"The XPath root node has all top-level configuration data nodes in all modules as children.\"",
+      "range": {
+        "startLine": 148,
+        "startChar": 3,
+        "endLine": 148,
+        "endChar": 54
+      },
+      "revId": "23fd74d79eb3a3fabed3939c56339f3dcbacff14",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "138ea3e8_f1ff9137",
+        "filename": "docs/xpath.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-18T17:26:46Z",
+      "side": 1,
+      "message": "use \u0027node\u0027 here to refer to a container OR a list element as defined above",
+      "range": {
+        "startLine": 153,
+        "startChar": 8,
+        "endLine": 153,
+        "endChar": 16
+      },
+      "revId": "23fd74d79eb3a3fabed3939c56339f3dcbacff14",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f3f1bb87_a84d2427",
+        "filename": "docs/xpath.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-18T17:26:46Z",
+      "side": 1,
+      "message": "node",
+      "range": {
+        "startLine": 153,
+        "startChar": 40,
+        "endLine": 153,
+        "endChar": 53
+      },
+      "revId": "23fd74d79eb3a3fabed3939c56339f3dcbacff14",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "78b40471_a1663acd",
+        "filename": "docs/xpath.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-18T17:26:46Z",
+      "side": 1,
+      "message": "data node",
+      "range": {
+        "startLine": 155,
+        "startChar": 98,
+        "endLine": 155,
+        "endChar": 105
+      },
+      "revId": "23fd74d79eb3a3fabed3939c56339f3dcbacff14",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1614c665_59d40ce3",
+        "filename": "docs/xpath.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-18T17:26:46Z",
+      "side": 1,
+      "message": "top data node",
+      "range": {
+        "startLine": 155,
+        "startChar": 46,
+        "endLine": 155,
+        "endChar": 58
+      },
+      "revId": "23fd74d79eb3a3fabed3939c56339f3dcbacff14",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
