@@ -45,11 +45,13 @@ listElementRef :  OB leafCondition ( booleanOperators leafCondition)* CB ;
 
 multipleLeafConditions : OB leafCondition ( booleanOperators leafCondition)* CB ;
 
-leafCondition : AT leafName EQ ( IntegerLiteral | StringLiteral) ;
+leafCondition : AT leafName EQ ( IntegerLiteral | StringLiteral) | AT leafName comparativeOperators  IntegerLiteral ;
 
 leafName : QName ;
 
 booleanOperators : ( KW_AND | KW_OR ) ;
+
+comparativeOperators : ( GREATER | LESS | GREATER_OR_EQUAL | LESS_OR_EQUAL ) ;
 
 invalidPostFix : (AT | CB | COLONCOLON | EQ ).+ ;
 
@@ -65,6 +67,10 @@ COLONCOLON : '::' ;
 EQ : '=' ;
 OB : '[' ;
 SLASH : '/' ;
+GREATER : '>' ;
+LESS : '<' ;
+GREATER_OR_EQUAL: '>=' ;
+LESS_OR_EQUAL: '<=' ;
 
 // KEYWORDS
 

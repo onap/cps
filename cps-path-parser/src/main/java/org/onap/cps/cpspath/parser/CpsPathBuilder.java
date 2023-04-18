@@ -61,6 +61,10 @@ public class CpsPathBuilder extends CpsPathBaseListener {
 
     final Queue<String> booleanOperatorsQueue = new LinkedList<>();
 
+    final List<String> comparativeOperators = new ArrayList<>();
+
+    final Queue<String> comparativeOperatorsQueue = new LinkedList<>();
+
     @Override
     public void exitInvalidPostFix(final CpsPathParser.InvalidPostFixContext ctx) {
         throw new PathParsingException(ctx.getText());
@@ -88,7 +92,7 @@ public class CpsPathBuilder extends CpsPathBaseListener {
             comparisonValue = Integer.valueOf(ctx.IntegerLiteral().getText());
         }
         if (ctx.StringLiteral() != null) {
-            final boolean wasWrappedInDoubleQuote  = ctx.StringLiteral().getText().startsWith("\"");
+            final boolean wasWrappedInDoubleQuote = ctx.StringLiteral().getText().startsWith("\"");
             comparisonValue = stripFirstAndLastCharacter(ctx.StringLiteral().getText());
             if (wasWrappedInDoubleQuote) {
                 comparisonValue = String.valueOf(comparisonValue).replace("'", "\\'");
@@ -98,7 +102,12 @@ public class CpsPathBuilder extends CpsPathBaseListener {
         }
         leavesData.put(ctx.leafName().getText(), comparisonValue);
         final String booleanOperator = booleanOperatorsQueue.poll();
-        appendCondition(normalizedXpathBuilder, ctx.leafName().getText(), booleanOperator, comparisonValue);
+        if (comparativeOperatorsQueue.isEmpty()) {
+            appendCondition(normalizedXpathBuilder, ctx.leafName().getText(), booleanOperator, comparisonValue);
+        } else {
+            appendComparativeOperatorCondition(normalizedXpathBuilder, ctx.leafName().getText(), booleanOperator,
+                                           comparisonValue);
+        }
         if (processingAncestorAxis) {
             appendCondition(normalizedAncestorPathBuilder, ctx.leafName().getText(), booleanOperator, comparisonValue);
         }
@@ -111,6 +120,15 @@ public class CpsPathBuilder extends CpsPathBaseListener {
         booleanOperators.add(cpsPathBooleanOperatorType.getValues());
         booleanOperatorsQueue.add(cpsPathBooleanOperatorType.getValues());
         cpsPathQuery.setBooleanOperatorsType(booleanOperators);
+    }
+
+    @Override
+    public void exitComparativeOperators(final CpsPathParser.ComparativeOperatorsContext ctx) {
+        final CpsPathComparativeOperatorType cpsPathComparativeOperatorType = CpsPathComparativeOperatorType.fromString(
+                ctx.getText());
+        comparativeOperators.add(cpsPathComparativeOperatorType.getLabels());
+        comparativeOperatorsQueue.add(cpsPathComparativeOperatorType.getLabels());
+        cpsPathQuery.setComparativeOperatorsType(comparativeOperators);
     }
 
     @Override
@@ -193,6 +211,19 @@ public class CpsPathBuilder extends CpsPathBaseListener {
                                     .append("@")
                                     .append(name)
                                     .append("='")
+                                    .append(value)
+                                    .append("'");
+    }
+
+    private void appendComparativeOperatorCondition(final StringBuilder currentNormalizedPathBuilder, final String name,
+                                                final String booleanOperator, final Object value) {
+        final String ComparativeOperator = comparativeOperatorsQueue.poll();
+        final char lastCharacter = currentNormalizedPathBuilder.charAt(currentNormalizedPathBuilder.length() - 1);
+        currentNormalizedPathBuilder.append(lastCharacter == '[' ? "" : " " + booleanOperator + " ")
+                                    .append("@")
+                                    .append(name)
+                                    .append(ComparativeOperator)
+                                    .append("'")
                                     .append(value)
                                     .append("'");
     }

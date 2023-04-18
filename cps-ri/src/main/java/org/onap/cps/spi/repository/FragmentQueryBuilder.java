@@ -31,6 +31,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
 import org.onap.cps.cpspath.parser.CpsPathPrefixType;
 import org.onap.cps.cpspath.parser.CpsPathQuery;
 import org.onap.cps.spi.entities.FragmentEntity;
@@ -85,15 +86,30 @@ public class FragmentQueryBuilder {
         final List<String> queryBooleanOperatorsType = cpsPathQuery.getBooleanOperatorsType();
         if (cpsPathQuery.hasLeafConditions()) {
             sqlStringBuilder.append(" AND (");
-            final Queue<String> booleanOperatorsQueue = (queryBooleanOperatorsType == null) ? null : new LinkedList<>(
-                    queryBooleanOperatorsType);
-            cpsPathQuery.getLeavesData().entrySet().forEach(entry -> {
-                sqlStringBuilder.append(" attributes @> ");
-                sqlStringBuilder.append("'" + jsonObjectMapper.asJsonString(entry) + "'");
-                if (!(booleanOperatorsQueue == null || booleanOperatorsQueue.isEmpty())) {
-                    sqlStringBuilder.append(" " + booleanOperatorsQueue.poll() + " ");
-                }
-            });
+            final List<String> comparativeOperatorTypes = cpsPathQuery.getComparativeOperatorsType();
+            final Queue<String> comparativeOperatorQueue = (comparativeOperatorTypes == null) ? null : new LinkedList<>(
+                    comparativeOperatorTypes);
+            if ((comparativeOperatorQueue == null)) {
+                final Queue<String> booleanOperatorsQueue = (queryBooleanOperatorsType == null) ? null :
+                        new LinkedList<>(
+                                queryBooleanOperatorsType);
+                cpsPathQuery.getLeavesData().entrySet().forEach(entry -> {
+                    sqlStringBuilder.append(" attributes @> ");
+                    sqlStringBuilder.append("'").append(jsonObjectMapper.asJsonString(entry)).append("'");
+                    if (!CollectionUtils.isEmpty(booleanOperatorsQueue)) {
+                        sqlStringBuilder.append(" ").append(booleanOperatorsQueue.poll()).append(" ");
+                    }
+                });
+            } else {
+                cpsPathQuery.getLeavesData().forEach((key, value) -> {
+                    sqlStringBuilder.append(" (attributes ->>");
+                    sqlStringBuilder.append("'").append(key).append("')\\:\\:int");
+                    if (!(comparativeOperatorQueue.isEmpty())) {
+                        sqlStringBuilder.append(" ").append(comparativeOperatorQueue.poll()).append(" ");
+                        sqlStringBuilder.append("'").append(jsonObjectMapper.asJsonString(value)).append("'");
+                    }
+                });
+            }
             sqlStringBuilder.append(")");
         }
         addTextFunctionCondition(cpsPathQuery, sqlStringBuilder, queryParameters);
