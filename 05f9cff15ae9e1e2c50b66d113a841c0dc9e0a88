@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d8119fd7_83860b4e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-04-19T10:09:35Z",
+      "side": 1,
+      "message": "This does not implement the boolean OR operator (as in line 100). Can you refactor this method to call getQuery on line 95?",
+      "range": {
+        "startLine": 82,
+        "startChar": 54,
+        "endLine": 87,
+        "endChar": 9
+      },
+      "revId": "05f9cff15ae9e1e2c50b66d113a841c0dc9e0a88",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
