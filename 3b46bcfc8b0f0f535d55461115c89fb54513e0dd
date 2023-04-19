@@ -2,6 +2,138 @@
   "comments": [
     {
       "key": {
+        "uuid": "09a063ef_3e1630f0",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 486,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-19T16:33:18Z",
+      "side": 1,
+      "message": "I doubt this is still needed,  if it is it should call the NEW method with an colletion/Array of 1 xpath",
+      "range": {
+        "startLine": 486,
+        "startChar": 16,
+        "endLine": 486,
+        "endChar": 32
+      },
+      "revId": "3b46bcfc8b0f0f535d55461115c89fb54513e0dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c771e5d6_a73c3c9d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 498,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-19T16:33:18Z",
+      "side": 1,
+      "message": "should be xpaths, for consistency if existing method and this wil also help you to rector the 2 methods into 1",
+      "range": {
+        "startLine": 498,
+        "startChar": 68,
+        "endLine": 498,
+        "endChar": 77
+      },
+      "revId": "3b46bcfc8b0f0f535d55461115c89fb54513e0dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e79179bd_bb4fdef1",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-19T16:33:18Z",
+      "side": 1,
+      "message": "should extract xPaths here",
+      "range": {
+        "startLine": 165,
+        "startChar": 86,
+        "endLine": 165,
+        "endChar": 102
+      },
+      "revId": "3b46bcfc8b0f0f535d55461115c89fb54513e0dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "851039e1_4f848c90",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-19T16:33:18Z",
+      "side": 1,
+      "message": "this name suggest it is about multiple leaves, which is not correct\nsuggestion: batchUpdateDataLeaves",
+      "range": {
+        "startLine": 147,
+        "startChar": 15,
+        "endLine": 147,
+        "endChar": 32
+      },
+      "revId": "3b46bcfc8b0f0f535d55461115c89fb54513e0dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8cae7e7b_f0f8e9f1",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-19T16:33:18Z",
+      "side": 1,
+      "message": "to be consistent with the previous method you should use a collection of xpaths here (and tehn you can even remove the previous method!)",
+      "range": {
+        "startLine": 147,
+        "startChar": 75,
+        "endLine": 147,
+        "endChar": 105
+      },
+      "revId": "3b46bcfc8b0f0f535d55461115c89fb54513e0dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "334ac8d5_0a20587d",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-19T16:33:18Z",
+      "side": 1,
+      "message": "I did not revie testware since product code need signifcant changes",
+      "revId": "3b46bcfc8b0f0f535d55461115c89fb54513e0dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bd906267_9d598b27",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/FunctionalSpecBase.groovy",
         "patchSetId": 9
