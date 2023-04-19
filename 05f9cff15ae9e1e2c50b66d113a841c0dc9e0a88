@@ -22,6 +22,30 @@
       "revId": "05f9cff15ae9e1e2c50b66d113a841c0dc9e0a88",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3976d243_2c37ef42",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-04-19T10:36:55Z",
+      "side": 1,
+      "message": "support of OR operation was in scope of this task. here we are fixing issues related to query across all anchors which was already merged for L release. So I think we can support OR operator for this API in M release. will create a seperate task for this.",
+      "parentUuid": "d8119fd7_83860b4e",
+      "range": {
+        "startLine": 82,
+        "startChar": 54,
+        "endLine": 87,
+        "endChar": 9
+      },
+      "revId": "05f9cff15ae9e1e2c50b66d113a841c0dc9e0a88",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
