@@ -222,7 +222,7 @@ descendant-path
 leaf-conditions
 ---------------
 
-**Syntax**: ``<xpath> '[' @<leaf-name1> '=' <leaf-value1> ( ' and ' @<leaf-name> '=' <leaf-value> )* ']'``
+**Syntax**: ``<xpath> '[' @<leaf-name1> '=' <leaf-value1> ( ' <and|or> ' @<leaf-name> '=' <leaf-value> )* ']'``
   - ``xpath``: Absolute or descendant or xpath to the (list) node which elements will be queried.
   - ``leaf-name``: The name of the leaf which value needs to be compared.
   - ``leaf-value``: The required value of the leaf.
@@ -232,10 +232,12 @@ leaf-conditions
   - ``//categories[@name="Kids"]``
   - ``//categories[@name='Kids']``
   - ``//categories[@code='1']/books/book[@title='Dune' and @price=5]``
+  - ``//categories[@code='1']/books/book[@title='xyz' or @price=15]``
   - ``//categories[@code=1]``
 **Limitations**
   - Only the last list or container can be queried leaf values. Any ancestor list will have to be referenced by its key name-value pair(s).
-  - Multiple attributes can only be combined using ``and``. ``or`` and bracketing is not supported.
+  - Multiple attributes can only be combined using ``and`` ,``or``, Multiple AND 's , Multiple OR's . And bracketing is not supported.
+  - In ``or`` condition leaf names are not validated when it is non-existing json value.
   - Only leaves can be used, leaf-list are not supported.
   - Only string and integer values are supported, boolean and float values are not supported.
   - The key should be supplied with correct data type for it to be queried from DB. In the last example above the attribute code is of type
