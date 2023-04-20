@@ -36,7 +36,6 @@
 
     <properties>
         <app>org.onap.cps.Application</app>
-        <jib-maven-plugin.version>2.8.0</jib-maven-plugin.version>
         <maven.build.timestamp.format>yyyyMMdd'T'HHmmss'Z'</maven.build.timestamp.format>
         <minimum-coverage>0.82</minimum-coverage>
         <base.image>${docker.pull.registry}/onap/integration-java11:8.0.0</base.image>
@@ -127,7 +126,6 @@
                 <plugin>
                     <groupId>com.google.cloud.tools</groupId>
                     <artifactId>jib-maven-plugin</artifactId>
-                    <version>${jib-maven-plugin.version}</version>
                     <configuration>
                         <container>
                             <mainClass>${app}</mainClass>
