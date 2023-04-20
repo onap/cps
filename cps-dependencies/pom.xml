@@ -2,7 +2,7 @@
 <!--
   ============LICENSE_START=======================================================
   Copyright (c) 2021 Linux Foundation.
-  Modifications Copyright (C) 2020-2023 Nordix Foundation
+  Modifications Copyright (C) 2020-2022 Nordix Foundation
   Modifications Copyright (C) 2022 Bell Canada.
   ================================================================================
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -158,18 +158,10 @@
             </dependency>
             <dependency>
                 <groupId>org.testcontainers</groupId>
-                <artifactId>kafka</artifactId>
-                <version>${testcontainers.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.testcontainers</groupId>
-                <artifactId>postgresql</artifactId>
-                <version>${testcontainers.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.testcontainers</groupId>
-                <artifactId>spock</artifactId>
-                <version>${testcontainers.version}</version>
+                <artifactId>testcontainers-bom</artifactId>
+                <version>1.17.3</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
             <dependency>
                 <groupId>com.github.spotbugs</groupId>
