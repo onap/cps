@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f55bd1c0_cc69aafd",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathQuerySpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-04-21T14:31:03Z",
+      "side": 1,
+      "message": "NB when updating documentation please come back and remove",
+      "range": {
+        "startLine": 139,
+        "startChar": 15,
+        "endLine": 139,
+        "endChar": 24
+      },
+      "revId": "d7bc158cd274b3d6cd01bcad86aef258e6880c1c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
