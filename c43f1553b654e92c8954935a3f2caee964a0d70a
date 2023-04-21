@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "12cdca57_9ca3bc0b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/ForwardedSubscriptionEventCacheConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-04-21T13:17:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a365b4a_e348aa07",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 22
+      },
+      "revId": "c43f1553b654e92c8954935a3f2caee964a0d70a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dd11debb_c9b6caca",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/ResponseTimeoutTask.java",
         "patchSetId": 6
@@ -59,6 +83,30 @@
       "writtenOn": "2023-04-20T17:30:23Z",
       "side": 1,
       "message": "I think the nested if blocks a bit confusing. This block could be written within a single if block by checking only dmiNames.isEmpty().\n\nHowever, I would use simpler if block, by investigating to see if the map has \"desired key\". You have very similar impl in your SubscriptionEventResponseConsumer.java at line 66.",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 9
+      },
+      "revId": "c43f1553b654e92c8954935a3f2caee964a0d70a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7acacb7a_20ae2ff7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/ResponseTimeoutTask.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-04-21T13:17:14Z",
+      "side": 1,
+      "message": "restructured",
+      "parentUuid": "dd11debb_c9b6caca",
       "range": {
         "startLine": 38,
         "startChar": 0,
@@ -94,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "b250a366_be36531a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventResponseConsumer.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-04-21T13:17:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cc711e9a_c1d91e55",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 17
+      },
+      "revId": "c43f1553b654e92c8954935a3f2caee964a0d70a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6de336d5_56020ad6",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventResponseConsumer.java",
         "patchSetId": 6
@@ -114,6 +186,30 @@
       "revId": "c43f1553b654e92c8954935a3f2caee964a0d70a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2f1e685_9f1d7b14",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventResponseConsumer.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-04-21T13:17:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6de336d5_56020ad6",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 36
+      },
+      "revId": "c43f1553b654e92c8954935a3f2caee964a0d70a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -140,6 +236,30 @@
     },
     {
       "key": {
+        "uuid": "39a70287_f0f3f45b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventResponseConsumer.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-04-21T13:17:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e33dda74_68eb44df",
+      "range": {
+        "startLine": 83,
+        "startChar": 8,
+        "endLine": 83,
+        "endChar": 75
+      },
+      "revId": "c43f1553b654e92c8954935a3f2caee964a0d70a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b9207522_3dc4f4fc",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventForwarder.java",
         "patchSetId": 6
@@ -160,6 +280,30 @@
       "revId": "c43f1553b654e92c8954935a3f2caee964a0d70a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "47c6a9f7_754f72ec",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventForwarder.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-04-21T13:17:14Z",
+      "side": 1,
+      "message": "Will be updated in separate commit",
+      "parentUuid": "b9207522_3dc4f4fc",
+      "range": {
+        "startLine": 60,
+        "startChar": 4,
+        "endLine": 60,
+        "endChar": 100
+      },
+      "revId": "c43f1553b654e92c8954935a3f2caee964a0d70a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -186,6 +330,30 @@
     },
     {
       "key": {
+        "uuid": "41a5dda0_d742feb7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/SubscriptionModelLoader.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-04-21T13:17:14Z",
+      "side": 1,
+      "message": "Yep this was for testing didn\u0027t mean to push up, removed",
+      "parentUuid": "69a7129a_3d2f37aa",
+      "range": {
+        "startLine": 55,
+        "startChar": 4,
+        "endLine": 55,
+        "endChar": 58
+      },
+      "revId": "c43f1553b654e92c8954935a3f2caee964a0d70a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a4725e6b_beef3460",
         "filename": "cps-service/src/main/java/org/onap/cps/cache/AnchorDataCacheConfig.java",
         "patchSetId": 6
@@ -209,6 +377,30 @@
     },
     {
       "key": {
+        "uuid": "3c020536_739b94cb",
+        "filename": "cps-service/src/main/java/org/onap/cps/cache/AnchorDataCacheConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-04-21T13:17:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a4725e6b_beef3460",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 23
+      },
+      "revId": "c43f1553b654e92c8954935a3f2caee964a0d70a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "523a7a50_d39935fb",
         "filename": "cps-service/src/main/java/org/onap/cps/cache/HazelcastCacheConfig.java",
         "patchSetId": 6
@@ -229,6 +421,30 @@
       "revId": "c43f1553b654e92c8954935a3f2caee964a0d70a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0078b5ce_6073894f",
+        "filename": "cps-service/src/main/java/org/onap/cps/cache/HazelcastCacheConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-04-21T13:17:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "523a7a50_d39935fb",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 23
+      },
+      "revId": "c43f1553b654e92c8954935a3f2caee964a0d70a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
