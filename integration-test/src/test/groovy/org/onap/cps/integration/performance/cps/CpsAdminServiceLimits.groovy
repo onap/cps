@@ -20,12 +20,13 @@
 
 package org.onap.cps.integration.performance.cps
 
+import org.onap.cps.api.CpsAdminService
 import org.onap.cps.integration.performance.base.CpsPerfTestBase
 import org.springframework.dao.DataAccessResourceFailureException
 
 class CpsAdminServiceLimits extends CpsPerfTestBase {
 
-    def objectUnderTest
+    CpsAdminService objectUnderTest
 
     def setup() { objectUnderTest = cpsAdminService }
 

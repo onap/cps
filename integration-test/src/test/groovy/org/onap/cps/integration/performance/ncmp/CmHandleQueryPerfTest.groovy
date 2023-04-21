@@ -21,13 +21,14 @@
 package org.onap.cps.integration.performance.ncmp
 
 import java.util.stream.Collectors
+import org.onap.cps.api.CpsQueryService
 import org.onap.cps.integration.performance.base.NcmpRegistryPerfTestBase
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 
 class CmHandleQueryPerfTest extends NcmpRegistryPerfTestBase {
 
-    def objectUnderTest
+    CpsQueryService objectUnderTest
 
     def setup() { objectUnderTest = cpsQueryService }
 
@@ -35,7 +36,7 @@ class CmHandleQueryPerfTest extends NcmpRegistryPerfTestBase {
         when: 'a cps-path query on name-value pair is performed (without getting descendants)'
             stopWatch.start()
             def cpsPath = '//additional-properties[@name="neType" and @value="RadioNode"]/ancestor::cm-handles'
-            def dataNodes = cpsQueryService.queryDataNodes(NCMP_PERFORMANCE_TEST_DATASPACE, REGISTRY_ANCHOR, cpsPath, OMIT_DESCENDANTS)
+            def dataNodes = objectUnderTest.queryDataNodes(NCMP_PERFORMANCE_TEST_DATASPACE, REGISTRY_ANCHOR, cpsPath, OMIT_DESCENDANTS)
         and: 'the ids of the result are extracted and converted to xpath'
             def xpaths = dataNodes.stream().map(dataNode -> "/dmi-registry/cm-handles[@id='${dataNode.leaves.id}']".toString() ).collect(Collectors.toSet())
         and: 'a single get is executed to get all the parent objects and their descendants'
