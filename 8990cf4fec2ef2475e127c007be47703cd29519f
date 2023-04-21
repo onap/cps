@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e8c7ff9_8f9e0973",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-04-21T10:26:00Z",
+      "side": 1,
+      "message": "This should really be finalAllByDataspaceAndXpathIn. It needs to be updated for CPS-1580",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 5
+      },
+      "revId": "8990cf4fec2ef2475e127c007be47703cd29519f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}

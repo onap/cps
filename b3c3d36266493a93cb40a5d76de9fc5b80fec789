@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "62429db2_20dd5906",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-04-21T10:26:00Z",
+      "side": 0,
+      "message": "Removed unused code",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 104
+      },
+      "revId": "b3c3d36266493a93cb40a5d76de9fc5b80fec789",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5b8d543c_e0647ce7",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/SchemaSetRepository.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-04-21T10:26:00Z",
+      "side": 0,
+      "message": "Removed this method as it redundantly collects result of findByDataspace into a list, and it does not throw an exception as the JavaDoc specifies (so it really behaves exactly like findByDataspace).",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 5
+      },
+      "revId": "b3c3d36266493a93cb40a5d76de9fc5b80fec789",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
