@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "caf8fec6_aee56b41",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/entities/DataspaceEntity.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-04-21T14:10:14Z",
+      "side": 1,
+      "message": "update",
+      "range": {
+        "startLine": 5,
+        "startChar": 38,
+        "endLine": 5,
+        "endChar": 39
+      },
+      "revId": "05f9cff15ae9e1e2c50b66d113a841c0dc9e0a88",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d2d09c62_2d54bcc1",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/entities/FragmentEntity.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-04-21T14:10:14Z",
+      "side": 1,
+      "message": "update",
+      "range": {
+        "startLine": 5,
+        "startChar": 52,
+        "endLine": 5,
+        "endChar": 53
+      },
+      "revId": "05f9cff15ae9e1e2c50b66d113a841c0dc9e0a88",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d8119fd7_83860b4e",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
         "patchSetId": 16
