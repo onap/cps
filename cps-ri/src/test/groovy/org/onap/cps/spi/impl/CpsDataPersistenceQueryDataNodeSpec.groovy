@@ -193,6 +193,7 @@ class CpsDataPersistenceQueryDataNodeSpec extends CpsPersistenceSpecBase {
             'String and no descendants'                 | '/shops/shop[@id=1]/categories[@code=1]/book[@title="Dune"]' | OMIT_DESCENDANTS         || 2                            || ['ANCHOR-004', 'ANCHOR-005']
             'Integer and descendants'                   | '/shops/shop[@id=1]/categories[@code=1]/book[@price=5]'      | INCLUDE_ALL_DESCENDANTS  || 3                            || ['ANCHOR-004', 'ANCHOR-005']
             'No condition no descendants'               | '/shops/shop[@id=1]/categories'                              | OMIT_DESCENDANTS         || 6                            || ['ANCHOR-004', 'ANCHOR-005']
+            'top node and all descendants'              | '/shops'                                                     | INCLUDE_ALL_DESCENDANTS  || 2                            || ['ANCHOR-004', 'ANCHOR-005']
             'multiple list-ancestors'                   | '//book/ancestor::categories'                                | INCLUDE_ALL_DESCENDANTS  || 4                            || ['ANCHOR-004', 'ANCHOR-005']
             'one ancestor with list value'              | '//book/ancestor::categories[@code=1]'                       | INCLUDE_ALL_DESCENDANTS  || 2                            || ['ANCHOR-004', 'ANCHOR-005']
             'list with index value in the xpath prefix' | '//categories[@code=1]/book/ancestor::shop[@id=1]'           | INCLUDE_ALL_DESCENDANTS  || 2                            || ['ANCHOR-004', 'ANCHOR-005']

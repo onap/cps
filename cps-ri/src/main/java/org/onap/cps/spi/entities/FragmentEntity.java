@@ -2,6 +2,7 @@
  * ============LICENSE_START=======================================================
  * Copyright (C) 2020-2023 Nordix Foundation.
  * Modifications Copyright (C) 2021 Pantheon.tech
+ * Modifications Copyright (C) 2023 TechMahindra Ltd.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -84,10 +85,12 @@ public class FragmentEntity implements Serializable {
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "dataspace_id")
+    @EqualsAndHashCode.Include
     private DataspaceEntity dataspace;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "anchor_id")
+    @EqualsAndHashCode.Include
     private AnchorEntity anchor;
 
     @ToString.Exclude

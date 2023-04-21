@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Nordix Foundation
+ *  Modifications Copyright (C) 2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -41,6 +42,25 @@ public class FragmentEntityArranger {
                                                       final Collection<FragmentExtract> fragmentExtracts) {
         final Map<Long, FragmentEntity> fragmentEntityPerId = new HashMap<>();
         for (final FragmentExtract fragmentExtract : fragmentExtracts) {
+            final FragmentEntity fragmentEntity = toFragmentEntity(anchorEntity, fragmentExtract);
+            fragmentEntityPerId.put(fragmentEntity.getId(), fragmentEntity);
+        }
+        return reuniteChildrenWithTheirParents(fragmentEntityPerId);
+    }
+
+    /**
+     * Convert a collection of (related) FragmentExtracts into  FragmentEntities (trees) with descendants.
+     *
+     * @param fragmentExtracts FragmentExtracts to convert.
+     * @param fragmentExtractAnchorMap Map of fragmentExtract with their anchor.
+     * @return a collection of FragmentEntities (trees) with descendants.
+     */
+    public static Collection<FragmentEntity> toFragmentEntityTreesAcrossAnchors(
+            final Collection<FragmentExtract> fragmentExtracts,
+            final Map<Long, AnchorEntity> fragmentExtractAnchorMap) {
+        final Map<Long, FragmentEntity> fragmentEntityPerId = new HashMap<>();
+        for (final FragmentExtract fragmentExtract : fragmentExtracts) {
+            final AnchorEntity anchorEntity = fragmentExtractAnchorMap.get(fragmentExtract.getId());
             final FragmentEntity fragmentEntity = toFragmentEntity(anchorEntity, fragmentExtract);
             fragmentEntityPerId.put(fragmentEntity.getId(), fragmentEntity);
         }
