@@ -615,3 +615,37 @@ databaseChangeLog:
         - dropIndex:
             indexName: FKI_SCHEMA_SET_YANG_RESOURCES_SCHEMA_SET_ID_FK
             tableName: schema_set_yang_resources
+
+  - changeSet:
+      author: cps
+      id: 1-42
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: fragment
+            constraintName: fragment_parent_id_fkey
+        - addForeignKeyConstraint:
+            baseColumnNames: parent_id
+            baseTableName: fragment
+            constraintName: fragment_parent_id_fkey
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: CASCADE
+            onUpdate: NO ACTION
+            referencedColumnNames: id
+            referencedTableName: fragment
+            validate: true
+      rollback:
+        - dropForeignKeyConstraint:
+            baseTableName: fragment
+            constraintName: fragment_parent_id_fkey
+        - addForeignKeyConstraint:
+            baseColumnNames: parent_id
+            baseTableName: fragment
+            constraintName: fragment_parent_id_fkey
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: id
+            referencedTableName: fragment
+            validate: true
