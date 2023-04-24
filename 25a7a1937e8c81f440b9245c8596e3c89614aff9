@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "18e4b3ac_765285ac",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-24T12:47:53Z",
+      "side": 1,
+      "message": "why woudl we want/need to  disable this?!",
+      "range": {
+        "startLine": 198,
+        "startChar": 6,
+        "endLine": 198,
+        "endChar": 57
+      },
+      "revId": "25a7a1937e8c81f440b9245c8596e3c89614aff9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "653ece83_d13d5baf",
+        "filename": "cps-ncmp-service/src/test/resources/application.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-24T12:47:53Z",
+      "side": 1,
+      "message": "ok, but why?!",
+      "range": {
+        "startLine": 46,
+        "startChar": 15,
+        "endLine": 46,
+        "endChar": 20
+      },
+      "revId": "25a7a1937e8c81f440b9245c8596e3c89614aff9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
