@@ -342,6 +342,24 @@
     },
     {
       "key": {
+        "uuid": "2865631c_977ad188",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastorePassthroughRunningResourceRequestHandler.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-24T12:43:20Z",
+      "side": 1,
+      "message": "as agreed in our call, I think it is important to simplify this now as part of this commit...",
+      "parentUuid": "6161f536_8a1d811f",
+      "revId": "1682befb25bf459b1150c00b15c3c39d6e469251",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d6305ebf_052c81f5",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastorePassthroughRunningResourceRequestHandler.java",
         "patchSetId": 5
