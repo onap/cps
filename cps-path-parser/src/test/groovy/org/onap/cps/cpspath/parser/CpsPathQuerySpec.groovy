@@ -115,6 +115,22 @@ class CpsPathQuerySpec extends Specification {
             'more than one attribute has combinations or/and operator' | '//child[@int-leaf=5 or @leaf-name="leaf value" or @leaf-name="leaf value1" ]'   || 2                      || ['or', 'or']
     }
 
+    def 'Parse cps path that contains Integer attribute Value with comparative operators #scenario.'() {
+        when: 'the given cps path is parsed'
+            def result = CpsPathQuery.createFrom(cpsPath)
+        then: 'the query has the right xpath type'
+            result.cpsPathPrefixType == DESCENDANT
+        and: 'the right parameters are set'
+            result.descendantName == "child"
+            result.comparativeOperatorsType == expectedComparativeOperator
+        where: 'the following data is used'
+            scenario                                       | cpsPath                              || expectedComparativeOperator
+            'one attribute with ">" comparative operator'  | '//child[@common-leaf-name-int>15]'  || [">"]
+            'one attribute with "<" comparative operator'  | '//child[@common-leaf-name-int<10]'  || ["<"]
+            'one attribute with ">=" comparative operator' | '//child[@common-leaf-name-int>=15]' || [">="]
+            'one attribute with "<=" comparative operator' | '//child[@common-leaf-name-int<=10]' || ["<="]
+    }
+
     def 'Parse #scenario cps path with text function condition'() {
         when: 'the given cps path is parsed'
             def result = CpsPathQuery.createFrom(cpsPath)
@@ -136,7 +152,7 @@ class CpsPathQuerySpec extends Specification {
             'descendant with leaf value and ancestor' | '//child[@other-leaf=1]/leaf-name[text()="search"]/ancestor::parent' || true                 | true
     }
 
-    def 'Parse #scenario cps path with contains function condition'() {
+    def 'Parse cps path with contains function condition'() {
         when: 'the given cps path is parsed'
             def result = CpsPathQuery.createFrom('//someContainer[contains(@lang,"en")]')
         then: 'the query has the right xpath type'

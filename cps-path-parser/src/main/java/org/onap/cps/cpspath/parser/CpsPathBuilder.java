@@ -61,6 +61,10 @@ public class CpsPathBuilder extends CpsPathBaseListener {
 
     final Queue<String> booleanOperatorsQueue = new LinkedList<>();
 
+    final List<String> comparativeOperators = new ArrayList<>();
+
+    final Queue<String> comparativeOperatorsQueue = new LinkedList<>();
+
     @Override
     public void exitInvalidPostFix(final CpsPathParser.InvalidPostFixContext ctx) {
         throw new PathParsingException(ctx.getText());
@@ -98,7 +102,12 @@ public class CpsPathBuilder extends CpsPathBaseListener {
         }
         leavesData.put(ctx.leafName().getText(), comparisonValue);
         final String booleanOperator = booleanOperatorsQueue.poll();
-        appendCondition(normalizedXpathBuilder, ctx.leafName().getText(), booleanOperator, comparisonValue);
+        if (comparativeOperatorsQueue.isEmpty()) {
+            appendCondition(normalizedXpathBuilder, ctx.leafName().getText(), booleanOperator, comparisonValue);
+        } else {
+            appendComparativeOperatorCondition(normalizedXpathBuilder, ctx.leafName().getText(), booleanOperator,
+                                               comparisonValue);
+        }
         if (processingAncestorAxis) {
             appendCondition(normalizedAncestorPathBuilder, ctx.leafName().getText(), booleanOperator, comparisonValue);
         }
@@ -112,6 +121,16 @@ public class CpsPathBuilder extends CpsPathBaseListener {
         booleanOperatorsQueue.add(cpsPathBooleanOperatorType.getValues());
         cpsPathQuery.setBooleanOperatorsType(booleanOperators);
     }
+
+    @Override
+    public void exitComparativeOperators(final CpsPathParser.ComparativeOperatorsContext ctx) {
+        final CpsPathComparativeOperatorType cpsPathComparativeOperatorType = CpsPathComparativeOperatorType.fromString(
+                ctx.getText());
+        comparativeOperators.add(cpsPathComparativeOperatorType.getLabels());
+        comparativeOperatorsQueue.add(cpsPathComparativeOperatorType.getLabels());
+        cpsPathQuery.setComparativeOperatorsType(comparativeOperators);
+    }
+
 
     @Override
     public void exitDescendant(final DescendantContext ctx) {
@@ -199,6 +218,19 @@ public class CpsPathBuilder extends CpsPathBaseListener {
                                     .append("@")
                                     .append(name)
                                     .append("='")
+                                    .append(value)
+                                    .append("'");
+    }
+
+    private void appendComparativeOperatorCondition(final StringBuilder currentNormalizedPathBuilder, final String name,
+                                                    final String booleanOperator, final Object value) {
+        final String comparativeOperator = comparativeOperatorsQueue.poll();
+        final char lastCharacter = currentNormalizedPathBuilder.charAt(currentNormalizedPathBuilder.length() - 1);
+        currentNormalizedPathBuilder.append(lastCharacter == '[' ? "" : " " + booleanOperator + " ")
+                                    .append("@")
+                                    .append(name)
+                                    .append(comparativeOperator)
+                                    .append("'")
                                     .append(value)
                                     .append("'");
     }

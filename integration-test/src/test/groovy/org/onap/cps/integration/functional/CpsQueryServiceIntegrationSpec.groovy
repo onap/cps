@@ -78,6 +78,37 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
                                                                                                                                           [lang: "English", price: 15, title: "The Gruffalo", authors: ["Julia Donaldson"], editions: [1999]]]
     }
 
+    def 'cps-path query using combinations of Comparative Operators #scenario.'() {
+        when: 'a query is executed to get response by the given cps path'
+            def result = objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, cpspath, OMIT_DESCENDANTS)
+        then: 'the result contains expected number of nodes'
+            assert result.size() == expectedResultSize
+        and: 'the cps-path of queryDataNodes has the expectedLeaves'
+            assert result.leaves.sort() == expectedLeaves.sort()
+        where: 'the following data is used'
+            scenario                                         | cpspath               || expectedResultSize | expectedLeaves
+            'the ">" condition'                              | '//books[@price>13]'  || 5                  | [[lang: "English", price: 15, title: "The Gruffalo", authors: ["Julia Donaldson"], editions: [1999]],
+                                                                                                              [lang: "English", price: 15, title: "Annihilation", authors: ["Jeff VanderMeer"], editions: [2014]],
+                                                                                                              [lang: "English", price: 14, title: "The Light Fantastic", authors: ["Terry Pratchett"], editions: [1986]],
+                                                                                                              [lang: "", price: 20, title: "A Book with No Language", authors: ["Joe Bloggs"], editions: [2023]],
+                                                                                                              [lang: "German", price: 39, title: "Debian GNU/Linux", authors: ["Peter H. Ganten", "Wulf Alex"], editions: [2013, 2021, 2007]]]
+            'the "<" condition '                             | '//books[@price<15]'  || 5                  | [[lang: "English", price: 10, title: "Matilda", authors: ["Roald Dahl"], editions: [1988, 2000]],
+                                                                                                              [lang: "English", price: 14, title: "The Light Fantastic", authors: ["Terry Pratchett"], editions: [1986]],
+                                                                                                              [lang: "English", price: 12, title: "The Colour of Magic", authors: ["Terry Pratchett"], editions: [1983]],
+                                                                                                              [lang: "English", price: 13, title: "Good Omens", authors: ["Terry Pratchett", "Neil Gaiman"], editions: [2006]],
+                                                                                                              [lang: "N/A", price: 11, title: "Logarithm tables", authors: ["Joe Bloggs"], editions: [2009]]]
+            'the "<=" condition'                             | '//books[@price<=15]' || 7                  | [[lang: "English", price: 15, title: "Annihilation", authors: ["Jeff VanderMeer"], editions: [2014]],
+                                                                                                              [lang: "English", price: 15, title: "The Gruffalo", authors: ["Julia Donaldson"], editions: [1999]],
+                                                                                                              [lang: "N/A", price: 11, title: "Logarithm tables", authors: ["Joe Bloggs"], editions: [2009]],
+                                                                                                              [lang: "English", price: 14, title: "The Light Fantastic", authors: ["Terry Pratchett"], editions: [1986]],
+                                                                                                              [lang: "English", price: 13, title: "Good Omens", authors: ["Terry Pratchett", "Neil Gaiman"], editions: [2006]],
+                                                                                                              [lang: "English", price: 12, title: "The Colour of Magic", authors: ["Terry Pratchett"], editions: [1983]],
+                                                                                                              [lang: "English", price: 10, title: "Matilda", authors: ["Roald Dahl"], editions: [1988, 2000]]]
+            'the ">=" condition'                             | '//books[@price>=20]' || 2                  | [[lang: "", price: 20, title: "A Book with No Language", authors: ["Joe Bloggs"], editions: [2023]],
+                                                                                                              [lang: "German", price: 39, title: "Debian GNU/Linux", authors: ["Peter H. Ganten", "Wulf Alex"], editions: [2013, 2021, 2007]]]
+            'the "<" condition  where result does not exist' | '//books[@price<5]'   || 0                  | []
+    }
+
     def 'Cps Path query for leaf value(s) with #scenario.'() {
         when: 'a query is executed to get a data node by the given cps path'
             def result = objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, cpsPath, fetchDescendantsOption)
@@ -172,6 +203,10 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
         where: 'the following data is used'
             scenario                                                   | cpsPath                                                    || expectedBookTitles
             'one leaf'                                                 | '//books[@price=14]'                                       || ['The Light Fantastic']
+            'one leaf has ">" condition'                               | '//books[@price>15]'                                       || ['A Book with No Language', 'Debian GNU/Linux']
+            'one leaf has "<" condition '                              | '//books[@price<13]'                                       || ['Logarithm tables', 'Matilda', 'The Colour of Magic']
+            'one leaf has "<=" condition'                              | '//books[@price<=20]'                                      || ['A Book with No Language', 'Annihilation', 'Good Omens', 'Logarithm tables', 'Matilda', 'The Colour of Magic', 'The Gruffalo', 'The Light Fantastic']
+            'one leaf has ">=" condition'                              | '//books[@price>=11]'                                      || ['A Book with No Language', 'Annihilation', 'Debian GNU/Linux', 'Good Omens', 'Logarithm tables', 'The Colour of Magic', 'The Gruffalo', 'The Light Fantastic']
             'one text'                                                 | '//books/authors[text()="Terry Pratchett"]'                || ['Good Omens', 'The Colour of Magic', 'The Light Fantastic']
             'more than one leaf'                                       | '//books[@price=12 and @lang="English"]'                   || ['The Colour of Magic']
             'more than one leaf has "OR" condition'                    | '//books[@lang="English" or @price=15]'                    || ['Annihilation', 'Good Omens', 'Matilda', 'The Colour of Magic', 'The Gruffalo', 'The Light Fantastic']
