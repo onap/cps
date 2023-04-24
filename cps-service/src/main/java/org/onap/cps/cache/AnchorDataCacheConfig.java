@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START========================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -26,6 +26,7 @@ import com.hazelcast.config.NamedConfig;
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.map.IMap;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -34,6 +35,9 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class AnchorDataCacheConfig {
+
+    @Value("${hazelcast.mode.kubernetes.service-name}")
+    private String cacheKubernetesServiceName;
 
     private static final MapConfig anchorDataCacheMapConfig = createMapConfig("anchorDataCacheMapConfig");
 
@@ -57,6 +61,8 @@ public class AnchorDataCacheConfig {
         final Config config = new Config(instanceName);
         config.addMapConfig((MapConfig) namedConfig);
         config.setClusterName("cps-service-caches");
+        config.getNetworkConfig().getJoin().getKubernetesConfig()
+                .setProperty("service-name", cacheKubernetesServiceName);
         return config;
     }
 

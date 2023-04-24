@@ -29,6 +29,7 @@ import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.map.IMap;
 import java.util.concurrent.BlockingQueue;
 import org.onap.cps.spi.model.DataNode;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -40,6 +41,9 @@ public class SynchronizationCacheConfig {
 
     public static final int MODULE_SYNC_STARTED_TTL_SECS = 600;
     public static final int DATA_SYNC_SEMAPHORE_TTL_SECS = 1800;
+
+    @Value("${hazelcast.mode.kubernetes.service-name}")
+    private String cacheKubernetesServiceName;
 
     private static final QueueConfig commonQueueConfig = createQueueConfig();
     private static final MapConfig moduleSyncStartedConfig = createMapConfig("moduleSyncStartedConfig");
@@ -92,6 +96,8 @@ public class SynchronizationCacheConfig {
             config.addQueueConfig((QueueConfig) namedConfig);
         }
         config.setClusterName("synchronization-caches");
+        config.getNetworkConfig().getJoin().getKubernetesConfig()
+                .setProperty("service-name", cacheKubernetesServiceName);
         return config;
     }
 
