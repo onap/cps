@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e729affd_98a3fa3b",
+        "filename": "docs/cps-path.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-04-24T08:43:57Z",
+      "side": 1,
+      "message": "add techmahindra",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 44
+      },
+      "revId": "1071d1af6c03a5bd2414ad42e689db6ce82bbbeb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "63c0acc7_b9941fc5",
+        "filename": "docs/cps-path.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-04-24T08:43:57Z",
+      "side": 1,
+      "message": "OR\u0027s. Note that bracketing is not supported.",
+      "range": {
+        "startLine": 239,
+        "startChar": 95,
+        "endLine": 239,
+        "endChar": 134
+      },
+      "revId": "1071d1af6c03a5bd2414ad42e689db6ce82bbbeb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "21dc03eb_41119d09",
+        "filename": "docs/cps-path.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-04-24T08:43:57Z",
+      "side": 1,
+      "message": "condition, leaf names",
+      "range": {
+        "startLine": 240,
+        "startChar": 14,
+        "endLine": 240,
+        "endChar": 29
+      },
+      "revId": "1071d1af6c03a5bd2414ad42e689db6ce82bbbeb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
