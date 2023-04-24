@@ -2,6 +2,98 @@
   "comments": [
     {
       "key": {
+        "uuid": "00955e22_65c04f08",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/AnchorRepository.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-24T09:07:49Z",
+      "side": 1,
+      "message": "NB: Initialize with known length",
+      "range": {
+        "startLine": 56,
+        "startChar": 101,
+        "endLine": 56,
+        "endChar": 102
+      },
+      "revId": "8990cf4fec2ef2475e127c007be47703cd29519f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d1fc053f_8c07e32f",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/AnchorRepository.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-24T09:07:49Z",
+      "side": 1,
+      "message": "NB: Initialize with length of schemaSetNames",
+      "range": {
+        "startLine": 68,
+        "startChar": 113,
+        "endLine": 68,
+        "endChar": 114
+      },
+      "revId": "8990cf4fec2ef2475e127c007be47703cd29519f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5f163477_00f447c4",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/AnchorRepository.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-24T09:07:49Z",
+      "side": 1,
+      "message": "NB: Initialize with known length",
+      "range": {
+        "startLine": 99,
+        "startChar": 96,
+        "endLine": 99,
+        "endChar": 97
+      },
+      "revId": "8990cf4fec2ef2475e127c007be47703cd29519f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0eefd1bb_844364a5",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-24T09:07:49Z",
+      "side": 1,
+      "message": "initialise with known size",
+      "range": {
+        "startLine": 58,
+        "startChar": 58,
+        "endLine": 58,
+        "endChar": 59
+      },
+      "revId": "8990cf4fec2ef2475e127c007be47703cd29519f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2e8c7ff9_8f9e0973",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
         "patchSetId": 6
@@ -22,6 +114,168 @@
       "revId": "8990cf4fec2ef2475e127c007be47703cd29519f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7bbd21cc_9533c8df",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-24T09:07:49Z",
+      "side": 1,
+      "message": "should include a anchor(name) too!\n\n(alternatively just an achorId) But lets keep an eye out for taht in Rajesh\u0027s commit",
+      "parentUuid": "2e8c7ff9_8f9e0973",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 5
+      },
+      "revId": "8990cf4fec2ef2475e127c007be47703cd29519f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eed2c5ae_19850642",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-24T09:07:49Z",
+      "side": 1,
+      "message": "initialise with known size",
+      "range": {
+        "startLine": 74,
+        "startChar": 70,
+        "endLine": 74,
+        "endChar": 71
+      },
+      "revId": "8990cf4fec2ef2475e127c007be47703cd29519f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9c09d28b_b9a80d0e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-24T09:07:49Z",
+      "side": 1,
+      "message": "initialise with known size (wont repeat)",
+      "range": {
+        "startLine": 115,
+        "startChar": 96,
+        "endLine": 115,
+        "endChar": 97
+      },
+      "revId": "8990cf4fec2ef2475e127c007be47703cd29519f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "252fd8ad_850798de",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/SchemaSetRepository.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-24T09:07:49Z",
+      "side": 1,
+      "message": "NB: what is the story with JavaDoc for repository classes. We are very inconsistent.\nIn my opinion it is an internal interface and not really needed..\n\nBut if you want you can add missing javadoc too (now or later)",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 7
+      },
+      "revId": "8990cf4fec2ef2475e127c007be47703cd29519f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "34b02389_19511b7c",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceConcurrencySpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-24T09:07:49Z",
+      "side": 1,
+      "message": "is this really needed, (IntelliJ might complain but I think i rus fine withot) adn code ise I think simpler is better...",
+      "range": {
+        "startLine": 92,
+        "startChar": 61,
+        "endLine": 92,
+        "endChar": 82
+      },
+      "revId": "8990cf4fec2ef2475e127c007be47703cd29519f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "43eb6a18_72bdfb08",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceConcurrencySpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-24T09:07:49Z",
+      "side": 1,
+      "message": "as above",
+      "range": {
+        "startLine": 108,
+        "startChar": 64,
+        "endLine": 108,
+        "endChar": 74
+      },
+      "revId": "8990cf4fec2ef2475e127c007be47703cd29519f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3bf5a2b3_38aa91a3",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/CpsDataServiceLimits.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-24T09:07:49Z",
+      "side": 1,
+      "message": "legacy issue: I dont understand why this exception si expected...",
+      "range": {
+        "startLine": 50,
+        "startChar": 12,
+        "endLine": 50,
+        "endChar": 51
+      },
+      "revId": "8990cf4fec2ef2475e127c007be47703cd29519f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
