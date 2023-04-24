@@ -48,6 +48,29 @@
     },
     {
       "key": {
+        "uuid": "c6a22c68_50f38b30",
+        "filename": "docs/cps-path.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-24T09:42:13Z",
+      "side": 1,
+      "message": "please break into separate limitations\n- Bracketing is not supported\n- When mixing and/or operators he order of execution is not guaranteed and therefore the result is unpredicted. Although nu error will be reported this mixing of operator is not recommended.",
+      "range": {
+        "startLine": 239,
+        "startChar": 4,
+        "endLine": 239,
+        "endChar": 134
+      },
+      "revId": "1071d1af6c03a5bd2414ad42e689db6ce82bbbeb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "21dc03eb_41119d09",
         "filename": "docs/cps-path.rst",
         "patchSetId": 2
@@ -64,6 +87,29 @@
         "startChar": 14,
         "endLine": 240,
         "endChar": 29
+      },
+      "revId": "1071d1af6c03a5bd2414ad42e689db6ce82bbbeb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "722c7501_a27da1b2",
+        "filename": "docs/cps-path.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-24T09:42:13Z",
+      "side": 1,
+      "message": "Leaf names are not validated so or operations with invalid leaf names will silently be ignored.\n\n(do NOT mentioned json the client is not aware/does not need to know this is internally stored as json)",
+      "range": {
+        "startLine": 240,
+        "startChar": 4,
+        "endLine": 240,
+        "endChar": 88
       },
       "revId": "1071d1af6c03a5bd2414ad42e689db6ce82bbbeb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
