@@ -26,6 +26,7 @@ import com.hazelcast.config.NamedConfig;
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.map.IMap;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -34,6 +35,15 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class AnchorDataCacheConfig {
+
+    @Value("${hazelcast.mode.multicast.enabled}")
+    private boolean cacheMulticastEnabled;
+
+    @Value("${hazelcast.mode.kubernetes.enabled}")
+    private boolean cacheKubernetesEnabled;
+
+    @Value("${hazelcast.mode.kubernetes.service-name}")
+    private String cacheKubernetesServiceName;
 
     private static final MapConfig anchorDataCacheMapConfig = createMapConfig("anchorDataCacheMapConfig");
 
@@ -57,6 +67,7 @@ public class AnchorDataCacheConfig {
         final Config config = new Config(instanceName);
         config.addMapConfig((MapConfig) namedConfig);
         config.setClusterName("cps-service-caches");
+        updateCacheMode(config);
         return config;
     }
 
@@ -65,6 +76,18 @@ public class AnchorDataCacheConfig {
         mapConfig.setBackupCount(3);
         mapConfig.setAsyncBackupCount(3);
         return mapConfig;
+    }
+
+    private void updateCacheMode(final Config config) {
+        if (cacheMulticastEnabled) {
+            config.getNetworkConfig().getJoin().getMulticastConfig().setEnabled(cacheKubernetesEnabled);
+        }
+
+        if (cacheKubernetesEnabled) {
+            config.getNetworkConfig().getJoin().getKubernetesConfig().setEnabled(cacheKubernetesEnabled)
+                    .setProperty("service-name", cacheKubernetesServiceName);
+        }
+
     }
 
 }

@@ -48,3 +48,12 @@ spring:
 logging:
   level:
     org.apache.kafka: ERROR
+
+# Custom Hazelcast Config.
+hazelcast:
+  mode:
+    multicast:
+      enabled: true
+    kubernetes:
+      enabled: false
+      service-name: "cps-and-ncmp-service"
