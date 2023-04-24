@@ -36,3 +36,10 @@ ncmp:
 
     model-loader:
         subscription: true
+
+# Custom Hazelcast Config.
+hazelcast:
+  mode:
+    kubernetes:
+      enabled: false
+      service-name: "cps-and-ncmp-service"
