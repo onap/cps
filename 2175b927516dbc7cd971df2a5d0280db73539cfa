@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "868c6edd_aa112224",
+        "filename": "docs/cps-path.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-24T11:47:52Z",
+      "side": 1,
+      "message": "please remove this line is very confusing. The line you have now on #242 is intended to replace this!",
+      "range": {
+        "startLine": 240,
+        "startChar": 4,
+        "endLine": 240,
+        "endChar": 100
+      },
+      "revId": "2175b927516dbc7cd971df2a5d0280db73539cfa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "083e3959_6d808b1d",
+        "filename": "docs/cps-path.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-24T11:47:52Z",
+      "side": 1,
+      "message": "no error",
+      "range": {
+        "startLine": 242,
+        "startChar": 128,
+        "endLine": 242,
+        "endChar": 137
+      },
+      "revId": "2175b927516dbc7cd971df2a5d0280db73539cfa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
