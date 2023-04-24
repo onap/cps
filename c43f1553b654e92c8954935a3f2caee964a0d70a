@@ -354,6 +354,29 @@
     },
     {
       "key": {
+        "uuid": "d72f462e_4a8f5d57",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/avc/SubscriptionEventMapperSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-04-24T09:56:04Z",
+      "side": 1,
+      "message": "NB: For which scenario?",
+      "range": {
+        "startLine": 63,
+        "startChar": 69,
+        "endLine": 63,
+        "endChar": 86
+      },
+      "revId": "c43f1553b654e92c8954935a3f2caee964a0d70a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a4725e6b_beef3460",
         "filename": "cps-service/src/main/java/org/onap/cps/cache/AnchorDataCacheConfig.java",
         "patchSetId": 6
