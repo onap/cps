@@ -21,6 +21,7 @@
 package org.onap.cps.integration.performance.cps
 
 import java.time.OffsetDateTime
+import org.onap.cps.api.CpsDataService
 import org.onap.cps.integration.performance.base.CpsPerfTestBase
 import org.springframework.dao.DataAccessResourceFailureException
 import org.springframework.transaction.TransactionSystemException
@@ -29,7 +30,7 @@ import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 
 class CpsDataServiceLimits extends CpsPerfTestBase {
 
-    def objectUnderTest
+    CpsDataService objectUnderTest
 
     def setup() { objectUnderTest = cpsDataService }
 

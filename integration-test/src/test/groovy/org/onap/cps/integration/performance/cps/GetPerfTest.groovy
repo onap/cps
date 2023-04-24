@@ -20,6 +20,7 @@
 
 package org.onap.cps.integration.performance.cps
 
+import org.onap.cps.api.CpsDataService
 import org.onap.cps.integration.performance.base.CpsPerfTestBase
 
 import static org.onap.cps.spi.FetchDescendantsOption.DIRECT_CHILDREN_ONLY
@@ -28,7 +29,7 @@ import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
 
 class GetPerfTest extends CpsPerfTestBase {
 
-    def objectUnderTest
+    CpsDataService objectUnderTest
 
     def setup() { objectUnderTest = cpsDataService }
 

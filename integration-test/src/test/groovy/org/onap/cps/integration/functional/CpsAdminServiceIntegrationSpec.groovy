@@ -20,6 +20,7 @@
 
 package org.onap.cps.integration.functional
 
+import org.onap.cps.api.CpsAdminService
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
 import org.onap.cps.spi.exceptions.AlreadyDefinedException
 import org.onap.cps.spi.exceptions.AnchorNotFoundException
@@ -27,7 +28,7 @@ import org.onap.cps.spi.exceptions.DataspaceNotFoundException
 
 class CpsAdminServiceIntegrationSpec extends CpsIntegrationSpecBase {
 
-    def objectUnderTest
+    CpsAdminService objectUnderTest
 
     def setup() { objectUnderTest = cpsAdminService }
 
