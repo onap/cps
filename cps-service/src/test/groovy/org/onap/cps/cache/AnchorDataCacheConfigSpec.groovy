@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -19,6 +19,8 @@
  */
 
 package org.onap.cps.cache
+
+import com.hazelcast.config.Config
 import com.hazelcast.core.Hazelcast
 import com.hazelcast.map.IMap
 import org.springframework.beans.factory.annotation.Autowired
@@ -49,4 +51,28 @@ class AnchorDataCacheConfigSpec extends Specification {
             assert anchorDataCacheConfig.backupCount == 3
             assert anchorDataCacheConfig.asyncBackupCount == 3
     }
+
+    def 'Verify deployment network configs for Distributed Caches'() {
+        given: 'the Anchor Data Cache config'
+            def anchorDataCacheNetworkConfig = Hazelcast.getHazelcastInstanceByName('hazelCastInstanceCpsCore').config.networkConfig
+        expect: 'system created instance with correct config'
+            assert anchorDataCacheNetworkConfig.join.autoDetectionConfig.enabled
+            assert !anchorDataCacheNetworkConfig.join.kubernetesConfig.enabled
+    }
+
+    def 'Verify network config'() {
+        given: 'Synchronization config object and test configuration'
+            def objectUnderTest = new AnchorDataCacheConfig()
+            def testConfig = new Config()
+        when: 'kubernetes properties are enabled'
+            objectUnderTest.cacheKubernetesEnabled = true
+            objectUnderTest.cacheKubernetesServiceName = 'test-service-name'
+        and: 'method called to update the discovery mode'
+            objectUnderTest.updateDiscoveryMode(testConfig)
+        then: 'applied properties are reflected'
+            assert testConfig.networkConfig.join.kubernetesConfig.enabled
+            assert testConfig.networkConfig.join.kubernetesConfig.properties.get('service-name') == 'test-service-name'
+
+    }
+
 }

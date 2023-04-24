@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START========================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@
 
 package org.onap.cps.ncmp.api.impl.config.embeddedcache
 
+import com.hazelcast.config.Config
 import com.hazelcast.core.Hazelcast
 import com.hazelcast.map.IMap
 import org.onap.cps.spi.model.DataNode
@@ -72,6 +73,40 @@ class SynchronizationCacheConfigSpec extends Specification {
         and: 'Data Sync Semaphore Map has the correct settings'
             assert dataSyncSemaphoresConfig.backupCount == 3
             assert dataSyncSemaphoresConfig.asyncBackupCount == 3
+    }
+
+    def 'Verify deployment network configs for Distributed objects'() {
+        given: 'the Module Sync Work Queue config'
+            def queueNetworkConfig = Hazelcast.getHazelcastInstanceByName('moduleSyncWorkQueue').config.networkConfig
+        and: 'the Module Sync Started Cm Handle Map config'
+            def moduleSyncStartedOnCmHandlesNetworkConfig = Hazelcast.getHazelcastInstanceByName('moduleSyncStartedOnCmHandles').config.networkConfig
+        and: 'the Data Sync Semaphores Map config'
+            def dataSyncSemaphoresNetworkConfig = Hazelcast.getHazelcastInstanceByName('dataSyncSemaphores').config.networkConfig
+        expect: 'system created instance with correct config of Module Sync Work Queue'
+            assert queueNetworkConfig.join.autoDetectionConfig.enabled
+            assert !queueNetworkConfig.join.kubernetesConfig.enabled
+        and: 'Module Sync Started Cm Handle Map has the correct settings'
+            assert moduleSyncStartedOnCmHandlesNetworkConfig.join.autoDetectionConfig.enabled
+            assert !moduleSyncStartedOnCmHandlesNetworkConfig.join.kubernetesConfig.enabled
+        and: 'Data Sync Semaphore Map has the correct settings'
+            assert dataSyncSemaphoresNetworkConfig.join.autoDetectionConfig.enabled
+            assert !dataSyncSemaphoresNetworkConfig.join.kubernetesConfig.enabled
+
+    }
+
+    def 'Verify network config'() {
+        given: 'Synchronization config object and test configuration'
+            def objectUnderTest = new SynchronizationCacheConfig()
+            def testConfig = new Config()
+        when: 'kubernetes properties are enabled'
+            objectUnderTest.cacheKubernetesEnabled = true
+            objectUnderTest.cacheKubernetesServiceName = 'test-service-name'
+        and: 'method called to update the discovery mode'
+            objectUnderTest.updateDiscoveryMode(testConfig)
+        then: 'applied properties are reflected'
+            assert testConfig.networkConfig.join.kubernetesConfig.enabled
+            assert testConfig.networkConfig.join.kubernetesConfig.properties.get('service-name') == 'test-service-name'
+
     }
 
     def 'Time to Live Verify for Module Sync Semaphore'() {
