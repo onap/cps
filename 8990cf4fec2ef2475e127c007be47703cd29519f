@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "e83c8582_e2f1311b",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/AnchorRepository.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-24T11:51:10Z",
+      "side": 1,
+      "message": "good research, well done!",
+      "parentUuid": "a8bdbc4f_9f36a26a",
+      "range": {
+        "startLine": 56,
+        "startChar": 101,
+        "endLine": 56,
+        "endChar": 102
+      },
+      "revId": "8990cf4fec2ef2475e127c007be47703cd29519f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d1fc053f_8c07e32f",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/AnchorRepository.java",
         "patchSetId": 6
@@ -282,6 +306,30 @@
       "revId": "8990cf4fec2ef2475e127c007be47703cd29519f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "08b4476e_880a2476",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-24T11:51:10Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f80e08f6_d893603f",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 5
+      },
+      "revId": "8990cf4fec2ef2475e127c007be47703cd29519f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -540,6 +588,30 @@
       "revId": "8990cf4fec2ef2475e127c007be47703cd29519f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a094940_2e3c9f46",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/CpsDataServiceLimits.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-24T11:51:10Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "be0434bd_6d400921",
+      "range": {
+        "startLine": 50,
+        "startChar": 12,
+        "endLine": 50,
+        "endChar": 51
+      },
+      "revId": "8990cf4fec2ef2475e127c007be47703cd29519f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
