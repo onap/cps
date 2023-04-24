@@ -49,6 +49,46 @@
     },
     {
       "key": {
+        "uuid": "f2b8534b_65585cb5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/SubscriptionModelLoader.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-04-24T09:59:29Z",
+      "side": 1,
+      "message": "NB: basically this loop will run ATLEAST once.",
+      "revId": "92d904d771f6a33bb380a3abd34601a2d16a72fd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5da67518_3479a881",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/SubscriptionModelLoader.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-04-24T09:59:29Z",
+      "side": 1,
+      "message": "NB: just thinking , what if we do it attemptCount * 1000 instead of hardcoded 10000 everytime ?? \nWhat do others think ??",
+      "range": {
+        "startLine": 88,
+        "startChar": 33,
+        "endLine": 88,
+        "endChar": 38
+      },
+      "revId": "92d904d771f6a33bb380a3abd34601a2d16a72fd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "06f3bfed_974c15c9",
         "filename": "cps-ncmp-service/src/main/resources/model/subscription.yang",
         "patchSetId": 3
