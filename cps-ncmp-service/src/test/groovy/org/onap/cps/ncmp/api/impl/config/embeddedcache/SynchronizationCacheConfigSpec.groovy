@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START========================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -72,6 +72,25 @@ class SynchronizationCacheConfigSpec extends Specification {
         and: 'Data Sync Semaphore Map has the correct settings'
             assert dataSyncSemaphoresConfig.backupCount == 3
             assert dataSyncSemaphoresConfig.asyncBackupCount == 3
+    }
+
+    def 'Verify deployment network configs for Distributed objects'() {
+        given: 'the Module Sync Work Queue config'
+            def queueNetworkConfig = Hazelcast.getHazelcastInstanceByName('moduleSyncWorkQueue').config.networkConfig
+        and: 'the Module Sync Started Cm Handle Map config'
+            def moduleSyncStartedOnCmHandlesNetworkConfig = Hazelcast.getHazelcastInstanceByName('moduleSyncStartedOnCmHandles').config.networkConfig
+        and: 'the Data Sync Semaphores Map config'
+            def dataSyncSemaphoresNetworkConfig = Hazelcast.getHazelcastInstanceByName('dataSyncSemaphores').config.networkConfig
+        expect: 'system created instance with correct config of Module Sync Work Queue'
+            assert queueNetworkConfig.join.autoDetectionConfig.enabled
+            assert !queueNetworkConfig.join.kubernetesConfig.enabled
+        and: 'Module Sync Started Cm Handle Map has the correct settings'
+            assert moduleSyncStartedOnCmHandlesNetworkConfig.join.autoDetectionConfig.enabled
+            assert !moduleSyncStartedOnCmHandlesNetworkConfig.join.kubernetesConfig.enabled
+        and: 'Data Sync Semaphore Map has the correct settings'
+            assert dataSyncSemaphoresNetworkConfig.join.autoDetectionConfig.enabled
+            assert !dataSyncSemaphoresNetworkConfig.join.kubernetesConfig.enabled
+
     }
 
     def 'Time to Live Verify for Module Sync Semaphore'() {

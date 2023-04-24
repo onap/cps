@@ -28,18 +28,27 @@ import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.map.IMap;
 import java.util.concurrent.BlockingQueue;
+import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.spi.model.DataNode;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
  * Core infrastructure of the hazelcast distributed caches for Module Sync and Data Sync use cases.
  */
+@Slf4j
 @Configuration
 public class SynchronizationCacheConfig {
 
     public static final int MODULE_SYNC_STARTED_TTL_SECS = 600;
     public static final int DATA_SYNC_SEMAPHORE_TTL_SECS = 1800;
+
+    @Value("${hazelcast.mode.kubernetes.enabled}")
+    private boolean cacheKubernetesEnabled;
+
+    @Value("${hazelcast.mode.kubernetes.service-name}")
+    private String cacheKubernetesServiceName;
 
     private static final QueueConfig commonQueueConfig = createQueueConfig();
     private static final MapConfig moduleSyncStartedConfig = createMapConfig("moduleSyncStartedConfig");
@@ -92,6 +101,7 @@ public class SynchronizationCacheConfig {
             config.addQueueConfig((QueueConfig) namedConfig);
         }
         config.setClusterName("synchronization-caches");
+        updateDiscoveryMode(config);
         return config;
     }
 
@@ -107,6 +117,14 @@ public class SynchronizationCacheConfig {
         mapConfig.setBackupCount(3);
         mapConfig.setAsyncBackupCount(3);
         return mapConfig;
+    }
+
+    private void updateDiscoveryMode(final Config config) {
+        if (cacheKubernetesEnabled) {
+            log.info("Enabling kubernetes mode with service-name : {}", cacheKubernetesServiceName);
+            config.getNetworkConfig().getJoin().getKubernetesConfig().setEnabled(cacheKubernetesEnabled)
+                    .setProperty("service-name", cacheKubernetesServiceName);
+        }
     }
 
 }

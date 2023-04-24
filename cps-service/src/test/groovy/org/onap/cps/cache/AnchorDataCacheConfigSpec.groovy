@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -49,4 +49,13 @@ class AnchorDataCacheConfigSpec extends Specification {
             assert anchorDataCacheConfig.backupCount == 3
             assert anchorDataCacheConfig.asyncBackupCount == 3
     }
+
+    def 'Verify deployment network configs for Distributed Caches'() {
+        given: 'the Anchor Data Cache config'
+            def anchorDataCacheNetworkConfig = Hazelcast.getHazelcastInstanceByName('hazelCastInstanceCpsCore').config.networkConfig
+        expect: 'system created instance with correct config'
+            assert anchorDataCacheNetworkConfig.join.autoDetectionConfig.enabled
+            assert !anchorDataCacheNetworkConfig.join.kubernetesConfig.enabled
+    }
+
 }
