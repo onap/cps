@@ -22,6 +22,30 @@
       "revId": "586ee8da6758e2bbbcb8e671c9dccab14668ac21",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6f6c0d60_775256d4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-04-24T14:16:49Z",
+      "side": 1,
+      "message": "yup. I will rewrite the description.\nI am waiting for a feedback from the internal team",
+      "parentUuid": "9b6d1288_096991d8",
+      "range": {
+        "startLine": 11,
+        "startChar": 2,
+        "endLine": 11,
+        "endChar": 57
+      },
+      "revId": "586ee8da6758e2bbbcb8e671c9dccab14668ac21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
