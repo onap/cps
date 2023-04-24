@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "015d9e36_7fb013f1",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-04-24T11:11:00Z",
+      "side": 1,
+      "message": "I think if the changes regarding to that flag. It must be enabled so that the builds reveal that it works.",
+      "parentUuid": "829083a7_d32e9150",
+      "range": {
+        "startLine": 190,
+        "startChar": 22,
+        "endLine": 190,
+        "endChar": 26
+      },
+      "revId": "92d904d771f6a33bb380a3abd34601a2d16a72fd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f2b8534b_65585cb5",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/SubscriptionModelLoader.java",
         "patchSetId": 3
@@ -66,6 +90,29 @@
     },
     {
       "key": {
+        "uuid": "6a89427b_4904fc94",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/SubscriptionModelLoader.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-04-24T11:11:00Z",
+      "side": 1,
+      "message": "You may read this value from application.yml",
+      "range": {
+        "startLine": 86,
+        "startChar": 31,
+        "endLine": 86,
+        "endChar": 33
+      },
+      "revId": "92d904d771f6a33bb380a3abd34601a2d16a72fd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5da67518_3479a881",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/SubscriptionModelLoader.java",
         "patchSetId": 3
@@ -77,6 +124,30 @@
       "writtenOn": "2023-04-24T09:59:29Z",
       "side": 1,
       "message": "NB: just thinking , what if we do it attemptCount * 1000 instead of hardcoded 10000 everytime ?? \nWhat do others think ??",
+      "range": {
+        "startLine": 88,
+        "startChar": 33,
+        "endLine": 88,
+        "endChar": 38
+      },
+      "revId": "92d904d771f6a33bb380a3abd34601a2d16a72fd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "67683c94_4d4ed683",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/SubscriptionModelLoader.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-04-24T11:11:00Z",
+      "side": 1,
+      "message": "At max retry, the current values will reach almost 200 seconds ~ 3.3 minutes too long. Instead, it might be the way as Priyank suggests, then at max retry it would be 20 seconds would be acceptable.",
+      "parentUuid": "5da67518_3479a881",
       "range": {
         "startLine": 88,
         "startChar": 33,
@@ -117,6 +188,30 @@
       "writtenOn": "2023-04-18T13:05:56Z",
       "side": 1,
       "message": "Is this test going to take 200 seconds to complete? If so can we extract the retry attempts and wait time out and shorten it",
+      "range": {
+        "startLine": 106,
+        "startChar": 4,
+        "endLine": 120,
+        "endChar": 5
+      },
+      "revId": "92d904d771f6a33bb380a3abd34601a2d16a72fd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "daf7c917_0639efb3",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/SubscriptionModelLoaderSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-04-24T11:11:00Z",
+      "side": 1,
+      "message": "Agree. You may need shorten the the test time either by modifying the impl. with Priyank\u0027s suggestion, or providing a new Thread.sleep(\u003cless_value\u003e) where possible. Otherwise, it takes 3.3 minutes.",
+      "parentUuid": "f631c669_c89d5858",
       "range": {
         "startLine": 106,
         "startChar": 4,
