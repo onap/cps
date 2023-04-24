@@ -141,6 +141,30 @@
     },
     {
       "key": {
+        "uuid": "57fa7078_4f4ae443",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-24T09:28:53Z",
+      "side": 1,
+      "message": "ignore my prev comment on this, it is a query ACROSS all anchors so I was wrong !",
+      "parentUuid": "7bbd21cc_9533c8df",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 5
+      },
+      "revId": "8990cf4fec2ef2475e127c007be47703cd29519f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "eed2c5ae_19850642",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
         "patchSetId": 6
