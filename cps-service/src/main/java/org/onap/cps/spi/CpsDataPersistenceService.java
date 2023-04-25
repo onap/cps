@@ -138,15 +138,6 @@ public interface CpsDataPersistenceService {
     void updateDataLeaves(String dataspaceName, String anchorName, String xpath, Map<String, Serializable> leaves);
 
     /**
-     * Replaces an existing data node's content including descendants.
-     *
-     * @param dataspaceName dataspace name
-     * @param anchorName    anchor name
-     * @param dataNode      data node
-     */
-    void updateDataNodeAndDescendants(String dataspaceName, String anchorName, DataNode dataNode);
-
-    /**
      * Replaces multiple existing data nodes' content including descendants in a batch operation.
      *
      * @param dataspaceName dataspace name

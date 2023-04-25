@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Bell Canada.
+ *  Modifications Copyright (C) 2021-2023 Nordix Foundation.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -19,18 +20,14 @@
  */
 package org.onap.cps.spi.impl
 
-import com.fasterxml.jackson.databind.ObjectMapper
+
 import org.hibernate.exception.ConstraintViolationException
-import org.onap.cps.spi.CpsAdminPersistenceService
 import org.onap.cps.spi.CpsModulePersistenceService
 import org.onap.cps.spi.entities.DataspaceEntity
 import org.onap.cps.spi.exceptions.DuplicatedYangResourceException
 import org.onap.cps.spi.model.ModuleReference
-import org.onap.cps.spi.repository.AnchorRepository
 import org.onap.cps.spi.repository.DataspaceRepository
-import org.onap.cps.spi.repository.SchemaSetRepository
 import org.onap.cps.spi.repository.YangResourceRepository
-import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.dao.DataIntegrityViolationException
@@ -43,23 +40,11 @@ class CpsModulePersistenceServiceConcurrencySpec extends CpsPersistenceSpecBase 
     @Autowired
     CpsModulePersistenceService objectUnderTest
 
-    @Autowired
-    AnchorRepository anchorRepository
-
-    @Autowired
-    SchemaSetRepository schemaSetRepository
-
-    @Autowired
-    CpsAdminPersistenceService cpsAdminPersistenceService
-
     @SpringBean
     YangResourceRepository yangResourceRepositoryMock = Mock()
 
     @SpringBean
     DataspaceRepository dataspaceRepositoryMock = Mock()
-
-    @SpringBean
-    JsonObjectMapper jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
 
     static final String DATASPACE_NAME = 'DATASPACE-001'
     static final String SCHEMA_SET_NAME_NEW = 'SCHEMA-SET-NEW'

@@ -91,13 +91,6 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>,
                                                      @Param("parentXpath") String parentXpath);
 
     @Query(value = "SELECT id, anchor_id AS anchorId, xpath, parent_id AS parentId,"
-            + " CAST(attributes AS TEXT) AS attributes"
-            + " FROM FRAGMENT WHERE "
-            + "( xpath = :parentXpath OR xpath LIKE CONCAT(:parentXpath,'/%') )",
-            nativeQuery = true)
-    List<FragmentExtract> findByParentXpath(@Param("parentXpath") String parentXpath);
-
-    @Query(value = "SELECT id, anchor_id AS anchorId, xpath, parent_id AS parentId,"
         + " CAST(attributes AS TEXT) AS attributes"
         + " FROM FRAGMENT WHERE anchor_id = :anchorId"
         + " AND xpath ~ :xpathRegex",
