@@ -67,6 +67,13 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>,
         return findByDataspaceIdAndXpathIn(dataspaceEntity.getId(), xpaths.toArray(new String[0]));
     }
 
+    @Query(value = "SELECT fragment.* FROM fragment JOIN anchor ON anchor.id = fragment.anchor_id "
+            + "WHERE dataspace_id = :dataspaceId AND anchor_id IN (:anchorIds)"
+            + " AND xpath = ANY (:xpaths)", nativeQuery = true)
+    List<FragmentEntity> findByDataspaceIdAnchorIdsAndXpathIn(@Param("dataspaceId") int dataspaceId,
+                                                              @Param("xpaths") String[] xpaths,
+                                                              @Param("anchorIds") Long[] anchorIds);
+
     boolean existsByAnchorId(long anchorId);
 
     @Query(value = "SELECT * FROM fragment WHERE anchor_id = :anchorId LIMIT 1", nativeQuery = true)
