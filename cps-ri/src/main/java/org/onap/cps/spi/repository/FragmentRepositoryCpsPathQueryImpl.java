@@ -29,6 +29,7 @@ import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.cpspath.parser.CpsPathQuery;
+import org.onap.cps.spi.PaginationOption;
 import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.FragmentEntity;
@@ -55,11 +56,21 @@ public class FragmentRepositoryCpsPathQueryImpl implements FragmentRepositoryCps
     @Override
     @Transactional
     public List<FragmentEntity> findByDataspaceAndCpsPath(final DataspaceEntity dataspaceEntity,
-                                                          final CpsPathQuery cpsPathQuery) {
-        final Query query = fragmentQueryBuilder.getQueryForDataspaceAndCpsPath(dataspaceEntity, cpsPathQuery);
+                                                          final CpsPathQuery cpsPathQuery, final List<Long> anchorIds) {
+        final Query query = fragmentQueryBuilder.getQueryForDataspaceAndCpsPath(
+                dataspaceEntity, cpsPathQuery, anchorIds);
         final List<FragmentEntity> fragmentEntities = query.getResultList();
         log.debug("Fetched {} fragment entities by cps path across all anchors.", fragmentEntities.size());
         return fragmentEntities;
+    }
+
+    @Override
+    @Transactional
+    public List<Long> findAnchorIdsForPagination(final DataspaceEntity dataspaceEntity, final CpsPathQuery cpsPathQuery,
+                                                 final PaginationOption paginationOption) {
+        final Query query = fragmentQueryBuilder.getQueryForAnchorIdsForPagination(
+                dataspaceEntity, cpsPathQuery, paginationOption);
+        return query.getResultList();
     }
 
 }
