@@ -54,11 +54,13 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>,
         return findByAnchorIdAndXpathIn(anchorEntity.getId(), xpaths.toArray(new String[0]));
     }
 
-    List<FragmentEntity> findByDataspaceIdAndXpathIn(int dataspaceId, String[] xpaths);
+    List<FragmentEntity> findByDataspaceIdAndXpathIn(int dataspaceId, String[] xpaths, Integer[] anchorIds);
 
     default List<FragmentEntity> findByDataspaceAndXpathIn(final DataspaceEntity dataspaceEntity,
-                                                           final Collection<String> xpaths) {
-        return findByDataspaceIdAndXpathIn(dataspaceEntity.getId(), xpaths.toArray(new String[0]));
+                                                           final Collection<String> xpaths,
+                                                           final Collection<Integer> anchorIds) {
+        return findByDataspaceIdAndXpathIn(dataspaceEntity.getId(), xpaths.toArray(new String[0]),
+                anchorIds.toArray(new Integer[0]));
     }
 
     boolean existsByAnchorId(int anchorId);
