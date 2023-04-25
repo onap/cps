@@ -25,12 +25,14 @@ package org.onap.cps.rest.controller;
 import io.micrometer.core.annotation.Timed;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.CpsQueryService;
 import org.onap.cps.rest.api.CpsQueryApi;
 import org.onap.cps.spi.FetchDescendantsOption;
+import org.onap.cps.spi.PaginationOption;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.utils.DataMapUtils;
 import org.onap.cps.utils.JsonObjectMapper;
@@ -72,22 +74,48 @@ public class QueryRestController implements CpsQueryApi {
     }
 
     @Override
-    public ResponseEntity<Object> getNodesByDataspaceAndCpsPath(final String dataspaceName,
-        final String cpsPath, final String fetchDescendantsOptionAsString) {
+    @Timed(value = "cps.data.controller.datanode.query.across.anchors",
+            description = "Time taken to query data nodes across anchors")
+    public ResponseEntity<Object> getNodesByDataspaceAndCpsPath(final String dataspaceName, final String cpsPath,
+                                                                final String fetchDescendantsOptionAsString,
+                                                                final Integer pageIndex, final Integer pageSize) {
         final FetchDescendantsOption fetchDescendantsOption =
                 FetchDescendantsOption.getFetchDescendantsOption(fetchDescendantsOptionAsString);
-        final Collection<DataNode> dataNodes =
-                cpsQueryService.queryDataNodesAcrossAnchors(dataspaceName, cpsPath, fetchDescendantsOption);
-        final List<Map<String, Object>> dataMaps = new ArrayList<>(dataNodes.size());
+        final PaginationOption paginationOption = new PaginationOption(pageIndex, pageSize);
+        final Collection<DataNode> dataNodes = cpsQueryService.queryDataNodesAcrossAnchors(dataspaceName,
+                cpsPath, fetchDescendantsOption, paginationOption);
+        final List<Map<String, Object>> dataNodesAsListOfMaps = new ArrayList<>(dataNodes.size());
         String prefix = null;
-        for (final DataNode dataNode : dataNodes) {
+        final Map<String, List<DataNode>> anchorDataNodeListMap = prepareDataNodesForAnchor(dataNodes);
+        for (final Map.Entry<String, List<DataNode>> anchorDataNodesMapEntry : anchorDataNodeListMap.entrySet()) {
             if (prefix == null) {
-                prefix = prefixResolver.getPrefix(dataspaceName, dataNode.getAnchorName(), dataNode.getXpath());
+                prefix = prefixResolver.getPrefix(dataspaceName, anchorDataNodesMapEntry.getKey(),
+                        anchorDataNodesMapEntry.getValue().get(0).getXpath());
             }
-            final Map<String, Object> dataMap = DataMapUtils.toDataMapWithIdentifierAndAnchor(dataNode, prefix);
-            dataMaps.add(dataMap);
+            final Map<String, Object> dataMap = DataMapUtils.toDataMapWithIdentifierAndAnchor(
+                    anchorDataNodesMapEntry.getValue(), anchorDataNodesMapEntry.getKey(), prefix);
+            dataNodesAsListOfMaps.add(dataMap);
         }
-        return new ResponseEntity<>(jsonObjectMapper.asJsonString(dataMaps), HttpStatus.OK);
+        final Integer totalAnchors = getTotalAnchorsForDataspaceAndCpsPath(dataspaceName, cpsPath);
+        return ResponseEntity.ok().header("TotalResults",
+                totalAnchors.toString()).body(jsonObjectMapper.asJsonString(dataNodesAsListOfMaps));
+    }
+
+    private Integer getTotalAnchorsForDataspaceAndCpsPath(final String dataspaceName, final String cpsPath) {
+        return cpsQueryService.countAnchorsForDataspaceAndCpsPath(dataspaceName, cpsPath);
+    }
+
+    private Map<String, List<DataNode>> prepareDataNodesForAnchor(final Collection<DataNode> dataNodes) {
+        final Map<String, List<DataNode>> dataNodesMapForAnchor = new HashMap<>();
+        for (final DataNode dataNode : dataNodes) {
+            List<DataNode> dataNodesInAnchor = dataNodesMapForAnchor.get(dataNode.getAnchorName());
+            if (dataNodesInAnchor == null) {
+                dataNodesInAnchor = new ArrayList<>();
+                dataNodesMapForAnchor.put(dataNode.getAnchorName(), dataNodesInAnchor);
+            }
+            dataNodesInAnchor.add(dataNode);
+        }
+        return dataNodesMapForAnchor;
     }
 
     private ResponseEntity<Object> executeNodesByDataspaceQueryAndCreateResponse(final String dataspaceName,

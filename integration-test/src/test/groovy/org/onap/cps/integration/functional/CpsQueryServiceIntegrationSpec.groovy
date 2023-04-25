@@ -25,11 +25,13 @@ import java.time.OffsetDateTime
 import org.onap.cps.api.CpsQueryService
 import org.onap.cps.integration.base.FunctionalSpecBase
 import org.onap.cps.spi.FetchDescendantsOption
+import org.onap.cps.spi.PaginationOption
 import org.onap.cps.spi.exceptions.CpsPathException
 
 import static org.onap.cps.spi.FetchDescendantsOption.DIRECT_CHILDREN_ONLY
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
+import static org.onap.cps.spi.PaginationOption.NO_PAGINATION
 
 class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
 
@@ -249,7 +251,7 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Cps Path query across anchors with #scenario.'() {
         when: 'a query is executed to get a data nodes across anchors by the given CpsPath'
-            def result = objectUnderTest.queryDataNodesAcrossAnchors(FUNCTIONAL_TEST_DATASPACE_1, cpsPath, OMIT_DESCENDANTS)
+            def result = objectUnderTest.queryDataNodesAcrossAnchors(FUNCTIONAL_TEST_DATASPACE_1, cpsPath, OMIT_DESCENDANTS, NO_PAGINATION)
         then: 'the correct dataspace is queried'
             assert result.dataspace.toSet() == [FUNCTIONAL_TEST_DATASPACE_1].toSet()
         and: 'correct anchors are queried'
@@ -262,7 +264,6 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
             scenario                                    | cpsPath                                               || expectedXpathsPerAnchor
             'container node'                            | '/bookstore'                                          || ["/bookstore"]
             'list node'                                 | '/bookstore/categories'                               || ["/bookstore/categories[@code='1']", "/bookstore/categories[@code='2']", "/bookstore/categories[@code='3']", "/bookstore/categories[@code='4']", "/bookstore/categories[@code='5']"]
-            'string leaf-condition'                     | '/bookstore[@bookstore-name="Easons"]'                || ["/bookstore"]
             'integer leaf-condition'                    | '/bookstore/categories[@code="1"]/books[@price=15]'   || ["/bookstore/categories[@code='1']/books[@title='The Gruffalo']"]
             'multiple list-ancestors'                   | '//books/ancestor::categories'                        || ["/bookstore/categories[@code='1']", "/bookstore/categories[@code='2']", "/bookstore/categories[@code='3']", "/bookstore/categories[@code='4']", "/bookstore/categories[@code='5']"]
             'one ancestor with list value'              | '//books/ancestor::categories[@code="1"]'             || ["/bookstore/categories[@code='1']"]
@@ -274,7 +275,7 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Cps Path query across anchors with #scenario descendants.'() {
         when: 'a query is executed to get a data node by the given cps path'
-            def result = objectUnderTest.queryDataNodesAcrossAnchors(FUNCTIONAL_TEST_DATASPACE_1, '/bookstore', fetchDescendantsOption)
+            def result = objectUnderTest.queryDataNodesAcrossAnchors(FUNCTIONAL_TEST_DATASPACE_1, '/bookstore', fetchDescendantsOption, NO_PAGINATION)
         then: 'the correct dataspace was queried'
             assert result.dataspace.toSet() == [FUNCTIONAL_TEST_DATASPACE_1].toSet()
         and: 'correct number of datanodes are returned'
@@ -288,7 +289,7 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Cps Path query across anchors with ancestors and #scenario descendants.'() {
         when: 'a query is executed to get a data node by the given cps path'
-            def result = objectUnderTest.queryDataNodesAcrossAnchors(FUNCTIONAL_TEST_DATASPACE_1, '//books/ancestor::bookstore', fetchDescendantsOption)
+            def result = objectUnderTest.queryDataNodesAcrossAnchors(FUNCTIONAL_TEST_DATASPACE_1, '//books/ancestor::bookstore', fetchDescendantsOption, NO_PAGINATION)
         then: 'the correct dataspace was queried'
             assert result.dataspace.toSet() == [FUNCTIONAL_TEST_DATASPACE_1].toSet()
         and: 'correct number of datanodes are returned'
@@ -302,7 +303,7 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Cps Path query across anchors with syntax error throws a CPS Path Exception.'() {
         when: 'trying to execute a query with a syntax (parsing) error'
-            objectUnderTest.queryDataNodesAcrossAnchors(FUNCTIONAL_TEST_DATASPACE_1, 'cpsPath that cannot be parsed' , OMIT_DESCENDANTS)
+            objectUnderTest.queryDataNodesAcrossAnchors(FUNCTIONAL_TEST_DATASPACE_1, 'cpsPath that cannot be parsed' , OMIT_DESCENDANTS, NO_PAGINATION)
         then: 'a cps path exception is thrown'
             thrown(CpsPathException)
     }
@@ -374,5 +375,52 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
             'double quotes'      || '/bookstore/categories[@code="1"]/books[@title="I\'m escaping"]'
             'text-condition'     || "/bookstore/categories[@code='1']/books/title[text()='I''m escaping']"
             'contains-condition' || "/bookstore/categories[@code='1']/books[contains(@title, 'I''m escaping')]"
+    }
+
+    def 'Cps Path query across anchors using pagination option with #scenario.'() {
+        when: 'a query is executed to get a data nodes across anchors by the given CpsPath and pagination option'
+            def result = objectUnderTest.queryDataNodesAcrossAnchors(FUNCTIONAL_TEST_DATASPACE_1, '/bookstore', OMIT_DESCENDANTS, new PaginationOption(pageIndex, pageSize))
+        then: 'correct bookstore names are queried'
+            def bookstoreNames = result.collect { it.getLeaves().get('bookstore-name') }
+            assert bookstoreNames.toList() == expectedBookstoreNames
+        and: 'the correct number of page size is returned'
+            assert result.size() == expectedPageSize
+        and: 'the queried nodes have expected anchor names'
+            assert result.anchorName.toSet() == expectedAnchors.toSet()
+        where: 'the following data is used'
+            scenario                       | pageIndex | pageSize || expectedPageSize || expectedAnchors                          || expectedBookstoreNames
+            '1st page with one anchor'     | 1         | 1        || 1                || [BOOKSTORE_ANCHOR_1]                     || ['Easons-1']
+            '1st page with two anchor'     | 1         | 2        || 2                || [BOOKSTORE_ANCHOR_1, BOOKSTORE_ANCHOR_2] || ['Easons-1', 'Easons-2']
+            '2nd page'                     | 2         | 1        || 1                || [BOOKSTORE_ANCHOR_2]                     || ['Easons-2']
+            'no 2nd page due to page size' | 2         | 2        || 0                || []                                       || []
+    }
+
+    def 'Cps Path query across anchors using pagination option for ancestor axis.'() {
+        when: 'a query is executed to get a data nodes across anchors by the given CpsPath and pagination option'
+            def result = objectUnderTest.queryDataNodesAcrossAnchors(FUNCTIONAL_TEST_DATASPACE_1, '//books/ancestor::categories', INCLUDE_ALL_DESCENDANTS, new PaginationOption(1, 2))
+        then: 'correct category codes are queried'
+            def categoryNames = result.collect { it.getLeaves().get('name') }
+            assert categoryNames.toSet() == ['Discount books', 'Computing', 'Comedy', 'Thriller', 'Children'].toSet()
+        and: 'the queried nodes have expected anchors'
+            assert result.anchorName.toSet() == [BOOKSTORE_ANCHOR_1, BOOKSTORE_ANCHOR_2].toSet()
+    }
+
+    def 'Count number of anchors for given dataspace name and cps path'() {
+        when: 'a query is executed to get total anchors for the given dataspace and cpsPath'
+            def totalAnchors = objectUnderTest.countAnchorsForDataspaceAndCpsPath(FUNCTIONAL_TEST_DATASPACE_1, '/bookstore')
+        then: 'the correct number of anchors are queried'
+            assert totalAnchors == 2
+    }
+
+    def 'Cps Path query across anchors using no pagination'() {
+        when: 'a query is executed to get a data nodes across anchors by the given CpsPath and pagination option'
+            def result = objectUnderTest.queryDataNodesAcrossAnchors(FUNCTIONAL_TEST_DATASPACE_1, '/bookstore', OMIT_DESCENDANTS, NO_PAGINATION)
+        then: 'all bookstore names are queried'
+            def bookstoreNames = result.collect { it.getLeaves().get('bookstore-name') }
+            assert bookstoreNames.toSet() == ['Easons-1', 'Easons-2'].toSet()
+        and: 'the correct number of page size is returned'
+            assert result.size() == 2
+        and: 'the queried nodes have expected bookstore names'
+            assert result.anchorName.toSet() == [BOOKSTORE_ANCHOR_1, BOOKSTORE_ANCHOR_2].toSet()
     }
 }

@@ -1,13 +1,12 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2023 Nordix Foundation
+ *  Copyright (C) 2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
  *
  *        http://www.apache.org/licenses/LICENSE-2.0
- *
  *  Unless required by applicable law or agreed to in writing, software
  *  distributed under the License is distributed on an "AS IS" BASIS,
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,30 +17,22 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.spi.utils;
+package org.onap.cps.spi;
 
-import org.onap.cps.spi.PaginationOption;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
-public interface CpsValidator {
+@Data
+@AllArgsConstructor
+public class PaginationOption {
 
-    /**
-     * Validate characters in names within cps.
-     *
-     * @param names names of data to be validated
-     */
-    void validateNameCharacters(final String... names);
+    private int pageIndex;
 
-    /**
-     * Validate characters in names within cps.
-     *
-     * @param names names of data to be validated
-     */
-    void validateNameCharacters(final Iterable<String> names);
+    private int pageSize;
 
-    /**
-     * Validate pagination option.
-     *
-     * @param paginationOption pagination option
-     */
-    void validatePaginationOption(final PaginationOption paginationOption);
+    public static final PaginationOption NO_PAGINATION = null;
+
+    public boolean isValidPaginationOption() {
+        return this.pageIndex > 0 && this.pageSize > 0;
+    }
 }
