@@ -21,6 +21,7 @@
 package org.onap.cps.spi.repository;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.DataspaceEntity;
@@ -62,6 +63,8 @@ public interface AnchorRepository extends JpaRepository<AnchorEntity, Integer> {
         + "HAVING COUNT(DISTINCT module_name) = :sizeOfModuleNames", nativeQuery = true)
     Collection<AnchorEntity> getAnchorsByDataspaceIdAndModuleNames(@Param("dataspaceId") int dataspaceId,
         @Param("moduleNames") Collection<String> moduleNames, @Param("sizeOfModuleNames") int sizeOfModuleNames);
+
+    List<Integer> getAnchorIDsForPagination(int pageIndex, int pageSize);
 
     void deleteAllByDataspaceAndNameIn(DataspaceEntity dataspaceEntity,
                                        Collection<String> anchorNames);
