@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a28d81eb_84a2fc43",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-04-25T16:21:46Z",
+      "side": 1,
+      "message": "Currently this is not used. right??\nWhere do we intend to use it?\n\nEDM to NCMP\nNCMP to DMI ( this is where it should be used ?? )",
+      "range": {
+        "startLine": 102,
+        "startChar": 12,
+        "endLine": 102,
+        "endChar": 38
+      },
+      "revId": "bd684a791819741574714a709033de7d648fbb87",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "860c6b8f_eaa01d14",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-04-25T16:21:46Z",
+      "side": 1,
+      "message": "So this would be used by halil to respond back to the client.. right ?",
+      "range": {
+        "startLine": 104,
+        "startChar": 12,
+        "endLine": 104,
+        "endChar": 38
+      },
+      "revId": "bd684a791819741574714a709033de7d648fbb87",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
