@@ -77,24 +77,6 @@ class CpsDataPersistenceServiceSpec extends Specification {
             1 * objectUnderTest.storeDataNodes('dataspace1', 'anchor1', [dataNode])
     }
 
-    def 'Handling of StaleStateException (caused by concurrent updates) during update data node and descendants.'() {
-        given: 'the fragment repository returns a fragment entity'
-            mockFragmentRepository.getByAnchorAndXpath(*_) >> {
-                def fragmentEntity = new FragmentEntity()
-                fragmentEntity.setChildFragments([new FragmentEntity()] as Set<FragmentEntity>)
-                return fragmentEntity
-            }
-        and: 'a data node is concurrently updated by another transaction'
-            mockFragmentRepository.save(_) >> { throw new StaleStateException("concurrent updates") }
-        when: 'attempt to update data node with submitted data nodes'
-            objectUnderTest.updateDataNodeAndDescendants('some-dataspace', 'some-anchor', new DataNodeBuilder().withXpath('/some/xpath').build())
-        then: 'concurrency exception is thrown'
-            def concurrencyException = thrown(ConcurrencyException)
-            assert concurrencyException.getDetails().contains('some-dataspace')
-            assert concurrencyException.getDetails().contains('some-anchor')
-            assert concurrencyException.getDetails().contains('/some/xpath')
-    }
-
     def 'Handling of StaleStateException (caused by concurrent updates) during update data nodes and descendants.'() {
         given: 'the system can update one datanode and has two more datanodes that throw an exception while updating'
             def dataNodes = createDataNodesAndMockRepositoryMethodSupportingThem([

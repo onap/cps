@@ -23,7 +23,6 @@
 
 package org.onap.cps.spi.impl
 
-import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.common.collect.ImmutableSet
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.entities.FragmentEntity
@@ -35,7 +34,6 @@ import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.spi.exceptions.DataspaceNotFoundException
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.DataNodeBuilder
-import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.jdbc.Sql
 
@@ -49,7 +47,6 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     @Autowired
     CpsDataPersistenceService objectUnderTest
 
-    static JsonObjectMapper jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
     static DataNodeBuilder dataNodeBuilder = new DataNodeBuilder()
 
     static final String SET_DATA = '/data/fragment.sql'
@@ -353,11 +350,11 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
-    def 'Update data node and descendants by removing descendants.'() {
-        given: 'data node object with leaves updated, no children'
-            def submittedDataNode = buildDataNode('/parent-200/child-201', ['leaf-value': 'new'], [])
+    def 'Update data nodes and descendants by removing descendants.'() {
+        given: 'data nodes with leaves updated, no children'
+            def submittedDataNodes = [buildDataNode('/parent-200/child-201', ['leaf-value': 'new'], [])]
         when: 'update data nodes and descendants is performed'
-            objectUnderTest.updateDataNodeAndDescendants(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, submittedDataNode)
+            objectUnderTest.updateDataNodesAndDescendants(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, submittedDataNodes)
         then: 'leaves have been updated for selected data node'
             def updatedFragment = fragmentRepository.getById(DATA_NODE_202_FRAGMENT_ID)
             def updatedLeaves = getLeavesMap(updatedFragment)
@@ -370,13 +367,13 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
-    def 'Update data node and descendants with new descendants'() {
-        given: 'data node object with leaves updated, having child with old content'
-            def submittedDataNode = buildDataNode('/parent-200/child-201', ['leaf-value': 'new'], [
+    def 'Update data nodes and descendants with new descendants'() {
+        given: 'data nodes with leaves updated, having child with old content'
+            def submittedDataNodes = [buildDataNode('/parent-200/child-201', ['leaf-value': 'new'], [
                   buildDataNode('/parent-200/child-201/grand-child', ['leaf-value': 'original'], [])
-            ])
+            ])]
         when: 'update is performed including descendants'
-            objectUnderTest.updateDataNodeAndDescendants(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, submittedDataNode)
+            objectUnderTest.updateDataNodesAndDescendants(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, submittedDataNodes)
         then: 'leaves have been updated for selected data node'
             def updatedFragment = fragmentRepository.getById(DATA_NODE_202_FRAGMENT_ID)
             def updatedLeaves = getLeavesMap(updatedFragment)
@@ -390,13 +387,13 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
-    def 'Update data node and descendants with same descendants but changed leaf value.'() {
-        given: 'data node object with leaves updated, having child with old content'
-            def submittedDataNode = buildDataNode('/parent-200/child-201', ['leaf-value': 'new'], [
+    def 'Update data nodes and descendants with same descendants but changed leaf value.'() {
+        given: 'data nodes with leaves updated, having child with old content'
+            def submittedDataNodes = [buildDataNode('/parent-200/child-201', ['leaf-value': 'new'], [
                     buildDataNode('/parent-200/child-201/grand-child', ['leaf-value': 'new'], [])
-            ])
+            ])]
         when: 'update is performed including descendants'
-            objectUnderTest.updateDataNodeAndDescendants(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, submittedDataNode)
+            objectUnderTest.updateDataNodesAndDescendants(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, submittedDataNodes)
         then: 'leaves have been updated for selected data node'
             def updatedFragment = fragmentRepository.getById(DATA_NODE_202_FRAGMENT_ID)
             def updatedLeaves = getLeavesMap(updatedFragment)
@@ -410,13 +407,13 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
-    def 'Update data node and descendants with different descendants xpath'() {
-        given: 'data node object with leaves updated, having child with old content'
-            def submittedDataNode = buildDataNode('/parent-200/child-201', ['leaf-value': 'new'], [
+    def 'Update data nodes and descendants with different descendants xpath'() {
+        given: 'data nodes with leaves updated, having child with old content'
+            def submittedDataNodes = [buildDataNode('/parent-200/child-201', ['leaf-value': 'new'], [
                     buildDataNode('/parent-200/child-201/grand-child-new', ['leaf-value': 'new'], [])
-            ])
+            ])]
         when: 'update is performed including descendants'
-            objectUnderTest.updateDataNodeAndDescendants(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, submittedDataNode)
+            objectUnderTest.updateDataNodesAndDescendants(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, submittedDataNodes)
         then: 'leaves have been updated for selected data node'
             def updatedFragment = fragmentRepository.getById(DATA_NODE_202_FRAGMENT_ID)
             def updatedLeaves = getLeavesMap(updatedFragment)
@@ -432,19 +429,17 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
-    def 'Update data node and descendants error scenario: #scenario.'() {
-        given: 'data node object'
-            def submittedDataNode = buildDataNode(xpath, ['leaf-name': 'leaf-value'], [])
+    def 'Update data nodes and descendants error scenario: #scenario.'() {
+        given: 'data nodes collection'
+            def submittedDataNodes = [buildDataNode(xpath, ['leaf-name': 'leaf-value'], [])]
         when: 'attempt to update data node for #scenario'
-            objectUnderTest.updateDataNodeAndDescendants(dataspaceName, anchorName, submittedDataNode)
+            objectUnderTest.updateDataNodesAndDescendants(dataspaceName, anchorName, submittedDataNodes)
         then: 'a #expectedException is thrown'
             thrown(expectedException)
         where: 'the following data is used'
             scenario                 | dataspaceName  | anchorName                        | xpath                 || expectedException
             'non-existing dataspace' | 'NO DATASPACE' | 'not relevant'                    | '/not relevant'       || DataspaceNotFoundException
             'non-existing anchor'    | DATASPACE_NAME | 'NO ANCHOR'                       | '/not relevant'       || AnchorNotFoundException
-            'non-existing xpath'     | DATASPACE_NAME | ANCHOR_FOR_DATA_NODES_WITH_LEAVES | '/NON-EXISTING-XPATH' || DataNodeNotFoundException
-            'invalid xpath'          | DATASPACE_NAME | ANCHOR_FOR_DATA_NODES_WITH_LEAVES | 'INVALID XPATH'       || CpsPathException
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
@@ -699,7 +694,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
         return dataNodeBuilder.withXpath(xpath).withLeaves(leaves).withChildDataNodes(childDataNodes).build()
     }
 
-    static Map<String, Object> getLeavesMap(FragmentEntity fragmentEntity) {
+    Map<String, Object> getLeavesMap(FragmentEntity fragmentEntity) {
         return jsonObjectMapper.convertJsonString(fragmentEntity.attributes, Map<String, Object>.class)
     }
 

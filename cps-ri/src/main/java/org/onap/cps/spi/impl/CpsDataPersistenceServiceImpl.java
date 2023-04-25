@@ -494,21 +494,6 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     }
 
     @Override
-    public void updateDataNodeAndDescendants(final String dataspaceName, final String anchorName,
-                                             final DataNode dataNode) {
-        final AnchorEntity anchorEntity = getAnchorEntity(dataspaceName, anchorName);
-        final FragmentEntity fragmentEntity = getFragmentEntity(anchorEntity, dataNode.getXpath());
-        updateFragmentEntityAndDescendantsWithDataNode(fragmentEntity, dataNode);
-        try {
-            fragmentRepository.save(fragmentEntity);
-        } catch (final StaleStateException staleStateException) {
-            throw new ConcurrencyException("Concurrent Transactions",
-                    String.format("dataspace :'%s', Anchor : '%s' and xpath: '%s' is updated by another transaction.",
-                            dataspaceName, anchorName, dataNode.getXpath()));
-        }
-    }
-
-    @Override
     public void updateDataNodesAndDescendants(final String dataspaceName, final String anchorName,
                                               final Collection<DataNode> updatedDataNodes) {
         final AnchorEntity anchorEntity = getAnchorEntity(dataspaceName, anchorName);
