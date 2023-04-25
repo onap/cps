@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bc3812c1_60194efb",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-04-25T15:11:39Z",
+      "side": 1,
+      "message": "In some file i seen a comment from Toine on this. It is not stopping to merge from my side. But just for a note.",
+      "range": {
+        "startLine": 87,
+        "startChar": 64,
+        "endLine": 87,
+        "endChar": 82
+      },
+      "revId": "796c4dcf56a1aafc58773bedc82ddef5242a108c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
