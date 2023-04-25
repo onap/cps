@@ -23,6 +23,7 @@ package org.onap.cps.spi.repository;
 
 import java.util.List;
 import org.onap.cps.cpspath.parser.CpsPathQuery;
+import org.onap.cps.spi.PaginationOption;
 import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.FragmentEntity;
@@ -30,5 +31,10 @@ import org.onap.cps.spi.entities.FragmentEntity;
 public interface FragmentRepositoryCpsPathQuery {
     List<FragmentEntity> findByAnchorAndCpsPath(AnchorEntity anchorEntity, CpsPathQuery cpsPathQuery);
 
-    List<FragmentEntity> findByDataspaceAndCpsPath(DataspaceEntity dataspaceEntity, CpsPathQuery cpsPathQuery);
+    List<FragmentEntity> findByDataspaceAndCpsPath(DataspaceEntity dataspaceEntity,
+                                                   CpsPathQuery cpsPathQuery, List<Long> anchorIds);
+
+    List<Long> findAnchorIdsForPagination(DataspaceEntity dataspaceEntity, CpsPathQuery cpsPathQuery,
+                                          PaginationOption paginationOption);
+
 }
