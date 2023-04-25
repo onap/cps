@@ -24,6 +24,7 @@ package org.onap.cps.integration.functional
 import org.onap.cps.api.CpsQueryService
 import org.onap.cps.integration.base.FunctionalSpecBase
 import org.onap.cps.spi.FetchDescendantsOption
+import org.onap.cps.spi.PaginationOption
 import org.onap.cps.spi.exceptions.CpsPathException
 
 import static org.onap.cps.spi.FetchDescendantsOption.DIRECT_CHILDREN_ONLY
@@ -236,7 +237,7 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Cps Path query across anchors with #scenario.'() {
         when: 'a query is executed to get a data nodes across anchors by the given CpsPath'
-            def result = objectUnderTest.queryDataNodesAcrossAnchors(FUNCTIONAL_TEST_DATASPACE_1, cpsPath, OMIT_DESCENDANTS)
+            def result = objectUnderTest.queryDataNodesAcrossAnchors(FUNCTIONAL_TEST_DATASPACE_1, cpsPath, OMIT_DESCENDANTS, new PaginationOption(-1, -1))
         then: 'the correct dataspace is queried'
             assert result.dataspace.toSet() == [FUNCTIONAL_TEST_DATASPACE_1].toSet()
         and: 'correct anchors are queried'
@@ -261,7 +262,7 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Cps Path query across anchors with #scenario descendants.'() {
         when: 'a query is executed to get a data node by the given cps path'
-            def result = objectUnderTest.queryDataNodesAcrossAnchors(FUNCTIONAL_TEST_DATASPACE_1, '/bookstore', fetchDescendantsOption)
+            def result = objectUnderTest.queryDataNodesAcrossAnchors(FUNCTIONAL_TEST_DATASPACE_1, '/bookstore', fetchDescendantsOption, new PaginationOption(-1,-1))
         then: 'the correct dataspace was queried'
             assert result.dataspace.toSet() == [FUNCTIONAL_TEST_DATASPACE_1].toSet()
         and: 'correct number of datanodes are returned'
@@ -275,7 +276,7 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Cps Path query across anchors with ancestors and #scenario descendants.'() {
         when: 'a query is executed to get a data node by the given cps path'
-            def result = objectUnderTest.queryDataNodesAcrossAnchors(FUNCTIONAL_TEST_DATASPACE_1, '//books/ancestor::bookstore', fetchDescendantsOption)
+            def result = objectUnderTest.queryDataNodesAcrossAnchors(FUNCTIONAL_TEST_DATASPACE_1, '//books/ancestor::bookstore', fetchDescendantsOption, new PaginationOption(-1, -1))
         then: 'the correct dataspace was queried'
             assert result.dataspace.toSet() == [FUNCTIONAL_TEST_DATASPACE_1].toSet()
         and: 'correct number of datanodes are returned'
@@ -289,7 +290,7 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Cps Path query across anchors with syntax error throws a CPS Path Exception.'() {
         when: 'trying to execute a query with a syntax (parsing) error'
-            objectUnderTest.queryDataNodesAcrossAnchors(FUNCTIONAL_TEST_DATASPACE_1, 'cpsPath that cannot be parsed' , OMIT_DESCENDANTS)
+            objectUnderTest.queryDataNodesAcrossAnchors(FUNCTIONAL_TEST_DATASPACE_1, 'cpsPath that cannot be parsed' , OMIT_DESCENDANTS, new PaginationOption(-1, -1))
         then: 'a cps path exception is thrown'
             thrown(CpsPathException)
     }
