@@ -2359,6 +2359,20 @@ paths:
             default: none
             example: "3"
             type: string
+        - description: "page index for pagination over anchors"
+          name: pageIndex
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+        - description: "number of records (anchors) to query per page"
+          name: pageSize
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 1
       responses:
         "200":
           content:
@@ -2370,6 +2384,11 @@ paths:
               schema:
                 type: object
           description: OK
+          headers:
+            TotalPages:
+              schema:
+                type: integer
+              description: Total number of pages
         "400":
           content:
             application/json:

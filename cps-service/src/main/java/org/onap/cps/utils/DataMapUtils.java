@@ -28,8 +28,10 @@ import static java.util.stream.Collectors.toUnmodifiableList;
 import static java.util.stream.Collectors.toUnmodifiableMap;
 
 import com.google.common.collect.ImmutableMap;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -52,17 +54,29 @@ public class DataMapUtils {
     }
 
     /**
-     * Converts DataNode structure into a map including the root node identifier for a JSON response.
-     *
-     * @param dataNode data node object
-     * @return a map representing same data with the root node identifier
+     * Converts list of DataNode structure into a map including the root node identifier for a JSON response.
+     * @param dataNodeList list of data nodes for a given anchor name
+     * @param anchorName anchor name
+     * @param prefix prefix
+     * @return a map representing same list of data for given anchor with the root node identifier
      */
-    public static Map<String, Object> toDataMapWithIdentifierAndAnchor(final DataNode dataNode, final String prefix) {
-        final String nodeIdentifierWithPrefix = getNodeIdentifierWithPrefix(dataNode.getXpath(), prefix);
-        final Map<String, Object> dataMap = ImmutableMap.<String, Object>builder()
-                .put(nodeIdentifierWithPrefix, toDataMap(dataNode)).build();
-        return ImmutableMap.<String, Object>builder().put("anchorName", dataNode.getAnchorName())
-                .put("dataNode", dataMap).build();
+    public static Map<String, Object> toDataMapWithIdentifierAndAnchor(final List<DataNode> dataNodeList,
+                                                                       final String anchorName, final String prefix) {
+        final List<Map<String, Object>> dataMaps = toDataNodesWithIdentifier(dataNodeList, prefix);
+        return ImmutableMap.<String, Object>builder().put("anchorName", anchorName)
+                .put("dataNodes", dataMaps).build();
+    }
+
+    private static List<Map<String, Object>> toDataNodesWithIdentifier(final List<DataNode> dataNodeList,
+                                                                       final String prefix) {
+        final List<Map<String, Object>> dataMaps = new ArrayList<>(dataNodeList.size());
+        for (final DataNode dataNode: dataNodeList) {
+            final String nodeIdentifierWithPrefix = getNodeIdentifierWithPrefix(dataNode.getXpath(), prefix);
+            final Map<String, Object> dataMap = ImmutableMap.<String, Object>builder()
+                    .put(nodeIdentifierWithPrefix, toDataMap(dataNode)).build();
+            dataMaps.add(dataMap);
+        }
+        return dataMaps;
     }
 
     /**

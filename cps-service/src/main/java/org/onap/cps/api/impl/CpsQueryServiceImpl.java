@@ -27,6 +27,7 @@ import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.CpsQueryService;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.FetchDescendantsOption;
+import org.onap.cps.spi.PaginationOption;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.utils.CpsValidator;
 import org.springframework.stereotype.Service;
@@ -49,8 +50,17 @@ public class CpsQueryServiceImpl implements CpsQueryService {
 
     @Override
     public Collection<DataNode> queryDataNodesAcrossAnchors(final String dataspaceName,
-        final String cpsPath, final FetchDescendantsOption fetchDescendantsOption) {
+        final String cpsPath, final FetchDescendantsOption fetchDescendantsOption,
+        final PaginationOption paginationOption) {
         cpsValidator.validateNameCharacters(dataspaceName);
-        return cpsDataPersistenceService.queryDataNodesAcrossAnchors(dataspaceName, cpsPath, fetchDescendantsOption);
+        cpsValidator.validatePaginationOption(paginationOption);
+        return cpsDataPersistenceService.queryDataNodesAcrossAnchors(dataspaceName, cpsPath,
+                fetchDescendantsOption, paginationOption);
+    }
+
+    @Override
+    public Integer countAnchorsForDataspaceAndCpsPath(final String dataspaceName, final String cpsPath) {
+        cpsValidator.validateNameCharacters(dataspaceName);
+        return cpsDataPersistenceService.countAnchorsForDataspaceAndCpsPath(dataspaceName, cpsPath);
     }
 }
