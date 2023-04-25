@@ -23,7 +23,8 @@
 
 package org.onap.cps.spi.impl;
 
-import com.google.common.base.Strings;
+import static org.onap.cps.spi.PaginationOption.NO_PAGINATION;
+
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ImmutableSet.Builder;
 import io.micrometer.core.annotation.Timed;
@@ -48,6 +49,7 @@ import org.onap.cps.cpspath.parser.CpsPathUtil;
 import org.onap.cps.cpspath.parser.PathParsingException;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.FetchDescendantsOption;
+import org.onap.cps.spi.PaginationOption;
 import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.FragmentEntity;
@@ -79,8 +81,6 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     private final SessionManager sessionManager;
 
     private static final String REG_EX_FOR_OPTIONAL_LIST_INDEX = "(\\[@.+?])?)";
-    private static final String QUERY_ACROSS_ANCHORS = null;
-    private static final AnchorEntity ALL_ANCHORS = null;
 
     @Override
     public void addChildDataNodes(final String dataspaceName, final String anchorName,
@@ -288,8 +288,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     public List<DataNode> queryDataNodes(final String dataspaceName, final String anchorName, final String cpsPath,
                                          final FetchDescendantsOption fetchDescendantsOption) {
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
-        final AnchorEntity anchorEntity = Strings.isNullOrEmpty(anchorName) ? ALL_ANCHORS
-            : anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
+        final AnchorEntity anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
         final CpsPathQuery cpsPathQuery;
         try {
             cpsPathQuery = CpsPathUtil.getCpsPathQuery(cpsPath);
@@ -298,18 +297,10 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         }
 
         Collection<FragmentEntity> fragmentEntities;
-        if (anchorEntity == ALL_ANCHORS) {
-            fragmentEntities = fragmentRepository.findByDataspaceAndCpsPath(dataspaceEntity, cpsPathQuery);
-        } else {
-            fragmentEntities = fragmentRepository.findByAnchorAndCpsPath(anchorEntity, cpsPathQuery);
-        }
+        fragmentEntities = fragmentRepository.findByAnchorAndCpsPath(anchorEntity, cpsPathQuery);
         if (cpsPathQuery.hasAncestorAxis()) {
             final Collection<String> ancestorXpaths = processAncestorXpath(fragmentEntities, cpsPathQuery);
-            if (anchorEntity == ALL_ANCHORS) {
-                fragmentEntities = fragmentRepository.findByDataspaceAndXpathIn(dataspaceEntity, ancestorXpaths);
-            } else {
-                fragmentEntities = fragmentRepository.findByAnchorAndXpathIn(anchorEntity, ancestorXpaths);
-            }
+            fragmentEntities = fragmentRepository.findByAnchorAndXpathIn(anchorEntity, ancestorXpaths);
         }
         fragmentEntities = fragmentRepository.prefetchDescendantsOfFragmentEntities(fetchDescendantsOption,
                 fragmentEntities);
@@ -317,9 +308,49 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     }
 
     @Override
+    @Timed(value = "cps.data.persistence.service.datanode.query.anchors",
+            description = "Time taken to query data nodes across all anchors or list of anchors")
     public List<DataNode> queryDataNodesAcrossAnchors(final String dataspaceName, final String cpsPath,
-                                                      final FetchDescendantsOption fetchDescendantsOption) {
-        return queryDataNodes(dataspaceName, QUERY_ACROSS_ANCHORS, cpsPath, fetchDescendantsOption);
+                                                      final FetchDescendantsOption fetchDescendantsOption,
+                                                      final PaginationOption paginationOption) {
+        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        final CpsPathQuery cpsPathQuery;
+        try {
+            cpsPathQuery = CpsPathUtil.getCpsPathQuery(cpsPath);
+        } catch (final PathParsingException e) {
+            throw new CpsPathException(e.getMessage());
+        }
+
+        final List<Long> anchorIds;
+        if (paginationOption == NO_PAGINATION) {
+            anchorIds = Collections.EMPTY_LIST;
+        } else {
+            anchorIds = getAnchorIdsForPagination(dataspaceEntity, cpsPathQuery, paginationOption);
+            if (anchorIds.isEmpty()) {
+                return Collections.emptyList();
+            }
+        }
+        Collection<FragmentEntity> fragmentEntities =
+            fragmentRepository.findByDataspaceAndCpsPath(dataspaceEntity, cpsPathQuery, anchorIds);
+
+        if (cpsPathQuery.hasAncestorAxis()) {
+            final Collection<String> ancestorXpaths = processAncestorXpath(fragmentEntities, cpsPathQuery);
+            if (anchorIds.isEmpty()) {
+                fragmentEntities = fragmentRepository.findByDataspaceAndXpathIn(dataspaceEntity, ancestorXpaths);
+            } else {
+                fragmentEntities = fragmentRepository.findByAnchorIdsAndXpathIn(
+                        anchorIds.toArray(new Long[0]), ancestorXpaths.toArray(new String[0]));
+            }
+
+        }
+        fragmentEntities = fragmentRepository.prefetchDescendantsOfFragmentEntities(fetchDescendantsOption,
+                fragmentEntities);
+        return createDataNodesFromFragmentEntities(fetchDescendantsOption, fragmentEntities);
+    }
+
+    private List<Long> getAnchorIdsForPagination(final DataspaceEntity dataspaceEntity, final CpsPathQuery cpsPathQuery,
+                                                 final PaginationOption paginationOption) {
+        return fragmentRepository.findAnchorIdsForPagination(dataspaceEntity, cpsPathQuery, paginationOption);
     }
 
     private List<DataNode> createDataNodesFromFragmentEntities(final FetchDescendantsOption fetchDescendantsOption,
@@ -356,6 +387,19 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     public void lockAnchor(final String sessionId, final String dataspaceName,
                            final String anchorName, final Long timeoutInMilliseconds) {
         sessionManager.lockAnchor(sessionId, dataspaceName, anchorName, timeoutInMilliseconds);
+    }
+
+    @Override
+    public Integer countAnchorsForDataspaceAndCpsPath(final String dataspaceName, final String cpsPath) {
+        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        final CpsPathQuery cpsPathQuery;
+        try {
+            cpsPathQuery = CpsPathUtil.getCpsPathQuery(cpsPath);
+        } catch (final PathParsingException e) {
+            throw new CpsPathException(e.getMessage());
+        }
+        final List<Long> anchorIdList = getAnchorIdsForPagination(dataspaceEntity, cpsPathQuery, NO_PAGINATION);
+        return anchorIdList.size();
     }
 
     private static Set<String> processAncestorXpath(final Collection<FragmentEntity> fragmentEntities,
