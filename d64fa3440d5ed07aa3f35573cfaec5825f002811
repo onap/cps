@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ecff1cba_ac521065",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationCacheConfig.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-04-25T10:16:29Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7e1a1945_d096197b",
+      "range": {
+        "startLine": 122,
+        "startChar": 0,
+        "endLine": 128,
+        "endChar": 5
+      },
+      "revId": "d64fa3440d5ed07aa3f35573cfaec5825f002811",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e13d1680_8579fdc5",
         "filename": "cps-service/src/main/java/org/onap/cps/cache/AnchorDataCacheConfig.java",
         "patchSetId": 5
