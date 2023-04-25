@@ -30,13 +30,10 @@ import org.onap.cps.spi.exceptions.SchemaSetNotFoundException
 import org.onap.cps.spi.model.ModuleDefinition
 import org.onap.cps.spi.model.ModuleReference
 import org.onap.cps.spi.model.SchemaSet
-import org.onap.cps.spi.repository.AnchorRepository
 import org.onap.cps.spi.repository.SchemaSetRepository
 import org.onap.cps.spi.repository.SchemaSetYangResourceRepositoryImpl
-import org.onap.cps.spi.repository.YangResourceRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.jdbc.Sql
-import spock.lang.Ignore
 
 class CpsModulePersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
 
@@ -44,16 +41,10 @@ class CpsModulePersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase 
     CpsModulePersistenceService objectUnderTest
 
     @Autowired
-    AnchorRepository anchorRepository
-
-    @Autowired
     SchemaSetRepository schemaSetRepository
 
     @Autowired
     CpsAdminPersistenceService cpsAdminPersistenceService
-
-    @Autowired
-    YangResourceRepository yangResourceRepository
 
     final static String SET_DATA = '/data/schemaset.sql'
 
