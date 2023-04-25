@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "acbc2cc2_8743aa06",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 486,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-04-25T12:40:14Z",
+      "side": 1,
+      "message": "it is still being used by CpsDataService.processDataNodeUpdate. But I will check if it can be replaced with new method. In the mean time calling new method with Map of one xpath and DataNode",
+      "parentUuid": "09a063ef_3e1630f0",
+      "range": {
+        "startLine": 486,
+        "startChar": 16,
+        "endLine": 486,
+        "endChar": 32
+      },
+      "revId": "3b46bcfc8b0f0f535d55461115c89fb54513e0dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c771e5d6_a73c3c9d",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 9
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "fb7b5c25_203c7f6d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 498,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-04-25T12:40:14Z",
+      "side": 1,
+      "message": "Cannot extract the xPaths from the Map in the service layer because the Map is then used here for retrieving the associated fragment entities.\n\nAlso it is a Map of xPaths to DataNodes whereas the previous method uses  xPath and Leaf. This is because there will always be one xpath and one data node.\n\nThe new method needs a Map of xpath and data node so that it can retrieve the fragment entities with same xpath as the data node being updated.",
+      "parentUuid": "c771e5d6_a73c3c9d",
+      "range": {
+        "startLine": 498,
+        "startChar": 68,
+        "endLine": 498,
+        "endChar": 77
+      },
+      "revId": "3b46bcfc8b0f0f535d55461115c89fb54513e0dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e79179bd_bb4fdef1",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
         "patchSetId": 9
@@ -59,6 +107,30 @@
       "writtenOn": "2023-04-19T16:33:18Z",
       "side": 1,
       "message": "should extract xPaths here",
+      "range": {
+        "startLine": 165,
+        "startChar": 86,
+        "endLine": 165,
+        "endChar": 102
+      },
+      "revId": "3b46bcfc8b0f0f535d55461115c89fb54513e0dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ed79af8_34df9492",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-04-25T12:40:14Z",
+      "side": 1,
+      "message": "Reason: https://gerrit.onap.org/r/c/cps/+/134019/9/cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java#498",
+      "parentUuid": "e79179bd_bb4fdef1",
       "range": {
         "startLine": 165,
         "startChar": 86,
@@ -117,6 +189,54 @@
     },
     {
       "key": {
+        "uuid": "fd3194a7_9bcd1a67",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-04-25T12:40:14Z",
+      "side": 1,
+      "message": "Reason: https://gerrit.onap.org/r/c/cps/+/134019/9/cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java#498",
+      "parentUuid": "8cae7e7b_f0f8e9f1",
+      "range": {
+        "startLine": 147,
+        "startChar": 75,
+        "endLine": 147,
+        "endChar": 105
+      },
+      "revId": "3b46bcfc8b0f0f535d55461115c89fb54513e0dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "67429438_656f1a22",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-04-25T12:40:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "851039e1_4f848c90",
+      "range": {
+        "startLine": 147,
+        "startChar": 15,
+        "endLine": 147,
+        "endChar": 32
+      },
+      "revId": "3b46bcfc8b0f0f535d55461115c89fb54513e0dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "334ac8d5_0a20587d",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
         "patchSetId": 9
@@ -131,6 +251,24 @@
       "revId": "3b46bcfc8b0f0f535d55461115c89fb54513e0dd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e6f9daa_e4c4de68",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-04-25T12:40:14Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "334ac8d5_0a20587d",
+      "revId": "3b46bcfc8b0f0f535d55461115c89fb54513e0dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -178,6 +316,30 @@
       "revId": "3b46bcfc8b0f0f535d55461115c89fb54513e0dd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c0cd24d3_bd8730c6",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/FunctionalSpecBase.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-04-25T12:40:14Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "aa043bb2_04ef5949",
+      "range": {
+        "startLine": 27,
+        "startChar": 4,
+        "endLine": 27,
+        "endChar": 70
+      },
+      "revId": "3b46bcfc8b0f0f535d55461115c89fb54513e0dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
