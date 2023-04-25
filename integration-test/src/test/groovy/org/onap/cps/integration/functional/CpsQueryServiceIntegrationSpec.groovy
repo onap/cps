@@ -24,6 +24,7 @@ package org.onap.cps.integration.functional
 import org.onap.cps.api.CpsQueryService
 import org.onap.cps.integration.base.FunctionalSpecBase
 import org.onap.cps.spi.FetchDescendantsOption
+import org.onap.cps.spi.PaginationOption
 import org.onap.cps.spi.exceptions.CpsPathException
 
 import static org.onap.cps.spi.FetchDescendantsOption.DIRECT_CHILDREN_ONLY
@@ -264,7 +265,7 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Cps Path query across anchors with #scenario.'() {
         when: 'a query is executed to get a data nodes across anchors by the given CpsPath'
-            def result = objectUnderTest.queryDataNodesAcrossAnchors(FUNCTIONAL_TEST_DATASPACE_1, cpsPath, OMIT_DESCENDANTS)
+            def result = objectUnderTest.queryDataNodesAcrossAnchors(FUNCTIONAL_TEST_DATASPACE_1, cpsPath, OMIT_DESCENDANTS, new PaginationOption(-1, -1))
         then: 'the correct dataspace is queried'
             assert result.dataspace.toSet() == [FUNCTIONAL_TEST_DATASPACE_1].toSet()
         and: 'correct anchors are queried'
@@ -289,7 +290,7 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Cps Path query across anchors with #scenario descendants.'() {
         when: 'a query is executed to get a data node by the given cps path'
-            def result = objectUnderTest.queryDataNodesAcrossAnchors(FUNCTIONAL_TEST_DATASPACE_1, '/bookstore', fetchDescendantsOption)
+            def result = objectUnderTest.queryDataNodesAcrossAnchors(FUNCTIONAL_TEST_DATASPACE_1, '/bookstore', fetchDescendantsOption, new PaginationOption(-1,-1))
         then: 'the correct dataspace was queried'
             assert result.dataspace.toSet() == [FUNCTIONAL_TEST_DATASPACE_1].toSet()
         and: 'correct number of datanodes are returned'
@@ -303,7 +304,7 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Cps Path query across anchors with ancestors and #scenario descendants.'() {
         when: 'a query is executed to get a data node by the given cps path'
-            def result = objectUnderTest.queryDataNodesAcrossAnchors(FUNCTIONAL_TEST_DATASPACE_1, '//books/ancestor::bookstore', fetchDescendantsOption)
+            def result = objectUnderTest.queryDataNodesAcrossAnchors(FUNCTIONAL_TEST_DATASPACE_1, '//books/ancestor::bookstore', fetchDescendantsOption, new PaginationOption(-1, -1))
         then: 'the correct dataspace was queried'
             assert result.dataspace.toSet() == [FUNCTIONAL_TEST_DATASPACE_1].toSet()
         and: 'correct number of datanodes are returned'
@@ -317,7 +318,7 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Cps Path query across anchors with syntax error throws a CPS Path Exception.'() {
         when: 'trying to execute a query with a syntax (parsing) error'
-            objectUnderTest.queryDataNodesAcrossAnchors(FUNCTIONAL_TEST_DATASPACE_1, 'cpsPath that cannot be parsed' , OMIT_DESCENDANTS)
+            objectUnderTest.queryDataNodesAcrossAnchors(FUNCTIONAL_TEST_DATASPACE_1, 'cpsPath that cannot be parsed' , OMIT_DESCENDANTS, new PaginationOption(-1, -1))
         then: 'a cps path exception is thrown'
             thrown(CpsPathException)
     }
@@ -339,4 +340,29 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
             'incomplete absolute 1 list entry'    | '/categories[@code="3"]'                || 0
     }
 
+    def 'Cps Path query across anchors using pagination option with #scenario.'() {
+        when: 'a query is executed to get a data nodes across anchors by the given CpsPath and pagination option'
+            def result = objectUnderTest.queryDataNodesAcrossAnchors(FUNCTIONAL_TEST_DATASPACE_1, cpsPath, OMIT_DESCENDANTS, new PaginationOption(pageIndex, pageSize))
+        then: 'correct anchors are queried'
+            assert result.anchorName.toSet() == expectedAnchors.toSet()
+        and: 'the correct number of page size is returned'
+            assert result.size() == expectedXpathsPerAnchor.size() * pageSize
+        and: 'the queried nodes have expected xpaths'
+            assert result.xpath.toSet() == expectedXpathsPerAnchor.toSet()
+        where: 'the following data is used'
+            scenario                                                         | pageIndex | pageSize | cpsPath                                               || expectedAnchors                          || expectedXpathsPerAnchor
+            'container node first page with size one'                        | 1         | 1        | '/bookstore'                                          || [BOOKSTORE_ANCHOR_2]                     || ["/bookstore"]
+            'container node 1st page two size'                               | 1         | 2        | '/bookstore'                                          || [BOOKSTORE_ANCHOR_1, BOOKSTORE_ANCHOR_2] || ["/bookstore"]
+            'container node 2nd page with size one'                          | 2         | 1        | '/bookstore'                                          || [BOOKSTORE_ANCHOR_1]                     || ["/bookstore"]
+            'container node 2nd page with size two'                          | 2         | 2        | '/bookstore'                                          || []                                       || []
+            'list node 1st page with size one'                               | 1         | 1        | '/bookstore/categories'                               || [BOOKSTORE_ANCHOR_2]                     || ["/bookstore/categories[@code='1']", "/bookstore/categories[@code='2']", "/bookstore/categories[@code='3']", "/bookstore/categories[@code='4']"]
+            'list node 1st page with size two'                               | 1         | 2        | '/bookstore/categories'                               || [BOOKSTORE_ANCHOR_1, BOOKSTORE_ANCHOR_2] || ["/bookstore/categories[@code='1']", "/bookstore/categories[@code='2']", "/bookstore/categories[@code='3']", "/bookstore/categories[@code='4']"]
+            'list node 2nd page with size one'                               | 2         | 1        | '/bookstore/categories'                               || [BOOKSTORE_ANCHOR_1]                     || ["/bookstore/categories[@code='1']", "/bookstore/categories[@code='2']", "/bookstore/categories[@code='3']", "/bookstore/categories[@code='4']"]
+            'list node 2nd page with size two'                               | 2         | 2        | '/bookstore/categories'                               || []                                       || []
+            'multiple list-ancestors 1st page with size 1'                   | 1         | 1        | '//books/ancestor::categories'                        || [BOOKSTORE_ANCHOR_2]                     || ["/bookstore/categories[@code='1']", "/bookstore/categories[@code='2']", "/bookstore/categories[@code='3']", "/bookstore/categories[@code='4']"]
+            'one ancestor with list value 1st page with size 2'              | 1         | 2        | '//books/ancestor::categories[@code="1"]'             || [BOOKSTORE_ANCHOR_1, BOOKSTORE_ANCHOR_2] || ["/bookstore/categories[@code='1']"]
+            'list with index value in the xpath prefix 2nd page with size 1' | 2         | 1        | '//categories[@code="1"]/books/ancestor::bookstore'   || [BOOKSTORE_ANCHOR_1]                     || ["/bookstore"]
+            'ancestor with parent list 2nd page with size 2'                 | 2         | 2        | '//books/ancestor::bookstore/categories'              || []                                       || []
+            'ancestor with parent list element 1st page with two size'       | 1         | 2        | '//books/ancestor::bookstore/categories[@code="2"]'   || [BOOKSTORE_ANCHOR_1, BOOKSTORE_ANCHOR_2] || ["/bookstore/categories[@code='2']"]
+    }
 }

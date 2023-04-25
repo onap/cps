@@ -59,6 +59,8 @@ nodesByDataspaceAndCpsPath:
       - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
       - $ref: 'components.yml#/components/parameters/cpsPathInQuery'
       - $ref: 'components.yml#/components/parameters/descendantsInQuery'
+      - $ref: 'components.yml#/components/parameters/pageIndexInQuery'
+      - $ref: 'components.yml#/components/parameters/pageSizeInQuery'
     responses:
       '200':
         description: OK
