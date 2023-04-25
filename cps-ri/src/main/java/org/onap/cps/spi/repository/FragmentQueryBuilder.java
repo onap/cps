@@ -90,12 +90,13 @@ public class FragmentQueryBuilder {
 
         if (anchorEntity == ACROSS_ALL_ANCHORS) {
             sqlStringBuilder.append("SELECT fragment.* FROM fragment JOIN anchor ON anchor.id = fragment.anchor_id"
-                + " WHERE dataspace_id = :dataspaceId");
+                    + " WHERE dataspace_id = :dataspaceId");
             queryParameters.put("dataspaceId", dataspaceEntity.getId());
         } else {
             sqlStringBuilder.append("SELECT * FROM fragment WHERE anchor_id = :anchorId");
             queryParameters.put("anchorId", anchorEntity.getId());
         }
+
         addXpathSearch(cpsPathQuery, sqlStringBuilder, queryParameters);
         addLeafConditions(cpsPathQuery, sqlStringBuilder);
         addTextFunctionCondition(cpsPathQuery, sqlStringBuilder, queryParameters);

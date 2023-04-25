@@ -23,7 +23,6 @@
 
 package org.onap.cps.spi.impl;
 
-import com.google.common.base.Strings;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ImmutableSet.Builder;
 import io.micrometer.core.annotation.Timed;
@@ -297,8 +296,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     public List<DataNode> queryDataNodes(final String dataspaceName, final String anchorName, final String cpsPath,
                                          final FetchDescendantsOption fetchDescendantsOption) {
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
-        final AnchorEntity anchorEntity = Strings.isNullOrEmpty(anchorName) ? ALL_ANCHORS
-            : anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
+        final AnchorEntity anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
         final CpsPathQuery cpsPathQuery;
         try {
             cpsPathQuery = CpsPathUtil.getCpsPathQuery(cpsPath);
@@ -307,18 +305,10 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         }
 
         Collection<FragmentEntity> fragmentEntities;
-        if (anchorEntity == ALL_ANCHORS) {
-            fragmentEntities = fragmentRepository.findByDataspaceAndCpsPath(dataspaceEntity, cpsPathQuery);
-        } else {
-            fragmentEntities = fragmentRepository.findByAnchorAndCpsPath(anchorEntity, cpsPathQuery);
-        }
+        fragmentEntities = fragmentRepository.findByAnchorAndCpsPath(anchorEntity, cpsPathQuery);
         if (cpsPathQuery.hasAncestorAxis()) {
             final Collection<String> ancestorXpaths = processAncestorXpath(fragmentEntities, cpsPathQuery);
-            if (anchorEntity == ALL_ANCHORS) {
-                fragmentEntities = fragmentRepository.findByDataspaceAndXpathIn(dataspaceEntity, ancestorXpaths);
-            } else {
-                fragmentEntities = fragmentRepository.findByAnchorAndXpathIn(anchorEntity, ancestorXpaths);
-            }
+            fragmentEntities = fragmentRepository.findByAnchorAndXpathIn(anchorEntity, ancestorXpaths);
         }
         fragmentEntities = prefetchDescendantsForFragmentEntities(fetchDescendantsOption, anchorEntity,
             fragmentEntities);
@@ -326,9 +316,29 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     }
 
     @Override
+    @Timed(value = "cps.data.persistence.service.datanode.query.anchors",
+            description = "Time taken to query data nodes across all anchors")
     public List<DataNode> queryDataNodesAcrossAnchors(final String dataspaceName, final String cpsPath,
                                                       final FetchDescendantsOption fetchDescendantsOption) {
-        return queryDataNodes(dataspaceName, QUERY_ACROSS_ANCHORS, cpsPath, fetchDescendantsOption);
+        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        final CpsPathQuery cpsPathQuery;
+        try {
+            cpsPathQuery = CpsPathUtil.getCpsPathQuery(cpsPath);
+        } catch (final PathParsingException e) {
+            throw new CpsPathException(e.getMessage());
+        }
+
+        Collection<FragmentEntity> fragmentEntities =
+            fragmentRepository.findByDataspaceAndCpsPath(dataspaceEntity, cpsPathQuery);
+
+        if (cpsPathQuery.hasAncestorAxis()) {
+            final Collection<String> ancestorXpaths = processAncestorXpath(fragmentEntities, cpsPathQuery);
+            fragmentEntities = fragmentRepository.findByDataspaceAndXpathIn(dataspaceEntity, ancestorXpaths);
+
+        }
+        fragmentEntities = prefetchDescendantsForFragmentEntities(fetchDescendantsOption, ALL_ANCHORS,
+                fragmentEntities);
+        return createDataNodesFromFragmentEntities(fetchDescendantsOption, fragmentEntities);
     }
 
     private Collection<FragmentEntity> prefetchDescendantsForFragmentEntities(

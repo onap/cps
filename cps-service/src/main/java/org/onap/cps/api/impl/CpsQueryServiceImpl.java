@@ -42,15 +42,17 @@ public class CpsQueryServiceImpl implements CpsQueryService {
     @Timed(value = "cps.data.service.datanode.query",
             description = "Time taken to query data nodes")
     public Collection<DataNode> queryDataNodes(final String dataspaceName, final String anchorName,
-        final String cpsPath, final FetchDescendantsOption fetchDescendantsOption) {
+            final String cpsPath, final FetchDescendantsOption fetchDescendantsOption) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
-        return cpsDataPersistenceService.queryDataNodes(dataspaceName, anchorName, cpsPath, fetchDescendantsOption);
+        return cpsDataPersistenceService.queryDataNodes(dataspaceName, anchorName, cpsPath,
+                fetchDescendantsOption);
     }
 
     @Override
     public Collection<DataNode> queryDataNodesAcrossAnchors(final String dataspaceName,
-        final String cpsPath, final FetchDescendantsOption fetchDescendantsOption) {
+                                final String cpsPath, final FetchDescendantsOption fetchDescendantsOption) {
         cpsValidator.validateNameCharacters(dataspaceName);
         return cpsDataPersistenceService.queryDataNodesAcrossAnchors(dataspaceName, cpsPath, fetchDescendantsOption);
     }
+
 }

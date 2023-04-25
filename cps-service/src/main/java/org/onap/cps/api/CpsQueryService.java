@@ -53,5 +53,6 @@ public interface CpsQueryService {
      * @return a collection of data nodes
      */
     Collection<DataNode> queryDataNodesAcrossAnchors(String dataspaceName, String cpsPath,
-                                                     FetchDescendantsOption fetchDescendantsOption);
+          FetchDescendantsOption fetchDescendantsOption);
+
 }
