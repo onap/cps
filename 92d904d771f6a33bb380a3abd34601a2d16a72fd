@@ -160,6 +160,30 @@
     },
     {
       "key": {
+        "uuid": "1b4779c8_5059f42c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/SubscriptionModelLoader.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-04-25T08:45:37Z",
+      "side": 1,
+      "message": "We discussed in scrum, we think that the max retry time should be about a minute and should be configurable for the unit test case",
+      "parentUuid": "67683c94_4d4ed683",
+      "range": {
+        "startLine": 88,
+        "startChar": 33,
+        "endLine": 88,
+        "endChar": 38
+      },
+      "revId": "92d904d771f6a33bb380a3abd34601a2d16a72fd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "06f3bfed_974c15c9",
         "filename": "cps-ncmp-service/src/main/resources/model/subscription.yang",
         "patchSetId": 3
@@ -212,6 +236,30 @@
       "side": 1,
       "message": "Agree. You may need shorten the the test time either by modifying the impl. with Priyank\u0027s suggestion, or providing a new Thread.sleep(\u003cless_value\u003e) where possible. Otherwise, it takes 3.3 minutes.",
       "parentUuid": "f631c669_c89d5858",
+      "range": {
+        "startLine": 106,
+        "startChar": 4,
+        "endLine": 120,
+        "endChar": 5
+      },
+      "revId": "92d904d771f6a33bb380a3abd34601a2d16a72fd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a1e8bf89_c9aca433",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/SubscriptionModelLoaderSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-04-25T08:45:37Z",
+      "side": 1,
+      "message": "Set the timer or max retry so that this test takes max 5 seconds",
+      "parentUuid": "daf7c917_0639efb3",
       "range": {
         "startLine": 106,
         "startChar": 4,
