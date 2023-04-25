@@ -23,6 +23,7 @@ package org.onap.cps.api.impl
 
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.FetchDescendantsOption
+import org.onap.cps.spi.PaginationOption
 import org.onap.cps.spi.utils.CpsValidator
 import spock.lang.Specification
 
@@ -52,14 +53,22 @@ class CpsQueryServiceImplSpec extends Specification {
         given: 'a dataspace name, an anchor name and a cps path'
             def dataspaceName = 'some-dataspace'
             def cpsPath = '/cps-path'
+            def paginationOption = new PaginationOption(1, 2)
         when: 'queryDataNodes is invoked'
-            objectUnderTest.queryDataNodesAcrossAnchors(dataspaceName, cpsPath, fetchDescendantsOption)
+            objectUnderTest.queryDataNodesAcrossAnchors(dataspaceName, cpsPath, fetchDescendantsOption, paginationOption)
         then: 'the persistence service is called once with the correct parameters'
-            1 * mockCpsDataPersistenceService.queryDataNodesAcrossAnchors(dataspaceName, cpsPath, fetchDescendantsOption)
+            1 * mockCpsDataPersistenceService.queryDataNodesAcrossAnchors(dataspaceName, cpsPath, fetchDescendantsOption, paginationOption)
         and: 'the CpsValidator is called on the dataspaceName, schemaSetName and anchorName'
             1 * mockCpsValidator.validateNameCharacters(dataspaceName)
         where: 'all fetch descendants options are supported'
-            fetchDescendantsOption << [FetchDescendantsOption.OMIT_DESCENDANTS, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS]
+        fetchDescendantsOption << [FetchDescendantsOption.OMIT_DESCENDANTS, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS,
+                                   FetchDescendantsOption.DIRECT_CHILDREN_ONLY, new FetchDescendantsOption(10)]
     }
 
+    def 'Query total anchors for dataspace and cps path.'() {
+        when: 'query total anchors is invoked'
+            objectUnderTest.countAnchorsForDataspaceAndCpsPath("some-dataspace", "/cps-path")
+        then: 'the persistence service is called once with the correct parameters'
+            1 * mockCpsDataPersistenceService.countAnchorsForDataspaceAndCpsPath("some-dataspace", "/cps-path")
+    }
 }

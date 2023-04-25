@@ -117,7 +117,7 @@ class CpsIntegrationSpecBase extends Specification {
     def addAnchorsWithData(numberOfAnchors, dataspaceName, schemaSetName, anchorNamePrefix, data) {
         (1..numberOfAnchors).each {
             cpsAdminService.createAnchor(dataspaceName, schemaSetName, anchorNamePrefix + it)
-            cpsDataService.saveData(dataspaceName, anchorNamePrefix + it, data, OffsetDateTime.now())
+            cpsDataService.saveData(dataspaceName, anchorNamePrefix + it, data.replace("Easons", "Easons-"+it.toString()), OffsetDateTime.now())
         }
     }
 }
