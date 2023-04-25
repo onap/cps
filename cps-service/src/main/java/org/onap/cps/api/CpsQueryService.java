@@ -23,6 +23,7 @@ package org.onap.cps.api;
 
 import java.util.Collection;
 import org.onap.cps.spi.FetchDescendantsOption;
+import org.onap.cps.spi.PaginationOption;
 import org.onap.cps.spi.model.DataNode;
 
 /*
@@ -50,8 +51,18 @@ public interface CpsQueryService {
      * @param cpsPath CPS path
      * @param fetchDescendantsOption defines whether the descendants of the node(s) found by the query should be
      *                               included in the output
+     * @param paginationOption pagination option
      * @return a collection of data nodes
      */
     Collection<DataNode> queryDataNodesAcrossAnchors(String dataspaceName, String cpsPath,
-                                                     FetchDescendantsOption fetchDescendantsOption);
+                                                     FetchDescendantsOption fetchDescendantsOption,
+                                                     PaginationOption paginationOption);
+
+    /**
+     * Query total number of anchors for given dataspace name and cps path.
+     * @param dataspaceName dataspace name
+     * @param cpsPath cps path
+     * @return total number of anchors for given dataspace name and cps path.
+     */
+    Integer countAnchorsForDataspaceAndCpsPath(String dataspaceName, String cpsPath);
 }
