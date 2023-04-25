@@ -74,17 +74,19 @@ class DataMapUtilsSpec extends Specification {
 
     def 'Data node structure with anchor name conversion to map with root node identifier.'() {
         when: 'data node structure is converted to a map with root node identifier'
-            def result = DataMapUtils.toDataMapWithIdentifierAndAnchor(dataNodeWithAnchor, dataNodeWithAnchor.moduleNamePrefix)
+            def result = DataMapUtils.toDataMapWithIdentifierAndAnchor([dataNodeWithAnchor], dataNodeWithAnchor.anchorName, dataNodeWithAnchor.moduleNamePrefix)
         then: 'root node leaves are populated under its node identifier'
-            def parentNode = result.get("dataNode").parent
-            parentNode.parentLeaf == 'parentLeafValue'
-            parentNode.parentLeafList == ['parentLeafListEntry1','parentLeafListEntry2']
+            def dataNodes = result.dataNodes as List
+            assert dataNodes.size() == 1
+            def parentNode = dataNodes[0].parent
+            assert parentNode.parentLeaf == 'parentLeafValue'
+            assert parentNode.parentLeafList == ['parentLeafListEntry1','parentLeafListEntry2']
         and: 'leaves for child element is populated under its node identifier'
             assert parentNode.'child-object'.childLeaf == 'childLeafValue'
         and: 'leaves for grandchild element is populated under its node identifier'
             assert parentNode.'child-object'.'grand-child-object'.grandChildLeaf == 'grandChildLeafValue'
         and: 'data node is associated with anchor name'
-            assert result.get('anchorName') == 'anchor01'
+            assert result.anchorName == 'anchor01'
     }
 
     def 'Data node without leaves and without children.'() {

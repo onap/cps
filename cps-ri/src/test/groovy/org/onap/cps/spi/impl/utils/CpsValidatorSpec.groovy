@@ -20,6 +20,7 @@
 
 package org.onap.cps.spi.impl.utils
 
+import org.onap.cps.spi.PaginationOption
 import org.onap.cps.spi.exceptions.DataValidationException
 import spock.lang.Specification
 
@@ -63,5 +64,14 @@ class CpsValidatorSpec extends Specification {
             objectUnderTest.validateNameCharacters(names)
         then: 'a data validation exception is thrown'
             thrown(DataValidationException)
+    }
+
+    def 'Validate Pagination option with invalid page index and size.'() {
+        when: 'the pagination option is validated using invalid options'
+            objectUnderTest.validatePaginationOption(new PaginationOption(-5, -2))
+        then: 'a data validation exception is thrown'
+            def exceptionThrown = thrown(DataValidationException)
+        and: 'the error was encountered at the following index in #scenario'
+            assert exceptionThrown.getDetails().contains("Invalid page index or size")
     }
 }
