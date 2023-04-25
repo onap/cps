@@ -192,6 +192,25 @@ class CpsRestExceptionHandlerSpec extends Specification {
             exceptionThrown << [new DataNodeNotFoundException('', ''), new NotFoundInDataspaceException('', '')]
     }
 
+    def 'Query data nodes across all anchors using pagination request with #scenario.'() {
+        when: 'data nodes query request is performed'
+        def response = mvc.perform(
+                get("$basePath/v2/dataspaces/dataspace-name/nodes/query")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .param('cps-path', '/cpspath')
+                        .param('descendants', 'all')
+                        .param('pageIndex', pageIndex)
+                        .param('pageSize', pageSize)
+        ).andReturn().response
+        then: 'response code indicates bad input parameters'
+            response.status == BAD_REQUEST.value()
+        where:
+        scenario                            | pageIndex | pageSize
+        'negative page index'               | '-1'      | '2'
+        'negative page size'                | '-2'      | '-2'
+        'negative page index and page size' | '-2'      | '-2'
+    }
+
     /*
      * NB. The test uses 'get anchors' endpoint and associated service method invocation
      * to test the exception handling. The endpoint chosen is not a subject of test.
