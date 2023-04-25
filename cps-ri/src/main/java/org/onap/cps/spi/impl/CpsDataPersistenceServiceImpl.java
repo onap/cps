@@ -49,6 +49,7 @@ import org.onap.cps.cpspath.parser.CpsPathUtil;
 import org.onap.cps.cpspath.parser.PathParsingException;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.FetchDescendantsOption;
+import org.onap.cps.spi.PaginationOption;
 import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.FragmentEntity;
@@ -303,7 +304,8 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     @Timed(value = "cps.data.persistence.service.datanode.query",
             description = "Time taken to query data nodes")
     public List<DataNode> queryDataNodes(final String dataspaceName, final String anchorName, final String cpsPath,
-                                         final FetchDescendantsOption fetchDescendantsOption) {
+                                         final FetchDescendantsOption fetchDescendantsOption,
+                                         final PaginationOption paginationOption) {
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         final AnchorEntity anchorEntity = Strings.isNullOrEmpty(anchorName) ? ALL_ANCHORS
             : anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
@@ -320,6 +322,12 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         } else {
             fragmentEntities = fragmentRepository.findByAnchorAndCpsPath(anchorEntity, cpsPathQuery);
         }
+
+        List<Integer> anchorIds = null;
+        if (paginationOption != null && paginationOption.getPageIndex() > 0 && paginationOption.getPageSize() > 0) {
+            anchorIds = getAnchorIDsForPagination(paginationOption);
+        }
+
         if (cpsPathQuery.hasAncestorAxis()) {
             final Collection<String> ancestorXpaths = processAncestorXpath(fragmentEntities, cpsPathQuery);
             if (anchorEntity == ALL_ANCHORS) {
@@ -333,10 +341,16 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         return createDataNodesFromFragmentEntities(fetchDescendantsOption, fragmentEntities);
     }
 
+    private List<Integer> getAnchorIDsForPagination(final PaginationOption paginationOption) {
+        return anchorRepository.getAnchorIDsForPagination(paginationOption.getPageIndex(),
+                paginationOption.getPageSize());
+    }
+
     @Override
     public List<DataNode> queryDataNodesAcrossAnchors(final String dataspaceName, final String cpsPath,
-                                                      final FetchDescendantsOption fetchDescendantsOption) {
-        return queryDataNodes(dataspaceName, QUERY_ACROSS_ANCHORS, cpsPath, fetchDescendantsOption);
+                                                      final FetchDescendantsOption fetchDescendantsOption,
+                                                      final PaginationOption paginationOption) {
+        return queryDataNodes(dataspaceName, QUERY_ACROSS_ANCHORS, cpsPath, fetchDescendantsOption, paginationOption);
     }
 
     private Collection<FragmentEntity> prefetchDescendantsForFragmentEntities(
