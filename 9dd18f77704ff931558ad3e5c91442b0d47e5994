@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3ff4f42c_8cefcbe8",
+        "filename": "docs/cps-path.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-25T15:28:52Z",
+      "side": 1,
+      "message": "do NOT use uppercase",
+      "range": {
+        "startLine": 240,
+        "startChar": 62,
+        "endLine": 240,
+        "endChar": 65
+      },
+      "revId": "9dd18f77704ff931558ad3e5c91442b0d47e5994",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "70cef414_fa368116",
+        "filename": "docs/cps-path.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-25T15:28:52Z",
+      "side": 1,
+      "message": "do NOT use uppercase\nsuggestion: So and-operators get evaluated first",
+      "range": {
+        "startLine": 240,
+        "startChar": 70,
+        "endLine": 240,
+        "endChar": 75
+      },
+      "revId": "9dd18f77704ff931558ad3e5c91442b0d47e5994",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8d5d132a_66117b6f",
+        "filename": "docs/cps-path.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-25T15:28:52Z",
+      "side": 1,
+      "message": "do NOT use uppercase as that is not according to the syntax for clarity use quotation marks",
+      "range": {
+        "startLine": 240,
+        "startChar": 38,
+        "endLine": 240,
+        "endChar": 42
+      },
+      "revId": "9dd18f77704ff931558ad3e5c91442b0d47e5994",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
