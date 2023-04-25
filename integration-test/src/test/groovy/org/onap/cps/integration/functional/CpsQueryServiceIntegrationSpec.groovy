@@ -63,19 +63,21 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
             assert result.leaves.sort() == expectedLeaves.sort()
             println(expectedLeaves.toArray())
         where: 'the following data is used'
-            scenario                                | cpspath                                                    || expectedResultSize | expectedLeaves
-            'the "OR" condition'                    | '//books[@lang="English" or @price=15]'                    || 6                  | [[lang: "English", price: 15, title: "Annihilation", authors: ["Jeff VanderMeer"], editions: [2014]],
-                                                                                                                                          [lang: "English", price: 15, title: "The Gruffalo", authors: ["Julia Donaldson"], editions: [1999]],
-                                                                                                                                          [lang: "English", price: 14, title: "The Light Fantastic", authors: ["Terry Pratchett"], editions: [1986]],
-                                                                                                                                          [lang: "English", price: 13, title: "Good Omens", authors: ["Terry Pratchett", "Neil Gaiman"], editions: [2006]],
-                                                                                                                                          [lang: "English", price: 12, title: "The Colour of Magic", authors: ["Terry Pratchett"], editions: [1983]],
-                                                                                                                                          [lang: "English", price: 10, title: "Matilda", authors: ["Roald Dahl"], editions: [1988, 2000]]]
-            'the "OR" condition with non-json data' | '//books[@title="xyz" or @price=15]'                       || 2                  | [[lang: "English", price: 15, title: "Annihilation", authors: ["Jeff VanderMeer"], editions: [2014]],
-                                                                                                                                          [lang: "English", price: 15, title: "The Gruffalo", authors: ["Julia Donaldson"], editions: [1999]]]
-            'combination of multiple AND'           | '//books[@lang="English" and @price=15 and @edition=1983]' || 0                  | []
-            'combination of multiple OR'            | '//books[ @title="Matilda" or @price=15 or @edition=1983]' || 3                  | [[lang: "English", price: 15, title: "Annihilation", authors: ["Jeff VanderMeer"], editions: [2014]],
-                                                                                                                                          [lang: "English", price: 10, title: "Matilda", authors: ["Roald Dahl"], editions: [1988, 2000]],
-                                                                                                                                          [lang: "English", price: 15, title: "The Gruffalo", authors: ["Julia Donaldson"], editions: [1999]]]
+            scenario                                | cpspath                                                          || expectedResultSize | expectedLeaves
+            'the "OR" condition'                    | '//books[@lang="English" or @price=15]'                          || 6                  | [[lang: "English", price: 15, title: "Annihilation", authors: ["Jeff VanderMeer"], editions: [2014]],
+                                                                                                                                                [lang: "English", price: 15, title: "The Gruffalo", authors: ["Julia Donaldson"], editions: [1999]],
+                                                                                                                                                [lang: "English", price: 14, title: "The Light Fantastic", authors: ["Terry Pratchett"], editions: [1986]],
+                                                                                                                                                [lang: "English", price: 13, title: "Good Omens", authors: ["Terry Pratchett", "Neil Gaiman"], editions: [2006]],
+                                                                                                                                                [lang: "English", price: 12, title: "The Colour of Magic", authors: ["Terry Pratchett"], editions: [1983]],
+                                                                                                                                                [lang: "English", price: 10, title: "Matilda", authors: ["Roald Dahl"], editions: [1988, 2000]]]
+            'the "OR" condition with non-json data' | '//books[@title="xyz" or @price=15]'                             || 2                  | [[lang: "English", price: 15, title: "Annihilation", authors: ["Jeff VanderMeer"], editions: [2014]],
+                                                                                                                                                [lang: "English", price: 15, title: "The Gruffalo", authors: ["Julia Donaldson"], editions: [1999]]]
+            'combination of multiple AND'           | '//books[@lang="English" and @price=15 and @edition=1983]'       || 0                  | []
+            'combination of multiple OR'            | '//books[ @title="Matilda" or @price=15 or @edition=1983]'       || 3                  | [[lang: "English", price: 15, title: "Annihilation", authors: ["Jeff VanderMeer"], editions: [2014]],
+                                                                                                                                                [lang: "English", price: 10, title: "Matilda", authors: ["Roald Dahl"], editions: [1988, 2000]],
+                                                                                                                                                [lang: "English", price: 15, title: "The Gruffalo", authors: ["Julia Donaldson"], editions: [1999]]]
+            'combination of AND/OR'                 | '//books[@edition=1983 and @price=15 or @title="Good Omens"]'    || 1                  | [[lang: "English", price: 13, title: "Good Omens", authors: ["Terry Pratchett", "Neil Gaiman"], editions: [2006]]]
+            'combination of OR/AND'                 | '//books[@title="Annihilation" or @price=39 and @lang="arabic"]' || 1                  | [[lang: "English", price: 15, title: "Annihilation", authors: ["Jeff VanderMeer"], editions: [2014]]]
     }
 
     def 'Cps Path query for leaf value(s) with #scenario.'() {
@@ -170,17 +172,19 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
             def bookTitles = result.collect { it.getLeaves().get('title') }
             assert bookTitles.sort() == expectedBookTitles.sort()
         where: 'the following data is used'
-            scenario                                                   | cpsPath                                                    || expectedBookTitles
-            'one leaf'                                                 | '//books[@price=14]'                                       || ['The Light Fantastic']
-            'one text'                                                 | '//books/authors[text()="Terry Pratchett"]'                || ['Good Omens', 'The Colour of Magic', 'The Light Fantastic']
-            'more than one leaf'                                       | '//books[@price=12 and @lang="English"]'                   || ['The Colour of Magic']
-            'more than one leaf has "OR" condition'                    | '//books[@lang="English" or @price=15]'                    || ['Annihilation', 'Good Omens', 'Matilda', 'The Colour of Magic', 'The Gruffalo', 'The Light Fantastic']
-            'more than one leaf has "OR" condition with non-json data' | '//books[@title="xyz" or @price=13]'                       || ['Good Omens']
-            'more than one leaf has multiple AND'                      | '//books[@lang="English" and @price=13 and @edition=1983]' || []
-            'more than one leaf has multiple OR'                       | '//books[ @title="Matilda" or @price=15 or @edition=2006]' || ['Annihilation', 'Matilda', 'The Gruffalo']
-            'leaves reversed in order'                                 | '//books[@lang="English" and @price=12]'                   || ['The Colour of Magic']
-            'leaf and text'                                            | '//books[@price=14]/authors[text()="Terry Pratchett"]'     || ['The Light Fantastic']
-            'leaf and contains'                                        | '//books[contains(@price,"13")]'                           || ['Good Omens']
+            scenario                                                   | cpsPath                                                                || expectedBookTitles
+            'one leaf'                                                 | '//books[@price=14]'                                                   || ['The Light Fantastic']
+            'one text'                                                 | '//books/authors[text()="Terry Pratchett"]'                            || ['Good Omens', 'The Colour of Magic', 'The Light Fantastic']
+            'more than one leaf'                                       | '//books[@price=12 and @lang="English"]'                               || ['The Colour of Magic']
+            'more than one leaf has "OR" condition'                    | '//books[@lang="English" or @price=15]'                                || ['Annihilation', 'Good Omens', 'Matilda', 'The Colour of Magic', 'The Gruffalo', 'The Light Fantastic']
+            'more than one leaf has "OR" condition with non-json data' | '//books[@title="xyz" or @price=13]'                                   || ['Good Omens']
+            'more than one leaf has multiple AND'                      | '//books[@lang="English" and @price=13 and @edition=1983]'             || []
+            'more than one leaf has multiple OR'                       | '//books[ @title="Matilda" or @price=15 or @edition=2006]'             || ['Annihilation', 'Matilda', 'The Gruffalo']
+            'leaves reversed in order'                                 | '//books[@lang="English" and @price=12]'                               || ['The Colour of Magic']
+            'more than one leaf has combination of AND/OR'             | '//books[@edition=1983 and @price=13 or @title="Good Omens"]'          || ['Good Omens']
+            'more than one leaf has OR/AND'                            | '//books[@title="The Light Fantastic" or @price=11 and @edition=1983]' || ['The Light Fantastic']
+            'leaf and text'                                            | '//books[@price=14]/authors[text()="Terry Pratchett"]'                 || ['The Light Fantastic']
+            'leaf and contains'                                        | '//books[contains(@price,"13")]'                                       || ['Good Omens']
     }
 
     def 'Cps Path query using descendant anywhere with #scenario condition(s) for a list element.'() {
