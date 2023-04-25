@@ -200,11 +200,12 @@ public interface CpsDataPersistenceService {
      * @param cpsPath                cps path
      * @param fetchDescendantsOption defines whether the descendants of the node(s) found by the query should be
      *                               included in the output
+     * @param paginationOption pagination option
      * @return the data nodes found i.e. 0 or more data nodes
      */
     List<DataNode> queryDataNodesAcrossAnchors(String dataspaceName,
-                                  String cpsPath, FetchDescendantsOption fetchDescendantsOption);
-
+                                  String cpsPath, FetchDescendantsOption fetchDescendantsOption,
+                                  PaginationOption paginationOption);
 
     /**
      * Starts a session which allows use of locks and batch interaction with the persistence service.
@@ -230,4 +231,12 @@ public interface CpsDataPersistenceService {
      * @param timeoutInMilliseconds lock attempt timeout in milliseconds
      */
     void lockAnchor(String sessionID, String dataspaceName, String anchorName, Long timeoutInMilliseconds);
+
+    /**
+     * Query total anchors for dataspace name and cps path.
+     * @param dataspaceName datasoace name
+     * @param cpsPath cps path
+     * @return total anchors for dataspace name and cps path
+     */
+    Integer countAnchorsForDataspaceAndCpsPath(String dataspaceName, String cpsPath);
 }
