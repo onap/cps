@@ -25,6 +25,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.spi.PaginationOption;
 import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.spi.utils.CpsValidator;
 import org.springframework.stereotype.Component;
@@ -52,6 +53,20 @@ public class CpsValidatorImpl implements CpsValidator {
                             + (name.indexOf(unsupportedCharacter) + 1));
                 }
             }
+        }
+    }
+
+    @Override
+    public void validatePaginationOption(final PaginationOption paginationOption) {
+        if (paginationOption == null || paginationOption == PaginationOption.NO_PAGINATION) {
+            return;
+        }
+        if (paginationOption.getPageIndex() == null && paginationOption.getPageSize() == null) {
+            return;
+        }
+        if (!paginationOption.isQueryForPagination()) {
+            throw new DataValidationException("Pagination validation error.",
+                    " Invalid pageIndex or PageSize");
         }
     }
 }
