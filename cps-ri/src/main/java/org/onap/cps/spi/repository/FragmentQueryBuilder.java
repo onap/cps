@@ -21,8 +21,10 @@
 
 package org.onap.cps.spi.repository;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import javax.persistence.EntityManager;
@@ -59,7 +61,8 @@ public class FragmentQueryBuilder {
      * @return a executable query object
      */
     public Query getQueryForAnchorAndCpsPath(final AnchorEntity anchorEntity, final CpsPathQuery cpsPathQuery) {
-        return getQueryForDataspaceOrAnchorAndCpsPath(anchorEntity.getDataspace(), anchorEntity, cpsPathQuery);
+        return getQueryForDataspaceOrAnchorAndCpsPath(anchorEntity.getDataspace(),
+                anchorEntity, cpsPathQuery, Collections.EMPTY_LIST);
     }
 
     /**
@@ -70,13 +73,45 @@ public class FragmentQueryBuilder {
      * @return a executable query object
      */
     public Query getQueryForDataspaceAndCpsPath(final DataspaceEntity dataspaceEntity,
-                                                final CpsPathQuery cpsPathQuery) {
-        return getQueryForDataspaceOrAnchorAndCpsPath(dataspaceEntity, ACROSS_ALL_ANCHORS, cpsPathQuery);
+                                                final CpsPathQuery cpsPathQuery,
+                                                final List<Long> anchorIdsForPagination) {
+        return getQueryForDataspaceOrAnchorAndCpsPath(dataspaceEntity, ACROSS_ALL_ANCHORS,
+                cpsPathQuery, anchorIdsForPagination);
+    }
+
+    /**
+     * Get query for dataspace, cps path, page index and page size.
+     * @param dataspaceEntity data space entity
+     * @param cpsPathQuery cps path query
+     * @param pageIndex page index for pagination request
+     * @param pageSize page size for pagination request
+     * @return query for given dataspace, cps path and pagination parameters
+     */
+    public Query getQueryForAnchorIdsForPagination(final DataspaceEntity dataspaceEntity,
+                                                   final CpsPathQuery cpsPathQuery,
+                                                   final Integer pageIndex, final Integer pageSize) {
+        final StringBuilder sqlStringBuilder = new StringBuilder();
+        final Map<String, Object> queryParameters = new HashMap<>();
+        sqlStringBuilder.append("SELECT distinct(fragment.anchor_id) FROM fragment "
+                + "JOIN anchor ON anchor.id = fragment.anchor_id WHERE dataspace_id = :dataspaceId");
+        queryParameters.put("dataspaceId", dataspaceEntity.getId());
+        addXpathSearch(cpsPathQuery, sqlStringBuilder, queryParameters);
+        addLeafConditions(cpsPathQuery, sqlStringBuilder);
+        addTextFunctionCondition(cpsPathQuery, sqlStringBuilder, queryParameters);
+        addContainsFunctionCondition(cpsPathQuery, sqlStringBuilder, queryParameters);
+        if (pageIndex > 0 && pageSize > 0) {
+            addPaginationCondition(sqlStringBuilder, queryParameters, pageIndex, pageSize);
+        }
+
+        final Query query = entityManager.createNativeQuery(sqlStringBuilder.toString());
+        setQueryParameters(query, queryParameters);
+        return query;
     }
 
     private Query getQueryForDataspaceOrAnchorAndCpsPath(final DataspaceEntity dataspaceEntity,
                                                          final AnchorEntity anchorEntity,
-                                                         final CpsPathQuery cpsPathQuery) {
+                                                         final CpsPathQuery cpsPathQuery,
+                                                         final List<Long> anchorIdsForPagination) {
         final StringBuilder sqlStringBuilder = new StringBuilder();
         final Map<String, Object> queryParameters = new HashMap<>();
 
@@ -84,6 +119,10 @@ public class FragmentQueryBuilder {
             sqlStringBuilder.append("SELECT fragment.* FROM fragment JOIN anchor ON anchor.id = fragment.anchor_id"
                 + " WHERE dataspace_id = :dataspaceId");
             queryParameters.put("dataspaceId", dataspaceEntity.getId());
+            if (!anchorIdsForPagination.isEmpty()) {
+                sqlStringBuilder.append(" AND anchor_id IN (:anchorIdsForPagination)");
+                queryParameters.put("anchorIdsForPagination", anchorIdsForPagination);
+            }
         } else {
             sqlStringBuilder.append("SELECT * FROM fragment WHERE anchor_id = :anchorId");
             queryParameters.put("anchorId", anchorEntity.getId());
@@ -108,6 +147,15 @@ public class FragmentQueryBuilder {
         } else {
             queryParameters.put("escapedXpath", "%/" + EscapeUtils.escapeForSqlLike(cpsPathQuery.getDescendantName()));
         }
+    }
+
+    private static void addPaginationCondition(final StringBuilder sqlStringBuilder,
+                                               final Map<String, Object> queryParameters,
+                                               final Integer pageIndex, final Integer pageSize) {
+        final Integer offset = (pageIndex - 1) * pageSize;
+        sqlStringBuilder.append(" LIMIT :pageSize OFFSET :offset");
+        queryParameters.put("pageSize", pageSize);
+        queryParameters.put("offset", offset);
     }
 
     private static Integer getTextValueAsInt(final CpsPathQuery cpsPathQuery) {
