@@ -199,8 +199,8 @@ public interface CpsDataPersistenceService {
      *                               included in the output
      * @return the data nodes found i.e. 0 or more data nodes
      */
-    List<DataNode> queryDataNodes(String dataspaceName, String anchorName,
-                                  String cpsPath, FetchDescendantsOption fetchDescendantsOption);
+    List<DataNode> queryDataNodes(String dataspaceName, String anchorName, String cpsPath,
+                                  FetchDescendantsOption fetchDescendantsOption);
 
     /**
      * Get a datanode by dataspace name and cps path across all anchors.
@@ -212,7 +212,7 @@ public interface CpsDataPersistenceService {
      * @return the data nodes found i.e. 0 or more data nodes
      */
     List<DataNode> queryDataNodesAcrossAnchors(String dataspaceName,
-                                  String cpsPath, FetchDescendantsOption fetchDescendantsOption);
+        String cpsPath, FetchDescendantsOption fetchDescendantsOption, PaginationOption paginationOption);
 
 
     /**

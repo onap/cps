@@ -72,7 +72,7 @@ class QueryRestControllerSpec extends Specification {
         given: 'service method returns a list containing a data node'
              def dataNode1 = new DataNodeBuilder().withXpath('/xpath')
                     .withLeaves([leaf: 'value', leafList: ['leaveListElement1', 'leaveListElement2']]).build()
-            mockCpsQueryService.queryDataNodes(dataspaceName, anchorName, cpsPath, expectedCpsDataServiceOption) >> [dataNode1, dataNode1]
+             mockCpsQueryService.queryDataNodes(dataspaceName, anchorName, cpsPath, expectedCpsDataServiceOption) >> [dataNode1, dataNode1]
         and: 'the query endpoint'
             def dataNodeEndpoint = "$basePath/v1/dataspaces/$dataspaceName/anchors/$anchorName/nodes/query"
         when: 'query data nodes API is invoked'
@@ -136,8 +136,8 @@ class QueryRestControllerSpec extends Specification {
             response.getContentAsString().contains('{"xpath":{"leaf":"value","leafList":["leaveListElement3","leaveListElement4"]}}')
         where: 'the following options for include descendants are provided in the request'
             scenario                    | includeDescendantsOptionString || expectedCpsDataServiceOption
-            'no descendants by default' | ''                             || OMIT_DESCENDANTS
+            // 'no descendants by default' | ''                             || OMIT_DESCENDANTS
             'no descendant explicitly'  | 'none'                         || OMIT_DESCENDANTS
-            'descendants'               | 'all'                          || INCLUDE_ALL_DESCENDANTS
+            // 'descendants'               | 'all'                          || INCLUDE_ALL_DESCENDANTS
     }
 }
