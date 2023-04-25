@@ -23,7 +23,6 @@
 
 package org.onap.cps.spi.impl;
 
-import com.google.common.base.Strings;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ImmutableSet.Builder;
 import io.micrometer.core.annotation.Timed;
@@ -49,6 +48,7 @@ import org.onap.cps.cpspath.parser.CpsPathUtil;
 import org.onap.cps.cpspath.parser.PathParsingException;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.FetchDescendantsOption;
+import org.onap.cps.spi.PaginationOption;
 import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.FragmentEntity;
@@ -305,8 +305,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     public List<DataNode> queryDataNodes(final String dataspaceName, final String anchorName, final String cpsPath,
                                          final FetchDescendantsOption fetchDescendantsOption) {
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
-        final AnchorEntity anchorEntity = Strings.isNullOrEmpty(anchorName) ? ALL_ANCHORS
-            : anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
+        final AnchorEntity anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
         final CpsPathQuery cpsPathQuery;
         try {
             cpsPathQuery = CpsPathUtil.getCpsPathQuery(cpsPath);
@@ -315,28 +314,64 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         }
 
         Collection<FragmentEntity> fragmentEntities;
-        if (anchorEntity == ALL_ANCHORS) {
-            fragmentEntities = fragmentRepository.findByDataspaceAndCpsPath(dataspaceEntity, cpsPathQuery);
-        } else {
-            fragmentEntities = fragmentRepository.findByAnchorAndCpsPath(anchorEntity, cpsPathQuery);
-        }
+        fragmentEntities = fragmentRepository.findByAnchorAndCpsPath(anchorEntity, cpsPathQuery);
         if (cpsPathQuery.hasAncestorAxis()) {
             final Collection<String> ancestorXpaths = processAncestorXpath(fragmentEntities, cpsPathQuery);
-            if (anchorEntity == ALL_ANCHORS) {
-                fragmentEntities = fragmentRepository.findByDataspaceAndXpathIn(dataspaceEntity, ancestorXpaths);
-            } else {
-                fragmentEntities = fragmentRepository.findByAnchorAndXpathIn(anchorEntity, ancestorXpaths);
-            }
+            fragmentEntities = fragmentRepository.findByAnchorAndXpathIn(anchorEntity, ancestorXpaths);
         }
         fragmentEntities = prefetchDescendantsForFragmentEntities(fetchDescendantsOption, anchorEntity,
             fragmentEntities);
         return createDataNodesFromFragmentEntities(fetchDescendantsOption, fragmentEntities);
     }
 
+    private List<Integer> getAnchorIDsForPagination(final int dataspaceId, final PaginationOption paginationOption) {
+        return anchorRepository.getAnchorIDsForPagination(dataspaceId, paginationOption.getPageIndex(),
+                paginationOption.getPageSize());
+    }
+
     @Override
+    @Timed(value = "cps.data.persistence.service.datanode.query.anchors",
+            description = "Time taken to query data nodes across all anchors")
     public List<DataNode> queryDataNodesAcrossAnchors(final String dataspaceName, final String cpsPath,
-                                                      final FetchDescendantsOption fetchDescendantsOption) {
-        return queryDataNodes(dataspaceName, QUERY_ACROSS_ANCHORS, cpsPath, fetchDescendantsOption);
+                                                      final FetchDescendantsOption fetchDescendantsOption,
+                                                      final PaginationOption paginationOption) {
+        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        final CpsPathQuery cpsPathQuery;
+        try {
+            cpsPathQuery = CpsPathUtil.getCpsPathQuery(cpsPath);
+        } catch (final PathParsingException e) {
+            throw new CpsPathException(e.getMessage());
+        }
+
+        List<Integer> anchorIds = Collections.emptyList();
+        if (paginationOption != null && paginationOption.getPageIndex() > 0 && paginationOption.getPageSize() > 0) {
+            anchorIds = getAnchorIDsForPagination(dataspaceEntity.getId(), paginationOption);
+            if (anchorIds.isEmpty()) {
+                return Collections.emptyList();
+            }
+        }
+
+        Collection<FragmentEntity> fragmentEntities =
+            fragmentRepository.findByDataspaceAndCpsPath(dataspaceEntity, cpsPathQuery, anchorIds);
+
+        if (cpsPathQuery.hasAncestorAxis()) {
+            final Collection<String> ancestorXpaths = processAncestorXpath(fragmentEntities, cpsPathQuery);
+            if (anchorIds.isEmpty()) {
+                fragmentEntities = fragmentRepository.findByDataspaceAndXpathIn(dataspaceEntity, ancestorXpaths);
+            } else {
+                fragmentEntities = fragmentRepository.findByDataspaceIdAnchorIdsAndXpathIn(dataspaceEntity.getId(),
+                        ancestorXpaths.toArray(new String[0]), anchorIds.toArray(new Integer[0]));
+            }
+        }
+        fragmentEntities = prefetchDescendantsForFragmentEntities(fetchDescendantsOption, ALL_ANCHORS,
+                fragmentEntities);
+        return createDataNodesFromFragmentEntities(fetchDescendantsOption, fragmentEntities);
+    }
+
+    @Override
+    public Integer queryTotalAnchorsForDataspace(final String dataspaceName) {
+        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        return anchorRepository.countByDataspace(dataspaceEntity);
     }
 
     private Collection<FragmentEntity> prefetchDescendantsForFragmentEntities(
