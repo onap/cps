@@ -30,5 +30,6 @@ import org.onap.cps.spi.entities.FragmentEntity;
 public interface FragmentRepositoryCpsPathQuery {
     List<FragmentEntity> findByAnchorAndCpsPath(AnchorEntity anchorEntity, CpsPathQuery cpsPathQuery);
 
-    List<FragmentEntity> findByDataspaceAndCpsPath(DataspaceEntity dataspaceEntity, CpsPathQuery cpsPathQuery);
+    List<FragmentEntity> findByDataspaceAndCpsPath(DataspaceEntity dataspaceEntity,
+                                                   CpsPathQuery cpsPathQuery, List<Integer> anchorIds);
 }

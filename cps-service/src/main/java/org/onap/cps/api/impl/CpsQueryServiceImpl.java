@@ -27,6 +27,7 @@ import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.CpsQueryService;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.FetchDescendantsOption;
+import org.onap.cps.spi.PaginationOption;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.utils.CpsValidator;
 import org.springframework.stereotype.Service;
@@ -42,15 +43,24 @@ public class CpsQueryServiceImpl implements CpsQueryService {
     @Timed(value = "cps.data.service.datanode.query",
             description = "Time taken to query data nodes")
     public Collection<DataNode> queryDataNodes(final String dataspaceName, final String anchorName,
-        final String cpsPath, final FetchDescendantsOption fetchDescendantsOption) {
+            final String cpsPath, final FetchDescendantsOption fetchDescendantsOption) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
-        return cpsDataPersistenceService.queryDataNodes(dataspaceName, anchorName, cpsPath, fetchDescendantsOption);
+        return cpsDataPersistenceService.queryDataNodes(dataspaceName, anchorName, cpsPath,
+                fetchDescendantsOption);
     }
 
     @Override
     public Collection<DataNode> queryDataNodesAcrossAnchors(final String dataspaceName,
-        final String cpsPath, final FetchDescendantsOption fetchDescendantsOption) {
+                                final String cpsPath, final FetchDescendantsOption fetchDescendantsOption,
+                                final PaginationOption paginationOption) {
         cpsValidator.validateNameCharacters(dataspaceName);
-        return cpsDataPersistenceService.queryDataNodesAcrossAnchors(dataspaceName, cpsPath, fetchDescendantsOption);
+        return cpsDataPersistenceService.queryDataNodesAcrossAnchors(dataspaceName, cpsPath,
+                fetchDescendantsOption, paginationOption);
+    }
+
+    @Override
+    public Integer queryTotalAnchorsForDataspace(final String dataspaceName) {
+        cpsValidator.validateNameCharacters(dataspaceName);
+        return cpsDataPersistenceService.queryTotalAnchorsForDataspace(dataspaceName);
     }
 }

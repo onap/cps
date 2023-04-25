@@ -21,6 +21,8 @@
 
 package org.onap.cps.spi.repository;
 
+
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -61,7 +63,8 @@ public class FragmentQueryBuilder {
      * @return a executable query object
      */
     public Query getQueryForAnchorAndCpsPath(final AnchorEntity anchorEntity, final CpsPathQuery cpsPathQuery) {
-        return getQueryForDataspaceOrAnchorAndCpsPath(anchorEntity.getDataspace(), anchorEntity, cpsPathQuery);
+        return getQueryForDataspaceOrAnchorAndCpsPath(anchorEntity.getDataspace(), anchorEntity,
+                cpsPathQuery, Collections.EMPTY_LIST);
     }
 
     /**
@@ -72,8 +75,8 @@ public class FragmentQueryBuilder {
      * @return a executable query object
      */
     public Query getQueryForDataspaceAndCpsPath(final DataspaceEntity dataspaceEntity,
-                                                final CpsPathQuery cpsPathQuery) {
-        return getQueryForDataspaceOrAnchorAndCpsPath(dataspaceEntity, ACROSS_ALL_ANCHORS, cpsPathQuery);
+                                                final CpsPathQuery cpsPathQuery, final List<Integer> anchorIds) {
+        return getQueryForDataspaceOrAnchorAndCpsPath(dataspaceEntity, ACROSS_ALL_ANCHORS, cpsPathQuery, anchorIds);
     }
 
     private static String getXpathSqlRegex(final CpsPathQuery cpsPathQuery) {
@@ -84,18 +87,13 @@ public class FragmentQueryBuilder {
 
     private Query getQueryForDataspaceOrAnchorAndCpsPath(final DataspaceEntity dataspaceEntity,
                                                          final AnchorEntity anchorEntity,
-                                                         final CpsPathQuery cpsPathQuery) {
+                                                         final CpsPathQuery cpsPathQuery,
+                                                         final List<Integer> anchorIds) {
         final StringBuilder sqlStringBuilder = new StringBuilder();
         final Map<String, Object> queryParameters = new HashMap<>();
 
-        if (anchorEntity == ACROSS_ALL_ANCHORS) {
-            sqlStringBuilder.append("SELECT fragment.* FROM fragment JOIN anchor ON anchor.id = fragment.anchor_id"
-                + " WHERE dataspace_id = :dataspaceId");
-            queryParameters.put("dataspaceId", dataspaceEntity.getId());
-        } else {
-            sqlStringBuilder.append("SELECT * FROM fragment WHERE anchor_id = :anchorId");
-            queryParameters.put("anchorId", anchorEntity.getId());
-        }
+        sqlStringBuilder.append("SELECT * FROM fragment WHERE ");
+        addDataspaceOrAnchor(sqlStringBuilder, queryParameters, dataspaceEntity, anchorEntity, anchorIds);
         addXpathSearch(cpsPathQuery, sqlStringBuilder, queryParameters);
         addLeafConditions(cpsPathQuery, sqlStringBuilder);
         addTextFunctionCondition(cpsPathQuery, sqlStringBuilder, queryParameters);
@@ -104,6 +102,24 @@ public class FragmentQueryBuilder {
         final Query query = entityManager.createNativeQuery(sqlStringBuilder.toString(), FragmentEntity.class);
         setQueryParameters(query, queryParameters);
         return query;
+    }
+
+    private static void addDataspaceOrAnchor(final StringBuilder sqlStringBuilder,
+                                             final Map<String, Object> queryParameters,
+                                             final DataspaceEntity dataspaceEntity,
+                                             final AnchorEntity anchorEntity,
+                                             final List<Integer> anchorIds) {
+        if (anchorEntity == ACROSS_ALL_ANCHORS) {
+            sqlStringBuilder.append("dataspace_id = :dataspaceId");
+            queryParameters.put("dataspaceId", dataspaceEntity.getId());
+            if (!anchorIds.isEmpty()) {
+                sqlStringBuilder.append(" AND anchor_id IN (:anchorIds)");
+                queryParameters.put("anchorIds", anchorIds);
+            }
+        } else {
+            sqlStringBuilder.append("anchor_id = :anchorId");
+            queryParameters.put("anchorId", anchorEntity.getId());
+        }
     }
 
     private static void addXpathSearch(final CpsPathQuery cpsPathQuery,
