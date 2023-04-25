@@ -21,6 +21,7 @@
 package org.onap.cps.spi.repository;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.DataspaceEntity;
@@ -99,4 +100,8 @@ public interface AnchorRepository extends JpaRepository<AnchorEntity, Integer> {
         deleteAllByDataspaceIdAndNameIn(dataspaceEntity.getId(), anchorNames.toArray(new String[0]));
     }
 
+    @Query(value = "SELECT id FROM anchor WHERE dataspace_id = :dataspaceId ORDER BY id "
+            + "LIMIT :pageSize OFFSET (:pageIndex -1) * :pageSize", nativeQuery = true)
+    List<Integer> getAnchorIDsForPagination(@Param("dataspaceId") int dataspaceId,
+                                            @Param("pageIndex") int pageIndex, @Param("pageSize") int pageSize);
 }

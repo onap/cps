@@ -199,8 +199,8 @@ public interface CpsDataPersistenceService {
      *                               included in the output
      * @return the data nodes found i.e. 0 or more data nodes
      */
-    List<DataNode> queryDataNodes(String dataspaceName, String anchorName,
-                                  String cpsPath, FetchDescendantsOption fetchDescendantsOption);
+    List<DataNode> queryDataNodes(String dataspaceName, String anchorName, String cpsPath,
+                                  FetchDescendantsOption fetchDescendantsOption);
 
     /**
      * Get a datanode by dataspace name and cps path across all anchors.
@@ -212,8 +212,15 @@ public interface CpsDataPersistenceService {
      * @return the data nodes found i.e. 0 or more data nodes
      */
     List<DataNode> queryDataNodesAcrossAnchors(String dataspaceName,
-                                  String cpsPath, FetchDescendantsOption fetchDescendantsOption);
+        String cpsPath, FetchDescendantsOption fetchDescendantsOption, PaginationOption paginationOption);
 
+
+    /**
+     * Query total number of anchors for a given dataspace.
+     * @param dataspaceName dataspace name.
+     * @return total number of anchors for a given dataspace.
+     */
+    Integer queryTotalAnchorsForDataspace(String dataspaceName);
 
     /**
      * Starts a session which allows use of locks and batch interaction with the persistence service.
