@@ -73,7 +73,8 @@ public class QueryRestController implements CpsQueryApi {
 
     @Override
     public ResponseEntity<Object> getNodesByDataspaceAndCpsPath(final String dataspaceName,
-        final String cpsPath, final String fetchDescendantsOptionAsString) {
+        final String cpsPath, final String fetchDescendantsOptionAsString,
+        final Integer pageIndex, final Integer pageSize) {
         final FetchDescendantsOption fetchDescendantsOption =
                 FetchDescendantsOption.getFetchDescendantsOption(fetchDescendantsOptionAsString);
         final Collection<DataNode> dataNodes =
