@@ -24,7 +24,7 @@ package org.onap.cps.cpspath.parser;
 import static org.onap.cps.cpspath.parser.CpsPathPrefixType.DESCENDANT;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -47,7 +47,7 @@ public class CpsPathBuilder extends CpsPathBaseListener {
 
     final CpsPathQuery cpsPathQuery = new CpsPathQuery();
 
-    final Map<String, Object> leavesData = new HashMap<>();
+    final Map<String, Object> leavesData = new LinkedHashMap<>();
 
     final StringBuilder normalizedXpathBuilder = new StringBuilder();
 
