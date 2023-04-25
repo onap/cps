@@ -205,7 +205,6 @@ public interface CpsDataPersistenceService {
     List<DataNode> queryDataNodesAcrossAnchors(String dataspaceName,
                                   String cpsPath, FetchDescendantsOption fetchDescendantsOption);
 
-
     /**
      * Starts a session which allows use of locks and batch interaction with the persistence service.
      *

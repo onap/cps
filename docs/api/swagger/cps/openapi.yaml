@@ -2352,6 +2352,22 @@ paths:
           type: string
           example: "3"
           default: none
+      - name: pageIndex
+        in: query
+        description: "page index for pagination over anchors"
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          default: 1
+      - name: pageSize
+        in: query
+        description: "number of records to (anchors) to query per page"
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          default: 1
       responses:
         "200":
           description: OK
