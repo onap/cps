@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bec94248_aad5cec9",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathQuerySpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-25T10:31:07Z",
+      "side": 1,
+      "message": "insert a and labeldetailing the order is retained\nand: \u0027the correct operator(s) are return in the correct order\u0027",
+      "range": {
+        "startLine": 109,
+        "startChar": 3,
+        "endLine": 110,
+        "endChar": 60
+      },
+      "revId": "4b216e131d25ae390a5693c5c4074644b7ab9687",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
