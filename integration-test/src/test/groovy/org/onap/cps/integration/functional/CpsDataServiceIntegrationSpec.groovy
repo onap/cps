@@ -58,7 +58,7 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
         then: 'the tree consist ouf of #expectNumberOfDataNodes data nodes'
             assert countDataNodesInTree(result) == expectNumberOfDataNodes
         and: 'the top level data node has the expected attribute and value'
-            assert result.leaves['bookstore-name'] == ['Easons']
+            assert result.leaves['bookstore-name'] == ['Easons-1']
         and: 'they are from the correct dataspace'
             assert result.dataspace == [FUNCTIONAL_TEST_DATASPACE_1]
         and: 'they are from the correct anchor'
@@ -74,9 +74,9 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
     def 'Read bookstore top-level container(s) using "root" path variations.'() {
         when: 'get data nodes for bookstore container'
             def result = objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, root, OMIT_DESCENDANTS)
-        then: 'the tree consist ouf of one data node'
+        then: 'the tree consist correct number of data nodes'
             assert countDataNodesInTree(result) == 2
-        and: 'the top level data node has the expected attribute and value'
+        and: 'the top level data node has the expected number of leaves'
             assert result.leaves.size() == 2
         where: 'the following variations of "root" are used'
             root << [ '/', '' ]
@@ -324,20 +324,6 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
             'new code, new child'           | 'new'        | ', "books" : [ { "title": "New Book" } ]' || 2
     }
 
-    def 'Update multiple data node leaves.'() {
-        given: 'Updated json for bookstore data'
-            def jsonData =  "{'book-store:books':{'lang':'English/French','price':100,'title':'Matilda'}}"
-        when: 'update is performed for leaves'
-            objectUnderTest.updateNodeLeaves(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_2, "/bookstore/categories[@code='1']", jsonData, now)
-        then: 'the updated data nodes are retrieved'
-            def result = cpsDataService.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_2, "/bookstore/categories[@code=1]/books[@title='Matilda']", INCLUDE_ALL_DESCENDANTS)
-        and: 'the leaf values are updated as expected'
-            assert result.leaves['lang'] == ['English/French']
-            assert result.leaves['price'] == [100]
-        cleanup:
-            restoreBookstoreDataAnchor(2)
-    }
-
     def 'Update data node leaves for node that has no leaves (yet).'() {
         given: 'new (webinfo) datanode without leaves'
             def json = '{"webinfo": {} }'
@@ -380,6 +366,20 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
             result.leaves.'contact-email'[0] == 'info@newdomain.com'
         cleanup:
             restoreBookstoreDataAnchor(1)
+    }
+
+    def 'Update multiple data node leaves.'() {
+        given: 'Updated json for bookstore data'
+        def jsonData =  "{'book-store:books':{'lang':'English/French','price':100,'title':'Matilda'}}"
+        when: 'update is performed for leaves'
+        objectUnderTest.updateNodeLeaves(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_2, "/bookstore/categories[@code='1']", jsonData, now)
+        then: 'the updated data nodes are retrieved'
+        def result = cpsDataService.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_2, "/bookstore/categories[@code=1]/books[@title='Matilda']", INCLUDE_ALL_DESCENDANTS)
+        and: 'the leaf values are updated as expected'
+        assert result.leaves['lang'] == ['English/French']
+        assert result.leaves['price'] == [100]
+        cleanup:
+        restoreBookstoreDataAnchor(2)
     }
 
     def countDataNodesInBookstore() {
