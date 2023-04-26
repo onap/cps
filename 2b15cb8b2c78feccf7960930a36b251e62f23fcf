@@ -91,6 +91,30 @@
       "revId": "2b15cb8b2c78feccf7960930a36b251e62f23fcf",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a4cebe03_a0b1b859",
+        "filename": "cps-service/src/main/java/org/onap/cps/cache/HazelcastCacheConfig.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-04-26T23:27:25Z",
+      "side": 1,
+      "message": "Amm..actually this gives me a hint.\nWill discuss more on this once I have more clarity over this.\nI am actually working on similar stuff.",
+      "parentUuid": "03671c1e_b5b04ffb",
+      "range": {
+        "startLine": 51,
+        "startChar": 30,
+        "endLine": 51,
+        "endChar": 50
+      },
+      "revId": "2b15cb8b2c78feccf7960930a36b251e62f23fcf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
