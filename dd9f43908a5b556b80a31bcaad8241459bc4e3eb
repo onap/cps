@@ -25,6 +25,75 @@
     },
     {
       "key": {
+        "uuid": "443677e6_31f2ae0f",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreRequestHandler.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-04-26T17:01:13Z",
+      "side": 1,
+      "message": "At calling method in \u0027NetworkCmProxyController\u0027 we updated this as \u0027includeDescendantsAsObject. May be we need to update this as well to keep consistent.",
+      "range": {
+        "startLine": 59,
+        "startChar": 14,
+        "endLine": 59,
+        "endChar": 32
+      },
+      "revId": "dd9f43908a5b556b80a31bcaad8241459bc4e3eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "06663529_6308f036",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreRequestHandler.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-04-26T17:01:13Z",
+      "side": 1,
+      "message": "same as above",
+      "range": {
+        "startLine": 89,
+        "startChar": 14,
+        "endLine": 89,
+        "endChar": 32
+      },
+      "revId": "dd9f43908a5b556b80a31bcaad8241459bc4e3eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f5cb42d_32a4dea5",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreRequestHandler.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-04-26T17:01:13Z",
+      "side": 1,
+      "message": "same as above",
+      "range": {
+        "startLine": 108,
+        "startChar": 14,
+        "endLine": 108,
+        "endChar": 32
+      },
+      "revId": "dd9f43908a5b556b80a31bcaad8241459bc4e3eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "42db95d1_af85490c",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/TaskManagementDefaultHandler.java",
         "patchSetId": 17
