@@ -71,6 +71,30 @@
     },
     {
       "key": {
+        "uuid": "994eac63_5688fa2d",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-26T10:23:53Z",
+      "side": 1,
+      "message": "ignore above, I understand the multiple version does not throw this exception (we have applied teh same pattern to other batch-liek update methods)",
+      "parentUuid": "32503e84_eada825b",
+      "range": {
+        "startLine": 351,
+        "startChar": 117,
+        "endLine": 351,
+        "endChar": 140
+      },
+      "revId": "9fd35c9d59798a79d3a2473c68ee848afef045c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "632d4dec_8eca125f",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
         "patchSetId": 12
