@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "8b3f4864_7110212f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-26T09:13:42Z",
+      "side": 1,
+      "message": "NB: CPS Refactoring\n\nNB: Add a fre moe detals on separte lines\nlike\n- Remove redundant ri production code",
+      "range": {
+        "startLine": 7,
+        "startChar": 6,
+        "endLine": 7,
+        "endChar": 28
+      },
+      "revId": "0f5ad4c21c2c3f4ba4812229ff57c591b6e8c2e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c513f352_a5a0489c",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
         "patchSetId": 1
