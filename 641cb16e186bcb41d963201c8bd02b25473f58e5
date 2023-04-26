@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f70fe3f8_3a60660d",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-26T10:48:56Z",
+      "side": 1,
+      "message": "realign (after) renaming suggested below",
+      "range": {
+        "startLine": 77,
+        "startChar": 34,
+        "endLine": 82,
+        "endChar": 64
+      },
+      "revId": "641cb16e186bcb41d963201c8bd02b25473f58e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "207fbf02_4066c0f7",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-26T10:48:56Z",
+      "side": 1,
+      "message": "OK, so at the root it is generate API that forces an object here, correct?!\nrename to includeDescendantsAsObject",
+      "range": {
+        "startLine": 92,
+        "startChar": 75,
+        "endLine": 92,
+        "endChar": 96
+      },
+      "revId": "641cb16e186bcb41d963201c8bd02b25473f58e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5f4b2790_5475bae8",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-26T10:48:56Z",
+      "side": 1,
+      "message": "3x times extract (static) method. \nPossible with its own test so you cover all possible code paths with a simple unit test instead of expanding existing tets that focus on the functionality of what happens when you include descendants...",
+      "range": {
+        "startLine": 98,
+        "startChar": 7,
+        "endLine": 98,
+        "endChar": 120
+      },
+      "revId": "641cb16e186bcb41d963201c8bd02b25473f58e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e646bfd4_89ab1301",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-26T10:48:56Z",
+      "side": 1,
+      "message": "no javadoc (unlike all other methods in this class)\nI would like a discussion on our use of Javadoc soon; the is generated API stuff all the methods and parameters are clearly described in the Open API yaml files! WHy do we need to doubled maintenance at java level :-(",
+      "range": {
+        "startLine": 105,
+        "startChar": 34,
+        "endLine": 105,
+        "endChar": 65
+      },
+      "revId": "641cb16e186bcb41d963201c8bd02b25473f58e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7525007f_716bb58c",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/TaskManagementDefaultHandler.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-26T10:48:56Z",
+      "side": 1,
+      "message": "NB:  I would suggest getTaskSupplierForGetRequest  (and getTaskSupplierForQueryRequest,getTaskSupplierForBulkRequest)\n\ndon\u0027t mention any datastore references they are just (current) limitations of the usecase\n\nif you see them side by side it makes some sense but I agree it is til not a very clear name \ngetTaskSupplierForGetRequest\ngetTaskSupplierForQueryRequest\ngetTaskSupplierForBulkRequest\n\nnot sure, you can choose 😊",
+      "range": {
+        "startLine": 33,
+        "startChar": 47,
+        "endLine": 33,
+        "endChar": 66
+      },
+      "revId": "641cb16e186bcb41d963201c8bd02b25473f58e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d5f65b76_1499669d",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/TaskManagementDefaultHandler.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-26T10:48:56Z",
+      "side": 1,
+      "message": "remove this part? See above",
+      "range": {
+        "startLine": 43,
+        "startChar": 52,
+        "endLine": 43,
+        "endChar": 65
+      },
+      "revId": "641cb16e186bcb41d963201c8bd02b25473f58e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "30336323_47876deb",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/TaskManagementDefaultHandler.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-26T10:48:56Z",
+      "side": 1,
+      "message": "remove this part? See above",
+      "range": {
+        "startLine": 50,
+        "startChar": 47,
+        "endLine": 50,
+        "endChar": 58
+      },
+      "revId": "641cb16e186bcb41d963201c8bd02b25473f58e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b47290d_dcd4d442",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 647,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-26T10:48:56Z",
+      "side": 1,
+      "message": "rename method inline with classname changes (if needed, i am not sure)",
+      "range": {
+        "startLine": 647,
+        "startChar": 8,
+        "endLine": 647,
+        "endChar": 43
+      },
+      "revId": "641cb16e186bcb41d963201c8bd02b25473f58e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2901dbd5_8033dab6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiDataOperations.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-26T10:48:56Z",
+      "side": 1,
+      "message": "NB: I though you just agreed the Javadoc should be in te interface class...\n(you can ignore these javadox question) a s I mentioned before it is mainly legacy and we need to discuss with team",
+      "range": {
+        "startLine": 63,
+        "startChar": 5,
+        "endLine": 74,
+        "endChar": 7
+      },
+      "revId": "641cb16e186bcb41d963201c8bd02b25473f58e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
