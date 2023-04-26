@@ -137,6 +137,29 @@
       "revId": "dd9f43908a5b556b80a31bcaad8241459bc4e3eb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8c0a62ba_a9f882ae",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-04-26T17:39:15Z",
+      "side": 1,
+      "message": "A minor one, It should be \u0027 2022-2023\u0027",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 28
+      },
+      "revId": "dd9f43908a5b556b80a31bcaad8241459bc4e3eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
