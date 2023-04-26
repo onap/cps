@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5277ab95_bb99fb71",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-04-26T09:04:44Z",
+      "side": 0,
+      "message": "it is declared already in the parent",
+      "range": {
+        "startLine": 52,
+        "startChar": 4,
+        "endLine": 52,
+        "endChar": 87
+      },
+      "revId": "ccf2e5abd0a1eec25f90fa6f89ed3766fc9c068f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c75bbc58_800e3f76",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 447,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-04-26T09:04:44Z",
+      "side": 0,
+      "message": "plural one doesn\u0027t support these",
+      "range": {
+        "startLine": 446,
+        "startChar": 0,
+        "endLine": 447,
+        "endChar": 133
+      },
+      "revId": "ccf2e5abd0a1eec25f90fa6f89ed3766fc9c068f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "84131b6b_2755ba67",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-04-26T09:04:44Z",
+      "side": 0,
+      "message": "Removing as it is checking the singular one. The same for plural is doing from below test case",
+      "range": {
+        "startLine": 80,
+        "startChar": 1,
+        "endLine": 96,
+        "endChar": 5
+      },
+      "revId": "ccf2e5abd0a1eec25f90fa6f89ed3766fc9c068f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}

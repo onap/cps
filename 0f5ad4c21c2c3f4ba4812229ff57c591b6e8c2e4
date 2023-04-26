@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c513f352_a5a0489c",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-04-26T09:04:44Z",
+      "side": 1,
+      "message": "Update to plural one",
+      "range": {
+        "startLine": 376,
+        "startChar": 28,
+        "endLine": 376,
+        "endChar": 57
+      },
+      "revId": "0f5ad4c21c2c3f4ba4812229ff57c591b6e8c2e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
