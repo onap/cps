@@ -22,6 +22,75 @@
       "revId": "2b15cb8b2c78feccf7960930a36b251e62f23fcf",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6daf27c8_e6447323",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/ResponseTimeoutTask.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-04-26T16:35:54Z",
+      "side": 1,
+      "message": "need to discuss more on the partial response solution.\nOnce this run method is completed , we must have lost access to all the data.\n\nMaybe think abt using Callable instead of Runnable.\n\nWe can discuss more on the same.",
+      "range": {
+        "startLine": 43,
+        "startChar": 16,
+        "endLine": 45,
+        "endChar": 41
+      },
+      "revId": "2b15cb8b2c78feccf7960930a36b251e62f23fcf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "984db529_f66935f8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventResponseConsumer.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-04-26T16:35:54Z",
+      "side": 1,
+      "message": "NB: maybe extract this key creation in a separate util class or atleast a public method to be used everywhr.\nThis key creation is used at multiple places 😊",
+      "range": {
+        "startLine": 57,
+        "startChar": 43,
+        "endLine": 58,
+        "endChar": 62
+      },
+      "revId": "2b15cb8b2c78feccf7960930a36b251e62f23fcf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "03671c1e_b5b04ffb",
+        "filename": "cps-service/src/main/java/org/onap/cps/cache/HazelcastCacheConfig.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-04-26T16:35:54Z",
+      "side": 1,
+      "message": "this needs to be parameterized.\nOtherwise every class implementing this will be in the same cluster.",
+      "range": {
+        "startLine": 51,
+        "startChar": 30,
+        "endLine": 51,
+        "endChar": 50
+      },
+      "revId": "2b15cb8b2c78feccf7960930a36b251e62f23fcf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
