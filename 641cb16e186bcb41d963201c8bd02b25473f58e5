@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b45f5f6e_3a1b2762",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-04-26T12:30:05Z",
+      "side": 1,
+      "message": "re-aligned",
+      "parentUuid": "f70fe3f8_3a60660d",
+      "range": {
+        "startLine": 77,
+        "startChar": 34,
+        "endLine": 82,
+        "endChar": 64
+      },
+      "revId": "641cb16e186bcb41d963201c8bd02b25473f58e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "207fbf02_4066c0f7",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
         "patchSetId": 13
@@ -36,6 +60,30 @@
       "writtenOn": "2023-04-26T10:48:56Z",
       "side": 1,
       "message": "OK, so at the root it is generate API that forces an object here, correct?!\nrename to includeDescendantsAsObject",
+      "range": {
+        "startLine": 92,
+        "startChar": 75,
+        "endLine": 92,
+        "endChar": 96
+      },
+      "revId": "641cb16e186bcb41d963201c8bd02b25473f58e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4896823e_e7471d71",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-04-26T12:30:05Z",
+      "side": 1,
+      "message": "yes, it\u0027s root generated.\nRenamed",
+      "parentUuid": "207fbf02_4066c0f7",
       "range": {
         "startLine": 92,
         "startChar": 75,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "400f886c_4653fa2a",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-04-26T12:30:05Z",
+      "side": 1,
+      "message": "Extracted as static method",
+      "parentUuid": "5f4b2790_5475bae8",
+      "range": {
+        "startLine": 98,
+        "startChar": 7,
+        "endLine": 98,
+        "endChar": 120
+      },
+      "revId": "641cb16e186bcb41d963201c8bd02b25473f58e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e646bfd4_89ab1301",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
         "patchSetId": 13
@@ -82,6 +154,30 @@
       "writtenOn": "2023-04-26T10:48:56Z",
       "side": 1,
       "message": "no javadoc (unlike all other methods in this class)\nI would like a discussion on our use of Javadoc soon; the is generated API stuff all the methods and parameters are clearly described in the Open API yaml files! WHy do we need to doubled maintenance at java level :-(",
+      "range": {
+        "startLine": 105,
+        "startChar": 34,
+        "endLine": 105,
+        "endChar": 65
+      },
+      "revId": "641cb16e186bcb41d963201c8bd02b25473f58e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5b09c2b4_de15f04a",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-04-26T12:30:05Z",
+      "side": 1,
+      "message": "Need teams openion.",
+      "parentUuid": "e646bfd4_89ab1301",
       "range": {
         "startLine": 105,
         "startChar": 34,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "519f6214_1ed233a5",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/TaskManagementDefaultHandler.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-04-26T12:30:05Z",
+      "side": 1,
+      "message": "I used all these name atleast it\u0027s better than correct.",
+      "parentUuid": "7525007f_716bb58c",
+      "range": {
+        "startLine": 33,
+        "startChar": 47,
+        "endLine": 33,
+        "endChar": 66
+      },
+      "revId": "641cb16e186bcb41d963201c8bd02b25473f58e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d5f65b76_1499669d",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/TaskManagementDefaultHandler.java",
         "patchSetId": 13
@@ -128,6 +248,30 @@
       "writtenOn": "2023-04-26T10:48:56Z",
       "side": 1,
       "message": "remove this part? See above",
+      "range": {
+        "startLine": 43,
+        "startChar": 52,
+        "endLine": 43,
+        "endChar": 65
+      },
+      "revId": "641cb16e186bcb41d963201c8bd02b25473f58e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8a9343cd_9a1e4944",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/TaskManagementDefaultHandler.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-04-26T12:30:05Z",
+      "side": 1,
+      "message": "removed",
+      "parentUuid": "d5f65b76_1499669d",
       "range": {
         "startLine": 43,
         "startChar": 52,
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "a96ddad4_4cdd5829",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/TaskManagementDefaultHandler.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-04-26T12:30:05Z",
+      "side": 1,
+      "message": "removed",
+      "parentUuid": "30336323_47876deb",
+      "range": {
+        "startLine": 50,
+        "startChar": 47,
+        "endLine": 50,
+        "endChar": 58
+      },
+      "revId": "641cb16e186bcb41d963201c8bd02b25473f58e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2b47290d_dcd4d442",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
         "patchSetId": 13
@@ -186,6 +354,30 @@
     },
     {
       "key": {
+        "uuid": "cd9939b3_6a19424f",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 647,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-04-26T12:30:05Z",
+      "side": 1,
+      "message": "addressed",
+      "parentUuid": "2b47290d_dcd4d442",
+      "range": {
+        "startLine": 647,
+        "startChar": 8,
+        "endLine": 647,
+        "endChar": 43
+      },
+      "revId": "641cb16e186bcb41d963201c8bd02b25473f58e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2901dbd5_8033dab6",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiDataOperations.java",
         "patchSetId": 13
@@ -197,6 +389,30 @@
       "writtenOn": "2023-04-26T10:48:56Z",
       "side": 1,
       "message": "NB: I though you just agreed the Javadoc should be in te interface class...\n(you can ignore these javadox question) a s I mentioned before it is mainly legacy and we need to discuss with team",
+      "range": {
+        "startLine": 63,
+        "startChar": 5,
+        "endLine": 74,
+        "endChar": 7
+      },
+      "revId": "641cb16e186bcb41d963201c8bd02b25473f58e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f2a15a03_fdf99f13",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiDataOperations.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-04-26T12:30:05Z",
+      "side": 1,
+      "message": "Need team\u0027s openion.",
+      "parentUuid": "2901dbd5_8033dab6",
       "range": {
         "startLine": 63,
         "startChar": 5,
