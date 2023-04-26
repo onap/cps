@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "8a24dc71_61644215",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 486,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-26T07:38:34Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "acbc2cc2_8743aa06",
+      "range": {
+        "startLine": 486,
+        "startChar": 16,
+        "endLine": 486,
+        "endChar": 32
+      },
+      "revId": "3b46bcfc8b0f0f535d55461115c89fb54513e0dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c771e5d6_a73c3c9d",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 9
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "Cannot extract the xPaths from the Map in the service layer because the Map is then used here for retrieving the associated fragment entities.\n\nAlso it is a Map of xPaths to DataNodes whereas the previous method uses  xPath and Leaf. This is because there will always be one xpath and one data node.\n\nThe new method needs a Map of xpath and data node so that it can retrieve the fragment entities with same xpath as the data node being updated.",
       "parentUuid": "c771e5d6_a73c3c9d",
+      "range": {
+        "startLine": 498,
+        "startChar": 68,
+        "endLine": 498,
+        "endChar": 77
+      },
+      "revId": "3b46bcfc8b0f0f535d55461115c89fb54513e0dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3adfb3dc_465185ec",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 498,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-26T07:38:34Z",
+      "side": 1,
+      "message": "ok, I see it is useful to wrap the leaves with the paths into the existing datanode object I suppose otherwise you would have needed a map of maps.\nI agree now use of DataNode is better...",
+      "parentUuid": "fb7b5c25_203c7f6d",
       "range": {
         "startLine": 498,
         "startChar": 68,
@@ -140,6 +188,30 @@
       "revId": "3b46bcfc8b0f0f535d55461115c89fb54513e0dd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "37576408_2b9fc8e5",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-26T07:38:34Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1ed79af8_34df9492",
+      "range": {
+        "startLine": 165,
+        "startChar": 86,
+        "endLine": 165,
+        "endChar": 102
+      },
+      "revId": "3b46bcfc8b0f0f535d55461115c89fb54513e0dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -230,6 +302,30 @@
         "startChar": 15,
         "endLine": 147,
         "endChar": 32
+      },
+      "revId": "3b46bcfc8b0f0f535d55461115c89fb54513e0dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a283481a_4512bdef",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-26T07:38:34Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "fd3194a7_9bcd1a67",
+      "range": {
+        "startLine": 147,
+        "startChar": 75,
+        "endLine": 147,
+        "endChar": 105
       },
       "revId": "3b46bcfc8b0f0f535d55461115c89fb54513e0dd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",

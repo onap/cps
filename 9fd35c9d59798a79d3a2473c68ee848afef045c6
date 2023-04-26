@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "44447336_eb11fee5",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 486,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-26T07:38:34Z",
+      "side": 1,
+      "message": "I suppose it depends on how often this method is called you can leave it here for convenience...\nIt is now a callign the batch-version of this method with is better....",
+      "range": {
+        "startLine": 486,
+        "startChar": 16,
+        "endLine": 486,
+        "endChar": 32
+      },
+      "revId": "9fd35c9d59798a79d3a2473c68ee848afef045c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "86cde10d_ee6e3306",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 494,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-26T07:38:34Z",
+      "side": 1,
+      "message": "because of the English meaning of the word \u0027path\u0027 this name is a bit misleading.\nSuggestion: UpdatedDataNodesPerXPath",
+      "range": {
+        "startLine": 494,
+        "startChar": 68,
+        "endLine": 494,
+        "endChar": 89
+      },
+      "revId": "9fd35c9d59798a79d3a2473c68ee848afef045c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "32503e84_eada825b",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-26T07:38:34Z",
+      "side": 1,
+      "message": "why did you remove the test for non-existing-path?!",
+      "range": {
+        "startLine": 351,
+        "startChar": 117,
+        "endLine": 351,
+        "endChar": 140
+      },
+      "revId": "9fd35c9d59798a79d3a2473c68ee848afef045c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "632d4dec_8eca125f",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-26T07:38:34Z",
+      "side": 1,
+      "message": "since this test is using only one node really you can use the original method for a singel xPath and Leaves. It wil indirectly stil tets the batch version and at the same time give you coverage for the single version (which I think is missing now!)",
+      "range": {
+        "startLine": 92,
+        "startChar": 28,
+        "endLine": 92,
+        "endChar": 49
+      },
+      "revId": "9fd35c9d59798a79d3a2473c68ee848afef045c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5cb6e6bb_17302d9d",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-26T07:38:34Z",
+      "side": 1,
+      "message": "can you finish this now?",
+      "range": {
+        "startLine": 390,
+        "startChar": 4,
+        "endLine": 390,
+        "endChar": 27
+      },
+      "revId": "9fd35c9d59798a79d3a2473c68ee848afef045c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a93e1a3_3a57f3d7",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-26T07:38:34Z",
+      "side": 1,
+      "message": "UpdatedDataNodesPerXPath",
+      "range": {
+        "startLine": 147,
+        "startChar": 94,
+        "endLine": 147,
+        "endChar": 116
+      },
+      "revId": "9fd35c9d59798a79d3a2473c68ee848afef045c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
