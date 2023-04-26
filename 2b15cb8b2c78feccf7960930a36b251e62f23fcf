@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a5936b5_11b31aaa",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 8
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-04-26T16:12:33Z",
+      "side": 1,
+      "message": "NB: once we finalize these topics , we can make entry in this page to be later created in OOM charts as well.\nhttps://wiki.onap.org/display/DW/CPS-1489%3A+Overview+of+Kafka+Topics+in+CPS+Components",
+      "range": {
+        "startLine": 102,
+        "startChar": 12,
+        "endLine": 104,
+        "endChar": 104
+      },
+      "revId": "2b15cb8b2c78feccf7960930a36b251e62f23fcf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
