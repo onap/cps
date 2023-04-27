@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d2830577_f8c301f3",
+        "filename": "docs/cps-path.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-27T07:17:46Z",
+      "side": 1,
+      "message": "you have some RTD formatting error(s), CI is very strict now when it comes to RTD.\nin the build logs you can see\n\n07:53:26 \n07:53:26 Warning, treated as error:\n07:53:26 /w/workspace/rtdv3-global-verify-master/docs/cps-path.rst:273:Title underline too short.\n07:53:26 \n07:53:26 contains()-condition\n07:53:26 ----------------\n07:53:26 \n07:53:26 Warning, treated as error:\n07:53:26 /w/workspace/rtdv3-global-verify-master/docs/cps-path.rst:273:Title underline too short.\n07:53:26 \n07:53:26 contains()-condition\n07:53:26 ----------------",
+      "revId": "e13766ad683c63fb7b5d62ac8894e36726025ea8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "10d43d97_7dbb2f91",
+        "filename": "docs/cps-path.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-27T07:17:46Z",
+      "side": 1,
+      "message": "i think this is the only error teh number of dashes must be equal to teh number of characters in teh title above iot :-)",
+      "range": {
+        "startLine": 273,
+        "startChar": 0,
+        "endLine": 273,
+        "endChar": 16
+      },
+      "revId": "e13766ad683c63fb7b5d62ac8894e36726025ea8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
