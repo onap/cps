@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "00e5a9c5_d52c3ca0",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-04-27T13:53:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e3282e1_559788a2",
+      "range": {
+        "startLine": 192,
+        "startChar": 8,
+        "endLine": 192,
+        "endChar": 17
+      },
+      "revId": "64d86aa8a03c8f40f1787f83e7b41707aa29ee00",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f6348c15_9005cc3e",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/SubscriptionModelLoader.java",
         "patchSetId": 5
@@ -45,6 +69,30 @@
       "revId": "64d86aa8a03c8f40f1787f83e7b41707aa29ee00",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cc1ab9d2_5992919d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/SubscriptionModelLoader.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-04-27T13:53:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f6348c15_9005cc3e",
+      "range": {
+        "startLine": 94,
+        "startChar": 33,
+        "endLine": 94,
+        "endChar": 42
+      },
+      "revId": "64d86aa8a03c8f40f1787f83e7b41707aa29ee00",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
