@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2ac478e7_67f9f1e3",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreRequestHandler.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-27T11:10:28Z",
+      "side": 1,
+      "message": "NB: I think i mentioned earlier, maybe give this a more generic name appropriate for both case ie \u0027targetObject\u0027",
+      "range": {
+        "startLine": 137,
+        "startChar": 85,
+        "endLine": 137,
+        "endChar": 98
+      },
+      "revId": "51db80842b65aa3730f8b468531eb8c66a1e7ddc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
