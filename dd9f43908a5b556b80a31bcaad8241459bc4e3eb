@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "fc60e1a2_99b3e092",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreRequestHandler.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-04-27T09:01:38Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "23ac31e0_ebd94a75",
+      "range": {
+        "startLine": 59,
+        "startChar": 14,
+        "endLine": 59,
+        "endChar": 32
+      },
+      "revId": "dd9f43908a5b556b80a31bcaad8241459bc4e3eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "06663529_6308f036",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreRequestHandler.java",
         "patchSetId": 17
@@ -143,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "902fa65c_9adf4e62",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreRequestHandler.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-04-27T09:01:38Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e1b10b3a_3b4a14e8",
+      "range": {
+        "startLine": 89,
+        "startChar": 14,
+        "endLine": 89,
+        "endChar": 32
+      },
+      "revId": "dd9f43908a5b556b80a31bcaad8241459bc4e3eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4f5cb42d_32a4dea5",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreRequestHandler.java",
         "patchSetId": 17
@@ -187,6 +235,30 @@
       "revId": "dd9f43908a5b556b80a31bcaad8241459bc4e3eb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9beae307_89f8659c",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreRequestHandler.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-04-27T09:01:38Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9fed4ef8_8b7762c8",
+      "range": {
+        "startLine": 108,
+        "startChar": 14,
+        "endLine": 108,
+        "endChar": 32
+      },
+      "revId": "dd9f43908a5b556b80a31bcaad8241459bc4e3eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
