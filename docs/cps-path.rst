@@ -1,6 +1,7 @@
 .. This work is licensed under a Creative Commons Attribution 4.0 International License.
 .. http://creativecommons.org/licenses/by/4.0
 .. Copyright (C) 2021-2022 Nordix Foundation
+.. Modifications Copyright (C) 2023 TechMahindra Ltd
 
 .. DO NOT CHANGE THIS LABEL FOR RELEASE NOTES - EVEN THOUGH IT GIVES A WARNING
 .. _path:
@@ -182,7 +183,7 @@ General Notes
 Query Syntax
 ============
 
-``( <absolute-path> | <descendant-path> ) [ <leaf-conditions> ] [ <text()-condition> ] [ <ancestor-axis> ]``
+``( <absolute-path> | <descendant-path> ) [ <leaf-conditions> ] [ <text()-condition> ] [ <contains()-condition> ] [ <ancestor-axis> ]``
 
 Each CPS path expression need to start with an 'absolute' or 'descendant' xpath.
 
@@ -267,6 +268,25 @@ The text()-condition  can be added to any CPS path query.
   - Since CPS cannot return individual leaves it will always return the container with all its leaves. Ancestor-axis can be used to specify a parent higher up the tree.
   - When querying a leaf value (instead of leaf-list) it is better, more performant to use a text value condition use @<leaf-name> as described above.
   - Having '[' token in any index in any list will have a negative impact on this function.
+
+contains()-condition
+----------------
+
+**Syntax**: ``<cps-path> '[' 'contains' '(' '<leaf-name>','<string-value>' ')' ']'?``
+  - ``cps-path``: Any CPS path query.
+  - ``leaf-name``: The name of the leaf which value needs to be compared.
+  - ``string-value``: The required value of the leaf element as a string wrapped in quotation marks (U+0022) or apostrophes (U+0027). This will still match integer values.
+
+**Examples**
+  - ``//books[contains(@title,'Du')``
+  - ``//books[contains(@price,'5')``
+
+**Limitations**
+  - Only leaves can be used, leaf-list are not supported.
+  - Leaf names are not validated so ``contains() condition`` with invalid leaf names will silently be ignored.
+
+**Notes**
+  - contains condition is case sensitive.
 
 ancestor-axis
 -------------
