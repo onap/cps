@@ -22,6 +22,30 @@
       "revId": "51db80842b65aa3730f8b468531eb8c66a1e7ddc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ee3d18f_bb9d4dc9",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreRequestHandler.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-04-27T11:37:35Z",
+      "side": 1,
+      "message": "gave name as targetObject",
+      "parentUuid": "2ac478e7_67f9f1e3",
+      "range": {
+        "startLine": 137,
+        "startChar": 85,
+        "endLine": 137,
+        "endChar": 98
+      },
+      "revId": "51db80842b65aa3730f8b468531eb8c66a1e7ddc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
