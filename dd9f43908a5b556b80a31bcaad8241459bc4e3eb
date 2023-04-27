@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "09dfbbe1_f2457b04",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-04-27T08:56:57Z",
+      "side": 1,
+      "message": "Its very minor that\u0027s why I kept it into this class only.",
+      "parentUuid": "5a2ad162_d0d42839",
+      "range": {
+        "startLine": 396,
+        "startChar": 1,
+        "endLine": 401,
+        "endChar": 5
+      },
+      "revId": "dd9f43908a5b556b80a31bcaad8241459bc4e3eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "443677e6_31f2ae0f",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreRequestHandler.java",
         "patchSetId": 17
@@ -36,6 +60,30 @@
       "writtenOn": "2023-04-26T17:01:13Z",
       "side": 1,
       "message": "At calling method in \u0027NetworkCmProxyController\u0027 we updated this as \u0027includeDescendantsAsObject. May be we need to update this as well to keep consistent.",
+      "range": {
+        "startLine": 59,
+        "startChar": 14,
+        "endLine": 59,
+        "endChar": 32
+      },
+      "revId": "dd9f43908a5b556b80a31bcaad8241459bc4e3eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "23ac31e0_ebd94a75",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreRequestHandler.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-04-27T08:56:57Z",
+      "side": 1,
+      "message": "As we converted it into from object to premitive this refelects a correct context.",
+      "parentUuid": "443677e6_31f2ae0f",
       "range": {
         "startLine": 59,
         "startChar": 14,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "e1b10b3a_3b4a14e8",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreRequestHandler.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-04-27T08:56:57Z",
+      "side": 1,
+      "message": "As we converted it into from object to premitive this refelects a correct context.",
+      "parentUuid": "06663529_6308f036",
+      "range": {
+        "startLine": 89,
+        "startChar": 14,
+        "endLine": 89,
+        "endChar": 32
+      },
+      "revId": "dd9f43908a5b556b80a31bcaad8241459bc4e3eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4f5cb42d_32a4dea5",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreRequestHandler.java",
         "patchSetId": 17
@@ -82,6 +154,30 @@
       "writtenOn": "2023-04-26T17:01:13Z",
       "side": 1,
       "message": "same as above",
+      "range": {
+        "startLine": 108,
+        "startChar": 14,
+        "endLine": 108,
+        "endChar": 32
+      },
+      "revId": "dd9f43908a5b556b80a31bcaad8241459bc4e3eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9fed4ef8_8b7762c8",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreRequestHandler.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-04-27T08:56:57Z",
+      "side": 1,
+      "message": "As we converted it into from object to premitive this refelects a correct context.",
+      "parentUuid": "4f5cb42d_32a4dea5",
       "range": {
         "startLine": 108,
         "startChar": 14,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "85c2d4b9_78c8ef75",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/TaskManagementDefaultHandler.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-04-27T08:56:57Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "42db95d1_af85490c",
+      "range": {
+        "startLine": 50,
+        "startChar": 47,
+        "endLine": 50,
+        "endChar": 58
+      },
+      "revId": "dd9f43908a5b556b80a31bcaad8241459bc4e3eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cdba96dc_dd980645",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
         "patchSetId": 17
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "f0e96e10_df67efb1",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-04-27T08:56:57Z",
+      "side": 1,
+      "message": "Added with TODO tag",
+      "parentUuid": "cdba96dc_dd980645",
+      "range": {
+        "startLine": 203,
+        "startChar": 8,
+        "endLine": 205,
+        "endChar": 44
+      },
+      "revId": "dd9f43908a5b556b80a31bcaad8241459bc4e3eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8c0a62ba_a9f882ae",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
         "patchSetId": 17
@@ -151,6 +295,30 @@
       "writtenOn": "2023-04-26T17:39:15Z",
       "side": 1,
       "message": "A minor one, It should be \u0027 2022-2023\u0027",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 28
+      },
+      "revId": "dd9f43908a5b556b80a31bcaad8241459bc4e3eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "62534166_9acf00fa",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-04-27T08:56:57Z",
+      "side": 1,
+      "message": "Removed white space",
+      "parentUuid": "8c0a62ba_a9f882ae",
       "range": {
         "startLine": 3,
         "startChar": 18,
