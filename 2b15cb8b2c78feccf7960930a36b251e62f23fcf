@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "19fcd78e_0184a65b",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 8
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-04-27T13:37:40Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9a5936b5_11b31aaa",
+      "range": {
+        "startLine": 102,
+        "startChar": 12,
+        "endLine": 104,
+        "endChar": 104
+      },
+      "revId": "2b15cb8b2c78feccf7960930a36b251e62f23fcf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6daf27c8_e6447323",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/ResponseTimeoutTask.java",
         "patchSetId": 8
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "0ba1b3aa_60b13d73",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/ResponseTimeoutTask.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-04-27T13:37:40Z",
+      "side": 1,
+      "message": "discussed, no changes will be done",
+      "parentUuid": "6daf27c8_e6447323",
+      "range": {
+        "startLine": 43,
+        "startChar": 16,
+        "endLine": 45,
+        "endChar": 41
+      },
+      "revId": "2b15cb8b2c78feccf7960930a36b251e62f23fcf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "984db529_f66935f8",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventResponseConsumer.java",
         "patchSetId": 8
@@ -59,6 +107,30 @@
       "writtenOn": "2023-04-26T16:35:54Z",
       "side": 1,
       "message": "NB: maybe extract this key creation in a separate util class or atleast a public method to be used everywhr.\nThis key creation is used at multiple places 😊",
+      "range": {
+        "startLine": 57,
+        "startChar": 43,
+        "endLine": 58,
+        "endChar": 62
+      },
+      "revId": "2b15cb8b2c78feccf7960930a36b251e62f23fcf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a416629_b3aa7314",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventResponseConsumer.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-04-27T13:37:40Z",
+      "side": 1,
+      "message": "Agree but its only being used 3 times in 3 different classes, at the moment its also used for the log outputs but they will be removed in the next part :)",
+      "parentUuid": "984db529_f66935f8",
       "range": {
         "startLine": 57,
         "startChar": 43,
@@ -115,6 +187,30 @@
       "revId": "2b15cb8b2c78feccf7960930a36b251e62f23fcf",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e85338d_5f02e202",
+        "filename": "cps-service/src/main/java/org/onap/cps/cache/HazelcastCacheConfig.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-04-27T13:37:40Z",
+      "side": 1,
+      "message": "Woops was originally but got lost in a rebase done",
+      "parentUuid": "a4cebe03_a0b1b859",
+      "range": {
+        "startLine": 51,
+        "startChar": 30,
+        "endLine": 51,
+        "endChar": 50
+      },
+      "revId": "2b15cb8b2c78feccf7960930a36b251e62f23fcf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
