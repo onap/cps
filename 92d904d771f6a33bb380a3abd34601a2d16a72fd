@@ -322,6 +322,30 @@
     },
     {
       "key": {
+        "uuid": "c5c79837_cd672cd8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/SubscriptionModelLoader.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-04-27T15:21:27Z",
+      "side": 1,
+      "message": "I think we can start with these config for now.\nIf we see more waiting times , then maybe we change our strategy.\nAnyways this is the worst case , if something is seriously wrong with DB then maybe it will take longer to come up.",
+      "parentUuid": "6f0126b1_ecdae96f",
+      "range": {
+        "startLine": 88,
+        "startChar": 33,
+        "endLine": 88,
+        "endChar": 38
+      },
+      "revId": "92d904d771f6a33bb380a3abd34601a2d16a72fd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "06f3bfed_974c15c9",
         "filename": "cps-ncmp-service/src/main/resources/model/subscription.yang",
         "patchSetId": 3
