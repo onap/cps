@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2a7fe422_32ea792d",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 9
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-04-27T15:12:58Z",
+      "side": 1,
+      "message": "You can move this under timers block above, having same syntax like retry-time-ms\n\nAnd value could be 5000. As we discussed earlier in a daily (you wasn\u0027t there, probably missed it)",
+      "range": {
+        "startLine": 192,
+        "startChar": 8,
+        "endLine": 192,
+        "endChar": 25
+      },
+      "revId": "9c126615d93ada36299fbac36dfb20aedbe2add1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d45952b_c2625737",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/SubscriptionModelLoader.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-04-27T15:12:58Z",
+      "side": 1,
+      "message": "This will cause 1s + 2s + 3s + .. \u003d 20*21/2\u003d210 second too long. As we discussed earlier in a daily at that day you was not there. Thus you might miss that. \n\nSo, you may do this line Thread.sleep(retryTimeMs)",
+      "range": {
+        "startLine": 94,
+        "startChar": 33,
+        "endLine": 94,
+        "endChar": 59
+      },
+      "revId": "9c126615d93ada36299fbac36dfb20aedbe2add1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}

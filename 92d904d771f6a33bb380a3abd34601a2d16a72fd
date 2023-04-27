@@ -298,6 +298,30 @@
     },
     {
       "key": {
+        "uuid": "6f0126b1_ecdae96f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/SubscriptionModelLoader.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-04-27T15:12:58Z",
+      "side": 1,
+      "message": "Please ignore my prev. comment. I have re-write that here:\n\nAt max retry, the current values will reach almost 200 seconds ~ 3.3 minutes too long. \n\nAlso, the other way suggested as attemptCount * 1000 will result in 210 seconds (1s+2s+3s...+20s\u003d 210 seconds). Almost the same. I think still too long to wait.\n\nMaybe, Thread.sleep(5000) is much more better since it is 1.6 minutes max.",
+      "parentUuid": "67683c94_4d4ed683",
+      "range": {
+        "startLine": 88,
+        "startChar": 33,
+        "endLine": 88,
+        "endChar": 38
+      },
+      "revId": "92d904d771f6a33bb380a3abd34601a2d16a72fd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "06f3bfed_974c15c9",
         "filename": "cps-ncmp-service/src/main/resources/model/subscription.yang",
         "patchSetId": 3
