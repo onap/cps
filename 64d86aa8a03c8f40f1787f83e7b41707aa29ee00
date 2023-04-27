@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0e3282e1_559788a2",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-04-27T13:46:26Z",
+      "side": 1,
+      "message": "retryTimeMs ?? or similar?",
+      "range": {
+        "startLine": 192,
+        "startChar": 8,
+        "endLine": 192,
+        "endChar": 17
+      },
+      "revId": "64d86aa8a03c8f40f1787f83e7b41707aa29ee00",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f6348c15_9005cc3e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/SubscriptionModelLoader.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-04-27T13:46:26Z",
+      "side": 1,
+      "message": "i meant to do it like (attemptCount * retryTime)\n0,2000,3000, .... 20,000 ~ 109 seconds ( if my math is correct ) \nIf there is an actual problem then database would get some time to recover.\n\nOtherwise currently it will get a total of 20 secs. right ??",
+      "range": {
+        "startLine": 94,
+        "startChar": 33,
+        "endLine": 94,
+        "endChar": 42
+      },
+      "revId": "64d86aa8a03c8f40f1787f83e7b41707aa29ee00",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
