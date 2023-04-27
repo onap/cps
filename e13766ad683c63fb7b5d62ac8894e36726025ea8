@@ -39,6 +39,29 @@
       "revId": "e13766ad683c63fb7b5d62ac8894e36726025ea8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "94a69fa7_2b6dc13a",
+        "filename": "docs/cps-path.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-04-27T07:22:47Z",
+      "side": 1,
+      "message": "I wouldn\u0027t use an example on something that is really a numeric value even tough it works...\nInstead do another obvious string and use a expression that is obviously in the middle of the string ie. replace the example with these \n//categories[contains(@name,\u0027Sci\u0027)\n//books[contains(@title,\u0027Space\u0027)",
+      "range": {
+        "startLine": 282,
+        "startChar": 23,
+        "endLine": 282,
+        "endChar": 33
+      },
+      "revId": "e13766ad683c63fb7b5d62ac8894e36726025ea8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
