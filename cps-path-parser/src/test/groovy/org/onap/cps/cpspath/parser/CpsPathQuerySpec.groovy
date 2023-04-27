@@ -71,6 +71,10 @@ class CpsPathQuerySpec extends Specification {
             'yang container'                                              | '/cps-path'                                                    || '/cps-path'
             'descendant anywhere'                                         | '//cps-path'                                                   || '//cps-path'
             'descendant with leaf condition'                              | '//cps-path[@key=1]'                                           || "//cps-path[@key='1']"
+            'descendant with leaf condition has ">" operator'             | '//cps-path[@key>9]'                                           || "//cps-path[@key>'9']"
+            'descendant with leaf condition has "<" operator'             | '//cps-path[@key<10]'                                          || "//cps-path[@key<'10']"
+            'descendant with leaf condition has ">=" operator'            | '//cps-path[@key>=8]'                                          || "//cps-path[@key>='8']"
+            'descendant with leaf condition has "<=" operator'            | '//cps-path[@key<=12]'                                         || "//cps-path[@key<='12']"
             'descendant with leaf value and ancestor'                     | '//cps-path[@key=1]/ancestor:parent[@key=1]'                   || "//cps-path[@key='1']/ancestor:parent[@key='1']"
             'parent & child'                                              | '/parent/child'                                                || '/parent/child'
             'parent leaf of type Integer & child'                         | '/parent/child[@code=1]/child2'                                || "/parent/child[@code='1']/child2"
@@ -118,6 +122,22 @@ class CpsPathQuerySpec extends Specification {
             'more than one attribute has combinations or operators'       | '//child[@int-leaf=5 or @leaf-name="leaf value" or @leaf-name="leaf value1" ]'   || 2                      || ['or', 'or']
             'more than one attribute has combinations and/or combination' | '//child[@int-leaf=5 and @leaf-name="leaf value" or @leaf-name="leaf value1" ]'  || 2                      || ['and', 'or']
             'more than one attribute has combinations or/and combination' | '//child[@int-leaf=5 or @leaf-name="leaf value" and @leaf-name="leaf value1" ]'  || 2                      || ['or', 'and']
+    }
+
+    def 'Parse cps path that contains Integer attribute Value with comparative operators #scenario.'() {
+        when: 'the given cps path is parsed'
+            def result = CpsPathQuery.createFrom(cpsPath)
+        then: 'the query has the right xpath type'
+            result.cpsPathPrefixType == DESCENDANT
+        and: 'the right parameters are set'
+            result.descendantName == "child"
+            result.comparativeOperatorsType == expectedComparativeOperator
+        where: 'the following data is used'
+            scenario                                       | cpsPath                              || expectedComparativeOperator
+            'one attribute with ">" comparative operator'  | '//child[@common-leaf-name-int>15]'  || [">"]
+            'one attribute with "<" comparative operator'  | '//child[@common-leaf-name-int<10]'  || ["<"]
+            'one attribute with ">=" comparative operator' | '//child[@common-leaf-name-int>=15]' || [">="]
+            'one attribute with "<=" comparative operator' | '//child[@common-leaf-name-int<=10]' || ["<="]
     }
 
     def 'Parse #scenario cps path with text function condition'() {
