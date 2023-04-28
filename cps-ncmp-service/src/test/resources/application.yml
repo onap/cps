@@ -39,6 +39,7 @@ ncmp:
 
 # Custom Hazelcast Config.
 hazelcast:
+  cluster-name: "cps-and-ncmp-test-caches"
   mode:
     kubernetes:
       enabled: false

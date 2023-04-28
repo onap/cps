@@ -44,10 +44,12 @@ class ForwardedSubscriptionEventCacheConfigSpec extends Specification {
 
     def 'Verify configs for Distributed Caches'(){
         given: 'the Forwarded Subscription Event Cache config'
-            def forwardedSubscriptionEventCacheConfig =  Hazelcast.getHazelcastInstanceByName('hazelCastInstanceSubscriptionEvents').config.mapConfigs.get('forwardedSubscriptionEventCacheMapConfig')
+            def forwardedSubscriptionEventCacheConfig =  Hazelcast.getHazelcastInstanceByName('hazelCastInstanceSubscriptionEvents').config
+            def forwardedSubscriptionEventCacheMapConfig =  forwardedSubscriptionEventCacheConfig.mapConfigs.get('forwardedSubscriptionEventCacheMapConfig')
         expect: 'system created instance with correct config'
-            assert forwardedSubscriptionEventCacheConfig.backupCount == 3
-            assert forwardedSubscriptionEventCacheConfig.asyncBackupCount == 3
+            assert forwardedSubscriptionEventCacheConfig.clusterName == 'cps-and-ncmp-test-caches'
+            assert forwardedSubscriptionEventCacheMapConfig.backupCount == 3
+            assert forwardedSubscriptionEventCacheMapConfig.asyncBackupCount == 3
     }
 
     def 'Verify deployment network configs for Distributed Caches'() {

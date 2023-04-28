@@ -46,10 +46,12 @@ class AnchorDataCacheConfigSpec extends Specification {
 
     def 'Verify configs for Distributed Caches'(){
         given: 'the Anchor Data Cache config'
-            def anchorDataCacheConfig =  Hazelcast.getHazelcastInstanceByName('hazelCastInstanceCpsCore').config.mapConfigs.get('anchorDataCacheMapConfig')
+            def anchorDataCacheConfig =  Hazelcast.getHazelcastInstanceByName('hazelCastInstanceCpsCore').config
+            def anchorDataCacheMapConfig =  anchorDataCacheConfig.mapConfigs.get('anchorDataCacheMapConfig')
         expect: 'system created instance with correct config'
-            assert anchorDataCacheConfig.backupCount == 3
-            assert anchorDataCacheConfig.asyncBackupCount == 3
+            assert anchorDataCacheConfig.clusterName == 'cps-and-ncmp-test-caches'
+            assert anchorDataCacheMapConfig.backupCount == 3
+            assert anchorDataCacheMapConfig.asyncBackupCount == 3
     }
 
     def 'Verify deployment network configs for Distributed Caches'() {

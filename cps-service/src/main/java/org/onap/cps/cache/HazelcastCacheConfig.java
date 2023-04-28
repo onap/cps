@@ -35,6 +35,9 @@ import org.springframework.beans.factory.annotation.Value;
 @Slf4j
 public class HazelcastCacheConfig {
 
+    @Value("${hazelcast.cluster-name}")
+    protected String clusterName;
+
     @Value("${hazelcast.mode.kubernetes.enabled}")
     protected boolean cacheKubernetesEnabled;
 
@@ -42,12 +45,11 @@ public class HazelcastCacheConfig {
     protected String cacheKubernetesServiceName;
 
     protected HazelcastInstance createHazelcastInstance(final String hazelcastInstanceName,
-                                                        final NamedConfig namedConfig, final String clusterName) {
-        return Hazelcast.newHazelcastInstance(initializeConfig(hazelcastInstanceName, namedConfig, clusterName));
+                                                        final NamedConfig namedConfig) {
+        return Hazelcast.newHazelcastInstance(initializeConfig(hazelcastInstanceName, namedConfig));
     }
 
-    private Config initializeConfig(final String instanceName, final NamedConfig namedConfig,
-                                    final String clusterName) {
+    private Config initializeConfig(final String instanceName, final NamedConfig namedConfig) {
         final Config config = new Config(instanceName);
         if (namedConfig instanceof MapConfig) {
             config.addMapConfig((MapConfig) namedConfig);
