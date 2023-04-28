@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e57e26b1_9dbc90b5",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 486,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-04-28T05:23:52Z",
+      "side": 1,
+      "message": "Yes I have marked the calls under TODO. Will refactor its usages for new method.",
+      "parentUuid": "44447336_eb11fee5",
+      "range": {
+        "startLine": 486,
+        "startChar": 16,
+        "endLine": 486,
+        "endChar": 32
+      },
+      "revId": "9fd35c9d59798a79d3a2473c68ee848afef045c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "86cde10d_ee6e3306",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 12
@@ -45,6 +69,30 @@
       "revId": "9fd35c9d59798a79d3a2473c68ee848afef045c6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "45d92796_e3e9531c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 494,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-04-28T05:23:52Z",
+      "side": 1,
+      "message": "Agreed. updatedDataNodesPerXPath makes more sense",
+      "parentUuid": "86cde10d_ee6e3306",
+      "range": {
+        "startLine": 494,
+        "startChar": 68,
+        "endLine": 494,
+        "endChar": 89
+      },
+      "revId": "9fd35c9d59798a79d3a2473c68ee848afef045c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -95,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "9bfca1cf_b6d6fbac",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-04-28T05:23:52Z",
+      "side": 1,
+      "message": "Yes I removed it as the new implementation calls getFragmentEntities() which does not handle non-existing-paths and just returns an empty collection. \n\nBut, with the new implementation this exception gets handled in the service layer when calling CpsDataServiceImpl#buildDataNodes. It now throws DataValidationException.\n\nWhereas for the same scenario CpsDataPersistenceServiceImpl#updateDataLeaves used to throw DataNodeNotFoundException exception when it called getFragmententitiy()",
+      "parentUuid": "32503e84_eada825b",
+      "range": {
+        "startLine": 351,
+        "startChar": 117,
+        "endLine": 351,
+        "endChar": 140
+      },
+      "revId": "9fd35c9d59798a79d3a2473c68ee848afef045c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "632d4dec_8eca125f",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
         "patchSetId": 12
@@ -106,6 +178,30 @@
       "writtenOn": "2023-04-26T07:38:34Z",
       "side": 1,
       "message": "since this test is using only one node really you can use the original method for a singel xPath and Leaves. It wil indirectly stil tets the batch version and at the same time give you coverage for the single version (which I think is missing now!)",
+      "range": {
+        "startLine": 92,
+        "startChar": 28,
+        "endLine": 92,
+        "endChar": 49
+      },
+      "revId": "9fd35c9d59798a79d3a2473c68ee848afef045c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b775a631_c35e27ca",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-04-28T05:23:52Z",
+      "side": 1,
+      "message": "we are testing it with 3 data nodes. \nThe singular method updateDataLeaves is not being used anywhere now as I have refactored the code. So, we can remove it if agreed upon.",
+      "parentUuid": "632d4dec_8eca125f",
       "range": {
         "startLine": 92,
         "startChar": 28,
@@ -141,6 +237,30 @@
     },
     {
       "key": {
+        "uuid": "33e66c63_996f9c1c",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-04-28T05:23:52Z",
+      "side": 1,
+      "message": "yes",
+      "parentUuid": "5cb6e6bb_17302d9d",
+      "range": {
+        "startLine": 390,
+        "startChar": 4,
+        "endLine": 390,
+        "endChar": 27
+      },
+      "revId": "9fd35c9d59798a79d3a2473c68ee848afef045c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0a93e1a3_3a57f3d7",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
         "patchSetId": 12
@@ -161,6 +281,30 @@
       "revId": "9fd35c9d59798a79d3a2473c68ee848afef045c6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "69492477_74db29da",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-04-28T05:23:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0a93e1a3_3a57f3d7",
+      "range": {
+        "startLine": 147,
+        "startChar": 94,
+        "endLine": 147,
+        "endChar": 116
+      },
+      "revId": "9fd35c9d59798a79d3a2473c68ee848afef045c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
