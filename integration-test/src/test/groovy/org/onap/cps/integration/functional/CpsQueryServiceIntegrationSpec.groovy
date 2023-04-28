@@ -61,7 +61,6 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
             assert result.size() == expectedResultSize
         and: 'the cps-path of queryDataNodes has the expectedLeaves'
             assert result.leaves.sort() == expectedLeaves.sort()
-            println(expectedLeaves.toArray())
         where: 'the following data is used'
             scenario                                | cpspath                                                          || expectedResultSize | expectedLeaves
             'the "OR" condition'                    | '//books[@lang="English" or @price=15]'                          || 6                  | [[lang: "English", price: 15, title: "Annihilation", authors: ["Jeff VanderMeer"], editions: [2014]],
