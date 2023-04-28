@@ -40,7 +40,6 @@ public class AnchorDataCacheConfig extends HazelcastCacheConfig {
      */
     @Bean
     public IMap<String, AnchorDataCacheEntry> anchorDataCache() {
-        return createHazelcastInstance("hazelCastInstanceCpsCore", anchorDataCacheMapConfig, "cps-service-caches")
-            .getMap("anchorDataCache");
+        return createHazelcastInstance("hazelCastInstanceCpsCore", anchorDataCacheMapConfig).getMap("anchorDataCache");
     }
 }

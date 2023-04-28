@@ -59,20 +59,28 @@ class SynchronizationCacheConfigSpec extends Specification {
 
     def 'Verify configs for Distributed objects'(){
         given: 'the Module Sync Work Queue config'
-            def queueConfig =  Hazelcast.getHazelcastInstanceByName('moduleSyncWorkQueue').config.queueConfigs.get('defaultQueueConfig')
+            def moduleSyncWorkQueueConfig = Hazelcast.getHazelcastInstanceByName('moduleSyncWorkQueue').config
+            def moduleSyncDefaultWorkQueueConfig =  moduleSyncWorkQueueConfig.queueConfigs.get('defaultQueueConfig')
         and: 'the Module Sync Started Cm Handle Map config'
-            def moduleSyncStartedOnCmHandlesConfig =  Hazelcast.getHazelcastInstanceByName('moduleSyncStartedOnCmHandles').config.mapConfigs.get('moduleSyncStartedConfig')
+            def moduleSyncStartedOnCmHandlesConfig =  Hazelcast.getHazelcastInstanceByName('moduleSyncStartedOnCmHandles').config
+            def moduleSyncStartedOnCmHandlesMapConfig =  moduleSyncStartedOnCmHandlesConfig.mapConfigs.get('moduleSyncStartedConfig')
         and: 'the Data Sync Semaphores Map config'
-            def dataSyncSemaphoresConfig =  Hazelcast.getHazelcastInstanceByName('dataSyncSemaphores').config.mapConfigs.get('dataSyncSemaphoresConfig')
+            def dataSyncSemaphoresConfig =  Hazelcast.getHazelcastInstanceByName('dataSyncSemaphores').config
+            def dataSyncSemaphoresMapConfig =  dataSyncSemaphoresConfig.mapConfigs.get('dataSyncSemaphoresConfig')
         expect: 'system created instance with correct config of Module Sync Work Queue'
-            assert queueConfig.backupCount == 3
-            assert queueConfig.asyncBackupCount == 3
+            assert moduleSyncDefaultWorkQueueConfig.backupCount == 3
+            assert moduleSyncDefaultWorkQueueConfig.asyncBackupCount == 3
         and: 'Module Sync Started Cm Handle Map has the correct settings'
-            assert moduleSyncStartedOnCmHandlesConfig.backupCount == 3
-            assert moduleSyncStartedOnCmHandlesConfig.asyncBackupCount == 3
+            assert moduleSyncStartedOnCmHandlesMapConfig.backupCount == 3
+            assert moduleSyncStartedOnCmHandlesMapConfig.asyncBackupCount == 3
         and: 'Data Sync Semaphore Map has the correct settings'
-            assert dataSyncSemaphoresConfig.backupCount == 3
-            assert dataSyncSemaphoresConfig.asyncBackupCount == 3
+            assert dataSyncSemaphoresMapConfig.backupCount == 3
+            assert dataSyncSemaphoresMapConfig.asyncBackupCount == 3
+        and: 'all instances are part of same cluster'
+            def testClusterName = 'cps-and-ncmp-test-caches'
+            assert moduleSyncWorkQueueConfig.clusterName == testClusterName
+            assert moduleSyncStartedOnCmHandlesConfig.clusterName == testClusterName
+            assert dataSyncSemaphoresConfig.clusterName == testClusterName
     }
 
     def 'Verify deployment network configs for Distributed objects'() {

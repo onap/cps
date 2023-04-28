@@ -45,7 +45,6 @@ public class ForwardedSubscriptionEventCacheConfig extends HazelcastCacheConfig 
     @Bean
     public IMap<String, Set<String>> forwardedSubscriptionEventCache() {
         return createHazelcastInstance("hazelCastInstanceSubscriptionEvents",
-            forwardedSubscriptionEventCacheMapConfig, "cps-ncmp-service-caches")
-            .getMap("forwardedSubscriptionEventCache");
+                forwardedSubscriptionEventCacheMapConfig).getMap("forwardedSubscriptionEventCache");
     }
 }
