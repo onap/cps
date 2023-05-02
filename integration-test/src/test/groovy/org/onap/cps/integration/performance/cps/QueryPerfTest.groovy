@@ -63,8 +63,7 @@ class QueryPerfTest extends CpsPerfTestBase {
             recordAndAssertPerformance("Query across anchors ${scenario}", durationLimit, durationInMillis)
         where: 'the following parameters are used'
             scenario                     | cpspath                                                             || durationLimit | expectedNumberOfDataNodes
-            // FIXME Current implementation of queryDataNodesAcrossAnchors throws NullPointerException for next case. Uncomment after CPS-1582 is done.
-            // 'top element'                | '/openroadm-devices'                                                || 1             | 5 * (50 * 86 + 1)
+            'top element'                | '/openroadm-devices'                                                || 1             | 5 * (50 * 86 + 1)
             'leaf condition'             | '//openroadm-device[@ne-state="inservice"]'                         || 2500          | 5 * (50 * 86)
             'ancestors'                  | '//openroadm-device/ancestor::openroadm-devices'                    || 12000         | 5 * (50 * 86 + 1)
             'leaf condition + ancestors' | '//openroadm-device[@status="success"]/ancestor::openroadm-devices' || 1000          | 5 * (50 * 86 + 1)
