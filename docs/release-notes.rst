@@ -43,7 +43,11 @@ Bug Fixes
 
 Features
 --------
-    - None
+    - `CPS-1272 <https://jira.onap.org/browse/CPS-1272>`_ Add Contains operation to CPS Path
+    - `CPS-1573 <https://jira.onap.org/browse/CPS-1573>`_ Remove 32K limit for DB operations
+    - `CPS-1627 <https://jira.onap.org/browse/CPS-1627>`_ Dependency versions uplift because of vulnerability issues
+    - `CPS-1629 <https://jira.onap.org/browse/CPS-1629>`_ Ordering of leaf elements to support combination of AND/OR in cps-path
+    - `CPS-1637 <https://jira.onap.org/browse/CPS-1637>`_ Extend hazelcast to work on kubernetes
 
 Version: 3.3.0
 ==============
