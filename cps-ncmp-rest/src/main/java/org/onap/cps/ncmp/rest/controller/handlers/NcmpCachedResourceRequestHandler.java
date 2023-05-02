@@ -21,22 +21,36 @@
 package org.onap.cps.ncmp.rest.controller.handlers;
 
 import java.util.function.Supplier;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
 import org.onap.cps.ncmp.api.NetworkCmProxyQueryService;
+import org.onap.cps.ncmp.rest.executor.CpsNcmpTaskExecutor;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.springframework.stereotype.Component;
 
-@RequiredArgsConstructor
 @Component
 public class NcmpCachedResourceRequestHandler extends NcmpDatastoreRequestHandler {
 
-    @Setter
-    private String dataStoreName;
+    private final NetworkCmProxyDataService networkCmProxyDataService;
     private final NetworkCmProxyQueryService networkCmProxyQueryService;
 
+    /**
+     * Constructor.
+     *
+     * @param cpsNcmpTaskExecutor        @see org.onap.cps.ncmp.rest.executor.CpsNcmpTaskExecutor
+     * @param networkCmProxyDataService  @see org.onap.cps.ncmp.api.NetworkCmProxyDataService
+     * @param networkCmProxyQueryService @see org.onap.cps.ncmp.api.NetworkCmProxyQueryService
+     */
+    public NcmpCachedResourceRequestHandler(final CpsNcmpTaskExecutor cpsNcmpTaskExecutor,
+                                            final NetworkCmProxyDataService networkCmProxyDataService,
+                                            final NetworkCmProxyQueryService networkCmProxyQueryService) {
+        super(cpsNcmpTaskExecutor);
+        this.networkCmProxyDataService = networkCmProxyDataService;
+        this.networkCmProxyQueryService = networkCmProxyQueryService;
+    }
+
     @Override
-    public Supplier<Object> getTaskSupplierForGetRequest(final String cmHandleId,
+    public Supplier<Object> getTaskSupplierForGetRequest(final String dataStoreName,
+                                                         final String cmHandleId,
                                                          final String resourceIdentifier,
                                                          final String optionsParamInQuery,
                                                          final String topicParamInQuery,

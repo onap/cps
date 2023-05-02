@@ -22,17 +22,30 @@ package org.onap.cps.ncmp.rest.controller.handlers;
 
 import java.util.List;
 import java.util.function.Supplier;
-import lombok.Setter;
+import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
+import org.onap.cps.ncmp.rest.executor.CpsNcmpTaskExecutor;
 import org.springframework.stereotype.Component;
 
 @Component
 public class NcmpPassthroughResourceRequestHandler extends NcmpDatastoreRequestHandler {
 
-    @Setter
-    private String dataStoreName;
+    private final NetworkCmProxyDataService networkCmProxyDataService;
+
+    /**
+     * Constructor.
+     *
+     * @param cpsNcmpTaskExecutor        @see org.onap.cps.ncmp.rest.executor.CpsNcmpTaskExecutor
+     * @param networkCmProxyDataService  @see org.onap.cps.ncmp.api.NetworkCmProxyDataService
+     */
+    public NcmpPassthroughResourceRequestHandler(final CpsNcmpTaskExecutor cpsNcmpTaskExecutor,
+                                                 final NetworkCmProxyDataService networkCmProxyDataService) {
+        super(cpsNcmpTaskExecutor);
+        this.networkCmProxyDataService = networkCmProxyDataService;
+    }
 
     @Override
-    public Supplier<Object> getTaskSupplierForGetRequest(final String cmHandleId,
+    public Supplier<Object> getTaskSupplierForGetRequest(final String dataStoreName,
+                                                         final String cmHandleId,
                                                          final String resourceIdentifier,
                                                          final String optionsParamInQuery,
                                                          final String topicParamInQuery,
@@ -44,12 +57,13 @@ public class NcmpPassthroughResourceRequestHandler extends NcmpDatastoreRequestH
     }
 
     @Override
-    public Supplier<Object> getTaskSupplierForBulkRequest(final List<String> cmHandleIds,
-                                                         final String resourceIdentifier,
-                                                         final String optionsParamInQuery,
-                                                         final String topicParamInQuery,
-                                                         final String requestId,
-                                                         final boolean includeDescendants) {
+    public Supplier<Object> getTaskSupplierForBulkRequest(final String dataStoreName,
+                                                          final List<String> cmHandleIds,
+                                                          final String resourceIdentifier,
+                                                          final String optionsParamInQuery,
+                                                          final String topicParamInQuery,
+                                                          final String requestId,
+                                                          final boolean includeDescendants) {
 
         return () -> networkCmProxyDataService.getResourceDataForCmHandleBatch(
                 dataStoreName, cmHandleIds, resourceIdentifier, optionsParamInQuery, topicParamInQuery, requestId);

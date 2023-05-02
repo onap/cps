@@ -32,7 +32,7 @@ import org.springframework.stereotype.Service;
 public class CpsNcmpTaskExecutor {
 
     /**
-     * Execute task asynchronously and publish response to supplied topic.
+     * Execute a task asynchronously.
      *
      * @param taskSupplier functional method is get() task need to executed asynchronously
      * @param timeOutInMillis the time out value in milliseconds

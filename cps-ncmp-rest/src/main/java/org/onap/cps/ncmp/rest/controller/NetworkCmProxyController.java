@@ -39,8 +39,9 @@ import org.onap.cps.ncmp.api.models.CmHandleQueryApiParameters;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.ncmp.rest.api.NetworkCmProxyApi;
 import org.onap.cps.ncmp.rest.controller.handlers.DatastoreType;
+import org.onap.cps.ncmp.rest.controller.handlers.NcmpCachedResourceRequestHandler;
 import org.onap.cps.ncmp.rest.controller.handlers.NcmpDatastoreRequestHandler;
-import org.onap.cps.ncmp.rest.controller.handlers.NcmpDatastoreResourceRequestHandlerFactory;
+import org.onap.cps.ncmp.rest.controller.handlers.NcmpPassthroughResourceRequestHandler;
 import org.onap.cps.ncmp.rest.exceptions.InvalidDatastoreException;
 import org.onap.cps.ncmp.rest.mapper.CmHandleStateMapper;
 import org.onap.cps.ncmp.rest.model.CmHandlePublicProperties;
@@ -69,17 +70,18 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     private final DeprecationHelper deprecationHelper;
     private final NcmpRestInputMapper ncmpRestInputMapper;
     private final CmHandleStateMapper cmHandleStateMapper;
-    private final NcmpDatastoreResourceRequestHandlerFactory ncmpDatastoreResourceRequestHandlerFactory;
+    private final NcmpCachedResourceRequestHandler ncmpCachedResourceRequestHandler;
+    private final NcmpPassthroughResourceRequestHandler ncmpPassthroughResourceRequestHandler;
 
     /**
      * Get resource data from datastore.
      *
-     * @param datastoreName              name of the datastore
-     * @param cmHandle                   cm handle identifier
-     * @param resourceIdentifier         resource identifier
-     * @param optionsParamInQuery        options query parameter
-     * @param topicParamInQuery          topic query parameter
-     * @param includeDescendantsAsObject whether include descendants
+     * @param datastoreName        name of the datastore
+     * @param cmHandle             cm handle identifier
+     * @param resourceIdentifier   resource identifier
+     * @param optionsParamInQuery  options query parameter
+     * @param topicParamInQuery    topic query parameter
+     * @param includeDescendants   whether to include descendants or not
      * @return {@code ResponseEntity} response from dmi plugin
      */
 
@@ -89,15 +91,11 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
                                                              final String resourceIdentifier,
                                                              final String optionsParamInQuery,
                                                              final String topicParamInQuery,
-                                                             final Boolean includeDescendantsAsObject) {
+                                                             final Boolean includeDescendants) {
 
-        final NcmpDatastoreRequestHandler ncmpDatastoreRequestHandler =
-                ncmpDatastoreResourceRequestHandlerFactory.getNcmpResourceRequestHandler(
-                        DatastoreType.fromDatastoreName(datastoreName));
 
-        final boolean includeDescendants = toPrimitiveFlag(includeDescendantsAsObject);
-
-        return ncmpDatastoreRequestHandler.executeRequest(cmHandle, resourceIdentifier,
+        final NcmpDatastoreRequestHandler ncmpDatastoreRequestHandler = getNcmpDatastoreRequestHandler(datastoreName);
+        return ncmpDatastoreRequestHandler.executeRequest(datastoreName, cmHandle, resourceIdentifier,
                 optionsParamInQuery, topicParamInQuery, includeDescendants);
     }
 
@@ -107,30 +105,25 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
                                                                   final String datastoreName,
                                                                   final Object requestBody,
                                                                   final String optionsParamInQuery,
-                                                                  final Boolean includeDescendantsAsObject) {
+                                                                  final Boolean includeDescendants) {
 
-        final NcmpDatastoreRequestHandler ncmpDatastoreRequestHandler =
-                ncmpDatastoreResourceRequestHandlerFactory.getNcmpResourceRequestHandler(
-                        DatastoreType.fromDatastoreName(datastoreName));
+        final NcmpDatastoreRequestHandler ncmpDatastoreRequestHandler = getNcmpDatastoreRequestHandler(datastoreName);
 
         final List<String> cmHandleIds = jsonObjectMapper.convertJsonString(jsonObjectMapper.asJsonString(requestBody),
                 List.class);
-
-        final boolean includeDescendants = toPrimitiveFlag(includeDescendantsAsObject);
-
-        return ncmpDatastoreRequestHandler.executeRequest(cmHandleIds, resourceIdentifier,
+        return ncmpDatastoreRequestHandler.executeRequest(datastoreName, cmHandleIds, resourceIdentifier,
                 optionsParamInQuery, topicParamInQuery, includeDescendants);
     }
 
     /**
      * Query resource data from datastore.
      *
-     * @param datastoreName              name of the datastore
-     * @param cmHandle                   cm handle identifier
-     * @param cpsPath                    CPS Path
-     * @param optionsParamInQuery        options query parameter
-     * @param topicParamInQuery          topic query parameter
-     * @param includeDescendantsAsObject whether include descendants
+     * @param datastoreName        name of the datastore
+     * @param cmHandle             cm handle identifier
+     * @param cpsPath              CPS Path
+     * @param optionsParamInQuery  options query parameter
+     * @param topicParamInQuery    topic query parameter
+     * @param includeDescendants   whether to include descendants or not
      * @return {@code ResponseEntity} response from dmi plugin
      */
 
@@ -140,14 +133,8 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
                                                                final String cpsPath,
                                                                final String optionsParamInQuery,
                                                                final String topicParamInQuery,
-                                                               final Boolean includeDescendantsAsObject) {
+                                                               final Boolean includeDescendants) {
         validateDataStore(DatastoreType.OPERATIONAL, datastoreName);
-        final NcmpDatastoreRequestHandler ncmpCachedResourceRequestHandler =
-            ncmpDatastoreResourceRequestHandlerFactory.getNcmpResourceRequestHandler(
-                    DatastoreType.fromDatastoreName(datastoreName));
-
-        final boolean includeDescendants = toPrimitiveFlag(includeDescendantsAsObject);
-
         return ncmpCachedResourceRequestHandler.executeRequest(cmHandle, cpsPath, includeDescendants);
     }
 
@@ -393,11 +380,13 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         }
     }
 
-    private static boolean toPrimitiveFlag(final Boolean includeDescendantsAsObject) {
-        if (includeDescendantsAsObject == null) {
-            return false;
+    private NcmpDatastoreRequestHandler getNcmpDatastoreRequestHandler(final String datastoreName) {
+        if (DatastoreType.OPERATIONAL.equals(DatastoreType.fromDatastoreName(datastoreName))) {
+            return ncmpCachedResourceRequestHandler;
         }
-        return includeDescendantsAsObject.booleanValue();
+        return ncmpPassthroughResourceRequestHandler;
     }
+
+
 }
 
