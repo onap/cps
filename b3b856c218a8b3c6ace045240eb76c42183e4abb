@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8b722beb_a82282a0",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-02T11:05:23Z",
+      "side": 1,
+      "message": "NB: common-cache-cluster",
+      "range": {
+        "startLine": 202,
+        "startChar": 63,
+        "endLine": 202,
+        "endChar": 69
+      },
+      "revId": "b3b856c218a8b3c6ace045240eb76c42183e4abb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "187e0b61_d82247c5",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/avc/ForwardedSubscriptionEventCacheConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-02T11:05:23Z",
+      "side": 1,
+      "message": "unused",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 57
+      },
+      "revId": "b3b856c218a8b3c6ace045240eb76c42183e4abb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
