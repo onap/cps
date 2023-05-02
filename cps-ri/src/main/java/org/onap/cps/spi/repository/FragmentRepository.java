@@ -27,6 +27,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import org.onap.cps.spi.entities.AnchorEntity;
+import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.FragmentEntity;
 import org.onap.cps.spi.entities.FragmentExtract;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
@@ -46,17 +47,24 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>,
             new DataNodeNotFoundException(anchorEntity.getDataspace().getName(), anchorEntity.getName(), xpath));
     }
 
+    List<FragmentEntity> findByAnchorIdAndXpathIn(int anchorId, String[] xpaths);
+
+    default List<FragmentEntity> findByAnchorAndXpathIn(final AnchorEntity anchorEntity,
+                                                        final Collection<String> xpaths) {
+        return findByAnchorIdAndXpathIn(anchorEntity.getId(), xpaths.toArray(new String[0]));
+    }
+
+    List<FragmentEntity> findByDataspaceIdAndXpathIn(int dataspaceId, String[] xpaths);
+
+    default List<FragmentEntity> findByDataspaceAndXpathIn(final DataspaceEntity dataspaceEntity,
+                                                           final Collection<String> xpaths) {
+        return findByDataspaceIdAndXpathIn(dataspaceEntity.getId(), xpaths.toArray(new String[0]));
+    }
+
     boolean existsByAnchorId(int anchorId);
 
     @Query("SELECT f FROM FragmentEntity f WHERE anchor = :anchor")
     List<FragmentExtract> findAllExtractsByAnchor(@Param("anchor") AnchorEntity anchorEntity);
-
-    @Query(value = "SELECT * FROM fragment WHERE xpath = ANY (:xpaths)", nativeQuery = true)
-    List<FragmentEntity> findAllByXpathIn(@Param("xpaths") String[] xpath);
-
-    default List<FragmentEntity> findAllByXpathIn(final Collection<String> xpaths) {
-        return findAllByXpathIn(xpaths.toArray(new String[0]));
-    }
 
     @Modifying
     @Query(value = "DELETE FROM fragment WHERE anchor_id = ANY (:anchorIds)", nativeQuery = true)
@@ -92,11 +100,17 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>,
 
     @Query(value = "SELECT id, anchor_id AS anchorId, xpath, parent_id AS parentId,"
         + " CAST(attributes AS TEXT) AS attributes"
-        + " FROM FRAGMENT WHERE anchor_id = :anchorId"
-        + " AND xpath ~ :xpathRegex",
+        + " FROM FRAGMENT WHERE anchor_id = :anchorId AND xpath ~ :xpathRegex",
         nativeQuery = true)
     List<FragmentExtract> quickFindWithDescendants(@Param("anchorId") int anchorId,
                                                    @Param("xpathRegex") String xpathRegex);
+
+    @Query(value = "SELECT id, anchor_id AS anchorId, xpath, parent_id AS parentId,"
+        + " CAST(attributes AS TEXT) AS attributes"
+        + " FROM FRAGMENT WHERE dataspace_id = :dataspaceId AND xpath ~ :xpathRegex",
+        nativeQuery = true)
+    List<FragmentExtract> quickFindWithDescendantsAcrossAnchor(@Param("dataspaceId") int dataspaceId,
+                                                               @Param("xpathRegex") String xpathRegex);
 
     @Query(value = "SELECT xpath FROM fragment WHERE anchor_id = :anchorId AND xpath = ANY (:xpaths)",
         nativeQuery = true)
@@ -136,9 +150,4 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>,
         return findExtractsWithDescendants(anchorId, xpaths.toArray(new String[0]), maxDepth);
     }
 
-    @Query(value = "SELECT id, anchor_id AS anchorId, xpath, parent_id AS parentId,"
-            + " CAST(attributes AS TEXT) AS attributes"
-            + " FROM FRAGMENT WHERE xpath ~ :xpathRegex",
-            nativeQuery = true)
-    List<FragmentExtract> quickFindWithDescendantsAcrossAnchor(@Param("xpathRegex") String xpathRegex);
 }
