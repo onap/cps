@@ -150,18 +150,16 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Query for attribute by cps path using contains condition #scenario.'() {
         when: 'a query is executed to get response by the given cps path'
-            def result = objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, cpsPath, OMIT_DESCENDANTS)
-        then: 'the cps-path of queryDataNodes has expected number of nodes'
-            assert result.size() == expectedResultsize
-        and: 'xpaths of the retrieved data nodes are as expected'
+            def result = objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, cpsPath, INCLUDE_ALL_DESCENDANTS)
+        then: 'xpaths of the retrieved data nodes are as expected'
             def bookTitles = result.collect { it.getLeaves().get('title') }
             assert bookTitles.sort() == expectedBookTitles.sort()
         where: 'the following data is used'
-            scenario                                 | cpsPath                           | expectedResultsize || expectedBookTitles
-            'contains condition with leaf'           | '//books[contains(@title,"Mat")]' | 1                  || ["Matilda"]
-            'contains condition with case-sensitive' | '//books[contains(@title,"Ti")]'  | 0                  || []
-            'contains condition with Integer Value'  | '//books[contains(@price,"15")]'  | 2                  || ["Annihilation", "The Gruffalo"]
-            'contains condition with No-value'       | '//books[contains(@title,"")]'    | 9                  || ["A Book with No Language", "Annihilation", "Debian GNU/Linux", "Good Omens", "Logarithm tables", "Matilda", "The Colour of Magic", "The Gruffalo", "The Light Fantastic"]
+            scenario                                 | cpsPath                           || expectedBookTitles
+            'contains condition with leaf'           | '//books[contains(@title,"Mat")]' || ["Matilda"]
+            'contains condition with case-sensitive' | '//books[contains(@title,"Ti")]'  || []
+            'contains condition with Integer Value'  | '//books[contains(@price,"15")]'  || ["Annihilation", "The Gruffalo"]
+            'contains condition with No-value'       | '//books[contains(@title,"")]'    || ["A Book with No Language", "Annihilation", "Debian GNU/Linux", "Good Omens", "Logarithm tables", "Matilda", "The Colour of Magic", "The Gruffalo", "The Light Fantastic"]
     }
 
     def 'Cps Path query using descendant anywhere with #scenario condition for a container element.'() {
