@@ -140,5 +140,5 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>,
             + " CAST(attributes AS TEXT) AS attributes"
             + " FROM FRAGMENT WHERE xpath ~ :xpathRegex",
             nativeQuery = true)
-    List<FragmentExtract> quickFindWithDescendantsAcrossAnchor(@Param("xpathRegex") String xpathRegex);
+    List<FragmentExtract> quickFindWithDescendantsAcrossAnchors(@Param("xpathRegex") String xpathRegex);
 }
