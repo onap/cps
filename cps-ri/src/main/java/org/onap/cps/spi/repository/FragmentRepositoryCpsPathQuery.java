@@ -1,6 +1,6 @@
 /*-
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Nordix Foundation.
+ *  Copyright (C) 2021-2023 Nordix Foundation.
  *  Modifications Copyright (C) 2023 TechMahindra Ltd.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -23,10 +23,12 @@ package org.onap.cps.spi.repository;
 
 import java.util.List;
 import org.onap.cps.cpspath.parser.CpsPathQuery;
+import org.onap.cps.spi.entities.AnchorEntity;
+import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.FragmentEntity;
 
 public interface FragmentRepositoryCpsPathQuery {
-    List<FragmentEntity> findByAnchorAndCpsPath(int anchorId, CpsPathQuery cpsPathQuery);
+    List<FragmentEntity> findByAnchorAndCpsPath(AnchorEntity anchorEntity, CpsPathQuery cpsPathQuery);
 
-    List<FragmentEntity> findByCpsPath(CpsPathQuery cpsPathQuery);
+    List<FragmentEntity> findByDataspaceAndCpsPath(DataspaceEntity dataspaceEntity, CpsPathQuery cpsPathQuery);
 }
