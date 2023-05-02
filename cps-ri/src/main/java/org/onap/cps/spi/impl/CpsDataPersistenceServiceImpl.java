@@ -348,6 +348,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     private static boolean canUseRegexQuickFind(final FetchDescendantsOption fetchDescendantsOption,
                                                 final CpsPathQuery cpsPathQuery) {
         return fetchDescendantsOption.equals(FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
+            && !cpsPathQuery.hasAncestorAxis()
             && !cpsPathQuery.hasLeafConditions()
             && !cpsPathQuery.hasTextFunctionCondition()
             && !cpsPathQuery.hasContainsFunctionCondition();
@@ -356,17 +357,12 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     private List<DataNode> getDataNodesUsingRegexQuickFind(final FetchDescendantsOption fetchDescendantsOption,
                                                            final AnchorEntity anchorEntity,
                                                            final CpsPathQuery cpsPathQuery) {
-        Collection<FragmentEntity> fragmentEntities;
         final String xpathRegex = FragmentQueryBuilder.getXpathSqlRegex(cpsPathQuery, true);
         final List<FragmentExtract> fragmentExtracts = (anchorEntity == ALL_ANCHORS)
-                ? fragmentRepository.quickFindWithDescendantsAcrossAnchor(xpathRegex) :
-            fragmentRepository.quickFindWithDescendants(anchorEntity.getId(), xpathRegex);
-        fragmentEntities = FragmentEntityArranger.toFragmentEntityTrees(anchorEntity, fragmentExtracts);
-        if (cpsPathQuery.hasAncestorAxis()) {
-            final Collection<String> ancestorXpaths = processAncestorXpath(fragmentEntities, cpsPathQuery);
-            fragmentEntities = (anchorEntity == ALL_ANCHORS) ? getAncestorFragmentEntitiesAcrossAnchors(cpsPathQuery,
-            fragmentEntities) : getFragmentEntities(anchorEntity, ancestorXpaths, fetchDescendantsOption);
-        }
+            ? fragmentRepository.quickFindWithDescendantsAcrossAnchor(xpathRegex)
+            : fragmentRepository.quickFindWithDescendants(anchorEntity.getId(), xpathRegex);
+        final Collection<FragmentEntity> fragmentEntities =
+            FragmentEntityArranger.toFragmentEntityTrees(anchorEntity, fragmentExtracts);
         return createDataNodesFromFragmentEntities(fetchDescendantsOption, fragmentEntities);
     }
 
