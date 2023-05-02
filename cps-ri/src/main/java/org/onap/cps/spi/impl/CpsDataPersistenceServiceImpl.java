@@ -349,7 +349,8 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
                                                 final CpsPathQuery cpsPathQuery) {
         return fetchDescendantsOption.equals(FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
             && !cpsPathQuery.hasLeafConditions()
-            && !cpsPathQuery.hasTextFunctionCondition();
+            && !cpsPathQuery.hasTextFunctionCondition()
+            && !cpsPathQuery.hasContainsFunctionCondition();
     }
 
     private List<DataNode> getDataNodesUsingRegexQuickFind(final FetchDescendantsOption fetchDescendantsOption,
