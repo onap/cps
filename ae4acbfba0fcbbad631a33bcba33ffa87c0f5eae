@@ -16,6 +16,24 @@
       "revId": "ae4acbfba0fcbbad631a33bcba33ffa87c0f5eae",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6b4a57a6_ee3be7c9",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2023-05-02T14:46:21Z",
+      "side": 1,
+      "message": "For current changes Boolean condition is not working with comparison operators, Need to find/write proper query which supports both conditions.",
+      "parentUuid": "8e967cc5_e4001942",
+      "revId": "ae4acbfba0fcbbad631a33bcba33ffa87c0f5eae",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
