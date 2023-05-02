@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f92893f4_3a8a6c2c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/entities/FragmentEntityArranger.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-05-02T10:43:49Z",
+      "side": 1,
+      "message": "Remove null check (unless null is a valid and expected value).",
+      "range": {
+        "startLine": 44,
+        "startChar": 8,
+        "endLine": 44,
+        "endChar": 40
+      },
+      "revId": "e28ed99835143788f015e220aeab8df85c666821",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c2769192_793d78ee",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 494,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-05-02T10:43:49Z",
+      "side": 1,
+      "message": "Functionally this method operates on a batch of DataNodes, i.e. Collection\u003cDataNode\u003e. If needed, the Map can be generated inside the method.\nThis is particularly important as this is a public API method, so it should definitely take Collection\u003cDataNode\u003e and not Map\u003cString, DataNode\u003e.",
+      "range": {
+        "startLine": 494,
+        "startChar": 40,
+        "endLine": 494,
+        "endChar": 92
+      },
+      "revId": "e28ed99835143788f015e220aeab8df85c666821",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6a171b65_584a9017",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 744,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-05-02T10:43:49Z",
+      "side": 1,
+      "message": "Is null checked needed here? Remove if not used.",
+      "range": {
+        "startLine": 744,
+        "startChar": 8,
+        "endLine": 744,
+        "endChar": 44
+      },
+      "revId": "e28ed99835143788f015e220aeab8df85c666821",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d856a627_eb868f7e",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-05-02T10:43:49Z",
+      "side": 1,
+      "message": "Batch update data node leaves",
+      "range": {
+        "startLine": 103,
+        "startChar": 9,
+        "endLine": 103,
+        "endChar": 41
+      },
+      "revId": "e28ed99835143788f015e220aeab8df85c666821",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3087ebf_88bae4d8",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-05-02T10:43:49Z",
+      "side": 1,
+      "message": "This test could be combined with the previous (or even removed), given they test the  same thing).",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 142,
+        "endChar": 0
+      },
+      "revId": "e28ed99835143788f015e220aeab8df85c666821",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9b268858_67801f00",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-05-02T10:43:49Z",
+      "side": 1,
+      "message": "Should be `Collection\u003cDataNode\u003e dataNodes`",
+      "range": {
+        "startLine": 147,
+        "startChar": 72,
+        "endLine": 147,
+        "endChar": 118
+      },
+      "revId": "e28ed99835143788f015e220aeab8df85c666821",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9c31e9fc_bf452454",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsDataServiceIntegrationSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-05-02T10:43:49Z",
+      "side": 1,
+      "message": "Nice",
+      "revId": "e28ed99835143788f015e220aeab8df85c666821",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
