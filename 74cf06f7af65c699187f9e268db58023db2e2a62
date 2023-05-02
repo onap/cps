@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "efb4f5ff_e6882024",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-05-02T17:30:29Z",
+      "side": 0,
+      "message": "Removed this redundant assertion as the actual list of returned nodes is being checked",
+      "range": {
+        "startLine": 153,
+        "startChar": 131,
+        "endLine": 155,
+        "endChar": 54
+      },
+      "revId": "74cf06f7af65c699187f9e268db58023db2e2a62",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
