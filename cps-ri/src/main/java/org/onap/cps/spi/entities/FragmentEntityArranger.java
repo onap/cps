@@ -47,6 +47,24 @@ public class FragmentEntityArranger {
         return reuniteChildrenWithTheirParents(fragmentEntityPerId);
     }
 
+    /**
+     * Convert a collection of (related) FragmentExtracts into  FragmentEntities (trees) with descendants.
+     *
+     * @param anchorEntityPerId the anchor(entities) the fragments belong to
+     * @param fragmentExtracts FragmentExtracts to convert
+     * @return a collection of FragmentEntities (trees) with descendants.
+     */
+    public static Collection<FragmentEntity> toFragmentEntityTreesAcrossAnchors(
+            final Map<Integer, AnchorEntity> anchorEntityPerId, final Collection<FragmentExtract> fragmentExtracts) {
+        final Map<Long, FragmentEntity> fragmentEntityPerId = new HashMap<>();
+        for (final FragmentExtract fragmentExtract : fragmentExtracts) {
+            final AnchorEntity anchorEntity = anchorEntityPerId.get(fragmentExtract.getAnchorId());
+            final FragmentEntity fragmentEntity = toFragmentEntity(anchorEntity, fragmentExtract);
+            fragmentEntityPerId.put(fragmentEntity.getId(), fragmentEntity);
+        }
+        return reuniteChildrenWithTheirParents(fragmentEntityPerId);
+    }
+
     private static FragmentEntity toFragmentEntity(final AnchorEntity anchorEntity,
                                                    final FragmentExtract fragmentExtract) {
         final FragmentEntity fragmentEntity = new FragmentEntity();
