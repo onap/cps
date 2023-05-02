@@ -71,13 +71,13 @@ public interface NetworkCmProxyDataService {
     /**
      * Get resource data for operational.
      *
-     * @param dataStoreName       data store name
-     * @param cmHandleId cm handle identifier
+     * @param datastoreName      datastore name
+     * @param cmHandleId         cm handle identifier
      * @param resourceIdentifier resource identifier
      * @Link FetchDescendantsOption fetch descendants option
      * @return {@code Object} resource data
      */
-    Object getResourceDataForCmHandle(String dataStoreName,
+    Object getResourceDataForCmHandle(String datastoreName,
                                       String cmHandleId,
                                       String resourceIdentifier,
                                       FetchDescendantsOption fetchDescendantsOption);
@@ -85,7 +85,7 @@ public interface NetworkCmProxyDataService {
     /**
      * Get resource data for given batch of cm handles using dmi.
      *
-     * @param dataStoreName       data store name
+     * @param datastoreName       datastore name
      * @param cmHandleIds         cm handle identifiers
      * @param resourceIdentifier  resource identifier
      * @param optionsParamInQuery options query
@@ -93,7 +93,7 @@ public interface NetworkCmProxyDataService {
      * @param requestId           unique requestId for async request
      * @return {@code Object} resource data
      */
-    Object getResourceDataForCmHandleBatch(String dataStoreName,
+    Object getResourceDataForCmHandleBatch(String datastoreName,
                                        List<String> cmHandleIds,
                                        String resourceIdentifier,
                                        String optionsParamInQuery,
@@ -102,9 +102,9 @@ public interface NetworkCmProxyDataService {
 
 
     /**
-     * Write resource data for data store pass-through running
-     * using dmi for given cm-handle.
-     *  @param cmHandleId cm handle identifier
+     * Write resource data for data store pass-through running using dmi for given cm-handle.
+     *
+     * @param cmHandleId cm handle identifier
      * @param resourceIdentifier resource identifier
      * @param operation required operation
      * @param requestBody request body to create resource

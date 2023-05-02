@@ -24,34 +24,32 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.function.Supplier;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
 import org.onap.cps.ncmp.rest.executor.CpsNcmpTaskExecutor;
 import org.onap.cps.ncmp.rest.util.TopicValidator;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-@NoArgsConstructor
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class NcmpDatastoreRequestHandler implements TaskManagementDefaultHandler {
 
     @Value("${notification.async.executor.time-out-value-in-ms:2000}")
     protected int timeOutInMilliSeconds;
+
     @Value("${notification.enabled:true}")
     protected boolean notificationFeatureEnabled;
-    @Autowired
-    protected NetworkCmProxyDataService networkCmProxyDataService;
-    @Autowired
-    protected CpsNcmpTaskExecutor cpsNcmpTaskExecutor;
+
+    private final CpsNcmpTaskExecutor cpsNcmpTaskExecutor;
 
     /**
      * Executes synchronous/asynchronous request for given cm handle.
      *
+     * @param datastoreName       the name of the datastore
      * @param cmHandleId          the cm handle
      * @param resourceIdentifier  the resource identifier
      * @param optionsParamInQuery the options param in query
@@ -59,7 +57,8 @@ public class NcmpDatastoreRequestHandler implements TaskManagementDefaultHandler
      * @param includeDescendants  whether include descendants
      * @return the response entity
      */
-    public ResponseEntity<Object> executeRequest(final String cmHandleId,
+    public ResponseEntity<Object> executeRequest(final String datastoreName,
+                                                 final String cmHandleId,
                                                  final String resourceIdentifier,
                                                  final String optionsParamInQuery,
                                                  final String topicParamInQuery,
@@ -67,15 +66,15 @@ public class NcmpDatastoreRequestHandler implements TaskManagementDefaultHandler
 
         final boolean asyncResponseRequested = topicParamInQuery != null;
         if (asyncResponseRequested && notificationFeatureEnabled) {
-            return executeAsyncTaskAndGetResponseEntity(cmHandleId, resourceIdentifier, optionsParamInQuery,
-                    topicParamInQuery, includeDescendants, false);
+            return executeAsyncTaskAndGetResponseEntity(datastoreName, cmHandleId, resourceIdentifier,
+                optionsParamInQuery, topicParamInQuery, includeDescendants, false);
         }
 
         if (asyncResponseRequested) {
             log.warn("Asynchronous request is unavailable as notification feature is currently disabled, "
                     + "will use synchronous operation.");
         }
-        final Supplier<Object> taskSupplier = getTaskSupplierForGetRequest(cmHandleId,
+        final Supplier<Object> taskSupplier = getTaskSupplierForGetRequest(datastoreName, cmHandleId,
                 resourceIdentifier, optionsParamInQuery, NO_TOPIC, NO_REQUEST_ID, includeDescendants);
         return executeTaskSync(taskSupplier);
     }
@@ -101,20 +100,22 @@ public class NcmpDatastoreRequestHandler implements TaskManagementDefaultHandler
     /**
      * Executes synchronous/asynchronous request for batch of cm handles.
      *
+     * @param datastoreName       the name of the datastore
      * @param cmHandleIds         list of cm handles
      * @param resourceIdentifier  the resource identifier
      * @param optionsParamInQuery the options param in query
      * @param topicParamInQuery   the topic param in query
-     * @param includeDescendants  whether include descendants
+     * @param includeDescendants  whether to include descendants or not
      * @return the response entity
      */
-    public ResponseEntity<Object> executeRequest(final List<String> cmHandleIds,
+    public ResponseEntity<Object> executeRequest(final String datastoreName,
+                                                 final List<String> cmHandleIds,
                                                  final String resourceIdentifier,
                                                  final String optionsParamInQuery,
                                                  final String topicParamInQuery,
                                                  final boolean includeDescendants) {
 
-        return executeAsyncTaskAndGetResponseEntity(cmHandleIds, resourceIdentifier, optionsParamInQuery,
+        return executeAsyncTaskAndGetResponseEntity(datastoreName, cmHandleIds, resourceIdentifier, optionsParamInQuery,
                 topicParamInQuery, includeDescendants, true);
 
     }
@@ -134,7 +135,8 @@ public class NcmpDatastoreRequestHandler implements TaskManagementDefaultHandler
         return ResponseEntity.ok(taskSupplier.get());
     }
 
-    private ResponseEntity<Object> executeAsyncTaskAndGetResponseEntity(final Object cmHandleIdObj,
+    private ResponseEntity<Object> executeAsyncTaskAndGetResponseEntity(final String datastoreName,
+                                                                        final Object cmHandleIdObj,
                                                                         final String resourceIdentifier,
                                                                         final String optionsParamInQuery,
                                                                         final String topicParamInQuery,
@@ -143,10 +145,10 @@ public class NcmpDatastoreRequestHandler implements TaskManagementDefaultHandler
         final String requestId = UUID.randomUUID().toString();
         final Supplier<Object> taskSupplier;
         if (isBulkRequest) {
-            taskSupplier = getTaskSupplierForBulkRequest((List<String>) cmHandleIdObj,
+            taskSupplier = getTaskSupplierForBulkRequest(datastoreName, (List<String>) cmHandleIdObj,
                     resourceIdentifier, optionsParamInQuery, topicParamInQuery, requestId, includeDescendants);
         } else {
-            taskSupplier = getTaskSupplierForGetRequest(cmHandleIdObj.toString(), resourceIdentifier,
+            taskSupplier = getTaskSupplierForGetRequest(datastoreName, cmHandleIdObj.toString(), resourceIdentifier,
                     optionsParamInQuery, topicParamInQuery, requestId, includeDescendants);
         }
         if (taskSupplier == NO_OBJECT_SUPPLIER) {
