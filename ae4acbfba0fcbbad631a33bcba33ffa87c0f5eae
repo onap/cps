@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e967cc5_e4001942",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-05-02T11:05:52Z",
+      "side": 1,
+      "message": "Please add some tests using AND/OR e.g. //books[@price\u003e10 or @lang\u003d\"English\"]\nFrom what I see, boolean conditions don\u0027t work with comparison operator.",
+      "revId": "ae4acbfba0fcbbad631a33bcba33ffa87c0f5eae",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
