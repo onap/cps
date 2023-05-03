@@ -114,13 +114,13 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     }
 
     @Override
-    public Object getResourceDataForCmHandle(final String dataStoreName,
+    public Object getResourceDataForCmHandle(final String datastoreName,
                                              final String cmHandleId,
                                              final String resourceIdentifier,
                                              final String optionsParamInQuery,
                                              final String topicParamInQuery,
                                              final String requestId) {
-        final ResponseEntity<?> responseEntity = dmiDataOperations.getResourceDataFromDmi(dataStoreName, cmHandleId,
+        final ResponseEntity<?> responseEntity = dmiDataOperations.getResourceDataFromDmi(datastoreName, cmHandleId,
                 resourceIdentifier,
                 optionsParamInQuery,
                 topicParamInQuery,
@@ -129,22 +129,22 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     }
 
     @Override
-    public Object getResourceDataForCmHandle(final String dataStoreName,
+    public Object getResourceDataForCmHandle(final String datastoreName,
                                              final String cmHandleId,
                                              final String resourceIdentifier,
                                              final FetchDescendantsOption fetchDescendantsOption) {
-        return cpsDataService.getDataNodes(dataStoreName, cmHandleId, resourceIdentifier,
+        return cpsDataService.getDataNodes(datastoreName, cmHandleId, resourceIdentifier,
                 fetchDescendantsOption).iterator().next();
     }
 
     @Override
-    public Object getResourceDataForCmHandleBatch(final String dataStoreName,
+    public Object getResourceDataForCmHandleBatch(final String datastoreName,
                                                   final List<String> cmHandleIds,
                                                   final String resourceIdentifier,
                                                   final String optionsParamInQuery,
                                                   final String topicParamInQuery,
                                                   final String requestId) {
-        final ResponseEntity<?> responseEntity = dmiDataOperations.getResourceDataFromDmi(dataStoreName, cmHandleIds,
+        final ResponseEntity<?> responseEntity = dmiDataOperations.getResourceDataFromDmi(datastoreName, cmHandleIds,
                 resourceIdentifier,
                 optionsParamInQuery,
                 topicParamInQuery,

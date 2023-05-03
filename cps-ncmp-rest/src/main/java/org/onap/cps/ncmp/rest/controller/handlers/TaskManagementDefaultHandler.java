@@ -30,24 +30,24 @@ public interface TaskManagementDefaultHandler {
     String NO_TOPIC = null;
     Supplier<Object> NO_OBJECT_SUPPLIER = null;
 
-    default Supplier<Object> getTaskSupplierForGetRequest(final String cmHandleId,
+    default Supplier<Object> getTaskSupplierForGetRequest(final String datastoreName,
+                                                          final String cmHandleId,
                                                           final String resourceIdentifier,
                                                           final String optionsParamInQuery,
                                                           final String topicParamInQuery,
                                                           final String requestId,
                                                           final boolean includeDescendant) {
         return NO_OBJECT_SUPPLIER;
-
     }
 
     default Supplier<Object> getTaskSupplierForQueryRequest(final String cmHandleId,
                                                             final String resourceIdentifier,
                                                             final boolean includeDescendant) {
         return NO_OBJECT_SUPPLIER;
-
     }
 
-    default Supplier<Object> getTaskSupplierForBulkRequest(final List<String> cmHandleIds,
+    default Supplier<Object> getTaskSupplierForBulkRequest(final String datastoreName,
+                                                           final List<String> cmHandleIds,
                                                            final String resourceIdentifier,
                                                            final String optionsParamInQuery,
                                                            final String topicParamInQuery,
