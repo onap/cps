@@ -99,6 +99,24 @@
       "revId": "ae4acbfba0fcbbad631a33bcba33ffa87c0f5eae",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3c5caa_cb5d3b3e",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2023-05-03T09:26:20Z",
+      "side": 1,
+      "message": "The problem is e.g. //books[@price\u003e10 or @lang\u003d\"English\"] if we want to query this\nNative Query : ((attributes  -\u003e\u003e\u0027price\u0027)\\:\\:int \u003e \u002710\u0027 and attributes @\u003e \u0027{\"lang\":\"English\"}\u0027) ; were postgress is not supporting this operation . So for now it will be as limitation.",
+      "parentUuid": "3109abff_a31b0006",
+      "revId": "ae4acbfba0fcbbad631a33bcba33ffa87c0f5eae",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
