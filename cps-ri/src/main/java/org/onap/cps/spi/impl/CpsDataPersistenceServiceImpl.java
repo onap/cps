@@ -65,7 +65,6 @@ import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.DataNodeBuilder;
 import org.onap.cps.spi.repository.AnchorRepository;
 import org.onap.cps.spi.repository.DataspaceRepository;
-import org.onap.cps.spi.repository.FragmentQueryBuilder;
 import org.onap.cps.spi.repository.FragmentRepository;
 import org.onap.cps.spi.utils.SessionManager;
 import org.onap.cps.utils.JsonObjectMapper;
@@ -305,13 +304,6 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         return fragmentEntity;
     }
 
-    private Collection<FragmentEntity> buildFragmentEntitiesFromFragmentExtracts(final AnchorEntity anchorEntity,
-                                                                                 final String normalizedXpath) {
-        final List<FragmentExtract> fragmentExtracts =
-            fragmentRepository.findByAnchorAndParentXpath(anchorEntity, normalizedXpath);
-        return FragmentEntityArranger.toFragmentEntityTrees(anchorEntity, fragmentExtracts);
-    }
-
     @Override
     @Timed(value = "cps.data.persistence.service.datanode.query",
             description = "Time taken to query data nodes")
@@ -328,16 +320,11 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         }
 
         Collection<FragmentEntity> fragmentEntities;
-        if (canUseRegexQuickFind(fetchDescendantsOption, cpsPathQuery)) {
-            return getDataNodesUsingRegexQuickFind(fetchDescendantsOption, dataspaceEntity, anchorEntity, cpsPathQuery);
-        }
-
         if (anchorEntity == ALL_ANCHORS) {
             fragmentEntities = fragmentRepository.findByDataspaceAndCpsPath(dataspaceEntity, cpsPathQuery);
         } else {
             fragmentEntities = fragmentRepository.findByAnchorAndCpsPath(anchorEntity, cpsPathQuery);
         }
-
         if (cpsPathQuery.hasAncestorAxis()) {
             final Collection<String> ancestorXpaths = processAncestorXpath(fragmentEntities, cpsPathQuery);
             if (anchorEntity == ALL_ANCHORS) {
@@ -346,8 +333,9 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
                 fragmentEntities = fragmentRepository.findByAnchorAndXpathIn(anchorEntity, ancestorXpaths);
             }
         }
-
-        return createDataNodesFromProxiedFragmentEntities(fetchDescendantsOption, anchorEntity, fragmentEntities);
+        fragmentEntities = prefetchDescendantsForFragmentEntities(fetchDescendantsOption, anchorEntity,
+            fragmentEntities);
+        return createDataNodesFromFragmentEntities(fetchDescendantsOption, fragmentEntities);
     }
 
     @Override
@@ -356,30 +344,20 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         return queryDataNodes(dataspaceName, QUERY_ACROSS_ANCHORS, cpsPath, fetchDescendantsOption);
     }
 
-    private static boolean canUseRegexQuickFind(final FetchDescendantsOption fetchDescendantsOption,
-                                                final CpsPathQuery cpsPathQuery) {
-        return fetchDescendantsOption.equals(FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
-            && !cpsPathQuery.hasAncestorAxis()
-            && !cpsPathQuery.hasLeafConditions()
-            && !cpsPathQuery.hasTextFunctionCondition()
-            && !cpsPathQuery.hasContainsFunctionCondition();
-    }
+    private Collection<FragmentEntity> prefetchDescendantsForFragmentEntities(
+                                            final FetchDescendantsOption fetchDescendantsOption,
+                                            final AnchorEntity anchorEntity,
+                                            final Collection<FragmentEntity> proxiedFragmentEntities) {
+        if (FetchDescendantsOption.OMIT_DESCENDANTS.equals(fetchDescendantsOption)) {
+            return proxiedFragmentEntities;
+        }
 
-    private List<DataNode> getDataNodesUsingRegexQuickFind(final FetchDescendantsOption fetchDescendantsOption,
-                                                           final DataspaceEntity dataspaceEntity,
-                                                           final AnchorEntity anchorEntity,
-                                                           final CpsPathQuery cpsPathQuery) {
-        final String xpathRegex = FragmentQueryBuilder.getXpathSqlRegex(cpsPathQuery, true);
-        final List<FragmentExtract> fragmentExtracts = (anchorEntity == ALL_ANCHORS)
-            ? fragmentRepository.quickFindWithDescendantsAcrossAnchor(dataspaceEntity.getId(), xpathRegex)
-            : fragmentRepository.quickFindWithDescendants(anchorEntity.getId(), xpathRegex);
-        final Collection<FragmentEntity> fragmentEntities =
-            createFragmentEntitiesFromFragmentExtracts(anchorEntity, fragmentExtracts);
-        return createDataNodesFromFragmentEntities(fetchDescendantsOption, fragmentEntities);
-    }
+        final List<Long> fragmentEntityIds = proxiedFragmentEntities.stream()
+            .map(FragmentEntity::getId).collect(Collectors.toList());
 
-    private Collection<FragmentEntity> createFragmentEntitiesFromFragmentExtracts(
-                    final AnchorEntity anchorEntity, final Collection<FragmentExtract> fragmentExtracts) {
+        final List<FragmentExtract> fragmentExtracts =
+            fragmentRepository.findExtractsWithDescendantsByIds(fragmentEntityIds, fetchDescendantsOption.getDepth());
+
         if (anchorEntity == ALL_ANCHORS) {
             final Collection<Integer> anchorIds = fragmentExtracts.stream()
                 .map(FragmentExtract::getAnchorId).collect(Collectors.toSet());
@@ -389,28 +367,6 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             return FragmentEntityArranger.toFragmentEntityTreesAcrossAnchors(anchorEntityPerId, fragmentExtracts);
         }
         return FragmentEntityArranger.toFragmentEntityTrees(anchorEntity, fragmentExtracts);
-    }
-
-    private List<DataNode> createDataNodesFromProxiedFragmentEntities(
-                                            final FetchDescendantsOption fetchDescendantsOption,
-                                            final AnchorEntity anchorEntity,
-                                            final Collection<FragmentEntity> proxiedFragmentEntities) {
-        final List<DataNode> dataNodes = new ArrayList<>(proxiedFragmentEntities.size());
-        for (final FragmentEntity proxiedFragmentEntity : proxiedFragmentEntities) {
-            if (FetchDescendantsOption.OMIT_DESCENDANTS.equals(fetchDescendantsOption)) {
-                dataNodes.add(toDataNode(proxiedFragmentEntity, fetchDescendantsOption));
-            } else {
-                final String normalizedXpath = getNormalizedXpath(proxiedFragmentEntity.getXpath());
-                final AnchorEntity anchorEntityForFragmentExtract = (anchorEntity == ALL_ANCHORS)
-                        ? proxiedFragmentEntity.getAnchor() : anchorEntity;
-                final Collection<FragmentEntity> unproxiedFragmentEntities =
-                    buildFragmentEntitiesFromFragmentExtracts(anchorEntityForFragmentExtract, normalizedXpath);
-                for (final FragmentEntity unproxiedFragmentEntity : unproxiedFragmentEntities) {
-                    dataNodes.add(toDataNode(unproxiedFragmentEntity, fetchDescendantsOption));
-                }
-            }
-        }
-        return Collections.unmodifiableList(dataNodes);
     }
 
     private List<DataNode> createDataNodesFromFragmentEntities(final FetchDescendantsOption fetchDescendantsOption,
