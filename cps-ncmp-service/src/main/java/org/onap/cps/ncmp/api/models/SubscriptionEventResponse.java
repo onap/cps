@@ -21,6 +21,7 @@
 package org.onap.cps.ncmp.api.models;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 import lombok.Getter;
 import lombok.Setter;
@@ -30,8 +31,12 @@ import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionStatus;
 @Getter
 @Setter
 public class SubscriptionEventResponse {
+    @JsonProperty("clientId")
     private String clientId;
+    @JsonProperty("subscriptionName")
     private String subscriptionName;
+    @JsonProperty("dmiName")
     private String dmiName;
+    @JsonProperty("cmHandleIdToStatus")
     private Map<String, SubscriptionStatus> cmHandleIdToStatus;
 }

@@ -30,10 +30,12 @@ import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Setter(AccessLevel.PROTECTED)
 @Getter
 @EqualsAndHashCode
+@ToString
 public class DataNode implements Serializable {
 
     private static final long serialVersionUID = 1482619410918597467L;
