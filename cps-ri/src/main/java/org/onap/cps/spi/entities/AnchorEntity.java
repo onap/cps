@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Pantheon.tech
+ *  Modifications Copyright (C) 2023 Nordix Foundation.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -32,6 +33,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -46,6 +48,7 @@ import lombok.Setter;
 @Builder
 @Entity
 @Table(name = "anchor")
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class AnchorEntity implements Serializable {
 
     private static final long serialVersionUID = -8049987915308262518L;
@@ -56,6 +59,7 @@ public class AnchorEntity implements Serializable {
 
     @NotNull
     @Column
+    @EqualsAndHashCode.Include
     private String name;
 
     @NotNull
@@ -66,5 +70,6 @@ public class AnchorEntity implements Serializable {
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "dataspace_id")
+    @EqualsAndHashCode.Include
     private DataspaceEntity dataspace;
 }
