@@ -50,7 +50,7 @@ class CpsDataPersistenceServiceSpec extends Specification {
     def objectUnderTest = Spy(new CpsDataPersistenceServiceImpl(mockDataspaceRepository, mockAnchorRepository,
             mockFragmentRepository, jsonObjectMapper, mockSessionManager))
 
-    def anchorEntity = new AnchorEntity(id: 123, dataspace: new DataspaceEntity(id: 1))
+    static def anchorEntity = new AnchorEntity(id: 123, dataspace: new DataspaceEntity(id: 1))
 
     def setup() {
         mockAnchorRepository.getByDataspaceAndName(_, _) >> anchorEntity
@@ -198,12 +198,12 @@ class CpsDataPersistenceServiceSpec extends Specification {
         where: 'the following Data Type is passed'
             scenario                         | dataNodes                                                                          || expectedFragmentEntities
             'empty data node list'           | []                                                                                 || []
-            'one data node in list'          | [new DataNode(xpath: '/test/xpath', leaves: ['id': 'testId'], childDataNodes: [])] || [new FragmentEntity(xpath: '/test/xpath', attributes: '{"id":"testId"}', childFragments: [])]
+            'one data node in list'          | [new DataNode(xpath: '/test/xpath', leaves: ['id': 'testId'], childDataNodes: [])] || [new FragmentEntity(xpath: '/test/xpath', attributes: '{"id":"testId"}', anchor: anchorEntity, childFragments: [])]
     }
 
     def 'update data nodes and descendants'() {
         given: 'the fragment repository returns fragment entities related to the xpath inputs'
-            mockFragmentRepository.findExtractsWithDescendants(123, ['/test/xpath1', '/test/xpath2'] as Set, _) >> [
+            mockFragmentRepository.findExtractsWithDescendants(_, ['/test/xpath1', '/test/xpath2'] as Set, _) >> [
                 mockFragmentExtract(1, null, 123, '/test/xpath1', null),
                 mockFragmentExtract(2, null, 123, '/test/xpath2', null)
             ]
@@ -211,14 +211,13 @@ class CpsDataPersistenceServiceSpec extends Specification {
             def dataNode1 = new DataNode(xpath: '/test/xpath1', leaves: ['id': 'testId1'], childDataNodes: [new DataNode(xpath: '/test/xpath1/child', leaves: ['id': 'childTestId1'])])
             def dataNode2 = new DataNode(xpath: '/test/xpath2', leaves: ['id': 'testId2'], childDataNodes: [new DataNode(xpath: '/test/xpath2/child', leaves: ['id': 'childTestId2'])])
         when: 'the fragment entities are update by the data nodes'
-            objectUnderTest.updateDataNodesAndDescendants('dataspaceName', 'anchorName', [dataNode1, dataNode2])
+            objectUnderTest.updateDataNodesAndDescendants('dataspace', 'anchor', [dataNode1, dataNode2])
         then: 'call fragment repository save all method is called with the updated fragments'
             1 * mockFragmentRepository.saveAll({fragmentEntities -> {
-                fragmentEntities.containsAll([
-                    new FragmentEntity(xpath: '/test/xpath1', attributes: '{"id":"testId1"}', childFragments: [new FragmentEntity(xpath: '/test/xpath1/child', attributes: '{"id":"childTestId1"}', childFragments: [])]),
-                    new FragmentEntity(xpath: '/test/xpath2', attributes: '{"id":"testId2"}', childFragments: [new FragmentEntity(xpath: '/test/xpath2/child', attributes: '{"id":"childTestId2"}', childFragments: [])])
-                ])
                 assert fragmentEntities.size() == 2
+                def fragmentEntityPerXpath = fragmentEntities.collectEntries { [it.xpath, it] }
+                assert fragmentEntityPerXpath.get('/test/xpath1').childFragments.first().attributes == '{"id":"childTestId1"}'
+                assert fragmentEntityPerXpath.get('/test/xpath2').childFragments.first().attributes == '{"id":"childTestId2"}'
             }})
     }
 
@@ -241,10 +240,9 @@ class CpsDataPersistenceServiceSpec extends Specification {
             def scenario = it.value
             def dataNode = new DataNodeBuilder().withXpath(xpath).build()
             dataNodes.add(dataNode)
-            def fragmentExtract = mockFragmentExtract(fragmentId, null, null, xpath, null)
+            def fragmentExtract = mockFragmentExtract(fragmentId, null, 123, xpath, null)
             fragmentExtracts.add(fragmentExtract)
-            def fragmentEntity = new FragmentEntity(id: fragmentId, xpath: xpath, childFragments: [])
-            mockFragmentRepository.getByDataspaceAndAnchorAndXpath(_, _, xpath) >> fragmentEntity
+            def fragmentEntity = new FragmentEntity(id: fragmentId, anchor: anchorEntity, xpath: xpath, childFragments: [])
             if ('EXCEPTION' == scenario) {
                 mockFragmentRepository.save(fragmentEntity) >> { throw new StaleStateException("concurrent updates") }
             }
