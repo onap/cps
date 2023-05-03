@@ -22,6 +22,8 @@ package org.onap.cps.ncmp.api.impl.event.avc
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.hazelcast.map.IMap
+import org.onap.cps.ncmp.api.impl.events.avcsubscription.SubscriptionEventResponseMapper
+import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionPersistenceImpl
 import org.onap.cps.ncmp.api.kafka.MessagingBaseSpec
 import org.onap.cps.ncmp.api.models.SubscriptionEventResponse
 import org.onap.cps.utils.JsonObjectMapper
@@ -31,8 +33,11 @@ import org.springframework.boot.test.context.SpringBootTest
 class SubscriptionEventResponseConsumerSpec extends MessagingBaseSpec {
 
     IMap<String, Set<String>> mockForwardedSubscriptionEventCache = Mock(IMap<String, Set<String>>)
+    def mockSubscriptionPersistence = Mock(SubscriptionPersistenceImpl)
+    def mockSubscriptionEventResponseMapper = Mock(SubscriptionEventResponseMapper)
 
-    def objectUnderTest = new SubscriptionEventResponseConsumer(mockForwardedSubscriptionEventCache)
+    def objectUnderTest = new SubscriptionEventResponseConsumer(mockForwardedSubscriptionEventCache,
+        mockSubscriptionPersistence, mockSubscriptionEventResponseMapper)
 
 
     def 'Consume Subscription Event Response where all DMIs have responded'() {
