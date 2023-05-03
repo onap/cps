@@ -22,6 +22,30 @@
       "revId": "dcdd79d8cf3e5284b0036a8fddce1a96694f3718",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b7f88d38_13fc6012",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-05-03T09:19:43Z",
+      "side": 1,
+      "message": "Yes, I changed the test to use INCLUDE_ALL_DESCENDANTS, so this path is followed until !hasContainsFunctionCondition.\nExisting test cases NOT using contains-condition cover the other code path.",
+      "parentUuid": "805fff7a_569e648e",
+      "range": {
+        "startLine": 353,
+        "startChar": 14,
+        "endLine": 353,
+        "endChar": 60
+      },
+      "revId": "dcdd79d8cf3e5284b0036a8fddce1a96694f3718",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
