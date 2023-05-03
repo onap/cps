@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "0522b6a9_a3031e31",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 494,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-05-03T09:39:01Z",
+      "side": 1,
+      "message": "No, even if we keep the existing method, the new method should still be changed. It\u0027s not consistent with existing.\n\nThe existing method takes xpath and a map of leaves. Since DataNode contains those fields:\n  public class DataNode {\n    private String xpath;\n    private Map\u003cString, Serializable\u003e leaves;\n    ...\n  }\n\nthe existing method is equivalent to this:\n  void updateDataLeaves(String dataspaceName, String anchorName, DataNode updatedDataNode)\n\nThus the new one should be:\n  void batchUpdateDataLeaves(String dataspaceName, String anchorName, Collection\u003cDataNode\u003e updatedDataNodes);\n\nThis is also similar to other batch operations like updateDataNodesAndDescendants, which has this signature:\n   void updateDataNodesAndDescendants(String dataspaceName, String anchorName, Collection\u003cDataNode\u003e updatedDataNodes);",
+      "parentUuid": "f1d30a36_b989b775",
+      "range": {
+        "startLine": 494,
+        "startChar": 40,
+        "endLine": 494,
+        "endChar": 92
+      },
+      "revId": "e28ed99835143788f015e220aeab8df85c666821",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6a171b65_584a9017",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 13
