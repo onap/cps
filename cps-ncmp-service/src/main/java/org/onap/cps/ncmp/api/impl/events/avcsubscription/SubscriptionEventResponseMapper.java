@@ -21,35 +21,36 @@
 package org.onap.cps.ncmp.api.impl.events.avcsubscription;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionStatus;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelSubscriptionEvent;
-import org.onap.cps.ncmp.event.model.SubscriptionEvent;
+import org.onap.cps.ncmp.api.models.SubscriptionEventResponse;
 
 @Mapper(componentModel = "spring")
-public interface SubscriptionEventMapper {
+public interface SubscriptionEventResponseMapper {
 
-    @Mapping(source = "event.subscription.clientID", target = "clientId")
-    @Mapping(source = "event.subscription.name", target = "subscriptionName")
-    @Mapping(source = "event.subscription.isTagged", target = "tagged")
-    @Mapping(source = "event.predicates.targets", target = "predicates.targetCmHandles",
-            qualifiedByName = "mapTargetsToCmHandleTargets")
-    @Mapping(source = "event.predicates.datastore", target = "predicates.datastore")
-    YangModelSubscriptionEvent toYangModelSubscriptionEvent(SubscriptionEvent subscriptionEvent);
+    @Mapping(source = "clientId", target = "clientId")
+    @Mapping(source = "subscriptionName", target = "subscriptionName")
+    @Mapping(source = "cmHandleIdToStatus", target = "predicates.targetCmHandles",
+            qualifiedByName = "mapStatusToCmHandleTargets")
+    YangModelSubscriptionEvent toYangModelSubscriptionEvent(
+            SubscriptionEventResponse subscriptionEventResponse);
 
     /**
-     * Maps list of Targets to list of TargetCmHandle.
+     * Maps StatusToCMHandle to list of TargetCmHandle.
      *
-     * @param targets list of objects
+     * @param targets as a map
      * @return TargetCmHandle list
      */
-    @Named("mapTargetsToCmHandleTargets")
-    default List<YangModelSubscriptionEvent.TargetCmHandle> mapTargetsToCmHandleTargets(List<Object> targets) {
-        return targets.stream().map(target -> new YangModelSubscriptionEvent.TargetCmHandle(target.toString(),
-                        SubscriptionStatus.PENDING))
-                .collect(Collectors.toList());
+    @Named("mapStatusToCmHandleTargets")
+    default List<YangModelSubscriptionEvent.TargetCmHandle> mapStatusToCmHandleTargets(
+            Map<String, SubscriptionStatus> targets) {
+        return targets.entrySet().stream().map(target ->
+                new YangModelSubscriptionEvent.TargetCmHandle(target.getKey(), target.getValue())).collect(
+                Collectors.toList());
     }
 }
