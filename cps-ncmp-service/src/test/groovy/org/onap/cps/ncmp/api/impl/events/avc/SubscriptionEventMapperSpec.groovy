@@ -24,6 +24,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import org.mapstruct.factory.Mappers
 import org.onap.cps.ncmp.api.impl.events.avcsubscription.SubscriptionEventMapper
 import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionStatus
+import org.onap.cps.ncmp.api.models.SubscriptionEventResponse
 import org.onap.cps.ncmp.event.model.SubscriptionEvent
 import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.utils.JsonObjectMapper
@@ -56,6 +57,24 @@ class SubscriptionEventMapperSpec extends Specification {
             assert result.predicates.targetCmHandles.cmHandleId == ["CMHandle1", "CMHandle2", "CMHandle3"]
         and: 'the status for these targets is set to pending'
             assert result.predicates.targetCmHandles.status == [SubscriptionStatus.PENDING, SubscriptionStatus.PENDING, SubscriptionStatus.PENDING]
+        and: 'the topic is null'
+            assert result.topic == null
+    }
+
+    def 'Map subscription response event to yang model subscription event'() {
+        given: 'a Subscription Response Event'
+            def jsonData = TestUtils.getResourceFileContent('avcSubscriptionEventResponse.json')
+            def testEventToMap = jsonObjectMapper.convertJsonString(jsonData, SubscriptionEventResponse.class)
+        when: 'the event is mapped to a yang model subscription'
+            def result = objectUnderTest.toYangModelSubscriptionEventForSubscriptionEventResponse(testEventToMap)
+        then: 'the resulting yang model subscription event contains the correct clientId'
+            assert result.clientId == "SCO-9989752"
+        and: 'subscription name'
+            assert result.subscriptionName == "cm-subscription-001"
+        and: 'predicate targets '
+            assert result.predicates.targetCmHandles.cmHandleId == ["CMHandle1", "CMHandle2"]
+        and: 'the status for these targets is set to pending'
+            assert result.predicates.targetCmHandles.status == [SubscriptionStatus.ACCEPTED, SubscriptionStatus.REJECTED]
         and: 'the topic is null'
             assert result.topic == null
     }
