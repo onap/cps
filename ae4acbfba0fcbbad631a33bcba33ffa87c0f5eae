@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "33254d1f_72634ce3",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-05-03T09:12:20Z",
+      "side": 1,
+      "message": "It would also be nice to see a test case that is expected to return nothing, e.g.\n\n scenario            | cpspath                || expectedBookTitles\n \u0027price \u003e 1000\u0027      | \u0027//books[@price\u003e1000]\u0027 || []\n\nIt would also be interesting to see if negative numbers are supported:\n \u0027negative numbers\u0027  | \u0027//books[@price\u003e-100]\u0027 || [\"The Gruffalo\", \"Annihilation\", ...]\n\n(this case could be done here or in CpsPathQuerySpec)",
+      "parentUuid": "c7f30d59_473e4ae8",
+      "range": {
+        "startLine": 84,
+        "startChar": 131,
+        "endLine": 88,
+        "endChar": 64
+      },
+      "revId": "ae4acbfba0fcbbad631a33bcba33ffa87c0f5eae",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8e967cc5_e4001942",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
         "patchSetId": 17
