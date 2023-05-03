@@ -24,6 +24,9 @@ import com.hazelcast.map.IMap;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.ncmp.api.impl.events.avcsubscription.SubscriptionEventResponseMapper;
+import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionPersistence;
+import org.onap.cps.ncmp.api.impl.yangmodels.YangModelSubscriptionEvent;
 import org.onap.cps.ncmp.api.models.SubscriptionEventResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -35,6 +38,10 @@ import org.springframework.stereotype.Component;
 public class SubscriptionEventResponseConsumer {
 
     private final IMap<String, Set<String>> forwardedSubscriptionEventCache;
+
+    private final SubscriptionPersistence subscriptionPersistence;
+
+    private final SubscriptionEventResponseMapper subscriptionEventResponseMapper;
 
     @Value("${app.ncmp.avc.subscription-outcome-topic}")
     private String subscriptionOutcomeEventTopic;
@@ -76,7 +83,9 @@ public class SubscriptionEventResponseConsumer {
     }
 
     private void updateSubscriptionEvent(final SubscriptionEventResponse subscriptionEventResponse) {
-        log.info("placeholder to update persisted subscription for subscriptionEventId: {}.",
-            subscriptionEventResponse.getClientId() + subscriptionEventResponse.getSubscriptionName());
+        final YangModelSubscriptionEvent yangModelSubscriptionEvent =
+                subscriptionEventResponseMapper
+                        .toYangModelSubscriptionEvent(subscriptionEventResponse);
+        subscriptionPersistence.saveSubscriptionEvent(yangModelSubscriptionEvent);
     }
 }

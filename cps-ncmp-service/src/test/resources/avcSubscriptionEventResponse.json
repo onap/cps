@@ -1,0 +1,9 @@
+{
+  "clientId": "SCO-9989752",
+  "subscriptionName": "cm-subscription-001",
+  "dmiName": "ncmp-dmi-plugin",
+  "cmHandleIdToStatus": {
+    "CMHandle1": "ACCEPTED",
+    "CMHandle2": "REJECTED"
+  }
+}
