@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c949fac7_c13e0807",
+        "filename": "cps-path-parser/src/main/antlr4/org/onap/cps/cpspath/parser/antlr4/CpsPath.g4",
+        "patchSetId": 18
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-05-03T13:28:02Z",
+      "side": 1,
+      "message": "FragDigits should not have \u0027-\u0027 since FragDigits is used in definition of DecimalLiteral, etc. This would work better:\n  IntegerLiteral : \u0027-\u0027? FragDigits ;\n\nBut I think we should *not* do this now, maybe revert since it\u0027s out of scope, and we can make a separate commit for negative number support, if needed. Apologies, when I asked for test case for negative numbers, I didn\u0027t realize that the grammar doesn\u0027t support negative numbers! So it is out of scope.",
+      "range": {
+        "startLine": 94,
+        "startChar": 32,
+        "endLine": 96,
+        "endChar": 0
+      },
+      "revId": "87a8c5600b554b00ee94b5b9af1379cf9ff1d8e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1aee0ab4_49f32af9",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-05-03T13:28:02Z",
+      "side": 1,
+      "message": "Good refactoring, I think this will make it easier to support AND/OR later.",
+      "revId": "87a8c5600b554b00ee94b5b9af1379cf9ff1d8e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ad0e0ec2_f698449f",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 18
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-05-03T13:28:02Z",
+      "side": 1,
+      "message": "Remove println",
+      "range": {
+        "startLine": 90,
+        "startChar": 12,
+        "endLine": 90,
+        "endChar": 46
+      },
+      "revId": "87a8c5600b554b00ee94b5b9af1379cf9ff1d8e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
