@@ -120,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "efaaeffb_841cbad0",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 494,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-05-03T09:49:54Z",
+      "side": 1,
+      "message": "I was referring to this comment from Toine https://gerrit.onap.org/r/c/cps/+/134019/9/cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java#147\n\nSo if all the team members agree I can rollback the code to Collection\u003cDataNode\u003e.",
+      "parentUuid": "0522b6a9_a3031e31",
+      "range": {
+        "startLine": 494,
+        "startChar": 40,
+        "endLine": 494,
+        "endChar": 92
+      },
+      "revId": "e28ed99835143788f015e220aeab8df85c666821",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6a171b65_584a9017",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 13
