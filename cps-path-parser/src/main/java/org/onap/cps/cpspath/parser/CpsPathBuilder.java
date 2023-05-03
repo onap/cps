@@ -61,6 +61,10 @@ public class CpsPathBuilder extends CpsPathBaseListener {
 
     final Queue<String> booleanOperatorsQueue = new LinkedList<>();
 
+    final List<String> comparativeOperators = new ArrayList<>();
+
+    final Queue<String> comparativeOperatorsQueue = new LinkedList<>();
+
     @Override
     public void exitInvalidPostFix(final CpsPathParser.InvalidPostFixContext ctx) {
         throw new PathParsingException(ctx.getText());
@@ -111,6 +115,15 @@ public class CpsPathBuilder extends CpsPathBaseListener {
         booleanOperators.add(cpsPathBooleanOperatorType.getValues());
         booleanOperatorsQueue.add(cpsPathBooleanOperatorType.getValues());
         cpsPathQuery.setBooleanOperatorsType(booleanOperators);
+    }
+
+    @Override
+    public void exitComparativeOperators(final CpsPathParser.ComparativeOperatorsContext ctx) {
+        final CpsPathComparativeOperatorType cpsPathComparativeOperatorType = CpsPathComparativeOperatorType.fromString(
+                ctx.getText());
+        comparativeOperators.add(cpsPathComparativeOperatorType.getLabels());
+        comparativeOperatorsQueue.add(cpsPathComparativeOperatorType.getLabels());
+        cpsPathQuery.setComparativeOperatorsType(comparativeOperators);
     }
 
     @Override
@@ -194,12 +207,17 @@ public class CpsPathBuilder extends CpsPathBaseListener {
 
     private void appendCondition(final StringBuilder currentNormalizedPathBuilder, final String name,
                                  final String booleanOperator, final Object value) {
+        final String comparativeOperator = comparativeOperatorsQueue.poll();
         final char lastCharacter = currentNormalizedPathBuilder.charAt(currentNormalizedPathBuilder.length() - 1);
-        currentNormalizedPathBuilder.append(lastCharacter == '[' ? "" : " " + booleanOperator + " ")
-                                    .append("@")
-                                    .append(name)
-                                    .append("='")
-                                    .append(value)
-                                    .append("'");
+        currentNormalizedPathBuilder.append(lastCharacter == '[' ? "" : " " + booleanOperator + " ").append("@");
+        currentNormalizedPathBuilder.append(name);
+        if (comparativeOperators.isEmpty()) {
+            currentNormalizedPathBuilder.append("=");
+        } else {
+            currentNormalizedPathBuilder.append(comparativeOperator);
+        }
+        currentNormalizedPathBuilder.append("'");
+        currentNormalizedPathBuilder.append(value);
+        currentNormalizedPathBuilder.append("'");
     }
 }
