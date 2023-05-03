@@ -46,7 +46,6 @@ public class FragmentQueryBuilder {
     private static final String REGEX_ABSOLUTE_PATH_PREFIX = "^";
     private static final String REGEX_DESCENDANT_PATH_PREFIX = "^.*\\/";
     private static final String REGEX_OPTIONAL_LIST_INDEX_POSTFIX = "(\\[@(?!.*\\[).*?])?$";
-    private static final String REGEX_FOR_QUICK_FIND_WITH_DESCENDANTS = "(\\[@.*?])?(\\/.*)?$";
     private static final AnchorEntity ACROSS_ALL_ANCHORS = null;
 
     @PersistenceContext
@@ -77,28 +76,9 @@ public class FragmentQueryBuilder {
         return getQueryForDataspaceOrAnchorAndCpsPath(dataspaceEntity, ACROSS_ALL_ANCHORS, cpsPathQuery);
     }
 
-    /**
-     * Create a regular expression (string) for matching xpaths based on the given cps path query.
-     *
-     * @param cpsPathQuery the cps path query to determine the required regular expression
-     * @return a string representing the required regular expression
-     */
-    public static String getXpathSqlRegex(final CpsPathQuery cpsPathQuery) {
+    private static String getXpathSqlRegex(final CpsPathQuery cpsPathQuery) {
         final StringBuilder xpathRegexBuilder = getRegexStringBuilderWithPrefix(cpsPathQuery);
         xpathRegexBuilder.append(REGEX_OPTIONAL_LIST_INDEX_POSTFIX);
-        return xpathRegexBuilder.toString();
-    }
-
-    /**
-     * Create a regular expression (string) for matching xpaths with (all) descendants
-     * based on the given cps path query.
-     *
-     * @param cpsPathQuery the cps path query to determine the required regular expression
-     * @return a string representing the required regular expression
-     */
-    public static String getXpathSqlRegexForQuickFindWithDescendants(final CpsPathQuery cpsPathQuery) {
-        final StringBuilder xpathRegexBuilder = getRegexStringBuilderWithPrefix(cpsPathQuery);
-        xpathRegexBuilder.append(REGEX_FOR_QUICK_FIND_WITH_DESCENDANTS);
         return xpathRegexBuilder.toString();
     }
 
