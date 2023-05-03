@@ -22,10 +22,14 @@ package org.onap.cps.ncmp.api.impl.subscriptions;
 
 import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NO_TIMESTAMP;
 
+import java.util.Collection;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelSubscriptionEvent;
+import org.onap.cps.spi.FetchDescendantsOption;
+import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.stereotype.Component;
 
@@ -44,9 +48,28 @@ public class SubscriptionPersistenceImpl implements SubscriptionPersistence {
     @Override
     public void saveSubscriptionEvent(final YangModelSubscriptionEvent yangModelSubscriptionEvent) {
         final String subscriptionEventJsonData =
-            createSubscriptionEventJsonData(jsonObjectMapper.asJsonString(yangModelSubscriptionEvent));
-        cpsDataService.saveListElements(SUBSCRIPTION_DATASPACE_NAME, SUBSCRIPTION_ANCHOR_NAME,
-            SUBSCRIPTION_REGISTRY_PARENT, subscriptionEventJsonData, NO_TIMESTAMP);
+                createSubscriptionEventJsonData(jsonObjectMapper.asJsonString(yangModelSubscriptionEvent));
+        final Collection<DataNode> dataNodes = cpsDataService.getDataNodes(SUBSCRIPTION_DATASPACE_NAME,
+                SUBSCRIPTION_ANCHOR_NAME, SUBSCRIPTION_REGISTRY_PARENT, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
+        final Optional<DataNode> optional = dataNodes.stream().findFirst();
+        if (optional.isPresent() && optional.get().getChildDataNodes().isEmpty()) {
+            saveOrUpdateSubscriptionEventYangModel(subscriptionEventJsonData, false);
+        } else {
+            saveOrUpdateSubscriptionEventYangModel(subscriptionEventJsonData, true);
+        }
+    }
+
+    private void saveOrUpdateSubscriptionEventYangModel(final String subscriptionEventJsonData,
+                                                        final boolean isDataNodeExist) {
+        if (isDataNodeExist) {
+            log.info("SubscriptionEventJsonData to be updated into DB {}", subscriptionEventJsonData);
+            cpsDataService.updateDataNodeAndDescendants(SUBSCRIPTION_DATASPACE_NAME, SUBSCRIPTION_ANCHOR_NAME,
+                    SUBSCRIPTION_REGISTRY_PARENT, subscriptionEventJsonData, NO_TIMESTAMP);
+        } else {
+            log.info("SubscriptionEventJsonData to be saved into DB {}", subscriptionEventJsonData);
+            cpsDataService.saveListElements(SUBSCRIPTION_DATASPACE_NAME, SUBSCRIPTION_ANCHOR_NAME,
+                    SUBSCRIPTION_REGISTRY_PARENT, subscriptionEventJsonData, NO_TIMESTAMP);
+        }
     }
 
     private static String createSubscriptionEventJsonData(final String yangModelSubscriptionAsJson) {
