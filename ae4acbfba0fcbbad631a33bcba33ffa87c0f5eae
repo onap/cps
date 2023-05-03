@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "c7f30d59_473e4ae8",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-05-03T09:07:37Z",
+      "side": 1,
+      "message": "Can you change this to just check book title? It will make test easier to read.\n        then: \u0027the result contains expected nodes\u0027\n            def bookTitles \u003d result.collect { it.getLeaves().get(\u0027title\u0027) }\n            assert bookTitles.sort() \u003d\u003d expectedBookTitles.sort()\n\nand for the test cases:\n scenario            | cpspath               || expectedBookTitles\n \u0027the \"\u003e\" condition\u0027 | \u0027//books[@price\u003e13]\u0027  || [\"The Gruffalo\", \"Annihilation\", \"The Light Fantastic\", \n                                                 \"A Book with No Language\", \"Debian GNU/Linux\"]",
+      "range": {
+        "startLine": 84,
+        "startChar": 131,
+        "endLine": 88,
+        "endChar": 64
+      },
+      "revId": "ae4acbfba0fcbbad631a33bcba33ffa87c0f5eae",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8e967cc5_e4001942",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
         "patchSetId": 17
@@ -31,6 +54,24 @@
       "side": 1,
       "message": "For current changes Boolean condition is not working with comparison operators, Need to find/write proper query which supports both conditions.",
       "parentUuid": "8e967cc5_e4001942",
+      "revId": "ae4acbfba0fcbbad631a33bcba33ffa87c0f5eae",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3109abff_a31b0006",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-05-03T09:07:37Z",
+      "side": 1,
+      "message": "Okay, as long as it is a documented limitation.",
+      "parentUuid": "6b4a57a6_ee3be7c9",
       "revId": "ae4acbfba0fcbbad631a33bcba33ffa87c0f5eae",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
