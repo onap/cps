@@ -35,7 +35,6 @@ import org.onap.cps.ncmp.api.inventory.LockReasonCategory
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.rest.controller.handlers.NcmpCachedResourceRequestHandler
 import org.onap.cps.ncmp.rest.controller.handlers.NcmpPassthroughResourceRequestHandler
-import org.onap.cps.ncmp.rest.controller.handlers.NcmpDatastoreResourceRequestHandlerFactory
 import org.onap.cps.ncmp.rest.executor.CpsNcmpTaskExecutor
 import org.onap.cps.ncmp.rest.mapper.CmHandleStateMapper
 import org.onap.cps.ncmp.rest.util.DeprecationHelper
@@ -70,12 +69,12 @@ import static org.onap.cps.ncmp.api.impl.operations.OperationEnum.DELETE
 import static org.onap.cps.ncmp.rest.controller.handlers.DatastoreType.PASSTHROUGH_OPERATIONAL
 import static org.onap.cps.ncmp.rest.controller.handlers.DatastoreType.PASSTHROUGH_RUNNING
 import static org.onap.cps.ncmp.rest.controller.handlers.DatastoreType.OPERATIONAL
+import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS;
+import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
+
 
 @WebMvcTest(NetworkCmProxyController)
 class NetworkCmProxyControllerSpec extends Specification {
-
-    private static final int TIMEOUT_IN_MS = 2000
-    private static final boolean NOTIFICATION_ENABLED = true
 
     @Autowired
     MockMvc mvc
@@ -105,7 +104,10 @@ class NetworkCmProxyControllerSpec extends Specification {
     DeprecationHelper stubbedDeprecationHelper = Stub()
 
     @SpringBean
-    NcmpDatastoreResourceRequestHandlerFactory stubbedNcmpDatastoreResourceRequestHandlerFactory = Stub()
+    NcmpCachedResourceRequestHandler ncmpCachedResourceRequestHandler = new NcmpCachedResourceRequestHandler(spiedCpsTaskExecutor, mockNetworkCmProxyDataService, mockNetworkCmProxyQueryService)
+
+    @SpringBean
+    NcmpPassthroughResourceRequestHandler ncmpPassthroughResourceRequestHandler = new NcmpPassthroughResourceRequestHandler(spiedCpsTaskExecutor, mockNetworkCmProxyDataService)
 
     @Value('${rest.api.ncmp-base-path}/v1')
     def ncmpBasePathV1
@@ -113,23 +115,18 @@ class NetworkCmProxyControllerSpec extends Specification {
     def requestBody = '{"some-key":"some-value"}'
     def bulkRequestBody = '["testCmHandle"]'
 
+    def formattedDateAndTime = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ").format(OffsetDateTime.of(2022, 12, 31, 20, 30, 40, 1, ZoneOffset.UTC))
+
     @Shared
     def NO_TOPIC = null
     def NO_REQUEST_ID = null
+    def TIMOUT_FOR_TEST = 1234
 
-    def formattedDateAndTime = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
-        .format(OffsetDateTime.of(2022, 12, 31, 20, 30, 40, 1, ZoneOffset.UTC))
-
-    void setup() {
-        stubbedNcmpDatastoreResourceRequestHandlerFactory.getNcmpResourceRequestHandler(
-            OPERATIONAL) >> getNcmpDatastoreRequestHandler(OPERATIONAL,new NcmpCachedResourceRequestHandler(mockNetworkCmProxyQueryService))
-
-        stubbedNcmpDatastoreResourceRequestHandlerFactory.getNcmpResourceRequestHandler(
-            PASSTHROUGH_OPERATIONAL) >> getNcmpDatastoreRequestHandler(PASSTHROUGH_OPERATIONAL,new NcmpPassthroughResourceRequestHandler())
-
-        stubbedNcmpDatastoreResourceRequestHandlerFactory.getNcmpResourceRequestHandler(
-            PASSTHROUGH_RUNNING) >> getNcmpDatastoreRequestHandler(PASSTHROUGH_RUNNING,new NcmpPassthroughResourceRequestHandler())
-
+    def setup() {
+        ncmpCachedResourceRequestHandler.notificationFeatureEnabled = true
+        ncmpCachedResourceRequestHandler.timeOutInMilliSeconds = TIMOUT_FOR_TEST
+        ncmpPassthroughResourceRequestHandler.notificationFeatureEnabled = true
+        ncmpPassthroughResourceRequestHandler.timeOutInMilliSeconds = TIMOUT_FOR_TEST
     }
 
     def 'Get Resource Data from pass-through operational.'() {
@@ -148,32 +145,49 @@ class NetworkCmProxyControllerSpec extends Specification {
             response.status == HttpStatus.OK.value()
     }
 
-    def 'Get Resource Data from #datastoreInUrl with #scenario.'() {
+    def 'Get Resource Data Async Topic Handling with #scenario.'() {
         given: 'resource data url'
-            def getUrl = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:${datastoreInUrl}" +
-                "?resourceIdentifier=parent/child&options=(a=1,b=2)${topicQueryParam}"
+            def getUrl = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:passthrough-operational?resourceIdentifier=parent/child&${topicQueryParam}"
         when: 'get data resource request is performed'
             def response = mvc.perform(
                 get(getUrl).contentType(MediaType.APPLICATION_JSON)).andReturn().response
         then: 'task executor is called appropriate number of times'
-            expectedNumberOfExecutorExecutions * spiedCpsTaskExecutor.executeTask(_, TIMEOUT_IN_MS)
-        and: 'response status is expected'
+            expectedNumberOfTaskExecutions * spiedCpsTaskExecutor.executeTask(_, TIMOUT_FOR_TEST)
+        and: 'response status is OK'
             response.status == HttpStatus.OK.value()
         where: 'the following parameters are used'
-            scenario               | datastoreInUrl            | topicQueryParam        || expectedTopicName | expectedNumberOfExecutorExecutions
-            'url with valid topic' | 'passthrough-operational' | '&topic=my-topic-name' || 'my-topic-name'   | 1
-            'no topic in url'      | 'passthrough-operational' | ''                     || NO_TOPIC          | 0
-            'null topic in url'    | 'passthrough-operational' | '&topic=null'          || 'null'            | 1
-            'url with valid topic' | 'passthrough-running'     | '&topic=my-topic-name' || 'my-topic-name'   | 1
-            'no topic in url'      | 'passthrough-running'     | ''                     || NO_TOPIC          | 0
-            'null topic in url'    | 'passthrough-running'     | '&topic=null'          || 'null'            | 1
+            scenario               | datastoreInUrl            | topicQueryParam        || expectedNumberOfTaskExecutions
+            'url with valid topic' | 'passthrough-operational' | '&topic=my-topic-name' || 1
+            'no topic in url'      | 'passthrough-operational' | ''                     || 0
+            'null topic in url'    | 'passthrough-operational' | '&topic=null'          || 1
     }
 
-    def 'Fail to get Resource Data from #datastoreInUrl when #scenario.'() {
+    def 'Get Resource Data from ncmp-datastore:operational (cached) parameters handling with #scenario.'() {
+        given: 'resource data url'
+            def getUrl = "$ncmpBasePathV1/ch/h123/data/ds/ncmp-datastore:operational" +
+                "?resourceIdentifier=parent/child${additionalUrlParam}"
+        when: 'get data resource request is performed'
+            def response = mvc.perform(
+                get(getUrl).contentType(MediaType.APPLICATION_JSON)).andReturn().response
+        then: 'task executor is called appropriate number of times'
+            1 * mockNetworkCmProxyDataService.getResourceDataForCmHandle('ncmp-datastore:operational', 'h123', 'parent/child', expectedIncludeDescendants)
+        and: 'response status is OK'
+            response.status == HttpStatus.OK.value()
+        where: 'the following parameters are used'
+            scenario                    | additionalUrlParam           || expectedIncludeDescendants
+            'no additional param'       | ''                           || OMIT_DESCENDANTS
+            'include descendants true'  | '&include-descendants=true'  || INCLUDE_ALL_DESCENDANTS
+            'include descendants TRUE'  | '&include-descendants=true'  || INCLUDE_ALL_DESCENDANTS
+            'include descendants false' | '&include-descendants=false' || OMIT_DESCENDANTS
+            'include descendants FALSE' | '&include-descendants=FALSE' || OMIT_DESCENDANTS
+            'options (ignored)'         | '&options=(a-=1)'            || OMIT_DESCENDANTS
+    }
+
+    def 'Get Resource Data with invalid topic parameter: #scenario.'() {
         given: 'resource data url'
             def getUrl = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:${datastoreInUrl}" +
                 "?resourceIdentifier=parent/child&options=(a=1,b=2)${topicQueryParam}"
-        when: 'get data resource request is performed'
+        when: 'get data resource (async) request is performed'
             def response = mvc.perform(
                 get(getUrl).contentType(MediaType.APPLICATION_JSON)).andReturn().response
         then: 'abad request is returned'
@@ -184,15 +198,11 @@ class NetworkCmProxyControllerSpec extends Specification {
             'missing topic in url'                 | 'passthrough-operational' | '&topic='
             'blank topic value in url'             | 'passthrough-operational' | '&topic=\" \"'
             'invalid non-empty topic value in url' | 'passthrough-operational' | '&topic=1_5_*_#'
-            'empty topic in url'                   | 'passthrough-running'     | '&topic=\"\"'
-            'missing topic in url'                 | 'passthrough-running'     | '&topic='
-            'blank topic value in url'             | 'passthrough-running'     | '&topic=\" \"'
-            'invalid non-empty topic value in url' | 'passthrough-running'     | '&topic=1_5_*_#'
     }
 
-    def 'Get bulk resource data for #datastoreName from dmi service.'() {
+    def 'Get (async) bulk resource data from dmi service.'() {
         given: 'bulk resource data url'
-            def getUrl = "$ncmpBasePathV1/batch/data/ds/${datastoreName}" +
+            def getUrl = "$ncmpBasePathV1/batch/data/ds/${datastore.datastoreName}" +
                     "?resourceIdentifier=parent/child&options=(a=1,b=2)&topic=myTopic"
         when: 'post data resource request is performed'
             def response = mvc.perform(
@@ -202,18 +212,18 @@ class NetworkCmProxyControllerSpec extends Specification {
             ).andReturn().response
         then: 'response status is Ok'
             response.status == HttpStatus.OK.value()
-            // TODO Need to be un-commented as it's failing into onap CICD pipeline
-            //  but passed into nordix and local build.
-            //and: 'the NCMP data service is called with getResourceDataForCmHandleBatch'
-            // 1 * mockNetworkCmProxyDataService.getResourceDataForCmHandleBatch(datastoreName, ['testCmHandle'],
-            //        'parent/child',
-            //       '(a=1,b=2)',
-            //      'myTopic',
-            //     _)
         and: 'async request id is generated'
             assert response.contentAsString.contains("requestId")
+        then: 'wait a little to allow execution of service method by task executor (on separate thread)'
+            Thread.sleep(100);
+        then: 'the service has been invoked with the correct parameters '
+            1 * mockNetworkCmProxyDataService.getResourceDataForCmHandleBatch(datastore.datastoreName, ['testCmHandle'],
+                    'parent/child',
+                   '(a=1,b=2)',
+                  'myTopic',
+                 _)
         where: 'the following data stores are used'
-            datastoreName << [PASSTHROUGH_RUNNING.datastoreName, PASSTHROUGH_OPERATIONAL.datastoreName]
+            datastore << [PASSTHROUGH_RUNNING, PASSTHROUGH_OPERATIONAL]
     }
 
     def 'Get bulk resource data for non-supported #datastoreName from dmi service.'() {
@@ -228,8 +238,6 @@ class NetworkCmProxyControllerSpec extends Specification {
             ).andReturn().response
         then: 'response status code is 501 not implemented'
             response.status == HttpStatus.NOT_IMPLEMENTED.value()
-        where: 'the following data store is un-supported'
-            datastoreName << [OPERATIONAL.datastoreName]
     }
 
     def 'Query Resource Data from operational.'() {
@@ -648,19 +656,5 @@ class NetworkCmProxyControllerSpec extends Specification {
         return assertContainsAll(response, expectedContent)
     }
 
-    def getNcmpDatastoreRequestHandler(dataStoreType, ncmpDatastoreRequestHandler) {
-        if (ncmpDatastoreRequestHandler instanceof NcmpCachedResourceRequestHandler) {
-            NcmpCachedResourceRequestHandler ncmpCachedResourceRequestHandler = (NcmpCachedResourceRequestHandler) ncmpDatastoreRequestHandler
-            ncmpCachedResourceRequestHandler.dataStoreName = dataStoreType.datastoreName
-        } else {
-            NcmpPassthroughResourceRequestHandler ncmpPassthroughResourceRequestHandler = (NcmpPassthroughResourceRequestHandler) ncmpDatastoreRequestHandler
-            ncmpPassthroughResourceRequestHandler.dataStoreName = dataStoreType.datastoreName
-        }
-        ncmpDatastoreRequestHandler.networkCmProxyDataService = mockNetworkCmProxyDataService
-        ncmpDatastoreRequestHandler.cpsNcmpTaskExecutor = spiedCpsTaskExecutor
-        ncmpDatastoreRequestHandler.notificationFeatureEnabled = NOTIFICATION_ENABLED
-        ncmpDatastoreRequestHandler.timeOutInMilliSeconds = TIMEOUT_IN_MS
-        return ncmpDatastoreRequestHandler
-    }
 }
 

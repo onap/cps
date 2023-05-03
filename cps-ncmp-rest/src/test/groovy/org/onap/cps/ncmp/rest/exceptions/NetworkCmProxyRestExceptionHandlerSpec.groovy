@@ -29,7 +29,8 @@ import org.onap.cps.ncmp.api.impl.exception.DmiRequestException
 import org.onap.cps.ncmp.api.impl.exception.HttpClientRequestException
 import org.onap.cps.ncmp.api.impl.exception.ServerNcmpException
 import org.onap.cps.ncmp.rest.controller.NcmpRestInputMapper
-import org.onap.cps.ncmp.rest.controller.handlers.NcmpDatastoreResourceRequestHandlerFactory
+import org.onap.cps.ncmp.rest.controller.handlers.NcmpCachedResourceRequestHandler
+import org.onap.cps.ncmp.rest.controller.handlers.NcmpPassthroughResourceRequestHandler
 import org.onap.cps.ncmp.rest.executor.CpsNcmpTaskExecutor
 import org.onap.cps.ncmp.rest.mapper.CmHandleStateMapper
 import org.onap.cps.ncmp.rest.util.DeprecationHelper
@@ -80,7 +81,10 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
     DeprecationHelper stubbedDeprecationHelper = Stub()
 
     @SpringBean
-    NcmpDatastoreResourceRequestHandlerFactory mockedNcmpDatastoreResourceRequestHandlerFactory = Mock()
+    NcmpCachedResourceRequestHandler stubbedNcmpCachedResourceRequestHandler = Stub()
+
+    @SpringBean
+    NcmpPassthroughResourceRequestHandler StubbedNcmpPassthroughResourceRequestHandler = Stub()
 
     @Value('${rest.api.ncmp-base-path}')
     def basePathNcmp
