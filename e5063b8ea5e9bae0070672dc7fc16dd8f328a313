@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bce5d88e_2262d51f",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathQuerySpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-05-04T13:07:22Z",
+      "side": 1,
+      "message": "NB: You may enrich unit testing having comprehensive descendant path like //child[@code\u003d2]/books[@price\u003e260]",
+      "range": {
+        "startLine": 140,
+        "startChar": 12,
+        "endLine": 140,
+        "endChar": 107
+      },
+      "revId": "e5063b8ea5e9bae0070672dc7fc16dd8f328a313",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5dd27b2e_4a852267",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-05-04T13:07:22Z",
+      "side": 1,
+      "message": "NB: You may enrich unit tests having descendant cps path like this:\n\n\u0027the \"\u003c\" condition  where there is a result\u0027     | \u0027//categories[@code\u003d3]/books[@price\u003c13]\u0027 || 1                 | [\u0027The Colour of Magic\u0027]",
+      "range": {
+        "startLine": 97,
+        "startChar": 12,
+        "endLine": 97,
+        "endChar": 112
+      },
+      "revId": "e5063b8ea5e9bae0070672dc7fc16dd8f328a313",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
