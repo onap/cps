@@ -20,13 +20,19 @@
 
 package org.onap.cps.ncmp.api.impl.events.avc;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.impl.events.EventsPublisher;
-import org.onap.cps.ncmp.event.model.AvcEvent;
+import org.onap.cps.ncmp.events.avc.v1.AvcEvent;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.messaging.MessageHeaders;
+import org.springframework.messaging.handler.annotation.Headers;
+import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 
 /**
@@ -51,12 +57,19 @@ public class AvcEventConsumer {
      *
      * @param avcEvent the event to be consumed and produced.
      */
-    @KafkaListener(
-            topics = "${app.dmi.cm-events.topic}",
+    @KafkaListener(topics = "${app.dmi.cm-events.topic}",
             properties = {"spring.json.value.default.type=org.onap.cps.ncmp.event.model.AvcEvent"})
-    public void consumeAndForward(final AvcEvent avcEvent) {
+    public void consumeAndForward(@Payload final AvcEvent avcEvent, @Headers final MessageHeaders messageHeaders) {
         log.debug("Consuming AVC event {} ...", avcEvent);
+        final Map<String, Object> mutatedEventHeaders = mutateEventHeaderWithEventId(messageHeaders);
         final AvcEvent outgoingAvcEvent = avcEventMapper.toOutgoingAvcEvent(avcEvent);
-        eventsPublisher.publishEvent(cmEventsTopicName, outgoingAvcEvent.getEventId(), outgoingAvcEvent);
+        eventsPublisher.publishEvent(cmEventsTopicName, mutatedEventHeaders.get("eventId").toString(),
+                mutatedEventHeaders, outgoingAvcEvent);
+    }
+
+    private Map<String, Object> mutateEventHeaderWithEventId(final MessageHeaders messageHeaders) {
+        final Map<String, Object> eventHeaders = new LinkedHashMap<>(messageHeaders);
+        eventHeaders.put("eventId", UUID.randomUUID().toString());
+        return eventHeaders;
     }
 }
