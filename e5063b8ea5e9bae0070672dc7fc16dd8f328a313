@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "86e91b31_95486615",
+        "filename": "cps-path-parser/src/main/antlr4/org/onap/cps/cpspath/parser/antlr4/CpsPath.g4",
+        "patchSetId": 19
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-04T16:40:26Z",
+      "side": 1,
+      "message": "above are just some example not exactly the one your are using, it does raise the question/opportunity to support both \u003d\u003e and \u003e\u003d \nand \u003c\u003d and \u003d\u003c)",
+      "parentUuid": "e1e65867_fd48980a",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 21
+      },
+      "revId": "e5063b8ea5e9bae0070672dc7fc16dd8f328a313",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "373378e6_ab4b85c9",
         "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
         "patchSetId": 19
