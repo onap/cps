@@ -357,7 +357,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
                                                            final AnchorEntity anchorEntity,
                                                            final CpsPathQuery cpsPathQuery) {
         Collection<FragmentEntity> fragmentEntities;
-        final String xpathRegex = FragmentQueryBuilder.getXpathSqlRegex(cpsPathQuery, true);
+        final String xpathRegex = FragmentQueryBuilder.getXpathSqlRegexForQuickFindWithDescendants(cpsPathQuery);
         final List<FragmentExtract> fragmentExtracts = (anchorEntity == ALL_ANCHORS)
                 ? fragmentRepository.quickFindWithDescendantsAcrossAnchor(xpathRegex) :
             fragmentRepository.quickFindWithDescendants(anchorEntity.getId(), xpathRegex);

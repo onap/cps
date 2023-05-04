@@ -42,9 +42,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class FragmentQueryBuilder {
     private static final String REGEX_ABSOLUTE_PATH_PREFIX = ".*\\/";
-    private static final String REGEX_OPTIONAL_LIST_INDEX_POSTFIX = "(\\[@(?!.*\\[).*?])?";
-    private static final String REGEX_DESCENDANT_PATH_POSTFIX = "(\\/.*)?";
-    private static final String REGEX_END_OF_INPUT = "$";
+    private static final String REGEX_OPTIONAL_LIST_INDEX_POSTFIX = "(\\[@(?!.*\\[).*?])?$";
+    private static final String REGEX_FOR_QUICK_FIND_WITH_DESCENDANTS = "(\\[@.*?])?(\\/.*)?$";
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -78,15 +77,40 @@ public class FragmentQueryBuilder {
         return getQuery(cpsPathQuery, sqlStringBuilder, queryParameters);
     }
 
+    /**
+     * Create a regular expression (string) for matching xpaths based on the given cps path query.
+     *
+     * @param cpsPathQuery the cps path query to determine the required regular expression
+     * @return a string representing the required regular expression
+     */
+    public static String getXpathSqlRegex(final CpsPathQuery cpsPathQuery) {
+        final StringBuilder xpathRegexBuilder = getRegexStringBuilderWithPrefix(cpsPathQuery);
+        xpathRegexBuilder.append(REGEX_OPTIONAL_LIST_INDEX_POSTFIX);
+        return xpathRegexBuilder.toString();
+    }
+
+    /**
+     * Create a regular expression (string) for matching xpaths with (all) descendants
+     * based on the given cps path query.
+     *
+     * @param cpsPathQuery the cps path query to determine the required regular expression
+     * @return a string representing the required regular expression
+     */
+    public static String getXpathSqlRegexForQuickFindWithDescendants(final CpsPathQuery cpsPathQuery) {
+        final StringBuilder xpathRegexBuilder = getRegexStringBuilderWithPrefix(cpsPathQuery);
+        xpathRegexBuilder.append(REGEX_FOR_QUICK_FIND_WITH_DESCENDANTS);
+        return xpathRegexBuilder.toString();
+    }
+
     private Query getQuery(final CpsPathQuery cpsPathQuery, final StringBuilder sqlStringBuilder,
                            final Map<String, Object> queryParameters) {
-        final String xpathRegex = getXpathSqlRegex(cpsPathQuery, false);
+        final String xpathRegex = getXpathSqlRegex(cpsPathQuery);
         queryParameters.put("xpathRegex", xpathRegex);
         final List<String> queryBooleanOperatorsType = cpsPathQuery.getBooleanOperatorsType();
         if (cpsPathQuery.hasLeafConditions()) {
             sqlStringBuilder.append(" AND (");
             final Queue<String> booleanOperatorsQueue = (queryBooleanOperatorsType == null) ? null : new LinkedList<>(
-                    queryBooleanOperatorsType);
+                queryBooleanOperatorsType);
             cpsPathQuery.getLeavesData().entrySet().forEach(entry -> {
                 sqlStringBuilder.append(" attributes @> ");
                 sqlStringBuilder.append("'" + jsonObjectMapper.asJsonString(entry) + "'");
@@ -103,14 +127,7 @@ public class FragmentQueryBuilder {
         return query;
     }
 
-    /**
-     * Create a regular expression (string) for xpath based on the given cps path query.
-     *
-     * @param cpsPathQuery  the cps path query to determine the required regular expression
-     * @param includeDescendants include descendants yes or no
-     * @return a string representing the required regular expression
-     */
-    public static String getXpathSqlRegex(final CpsPathQuery cpsPathQuery, final boolean includeDescendants) {
+    private static StringBuilder getRegexStringBuilderWithPrefix(final CpsPathQuery cpsPathQuery) {
         final StringBuilder xpathRegexBuilder = new StringBuilder();
         if (CpsPathPrefixType.ABSOLUTE.equals(cpsPathQuery.getCpsPathPrefixType())) {
             xpathRegexBuilder.append(escapeXpath(cpsPathQuery.getXpathPrefix()));
@@ -118,12 +135,7 @@ public class FragmentQueryBuilder {
             xpathRegexBuilder.append(REGEX_ABSOLUTE_PATH_PREFIX);
             xpathRegexBuilder.append(escapeXpath(cpsPathQuery.getDescendantName()));
         }
-        xpathRegexBuilder.append(REGEX_OPTIONAL_LIST_INDEX_POSTFIX);
-        if (includeDescendants) {
-            xpathRegexBuilder.append(REGEX_DESCENDANT_PATH_POSTFIX);
-        }
-        xpathRegexBuilder.append(REGEX_END_OF_INPUT);
-        return xpathRegexBuilder.toString();
+        return xpathRegexBuilder;
     }
 
     private static String escapeXpath(final String xpath) {
