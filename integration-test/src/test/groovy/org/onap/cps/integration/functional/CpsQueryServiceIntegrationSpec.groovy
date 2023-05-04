@@ -23,6 +23,8 @@ package org.onap.cps.integration.functional
 import org.onap.cps.integration.base.FunctionalSpecBase
 import org.onap.cps.spi.FetchDescendantsOption
 
+import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
+
 class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
 
     def objectUnderTest
@@ -44,5 +46,22 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
             scenario                                      | cpsPath                                    || expectedResultSize | expectedLeaves
             'the and condition is used'                   | '//books[@lang="English" and @price=15]'   || 2                  | [lang:"English", price:15]
             'the and is used where result does not exist' | '//books[@lang="English" and @price=1000]' || 0                  | []
+    }
+
+    def 'Cps Path queries with all descendants including descendants that are list entries: #scenario.'() {
+        when: 'a query is executed to get a data node by the given cps path'
+            def result = objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE, BOOKSTORE_ANCHOR, cpsPath, INCLUDE_ALL_DESCENDANTS)
+        then: 'correct number of datanodes are returned'
+            assert countDataNodesInTree(result) == expectedNumberOfDataNodes
+        where: 'the following cps paths are used'
+            scenario                              | cpsPath                                 || expectedNumberOfDataNodes
+            'absolute path all list entries'      | '/bookstore/categories'                 || 7
+            'absolute path 1 list entry by key'   | '/bookstore/categories[@code="3"]'      || 2
+            'absolute path 1 list entry by leaf'  | '/bookstore/categories[@name="Comedy"]' || 2
+            'relative path all list entries'      | '//categories'                          || 7
+            'relative path 1 list entry by key'   | '//categories[@code="3"]'               || 2
+            'relative path 1 list entry by leaf'  | '//categories[@name="Comedy"]'          || 2
+            'incomplete absolute path'            | '/categories'                           || 0
+            'incomplete absolute path list entry' | '/categories[@code="3"]'                || 0
     }
 }
