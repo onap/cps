@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f0cc9731_3fd32037",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-04T12:07:35Z",
+      "side": 1,
+      "message": "without the last fix there WHER retrurning some datanodes!",
+      "range": {
+        "startLine": 314,
+        "startChar": 0,
+        "endLine": 315,
+        "endChar": 96
+      },
+      "revId": "d3a2b33cf99e1ae334c0690e7f5dc1a299f39fb7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
