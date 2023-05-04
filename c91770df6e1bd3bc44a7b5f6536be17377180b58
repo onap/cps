@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1342c102_e6ead6d8",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-04T15:19:50Z",
+      "side": 1,
+      "message": "legacy issue: all of these methods should have used \u0027FragemtExtracts\u0027 instead of just \u0027Extracts\u0027",
+      "range": {
+        "startLine": 125,
+        "startChar": 30,
+        "endLine": 125,
+        "endChar": 38
+      },
+      "revId": "c91770df6e1bd3bc44a7b5f6536be17377180b58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "52a401c0_940ad882",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-04T15:19:50Z",
+      "side": 1,
+      "message": "legacy issue: all of these methods should have used \u0027FragemtExtracts\u0027 instead of just \u0027Extracts\u0027",
+      "range": {
+        "startLine": 129,
+        "startChar": 39,
+        "endLine": 129,
+        "endChar": 46
+      },
+      "revId": "c91770df6e1bd3bc44a7b5f6536be17377180b58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7df16b6d_fdf0787b",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-04T15:19:50Z",
+      "side": 1,
+      "message": "legacy issue: all of these methods should have used \u0027FragemtExtracts\u0027 instead of just \u0027Extracts\u0027",
+      "range": {
+        "startLine": 148,
+        "startChar": 30,
+        "endLine": 148,
+        "endChar": 38
+      },
+      "revId": "c91770df6e1bd3bc44a7b5f6536be17377180b58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
