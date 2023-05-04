@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0a1fbdce_345c5096",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/entities/FragmentEntityArranger.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-04T13:20:39Z",
+      "side": 1,
+      "message": "we need to have a team discussion about Javadoc on (internal) classes\nI personally think god code should not need javadoc and it is a chore which makes refactoring less efficient...\n(In this case the description should have bene modified but I rather remove the Javadoc from both methods)",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 7
+      },
+      "revId": "3a2c674ced448f3b04c6fcb6974ad5018c4b5235",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b5da184_53da2511",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/entities/FragmentExtract.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-04T13:20:39Z",
+      "side": 1,
+      "message": "why did you change this?\nif this is a Integer should all IDs in all entities b Integers too?!\nie here on line #25 ?!",
+      "range": {
+        "startLine": 27,
+        "startChar": 4,
+        "endLine": 27,
+        "endChar": 12
+      },
+      "revId": "3a2c674ced448f3b04c6fcb6974ad5018c4b5235",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "45a80793_a32dc2f8",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-04T13:20:39Z",
+      "side": 1,
+      "message": "why is this needed? as the anchorEntity already is unique (it also contains a ref to the Dataspace)\n(maybe I am missing something)",
+      "range": {
+        "startLine": 332,
+        "startChar": 75,
+        "endLine": 332,
+        "endChar": 90
+      },
+      "revId": "3a2c674ced448f3b04c6fcb6974ad5018c4b5235",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "10c7f3ea_dba2ae6a",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-04T13:20:39Z",
+      "side": 1,
+      "message": "I think you can get this from teh anchorenity too",
+      "range": {
+        "startLine": 374,
+        "startChar": 70,
+        "endLine": 374,
+        "endChar": 93
+      },
+      "revId": "3a2c674ced448f3b04c6fcb6974ad5018c4b5235",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "640eef3a_8e506c82",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-04T13:20:39Z",
+      "side": 1,
+      "message": "see prev comment",
+      "range": {
+        "startLine": 101,
+        "startChar": 28,
+        "endLine": 101,
+        "endChar": 32
+      },
+      "revId": "3a2c674ced448f3b04c6fcb6974ad5018c4b5235",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7325b12f_548ecfae",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-04T13:20:39Z",
+      "side": 1,
+      "message": "use plural: ..Conditions",
+      "range": {
+        "startLine": 154,
+        "startChar": 17,
+        "endLine": 154,
+        "endChar": 33
+      },
+      "revId": "3a2c674ced448f3b04c6fcb6974ad5018c4b5235",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "32724c8d_8dc14e5d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-04T13:20:39Z",
+      "side": 1,
+      "message": "I prefer when using builder to not mix with using + e.g.\n sqlStringBuilder.append(\"\u0027\")\n sqlStringBuilder.append(jsonObjectMapper.asJsonString(entry));\n sqlStringBuilder.append(\"\u0027\")",
+      "range": {
+        "startLine": 162,
+        "startChar": 40,
+        "endLine": 162,
+        "endChar": 88
+      },
+      "revId": "3a2c674ced448f3b04c6fcb6974ad5018c4b5235",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b5a274a2_8e8e9898",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-04T13:20:39Z",
+      "side": 1,
+      "message": "as above",
+      "range": {
+        "startLine": 164,
+        "startChar": 43,
+        "endLine": 164,
+        "endChar": 84
+      },
+      "revId": "3a2c674ced448f3b04c6fcb6974ad5018c4b5235",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "592fd622_f2ec891f",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-04T13:20:39Z",
+      "side": 1,
+      "message": "plural I assume!",
+      "range": {
+        "startLine": 112,
+        "startChar": 56,
+        "endLine": 112,
+        "endChar": 62
+      },
+      "revId": "3a2c674ced448f3b04c6fcb6974ad5018c4b5235",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
