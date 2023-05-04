@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "88369303_d3345972",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/entities/FragmentEntityArranger.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-05-04T14:48:20Z",
+      "side": 1,
+      "message": "Checkstyle threw an error for missing javadoc. I wonder if it\u0027s because the class is public - maybe it should be package-private.",
+      "parentUuid": "0a1fbdce_345c5096",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 7
+      },
+      "revId": "3a2c674ced448f3b04c6fcb6974ad5018c4b5235",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2b5da184_53da2511",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/entities/FragmentExtract.java",
         "patchSetId": 4
@@ -36,6 +60,30 @@
       "writtenOn": "2023-05-04T13:20:39Z",
       "side": 1,
       "message": "why did you change this?\nif this is a Integer should all IDs in all entities b Integers too?!\nie here on line #25 ?!",
+      "range": {
+        "startLine": 27,
+        "startChar": 4,
+        "endLine": 27,
+        "endChar": 12
+      },
+      "revId": "3a2c674ced448f3b04c6fcb6974ad5018c4b5235",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "39d43701_daea211a",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/entities/FragmentExtract.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-05-04T14:48:20Z",
+      "side": 1,
+      "message": "In AnchorEntity and FragmentEntity, the anchor ID is type Integer, not Long. I had to change here to match other classes to avoid type mismatch errors.\n\nAlthough I just checked DB definition, anchor ID is type BIGINT which corresponds to Long. I may raise a patch to change the types used in Entities to match the DB definitions.",
+      "parentUuid": "2b5da184_53da2511",
       "range": {
         "startLine": 27,
         "startChar": 4,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "790284be_6a071014",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-05-04T14:48:20Z",
+      "side": 1,
+      "message": "It\u0027s used for query across anchors (\u003d query on dataspace).\nqueryAcrossAnchors calls this with null anchor name. In that case, anchorEntity \u003d null, so dataspace is used.",
+      "parentUuid": "45a80793_a32dc2f8",
+      "range": {
+        "startLine": 332,
+        "startChar": 75,
+        "endLine": 332,
+        "endChar": 90
+      },
+      "revId": "3a2c674ced448f3b04c6fcb6974ad5018c4b5235",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "10c7f3ea_dba2ae6a",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 4
@@ -91,6 +163,30 @@
       "revId": "3a2c674ced448f3b04c6fcb6974ad5018c4b5235",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc671681_0bc1519c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-05-04T14:48:20Z",
+      "side": 1,
+      "message": "No, this method supports both query in one anchor and query across all anchors (in which case anchorEntity \u003d null).",
+      "parentUuid": "10c7f3ea_dba2ae6a",
+      "range": {
+        "startLine": 374,
+        "startChar": 70,
+        "endLine": 374,
+        "endChar": 93
+      },
+      "revId": "3a2c674ced448f3b04c6fcb6974ad5018c4b5235",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "f7daf6ad_7e76e4af",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-05-04T14:48:20Z",
+      "side": 1,
+      "message": "This is used to switch between anchor or dataspace, depending on if queryAcrossAnchors is called (since anchorEntity will be null in that case).",
+      "parentUuid": "640eef3a_8e506c82",
+      "range": {
+        "startLine": 101,
+        "startChar": 28,
+        "endLine": 101,
+        "endChar": 32
+      },
+      "revId": "3a2c674ced448f3b04c6fcb6974ad5018c4b5235",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7325b12f_548ecfae",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
         "patchSetId": 4
@@ -137,6 +257,30 @@
       "revId": "3a2c674ced448f3b04c6fcb6974ad5018c4b5235",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df4ab1f2_b790f401",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-05-04T14:48:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7325b12f_548ecfae",
+      "range": {
+        "startLine": 154,
+        "startChar": 17,
+        "endLine": 154,
+        "endChar": 33
+      },
+      "revId": "3a2c674ced448f3b04c6fcb6974ad5018c4b5235",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "230b035b_31e4f2c7",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-05-04T14:48:20Z",
+      "side": 1,
+      "message": "Done. Simple concatenation might be even cleaner.",
+      "parentUuid": "32724c8d_8dc14e5d",
+      "range": {
+        "startLine": 162,
+        "startChar": 40,
+        "endLine": 162,
+        "endChar": 88
+      },
+      "revId": "3a2c674ced448f3b04c6fcb6974ad5018c4b5235",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b5a274a2_8e8e9898",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
         "patchSetId": 4
@@ -186,6 +354,30 @@
     },
     {
       "key": {
+        "uuid": "9b177f0f_157338f9",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-05-04T14:48:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b5a274a2_8e8e9898",
+      "range": {
+        "startLine": 164,
+        "startChar": 43,
+        "endLine": 164,
+        "endChar": 84
+      },
+      "revId": "3a2c674ced448f3b04c6fcb6974ad5018c4b5235",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "592fd622_f2ec891f",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
         "patchSetId": 4
@@ -206,6 +398,30 @@
       "revId": "3a2c674ced448f3b04c6fcb6974ad5018c4b5235",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e8cae38_a06cea67",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-05-04T14:48:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "592fd622_f2ec891f",
+      "range": {
+        "startLine": 112,
+        "startChar": 56,
+        "endLine": 112,
+        "endChar": 62
+      },
+      "revId": "3a2c674ced448f3b04c6fcb6974ad5018c4b5235",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
