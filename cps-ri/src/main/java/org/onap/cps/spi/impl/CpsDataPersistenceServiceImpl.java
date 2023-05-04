@@ -218,7 +218,6 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
 
     private FragmentEntity toFragmentEntity(final AnchorEntity anchorEntity, final DataNode dataNode) {
         return FragmentEntity.builder()
-                .dataspace(anchorEntity.getDataspace())
                 .anchor(anchorEntity)
                 .xpath(dataNode.getXpath())
                 .attributes(jsonObjectMapper.asJsonString(dataNode.getLeaves()))
