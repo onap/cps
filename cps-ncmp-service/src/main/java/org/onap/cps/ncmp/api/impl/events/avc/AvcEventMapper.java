@@ -20,11 +20,8 @@
 
 package org.onap.cps.ncmp.api.impl.events.avc;
 
-import java.util.UUID;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.Named;
-import org.onap.cps.ncmp.event.model.AvcEvent;
+import org.onap.cps.ncmp.events.avc.v1.AvcEvent;
 
 
 /**
@@ -33,12 +30,6 @@ import org.onap.cps.ncmp.event.model.AvcEvent;
 @Mapper(componentModel = "spring")
 public interface AvcEventMapper {
 
-    @Mapping(source = "eventId", target = "eventId", qualifiedByName = "avcEventId")
     AvcEvent toOutgoingAvcEvent(AvcEvent incomingAvcEvent);
-
-    @Named("avcEventId")
-    static String getAvcEventId(String eventId) {
-        return UUID.randomUUID().toString();
-    }
 
 }
