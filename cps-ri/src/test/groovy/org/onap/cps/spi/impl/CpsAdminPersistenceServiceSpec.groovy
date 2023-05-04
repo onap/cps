@@ -47,7 +47,7 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
     static final String SET_DATA = '/data/anchor.sql'
     static final String SAMPLE_DATA_FOR_ANCHORS_WITH_MODULES = '/data/anchors-schemaset-modules.sql'
     static final String DATASPACE_WITH_NO_DATA = 'DATASPACE-002-NO-DATA'
-    static final Integer DELETED_ANCHOR_ID = 3002
+    static final Long DELETED_ANCHOR_ID = 3002L
 
     @Sql(CLEAR_DATA)
     def 'Create and retrieve a new dataspace.'() {
@@ -74,7 +74,7 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
         when: 'dataspace is retrieved'
             def dataspace = objectUnderTest.getDataspace(DATASPACE_NAME)
         then: ' the response contains expected dataspace'
-            assert dataspace.getName().equals(DATASPACE_NAME);
+            assert dataspace.getName() == DATASPACE_NAME
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
@@ -90,7 +90,7 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Get non existing dataspace.'() {
         when: 'attempting to retrieve a non-existing dataspace'
-            def dataspace = objectUnderTest.getDataspace('non_existing_dataspace')
+            objectUnderTest.getDataspace('non_existing_dataspace')
         then: 'an DataspaceNotFoundException is thrown'
             thrown(DataspaceNotFoundException)
     }
@@ -162,7 +162,7 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
     @Sql([CLEAR_DATA, SET_DATA])
     def 'Error Handling: Get all anchors associated with schemaset in a dataspace.'() {
         when: 'anchors are retrieved by dataspace and schema-set'
-            def anchors = objectUnderTest.getAnchors(dataspace, schemasetName)
+            objectUnderTest.getAnchors(dataspace, schemasetName)
         then: ' an expected expception is thrown'
             thrown(expectedException)
         where:
@@ -215,8 +215,8 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
         when: 'delete anchors action is invoked'
             objectUnderTest.deleteAnchors(DATASPACE_NAME, ['ANCHOR-002', 'ANCHOR-003'])
         then: 'anchors are deleted'
-            anchorRepository.findById(3002).isEmpty()
-            anchorRepository.findById(3003).isEmpty()
+            anchorRepository.findById(3002L).isEmpty()
+            anchorRepository.findById(3003L).isEmpty()
     }
 
     @Sql([CLEAR_DATA, SAMPLE_DATA_FOR_ANCHORS_WITH_MODULES])
@@ -244,7 +244,7 @@ class CpsAdminPersistenceServiceSpec extends CpsPersistenceSpecBase {
         when: 'delete dataspace action is invoked'
             objectUnderTest.deleteDataspace(DATASPACE_WITH_NO_DATA)
         then: 'dataspace is deleted'
-            assert dataspaceRepository.findByName(DATASPACE_WITH_NO_DATA).isEmpty();
+            assert dataspaceRepository.findByName(DATASPACE_WITH_NO_DATA).isEmpty()
     }
 
     @Sql([CLEAR_DATA, SET_DATA])

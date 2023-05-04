@@ -1,6 +1,6 @@
 /*-
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2022 Nordix Foundation.
+ *  Copyright (C) 2021-2023 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,15 +37,15 @@ public class SchemaSetYangResourceRepositoryImpl implements SchemaSetYangResourc
     private EntityManager entityManager;
 
     @Override
-    public void insertSchemaSetIdYangResourceId(final Integer schemaSetId, final List<Long> yangResourceIds) {
+    public void insertSchemaSetIdYangResourceId(final Integer schemaSetId, final List<Integer> yangResourceIds) {
         final Session session = entityManager.unwrap(Session.class);
         session.doWork(connection -> {
             try (PreparedStatement preparedStatement = connection.prepareStatement(
                 "INSERT INTO SCHEMA_SET_YANG_RESOURCES (SCHEMA_SET_ID, YANG_RESOURCE_ID) VALUES ( ?, ?)")) {
                 int sqlQueryCount = 1;
-                for (final long yangResourceId : yangResourceIds) {
+                for (final int yangResourceId : yangResourceIds) {
                     preparedStatement.setInt(1, schemaSetId);
-                    preparedStatement.setLong(2, yangResourceId);
+                    preparedStatement.setInt(2, yangResourceId);
                     preparedStatement.addBatch();
                     if (sqlQueryCount % MAX_INSERT_BATCH_SIZE == 0 || sqlQueryCount == yangResourceIds.size()) {
                         preparedStatement.executeBatch();

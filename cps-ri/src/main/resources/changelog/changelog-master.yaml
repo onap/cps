@@ -54,3 +54,5 @@ databaseChangeLog:
       file: changelog/db/changes/18-cascade-delete-fragment-children.yaml
   - include:
       file: changelog/db/changes/19-delete-not-required-dataspace-id-from-fragment.yaml
+  - include:
+      file: changelog/db/changes/20-change-foreign-key-id-types-to-integer.yaml

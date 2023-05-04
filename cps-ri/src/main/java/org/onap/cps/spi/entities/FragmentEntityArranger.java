@@ -58,7 +58,7 @@ public class FragmentEntityArranger {
      * @return a collection of FragmentEntities (trees) with descendants.
      */
     public static Collection<FragmentEntity> toFragmentEntityTreesAcrossAnchors(
-            final Map<Integer, AnchorEntity> anchorEntityPerId, final Collection<FragmentExtract> fragmentExtracts) {
+            final Map<Long, AnchorEntity> anchorEntityPerId, final Collection<FragmentExtract> fragmentExtracts) {
         final Map<Long, FragmentEntity> fragmentEntityPerId = new HashMap<>();
         for (final FragmentExtract fragmentExtract : fragmentExtracts) {
             final AnchorEntity anchorEntity = anchorEntityPerId.get(fragmentExtract.getAnchorId());

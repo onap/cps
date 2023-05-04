@@ -24,7 +24,7 @@ public interface FragmentExtract {
 
     Long getId();
 
-    Integer getAnchorId();
+    Long getAnchorId();
 
     String getXpath();
 
