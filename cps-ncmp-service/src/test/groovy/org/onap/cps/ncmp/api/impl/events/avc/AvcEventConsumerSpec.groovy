@@ -25,13 +25,15 @@ import org.apache.kafka.clients.consumer.KafkaConsumer
 import org.mapstruct.factory.Mappers
 import org.onap.cps.ncmp.api.impl.events.EventsPublisher
 import org.onap.cps.ncmp.api.kafka.MessagingBaseSpec
-import org.onap.cps.ncmp.event.model.AvcEvent
+import org.onap.cps.ncmp.events.avc.v1.AvcEvent
 import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.messaging.MessageHeaders
 import org.springframework.test.annotation.DirtiesContext
+import org.springframework.util.SerializationUtils
 import org.testcontainers.spock.Testcontainers
 
 import java.time.Duration
@@ -63,23 +65,31 @@ class AvcEventConsumerSpec extends MessagingBaseSpec {
         and: 'an event is sent'
             def jsonData = TestUtils.getResourceFileContent('sampleAvcInputEvent.json')
             def testEventSent = jsonObjectMapper.convertJsonString(jsonData, AvcEvent.class)
+        and: 'event has header information'
+            def testEventMessageHeader = new MessageHeaders(['eventId': 'sample-eventid', 'eventCorrelationId': 'cmhandle1'])
         when: 'the event is consumed'
-            acvEventConsumer.consumeAndForward(testEventSent)
+            acvEventConsumer.consumeAndForward(testEventSent, testEventMessageHeader)
         and: 'the topic is polled'
             def records = kafkaConsumer.poll(Duration.ofMillis(1500))
         then: 'poll returns one record'
             assert records.size() == 1
         and: 'record can be converted to AVC event'
             def record = records.iterator().next()
-            def convertedAvcEvent = jsonObjectMapper.convertJsonString(record.value(), AvcEvent)
-        and: 'consumed forwarded NCMP event id differs from DMI event id'
-            assert testEventSent.eventId != convertedAvcEvent.getEventId()
-        and: 'correlation id matches'
-            assert testEventSent.eventCorrelationId == convertedAvcEvent.getEventCorrelationId()
-        and: 'timestamps match'
-            assert testEventSent.eventTime == convertedAvcEvent.getEventTime()
-        and: 'target matches'
-            assert testEventSent.eventSource == convertedAvcEvent.getEventSource()
+            def convertedAvcEvent = jsonObjectMapper.convertJsonString(record.value(), AvcEvent.class)
+        and: 'we have correct headers forwarded where correlation id matches'
+            record.headers().forEach(header -> {
+                if (header.key().equals('eventCorrelationId')) {
+                    assert SerializationUtils.deserialize(header.value()) == 'cmhandle1'
+                }
+            })
+        and: 'event id differs between consumed and forwarded'
+            record.headers().forEach(header -> {
+                if (header.key().equals('eventId')) {
+                    assert SerializationUtils.deserialize(header.value()) != 'sample-eventid'
+                }
+            })
+        and: 'the event payload still matches'
+            assert testEventSent == convertedAvcEvent
     }
 
 }
