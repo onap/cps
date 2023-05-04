@@ -1,7 +1,7 @@
 /*
    ============LICENSE_START=======================================================
     Copyright (C) 2020-2021 Pantheon.tech
-    Modifications Copyright (C) 2020-2022 Nordix Foundation.
+    Modifications Copyright (C) 2020-2023 Nordix Foundation.
     Modifications Copyright (C) 2020-2021 Bell Canada.
    ================================================================================
    Licensed under the Apache License, Version 2.0 (the "License");
@@ -53,5 +53,5 @@ INSERT INTO ANCHOR (ID, NAME, DATASPACE_ID, SCHEMA_SET_ID) VALUES -- anchors for
     (6002, 'ANCHOR2', 1001, 2101),
     (6003, 'ANCHOR3', 1001, 2005);
 
-INSERT INTO FRAGMENT (ID, XPATH, ANCHOR_ID, DATASPACE_ID) VALUES
-    (7001, '/XPATH', 6001, 1001);
+INSERT INTO FRAGMENT (ID, XPATH, ANCHOR_ID) VALUES
+    (7001, '/XPATH', 6001);

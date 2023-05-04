@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2023 Nordix Foundation
  *  Modifications Copyright (C) 2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -71,10 +71,7 @@ public class FragmentEntityArranger {
     private static FragmentEntity toFragmentEntity(final AnchorEntity anchorEntity,
                                                    final FragmentExtract fragmentExtract) {
         final FragmentEntity fragmentEntity = new FragmentEntity();
-        if (anchorEntity != null) {
-            fragmentEntity.setAnchor(anchorEntity);
-            fragmentEntity.setDataspace(anchorEntity.getDataspace());
-        }
+        fragmentEntity.setAnchor(anchorEntity);
         fragmentEntity.setId(fragmentExtract.getId());
         fragmentEntity.setXpath(fragmentExtract.getXpath());
         fragmentEntity.setAttributes(fragmentExtract.getAttributes());
