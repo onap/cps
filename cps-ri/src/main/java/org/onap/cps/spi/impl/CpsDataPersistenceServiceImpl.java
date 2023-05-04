@@ -359,7 +359,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
                                                            final AnchorEntity anchorEntity,
                                                            final CpsPathQuery cpsPathQuery) {
         Collection<FragmentEntity> fragmentEntities;
-        final String xpathRegex = FragmentQueryBuilder.getXpathSqlRegex(cpsPathQuery, true);
+        final String xpathRegex = FragmentQueryBuilder.getXpathSqlRegexForQuickFindWithDescendants(cpsPathQuery);
         final List<FragmentExtract> fragmentExtracts =
             fragmentRepository.quickFindWithDescendants(anchorEntity.getId(), xpathRegex);
         fragmentEntities = FragmentEntityArranger.toFragmentEntityTrees(anchorEntity, fragmentExtracts);
@@ -381,7 +381,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             final FetchDescendantsOption fetchDescendantsOption, final DataspaceEntity dataspaceEntity,
             final CpsPathQuery cpsPathQuery) {
         Collection<FragmentEntity> fragmentEntities;
-        final String xpathRegex = FragmentQueryBuilder.getXpathSqlRegex(cpsPathQuery, true);
+        final String xpathRegex = FragmentQueryBuilder.getXpathSqlRegexForQuickFindWithDescendants(cpsPathQuery);
         final List<FragmentExtract> fragmentExtracts = fragmentRepository
                 .quickFindWithDescendantsAcrossAnchor(dataspaceEntity.getId(), xpathRegex);
         final Map<Long, AnchorEntity> fragmentExtractAnchorMap = getFragmentExtractAnchorMap(fragmentExtracts);
