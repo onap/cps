@@ -298,4 +298,21 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
             thrown(CpsPathException)
     }
 
+    def 'Cps Path querys with all descendants including descendants that are list entries: #scenario.'() {
+        when: 'a query is executed to get a data node by the given cps path'
+            def result = objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, cpsPath, INCLUDE_ALL_DESCENDANTS)
+        then: 'correct number of datanodes are returned'
+            assert countDataNodesInTree(result) == expectedNumberOfDataNodes
+        where:
+            scenario                              | cpsPath                                 || expectedNumberOfDataNodes
+            'absolute path all list entries'      | '/bookstore/categories'                 || 13
+            'absolute path 1 list entry by key'   | '/bookstore/categories[@code="3"]'      || 5
+            'absolute path 1 list entry by name'  | '/bookstore/categories[@name="Comedy"]' || 5
+            'relative path all list entries'      | '//categories'                          || 13
+            'relative path 1 list entry by key'   | '//categories[@code="3"]'               || 5
+            'relative path 1 list entry by leaf'  | '//categories[@name="Comedy"]'          || 5
+            'incomplete absolute path'            | '/categories'                           || 0
+            'incomplete absolute 1 list entry'    | '/categories[@code="3"]'                || 0
+    }
+
 }
