@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a6e760a0_1c8c155c",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-05-04T11:40:00Z",
+      "side": 0,
+      "message": "With the original equals and hashCode, only xpath was compared here, so this test would pass even if the attributes were incorrect.",
+      "range": {
+        "startLine": 218,
+        "startChar": 39,
+        "endLine": 218,
+        "endChar": 216
+      },
+      "revId": "08a47195fb3882e396b2dd01b01afa5da42255fb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}

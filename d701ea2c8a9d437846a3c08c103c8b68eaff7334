@@ -22,6 +22,23 @@
       "revId": "d701ea2c8a9d437846a3c08c103c8b68eaff7334",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "14dc83fb_5bf88718",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-05-04T11:40:00Z",
+      "side": 1,
+      "message": "This new test code builds a map of the fragments and explicitly checks the attributes. If the attributes are incorrect, the test fails (the original test would pass even if the attributes were wrong).",
+      "revId": "d701ea2c8a9d437846a3c08c103c8b68eaff7334",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
