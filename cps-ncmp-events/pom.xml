@@ -35,6 +35,10 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
         </dependency>
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
@@ -47,6 +51,7 @@
                     <targetPackage>org.onap.cps.ncmp.event.model</targetPackage>
                     <generateBuilders>true</generateBuilders>
                     <serializable>true</serializable>
+                    <includeJsr303Annotations>true</includeJsr303Annotations>
                 </configuration>
             </plugin>
         </plugins>
