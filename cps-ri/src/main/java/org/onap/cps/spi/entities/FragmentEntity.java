@@ -34,7 +34,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -81,12 +80,7 @@ public class FragmentEntity implements Serializable {
     @Column(columnDefinition = "jsonb")
     private String attributes;
 
-    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "dataspace_id")
-    private DataspaceEntity dataspace;
-
-    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "anchor_id")
     @EqualsAndHashCode.Include
     private AnchorEntity anchor;

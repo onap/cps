@@ -52,7 +52,6 @@ public class FragmentEntityArranger {
         final FragmentEntity fragmentEntity = new FragmentEntity();
         if (anchorEntity != null) {
             fragmentEntity.setAnchor(anchorEntity);
-            fragmentEntity.setDataspace(anchorEntity.getDataspace());
         }
         fragmentEntity.setId(fragmentExtract.getId());
         fragmentEntity.setXpath(fragmentExtract.getXpath());

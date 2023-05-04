@@ -122,11 +122,6 @@ databaseChangeLog:
                   name: parent_id
                   type: BIGINT
               - column:
-                  constraints:
-                    nullable: false
-                  name: dataspace_id
-                  type: INTEGER
-              - column:
                   name: schema_node_id
                   type: INTEGER
             tableName: fragment
@@ -324,16 +319,6 @@ databaseChangeLog:
             indexName: FKI_FRAGMENT_ANCHOR_ID_FK
             tableName: fragment
   - changeSet:
-      id: 1-18
-      author: cps
-      changes:
-        - createIndex:
-            columns:
-              - column:
-                  name: dataspace_id
-            indexName: FKI_FRAGMENT_DATASPACE_ID_FK
-            tableName: fragment
-  - changeSet:
       id: 1-19
       author: cps
       changes:
@@ -358,8 +343,8 @@ databaseChangeLog:
       author: cps
       changes:
         - addUniqueConstraint:
-            columnNames: dataspace_id, anchor_id, xpath
-            constraintName: fragment_dataspace_id_anchor_id_xpath_key
+            columnNames: anchor_id, xpath
+            constraintName: fragment_anchor_id_xpath_key
             tableName: fragment
   - changeSet:
       id: 1-23
@@ -430,21 +415,6 @@ databaseChangeLog:
             columnNames: name
             constraintName: UQ_NAME
             tableName: dataspace
-  - changeSet:
-      id: 1-29
-      author: cps
-      changes:
-        - addForeignKeyConstraint:
-            baseColumnNames: dataspace_id
-            baseTableName: fragment
-            constraintName: fragment_dataspace_id_fkey
-            deferrable: false
-            initiallyDeferred: false
-            onDelete: NO ACTION
-            onUpdate: NO ACTION
-            referencedColumnNames: id
-            referencedTableName: dataspace
-            validate: true
   - changeSet:
       id: 1-30
       author: cps
