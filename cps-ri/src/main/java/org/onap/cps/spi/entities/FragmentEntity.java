@@ -82,10 +82,6 @@ public class FragmentEntity implements Serializable {
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "dataspace_id")
-    private DataspaceEntity dataspace;
-
-    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "anchor_id")
     @EqualsAndHashCode.Include
     private AnchorEntity anchor;
