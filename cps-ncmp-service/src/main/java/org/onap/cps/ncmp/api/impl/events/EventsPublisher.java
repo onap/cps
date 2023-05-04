@@ -20,11 +20,18 @@
 
 package org.onap.cps.ncmp.api.impl.events;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.kafka.clients.producer.ProducerRecord;
+import org.apache.kafka.common.header.Header;
+import org.apache.kafka.common.header.internals.RecordHeader;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Service;
+import org.springframework.util.SerializationUtils;
 import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 
@@ -40,17 +47,36 @@ public class EventsPublisher<T> {
     private final KafkaTemplate<String, T> eventKafkaTemplate;
 
     /**
-     * LCM Event publisher.
+     * Generic Event publisher.
      *
      * @param topicName valid topic name
      * @param eventKey  message key
-     * @param event message payload
+     * @param event     message payload
      */
     public void publishEvent(final String topicName, final String eventKey, final T event) {
-        final ListenableFuture<SendResult<String, T>> eventFuture =
-                eventKafkaTemplate.send(topicName, eventKey, event);
+        final ListenableFuture<SendResult<String, T>> eventFuture = eventKafkaTemplate.send(topicName, eventKey, event);
+        eventFuture.addCallback(handleCallback(topicName));
+    }
 
-        eventFuture.addCallback(new ListenableFutureCallback<>() {
+    /**
+     * Generic Event Publisher with headers.
+     *
+     * @param topicName    valid topic name
+     * @param eventKey     message key
+     * @param eventHeaders event headers
+     * @param event        message payload
+     */
+    public void publishEvent(final String topicName, final String eventKey, final Map<String, Object> eventHeaders,
+            final T event) {
+
+        final ProducerRecord<String, T> producerRecord =
+                new ProducerRecord<>(topicName, null, eventKey, event, convertToKafkaHeader(eventHeaders));
+        final ListenableFuture<SendResult<String, T>> eventFuture = eventKafkaTemplate.send(producerRecord);
+        eventFuture.addCallback(handleCallback(topicName));
+    }
+
+    private ListenableFutureCallback<SendResult<String, T>> handleCallback(final String topicName) {
+        return new ListenableFutureCallback<>() {
             @Override
             public void onFailure(final Throwable throwable) {
                 log.error("Unable to publish event to topic : {} due to {}", topicName, throwable.getMessage());
@@ -61,6 +87,15 @@ public class EventsPublisher<T> {
                 log.debug("Successfully published event to topic : {} , Event : {}",
                         sendResult.getRecordMetadata().topic(), sendResult.getProducerRecord().value());
             }
+        };
+    }
+
+    private Collection<Header> convertToKafkaHeader(final Map<String, Object> eventHeaders) {
+        final Collection<Header> headers = new ArrayList<>();
+        eventHeaders.forEach((key, value) -> {
+            final RecordHeader recordHeader = new RecordHeader(key, SerializationUtils.serialize(value));
+            headers.add(recordHeader);
         });
+        return headers;
     }
 }
