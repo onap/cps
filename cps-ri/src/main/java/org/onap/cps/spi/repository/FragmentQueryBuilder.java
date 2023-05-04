@@ -88,8 +88,14 @@ public class FragmentQueryBuilder {
         final StringBuilder sqlStringBuilder = new StringBuilder();
         final Map<String, Object> queryParameters = new HashMap<>();
 
-        sqlStringBuilder.append("SELECT * FROM fragment WHERE ");
-        addDataspaceOrAnchor(sqlStringBuilder, queryParameters, dataspaceEntity, anchorEntity);
+        if (anchorEntity == ACROSS_ALL_ANCHORS) {
+            sqlStringBuilder.append("SELECT fragment.* FROM fragment JOIN anchor ON anchor.id = anchor_id"
+                + " WHERE anchor.dataspace_id = :dataspaceId");
+            queryParameters.put("dataspaceId", dataspaceEntity.getId());
+        } else {
+            sqlStringBuilder.append("SELECT * FROM fragment WHERE anchor_id = :anchorId");
+            queryParameters.put("anchorId", anchorEntity.getId());
+        }
         addXpathSearch(cpsPathQuery, sqlStringBuilder, queryParameters);
         addLeafConditions(cpsPathQuery, sqlStringBuilder);
         addTextFunctionCondition(cpsPathQuery, sqlStringBuilder, queryParameters);
@@ -98,19 +104,6 @@ public class FragmentQueryBuilder {
         final Query query = entityManager.createNativeQuery(sqlStringBuilder.toString(), FragmentEntity.class);
         setQueryParameters(query, queryParameters);
         return query;
-    }
-
-    private static void addDataspaceOrAnchor(final StringBuilder sqlStringBuilder,
-                                             final Map<String, Object> queryParameters,
-                                             final DataspaceEntity dataspaceEntity,
-                                             final AnchorEntity anchorEntity) {
-        if (anchorEntity == ACROSS_ALL_ANCHORS) {
-            sqlStringBuilder.append("dataspace_id = :dataspaceId");
-            queryParameters.put("dataspaceId", dataspaceEntity.getId());
-        } else {
-            sqlStringBuilder.append("anchor_id = :anchorId");
-            queryParameters.put("anchorId", anchorEntity.getId());
-        }
     }
 
     private static void addXpathSearch(final CpsPathQuery cpsPathQuery,
