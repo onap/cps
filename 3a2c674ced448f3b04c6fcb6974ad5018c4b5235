@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "8507dbe2_97936da8",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/entities/FragmentEntityArranger.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-04T15:14:16Z",
+      "side": 1,
+      "message": "I\u0027ll call a a meeting about this next week...\n( I definitely have seen many other classes with only javadoc on some public methods, so not suer what is going on with checkstyle...)",
+      "parentUuid": "88369303_d3345972",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 7
+      },
+      "revId": "3a2c674ced448f3b04c6fcb6974ad5018c4b5235",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2b5da184_53da2511",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/entities/FragmentExtract.java",
         "patchSetId": 4
@@ -96,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "c617b9f4_80997081",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/entities/FragmentExtract.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-04T15:14:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "39d43701_daea211a",
+      "range": {
+        "startLine": 27,
+        "startChar": 4,
+        "endLine": 27,
+        "endChar": 12
+      },
+      "revId": "3a2c674ced448f3b04c6fcb6974ad5018c4b5235",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "45a80793_a32dc2f8",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 4
@@ -140,6 +188,30 @@
       "revId": "3a2c674ced448f3b04c6fcb6974ad5018c4b5235",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "67daeb4e_8957e20c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-04T15:14:16Z",
+      "side": 1,
+      "message": "ok, so depending on the case you use on or the other (I saw the relevant method), I understand now...",
+      "parentUuid": "790284be_6a071014",
+      "range": {
+        "startLine": 332,
+        "startChar": 75,
+        "endLine": 332,
+        "endChar": 90
+      },
+      "revId": "3a2c674ced448f3b04c6fcb6974ad5018c4b5235",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -237,6 +309,30 @@
     },
     {
       "key": {
+        "uuid": "68506250_b81b178f",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-04T15:14:16Z",
+      "side": 1,
+      "message": "I think a comment got lost about introduce a constant to explain the null value:\nAnchorEntity ACROSS_ALL_ANCHORS \u003d null  \n\nor similar",
+      "parentUuid": "f7daf6ad_7e76e4af",
+      "range": {
+        "startLine": 101,
+        "startChar": 28,
+        "endLine": 101,
+        "endChar": 32
+      },
+      "revId": "3a2c674ced448f3b04c6fcb6974ad5018c4b5235",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7325b12f_548ecfae",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
         "patchSetId": 4
@@ -319,6 +415,30 @@
       "side": 1,
       "message": "Done. Simple concatenation might be even cleaner.",
       "parentUuid": "32724c8d_8dc14e5d",
+      "range": {
+        "startLine": 162,
+        "startChar": 40,
+        "endLine": 162,
+        "endChar": 88
+      },
+      "revId": "3a2c674ced448f3b04c6fcb6974ad5018c4b5235",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "27bc2a22_0c9b4fe1",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-04T15:14:16Z",
+      "side": 1,
+      "message": "possibly...",
+      "parentUuid": "230b035b_31e4f2c7",
       "range": {
         "startLine": 162,
         "startChar": 40,
