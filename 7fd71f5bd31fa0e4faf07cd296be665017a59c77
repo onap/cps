@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e80c0703_8026ed7a",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-05-05T17:36:26Z",
+      "side": 1,
+      "message": "Any specific reason of replacing \u0027getFragmentEntities\u0027 method to this? I seen \u0027getFragmentEntities\u0027 is using \u0027fragmentRepository.findExtractsWithDescendants\u0027",
+      "range": {
+        "startLine": 346,
+        "startChar": 35,
+        "endLine": 346,
+        "endChar": 76
+      },
+      "revId": "7fd71f5bd31fa0e4faf07cd296be665017a59c77",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "63f6215b_cdc5550b",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-05-05T17:36:26Z",
+      "side": 1,
+      "message": "I seen you are removing this method in the next commit with #4. That makes some confusion to me, Why we are not handling that in this? I feel that gives less difference and easy to see.",
+      "range": {
+        "startLine": 368,
+        "startChar": 3,
+        "endLine": 382,
+        "endChar": 106
+      },
+      "revId": "7fd71f5bd31fa0e4faf07cd296be665017a59c77",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
