@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "109f60d8_126de829",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 494,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-05-05T07:01:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ef124659_8e4d48a4",
+      "range": {
+        "startLine": 494,
+        "startChar": 38,
+        "endLine": 494,
+        "endChar": 92
+      },
+      "revId": "dac07fdda6e0f8173eacaf085990ff09bf9a2133",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7d45b3df_67320977",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
         "patchSetId": 14
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "2bd8ae28_20989f59",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-05-05T07:01:32Z",
+      "side": 1,
+      "message": "changed to: Time taken to update a batch of leaf data nodes",
+      "parentUuid": "7d45b3df_67320977",
+      "range": {
+        "startLine": 159,
+        "startChar": 23,
+        "endLine": 159,
+        "endChar": 62
+      },
+      "revId": "dac07fdda6e0f8173eacaf085990ff09bf9a2133",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "68ffd58a_e37e5fdd",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
         "patchSetId": 14
@@ -68,6 +116,30 @@
       "revId": "dac07fdda6e0f8173eacaf085990ff09bf9a2133",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "446b70c2_8957fc72",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-05-05T07:01:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "68ffd58a_e37e5fdd",
+      "range": {
+        "startLine": 165,
+        "startChar": 34,
+        "endLine": 167,
+        "endChar": 85
+      },
+      "revId": "dac07fdda6e0f8173eacaf085990ff09bf9a2133",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }

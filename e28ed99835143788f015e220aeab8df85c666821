@@ -144,6 +144,30 @@
     },
     {
       "key": {
+        "uuid": "2af9e2ed_cd9e03a0",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 494,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-05-05T07:01:32Z",
+      "side": 1,
+      "message": "as discussed, we are now using Map of maps",
+      "parentUuid": "efaaeffb_841cbad0",
+      "range": {
+        "startLine": 494,
+        "startChar": 40,
+        "endLine": 494,
+        "endChar": 92
+      },
+      "revId": "e28ed99835143788f015e220aeab8df85c666821",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6a171b65_584a9017",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 13
@@ -329,6 +353,30 @@
       "revId": "e28ed99835143788f015e220aeab8df85c666821",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c880b432_2ebb11eb",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-05-05T07:01:32Z",
+      "side": 1,
+      "message": "using Map of maps",
+      "parentUuid": "70fc301a_f83d899f",
+      "range": {
+        "startLine": 147,
+        "startChar": 72,
+        "endLine": 147,
+        "endChar": 118
+      },
+      "revId": "e28ed99835143788f015e220aeab8df85c666821",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
