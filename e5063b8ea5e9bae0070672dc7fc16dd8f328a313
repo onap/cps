@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "f3d0969b_4217d563",
+        "filename": "cps-path-parser/src/main/antlr4/org/onap/cps/cpspath/parser/antlr4/CpsPath.g4",
+        "patchSetId": 19
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-05-05T13:41:48Z",
+      "side": 1,
+      "message": "Agreed. Something like this should work:\n  leafCondition : AT leafName EQ StringLiteral | AT leafName comparativeOperators  IntegerLiteral ;\n\n  comparativeOperators : ( LT | LE | EQ | GE | GT ) ;\n\nAnd I think this may fix issues with AND/OR with comparisons.",
+      "parentUuid": "4a3023ed_40034172",
+      "range": {
+        "startLine": 56,
+        "startChar": 24,
+        "endLine": 56,
+        "endChar": 76
+      },
+      "revId": "e5063b8ea5e9bae0070672dc7fc16dd8f328a313",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e1e65867_fd48980a",
         "filename": "cps-path-parser/src/main/antlr4/org/onap/cps/cpspath/parser/antlr4/CpsPath.g4",
         "patchSetId": 19
