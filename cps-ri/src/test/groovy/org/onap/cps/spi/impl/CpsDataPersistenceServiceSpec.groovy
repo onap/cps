@@ -68,15 +68,6 @@ class CpsDataPersistenceServiceSpec extends Specification {
             2 * mockFragmentRepository.save(_)
     }
 
-    def 'Store single data node.'() {
-        given: 'a data node'
-            def dataNode = new DataNode()
-        when: 'storing a single data node'
-            objectUnderTest.storeDataNode('dataspace1', 'anchor1', dataNode)
-        then: 'the call is redirected to storing a collection of data nodes with just the given data node'
-            1 * objectUnderTest.storeDataNodes('dataspace1', 'anchor1', [dataNode])
-    }
-
     def 'Handling of StaleStateException (caused by concurrent updates) during update data nodes and descendants.'() {
         given: 'the system can update one datanode and has two more datanodes that throw an exception while updating'
             def dataNodes = createDataNodesAndMockRepositoryMethodSupportingThem([

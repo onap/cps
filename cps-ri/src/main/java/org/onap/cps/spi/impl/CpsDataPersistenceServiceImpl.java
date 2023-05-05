@@ -82,7 +82,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     private final JsonObjectMapper jsonObjectMapper;
     private final SessionManager sessionManager;
 
-    private static final String REG_EX_FOR_OPTIONAL_LIST_INDEX = "(\\[@[\\s\\S]+?])?)";
+    private static final String REG_EX_FOR_OPTIONAL_LIST_INDEX = "(\\[@.+?])?)";
     private static final String QUERY_ACROSS_ANCHORS = null;
     private static final AnchorEntity ALL_ANCHORS = null;
 
@@ -168,11 +168,6 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         if (!failedXpaths.isEmpty()) {
             throw new AlreadyDefinedExceptionBatch(failedXpaths);
         }
-    }
-
-    @Override
-    public void storeDataNode(final String dataspaceName, final String anchorName, final DataNode dataNode) {
-        storeDataNodes(dataspaceName, anchorName, Collections.singletonList(dataNode));
     }
 
     @Override
@@ -438,8 +433,8 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
                                                     final CpsPathQuery cpsPathQuery) {
         final Set<String> ancestorXpath = new HashSet<>();
         final Pattern pattern =
-                Pattern.compile("([\\s\\S]*/" + Pattern.quote(cpsPathQuery.getAncestorSchemaNodeIdentifier())
-                        + REG_EX_FOR_OPTIONAL_LIST_INDEX + "/[\\s\\S]*");
+                Pattern.compile("(.*/" + Pattern.quote(cpsPathQuery.getAncestorSchemaNodeIdentifier())
+                        + REG_EX_FOR_OPTIONAL_LIST_INDEX + "/.*");
         for (final FragmentEntity fragmentEntity : fragmentEntities) {
             final Matcher matcher = pattern.matcher(fragmentEntity.getXpath());
             if (matcher.matches()) {

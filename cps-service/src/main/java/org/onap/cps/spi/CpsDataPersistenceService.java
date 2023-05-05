@@ -36,18 +36,6 @@ import org.onap.cps.spi.model.DataNode;
  */
 public interface CpsDataPersistenceService {
 
-
-    /**
-     * Store a datanode.
-     *
-     * @param dataspaceName dataspace name
-     * @param anchorName    anchor name
-     * @param dataNode      data node
-     * @deprecated Please use {@link #storeDataNodes(String, String, Collection)} as it supports multiple data nodes.
-     */
-    @Deprecated
-    void storeDataNode(String dataspaceName, String anchorName, DataNode dataNode);
-
     /**
      * Store multiple datanodes at once.
      * @param dataspaceName dataspace name
