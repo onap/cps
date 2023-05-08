@@ -37,6 +37,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import javax.transaction.Transactional;
@@ -94,17 +95,11 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
 
     @Override
     public Map<String, String> getYangSchemaResources(final String dataspaceName, final String schemaSetName) {
-        final var dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
-        final var schemaSetEntity =
+        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        final SchemaSetEntity schemaSetEntity =
             schemaSetRepository.getByDataspaceAndName(dataspaceEntity, schemaSetName);
         return schemaSetEntity.getYangResources().stream().collect(
             Collectors.toMap(YangResourceEntity::getFileName, YangResourceEntity::getContent));
-    }
-
-    @Override
-    public Map<String, String> getYangSchemaSetResources(final String dataspaceName, final String anchorName) {
-        final var anchor = cpsAdminPersistenceService.getAnchor(dataspaceName, anchorName);
-        return getYangSchemaResources(dataspaceName, anchor.getSchemaSetName());
     }
 
     @Override
@@ -143,9 +138,9 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
         @Backoff(random = true, delay = 200, maxDelay = 2000, multiplier = 2))
     public void storeSchemaSet(final String dataspaceName, final String schemaSetName,
         final Map<String, String> moduleReferenceNameToContentMap) {
-        final var dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
-        final var yangResourceEntities = synchronizeYangResources(moduleReferenceNameToContentMap);
-        final var schemaSetEntity = new SchemaSetEntity();
+        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        final Set<YangResourceEntity> yangResourceEntities = synchronizeYangResources(moduleReferenceNameToContentMap);
+        final SchemaSetEntity schemaSetEntity = new SchemaSetEntity();
         schemaSetEntity.setName(schemaSetName);
         schemaSetEntity.setDataspace(dataspaceEntity);
         schemaSetEntity.setYangResources(yangResourceEntities);
@@ -185,8 +180,8 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
     @Override
     @Transactional
     public void deleteSchemaSet(final String dataspaceName, final String schemaSetName) {
-        final var dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
-        final var schemaSetEntity =
+        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        final SchemaSetEntity schemaSetEntity =
             schemaSetRepository.getByDataspaceAndName(dataspaceEntity, schemaSetName);
         schemaSetRepository.delete(schemaSetEntity);
     }
@@ -194,7 +189,7 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
     @Override
     @Transactional
     public void deleteSchemaSets(final String dataspaceName, final Collection<String> schemaSetNames) {
-        final var dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         schemaSetRepository.deleteByDataspaceAndNameIn(dataspaceEntity, schemaSetNames);
     }
 
@@ -217,7 +212,7 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
                 final String checksum = DigestUtils.sha256Hex(entry.getValue().getBytes(StandardCharsets.UTF_8));
                 final Map<String, String> moduleNameAndRevisionMap = createModuleNameAndRevisionMap(entry.getKey(),
                             entry.getValue());
-                final var yangResourceEntity = new YangResourceEntity();
+                final YangResourceEntity yangResourceEntity = new YangResourceEntity();
                 yangResourceEntity.setFileName(entry.getKey());
                 yangResourceEntity.setContent(entry.getValue());
                 yangResourceEntity.setModuleName(moduleNameAndRevisionMap.get("moduleName"));
@@ -264,10 +259,10 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
 
     private static Map<String, String> createModuleNameAndRevisionMap(final String sourceName, final String source) {
         final Map<String, String> metaDataMap = new HashMap<>();
-        final var revisionSourceIdentifier =
-                createIdentifierFromSourceName(checkNotNull(sourceName));
+        final RevisionSourceIdentifier revisionSourceIdentifier =
+            createIdentifierFromSourceName(checkNotNull(sourceName));
 
-        final var tempYangTextSchemaSource = new YangTextSchemaSource(revisionSourceIdentifier) {
+        final YangTextSchemaSource tempYangTextSchemaSource = new YangTextSchemaSource(revisionSourceIdentifier) {
             @Override
             public Optional<String> getSymbolicName() {
                 return Optional.empty();
@@ -285,9 +280,10 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
             }
         };
         try {
-            final var dependencyInfo = YangModelDependencyInfo.forYangText(tempYangTextSchemaSource);
-            metaDataMap.put("moduleName", dependencyInfo.getName());
-            metaDataMap.put("revision", dependencyInfo.getFormattedRevision());
+            final YangModelDependencyInfo yangModelDependencyInfo
+                = YangModelDependencyInfo.forYangText(tempYangTextSchemaSource);
+            metaDataMap.put("moduleName", yangModelDependencyInfo.getName());
+            metaDataMap.put("revision", yangModelDependencyInfo.getFormattedRevision());
         } catch (final YangSyntaxErrorException | IOException e) {
             throw new ModelValidationException("Yang resource is invalid.",
                    String.format("Yang syntax validation failed for resource %s:%n%s", sourceName, e.getMessage()), e);
@@ -296,7 +292,7 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
     }
 
     private static RevisionSourceIdentifier createIdentifierFromSourceName(final String sourceName) {
-        final var matcher = RFC6020_RECOMMENDED_FILENAME_PATTERN.matcher(sourceName);
+        final Matcher matcher = RFC6020_RECOMMENDED_FILENAME_PATTERN.matcher(sourceName);
         if (matcher.matches()) {
             return RevisionSourceIdentifier.create(matcher.group(1), Revision.of(matcher.group(2)));
         }
@@ -335,15 +331,8 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
 
     }
 
-    /**
-     * Get the name of the yang resource having the specified checksum.
-     *
-     * @param checksum the checksum. Null is supported.
-     * @param yangResourceEntities the list of yang resources to search among.
-     * @return the name found or null if none.
-     */
-    private String getNameForChecksum(
-            final String checksum, final Collection<YangResourceEntity> yangResourceEntities) {
+    private String getNameForChecksum(final String checksum,
+                                      final Collection<YangResourceEntity> yangResourceEntities) {
         final Optional<String> optionalFileName = yangResourceEntities.stream()
                         .filter(entity -> StringUtils.equals(checksum, (entity.getChecksum())))
                         .findFirst()
@@ -354,19 +343,12 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
         return null;
     }
 
-    /**
-     * Get the checksum that caused the constraint violation exception.
-     *
-     * @param exception the exception having the checksum in error.
-     * @return the checksum in error or null if not found.
-     */
     private String getDuplicatedChecksumFromException(final ConstraintViolationException exception) {
-        String checksum = null;
-        final var matcher = CHECKSUM_EXCEPTION_PATTERN.matcher(exception.getSQLException().getMessage());
+        final Matcher matcher = CHECKSUM_EXCEPTION_PATTERN.matcher(exception.getSQLException().getMessage());
         if (matcher.find() && matcher.groupCount() == 1) {
-            checksum = matcher.group(1);
+            return matcher.group(1);
         }
-        return checksum;
+        return null;
     }
 
     private static ModuleReference toModuleReference(
