@@ -24,28 +24,28 @@ import com.hazelcast.map.IMap;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.ncmp.api.impl.events.avcsubscription.SubscriptionEventResponseOutcome;
 
 @Slf4j
 @RequiredArgsConstructor
 public class ResponseTimeoutTask implements Runnable {
 
     private final IMap<String, Set<String>> forwardedSubscriptionEventCache;
+    private final SubscriptionEventResponseOutcome subscriptionEventResponseOutcome;
+    private final String subscriptionClientId;
+    private final String subscriptionName;
     private final String subscriptionEventId;
 
     @Override
     public void run() {
         if (forwardedSubscriptionEventCache.containsKey(subscriptionEventId)) {
             final Set<String> dmiNames = forwardedSubscriptionEventCache.get(subscriptionEventId);
+
             if (dmiNames.isEmpty()) {
-                //TODO full outcome response here
-                log.info("placeholder to create full outcome response for subscriptionEventId: {}.",
-                    subscriptionEventId);
-            } else {
-                //TODO partial outcome response here
-                log.info("placeholder to create partial outcome response for subscriptionEventId: {}.",
-                    subscriptionEventId);
+                forwardedSubscriptionEventCache.remove(subscriptionEventId);
             }
-            forwardedSubscriptionEventCache.remove(subscriptionEventId);
+            subscriptionEventResponseOutcome.generateAndSendResponse(subscriptionClientId, subscriptionName,
+                    dmiNames.isEmpty());
         }
     }
 }
