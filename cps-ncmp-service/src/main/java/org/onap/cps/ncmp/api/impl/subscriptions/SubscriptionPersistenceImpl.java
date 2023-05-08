@@ -41,7 +41,6 @@ public class SubscriptionPersistenceImpl implements SubscriptionPersistence {
     private static final String SUBSCRIPTION_DATASPACE_NAME = "NCMP-Admin";
     private static final String SUBSCRIPTION_ANCHOR_NAME = "AVC-Subscriptions";
     private static final String SUBSCRIPTION_REGISTRY_PARENT = "/subscription-registry";
-
     private final JsonObjectMapper jsonObjectMapper;
     private final CpsDataService cpsDataService;
 
@@ -49,8 +48,7 @@ public class SubscriptionPersistenceImpl implements SubscriptionPersistence {
     public void saveSubscriptionEvent(final YangModelSubscriptionEvent yangModelSubscriptionEvent) {
         final String subscriptionEventJsonData =
                 createSubscriptionEventJsonData(jsonObjectMapper.asJsonString(yangModelSubscriptionEvent));
-        final Collection<DataNode> dataNodes = cpsDataService.getDataNodes(SUBSCRIPTION_DATASPACE_NAME,
-                SUBSCRIPTION_ANCHOR_NAME, SUBSCRIPTION_REGISTRY_PARENT, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
+        final Collection<DataNode> dataNodes = getDataNodesForSubscriptionEvent();
         final Optional<DataNode> optional = dataNodes.stream().findFirst();
         if (optional.isPresent()) {
             final DataNode dataNode = optional.get();
@@ -64,7 +62,18 @@ public class SubscriptionPersistenceImpl implements SubscriptionPersistence {
                 cpsDataService.updateDataNodeAndDescendants(SUBSCRIPTION_DATASPACE_NAME, SUBSCRIPTION_ANCHOR_NAME,
                         SUBSCRIPTION_REGISTRY_PARENT, subscriptionEventJsonData, NO_TIMESTAMP);
             }
+        } else {
+            log.info("SubscriptionEventJsonData to be saved into DB {}", subscriptionEventJsonData);
+            cpsDataService.saveListElements(SUBSCRIPTION_DATASPACE_NAME, SUBSCRIPTION_ANCHOR_NAME,
+                    SUBSCRIPTION_REGISTRY_PARENT, subscriptionEventJsonData, NO_TIMESTAMP);
         }
+    }
+
+    @Override
+    public Collection<DataNode> getDataNodesForSubscriptionEvent() {
+        final Collection<DataNode> dataNodes = cpsDataService.getDataNodes(SUBSCRIPTION_DATASPACE_NAME,
+                SUBSCRIPTION_ANCHOR_NAME, SUBSCRIPTION_REGISTRY_PARENT, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
+        return dataNodes;
     }
 
     private static String createSubscriptionEventJsonData(final String yangModelSubscriptionAsJson) {

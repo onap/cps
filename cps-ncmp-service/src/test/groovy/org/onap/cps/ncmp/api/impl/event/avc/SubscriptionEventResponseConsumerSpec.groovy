@@ -22,10 +22,12 @@ package org.onap.cps.ncmp.api.impl.event.avc
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.hazelcast.map.IMap
+import org.onap.cps.ncmp.api.impl.events.avcsubscription.SubscriptionEventForwarder
 import org.onap.cps.ncmp.api.impl.events.avcsubscription.SubscriptionEventMapper
 import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionPersistenceImpl
 import org.onap.cps.ncmp.api.kafka.MessagingBaseSpec
 import org.onap.cps.ncmp.api.models.SubscriptionEventResponse
+import org.onap.cps.ncmp.event.model.SubscriptionEventOutcome
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.boot.test.context.SpringBootTest
 
@@ -35,17 +37,20 @@ class SubscriptionEventResponseConsumerSpec extends MessagingBaseSpec {
     IMap<String, Set<String>> mockForwardedSubscriptionEventCache = Mock(IMap<String, Set<String>>)
     def mockSubscriptionPersistence = Mock(SubscriptionPersistenceImpl)
     def mockSubscriptionEventMapper = Mock(SubscriptionEventMapper)
+    def mockSubscriptionOutcomeMapper = Mock(SubscriptionOutcomeMapper)
+    def mockSubscriptionEventForwarder = Mock(SubscriptionEventForwarder)
 
     def objectUnderTest = new SubscriptionEventResponseConsumer(mockForwardedSubscriptionEventCache,
-        mockSubscriptionPersistence, mockSubscriptionEventMapper)
+        mockSubscriptionPersistence, mockSubscriptionEventMapper, mockSubscriptionOutcomeMapper,
+        mockSubscriptionEventForwarder)
 
 
     def 'Consume Subscription Event Response where all DMIs have responded'() {
         given: 'a subscription event response with a clientId, subscriptionName and dmiName'
-            def testEventReceived = new SubscriptionEventResponse()
-            testEventReceived.clientId = 'some-client-id'
-            testEventReceived.subscriptionName = 'some-subscription-name'
-            testEventReceived.dmiName = 'some-dmi-name'
+            def cmHandleToStatusMap = [CMHandle1: 'PENDING', CMHandle1: 'ACCEPTED'] as Map
+            def testEventReceived = new SubscriptionEventResponse(clientId: 'some-client-id',
+                subscriptionName: 'some-subscription-name', dmiName: 'some-dmi-name', cmHandleIdToStatus: cmHandleToStatusMap)
+            mockSubscriptionOutcomeMapper.toSubscriptionEventOutcome(testEventReceived) >> new SubscriptionEventOutcome()
         and: 'notifications are enabled'
             objectUnderTest.notificationFeatureEnabled = true
         and: 'subscription model loader is enabled'

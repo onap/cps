@@ -21,6 +21,7 @@ app:
         avc:
             subscription-topic: cm-avc-subscription
             cm-events-topic: cm-events
+            subscription-outcome-topic: cm-avc-subscription-response
 
 ncmp:
     dmi:
