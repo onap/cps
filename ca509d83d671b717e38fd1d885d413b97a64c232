@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d0dcd68c_586db6bc",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/dmi-async-bulk-response-event-schema-v1.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-08T08:11:30Z",
+      "side": 1,
+      "message": "I thought all of these should be headers now?!\nPriyank did a small PoC and proved we can easily have separate schema\u0027s for the headers\ndon\u0027t know if we have a singel common schema for the headers but for now I would assume not, we can alway extract that out later (just like with java code we can extract out common code later)",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 24
+      },
+      "revId": "ca509d83d671b717e38fd1d885d413b97a64c232",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d5a70c96_6b29adde",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/async/AsyncBulkResponseEventConsumer.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-08T08:11:30Z",
+      "side": 1,
+      "message": "check with priyank how to receive headers too",
+      "range": {
+        "startLine": 49,
+        "startChar": 3,
+        "endLine": 52,
+        "endChar": 91
+      },
+      "revId": "ca509d83d671b717e38fd1d885d413b97a64c232",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6eb3384f_1ef711fc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/async/AsyncBulkResponseEventConsumer.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-08T08:11:30Z",
+      "side": 1,
+      "message": "need to pass in header separately",
+      "range": {
+        "startLine": 58,
+        "startChar": 57,
+        "endLine": 58,
+        "endChar": 85
+      },
+      "revId": "ca509d83d671b717e38fd1d885d413b97a64c232",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
