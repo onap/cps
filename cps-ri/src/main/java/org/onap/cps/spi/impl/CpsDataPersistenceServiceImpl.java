@@ -36,6 +36,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -311,8 +312,9 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             description = "Time taken to query data nodes")
     public List<DataNode> queryDataNodes(final String dataspaceName, final String anchorName, final String cpsPath,
                                          final FetchDescendantsOption fetchDescendantsOption) {
-        final AnchorEntity anchorEntity = (Strings.isNullOrEmpty(anchorName)) ? ALL_ANCHORS
-                : getAnchorEntity(dataspaceName, anchorName);
+        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        final AnchorEntity anchorEntity = Strings.isNullOrEmpty(anchorName) ? ALL_ANCHORS
+            : anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
         final CpsPathQuery cpsPathQuery;
         try {
             cpsPathQuery = CpsPathUtil.getCpsPathQuery(cpsPath);
@@ -322,21 +324,30 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
 
         Collection<FragmentEntity> fragmentEntities;
         if (canUseRegexQuickFind(fetchDescendantsOption, cpsPathQuery)) {
-            return getDataNodesUsingRegexQuickFind(fetchDescendantsOption, anchorEntity, cpsPathQuery);
+            return getDataNodesUsingRegexQuickFind(fetchDescendantsOption, dataspaceEntity, anchorEntity, cpsPathQuery);
         }
-        fragmentEntities = (anchorEntity == ALL_ANCHORS) ? fragmentRepository.findByCpsPath(cpsPathQuery)
-                : fragmentRepository.findByAnchorAndCpsPath(anchorEntity.getId(), cpsPathQuery);
+
+        if (anchorEntity == ALL_ANCHORS) {
+            fragmentEntities = fragmentRepository.findByDataspaceAndCpsPath(dataspaceEntity, cpsPathQuery);
+        } else {
+            fragmentEntities = fragmentRepository.findByAnchorAndCpsPath(anchorEntity, cpsPathQuery);
+        }
+
         if (cpsPathQuery.hasAncestorAxis()) {
             final Collection<String> ancestorXpaths = processAncestorXpath(fragmentEntities, cpsPathQuery);
-            fragmentEntities = (anchorEntity == ALL_ANCHORS) ? getAncestorFragmentEntitiesAcrossAnchors(cpsPathQuery,
-            fragmentEntities) : getFragmentEntities(anchorEntity, ancestorXpaths, fetchDescendantsOption);
+            if (anchorEntity == ALL_ANCHORS) {
+                fragmentEntities = fragmentRepository.findByDataspaceAndXpathIn(dataspaceEntity, ancestorXpaths);
+            } else {
+                fragmentEntities = fragmentRepository.findByAnchorAndXpathIn(anchorEntity, ancestorXpaths);
+            }
         }
+
         return createDataNodesFromProxiedFragmentEntities(fetchDescendantsOption, anchorEntity, fragmentEntities);
     }
 
     @Override
     public List<DataNode> queryDataNodesAcrossAnchors(final String dataspaceName, final String cpsPath,
-                                         final FetchDescendantsOption fetchDescendantsOption) {
+                                                      final FetchDescendantsOption fetchDescendantsOption) {
         return queryDataNodes(dataspaceName, QUERY_ACROSS_ANCHORS, cpsPath, fetchDescendantsOption);
     }
 
@@ -350,21 +361,29 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     }
 
     private List<DataNode> getDataNodesUsingRegexQuickFind(final FetchDescendantsOption fetchDescendantsOption,
+                                                           final DataspaceEntity dataspaceEntity,
                                                            final AnchorEntity anchorEntity,
                                                            final CpsPathQuery cpsPathQuery) {
         final String xpathRegex = FragmentQueryBuilder.getXpathSqlRegexForQuickFindWithDescendants(cpsPathQuery);
         final List<FragmentExtract> fragmentExtracts = (anchorEntity == ALL_ANCHORS)
-            ? fragmentRepository.quickFindWithDescendantsAcrossAnchors(xpathRegex)
+            ? fragmentRepository.quickFindWithDescendantsAcrossAnchors(dataspaceEntity.getId(), xpathRegex)
             : fragmentRepository.quickFindWithDescendants(anchorEntity.getId(), xpathRegex);
         final Collection<FragmentEntity> fragmentEntities =
-            FragmentEntityArranger.toFragmentEntityTrees(anchorEntity, fragmentExtracts);
+            createFragmentEntitiesFromFragmentExtracts(anchorEntity, fragmentExtracts);
         return createDataNodesFromFragmentEntities(fetchDescendantsOption, fragmentEntities);
     }
 
-    private Collection<FragmentEntity> getAncestorFragmentEntitiesAcrossAnchors(final CpsPathQuery cpsPathQuery,
-        final Collection<FragmentEntity> fragmentEntities) {
-        final Collection<String> ancestorXpaths = processAncestorXpath(fragmentEntities, cpsPathQuery);
-        return ancestorXpaths.isEmpty() ? Collections.emptyList() : fragmentRepository.findAllByXpathIn(ancestorXpaths);
+    private Collection<FragmentEntity> createFragmentEntitiesFromFragmentExtracts(
+                    final AnchorEntity anchorEntity, final Collection<FragmentExtract> fragmentExtracts) {
+        if (anchorEntity == ALL_ANCHORS) {
+            final Collection<Integer> anchorIds = fragmentExtracts.stream()
+                .map(FragmentExtract::getAnchorId).collect(Collectors.toSet());
+            final List<AnchorEntity> anchorEntities = anchorRepository.findAllById(anchorIds);
+            final Map<Integer, AnchorEntity> anchorEntityPerId = anchorEntities.stream()
+                .collect(Collectors.toMap(AnchorEntity::getId, Function.identity()));
+            return FragmentEntityArranger.toFragmentEntityTreesAcrossAnchors(anchorEntityPerId, fragmentExtracts);
+        }
+        return FragmentEntityArranger.toFragmentEntityTrees(anchorEntity, fragmentExtracts);
     }
 
     private List<DataNode> createDataNodesFromProxiedFragmentEntities(

@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2023 Nordix Foundation
  *  Modifications Copyright (C) 2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -33,6 +33,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.cpspath.parser.CpsPathPrefixType;
 import org.onap.cps.cpspath.parser.CpsPathQuery;
+import org.onap.cps.spi.entities.AnchorEntity;
+import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.FragmentEntity;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.stereotype.Component;
@@ -45,6 +47,7 @@ public class FragmentQueryBuilder {
     private static final String REGEX_DESCENDANT_PATH_PREFIX = "^.*\\/";
     private static final String REGEX_OPTIONAL_LIST_INDEX_POSTFIX = "(\\[@(?!.*\\[).*?])?$";
     private static final String REGEX_FOR_QUICK_FIND_WITH_DESCENDANTS = "(\\[@.*?])?(\\/.*)?$";
+    private static final AnchorEntity ACROSS_ALL_ANCHORS = null;
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -54,28 +57,24 @@ public class FragmentQueryBuilder {
     /**
      * Create a sql query to retrieve by anchor(id) and cps path.
      *
-     * @param anchorId the id of the anchor
+     * @param anchorEntity the anchor
      * @param cpsPathQuery the cps path query to be transformed into a sql query
      * @return a executable query object
      */
-    public Query getQueryForAnchorAndCpsPath(final int anchorId, final CpsPathQuery cpsPathQuery) {
-        final StringBuilder sqlStringBuilder = new StringBuilder("SELECT * FROM FRAGMENT WHERE anchor_id = :anchorId");
-        final Map<String, Object> queryParameters = new HashMap<>();
-        queryParameters.put("anchorId", anchorId);
-        sqlStringBuilder.append(" AND xpath ~ :xpathRegex");
-        return getQuery(cpsPathQuery, sqlStringBuilder, queryParameters);
+    public Query getQueryForAnchorAndCpsPath(final AnchorEntity anchorEntity, final CpsPathQuery cpsPathQuery) {
+        return getQueryForDataspaceOrAnchorAndCpsPath(anchorEntity.getDataspace(), anchorEntity, cpsPathQuery);
     }
 
     /**
      * Create a sql query to retrieve by cps path.
      *
+     * @param dataspaceEntity the dataspace
      * @param cpsPathQuery the cps path query to be transformed into a sql query
      * @return a executable query object
      */
-    public Query getQueryForCpsPath(final CpsPathQuery cpsPathQuery) {
-        final StringBuilder sqlStringBuilder = new StringBuilder("SELECT * FROM FRAGMENT WHERE xpath ~ :xpathRegex");
-        final Map<String, Object> queryParameters = new HashMap<>();
-        return getQuery(cpsPathQuery, sqlStringBuilder, queryParameters);
+    public Query getQueryForDataspaceAndCpsPath(final DataspaceEntity dataspaceEntity,
+                                                final CpsPathQuery cpsPathQuery) {
+        return getQueryForDataspaceOrAnchorAndCpsPath(dataspaceEntity, ACROSS_ALL_ANCHORS, cpsPathQuery);
     }
 
     /**
@@ -103,29 +102,43 @@ public class FragmentQueryBuilder {
         return xpathRegexBuilder.toString();
     }
 
-    private Query getQuery(final CpsPathQuery cpsPathQuery, final StringBuilder sqlStringBuilder,
-                           final Map<String, Object> queryParameters) {
-        final String xpathRegex = getXpathSqlRegex(cpsPathQuery);
-        queryParameters.put("xpathRegex", xpathRegex);
-        final List<String> queryBooleanOperatorsType = cpsPathQuery.getBooleanOperatorsType();
-        if (cpsPathQuery.hasLeafConditions()) {
-            sqlStringBuilder.append(" AND (");
-            final Queue<String> booleanOperatorsQueue = (queryBooleanOperatorsType == null) ? null : new LinkedList<>(
-                queryBooleanOperatorsType);
-            cpsPathQuery.getLeavesData().entrySet().forEach(entry -> {
-                sqlStringBuilder.append(" attributes @> ");
-                sqlStringBuilder.append("'" + jsonObjectMapper.asJsonString(entry) + "'");
-                if (!(booleanOperatorsQueue == null || booleanOperatorsQueue.isEmpty())) {
-                    sqlStringBuilder.append(" " + booleanOperatorsQueue.poll() + " ");
-                }
-            });
-            sqlStringBuilder.append(")");
-        }
+    private Query getQueryForDataspaceOrAnchorAndCpsPath(final DataspaceEntity dataspaceEntity,
+                                                         final AnchorEntity anchorEntity,
+                                                         final CpsPathQuery cpsPathQuery) {
+        final StringBuilder sqlStringBuilder = new StringBuilder();
+        final Map<String, Object> queryParameters = new HashMap<>();
+
+        sqlStringBuilder.append("SELECT * FROM fragment WHERE ");
+        addDataspaceOrAnchor(sqlStringBuilder, queryParameters, dataspaceEntity, anchorEntity);
+        addXpathSearch(cpsPathQuery, sqlStringBuilder, queryParameters);
+        addLeafConditions(cpsPathQuery, sqlStringBuilder);
         addTextFunctionCondition(cpsPathQuery, sqlStringBuilder, queryParameters);
         addContainsFunctionCondition(cpsPathQuery, sqlStringBuilder, queryParameters);
+
         final Query query = entityManager.createNativeQuery(sqlStringBuilder.toString(), FragmentEntity.class);
         setQueryParameters(query, queryParameters);
         return query;
+    }
+
+    private static void addDataspaceOrAnchor(final StringBuilder sqlStringBuilder,
+                                             final Map<String, Object> queryParameters,
+                                             final DataspaceEntity dataspaceEntity,
+                                             final AnchorEntity anchorEntity) {
+        if (anchorEntity == ACROSS_ALL_ANCHORS) {
+            sqlStringBuilder.append("dataspace_id = :dataspaceId");
+            queryParameters.put("dataspaceId", dataspaceEntity.getId());
+        } else {
+            sqlStringBuilder.append("anchor_id = :anchorId");
+            queryParameters.put("anchorId", anchorEntity.getId());
+        }
+    }
+
+    private static void addXpathSearch(final CpsPathQuery cpsPathQuery,
+                                       final StringBuilder sqlStringBuilder,
+                                       final Map<String, Object> queryParameters) {
+        sqlStringBuilder.append(" AND xpath ~ :xpathRegex");
+        final String xpathRegex = getXpathSqlRegex(cpsPathQuery);
+        queryParameters.put("xpathRegex", xpathRegex);
     }
 
     private static StringBuilder getRegexStringBuilderWithPrefix(final CpsPathQuery cpsPathQuery) {
@@ -150,6 +163,27 @@ public class FragmentQueryBuilder {
             return Integer.parseInt(cpsPathQuery.getTextFunctionConditionValue());
         } catch (final NumberFormatException e) {
             return null;
+        }
+    }
+
+    private void addLeafConditions(final CpsPathQuery cpsPathQuery, final StringBuilder sqlStringBuilder) {
+        if (cpsPathQuery.hasLeafConditions()) {
+            sqlStringBuilder.append(" AND (");
+            final List<String> queryBooleanOperatorsType = cpsPathQuery.getBooleanOperatorsType();
+            final Queue<String> booleanOperatorsQueue = (queryBooleanOperatorsType == null) ? null : new LinkedList<>(
+                queryBooleanOperatorsType);
+            cpsPathQuery.getLeavesData().entrySet().forEach(entry -> {
+                sqlStringBuilder.append(" attributes @> ");
+                sqlStringBuilder.append("'");
+                sqlStringBuilder.append(jsonObjectMapper.asJsonString(entry));
+                sqlStringBuilder.append("'");
+                if (!(booleanOperatorsQueue == null || booleanOperatorsQueue.isEmpty())) {
+                    sqlStringBuilder.append(" ");
+                    sqlStringBuilder.append(booleanOperatorsQueue.poll());
+                    sqlStringBuilder.append(" ");
+                }
+            });
+            sqlStringBuilder.append(")");
         }
     }
 
