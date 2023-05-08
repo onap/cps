@@ -22,13 +22,18 @@ package org.onap.cps.ncmp.api.impl.events.avcsubscription
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.hazelcast.map.IMap
+import org.onap.cps.ncmp.api.impl.event.avc.SubscriptionOutcomeMapper
 import org.onap.cps.ncmp.api.impl.events.EventsPublisher
+import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionPersistence
+import org.onap.cps.ncmp.api.impl.utils.DataNodeHelper
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence
 import org.onap.cps.ncmp.api.kafka.MessagingBaseSpec
 import org.onap.cps.ncmp.event.model.SubscriptionEvent
+import org.onap.cps.ncmp.event.model.SubscriptionEventOutcome
 import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.spi.exceptions.OperationNotYetSupportedException
+import org.onap.cps.spi.model.DataNodeBuilder
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
@@ -44,10 +49,15 @@ class SubscriptionEventForwarderSpec extends MessagingBaseSpec {
     @SpringBean
     InventoryPersistence mockInventoryPersistence = Mock(InventoryPersistence)
     @SpringBean
+    SubscriptionPersistence mockSubscriptionPersistence = Mock(SubscriptionPersistence)
+    @SpringBean
     EventsPublisher<SubscriptionEvent> mockSubscriptionEventPublisher = Mock(EventsPublisher<SubscriptionEvent>)
     @SpringBean
+    EventsPublisher<SubscriptionEventOutcome> mockOutcomeEventPublisher = Mock(EventsPublisher<SubscriptionEventOutcome>)
+    @SpringBean
     IMap<String, Set<String>> mockForwardedSubscriptionEventCache = Mock(IMap<String, Set<String>>)
-
+    @SpringBean
+    SubscriptionOutcomeMapper mockSubscriptionOutcomeMapper = Mock(SubscriptionOutcomeMapper)
     @Autowired
     JsonObjectMapper jsonObjectMapper
 
@@ -55,6 +65,10 @@ class SubscriptionEventForwarderSpec extends MessagingBaseSpec {
         given: 'an event'
             def jsonData = TestUtils.getResourceFileContent('avcSubscriptionCreationEvent.json')
             def testEventSent = jsonObjectMapper.convertJsonString(jsonData, SubscriptionEvent.class)
+        and: 'a data node'
+            def dataNode = new DataNodeBuilder().withDataspace('NCMP-Admin')
+                .withAnchor('AVC-Subscriptions').withXpath('/subscription-registry/subscription')
+                .withLeaves([status:'PENDING', cmHandleId:'CMHandle3']).build()
         and: 'the InventoryPersistence returns private properties for the supplied CM Handles'
             1 * mockInventoryPersistence.getYangModelCmHandles(["CMHandle1", "CMHandle2", "CMHandle3"]) >> [
                 createYangModelCmHandleWithDmiProperty(1, 1,"shape","circle"),
@@ -88,6 +102,10 @@ class SubscriptionEventForwarderSpec extends MessagingBaseSpec {
         and: 'a separate thread has been created where the map is polled'
             1 * mockForwardedSubscriptionEventCache.containsKey("SCO-9989752cm-subscription-001") >> true
             1 * mockForwardedSubscriptionEventCache.get(_) >> (DMINamesInMap)
+            1 * mockSubscriptionPersistence.getDataNodesForSubscriptionEvent() >> [dataNode]
+            DataNodeHelper.getDataNodeLeaves(_) >> [[status:'PENDING', cmHandleId:'CMHandle3'] as Map]
+            DataNodeHelper.getCmHandleIdToStatus(_) >> [['PENDING', 'CMHandle3']]
+            1 * mockSubscriptionOutcomeMapper.toSubscriptionEventOutcome(_) >> new SubscriptionEventOutcome()
         and: 'the subscription id is removed from the event cache map returning the asynchronous blocking variable'
             1 * mockForwardedSubscriptionEventCache.remove("SCO-9989752cm-subscription-001") >> {block.set(_)}
         where:
