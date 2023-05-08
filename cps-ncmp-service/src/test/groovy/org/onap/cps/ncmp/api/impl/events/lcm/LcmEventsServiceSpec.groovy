@@ -20,6 +20,7 @@
 
 package org.onap.cps.ncmp.api.impl.events.lcm
 
+import org.apache.kafka.common.header.internals.RecordHeaders
 import org.onap.cps.ncmp.api.impl.events.EventsPublisher
 import org.onap.cps.ncmp.events.lcm.v1.LcmEvent
 import org.onap.cps.ncmp.events.lcm.v1.LcmEventHeader
@@ -35,7 +36,7 @@ class LcmEventsServiceSpec extends Specification {
     def objectUnderTest = new LcmEventsService(mockLcmEventsPublisher, mockJsonObjectMapper)
 
     def 'Create and Publish lcm event where events are #scenario'() {
-        given: 'a cm handle id and Lcm Event'
+        given: 'a cm handle id, Lcm Event, and headers'
             def cmHandleId = 'test-cm-handle-id'
             def eventId = UUID.randomUUID().toString()
             def lcmEvent = new LcmEvent(eventId: eventId, eventCorrelationId: cmHandleId)
