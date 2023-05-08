@@ -34,7 +34,7 @@ import org.springframework.context.annotation.Configuration;
 public class ForwardedSubscriptionEventCacheConfig extends HazelcastCacheConfig {
 
     private static final MapConfig forwardedSubscriptionEventCacheMapConfig =
-        createMapConfig("forwardedSubscriptionEventCacheMapConfig");
+            createMapConfigWithTimeToLive("forwardedSubscriptionEventCacheMapConfig");
 
     /**
      * Distributed instance of forwarded subscription information cache that contains subscription event

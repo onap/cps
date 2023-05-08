@@ -50,6 +50,7 @@ class ForwardedSubscriptionEventCacheConfigSpec extends Specification {
             assert forwardedSubscriptionEventCacheConfig.clusterName == 'cps-and-ncmp-test-caches'
             assert forwardedSubscriptionEventCacheMapConfig.backupCount == 3
             assert forwardedSubscriptionEventCacheMapConfig.asyncBackupCount == 3
+            assert forwardedSubscriptionEventCacheMapConfig.timeToLiveSeconds == 60
     }
 
     def 'Verify deployment network configs for Distributed Caches'() {

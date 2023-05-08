@@ -69,6 +69,14 @@ public class HazelcastCacheConfig {
         return mapConfig;
     }
 
+    protected static MapConfig createMapConfigWithTimeToLive(final String configName) {
+        final MapConfig mapConfig = new MapConfig(configName);
+        mapConfig.setBackupCount(3);
+        mapConfig.setAsyncBackupCount(3);
+        mapConfig.setTimeToLiveSeconds(60);
+        return mapConfig;
+    }
+
     protected static QueueConfig createQueueConfig(final String configName) {
         final QueueConfig commonQueueConfig = new QueueConfig(configName);
         commonQueueConfig.setBackupCount(3);
