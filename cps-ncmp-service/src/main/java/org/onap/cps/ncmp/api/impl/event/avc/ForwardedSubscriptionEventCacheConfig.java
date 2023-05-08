@@ -33,8 +33,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ForwardedSubscriptionEventCacheConfig extends HazelcastCacheConfig {
 
+    public static final int SUBSCRIPTION_FORWARD_STARTED_TTL_SECS = 600;
+
     private static final MapConfig forwardedSubscriptionEventCacheMapConfig =
-        createMapConfig("forwardedSubscriptionEventCacheMapConfig");
+            createMapConfig("forwardedSubscriptionEventCacheMapConfig");
 
     /**
      * Distributed instance of forwarded subscription information cache that contains subscription event
