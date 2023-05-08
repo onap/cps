@@ -18,13 +18,12 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.events.avc
+package org.onap.cps.ncmp.api.impl.event.avc
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.mapstruct.factory.Mappers
-import org.onap.cps.ncmp.api.impl.events.avcsubscription.SubscriptionEventResponseMapper
-import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionStatus
 import org.onap.cps.ncmp.api.models.SubscriptionEventResponse
+import org.onap.cps.ncmp.events.avc.subscription.v1.SubscriptionEventOutcome
 import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.beans.factory.annotation.Autowired
@@ -33,30 +32,24 @@ import spock.lang.Specification
 
 
 @SpringBootTest(classes = [JsonObjectMapper, ObjectMapper])
-class SubscriptionEventResponseMapperSpec extends Specification {
+class SubscriptionOutcomeMapperSpec extends Specification {
 
-    SubscriptionEventResponseMapper objectUnderTest = Mappers.getMapper(SubscriptionEventResponseMapper)
+    SubscriptionOutcomeMapper objectUnderTest = Mappers.getMapper(SubscriptionOutcomeMapper)
 
     @Autowired
     JsonObjectMapper jsonObjectMapper
 
-    def 'Map subscription response event to yang model subscription event'() {
+    def 'Map subscription event response to subscription event outcome'() {
         given: 'a Subscription Response Event'
             def jsonData = TestUtils.getResourceFileContent('avcSubscriptionEventResponse.json')
             def testEventToMap = jsonObjectMapper.convertJsonString(jsonData, SubscriptionEventResponse.class)
-        when: 'the event is mapped to a yang model subscription'
-            def result = objectUnderTest.toYangModelSubscriptionEvent(testEventToMap)
-        then: 'the resulting yang model subscription event contains the correct clientId'
-            assert result.clientId == "SCO-9989752"
-        and: 'subscription name'
-            assert result.subscriptionName == "cm-subscription-001"
-        and: 'predicate targets '
-            assert result.predicates.targetCmHandles.cmHandleId == ["CMHandle1", "CMHandle3", "CMHandle4", "CMHandle5"]
-        and: 'the status for these targets is set to expected values'
-            assert result.predicates.targetCmHandles.status == [SubscriptionStatus.ACCEPTED, SubscriptionStatus.REJECTED,
-            SubscriptionStatus.PENDING, SubscriptionStatus.PENDING]
-        and: 'the topic is null'
-            assert result.topic == null
+        and: 'a Subscription Outcome Event'
+            def jsonDataOutcome = TestUtils.getResourceFileContent('avcSubscriptionOutcomeEvent.json')
+            def testEventTarget = jsonObjectMapper.convertJsonString(jsonDataOutcome, SubscriptionEventOutcome.class)
+        when: 'the subscription response event is mapped to a subscription event outcome'
+            def result = objectUnderTest.toSubscriptionEventOutcome(testEventToMap)
+            result.setEventType(SubscriptionEventOutcome.EventType.PARTIAL_OUTCOME)
+        then: 'the resulting subscription event outcome contains the correct clientId'
+            assert result == testEventTarget
     }
-
 }
