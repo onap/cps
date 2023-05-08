@@ -23,7 +23,7 @@ package org.onap.cps.ncmp.api.impl.utils
 import org.onap.cps.ncmp.api.impl.operations.RequiredDmiService
 import org.onap.cps.spi.utils.CpsValidator
 
-import static org.onap.cps.ncmp.api.impl.operations.DataStoreEnum.PASSTHROUGH_RUNNING
+import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RUNNING
 
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration
@@ -46,7 +46,7 @@ class DmiServiceUrlBuilderSpec extends Specification {
     def 'Create the dmi service url with #scenario.'() {
         given: 'uri variables'
             dmiProperties.dmiBasePath = 'dmi'
-            def uriVars = objectUnderTest.populateUriVariables(PASSTHROUGH_RUNNING.value, yangModelCmHandle.resolveDmiServiceName(RequiredDmiService.DATA),
+            def uriVars = objectUnderTest.populateUriVariables(PASSTHROUGH_RUNNING.datastoreName, yangModelCmHandle.resolveDmiServiceName(RequiredDmiService.DATA),
                     "cmHandle")
         and: 'query params'
                             def uriQueries = objectUnderTest.populateQueryParams(resourceId,
@@ -66,7 +66,7 @@ class DmiServiceUrlBuilderSpec extends Specification {
     def 'Populate dmi data store url #scenario.'() {
         given: 'uri variables are created'
             dmiProperties.dmiBasePath = dmiBasePath
-            def uriVars = objectUnderTest.populateUriVariables(PASSTHROUGH_RUNNING.value, yangModelCmHandle.resolveDmiServiceName(RequiredDmiService.DATA),
+            def uriVars = objectUnderTest.populateUriVariables(PASSTHROUGH_RUNNING.datastoreName, yangModelCmHandle.resolveDmiServiceName(RequiredDmiService.DATA),
                     "cmHandle")
         and: 'null query params'
             def uriQueries = objectUnderTest.populateQueryParams(null,

@@ -112,6 +112,10 @@
             </exclusions>
             <optional>true</optional>
         </dependency>
+        <dependency>
+            <groupId>org.onap.cps</groupId>
+            <artifactId>cps-ncmp-service</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

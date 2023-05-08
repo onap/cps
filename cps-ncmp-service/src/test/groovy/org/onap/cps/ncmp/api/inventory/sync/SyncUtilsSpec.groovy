@@ -21,7 +21,7 @@
 
 package org.onap.cps.ncmp.api.inventory.sync
 
-import static org.onap.cps.ncmp.api.impl.operations.DataStoreEnum.PASSTHROUGH_OPERATIONAL
+import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_OPERATIONAL
 
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
@@ -137,7 +137,7 @@ class SyncUtilsSpec extends Specification{
             def jsonString = '{"stores:bookstore":{"categories":[{"code":"01"}]}}'
             JsonNode jsonNode = jsonObjectMapper.convertToJsonNode(jsonString);
             def responseEntity = new ResponseEntity<>(jsonNode, HttpStatus.OK)
-            mockDmiDataOperations.getResourceDataFromDmi(PASSTHROUGH_OPERATIONAL.value, 'cm-handle-123', _) >> responseEntity
+            mockDmiDataOperations.getResourceDataFromDmi(PASSTHROUGH_OPERATIONAL.datastoreName, 'cm-handle-123', _) >> responseEntity
         when: 'get resource data is called'
             def result = objectUnderTest.getResourceData('cm-handle-123')
         then: 'the returned data is correct'
