@@ -1,0 +1,21 @@
+{
+  "eventType": "PARTIAL_OUTCOME",
+  "event": {
+    "subscription": {
+      "clientID": "SCO-9989752",
+      "name": "cm-subscription-001"
+    },
+    "predicates": {
+      "rejectedTargets": [
+        "CMHandle3"
+      ],
+      "acceptedTargets": [
+        "CMHandle1"
+      ],
+      "pendingTargets": [
+        "CMHandle4",
+        "CMHandle5"
+      ]
+    }
+  }
+}

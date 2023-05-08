@@ -34,6 +34,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.kafka.common.header.Headers;
 import org.onap.cps.ncmp.api.impl.event.avc.ResponseTimeoutTask;
 import org.onap.cps.ncmp.api.impl.events.EventsPublisher;
 import org.onap.cps.ncmp.api.impl.utils.DmiServiceNameOrganizer;
@@ -53,9 +54,8 @@ public class SubscriptionEventForwarder {
     private final InventoryPersistence inventoryPersistence;
     private final EventsPublisher<SubscriptionEvent> eventsPublisher;
     private final IMap<String, Set<String>> forwardedSubscriptionEventCache;
-
+    private final SubscriptionEventResponseOutcome subscriptionEventResponseOutcome;
     private final ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
-
     private static final String DMI_AVC_SUBSCRIPTION_TOPIC_PREFIX = "ncmp-dmi-cm-avc-subscription-";
 
     @Value("${ncmp.timers.subscription-forwarding.dmi-response-timeout-ms:30000}")
@@ -66,7 +66,8 @@ public class SubscriptionEventForwarder {
      *
      * @param subscriptionEvent the event to be forwarded
      */
-    public void forwardCreateSubscriptionEvent(final SubscriptionEvent subscriptionEvent) {
+    public void forwardCreateSubscriptionEvent(final SubscriptionEvent subscriptionEvent,
+                                               final Headers eventHeaders) {
         final List<Object> cmHandleTargets = subscriptionEvent.getEvent().getPredicates().getTargets();
         if (cmHandleTargets == null || cmHandleTargets.isEmpty()
                 || cmHandleTargets.stream().anyMatch(id -> ((String) id).contains("*"))) {
@@ -83,27 +84,30 @@ public class SubscriptionEventForwarder {
 
         final Set<String> dmisToRespond = new HashSet<>(dmiPropertiesPerCmHandleIdPerServiceName.keySet());
         startResponseTimeout(subscriptionEvent, dmisToRespond);
-        forwardEventToDmis(dmiPropertiesPerCmHandleIdPerServiceName, subscriptionEvent);
+        forwardEventToDmis(dmiPropertiesPerCmHandleIdPerServiceName, subscriptionEvent, eventHeaders);
+    }
+
+    private void startResponseTimeout(final SubscriptionEvent subscriptionEvent, final Set<String> dmisToRespond) {
+        final String subscriptionClientId = subscriptionEvent.getEvent().getSubscription().getClientID();
+        final String subscriptionName = subscriptionEvent.getEvent().getSubscription().getName();
+        final String subscriptionEventId = subscriptionClientId + subscriptionName;
+
+        forwardedSubscriptionEventCache.put(subscriptionEventId, dmisToRespond);
+        final ResponseTimeoutTask responseTimeoutTask =
+            new ResponseTimeoutTask(forwardedSubscriptionEventCache, subscriptionEventResponseOutcome,
+                    subscriptionClientId, subscriptionName);
+        executorService.schedule(responseTimeoutTask, dmiResponseTimeoutInMs, TimeUnit.MILLISECONDS);
     }
 
     private void forwardEventToDmis(final Map<String, Map<String, Map<String, String>>> dmiNameCmHandleMap,
-                                    final SubscriptionEvent subscriptionEvent) {
+                                    final SubscriptionEvent subscriptionEvent,
+                                    final Headers eventHeaders) {
         dmiNameCmHandleMap.forEach((dmiName, cmHandlePropertiesMap) -> {
             subscriptionEvent.getEvent().getPredicates().setTargets(Collections.singletonList(cmHandlePropertiesMap));
             final String eventKey = createEventKey(subscriptionEvent, dmiName);
             eventsPublisher.publishEvent(
-                DMI_AVC_SUBSCRIPTION_TOPIC_PREFIX + dmiName, eventKey, subscriptionEvent);
+                    DMI_AVC_SUBSCRIPTION_TOPIC_PREFIX + dmiName, eventKey, eventHeaders, subscriptionEvent);
         });
-    }
-
-    private void startResponseTimeout(final SubscriptionEvent subscriptionEvent, final Set<String> dmisToRespond) {
-        final String subscriptionEventId = subscriptionEvent.getEvent().getSubscription().getClientID()
-            + subscriptionEvent.getEvent().getSubscription().getName();
-
-        forwardedSubscriptionEventCache.put(subscriptionEventId, dmisToRespond);
-        final ResponseTimeoutTask responseTimeoutTask =
-            new ResponseTimeoutTask(forwardedSubscriptionEventCache, subscriptionEventId);
-        executorService.schedule(responseTimeoutTask, dmiResponseTimeoutInMs, TimeUnit.MILLISECONDS);
     }
 
     private String createEventKey(final SubscriptionEvent subscriptionEvent, final String dmiName) {
@@ -113,5 +117,4 @@ public class SubscriptionEventForwarder {
             + "-"
             + dmiName;
     }
-
 }
