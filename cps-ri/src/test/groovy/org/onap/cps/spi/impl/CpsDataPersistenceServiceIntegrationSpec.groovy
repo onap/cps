@@ -170,7 +170,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
         when: 'the new data node (list elements) are added to an existing parent node'
             objectUnderTest.addMultipleLists(DATASPACE_NAME, ANCHOR_NAME3, '/parent-201', [listElements])
         then: 'new entries are successfully persisted, parent node now contains 5 children (2 new + 3 existing before)'
-            def parentFragment = fragmentRepository.getById(LIST_DATA_NODE_PARENT201_FRAGMENT_ID)
+            def parentFragment = fragmentRepository.getReferenceById(LIST_DATA_NODE_PARENT201_FRAGMENT_ID)
             def allChildXpaths = parentFragment.childFragments.collect { it.xpath }
             assert allChildXpaths.size() == 5
             assert allChildXpaths.containsAll(listElementXpaths)
@@ -325,7 +325,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             objectUnderTest.updateDataLeaves(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES,
                     '/parent-200/child-201', ['leaf-value': 'new'])
         then: 'leaves are updated for selected data node'
-            def updatedFragment = fragmentRepository.getById(DATA_NODE_202_FRAGMENT_ID)
+            def updatedFragment = fragmentRepository.getReferenceById(DATA_NODE_202_FRAGMENT_ID)
             def updatedLeaves = getLeavesMap(updatedFragment)
             assert updatedLeaves.size() == 1
             assert updatedLeaves.'leaf-value' == 'new'
@@ -356,7 +356,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
         when: 'update data nodes and descendants is performed'
             objectUnderTest.updateDataNodesAndDescendants(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, submittedDataNodes)
         then: 'leaves have been updated for selected data node'
-            def updatedFragment = fragmentRepository.getById(DATA_NODE_202_FRAGMENT_ID)
+            def updatedFragment = fragmentRepository.getReferenceById(DATA_NODE_202_FRAGMENT_ID)
             def updatedLeaves = getLeavesMap(updatedFragment)
             assert updatedLeaves.size() == 1
             assert updatedLeaves.'leaf-value' == 'new'
@@ -375,7 +375,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
         when: 'update is performed including descendants'
             objectUnderTest.updateDataNodesAndDescendants(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, submittedDataNodes)
         then: 'leaves have been updated for selected data node'
-            def updatedFragment = fragmentRepository.getById(DATA_NODE_202_FRAGMENT_ID)
+            def updatedFragment = fragmentRepository.getReferenceById(DATA_NODE_202_FRAGMENT_ID)
             def updatedLeaves = getLeavesMap(updatedFragment)
             assert updatedLeaves.size() == 1
             assert updatedLeaves.'leaf-value' == 'new'
@@ -395,7 +395,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
         when: 'update is performed including descendants'
             objectUnderTest.updateDataNodesAndDescendants(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, submittedDataNodes)
         then: 'leaves have been updated for selected data node'
-            def updatedFragment = fragmentRepository.getById(DATA_NODE_202_FRAGMENT_ID)
+            def updatedFragment = fragmentRepository.getReferenceById(DATA_NODE_202_FRAGMENT_ID)
             def updatedLeaves = getLeavesMap(updatedFragment)
             assert updatedLeaves.size() == 1
             assert updatedLeaves.'leaf-value' == 'new'
@@ -415,7 +415,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
         when: 'update is performed including descendants'
             objectUnderTest.updateDataNodesAndDescendants(DATASPACE_NAME, ANCHOR_FOR_DATA_NODES_WITH_LEAVES, submittedDataNodes)
         then: 'leaves have been updated for selected data node'
-            def updatedFragment = fragmentRepository.getById(DATA_NODE_202_FRAGMENT_ID)
+            def updatedFragment = fragmentRepository.getReferenceById(DATA_NODE_202_FRAGMENT_ID)
             def updatedLeaves = getLeavesMap(updatedFragment)
             assert updatedLeaves.size() == 1
             assert updatedLeaves.'leaf-value' == 'new'
@@ -451,13 +451,13 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
                 objectUnderTest.addListElements(DATASPACE_NAME, ANCHOR_NAME1, parentXpath, originalListEntriesAsDataNodes)
             }
         and: 'each original list element has one child'
-            def originalParentFragment = fragmentRepository.getById(PARENT_3_FRAGMENT_ID)
+            def originalParentFragment = fragmentRepository.getReferenceById(PARENT_3_FRAGMENT_ID)
             originalParentFragment.childFragments.each {assert it.childFragments.size() == 1 }
         when: 'it is updated with #scenario'
             def replacementListEntriesAsDataNodes = createChildListAllHavingAttributeValue(parentXpath, 'new value', replacementKeys, false)
             objectUnderTest.replaceListContent(DATASPACE_NAME, ANCHOR_NAME1, parentXpath, replacementListEntriesAsDataNodes)
         then: 'the result list ONLY contains the expected replacement elements'
-            def parentFragment = fragmentRepository.getById(PARENT_3_FRAGMENT_ID)
+            def parentFragment = fragmentRepository.getReferenceById(PARENT_3_FRAGMENT_ID)
             def allChildXpaths = parentFragment.childFragments.collect { it.xpath }
             def expectedListEntriesAfterUpdateAsXpaths = keysToXpaths(parentXpath, replacementKeys)
             assert allChildXpaths.size() == replacementKeys.size()
@@ -485,7 +485,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             def replacementListEntriesAsDataNodes = createChildListAllHavingAttributeValue(parentXpath, 'new', ['A'], true)
             objectUnderTest.replaceListContent(DATASPACE_NAME, ANCHOR_NAME1, parentXpath, replacementListEntriesAsDataNodes)
         then: 'The updated fragment has a child-list with ONLY element "A"'
-            def parentFragment = fragmentRepository.getById(PARENT_3_FRAGMENT_ID)
+            def parentFragment = fragmentRepository.getReferenceById(PARENT_3_FRAGMENT_ID)
             parentFragment.childFragments.size() == 1
             def childListElementA = parentFragment.childFragments[0]
             childListElementA.xpath == "/parent-3/child-list[@key='A']"
@@ -506,7 +506,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             def replacementListEntriesAsDataNodes = createChildListAllHavingAttributeValue(XPATH_DATA_NODE_WITH_DESCENDANTS, 'new', ['A','B'], false)
             objectUnderTest.replaceListContent(DATASPACE_NAME, ANCHOR_NAME1, XPATH_DATA_NODE_WITH_DESCENDANTS, replacementListEntriesAsDataNodes)
         then: 'the parent will have 3 children after the replacement'
-            def parentFragment = fragmentRepository.getById(ID_DATA_NODE_WITH_DESCENDANTS)
+            def parentFragment = fragmentRepository.getReferenceById(ID_DATA_NODE_WITH_DESCENDANTS)
             parentFragment.childFragments.size() == 3
             def xpaths = parentFragment.childFragments.collect {it.xpath}
         and: 'one of the children is the original child fragment'
@@ -539,7 +539,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
         when: 'deleting list is executed for: #scenario.'
             objectUnderTest.deleteListDataNode(DATASPACE_NAME, ANCHOR_NAME3, targetXpaths)
         and: 'remaining children are fetched'
-            def parentFragment = fragmentRepository.getById(parentFragmentId)
+            def parentFragment = fragmentRepository.getReferenceById(parentFragmentId)
             def remainingChildXpaths = parentFragment.childFragments.collect { it.xpath }
         then: 'only the expected children remain'
             assert remainingChildXpaths.size() == expectedRemainingChildXpaths.size()
@@ -557,7 +557,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
         when: 'deleting nodes is executed for: #scenario.'
             objectUnderTest.deleteDataNodes(DATASPACE_NAME, ANCHOR_NAME3, targetXpaths)
         and: 'remaining children are fetched'
-            def parentFragment = fragmentRepository.getById(LIST_DATA_NODE_PARENT203_FRAGMENT_ID)
+            def parentFragment = fragmentRepository.getReferenceById(LIST_DATA_NODE_PARENT203_FRAGMENT_ID)
             def remainingChildXpaths = parentFragment.childFragments.collect { it.xpath }
         then: 'only the expected children remain'
             assert remainingChildXpaths.size() == expectedRemainingChildXpaths.size()

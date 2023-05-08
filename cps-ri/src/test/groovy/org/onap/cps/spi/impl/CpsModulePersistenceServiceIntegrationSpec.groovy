@@ -260,10 +260,10 @@ class CpsModulePersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase 
             objectUnderTest.deleteUnusedYangResourceModules()
         then: 'any orphaned (not used by any schema set anymore) yang resources are deleted'
             def orphanedResourceId = 3100L
-            yangResourceRepository.findById(orphanedResourceId).isPresent() == false
+            assert !yangResourceRepository.findById(orphanedResourceId).isPresent()
         and: 'any shared (still in use by other schema set) yang resources still persists'
             def sharedResourceId = 3003L
-            yangResourceRepository.findById(sharedResourceId).isPresent()
+            assert yangResourceRepository.findById(sharedResourceId).isPresent()
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
