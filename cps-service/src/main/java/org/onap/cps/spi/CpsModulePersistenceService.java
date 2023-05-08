@@ -87,15 +87,6 @@ public interface CpsModulePersistenceService {
     Map<String, String> getYangSchemaResources(String dataspaceName, String schemaSetName);
 
     /**
-     * Returns YANG resources per specific dataspace / anchorName.
-     *
-     * @param dataspaceName dataspace name
-     * @param anchorName    anchor name
-     * @return YANG resources (files) map where key is a name and value is content
-     */
-    Map<String, String> getYangSchemaSetResources(String dataspaceName, String anchorName);
-
-    /**
      * Returns YANG resources module references for the given dataspace name.
      *
      * @param dataspaceName dataspace name
