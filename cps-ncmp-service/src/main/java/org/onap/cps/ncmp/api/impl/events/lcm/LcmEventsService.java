@@ -23,6 +23,8 @@ package org.onap.cps.ncmp.api.impl.events.lcm;
 import io.micrometer.core.annotation.Timed;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.kafka.common.header.Headers;
+import org.apache.kafka.common.header.internals.RecordHeaders;
 import org.onap.cps.ncmp.api.impl.events.EventsPublisher;
 import org.onap.ncmp.cmhandle.event.lcm.LcmEvent;
 import org.springframework.beans.factory.annotation.Value;
@@ -57,7 +59,8 @@ public class LcmEventsService {
     public void publishLcmEvent(final String cmHandleId, final LcmEvent lcmEvent) {
         if (notificationsEnabled) {
             try {
-                eventsPublisher.publishEvent(topicName, cmHandleId, lcmEvent);
+                final Headers headers = new RecordHeaders();
+                eventsPublisher.publishEvent(topicName, cmHandleId, headers, lcmEvent);
             } catch (final KafkaException e) {
                 log.error("Unable to publish message to topic : {} and cause : {}", topicName, e.getMessage());
             }

@@ -47,6 +47,7 @@ public class EventsPublisher<T> {
      * @param topicName valid topic name
      * @param eventKey  message key
      * @param event     message payload
+     * @deprecated This method is not needed anymore since the use of headers will be in place.
      */
     @Deprecated
     public void publishEvent(final String topicName, final String eventKey, final T event) {

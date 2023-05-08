@@ -20,6 +20,7 @@
 
 package org.onap.cps.ncmp.api.impl.events.lcm
 
+import org.apache.kafka.common.header.internals.RecordHeaders
 import org.onap.cps.ncmp.api.impl.events.EventsPublisher
 import org.onap.ncmp.cmhandle.event.lcm.LcmEvent
 import org.springframework.kafka.KafkaException
@@ -32,15 +33,16 @@ class LcmEventsServiceSpec extends Specification {
     def objectUnderTest = new LcmEventsService(mockLcmEventsPublisher)
 
     def 'Create and Publish lcm event where events are #scenario'() {
-        given: 'a cm handle id and Lcm Event'
+        given: 'a cm handle id, Lcm Event, and headers'
             def cmHandleId = 'test-cm-handle-id'
             def lcmEvent = new LcmEvent(eventId: UUID.randomUUID().toString(), eventCorrelationId: cmHandleId)
+            def headers = new RecordHeaders()
         and: 'notificationsEnabled is #notificationsEnabled and it will be true as default'
             objectUnderTest.notificationsEnabled = notificationsEnabled
         when: 'service is called to publish lcm event'
             objectUnderTest.publishLcmEvent('test-cm-handle-id', lcmEvent)
         then: 'publisher is called #expectedTimesMethodCalled times'
-            expectedTimesMethodCalled * mockLcmEventsPublisher.publishEvent(_, cmHandleId, lcmEvent)
+            expectedTimesMethodCalled * mockLcmEventsPublisher.publishEvent(_, cmHandleId, headers, lcmEvent)
         where: 'the following values are used'
             scenario   | notificationsEnabled || expectedTimesMethodCalled
             'enabled'  | true                 || 1

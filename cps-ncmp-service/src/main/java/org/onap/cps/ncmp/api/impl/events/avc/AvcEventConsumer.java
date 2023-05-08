@@ -68,12 +68,13 @@ public class AvcEventConsumer {
     }
 
     private void mutateEventHeaderWithEventId(final Headers eventHeaders, final String mutatedEventId) {
+        final String eventId = "eventId";
         final String existingEventId =
-                (String) SerializationUtils.deserialize(eventHeaders.lastHeader("eventId").value());
-        eventHeaders.remove("eventId");
+                (String) SerializationUtils.deserialize(eventHeaders.lastHeader(eventId).value());
+        eventHeaders.remove(eventId);
         log.info("Removing existing eventId from header : {} and updating with id : {}", existingEventId,
                 mutatedEventId);
-        eventHeaders.add(new RecordHeader("eventId", SerializationUtils.serialize(mutatedEventId)));
+        eventHeaders.add(new RecordHeader(eventId, SerializationUtils.serialize(mutatedEventId)));
 
     }
 }
