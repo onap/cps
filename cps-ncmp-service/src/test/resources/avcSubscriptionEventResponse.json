@@ -4,6 +4,8 @@
   "dmiName": "ncmp-dmi-plugin",
   "cmHandleIdToStatus": {
     "CMHandle1": "ACCEPTED",
-    "CMHandle2": "REJECTED"
+    "CMHandle3": "REJECTED",
+    "CMHandle4": "PENDING",
+    "CMHandle5": "PENDING"
   }
 }

@@ -20,14 +20,19 @@
 
 package org.onap.cps.ncmp.api.impl.event.avc;
 
+import static org.onap.cps.ncmp.event.model.SubscriptionEventOutcome.EventType.COMPLETE_OUTCOME;
+
 import com.hazelcast.map.IMap;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.onap.cps.ncmp.api.impl.events.avcsubscription.SubscriptionEventForwarder;
 import org.onap.cps.ncmp.api.impl.events.avcsubscription.SubscriptionEventResponseMapper;
 import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionPersistence;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelSubscriptionEvent;
 import org.onap.cps.ncmp.api.models.SubscriptionEventResponse;
+import org.onap.cps.ncmp.event.model.SubscriptionEventOutcome;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
@@ -43,8 +48,9 @@ public class SubscriptionEventResponseConsumer {
 
     private final SubscriptionEventResponseMapper subscriptionEventResponseMapper;
 
-    @Value("${app.ncmp.avc.subscription-outcome-topic}")
-    private String subscriptionOutcomeEventTopic;
+    private final SubscriptionOutcomeMapper subscriptionOutcomeMapper;
+
+    private final SubscriptionEventForwarder subscriptionEventForwarder;
 
     @Value("${notification.enabled:true}")
     private boolean notificationFeatureEnabled;
@@ -55,18 +61,24 @@ public class SubscriptionEventResponseConsumer {
     /**
      * Consume subscription response event.
      *
-     * @param subscriptionEventResponse the event to be consumed
+     * @param subscriptionEventResponseConsumerRecord the event to be consumed
      */
     @KafkaListener(topics = "${app.ncmp.avc.subscription-response-topic}",
         properties = {"spring.json.value.default.type=org.onap.cps.ncmp.api.models.SubscriptionEventResponse"})
-    public void consumeSubscriptionEventResponse(final SubscriptionEventResponse subscriptionEventResponse) {
+    public void consumeSubscriptionEventResponse(
+            final ConsumerRecord<String, SubscriptionEventResponse> subscriptionEventResponseConsumerRecord) {
+        final SubscriptionEventResponse subscriptionEventResponse = subscriptionEventResponseConsumerRecord.value();
         log.info("subscription event response of clientId: {} is received.", subscriptionEventResponse.getClientId());
         final String subscriptionEventId = subscriptionEventResponse.getClientId()
             + subscriptionEventResponse.getSubscriptionName();
         final boolean createOutcomeResponse;
         if (forwardedSubscriptionEventCache.containsKey(subscriptionEventId)) {
-            forwardedSubscriptionEventCache.get(subscriptionEventId).remove(subscriptionEventResponse.getDmiName());
+            final Set<String> dmiNames = forwardedSubscriptionEventCache.get(subscriptionEventId);
+
+            dmiNames.remove(subscriptionEventResponse.getDmiName());
+            forwardedSubscriptionEventCache.put(subscriptionEventId, dmiNames);
             createOutcomeResponse = forwardedSubscriptionEventCache.get(subscriptionEventId).isEmpty();
+
             if (createOutcomeResponse) {
                 forwardedSubscriptionEventCache.remove(subscriptionEventId);
             }
@@ -78,7 +90,12 @@ public class SubscriptionEventResponseConsumer {
         }
         if (createOutcomeResponse && notificationFeatureEnabled) {
             log.info("placeholder to create full outcome response for subscriptionEventId: {}.", subscriptionEventId);
-            //TODO Create outcome response
+            final SubscriptionEventOutcome subscriptionEventOutcome =
+                    subscriptionOutcomeMapper.toSubscriptionEventOutcome(
+                            subscriptionEventResponse);
+            subscriptionEventOutcome.setEventType(COMPLETE_OUTCOME);
+            subscriptionEventForwarder.forwardOutcomeEventToClientApps(subscriptionEventOutcome,
+                    subscriptionEventId, subscriptionEventResponseConsumerRecord.headers());
         }
     }
 

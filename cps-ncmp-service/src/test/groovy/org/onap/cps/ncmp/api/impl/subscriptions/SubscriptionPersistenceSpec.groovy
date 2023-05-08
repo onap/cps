@@ -36,23 +36,21 @@ class SubscriptionPersistenceSpec extends Specification {
     private static final String SUBSCRIPTION_REGISTRY_PARENT = "/subscription-registry";
 
     def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
-
     def mockCpsDataService = Mock(CpsDataService)
-
     def objectUnderTest = new SubscriptionPersistenceImpl(jsonObjectMapper, mockCpsDataService)
 
+    def predicates = new YangModelSubscriptionEvent.Predicates(datastore: 'some-datastore',
+        targetCmHandles: [new YangModelSubscriptionEvent.TargetCmHandle('cmhandle1'),
+                          new YangModelSubscriptionEvent.TargetCmHandle('cmhandle2')])
+    def yangModelSubscriptionEvent = new YangModelSubscriptionEvent(clientId: 'some-client-id',
+        subscriptionName: 'some-subscription-name', tagged: true, topic: 'some-topic', predicates: predicates)
+
    def 'save a subscription event' () {
-       given: 'a yang model subscription event'
-           def predicates = new YangModelSubscriptionEvent.Predicates(datastore: 'some-datastore',
-               targetCmHandles: [new YangModelSubscriptionEvent.TargetCmHandle('cmhandle1'),
-                                 new YangModelSubscriptionEvent.TargetCmHandle('cmhandle2')])
-           def yangModelSubscriptionEvent = new YangModelSubscriptionEvent(clientId: 'some-client-id',
-                subscriptionName: 'some-subscription-name', tagged: true, topic: 'some-topic', predicates: predicates)
-       and: 'a data node that does not exist in db'
-           def dataNodeNonExist = new DataNodeBuilder().withDataspace('NCMP-Admin')
+       given: 'a data node that does not exist in db'
+           def blankDataNode = new DataNodeBuilder().withDataspace('NCMP-Admin')
                 .withAnchor('AVC-Subscriptions').withXpath('/subscription-registry').build()
        and: 'cps data service return non existing data node'
-            mockCpsDataService.getDataNodes(*_) >> [dataNodeNonExist]
+            mockCpsDataService.getDataNodes(*_) >> [blankDataNode]
        when: 'the yangModelSubscriptionEvent is saved into db'
             objectUnderTest.saveSubscriptionEvent(yangModelSubscriptionEvent)
        then: 'the cpsDataService save operation is called with the correct data'
@@ -66,20 +64,14 @@ class SubscriptionPersistenceSpec extends Specification {
    }
 
     def 'update a subscription event' () {
-        given: 'a yang model subscription event'
-            def predicates = new YangModelSubscriptionEvent.Predicates(datastore: 'some-datastore',
-                targetCmHandles: [new YangModelSubscriptionEvent.TargetCmHandle('cmhandle1'),
-                                  new YangModelSubscriptionEvent.TargetCmHandle('cmhandle2')])
-            def yangModelSubscriptionEvent = new YangModelSubscriptionEvent(clientId: 'some-client-id',
-                subscriptionName: 'some-subscription-name', tagged: true, topic: 'some-topic', predicates: predicates)
-        and: 'a data node exist in db'
+        given: 'a data node exist in db'
             def childDataNode = new DataNodeBuilder().withDataspace('NCMP-Admin')
                 .withAnchor('AVC-Subscriptions').withXpath('/subscription-registry/subscription').build()
-            def dataNodeExist = new DataNodeBuilder().withDataspace('NCMP-Admin')
+            def engagedDataNode = new DataNodeBuilder().withDataspace('NCMP-Admin')
                 .withAnchor('AVC-Subscriptions').withXpath('/subscription-registry')
                 .withChildDataNodes([childDataNode]).build()
         and: 'cps data service return existing data node'
-            mockCpsDataService.getDataNodes(*_) >> [dataNodeExist]
+            mockCpsDataService.getDataNodes(*_) >> [engagedDataNode]
         when: 'the yangModelSubscriptionEvent is saved into db'
             objectUnderTest.saveSubscriptionEvent(yangModelSubscriptionEvent)
         then: 'the cpsDataService update operation is called with the correct data'

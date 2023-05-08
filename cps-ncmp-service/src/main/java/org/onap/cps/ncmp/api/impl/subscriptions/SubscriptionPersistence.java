@@ -20,7 +20,9 @@
 
 package org.onap.cps.ncmp.api.impl.subscriptions;
 
+import java.util.Collection;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelSubscriptionEvent;
+import org.onap.cps.spi.model.DataNode;
 
 public interface SubscriptionPersistence {
 
@@ -31,4 +33,10 @@ public interface SubscriptionPersistence {
      */
     void saveSubscriptionEvent(YangModelSubscriptionEvent yangModelSubscriptionEvent);
 
+    /**
+     * Get data nodes.
+     *
+     * @return the DataNode as collection.
+     */
+    Collection<DataNode> getDataNodesForSubscriptionEvent();
 }
