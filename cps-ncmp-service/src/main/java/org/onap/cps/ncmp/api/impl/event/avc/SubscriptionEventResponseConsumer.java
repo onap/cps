@@ -20,14 +20,18 @@
 
 package org.onap.cps.ncmp.api.impl.event.avc;
 
+import static org.onap.cps.ncmp.event.model.SubscriptionEventOutcome.EventType.COMPLETE_OUTCOME;
+
 import com.hazelcast.map.IMap;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.ncmp.api.impl.events.avcsubscription.SubscriptionEventForwarder;
 import org.onap.cps.ncmp.api.impl.events.avcsubscription.SubscriptionEventMapper;
 import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionPersistence;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelSubscriptionEvent;
 import org.onap.cps.ncmp.api.models.SubscriptionEventResponse;
+import org.onap.cps.ncmp.event.model.SubscriptionEventOutcome;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
@@ -43,8 +47,9 @@ public class SubscriptionEventResponseConsumer {
 
     private final SubscriptionEventMapper subscriptionEventMapper;
 
-    @Value("${app.ncmp.avc.subscription-outcome-topic}")
-    private String subscriptionOutcomeEventTopic;
+    private final SubscriptionOutcomeMapper subscriptionOutcomeMapper;
+
+    private final SubscriptionEventForwarder subscriptionEventForwarder;
 
     @Value("${notification.enabled:true}")
     private boolean notificationFeatureEnabled;
@@ -78,7 +83,11 @@ public class SubscriptionEventResponseConsumer {
         }
         if (createOutcomeResponse && notificationFeatureEnabled) {
             log.info("placeholder to create full outcome response for subscriptionEventId: {}.", subscriptionEventId);
-            //TODO Create outcome response
+            final SubscriptionEventOutcome subscriptionEventOutcome =
+                    subscriptionOutcomeMapper.toSubscriptionEventOutcome(
+                    subscriptionEventResponse);
+            subscriptionEventOutcome.setEventType(COMPLETE_OUTCOME);
+            subscriptionEventForwarder.forwardOutcomeEventToClientApps(subscriptionEventOutcome, subscriptionEventId);
         }
     }
 
