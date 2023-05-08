@@ -592,7 +592,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
         given: 'a data nodes with list-element child with "/" in index value (and grandchild)'
             def grandChild = new DataNodeBuilder().withXpath(deleteTestGrandChildXPath).build()
             def child = new DataNodeBuilder().withXpath(deleteTestChildXpath).withChildDataNodes([grandChild]).build()
-            objectUnderTest.addChildDataNode(DATASPACE_NAME, ANCHOR_NAME3, deleteTestParentXPath, child)
+            objectUnderTest.addChildDataNodes(DATASPACE_NAME, ANCHOR_NAME3, deleteTestParentXPath, [child])
         and: 'number of children before delete is stored'
             def numberOfChildrenBeforeDelete = objectUnderTest.getDataNodes(DATASPACE_NAME, ANCHOR_NAME3, pathToParentOfDeletedNode, INCLUDE_ALL_DESCENDANTS)[0].childDataNodes.size()
         when: 'target node is deleted'

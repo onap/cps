@@ -21,6 +21,15 @@ module stores {
             type string;
         }
 
+        container webinfo {
+            leaf domain-name {
+                type string;
+            }
+            leaf contact-email {
+                type string;
+            }
+        }
+
         container premises {
             list addresses {
                 key "house-number street";

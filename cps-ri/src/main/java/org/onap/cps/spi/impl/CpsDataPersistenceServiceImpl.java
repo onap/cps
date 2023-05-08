@@ -87,13 +87,6 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     private static final AnchorEntity ALL_ANCHORS = null;
 
     @Override
-    public void addChildDataNode(final String dataspaceName, final String anchorName, final String parentNodeXpath,
-                                 final DataNode newChildDataNode) {
-        final AnchorEntity anchorEntity = getAnchorEntity(dataspaceName, anchorName);
-        addNewChildDataNode(anchorEntity, parentNodeXpath, newChildDataNode);
-    }
-
-    @Override
     public void addChildDataNodes(final String dataspaceName, final String anchorName,
                                   final String parentNodeXpath, final Collection<DataNode> dataNodes) {
         final AnchorEntity anchorEntity = getAnchorEntity(dataspaceName, anchorName);
