@@ -24,27 +24,35 @@ import com.hazelcast.map.IMap;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.ncmp.api.impl.events.avcsubscription.SubscriptionEventResponseOutcome;
 
 @Slf4j
 @RequiredArgsConstructor
 public class ResponseTimeoutTask implements Runnable {
 
     private final IMap<String, Set<String>> forwardedSubscriptionEventCache;
-    private final String subscriptionEventId;
+    private final SubscriptionEventResponseOutcome subscriptionEventResponseOutcome;
+    private final String subscriptionClientId;
+    private final String subscriptionName;
 
     @Override
     public void run() {
+
+        try {
+            generateAndSendResponse();
+        } catch (final Exception exception) {
+            log.info("Caught exception in Runnable for ResponseTimeoutTask. StackTrace: {}",
+                    exception.toString());
+        }
+
+    }
+
+    private void generateAndSendResponse() {
+        final String subscriptionEventId = subscriptionClientId + subscriptionName;
         if (forwardedSubscriptionEventCache.containsKey(subscriptionEventId)) {
             final Set<String> dmiNames = forwardedSubscriptionEventCache.get(subscriptionEventId);
-            if (dmiNames.isEmpty()) {
-                //TODO full outcome response here
-                log.info("placeholder to create full outcome response for subscriptionEventId: {}.",
-                    subscriptionEventId);
-            } else {
-                //TODO partial outcome response here
-                log.info("placeholder to create partial outcome response for subscriptionEventId: {}.",
-                    subscriptionEventId);
-            }
+            subscriptionEventResponseOutcome.generateAndSendResponse(subscriptionClientId, subscriptionName,
+                    dmiNames.isEmpty());
             forwardedSubscriptionEventCache.remove(subscriptionEventId);
         }
     }
