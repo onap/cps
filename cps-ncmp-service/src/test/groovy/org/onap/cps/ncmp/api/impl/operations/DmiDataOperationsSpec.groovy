@@ -33,8 +33,8 @@ import org.springframework.test.context.ContextConfiguration
 import org.springframework.http.HttpStatus
 import spock.lang.Shared
 
-import static org.onap.cps.ncmp.api.impl.operations.DataStoreEnum.PASSTHROUGH_OPERATIONAL
-import static org.onap.cps.ncmp.api.impl.operations.DataStoreEnum.PASSTHROUGH_RUNNING
+import static DatastoreType.PASSTHROUGH_OPERATIONAL
+import static DatastoreType.PASSTHROUGH_RUNNING
 import static org.onap.cps.ncmp.api.impl.operations.OperationEnum.CREATE
 import static org.onap.cps.ncmp.api.impl.operations.OperationEnum.READ
 import static org.onap.cps.ncmp.api.impl.operations.OperationEnum.UPDATE
@@ -68,7 +68,7 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             mockDmiRestClient.postOperationWithJsonData(expectedUrl, expectedJson, READ) >> responseFromDmi
             dmiServiceUrlBuilder.getDmiDatastoreUrl(_, _) >> expectedUrl
         when: 'get resource data is invoked'
-            def result = objectUnderTest.getResourceDataFromDmi(dataStore.value, cmHandleId, resourceIdentifier,
+            def result = objectUnderTest.getResourceDataFromDmi(dataStore.datastoreName, cmHandleId, resourceIdentifier,
                     options, NO_TOPIC, NO_REQUEST_ID)
         then: 'the result is the response from the DMI service'
             assert result == responseFromDmi
@@ -91,7 +91,7 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             mockDmiRestClient.postOperationWithJsonData(expectedDmiBulkResourceDataUrl, expectedBulkRequestAsJson, READ) >> responseFromDmi
             dmiServiceUrlBuilder.getBulkRequestUrl(_, _) >> expectedDmiBulkResourceDataUrl
         when: 'get resource data for bulk cm handle is invoked'
-            def result = objectUnderTest.getResourceDataFromDmi( dataStore.value, [cmHandleId], resourceIdentifier,
+            def result = objectUnderTest.getResourceDataFromDmi( dataStore.datastoreName, [cmHandleId], resourceIdentifier,
                     OPTIONS_PARAM,  'some-topic','requestId')
         then: 'the result is the response from the DMI service'
             assert result == responseFromDmi
@@ -110,7 +110,7 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             mockDmiRestClient.postOperationWithJsonData(expectedUrl, '{"operation":"read","cmHandleProperties":{"prop1":"val1"}}', READ) >> responseFromDmi
             dmiServiceUrlBuilder.getDmiDatastoreUrl(_, _) >> expectedUrl
         when: 'get resource data is invoked'
-            def result = objectUnderTest.getResourceDataFromDmi( PASSTHROUGH_OPERATIONAL.value, cmHandleId, NO_REQUEST_ID)
+            def result = objectUnderTest.getResourceDataFromDmi( PASSTHROUGH_OPERATIONAL.datastoreName, cmHandleId, NO_REQUEST_ID)
         then: 'the result is the response from the DMI service'
             assert result == responseFromDmi
     }

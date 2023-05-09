@@ -66,9 +66,9 @@ import static org.onap.cps.ncmp.api.impl.operations.OperationEnum.CREATE
 import static org.onap.cps.ncmp.api.impl.operations.OperationEnum.UPDATE
 import static org.onap.cps.ncmp.api.impl.operations.OperationEnum.PATCH
 import static org.onap.cps.ncmp.api.impl.operations.OperationEnum.DELETE
-import static org.onap.cps.ncmp.rest.controller.handlers.DatastoreType.PASSTHROUGH_OPERATIONAL
-import static org.onap.cps.ncmp.rest.controller.handlers.DatastoreType.PASSTHROUGH_RUNNING
-import static org.onap.cps.ncmp.rest.controller.handlers.DatastoreType.OPERATIONAL
+import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_OPERATIONAL
+import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RUNNING
+import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.OPERATIONAL
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS;
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
 

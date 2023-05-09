@@ -21,7 +21,7 @@
 
 package org.onap.cps.ncmp.api.impl.operations;
 
-import static org.onap.cps.ncmp.api.impl.operations.DataStoreEnum.PASSTHROUGH_RUNNING;
+import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RUNNING;
 import static org.onap.cps.ncmp.api.impl.operations.OperationEnum.READ;
 
 import java.util.Collection;
@@ -157,7 +157,7 @@ public class DmiDataOperations extends DmiOperations {
         final YangModelCmHandle yangModelCmHandle = getYangModelCmHandle(cmHandleId);
         final String jsonRequestBody = getDmiRequestBody(operation, null, requestData, dataType,
                 yangModelCmHandle);
-        final String dmiUrl = getDmiRequestUrl(PASSTHROUGH_RUNNING.getValue(), cmHandleId, resourceId,
+        final String dmiUrl = getDmiRequestUrl(PASSTHROUGH_RUNNING.getDatastoreName(), cmHandleId, resourceId,
                 null, null,
                 yangModelCmHandle.resolveDmiServiceName(RequiredDmiService.DATA));
         final CmHandleState cmHandleState = yangModelCmHandle.getCompositeState().getCmHandleState();

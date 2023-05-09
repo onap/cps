@@ -104,12 +104,6 @@
         <dependency>
             <groupId>org.onap.cps</groupId>
             <artifactId>cps-ncmp-rest</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.onap.cps</groupId>
-                    <artifactId>cps-ncmp-service</artifactId>
-                </exclusion>
-            </exclusions>
             <optional>true</optional>
         </dependency>
     </dependencies>

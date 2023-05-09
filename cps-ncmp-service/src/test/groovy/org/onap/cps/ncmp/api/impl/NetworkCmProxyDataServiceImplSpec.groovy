@@ -52,8 +52,8 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import spock.lang.Specification
 
-import static org.onap.cps.ncmp.api.impl.operations.DataStoreEnum.PASSTHROUGH_OPERATIONAL
-import static org.onap.cps.ncmp.api.impl.operations.DataStoreEnum.PASSTHROUGH_RUNNING
+import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_OPERATIONAL
+import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RUNNING
 import static org.onap.cps.ncmp.api.impl.operations.OperationEnum.CREATE
 import static org.onap.cps.ncmp.api.impl.operations.OperationEnum.UPDATE
 
@@ -109,11 +109,11 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
         given: 'get data node is called'
             mockDataNode()
         and: 'get resource data from DMI is called'
-            mockDmiDataOperations.getResourceDataFromDmi(PASSTHROUGH_OPERATIONAL.value,'testCmHandle',
+            mockDmiDataOperations.getResourceDataFromDmi(PASSTHROUGH_OPERATIONAL.datastoreName,'testCmHandle',
                     'testResourceId', OPTIONS_PARAM, NO_TOPIC, NO_REQUEST_ID) >>
                     new ResponseEntity<>('dmi-response', HttpStatus.OK)
         when: 'get resource data operational for cm-handle is called'
-            def response = objectUnderTest.getResourceDataForCmHandle(PASSTHROUGH_OPERATIONAL.value, 'testCmHandle',
+            def response = objectUnderTest.getResourceDataForCmHandle(PASSTHROUGH_OPERATIONAL.datastoreName, 'testCmHandle',
                     'testResourceId', OPTIONS_PARAM, NO_TOPIC, NO_REQUEST_ID)
         then: 'DMI returns a json response'
             response == 'dmi-response'
@@ -123,11 +123,11 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
         given: 'cpsDataService returns valid data node'
             mockDataNode()
         and: 'DMI returns valid response and data'
-            mockDmiDataOperations.getResourceDataFromDmi(PASSTHROUGH_RUNNING.value, 'testCmHandle',
+            mockDmiDataOperations.getResourceDataFromDmi(PASSTHROUGH_RUNNING.datastoreName, 'testCmHandle',
                     'testResourceId', OPTIONS_PARAM, NO_TOPIC, NO_REQUEST_ID) >>
                     new ResponseEntity<>('{dmi-response}', HttpStatus.OK)
         when: 'get resource data is called'
-            def response = objectUnderTest.getResourceDataForCmHandle(PASSTHROUGH_RUNNING.value, 'testCmHandle',
+            def response = objectUnderTest.getResourceDataForCmHandle(PASSTHROUGH_RUNNING.datastoreName, 'testCmHandle',
                     'testResourceId', OPTIONS_PARAM, NO_TOPIC, NO_REQUEST_ID)
         then: 'get resource data returns expected response'
             response == '{dmi-response}'
@@ -149,7 +149,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
         then: 'get bulk resource data returns expected response'
             response == '{dmi-bulk-response}'
         where: 'the following data stores are used'
-            datastoreName << [PASSTHROUGH_RUNNING.value, PASSTHROUGH_OPERATIONAL.value]
+            datastoreName << [PASSTHROUGH_RUNNING.datastoreName, PASSTHROUGH_OPERATIONAL.datastoreName]
     }
 
     def 'Getting Yang Resources.'() {

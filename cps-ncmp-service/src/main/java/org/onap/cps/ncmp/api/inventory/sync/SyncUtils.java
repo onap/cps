@@ -21,7 +21,7 @@
 
 package org.onap.cps.ncmp.api.inventory.sync;
 
-import static org.onap.cps.ncmp.api.impl.operations.DataStoreEnum.PASSTHROUGH_OPERATIONAL;
+import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_OPERATIONAL;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import java.time.Duration;
@@ -168,7 +168,7 @@ public class SyncUtils {
      */
     public String getResourceData(final String cmHandleId) {
         final ResponseEntity<Object> resourceDataResponseEntity = dmiDataOperations.getResourceDataFromDmi(
-                PASSTHROUGH_OPERATIONAL.getValue(),
+                PASSTHROUGH_OPERATIONAL.getDatastoreName(),
                 cmHandleId,
                 UUID.randomUUID().toString());
         if (resourceDataResponseEntity.getStatusCode().is2xxSuccessful()) {

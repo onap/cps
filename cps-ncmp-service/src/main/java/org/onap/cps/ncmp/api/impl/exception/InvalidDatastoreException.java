@@ -15,20 +15,18 @@
  *  limitations under the License.
  *
  *  SPDX-License-Identifier: Apache-2.0
- *  ============LICENSE_END=========================================================
+ * ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.operations;
+package org.onap.cps.ncmp.api.impl.exception;
 
-import lombok.Getter;
-
-@Getter
-public enum DataStoreEnum {
-    PASSTHROUGH_OPERATIONAL("ncmp-datastore:passthrough-operational"),
-    PASSTHROUGH_RUNNING("ncmp-datastore:passthrough-running");
-    private final String value;
-
-    DataStoreEnum(final String value) {
-        this.value = value;
+public class InvalidDatastoreException extends RuntimeException {
+    /**
+     * Instantiates a new Invalid datastore exception.
+     *
+     * @param message the message
+     */
+    public InvalidDatastoreException(final String message) {
+        super(message);
     }
 }
