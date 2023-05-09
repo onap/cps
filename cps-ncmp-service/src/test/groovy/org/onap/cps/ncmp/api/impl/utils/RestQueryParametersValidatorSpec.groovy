@@ -64,13 +64,13 @@ class RestQueryParametersValidatorSpec extends Specification {
         and: 'the exception details contain the correct significant term '
             thrown.details.contains(expectedWordInDetails)
         where:
-            scenario                 | conditionName        | conditionParameters              || expectedWordInDetails
-            'unknown condition name' | 'unknownCondition'   | [['key':'value']]                  || 'conditionName'
-            'no condition name'      | ''                   | [['key':'value']]                  || 'conditionName'
-            'empty properties'       | 'validConditionName' | [[ : ]]                          || 'conditionsParameter'
-            'empty conditions'       | 'validConditionName' | [[:]]                               || 'conditionsParameter'
-            'too many properties'    | 'validConditionName' | [[key1:'value1', key2:'value2']] || 'conditionsParameter'
-            'empty key'              | 'validConditionName' | [['':'wrong']]                   || 'conditionsParameter'
+            scenario                 | conditionName        | conditionParameters                || expectedWordInDetails
+            'unknown condition name' | 'unknownCondition'   | [['key': 'value']]                 || 'conditionName'
+            'no condition name'      | ''                   | [['key': 'value']]                 || 'conditionName'
+            'empty properties'       | 'validConditionName' | [[:]]                              || 'conditionsParameter'
+            'empty conditions'       | 'validConditionName' | [[:]]                              || 'conditionsParameter'
+            'too many properties'    | 'validConditionName' | [[key1: 'value1', key2: 'value2']] || 'conditionsParameter'
+            'empty key'              | 'validConditionName' | [['': 'wrong']]                    || 'conditionsParameter'
     }
 
     def 'CM Handle Query validation: validate module name condition properties - valid query.'() {

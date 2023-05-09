@@ -1,0 +1,33 @@
+{
+  "operations": [
+    {
+      "operation": "read",
+      "operationId": "operational-14",
+      "datastore": "ncmp-datastore:passthrough-operational",
+      "options": "some option",
+      "resourceIdentifier": "some resource identifier",
+      "targetIds": [
+        "ch3-dmi2",
+        "unknown-cm-handle"
+      ]
+    },
+    {
+      "operation": "read",
+      "operationId": "operational-12",
+      "datastore": "ncmp-datastore:passthrough-running",
+      "targetIds": [
+        "ch1-dmi1",
+        "ch2-dmi1"
+      ]
+    },
+    {
+      "operation": "read",
+      "operationId": "operational-15",
+      "datastore": "ncmp-datastore:passthrough-operational",
+      "options": "some option",
+      "targetIds": [
+        "ch4-dmi2"
+      ]
+    }
+  ]
+}

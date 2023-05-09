@@ -18,26 +18,32 @@
  * ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.operations;
+package org.onap.cps.ncmp.api.models;
 
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.ArrayList;
+import java.util.List;
+import javax.validation.Valid;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
-public enum OperationEnum {
+@Getter
+@Setter
+@EqualsAndHashCode
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class BatchOperationDefinition {
 
-    READ("read"),
-    CREATE("create"),
-    UPDATE("update"),
-    PATCH("patch"),
-    DELETE("delete");
-    private final String value;
+    private String operation;
+    private String operationId;
+    private String datastore;
+    private String options;
+    private String resourceIdentifier;
 
-    OperationEnum(final String value) {
-        this.value = value;
-    }
-
-    @Override
-    @JsonValue
-    public String toString() {
-        return String.valueOf(value);
-    }
+    @JsonProperty("targetIds")
+    @Valid
+    private List<String> cmHandleIds = new ArrayList();
 }
