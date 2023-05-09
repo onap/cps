@@ -37,6 +37,7 @@ import org.onap.cps.ncmp.rest.controller.handlers.NcmpCachedResourceRequestHandl
 import org.onap.cps.ncmp.rest.controller.handlers.NcmpPassthroughResourceRequestHandler
 import org.onap.cps.ncmp.rest.executor.CpsNcmpTaskExecutor
 import org.onap.cps.ncmp.rest.mapper.CmHandleStateMapper
+import org.onap.cps.ncmp.rest.mapper.ResourceDataBatchRequestMapper
 import org.onap.cps.ncmp.rest.util.DeprecationHelper
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.model.ModuleDefinition
@@ -62,10 +63,10 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
-import static org.onap.cps.ncmp.api.impl.operations.OperationEnum.CREATE
-import static org.onap.cps.ncmp.api.impl.operations.OperationEnum.UPDATE
-import static org.onap.cps.ncmp.api.impl.operations.OperationEnum.PATCH
-import static org.onap.cps.ncmp.api.impl.operations.OperationEnum.DELETE
+import static org.onap.cps.ncmp.api.impl.operations.OperationType.CREATE
+import static org.onap.cps.ncmp.api.impl.operations.OperationType.UPDATE
+import static org.onap.cps.ncmp.api.impl.operations.OperationType.PATCH
+import static org.onap.cps.ncmp.api.impl.operations.OperationType.DELETE
 import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_OPERATIONAL
 import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RUNNING
 import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.OPERATIONAL
@@ -98,6 +99,9 @@ class NetworkCmProxyControllerSpec extends Specification {
     CmHandleStateMapper cmHandleStateMapper = Mappers.getMapper(CmHandleStateMapper)
 
     @SpringBean
+    ResourceDataBatchRequestMapper resourceDataBatchRequestMapper = Mappers.getMapper(ResourceDataBatchRequestMapper)
+
+    @SpringBean
     CpsNcmpTaskExecutor spiedCpsTaskExecutor = Spy()
 
     @SpringBean
@@ -113,7 +117,6 @@ class NetworkCmProxyControllerSpec extends Specification {
     def ncmpBasePathV1
 
     def requestBody = '{"some-key":"some-value"}'
-    def bulkRequestBody = '["testCmHandle"]'
 
     def formattedDateAndTime = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ").format(OffsetDateTime.of(2022, 12, 31, 20, 30, 40, 1, ZoneOffset.UTC))
 
@@ -200,15 +203,15 @@ class NetworkCmProxyControllerSpec extends Specification {
             'invalid non-empty topic value in url' | 'passthrough-operational' | '&topic=1_5_*_#'
     }
 
-    def 'Get (async) bulk resource data from dmi service.'() {
-        given: 'bulk resource data url'
-            def getUrl = "$ncmpBasePathV1/batch/data/ds/${datastore.datastoreName}" +
-                    "?resourceIdentifier=parent/child&options=(a=1,b=2)&topic=myTopic"
+    def 'Get (async) batch resource data from dmi service.'() {
+        given: 'batch resource data url'
+            def getUrl = "$ncmpBasePathV1/batch/data?topic=my-topic-name"
+            def resourceDataBatchRequestJsonData = TestUtils.getResourceFileContent('resource_data_batch_request.json')
         when: 'post data resource request is performed'
             def response = mvc.perform(
                     post(getUrl)
                             .contentType(MediaType.APPLICATION_JSON)
-                            .content(bulkRequestBody)
+                            .content(resourceDataBatchRequestJsonData)
             ).andReturn().response
         then: 'response status is Ok'
             response.status == HttpStatus.OK.value()
@@ -216,28 +219,38 @@ class NetworkCmProxyControllerSpec extends Specification {
             assert response.contentAsString.contains("requestId")
         then: 'wait a little to allow execution of service method by task executor (on separate thread)'
             Thread.sleep(100);
-        then: 'the service has been invoked with the correct parameters '
-            1 * mockNetworkCmProxyDataService.getResourceDataForCmHandleBatch(datastore.datastoreName, ['testCmHandle'],
-                    'parent/child',
-                   '(a=1,b=2)',
-                  'myTopic',
-                 _)
-        where: 'the following data stores are used'
-            datastore << [PASSTHROUGH_RUNNING, PASSTHROUGH_OPERATIONAL]
+        then: 'response status is Ok'
+            response.status == HttpStatus.OK.value()
+        and: 'async request id is generated'
+            assert response.contentAsString.contains("requestId")
     }
 
-    def 'Get bulk resource data for non-supported #datastoreName from dmi service.'() {
-        given: 'bulk resource data url'
-            def getUrl = "$ncmpBasePathV1/batch/data/ds/ncmp-datastore:operational" +
-                    "?resourceIdentifier=parent/child&options=(a=1,b=2)&topic=myTopic"
+    def 'Get batch resource data for non-supported datastoreName from dmi service.'() {
+        given: 'batch resource data url'
+            def getUrl = "$ncmpBasePathV1/batch/data?topic=my-topic-name"
+            def resourceDataBatchRequestJsonData = TestUtils.getResourceFileContent('non-supported_datastore_resource_data_batch_request.json')
         when: 'post data resource request is performed'
             def response = mvc.perform(
                     post(getUrl)
                             .contentType(MediaType.APPLICATION_JSON)
-                            .content(bulkRequestBody)
+                            .content(resourceDataBatchRequestJsonData)
             ).andReturn().response
-        then: 'response status code is 501 not implemented'
-            response.status == HttpStatus.NOT_IMPLEMENTED.value()
+        then: 'response status is BAD_REQUEST'
+            response.status == HttpStatus.BAD_REQUEST.value()
+    }
+
+    def 'Get batch resource data for non-supported operation from dmi service.'() {
+        given: 'batch resource data url'
+            def getUrl = "$ncmpBasePathV1/batch/data?topic=my-topic-name"
+            def resourceDataBatchRequestJsonData = TestUtils.getResourceFileContent('non-supported_operation_resource_data_batch_request.json')
+        when: 'post data resource request is performed'
+            def response = mvc.perform(
+                    post(getUrl)
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(resourceDataBatchRequestJsonData)
+            ).andReturn().response
+        then: 'response status is BAD_REQUEST'
+            response.status == HttpStatus.BAD_REQUEST.value()
     }
 
     def 'Query Resource Data from operational.'() {

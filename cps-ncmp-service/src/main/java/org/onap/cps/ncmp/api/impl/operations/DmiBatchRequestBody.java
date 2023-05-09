@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Copyright (C) 2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -21,37 +21,40 @@
 package org.onap.cps.ncmp.api.impl.operations;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import lombok.Builder;
 import lombok.Getter;
-import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
+import lombok.Setter;
+import org.onap.cps.ncmp.api.models.BatchOperationDefinition;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Getter
 @Builder
-public class DmiRequestBody {
+public class DmiBatchRequestBody {
 
     private OperationType operation;
-    private String dataType;
-    private String data;
-    @JsonProperty("cmHandleProperties")
-    private Map<String, String> dmiProperties;
-    private String requestId;
+    private String operationId;
+    private String datastore;
+    private String options;
+    private String resourceIdentifier;
+
+    @Setter
+    private List<CmHandle> cmHandles;
 
     /**
-     * Set DMI Properties by converting a list of YangModelCmHandle.Property objects.
+     * Set batch operation request's partial details.
      *
-     * @param yangModelCmHandleProperties list of cm handle dmi properties
+     * @param batchOperationDefinition details of batch request
      */
-    public void asDmiProperties(
-        final List<YangModelCmHandle.Property> yangModelCmHandleProperties) {
-        dmiProperties = new LinkedHashMap<>();
-        for (final YangModelCmHandle.Property dmiProperty : yangModelCmHandleProperties) {
-            dmiProperties.put(dmiProperty.getName(), dmiProperty.getValue());
-        }
-    }
+    public static DmiBatchRequestBody getDmiBatchRequestBody(
+            final BatchOperationDefinition batchOperationDefinition) {
 
+        return DmiBatchRequestBody.builder()
+                .operation(OperationType.fromOperationName(batchOperationDefinition.getOperation()))
+                .operationId(batchOperationDefinition.getOperationId())
+                .datastore(DatastoreType.fromDatastoreName(batchOperationDefinition.getDatastore()).getDatastoreName())
+                .options(batchOperationDefinition.getOptions())
+                .resourceIdentifier(batchOperationDefinition.getResourceIdentifier())
+                .build();
+    }
 }
