@@ -20,8 +20,8 @@
 
 package org.onap.cps.ncmp.rest.controller.handlers;
 
-import java.util.List;
 import java.util.function.Supplier;
+import org.onap.cps.ncmp.api.models.ResourceDataBatchRequest;
 import org.onap.cps.spi.FetchDescendantsOption;
 
 public interface TaskManagementDefaultHandler {
@@ -46,14 +46,10 @@ public interface TaskManagementDefaultHandler {
         return NO_OBJECT_SUPPLIER;
     }
 
-    default Supplier<Object> getTaskSupplierForBulkRequest(final String datastoreName,
-                                                           final List<String> cmHandleIds,
-                                                           final String resourceIdentifier,
-                                                           final String optionsParamInQuery,
-                                                           final String topicParamInQuery,
-                                                           final String requestId,
-                                                           final boolean includeDescendant) {
-        return NO_OBJECT_SUPPLIER;
+    default void sendResourceDataBatchRequestAsynchronously(final String topicParamInQuery,
+                                                            final ResourceDataBatchRequest
+                                                                    resourceDataBatchRequest,
+                                                            final String requestId) {
     }
 
     static FetchDescendantsOption getFetchDescendantsOption(final boolean includeDescendants) {

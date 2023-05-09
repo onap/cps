@@ -23,10 +23,12 @@
 
 package org.onap.cps.ncmp.rest.controller;
 
-import static org.onap.cps.ncmp.api.impl.operations.OperationEnum.CREATE;
-import static org.onap.cps.ncmp.api.impl.operations.OperationEnum.DELETE;
-import static org.onap.cps.ncmp.api.impl.operations.OperationEnum.PATCH;
-import static org.onap.cps.ncmp.api.impl.operations.OperationEnum.UPDATE;
+import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.OPERATIONAL;
+import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RUNNING;
+import static org.onap.cps.ncmp.api.impl.operations.OperationType.CREATE;
+import static org.onap.cps.ncmp.api.impl.operations.OperationType.DELETE;
+import static org.onap.cps.ncmp.api.impl.operations.OperationType.PATCH;
+import static org.onap.cps.ncmp.api.impl.operations.OperationType.UPDATE;
 
 import java.util.Collection;
 import java.util.List;
@@ -44,8 +46,10 @@ import org.onap.cps.ncmp.rest.controller.handlers.NcmpCachedResourceRequestHandl
 import org.onap.cps.ncmp.rest.controller.handlers.NcmpDatastoreRequestHandler;
 import org.onap.cps.ncmp.rest.controller.handlers.NcmpPassthroughResourceRequestHandler;
 import org.onap.cps.ncmp.rest.mapper.CmHandleStateMapper;
+import org.onap.cps.ncmp.rest.mapper.ResourceDataBatchRequestMapper;
 import org.onap.cps.ncmp.rest.model.CmHandlePublicProperties;
 import org.onap.cps.ncmp.rest.model.CmHandleQueryParameters;
+import org.onap.cps.ncmp.rest.model.ResourceDataBatchRequest;
 import org.onap.cps.ncmp.rest.model.RestModuleDefinition;
 import org.onap.cps.ncmp.rest.model.RestModuleReference;
 import org.onap.cps.ncmp.rest.model.RestOutputCmHandle;
@@ -72,6 +76,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     private final CmHandleStateMapper cmHandleStateMapper;
     private final NcmpCachedResourceRequestHandler ncmpCachedResourceRequestHandler;
     private final NcmpPassthroughResourceRequestHandler ncmpPassthroughResourceRequestHandler;
+    private final ResourceDataBatchRequestMapper resourceDataBatchRequestMapper;
 
     /**
      * Get resource data from datastore.
@@ -100,19 +105,11 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     }
 
     @Override
-    public ResponseEntity<Object> getResourceDataForCmHandleBatch(final String resourceIdentifier,
-                                                                  final String topicParamInQuery,
-                                                                  final String datastoreName,
-                                                                  final Object requestBody,
-                                                                  final String optionsParamInQuery,
-                                                                  final Boolean includeDescendants) {
-
-        final NcmpDatastoreRequestHandler ncmpDatastoreRequestHandler = getNcmpDatastoreRequestHandler(datastoreName);
-
-        final List<String> cmHandleIds = jsonObjectMapper.convertJsonString(jsonObjectMapper.asJsonString(requestBody),
-                List.class);
-        return ncmpDatastoreRequestHandler.executeRequest(datastoreName, cmHandleIds, resourceIdentifier,
-                optionsParamInQuery, topicParamInQuery, includeDescendants);
+    public ResponseEntity<Object> getResourceDataForCmHandleBatch(final String topicParamInQuery,
+                                                                  final ResourceDataBatchRequest
+                                                                          resourceDataBatchRequest) {
+        return ncmpPassthroughResourceRequestHandler.executeRequest(topicParamInQuery,
+                resourceDataBatchRequestMapper.toResourceDataBatchRequest(resourceDataBatchRequest));
     }
 
     /**
@@ -134,7 +131,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
                                                                final String optionsParamInQuery,
                                                                final String topicParamInQuery,
                                                                final Boolean includeDescendants) {
-        validateDataStore(DatastoreType.OPERATIONAL, datastoreName);
+        validateDataStore(OPERATIONAL, datastoreName);
         return ncmpCachedResourceRequestHandler.executeRequest(cmHandle, cpsPath, includeDescendants);
     }
 
@@ -156,7 +153,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
                                                                       final Object requestBody,
                                                                       final String contentType) {
 
-        validateDataStore(DatastoreType.PASSTHROUGH_RUNNING, datastoreName);
+        validateDataStore(PASSTHROUGH_RUNNING, datastoreName);
 
         final Object responseObject = networkCmProxyDataService
                 .writeResourceDataPassThroughRunningForCmHandle(
@@ -182,7 +179,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
                                                                      final Object requestBody,
                                                                      final String contentType) {
 
-        validateDataStore(DatastoreType.PASSTHROUGH_RUNNING, datastoreName);
+        validateDataStore(PASSTHROUGH_RUNNING, datastoreName);
 
         networkCmProxyDataService.writeResourceDataPassThroughRunningForCmHandle(cmHandle,
                 resourceIdentifier, CREATE, jsonObjectMapper.asJsonString(requestBody), contentType);
@@ -206,7 +203,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
                                                                        final String cmHandle,
                                                                        final Object requestBody,
                                                                        final String contentType) {
-        validateDataStore(DatastoreType.PASSTHROUGH_RUNNING, datastoreName);
+        validateDataStore(PASSTHROUGH_RUNNING, datastoreName);
 
         networkCmProxyDataService.writeResourceDataPassThroughRunningForCmHandle(cmHandle,
                 resourceIdentifier, UPDATE, jsonObjectMapper.asJsonString(requestBody), contentType);
@@ -228,7 +225,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
                                                                      final String resourceIdentifier,
                                                                      final String contentType) {
 
-        validateDataStore(DatastoreType.PASSTHROUGH_RUNNING, datastoreName);
+        validateDataStore(PASSTHROUGH_RUNNING, datastoreName);
 
         networkCmProxyDataService.writeResourceDataPassThroughRunningForCmHandle(cmHandle,
                 resourceIdentifier, DELETE, NO_BODY, contentType);
@@ -381,7 +378,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     }
 
     private NcmpDatastoreRequestHandler getNcmpDatastoreRequestHandler(final String datastoreName) {
-        if (DatastoreType.OPERATIONAL.equals(DatastoreType.fromDatastoreName(datastoreName))) {
+        if (OPERATIONAL.equals(DatastoreType.fromDatastoreName(datastoreName))) {
             return ncmpCachedResourceRequestHandler;
         }
         return ncmpPassthroughResourceRequestHandler;

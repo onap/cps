@@ -34,9 +34,9 @@ import org.springframework.web.client.HttpServerErrorException
 import org.springframework.web.client.RestTemplate
 import spock.lang.Specification
 
-import static org.onap.cps.ncmp.api.impl.operations.OperationEnum.READ
-import static org.onap.cps.ncmp.api.impl.operations.OperationEnum.PATCH
-import static org.onap.cps.ncmp.api.impl.operations.OperationEnum.CREATE
+import static org.onap.cps.ncmp.api.impl.operations.OperationType.READ
+import static org.onap.cps.ncmp.api.impl.operations.OperationType.PATCH
+import static org.onap.cps.ncmp.api.impl.operations.OperationType.CREATE
 
 @SpringBootTest
 @ContextConfiguration(classes = [NcmpConfiguration.DmiProperties, DmiRestClient])
