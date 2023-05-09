@@ -20,7 +20,6 @@
 
 package org.onap.cps.ncmp.rest.controller.handlers;
 
-import java.util.List;
 import java.util.function.Supplier;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
 import org.onap.cps.ncmp.rest.executor.CpsNcmpTaskExecutor;
@@ -55,18 +54,4 @@ public class NcmpPassthroughResourceRequestHandler extends NcmpDatastoreRequestH
         return () -> networkCmProxyDataService.getResourceDataForCmHandle(
                 datastoreName, cmHandleId, resourceIdentifier, optionsParamInQuery, topicParamInQuery, requestId);
     }
-
-    @Override
-    public Supplier<Object> getTaskSupplierForBulkRequest(final String datastoreName,
-                                                          final List<String> cmHandleIds,
-                                                          final String resourceIdentifier,
-                                                          final String optionsParamInQuery,
-                                                          final String topicParamInQuery,
-                                                          final String requestId,
-                                                          final boolean includeDescendants) {
-
-        return () -> networkCmProxyDataService.getResourceDataForCmHandleBatch(
-                datastoreName, cmHandleIds, resourceIdentifier, optionsParamInQuery, topicParamInQuery, requestId);
-    }
-
 }

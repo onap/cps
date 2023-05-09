@@ -20,7 +20,6 @@
 
 package org.onap.cps.ncmp.rest.controller.handlers;
 
-import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.function.Supplier;
@@ -67,7 +66,7 @@ public class NcmpDatastoreRequestHandler implements TaskManagementDefaultHandler
         final boolean asyncResponseRequested = topicParamInQuery != null;
         if (asyncResponseRequested && notificationFeatureEnabled) {
             return executeAsyncTaskAndGetResponseEntity(datastoreName, cmHandleId, resourceIdentifier,
-                optionsParamInQuery, topicParamInQuery, includeDescendants, false);
+                optionsParamInQuery, topicParamInQuery, includeDescendants);
         }
 
         if (asyncResponseRequested) {
@@ -97,29 +96,6 @@ public class NcmpDatastoreRequestHandler implements TaskManagementDefaultHandler
         return executeTaskSync(taskSupplier);
     }
 
-    /**
-     * Executes synchronous/asynchronous request for batch of cm handles.
-     *
-     * @param datastoreName       the name of the datastore
-     * @param cmHandleIds         list of cm handles
-     * @param resourceIdentifier  the resource identifier
-     * @param optionsParamInQuery the options param in query
-     * @param topicParamInQuery   the topic param in query
-     * @param includeDescendants  whether to include descendants or not
-     * @return the response entity
-     */
-    public ResponseEntity<Object> executeRequest(final String datastoreName,
-                                                 final List<String> cmHandleIds,
-                                                 final String resourceIdentifier,
-                                                 final String optionsParamInQuery,
-                                                 final String topicParamInQuery,
-                                                 final boolean includeDescendants) {
-
-        return executeAsyncTaskAndGetResponseEntity(datastoreName, cmHandleIds, resourceIdentifier, optionsParamInQuery,
-                topicParamInQuery, includeDescendants, true);
-
-    }
-
     protected ResponseEntity<Object> executeTaskAsync(final String topicParamInQuery,
                                                       final String requestId,
                                                       final Supplier<Object> taskSupplier) {
@@ -127,7 +103,6 @@ public class NcmpDatastoreRequestHandler implements TaskManagementDefaultHandler
         TopicValidator.validateTopicName(topicParamInQuery);
         log.debug("Received Async request with id {}", requestId);
         cpsNcmpTaskExecutor.executeTask(taskSupplier, timeOutInMilliSeconds);
-
         return ResponseEntity.ok(Map.of("requestId", requestId));
     }
 
@@ -136,21 +111,14 @@ public class NcmpDatastoreRequestHandler implements TaskManagementDefaultHandler
     }
 
     private ResponseEntity<Object> executeAsyncTaskAndGetResponseEntity(final String datastoreName,
-                                                                        final Object targetObject,
+                                                                        final String targetObject,
                                                                         final String resourceIdentifier,
                                                                         final String optionsParamInQuery,
                                                                         final String topicParamInQuery,
-                                                                        final boolean includeDescendants,
-                                                                        final boolean isBulkRequest) {
+                                                                        final boolean includeDescendants) {
         final String requestId = UUID.randomUUID().toString();
-        final Supplier<Object> taskSupplier;
-        if (isBulkRequest) {
-            taskSupplier = getTaskSupplierForBulkRequest(datastoreName, (List<String>) targetObject,
-                    resourceIdentifier, optionsParamInQuery, topicParamInQuery, requestId, includeDescendants);
-        } else {
-            taskSupplier = getTaskSupplierForGetRequest(datastoreName, targetObject.toString(), resourceIdentifier,
-                    optionsParamInQuery, topicParamInQuery, requestId, includeDescendants);
-        }
+        final Supplier<Object> taskSupplier = getTaskSupplierForGetRequest(datastoreName, targetObject,
+                resourceIdentifier, optionsParamInQuery, topicParamInQuery, requestId, includeDescendants);
         if (taskSupplier == NO_OBJECT_SUPPLIER) {
             return new ResponseEntity<>(Map.of("status", "Unable to execute request as "
                     + "datastore is not implemented."), HttpStatus.NOT_IMPLEMENTED);

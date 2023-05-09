@@ -22,25 +22,30 @@
 package org.onap.cps.ncmp.api.impl.operations;
 
 import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RUNNING;
-import static org.onap.cps.ncmp.api.impl.operations.OperationEnum.READ;
+import static org.onap.cps.ncmp.api.impl.operations.OperationType.READ;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient;
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration;
 import org.onap.cps.ncmp.api.impl.executor.TaskExecutor;
 import org.onap.cps.ncmp.api.impl.utils.DmiServiceNameOrganizer;
 import org.onap.cps.ncmp.api.impl.utils.DmiServiceUrlBuilder;
+import org.onap.cps.ncmp.api.impl.utils.ResourceDataBatchRequestUtils;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.inventory.CmHandleState;
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
+import org.onap.cps.ncmp.api.models.ResourceDataBatchRequest;
 import org.onap.cps.spi.exceptions.CpsException;
 import org.onap.cps.utils.JsonObjectMapper;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.util.MultiValueMap;
 
 /**
  * Operations class for DMI data.
@@ -50,7 +55,6 @@ import org.springframework.stereotype.Component;
 public class DmiDataOperations extends DmiOperations {
 
     private static final long DEFAULT_ASYNC_TASK_EXECUTOR_TIMEOUT_IN_MILLISECONDS = 30000L;
-    private static final String NO_CM_HANDLE_ID = "";
 
     public DmiDataOperations(final InventoryPersistence inventoryPersistence,
                              final JsonObjectMapper jsonObjectMapper,
@@ -91,28 +95,30 @@ public class DmiDataOperations extends DmiOperations {
     /**
      * This method fetches the resource data by data store for given list of cm handles using dmi client.
      *
-     * @param dataStoreName           data store name
-     * @param cmHandleIds         list of cm handles
-     * @param resourceId          resource identifier
-     * @param optionsParamInQuery options query
-     * @param topicParamInQuery   topic name for (triggering) async responses
-     * @param requestId           requestId for async responses
-     * @return {@code ResponseEntity} response entity
+     * @param topicParamInQuery        topic name for (triggering) async responses
+     * @param resourceDataBatchRequest batch request for resource data
+     * @param requestId                requestId for as a response
      */
-    public ResponseEntity<Object> getResourceDataFromDmi(final String dataStoreName,
-                                                         final List<String> cmHandleIds,
-                                                         final String resourceId,
-                                                         final String optionsParamInQuery,
-                                                         final String topicParamInQuery,
+    public void getResourceDataFromDmi(final String topicParamInQuery,
+                                                         final ResourceDataBatchRequest
+                                                                 resourceDataBatchRequest,
                                                          final String requestId) {
+
+        final Set<String> requestedDistinctCmHandleIds = new HashSet<>();
+        ResourceDataBatchRequestUtils.extractAllDistinctCmHandleIds(resourceDataBatchRequest,
+                requestedDistinctCmHandleIds);
+
         final Collection<YangModelCmHandle> yangModelCmHandles
-                = inventoryPersistence.getYangModelCmHandles(cmHandleIds);
+                = getYangModelCmHandlesInReadyState(requestedDistinctCmHandleIds);
+
         final Map<String, Map<String, Map<String, String>>> dmiServiceNameCmHandlePropertiesMap =
                 DmiServiceNameOrganizer.getDmiPropertiesPerCmHandleIdPerServiceName(yangModelCmHandles);
 
-        buildBulkResourceDataRequestAndSend(dataStoreName, resourceId, optionsParamInQuery,
-                topicParamInQuery, requestId, dmiServiceNameCmHandlePropertiesMap);
-        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        final Map<String, List<DmiBatchRequestBody>> groupsOutPerDmiServiceName
+                = ResourceDataBatchRequestUtils.populateGroupsOutPerDmiServiceName(resourceDataBatchRequest,
+                dmiServiceNameCmHandlePropertiesMap);
+
+        buildBatchRequestUrlAndSendToDmiService(topicParamInQuery, requestId, groupsOutPerDmiServiceName);
     }
 
     /**
@@ -130,12 +136,12 @@ public class DmiDataOperations extends DmiOperations {
         final YangModelCmHandle yangModelCmHandle = getYangModelCmHandle(cmHandleId);
         final String jsonRequestBody = getDmiRequestBody(READ, requestId, null, null,
                 yangModelCmHandle);
-        final String dmiResourceDataUrl = getDmiRequestUrl(dataStoreName, cmHandleId, "/", null,
-                null, yangModelCmHandle.resolveDmiServiceName(RequiredDmiService.DATA));
+        final String dmiResourceDataUrl = getDmiRequestUrl(dataStoreName, cmHandleId, "/",
+                null, null,
+                yangModelCmHandle.resolveDmiServiceName(RequiredDmiService.DATA));
         final CmHandleState cmHandleState = yangModelCmHandle.getCompositeState().getCmHandleState();
         validateIfCmHandleStateReady(yangModelCmHandle, cmHandleState);
-        return dmiRestClient.postOperationWithJsonData(dmiResourceDataUrl, jsonRequestBody,
-                READ);
+        return dmiRestClient.postOperationWithJsonData(dmiResourceDataUrl, jsonRequestBody, READ);
     }
 
     /**
@@ -151,7 +157,7 @@ public class DmiDataOperations extends DmiOperations {
      */
     public ResponseEntity<Object> writeResourceDataPassThroughRunningFromDmi(final String cmHandleId,
                                                                              final String resourceId,
-                                                                             final OperationEnum operation,
+                                                                             final OperationType operation,
                                                                              final String requestData,
                                                                              final String dataType) {
         final YangModelCmHandle yangModelCmHandle = getYangModelCmHandle(cmHandleId);
@@ -169,7 +175,7 @@ public class DmiDataOperations extends DmiOperations {
         return inventoryPersistence.getYangModelCmHandle(cmHandleId);
     }
 
-    private String getDmiRequestBody(final OperationEnum operation, final String requestId, final String requestData,
+    private String getDmiRequestBody(final OperationType operation, final String requestId, final String requestData,
                                      final String dataType, final YangModelCmHandle yangModelCmHandle) {
         final DmiRequestBody dmiRequestBody = DmiRequestBody.builder()
                 .operation(operation)
@@ -179,17 +185,6 @@ public class DmiDataOperations extends DmiOperations {
                 .build();
         dmiRequestBody.asDmiProperties(yangModelCmHandle.getDmiProperties());
         return jsonObjectMapper.asJsonString(dmiRequestBody);
-    }
-
-    private String getDmiBulkRequestBody(final OperationEnum operation,
-                                         final String requestId,
-                                         final String requestData) {
-        final DmiRequestBody dmiBulkRequestBody = DmiRequestBody.builder()
-                .operation(operation)
-                .requestId(requestId)
-                .data(requestData)
-                .build();
-        return jsonObjectMapper.asJsonString(dmiBulkRequestBody);
     }
 
     private String getDmiRequestUrl(final String dataStoreName,
@@ -204,15 +199,13 @@ public class DmiDataOperations extends DmiOperations {
                         cmHandleId));
     }
 
-    private String getDmiServiceBulkRequestUrl(final String dataStoreName,
-                                               final String resourceId,
-                                               final String optionsParamInQuery,
-                                               final String topicParamInQuery,
-                                               final String dmiServiceName) {
-        return dmiServiceUrlBuilder.getBulkRequestUrl(
-                dmiServiceUrlBuilder.populateQueryParams(resourceId, optionsParamInQuery,
-                        topicParamInQuery), dmiServiceUrlBuilder.populateUriVariables(dataStoreName, dmiServiceName,
-                        NO_CM_HANDLE_ID));
+    private String getDmiServiceBatchRequestUrl(final String dmiServiceName,
+                                                final String topicParamInQuery,
+                                                final String requestId) {
+        final MultiValueMap<String, String> batchRequestQueryParams = dmiServiceUrlBuilder
+                .getBatchRequestQueryParams(topicParamInQuery, requestId);
+        return dmiServiceUrlBuilder.getBatchRequestUrl(batchRequestQueryParams,
+                dmiServiceUrlBuilder.populateBatchUriVariables(dmiServiceName));
     }
 
     private void validateIfCmHandleStateReady(final YangModelCmHandle yangModelCmHandle,
@@ -224,32 +217,35 @@ public class DmiDataOperations extends DmiOperations {
         }
     }
 
-    private void buildBulkResourceDataRequestAndSend(final String dataStoreName,
-                                                     final String resourceId,
-                                                     final String optionsParamInQuery,
-                                                     final String topicParamInQuery,
-                                                     final String requestId,
-                                                     final Map<String, Map<String, Map<String, String>>>
-                                                             dmiServiceNameCmHandlePropertiesMap) {
-        dmiServiceNameCmHandlePropertiesMap.entrySet().parallelStream().forEach(
-                dmiServiceNameCmHandlePropertiesEntry -> {
-                    final String dmiBulkResourceDataUrl = getDmiServiceBulkRequestUrl(dataStoreName, resourceId,
-                            optionsParamInQuery, topicParamInQuery, dmiServiceNameCmHandlePropertiesEntry.getKey());
-                    final String jsonRequestBodyAsJsonString =
-                            jsonObjectMapper.asJsonString(dmiServiceNameCmHandlePropertiesEntry.getValue());
-                    final String jsonRequestBody
-                            = getDmiBulkRequestBody(READ, requestId, jsonRequestBodyAsJsonString);
-                    sendDmiResourceDataRequestToDmiService(dmiBulkResourceDataUrl, jsonRequestBody);
-                });
+    private Collection<YangModelCmHandle> getYangModelCmHandlesInReadyState(final Set<String> requestedCmHandleIds) {
+        // TODO Need to publish an error response to client given topic.
+        //  Code should be implemented into https://jira.onap.org/browse/CPS-1614 (
+        //  NCMP : Error handling for non-ready cm handle state)
+        return inventoryPersistence.getYangModelCmHandles(requestedCmHandleIds).stream()
+                .filter(yangModelCmHandle -> yangModelCmHandle.getCompositeState().getCmHandleState()
+                        == CmHandleState.READY).collect(Collectors.toList());
     }
 
-    private void sendDmiResourceDataRequestToDmiService(final String dmiBulkResourceDataUrl,
-                                                        final String dmiResourceDataRequestAsJsonString) {
-        TaskExecutor.executeTask(() ->
-                                dmiRestClient.postOperationWithJsonData(dmiBulkResourceDataUrl,
-                                        dmiResourceDataRequestAsJsonString, READ),
-                        DEFAULT_ASYNC_TASK_EXECUTOR_TIMEOUT_IN_MILLISECONDS)
-                .whenCompleteAsync(this::handleTaskCompletion);
+    private void buildBatchRequestUrlAndSendToDmiService(final String topicParamInQuery,
+                                                         final String requestId,
+                                                         final Map<String, List<DmiBatchRequestBody>>
+                                                                groupsOutPerDmiServiceName) {
+
+        groupsOutPerDmiServiceName.entrySet().forEach(groupsOutPerDmiServiceNameEntry -> {
+            final String dmiServiceName = groupsOutPerDmiServiceNameEntry.getKey();
+            final List<DmiBatchRequestBody> dmiBatchRequestBodies = groupsOutPerDmiServiceNameEntry.getValue();
+            final String dmiBatchResourceDataUrl = getDmiServiceBatchRequestUrl(dmiServiceName, topicParamInQuery,
+                    requestId);
+            sendBatchRequestToDmiService(dmiBatchResourceDataUrl, dmiBatchRequestBodies);
+        });
+    }
+
+    private void sendBatchRequestToDmiService(final String batchResourceDataUrl,
+                                              final List<DmiBatchRequestBody> dmiBatchRequestBodies) {
+        final String batchRequestBodiesAsJsonString = jsonObjectMapper.asJsonString(dmiBatchRequestBodies);
+        TaskExecutor.executeTask(() -> dmiRestClient.postOperationWithJsonData(batchResourceDataUrl,
+                        batchRequestBodiesAsJsonString, READ),
+                DEFAULT_ASYNC_TASK_EXECUTOR_TIMEOUT_IN_MILLISECONDS).whenCompleteAsync(this::handleTaskCompletion);
     }
 
     private void handleTaskCompletion(final Object response, final Throwable throwable) {
