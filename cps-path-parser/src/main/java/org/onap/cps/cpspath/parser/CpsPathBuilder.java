@@ -61,6 +61,10 @@ public class CpsPathBuilder extends CpsPathBaseListener {
 
     final Queue<String> booleanOperatorsQueue = new LinkedList<>();
 
+    final List<String> comparativeOperators = new ArrayList<>();
+
+    final Queue<String> comparativeOperatorsQueue = new LinkedList<>();
+
     @Override
     public void exitInvalidPostFix(final CpsPathParser.InvalidPostFixContext ctx) {
         throw new PathParsingException(ctx.getText());
@@ -88,7 +92,7 @@ public class CpsPathBuilder extends CpsPathBaseListener {
             comparisonValue = Integer.valueOf(ctx.IntegerLiteral().getText());
         }
         if (ctx.StringLiteral() != null) {
-            final boolean wasWrappedInDoubleQuote  = ctx.StringLiteral().getText().startsWith("\"");
+            final boolean wasWrappedInDoubleQuote = ctx.StringLiteral().getText().startsWith("\"");
             comparisonValue = stripFirstAndLastCharacter(ctx.StringLiteral().getText());
             if (wasWrappedInDoubleQuote) {
                 comparisonValue = String.valueOf(comparisonValue).replace("'", "\\'");
@@ -96,21 +100,29 @@ public class CpsPathBuilder extends CpsPathBaseListener {
         } else if (comparisonValue == null) {
             throw new PathParsingException("Unsupported comparison value encountered in expression" + ctx.getText());
         }
-        leavesData.put(ctx.leafName().getText(), comparisonValue);
-        final String booleanOperator = booleanOperatorsQueue.poll();
-        appendCondition(normalizedXpathBuilder, ctx.leafName().getText(), booleanOperator, comparisonValue);
-        if (processingAncestorAxis) {
-            appendCondition(normalizedAncestorPathBuilder, ctx.leafName().getText(), booleanOperator, comparisonValue);
-        }
+        leafContext(ctx.leafName(), comparisonValue);
     }
 
     @Override
     public void exitBooleanOperators(final CpsPathParser.BooleanOperatorsContext ctx) {
         final CpsPathBooleanOperatorType cpsPathBooleanOperatorType = CpsPathBooleanOperatorType.fromString(
                 ctx.getText());
-        booleanOperators.add(cpsPathBooleanOperatorType.getValues());
-        booleanOperatorsQueue.add(cpsPathBooleanOperatorType.getValues());
+        if (cpsPathBooleanOperatorType != null) {
+            booleanOperators.add(cpsPathBooleanOperatorType.getValues());
+            booleanOperatorsQueue.add(cpsPathBooleanOperatorType.getValues());
+        }
         cpsPathQuery.setBooleanOperatorsType(booleanOperators);
+    }
+
+    @Override
+    public void exitComparativeOperators(final CpsPathParser.ComparativeOperatorsContext ctx) {
+        final CpsPathComparativeOperatorType cpsPathComparativeOperatorType = CpsPathComparativeOperatorType.fromString(
+                ctx.getText());
+        if (cpsPathComparativeOperatorType != null) {
+            comparativeOperators.add(cpsPathComparativeOperatorType.getLabels());
+            comparativeOperatorsQueue.add(cpsPathComparativeOperatorType.getLabels());
+        }
+        cpsPathQuery.setComparativeOperatorsType(comparativeOperators);
     }
 
     @Override
@@ -192,13 +204,27 @@ public class CpsPathBuilder extends CpsPathBaseListener {
         }
     }
 
+    private void leafContext(final CpsPathParser.LeafNameContext ctx, final Object comparisonValue) {
+        leavesData.put(ctx.getText(), comparisonValue);
+        final String booleanOperator = booleanOperatorsQueue.poll();
+        final String comparativeOperator = comparativeOperatorsQueue.poll();
+        appendCondition(normalizedXpathBuilder, ctx.getText(), comparativeOperator, booleanOperator,
+                        comparisonValue);
+        if (processingAncestorAxis) {
+            appendCondition(normalizedAncestorPathBuilder, ctx.getText(), comparativeOperator,
+                            booleanOperator, comparisonValue);
+        }
+    }
+
     private void appendCondition(final StringBuilder currentNormalizedPathBuilder, final String name,
+                                 final String comparativeOperator,
                                  final String booleanOperator, final Object value) {
         final char lastCharacter = currentNormalizedPathBuilder.charAt(currentNormalizedPathBuilder.length() - 1);
         currentNormalizedPathBuilder.append(lastCharacter == '[' ? "" : " " + booleanOperator + " ")
                                     .append("@")
                                     .append(name)
-                                    .append("='")
+                                    .append(comparativeOperator)
+                                    .append("'")
                                     .append(value)
                                     .append("'");
     }
