@@ -16,6 +16,24 @@
       "revId": "a6fff4569d0206f082c08b1cdb6cf034eec87eea",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e070f76d_67679801",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/EventsPublisher.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-05-09T15:01:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df1b87df_cf780ab0",
+      "revId": "a6fff4569d0206f082c08b1cdb6cf034eec87eea",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
