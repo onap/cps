@@ -29,8 +29,10 @@ import static org.onap.cps.notification.Operation.DELETE;
 import static org.onap.cps.notification.Operation.UPDATE;
 
 import io.micrometer.core.annotation.Timed;
+import java.io.Serializable;
 import java.time.OffsetDateTime;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Map;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -155,20 +157,16 @@ public class CpsDataServiceImpl implements CpsDataService {
 
     @Override
     @Timed(value = "cps.data.service.datanode.leaves.update",
-        description = "Time taken to get a batch of data nodes")
+        description = "Time taken to update a batch of leaf data nodes")
     public void updateNodeLeaves(final String dataspaceName, final String anchorName, final String parentNodeXpath,
         final String jsonData, final OffsetDateTime observedTimestamp) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         final Anchor anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
         final Collection<DataNode> dataNodesInPatch = buildDataNodes(anchor, parentNodeXpath, jsonData,
                 ContentType.JSON);
-        if (dataNodesInPatch.size() > 1) {
-            throw new DataValidationException("Operation is not supported for multiple data nodes",
-                    "Number of data nodes present: " + dataNodesInPatch.size());
-        }
-        cpsDataPersistenceService.updateDataLeaves(dataspaceName, anchorName,
-                dataNodesInPatch.iterator().next().getXpath(),
-            dataNodesInPatch.iterator().next().getLeaves());
+        final Map<String, Map<String, Serializable>> xpathToUpdatedLeaves = dataNodesInPatch.stream()
+                .collect(Collectors.toMap(DataNode::getXpath, DataNode::getLeaves));
+        cpsDataPersistenceService.batchUpdateDataLeaves(dataspaceName, anchorName, xpathToUpdatedLeaves);
         processDataUpdatedEventAsync(anchor, parentNodeXpath, UPDATE, observedTimestamp);
     }
 
@@ -395,8 +393,8 @@ public class CpsDataServiceImpl implements CpsDataService {
         if (dataNodeUpdate == null) {
             return;
         }
-        cpsDataPersistenceService.updateDataLeaves(anchor.getDataspaceName(), anchor.getName(),
-            dataNodeUpdate.getXpath(), dataNodeUpdate.getLeaves());
+        cpsDataPersistenceService.batchUpdateDataLeaves(anchor.getDataspaceName(), anchor.getName(),
+                Collections.singletonMap(dataNodeUpdate.getXpath(), dataNodeUpdate.getLeaves()));
         final Collection<DataNode> childDataNodeUpdates = dataNodeUpdate.getChildDataNodes();
         for (final DataNode childDataNodeUpdate : childDataNodeUpdates) {
             processDataNodeUpdate(anchor, childDataNodeUpdate);
