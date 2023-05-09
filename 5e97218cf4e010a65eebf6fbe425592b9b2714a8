@@ -22,6 +22,30 @@
       "revId": "5e97218cf4e010a65eebf6fbe425592b9b2714a8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "13a43687_adfb0b6c",
+        "filename": "cps-ncmp-rest-stub/src/main/java/org/onap/cps/ncmp/rest/stub/controller/NetworkCmProxyStubController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-05-09T10:41:01Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6499c3a5_4521fe24",
+      "range": {
+        "startLine": 60,
+        "startChar": 12,
+        "endLine": 60,
+        "endChar": 66
+      },
+      "revId": "5e97218cf4e010a65eebf6fbe425592b9b2714a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
