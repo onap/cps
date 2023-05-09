@@ -18,26 +18,15 @@
  * ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.operations;
+package org.onap.cps.ncmp.api.impl.exception;
 
-import com.fasterxml.jackson.annotation.JsonValue;
-
-public enum OperationEnum {
-
-    READ("read"),
-    CREATE("create"),
-    UPDATE("update"),
-    PATCH("patch"),
-    DELETE("delete");
-    private final String value;
-
-    OperationEnum(final String value) {
-        this.value = value;
-    }
-
-    @Override
-    @JsonValue
-    public String toString() {
-        return String.valueOf(value);
+public class InvalidOperationException extends RuntimeException {
+    /**
+     * Instantiates a new invalid operation exception.
+     *
+     * @param message the message
+     */
+    public InvalidOperationException(final String message) {
+        super(message);
     }
 }

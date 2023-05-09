@@ -62,10 +62,10 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
-import static org.onap.cps.ncmp.api.impl.operations.OperationEnum.CREATE
-import static org.onap.cps.ncmp.api.impl.operations.OperationEnum.UPDATE
-import static org.onap.cps.ncmp.api.impl.operations.OperationEnum.PATCH
-import static org.onap.cps.ncmp.api.impl.operations.OperationEnum.DELETE
+import static org.onap.cps.ncmp.api.impl.operations.OperationType.CREATE
+import static org.onap.cps.ncmp.api.impl.operations.OperationType.UPDATE
+import static org.onap.cps.ncmp.api.impl.operations.OperationType.PATCH
+import static org.onap.cps.ncmp.api.impl.operations.OperationType.DELETE
 import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_OPERATIONAL
 import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RUNNING
 import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.OPERATIONAL
@@ -113,7 +113,7 @@ class NetworkCmProxyControllerSpec extends Specification {
     def ncmpBasePathV1
 
     def requestBody = '{"some-key":"some-value"}'
-    def bulkRequestBody = '["testCmHandle"]'
+    def batchRequestBody = '["testCmHandle"]'
 
     def formattedDateAndTime = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ").format(OffsetDateTime.of(2022, 12, 31, 20, 30, 40, 1, ZoneOffset.UTC))
 
@@ -200,15 +200,15 @@ class NetworkCmProxyControllerSpec extends Specification {
             'invalid non-empty topic value in url' | 'passthrough-operational' | '&topic=1_5_*_#'
     }
 
-    def 'Get (async) bulk resource data from dmi service.'() {
-        given: 'bulk resource data url'
+    def 'Get (async) batch resource data from dmi service.'() {
+        given: 'batch resource data url'
             def getUrl = "$ncmpBasePathV1/batch/data/ds/${datastore.datastoreName}" +
                     "?resourceIdentifier=parent/child&options=(a=1,b=2)&topic=myTopic"
         when: 'post data resource request is performed'
             def response = mvc.perform(
                     post(getUrl)
                             .contentType(MediaType.APPLICATION_JSON)
-                            .content(bulkRequestBody)
+                            .content(batchRequestBody)
             ).andReturn().response
         then: 'response status is Ok'
             response.status == HttpStatus.OK.value()
@@ -226,15 +226,15 @@ class NetworkCmProxyControllerSpec extends Specification {
             datastore << [PASSTHROUGH_RUNNING, PASSTHROUGH_OPERATIONAL]
     }
 
-    def 'Get bulk resource data for non-supported #datastoreName from dmi service.'() {
-        given: 'bulk resource data url'
+    def 'Get batch resource data for non-supported #datastoreName from dmi service.'() {
+        given: 'batch resource data url'
             def getUrl = "$ncmpBasePathV1/batch/data/ds/ncmp-datastore:operational" +
                     "?resourceIdentifier=parent/child&options=(a=1,b=2)&topic=myTopic"
         when: 'post data resource request is performed'
             def response = mvc.perform(
                     post(getUrl)
                             .contentType(MediaType.APPLICATION_JSON)
-                            .content(bulkRequestBody)
+                            .content(batchRequestBody)
             ).andReturn().response
         then: 'response status code is 501 not implemented'
             response.status == HttpStatus.NOT_IMPLEMENTED.value()

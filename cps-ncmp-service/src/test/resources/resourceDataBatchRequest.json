@@ -1,0 +1,33 @@
+{
+  "operations": [
+    {
+      "operation": "read",
+      "operationId": "12",
+      "datastore": "ncmp-datastore:passthrough-operational",
+      "options": "(fields=schemas/schema)",
+      "resourceIdentifier": "parent/child",
+      "targetIds": [
+        "836bb62201f34a7aa056a47bd95a81ed",
+        "202acb75b4a54e43bb1ff8c0c17a8e08"
+      ]
+    },
+    {
+      "operation": "read",
+      "operationId": "14",
+      "datastore": "ncmp-datastore:passthrough-running",
+      "targetIds": [
+        "ec2e9495679a43c58659c07d87025e72",
+        "0df4d39af6514d99b816758148389cfd"
+      ]
+    },
+    {
+      "operation": "read",
+      "operationId": "15",
+      "datastore": "ncmp-datastore:passthrough-operational",
+      "options": "(fields=schemas/schema)",
+      "targetIds": [
+        "c722f7371b9945bda007a2079fe50289"
+      ]
+    }
+  ]
+}

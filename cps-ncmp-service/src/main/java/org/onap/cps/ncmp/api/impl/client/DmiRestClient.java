@@ -24,7 +24,7 @@ package org.onap.cps.ncmp.api.impl.client;
 import lombok.AllArgsConstructor;
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration.DmiProperties;
 import org.onap.cps.ncmp.api.impl.exception.HttpClientRequestException;
-import org.onap.cps.ncmp.api.impl.operations.OperationEnum;
+import org.onap.cps.ncmp.api.impl.operations.OperationType;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -49,9 +49,11 @@ public class DmiRestClient {
      */
     public ResponseEntity<Object> postOperationWithJsonData(final String dmiResourceUrl,
                                                             final String requestBodyAsJsonString,
-                                                            final OperationEnum operation) {
+                                                            final OperationType operation) {
         final var httpEntity = new HttpEntity<>(requestBodyAsJsonString, configureHttpHeaders(new HttpHeaders()));
         try {
+            System.out.println("dmiResourceUrl : " + dmiResourceUrl
+                    + " -> postOperationWithJsonData : " + requestBodyAsJsonString);
             return restTemplate.postForEntity(dmiResourceUrl, httpEntity, Object.class);
         } catch (final HttpStatusCodeException httpStatusCodeException) {
             final String exceptionMessage = "Unable to " + operation.toString() + " resource data.";

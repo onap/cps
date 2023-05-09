@@ -35,9 +35,9 @@ import spock.lang.Shared
 
 import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_OPERATIONAL
 import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RUNNING
-import static org.onap.cps.ncmp.api.impl.operations.OperationEnum.CREATE
-import static org.onap.cps.ncmp.api.impl.operations.OperationEnum.READ
-import static org.onap.cps.ncmp.api.impl.operations.OperationEnum.UPDATE
+import static org.onap.cps.ncmp.api.impl.operations.OperationType.CREATE
+import static org.onap.cps.ncmp.api.impl.operations.OperationType.READ
+import static org.onap.cps.ncmp.api.impl.operations.OperationType.UPDATE
 
 @SpringBootTest
 @ContextConfiguration(classes = [NcmpConfiguration.DmiProperties, DmiDataOperations])
@@ -51,7 +51,7 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
     @Shared
     def OPTIONS_PARAM = '(a=1,b=2)'
     @Shared
-    def expectedBulkRequestAsJson = '{"operation": "read","data": {"fe1c1f1a070c4ce5bbfda7198592a0d3": {"neType": "RadioNode"},"b8e42eed0d9541ed8d8839e8eb86b3e0": {"neType": "RadioNode"}},"requestId": "bbb67474-f705-410a-93d1-b2844e7f45fd"}'
+    def expectedBatchRequestAsJson = '{"operation": "read","data": {"fe1c1f1a070c4ce5bbfda7198592a0d3": {"neType": "RadioNode"},"b8e42eed0d9541ed8d8839e8eb86b3e0": {"neType": "RadioNode"}},"requestId": "bbb67474-f705-410a-93d1-b2844e7f45fd"}'
 
     @SpringBean
     JsonObjectMapper spiedJsonObjectMapper = Spy(new JsonObjectMapper(new ObjectMapper()))
@@ -82,15 +82,15 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             'datastore running with properties'    | [yangModelCmHandleProperty] | PASSTHROUGH_RUNNING     | OPTIONS_PARAM || '{"operation":"read","cmHandleProperties":{"prop1":"val1"}}' | 'passthrough-running'     | '&options=(a=1,b=2)'
     }
 
-    def 'call get bulk resource data for #dataStore from DMI service with topic #scenario.'() {
+    def 'call get batch resource data for #dataStore from DMI service with topic #scenario.'() {
         given: 'collection of yang model cm Handles'
             mockYangModelCmHandleCollectionRetrieval([yangModelCmHandleProperty])
         and: 'a positive response from DMI service when it is called with the expected parameters'
             def responseFromDmi = new ResponseEntity<Object>(HttpStatus.ACCEPTED)
-            def expectedDmiBulkResourceDataUrl = "ncmp/v1/batch/data/ds/${dataStore}?resourceIdentifier=parent/child%26options=(a=1,b=2)&topic=my-topic-name&options=(fields=schemas/schema)"
-            mockDmiRestClient.postOperationWithJsonData(expectedDmiBulkResourceDataUrl, expectedBulkRequestAsJson, READ) >> responseFromDmi
-            dmiServiceUrlBuilder.getBulkRequestUrl(_, _) >> expectedDmiBulkResourceDataUrl
-        when: 'get resource data for bulk cm handle is invoked'
+            def expectedDmiBatchResourceDataUrl = "ncmp/v1/batch/data/ds/${dataStore}?resourceIdentifier=parent/child%26options=(a=1,b=2)&topic=my-topic-name&options=(fields=schemas/schema)"
+            mockDmiRestClient.postOperationWithJsonData(expectedDmiBatchResourceDataUrl, expectedBatchRequestAsJson, READ) >> responseFromDmi
+            dmiServiceUrlBuilder.getBatchRequestUrl(_, _) >> expectedDmiBatchResourceDataUrl
+        when: 'get resource data for batch of cm handles are invoked'
             def result = objectUnderTest.getResourceDataFromDmi( dataStore.datastoreName, [cmHandleId], resourceIdentifier,
                     OPTIONS_PARAM,  'some-topic','requestId')
         then: 'the result is the response from the DMI service'
