@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "0927fa76_30d7d0f5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avc/AvcEventConsumer.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-05-09T14:32:26Z",
+      "side": 1,
+      "message": "yup you are correct. At the moment it is the same.\nI deliberately left here as we would actually be needing some transformation when I change the actual schema.\nCurrently the schema is of type Object and we need to change it to a more specific one as part of https://jira.onap.org/browse/CPS-1668",
+      "parentUuid": "bd9b181c_4d4f3abd",
+      "range": {
+        "startLine": 65,
+        "startChar": 8,
+        "endLine": 65,
+        "endChar": 86
+      },
+      "revId": "706ba26f7dac0d733a244581e6cc741e94e13c30",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a17c51c5_4d451459",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avc/AvcEventConsumer.java",
         "patchSetId": 10
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "ca9c82d7_193d5ba8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avc/AvcEventConsumer.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-05-09T14:32:26Z",
+      "side": 1,
+      "message": "here it is a specific requirement where we need to generate a new eventId and forward it to the downstream , so thats y we do it like this.\n\nThe producer of this will be written in the dmi plugin code once this is merged.",
+      "parentUuid": "a17c51c5_4d451459",
+      "range": {
+        "startLine": 72,
+        "startChar": 26,
+        "endLine": 72,
+        "endChar": 33
+      },
+      "revId": "706ba26f7dac0d733a244581e6cc741e94e13c30",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ad368952_bcafd024",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avc/AvcEventMapper.java",
         "patchSetId": 10
@@ -59,6 +107,30 @@
       "writtenOn": "2023-05-09T13:44:59Z",
       "side": 1,
       "message": "I think, this mapper is redundant anymore.",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 1
+      },
+      "revId": "706ba26f7dac0d733a244581e6cc741e94e13c30",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a902566c_f157f6ed",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avc/AvcEventMapper.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-05-09T14:32:26Z",
+      "side": 1,
+      "message": "explained in the previous files comment.",
+      "parentUuid": "ad368952_bcafd024",
       "range": {
         "startLine": 30,
         "startChar": 0,
