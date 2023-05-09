@@ -36,7 +36,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.test.context.ContextConfiguration
 import spock.lang.Shared
 
-import static  org.onap.cps.ncmp.api.impl.operations.OperationEnum.READ
+import static  OperationType.READ
 
 @SpringBootTest
 @ContextConfiguration(classes = [NcmpConfiguration.DmiProperties, DmiModelOperations])

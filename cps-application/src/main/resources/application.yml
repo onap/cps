@@ -163,7 +163,7 @@ management:
                 enabled: true
 
 logging:
-    format: json
+    format: text
     level:
         org:
             springframework: INFO

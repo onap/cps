@@ -93,6 +93,12 @@ public class NetworkCmProxyRestExceptionHandler {
         return buildErrorResponse(HttpStatus.NOT_FOUND, exception);
     }
 
+    @ExceptionHandler({OperationNotSupportedException.class})
+    public static ResponseEntity<Object> handleNotImplementedExceptions(
+            final OperationNotSupportedException operationNotSupportedException) {
+        return buildErrorResponse(HttpStatus.NOT_IMPLEMENTED, operationNotSupportedException);
+    }
+
     private static ResponseEntity<Object> buildErrorResponse(final HttpStatus status, final Exception exception) {
         if (exception.getCause() != null || !(exception instanceof CpsException)) {
             log.error("Exception occurred", exception);

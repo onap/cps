@@ -45,7 +45,7 @@ import org.onap.cps.ncmp.api.NetworkCmProxyCmHandleQueryService;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
 import org.onap.cps.ncmp.api.impl.events.lcm.LcmEventsCmHandleStateHandler;
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations;
-import org.onap.cps.ncmp.api.impl.operations.OperationEnum;
+import org.onap.cps.ncmp.api.impl.operations.OperationType;
 import org.onap.cps.ncmp.api.impl.utils.CmHandleQueryConditions;
 import org.onap.cps.ncmp.api.impl.utils.InventoryQueryConditions;
 import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
@@ -63,6 +63,7 @@ import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationErr
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistrationResponse;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
+import org.onap.cps.ncmp.api.models.ResourceDataBatchRequest;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.exceptions.AlreadyDefinedExceptionBatch;
 import org.onap.cps.spi.exceptions.CpsException;
@@ -138,24 +139,17 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     }
 
     @Override
-    public Object getResourceDataForCmHandleBatch(final String datastoreName,
-                                                  final List<String> cmHandleIds,
-                                                  final String resourceIdentifier,
-                                                  final String optionsParamInQuery,
-                                                  final String topicParamInQuery,
-                                                  final String requestId) {
-        final ResponseEntity<?> responseEntity = dmiDataOperations.getResourceDataFromDmi(datastoreName, cmHandleIds,
-                resourceIdentifier,
-                optionsParamInQuery,
-                topicParamInQuery,
-                requestId);
-        return responseEntity.getBody();
+    public void getResourceDataForCmHandleBatch(final String topicParamInQuery,
+                                                final ResourceDataBatchRequest
+                                                        resourceDataBatchRequest,
+                                                final String requestId) {
+        dmiDataOperations.getResourceDataFromDmi(topicParamInQuery, resourceDataBatchRequest, requestId);
     }
 
     @Override
     public Object writeResourceDataPassThroughRunningForCmHandle(final String cmHandleId,
                                                                  final String resourceIdentifier,
-                                                                 final OperationEnum operation,
+                                                                 final OperationType operation,
                                                                  final String requestData,
                                                                  final String dataType) {
         return dmiDataOperations.writeResourceDataPassThroughRunningFromDmi(cmHandleId, resourceIdentifier, operation,
