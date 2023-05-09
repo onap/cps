@@ -75,6 +75,15 @@ Features
 --------
     - `CPS-1396 <https://jira.onap.org/browse/CPS-1396>`_ Query data nodes across all anchors under one dataspace
 
+Known Limitations, Issues and Workarounds
+-----------------------------------------
+
+*System Limitations*
+
+Response body of query data nodes across all anchors under one database will be changed in future release.
+currently response is returning data nodes as object for each anchor. it is causing repeated anchor name in response body.
+we need to return list of data nodes per anchor in upcoming release.
+
 Version: 3.2.5
 ==============
 
