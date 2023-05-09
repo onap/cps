@@ -66,8 +66,7 @@ public class DmiModelOperations extends DmiOperations {
      * @return module references
      */
     public List<ModuleReference> getModuleReferences(final YangModelCmHandle yangModelCmHandle) {
-        final DmiRequestBody dmiRequestBody = DmiRequestBody.builder()
-            .build();
+        final DmiRequestBody dmiRequestBody = DmiRequestBody.builder().build();
         dmiRequestBody.asDmiProperties(yangModelCmHandle.getDmiProperties());
         final ResponseEntity<Object> dmiFetchModulesResponseEntity = getResourceFromDmiWithJsonData(
             yangModelCmHandle.resolveDmiServiceName(MODEL),
@@ -109,7 +108,7 @@ public class DmiModelOperations extends DmiOperations {
                                                                   final String resourceName) {
         final String dmiResourceDataUrl = getDmiResourceUrl(dmiServiceName, cmHandle, resourceName);
         return dmiRestClient.postOperationWithJsonData(dmiResourceDataUrl, jsonRequestBody,
-                OperationEnum.READ);
+                OperationType.READ);
     }
 
     private static String getRequestBodyToFetchYangResources(final Collection<ModuleReference> newModuleReferences,
