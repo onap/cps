@@ -18,23 +18,16 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.spi.performance
+package org.onap.cps.integration.performance.cps
 
-import org.onap.cps.spi.CpsModulePersistenceService
-import org.onap.cps.spi.entities.SchemaSetEntity
-import org.onap.cps.spi.impl.CpsPersistenceSpecBase
+import org.onap.cps.api.CpsModuleService
+import org.onap.cps.integration.performance.base.CpsPerfTestBase
 import org.onap.cps.spi.model.ModuleReference
-import org.onap.cps.spi.repository.ModuleReferenceRepository
-import org.onap.cps.spi.repository.SchemaSetRepository
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.test.context.jdbc.Sql
 import org.springframework.util.StopWatch
 
 import java.util.concurrent.ThreadLocalRandom
 
-class CpsModuleReferenceRepositoryPerfTest extends CpsPersistenceSpecBase {
-
-    static final String PERF_TEST_DATA = '/data/perf-test.sql'
+class CpsModuleServicePerfTest extends CpsPerfTestBase {
 
     def NEW_RESOURCE_CONTENT = 'module stores {\n' +
         '    yang-version 1.1;\n' +
@@ -48,16 +41,10 @@ class CpsModuleReferenceRepositoryPerfTest extends CpsPersistenceSpecBase {
         '    }' +
         '}'
 
-    @Autowired
-    CpsModulePersistenceService objectUnderTest
+    CpsModuleService objectUnderTest
 
-    @Autowired
-    SchemaSetRepository schemaSetRepository
+    def setup() { objectUnderTest = cpsModuleService }
 
-    @Autowired
-    ModuleReferenceRepository moduleReferenceRepository
-
-    @Sql([CLEAR_DATA, PERF_TEST_DATA])
     def 'Store new schema set with many modules'() {
         when: 'a new schema set with 200 modules is stored'
             def newYangResourcesNameToContentMap = [:]
@@ -68,17 +55,16 @@ class CpsModuleReferenceRepositoryPerfTest extends CpsPersistenceSpecBase {
                 def content = NEW_RESOURCE_CONTENT.replace('2020',String.valueOf(year)).replace('stores',moduleName)
                 newYangResourcesNameToContentMap.put(resourceName, content)
             }
-            objectUnderTest.storeSchemaSet('PERF-DATASPACE', 'perfSchemaSet', newYangResourcesNameToContentMap)
+            objectUnderTest.createSchemaSet(CPS_PERFORMANCE_TEST_DATASPACE, 'perfSchemaSet', newYangResourcesNameToContentMap)
         then: 'the schema set is persisted correctly'
-            def dataspaceEntity = dataspaceRepository.getByName('PERF-DATASPACE')
-            SchemaSetEntity result = schemaSetRepository.getByDataspaceAndName(dataspaceEntity, 'perfSchemaSet')
-            result.yangResources.size() == 200
+            def result =  cpsModuleService.getSchemaSet(CPS_PERFORMANCE_TEST_DATASPACE, 'perfSchemaSet')
+            result.moduleReferences.size() == 200
         and: 'identification of new module resources is fast enough (1,000 executions less then 6,000 milliseconds)'
             def stopWatch = new StopWatch()
             1000.times() {
                 def moduleReferencesToCheck = createModuleReferencesWithRandomMatchingExistingModuleReferences()
                 stopWatch.start()
-                def newModuleReferences = moduleReferenceRepository.identifyNewModuleReferences(moduleReferencesToCheck)
+                def newModuleReferences = objectUnderTest.identifyNewModuleReferences(moduleReferencesToCheck)
                 stopWatch.stop()
                 assert newModuleReferences.size() > 0 && newModuleReferences.size() < 300
             }
