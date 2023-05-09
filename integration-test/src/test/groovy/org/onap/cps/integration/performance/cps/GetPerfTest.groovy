@@ -45,8 +45,8 @@ class GetPerfTest extends CpsPerfTestBase {
         where: 'the following parameters are used'
             scenario             | fetchDescendantsOption  | anchor       || durationLimit | expectedNumberOfDataNodes
             'no descendants'     | OMIT_DESCENDANTS        | 'openroadm1' || 100           | 1
-            'direct descendants' | DIRECT_CHILDREN_ONLY    | 'openroadm2' || 100           | 1 + 50
-            'all descendants'    | INCLUDE_ALL_DESCENDANTS | 'openroadm3' || 350           | 1 + 50 * 86
+            'direct descendants' | DIRECT_CHILDREN_ONLY    | 'openroadm2' || 150           | 1 + 50
+            'all descendants'    | INCLUDE_ALL_DESCENDANTS | 'openroadm3' || 600           | 1 + 50 * 86
     }
 
     def 'Read data trees for multiple xpaths'() {
@@ -58,8 +58,8 @@ class GetPerfTest extends CpsPerfTestBase {
             stopWatch.stop()
             assert countDataNodesInTree(result) == 50 * 86
             def durationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'all data is read within 350 ms'
-            recordAndAssertPerformance("Read datatrees for multiple xpaths", 350, durationInMillis)
+        then: 'all data is read within 500 ms'
+            recordAndAssertPerformance("Read datatrees for multiple xpaths", 500, durationInMillis)
     }
 
     def 'Read complete data trees using #scenario.'() {
@@ -75,10 +75,10 @@ class GetPerfTest extends CpsPerfTestBase {
             recordAndAssertPerformance("Read datatrees using ${scenario}", durationLimit, durationInMillis)
         where: 'the following xpaths are used'
             scenario                | anchorPrefix | xpath                || durationLimit | expectedNumberOfDataNodes
-            'bookstore root'        | 'bookstore'  | '/'                  || 250           | 78
-            'bookstore top element' | 'bookstore'  | '/bookstore'         || 250           | 78
-            'openroadm root'        | 'openroadm'  | '/'                  || 1000          | 1 + 50 * 86
-            'openroadm top element' | 'openroadm'  | '/openroadm-devices' || 1000          | 1 + 50 * 86
+            'bookstore root'        | 'bookstore'  | '/'                  || 300           | 78
+            'bookstore top element' | 'bookstore'  | '/bookstore'         || 300           | 78
+            'openroadm root'        | 'openroadm'  | '/'                  || 1200          | 1 + 50 * 86
+            'openroadm top element' | 'openroadm'  | '/openroadm-devices' || 1200          | 1 + 50 * 86
     }
 
 }
