@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "139b4008_c4fa94fd",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 16
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-09T09:44:38Z",
+      "side": 1,
+      "message": "NB: across anchors",
+      "range": {
+        "startLine": 80,
+        "startChar": 89,
+        "endLine": 80,
+        "endChar": 117
+      },
+      "revId": "b229ce459d1b2376753cf2214884a50812f09603",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
