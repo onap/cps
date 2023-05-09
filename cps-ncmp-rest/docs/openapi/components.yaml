@@ -285,6 +285,43 @@ components:
       properties:
         state:
           $ref: '#/components/schemas/CmHandleCompositeState'
+    # Batch Request Schemas
+    ResourceDataBatchRequest:
+      type: object
+      title: get resource data for given array of operations
+      properties:
+        operations:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/BatchOperationDetail'
+          description: contains batch request details
+    BatchOperationDetail:
+      required:
+        - operation
+        - datastore
+        - operationId
+      properties:
+        operation:
+          type: string
+          example: 'read'
+        operationId:
+          type: string
+          example: '12'
+        datastore:
+          type: string
+          example: 'ncmp-datastore:passthrough-operational'
+        options:
+          type: string
+          example: '(fields=schemas/schema)'
+        resourceIdentifier:
+          type: string
+          example: 'parent/child'
+        cmHandleIds:
+          type: array
+          items:
+            type: string
+          example: [ my-cm-handle1, my-cm-handle2, my-cm-handle3 ]
 
   examples:
     dataSampleRequest:
