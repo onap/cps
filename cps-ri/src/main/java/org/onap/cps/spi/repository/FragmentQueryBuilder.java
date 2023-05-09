@@ -148,23 +148,39 @@ public class FragmentQueryBuilder {
 
     private void addLeafConditions(final CpsPathQuery cpsPathQuery, final StringBuilder sqlStringBuilder) {
         if (cpsPathQuery.hasLeafConditions()) {
-            sqlStringBuilder.append(" AND (");
-            final List<String> queryBooleanOperatorsType = cpsPathQuery.getBooleanOperatorsType();
-            final Queue<String> booleanOperatorsQueue = (queryBooleanOperatorsType == null) ? null : new LinkedList<>(
+            queryLeafConditions(cpsPathQuery, sqlStringBuilder);
+        }
+    }
+
+    private void queryLeafConditions(final CpsPathQuery cpsPathQuery, final StringBuilder sqlStringBuilder) {
+        sqlStringBuilder.append(" AND (");
+        final List<String> queryBooleanOperatorsType = cpsPathQuery.getBooleanOperatorsType();
+        final List<String> comparativeOperatorTypes = cpsPathQuery.getComparativeOperatorsType();
+        final Queue<String> booleanOperatorsQueue = (queryBooleanOperatorsType == null) ? null : new LinkedList<>(
                 queryBooleanOperatorsType);
-            cpsPathQuery.getLeavesData().entrySet().forEach(entry -> {
+        final Queue<String> comparativeOperatorQueue = (comparativeOperatorTypes == null) ? null : new LinkedList<>(
+                comparativeOperatorTypes);
+        cpsPathQuery.getLeavesData().entrySet().forEach(entry -> {
+            if (entry.getValue() instanceof Integer) {
+                sqlStringBuilder.append("(attributes ->> ");
+                sqlStringBuilder.append("'").append(entry.getKey()).append("')\\:\\:int");
+                if (comparativeOperatorQueue != null && !(comparativeOperatorQueue.isEmpty())) {
+                    sqlStringBuilder.append(" ").append(comparativeOperatorQueue.poll()).append(" ");
+                    sqlStringBuilder.append("'").append(jsonObjectMapper.asJsonString(entry.getValue())).append("'");
+                }
+            } else {
                 sqlStringBuilder.append(" attributes @> ");
                 sqlStringBuilder.append("'");
                 sqlStringBuilder.append(jsonObjectMapper.asJsonString(entry));
                 sqlStringBuilder.append("'");
-                if (!(booleanOperatorsQueue == null || booleanOperatorsQueue.isEmpty())) {
-                    sqlStringBuilder.append(" ");
-                    sqlStringBuilder.append(booleanOperatorsQueue.poll());
-                    sqlStringBuilder.append(" ");
-                }
-            });
-            sqlStringBuilder.append(")");
-        }
+            }
+            if (!(booleanOperatorsQueue == null || booleanOperatorsQueue.isEmpty())) {
+                sqlStringBuilder.append(" ");
+                sqlStringBuilder.append(booleanOperatorsQueue.poll());
+                sqlStringBuilder.append(" ");
+            }
+        });
+        sqlStringBuilder.append(")");
     }
 
     private static void addTextFunctionCondition(final CpsPathQuery cpsPathQuery,

@@ -78,6 +78,29 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
             'combination of OR/AND'                 | '//books[@title="Annihilation" or @price=39 and @lang="arabic"]' || 1                  | [[lang: "English", price: 15, title: "Annihilation", authors: ["Jeff VanderMeer"], editions: [2014]]]
     }
 
+    def 'cps-path query using combinations of Comparative Operators #scenario.'() {
+        when: 'a query is executed to get response by the given cps path'
+            def result = objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, cpsPath, OMIT_DESCENDANTS)
+        then: 'the result contains expected number of nodes'
+            assert result.size() == expectedResultSize
+        and: 'xpaths of the retrieved data nodes are as expected'
+            def bookTitles = result.collect { it.getLeaves().get('title') }
+            assert bookTitles.sort() == expectedBookTitles.sort()
+            print(expectedBookTitles.sort().toString())
+        where: 'the following data is used'
+            scenario                                         | cpsPath                                                            || expectedResultSize | expectedBookTitles
+            'the ">" condition'                              | '//books[@price>13 ]'                                              || 5                  | ['A Book with No Language', 'Annihilation', 'Debian GNU/Linux', 'The Gruffalo', 'The Light Fantastic']
+            'the "<" condition '                             | '//books[@price<15]'                                               || 5                  | ['Good Omens', 'Logarithm tables', 'Matilda', 'The Colour of Magic', 'The Light Fantastic']
+            'the "<=" condition'                             | '//books[@price<=15]'                                              || 7                  | ['Annihilation', 'Good Omens', 'Logarithm tables', 'Matilda', 'The Colour of Magic', 'The Gruffalo', 'The Light Fantastic']
+            'the ">=" condition'                             | '//books[@price>=20]'                                              || 2                  | ['A Book with No Language', 'Debian GNU/Linux']
+            'the "<" condition  where result does not exist' | '//books[@price<5]'                                                || 0                  | []
+            'the ">" condition  where result does not exist' | '//books[@price>1000]'                                             || 0                  | []
+            'the ">" condition with AND condition'           | '//books[@price>13 and @title="A Book with No Language"]'          || 1                  | ['A Book with No Language']
+            'the "<" condition with OR condition'            | '//books[@price<10 or @lang="German"]'                             || 1                  | ['Debian GNU/Linux']
+            'the "<=" condition with AND/OR condition'       | '//books[@price<=15 and @title="Annihilation" or @lang="Spanish"]' || 1                  | ['Annihilation']
+            'the "=>" condition with OR/AND condition'       | '//books[@price>=13 or @lang="Spanish" and @title="Good Omens"]'   || 6                  | ['A Book with No Language', 'Annihilation', 'Good Omens', 'Debian GNU/Linux', 'The Gruffalo', 'The Light Fantastic']
+    }
+
     def 'Cps Path query for leaf value(s) with #scenario.'() {
         when: 'a query is executed to get a data node by the given cps path'
             def result = objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, cpsPath, fetchDescendantsOption)

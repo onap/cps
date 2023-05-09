@@ -44,6 +44,7 @@ public class CpsPathQuery {
     private String textFunctionConditionLeafName;
     private String textFunctionConditionValue;
     private List<String> booleanOperatorsType;
+    private List<String> comparativeOperatorsType;
     private String containsFunctionConditionLeafName;
     private String containsFunctionConditionValue;
 
