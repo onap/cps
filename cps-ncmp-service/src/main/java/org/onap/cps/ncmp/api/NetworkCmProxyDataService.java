@@ -24,15 +24,15 @@
 package org.onap.cps.ncmp.api;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
-import org.onap.cps.ncmp.api.impl.operations.OperationEnum;
+import org.onap.cps.ncmp.api.impl.operations.OperationType;
 import org.onap.cps.ncmp.api.inventory.CompositeState;
 import org.onap.cps.ncmp.api.models.CmHandleQueryApiParameters;
 import org.onap.cps.ncmp.api.models.CmHandleQueryServiceParameters;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistrationResponse;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
+import org.onap.cps.ncmp.api.models.ResourceDataBatchRequest;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.ModuleDefinition;
 import org.onap.cps.spi.model.ModuleReference;
@@ -83,22 +83,15 @@ public interface NetworkCmProxyDataService {
                                       FetchDescendantsOption fetchDescendantsOption);
 
     /**
-     * Get resource data for given batch of cm handles using dmi.
+     * Get resource data for batch of cm handles using dmi.
      *
-     * @param datastoreName       datastore name
-     * @param cmHandleIds         cm handle identifiers
-     * @param resourceIdentifier  resource identifier
-     * @param optionsParamInQuery options query
-     * @param topicParamInQuery   topic name for (triggering) async responses
-     * @param requestId           unique requestId for async request
-     * @return {@code Object} resource data
+     * @param topicParamInQuery        topic name for (triggering) async responses
+     * @param resourceDataBatchRequest cm handle identifiers
      */
-    Object getResourceDataForCmHandleBatch(String datastoreName,
-                                       List<String> cmHandleIds,
-                                       String resourceIdentifier,
-                                       String optionsParamInQuery,
-                                       String topicParamInQuery,
-                                       String requestId);
+    void getResourceDataForCmHandleBatch(String topicParamInQuery,
+                                         ResourceDataBatchRequest
+                                                 resourceDataBatchRequest,
+                                         String requestId);
 
 
     /**
@@ -106,14 +99,14 @@ public interface NetworkCmProxyDataService {
      *
      * @param cmHandleId         cm handle identifier
      * @param resourceIdentifier resource identifier
-     * @param operation          required operation
+     * @param operationType      required operation type
      * @param requestBody        request body to create resource
      * @param contentType        content type in body
      * @return {@code Object} return data
      */
     Object writeResourceDataPassThroughRunningForCmHandle(String cmHandleId,
                                                         String resourceIdentifier,
-                                                        OperationEnum operation,
+                                                        OperationType operationType,
                                                         String requestBody,
                                                         String contentType);
 
