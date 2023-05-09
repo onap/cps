@@ -20,12 +20,19 @@
 
 package org.onap.cps.ncmp.rest.controller.handlers;
 
-import java.util.List;
+import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.OPERATIONAL;
+import static org.onap.cps.ncmp.api.impl.operations.OperationType.READ;
+
 import java.util.Map;
 import java.util.UUID;
 import java.util.function.Supplier;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.ncmp.api.impl.exception.InvalidDatastoreException;
+import org.onap.cps.ncmp.api.impl.operations.DatastoreType;
+import org.onap.cps.ncmp.api.impl.operations.OperationType;
+import org.onap.cps.ncmp.api.models.ResourceDataBatchRequest;
+import org.onap.cps.ncmp.rest.exceptions.OperationNotSupportedException;
 import org.onap.cps.ncmp.rest.executor.CpsNcmpTaskExecutor;
 import org.onap.cps.ncmp.rest.util.TopicValidator;
 import org.springframework.beans.factory.annotation.Value;
@@ -67,7 +74,7 @@ public class NcmpDatastoreRequestHandler implements TaskManagementDefaultHandler
         final boolean asyncResponseRequested = topicParamInQuery != null;
         if (asyncResponseRequested && notificationFeatureEnabled) {
             return executeAsyncTaskAndGetResponseEntity(datastoreName, cmHandleId, resourceIdentifier,
-                optionsParamInQuery, topicParamInQuery, includeDescendants, false);
+                optionsParamInQuery, topicParamInQuery, includeDescendants);
         }
 
         if (asyncResponseRequested) {
@@ -98,26 +105,21 @@ public class NcmpDatastoreRequestHandler implements TaskManagementDefaultHandler
     }
 
     /**
-     * Executes synchronous/asynchronous request for batch of cm handles.
+     * Executes asynchronous request for batch of cm handles to resource data.
      *
-     * @param datastoreName       the name of the datastore
-     * @param cmHandleIds         list of cm handles
-     * @param resourceIdentifier  the resource identifier
-     * @param optionsParamInQuery the options param in query
-     * @param topicParamInQuery   the topic param in query
-     * @param includeDescendants  whether to include descendants or not
+     * @param topicParamInQuery        the topic param in query
+     * @param resourceDataBatchRequest batch request details for resource data
      * @return the response entity
      */
-    public ResponseEntity<Object> executeRequest(final String datastoreName,
-                                                 final List<String> cmHandleIds,
-                                                 final String resourceIdentifier,
-                                                 final String optionsParamInQuery,
-                                                 final String topicParamInQuery,
-                                                 final boolean includeDescendants) {
-
-        return executeAsyncTaskAndGetResponseEntity(datastoreName, cmHandleIds, resourceIdentifier, optionsParamInQuery,
-                topicParamInQuery, includeDescendants, true);
-
+    public ResponseEntity<Object> executeRequest(final String topicParamInQuery,
+                                                 final ResourceDataBatchRequest
+                                                         resourceDataBatchRequest) {
+        validateBatchRequest(topicParamInQuery, resourceDataBatchRequest);
+        if (!notificationFeatureEnabled) {
+            return ResponseEntity.ok(Map.of("status",
+                    "Asynchronous request is unavailable as notification feature is currently disabled."));
+        }
+        return getRequestIdAndSendBatchRequestToDmiService(topicParamInQuery, resourceDataBatchRequest);
     }
 
     protected ResponseEntity<Object> executeTaskAsync(final String topicParamInQuery,
@@ -127,7 +129,6 @@ public class NcmpDatastoreRequestHandler implements TaskManagementDefaultHandler
         TopicValidator.validateTopicName(topicParamInQuery);
         log.debug("Received Async request with id {}", requestId);
         cpsNcmpTaskExecutor.executeTask(taskSupplier, timeOutInMilliSeconds);
-
         return ResponseEntity.ok(Map.of("requestId", requestId));
     }
 
@@ -136,25 +137,43 @@ public class NcmpDatastoreRequestHandler implements TaskManagementDefaultHandler
     }
 
     private ResponseEntity<Object> executeAsyncTaskAndGetResponseEntity(final String datastoreName,
-                                                                        final Object targetObject,
+                                                                        final String cmHandleId,
                                                                         final String resourceIdentifier,
                                                                         final String optionsParamInQuery,
                                                                         final String topicParamInQuery,
-                                                                        final boolean includeDescendants,
-                                                                        final boolean isBulkRequest) {
+                                                                        final boolean includeDescendants) {
         final String requestId = UUID.randomUUID().toString();
-        final Supplier<Object> taskSupplier;
-        if (isBulkRequest) {
-            taskSupplier = getTaskSupplierForBulkRequest(datastoreName, (List<String>) targetObject,
-                    resourceIdentifier, optionsParamInQuery, topicParamInQuery, requestId, includeDescendants);
-        } else {
-            taskSupplier = getTaskSupplierForGetRequest(datastoreName, targetObject.toString(), resourceIdentifier,
-                    optionsParamInQuery, topicParamInQuery, requestId, includeDescendants);
-        }
+        final Supplier<Object> taskSupplier = getTaskSupplierForGetRequest(datastoreName, cmHandleId,
+                resourceIdentifier, optionsParamInQuery, topicParamInQuery, requestId, includeDescendants);
         if (taskSupplier == NO_OBJECT_SUPPLIER) {
             return new ResponseEntity<>(Map.of("status", "Unable to execute request as "
                     + "datastore is not implemented."), HttpStatus.NOT_IMPLEMENTED);
         }
         return executeTaskAsync(topicParamInQuery, requestId, taskSupplier);
+    }
+
+    private ResponseEntity<Object> getRequestIdAndSendBatchRequestToDmiService(final String topicParamInQuery,
+                                                                               final ResourceDataBatchRequest
+                                                                                       resourceDataBatchRequest) {
+        final String requestId = UUID.randomUUID().toString();
+        sendResourceDataBatchRequestAsynchronously(topicParamInQuery, resourceDataBatchRequest, requestId);
+        return ResponseEntity.ok(Map.of("requestId", requestId));
+    }
+
+    private void validateBatchRequest(final String topicParamInQuery,
+                                      final ResourceDataBatchRequest
+                                              resourceDataBatchRequest) {
+        TopicValidator.validateTopicName(topicParamInQuery);
+        resourceDataBatchRequest.getBatchOperationDefinitions().forEach(batchOperationDetail -> {
+            if (OperationType.fromOperationName(batchOperationDetail.getOperation()) != READ) {
+                throw new OperationNotSupportedException(
+                        batchOperationDetail.getOperation() + " operation not yet supported for target ids :"
+                                + batchOperationDetail.getCmHandleIds());
+            } else if (DatastoreType.fromDatastoreName(batchOperationDetail.getDatastore()) == OPERATIONAL) {
+                throw new InvalidDatastoreException(batchOperationDetail.getDatastore()
+                        + " datastore is not supported for target ids : "
+                        + batchOperationDetail.getCmHandleIds());
+            }
+        });
     }
 }
