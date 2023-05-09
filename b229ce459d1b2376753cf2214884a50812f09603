@@ -118,6 +118,30 @@
       "revId": "b229ce459d1b2376753cf2214884a50812f09603",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2cdf7352_ab9d3a2a",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 16
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-05-09T10:05:23Z",
+      "side": 1,
+      "message": "Sure I have changed it to \"Extend CPS PATCH API to allow update of leaves for multiple data nodes\". Also, just noticed it should be under version 3.3.2. Will move it there",
+      "parentUuid": "04a4fd26_99317f3f",
+      "range": {
+        "startLine": 80,
+        "startChar": 89,
+        "endLine": 80,
+        "endChar": 117
+      },
+      "revId": "b229ce459d1b2376753cf2214884a50812f09603",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
