@@ -38,6 +38,8 @@ import org.onap.cps.ncmp.api.models.CmHandleQueryServiceParameters
 import org.onap.cps.ncmp.api.models.ConditionApiProperties
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
+import org.onap.cps.ncmp.api.models.ResourceDataBatchRequest
+import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.spi.exceptions.CpsException
 import org.onap.cps.spi.model.ConditionProperties
 import spock.lang.Shared
@@ -54,8 +56,8 @@ import spock.lang.Specification
 
 import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_OPERATIONAL
 import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RUNNING
-import static org.onap.cps.ncmp.api.impl.operations.OperationEnum.CREATE
-import static org.onap.cps.ncmp.api.impl.operations.OperationEnum.UPDATE
+import static org.onap.cps.ncmp.api.impl.operations.OperationType.CREATE
+import static org.onap.cps.ncmp.api.impl.operations.OperationType.UPDATE
 
 class NetworkCmProxyDataServiceImplSpec extends Specification {
 
@@ -133,23 +135,14 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             response == '{dmi-response}'
     }
 
-    def 'Get bulk resource data for #datastoreName from DMI.'() {
+    def 'Get batch resource data for #datastoreName from DMI.'() {
         given: 'cpsDataService returns valid data node'
-            mockDataNode()
-        and: 'DMI returns valid response and data'
-            mockDmiDataOperations.getResourceDataFromDmi(datastoreName, ['testCmHandle'],
-                    'testResourceId', OPTIONS_PARAM,'some topic','requestId') >>
-                    new ResponseEntity<>('{dmi-bulk-response}', HttpStatus.OK)
+            def resourceDataBatchRequestJsonData = TestUtils.getResourceFileContent('resourceDataBatchRequest.json')
+            def resourceDataBatchRequest = spiedJsonObjectMapper.convertJsonString(resourceDataBatchRequestJsonData, ResourceDataBatchRequest.class)
         when: 'get batch resource data is called'
-            def response = objectUnderTest.getResourceDataForCmHandleBatch(datastoreName, ['testCmHandle'],
-                    'testResourceId',
-                    OPTIONS_PARAM,
-                    'some topic',
-                    'requestId')
-        then: 'get bulk resource data returns expected response'
-            response == '{dmi-bulk-response}'
-        where: 'the following data stores are used'
-            datastoreName << [PASSTHROUGH_RUNNING.datastoreName, PASSTHROUGH_OPERATIONAL.datastoreName]
+            objectUnderTest.getResourceDataForCmHandleBatch('some topic', resourceDataBatchRequest, 'requestId')
+        then: 'get batch resource data returns expected response'
+            1 * mockDmiDataOperations.getResourceDataFromDmi('some topic', resourceDataBatchRequest, 'requestId')
     }
 
     def 'Getting Yang Resources.'() {
