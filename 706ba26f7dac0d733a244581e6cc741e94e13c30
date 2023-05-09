@@ -2,6 +2,75 @@
   "comments": [
     {
       "key": {
+        "uuid": "1aa2c573_0b45b5a5",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/dmidataavc/avc-event-headers-v1.json",
+        "patchSetId": 10
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-05-09T17:52:55Z",
+      "side": 1,
+      "message": "\u0027headers\u0027",
+      "range": {
+        "startLine": 7,
+        "startChar": 26,
+        "endLine": 7,
+        "endChar": 33
+      },
+      "revId": "706ba26f7dac0d733a244581e6cc741e94e13c30",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4eaef544_6b55e8e3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/EventsPublisher.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-05-09T17:52:55Z",
+      "side": 1,
+      "message": "In case if we are using \u0027ConsumerRecord\u003cK,V\u003e\u0027 which i commented at \u0027Consumer\u0027 class. We can remove this method and use the received headers directly at the calling of this method at line 74",
+      "range": {
+        "startLine": 94,
+        "startChar": 4,
+        "endLine": 100,
+        "endChar": 23
+      },
+      "revId": "706ba26f7dac0d733a244581e6cc741e94e13c30",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cacf488f_597564db",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avc/AvcEventConsumer.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-05-09T17:52:55Z",
+      "side": 1,
+      "message": "Just a suggestion, We can  use \u0027ConsumerRecord\u003cK, V\u003e\u0027 to access the raw kafka message including headers. This avoids the conversion happening at line 70 in this file and also in EventPublisher at line 94(convertToKafkaHeader). We can refer \u0027https://docs.spring.io/spring-kafka/api/org/springframework/kafka/annotation/KafkaListener.html\u0027\n\nIf you fell good to continue with the one you written, I am ok, but for avoiding the conversion to Map externally(line 71). we can use \u0027@Headers Map\u003cString, Object\u003e at line 62 as a parameter)\u0027",
+      "range": {
+        "startLine": 62,
+        "startChar": 34,
+        "endLine": 62,
+        "endChar": 112
+      },
+      "revId": "706ba26f7dac0d733a244581e6cc741e94e13c30",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bd9b181c_4d4f3abd",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avc/AvcEventConsumer.java",
         "patchSetId": 10
@@ -70,6 +139,29 @@
       "revId": "706ba26f7dac0d733a244581e6cc741e94e13c30",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bf3e98e5_6ef55728",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avc/AvcEventConsumer.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-05-09T17:52:55Z",
+      "side": 1,
+      "message": "In case if we are using \u0027ConsumerRecord\u003cK,V\u003e\u0027 we can pass headers having inside the consumer record directly after updating the property values as per our requirements.",
+      "range": {
+        "startLine": 67,
+        "startChar": 16,
+        "endLine": 67,
+        "endChar": 35
+      },
+      "revId": "706ba26f7dac0d733a244581e6cc741e94e13c30",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     },
     {
       "key": {
