@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d43892fd_f8a26cc4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventMapper.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-05-10T09:51:52Z",
+      "side": 1,
+      "message": "Yes, it is the default. Since the others are ACCEPTED and REJECTED, neither is suitable for a default value.",
+      "parentUuid": "bbb54fa8_342a6e13",
+      "range": {
+        "startLine": 52,
+        "startChar": 24,
+        "endLine": 52,
+        "endChar": 50
+      },
+      "revId": "c972b640df2a3ef626f3628ed82736475277e072",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5e323021_20d85d58",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/subscriptions/SubscriptionPersistenceImpl.java",
         "patchSetId": 3
