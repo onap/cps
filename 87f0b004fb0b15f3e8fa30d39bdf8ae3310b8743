@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "79d92466_2d46458b",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/dmidataavc/avc-event-headers-v1.json",
+        "patchSetId": 14
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-05-10T12:58:34Z",
+      "side": 1,
+      "message": "NB: I feel this can be plural as it has more than one header",
+      "range": {
+        "startLine": 6,
+        "startChar": 5,
+        "endLine": 6,
+        "endChar": 19
+      },
+      "revId": "87f0b004fb0b15f3e8fa30d39bdf8ae3310b8743",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
