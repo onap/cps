@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ec7b7700_5fa52169",
+        "filename": "cps-path-parser/src/main/antlr4/org/onap/cps/cpspath/parser/antlr4/CpsPath.g4",
+        "patchSetId": 18
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2023-05-10T03:25:31Z",
+      "side": 1,
+      "message": "No problem, if needed we will take for other commit",
+      "parentUuid": "c949fac7_c13e0807",
+      "range": {
+        "startLine": 94,
+        "startChar": 32,
+        "endLine": 96,
+        "endChar": 0
+      },
+      "revId": "87a8c5600b554b00ee94b5b9af1379cf9ff1d8e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1aee0ab4_49f32af9",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
         "patchSetId": 18

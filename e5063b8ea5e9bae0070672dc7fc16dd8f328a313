@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "a144276e_05b153ef",
+        "filename": "cps-path-parser/src/main/antlr4/org/onap/cps/cpspath/parser/antlr4/CpsPath.g4",
+        "patchSetId": 19
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2023-05-10T03:25:31Z",
+      "side": 1,
+      "message": "if EQ is added need to change all other rules where EQ is there so i didnt do, But now i have include EQ in comparative rule",
+      "parentUuid": "f3d0969b_4217d563",
+      "range": {
+        "startLine": 56,
+        "startChar": 24,
+        "endLine": 56,
+        "endChar": 76
+      },
+      "revId": "e5063b8ea5e9bae0070672dc7fc16dd8f328a313",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e1e65867_fd48980a",
         "filename": "cps-path-parser/src/main/antlr4/org/onap/cps/cpspath/parser/antlr4/CpsPath.g4",
         "patchSetId": 19
@@ -96,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "ac284367_e0b5e03a",
+        "filename": "cps-path-parser/src/main/antlr4/org/onap/cps/cpspath/parser/antlr4/CpsPath.g4",
+        "patchSetId": 19
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2023-05-10T03:25:31Z",
+      "side": 1,
+      "message": "Earlier I have used EG,GE,GT,LT later got comments to use fullform for clear understanding so t again added fullform. Now resolved this as per antlr doc.",
+      "parentUuid": "86e91b31_95486615",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 21
+      },
+      "revId": "e5063b8ea5e9bae0070672dc7fc16dd8f328a313",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "373378e6_ab4b85c9",
         "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
         "patchSetId": 19
@@ -116,6 +164,30 @@
       "revId": "e5063b8ea5e9bae0070672dc7fc16dd8f328a313",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e57eec8_73cc84c3",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2023-05-10T03:25:31Z",
+      "side": 1,
+      "message": "Since ,Used single for both integer and string refactored this method accordingly.",
+      "parentUuid": "373378e6_ab4b85c9",
+      "range": {
+        "startLine": 89,
+        "startChar": 16,
+        "endLine": 89,
+        "endChar": 33
+      },
+      "revId": "e5063b8ea5e9bae0070672dc7fc16dd8f328a313",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -142,6 +214,30 @@
     },
     {
       "key": {
+        "uuid": "ed672913_abb04f1b",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2023-05-10T03:25:31Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "53a5b090_502d8a26",
+      "range": {
+        "startLine": 91,
+        "startChar": 2,
+        "endLine": 102,
+        "endChar": 9
+      },
+      "revId": "e5063b8ea5e9bae0070672dc7fc16dd8f328a313",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "563d9d36_bd0c0de5",
         "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
         "patchSetId": 19
@@ -165,6 +261,30 @@
     },
     {
       "key": {
+        "uuid": "2ad156d2_c430e2e6",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2023-05-10T03:25:31Z",
+      "side": 1,
+      "message": "yes, done",
+      "parentUuid": "563d9d36_bd0c0de5",
+      "range": {
+        "startLine": 214,
+        "startChar": 0,
+        "endLine": 216,
+        "endChar": 16
+      },
+      "revId": "e5063b8ea5e9bae0070672dc7fc16dd8f328a313",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1697b25d_c1bc4b3d",
         "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathComparativeOperatorType.java",
         "patchSetId": 19
@@ -185,6 +305,30 @@
       "revId": "e5063b8ea5e9bae0070672dc7fc16dd8f328a313",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "73b8fbbe_b687a426",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathComparativeOperatorType.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2023-05-10T03:25:31Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "1697b25d_c1bc4b3d",
+      "range": {
+        "startLine": 24,
+        "startChar": 4,
+        "endLine": 24,
+        "endChar": 11
+      },
+      "revId": "e5063b8ea5e9bae0070672dc7fc16dd8f328a313",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -234,6 +378,30 @@
     },
     {
       "key": {
+        "uuid": "b98e2d79_1ee43648",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2023-05-10T03:25:31Z",
+      "side": 1,
+      "message": "Depending upon leafvalue we have 2 different queries \n Eg :  //books[@lang\u003d\"English\" and price\u003d15]\n       ( attributes  @\u003e \u0027{\"lang\":\"English\"}) for string\n       (attributes  -\u003e\u003e\u0027price\u0027)\\:\\:int \u003d \u002715\u0027) for integer\n In order to add both together used queryleafconditionmethod",
+      "parentUuid": "e57c6bf9_1ba3a22b",
+      "range": {
+        "startLine": 94,
+        "startChar": 16,
+        "endLine": 108,
+        "endChar": 17
+      },
+      "revId": "e5063b8ea5e9bae0070672dc7fc16dd8f328a313",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d5497531_e252ded5",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
         "patchSetId": 19
@@ -254,6 +422,30 @@
       "revId": "e5063b8ea5e9bae0070672dc7fc16dd8f328a313",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a856015f_6bfe492f",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2023-05-10T03:25:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d5497531_e252ded5",
+      "range": {
+        "startLine": 82,
+        "startChar": 30,
+        "endLine": 82,
+        "endChar": 42
+      },
+      "revId": "e5063b8ea5e9bae0070672dc7fc16dd8f328a313",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
