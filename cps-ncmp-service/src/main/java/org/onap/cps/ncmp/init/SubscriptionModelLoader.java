@@ -58,7 +58,7 @@ public class SubscriptionModelLoader implements ModelLoader {
     @Value("${ncmp.timers.model-loader.retry-time-ms:1000}")
     private long retryTimeMs;
 
-    @Value("${ncmp.model-loader.subscription:false}")
+    @Value("${ncmp.model-loader.subscription:true}")
     private boolean subscriptionModelLoaderEnabled;
 
     /**
