@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d9fa995e_b94b9e62",
+        "filename": "cps-path-parser/src/main/antlr4/org/onap/cps/cpspath/parser/antlr4/CpsPath.g4",
+        "patchSetId": 20
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-05-10T11:35:13Z",
+      "side": 1,
+      "message": "Revert this change please, it should use EQ, not comparativeOperators:\n  textFunctionCondition : SLASH leafName OB KW_TEXT_FUNCTION EQ StringLiteral CB ;\n\nOtherwise we would allow things like \"abcd\"\u003c123 - string/number comparison not allowed!\nThe other below changes are good though.",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 98
+      },
+      "revId": "7749c7b018c8677c9a70bc78dc1508cbae20832c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a9ac39ff_6fdc788e",
+        "filename": "cps-path-parser/src/main/antlr4/org/onap/cps/cpspath/parser/antlr4/CpsPath.g4",
+        "patchSetId": 20
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-05-10T11:35:13Z",
+      "side": 1,
+      "message": "Good",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 114
+      },
+      "revId": "7749c7b018c8677c9a70bc78dc1508cbae20832c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "490e1863_c0c0eca1",
+        "filename": "cps-path-parser/src/main/antlr4/org/onap/cps/cpspath/parser/antlr4/CpsPath.g4",
+        "patchSetId": 20
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-05-10T11:35:13Z",
+      "side": 1,
+      "message": "Good.",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 0
+      },
+      "revId": "7749c7b018c8677c9a70bc78dc1508cbae20832c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
