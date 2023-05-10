@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c6b9260c_73c57bff",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-05-10T09:39:11Z",
+      "side": 1,
+      "message": "structure of this sentences is a bit condfusing\n\nwould start with \u0027For querying data nodes across all anchors, the current response is...\u0027 then explain the future release changes",
+      "range": {
+        "startLine": 83,
+        "startChar": 0,
+        "endLine": 85,
+        "endChar": 68
+      },
+      "revId": "b9cd29545d03b3f69cc6a8ccb46a3103d719dcff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
