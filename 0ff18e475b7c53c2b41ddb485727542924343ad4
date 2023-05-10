@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "f0c6c45e_32ddb464",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/subscriptions/SubscriptionPersistenceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-05-10T11:08:08Z",
+      "side": 1,
+      "message": "Thanks, will fix in Kafka part patch set.",
+      "parentUuid": "a85df055_ba8d6d17",
+      "range": {
+        "startLine": 54,
+        "startChar": 33,
+        "endLine": 54,
+        "endChar": 41
+      },
+      "revId": "0ff18e475b7c53c2b41ddb485727542924343ad4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6f8f2a8f_2a065254",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/subscriptions/SubscriptionPersistenceSpec.groovy",
         "patchSetId": 4
@@ -36,6 +60,30 @@
       "writtenOn": "2023-05-10T10:01:00Z",
       "side": 1,
       "message": "NB \nsame with the first one, can be shared on set up",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 118
+      },
+      "revId": "0ff18e475b7c53c2b41ddb485727542924343ad4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3d3dd74a_b7d7f54b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/subscriptions/SubscriptionPersistenceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-05-10T11:08:08Z",
+      "side": 1,
+      "message": "Thanks, will fix in Kafka part patch set.",
+      "parentUuid": "6f8f2a8f_2a065254",
       "range": {
         "startLine": 70,
         "startChar": 0,
