@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b95f89f5_ec0f5490",
+        "filename": "cps-ri/src/test/resources/data/fragment.sql",
+        "patchSetId": 3
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-10T12:49:24Z",
+      "side": 0,
+      "message": "ddi you use the column-edit-mode feature in INtelliJ to delete all those :-)",
+      "range": {
+        "startLine": 59,
+        "startChar": 11,
+        "endLine": 59,
+        "endChar": 15
+      },
+      "revId": "492b6660fb153dd3dbf52c693a0b86bed3bee4f5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
