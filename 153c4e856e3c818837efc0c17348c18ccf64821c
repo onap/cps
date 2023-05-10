@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a2c7877_1f3c0e6f",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/CpsModuleServicePerfTest.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-10T08:05:31Z",
+      "side": 1,
+      "message": "NB: use recordAndAssertPerformance",
+      "range": {
+        "startLine": 71,
+        "startChar": 12,
+        "endLine": 71,
+        "endChar": 56
+      },
+      "revId": "153c4e856e3c818837efc0c17348c18ccf64821c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
