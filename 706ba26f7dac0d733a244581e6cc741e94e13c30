@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "bfd00f48_a7be09f2",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/dmidataavc/avc-event-headers-v1.json",
+        "patchSetId": 10
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-05-10T10:31:42Z",
+      "side": 1,
+      "message": "yeah..this one I can handle.",
+      "parentUuid": "1aa2c573_0b45b5a5",
+      "range": {
+        "startLine": 7,
+        "startChar": 26,
+        "endLine": 7,
+        "endChar": 33
+      },
+      "revId": "706ba26f7dac0d733a244581e6cc741e94e13c30",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4eaef544_6b55e8e3",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/EventsPublisher.java",
         "patchSetId": 10
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "fb02e0b3_94793e17",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/EventsPublisher.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-05-10T10:31:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4eaef544_6b55e8e3",
+      "range": {
+        "startLine": 94,
+        "startChar": 4,
+        "endLine": 100,
+        "endChar": 23
+      },
+      "revId": "706ba26f7dac0d733a244581e6cc741e94e13c30",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cacf488f_597564db",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avc/AvcEventConsumer.java",
         "patchSetId": 10
@@ -59,6 +107,30 @@
       "writtenOn": "2023-05-09T17:52:55Z",
       "side": 1,
       "message": "Just a suggestion, We can  use \u0027ConsumerRecord\u003cK, V\u003e\u0027 to access the raw kafka message including headers. This avoids the conversion happening at line 70 in this file and also in EventPublisher at line 94(convertToKafkaHeader). We can refer \u0027https://docs.spring.io/spring-kafka/api/org/springframework/kafka/annotation/KafkaListener.html\u0027\n\nIf you fell good to continue with the one you written, I am ok, but for avoiding the conversion to Map externally(line 71). we can use \u0027@Headers Map\u003cString, Object\u003e at line 62 as a parameter)\u0027",
+      "range": {
+        "startLine": 62,
+        "startChar": 34,
+        "endLine": 62,
+        "endChar": 112
+      },
+      "revId": "706ba26f7dac0d733a244581e6cc741e94e13c30",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "739b3324_bbdc4415",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avc/AvcEventConsumer.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-05-10T10:31:42Z",
+      "side": 1,
+      "message": "yeah..both are fine.\nBut i will implement this suggestion.",
+      "parentUuid": "cacf488f_597564db",
       "range": {
         "startLine": 62,
         "startChar": 34,
@@ -162,6 +234,30 @@
       "revId": "706ba26f7dac0d733a244581e6cc741e94e13c30",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f660f23f_13f9d078",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avc/AvcEventConsumer.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-05-10T10:31:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bf3e98e5_6ef55728",
+      "range": {
+        "startLine": 67,
+        "startChar": 16,
+        "endLine": 67,
+        "endChar": 35
+      },
+      "revId": "706ba26f7dac0d733a244581e6cc741e94e13c30",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
