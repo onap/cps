@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c570bb29_fb6fd3fd",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-11T15:52:52Z",
+      "side": 1,
+      "message": "FYI: this order change was important as storeSchemaSet includes its own validation of the yang resources which was impossible to test (failure) with the original order as timedYangTextSchemaSourceSetBuilder.getYangTextSchemaSourceSet als throw an error when invalid yang is passed in. In any case nothing gets stored when teh yang is invalid...",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 106
+      },
+      "revId": "26a51754dd8aa9b467bcb442e6042f22af2ba001",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}

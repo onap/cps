@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b40047f1_01265448",
+        "filename": "cps-ri/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-11T15:52:52Z",
+      "side": 1,
+      "message": "I need to take these out again",
+      "range": {
+        "startLine": 151,
+        "startChar": 0,
+        "endLine": 155,
+        "endChar": 40
+      },
+      "revId": "f97f20304029760a41116c4133d3b5532de9f968",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
