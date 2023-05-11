@@ -21,10 +21,13 @@
 package org.onap.cps.ncmp.api.impl.events.lcm;
 
 import io.micrometer.core.annotation.Timed;
+import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.impl.events.EventsPublisher;
-import org.onap.ncmp.cmhandle.event.lcm.LcmEvent;
+import org.onap.cps.ncmp.events.lcm.v1.LcmEvent;
+import org.onap.cps.ncmp.events.lcm.v1.LcmEventHeader;
+import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.KafkaException;
 import org.springframework.stereotype.Service;
@@ -39,6 +42,7 @@ import org.springframework.stereotype.Service;
 public class LcmEventsService {
 
     private final EventsPublisher<LcmEvent> eventsPublisher;
+    private final JsonObjectMapper jsonObjectMapper;
 
     @Value("${app.lcm.events.topic:ncmp-events}")
     private String topicName;
@@ -50,14 +54,35 @@ public class LcmEventsService {
      * Publish the LcmEvent to the public topic.
      *
      * @param cmHandleId Cm Handle Id
-     * @param lcmEvent  Lcm Event
+     * @param lcmEvent   Lcm Event
      */
-    @Timed(value = "cps.ncmp.lcm.events.publish",
-        description = "Time taken to publish a LCM event")
+    @Timed(value = "cps.ncmp.lcm.events.publish", description = "Time taken to publish a LCM event")
     public void publishLcmEvent(final String cmHandleId, final LcmEvent lcmEvent) {
         if (notificationsEnabled) {
             try {
                 eventsPublisher.publishEvent(topicName, cmHandleId, lcmEvent);
+            } catch (final KafkaException e) {
+                log.error("Unable to publish message to topic : {} and cause : {}", topicName, e.getMessage());
+            }
+        } else {
+            log.debug("Notifications disabled.");
+        }
+    }
+
+    /**
+     * Publish the LcmEvent with header to the public topic.
+     *
+     * @param cmHandleId Cm Handle Id
+     * @param lcmEvent   Lcm Event
+     * @param lcmEventHeader Lcm Event Header
+     */
+    @Timed(value = "cps.ncmp.lcm.events.publish", description = "Time taken to publish a LCM event")
+    public void publishLcmEvent(final String cmHandleId, final LcmEvent lcmEvent, final LcmEventHeader lcmEventHeader) {
+        if (notificationsEnabled) {
+            try {
+                final Map<String, Object> lcmEventHeadersMap =
+                        jsonObjectMapper.convertToValueType(lcmEventHeader, Map.class);
+                eventsPublisher.publishEvent(topicName, cmHandleId, lcmEventHeadersMap, lcmEvent);
             } catch (final KafkaException e) {
                 log.error("Unable to publish message to topic : {} and cause : {}", topicName, e.getMessage());
             }

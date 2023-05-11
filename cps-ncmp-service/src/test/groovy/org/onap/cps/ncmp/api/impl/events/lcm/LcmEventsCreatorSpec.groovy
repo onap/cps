@@ -20,10 +20,11 @@
 
 package org.onap.cps.ncmp.api.impl.events.lcm
 
+import org.mapstruct.factory.Mappers
 import org.onap.cps.ncmp.api.inventory.CmHandleState
 import org.onap.cps.ncmp.api.inventory.CompositeState
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
-import org.onap.ncmp.cmhandle.event.lcm.Values
+import org.onap.cps.ncmp.events.lcm.v1.Values
 import spock.lang.Specification
 
 import static org.onap.cps.ncmp.api.inventory.CmHandleState.ADVISED
@@ -32,7 +33,9 @@ import static org.onap.cps.ncmp.api.inventory.CmHandleState.READY
 
 class LcmEventsCreatorSpec extends Specification {
 
-    def objectUnderTest = new LcmEventsCreator()
+    LcmEventHeaderMapper lcmEventsHeaderMapper = Mappers.getMapper(LcmEventHeaderMapper)
+
+    def objectUnderTest = new LcmEventsCreator(lcmEventsHeaderMapper)
     def cmHandleId = 'test-cm-handle'
 
     def 'Map the LcmEvent for #operation'() {
