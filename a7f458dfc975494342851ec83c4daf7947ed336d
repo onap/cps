@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8b606865_07b0e2b8",
+        "filename": "cps-path-parser/src/main/antlr4/org/onap/cps/cpspath/parser/antlr4/CpsPath.g4",
+        "patchSetId": 22
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-11T07:14:17Z",
+      "side": 1,
+      "message": "NB: you could change his to comparativeOperators  too, it wil help catching specific errors",
+      "range": {
+        "startLine": 58,
+        "startChar": 41,
+        "endLine": 58,
+        "endChar": 43
+      },
+      "revId": "a7f458dfc975494342851ec83c4daf7947ed336d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a85f211a_315ca3c7",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-11T07:14:17Z",
+      "side": 1,
+      "message": "I don\u0027t think you can reach this code!  because it wouldn\u0027t match the leafCondition rule\nUnless you have a test (i would be very curious to see  it) that actually covers this you can remove this line",
+      "range": {
+        "startLine": 101,
+        "startChar": 12,
+        "endLine": 101,
+        "endChar": 117
+      },
+      "revId": "a7f458dfc975494342851ec83c4daf7947ed336d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d2cc9a09_85ea0b22",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-11T07:14:17Z",
+      "side": 1,
+      "message": "please show me any test, i dont think these null-check are needed and they will drive down code coverage stats",
+      "range": {
+        "startLine": 110,
+        "startChar": 12,
+        "endLine": 110,
+        "endChar": 46
+      },
+      "revId": "a7f458dfc975494342851ec83c4daf7947ed336d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4edf9ac3_58364105",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-11T07:14:17Z",
+      "side": 1,
+      "message": "please show me any test, i dont think these null-check are needed and they will drive down code coverage stats",
+      "range": {
+        "startLine": 121,
+        "startChar": 8,
+        "endLine": 121,
+        "endChar": 53
+      },
+      "revId": "a7f458dfc975494342851ec83c4daf7947ed336d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ac745969_fef1388e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-11T07:14:17Z",
+      "side": 1,
+      "message": "again, is it possible it is NOT set?! I dont think so",
+      "range": {
+        "startLine": 177,
+        "startChar": 15,
+        "endLine": 177,
+        "endChar": 84
+      },
+      "revId": "a7f458dfc975494342851ec83c4daf7947ed336d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "052aa7f5_0c17ec38",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-11T07:14:17Z",
+      "side": 1,
+      "message": "NB: capital P is actual correct although we might not have been consistent in the past\nso i you want you can set all occurrences in this file to cpsPath",
+      "range": {
+        "startLine": 58,
+        "startChar": 108,
+        "endLine": 58,
+        "endChar": 109
+      },
+      "revId": "a7f458dfc975494342851ec83c4daf7947ed336d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
