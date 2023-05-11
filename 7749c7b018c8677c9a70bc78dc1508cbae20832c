@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3c9d50d8_4066b591",
+        "filename": "cps-path-parser/src/main/antlr4/org/onap/cps/cpspath/parser/antlr4/CpsPath.g4",
+        "patchSetId": 20
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2023-05-11T12:24:13Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "d9fa995e_b94b9e62",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 98
+      },
+      "revId": "7749c7b018c8677c9a70bc78dc1508cbae20832c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a9ac39ff_6fdc788e",
         "filename": "cps-path-parser/src/main/antlr4/org/onap/cps/cpspath/parser/antlr4/CpsPath.g4",
         "patchSetId": 20
