@@ -20,10 +20,11 @@
 
 package org.onap.cps.ncmp.api.impl.events.lcm
 
+import org.mapstruct.factory.Mappers
 import org.onap.cps.ncmp.api.inventory.CmHandleState
 import org.onap.cps.ncmp.api.inventory.CompositeState
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
-import org.onap.ncmp.cmhandle.event.lcm.Values
+import org.onap.cps.ncmp.events.lcm.v1.Values
 import spock.lang.Specification
 
 import static org.onap.cps.ncmp.api.inventory.CmHandleState.ADVISED
@@ -32,7 +33,9 @@ import static org.onap.cps.ncmp.api.inventory.CmHandleState.READY
 
 class LcmEventsCreatorSpec extends Specification {
 
-    def objectUnderTest = new LcmEventsCreator()
+    LcmEventHeaderMapper lcmEventsHeaderMapper = Mappers.getMapper(LcmEventHeaderMapper)
+
+    def objectUnderTest = new LcmEventsCreator(lcmEventsHeaderMapper)
     def cmHandleId = 'test-cm-handle'
 
     def 'Map the LcmEvent for #operation'() {
@@ -158,5 +161,16 @@ class LcmEventsCreatorSpec extends Specification {
             'true to true'   | true                       | true
             'null to null'   | null                       | null
 
+    }
+
+    def 'Map the LcmEventHeader'() {
+        given: 'NCMP cm handle details with current and old details'
+            def existingNcmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, compositeState: new CompositeState(cmHandleState: ADVISED))
+            def targetNcmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, compositeState: new CompositeState(cmHandleState: READY))
+        when: 'the event header is populated'
+            def result = objectUnderTest.populateLcmEventHeader(cmHandleId, targetNcmpServiceCmHandle, existingNcmpServiceCmHandle)
+        then: 'the header has fields populated'
+            assert result.eventCorrelationId == cmHandleId
+            assert result.eventId != null
     }
 }
