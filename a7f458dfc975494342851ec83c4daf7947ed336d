@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "fb1c0cb9_4cb5839f",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-11T07:36:00Z",
+      "side": 1,
+      "message": "you need this because you had no \u0027else\u0027 on line 93! I restructured the method like so and all test are passing:\n\n\n        Object comparisonValue;\n        if (ctx.IntegerLiteral() !\u003d null) {\n            comparisonValue \u003d Integer.valueOf(ctx.IntegerLiteral().getText());\n        } else {\n            if (ctx.StringLiteral() !\u003d null) {\n                final boolean wasWrappedInDoubleQuote \u003d ctx.StringLiteral().getText().startsWith(\"\\\"\");\n                comparisonValue \u003d stripFirstAndLastCharacter(ctx.StringLiteral().getText());\n                if (wasWrappedInDoubleQuote) {\n                    comparisonValue \u003d String.valueOf(comparisonValue).replace(\"\u0027\", \"\\\\\u0027\");\n                }\n            } else {\n                throw new PathParsingException(\n                    \"Unsupported comparison value encountered in expression\" + ctx.getText());\n            }\n        }",
+      "parentUuid": "a85f211a_315ca3c7",
+      "range": {
+        "startLine": 101,
+        "startChar": 12,
+        "endLine": 101,
+        "endChar": 117
+      },
+      "revId": "a7f458dfc975494342851ec83c4daf7947ed336d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d2cc9a09_85ea0b22",
         "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
         "patchSetId": 22
