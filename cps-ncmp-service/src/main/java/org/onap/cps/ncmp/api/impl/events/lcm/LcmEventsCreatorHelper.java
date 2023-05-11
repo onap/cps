@@ -34,7 +34,7 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
-import org.onap.ncmp.cmhandle.event.lcm.Values;
+import org.onap.cps.ncmp.events.lcm.v1.Values;
 
 /**
  * LcmEventsCreatorHelper has helper methods to create LcmEvent.
