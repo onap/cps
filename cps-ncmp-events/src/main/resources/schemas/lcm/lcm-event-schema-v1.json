@@ -55,7 +55,7 @@
     "LcmEvent": {
       "description": "The payload for LCM event",
       "type": "object",
-      "javaType" : "org.onap.ncmp.cmhandle.event.lcm.LcmEvent",
+      "javaType" : "org.onap.cps.ncmp.events.lcm.v1.LcmEvent",
       "properties": {
         "eventId": {
           "description": "The unique id identifying the event",
