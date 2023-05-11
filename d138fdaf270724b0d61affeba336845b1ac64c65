@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f42ad96f_e2dc9cd7",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-05-11T09:40:15Z",
+      "side": 1,
+      "message": "suggestion to make it clearer... \u003e\nanchor which causes repeated anchor name in response. As part of future release......",
+      "range": {
+        "startLine": 83,
+        "startChar": 107,
+        "endLine": 84,
+        "endChar": 47
+      },
+      "revId": "d138fdaf270724b0d61affeba336845b1ac64c65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
