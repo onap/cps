@@ -43,7 +43,8 @@ import org.onap.cps.ncmp.api.inventory.CompositeState;
 import org.onap.cps.ncmp.api.inventory.CompositeStateUtils;
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
-import org.onap.ncmp.cmhandle.event.lcm.LcmEvent;
+import org.onap.cps.ncmp.events.lcm.v1.LcmEvent;
+import org.onap.cps.ncmp.events.lcm.v1.LcmEventHeader;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
@@ -76,7 +77,7 @@ public class LcmEventsCmHandleStateHandlerImpl implements LcmEventsCmHandleState
 
     @Override
     @Timed(value = "cps.ncmp.cmhandle.state.update.batch",
-        description = "Time taken to update a batch of cm handle states")
+            description = "Time taken to update a batch of cm handle states")
     public void updateCmHandleStateBatch(final Map<YangModelCmHandle, CmHandleState> cmHandleStatePerCmHandle) {
         final Collection<CmHandleTransitionPair> cmHandleTransitionPairs =
                 prepareCmHandleTransitionBatch(cmHandleStatePerCmHandle);
@@ -106,9 +107,12 @@ public class LcmEventsCmHandleStateHandlerImpl implements LcmEventsCmHandleState
     private void publishLcmEvent(final NcmpServiceCmHandle targetNcmpServiceCmHandle,
             final NcmpServiceCmHandle existingNcmpServiceCmHandle) {
         final String cmHandleId = targetNcmpServiceCmHandle.getCmHandleId();
+        final LcmEventHeader lcmEventHeader =
+                lcmEventsCreator.populateLcmEventHeader(cmHandleId, targetNcmpServiceCmHandle,
+                        existingNcmpServiceCmHandle);
         final LcmEvent lcmEvent =
                 lcmEventsCreator.populateLcmEvent(cmHandleId, targetNcmpServiceCmHandle, existingNcmpServiceCmHandle);
-        lcmEventsService.publishLcmEvent(cmHandleId, lcmEvent);
+        lcmEventsService.publishLcmEvent(cmHandleId, lcmEvent, lcmEventHeader);
     }
 
     private Collection<CmHandleTransitionPair> prepareCmHandleTransitionBatch(
@@ -221,6 +225,7 @@ public class LcmEventsCmHandleStateHandlerImpl implements LcmEventsCmHandleState
     @Setter
     @NoArgsConstructor
     static class CmHandleTransitionPair {
+
         private YangModelCmHandle currentYangModelCmHandle;
         private YangModelCmHandle targetYangModelCmHandle;
     }

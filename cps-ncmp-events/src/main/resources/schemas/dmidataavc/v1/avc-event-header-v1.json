@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2019-09/schema",
-  "$id": "urn:cps:org.onap.cps.ncmp.events:avc-event-headers-schema:v1",
+  "$id": "urn:cps:org.onap.cps.ncmp.events:avc-event-header-schema:v1",
   "$ref": "#/definitions/AvcEventHeader",
   "definitions": {
     "AvcEventHeader": {

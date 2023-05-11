@@ -24,10 +24,10 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import org.apache.kafka.clients.consumer.KafkaConsumer
 import org.onap.cps.ncmp.api.impl.events.EventsPublisher
 import org.onap.cps.ncmp.api.kafka.MessagingBaseSpec
+import org.onap.cps.ncmp.events.lcm.v1.Event
+import org.onap.cps.ncmp.events.lcm.v1.LcmEvent
 import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.utils.JsonObjectMapper
-import org.onap.ncmp.cmhandle.event.lcm.Event
-import org.onap.ncmp.cmhandle.event.lcm.LcmEvent
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -55,19 +55,35 @@ class LcmEventsPublisherSpec extends MessagingBaseSpec {
     def 'Produce and Consume Lcm Event'() {
         given: 'event key and event data'
             def eventKey = 'lcm'
+            def eventId = 'test-uuid'
+            def eventCorrelationId = 'cmhandle-test'
+            def eventSource = 'org.onap.ncmp'
+            def eventTime = '2022-12-31T20:30:40.000+0000'
+            def eventType = 'org.onap.ncmp.cmhandle.lcm.event'
+            def eventSchema = 'org.onap.ncmp.cmhandle.lcm.event'
+            def eventSchemaVersion = 'v1'
             def eventData = new LcmEvent(
-                eventId: 'test-uuid',
-                eventCorrelationId: 'cmhandle-as-correlationid',
-                eventSource: 'org.onap.ncmp',
-                eventTime: '2022-12-31T20:30:40.000+0000',
-                eventType: 'org.onap.ncmp.cmhandle.lcm.event',
-                eventSchema: 'org.onap.ncmp.cmhandle.lcm.event',
-                eventSchemaVersion: 'v1',
+                eventId: eventId,
+                eventCorrelationId: eventCorrelationId,
+                eventSource: eventSource,
+                eventTime: eventTime,
+                eventType: eventType,
+                eventSchema: eventSchema,
+                eventSchemaVersion: eventSchemaVersion,
                 event: new Event(cmHandleId: 'cmhandle-test'))
+        and: 'we have a event header'
+            def eventHeader = [
+                eventId           : eventId,
+                eventCorrelationId: eventCorrelationId,
+                eventSource       : eventSource,
+                eventTime         : eventTime,
+                eventType         : eventType,
+                eventSchema       : eventSchema,
+                eventSchemaVersion: eventSchemaVersion]
         and: 'consumer has a subscription'
             kafkaConsumer.subscribe([testTopic] as List<String>)
         when: 'an event is published'
-            lcmEventsPublisher.publishEvent(testTopic, eventKey, eventData)
+            lcmEventsPublisher.publishEvent(testTopic, eventKey, eventHeader, eventData)
         and: 'topic is polled'
             def records = kafkaConsumer.poll(Duration.ofMillis(1500))
         then: 'poll returns one record'
