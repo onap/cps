@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4defa214_6f305906",
+        "filename": "cps-path-parser/src/main/antlr4/org/onap/cps/cpspath/parser/antlr4/CpsPath.g4",
+        "patchSetId": 23
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-05-11T15:01:20Z",
+      "side": 1,
+      "message": "AT leafName EQ StringLiteral | AT leafName comparativeOperators IntegerLiteral",
+      "range": {
+        "startLine": 50,
+        "startChar": 16,
+        "endLine": 50,
+        "endChar": 113
+      },
+      "revId": "56550585fc0b6993265ee27efd1b5496f18f49f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b74a143e_e26a34ab",
+        "filename": "cps-path-parser/src/main/antlr4/org/onap/cps/cpspath/parser/antlr4/CpsPath.g4",
+        "patchSetId": 23
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-05-11T15:01:20Z",
+      "side": 1,
+      "message": "What are these operators used for? When I tested, I got SQL ERROR: \"operator does not exist: integer \u003d\u003c unknown\"",
+      "range": {
+        "startLine": 78,
+        "startChar": 11,
+        "endLine": 80,
+        "endChar": 11
+      },
+      "revId": "56550585fc0b6993265ee27efd1b5496f18f49f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7bdcf005_961a81d2",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-05-11T15:01:20Z",
+      "side": 1,
+      "message": "else if",
+      "range": {
+        "startLine": 87,
+        "startChar": 15,
+        "endLine": 88,
+        "endChar": 12
+      },
+      "revId": "56550585fc0b6993265ee27efd1b5496f18f49f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e4f8994d_2f8ed5b4",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathComparativeOperatorType.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-05-11T15:01:20Z",
+      "side": 1,
+      "message": "Word \"Type\" not needed",
+      "range": {
+        "startLine": 23,
+        "startChar": 38,
+        "endLine": 23,
+        "endChar": 42
+      },
+      "revId": "56550585fc0b6993265ee27efd1b5496f18f49f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "14029a31_ce6c8b57",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathComparativeOperatorType.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-05-11T15:01:20Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 28,
+        "startChar": 13,
+        "endLine": 30,
+        "endChar": 13
+      },
+      "revId": "56550585fc0b6993265ee27efd1b5496f18f49f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e5f68dfc_9f092075",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathComparativeOperatorType.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-05-11T15:01:20Z",
+      "side": 1,
+      "message": "label",
+      "range": {
+        "startLine": 32,
+        "startChar": 25,
+        "endLine": 32,
+        "endChar": 31
+      },
+      "revId": "56550585fc0b6993265ee27efd1b5496f18f49f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
