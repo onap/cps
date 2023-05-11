@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "0bea847e_5e823f0a",
+        "filename": "cps-path-parser/src/main/antlr4/org/onap/cps/cpspath/parser/antlr4/CpsPath.g4",
+        "patchSetId": 23
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-11T16:03:54Z",
+      "side": 1,
+      "message": "agreed, i missed that",
+      "parentUuid": "4defa214_6f305906",
+      "range": {
+        "startLine": 50,
+        "startChar": 16,
+        "endLine": 50,
+        "endChar": 113
+      },
+      "revId": "56550585fc0b6993265ee27efd1b5496f18f49f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b74a143e_e26a34ab",
         "filename": "cps-path-parser/src/main/antlr4/org/onap/cps/cpspath/parser/antlr4/CpsPath.g4",
         "patchSetId": 23
@@ -36,6 +60,30 @@
       "writtenOn": "2023-05-11T15:01:20Z",
       "side": 1,
       "message": "What are these operators used for? When I tested, I got SQL ERROR: \"operator does not exist: integer \u003d\u003c unknown\"",
+      "range": {
+        "startLine": 78,
+        "startChar": 11,
+        "endLine": 80,
+        "endChar": 11
+      },
+      "revId": "56550585fc0b6993265ee27efd1b5496f18f49f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "49b07677_766f0d0c",
+        "filename": "cps-path-parser/src/main/antlr4/org/onap/cps/cpspath/parser/antlr4/CpsPath.g4",
+        "patchSetId": 23
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-11T16:03:54Z",
+      "side": 1,
+      "message": "oops, I had assumed SQL would support them too. If not we have to remove them again\nIts inconsistent with xpath language but we can live with it and I don\u0027t think anyone will notice\n(as long as we clearly document the supported operators in the forthcomming dcx)",
+      "parentUuid": "b74a143e_e26a34ab",
       "range": {
         "startLine": 78,
         "startChar": 11,
@@ -133,6 +181,29 @@
         "startChar": 25,
         "endLine": 32,
         "endChar": 31
+      },
+      "revId": "56550585fc0b6993265ee27efd1b5496f18f49f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "63a041a8_229dbc51",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathComparativeOperatorType.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-11T16:03:54Z",
+      "side": 1,
+      "message": "label",
+      "range": {
+        "startLine": 34,
+        "startChar": 48,
+        "endLine": 34,
+        "endChar": 54
       },
       "revId": "56550585fc0b6993265ee27efd1b5496f18f49f7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
