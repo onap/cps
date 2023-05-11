@@ -69,5 +69,7 @@ python3 -m pip install --upgrade --extra-index-url="https://nexus3.onap.org/repo
 
 echo "Versioning information:"
 python3 --version
+echo "Trying to override setuptools version with 65.7.0"
+pip install setuptools==65.7.0
 pip freeze
 python3 -m robot.run --version || :
