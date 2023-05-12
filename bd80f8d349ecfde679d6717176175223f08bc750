@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ee2cfae5_ac7c3095",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/entities/FragmentEntityArranger.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-05-12T12:23:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "48d45ead_9255e1db",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 23
+      },
+      "revId": "bd80f8d349ecfde679d6717176175223f08bc750",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0b0349cc_2091e8d2",
         "filename": "cps-ri/src/main/resources/changelog/db/changes/19-repopulate-dataspace-id-for-rollback.sql",
         "patchSetId": 6
@@ -39,6 +63,24 @@
       "revId": "bd80f8d349ecfde679d6717176175223f08bc750",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0cc6efb5_5b647220",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/19-repopulate-dataspace-id-for-rollback.sql",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-05-12T12:23:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0b0349cc_2091e8d2",
+      "revId": "bd80f8d349ecfde679d6717176175223f08bc750",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "488d4c86_79350930",
+        "filename": "cps-ri/src/test/resources/data/fragment.sql",
+        "patchSetId": 6
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-05-12T12:23:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b6564724_9270e57d",
+      "range": {
+        "startLine": 3,
+        "startChar": 23,
+        "endLine": 3,
+        "endChar": 28
+      },
+      "revId": "bd80f8d349ecfde679d6717176175223f08bc750",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f0af4462_6de89747",
         "filename": "cps-ri/src/test/resources/data/perf-test.sql",
         "patchSetId": 6
@@ -88,6 +154,30 @@
     },
     {
       "key": {
+        "uuid": "3884d797_6965ad43",
+        "filename": "cps-ri/src/test/resources/data/perf-test.sql",
+        "patchSetId": 6
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-05-12T12:23:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f0af4462_6de89747",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 23
+      },
+      "revId": "bd80f8d349ecfde679d6717176175223f08bc750",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e5ff3a7_a96f3433",
         "filename": "cps-ri/src/test/resources/data/schemaset.sql",
         "patchSetId": 6
@@ -108,6 +198,30 @@
       "revId": "bd80f8d349ecfde679d6717176175223f08bc750",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f2a81b9_ab5fe56e",
+        "filename": "cps-ri/src/test/resources/data/schemaset.sql",
+        "patchSetId": 6
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-05-12T12:23:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e5ff3a7_a96f3433",
+      "range": {
+        "startLine": 4,
+        "startChar": 37,
+        "endLine": 4,
+        "endChar": 42
+      },
+      "revId": "bd80f8d349ecfde679d6717176175223f08bc750",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
