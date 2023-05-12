@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "dcad5037_f7c9f05d",
+        "filename": "cps-path-parser/src/main/antlr4/org/onap/cps/cpspath/parser/antlr4/CpsPath.g4",
+        "patchSetId": 23
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2023-05-12T09:27:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0bea847e_5e823f0a",
+      "range": {
+        "startLine": 50,
+        "startChar": 16,
+        "endLine": 50,
+        "endChar": 113
+      },
+      "revId": "56550585fc0b6993265ee27efd1b5496f18f49f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b74a143e_e26a34ab",
         "filename": "cps-path-parser/src/main/antlr4/org/onap/cps/cpspath/parser/antlr4/CpsPath.g4",
         "patchSetId": 23
@@ -96,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "bc24d2b1_cb4d8f6f",
+        "filename": "cps-path-parser/src/main/antlr4/org/onap/cps/cpspath/parser/antlr4/CpsPath.g4",
+        "patchSetId": 23
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2023-05-12T09:27:06Z",
+      "side": 1,
+      "message": "I though i have written test scenario for this but i didnt write any test.yes, this is throwing error",
+      "parentUuid": "49b07677_766f0d0c",
+      "range": {
+        "startLine": 78,
+        "startChar": 11,
+        "endLine": 80,
+        "endChar": 11
+      },
+      "revId": "56550585fc0b6993265ee27efd1b5496f18f49f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7bdcf005_961a81d2",
         "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
         "patchSetId": 23
@@ -116,6 +164,30 @@
       "revId": "56550585fc0b6993265ee27efd1b5496f18f49f7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b73e93c0_bf24e521",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2023-05-12T09:27:06Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "7bdcf005_961a81d2",
+      "range": {
+        "startLine": 87,
+        "startChar": 15,
+        "endLine": 88,
+        "endChar": 12
+      },
+      "revId": "56550585fc0b6993265ee27efd1b5496f18f49f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -142,6 +214,30 @@
     },
     {
       "key": {
+        "uuid": "b50a6b10_e3748507",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathComparativeOperatorType.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2023-05-12T09:27:06Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "e4f8994d_2f8ed5b4",
+      "range": {
+        "startLine": 23,
+        "startChar": 38,
+        "endLine": 23,
+        "endChar": 42
+      },
+      "revId": "56550585fc0b6993265ee27efd1b5496f18f49f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "14029a31_ce6c8b57",
         "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathComparativeOperatorType.java",
         "patchSetId": 23
@@ -162,6 +258,30 @@
       "revId": "56550585fc0b6993265ee27efd1b5496f18f49f7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "61ad9938_f5899670",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathComparativeOperatorType.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2023-05-12T09:27:06Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "14029a31_ce6c8b57",
+      "range": {
+        "startLine": 28,
+        "startChar": 13,
+        "endLine": 30,
+        "endChar": 13
+      },
+      "revId": "56550585fc0b6993265ee27efd1b5496f18f49f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -188,6 +308,30 @@
     },
     {
       "key": {
+        "uuid": "3eea8e21_db3490f5",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathComparativeOperatorType.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2023-05-12T09:27:06Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "e5f68dfc_9f092075",
+      "range": {
+        "startLine": 32,
+        "startChar": 25,
+        "endLine": 32,
+        "endChar": 31
+      },
+      "revId": "56550585fc0b6993265ee27efd1b5496f18f49f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "63a041a8_229dbc51",
         "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathComparativeOperatorType.java",
         "patchSetId": 23
@@ -208,6 +352,30 @@
       "revId": "56550585fc0b6993265ee27efd1b5496f18f49f7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8bc14fe3_21be9c43",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathComparativeOperatorType.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2023-05-12T09:27:06Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "63a041a8_229dbc51",
+      "range": {
+        "startLine": 34,
+        "startChar": 48,
+        "endLine": 34,
+        "endChar": 54
+      },
+      "revId": "56550585fc0b6993265ee27efd1b5496f18f49f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }

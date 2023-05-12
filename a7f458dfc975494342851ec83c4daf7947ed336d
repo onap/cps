@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "10e1c941_d4bab01a",
+        "filename": "cps-path-parser/src/main/antlr4/org/onap/cps/cpspath/parser/antlr4/CpsPath.g4",
+        "patchSetId": 22
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2023-05-12T09:27:06Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "56bd2c9d_703d38dd",
+      "range": {
+        "startLine": 79,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 0
+      },
+      "revId": "a7f458dfc975494342851ec83c4daf7947ed336d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a85f211a_315ca3c7",
         "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
         "patchSetId": 22
