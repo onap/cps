@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cebeb099_210c44d5",
+        "filename": "cps-path-parser/src/main/antlr4/org/onap/cps/cpspath/parser/antlr4/CpsPath.g4",
+        "patchSetId": 24
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-05-12T09:32:09Z",
+      "side": 1,
+      "message": "Hmm, this change made the CpsPathBuilder a lot more complex.\n\nAlso, I forgot that we do allow mixing integer/string literals, for example both of these are valid in our current system:\n- @price\u003d10\n- @price\u003d\u002710\u0027\n\nThis is a little tricky, because we don\u0027t want to allow any comparison with strings, like @title \u003c \"abc\". But we do want to store \"\u003d\" as comparativeOperator, even for string. I can\u0027t think of an easy solution, because the parser doesn\u0027t know the actual types of the leaves (that info is only in the yang model). I guess it is okay if we let the SQL query handle those cases.\n\nSo we should just revert this change, to keep the implementation simple.",
+      "revId": "0d7b0e5a79be46d75dd016eb86201f81571fe74e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "34c71b47_95bd97cd",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-05-12T09:32:09Z",
+      "side": 1,
+      "message": "Revert this",
+      "range": {
+        "startLine": 196,
+        "startChar": 55,
+        "endLine": 201,
+        "endChar": 9
+      },
+      "revId": "0d7b0e5a79be46d75dd016eb86201f81571fe74e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "988be575_bd12b50d",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-05-12T09:32:09Z",
+      "side": 1,
+      "message": "Revert this",
+      "range": {
+        "startLine": 211,
+        "startChar": 35,
+        "endLine": 227,
+        "endChar": 106
+      },
+      "revId": "0d7b0e5a79be46d75dd016eb86201f81571fe74e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
