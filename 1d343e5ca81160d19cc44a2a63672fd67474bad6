@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d9575e95_57c0c2c0",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/dmidataavc/v1/avc-event-header-v1.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-05-15T13:17:09Z",
+      "side": 1,
+      "message": "How is that sound if we would have a common EventHeader schema for both AVC, and LCM. Since I saw that either have exactly the same fields. The only difference is on \"required\" block.\n\nWe may discuss about having a common header object with some generic fields.",
+      "range": {
+        "startLine": 6,
+        "startChar": 5,
+        "endLine": 6,
+        "endChar": 19
+      },
+      "revId": "1d343e5ca81160d19cc44a2a63672fd67474bad6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7d23e313_bfaebbf8",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/dmidataavc/v1/avc-event-schema-v1.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-05-15T13:17:09Z",
+      "side": 1,
+      "message": "Since this is an internal object, shall it start with a capital E like Event? A similar object exists at line 34 in lcm-event-schema-v1.json",
+      "range": {
+        "startLine": 11,
+        "startChar": 9,
+        "endLine": 11,
+        "endChar": 14
+      },
+      "revId": "1d343e5ca81160d19cc44a2a63672fd67474bad6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ea3ca7c_e9cf51a8",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/lcm/v1/lcm-event-header-v1.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-05-15T13:17:09Z",
+      "side": 1,
+      "message": "Same as avc-event-header-v1.json\n\nHow is that sound if we would have a common EventHeader schema for both AVC, and LCM. Since I saw that either have exactly the same fields. The only difference is on \"required\" block.\n\nWe may discuss about having a common header object with some generic fields.",
+      "range": {
+        "startLine": 5,
+        "startChar": 25,
+        "endLine": 5,
+        "endChar": 39
+      },
+      "revId": "1d343e5ca81160d19cc44a2a63672fd67474bad6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "17dad76e_219d538a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/lcm/LcmEventHeaderMapper.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-05-15T13:17:09Z",
+      "side": 1,
+      "message": "if the header and payload objects have exactly the same fields, then why shall we double the information on the object which is being published to message bus? To solve this issue, we could have a common header object with some generic fields. We may discuss this.",
+      "range": {
+        "startLine": 34,
+        "startChar": 4,
+        "endLine": 34,
+        "endChar": 55
+      },
+      "revId": "1d343e5ca81160d19cc44a2a63672fd67474bad6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "060d5943_483f842e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/lcm/LcmEventsCreator.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-05-15T13:17:09Z",
+      "side": 1,
+      "message": "The method name is a bit confusing, if it creates LcmEvent payload.",
+      "range": {
+        "startLine": 107,
+        "startChar": 21,
+        "endLine": 107,
+        "endChar": 35
+      },
+      "revId": "1d343e5ca81160d19cc44a2a63672fd67474bad6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6d43d50f_2cf27667",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/lcm/LcmEventsPublisherSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-05-15T13:17:09Z",
+      "side": 1,
+      "message": "As mentioned above reviews, the headers and the payload have same fields, need to be discussed.",
+      "range": {
+        "startLine": 76,
+        "startChar": 16,
+        "endLine": 76,
+        "endChar": 28
+      },
+      "revId": "1d343e5ca81160d19cc44a2a63672fd67474bad6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
