@@ -21,7 +21,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.utils.yang
+package org.onap.cps.yang
 
 
 import org.onap.cps.TestUtils
