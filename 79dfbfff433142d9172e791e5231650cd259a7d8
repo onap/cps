@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e4db8c88_634c167e",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-05-15T10:16:56Z",
+      "side": 1,
+      "message": "This is repeated, as it is clear on line 76.",
+      "range": {
+        "startLine": 83,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 42
+      },
+      "revId": "79dfbfff433142d9172e791e5231650cd259a7d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d3ee1217_17b751c3",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-05-15T10:16:56Z",
+      "side": 1,
+      "message": "array object\n\nOverall summary could be like that:\n\nIn the current solution, the response object to be returned as a combined single array object for all anchors. However, the response will be changed into array objects each represented by different anchors in the next future release.",
+      "range": {
+        "startLine": 84,
+        "startChar": 58,
+        "endLine": 84,
+        "endChar": 64
+      },
+      "revId": "79dfbfff433142d9172e791e5231650cd259a7d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
