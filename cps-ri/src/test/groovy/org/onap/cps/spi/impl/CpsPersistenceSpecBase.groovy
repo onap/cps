@@ -59,7 +59,7 @@ class CpsPersistenceSpecBase extends Specification {
     @SpringBean
     JsonObjectMapper jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
 
-    static final String CLEAR_DATA = '/data/clear-all.sql'
+    protected static final String CLEAR_DATA = '/data/clear-all.sql'
 
     static def DATASPACE_NAME = 'DATASPACE-001'
     static def SCHEMA_SET_NAME1 = 'SCHEMA-SET-001'

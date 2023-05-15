@@ -33,8 +33,8 @@ import org.springframework.test.context.ContextConfiguration
 import org.springframework.http.HttpStatus
 import spock.lang.Shared
 
-import static DatastoreType.PASSTHROUGH_OPERATIONAL
-import static DatastoreType.PASSTHROUGH_RUNNING
+import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_OPERATIONAL
+import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RUNNING
 import static org.onap.cps.ncmp.api.impl.operations.OperationEnum.CREATE
 import static org.onap.cps.ncmp.api.impl.operations.OperationEnum.READ
 import static org.onap.cps.ncmp.api.impl.operations.OperationEnum.UPDATE

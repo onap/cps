@@ -27,8 +27,8 @@ import java.time.OffsetDateTime
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 
-import static CompositeState.DataStores
-import static CompositeState.Operational
+import static org.onap.cps.ncmp.api.inventory.CompositeState.DataStores
+import static org.onap.cps.ncmp.api.inventory.CompositeState.Operational
 import static org.onap.cps.ncmp.utils.TestUtils.getResourceFileContent
 import static org.springframework.util.StringUtils.trimAllWhitespace
 
