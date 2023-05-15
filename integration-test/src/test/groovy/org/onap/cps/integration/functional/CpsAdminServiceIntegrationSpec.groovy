@@ -24,6 +24,7 @@ import org.onap.cps.api.CpsAdminService
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
 import org.onap.cps.spi.exceptions.AlreadyDefinedException
 import org.onap.cps.spi.exceptions.AnchorNotFoundException
+import org.onap.cps.spi.exceptions.DataspaceInUseException
 import org.onap.cps.spi.exceptions.DataspaceNotFoundException
 
 class CpsAdminServiceIntegrationSpec extends CpsIntegrationSpecBase {
@@ -49,6 +50,27 @@ class CpsAdminServiceIntegrationSpec extends CpsIntegrationSpecBase {
            assert thrown instanceof DataspaceNotFoundException
     }
 
+    def 'Delete dataspace with error; #scenario.'() {
+        setup: 'add some anchors if needed'
+            numberOfAnchors.times {
+                objectUnderTest.createAnchor(GENERAL_TEST_DATASPACE, BOOKSTORE_SCHEMA_SET, 'anchor' + it)
+            }
+        when: 'attempt to delete dataspace'
+            objectUnderTest.deleteDataspace(dataspaceName)
+        then: 'the correct exception is thrown with the relevant details'
+            def thrownException = thrown(expectedException)
+            thrownException.details.contains(expectedMessageDetails)
+        cleanup:
+            numberOfAnchors.times {
+                objectUnderTest.deleteAnchor(GENERAL_TEST_DATASPACE, 'anchor' + it)
+            }
+        where: 'the following data is used'
+            scenario                        | dataspaceName          | numberOfAnchors || expectedException          | expectedMessageDetails
+            'dataspace name does not exist' | 'unknown'              | 0               || DataspaceNotFoundException | 'unknown does not exist'
+            'dataspace contains schemasets' | GENERAL_TEST_DATASPACE | 0               || DataspaceInUseException    | 'contains 1 schemaset(s)'
+            'dataspace contains anchors'    | GENERAL_TEST_DATASPACE | 2               || DataspaceInUseException    | 'contains 2 anchor(s)'
+    }
+
     def 'Retrieve all dataspaces (depends on total test suite).'() {
         given: 'two addtional dataspaces are created'
             objectUnderTest.createDataspace('dataspace1')
@@ -68,7 +90,7 @@ class CpsAdminServiceIntegrationSpec extends CpsIntegrationSpecBase {
     }
 
     def 'Anchor CRUD operations.'() {
-        when: 'a anchor is created'
+        when: 'an anchor is created'
             objectUnderTest.createAnchor(GENERAL_TEST_DATASPACE, BOOKSTORE_SCHEMA_SET, 'newAnchor')
         then: 'the anchor be read'
             assert objectUnderTest.getAnchor(GENERAL_TEST_DATASPACE, 'newAnchor').name == 'newAnchor'
@@ -105,6 +127,28 @@ class CpsAdminServiceIntegrationSpec extends CpsIntegrationSpecBase {
             assert objectUnderTest.queryAnchorNames(GENERAL_TEST_DATASPACE, ['stores']).size() == 3
         and: 'there are no anchors using both "stores" and a "unused-model"'
             assert objectUnderTest.queryAnchorNames(GENERAL_TEST_DATASPACE, ['stores', 'unused-model']).size() == 0
+    }
+
+    def 'Duplicate anchors.'() {
+        given: 'an anchor is created'
+            objectUnderTest.createAnchor(GENERAL_TEST_DATASPACE, BOOKSTORE_SCHEMA_SET, 'newAnchor')
+        when: 'attempt to create another anchor with the same name'
+            objectUnderTest.createAnchor(GENERAL_TEST_DATASPACE, BOOKSTORE_SCHEMA_SET, 'newAnchor')
+        then: 'an exception is thrown that the anchor already is defined'
+            thrown(AlreadyDefinedException)
+        cleanup:
+            objectUnderTest.deleteAnchor(GENERAL_TEST_DATASPACE, 'newAnchor')
+    }
+
+    def 'Query anchors without any known modules and #scenario'() {
+        when: 'querying for anchors with #scenario'
+            def result = objectUnderTest.queryAnchorNames(dataspaceName, ['unknownModule'])
+        then: 'an empty result is returned (no error)'
+            assert result == []
+        where:
+           scenario                 | dataspaceName
+           'non existing database'  | 'nonExistingDataspace'
+           'just unknown module(s)' | GENERAL_TEST_DATASPACE
     }
 
 }

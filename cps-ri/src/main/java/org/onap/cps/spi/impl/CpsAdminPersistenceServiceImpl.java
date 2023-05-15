@@ -198,12 +198,10 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
             verifyDataspaceName(dataspaceName);
         }
         if (inputModuleNames.size() > retrievedModuleReferences.size()) {
-            final List<String> moduleNamesNotFound = inputModuleNames.stream()
+            final List<String> unknownModules = inputModuleNames.stream()
                 .filter(moduleName -> !retrievedModuleReferences.contains(moduleName))
                 .collect(Collectors.toList());
-            if (!moduleNamesNotFound.isEmpty()) {
-                throw new ModuleNamesNotFoundException(dataspaceName, moduleNamesNotFound);
-            }
+            throw new ModuleNamesNotFoundException(dataspaceName, unknownModules);
         }
     }
 
