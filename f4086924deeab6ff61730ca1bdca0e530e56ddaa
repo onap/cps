@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "88ec82e0_07ca6ba0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiDataOperations.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-15T16:54:51Z",
+      "side": 1,
+      "message": "you cannot ignore if nothing is \u0027ready\u0027.\nThis check should not be needed (and we also need to send error message for not ready cm handle but maybe that is in a diffrent commit?",
+      "range": {
+        "startLine": 112,
+        "startChar": 11,
+        "endLine": 112,
+        "endChar": 42
+      },
+      "revId": "f4086924deeab6ff61730ca1bdca0e530e56ddaa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "23e07002_37c3874f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/ResourceDataBatchRequestUtils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-15T16:54:51Z",
+      "side": 1,
+      "message": "I still need to check this out and see if it can be done simpler... Maybe we\u0027ll look together in office tomorrow!",
+      "range": {
+        "startLine": 94,
+        "startChar": 74,
+        "endLine": 103,
+        "endChar": 109
+      },
+      "revId": "f4086924deeab6ff61730ca1bdca0e530e56ddaa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c7026ad9_07c94da2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/BatchOperationDetail.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-15T16:54:51Z",
+      "side": 1,
+      "message": "See upcoming comment in other file: batchOperationDefintion might be easier term to have a plural\n\n\nSee here why \u0027detail\u0027 without s is not appropriate but to avoid messy names for java collection we can use another term like \u0027definition\u0027 :-) \nWebdiscsuion here: https://www.google.com/search?q\u003ddetail+or+details\u0026rlz\u003d1C1GCEJ_enIE1055IE1055\u0026oq\u003ddetail+v+details\u0026aqs\u003dchrome.1.69i57j0i10i512l2j0i22i30j0i390i650j69i61j69i60l2.4464j1j7\u0026sourceid\u003dchrome\u0026ie\u003dUTF-8",
+      "range": {
+        "startLine": 38,
+        "startChar": 27,
+        "endLine": 38,
+        "endChar": 33
+      },
+      "revId": "f4086924deeab6ff61730ca1bdca0e530e56ddaa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3251fd0_e254813e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/ResourceDataBatchRequest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-15T16:54:51Z",
+      "side": 1,
+      "message": "batchOperationDetails (ah, here we get the problem with single v plural :-) I wonder why you used detail whithout s :-)\nMaybe batchOperationDefintion v batchOperationDefintions",
+      "range": {
+        "startLine": 42,
+        "startChar": 39,
+        "endLine": 42,
+        "endChar": 50
+      },
+      "revId": "f4086924deeab6ff61730ca1bdca0e530e56ddaa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
