@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "5c9c5e75_d846b25d",
+        "filename": "cps-path-parser/src/main/antlr4/org/onap/cps/cpspath/parser/antlr4/CpsPath.g4",
+        "patchSetId": 24
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-05-16T13:42:04Z",
+      "side": 1,
+      "message": "Yeah, rule can be:\n  leafCondition : AT leafName comparativeOperators StringLiteral | AT leafName comparativeOperators IntegerLiteral ;",
+      "parentUuid": "078bf541_fa925620",
+      "revId": "0d7b0e5a79be46d75dd016eb86201f81571fe74e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "34c71b47_95bd97cd",
         "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
         "patchSetId": 24
