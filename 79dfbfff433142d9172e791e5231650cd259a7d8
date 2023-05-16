@@ -49,6 +49,29 @@
     },
     {
       "key": {
+        "uuid": "8115dfa9_0a59b0a7",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-05-16T10:06:48Z",
+      "side": 1,
+      "message": "Is it not for each applicable node? If it was one datanode for each anchor then the anchor should only show once?",
+      "range": {
+        "startLine": 83,
+        "startChar": 107,
+        "endLine": 83,
+        "endChar": 114
+      },
+      "revId": "79dfbfff433142d9172e791e5231650cd259a7d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d3ee1217_17b751c3",
         "filename": "docs/release-notes.rst",
         "patchSetId": 4
