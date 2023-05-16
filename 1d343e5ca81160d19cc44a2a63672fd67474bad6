@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "50cf9858_446e4d01",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/dmidataavc/v1/avc-event-header-v1.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-05-16T10:05:13Z",
+      "side": 1,
+      "message": "Yeah. We thought abt this earlier and I did the POC to have a common header and then override the required/optional parameters but that was not possible. So we agreed and decided to go ahead with separate header per schema.",
+      "parentUuid": "d9575e95_57c0c2c0",
+      "range": {
+        "startLine": 6,
+        "startChar": 5,
+        "endLine": 6,
+        "endChar": 19
+      },
+      "revId": "1d343e5ca81160d19cc44a2a63672fd67474bad6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7d23e313_bfaebbf8",
         "filename": "cps-ncmp-events/src/main/resources/schemas/dmidataavc/v1/avc-event-schema-v1.json",
         "patchSetId": 5
@@ -36,6 +60,30 @@
       "writtenOn": "2023-05-15T13:17:09Z",
       "side": 1,
       "message": "Since this is an internal object, shall it start with a capital E like Event? A similar object exists at line 34 in lcm-event-schema-v1.json",
+      "range": {
+        "startLine": 11,
+        "startChar": 9,
+        "endLine": 11,
+        "endChar": 14
+      },
+      "revId": "1d343e5ca81160d19cc44a2a63672fd67474bad6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f0aa775e_5135bbf9",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/dmidataavc/v1/avc-event-schema-v1.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-05-16T10:05:13Z",
+      "side": 1,
+      "message": "No need. Eventually it will generate a java standard class only.\ni.e the class name would still be \"Event\"",
+      "parentUuid": "7d23e313_bfaebbf8",
       "range": {
         "startLine": 11,
         "startChar": 9,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "35eb9cb8_9c9dd396",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/lcm/v1/lcm-event-header-v1.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-05-16T10:05:13Z",
+      "side": 1,
+      "message": "replied in the previous file.",
+      "parentUuid": "8ea3ca7c_e9cf51a8",
+      "range": {
+        "startLine": 5,
+        "startChar": 25,
+        "endLine": 5,
+        "endChar": 39
+      },
+      "revId": "1d343e5ca81160d19cc44a2a63672fd67474bad6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "17dad76e_219d538a",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/lcm/LcmEventHeaderMapper.java",
         "patchSetId": 5
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "ce5dc138_3cd2c108",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/lcm/LcmEventHeaderMapper.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-05-16T10:05:13Z",
+      "side": 1,
+      "message": "for the time being we are not removing the duplicated information from the payload object to maintain the backward compatibility.\nWe agreed to keep it as is for few releases and once agreed we will remove the fields from the payload section.",
+      "parentUuid": "17dad76e_219d538a",
+      "range": {
+        "startLine": 34,
+        "startChar": 4,
+        "endLine": 34,
+        "endChar": 55
+      },
+      "revId": "1d343e5ca81160d19cc44a2a63672fd67474bad6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "060d5943_483f842e",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/lcm/LcmEventsCreator.java",
         "patchSetId": 5
@@ -105,6 +201,30 @@
       "writtenOn": "2023-05-15T13:17:09Z",
       "side": 1,
       "message": "The method name is a bit confusing, if it creates LcmEvent payload.",
+      "range": {
+        "startLine": 107,
+        "startChar": 21,
+        "endLine": 107,
+        "endChar": 35
+      },
+      "revId": "1d343e5ca81160d19cc44a2a63672fd67474bad6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f819ce85_7b88cb4c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/lcm/LcmEventsCreator.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-05-16T10:05:13Z",
+      "side": 1,
+      "message": "yeah.. it actually sets the event header fields.",
+      "parentUuid": "060d5943_483f842e",
       "range": {
         "startLine": 107,
         "startChar": 21,
