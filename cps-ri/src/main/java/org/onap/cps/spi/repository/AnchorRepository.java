@@ -33,7 +33,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface AnchorRepository extends JpaRepository<AnchorEntity, Integer> {
+public interface AnchorRepository extends JpaRepository<AnchorEntity, Long> {
 
     Optional<AnchorEntity> findByDataspaceAndName(DataspaceEntity dataspaceEntity, String name);
 

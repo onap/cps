@@ -47,7 +47,7 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>,
             new DataNodeNotFoundException(anchorEntity.getDataspace().getName(), anchorEntity.getName(), xpath));
     }
 
-    List<FragmentEntity> findByAnchorIdAndXpathIn(int anchorId, String[] xpaths);
+    List<FragmentEntity> findByAnchorIdAndXpathIn(long anchorId, String[] xpaths);
 
     default List<FragmentEntity> findByAnchorAndXpathIn(final AnchorEntity anchorEntity,
                                                         final Collection<String> xpaths) {
@@ -64,41 +64,41 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>,
         return findByDataspaceIdAndXpathIn(dataspaceEntity.getId(), xpaths.toArray(new String[0]));
     }
 
-    boolean existsByAnchorId(int anchorId);
+    boolean existsByAnchorId(long anchorId);
 
     @Query("SELECT f FROM FragmentEntity f WHERE anchor = :anchor")
     List<FragmentExtract> findAllExtractsByAnchor(@Param("anchor") AnchorEntity anchorEntity);
 
     @Modifying
     @Query(value = "DELETE FROM fragment WHERE anchor_id = ANY (:anchorIds)", nativeQuery = true)
-    void deleteByAnchorIdIn(@Param("anchorIds") int[] anchorIds);
+    void deleteByAnchorIdIn(@Param("anchorIds") long[] anchorIds);
 
     default void deleteByAnchorIn(final Collection<AnchorEntity> anchorEntities) {
-        deleteByAnchorIdIn(anchorEntities.stream().map(AnchorEntity::getId).mapToInt(id -> id).toArray());
+        deleteByAnchorIdIn(anchorEntities.stream().map(AnchorEntity::getId).mapToLong(id -> id).toArray());
     }
 
     @Modifying
     @Query(value = "DELETE FROM fragment WHERE anchor_id = :anchorId AND xpath = ANY (:xpaths)", nativeQuery = true)
-    void deleteByAnchorIdAndXpaths(@Param("anchorId") int anchorId, @Param("xpaths") String[] xpaths);
+    void deleteByAnchorIdAndXpaths(@Param("anchorId") long anchorId, @Param("xpaths") String[] xpaths);
 
-    default void deleteByAnchorIdAndXpaths(final int anchorId, final Collection<String> xpaths) {
+    default void deleteByAnchorIdAndXpaths(final long anchorId, final Collection<String> xpaths) {
         deleteByAnchorIdAndXpaths(anchorId, xpaths.toArray(new String[0]));
     }
 
     @Modifying
     @Query(value = "DELETE FROM fragment f WHERE anchor_id = :anchorId AND xpath LIKE ANY (:xpathPatterns)",
         nativeQuery = true)
-    void deleteByAnchorIdAndXpathLikeAny(@Param("anchorId") int anchorId,
+    void deleteByAnchorIdAndXpathLikeAny(@Param("anchorId") long anchorId,
                                          @Param("xpathPatterns") String[] xpathPatterns);
 
-    default void deleteListsByAnchorIdAndXpaths(int anchorId, Collection<String> xpaths) {
+    default void deleteListsByAnchorIdAndXpaths(long anchorId, Collection<String> xpaths) {
         final String[] listXpathPatterns = xpaths.stream().map(xpath -> xpath + "[%").toArray(String[]::new);
         deleteByAnchorIdAndXpathLikeAny(anchorId, listXpathPatterns);
     }
 
     @Query(value = "SELECT xpath FROM fragment WHERE anchor_id = :anchorId AND xpath = ANY (:xpaths)",
         nativeQuery = true)
-    List<String> findAllXpathByAnchorIdAndXpathIn(@Param("anchorId") int anchorId,
+    List<String> findAllXpathByAnchorIdAndXpathIn(@Param("anchorId") long anchorId,
                                                   @Param("xpaths") String[] xpaths);
 
     default List<String> findAllXpathByAnchorAndXpathIn(final AnchorEntity anchorEntity,
@@ -125,11 +125,11 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>,
         + "FROM fragment f INNER JOIN parent_search p ON f.id = p.id",
         nativeQuery = true
     )
-    List<FragmentExtract> findExtractsWithDescendants(@Param("anchorId") int anchorId,
+    List<FragmentExtract> findExtractsWithDescendants(@Param("anchorId") long anchorId,
                                                       @Param("xpaths") String[] xpaths,
                                                       @Param("maxDepth") int maxDepth);
 
-    default List<FragmentExtract> findExtractsWithDescendants(final int anchorId, final Collection<String> xpaths,
+    default List<FragmentExtract> findExtractsWithDescendants(final long anchorId, final Collection<String> xpaths,
                                                               final int maxDepth) {
         return findExtractsWithDescendants(anchorId, xpaths.toArray(new String[0]), maxDepth);
     }

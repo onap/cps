@@ -346,10 +346,10 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             fragmentRepository.findExtractsWithDescendantsByIds(fragmentEntityIds, fetchDescendantsOption.getDepth());
 
         if (anchorEntity == ALL_ANCHORS) {
-            final Collection<Integer> anchorIds = fragmentExtracts.stream()
+            final Collection<Long> anchorIds = fragmentExtracts.stream()
                 .map(FragmentExtract::getAnchorId).collect(Collectors.toSet());
             final List<AnchorEntity> anchorEntities = anchorRepository.findAllById(anchorIds);
-            final Map<Integer, AnchorEntity> anchorEntityPerId = anchorEntities.stream()
+            final Map<Long, AnchorEntity> anchorEntityPerId = anchorEntities.stream()
                 .collect(Collectors.toMap(AnchorEntity::getId, Function.identity()));
             return FragmentEntityArranger.toFragmentEntityTreesAcrossAnchors(anchorEntityPerId, fragmentExtracts);
         }

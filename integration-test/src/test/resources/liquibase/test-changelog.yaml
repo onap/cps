@@ -150,7 +150,7 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                   name: dataspace_id
-                  type: BIGINT
+                  type: INTEGER
             tableName: schema_set
   - changeSet:
       id: 1-6
@@ -232,12 +232,12 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                   name: schema_set_id
-                  type: BIGINT
+                  type: INTEGER
               - column:
                   constraints:
                     nullable: false
                   name: yang_resource_id
-                  type: BIGINT
+                  type: INTEGER
             tableName: schema_set_yang_resources
   - changeSet:
       id: 1-10

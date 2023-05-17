@@ -172,7 +172,7 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         final SchemaSetEntity schemaSetEntity =
                 schemaSetRepository.getByDataspaceAndName(dataspaceEntity, schemaSetName);
-        final List<Long> allYangResourceIds =
+        final List<Integer> allYangResourceIds =
             yangResourceRepository.getResourceIdsByModuleReferences(allModuleReferences);
         yangResourceRepository.insertSchemaSetIdYangResourceId(schemaSetEntity.getId(), allYangResourceIds);
     }

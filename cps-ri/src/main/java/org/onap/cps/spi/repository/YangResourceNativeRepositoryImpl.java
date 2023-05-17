@@ -1,6 +1,6 @@
 /*-
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation.
+ *  Copyright (C) 2022-2023 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -42,14 +42,14 @@ public class YangResourceNativeRepositoryImpl implements YangResourceNativeRepos
 
     @Override
     @Transactional
-    public List<Long> getResourceIdsByModuleReferences(final Collection<ModuleReference> moduleReferences) {
+    public List<Integer> getResourceIdsByModuleReferences(final Collection<ModuleReference> moduleReferences) {
         if (moduleReferences.isEmpty()) {
             return Collections.emptyList();
         }
         final Query query = entityManager.createNativeQuery(getCombinedSelectSqlQuery(moduleReferences))
             .unwrap(org.hibernate.query.NativeQuery.class)
-            .addScalar("id", StandardBasicTypes.LONG);
-        final List<Long> yangResourceIds = query.getResultList();
+            .addScalar("id", StandardBasicTypes.INTEGER);
+        final List<Integer> yangResourceIds = query.getResultList();
         if (yangResourceIds.size() != moduleReferences.size()) {
             log.warn("ModuleReferences size : {} and QueryResult size : {}", moduleReferences.size(),
                     yangResourceIds.size());

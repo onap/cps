@@ -32,7 +32,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface YangResourceRepository extends JpaRepository<YangResourceEntity, Long>,
+public interface YangResourceRepository extends JpaRepository<YangResourceEntity, Integer>,
     YangResourceNativeRepository, SchemaSetYangResourceRepository {
 
     List<YangResourceEntity> findAllByChecksumIn(String[] checksums);
