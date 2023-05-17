@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5432827c_39b7ddc8",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/avc-subscription-event-outcome-v1.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-05-17T13:40:11Z",
+      "side": 1,
+      "message": "should be event I think?\nI would add eventType in required too",
+      "range": {
+        "startLine": 29,
+        "startChar": 9,
+        "endLine": 29,
+        "endChar": 21
+      },
+      "revId": "baad5c0c961c7ee77d12dc557579bea62bebf5f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4784e512_59599ff4",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/avc-subscription-event-outcome-v1.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-05-17T13:40:11Z",
+      "side": 1,
+      "message": "Not sure if these need to be required, could have subscription response with no rejected targets etc.",
+      "range": {
+        "startLine": 73,
+        "startChar": 13,
+        "endLine": 75,
+        "endChar": 30
+      },
+      "revId": "baad5c0c961c7ee77d12dc557579bea62bebf5f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "85d09c32_c9f7a374",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/ResponseTimeoutTask.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-05-17T13:40:11Z",
+      "side": 1,
+      "message": "logs can be removed or set to debug",
+      "range": {
+        "startLine": 69,
+        "startChar": 16,
+        "endLine": 70,
+        "endChar": 41
+      },
+      "revId": "baad5c0c961c7ee77d12dc557579bea62bebf5f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e5cd907_b53a8bd9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/ResponseTimeoutTask.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-05-17T13:40:11Z",
+      "side": 1,
+      "message": "same here",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 103
+      },
+      "revId": "baad5c0c961c7ee77d12dc557579bea62bebf5f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9ebb7dae_47852019",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/ResponseTimeoutTask.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-05-17T13:40:11Z",
+      "side": 1,
+      "message": "I think its better to have this in a separate class:\neg: SubscriptionEventResponseOutcome.generateAndSendResponse(eventId)?",
+      "range": {
+        "startLine": 83,
+        "startChar": 4,
+        "endLine": 111,
+        "endChar": 5
+      },
+      "revId": "baad5c0c961c7ee77d12dc557579bea62bebf5f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "208fbfd7_3f0b5236",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventResponseConsumer.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-05-17T13:40:11Z",
+      "side": 1,
+      "message": "This can actually be partial or full sorry my mistake\nSo a call to the db has to be made to determine",
+      "range": {
+        "startLine": 91,
+        "startChar": 8,
+        "endLine": 99,
+        "endChar": 9
+      },
+      "revId": "baad5c0c961c7ee77d12dc557579bea62bebf5f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c33b0161_bd4cbe16",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventForwarder.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-05-17T13:40:11Z",
+      "side": 1,
+      "message": "If we create an outcome response bean and pass that then we don\u0027t need to pass these three to the Runnable",
+      "range": {
+        "startLine": 106,
+        "startChar": 40,
+        "endLine": 106,
+        "endChar": 97
+      },
+      "revId": "baad5c0c961c7ee77d12dc557579bea62bebf5f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9ccc26b8_3128fbff",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventForwarder.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-05-17T13:40:11Z",
+      "side": 1,
+      "message": "I think this should be in separate aforementioned bean as it is not a forwarding, its an outcome response to what ncmp has forwarded",
+      "range": {
+        "startLine": 135,
+        "startChar": 16,
+        "endLine": 135,
+        "endChar": 47
+      },
+      "revId": "baad5c0c961c7ee77d12dc557579bea62bebf5f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
