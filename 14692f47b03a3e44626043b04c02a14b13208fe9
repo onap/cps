@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2c3b230b_47eaf26b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-17T14:24:20Z",
+      "side": 1,
+      "message": "observation: I find it strange that Postgres requires/allows a data type in the FK that is different from the one defined by the field it references...",
+      "range": {
+        "startLine": 16,
+        "startChar": 2,
+        "endLine": 17,
+        "endChar": 69
+      },
+      "revId": "14692f47b03a3e44626043b04c02a14b13208fe9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ae5ea12_b206d063",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsAdminPersistenceServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-17T14:24:20Z",
+      "side": 1,
+      "message": "This class should be deleted now (rebase?)",
+      "revId": "14692f47b03a3e44626043b04c02a14b13208fe9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
