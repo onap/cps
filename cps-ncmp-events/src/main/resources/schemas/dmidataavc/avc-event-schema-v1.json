@@ -3,16 +3,99 @@
   "$id": "urn:cps:org.onap.cps.ncmp.events:avc-event-schema:v1",
   "$ref": "#/definitions/AvcEvent",
   "definitions": {
+    "Edit": {
+      "javaType": "org.onap.cps.ncmp.events.avc.v1.Edit",
+      "additionalProperties": false,
+      "properties": {
+        "edit-id": {
+          "type": "string"
+        },
+        "operation": {
+          "type": "string"
+        },
+        "target": {
+          "type": "string"
+        },
+        "value": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "attributes": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "isHoAllowed": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          },
+          "required": [
+            "attributes"
+          ]
+        }
+      },
+      "required": [
+        "edit-id",
+        "operation",
+        "target",
+        "value"
+      ]
+    },
     "AvcEvent": {
       "description": "The payload for AVC event.",
       "type": "object",
-      "javaType" : "org.onap.cps.ncmp.events.avc.v1.AvcEvent",
+      "javaType": "org.onap.cps.ncmp.events.avc.v1.AvcEvent",
       "properties": {
         "event": {
-          "description": "The AVC event content.",
+          "description": "The AVC event content compliant with RFC8641 format",
           "type": "object",
-          "existingJavaType": "java.lang.Object",
-          "additionalProperties": false
+          "additionalProperties": false,
+          "properties": {
+            "push-change-update": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "datastore-changes": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "ietf-yang-patch:yang-patch": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "patch-id": {
+                          "type": "string"
+                        },
+                        "edit": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/definitions/Edit"
+                          }
+                        }
+                      },
+                      "required": [
+                        "patch-id",
+                        "edit"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "ietf-yang-patch:yang-patch"
+                  ]
+                }
+              },
+              "required": [
+                "datastore-changes"
+              ]
+            }
+          },
+          "required": [
+            "push-change-update"
+          ]
         }
       },
       "required": [
