@@ -9,10 +9,91 @@
       "javaType" : "org.onap.cps.ncmp.events.avc.v1.AvcEvent",
       "properties": {
         "event": {
-          "description": "The AVC event content.",
+          "description": "The AVC event content compliant with RFC8641 format",
           "type": "object",
-          "existingJavaType": "java.lang.Object",
-          "additionalProperties": false
+          "additionalProperties": false,
+          "properties": {
+            "push-change-update": {
+              "type": "object",
+              "properties": {
+                "datastore-changes": {
+                  "type": "object",
+                  "properties": {
+                    "ietf-yang-patch:yang-patch": {
+                      "type": "object",
+                      "properties": {
+                        "patch-id": {
+                          "type": "string"
+                        },
+                        "edit": {
+                          "type": "array",
+                          "items": [
+                            {
+                              "type": "object",
+                              "properties": {
+                                "edit-id": {
+                                  "type": "string"
+                                },
+                                "operation": {
+                                  "type": "string"
+                                },
+                                "target": {
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "type": "object",
+                                  "properties": {
+                                    "attributes": {
+                                      "type": "array",
+                                      "items": [
+                                        {
+                                          "type": "object",
+                                          "properties": {
+                                            "isHoAllowed": {
+                                              "type": "boolean"
+                                            }
+                                          },
+                                          "required": [
+                                            "isHoAllowed"
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "required": [
+                                    "attributes"
+                                  ]
+                                }
+                              },
+                              "required": [
+                                "edit-id",
+                                "operation",
+                                "target",
+                                "value"
+                              ]
+                            }
+                          ]
+                        }
+                      },
+                      "required": [
+                        "patch-id",
+                        "edit"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "ietf-yang-patch:yang-patch"
+                  ]
+                }
+              },
+              "required": [
+                "datastore-changes"
+              ]
+            }
+          },
+          "required": [
+            "push-change-update"
+          ]
         }
       },
       "required": [
