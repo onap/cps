@@ -58,6 +58,17 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>,
         return findByAnchorIdAndXpathIn(anchorEntity.getId(), xpaths.toArray(new String[0]));
     }
 
+    @Query(value = "SELECT * FROM fragment WHERE anchor_id = :anchorId \n"
+            + "AND xpath LIKE :escapedXpath||'[@%]' AND xpath NOT LIKE :escapedXpath||'[@%]/%[@%]'",
+            nativeQuery = true)
+    List<FragmentEntity> findListByAnchorIdAndEscapedXpath(@Param("anchorId") long anchorId,
+                                                           @Param("escapedXpath") String escapedXpath);
+
+    default List<FragmentEntity> findListByAnchorAndXpath(final AnchorEntity anchorEntity, final String xpath) {
+        final String escapedXpath = EscapeUtils.escapeForSqlLike(xpath);
+        return findListByAnchorIdAndEscapedXpath(anchorEntity.getId(), escapedXpath);
+    }
+
     @Query(value = "SELECT fragment.* FROM fragment JOIN anchor ON anchor.id = fragment.anchor_id "
         + "WHERE dataspace_id = :dataspaceId AND xpath = ANY (:xpaths)", nativeQuery = true)
     List<FragmentEntity> findByDataspaceIdAndXpathIn(@Param("dataspaceId") int dataspaceId,
@@ -110,7 +121,7 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>,
 
     boolean existsByAnchorAndXpathStartsWith(AnchorEntity anchorEntity, String xpath);
 
-    @Query("SELECT xpath FROM FragmentEntity WHERE anchor = :anchor AND parentId IS NULL")
-    List<String> findAllXpathByAnchorAndParentIdIsNull(@Param("anchor") AnchorEntity anchorEntity);
+    @Query(value = "SELECT * FROM fragment WHERE anchor_id = :anchorId AND parent_id IS NULL", nativeQuery = true)
+    List<FragmentEntity> findRootsByAnchorId(@Param("anchorId") long anchorId);
 
 }
