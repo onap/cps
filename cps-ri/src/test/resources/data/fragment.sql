@@ -100,9 +100,9 @@ INSERT INTO FRAGMENT (ID, ANCHOR_ID, PARENT_ID, XPATH, ATTRIBUTES) VALUES
     (4228, 3003, 4227, '/parent-206/child-206/grand-child-206', '{}'),
     (4229, 3003, 4227, '/parent-206/child-206/grand-child-206[@key=''A'']', '{"key": "A"}'),
     (4230, 3003, 4227, '/parent-206/child-206/grand-child-206[@key=''X'']', '{"key": "X"}'),
-    (4231, 3003, null, '/parent-206[@key=''A'']', '{"key": "A"}'),
-    (4232, 3003, 4231, '/parent-206[@key=''A'']/child-206', '{}'),
-    (4233, 3003, null, '/parent-206[@key=''B'']', '{"key": "B"}');
+    (4231, 3003, null, '/parent-207[@key=''A'']', '{"key": "A"}'),
+    (4232, 3003, 4231, '/parent-207[@key=''A'']/child-207', '{}'),
+    (4233, 3003, null, '/parent-207[@key=''B'']', '{"key": "B"}');
 
 INSERT INTO FRAGMENT (ID, ANCHOR_ID, PARENT_ID, XPATH, ATTRIBUTES) VALUES
     (5000, 3004, null, '/dmi-registry/cm-handles[@id=''PNFDemo'']', '{"id": "PNFDemo", "dmi-service-name": "http://172.21.235.14:8783", "dmi-data-service-name": "", "dmi-model-service-name": ""}'),

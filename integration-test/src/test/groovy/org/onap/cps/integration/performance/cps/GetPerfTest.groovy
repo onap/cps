@@ -79,6 +79,7 @@ class GetPerfTest extends CpsPerfTestBase {
             'bookstore top element' | 'bookstore'  | '/bookstore'         || 300           | 78
             'openroadm root'        | 'openroadm'  | '/'                  || 1200          | 1 + 50 * 86
             'openroadm top element' | 'openroadm'  | '/openroadm-devices' || 1200          | 1 + 50 * 86
+            'openroadm whole list'  | 'openroadm'  | '/openroadm-devices/openroadm-device' || 1200          | 50 * 86
     }
 
 }
