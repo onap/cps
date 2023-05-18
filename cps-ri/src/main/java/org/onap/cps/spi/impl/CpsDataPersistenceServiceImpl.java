@@ -251,22 +251,38 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
 
     private Collection<FragmentEntity> getFragmentEntities(final AnchorEntity anchorEntity,
                                                            final Collection<String> xpaths) {
-        final Collection<String> nonRootXpaths = new HashSet<>(xpaths);
-        final boolean haveRootXpath = nonRootXpaths.removeIf(CpsDataPersistenceServiceImpl::isRootXpath);
-
-        final Collection<String> normalizedXpaths = new HashSet<>(nonRootXpaths.size());
-        for (final String xpath : nonRootXpaths) {
+        final Collection<String> xpathChecklist = new HashSet<>(xpaths.size());
+        for (final String xpath : xpaths) {
             try {
-                normalizedXpaths.add(CpsPathUtil.getNormalizedXpath(xpath));
-            } catch (final PathParsingException e) {
+                xpathChecklist.add(getNormalizedXpath(xpath));
+            } catch (final CpsPathException e) {
                 log.warn("Error parsing xpath \"{}\": {}", xpath, e.getMessage());
             }
         }
-        if (haveRootXpath) {
-            normalizedXpaths.addAll(fragmentRepository.findAllXpathByAnchorAndParentIdIsNull(anchorEntity));
+        final boolean haveRootXpath = xpathChecklist.removeIf(CpsDataPersistenceServiceImpl::isRootXpath);
+
+        // Get container nodes and list elements by xpath.
+        final List<FragmentEntity> fragmentEntities = fragmentRepository.findByAnchorAndXpathIn(anchorEntity,
+                xpathChecklist);
+
+        // Remove any xpaths from the list that were already found.
+        for (final FragmentEntity fragmentEntity : fragmentEntities) {
+            xpathChecklist.remove(fragmentEntity.getXpath());
         }
 
-        return fragmentRepository.findByAnchorAndXpathIn(anchorEntity, normalizedXpaths);
+        // Try to find any remaining xpaths as lists (unless they are list elements, since they cannot be lists).
+        for (final String xpath : xpathChecklist) {
+            if (!CpsPathUtil.isPathToListElement(xpath)) {
+                fragmentEntities.addAll(fragmentRepository.findListByAnchorAndXpath(anchorEntity, xpath));
+            }
+        }
+
+        // Handle root xpath.
+        if (haveRootXpath) {
+            fragmentEntities.addAll(fragmentRepository.findRootsByAnchorId(anchorEntity.getId()));
+        }
+
+        return fragmentEntities;
     }
 
     private FragmentEntity getFragmentEntity(final AnchorEntity anchorEntity, final String xpath) {
