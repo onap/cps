@@ -251,22 +251,28 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
 
     private Collection<FragmentEntity> getFragmentEntities(final AnchorEntity anchorEntity,
                                                            final Collection<String> xpaths) {
-        final Collection<String> nonRootXpaths = new HashSet<>(xpaths);
-        final boolean haveRootXpath = nonRootXpaths.removeIf(CpsDataPersistenceServiceImpl::isRootXpath);
+        final Collection<String> normalizedXpaths = normalizedXpathsIgnoringExceptions(xpaths);
 
-        final Collection<String> normalizedXpaths = new HashSet<>(nonRootXpaths.size());
-        for (final String xpath : nonRootXpaths) {
-            try {
-                normalizedXpaths.add(CpsPathUtil.getNormalizedXpath(xpath));
-            } catch (final PathParsingException e) {
-                log.warn("Error parsing xpath \"{}\": {}", xpath, e.getMessage());
+        final boolean haveRootXpath = normalizedXpaths.removeIf(CpsDataPersistenceServiceImpl::isRootXpath);
+
+        final List<FragmentEntity> fragmentEntities = fragmentRepository.findByAnchorAndXpathIn(anchorEntity,
+                normalizedXpaths);
+
+        for (final FragmentEntity fragmentEntity : fragmentEntities) {
+            normalizedXpaths.remove(fragmentEntity.getXpath());
+        }
+
+        for (final String xpath : normalizedXpaths) {
+            if (!CpsPathUtil.isPathToListElement(xpath)) {
+                fragmentEntities.addAll(fragmentRepository.findListByAnchorAndXpath(anchorEntity, xpath));
             }
         }
+
         if (haveRootXpath) {
-            normalizedXpaths.addAll(fragmentRepository.findAllXpathByAnchorAndParentIdIsNull(anchorEntity));
+            fragmentEntities.addAll(fragmentRepository.findRootsByAnchorId(anchorEntity.getId()));
         }
 
-        return fragmentRepository.findByAnchorAndXpathIn(anchorEntity, normalizedXpaths);
+        return fragmentEntities;
     }
 
     private FragmentEntity getFragmentEntity(final AnchorEntity anchorEntity, final String xpath) {
@@ -340,6 +346,18 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         } catch (final PathParsingException e) {
             throw new CpsPathException(e.getMessage());
         }
+    }
+
+    private static Collection<String> normalizedXpathsIgnoringExceptions(final Collection<String> xpaths) {
+        final Collection<String> normalizedXpaths = new HashSet<>(xpaths.size());
+        for (final String xpath : xpaths) {
+            try {
+                normalizedXpaths.add(getNormalizedXpath(xpath));
+            } catch (final CpsPathException cpsPathException) {
+                log.warn("Error parsing xpath \"{}\": {}", xpath, cpsPathException.getMessage());
+            }
+        }
+        return normalizedXpaths;
     }
 
     @Override
@@ -542,15 +560,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
 
         final AnchorEntity anchorEntity = getAnchorEntity(dataspaceName, anchorName);
 
-        final Collection<String> deleteChecklist = new HashSet<>(xpathsToDelete.size());
-        for (final String xpath : xpathsToDelete) {
-            try {
-                deleteChecklist.add(CpsPathUtil.getNormalizedXpath(xpath));
-            } catch (final PathParsingException e) {
-                log.warn("Error parsing xpath \"{}\": {}", xpath, e.getMessage());
-            }
-        }
-
+        final Collection<String> deleteChecklist = normalizedXpathsIgnoringExceptions(xpathsToDelete);
         final Collection<String> xpathsToExistingContainers =
             fragmentRepository.findAllXpathByAnchorAndXpathIn(anchorEntity, deleteChecklist);
         if (onlySupportListDeletion) {
