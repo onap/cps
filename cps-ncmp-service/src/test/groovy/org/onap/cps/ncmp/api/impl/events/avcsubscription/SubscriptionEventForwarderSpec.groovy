@@ -113,6 +113,41 @@ class SubscriptionEventForwarderSpec extends MessagingBaseSpec {
             'wildcard' | ['CMHandle*']
     }
 
+    def 'Forward valid CM create subscription where targets are not associated to any existing CMHandles'() {
+        given: 'an event'
+            def jsonData = TestUtils.getResourceFileContent('avcSubscriptionCreationEvent.json')
+            def testEventSent = jsonObjectMapper.convertJsonString(jsonData, SubscriptionEvent.class)
+        and: 'the InventoryPersistence returns private properties for the supplied CM Handles'
+            1 * mockInventoryPersistence.getYangModelCmHandles(["CMHandle1", "CMHandle2", "CMHandle3"]) >> []
+        and: 'the thread creation delay is reduced to 2 seconds for testing'
+            objectUnderTest.dmiResponseTimeoutInMs = 2000
+        and: 'a Blocking Variable is used for the Asynchronous call with a timeout of 5 seconds'
+            def block = new BlockingVariable<Object>(5)
+        when: 'the valid event is forwarded'
+            objectUnderTest.forwardCreateSubscriptionEvent(testEventSent)
+        then: 'the event is not added to the forwarded subscription event cache'
+            0 * mockForwardedSubscriptionEventCache.put("SCO-9989752cm-subscription-001", ["DMIName1", "DMIName2"] as Set)
+        and: 'the event is forwarded twice with the CMHandle private properties and provides a valid listenable future'
+            0 * mockSubscriptionEventPublisher.publishEvent("ncmp-dmi-cm-avc-subscription-DMIName1", "SCO-9989752-cm-subscription-001-DMIName1",
+                subscriptionEvent -> {
+                    Map targets = subscriptionEvent.getEvent().getPredicates().getTargets().get(0)
+                    targets["CMHandle1"] == ["shape":"circle"]
+                    targets["CMHandle2"] == ["shape":"square"]
+                }
+            )
+            0 * mockSubscriptionEventPublisher.publishEvent("ncmp-dmi-cm-avc-subscription-DMIName2", "SCO-9989752-cm-subscription-001-DMIName2",
+                subscriptionEvent -> {
+                    Map targets = subscriptionEvent.getEvent().getPredicates().getTargets().get(0)
+                    targets["CMHandle3"] == ["shape":"triangle"]
+                }
+            )
+        and: 'a separate thread has been created where the map is polled'
+            0 * mockForwardedSubscriptionEventCache.containsKey("SCO-9989752cm-subscription-001") >> true
+            0 * mockForwardedSubscriptionEventCache.get(_)
+        and: 'the subscription id is removed from the event cache map returning the asynchronous blocking variable'
+            0 * mockForwardedSubscriptionEventCache.remove("SCO-9989752cm-subscription-001") >> {block.set(_)}
+    }
+
     static def createYangModelCmHandleWithDmiProperty(id, dmiId,propertyName, propertyValue) {
         return new YangModelCmHandle(id:"CMHandle" + id, dmiDataServiceName: "DMIName" + dmiId, dmiProperties: [new YangModelCmHandle.Property(propertyName,propertyValue)])
     }
