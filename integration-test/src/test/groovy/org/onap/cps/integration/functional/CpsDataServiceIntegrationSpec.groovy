@@ -61,6 +61,20 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
             new FetchDescendantsOption(2)                  || 17
     }
 
+    def 'Get whole list data' () {
+        def xpathForWholeList = "/bookstore/categories"
+        when: 'get data nodes for bookstore container'
+            def dataNodes = objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, xpathForWholeList, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
+        then: 'the tree consist ouf of #expectNumberOfDataNodes data nodes'
+            assert dataNodes.size() == 4
+        and: 'each datanode conatains the list node xpath partially in its xpath'
+            dataNodes.each {dataNode ->
+                def partialMatchXpath = xpathForWholeList =~ dataNode.xpath
+                assert partialMatchXpath.matchesPartially()
+            }
+
+    }
+
     def 'Add and Delete a (container) datanode.'() {
         given: 'new (webinfo) datanode'
             def json = '{"webinfo": {"domain-name":"ourbookstore.com" ,"contact-email":"info@ourbookstore.com" }}'
