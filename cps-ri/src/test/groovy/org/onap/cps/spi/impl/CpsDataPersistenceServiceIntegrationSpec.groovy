@@ -296,7 +296,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             '2 unique nodes with duplicate xpath'  | ["/parent-200", "/parent-202", "/parent-200"]   || 2
             'list element with key (single quote)' | ["/parent-201/child-204[@key='A']"]             || 1
             'list element with key (double quote)' | ['/parent-201/child-204[@key="A"]']             || 1
-            'whole list (not implemented)'         | ["/parent-201/child-204"]                       || 0
+            'whole list'                           | ["/parent-201/child-204"]                       || 2
             'non-existing xpath'                   | ["/NO-XPATH"]                                   || 0
             'existing and non-existing xpaths'     | ["/parent-200", "/NO-XPATH", "/parent-201"]     || 2
             'invalid xpath'                        | ["INVALID XPATH"]                               || 0
@@ -612,7 +612,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             'child data node, parent still exists' | '/parent-206/child-206'                           || '/parent-206'
             'list element, sibling still exists'   | '/parent-206/child-206/grand-child-206[@key="A"]' || "/parent-206/child-206/grand-child-206[@key='X']"
             'container node'                       | '/parent-206'                                     || null
-            'container list node'                  | '/parent-206[@key="A"]'                           || "/parent-206[@key='B']"
+            'list element'                         | '/parent-207[@key="A"]'                           || "/parent-207[@key='B']"
             'root node with xpath /'               | '/'                                               || null
             'root node with xpath passed as blank' | ''                                                || null
     }
