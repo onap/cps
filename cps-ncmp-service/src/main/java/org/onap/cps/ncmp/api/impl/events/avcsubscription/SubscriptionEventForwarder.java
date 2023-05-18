@@ -56,7 +56,8 @@ public class SubscriptionEventForwarder {
 
     private final ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
 
-    private static final String DMI_AVC_SUBSCRIPTION_TOPIC_PREFIX = "ncmp-dmi-cm-avc-subscription-";
+    @Value("${app.ncmp.avc.subscription-forward-topic-prefix}")
+    private String dmiAvcSubscriptionTopicPrefix;
 
     @Value("${ncmp.timers.subscription-forwarding.dmi-response-timeout-ms:30000}")
     private int dmiResponseTimeoutInMs;
@@ -82,8 +83,15 @@ public class SubscriptionEventForwarder {
                 = DmiServiceNameOrganizer.getDmiPropertiesPerCmHandleIdPerServiceName(yangModelCmHandles);
 
         final Set<String> dmisToRespond = new HashSet<>(dmiPropertiesPerCmHandleIdPerServiceName.keySet());
-        startResponseTimeout(subscriptionEvent, dmisToRespond);
-        forwardEventToDmis(dmiPropertiesPerCmHandleIdPerServiceName, subscriptionEvent);
+        if (dmisToRespond.isEmpty()) {
+            log.info("placeholder to create full outcome response for subscriptionEventId: {}.",
+                subscriptionEvent.getEvent().getSubscription().getClientID()
+                    + subscriptionEvent.getEvent().getSubscription().getName());
+            //TODO outcome response with no cmhandles
+        } else {
+            startResponseTimeout(subscriptionEvent, dmisToRespond);
+            forwardEventToDmis(dmiPropertiesPerCmHandleIdPerServiceName, subscriptionEvent);
+        }
     }
 
     private void forwardEventToDmis(final Map<String, Map<String, Map<String, String>>> dmiNameCmHandleMap,
@@ -91,8 +99,8 @@ public class SubscriptionEventForwarder {
         dmiNameCmHandleMap.forEach((dmiName, cmHandlePropertiesMap) -> {
             subscriptionEvent.getEvent().getPredicates().setTargets(Collections.singletonList(cmHandlePropertiesMap));
             final String eventKey = createEventKey(subscriptionEvent, dmiName);
-            eventsPublisher.publishEvent(
-                DMI_AVC_SUBSCRIPTION_TOPIC_PREFIX + dmiName, eventKey, subscriptionEvent);
+            final String dmiAvcSubscriptionTopic = dmiAvcSubscriptionTopicPrefix + dmiName;
+            eventsPublisher.publishEvent(dmiAvcSubscriptionTopic, eventKey, subscriptionEvent);
         });
     }
 
