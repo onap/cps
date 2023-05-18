@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d47236e7_80aa02e4",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/avc-subscription-event-outcome-v1.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-05-18T14:28:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5432827c_39b7ddc8",
+      "range": {
+        "startLine": 29,
+        "startChar": 9,
+        "endLine": 29,
+        "endChar": 21
+      },
+      "revId": "baad5c0c961c7ee77d12dc557579bea62bebf5f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4784e512_59599ff4",
         "filename": "cps-ncmp-events/src/main/resources/schemas/avc-subscription-event-outcome-v1.json",
         "patchSetId": 6
@@ -45,6 +69,30 @@
       "revId": "baad5c0c961c7ee77d12dc557579bea62bebf5f9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fac2e5b2_a5b0179a",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/avc-subscription-event-outcome-v1.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-05-18T14:28:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4784e512_59599ff4",
+      "range": {
+        "startLine": 73,
+        "startChar": 13,
+        "endLine": 75,
+        "endChar": 30
+      },
+      "revId": "baad5c0c961c7ee77d12dc557579bea62bebf5f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "c0c0a7da_7406193c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/ResponseTimeoutTask.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-05-18T14:28:36Z",
+      "side": 1,
+      "message": "Removed.",
+      "parentUuid": "85d09c32_c9f7a374",
+      "range": {
+        "startLine": 69,
+        "startChar": 16,
+        "endLine": 70,
+        "endChar": 41
+      },
+      "revId": "baad5c0c961c7ee77d12dc557579bea62bebf5f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0e5cd907_b53a8bd9",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/ResponseTimeoutTask.java",
         "patchSetId": 6
@@ -91,6 +163,30 @@
       "revId": "baad5c0c961c7ee77d12dc557579bea62bebf5f9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "22ca92b9_f1707ebd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/ResponseTimeoutTask.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-05-18T14:28:36Z",
+      "side": 1,
+      "message": "Removed.",
+      "parentUuid": "0e5cd907_b53a8bd9",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 103
+      },
+      "revId": "baad5c0c961c7ee77d12dc557579bea62bebf5f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "7afcf272_fd1d9d39",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/ResponseTimeoutTask.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-05-18T14:28:36Z",
+      "side": 1,
+      "message": "Agree with this idea. However, the parameters should also include client ID, and subscription name since it is not clear to how to split event ID e.g. for which splitting criteria?",
+      "parentUuid": "9ebb7dae_47852019",
+      "range": {
+        "startLine": 83,
+        "startChar": 4,
+        "endLine": 111,
+        "endChar": 5
+      },
+      "revId": "baad5c0c961c7ee77d12dc557579bea62bebf5f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "208fbfd7_3f0b5236",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventResponseConsumer.java",
         "patchSetId": 6
@@ -137,6 +257,30 @@
       "revId": "baad5c0c961c7ee77d12dc557579bea62bebf5f9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a40dc0c4_efa42bde",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventResponseConsumer.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-05-18T14:28:36Z",
+      "side": 1,
+      "message": "I have handled both partial and complete outcome by checking Hazelcast distributed map. Since it is much more efficient other then a DB querying in terms of performance. Also, the object is being published into DB in the same class here.",
+      "parentUuid": "208fbfd7_3f0b5236",
+      "range": {
+        "startLine": 91,
+        "startChar": 8,
+        "endLine": 99,
+        "endChar": 9
+      },
+      "revId": "baad5c0c961c7ee77d12dc557579bea62bebf5f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "82be2d27_e42325cb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventForwarder.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-05-18T14:28:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c33b0161_bd4cbe16",
+      "range": {
+        "startLine": 106,
+        "startChar": 40,
+        "endLine": 106,
+        "endChar": 97
+      },
+      "revId": "baad5c0c961c7ee77d12dc557579bea62bebf5f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9ccc26b8_3128fbff",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventForwarder.java",
         "patchSetId": 6
@@ -183,6 +351,30 @@
       "revId": "baad5c0c961c7ee77d12dc557579bea62bebf5f9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0faf386e_6b38d6e7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventForwarder.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-05-18T14:28:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9ccc26b8_3128fbff",
+      "range": {
+        "startLine": 135,
+        "startChar": 16,
+        "endLine": 135,
+        "endChar": 47
+      },
+      "revId": "baad5c0c961c7ee77d12dc557579bea62bebf5f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
