@@ -111,6 +111,33 @@ def 'Delete root data node.'() {
         restoreBookstoreDataAnchor(1)
 }
 
+def 'Get whole list data' () {
+        def xpathForWholeList = "/bookstore/categories"
+    when: 'get data nodes for bookstore container'
+        def dataNodes = objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, xpathForWholeList, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
+    then: 'the tree consist ouf of #expectNumberOfDataNodes data nodes'
+        assert dataNodes.size() == 4
+    and: 'each datanode conatains the list node xpath partially in its xpath'
+        dataNodes.each {dataNode ->
+            def partialMatchXpath = xpathForWholeList =~ dataNode.xpath
+            assert partialMatchXpath.matchesPartially()
+        }
+}
+
+def 'Read (multiple) data nodes with #scenario' () {
+    when: 'attempt to get data nodes using multiple valid xpaths'
+        def dataNodes = objectUnderTest.getDataNodesForMultipleXpaths(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, xpath, OMIT_DESCENDANTS)
+    then: 'expected numer of data nodes are returned'
+        dataNodes.size() == expectedNumberOfDataNodes
+    where: 'the following data was used'
+                scenario                    |                       xpath                                       |   expectedNumberOfDataNodes
+        'container-node xpath'              | ['/bookstore']                                                    |               1
+        'list-item'                         | ['/bookstore/categories[@code=1]']                                |               1
+        'parent-list xpath'                 | ['/bookstore/categories']                                         |               4
+        'child-list xpath'                  | ['/bookstore/categories[@code=1]/books']                          |               2
+        'both parent and child list xpath'  | ['/bookstore/categories', '/bookstore/categories[@code=1]/books'] |               6
+}
+
 def 'Add and Delete a (container) data node.'() {
     given: 'new (webinfo) datanode'
         def json = '{"webinfo": {"domain-name":"ourbookstore.com" ,"contact-email":"info@ourbookstore.com" }}'

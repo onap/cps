@@ -56,6 +56,7 @@ class CpsDataPersistenceServiceSpec extends Specification {
     def setup() {
         mockAnchorRepository.getByDataspaceAndName(_, _) >> anchorEntity
         mockFragmentRepository.prefetchDescendantsOfFragmentEntities(_, _) >> { fetchDescendantsOption, fragmentEntities -> fragmentEntities }
+        mockFragmentRepository.findListByAnchorAndXpath(_, [] as Set) >> []
     }
 
     def 'Storing data nodes individually when batch operation fails'(){
