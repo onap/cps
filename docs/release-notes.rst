@@ -42,7 +42,7 @@ Bug Fixes
 
 Features
 --------
-3.3.6
+    - `CPS-1696 <https://jira.onap.org/browse/CPS-1696>`_Get Data Node to return entire List data node.
 
 
 Version: 3.3.5

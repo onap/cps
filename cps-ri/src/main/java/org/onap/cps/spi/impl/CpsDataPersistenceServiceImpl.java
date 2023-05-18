@@ -120,7 +120,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         newChildAsFragmentEntity.setParentId(parentFragmentEntity.getId());
         try {
             fragmentRepository.save(newChildAsFragmentEntity);
-        } catch (final DataIntegrityViolationException e) {
+        } catch (final DataIntegrityViolationException dataIntegrityViolationException) {
             throw AlreadyDefinedException.forDataNodes(Collections.singletonList(newChild.getXpath()),
                     anchorEntity.getName());
         }
@@ -138,9 +138,9 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
                 fragmentEntities.add(newChildAsFragmentEntity);
             }
             fragmentRepository.saveAll(fragmentEntities);
-        } catch (final DataIntegrityViolationException e) {
+        } catch (final DataIntegrityViolationException dataIntegrityViolationException) {
             log.warn("Exception occurred : {} , While saving : {} children, retrying using individual save operations",
-                    e, fragmentEntities.size());
+                    dataIntegrityViolationException, fragmentEntities.size());
             retrySavingEachChildIndividually(anchorEntity, parentNodeXpath, newChildren);
         }
     }
@@ -151,7 +151,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         for (final DataNode newChild : newChildren) {
             try {
                 addNewChildDataNode(anchorEntity, parentNodeXpath, newChild);
-            } catch (final AlreadyDefinedException e) {
+            } catch (final AlreadyDefinedException alreadyDefinedException) {
                 failedXpaths.add(newChild.getXpath());
             }
         }
@@ -184,7 +184,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             try {
                 final FragmentEntity fragmentEntity = convertToFragmentWithAllDescendants(anchorEntity, dataNode);
                 fragmentRepository.save(fragmentEntity);
-            } catch (final DataIntegrityViolationException e) {
+            } catch (final DataIntegrityViolationException dataIntegrityViolationException) {
                 failedXpaths.add(dataNode.getXpath());
             }
         }
@@ -251,22 +251,28 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
 
     private Collection<FragmentEntity> getFragmentEntities(final AnchorEntity anchorEntity,
                                                            final Collection<String> xpaths) {
-        final Collection<String> nonRootXpaths = new HashSet<>(xpaths);
-        final boolean haveRootXpath = nonRootXpaths.removeIf(CpsDataPersistenceServiceImpl::isRootXpath);
+        final Collection<String> normalizedXpaths = getNormalizedXpaths(xpaths);
 
-        final Collection<String> normalizedXpaths = new HashSet<>(nonRootXpaths.size());
-        for (final String xpath : nonRootXpaths) {
-            try {
-                normalizedXpaths.add(CpsPathUtil.getNormalizedXpath(xpath));
-            } catch (final PathParsingException e) {
-                log.warn("Error parsing xpath \"{}\": {}", xpath, e.getMessage());
+        final boolean haveRootXpath = normalizedXpaths.removeIf(CpsDataPersistenceServiceImpl::isRootXpath);
+
+        final List<FragmentEntity> fragmentEntities = fragmentRepository.findByAnchorAndXpathIn(anchorEntity,
+                normalizedXpaths);
+
+        for (final FragmentEntity fragmentEntity : fragmentEntities) {
+            normalizedXpaths.remove(fragmentEntity.getXpath());
+        }
+
+        for (final String xpath : normalizedXpaths) {
+            if (!CpsPathUtil.isPathToListElement(xpath)) {
+                fragmentEntities.addAll(fragmentRepository.findListByAnchorAndXpath(anchorEntity, xpath));
             }
         }
+
         if (haveRootXpath) {
-            normalizedXpaths.addAll(fragmentRepository.findAllXpathByAnchorAndParentIdIsNull(anchorEntity));
+            fragmentEntities.addAll(fragmentRepository.findRootsByAnchorId(anchorEntity.getId()));
         }
 
-        return fragmentRepository.findByAnchorAndXpathIn(anchorEntity, normalizedXpaths);
+        return fragmentEntities;
     }
 
     private FragmentEntity getFragmentEntity(final AnchorEntity anchorEntity, final String xpath) {
@@ -293,8 +299,8 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         final CpsPathQuery cpsPathQuery;
         try {
             cpsPathQuery = CpsPathUtil.getCpsPathQuery(cpsPath);
-        } catch (final PathParsingException e) {
-            throw new CpsPathException(e.getMessage());
+        } catch (final PathParsingException pathParsingException) {
+            throw new CpsPathException(pathParsingException.getMessage());
         }
 
         Collection<FragmentEntity> fragmentEntities;
@@ -337,9 +343,21 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         }
         try {
             return CpsPathUtil.getNormalizedXpath(xpathSource);
-        } catch (final PathParsingException e) {
-            throw new CpsPathException(e.getMessage());
+        } catch (final PathParsingException pathParsingException) {
+            throw new CpsPathException(pathParsingException.getMessage());
         }
+    }
+
+    private static Collection<String> getNormalizedXpaths(final Collection<String> xpaths) {
+        final Collection<String> normalizedXpaths = new HashSet<>(xpaths.size());
+        for (final String xpath : xpaths) {
+            try {
+                normalizedXpaths.add(getNormalizedXpath(xpath));
+            } catch (final CpsPathException cpsPathException) {
+                log.warn("Error parsing xpath \"{}\": {}", xpath, cpsPathException.getMessage());
+            }
+        }
+        return normalizedXpaths;
     }
 
     @Override
@@ -450,7 +468,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         for (final FragmentEntity dataNodeFragment : fragmentEntities) {
             try {
                 fragmentRepository.save(dataNodeFragment);
-            } catch (final StaleStateException e) {
+            } catch (final StaleStateException staleStateException) {
                 failedXpaths.add(dataNodeFragment.getXpath());
             }
         }
@@ -542,15 +560,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
 
         final AnchorEntity anchorEntity = getAnchorEntity(dataspaceName, anchorName);
 
-        final Collection<String> deleteChecklist = new HashSet<>(xpathsToDelete.size());
-        for (final String xpath : xpathsToDelete) {
-            try {
-                deleteChecklist.add(CpsPathUtil.getNormalizedXpath(xpath));
-            } catch (final PathParsingException e) {
-                log.warn("Error parsing xpath \"{}\": {}", xpath, e.getMessage());
-            }
-        }
-
+        final Collection<String> deleteChecklist = getNormalizedXpaths(xpathsToDelete);
         final Collection<String> xpathsToExistingContainers =
             fragmentRepository.findAllXpathByAnchorAndXpathIn(anchorEntity, deleteChecklist);
         if (onlySupportListDeletion) {
