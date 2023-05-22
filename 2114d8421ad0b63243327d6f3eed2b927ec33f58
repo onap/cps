@@ -137,6 +137,29 @@
       "revId": "2114d8421ad0b63243327d6f3eed2b927ec33f58",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9ebdab8c_8a61128a",
+        "filename": "cps-ncmp-service/src/test/resources/application.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-05-22T15:21:31Z",
+      "side": 1,
+      "message": "this is the prefix and not the actual topic..right??",
+      "range": {
+        "startLine": 24,
+        "startChar": 12,
+        "endLine": 24,
+        "endChar": 38
+      },
+      "revId": "2114d8421ad0b63243327d6f3eed2b927ec33f58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
