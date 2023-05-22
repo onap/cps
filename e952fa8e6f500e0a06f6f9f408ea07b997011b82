@@ -71,6 +71,29 @@
     },
     {
       "key": {
+        "uuid": "35a9b78d_5b010ad3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/async/BatchRecordFilterStrategy.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 3237
+      },
+      "writtenOn": "2023-05-22T09:23:03Z",
+      "side": 1,
+      "message": "You may refactor it to something like below \n\npublic class BatchRecordFilterStrategy {\n\n    /**\n     * Filtering the consumer records based on the eventType header, It returns\n     * boolean, true means filter the consumer record and false means not filter the\n     * consumer record.\n     * \n     * @return boolean value.\n     */\n    @Bean\n    public RecordFilterStrategy\u003cObject, Object\u003e filterByEventType() {\n        return new EventRecordFilterStrategy(\"org.onap.cps.ncmp.events.async.v1.BatchDataResponseEvent\");\n    }\n\n    private class EventRecordFilterStrategy implements RecordFilterStrategy\u003cObject, Object\u003e {\n\n        private final String eventType;\n\n        public EventRecordFilterStrategy(final String eventType) {\n            this.eventType \u003d eventType;\n        }\n\n        @Override\n        public boolean filter(final ConsumerRecord\u003cObject, Object\u003e consumerRecord) {\n            final String headerValue \u003d SerializationUtils\n                    .deserialize(consumerRecord.headers().lastHeader(\"eventType\").value());\n            return eventType.equals(headerValue);\n        }\n\n    }\n}",
+      "range": {
+        "startLine": 31,
+        "startChar": 13,
+        "endLine": 31,
+        "endChar": 39
+      },
+      "revId": "e952fa8e6f500e0a06f6f9f408ea07b997011b82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2bd8961f_89551e69",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/async/BatchRecordFilterStrategy.java",
         "patchSetId": 5
