@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "09e4f0e6_9ea3fe18",
+        "filename": "cps-ncmp-rest/docs/openapi/openapi.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-05-22T08:30:58Z",
+      "side": 0,
+      "message": "NB : Why remoed /data ?",
+      "range": {
+        "startLine": 37,
+        "startChar": 11,
+        "endLine": 37,
+        "endChar": 16
+      },
+      "revId": "b740156bb50784fc461e2fbda13cd91e3f208b38",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
