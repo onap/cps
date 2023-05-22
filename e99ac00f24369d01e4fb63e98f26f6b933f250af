@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "395f3b76_5d4d4bc2",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/avc-subscription-event-outcome-v1.json",
+        "patchSetId": 9
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-05-22T16:28:27Z",
+      "side": 1,
+      "message": "Rejected CM Handles to be responded by the subscription",
+      "range": {
+        "startLine": 61,
+        "startChar": 30,
+        "endLine": 61,
+        "endChar": 76
+      },
+      "revId": "e99ac00f24369d01e4fb63e98f26f6b933f250af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b07eacd8_3259466c",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/avc-subscription-event-outcome-v1.json",
+        "patchSetId": 9
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-05-22T16:28:27Z",
+      "side": 1,
+      "message": "Accepted CM Handles to be responded by the subscription",
+      "range": {
+        "startLine": 65,
+        "startChar": 30,
+        "endLine": 65,
+        "endChar": 76
+      },
+      "revId": "e99ac00f24369d01e4fb63e98f26f6b933f250af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d90d15bf_ecf7edea",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/avc-subscription-event-outcome-v1.json",
+        "patchSetId": 9
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-05-22T16:28:27Z",
+      "side": 1,
+      "message": "Pending CM Handles to be responded by the subscription",
+      "range": {
+        "startLine": 69,
+        "startChar": 30,
+        "endLine": 69,
+        "endChar": 76
+      },
+      "revId": "e99ac00f24369d01e4fb63e98f26f6b933f250af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
