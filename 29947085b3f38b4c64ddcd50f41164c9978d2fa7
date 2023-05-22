@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "df7e72b6_b9135f33",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/async/batch-event-schema-1.0.0.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-05-22T14:00:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f21cd567_e6045920",
+      "range": {
+        "startLine": 14,
+        "startChar": 55,
+        "endLine": 14,
+        "endChar": 57
+      },
+      "revId": "29947085b3f38b4c64ddcd50f41164c9978d2fa7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c2256f0e_417903ee",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/async/BatchRecordFilterStrategy.java",
         "patchSetId": 6
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "19b6efff_b78b9756",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/async/BatchRecordFilterStrategy.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-05-22T14:00:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c2256f0e_417903ee",
+      "range": {
+        "startLine": 45,
+        "startChar": 35,
+        "endLine": 45,
+        "endChar": 43
+      },
+      "revId": "29947085b3f38b4c64ddcd50f41164c9978d2fa7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4142a22e_ac4d1a38",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/NcmpAsyncBatchEventConsumerSpec.groovy",
         "patchSetId": 6
@@ -59,6 +107,30 @@
       "writtenOn": "2023-05-22T13:43:07Z",
       "side": 1,
       "message": "NB: dont fully understand why you need to use the mapper for the outgoing event but not for the incoming, I am sure you got it working now but can you maybe explain a little as reply to this comment? Thanks",
+      "range": {
+        "startLine": 75,
+        "startChar": 33,
+        "endLine": 75,
+        "endChar": 170
+      },
+      "revId": "29947085b3f38b4c64ddcd50f41164c9978d2fa7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d0784a85_d03c8839",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/NcmpAsyncBatchEventConsumerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-05-22T14:00:21Z",
+      "side": 1,
+      "message": "consumerRecordOut has the JSON String that comes while polling. So, converting the JSON String to the object by using the line 75\n\nconsumerRecordIn has the ConsumerRecord object that conatins event as a value which is of type \u0027BatchDataResponseEventV1\u0027",
+      "parentUuid": "4142a22e_ac4d1a38",
       "range": {
         "startLine": 75,
         "startChar": 33,
@@ -91,6 +163,30 @@
       "revId": "29947085b3f38b4c64ddcd50f41164c9978d2fa7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e8c6a0fd_b0c540aa",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/NcmpAsyncBatchEventConsumerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-05-22T14:00:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f338ba5_c1c6ab53",
+      "range": {
+        "startLine": 87,
+        "startChar": 60,
+        "endLine": 87,
+        "endChar": 62
+      },
+      "revId": "29947085b3f38b4c64ddcd50f41164c9978d2fa7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
