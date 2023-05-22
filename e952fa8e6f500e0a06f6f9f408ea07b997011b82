@@ -1,0 +1,320 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f1c9f222_92523f7b",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-22T07:30:09Z",
+      "side": 1,
+      "message": "why does this need to be configurable?",
+      "range": {
+        "startLine": 100,
+        "startChar": 12,
+        "endLine": 100,
+        "endChar": 29
+      },
+      "revId": "e952fa8e6f500e0a06f6f9f408ea07b997011b82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "09a5597c_9bf1b8b8",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/async/batch-event-schema-1.0.0.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-22T07:30:09Z",
+      "side": 1,
+      "message": "I talked with Priyank about this for their event, we agreed NOT to use folders for the different versions.\nSo I dotn think the javatype shoudl be in a v1 package either, it can just vnbe appended to the classname instead\ne.g. org.onap.cps.ncmp.events.async.BatchDataEventV1",
+      "range": {
+        "startLine": 14,
+        "startChar": 55,
+        "endLine": 14,
+        "endChar": 57
+      },
+      "revId": "e952fa8e6f500e0a06f6f9f408ea07b997011b82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2e723049_89868980",
+        "filename": "cps-ncmp-service/pom.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-22T07:30:09Z",
+      "side": 1,
+      "message": "is this only used for test?!\nFYI we tried to keep decencies in the right block (production or test) and then sorted alphabetically (although that often was forgotten :-)",
+      "range": {
+        "startLine": 100,
+        "startChar": 0,
+        "endLine": 103,
+        "endChar": 21
+      },
+      "revId": "e952fa8e6f500e0a06f6f9f408ea07b997011b82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2bd8961f_89551e69",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/async/BatchRecordFilterStrategy.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-22T07:30:09Z",
+      "side": 1,
+      "message": "so we filter evens that have a type?!\nI dont understand why this is needed...",
+      "range": {
+        "startLine": 44,
+        "startChar": 20,
+        "endLine": 44,
+        "endChar": 40
+      },
+      "revId": "e952fa8e6f500e0a06f6f9f408ea07b997011b82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "80a90f47_55781925",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/async/NcmpAsyncBatchEventConsumer.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-22T07:30:09Z",
+      "side": 1,
+      "message": "as before, please explain teh need for this",
+      "range": {
+        "startLine": 52,
+        "startChar": 12,
+        "endLine": 52,
+        "endChar": 41
+      },
+      "revId": "e952fa8e6f500e0a06f6f9f408ea07b997011b82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1344c13_87dd9954",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/NcmpAsyncBatchEventConsumerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-22T07:30:09Z",
+      "side": 1,
+      "message": "NB: inconsistent spacing",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 58
+      },
+      "revId": "e952fa8e6f500e0a06f6f9f408ea07b997011b82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "46a4f03a_dda1bc05",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/NcmpAsyncBatchEventConsumerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-22T07:30:09Z",
+      "side": 1,
+      "message": "groovy rule, only use \" when needed i.e using groovy Gstring substitution which you are not",
+      "range": {
+        "startLine": 72,
+        "startChar": 48,
+        "endLine": 72,
+        "endChar": 50
+      },
+      "revId": "e952fa8e6f500e0a06f6f9f408ea07b997011b82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "178273e9_540a7620",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/NcmpAsyncBatchEventConsumerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-22T07:30:09Z",
+      "side": 1,
+      "message": "groovy magic:\nconsumerRecord.headers().addAll([eventId:eventId, eventTarget:eventTarget, eventType:eventType)\nOR\nconsumerRecord.headers().addAll([\u0027eventId:eventId\u0027, \u0027eventTarget\u0027:eventTarget, \u0027eventType\u0027:eventType)\n\nnot sure about teh headers bit, depending on how taht is implement you might NOT need the ()\n\n\nAlthough allowed quotes are not need for the key but they can help with readability, depending what you prefer, I dont mind either way",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 77,
+        "endChar": 78
+      },
+      "revId": "e952fa8e6f500e0a06f6f9f408ea07b997011b82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb5d1208_ff29d3ba",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/NcmpAsyncBatchEventConsumerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-22T07:30:09Z",
+      "side": 1,
+      "message": "groovy magic: try recordsConsumed[0] it will probably work",
+      "range": {
+        "startLine": 90,
+        "startChar": 33,
+        "endLine": 90,
+        "endChar": 66
+      },
+      "revId": "e952fa8e6f500e0a06f6f9f408ea07b997011b82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "663f45df_76670903",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/NcmpAsyncBatchEventConsumerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-22T07:30:09Z",
+      "side": 1,
+      "message": "[0]",
+      "range": {
+        "startLine": 91,
+        "startChar": 63,
+        "endLine": 91,
+        "endChar": 70
+      },
+      "revId": "e952fa8e6f500e0a06f6f9f408ea07b997011b82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f76b602c_089ef515",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/NcmpAsyncBatchEventConsumerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-22T07:30:09Z",
+      "side": 1,
+      "message": "groovy magic try to use properties directly without get for improved readability\nlike so: testEventSent.event.batchResponses[0].statusCode",
+      "range": {
+        "startLine": 91,
+        "startChar": 33,
+        "endLine": 91,
+        "endChar": 36
+      },
+      "revId": "e952fa8e6f500e0a06f6f9f408ea07b997011b82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e4cca5c_4383ef94",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/NcmpAsyncBatchEventConsumerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-22T07:30:09Z",
+      "side": 1,
+      "message": "still dont understand this mayeb if tehis test was clearer I would :-)",
+      "range": {
+        "startLine": 98,
+        "startChar": 54,
+        "endLine": 98,
+        "endChar": 71
+      },
+      "revId": "e952fa8e6f500e0a06f6f9f408ea07b997011b82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "48d907cd_58fbab0e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/NcmpAsyncBatchEventConsumerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-22T07:30:09Z",
+      "side": 1,
+      "message": "I also find teh word filter ambigious: does it mean including teh event or not, you coudl elaborate your label it bit to make it clearer.",
+      "range": {
+        "startLine": 103,
+        "startChar": 0,
+        "endLine": 111,
+        "endChar": 5
+      },
+      "revId": "e952fa8e6f500e0a06f6f9f408ea07b997011b82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f973531_acc13a90",
+        "filename": "cps-ncmp-service/src/test/resources/asyncBatchDataevent.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-22T07:30:09Z",
+      "side": 1,
+      "message": "the word async is superfluous for any event !",
+      "revId": "e952fa8e6f500e0a06f6f9f408ea07b997011b82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
