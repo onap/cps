@@ -23,13 +23,15 @@ package org.onap.cps.ncmp.api.impl.events.lcm;
 import java.util.UUID;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.impl.utils.EventDateTimeFormatter;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
-import org.onap.ncmp.cmhandle.event.lcm.Event;
-import org.onap.ncmp.cmhandle.event.lcm.LcmEvent;
-import org.onap.ncmp.cmhandle.event.lcm.Values;
+import org.onap.cps.ncmp.events.lcm.v1.Event;
+import org.onap.cps.ncmp.events.lcm.v1.LcmEvent;
+import org.onap.cps.ncmp.events.lcm.v1.LcmEventHeader;
+import org.onap.cps.ncmp.events.lcm.v1.Values;
 import org.springframework.stereotype.Component;
 
 
@@ -38,7 +40,10 @@ import org.springframework.stereotype.Component;
  */
 @Slf4j
 @Component
+@RequiredArgsConstructor
 public class LcmEventsCreator {
+
+    private final LcmEventHeaderMapper lcmEventHeaderMapper;
 
     /**
      * Populate Lifecycle Management Event.
@@ -53,6 +58,20 @@ public class LcmEventsCreator {
         return createLcmEvent(cmHandleId, targetNcmpServiceCmHandle, existingNcmpServiceCmHandle);
     }
 
+    /**
+     * Populate Lifecycle Management Event Header.
+     *
+     * @param cmHandleId                  cm handle identifier
+     * @param targetNcmpServiceCmHandle   target ncmp service cmhandle
+     * @param existingNcmpServiceCmHandle existing ncmp service cmhandle
+     * @return Populated LcmEventHeader
+     */
+    public LcmEventHeader populateLcmEventHeader(final String cmHandleId,
+            final NcmpServiceCmHandle targetNcmpServiceCmHandle,
+            final NcmpServiceCmHandle existingNcmpServiceCmHandle) {
+        return createLcmEventHeader(cmHandleId, targetNcmpServiceCmHandle, existingNcmpServiceCmHandle);
+    }
+
     private LcmEvent createLcmEvent(final String cmHandleId, final NcmpServiceCmHandle targetNcmpServiceCmHandle,
             final NcmpServiceCmHandle existingNcmpServiceCmHandle) {
         final LcmEventType lcmEventType =
@@ -61,6 +80,15 @@ public class LcmEventsCreator {
         lcmEvent.setEvent(
                 lcmEventPayload(cmHandleId, targetNcmpServiceCmHandle, existingNcmpServiceCmHandle, lcmEventType));
         return lcmEvent;
+    }
+
+    private LcmEventHeader createLcmEventHeader(final String cmHandleId,
+            final NcmpServiceCmHandle targetNcmpServiceCmHandle,
+            final NcmpServiceCmHandle existingNcmpServiceCmHandle) {
+        final LcmEventType lcmEventType =
+                LcmEventsCreatorHelper.determineEventType(targetNcmpServiceCmHandle, existingNcmpServiceCmHandle);
+        final LcmEvent lcmEventWithHeaderInformation = lcmEventHeader(cmHandleId, lcmEventType);
+        return lcmEventHeaderMapper.toLcmEventHeader(lcmEventWithHeaderInformation);
     }
 
     private Event lcmEventPayload(final String eventCorrelationId, final NcmpServiceCmHandle targetNcmpServiceCmHandle,
