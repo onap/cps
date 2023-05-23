@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "df2b0be9_c960445d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/ResponseTimeoutTask.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-05-23T15:39:15Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0b58fa74_a8283d77",
+      "range": {
+        "startLine": 35,
+        "startChar": 3,
+        "endLine": 37,
+        "endChar": 45
+      },
+      "revId": "19b7809a0b0fb2f271fc0220b0d79bfac59085a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1be25247_a650c680",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avc/AvcEventConsumer.java",
         "patchSetId": 11
@@ -36,6 +60,30 @@
       "writtenOn": "2023-05-22T16:25:27Z",
       "side": 1,
       "message": "NB Don\u0027t think this is necessary",
+      "range": {
+        "startLine": 71,
+        "startChar": 8,
+        "endLine": 71,
+        "endChar": 41
+      },
+      "revId": "19b7809a0b0fb2f271fc0220b0d79bfac59085a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d20095fc_30e0c96e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avc/AvcEventConsumer.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-05-23T15:39:15Z",
+      "side": 1,
+      "message": "Do you meant the \"eventId\" could be provided as plain String without having any local variable to the function below? If you do, then it will be code smell in the scan 😊",
+      "parentUuid": "1be25247_a650c680",
       "range": {
         "startLine": 71,
         "startChar": 8,
