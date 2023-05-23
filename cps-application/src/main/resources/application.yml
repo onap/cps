@@ -200,6 +200,7 @@ ncmp:
 # Custom Hazelcast Config.
 hazelcast:
     cluster-name: ${CPS_NCMP_CACHES_CLUSTER_NAME:"cps-and-ncmp-common-cache-cluster"}
+    port: ${CPS_NCMP_CACHES_CLUSTER_PORT:5701}
     mode:
         kubernetes:
             enabled: ${HAZELCAST_MODE_KUBERNETES_ENABLED:false}

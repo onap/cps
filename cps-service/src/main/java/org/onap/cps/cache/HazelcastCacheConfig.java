@@ -38,6 +38,9 @@ public class HazelcastCacheConfig {
     @Value("${hazelcast.cluster-name}")
     protected String clusterName;
 
+    @Value("${hazelcast.port}")
+    protected int clusterPort;
+
     @Value("${hazelcast.mode.kubernetes.enabled}")
     protected boolean cacheKubernetesEnabled;
 
@@ -79,8 +82,8 @@ public class HazelcastCacheConfig {
     protected void updateDiscoveryMode(final Config config) {
         if (cacheKubernetesEnabled) {
             log.info("Enabling kubernetes mode with service-name : {}", cacheKubernetesServiceName);
-            config.getNetworkConfig().getJoin().getKubernetesConfig().setEnabled(true)
-                .setProperty("service-name", cacheKubernetesServiceName);
+            config.getNetworkConfig().setPort(clusterPort).setPortAutoIncrement(false).getJoin().getKubernetesConfig()
+                    .setEnabled(true).setProperty("service-name", cacheKubernetesServiceName);
         }
     }
 
