@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "698f3788_13315ea6",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/async/batch-event-headers-1.0.0.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-05-23T17:14:36Z",
+      "side": 1,
+      "message": "As Toine suggested I updated like this, The use of \u0027V1\u0027 is to keep versioning and support for backward compatible in future if any new versions created",
+      "parentUuid": "05e539e3_8ff0358a",
+      "range": {
+        "startLine": 9,
+        "startChar": 68,
+        "endLine": 9,
+        "endChar": 70
+      },
+      "revId": "6c49d46ef0dba53b73749be96af1b96fb183f101",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "625f60ac_80088884",
         "filename": "cps-ncmp-events/src/main/resources/schemas/async/batch-event-schema-1.0.0.json",
         "patchSetId": 7
@@ -36,6 +60,30 @@
       "writtenOn": "2023-05-23T16:04:47Z",
       "side": 1,
       "message": "NB : same as previous",
+      "range": {
+        "startLine": 9,
+        "startChar": 73,
+        "endLine": 9,
+        "endChar": 75
+      },
+      "revId": "6c49d46ef0dba53b73749be96af1b96fb183f101",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad3a0f70_1c0e2a7e",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/async/batch-event-schema-1.0.0.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-05-23T17:14:36Z",
+      "side": 1,
+      "message": "same as above",
+      "parentUuid": "625f60ac_80088884",
       "range": {
         "startLine": 9,
         "startChar": 73,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "282c2747_35d99c31",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/async/NcmpAsyncBatchEventConsumer.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-05-23T17:14:36Z",
+      "side": 1,
+      "message": "Even i would like to update it to \u0027consumeAndPublish\u0027 but used \u0027consumeAndForward\u0027 as the same name using in other consumers which are doing the similar job. Anyway I like to update it. Done the same.",
+      "parentUuid": "7b8b8112_8ae17dae",
+      "range": {
+        "startLine": 55,
+        "startChar": 16,
+        "endLine": 55,
+        "endChar": 33
+      },
+      "revId": "6c49d46ef0dba53b73749be96af1b96fb183f101",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e05f6af0_41e5de16",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/async/NcmpAsyncBatchEventConsumer.java",
         "patchSetId": 7
@@ -91,6 +163,30 @@
       "revId": "6c49d46ef0dba53b73749be96af1b96fb183f101",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91f59c3e_f4c3e570",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/async/NcmpAsyncBatchEventConsumer.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-05-23T17:14:36Z",
+      "side": 1,
+      "message": "Yes you are correct, initially it is not mandatory after the recent agreements of using the same schema for (DMI-NCMP) and (NCMP - ClientApps) it inherits the mandatory for the (NCMP-ClientApps event). I updated this one now.",
+      "parentUuid": "e05f6af0_41e5de16",
+      "range": {
+        "startLine": 61,
+        "startChar": 8,
+        "endLine": 61,
+        "endChar": 65
+      },
+      "revId": "6c49d46ef0dba53b73749be96af1b96fb183f101",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "40c4ba86_7ed76f8f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/NcmpAsyncBatchEventConsumerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-05-23T17:14:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eb412dd4_b2ffa317",
+      "range": {
+        "startLine": 70,
+        "startChar": 36,
+        "endLine": 70,
+        "endChar": 53
+      },
+      "revId": "6c49d46ef0dba53b73749be96af1b96fb183f101",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7fab5767_89030050",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/NcmpAsyncBatchEventConsumerSpec.groovy",
         "patchSetId": 7
@@ -137,6 +257,30 @@
       "revId": "6c49d46ef0dba53b73749be96af1b96fb183f101",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "882433db_538f4f5c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/NcmpAsyncBatchEventConsumerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-05-23T17:14:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7fab5767_89030050",
+      "range": {
+        "startLine": 93,
+        "startChar": 57,
+        "endLine": 93,
+        "endChar": 71
+      },
+      "revId": "6c49d46ef0dba53b73749be96af1b96fb183f101",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
