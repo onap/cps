@@ -52,6 +52,7 @@ logging:
 # Custom Hazelcast Config.
 hazelcast:
   cluster-name: "cps-and-ncmp-test-caches"
+  port: 5701
   mode:
     kubernetes:
       enabled: false
