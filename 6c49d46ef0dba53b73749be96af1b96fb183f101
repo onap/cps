@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "f87e8cc8_d9d708bb",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/async/batch-event-headers-1.0.0.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-23T17:42:00Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "698f3788_13315ea6",
+      "range": {
+        "startLine": 9,
+        "startChar": 68,
+        "endLine": 9,
+        "endChar": 70
+      },
+      "revId": "6c49d46ef0dba53b73749be96af1b96fb183f101",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "625f60ac_80088884",
         "filename": "cps-ncmp-events/src/main/resources/schemas/async/batch-event-schema-1.0.0.json",
         "patchSetId": 7
@@ -93,6 +117,30 @@
       "revId": "6c49d46ef0dba53b73749be96af1b96fb183f101",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4ade77a0_d25149d3",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/async/batch-event-schema-1.0.0.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-23T17:42:00Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ad3a0f70_1c0e2a7e",
+      "range": {
+        "startLine": 9,
+        "startChar": 73,
+        "endLine": 9,
+        "endChar": 75
+      },
+      "revId": "6c49d46ef0dba53b73749be96af1b96fb183f101",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
