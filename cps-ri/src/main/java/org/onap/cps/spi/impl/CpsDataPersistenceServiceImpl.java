@@ -692,8 +692,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     private String mergeLeaves(final Map<String, Serializable> updateLeaves, final String currentLeavesAsString) {
         Map<String, Serializable> currentLeavesAsMap = new HashMap<>();
         if (currentLeavesAsString != null) {
-            currentLeavesAsMap = currentLeavesAsString.isEmpty()
-                    ? new HashMap<>() : jsonObjectMapper.convertJsonString(currentLeavesAsString, Map.class);
+            currentLeavesAsMap = jsonObjectMapper.convertJsonString(currentLeavesAsString, Map.class);
             currentLeavesAsMap.putAll(updateLeaves);
         }
 
