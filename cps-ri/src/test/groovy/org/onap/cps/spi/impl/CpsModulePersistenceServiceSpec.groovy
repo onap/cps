@@ -63,19 +63,16 @@ class CpsModulePersistenceServiceSpec extends Specification {
             '}'
 
     // Scenario data
-    @Shared
-    yangResourceChecksum = 'b13faef573ed1374139d02c40d8ce09c80ea1dc70e63e464c1ed61568d48d539'
-    @Shared
-    yangResourceChecksumDbConstraint = 'yang_resource_checksum_key'
-    @Shared
-    sqlExceptionMessage = String.format('(checksum)=(%s)', yangResourceChecksum)
-    @Shared
-    checksumIntegrityException =
-            new DataIntegrityViolationException(
+    static yangResourceChecksum = 'b13faef573ed1374139d02c40d8ce09c80ea1dc70e63e464c1ed61568d48d539'
+    static yangResourceChecksumDbConstraint = 'yang_resource_checksum_key'
+    static sqlExceptionMessage = String.format('(checksum)=(%s)', yangResourceChecksum)
+    static checksumIntegrityException =  new DataIntegrityViolationException(
                     "checksum integrity exception",
                     new ConstraintViolationException('', new SQLException(sqlExceptionMessage), yangResourceChecksumDbConstraint))
-    @Shared
-    anotherIntegrityException = new DataIntegrityViolationException("another integrity exception")
+    static checksumIntegrityExceptionWithoutChecksum =  new DataIntegrityViolationException(
+                    "checksum integrity exception",
+                    new ConstraintViolationException('', new SQLException('no checksum'), yangResourceChecksumDbConstraint))
+    static anotherIntegrityException = new DataIntegrityViolationException("another integrity exception")
 
     def setup() {
         objectUnderTest = new CpsModulePersistenceServiceImpl(yangResourceRepositoryMock, schemaSetRepositoryMock,
@@ -92,11 +89,12 @@ class CpsModulePersistenceServiceSpec extends Specification {
             objectUnderTest.storeSchemaSet('my-dataspace', 'my-schema-set', newYangResourcesNameToContentMap)
         then: 'an #expectedThrownException is thrown'
             def e = thrown(expectedThrownException)
-            e.getMessage().contains(expectedThrownExceptionMessage)
+            assert e.getMessage().contains(expectedThrownExceptionMessage)
         where: 'the following data is used'
-            scenario                | dbException                || expectedThrownException | expectedThrownExceptionMessage
-            'checksum data failure' | checksumIntegrityException || DuplicatedYangResourceException | yangResourceChecksum
-            'other data failure'    | anotherIntegrityException  || DataIntegrityViolationException | 'another integrity exception'
+            scenario                            | dbException                               || expectedThrownException         | expectedThrownExceptionMessage
+            'checksum data failure'             | checksumIntegrityException                || DuplicatedYangResourceException | yangResourceChecksum
+            'checksum failure without checksum' | checksumIntegrityExceptionWithoutChecksum || DuplicatedYangResourceException | 'no chocksum found'
+            'other data failure'                | anotherIntegrityException                 || DataIntegrityViolationException | 'another integrity exception'
     }
 
 }

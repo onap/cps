@@ -20,6 +20,8 @@
 
 package org.onap.cps.integration.base
 
+import java.time.OffsetDateTime
+
 class FunctionalSpecBase extends CpsIntegrationSpecBase {
 
     def static FUNCTIONAL_TEST_DATASPACE_1 = 'functionalTestDataspace1'
@@ -27,9 +29,9 @@ class FunctionalSpecBase extends CpsIntegrationSpecBase {
     def static NUMBER_OF_ANCHORS_PER_DATASPACE_WITH_BOOKSTORE_DATA = 2
     def static BOOKSTORE_ANCHOR_1 = 'bookstoreAnchor1'
     def static BOOKSTORE_ANCHOR_2 = 'bookstoreAnchor2'
-    def static BOOKSTORE_ANCHOR_FOR_PATCH = 'bookstoreAnchor2'
 
     def static initialized = false
+    def static bookstoreJsonData = readResourceDataFile('bookstore/bookstoreData.json')
 
     def setup() {
         if (!initialized) {
@@ -48,9 +50,15 @@ class FunctionalSpecBase extends CpsIntegrationSpecBase {
     }
 
     def addBookstoreData() {
-        def bookstoreJsonData = readResourceDataFile('bookstore/bookstoreData.json')
         addAnchorsWithData(NUMBER_OF_ANCHORS_PER_DATASPACE_WITH_BOOKSTORE_DATA, FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_SCHEMA_SET, 'bookstoreAnchor', bookstoreJsonData)
         addAnchorsWithData(NUMBER_OF_ANCHORS_PER_DATASPACE_WITH_BOOKSTORE_DATA, FUNCTIONAL_TEST_DATASPACE_2, BOOKSTORE_SCHEMA_SET, 'bookstoreAnchor', bookstoreJsonData)
+    }
+
+    def restoreBookstoreDataAnchor(anchorNumber) {
+        def anchorName = 'bookstoreAnchor' + anchorNumber
+        cpsAdminService.deleteAnchor(FUNCTIONAL_TEST_DATASPACE_1, anchorName)
+        cpsAdminService.createAnchor(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_SCHEMA_SET, anchorName)
+        cpsDataService.saveData(FUNCTIONAL_TEST_DATASPACE_1, anchorName, bookstoreJsonData, OffsetDateTime.now())
     }
 
 }

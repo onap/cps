@@ -340,15 +340,15 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
         if (optionalFileName.isPresent()) {
             return optionalFileName.get();
         }
-        return null;
+        return "no filename";
     }
 
     private String getDuplicatedChecksumFromException(final ConstraintViolationException exception) {
         final Matcher matcher = CHECKSUM_EXCEPTION_PATTERN.matcher(exception.getSQLException().getMessage());
-        if (matcher.find() && matcher.groupCount() == 1) {
+        if (matcher.find()) {
             return matcher.group(1);
         }
-        return null;
+        return "no checksum found";
     }
 
     private static ModuleReference toModuleReference(
