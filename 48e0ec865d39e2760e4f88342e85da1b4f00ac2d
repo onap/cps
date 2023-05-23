@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ce3665df_33b5d2ab",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-05-23T12:44:11Z",
+      "side": 1,
+      "message": "Fixed.",
+      "parentUuid": "0edfaa2a_211acf0e",
+      "range": {
+        "startLine": 217,
+        "startChar": 1,
+        "endLine": 225,
+        "endChar": 65
+      },
+      "revId": "48e0ec865d39e2760e4f88342e85da1b4f00ac2d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "aad4c38c_c98197e7",
         "filename": "cps-ncmp-rest/src/test/resources/non-supported_datastore_resource_data_batch_request.json",
         "patchSetId": 6
@@ -39,6 +63,24 @@
       "revId": "48e0ec865d39e2760e4f88342e85da1b4f00ac2d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f1254eb1_b4a45267",
+        "filename": "cps-ncmp-rest/src/test/resources/non-supported_datastore_resource_data_batch_request.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-05-23T12:44:11Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "aad4c38c_c98197e7",
+      "revId": "48e0ec865d39e2760e4f88342e85da1b4f00ac2d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "1d075b81_fd0a0e7d",
+        "filename": "cps-ncmp-rest/src/test/resources/non-supported_datastore_resource_data_batch_request.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-05-23T12:44:11Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c7354226_2296db4c",
+      "range": {
+        "startLine": 7,
+        "startChar": 18,
+        "endLine": 7,
+        "endChar": 41
+      },
+      "revId": "48e0ec865d39e2760e4f88342e85da1b4f00ac2d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e0c548db_b93298e3",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/CmHandle.java",
         "patchSetId": 6
@@ -76,6 +142,30 @@
       "writtenOn": "2023-05-23T09:08:17Z",
       "side": 1,
       "message": "dmiProperties\nUse the same name as much as you can in Java ie. change the name as early as possible like you did with TardetIds and CmHandleIds",
+      "range": {
+        "startLine": 39,
+        "startChar": 79,
+        "endLine": 39,
+        "endChar": 97
+      },
+      "revId": "48e0ec865d39e2760e4f88342e85da1b4f00ac2d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5c7833fb_9493d7b3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/CmHandle.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-05-23T12:44:11Z",
+      "side": 1,
+      "message": "Remaned",
+      "parentUuid": "e0c548db_b93298e3",
       "range": {
         "startLine": 39,
         "startChar": 79,
@@ -111,6 +201,30 @@
     },
     {
       "key": {
+        "uuid": "de8c2242_eb8b2232",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiRequestBody.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-05-23T12:44:11Z",
+      "side": 1,
+      "message": "reverted back to operationType",
+      "parentUuid": "46a8e3b3_89350a38",
+      "range": {
+        "startLine": 37,
+        "startChar": 26,
+        "endLine": 37,
+        "endChar": 35
+      },
+      "revId": "48e0ec865d39e2760e4f88342e85da1b4f00ac2d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ba744e84_4ed82166",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/ResourceDataBatchRequestUtils.java",
         "patchSetId": 6
@@ -125,6 +239,24 @@
       "revId": "48e0ec865d39e2760e4f88342e85da1b4f00ac2d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a9c33c97_4f8265ba",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/ResourceDataBatchRequestUtils.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-05-23T12:44:11Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ba744e84_4ed82166",
+      "revId": "48e0ec865d39e2760e4f88342e85da1b4f00ac2d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -151,6 +283,30 @@
     },
     {
       "key": {
+        "uuid": "61bbb0e9_44b9e698",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiModelOperationsSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-05-23T12:44:11Z",
+      "side": 1,
+      "message": "used",
+      "parentUuid": "c3027130_370ab3f0",
+      "range": {
+        "startLine": 39,
+        "startChar": 15,
+        "endLine": 39,
+        "endChar": 33
+      },
+      "revId": "48e0ec865d39e2760e4f88342e85da1b4f00ac2d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b2d3a290_433be373",
         "filename": "dmi-plugin-stub/mappings/batchCmHandles.json",
         "patchSetId": 6
@@ -162,6 +318,30 @@
       "writtenOn": "2023-05-23T09:08:17Z",
       "side": 1,
       "message": "should /data still be here?",
+      "range": {
+        "startLine": 4,
+        "startChar": 31,
+        "endLine": 4,
+        "endChar": 33
+      },
+      "revId": "48e0ec865d39e2760e4f88342e85da1b4f00ac2d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f7af763f_cecf54cf",
+        "filename": "dmi-plugin-stub/mappings/batchCmHandles.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-05-23T12:44:11Z",
+      "side": 1,
+      "message": "yes we should include /data here to be more specific",
+      "parentUuid": "b2d3a290_433be373",
       "range": {
         "startLine": 4,
         "startChar": 31,
