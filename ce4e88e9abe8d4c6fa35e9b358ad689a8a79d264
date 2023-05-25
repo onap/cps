@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "8624b668_77280fb2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventResponseConsumer.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-05-25T11:26:06Z",
+      "side": 1,
+      "message": "I see that currently we are creating this POJO on our own.\nDo you thing we might have to refactor it and also create a schema for this.",
+      "range": {
+        "startLine": 59,
+        "startChar": 54,
+        "endLine": 59,
+        "endChar": 108
+      },
+      "revId": "ce4e88e9abe8d4c6fa35e9b358ad689a8a79d264",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b378064e_c0f44887",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventResponseOutcome.java",
         "patchSetId": 12

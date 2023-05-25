@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b6cd3bde_ff40e696",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventResponseConsumer.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-05-25T11:26:06Z",
+      "side": 1,
+      "message": "NB: we might need to revisit this package structure.",
+      "range": {
+        "startLine": 59,
+        "startChar": 83,
+        "endLine": 59,
+        "endChar": 108
+      },
+      "revId": "eb34dcecfb0cf439fcb38fb811eef10548163c28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "81558bde_7b34a55f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventResponseConsumer.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-05-25T11:26:06Z",
+      "side": 1,
+      "message": "extract this to a variable and reuse it.\nused multiple times within the same code block.",
+      "range": {
+        "startLine": 63,
+        "startChar": 77,
+        "endLine": 63,
+        "endChar": 116
+      },
+      "revId": "eb34dcecfb0cf439fcb38fb811eef10548163c28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7bc1e1df_f9a2ab8e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventResponseConsumer.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-05-25T11:26:06Z",
+      "side": 1,
+      "message": "NB: can use clientId + subscriptionName",
+      "range": {
+        "startLine": 66,
+        "startChar": 43,
+        "endLine": 67,
+        "endChar": 62
+      },
+      "revId": "eb34dcecfb0cf439fcb38fb811eef10548163c28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ffcfbc08_e1070051",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventResponseConsumer.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-05-25T11:26:06Z",
+      "side": 1,
+      "message": "NB: can be also done in a single line.\nBut I will leave this to u.\n\nforwardedSubscriptionEventCache.get(subscriptionEventId).remove(subscriptionEventResponse.getDmiName())",
+      "range": {
+        "startLine": 70,
+        "startChar": 12,
+        "endLine": 73,
+        "endChar": 79
+      },
+      "revId": "eb34dcecfb0cf439fcb38fb811eef10548163c28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "add2aa1c_c08d0a9b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventForwarder.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-05-25T11:26:06Z",
+      "side": 1,
+      "message": "do we need to think about exception handling here ?? \nwhat if the task does not complete.\nwhat if the task is rejected.\n\nAtleast we can start with basic logging here.",
+      "range": {
+        "startLine": 99,
+        "startChar": 8,
+        "endLine": 99,
+        "endChar": 101
+      },
+      "revId": "eb34dcecfb0cf439fcb38fb811eef10548163c28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1261c1a3_ec2afe60",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventResponseOutcome.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-05-25T11:26:06Z",
+      "side": 1,
+      "message": "NB: i think we need to think about this concatenation.\nHappening very often at multiple places.\nIf feasible can we do it at the starting place only where we receive these , coz I mostly see subscriptionEventId is been used and subscriptionClientId and subscriptionName are been just used for concatenation ?? \nWhat do u think ?",
+      "range": {
+        "startLine": 76,
+        "startChar": 16,
+        "endLine": 76,
+        "endChar": 55
+      },
+      "revId": "eb34dcecfb0cf439fcb38fb811eef10548163c28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
