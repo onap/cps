@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "28d1155e_ae6bf121",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/ResourceDataBatchRequestUtilsSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-05-25T15:24:46Z",
+      "side": 1,
+      "message": "corrected",
+      "parentUuid": "67b7eab2_1dff98c6",
+      "range": {
+        "startLine": 58,
+        "startChar": 15,
+        "endLine": 58,
+        "endChar": 52
+      },
+      "revId": "473d991c6e1c9c7d61dc54a026fe107553793d91",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "47d9ca80_ef5489f4",
         "filename": "cps-ncmp-service/src/test/resources/resourceDataBatchRequest.json",
         "patchSetId": 11
@@ -36,6 +60,30 @@
       "writtenOn": "2023-05-25T14:16:06Z",
       "side": 1,
       "message": "might be good toe test with a duplicate\nso maybe use ch6-dmi1 AGAIN here and the test shoudl confirm it is stil in both operations...",
+      "range": {
+        "startLine": 32,
+        "startChar": 9,
+        "endLine": 32,
+        "endChar": 17
+      },
+      "revId": "473d991c6e1c9c7d61dc54a026fe107553793d91",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f410d01e_f0651c73",
+        "filename": "cps-ncmp-service/src/test/resources/resourceDataBatchRequest.json",
+        "patchSetId": 11
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-05-25T15:24:46Z",
+      "side": 1,
+      "message": "Modified",
+      "parentUuid": "47d9ca80_ef5489f4",
       "range": {
         "startLine": 32,
         "startChar": 9,
