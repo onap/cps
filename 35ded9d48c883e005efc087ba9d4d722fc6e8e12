@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a4b834f0_559b0869",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/ResourceDataBatchRequestUtils.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-25T12:33:49Z",
+      "side": 1,
+      "message": "you need to to check before adding empty list!\n\nadd/change the test so the that th dmiss are mixed up! e.g.\nOP1) ch1-dmi1\nOP2) ch3-dmi2 ch3-dmi1 \nOP3) ch1-dmi1 ch3-dmi2\n\nwhen you hit the 3rd cm handle you are switching back to the same DMI you added data to before!",
+      "range": {
+        "startLine": 61,
+        "startChar": 9,
+        "endLine": 61,
+        "endChar": 108
+      },
+      "revId": "35ded9d48c883e005efc087ba9d4d722fc6e8e12",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "94d6e454_93aa3f8c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/ResourceDataBatchRequestUtilsSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-25T12:33:49Z",
+      "side": 1,
+      "message": "running\n(the idea was that this correlates with the datastore)",
+      "range": {
+        "startLine": 60,
+        "startChar": 45,
+        "endLine": 60,
+        "endChar": 56
+      },
+      "revId": "35ded9d48c883e005efc087ba9d4d722fc6e8e12",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4484b35e_4029c02c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/ResourceDataBatchRequestUtilsSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-25T12:33:49Z",
+      "side": 1,
+      "message": "use complete IDs (for all of these) ch1-dm1",
+      "range": {
+        "startLine": 60,
+        "startChar": 110,
+        "endLine": 60,
+        "endChar": 114
+      },
+      "revId": "35ded9d48c883e005efc087ba9d4d722fc6e8e12",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
