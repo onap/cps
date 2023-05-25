@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "088c3ebc_8f0a562c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventResponseOutcome.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-05-25T09:25:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b378064e_c0f44887",
+      "range": {
+        "startLine": 50,
+        "startChar": 70,
+        "endLine": 51,
+        "endChar": 75
+      },
+      "revId": "ce4e88e9abe8d4c6fa35e9b358ad689a8a79d264",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2156eda5_90ee1015",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventResponseConsumerSpec.groovy",
         "patchSetId": 12
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "0e27d38e_a42d0ba9",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventResponseConsumerSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-05-25T09:25:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2156eda5_90ee1015",
+      "range": {
+        "startLine": 45,
+        "startChar": 30,
+        "endLine": 45,
+        "endChar": 75
+      },
+      "revId": "ce4e88e9abe8d4c6fa35e9b358ad689a8a79d264",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1f3b32f5_f547d637",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventResponseConsumerSpec.groovy",
         "patchSetId": 12
@@ -59,6 +107,30 @@
       "writtenOn": "2023-05-24T15:49:09Z",
       "side": 1,
       "message": "Q, why was this changed to ConsumerRecord?",
+      "range": {
+        "startLine": 48,
+        "startChar": 29,
+        "endLine": 48,
+        "endChar": 43
+      },
+      "revId": "ce4e88e9abe8d4c6fa35e9b358ad689a8a79d264",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d7cd2f0_ec714dd1",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventResponseConsumerSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-05-25T09:25:53Z",
+      "side": 1,
+      "message": "Since the event headers have been introduced and will be used actively. This is the one of the most efficient way to obtain headers from it. Also, the deprecated method that does not utulize event headers in EventPublisher will be removed in the future. A new publish method with headers is in place.",
+      "parentUuid": "1f3b32f5_f547d637",
       "range": {
         "startLine": 48,
         "startChar": 29,
