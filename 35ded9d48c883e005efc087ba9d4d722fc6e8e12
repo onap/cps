@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "3e60b5d3_887c999f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiRequestBody.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-05-25T12:40:27Z",
+      "side": 1,
+      "message": "I think requestId is at query param right? Instead of sending this through body",
+      "range": {
+        "startLine": 45,
+        "startChar": 19,
+        "endLine": 45,
+        "endChar": 28
+      },
+      "revId": "35ded9d48c883e005efc087ba9d4d722fc6e8e12",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a4b834f0_559b0869",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/ResourceDataBatchRequestUtils.java",
         "patchSetId": 10
