@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fc70db6b_63526453",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/ResourceDataBatchRequestUtilsSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-25T16:22:06Z",
+      "side": 1,
+      "message": "NB: unused",
+      "range": {
+        "startLine": 74,
+        "startChar": 42,
+        "endLine": 74,
+        "endChar": 50
+      },
+      "revId": "f232f30bede7d35c71db2d0201695a1416e37323",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
