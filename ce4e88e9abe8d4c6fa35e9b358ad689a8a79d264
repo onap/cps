@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d9e5b822_9f44ee3f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventResponseConsumer.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-05-25T14:19:22Z",
+      "side": 1,
+      "message": "Yes it is possible. However, this is also fine since the object is an internal communication only (between NCMP and DMI, no client has to be aware of) maybe with the common header patch set refactor, that could be reverted to schema as well.",
+      "parentUuid": "8624b668_77280fb2",
+      "range": {
+        "startLine": 59,
+        "startChar": 54,
+        "endLine": 59,
+        "endChar": 108
+      },
+      "revId": "ce4e88e9abe8d4c6fa35e9b358ad689a8a79d264",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b378064e_c0f44887",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventResponseOutcome.java",
         "patchSetId": 12

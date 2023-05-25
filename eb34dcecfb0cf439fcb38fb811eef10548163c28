@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2ed738c4_1709f516",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventResponseConsumer.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-05-25T14:19:22Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b6cd3bde_ff40e696",
+      "range": {
+        "startLine": 59,
+        "startChar": 83,
+        "endLine": 59,
+        "endChar": 108
+      },
+      "revId": "eb34dcecfb0cf439fcb38fb811eef10548163c28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "81558bde_7b34a55f",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventResponseConsumer.java",
         "patchSetId": 13
@@ -45,6 +69,30 @@
       "revId": "eb34dcecfb0cf439fcb38fb811eef10548163c28",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "af334bcf_d8227e7b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventResponseConsumer.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-05-25T14:19:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "81558bde_7b34a55f",
+      "range": {
+        "startLine": 63,
+        "startChar": 77,
+        "endLine": 63,
+        "endChar": 116
+      },
+      "revId": "eb34dcecfb0cf439fcb38fb811eef10548163c28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "dba083b7_b981ccd6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventResponseConsumer.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-05-25T14:19:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7bc1e1df_f9a2ab8e",
+      "range": {
+        "startLine": 66,
+        "startChar": 43,
+        "endLine": 67,
+        "endChar": 62
+      },
+      "revId": "eb34dcecfb0cf439fcb38fb811eef10548163c28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ffcfbc08_e1070051",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventResponseConsumer.java",
         "patchSetId": 13
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "2334e2be_295fa6c0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventResponseConsumer.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-05-25T14:19:22Z",
+      "side": 1,
+      "message": "I think the get() method in Hazelcast creates a new object that must be put back to it map to keep updated-object state stable. There is a similar article here mentioned, I saw the same behaviour while I was testing a single line implementation. : https://groups.google.com/g/hazelcast/c/s1rnmEsLlwE\nIt is better to keep it like this instead of a single line.",
+      "parentUuid": "ffcfbc08_e1070051",
+      "range": {
+        "startLine": 70,
+        "startChar": 12,
+        "endLine": 73,
+        "endChar": 79
+      },
+      "revId": "eb34dcecfb0cf439fcb38fb811eef10548163c28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "add2aa1c_c08d0a9b",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventForwarder.java",
         "patchSetId": 13
@@ -105,6 +201,30 @@
       "writtenOn": "2023-05-25T11:26:06Z",
       "side": 1,
       "message": "do we need to think about exception handling here ?? \nwhat if the task does not complete.\nwhat if the task is rejected.\n\nAtleast we can start with basic logging here.",
+      "range": {
+        "startLine": 99,
+        "startChar": 8,
+        "endLine": 99,
+        "endChar": 101
+      },
+      "revId": "eb34dcecfb0cf439fcb38fb811eef10548163c28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d69d5018_d73e7f25",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventForwarder.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-05-25T14:19:22Z",
+      "side": 1,
+      "message": "Agree with that idea, please find my comments for both cases:\n1- what if the task does not complete:\nIn my opinion, this can be handled in ResponseTimeoutTask.run() method.\n2- what if the task is rejected:\nThis exception may be handled in this section as you point out. Since the .schedule(...) method throw two RunTimeException (RejectedExecutionException and NullPointerException) could be cautght via RunTimeException block.\n\nA good ref. link may be useful: https://stackoverflow.com/questions/6894595/scheduledexecutorservice-exception-handling",
+      "parentUuid": "add2aa1c_c08d0a9b",
       "range": {
         "startLine": 99,
         "startChar": 8,
@@ -137,6 +257,30 @@
       "revId": "eb34dcecfb0cf439fcb38fb811eef10548163c28",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "60039799_83390971",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventResponseOutcome.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-05-25T14:19:22Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1261c1a3_ec2afe60",
+      "range": {
+        "startLine": 76,
+        "startChar": 16,
+        "endLine": 76,
+        "endChar": 55
+      },
+      "revId": "eb34dcecfb0cf439fcb38fb811eef10548163c28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
