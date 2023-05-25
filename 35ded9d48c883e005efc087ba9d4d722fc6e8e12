@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e94786a7_ae1932ad",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiRequestBody.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-05-25T13:40:11Z",
+      "side": 1,
+      "message": "This does not belongs to batch request. It is a part of an existing api.",
+      "parentUuid": "3e60b5d3_887c999f",
+      "range": {
+        "startLine": 45,
+        "startChar": 19,
+        "endLine": 45,
+        "endChar": 28
+      },
+      "revId": "35ded9d48c883e005efc087ba9d4d722fc6e8e12",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a4b834f0_559b0869",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/ResourceDataBatchRequestUtils.java",
         "patchSetId": 10
@@ -106,6 +130,54 @@
       "writtenOn": "2023-05-25T12:33:49Z",
       "side": 1,
       "message": "use complete IDs (for all of these) ch1-dm1",
+      "range": {
+        "startLine": 60,
+        "startChar": 110,
+        "endLine": 60,
+        "endChar": 114
+      },
+      "revId": "35ded9d48c883e005efc087ba9d4d722fc6e8e12",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e7a5bbb_85dcff66",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/ResourceDataBatchRequestUtilsSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-05-25T13:40:11Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "94d6e454_93aa3f8c",
+      "range": {
+        "startLine": 60,
+        "startChar": 45,
+        "endLine": 60,
+        "endChar": 56
+      },
+      "revId": "35ded9d48c883e005efc087ba9d4d722fc6e8e12",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f644cc3_035a0725",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/ResourceDataBatchRequestUtilsSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-05-25T13:40:11Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "4484b35e_4029c02c",
       "range": {
         "startLine": 60,
         "startChar": 110,
