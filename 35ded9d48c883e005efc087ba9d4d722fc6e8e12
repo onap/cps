@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "3b51c5d2_deeb55d8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/ResourceDataBatchRequestUtils.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-25T13:27:19Z",
+      "side": 1,
+      "message": "my bad, this comment was intended for lines 109/110\nbut I no see the computeIfAbsent methed is being used which does what is needed still!\n(we DO need the test though as discussed)",
+      "parentUuid": "a4b834f0_559b0869",
+      "range": {
+        "startLine": 61,
+        "startChar": 9,
+        "endLine": 61,
+        "endChar": 108
+      },
+      "revId": "35ded9d48c883e005efc087ba9d4d722fc6e8e12",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "94d6e454_93aa3f8c",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/ResourceDataBatchRequestUtilsSpec.groovy",
         "patchSetId": 10
