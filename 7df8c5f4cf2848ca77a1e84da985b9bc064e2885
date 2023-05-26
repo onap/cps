@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "cf0c345d_7f6be6f8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionOutcomeMapper.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-05-26T17:06:55Z",
+      "side": 1,
+      "message": "Actually this is good point. While I was implementing this block, I thought the same. I will be looking this in the next commit.",
+      "parentUuid": "b164da92_486c9b24",
+      "range": {
+        "startLine": 53,
+        "startChar": 4,
+        "endLine": 87,
+        "endChar": 5
+      },
+      "revId": "7df8c5f4cf2848ca77a1e84da985b9bc064e2885",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "db21a64e_be4be029",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventResponseOutcome.java",
         "patchSetId": 15
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "6a63e794_7cdb4392",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventResponseOutcome.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-05-26T17:06:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db21a64e_be4be029",
+      "range": {
+        "startLine": 65,
+        "startChar": 4,
+        "endLine": 78,
+        "endChar": 5
+      },
+      "revId": "7df8c5f4cf2848ca77a1e84da985b9bc064e2885",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d6836405_2e9ed39d",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/DataNodeHelperSpec.groovy",
         "patchSetId": 15
@@ -68,6 +116,30 @@
       "revId": "7df8c5f4cf2848ca77a1e84da985b9bc064e2885",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b1d0e410_00acdedd",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/DataNodeHelperSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-05-26T17:06:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d6836405_2e9ed39d",
+      "range": {
+        "startLine": 28,
+        "startChar": 4,
+        "endLine": 38,
+        "endChar": 72
+      },
+      "revId": "7df8c5f4cf2848ca77a1e84da985b9bc064e2885",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
