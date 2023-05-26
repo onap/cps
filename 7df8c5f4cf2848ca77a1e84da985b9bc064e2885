@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b164da92_486c9b24",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionOutcomeMapper.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-05-26T14:29:05Z",
+      "side": 1,
+      "message": "NB: just noticed that these 3 mapping methods are almost duplicate.\nCan it be extracted into a single method ??",
+      "range": {
+        "startLine": 53,
+        "startChar": 4,
+        "endLine": 87,
+        "endChar": 5
+      },
+      "revId": "7df8c5f4cf2848ca77a1e84da985b9bc064e2885",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "db21a64e_be4be029",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventResponseOutcome.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-05-26T14:29:05Z",
+      "side": 1,
+      "message": "NB: maybe 2 methods.\nOne for generate response and another for sending response??",
+      "range": {
+        "startLine": 65,
+        "startChar": 4,
+        "endLine": 78,
+        "endChar": 5
+      },
+      "revId": "7df8c5f4cf2848ca77a1e84da985b9bc064e2885",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d6836405_2e9ed39d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/DataNodeHelperSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-05-26T14:29:05Z",
+      "side": 1,
+      "message": "NB: can use a method and just pass in the variable field to shorten the test code.",
+      "range": {
+        "startLine": 28,
+        "startChar": 4,
+        "endLine": 38,
+        "endChar": 72
+      },
+      "revId": "7df8c5f4cf2848ca77a1e84da985b9bc064e2885",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
