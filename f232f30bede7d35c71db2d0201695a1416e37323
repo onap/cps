@@ -2,6 +2,328 @@
   "comments": [
     {
       "key": {
+        "uuid": "3104af43_14a92892",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 12
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-05-26T14:14:49Z",
+      "side": 1,
+      "message": "NB: Best if we include some example response instead of keeping empty reponse body in the swagger doc as it is sending some requestId while ack",
+      "range": {
+        "startLine": 217,
+        "startChar": 12,
+        "endLine": 218,
+        "endChar": 26
+      },
+      "revId": "f232f30bede7d35c71db2d0201695a1416e37323",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "481cc2b4_b46161df",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreRequestHandler.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-05-26T14:14:49Z",
+      "side": 1,
+      "message": "NB: cm handle operations (or) operations",
+      "range": {
+        "startLine": 108,
+        "startChar": 50,
+        "endLine": 108,
+        "endChar": 60
+      },
+      "revId": "f232f30bede7d35c71db2d0201695a1416e37323",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "45b48f41_97800b13",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreRequestHandler.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-05-26T14:14:49Z",
+      "side": 1,
+      "message": "NB: list of operations align for batch data request (or) something similar",
+      "range": {
+        "startLine": 111,
+        "startChar": 39,
+        "endLine": 111,
+        "endChar": 78
+      },
+      "revId": "f232f30bede7d35c71db2d0201695a1416e37323",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c0f88beb_00d36767",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreRequestHandler.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-05-26T14:14:49Z",
+      "side": 1,
+      "message": "We can move this to the new line after 121 as the validation is not required if the \u0027notification feature is disabled\u0027.",
+      "range": {
+        "startLine": 117,
+        "startChar": 8,
+        "endLine": 117,
+        "endChar": 74
+      },
+      "revId": "f232f30bede7d35c71db2d0201695a1416e37323",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "89fed18e_9be8dd87",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/NetworkCmProxyDataService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-05-26T14:14:49Z",
+      "side": 1,
+      "message": "NB: name to publish async responses as an event",
+      "range": {
+        "startLine": 88,
+        "startChar": 45,
+        "endLine": 88,
+        "endChar": 82
+      },
+      "revId": "f232f30bede7d35c71db2d0201695a1416e37323",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "273c996a_f5b68638",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/NetworkCmProxyDataService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-05-26T14:14:49Z",
+      "side": 1,
+      "message": "NB: list of operations with cmhandle identifiers",
+      "range": {
+        "startLine": 89,
+        "startChar": 39,
+        "endLine": 89,
+        "endChar": 60
+      },
+      "revId": "f232f30bede7d35c71db2d0201695a1416e37323",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a26700a1_ad350e41",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiDataOperations.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-05-26T14:14:49Z",
+      "side": 1,
+      "message": "NB: The requested resource data will be published as an event to the kafka topic specified  by client. or similar",
+      "range": {
+        "startLine": 118,
+        "startChar": 7,
+        "endLine": 118,
+        "endChar": 66
+      },
+      "revId": "f232f30bede7d35c71db2d0201695a1416e37323",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "342e3aad_b46a04ca",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiDataOperations.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-05-26T14:14:49Z",
+      "side": 1,
+      "message": "NB: name to publish async responses as an event",
+      "range": {
+        "startLine": 120,
+        "startChar": 45,
+        "endLine": 120,
+        "endChar": 82
+      },
+      "revId": "f232f30bede7d35c71db2d0201695a1416e37323",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cacf3f86_33e7d82d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiDataOperations.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-05-26T14:14:49Z",
+      "side": 1,
+      "message": "NB: requestId genereated by ncmp as an ack to client or similar",
+      "range": {
+        "startLine": 122,
+        "startChar": 39,
+        "endLine": 122,
+        "endChar": 66
+      },
+      "revId": "f232f30bede7d35c71db2d0201695a1416e37323",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35bdf2fb_e90f5d71",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/ResourceDataBatchRequestUtils.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-05-26T14:14:49Z",
+      "side": 1,
+      "message": "NB: of the all the requested cmhandle ids which are in READY state (or) similar",
+      "range": {
+        "startLine": 49,
+        "startChar": 33,
+        "endLine": 49,
+        "endChar": 102
+      },
+      "revId": "f232f30bede7d35c71db2d0201695a1416e37323",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7be94d22_14f72ad7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/ResourceDataBatchRequestUtils.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-05-26T14:14:49Z",
+      "side": 1,
+      "message": "a Map with list of DMI batch operations align with DMI service name (or) similar",
+      "range": {
+        "startLine": 51,
+        "startChar": 60,
+        "endLine": 51,
+        "endChar": 120
+      },
+      "revId": "f232f30bede7d35c71db2d0201695a1416e37323",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "77370b4f_8c2bbc43",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/ResourceDataBatchRequest.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-05-26T14:14:49Z",
+      "side": 1,
+      "message": "similar to this model is auto generated at \u0027rest.models\u0027 is there any specific reason to not reusing the same instead of creating the new?",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 1
+      },
+      "revId": "f232f30bede7d35c71db2d0201695a1416e37323",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "517faa3a_b01b7e51",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiDataOperationsSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-05-26T14:14:49Z",
+      "side": 1,
+      "message": "I think we need to remove this",
+      "range": {
+        "startLine": 85,
+        "startChar": 55,
+        "endLine": 85,
+        "endChar": 65
+      },
+      "revId": "f232f30bede7d35c71db2d0201695a1416e37323",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6438b29f_8ddf5712",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiDataOperationsSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-05-26T14:14:49Z",
+      "side": 1,
+      "message": "replace it with \u0027?\u0027 as topic is a query param",
+      "range": {
+        "startLine": 94,
+        "startChar": 63,
+        "endLine": 94,
+        "endChar": 64
+      },
+      "revId": "f232f30bede7d35c71db2d0201695a1416e37323",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fc70db6b_63526453",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/ResourceDataBatchRequestUtilsSpec.groovy",
         "patchSetId": 12
