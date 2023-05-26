@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bcdb01ab_79477e23",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventForwarderSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-05-26T15:09:29Z",
+      "side": 1,
+      "message": "why no invocation of this ??",
+      "range": {
+        "startLine": 131,
+        "startChar": 12,
+        "endLine": 131,
+        "endChar": 13
+      },
+      "revId": "1f6008f39921246db95ce4d8a33d5474b658a203",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6c63dd5a_758871ee",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventForwarderSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-05-26T15:09:29Z",
+      "side": 1,
+      "message": "same as above?",
+      "range": {
+        "startLine": 138,
+        "startChar": 12,
+        "endLine": 138,
+        "endChar": 13
+      },
+      "revId": "1f6008f39921246db95ce4d8a33d5474b658a203",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
