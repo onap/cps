@@ -46,6 +46,30 @@
       "revId": "c81cb758b100ed035e95101a12b71a5d7cf78c79",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d46b0608_39eb099c",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 25
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2023-05-29T14:15:10Z",
+      "side": 1,
+      "message": "yes for missing attribute value . OK",
+      "parentUuid": "d7c5a142_e9b63b25",
+      "range": {
+        "startLine": 111,
+        "startChar": 11,
+        "endLine": 111,
+        "endChar": 47
+      },
+      "revId": "c81cb758b100ed035e95101a12b71a5d7cf78c79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
