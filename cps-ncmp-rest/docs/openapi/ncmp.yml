@@ -202,17 +202,13 @@ getResourceDataForCmHandleBatch:
     description: This request will be handled asynchronously using messaging to the supplied topic. The rest response will be an acknowledge with a requestId to identify the relevant messages.
     operationId: getResourceDataForCmHandleBatch
     parameters:
-      - $ref: 'components.yaml#/components/parameters/datastoreName'
-      - $ref: 'components.yaml#/components/parameters/resourceIdentifierInQuery'
-      - $ref: 'components.yaml#/components/parameters/optionsParamInQuery'
       - $ref: 'components.yaml#/components/parameters/requiredTopicParamInQuery'
-      - $ref: 'components.yaml#/components/parameters/includeDescendantsOptionInQuery'
     requestBody:
       required: true
       content:
         application/json:
           schema:
-            type: object
+            $ref: 'components.yaml#/components/schemas/ResourceDataBatchRequest'
     responses:
       200:
         description: OK

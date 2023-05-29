@@ -33,6 +33,7 @@ import org.onap.cps.ncmp.rest.controller.handlers.NcmpCachedResourceRequestHandl
 import org.onap.cps.ncmp.rest.controller.handlers.NcmpPassthroughResourceRequestHandler
 import org.onap.cps.ncmp.rest.executor.CpsNcmpTaskExecutor
 import org.onap.cps.ncmp.rest.mapper.CmHandleStateMapper
+import org.onap.cps.ncmp.rest.mapper.ResourceDataBatchRequestMapper
 import org.onap.cps.ncmp.rest.util.DeprecationHelper
 import org.onap.cps.spi.exceptions.AlreadyDefinedException
 import org.onap.cps.spi.exceptions.AlreadyDefinedExceptionBatch
@@ -73,6 +74,9 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
 
     @SpringBean
     CmHandleStateMapper cmHandleStateMapper = Mappers.getMapper(CmHandleStateMapper)
+
+    @SpringBean
+    ResourceDataBatchRequestMapper resourceDataBatchRequestMapper = Mappers.getMapper(ResourceDataBatchRequestMapper)
 
     @SpringBean
     CpsNcmpTaskExecutor stubbedCpsTaskExecutor = Stub()

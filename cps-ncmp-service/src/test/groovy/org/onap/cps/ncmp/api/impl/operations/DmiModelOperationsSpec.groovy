@@ -36,7 +36,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.test.context.ContextConfiguration
 import spock.lang.Shared
 
-import static  org.onap.cps.ncmp.api.impl.operations.OperationEnum.READ
+import static  org.onap.cps.ncmp.api.impl.operations.OperationType.READ
 
 @SpringBootTest
 @ContextConfiguration(classes = [NcmpConfiguration.DmiProperties, DmiModelOperations])
@@ -103,9 +103,9 @@ class DmiModelOperationsSpec extends DmiOperationsBaseSpec {
         then: 'the result is the response from DMI service'
             assert result == []
         where: 'the following DMI properties are used'
-            scenario               | dmiProperties       || expectedAdditionalPropertiesInRequest
-            'with properties'      | [yangModelCmHandleProperty] || '{"prop1":"val1"}'
-            'without properties'   | []                  || '{}'
+            scenario             | dmiProperties               || expectedAdditionalPropertiesInRequest
+            'with properties'    | [yangModelCmHandleProperty] || '{"prop1":"val1"}'
+            'without properties' | []                          || '{}'
     }
 
     def 'Retrieving yang resources.'() {
@@ -154,10 +154,10 @@ class DmiModelOperationsSpec extends DmiOperationsBaseSpec {
         then: 'the result is the response from DMI service'
             assert result == [mod1:'some yang source']
         where: 'the following DMI properties are used'
-            scenario                                | dmiProperties       | unknownModuleReferences || expectedAdditionalPropertiesInRequest | expectedModuleReferencesInRequest
-            'with module references and properties' | [yangModelCmHandleProperty] | newModuleReferences || '{"prop1":"val1"}' | '{"name":"mod1","revision":"A"},{"name":"mod2","revision":"X"}'
-            'without module references'             | [yangModelCmHandleProperty] | []                  || '{"prop1":"val1"}' | ''
-            'without properties'                    | []                  | newModuleReferences     || '{}'                                  | '{"name":"mod1","revision":"A"},{"name":"mod2","revision":"X"}'
+            scenario                                | dmiProperties               | unknownModuleReferences || expectedAdditionalPropertiesInRequest | expectedModuleReferencesInRequest
+            'with module references and properties' | [yangModelCmHandleProperty] | newModuleReferences     || '{"prop1":"val1"}'                    | '{"name":"mod1","revision":"A"},{"name":"mod2","revision":"X"}'
+            'without module references'             | [yangModelCmHandleProperty] | []                      || '{"prop1":"val1"}'                    | ''
+            'without properties'                    | []                          | newModuleReferences     || '{}'                                  | '{"name":"mod1","revision":"A"},{"name":"mod2","revision":"X"}'
     }
 
     def 'Retrieving yang resources from DMI with null DMI properties.'() {
