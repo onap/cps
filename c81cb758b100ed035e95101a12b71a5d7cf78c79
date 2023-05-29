@@ -70,6 +70,98 @@
       "revId": "c81cb758b100ed035e95101a12b71a5d7cf78c79",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df38728e_53cf7a0b",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
+        "patchSetId": 25
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-29T15:10:32Z",
+      "side": 1,
+      "message": "make sure to ALWAYS poll (before the if else) otherwise the operators can get mixed up!\ne.g.  consider and write a test for @Lang\u003d\u0027German\u0027 and @price\u003e10",
+      "range": {
+        "startLine": 155,
+        "startChar": 52,
+        "endLine": 155,
+        "endChar": 83
+      },
+      "revId": "c81cb758b100ed035e95101a12b71a5d7cf78c79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1dd5f6d5_2d1ffdc7",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
+        "patchSetId": 25
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-29T15:10:32Z",
+      "side": 1,
+      "message": "check that the operator is \u0027\u003d\u0027 if NOT throw an CPSPathException\n(add a test for this scenario too)",
+      "range": {
+        "startLine": 158,
+        "startChar": 16,
+        "endLine": 162,
+        "endChar": 13
+      },
+      "revId": "c81cb758b100ed035e95101a12b71a5d7cf78c79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a3be1268_26a2811c",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 25
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-29T15:10:32Z",
+      "side": 1,
+      "message": "add a test where this is reversed   (using and to proof it works)\n@lang\u003d\"German\" and @price\u003e38   (should return 1 book)\n\n(in the current code this test will fail because the \u0027\u003d\u0027 will eb applied to the second leaf conditon)",
+      "range": {
+        "startLine": 98,
+        "startChar": 72,
+        "endLine": 98,
+        "endChar": 99
+      },
+      "revId": "c81cb758b100ed035e95101a12b71a5d7cf78c79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a8a4906_5a988506",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 25
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-29T15:10:32Z",
+      "side": 1,
+      "message": "you can extend this test (use a where block) to also cover the new scenario with @Lang\u003e\u0027German\u0027...",
+      "range": {
+        "startLine": 253,
+        "startChar": 0,
+        "endLine": 258,
+        "endChar": 4
+      },
+      "revId": "c81cb758b100ed035e95101a12b71a5d7cf78c79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
