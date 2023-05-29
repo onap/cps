@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "984a6bcf_edf1a3c6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 16
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-05-29T15:19:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "326f0895_8661b976",
+      "range": {
+        "startLine": 14,
+        "startChar": 54,
+        "endLine": 14,
+        "endChar": 60
+      },
+      "revId": "17b692a5809d683421c31511a5a38245c382fbdc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2f6eecd1_a6d1a98e",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventResponseConsumer.java",
         "patchSetId": 16
@@ -36,6 +60,30 @@
       "writtenOn": "2023-05-29T13:57:56Z",
       "side": 1,
       "message": "We need to think about if we need to put in TTL for the keys that we are putting in the distributed map.",
+      "range": {
+        "startLine": 72,
+        "startChar": 12,
+        "endLine": 72,
+        "endChar": 79
+      },
+      "revId": "17b692a5809d683421c31511a5a38245c382fbdc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "49ef38be_973cca13",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventResponseConsumer.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-05-29T15:19:53Z",
+      "side": 1,
+      "message": "I agree with you. In any case of exception, the key may last infinitely in map as a result. In order not to cause that issue, I have changed the Hazelcast config of ForwardedEventCache with a TTL 60 seconds.",
+      "parentUuid": "2f6eecd1_a6d1a98e",
       "range": {
         "startLine": 72,
         "startChar": 12,
