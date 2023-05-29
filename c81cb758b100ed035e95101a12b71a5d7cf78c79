@@ -22,6 +22,30 @@
       "revId": "c81cb758b100ed035e95101a12b71a5d7cf78c79",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d7c5a142_e9b63b25",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 25
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-29T13:44:06Z",
+      "side": 1,
+      "message": "OK, I see now it can be null for an incomplete expression\n(I never understand why Antlr parser allows incomplete expressions... but that is for a future improvement)\nFor now I have done up a neater and more performant solution in the fromString() method, I\u0027ll send you a patch",
+      "parentUuid": "70d9b1da_b34ba720",
+      "range": {
+        "startLine": 111,
+        "startChar": 11,
+        "endLine": 111,
+        "endChar": 47
+      },
+      "revId": "c81cb758b100ed035e95101a12b71a5d7cf78c79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
