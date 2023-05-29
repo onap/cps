@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "049cc42c_c0d66498",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventForwarderSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-05-29T12:51:55Z",
+      "side": 1,
+      "message": "In this case since there are no CMHandles for the provided targets, the messages should not be forwarded to any dmi plugins, instead a message will be send straight back to the client",
+      "parentUuid": "bcdb01ab_79477e23",
+      "range": {
+        "startLine": 131,
+        "startChar": 12,
+        "endLine": 131,
+        "endChar": 13
+      },
+      "revId": "1f6008f39921246db95ce4d8a33d5474b658a203",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6c63dd5a_758871ee",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventForwarderSpec.groovy",
         "patchSetId": 3
