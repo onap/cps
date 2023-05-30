@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6a40a89b_6c6dd510",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventResponseConsumer.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-05-30T15:43:06Z",
+      "side": 1,
+      "message": "This needs to be isFullOutcomeResponse \u0026\u0026 notificationFeatureEnabled",
+      "range": {
+        "startLine": 84,
+        "startChar": 12,
+        "endLine": 84,
+        "endChar": 38
+      },
+      "revId": "ea2774821ab2fb6f970b9771aa5ae0fd032c16d1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
