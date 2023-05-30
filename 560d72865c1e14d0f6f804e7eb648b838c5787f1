@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "94c0eb7d_82d2509e",
+        "filename": "csit/data/avcSubscriptionCreateEventResponse.json",
+        "patchSetId": 27
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-05-30T10:59:43Z",
+      "side": 1,
+      "message": "can this file be formatted???",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 134
+      },
+      "revId": "560d72865c1e14d0f6f804e7eb648b838c5787f1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8acdef31_6bef10c0",
+        "filename": "csit/tests/cps-kafka/cps-kafka.robot",
+        "patchSetId": 27
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-05-30T10:59:43Z",
+      "side": 1,
+      "message": "As discussed , we can have separate test suite files per use case which would be easier to read and maintain.\nMaybe \ncps-cmhandle.robot\ncps-lcm.robot \nor If you can come up with better names 😊",
+      "revId": "560d72865c1e14d0f6f804e7eb648b838c5787f1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
