@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ef714653_da638695",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2023-05-30T13:35:42Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "1649ef78_a8946e76",
+      "range": {
+        "startLine": 110,
+        "startChar": 7,
+        "endLine": 110,
+        "endChar": 30
+      },
+      "revId": "566f2d16bf6406d5c618e238569fdc7f2855327c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5c5c7d2e_be9102a9",
         "filename": "cps-ri/src/test/resources/data/cps-path-query.sql",
         "patchSetId": 3
@@ -68,6 +92,30 @@
       "revId": "566f2d16bf6406d5c618e238569fdc7f2855327c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e5fbd18_394c7f9e",
+        "filename": "cps-ri/src/test/resources/data/cps-path-query.sql",
+        "patchSetId": 3
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2023-05-30T13:35:42Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "6fccb923_438a8a0a",
+      "range": {
+        "startLine": 81,
+        "startChar": 71,
+        "endLine": 81,
+        "endChar": 97
+      },
+      "revId": "566f2d16bf6406d5c618e238569fdc7f2855327c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
