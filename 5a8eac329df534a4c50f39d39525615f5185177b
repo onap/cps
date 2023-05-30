@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f22b942c_1a581c11",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 28
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-30T13:55:02Z",
+      "side": 1,
+      "message": "use #scenario here",
+      "range": {
+        "startLine": 254,
+        "startChar": 30,
+        "endLine": 254,
+        "endChar": 41
+      },
+      "revId": "5a8eac329df534a4c50f39d39525615f5185177b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "23429a13_04e896fa",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 28
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-30T13:55:02Z",
+      "side": 1,
+      "message": "add a where with 2 scnerios to this test instead of below, more explaantions in comments below",
+      "range": {
+        "startLine": 257,
+        "startChar": 8,
+        "endLine": 257,
+        "endChar": 13
+      },
+      "revId": "5a8eac329df534a4c50f39d39525615f5185177b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d2d8f2e2_c8ef484c",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 28
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-05-30T13:55:02Z",
+      "side": 1,
+      "message": "you need to add the original scenario (from the test above) too! something like\n\u0027cpsPath that cannot be parsed\u0027 | \u0027\u0027cpsPath that cannot be parsed\u0027\u0027\n\n(you can use the same string both for the description (scenario) and the path itself :-)",
+      "range": {
+        "startLine": 319,
+        "startChar": 7,
+        "endLine": 319,
+        "endChar": 43
+      },
+      "revId": "5a8eac329df534a4c50f39d39525615f5185177b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
