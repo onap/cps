@@ -43,7 +43,8 @@ public class CpsPathQuery {
     private String ancestorSchemaNodeIdentifier = "";
     private String textFunctionConditionLeafName;
     private String textFunctionConditionValue;
-    private List<String> booleanOperatorsType;
+    private List<String> booleanOperators;
+    private List<String> comparativeOperators;
     private String containsFunctionConditionLeafName;
     private String containsFunctionConditionValue;
 
