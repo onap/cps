@@ -22,6 +22,40 @@
       "revId": "ea2774821ab2fb6f970b9771aa5ae0fd032c16d1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "77290833_c6b05614",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventResponseConsumerSpec.groovy",
+        "patchSetId": 18
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-05-30T15:48:08Z",
+      "side": 1,
+      "message": "and: \u0027a response outcome has been created\u0027\n0 * mockSubscriptionEventResponseOutcome.sendResponse(\u003cvariables\u003e)",
+      "revId": "ea2774821ab2fb6f970b9771aa5ae0fd032c16d1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "40e0a166_6e1f486f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventResponseConsumerSpec.groovy",
+        "patchSetId": 18
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-05-30T15:48:08Z",
+      "side": 1,
+      "message": "and: \u0027a response outcome has not been created\u0027\n0 * mockSubscriptionEventResponseOutcome.sendResponse(_*)",
+      "revId": "ea2774821ab2fb6f970b9771aa5ae0fd032c16d1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
