@@ -22,6 +22,30 @@
       "revId": "9db930fa593731302a789af0ff42186431f0911b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ed01d0e9_9f67a876",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathQuerySpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2023-05-30T13:34:22Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "a1197613_067d7765",
+      "range": {
+        "startLine": 3,
+        "startChar": 44,
+        "endLine": 4,
+        "endChar": 53
+      },
+      "revId": "9db930fa593731302a789af0ff42186431f0911b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }

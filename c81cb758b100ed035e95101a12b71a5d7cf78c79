@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "4db0b53d_9d387c21",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
+        "patchSetId": 25
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2023-05-30T13:34:22Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "df38728e_53cf7a0b",
+      "range": {
+        "startLine": 155,
+        "startChar": 52,
+        "endLine": 155,
+        "endChar": 83
+      },
+      "revId": "c81cb758b100ed035e95101a12b71a5d7cf78c79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1dd5f6d5_2d1ffdc7",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
         "patchSetId": 25
@@ -116,6 +140,30 @@
       "revId": "c81cb758b100ed035e95101a12b71a5d7cf78c79",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "602b6481_a9f5139b",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
+        "patchSetId": 25
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2023-05-30T13:34:22Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "1dd5f6d5_2d1ffdc7",
+      "range": {
+        "startLine": 158,
+        "startChar": 16,
+        "endLine": 162,
+        "endChar": 13
+      },
+      "revId": "c81cb758b100ed035e95101a12b71a5d7cf78c79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -142,6 +190,30 @@
     },
     {
       "key": {
+        "uuid": "4ca2a47d_8c588df4",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 25
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2023-05-30T13:34:22Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "a3be1268_26a2811c",
+      "range": {
+        "startLine": 98,
+        "startChar": 72,
+        "endLine": 98,
+        "endChar": 99
+      },
+      "revId": "c81cb758b100ed035e95101a12b71a5d7cf78c79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0a8a4906_5a988506",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
         "patchSetId": 25
@@ -162,6 +234,30 @@
       "revId": "c81cb758b100ed035e95101a12b71a5d7cf78c79",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "49c2712d_74a2b56e",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 25
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2023-05-30T13:34:22Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "0a8a4906_5a988506",
+      "range": {
+        "startLine": 253,
+        "startChar": 0,
+        "endLine": 258,
+        "endChar": 4
+      },
+      "revId": "c81cb758b100ed035e95101a12b71a5d7cf78c79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }

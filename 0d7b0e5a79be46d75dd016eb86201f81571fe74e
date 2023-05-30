@@ -73,6 +73,24 @@
     },
     {
       "key": {
+        "uuid": "50a62a8d_3f496168",
+        "filename": "cps-path-parser/src/main/antlr4/org/onap/cps/cpspath/parser/antlr4/CpsPath.g4",
+        "patchSetId": 24
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2023-05-30T13:34:22Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "5c9c5e75_d846b25d",
+      "revId": "0d7b0e5a79be46d75dd016eb86201f81571fe74e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "34c71b47_95bd97cd",
         "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
         "patchSetId": 24
@@ -96,6 +114,30 @@
     },
     {
       "key": {
+        "uuid": "f35cbaed_90325156",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2023-05-30T13:34:22Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "34c71b47_95bd97cd",
+      "range": {
+        "startLine": 196,
+        "startChar": 55,
+        "endLine": 201,
+        "endChar": 9
+      },
+      "revId": "0d7b0e5a79be46d75dd016eb86201f81571fe74e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "988be575_bd12b50d",
         "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
         "patchSetId": 24
@@ -116,6 +158,30 @@
       "revId": "0d7b0e5a79be46d75dd016eb86201f81571fe74e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8bbe365c_0639f75b",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2023-05-30T13:34:22Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "988be575_bd12b50d",
+      "range": {
+        "startLine": 211,
+        "startChar": 35,
+        "endLine": 227,
+        "endChar": 106
+      },
+      "revId": "0d7b0e5a79be46d75dd016eb86201f81571fe74e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
