@@ -71,6 +71,10 @@ class CpsPathQuerySpec extends Specification {
             'yang container'                                              | '/cps-path'                                                    || '/cps-path'
             'descendant anywhere'                                         | '//cps-path'                                                   || '//cps-path'
             'descendant with leaf condition'                              | '//cps-path[@key=1]'                                           || "//cps-path[@key='1']"
+            'descendant with leaf condition has ">" operator'             | '//cps-path[@key>9]'                                           || "//cps-path[@key>'9']"
+            'descendant with leaf condition has "<" operator'             | '//cps-path[@key<10]'                                          || "//cps-path[@key<'10']"
+            'descendant with leaf condition has ">=" operator'            | '//cps-path[@key>=8]'                                          || "//cps-path[@key>='8']"
+            'descendant with leaf condition has "<=" operator'            | '//cps-path[@key<=12]'                                         || "//cps-path[@key<='12']"
             'descendant with leaf value and ancestor'                     | '//cps-path[@key=1]/ancestor:parent[@key=1]'                   || "//cps-path[@key='1']/ancestor:parent[@key='1']"
             'parent & child'                                              | '/parent/child'                                                || '/parent/child'
             'parent leaf of type Integer & child'                         | '/parent/child[@code=1]/child2'                                || "/parent/child[@code='1']/child2"
@@ -108,16 +112,22 @@ class CpsPathQuerySpec extends Specification {
             result.descendantName == "child"
             result.leavesData.size() == expectedNumberOfLeaves
         and: 'the given operator(s) returns in the correct order'
-            result.booleanOperatorsType == expectedOperators
+            result.booleanOperators == expectedOperators
+        and: 'the given comparativeOperator(s) returns in the correct order'
+            result.comparativeOperators == expectedComparativeOperator
         where: 'the following data is used'
-            scenario                                                      | cpsPath                                                                          || expectedNumberOfLeaves || expectedOperators
-            'one attribute'                                               | '//child[@common-leaf-name-int=5]'                                               || 1                      || null
-            'more than one attribute has AND operator'                    | '//child[@int-leaf=5 and @leaf-name="leaf value"]'                               || 2                      || ['and']
-            'more than one attribute has OR operator'                     | '//child[@int-leaf=5 or @leaf-name="leaf value"]'                                || 2                      || ['or']
-            'more than one attribute has combinations and operators'      | '//child[@int-leaf=5 and @leaf-name="leaf value" and @leaf-name="leaf value1" ]' || 2                      || ['and', 'and']
-            'more than one attribute has combinations or operators'       | '//child[@int-leaf=5 or @leaf-name="leaf value" or @leaf-name="leaf value1" ]'   || 2                      || ['or', 'or']
-            'more than one attribute has combinations and/or combination' | '//child[@int-leaf=5 and @leaf-name="leaf value" or @leaf-name="leaf value1" ]'  || 2                      || ['and', 'or']
-            'more than one attribute has combinations or/and combination' | '//child[@int-leaf=5 or @leaf-name="leaf value" and @leaf-name="leaf value1" ]'  || 2                      || ['or', 'and']
+            scenario                                                      | cpsPath                                                                                   || expectedNumberOfLeaves || expectedOperators || expectedComparativeOperator
+            'one attribute'                                               | '//child[@common-leaf-name-int=5]'                                                        || 1                      || []                || ['=']
+            'more than one attribute has AND operator'                    | '//child[@int-leaf=5 and @leaf-name="leaf value"]'                                        || 2                      || ['and']           || ['=', '=']
+            'more than one attribute has OR operator'                     | '//child[@int-leaf=5 or @leaf-name="leaf value"]'                                         || 2                      || ['or']            || ['=', '=']
+            'more than one attribute has combinations AND operators'      | '//child[@int-leaf=5 and @common-leaf-name="leaf value" and @leaf-name="leaf value1" ]'   || 3                      || ['and', 'and']    || ['=', '=', '=']
+            'more than one attribute has combinations OR operators'       | '//child[@int-leaf=5 or @common-leaf-name="leaf value" or @leaf-name="leaf value1" ]'     || 3                      || ['or', 'or']      || ['=', '=', '=']
+            'more than one attribute has combinations AND/OR combination' | '//child[@int-leaf=5 and @common-leaf-name="leaf value" or @leaf-name="leaf value1" ]'    || 3                      || ['and', 'or']     || ['=', '=', '=']
+            'more than one attribute has combinations OR/AND combination' | '//child[@int-leaf=5 or @common-leaf-name="leaf value" and @leaf-name="leaf value1" ]'    || 3                      || ['or', 'and']     || ['=', '=', '=']
+            'more than one attribute has AND/> operators'                 | '//child[@int-leaf>15 and @leaf-name="leaf value"]'                                       || 2                      || ['and']           || ['>', '=']
+            'more than one attribute has OR/< operators'                  | '//child[@int-leaf<5 or @leaf-name="leaf value"]'                                         || 2                      || ['or']            || ['<', '=']
+            'more than one attribute has combinations AND/>= operators'   | '//child[@int-leaf>=18 and @common-leaf-name="leaf value" and @leaf-name="leaf value1" ]' || 3                      || ['and', 'and']    || ['>=', '=', '=']
+            'more than one attribute has combinations OR/<= operators'    | '//child[@int-leaf<=25 or @common-leaf-name="leaf value" or @leaf-name="leaf value1" ]'   || 3                      || ['or', 'or']      || ['<=', '=', '=']
     }
 
     def 'Parse #scenario cps path with text function condition'() {
