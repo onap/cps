@@ -23,7 +23,6 @@ package org.onap.cps.spi.repository;
 
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import javax.persistence.EntityManager;
@@ -36,6 +35,7 @@ import org.onap.cps.cpspath.parser.CpsPathQuery;
 import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.FragmentEntity;
+import org.onap.cps.spi.exceptions.CpsPathException;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.stereotype.Component;
 
@@ -141,23 +141,38 @@ public class FragmentQueryBuilder {
 
     private void addLeafConditions(final CpsPathQuery cpsPathQuery, final StringBuilder sqlStringBuilder) {
         if (cpsPathQuery.hasLeafConditions()) {
-            sqlStringBuilder.append(" AND (");
-            final List<String> queryBooleanOperatorsType = cpsPathQuery.getBooleanOperatorsType();
-            final Queue<String> booleanOperatorsQueue = (queryBooleanOperatorsType == null) ? null : new LinkedList<>(
-                queryBooleanOperatorsType);
-            cpsPathQuery.getLeavesData().entrySet().forEach(entry -> {
-                sqlStringBuilder.append(" attributes @> ");
-                sqlStringBuilder.append("'");
-                sqlStringBuilder.append(jsonObjectMapper.asJsonString(entry));
-                sqlStringBuilder.append("'");
-                if (!(booleanOperatorsQueue == null || booleanOperatorsQueue.isEmpty())) {
-                    sqlStringBuilder.append(" ");
-                    sqlStringBuilder.append(booleanOperatorsQueue.poll());
-                    sqlStringBuilder.append(" ");
-                }
-            });
-            sqlStringBuilder.append(")");
+            queryLeafConditions(cpsPathQuery, sqlStringBuilder);
         }
+    }
+
+    private void queryLeafConditions(final CpsPathQuery cpsPathQuery, final StringBuilder sqlStringBuilder) {
+        sqlStringBuilder.append(" AND (");
+        final Queue<String> booleanOperatorsQueue = new LinkedList<>(cpsPathQuery.getBooleanOperators());
+        final Queue<String> comparativeOperatorQueue = new LinkedList<>(cpsPathQuery.getComparativeOperators());
+        cpsPathQuery.getLeavesData().entrySet().forEach(entry -> {
+            final String nextComparativeOperator = comparativeOperatorQueue.poll();
+            if (entry.getValue() instanceof Integer) {
+                sqlStringBuilder.append("(attributes ->> ");
+                sqlStringBuilder.append("'").append(entry.getKey()).append("')\\:\\:int");
+                sqlStringBuilder.append(" ").append(nextComparativeOperator).append(" ");
+                sqlStringBuilder.append("'").append(jsonObjectMapper.asJsonString(entry.getValue())).append("'");
+            } else {
+                if ("=".equals(nextComparativeOperator)) {
+                    sqlStringBuilder.append(" attributes @> ");
+                    sqlStringBuilder.append("'");
+                    sqlStringBuilder.append(jsonObjectMapper.asJsonString(entry));
+                    sqlStringBuilder.append("'");
+                } else {
+                    throw new CpsPathException(" can use only " + nextComparativeOperator + " with integer ");
+                }
+            }
+            if (!booleanOperatorsQueue.isEmpty()) {
+                sqlStringBuilder.append(" ");
+                sqlStringBuilder.append(booleanOperatorsQueue.poll());
+                sqlStringBuilder.append(" ");
+            }
+        });
+        sqlStringBuilder.append(")");
     }
 
     private static void addTextFunctionCondition(final CpsPathQuery cpsPathQuery,
