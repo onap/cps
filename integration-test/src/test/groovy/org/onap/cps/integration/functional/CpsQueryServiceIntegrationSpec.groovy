@@ -251,7 +251,7 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
             'all'    | INCLUDE_ALL_DESCENDANTS || 17
     }
 
-    def 'Cps Path query with syntax error throws a CPS Path Exception.'() {
+    def 'Cps Path query with #scenario throws a CPS Path Exception.'() {
         when: 'trying to execute a query with a syntax (parsing) error'
             objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, cpsPath, OMIT_DESCENDANTS)
         then: 'a cps path exception is thrown'
