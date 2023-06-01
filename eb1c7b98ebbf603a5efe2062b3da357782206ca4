@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "11adb51e_3c150726",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 13
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-06-01T09:23:34Z",
+      "side": 1,
+      "message": "pageSize is good or suggestion \u0027itemPerPage\u0027\n\nor make description more clearer",
+      "range": {
+        "startLine": 283,
+        "startChar": 2,
+        "endLine": 285,
+        "endChar": 44
+      },
+      "revId": "eb1c7b98ebbf603a5efe2062b3da357782206ca4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
