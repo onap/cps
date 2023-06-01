@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c4255b23_d2eab3df",
+        "filename": "docs/cps-path.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-01T07:08:01Z",
+      "side": 1,
+      "message": "validated",
+      "range": {
+        "startLine": 247,
+        "startChar": 105,
+        "endLine": 247,
+        "endChar": 114
+      },
+      "revId": "be3e7b9b29b4f6e4d454046d9b90fdcfd89121a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
