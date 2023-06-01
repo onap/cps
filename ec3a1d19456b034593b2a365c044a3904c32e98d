@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "68d53762_77dd35ba",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/async/BatchRecordFilterStrategy.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-01T09:35:39Z",
+      "side": 1,
+      "message": "NB: if-else blocks should have bene swapped to avoid !\n(else is not even needed because of return statement, \nYou can make these changes with the commit for the test later\n\n            if (eventTypeHeader \u003d\u003d null) {\n                return true;\n            }\n            final String eventTypeHeaderValue \u003d SerializationUtils.deserialize(eventTypeHeader.value());\n            return !(eventTypeHeaderValue !\u003d null\n                  \u0026\u0026 eventTypeHeaderValue.startsWith(\"org.onap.cps.ncmp.events.async.BatchDataResponseEvent\"));",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 13
+      },
+      "revId": "ec3a1d19456b034593b2a365c044a3904c32e98d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
