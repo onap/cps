@@ -33,3 +33,4 @@ tmp/
 /docs/docs/
 /docs/.vscode/
 
+/test-tools/metrics-reports/
