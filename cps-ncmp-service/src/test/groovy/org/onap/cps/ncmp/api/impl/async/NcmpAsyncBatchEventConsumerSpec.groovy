@@ -55,7 +55,7 @@ class NcmpAsyncBatchEventConsumerSpec extends MessagingBaseSpec {
     JsonObjectMapper jsonObjectMapper
 
     @Autowired
-    RecordFilterStrategy<Object, Object> recordFilterStrategy
+    RecordFilterStrategy<String, BatchDataResponseEventV1> recordFilterStrategy
 
     def kafkaConsumer = new KafkaConsumer<>(consumerConfigProperties('test'))
     def static clientTopic = 'client-topic'
