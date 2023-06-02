@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "fc4e4ce3_a06cd85c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventForwarderSpec.groovy",
+        "patchSetId": 20
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-06-02T09:28:32Z",
+      "side": 1,
+      "message": "Yes, will to that.",
+      "parentUuid": "c87c6232_9bd826d5",
+      "range": {
+        "startLine": 155,
+        "startChar": 0,
+        "endLine": 156,
+        "endChar": 110
+      },
+      "revId": "900261c1935dba87179d2e4aa36cede4826186ca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6ee39212_84daeba3",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventResponseOutcomeSpec.groovy",
         "patchSetId": 20
@@ -45,6 +69,30 @@
       "revId": "900261c1935dba87179d2e4aa36cede4826186ca",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8151ed4c_88eed8dc",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventResponseOutcomeSpec.groovy",
+        "patchSetId": 20
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-06-02T09:28:32Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6ee39212_84daeba3",
+      "range": {
+        "startLine": 66,
+        "startChar": 60,
+        "endLine": 66,
+        "endChar": 69
+      },
+      "revId": "900261c1935dba87179d2e4aa36cede4826186ca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "5ceacbea_743f5bab",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventResponseOutcomeSpec.groovy",
+        "patchSetId": 20
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-06-02T09:28:32Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "154b0218_3842b7ca",
+      "range": {
+        "startLine": 85,
+        "startChar": 59,
+        "endLine": 85,
+        "endChar": 68
+      },
+      "revId": "900261c1935dba87179d2e4aa36cede4826186ca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7b3b748b_0805b702",
         "filename": "cps-ncmp-service/src/test/resources/application.yml",
         "patchSetId": 20
@@ -82,6 +154,24 @@
       "writtenOn": "2023-06-02T09:09:42Z",
       "side": 1,
       "message": "Does this need to be added to the production application.yml too?",
+      "revId": "900261c1935dba87179d2e4aa36cede4826186ca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dbef58ec_9521d9bb",
+        "filename": "cps-ncmp-service/src/test/resources/application.yml",
+        "patchSetId": 20
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-06-02T09:28:32Z",
+      "side": 1,
+      "message": "It has been already in prod application.yml, I think it is also possible to override this value with the desired-one in docker-compose file.",
+      "parentUuid": "7b3b748b_0805b702",
       "revId": "900261c1935dba87179d2e4aa36cede4826186ca",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
