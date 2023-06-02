@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "d49600f7_81af329f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/ForwardedSubscriptionEventCacheConfig.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-06-02T09:57:36Z",
+      "side": 1,
+      "message": "also move this cache config with other caches..\ni.e org.onap.cps.ncmp.api.impl.config.embeddedcache",
+      "range": {
+        "startLine": 21,
+        "startChar": 8,
+        "endLine": 21,
+        "endChar": 44
+      },
+      "revId": "900261c1935dba87179d2e4aa36cede4826186ca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c87c6232_9bd826d5",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventForwarderSpec.groovy",
         "patchSetId": 20
