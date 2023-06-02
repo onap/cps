@@ -43,13 +43,12 @@ public class BatchRecordFilterStrategy {
     public RecordFilterStrategy<Object, Object> filterBatchDataResponseEvent() {
         return consumedRecord -> {
             final Header eventTypeHeader = consumedRecord.headers().lastHeader("eventType");
-            if (eventTypeHeader != null) {
-                final String eventTypeHeaderValue = SerializationUtils.deserialize(eventTypeHeader.value());
-                return !(eventTypeHeaderValue != null
-                        && eventTypeHeaderValue.startsWith("org.onap.cps.ncmp.events.async.BatchDataResponseEvent"));
-            } else {
-                return true;
+            if (eventTypeHeader == null) {
+                return false;
             }
+            final String eventTypeHeaderValue = SerializationUtils.deserialize(eventTypeHeader.value());
+            return !(eventTypeHeaderValue != null
+                    && eventTypeHeaderValue.startsWith("org.onap.cps.ncmp.events.async.BatchDataResponseEvent"));
         };
     }
 }
