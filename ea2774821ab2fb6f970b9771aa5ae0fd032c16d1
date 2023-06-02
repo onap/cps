@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6bf21a21_747d4503",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventResponseConsumer.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-06-02T09:09:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6a40a89b_6c6dd510",
+      "range": {
+        "startLine": 84,
+        "startChar": 12,
+        "endLine": 84,
+        "endChar": 38
+      },
+      "revId": "ea2774821ab2fb6f970b9771aa5ae0fd032c16d1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "77290833_c6b05614",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/event/avc/SubscriptionEventResponseConsumerSpec.groovy",
         "patchSetId": 18
