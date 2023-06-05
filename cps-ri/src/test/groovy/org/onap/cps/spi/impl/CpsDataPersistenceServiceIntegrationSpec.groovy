@@ -413,6 +413,37 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
+    def 'Update existing list with root node #scenario.'() {
+        given: 'a parent having a list of data nodes containing: #originalKeys (ech list element has a child too)'
+            def rootNodeXpath = '/'
+            if (originalKeys.size() > 0) {
+                def originalListEntriesAsDataNodes = createChildListAllHavingAttributeValue(rootNodeXpath, 'original value', originalKeys, true)
+                objectUnderTest.addListElements(DATASPACE_NAME, ANCHOR_NAME1, originalListEntriesAsDataNodes)
+            }
+        and: 'each original list element has one child'
+            def originalParentFragment = fragmentRepository.getReferenceById(PARENT_3_FRAGMENT_ID)
+            originalParentFragment.childFragments.each { assert it.childFragments.size() == 1 }
+        when: 'it is updated with #scenario'
+            def replacementListEntriesAsDataNodes = createChildListAllHavingAttributeValue(rootNodeXpath, 'new value', replacementKeys, false)
+            objectUnderTest.replaceListContent(DATASPACE_NAME, ANCHOR_NAME1, rootNodeXpath, replacementListEntriesAsDataNodes)
+        then: 'the result list ONLY contains the expected replacement elements'
+            def parentFragment = fragmentRepository.getReferenceById(PARENT_3_FRAGMENT_ID)
+            def allChildXpaths = parentFragment.childFragments.collect { it.xpath }
+            def expectedListEntriesAfterUpdateAsXpaths = keysToXpaths(rootNodeXpath, replacementKeys)
+            assert allChildXpaths.size() == replacementKeys.size()
+            assert allChildXpaths.containsAll(expectedListEntriesAfterUpdateAsXpaths)
+        and: 'all the list elements have the new values'
+            assert parentFragment.childFragments.stream().allMatch(childFragment -> childFragment.attributes.contains('new value'))
+        and: 'there are no more grandchildren as none of the replacement list entries had a child'
+            parentFragment.childFragments.each { assert it.childFragments.size() == 0 }
+        where: 'the following replacement lists are applied'
+            scenario                                            | originalKeys | replacementKeys
+            'one existing entry only'                           | []           | ['NEW']
+            'multiple new entries'                              | []           | ['NEW1', 'NEW2']
+            'one new entry only (existing entries are deleted)' | ['A', 'B']   | ['NEW1', 'NEW2']
+    }
+
+    @Sql([CLEAR_DATA, SET_DATA])
     def 'Update existing list with #scenario.'() {
         given: 'a parent having a list of data nodes containing: #originalKeys (ech list element has a child too)'
             def parentXpath = '/parent-3'
@@ -724,4 +755,13 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             .build()
     }
 
+//    def createListAllHavingAttributeValue(rootNodeXpath, tag, List  keys) {
+//        def listElementAsDataNodes = keysToXpaths(rootNodeXpath, keys).collect {
+//            new DataNodeBuilder()
+//                .withXpath(it)
+//                .withLeaves([attr1: tag])
+//                .build()
+//        }
+//        return listElementAsDataNodes
+//    }
 }
