@@ -223,7 +223,7 @@ descendant-path
 leaf-conditions
 ---------------
 
-**Syntax**: ``<xpath> '[' @<leaf-name1> '=' <leaf-value1> ( ' <and|or> ' @<leaf-name> '=' <leaf-value> )* ']'``
+**Syntax**: ``<xpath> '[' @<leaf-name1> '(=|>|<|>=|<=)' <leaf-value1> ( ' <and|or> ' @<leaf-name> '(=|>|<|>=|<=)' <leaf-value> )* ']'``
   - ``xpath``: Absolute or descendant or xpath to the (list) node which elements will be queried.
   - ``leaf-name``: The name of the leaf which value needs to be compared.
   - ``leaf-value``: The required value of the leaf.
@@ -234,6 +234,8 @@ leaf-conditions
   - ``//categories[@name='Kids']``
   - ``//categories[@code='1']/books/book[@title='Dune' and @price=5]``
   - ``//categories[@code='1']/books/book[@title='xyz' or @price=15]``
+  - ``//categories[@code='1']/books/book[@title='xyz' or @price>20]``
+  - ``//categories[@code='1']/books/book[@title='Dune' and @price<=5]``
   - ``//categories[@code=1]``
 **Limitations**
   - Only the last list or container can be queried leaf values. Any ancestor list will have to be referenced by its key name-value pair(s).
@@ -242,6 +244,7 @@ leaf-conditions
   - Leaf names are not validated so ``or`` operations with invalid leaf names will silently be ignored.
   - Only leaves can be used, leaf-list are not supported.
   - Only string and integer values are supported, boolean and float values are not supported.
+  - Using comparative operators with string values will lead to an error at runtime. This error can't be validated earlier as the datatype is unknown until the execution phase.
   - The key should be supplied with correct data type for it to be queried from DB. In the last example above the attribute code is of type
     Integer so the cps query will not work if the value is passed as string.
     eg: ``//categories[@code="1"]`` or ``//categories[@code='1']`` will not work because the key attribute code is treated a string.
