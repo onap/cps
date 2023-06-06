@@ -22,6 +22,30 @@
       "revId": "9438a53cf6e15b0d49fa40cb85dc978dc9fb7f19",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "57dc82f9_0833490c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/async/BatchRecordFilterStrategy.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-06-06T15:39:47Z",
+      "side": 1,
+      "message": "I am working on some analysis once that done i will share to the team, From that changes we can keep filters unique to the consumer and this one specific to Batch data operations",
+      "parentUuid": "d4e0f63c_645e459a",
+      "range": {
+        "startLine": 44,
+        "startChar": 11,
+        "endLine": 44,
+        "endChar": 64
+      },
+      "revId": "9438a53cf6e15b0d49fa40cb85dc978dc9fb7f19",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
