@@ -18,13 +18,12 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.event.avc;
+package org.onap.cps.ncmp.api.impl.events.avcsubscription;
 
 import com.hazelcast.map.IMap;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.ncmp.api.impl.events.avcsubscription.SubscriptionEventResponseOutcome;
 
 @Slf4j
 @RequiredArgsConstructor

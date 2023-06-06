@@ -18,13 +18,11 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.event.avc
+package org.onap.cps.ncmp.api.impl.events.avcsubscription
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.hazelcast.map.IMap
 import org.apache.kafka.clients.consumer.ConsumerRecord
-import org.onap.cps.ncmp.api.impl.events.avcsubscription.SubscriptionEventResponseMapper
-import org.onap.cps.ncmp.api.impl.events.avcsubscription.SubscriptionEventResponseOutcome
 import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionPersistenceImpl
 import org.onap.cps.ncmp.api.kafka.MessagingBaseSpec
 import org.onap.cps.ncmp.api.models.SubscriptionEventResponse
@@ -49,7 +47,7 @@ class SubscriptionEventResponseConsumerSpec extends MessagingBaseSpec {
 
     def 'Consume Subscription Event Response where all DMIs have responded'() {
         given: 'a subscription event response and notifications are enabled'
-            objectUnderTest.notificationFeatureEnabled = true
+            objectUnderTest.notificationFeatureEnabled = isNotificationFeatureEnabled
         and: 'subscription model loader is enabled'
             objectUnderTest.subscriptionModelLoaderEnabled = true
         when: 'the valid event is consumed'
@@ -62,7 +60,13 @@ class SubscriptionEventResponseConsumerSpec extends MessagingBaseSpec {
         and: 'the subscription event is removed from the map'
             1 * mockForwardedSubscriptionEventCache.remove('some-client-idsome-subscription-name')
         and: 'a response outcome has been created'
-            1 * mockSubscriptionEventResponseOutcome.sendResponse('some-client-id', 'some-subscription-name', true)
+            numberOfExpectedCallToSendResponse * mockSubscriptionEventResponseOutcome.sendResponse('some-client-id', 'some-subscription-name', isFullOutcomeResponse)
+        where: 'the following values are used'
+            scenario             | isNotificationFeatureEnabled | isFullOutcomeResponse             || numberOfExpectedCallToSendResponse
+            'Response sent'      | true                         | true                              || 1
+            'Response not sent'  | true                         | false                             || 0
+            'Response not sent'  | false                        | true                              || 0
+            'Response not sent'  | false                        | false                             || 0
     }
 
     def 'Consume Subscription Event Response where another DMI has not yet responded'() {
@@ -81,5 +85,22 @@ class SubscriptionEventResponseConsumerSpec extends MessagingBaseSpec {
             0 * mockForwardedSubscriptionEventCache.remove(_)
         and: 'a response outcome has not been created'
             0 * mockSubscriptionEventResponseOutcome.sendResponse(*_)
+    }
+
+    def 'Update subscription event when the model loader flag is enabled'() {
+        given: 'subscription model loader is enabled as per #scenario'
+            objectUnderTest.subscriptionModelLoaderEnabled = isSubscriptionModelLoaderEnabled
+        when: 'the valid event is consumed'
+            objectUnderTest.consumeSubscriptionEventResponse(consumerRecord)
+        then: 'the forwarded subscription event cache does not return dmiName for the subscription create event'
+            1 * mockForwardedSubscriptionEventCache.containsKey('some-client-idsome-subscription-name') >> false
+        and: 'the mapper returns yang model subscription event with #numberOfExpectedCall'
+            numberOfExpectedCall * mockSubscriptionEventResponseMapper.toYangModelSubscriptionEvent(_)
+        and: 'subscription event has been updated into DB with #numberOfExpectedCall'
+            numberOfExpectedCall * mockSubscriptionPersistence.saveSubscriptionEvent(_)
+        where: 'the following values are used'
+            scenario                   | isSubscriptionModelLoaderEnabled || numberOfExpectedCall
+            'The event is updated'     | true                             || 1
+            'The event is not updated' | false                            || 0
     }
 }
