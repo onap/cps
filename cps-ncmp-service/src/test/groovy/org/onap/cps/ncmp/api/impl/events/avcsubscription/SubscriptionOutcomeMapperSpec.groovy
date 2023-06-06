@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.event.avc
+package org.onap.cps.ncmp.api.impl.events.avcsubscription
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.mapstruct.factory.Mappers
@@ -41,15 +41,20 @@ class SubscriptionOutcomeMapperSpec extends Specification {
 
     def 'Map subscription event response to subscription event outcome'() {
         given: 'a Subscription Response Event'
-            def jsonData = TestUtils.getResourceFileContent('avcSubscriptionEventResponse.json')
-            def testEventToMap = jsonObjectMapper.convertJsonString(jsonData, SubscriptionEventResponse.class)
+            def subscriptionResponseJsonData = TestUtils.getResourceFileContent('avcSubscriptionEventResponse.json')
+            def subscriptionResponseEvent = jsonObjectMapper.convertJsonString(subscriptionResponseJsonData, SubscriptionEventResponse.class)
         and: 'a Subscription Outcome Event'
             def jsonDataOutcome = TestUtils.getResourceFileContent('avcSubscriptionOutcomeEvent.json')
-            def testEventTarget = jsonObjectMapper.convertJsonString(jsonDataOutcome, SubscriptionEventOutcome.class)
+            def expectedEventOutcome = jsonObjectMapper.convertJsonString(jsonDataOutcome, SubscriptionEventOutcome.class)
+            expectedEventOutcome.setEventType(expectedEventType)
         when: 'the subscription response event is mapped to a subscription event outcome'
-            def result = objectUnderTest.toSubscriptionEventOutcome(testEventToMap)
-            result.setEventType(SubscriptionEventOutcome.EventType.PARTIAL_OUTCOME)
+            def result = objectUnderTest.toSubscriptionEventOutcome(subscriptionResponseEvent)
+            result.setEventType(expectedEventType)
         then: 'the resulting subscription event outcome contains the correct clientId'
-            assert result == testEventTarget
+            assert result == expectedEventOutcome
+        where: 'the following values are used'
+            scenario              || expectedEventType
+            'is full outcome'     || SubscriptionEventOutcome.EventType.COMPLETE_OUTCOME
+            'is partial outcome'  || SubscriptionEventOutcome.EventType.PARTIAL_OUTCOME
     }
 }

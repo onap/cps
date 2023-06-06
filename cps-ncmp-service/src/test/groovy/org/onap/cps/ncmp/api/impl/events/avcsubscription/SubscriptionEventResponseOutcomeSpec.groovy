@@ -22,7 +22,6 @@ package org.onap.cps.ncmp.api.impl.events.avcsubscription
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.mapstruct.factory.Mappers
-import org.onap.cps.ncmp.api.impl.event.avc.SubscriptionOutcomeMapper
 import org.onap.cps.ncmp.api.impl.events.EventsPublisher
 import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionPersistence
 import org.onap.cps.ncmp.api.impl.utils.DataNodeBaseSpec
@@ -32,7 +31,6 @@ import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
-import org.testcontainers.shaded.org.bouncycastle.crypto.engines.EthereumIESEngine
 
 @SpringBootTest(classes = [ObjectMapper, JsonObjectMapper, SubscriptionOutcomeMapper, SubscriptionEventResponseOutcome])
 class SubscriptionEventResponseOutcomeSpec extends DataNodeBaseSpec {
@@ -56,14 +54,14 @@ class SubscriptionEventResponseOutcomeSpec extends DataNodeBaseSpec {
         when: 'a response is generated'
             def result = objectUnderTest.generateResponse('some-client-id', 'some-subscription-name', isFullOutcomeResponse)
         then: 'the result will have the same values as same as in dataNode4'
-            result.eventType == eventType
+            result.eventType == expectedEventType
             result.getEvent().getSubscription().getClientID() == 'some-client-id'
             result.getEvent().getSubscription().getName() == 'some-subscription-name'
             result.getEvent().getPredicates().getPendingTargets() == ['CMHandle3']
             result.getEvent().getPredicates().getRejectedTargets() == ['CMHandle1']
             result.getEvent().getPredicates().getAcceptedTargets() == ['CMHandle2']
         where: 'the following values are used'
-            scenario             | isFullOutcomeResponse || eventType
+            scenario             | isFullOutcomeResponse || expectedEventType
             'is full outcome'    | true                  || SubscriptionEventOutcome.EventType.COMPLETE_OUTCOME
             'is partial outcome' | false                 || SubscriptionEventOutcome.EventType.PARTIAL_OUTCOME
     }
@@ -74,7 +72,7 @@ class SubscriptionEventResponseOutcomeSpec extends DataNodeBaseSpec {
         and: 'an outcome event'
             def jsonData = TestUtils.getResourceFileContent('avcSubscriptionOutcomeEvent.json')
             def eventOutcome = jsonObjectMapper.convertJsonString(jsonData, SubscriptionEventOutcome.class)
-            eventOutcome.setEventType(eventType)
+            eventOutcome.setEventType(expectedEventType)
         when: 'a subscription outcome message formed'
             def result = objectUnderTest.formSubscriptionOutcomeMessage(cmHandleIdToStatus, 'SCO-9989752',
                 'cm-subscription-001', isFullOutcomeResponse)
@@ -82,8 +80,8 @@ class SubscriptionEventResponseOutcomeSpec extends DataNodeBaseSpec {
         then: 'the result will be equal to event outcome'
             result == eventOutcome
         where: 'the following values are used'
-            scenario             | isFullOutcomeResponse | eventType
-            'is full outcome'    | true                  | SubscriptionEventOutcome.EventType.COMPLETE_OUTCOME
-            'is partial outcome' | false                 | SubscriptionEventOutcome.EventType.PARTIAL_OUTCOME
+            scenario             | isFullOutcomeResponse || expectedEventType
+            'is full outcome'    | true                  || SubscriptionEventOutcome.EventType.COMPLETE_OUTCOME
+            'is partial outcome' | false                 || SubscriptionEventOutcome.EventType.PARTIAL_OUTCOME
     }
 }

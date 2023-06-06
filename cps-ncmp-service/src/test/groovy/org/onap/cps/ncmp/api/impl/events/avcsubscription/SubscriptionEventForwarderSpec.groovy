@@ -137,14 +137,14 @@ class SubscriptionEventForwarderSpec extends MessagingBaseSpec {
             0 * mockForwardedSubscriptionEventCache.put("SCO-9989752cm-subscription-001", ["DMIName1", "DMIName2"] as Set)
         and: 'the event is forwarded twice with the CMHandle private properties and provides a valid listenable future'
             0 * mockSubscriptionEventPublisher.publishEvent("ncmp-dmi-cm-avc-subscription-DMIName1", "SCO-9989752-cm-subscription-001-DMIName1",
-                subscriptionEvent -> {
+                consumerRecord.headers(),subscriptionEvent -> {
                     Map targets = subscriptionEvent.getEvent().getPredicates().getTargets().get(0)
                     targets["CMHandle1"] == ["shape":"circle"]
                     targets["CMHandle2"] == ["shape":"square"]
                 }
             )
             0 * mockSubscriptionEventPublisher.publishEvent("ncmp-dmi-cm-avc-subscription-DMIName2", "SCO-9989752-cm-subscription-001-DMIName2",
-                subscriptionEvent -> {
+                consumerRecord.headers(),subscriptionEvent -> {
                     Map targets = subscriptionEvent.getEvent().getPredicates().getTargets().get(0)
                     targets["CMHandle3"] == ["shape":"triangle"]
                 }
@@ -154,6 +154,8 @@ class SubscriptionEventForwarderSpec extends MessagingBaseSpec {
             0 * mockForwardedSubscriptionEventCache.get(_)
         and: 'the subscription id is removed from the event cache map returning the asynchronous blocking variable'
             0 * mockForwardedSubscriptionEventCache.remove("SCO-9989752cm-subscription-001") >> {block.set(_)}
+        and: 'subscription outcome has been sent'
+            1 * mockSubscriptionEventResponseOutcome.sendResponse('SCO-9989752', 'cm-subscription-001', true)
     }
 
     static def createYangModelCmHandleWithDmiProperty(id, dmiId,propertyName, propertyValue) {

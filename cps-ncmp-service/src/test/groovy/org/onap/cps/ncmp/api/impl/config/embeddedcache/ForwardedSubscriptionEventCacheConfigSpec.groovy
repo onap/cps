@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.event.avc
+package org.onap.cps.ncmp.api.impl.config.embeddedcache
 
 import com.hazelcast.config.Config
 import com.hazelcast.core.Hazelcast
