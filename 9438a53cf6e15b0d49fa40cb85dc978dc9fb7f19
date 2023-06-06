@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d4e0f63c_645e459a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/async/BatchRecordFilterStrategy.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-06T13:07:19Z",
+      "side": 1,
+      "message": "so now this filter is specific for BatchDataResponseEventV1 type of event, correct, so this way we can have unique filters for each event (or no filters for some)",
+      "range": {
+        "startLine": 44,
+        "startChar": 11,
+        "endLine": 44,
+        "endChar": 64
+      },
+      "revId": "9438a53cf6e15b0d49fa40cb85dc978dc9fb7f19",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
