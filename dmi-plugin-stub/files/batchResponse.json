@@ -1,38 +1,37 @@
 {
-  "eventId": "4cb32729-85e3-44d1-aa6e-c923b9b059a5",
-  "eventCorrelationId": "68f15800-8ed4-4bae-9e53-27a9e03e1911",
-  "eventTime": "2023-03-28T14:29:23.876+0000",
-  "eventType": "org.onap.cps.ncmp.event.model.BatchResponseEvent",
-  "eventSchema": "urn:cps:org.onap.cps.ncmp.event.model.BatchResponseEvent",
-  "eventSchemaVersion": "v1",
-  "event": {
-    "payload": [
+  "id": "6418d5c1-ed2b-45a9-9d79-8851cd48ef12",
+  "type": "org.onap.cps.ncmp.events.cloud.v1.async.batch.BatchDataResponseEvent",
+  "source": "http://localhost:8080//schema/v1/source",
+  "time": "2023-03-28T14:29:23.876+0000",
+  "dataschema": "http://localhost:8080/schema/v1/dataschema",
+  "content-type": "application/yang-data+json",
+  "correlationid": "request-id-123",
+  "data": {
+    "responses": [
       {
-        "cmHandle": "CmHandle5",
-        "additionalProperties": [
-          {
-            "Shape": "cube",
-            "Size": "small",
-            "Color": "yellow"
-          }
+        "operationid": "1",
+        "ids": [
+          "123",
+          "124"
         ],
-        "state": {
-          "cmHandleState": "READY",
-          "lastUpdateTime": "2023-04-03T20:03:19.832+0000"
-        }
-      },
-      {
-        "cmHandle": "CmHandle6",
-        "additionalProperties": [
-          {
-            "Shape": "cube",
-            "Size": "small",
-            "Color": "yellow"
+        "statuscode": "1",
+        "statusmessage": "Successfully applied changes",
+        "responsedata": {
+          "ietf-netconf-monitoring:netconf-state": {
+            "schemas": {
+              "schema": [
+                {
+                  "identifier": "ietf-tls-server",
+                  "version": "2016-11-02",
+                  "format": "ietf-netconf-monitoring:yang",
+                  "namespace": "urn:ietf:params:xml:ns:yang:ietf-tls-server",
+                  "location": [
+                    "NETCONF"
+                  ]
+                }
+              ]
+            }
           }
-        ],
-        "state": {
-          "cmHandleState": "READY",
-          "lastUpdateTime": "2023-04-02T20:01:19.832+0000"
         }
       }
     ]
