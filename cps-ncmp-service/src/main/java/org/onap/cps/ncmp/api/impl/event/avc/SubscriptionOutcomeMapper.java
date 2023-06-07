@@ -54,7 +54,7 @@ public interface SubscriptionOutcomeMapper {
     default List<Object> mapStatusToCmHandleRejected(Map<String, SubscriptionStatus> targets) {
         return targets.entrySet()
                 .stream().filter(target -> SubscriptionStatus.REJECTED.equals(target.getValue()))
-                .map(target -> target.getKey())
+                .map(Map.Entry::getKey)
                 .collect(Collectors.toList());
     }
 
@@ -68,7 +68,7 @@ public interface SubscriptionOutcomeMapper {
     default List<Object> mapStatusToCmHandleAccepted(Map<String, SubscriptionStatus> targets) {
         return targets.entrySet()
                 .stream().filter(target -> SubscriptionStatus.ACCEPTED.equals(target.getValue()))
-                .map(target -> target.getKey())
+                .map(Map.Entry::getKey)
                 .collect(Collectors.toList());
     }
 
@@ -82,7 +82,7 @@ public interface SubscriptionOutcomeMapper {
     default List<Object> mapStatusToCmHandlePending(Map<String, SubscriptionStatus> targets) {
         return targets.entrySet()
                 .stream().filter(target -> SubscriptionStatus.PENDING.equals(target.getValue()))
-                .map(target -> target.getKey())
+                .map(Map.Entry::getKey)
                 .collect(Collectors.toList());
     }
 }

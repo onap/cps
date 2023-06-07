@@ -53,7 +53,7 @@ public class DataNodeHelper {
     public static List<Map<String, Serializable>> getDataNodeLeaves(final Collection<DataNode> dataNodes) {
         return dataNodes.stream()
                 .flatMap(DataNodeHelper::flatten)
-                .map(node -> node.getLeaves())
+                .map(DataNode::getLeaves)
                 .collect(Collectors.toList());
     }
 
@@ -66,10 +66,10 @@ public class DataNodeHelper {
     public static List<Collection<Serializable>> getCmHandleIdToStatus(
             final List<Map<String, Serializable>> dataNodeLeaves) {
         return dataNodeLeaves.stream()
-                .map(target -> target.values())
+                .map(Map::values)
                 .filter(col -> col.contains("PENDING")
-                        | col.contains("ACCEPTED")
-                        | col.contains("REJECTED"))
+                        || col.contains("ACCEPTED")
+                        || col.contains("REJECTED"))
                 .collect(Collectors.toList());
     }
 }
