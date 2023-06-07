@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "urn:cps:org.onap.cps.ncmp.events.header:event-headers:1.0.0",
+  "$ref": "#/definitions/CloudEventHeaders",
+  "definitions": {
+    "CloudEventHeaders": {
+      "description": "The header information of an event.",
+      "type": "object",
+      "javaType" : "org.onap.cps.ncmp.events.cloud.v1.header.EventHeaders",
+      "properties": {
+        "id": {
+          "description": "The unique id to identify an event.",
+          "type": "string"
+        },
+        "source": {
+          "description": "The source of an event.",
+          "type": "string"
+        },
+        "specversion": {
+          "description": "The schema version of an event payload.",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of an event.",
+          "type": "string"
+        },
+        "time": {
+          "description": "The time of the event. It should be in RFC format ('yyyy-MM-dd'T'HH:mm:ss.SSSZ').",
+          "type": "string"
+        },
+        "dataschema": {
+          "description": "The schema of an event payload.",
+          "type": "string"
+        },
+        "content-type": {
+          "description": "It is used to indicate the media type of the resource.",
+          "type": "string",
+          "default": "application/yang-data+json"
+        },
+        "correlationid": {
+          "description": "The request id sent by NCMP as an acknowledgement.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "source",
+        "specversion",
+        "type"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

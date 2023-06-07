@@ -25,7 +25,7 @@ import org.apache.kafka.clients.consumer.ConsumerRecord
 import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionPersistence
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelSubscriptionEvent
 import org.onap.cps.ncmp.api.kafka.MessagingBaseSpec
-import org.onap.cps.ncmp.event.model.SubscriptionEvent
+import org.onap.cps.ncmp.event.model.cloud.v1.SubscriptionEvent
 import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.spi.exceptions.OperationNotYetSupportedException
 import org.onap.cps.utils.JsonObjectMapper

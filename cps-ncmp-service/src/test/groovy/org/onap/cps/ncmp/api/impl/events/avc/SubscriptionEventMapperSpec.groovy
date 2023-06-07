@@ -24,7 +24,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import org.mapstruct.factory.Mappers
 import org.onap.cps.ncmp.api.impl.events.avcsubscription.SubscriptionEventMapper
 import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionStatus
-import org.onap.cps.ncmp.event.model.SubscriptionEvent
+import org.onap.cps.ncmp.event.model.cloud.v1.SubscriptionEvent
 import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.beans.factory.annotation.Autowired

@@ -21,7 +21,7 @@
 package org.onap.cps.ncmp.api.impl.events.avc
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import org.onap.cps.ncmp.event.model.SubscriptionEvent
+import org.onap.cps.ncmp.event.model.cloud.v1.SubscriptionEvent
 import org.onap.cps.ncmp.utils.KafkaDemoProducerConfig
 import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.utils.JsonObjectMapper

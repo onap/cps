@@ -27,7 +27,7 @@ import org.onap.cps.ncmp.api.impl.events.EventsPublisher
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence
 import org.onap.cps.ncmp.api.kafka.MessagingBaseSpec
-import org.onap.cps.ncmp.event.model.SubscriptionEvent
+import org.onap.cps.ncmp.event.model.cloud.v1.SubscriptionEvent
 import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.spi.exceptions.OperationNotYetSupportedException
 import org.onap.cps.utils.JsonObjectMapper

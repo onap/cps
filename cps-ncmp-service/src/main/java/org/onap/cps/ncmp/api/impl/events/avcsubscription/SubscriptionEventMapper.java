@@ -27,7 +27,7 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionStatus;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelSubscriptionEvent;
-import org.onap.cps.ncmp.event.model.SubscriptionEvent;
+import org.onap.cps.ncmp.event.model.cloud.v1.SubscriptionEvent;
 
 @Mapper(componentModel = "spring")
 public interface SubscriptionEventMapper {
