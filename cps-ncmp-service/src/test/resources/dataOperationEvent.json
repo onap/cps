@@ -1,15 +1,15 @@
 {
-  "event":{
-    "batch-responses":[
+  "data":{
+    "responses":[
       {
-        "operationId":"1",
+        "operationid":"1",
         "ids":[
           "123",
           "124"
         ],
-        "status-code":1,
-        "status-message":"Batch operation success on the above cmhandle ids ",
-        "data":{
+        "statuscode":1,
+        "statusmessage":"Batch operation success on the above cmhandle ids ",
+        "responsedata":{
           "ietf-netconf-monitoring:netconf-state":{
             "schemas":{
               "schema":[
@@ -28,14 +28,14 @@
         }
       },
       {
-        "operationId":"101",
+        "operationid":"101",
         "ids":[
           "456",
           "457"
         ],
-        "status-code":101,
-        "status-message":"cmHandle(s) do not exist",
-        "data":{
+        "statuscode":101,
+        "statusmessage":"cmHandle(s) do not exist",
+        "responsedata":{
           "error":{
             "message":"cmHandle(s) do not exist"
           }
