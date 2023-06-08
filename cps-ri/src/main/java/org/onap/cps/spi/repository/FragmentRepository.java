@@ -29,7 +29,6 @@ import java.util.Optional;
 import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.FragmentEntity;
-import org.onap.cps.spi.entities.FragmentExtract;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -38,7 +37,8 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>, FragmentRepositoryCpsPathQuery {
+public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>, FragmentRepositoryCpsPathQuery,
+        FragmentPrefetchRepository {
 
     Optional<FragmentEntity> findByAnchorAndXpath(AnchorEntity anchorEntity, String xpath);
 
@@ -47,7 +47,10 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>,
             new DataNodeNotFoundException(anchorEntity.getDataspace().getName(), anchorEntity.getName(), xpath));
     }
 
-    List<FragmentEntity> findByAnchorIdAndXpathIn(long anchorId, String[] xpaths);
+    @Query(value = "SELECT * FROM fragment WHERE anchor_id = :anchorId AND xpath = ANY (:xpaths)",
+            nativeQuery = true)
+    List<FragmentEntity> findByAnchorIdAndXpathIn(@Param("anchorId") long anchorId,
+                                                  @Param("xpaths") String[] xpaths);
 
     default List<FragmentEntity> findByAnchorAndXpathIn(final AnchorEntity anchorEntity,
                                                         final Collection<String> xpaths) {
@@ -66,8 +69,8 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>,
 
     boolean existsByAnchorId(long anchorId);
 
-    @Query("SELECT f FROM FragmentEntity f WHERE anchor = :anchor")
-    List<FragmentExtract> findAllExtractsByAnchor(@Param("anchor") AnchorEntity anchorEntity);
+    @Query(value = "SELECT * FROM fragment WHERE anchor_id = :anchorId LIMIT 1", nativeQuery = true)
+    Optional<FragmentEntity> findOneByAnchorId(@Param("anchorId") long anchorId);
 
     @Modifying
     @Query(value = "DELETE FROM fragment WHERE anchor_id = ANY (:anchorIds)", nativeQuery = true)
@@ -110,49 +113,5 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>,
 
     @Query("SELECT xpath FROM FragmentEntity WHERE anchor = :anchor AND parentId IS NULL")
     List<String> findAllXpathByAnchorAndParentIdIsNull(@Param("anchor") AnchorEntity anchorEntity);
-
-    @Query(value
-        = "WITH RECURSIVE parent_search AS ("
-        + "  SELECT id, 0 AS depth "
-        + "    FROM fragment "
-        + "   WHERE anchor_id = :anchorId AND xpath = ANY (:xpaths) "
-        + "   UNION "
-        + "  SELECT c.id, depth + 1 "
-        + "    FROM fragment c INNER JOIN parent_search p ON c.parent_id = p.id"
-        + "   WHERE depth < (SELECT CASE WHEN :maxDepth = -1 THEN " + Integer.MAX_VALUE + " ELSE :maxDepth END) "
-        + ") "
-        + "SELECT f.id, anchor_id AS anchorId, xpath, f.parent_id AS parentId, CAST(attributes AS TEXT) AS attributes "
-        + "FROM fragment f INNER JOIN parent_search p ON f.id = p.id",
-        nativeQuery = true
-    )
-    List<FragmentExtract> findExtractsWithDescendants(@Param("anchorId") long anchorId,
-                                                      @Param("xpaths") String[] xpaths,
-                                                      @Param("maxDepth") int maxDepth);
-
-    default List<FragmentExtract> findExtractsWithDescendants(final long anchorId, final Collection<String> xpaths,
-                                                              final int maxDepth) {
-        return findExtractsWithDescendants(anchorId, xpaths.toArray(new String[0]), maxDepth);
-    }
-
-    @Query(value
-        = "WITH RECURSIVE parent_search AS ("
-        + "  SELECT id, 0 AS depth "
-        + "    FROM fragment "
-        + "   WHERE id = ANY (:ids) "
-        + "   UNION "
-        + "  SELECT c.id, depth + 1 "
-        + "    FROM fragment c INNER JOIN parent_search p ON c.parent_id = p.id"
-        + "   WHERE depth < (SELECT CASE WHEN :maxDepth = -1 THEN " + Integer.MAX_VALUE + " ELSE :maxDepth END) "
-        + ") "
-        + "SELECT f.id, anchor_id AS anchorId, xpath, f.parent_id AS parentId, CAST(attributes AS TEXT) AS attributes "
-        + "FROM fragment f INNER JOIN parent_search p ON f.id = p.id",
-        nativeQuery = true
-    )
-    List<FragmentExtract> findExtractsWithDescendantsByIds(@Param("ids") long[] ids,
-                                                           @Param("maxDepth") int maxDepth);
-
-    default List<FragmentExtract> findExtractsWithDescendantsByIds(final Collection<Long> ids, final int maxDepth) {
-        return findExtractsWithDescendantsByIds(ids.stream().mapToLong(id -> id).toArray(), maxDepth);
-    }
 
 }
