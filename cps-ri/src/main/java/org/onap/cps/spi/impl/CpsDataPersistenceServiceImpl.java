@@ -36,7 +36,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -52,8 +51,6 @@ import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.FragmentEntity;
-import org.onap.cps.spi.entities.FragmentEntityArranger;
-import org.onap.cps.spi.entities.FragmentExtract;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
 import org.onap.cps.spi.exceptions.AlreadyDefinedExceptionBatch;
 import org.onap.cps.spi.exceptions.ConcurrencyException;
@@ -248,7 +245,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         final AnchorEntity anchorEntity = getAnchorEntity(dataspaceName, anchorName);
         final Collection<FragmentEntity> fragmentEntities =
             getFragmentEntities(anchorEntity, xpaths, fetchDescendantsOption);
-        return toDataNodes(fragmentEntities, fetchDescendantsOption);
+        return createDataNodesFromFragmentEntities(fetchDescendantsOption, fragmentEntities);
     }
 
     private Collection<FragmentEntity> getFragmentEntities(final AnchorEntity anchorEntity,
@@ -269,19 +266,16 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             normalizedXpaths.addAll(fragmentRepository.findAllXpathByAnchorAndParentIdIsNull(anchorEntity));
         }
 
-        final List<FragmentExtract> fragmentExtracts =
-            fragmentRepository.findExtractsWithDescendants(anchorEntity.getId(), normalizedXpaths,
-                fetchDescendantsOption.getDepth());
+        final List<FragmentEntity> fragmentEntities = fragmentRepository.findByAnchorAndXpathIn(anchorEntity,
+                normalizedXpaths);
 
-        return FragmentEntityArranger.toFragmentEntityTrees(anchorEntity, fragmentExtracts);
+        return fragmentRepository.prefetchDescendantsOfFragmentEntities(fetchDescendantsOption, fragmentEntities);
     }
 
     private FragmentEntity getFragmentEntity(final AnchorEntity anchorEntity, final String xpath) {
         final FragmentEntity fragmentEntity;
         if (isRootXpath(xpath)) {
-            final List<FragmentExtract> fragmentExtracts = fragmentRepository.findAllExtractsByAnchor(anchorEntity);
-            fragmentEntity = FragmentEntityArranger.toFragmentEntityTrees(anchorEntity, fragmentExtracts)
-                .stream().findFirst().orElse(null);
+            fragmentEntity = fragmentRepository.findOneByAnchorId(anchorEntity.getId()).orElse(null);
         } else {
             fragmentEntity = fragmentRepository.getByAnchorAndXpath(anchorEntity, getNormalizedXpath(xpath));
         }
@@ -320,8 +314,8 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
                 fragmentEntities = fragmentRepository.findByAnchorAndXpathIn(anchorEntity, ancestorXpaths);
             }
         }
-        fragmentEntities = prefetchDescendantsForFragmentEntities(fetchDescendantsOption, anchorEntity,
-            fragmentEntities);
+        fragmentEntities = fragmentRepository.prefetchDescendantsOfFragmentEntities(fetchDescendantsOption,
+                fragmentEntities);
         return createDataNodesFromFragmentEntities(fetchDescendantsOption, fragmentEntities);
     }
 
@@ -329,31 +323,6 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     public List<DataNode> queryDataNodesAcrossAnchors(final String dataspaceName, final String cpsPath,
                                                       final FetchDescendantsOption fetchDescendantsOption) {
         return queryDataNodes(dataspaceName, QUERY_ACROSS_ANCHORS, cpsPath, fetchDescendantsOption);
-    }
-
-    private Collection<FragmentEntity> prefetchDescendantsForFragmentEntities(
-                                            final FetchDescendantsOption fetchDescendantsOption,
-                                            final AnchorEntity anchorEntity,
-                                            final Collection<FragmentEntity> proxiedFragmentEntities) {
-        if (FetchDescendantsOption.OMIT_DESCENDANTS.equals(fetchDescendantsOption)) {
-            return proxiedFragmentEntities;
-        }
-
-        final List<Long> fragmentEntityIds = proxiedFragmentEntities.stream()
-            .map(FragmentEntity::getId).collect(Collectors.toList());
-
-        final List<FragmentExtract> fragmentExtracts =
-            fragmentRepository.findExtractsWithDescendantsByIds(fragmentEntityIds, fetchDescendantsOption.getDepth());
-
-        if (anchorEntity == ALL_ANCHORS) {
-            final Collection<Long> anchorIds = fragmentExtracts.stream()
-                .map(FragmentExtract::getAnchorId).collect(Collectors.toSet());
-            final List<AnchorEntity> anchorEntities = anchorRepository.findAllById(anchorIds);
-            final Map<Long, AnchorEntity> anchorEntityPerId = anchorEntities.stream()
-                .collect(Collectors.toMap(AnchorEntity::getId, Function.identity()));
-            return FragmentEntityArranger.toFragmentEntityTreesAcrossAnchors(anchorEntityPerId, fragmentExtracts);
-        }
-        return FragmentEntityArranger.toFragmentEntityTrees(anchorEntity, fragmentExtracts);
     }
 
     private List<DataNode> createDataNodesFromFragmentEntities(final FetchDescendantsOption fetchDescendantsOption,
@@ -420,15 +389,6 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
                 .withDataspace(fragmentEntity.getAnchor().getDataspace().getName())
                 .withAnchor(fragmentEntity.getAnchor().getName())
                 .withChildDataNodes(childDataNodes).build();
-    }
-
-    private Collection<DataNode> toDataNodes(final Collection<FragmentEntity> fragmentEntities,
-                                             final FetchDescendantsOption fetchDescendantsOption) {
-        final Collection<DataNode> dataNodes = new ArrayList<>(fragmentEntities.size());
-        for (final FragmentEntity fragmentEntity : fragmentEntities) {
-            dataNodes.add(toDataNode(fragmentEntity, fetchDescendantsOption));
-        }
-        return dataNodes;
     }
 
     private List<DataNode> getChildDataNodes(final FragmentEntity fragmentEntity,

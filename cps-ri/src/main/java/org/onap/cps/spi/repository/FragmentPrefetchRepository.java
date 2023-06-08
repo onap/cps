@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2022-2023 Nordix Foundation.
+ * Copyright (C) 2023 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,17 +18,14 @@
  * ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.spi.entities;
+package org.onap.cps.spi.repository;
 
-public interface FragmentExtract {
+import java.util.Collection;
+import org.onap.cps.spi.FetchDescendantsOption;
+import org.onap.cps.spi.entities.FragmentEntity;
 
-    Long getId();
-
-    Long getAnchorId();
-
-    String getXpath();
-
-    Long getParentId();
-
-    String getAttributes();
+public interface FragmentPrefetchRepository {
+    Collection<FragmentEntity> prefetchDescendantsOfFragmentEntities(
+            final FetchDescendantsOption fetchDescendantsOption,
+            final Collection<FragmentEntity> proxiedFragmentEntities);
 }
