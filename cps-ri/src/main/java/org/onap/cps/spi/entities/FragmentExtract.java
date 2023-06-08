@@ -20,15 +20,20 @@
 
 package org.onap.cps.spi.entities;
 
-public interface FragmentExtract {
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
-    Long getId();
+@Getter
+@AllArgsConstructor
+public class FragmentExtract {
 
-    Long getAnchorId();
+    Long id;
 
-    String getXpath();
+    Long anchorId;
 
-    Long getParentId();
+    String xpath;
 
-    String getAttributes();
+    Long parentId;
+
+    String attributes;
 }
