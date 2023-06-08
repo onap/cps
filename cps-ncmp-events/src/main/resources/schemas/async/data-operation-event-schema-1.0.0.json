@@ -1,19 +1,19 @@
 {
   "$schema": "https://json-schema.org/draft/2019-09/schema",
-  "$id": "urn:cps:org.onap.cps.ncmp.events.async:batch-event-schema:1.0.0",
-  "$ref": "#/definitions/BatchDataResponseEvent",
+  "$id": "urn:cps:org.onap.cps.ncmp.events.async:data-operation-event-schema:1.0.0",
+  "$ref": "#/definitions/DataOperationEvent",
   "definitions": {
-    "BatchDataResponseEvent": {
-      "description": "The payload of batch event.",
+    "DataOperationEvent": {
+      "description": "The payload of data operation event.",
       "type": "object",
-      "javaType" : "org.onap.cps.ncmp.events.async.BatchDataResponseEventV1",
+      "javaType" : "org.onap.cps.ncmp.events.async.DataOperationEventV1",
       "properties": {
-        "event": {
+        "data": {
           "description": "The payload content of the requested data.",
           "type": "object",
-          "javaType" : "org.onap.cps.ncmp.events.async.BatchDataEvent",
+          "javaType" : "org.onap.cps.ncmp.events.async.DataOperationEvent",
           "properties": {
-            "batch-responses": {
+            "responses": {
               "description": "An array of batch responses which contains both success and failure",
               "type": "array",
               "items": {
@@ -27,15 +27,15 @@
                     "description": "Id's of the cmhandles",
                     "type": "array"
                   },
-                  "status-code": {
+                  "statusCode": {
                     "description": "which says success or failure (0-99) are for success and (100-199) are for failure",
                     "type": "string"
                   },
-                  "status-message": {
+                  "statusMessage": {
                     "description": "Human readable message, Which says what the response has",
                     "type": "string"
                   },
-                  "data": {
+                  "responseContent": {
                     "description": "Contains the requested data response.",
                     "type": "object",
                     "existingJavaType": "java.lang.Object",
@@ -45,21 +45,21 @@
                 "required": [
                   "operationId",
                   "ids",
-                  "status-code",
-                  "status-message"
+                  "statusCode",
+                  "statusMessage"
                 ],
                 "additionalProperties": false
               }
             }
           },
           "required": [
-            "batch-responses"
+            "responses"
           ],
           "additionalProperties": false
         }
       },
       "required": [
-        "event"
+        "data"
       ],
       "additionalProperties": false
     }
