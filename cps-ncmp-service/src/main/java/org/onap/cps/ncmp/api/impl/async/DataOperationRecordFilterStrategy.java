@@ -22,17 +22,17 @@ package org.onap.cps.ncmp.api.impl.async;
 
 import org.apache.commons.lang3.SerializationUtils;
 import org.apache.kafka.common.header.Header;
-import org.onap.cps.ncmp.events.async.BatchDataResponseEventV1;
+import org.onap.cps.ncmp.events.async1_0_0.DataOperationEvent1_0_0;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.listener.adapter.RecordFilterStrategy;
 
 /**
- * Batch Record filter strategy, which helps to filter the consumer records.
+ * Data operation record filter strategy, which helps to filter the consumer records.
  *
  */
 @Configuration
-public class BatchRecordFilterStrategy {
+public class DataOperationRecordFilterStrategy {
 
     /**
      *  Filtering the consumer records based on the eventType header, It
@@ -41,7 +41,7 @@ public class BatchRecordFilterStrategy {
      * @return boolean value.
      */
     @Bean
-    public RecordFilterStrategy<String, BatchDataResponseEventV1> filterBatchDataResponseEvent() {
+    public RecordFilterStrategy<String, DataOperationEvent1_0_0> includeDataOperationEventsOnly() {
         return consumedRecord -> {
             final Header eventTypeHeader = consumedRecord.headers().lastHeader("eventType");
             if (eventTypeHeader == null) {
@@ -49,7 +49,7 @@ public class BatchRecordFilterStrategy {
             }
             final String eventTypeHeaderValue = SerializationUtils.deserialize(eventTypeHeader.value());
             return !(eventTypeHeaderValue != null
-                    && eventTypeHeaderValue.startsWith("org.onap.cps.ncmp.events.async.BatchDataResponseEvent"));
+                    && eventTypeHeaderValue.startsWith("org.onap.cps.ncmp.events.async1_0_0.DataOperationEvent1_0_0"));
         };
     }
 }

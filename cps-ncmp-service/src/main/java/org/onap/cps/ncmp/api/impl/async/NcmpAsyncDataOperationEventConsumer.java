@@ -25,40 +25,41 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.SerializationUtils;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.onap.cps.ncmp.api.impl.events.EventsPublisher;
-import org.onap.cps.ncmp.events.async.BatchDataResponseEventV1;
+import org.onap.cps.ncmp.events.async1_0_0.DataOperationEvent1_0_0;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
 /**
- * Listener for cps-ncmp async batch events.
+ * Listener for cps-ncmp async data operation events.
  */
 @Component
 @Slf4j
 @RequiredArgsConstructor
 @ConditionalOnProperty(name = "notification.enabled", havingValue = "true", matchIfMissing = true)
-public class NcmpAsyncBatchEventConsumer {
+public class NcmpAsyncDataOperationEventConsumer {
 
-    private final EventsPublisher<BatchDataResponseEventV1> eventsPublisher;
+    private final EventsPublisher<DataOperationEvent1_0_0> eventsPublisher;
 
     /**
-     * Consume the BatchDataResponseEvent published by producer to topic 'async-m2m.topic'
+     * Consume the DataOperationResponseEvent published by producer to topic 'async-m2m.topic'
      * and publish the same to the client specified topic.
      *
-     * @param batchEventConsumerRecord consuming event as a ConsumerRecord.
+     * @param dataOperationEventConsumerRecord consuming event as a ConsumerRecord.
      */
     @KafkaListener(
             topics = "${app.ncmp.async-m2m.topic}",
-            filter = "filterBatchDataResponseEvent",
-            groupId = "ncmp-batch-event-group",
-            properties = {"spring.json.value.default.type=org.onap.cps.ncmp.events.async.BatchDataResponseEventV1"})
-    public void consumeAndPublish(final ConsumerRecord<String, BatchDataResponseEventV1> batchEventConsumerRecord) {
-        log.info("Consuming event payload {} ...", batchEventConsumerRecord.value());
+            filter = "includeDataOperationEventsOnly",
+            groupId = "ncmp-data-operation-event-group",
+            properties = {"spring.json.value.default.type=org.onap.cps.ncmp.events.async1_0_0.DataOperationEvent1_0_0"})
+    public void consumeAndPublish(final ConsumerRecord<String, DataOperationEvent1_0_0>
+                                              dataOperationEventConsumerRecord) {
+        log.info("Consuming event payload {} ...", dataOperationEventConsumerRecord.value());
         final String eventTarget = SerializationUtils
-                .deserialize(batchEventConsumerRecord.headers().lastHeader("eventTarget").value());
+                .deserialize(dataOperationEventConsumerRecord.headers().lastHeader("eventTarget").value());
         final String eventId = SerializationUtils
-                .deserialize(batchEventConsumerRecord.headers().lastHeader("eventId").value());
-        eventsPublisher.publishEvent(eventTarget, eventId, batchEventConsumerRecord.headers(),
-                batchEventConsumerRecord.value());
+                .deserialize(dataOperationEventConsumerRecord.headers().lastHeader("eventId").value());
+        eventsPublisher.publishEvent(eventTarget, eventId, dataOperationEventConsumerRecord.headers(),
+                dataOperationEventConsumerRecord.value());
     }
 }
