@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "80516bad_7970cadb",
+        "filename": "cps-ri/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-08T16:47:07Z",
+      "side": 1,
+      "message": "I recorded the original test coverage for CI (in Jira itself):\n\n97% Lines and 93% on Branch Coverage\n\nCurrently with the new test I am at\n\n97% Lines and 92% on Branch Coverage\n\nSo almost there but I actually want to over achieve a little so it is clear the coverage is more (and not maybe just round up to the same :-) )",
+      "range": {
+        "startLine": 37,
+        "startChar": 8,
+        "endLine": 37,
+        "endChar": 79
+      },
+      "revId": "0c3e819a6cbe08b2b37b2fdb7cc15903a84871b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
