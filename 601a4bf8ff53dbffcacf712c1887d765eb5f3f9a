@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "101691d0_56f1f1a8",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/async/data-operation-event-schema-1.0.0.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-06-08T15:33:11Z",
+      "side": 1,
+      "message": "i have not tested it but in my opinion the fields inside the data ( payload ) can still follow the normal camel casing convention as it was before.",
+      "range": {
+        "startLine": 22,
+        "startChar": 19,
+        "endLine": 22,
+        "endChar": 30
+      },
+      "revId": "601a4bf8ff53dbffcacf712c1887d765eb5f3f9a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "67c8e3a4_a47b1ba3",
         "filename": "cps-ncmp-service/src/test/resources/dataOperationEvent.json",
         "patchSetId": 1
