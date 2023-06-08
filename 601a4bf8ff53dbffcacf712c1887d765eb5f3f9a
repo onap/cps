@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "67c8e3a4_a47b1ba3",
+        "filename": "cps-ncmp-service/src/test/resources/dataOperationEvent.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-06-08T14:35:21Z",
+      "side": 1,
+      "message": "@Toine, What should be the attribute name here as it supposed to be data as per proposed document?\n\nI used here as \"responsedata\" to avoid any confusion as \"data\" is already used before at line no. 2",
+      "range": {
+        "startLine": 12,
+        "startChar": 9,
+        "endLine": 12,
+        "endChar": 21
+      },
+      "revId": "601a4bf8ff53dbffcacf712c1887d765eb5f3f9a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
