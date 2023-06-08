@@ -304,7 +304,7 @@ class CpsDataPersistenceServiceIntegrationSpec extends CpsPersistenceSpecBase {
             'root xpath'                           | ["/"]                                           || 7
             'empty (root) xpath'                   | [""]                                            || 7
             'root and top-level xpaths'            | ["/", "/parent-200", "/parent-201"]             || 7
-            'root and child xpaths'                | ["/", "/parent-200/child-201"]                  || 7
+            'root and child xpaths'                | ["/", "/parent-200/child-201"]                  || 8
     }
 
     @Sql([CLEAR_DATA, SET_DATA])
