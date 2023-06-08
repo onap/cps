@@ -28,7 +28,7 @@ import org.apache.kafka.common.header.internals.RecordHeader
 import org.apache.kafka.common.serialization.StringDeserializer
 import org.onap.cps.ncmp.api.impl.events.EventsPublisher
 import org.onap.cps.ncmp.api.kafka.MessagingBaseSpec
-import org.onap.cps.ncmp.events.async.BatchDataResponseEventV1
+import org.onap.cps.ncmp.events.async.DataOperationEvent1_0_0
 import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
@@ -40,40 +40,39 @@ import org.testcontainers.spock.Testcontainers
 
 import java.time.Duration
 
-@SpringBootTest(classes = [EventsPublisher, NcmpAsyncBatchEventConsumer, BatchRecordFilterStrategy,JsonObjectMapper,
-                ObjectMapper])
+@SpringBootTest(classes = [EventsPublisher, NcmpAsyncDataOperationEventConsumer, DataOperationRecordFilterStrategy,JsonObjectMapper, ObjectMapper])
 @Testcontainers
 @DirtiesContext
-class NcmpAsyncBatchEventConsumerSpec extends MessagingBaseSpec {
+class NcmpAsyncDataOperationEventConsumerSpec extends MessagingBaseSpec {
 
     @SpringBean
-    EventsPublisher asyncBatchEventPublisher = new EventsPublisher<BatchDataResponseEventV1>(legacyEventKafkaTemplate, cloudEventKafkaTemplate)
+    EventsPublisher asyncDataOperationEventPublisher = new EventsPublisher<DataOperationEvent1_0_0>(legacyEventKafkaTemplate, cloudEventKafkaTemplate)
 
     @SpringBean
-    NcmpAsyncBatchEventConsumer asyncBatchEventConsumer = new NcmpAsyncBatchEventConsumer(asyncBatchEventPublisher)
+    NcmpAsyncDataOperationEventConsumer asyncDataOperationEventConsumer = new NcmpAsyncDataOperationEventConsumer(asyncDataOperationEventPublisher)
 
     @Autowired
     JsonObjectMapper jsonObjectMapper
 
     @Autowired
-    RecordFilterStrategy<String, BatchDataResponseEventV1> recordFilterStrategy
+    RecordFilterStrategy<String, DataOperationEvent1_0_0> recordFilterStrategy
 
     def legacyEventKafkaConsumer = new KafkaConsumer<>(eventConsumerConfigProperties('test', StringDeserializer))
     def static clientTopic = 'client-topic'
-    def static batchEventType = 'org.onap.cps.ncmp.events.async.BatchDataResponseEventV1'
+    def static dataOperationType = 'org.onap.cps.ncmp.events.async.DataOperationEvent1_0_0'
 
     def 'Consume and publish event to client specified topic'() {
         given: 'consumer subscribing to client topic'
             legacyEventKafkaConsumer.subscribe([clientTopic])
-        and: 'consumer record for batch event'
-            def consumerRecordIn = createConsumerRecord(batchEventType)
-        when: 'the batch event is consumed and published to client specified topic'
-            asyncBatchEventConsumer.consumeAndPublish(consumerRecordIn)
+        and: 'consumer record for data operation event'
+            def consumerRecordIn = createConsumerRecord(dataOperationType)
+        when: 'the data operation event is consumed and published to client specified topic'
+            asyncDataOperationEventConsumer.consumeAndPublish(consumerRecordIn)
         and: 'the client specified topic is polled'
             def consumerRecordOut = legacyEventKafkaConsumer.poll(Duration.ofMillis(1500))[0]
         then: 'verifying consumed event operationID is same as published event operationID'
-            def operationIdIn = consumerRecordIn.value.event.batchResponses[0].operationId
-            def operationIdOut = jsonObjectMapper.convertJsonString((String)consumerRecordOut.value(), BatchDataResponseEventV1.class).event.batchResponses[0].operationId
+            def operationIdIn = consumerRecordIn.value.data.responses[0].operationId
+            def operationIdOut = jsonObjectMapper.convertJsonString((String)consumerRecordOut.value(), DataOperationEvent1_0_0.class).data.responses[0].operationId
             assert operationIdIn == operationIdOut
     }
 
@@ -86,13 +85,13 @@ class NcmpAsyncBatchEventConsumerSpec extends MessagingBaseSpec {
             assert result == expectedResult
         where: 'filter the event based on the eventType #eventType'
             description                                     | eventType       || expectedResult
-            'not filtered(the consumer will see the event)' | batchEventType  || false
+            'not filtered(the consumer will see the event)' | dataOperationType  || false
             'filtered(the consumer will not see the event)' | 'wrongType'     || true
     }
 
     def createConsumerRecord(eventTypeAsString) {
-        def jsonData = TestUtils.getResourceFileContent('batchDataEvent.json')
-        def testEventSent = jsonObjectMapper.convertJsonString(jsonData, BatchDataResponseEventV1.class)
+        def jsonData = TestUtils.getResourceFileContent('dataOperationEvent.json')
+        def testEventSent = jsonObjectMapper.convertJsonString(jsonData, DataOperationEvent1_0_0.class)
         def eventTarget = SerializationUtils.serialize(clientTopic)
         def eventType = SerializationUtils.serialize(eventTypeAsString)
         def eventId = SerializationUtils.serialize('12345')
