@@ -20,8 +20,36 @@
 
 package org.onap.cps.ncmp.api.impl.subscriptions;
 
+import java.io.Serializable;
+import java.util.Iterator;
+import java.util.Map;
+
 public enum SubscriptionStatus {
     ACCEPTED,
     REJECTED,
-    PENDING
+    PENDING;
+
+
+    /**
+     * Populates a map with a key of cm handle id and a value of subscription status.
+     *
+     * @param resultMap the map is being populated
+     * @param bucketIterator to iterate over the collection
+     */
+    public static void populateCmHandleToSubscriptionStatusMap(final Map<String, SubscriptionStatus> resultMap,
+                                                          final Iterator<Serializable> bucketIterator) {
+        final String item = (String) bucketIterator.next();
+        if ("PENDING".equals(item)) {
+            resultMap.put((String) bucketIterator.next(),
+                    SubscriptionStatus.PENDING);
+        }
+        if ("REJECTED".equals(item)) {
+            resultMap.put((String) bucketIterator.next(),
+                    SubscriptionStatus.REJECTED);
+        }
+        if ("ACCEPTED".equals(item)) {
+            resultMap.put((String) bucketIterator.next(),
+                    SubscriptionStatus.ACCEPTED);
+        }
+    }
 }
