@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "19c01fb4_ab88fa80",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-06-09T15:22:39Z",
+      "side": 1,
+      "message": "Create a new list node as root node with #scenario",
+      "range": {
+        "startLine": 416,
+        "startChar": 9,
+        "endLine": 416,
+        "endChar": 55
+      },
+      "revId": "d24ca3567209eb6c99504cf685f4db99752b5a08",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e3f23c3_bdb8179c",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 444,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-06-09T15:22:39Z",
+      "side": 1,
+      "message": "This test should be added using the integration-test module instead",
+      "range": {
+        "startLine": 416,
+        "startChar": 0,
+        "endLine": 444,
+        "endChar": 5
+      },
+      "revId": "d24ca3567209eb6c99504cf685f4db99752b5a08",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8472d746_49e08ff8",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 766,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-06-09T15:22:39Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 758,
+        "startChar": 0,
+        "endLine": 766,
+        "endChar": 7
+      },
+      "revId": "d24ca3567209eb6c99504cf685f4db99752b5a08",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5be043d4_9eefd000",
+        "filename": "cps-service/src/test/resources/parent-list.yang",
+        "patchSetId": 5
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-06-09T15:22:39Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 9
+      },
+      "revId": "d24ca3567209eb6c99504cf685f4db99752b5a08",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
