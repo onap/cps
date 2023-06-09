@@ -22,12 +22,15 @@ package org.onap.cps.ncmp.api.impl.utils;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionStatus;
 import org.onap.cps.spi.model.DataNode;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -71,5 +74,23 @@ public class DataNodeHelper {
                         || col.contains("ACCEPTED")
                         || col.contains("REJECTED"))
                 .collect(Collectors.toList());
+    }
+
+    /**
+     * The cm handle and status is returned as a map.
+     *
+     * @param cmHandleIdToStatus as a list of collection
+     * @return a map of cm handle id to status
+     */
+    public static Map<String, SubscriptionStatus> getCmHandleIdToStatusMap(
+            final List<Collection<Serializable>> cmHandleIdToStatus) {
+        final Map<String, SubscriptionStatus> resultMap = new HashMap<>();
+        for (final Collection<Serializable> cmHandleToStatusBucket: cmHandleIdToStatus) {
+            final Iterator<Serializable> bucketIterator = cmHandleToStatusBucket.iterator();
+            while (bucketIterator.hasNext()) {
+                SubscriptionStatus.populateCmHandleToSubscriptionStatusMap(resultMap, bucketIterator);
+            }
+        }
+        return resultMap;
     }
 }

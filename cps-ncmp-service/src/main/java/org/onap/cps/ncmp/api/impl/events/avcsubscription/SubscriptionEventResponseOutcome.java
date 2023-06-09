@@ -22,8 +22,6 @@ package org.onap.cps.ncmp.api.impl.events.avcsubscription;
 
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
@@ -104,29 +102,12 @@ public class SubscriptionEventResponseOutcome {
     private SubscriptionEventResponse toSubscriptionEventResponse(
             final List<Collection<Serializable>> cmHandleIdToStatus, final String subscriptionClientId,
             final String subscriptionName) {
-        final Map<String, SubscriptionStatus> cmHandleIdToStatusMap = new HashMap<>();
+        final Map<String, SubscriptionStatus> cmHandleIdToStatusMap =
+                DataNodeHelper.getCmHandleIdToStatusMap(cmHandleIdToStatus);
+
         final SubscriptionEventResponse subscriptionEventResponse = new SubscriptionEventResponse();
         subscriptionEventResponse.setClientId(subscriptionClientId);
         subscriptionEventResponse.setSubscriptionName(subscriptionName);
-
-        for (final Collection<Serializable> cmHandleToStatusBucket: cmHandleIdToStatus) {
-            final Iterator<Serializable> bucketIterator = cmHandleToStatusBucket.iterator();
-            while (bucketIterator.hasNext()) {
-                final String item = (String) bucketIterator.next();
-                if ("PENDING".equals(item)) {
-                    cmHandleIdToStatusMap.put((String) bucketIterator.next(),
-                            SubscriptionStatus.PENDING);
-                }
-                if ("REJECTED".equals(item)) {
-                    cmHandleIdToStatusMap.put((String) bucketIterator.next(),
-                            SubscriptionStatus.REJECTED);
-                }
-                if ("ACCEPTED".equals(item)) {
-                    cmHandleIdToStatusMap.put((String) bucketIterator.next(),
-                            SubscriptionStatus.ACCEPTED);
-                }
-            }
-        }
         subscriptionEventResponse.setCmHandleIdToStatus(cmHandleIdToStatusMap);
 
         return subscriptionEventResponse;

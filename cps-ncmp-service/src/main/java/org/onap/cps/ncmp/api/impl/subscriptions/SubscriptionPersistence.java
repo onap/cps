@@ -39,4 +39,11 @@ public interface SubscriptionPersistence {
      * @return the DataNode as collection.
      */
     Collection<DataNode> getDataNodesForSubscriptionEvent();
+
+    /**
+     * Get data nodes by xpath.
+     *
+     * @return the DataNode as collection.
+     */
+    Collection<DataNode> getCmHandlesForSubscriptionEvent(String clientId, String subscriptionName);
 }

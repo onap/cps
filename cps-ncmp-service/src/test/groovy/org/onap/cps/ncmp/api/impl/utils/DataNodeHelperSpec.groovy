@@ -20,6 +20,7 @@
 
 package org.onap.cps.ncmp.api.impl.utils
 
+import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionStatus
 import org.onap.cps.spi.model.DataNodeBuilder
 
 class DataNodeHelperSpec extends DataNodeBaseSpec {
@@ -51,8 +52,22 @@ class DataNodeHelperSpec extends DataNodeBaseSpec {
         and: 'the nested data node is flatten and retrieves the leaves '
             def leaves = DataNodeHelper.getDataNodeLeaves([dataNode])
         when:'cm handle id to status is retrieved'
-            def result = DataNodeHelper.getCmHandleIdToStatus(leaves);
+            def result = DataNodeHelper.getCmHandleIdToStatus(leaves)
         then: 'the result list size is 3'
             result.size() == 3
+        and: 'the result contains expected values'
+            result[0] as List == ['PENDING', 'CMHandle3']
+            result[1] as List == ['ACCEPTED', 'CMHandle2']
+            result[2] as List == ['REJECTED', 'CMHandle1']
+    }
+
+    def 'Get cm handle id to status map as expected from list of collection' () {
+        given: 'a list of collection'
+            def cmHandleCollection = [['PENDING', 'CMHandle3'], ['ACCEPTED', 'CMHandle2'], ['REJECTED', 'CMHandle1']]
+        when: 'the map is formed up with a method call'
+            def result = DataNodeHelper.getCmHandleIdToStatusMap(cmHandleCollection)
+        then: 'the map values are as expected'
+            result.keySet() == ['CMHandle3', 'CMHandle2', 'CMHandle1'] as Set
+            result.values() as List == [SubscriptionStatus.PENDING, SubscriptionStatus.ACCEPTED, SubscriptionStatus.REJECTED]
     }
 }
