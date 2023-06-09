@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "40842539_d449d29f",
+        "filename": "dmi-plugin-stub/files/batchResponse.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-06-09T08:56:15Z",
+      "side": 1,
+      "message": "I think Batch Response is not required in this case, we agreed to return HTTP status code \u0027202\u0027 with empty body instead of \u0027200\u0027 with batch response we can fetch the same  on spike CPS-1515 wiki. (The same we can find on my abandon commit \u0027https://gerrit.onap.org/r/c/cps/+/134695\u0027. Initially i assumed this should be fixed with my story but later sourabh confirmed the same will come through story which sean is working, So i abandoned that)",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 1
+      },
+      "revId": "fe4ce1c9996a019a8eabb3fc63ce86d2c9ffed01",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
