@@ -1,7 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  * Copyright (c) 2021 Bell Canada.
- * Modifications Copyright (C) 2022 Nordix Foundation
+ * Modifications Copyright (C) 2022-2023 Nordix Foundation
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,6 @@ import org.onap.cps.spi.repository.ModuleReferenceRepository
 import org.onap.cps.spi.repository.SchemaSetRepository
 import org.onap.cps.spi.repository.YangResourceRepository
 import org.springframework.dao.DataIntegrityViolationException
-import spock.lang.Shared
 import spock.lang.Specification
 
 import java.sql.SQLException
@@ -38,17 +37,14 @@ import java.sql.SQLException
  */
 class CpsModulePersistenceServiceSpec extends Specification {
 
-    // Instance to test
     CpsModulePersistenceService objectUnderTest
 
-    // Mocks
     def dataspaceRepositoryMock = Mock(DataspaceRepository)
     def yangResourceRepositoryMock = Mock(YangResourceRepository)
     def schemaSetRepositoryMock = Mock(SchemaSetRepository)
     def cpsAdminPersistenceServiceMock = Mock(CpsAdminPersistenceService)
     def moduleReferenceRepositoryMock = Mock(ModuleReferenceRepository)
 
-    // Constants
     def yangResourceName = 'my-yang-resource-name'
     def yangResourceContent = 'module stores {\n' +
             '    yang-version 1.1;\n' +
@@ -62,20 +58,12 @@ class CpsModulePersistenceServiceSpec extends Specification {
             '    }' +
             '}'
 
-    // Scenario data
-    @Shared
-    yangResourceChecksum = 'b13faef573ed1374139d02c40d8ce09c80ea1dc70e63e464c1ed61568d48d539'
-    @Shared
-    yangResourceChecksumDbConstraint = 'yang_resource_checksum_key'
-    @Shared
-    sqlExceptionMessage = String.format('(checksum)=(%s)', yangResourceChecksum)
-    @Shared
-    checksumIntegrityException =
-            new DataIntegrityViolationException(
-                    "checksum integrity exception",
+    static yangResourceChecksum = 'b13faef573ed1374139d02c40d8ce09c80ea1dc70e63e464c1ed61568d48d539'
+    static yangResourceChecksumDbConstraint = 'yang_resource_checksum_key'
+    static sqlExceptionMessage = String.format('(checksum)=(%s)', yangResourceChecksum)
+    static checksumIntegrityException = new DataIntegrityViolationException('checksum integrity exception',
                     new ConstraintViolationException('', new SQLException(sqlExceptionMessage), yangResourceChecksumDbConstraint))
-    @Shared
-    anotherIntegrityException = new DataIntegrityViolationException("another integrity exception")
+    static otherIntegrityException = new DataIntegrityViolationException('another integrity exception')
 
     def setup() {
         objectUnderTest = new CpsModulePersistenceServiceImpl(yangResourceRepositoryMock, schemaSetRepositoryMock,
@@ -94,9 +82,9 @@ class CpsModulePersistenceServiceSpec extends Specification {
             def e = thrown(expectedThrownException)
             e.getMessage().contains(expectedThrownExceptionMessage)
         where: 'the following data is used'
-            scenario                | dbException                || expectedThrownException | expectedThrownExceptionMessage
+            scenario                | dbException                || expectedThrownException         | expectedThrownExceptionMessage
             'checksum data failure' | checksumIntegrityException || DuplicatedYangResourceException | yangResourceChecksum
-            'other data failure'    | anotherIntegrityException  || DataIntegrityViolationException | 'another integrity exception'
+            'other data failure'    | otherIntegrityException    || DataIntegrityViolationException | 'another integrity exception'
     }
 
 }
