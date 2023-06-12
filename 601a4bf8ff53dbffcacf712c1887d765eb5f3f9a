@@ -49,6 +49,53 @@
     },
     {
       "key": {
+        "uuid": "644ab009_28602c18",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/async/data-operation-event-schema-1.0.0.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-12T07:51:02Z",
+      "side": 1,
+      "message": "I don\u0027t mind so much I think e did agree to remove it...",
+      "parentUuid": "10c6b061_130a39f5",
+      "range": {
+        "startLine": 4,
+        "startChar": 38,
+        "endLine": 4,
+        "endChar": 46
+      },
+      "revId": "601a4bf8ff53dbffcacf712c1887d765eb5f3f9a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c324a81a_67e66c4d",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/async/data-operation-event-schema-1.0.0.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-12T07:51:02Z",
+      "side": 1,
+      "message": "in any case we want consistency; either remove the word \u0027Response\u0027 everywhere (like here) or add it again..",
+      "range": {
+        "startLine": 14,
+        "startChar": 55,
+        "endLine": 14,
+        "endChar": 73
+      },
+      "revId": "601a4bf8ff53dbffcacf712c1887d765eb5f3f9a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "101691d0_56f1f1a8",
         "filename": "cps-ncmp-events/src/main/resources/schemas/async/data-operation-event-schema-1.0.0.json",
         "patchSetId": 1
@@ -96,6 +143,99 @@
     },
     {
       "key": {
+        "uuid": "25687a63_5dbbabf1",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/async/data-operation-event-schema-1.0.0.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-12T07:51:02Z",
+      "side": 1,
+      "message": "yes we discussed this, see #17 here: https://wiki.onap.org/display/DW/CPS+Events+Structure#CPSEventsStructure-Issues\u0026Decisions",
+      "parentUuid": "cdc8a8b4_8d51cd5c",
+      "range": {
+        "startLine": 22,
+        "startChar": 19,
+        "endLine": 22,
+        "endChar": 30
+      },
+      "revId": "601a4bf8ff53dbffcacf712c1887d765eb5f3f9a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1dea7dda_cc5acd50",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/async/data-operation-event-schema-1.0.0.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-12T07:51:02Z",
+      "side": 1,
+      "message": "use camel case",
+      "range": {
+        "startLine": 30,
+        "startChar": 19,
+        "endLine": 30,
+        "endChar": 29
+      },
+      "revId": "601a4bf8ff53dbffcacf712c1887d765eb5f3f9a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "423bf091_6283e47f",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/async/data-operation-event-schema-1.0.0.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-12T07:51:02Z",
+      "side": 1,
+      "message": "use camel case",
+      "range": {
+        "startLine": 34,
+        "startChar": 19,
+        "endLine": 34,
+        "endChar": 32
+      },
+      "revId": "601a4bf8ff53dbffcacf712c1887d765eb5f3f9a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "167b6ff9_068bd8f9",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/async/data-operation-event-schema-1.0.0.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-12T07:51:02Z",
+      "side": 1,
+      "message": "use camel case",
+      "range": {
+        "startLine": 38,
+        "startChar": 19,
+        "endLine": 38,
+        "endChar": 31
+      },
+      "revId": "601a4bf8ff53dbffcacf712c1887d765eb5f3f9a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "411e5046_8f53cb8e",
         "filename": "cps-ncmp-events/src/main/resources/schemas/async/data-operation-event-schema-1.0.0.json",
         "patchSetId": 1
@@ -131,6 +271,30 @@
       "side": 1,
       "message": "Nope",
       "parentUuid": "411e5046_8f53cb8e",
+      "range": {
+        "startLine": 56,
+        "startChar": 13,
+        "endLine": 56,
+        "endChar": 23
+      },
+      "revId": "601a4bf8ff53dbffcacf712c1887d765eb5f3f9a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f389b09_85de5b1a",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/async/data-operation-event-schema-1.0.0.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-12T07:51:02Z",
+      "side": 1,
+      "message": "agree it si not needed",
+      "parentUuid": "2269ded5_2069bce3",
       "range": {
         "startLine": 56,
         "startChar": 13,
@@ -237,6 +401,23 @@
     },
     {
       "key": {
+        "uuid": "0856d75c_01303bfb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/async/NcmpAsyncDataOperationEventConsumer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-12T07:51:02Z",
+      "side": 1,
+      "message": "NB: I dont thin the word \u0027async\u0027 is needed",
+      "revId": "601a4bf8ff53dbffcacf712c1887d765eb5f3f9a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fea4f638_4071fc5d",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/async/NcmpAsyncDataOperationEventConsumer.java",
         "patchSetId": 1
@@ -284,6 +465,52 @@
     },
     {
       "key": {
+        "uuid": "d1e49f78_308d2aba",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/async/NcmpAsyncDataOperationEventConsumer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-12T07:51:02Z",
+      "side": 1,
+      "message": "make plural: Events",
+      "range": {
+        "startLine": 52,
+        "startChar": 49,
+        "endLine": 52,
+        "endChar": 54
+      },
+      "revId": "601a4bf8ff53dbffcacf712c1887d765eb5f3f9a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e992f9a_c5952bab",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/async/NcmpAsyncDataOperationEventConsumer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-12T07:51:02Z",
+      "side": 1,
+      "message": "as dciussed last week with Ravi, just either \u0027include\u0027 or \u0027exclude\u0027 to be clear",
+      "range": {
+        "startLine": 52,
+        "startChar": 22,
+        "endLine": 52,
+        "endChar": 28
+      },
+      "revId": "601a4bf8ff53dbffcacf712c1887d765eb5f3f9a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "35366324_8dbde6e9",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/async/NcmpAsyncDataOperationEventConsumer.java",
         "patchSetId": 1
@@ -319,6 +546,30 @@
       "side": 1,
       "message": "Its patch #1 that contains only -\u003e Removal of existing header schema and renaming of events.\nPathc #2 will contain these changes.",
       "parentUuid": "35366324_8dbde6e9",
+      "range": {
+        "startLine": 59,
+        "startChar": 84,
+        "endLine": 59,
+        "endChar": 95
+      },
+      "revId": "601a4bf8ff53dbffcacf712c1887d765eb5f3f9a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aea7fa9b_73a6b143",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/async/NcmpAsyncDataOperationEventConsumer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-12T07:51:02Z",
+      "side": 1,
+      "message": "but if the header schema is removed we dont have the header you are checking here?!",
+      "parentUuid": "fd596050_c93f1934",
       "range": {
         "startLine": 59,
         "startChar": 84,
@@ -375,6 +626,29 @@
       "revId": "601a4bf8ff53dbffcacf712c1887d765eb5f3f9a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fcc9a55c_f2ee7b56",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/NcmpAsyncDataOperationEventConsumerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-12T07:51:02Z",
+      "side": 1,
+      "message": "question: does this test show the working of the filter or not ie. could we write a simple test to see an event is included or not depending on the properties used to filter?!",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 147
+      },
+      "revId": "601a4bf8ff53dbffcacf712c1887d765eb5f3f9a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     },
     {
       "key": {
@@ -530,6 +804,30 @@
       "writtenOn": "2023-06-08T14:35:21Z",
       "side": 1,
       "message": "@Toine, What should be the attribute name here as it supposed to be data as per proposed document?\n\nI used here as \"responsedata\" to avoid any confusion as \"data\" is already used before at line no. 2",
+      "range": {
+        "startLine": 12,
+        "startChar": 9,
+        "endLine": 12,
+        "endChar": 21
+      },
+      "revId": "601a4bf8ff53dbffcacf712c1887d765eb5f3f9a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c06fb27b_e69c1dee",
+        "filename": "cps-ncmp-service/src/test/resources/dataOperationEvent.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-12T07:51:02Z",
+      "side": 1,
+      "message": "good question. maybe \u0027responseDetails\u0027 or \u0027responsContent\u0027 \u003e Fire a quick mail to Kieran/Tony for advise... (but first add a commetn on teh relevant wiki and point to the wiki-section in teh email)",
+      "parentUuid": "67c8e3a4_a47b1ba3",
       "range": {
         "startLine": 12,
         "startChar": 9,
