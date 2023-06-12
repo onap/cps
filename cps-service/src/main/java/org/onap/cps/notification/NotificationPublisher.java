@@ -24,6 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.onap.cps.event.model.CpsDataUpdatedEvent;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
@@ -44,7 +45,7 @@ public class NotificationPublisher {
      */
     @Autowired
     public NotificationPublisher(
-        final KafkaTemplate<String, CpsDataUpdatedEvent> kafkaTemplate,
+        final @Qualifier("cpsServiceKafkaTemplate") KafkaTemplate<String, CpsDataUpdatedEvent> kafkaTemplate,
         final @Value("${notification.data-updated.topic}") String topicName) {
         this.kafkaTemplate = kafkaTemplate;
         this.topicName = topicName;

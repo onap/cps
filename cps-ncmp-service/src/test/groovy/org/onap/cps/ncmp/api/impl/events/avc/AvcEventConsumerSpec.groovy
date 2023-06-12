@@ -20,43 +20,46 @@
 
 package org.onap.cps.ncmp.api.impl.events.avc
 
+
 import com.fasterxml.jackson.databind.ObjectMapper
+import io.cloudevents.CloudEvent
+import io.cloudevents.core.CloudEventUtils
+import io.cloudevents.core.builder.CloudEventBuilder
+import io.cloudevents.jackson.PojoCloudEventDataMapper
 import org.apache.kafka.clients.consumer.ConsumerRecord
 import org.apache.kafka.clients.consumer.KafkaConsumer
-import org.apache.kafka.common.header.internals.RecordHeader
-import org.mapstruct.factory.Mappers
-import org.onap.cps.ncmp.api.impl.events.EventsPublisher
+import org.onap.cps.ncmp.api.impl.config.config.CloudEventsPublisherConfig
+import org.onap.cps.ncmp.api.impl.events.CloudEventsPublisher
 import org.onap.cps.ncmp.api.kafka.MessagingBaseSpec
-import org.onap.cps.ncmp.events.avc.v1.AvcEvent
+import org.onap.cps.ncmp.events.avc.v1.AvcEventV1
 import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.annotation.DirtiesContext
-import org.springframework.util.SerializationUtils
 import org.testcontainers.spock.Testcontainers
 
 import java.time.Duration
 
-@SpringBootTest(classes = [EventsPublisher, AvcEventConsumer, ObjectMapper, JsonObjectMapper])
+@SpringBootTest(classes = [CloudEventsPublisher, CloudEventsPublisherConfig, AvcEventConsumer, ObjectMapper, JsonObjectMapper])
 @Testcontainers
 @DirtiesContext
 class AvcEventConsumerSpec extends MessagingBaseSpec {
 
     @SpringBean
-    AvcEventMapper avcEventMapper = Mappers.getMapper(AvcEventMapper.class)
+    CloudEventsPublisher cloudEventsPublisher = new CloudEventsPublisher<CloudEvent>(cloudEventKafkaTemplate)
 
     @SpringBean
-    EventsPublisher eventsPublisher = new EventsPublisher<AvcEvent>(kafkaTemplate)
-
-    @SpringBean
-    AvcEventConsumer acvEventConsumer = new AvcEventConsumer(eventsPublisher, avcEventMapper)
+    AvcEventConsumer acvEventConsumer = new AvcEventConsumer(cloudEventsPublisher)
 
     @Autowired
     JsonObjectMapper jsonObjectMapper
 
-    def kafkaConsumer = new KafkaConsumer<>(consumerConfigProperties('ncmp-group'))
+    @Autowired
+    ObjectMapper objectMapper
+
+    def kafkaConsumer = new KafkaConsumer<>(cloudEventConsumerConfigProperties('ncmp-group'))
 
     def 'Consume and forward valid message'() {
         given: 'consumer has a subscription on a topic'
@@ -65,11 +68,16 @@ class AvcEventConsumerSpec extends MessagingBaseSpec {
             kafkaConsumer.subscribe([cmEventsTopicName] as List<String>)
         and: 'an event is sent'
             def jsonData = TestUtils.getResourceFileContent('sampleAvcInputEvent.json')
-            def testEventSent = jsonObjectMapper.convertJsonString(jsonData, AvcEvent.class)
+            def testEventData = jsonObjectMapper.convertJsonString(jsonData, AvcEventV1.class)
+            def testCloudEventSent = CloudEventBuilder.v1().withData(objectMapper.writeValueAsBytes(testEventData))
+                .withId('sample-eventid')
+                .withType('org.onap.ncmp.cm.avc:1.0.0')
+                .withDataContentType('application/json')
+                .withSource(URI.create('DMI'))
+                .withExtension('correlationid', 'cmhandle1')
+                .build()
         and: 'event has header information'
-            def consumerRecord = new ConsumerRecord<String,AvcEvent>(cmEventsTopicName,0, 0, 'sample-eventid', testEventSent)
-            consumerRecord.headers().add(new RecordHeader('eventId', SerializationUtils.serialize('sample-eventid')))
-            consumerRecord.headers().add(new RecordHeader('eventCorrelationId', SerializationUtils.serialize('cmhandle1')))
+            def consumerRecord = new ConsumerRecord<String, CloudEvent>(cmEventsTopicName, 0, 0, 'sample-eventid', testCloudEventSent)
         when: 'the event is consumed'
             acvEventConsumer.consumeAndForward(consumerRecord)
         and: 'the topic is polled'
@@ -77,22 +85,22 @@ class AvcEventConsumerSpec extends MessagingBaseSpec {
         then: 'poll returns one record'
             assert records.size() == 1
         and: 'record can be converted to AVC event'
-            def record = records.iterator().next()
-            def convertedAvcEvent = jsonObjectMapper.convertJsonString(record.value(), AvcEvent.class)
+            def record = records.iterator().next() as ConsumerRecord<String, CloudEvent>
+            def convertedAvcEvent = CloudEventUtils.mapData(record.value(), PojoCloudEventDataMapper.from(objectMapper, AvcEventV1.class)).getValue()
         and: 'we have correct headers forwarded where correlation id matches'
             record.headers().forEach(header -> {
-                if (header.key().equals('eventCorrelationId')) {
-                    assert SerializationUtils.deserialize(header.value()) == 'cmhandle1'
+                if (header.key().equals('ce_correlationid')) {
+                    assert header.value() == 'cmhandle1'.getBytes()
                 }
             })
         and: 'event id differs(as per requirement) between consumed and forwarded'
             record.headers().forEach(header -> {
-                if (header.key().equals('eventId')) {
-                    assert SerializationUtils.deserialize(header.value()) != 'sample-eventid'
+                if (header.key().equals('ce_id')) {
+                    assert header.value() != 'sample-eventid'.getBytes()
                 }
             })
         and: 'the event payload still matches'
-            assert testEventSent == convertedAvcEvent
+            assert testEventData == convertedAvcEvent
     }
 
 }
