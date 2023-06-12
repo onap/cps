@@ -46,7 +46,7 @@ import java.time.Duration
 class NcmpAsyncBatchEventConsumerSpec extends MessagingBaseSpec {
 
     @SpringBean
-    EventsPublisher asyncBatchEventPublisher = new EventsPublisher<BatchDataResponseEventV1>(kafkaTemplate)
+    EventsPublisher asyncBatchEventPublisher = new EventsPublisher<BatchDataResponseEventV1>(eventKafkaTemplate)
 
     @SpringBean
     NcmpAsyncBatchEventConsumer asyncBatchEventConsumer = new NcmpAsyncBatchEventConsumer(asyncBatchEventPublisher)

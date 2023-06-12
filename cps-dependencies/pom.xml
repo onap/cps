@@ -41,6 +41,7 @@
         <sonar.skip>true</sonar.skip>
         <testcontainers.version>1.17.3</testcontainers.version>
         <mapstruct.version>1.4.2.Final</mapstruct.version>
+        <cloudevents.version>2.5.0</cloudevents.version>
     </properties>
 
     <build>
@@ -213,6 +214,21 @@
                 <groupId>javax.validation</groupId>
                 <artifactId>validation-api</artifactId>
                 <version>2.0.1.Final</version>
+            </dependency>
+            <dependency>
+                <groupId>io.cloudevents</groupId>
+                <artifactId>cloudevents-spring</artifactId>
+                <version>${cloudevents.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.cloudevents</groupId>
+                <artifactId>cloudevents-kafka</artifactId>
+                <version>${cloudevents.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.cloudevents</groupId>
+                <artifactId>cloudevents-json-jackson</artifactId>
+                <version>${cloudevents.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
