@@ -25,10 +25,12 @@ import org.onap.cps.api.impl.CpsAdminServiceImpl
 import org.onap.cps.api.impl.CpsDataServiceImpl
 import org.onap.cps.api.impl.CpsModuleServiceImpl
 import org.onap.cps.integration.DatabaseTestContainer
+import org.onap.cps.spi.config.CpsSessionFactory
 import org.onap.cps.spi.exceptions.DataspaceNotFoundException
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.repository.DataspaceRepository
 import org.onap.cps.spi.impl.utils.CpsValidatorImpl
+import org.onap.cps.spi.utils.SessionManager
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.boot.autoconfigure.domain.EntityScan
@@ -42,12 +44,12 @@ import spock.lang.Specification
 
 import java.time.OffsetDateTime
 
-@SpringBootTest(classes = [TestConfig, CpsAdminServiceImpl, CpsValidatorImpl])
+@SpringBootTest(classes = [TestConfig, CpsAdminServiceImpl, CpsValidatorImpl, SessionManager, CpsSessionFactory])
 @Testcontainers
 @EnableAutoConfiguration
 @EnableJpaRepositories(basePackageClasses = [DataspaceRepository])
-@ComponentScan(basePackages = ["org.onap.cps.api", "org.onap.cps.spi.repository"])
-@EntityScan("org.onap.cps.spi.entities")
+@ComponentScan(basePackages = ['org.onap.cps.api', 'org.onap.cps.spi.repository'])
+@EntityScan('org.onap.cps.spi.entities')
 class CpsIntegrationSpecBase extends Specification {
 
     @Shared
@@ -68,6 +70,10 @@ class CpsIntegrationSpecBase extends Specification {
     @Autowired
     @Lazy
     CpsQueryService cpsQueryService
+
+    @Autowired
+    @Lazy
+    SessionManager sessionManager
 
     def static GENERAL_TEST_DATASPACE = 'generalTestDataspace'
     def static BOOKSTORE_SCHEMA_SET = 'bookstoreSchemaSet'

@@ -33,8 +33,8 @@
     <artifactId>cps-ri</artifactId>
 
     <properties>
-        <minimum-coverage>0.32</minimum-coverage>
-        <!-- Additional coverage is provided by the integration-test module -->
+        <minimum-coverage>0.29</minimum-coverage>
+        <!-- Additional coverage is provided by integration-test module -->
     </properties>
 
     <dependencies>
@@ -124,16 +124,6 @@
                     <artifactId>junit-vintage-engine</artifactId>
                 </exclusion>
             </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.testcontainers</groupId>
-            <artifactId>postgresql</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.testcontainers</groupId>
-            <artifactId>spock</artifactId>
-            <scope>test</scope>
         </dependency>
     </dependencies>
 
