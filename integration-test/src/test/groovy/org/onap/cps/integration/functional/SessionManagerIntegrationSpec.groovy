@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -18,28 +18,21 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.spi.utils
+package org.onap.cps.integration.functional
 
-import org.onap.cps.spi.config.CpsSessionFactory
+import org.onap.cps.integration.base.FunctionalSpecBase
 import org.onap.cps.spi.exceptions.SessionManagerException
-import org.onap.cps.spi.impl.CpsPersistenceSpecBase
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.test.context.jdbc.Sql
+import org.onap.cps.spi.utils.SessionManager
 
-class SessionManagerIntegrationSpec extends CpsPersistenceSpecBase{
+class SessionManagerIntegrationSpec extends FunctionalSpecBase {
 
-    final static String SET_DATA = '/data/anchor.sql'
-
-    @Autowired
     SessionManager objectUnderTest
 
-    @Autowired
-    CpsSessionFactory cpsSessionFactory
-
-    def sessionId
     def shortTimeoutForTesting = 300L
+    def sessionId
 
-    def setup(){
+    def setup() {
+        objectUnderTest = sessionManager
         sessionId = objectUnderTest.startSession()
     }
 
@@ -47,35 +40,32 @@ class SessionManagerIntegrationSpec extends CpsPersistenceSpecBase{
         objectUnderTest.closeSession(sessionId, objectUnderTest.WITH_COMMIT)
     }
 
-    @Sql([CLEAR_DATA, SET_DATA])
     def 'Lock anchor.'(){
         when: 'session tries to acquire anchor lock by passing anchor entity details'
-            objectUnderTest.lockAnchor(sessionId, DATASPACE_NAME, ANCHOR_NAME1, shortTimeoutForTesting)
+            objectUnderTest.lockAnchor(sessionId, FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, shortTimeoutForTesting)
         then: 'no exception is thrown'
             noExceptionThrown()
     }
 
-    @Sql([CLEAR_DATA, SET_DATA])
     def 'Attempt to lock anchor when another session is holding the lock.'(){
         given: 'another session that holds an anchor lock'
             def otherSessionId = objectUnderTest.startSession()
-            objectUnderTest.lockAnchor(otherSessionId,DATASPACE_NAME,ANCHOR_NAME1,shortTimeoutForTesting)
+            objectUnderTest.lockAnchor(otherSessionId,FUNCTIONAL_TEST_DATASPACE_1,BOOKSTORE_ANCHOR_1,shortTimeoutForTesting)
         when: 'a session tries to acquire the same anchor lock'
-            objectUnderTest.lockAnchor(sessionId,DATASPACE_NAME,ANCHOR_NAME1,shortTimeoutForTesting)
+            objectUnderTest.lockAnchor(sessionId,FUNCTIONAL_TEST_DATASPACE_1,BOOKSTORE_ANCHOR_1,shortTimeoutForTesting)
         then: 'a session manager exception is thrown specifying operation reached timeout'
             def thrown = thrown(SessionManagerException)
             thrown.message.contains('Timeout')
         then: 'when the other session holding the lock is closed, lock can finally be acquired'
             objectUnderTest.closeSession(otherSessionId, objectUnderTest.WITH_COMMIT)
-            objectUnderTest.lockAnchor(sessionId,DATASPACE_NAME,ANCHOR_NAME1,shortTimeoutForTesting)
+            objectUnderTest.lockAnchor(sessionId,FUNCTIONAL_TEST_DATASPACE_1,BOOKSTORE_ANCHOR_1,shortTimeoutForTesting)
     }
 
-    @Sql([CLEAR_DATA, SET_DATA])
     def 'Lock anchor twice using the same session.'(){
         given: 'session that already holds an anchor lock'
-            objectUnderTest.lockAnchor(sessionId, DATASPACE_NAME, ANCHOR_NAME1, shortTimeoutForTesting)
+            objectUnderTest.lockAnchor(sessionId, FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, shortTimeoutForTesting)
         when: 'same session tries to acquire same anchor lock'
-            objectUnderTest.lockAnchor(sessionId, DATASPACE_NAME, ANCHOR_NAME1, shortTimeoutForTesting)
+            objectUnderTest.lockAnchor(sessionId, FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, shortTimeoutForTesting)
         then: 'no exception is thrown'
             noExceptionThrown()
     }

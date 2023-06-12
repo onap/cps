@@ -34,6 +34,7 @@ import org.onap.cps.spi.repository.ModuleReferenceRepository
 import org.onap.cps.spi.repository.SchemaSetRepository
 import org.onap.cps.spi.repository.YangResourceRepository
 import org.onap.cps.spi.utils.SessionManager
+import org.onap.cps.spi.utils.TimeLimiterProvider
 import org.onap.cps.utils.JsonObjectMapper
 import org.onap.cps.utils.TimedYangParser
 import org.onap.cps.yang.TimedYangTextSchemaSourceSetBuilder
@@ -75,7 +76,7 @@ class TestConfig extends Specification{
 
     @Autowired
     @Lazy
-    SessionManager stubbedSessionManager
+    SessionManager sessionManager
 
     @Bean
     CpsAdminPersistenceServiceImpl cpsAdminPersistenceService() {
@@ -84,7 +85,7 @@ class TestConfig extends Specification{
 
     @Bean
     CpsDataPersistenceService cpsDataPersistenceService() {
-        return (CpsDataPersistenceService) new CpsDataPersistenceServiceImpl(dataspaceRepository, anchorRepository, fragmentRepository, jsonObjectMapper, stubbedSessionManager)
+        return (CpsDataPersistenceService) new CpsDataPersistenceServiceImpl(dataspaceRepository, anchorRepository, fragmentRepository, jsonObjectMapper, sessionManager)
     }
 
     @Bean
@@ -103,11 +104,6 @@ class TestConfig extends Specification{
     }
 
     @Bean
-    SessionManager sessionManager() {
-        return Stub(SessionManager)
-    }
-
-    @Bean
     TimedYangParser timedYangParser() {
         return new TimedYangParser()
     }
@@ -115,6 +111,11 @@ class TestConfig extends Specification{
     @Bean
     TimedYangTextSchemaSourceSetBuilder textSchemaSourceSetBuilder() {
         return new TimedYangTextSchemaSourceSetBuilder()
+    }
+
+    @Bean
+    TimeLimiterProvider timeLimiterProvider() {
+        return new TimeLimiterProvider()
     }
 
 }
