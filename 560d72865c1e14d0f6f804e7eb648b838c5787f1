@@ -25,6 +25,48 @@
     },
     {
       "key": {
+        "uuid": "82e8782f_1f469cb6",
+        "filename": "csit/data/avcSubscriptionCreateEventResponse.json",
+        "patchSetId": 27
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-06-12T16:13:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "94c0eb7d_82d2509e",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 134
+      },
+      "revId": "560d72865c1e14d0f6f804e7eb648b838c5787f1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "30185b0b_76a62f65",
+        "filename": "csit/tests/cps-kafka/cps-cm-handle-lcm.robot",
+        "patchSetId": 27
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-06-12T16:13:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8acdef31_6bef10c0",
+      "revId": "560d72865c1e14d0f6f804e7eb648b838c5787f1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8acdef31_6bef10c0",
         "filename": "csit/tests/cps-kafka/cps-kafka.robot",
         "patchSetId": 27
