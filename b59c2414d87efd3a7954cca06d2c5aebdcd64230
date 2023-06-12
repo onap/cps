@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "85b52757_fe1dadae",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 441,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-12T10:52:25Z",
+      "side": 1,
+      "message": "can you use 2 different collections it looks like you are overriding te eprevisou result... Two collections with clear names would be better",
+      "range": {
+        "startLine": 441,
+        "startChar": 8,
+        "endLine": 441,
+        "endChar": 33
+      },
+      "revId": "b59c2414d87efd3a7954cca06d2c5aebdcd64230",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "497042f1_fae80319",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentPrefetchRepository.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-12T10:52:25Z",
+      "side": 1,
+      "message": "q: why do you need a separte repositoty?\na: because you are writign your own queries correct?",
+      "range": {
+        "startLine": 28,
+        "startChar": 17,
+        "endLine": 28,
+        "endChar": 44
+      },
+      "revId": "b59c2414d87efd3a7954cca06d2c5aebdcd64230",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0144daa0_f65bf696",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentPrefetchRepositoryImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-12T10:52:25Z",
+      "side": 1,
+      "message": "back to teh goog old days :-)",
+      "range": {
+        "startLine": 45,
+        "startChar": 5,
+        "endLine": 45,
+        "endChar": 44
+      },
+      "revId": "b59c2414d87efd3a7954cca06d2c5aebdcd64230",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "18cfc2c6_2f12b3e7",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentPrefetchRepositoryImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-12T10:52:25Z",
+      "side": 1,
+      "message": "would prefer longer names: \nc \u003d child\np \u003d parent\nand maybe dont use f just use the original table name: \u0027fragment\u0027",
+      "range": {
+        "startLine": 94,
+        "startChar": 37,
+        "endLine": 94,
+        "endChar": 38
+      },
+      "revId": "b59c2414d87efd3a7954cca06d2c5aebdcd64230",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "386ac2a1_83431e56",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-12T10:52:25Z",
+      "side": 1,
+      "message": "q: what des this do, why is it needed?",
+      "range": {
+        "startLine": 72,
+        "startChar": 71,
+        "endLine": 72,
+        "endChar": 78
+      },
+      "revId": "b59c2414d87efd3a7954cca06d2c5aebdcd64230",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e45d23d_99fa7d4b",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-12T10:52:25Z",
+      "side": 1,
+      "message": "why has this changed?",
+      "range": {
+        "startLine": 307,
+        "startChar": 104,
+        "endLine": 307,
+        "endChar": 105
+      },
+      "revId": "b59c2414d87efd3a7954cca06d2c5aebdcd64230",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
