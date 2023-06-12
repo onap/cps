@@ -119,7 +119,7 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>,
         + "   UNION "
         + "  SELECT c.id, depth + 1 "
         + "    FROM fragment c INNER JOIN parent_search p ON c.parent_id = p.id"
-        + "   WHERE depth <= (SELECT CASE WHEN :maxDepth = -1 THEN " + Integer.MAX_VALUE + " ELSE :maxDepth END) "
+        + "   WHERE depth < (SELECT CASE WHEN :maxDepth = -1 THEN " + Integer.MAX_VALUE + " ELSE :maxDepth END) "
         + ") "
         + "SELECT f.id, anchor_id AS anchorId, xpath, f.parent_id AS parentId, CAST(attributes AS TEXT) AS attributes "
         + "FROM fragment f INNER JOIN parent_search p ON f.id = p.id",
@@ -142,7 +142,7 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>,
         + "   UNION "
         + "  SELECT c.id, depth + 1 "
         + "    FROM fragment c INNER JOIN parent_search p ON c.parent_id = p.id"
-        + "   WHERE depth <= (SELECT CASE WHEN :maxDepth = -1 THEN " + Integer.MAX_VALUE + " ELSE :maxDepth END) "
+        + "   WHERE depth < (SELECT CASE WHEN :maxDepth = -1 THEN " + Integer.MAX_VALUE + " ELSE :maxDepth END) "
         + ") "
         + "SELECT f.id, anchor_id AS anchorId, xpath, f.parent_id AS parentId, CAST(attributes AS TEXT) AS attributes "
         + "FROM fragment f INNER JOIN parent_search p ON f.id = p.id",
