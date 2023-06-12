@@ -103,13 +103,13 @@ class CpsModuleServiceIntegrationSpec extends FunctionalSpecBase {
         cleanup:
             objectUnderTest.deleteSchemaSetsWithCascade(FUNCTIONAL_TEST_DATASPACE_1, [ schemaSetName.toString() ])
         where: 'the following module references are provided'
-            scenario                        | numberOfNewModules | existingModuleReferences                          || expectedNumberOfModulesForAnchor
-            'empty schema set'              | 0                  | [ ]                                               || 0
-            'one existing module'           | 0                  | [ existingModuleReference ]                       || 1
-            'two new modules'               | 2                  | [ ]                                               || 2
-            'two new modules, one existing' | 2                  | [ existingModuleReference ]                       || 3
-            'over max batch size #modules'  | 101                | [ ]                                               || 101
-            'two valid, one invalid module' | 2                  | [ new ModuleReference('NOT EXIST','IRRELEVANT') ] || 2
+            scenario                            | numberOfNewModules | existingModuleReferences                          || expectedNumberOfModulesForAnchor
+            'empty schema set'                  | 0                  | [ ]                                               || 0
+            'one existing module'               | 0                  | [ existingModuleReference ]                       || 1
+            'two new modules'                   | 2                  | [ ]                                               || 2
+            'two new modules, one existing'     | 2                  | [ existingModuleReference ]                       || 3
+            'over max batch size, one existing' | 101                | [ existingModuleReference ]                       || 102
+            'two valid, one invalid module'     | 2                  | [ new ModuleReference('NOT EXIST','IRRELEVANT') ] || 2
     }
 
     def 'Duplicate schema content.'() {
