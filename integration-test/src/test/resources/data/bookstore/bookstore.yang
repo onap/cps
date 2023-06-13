@@ -30,6 +30,8 @@ module stores {
             }
         }
 
+        container container-without-leaves { }
+
         container premises {
             list addresses {
                 key "house-number street";
