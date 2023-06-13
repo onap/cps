@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cb093471_d65d8ce9",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-13T08:14:02Z",
+      "side": 1,
+      "message": "NB (legacy) private methods should come after last public methods",
+      "range": {
+        "startLine": 328,
+        "startChar": 27,
+        "endLine": 328,
+        "endChar": 62
+      },
+      "revId": "f988d900e7ffe106938dbf6de11414f17c9f78a7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "323828ef_0030d0af",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentPrefetchRepositoryImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-13T08:14:02Z",
+      "side": 1,
+      "message": "see comment on #2",
+      "range": {
+        "startLine": 77,
+        "startChar": 37,
+        "endLine": 77,
+        "endChar": 38
+      },
+      "revId": "f988d900e7ffe106938dbf6de11414f17c9f78a7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "45c3a9ec_b8bb1049",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-13T08:14:02Z",
+      "side": 1,
+      "message": "see question on #2",
+      "range": {
+        "startLine": 72,
+        "startChar": 71,
+        "endLine": 72,
+        "endChar": 78
+      },
+      "revId": "f988d900e7ffe106938dbf6de11414f17c9f78a7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b1a422f1_59b81c25",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-13T08:14:02Z",
+      "side": 1,
+      "message": "see question on #2",
+      "range": {
+        "startLine": 307,
+        "startChar": 103,
+        "endLine": 307,
+        "endChar": 105
+      },
+      "revId": "f988d900e7ffe106938dbf6de11414f17c9f78a7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
