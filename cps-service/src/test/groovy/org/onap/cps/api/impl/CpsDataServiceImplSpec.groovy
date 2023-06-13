@@ -103,6 +103,24 @@ class CpsDataServiceImplSpec extends Specification {
             'xml'    | 'test-tree.xml'  | ContentType.XML
     }
 
+    def 'Saving parent-list data #scenario data.'() {
+        given: 'schema set for given anchor and dataspace references test-tree model'
+            setupSchemaSetMocks('parent-list.yang')
+        when: 'save data method is invoked with test-tree #scenario data'
+            def data = TestUtils.getResourceFileContent(dataFile)
+            objectUnderTest.saveData(dataspaceName, anchorName, data, observedTimestamp, contentType)
+        then: 'the persistence service method is invoked with correct parameters'
+            1 * mockCpsDataPersistenceService.storeDataNodes(dataspaceName, anchorName,
+                { dataNode -> dataNode.xpath[0] == '/invoice[@ProductID=\'1\']' })
+        and: 'the CpsValidator is called on the dataspaceName and AnchorName'
+            1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
+        and: 'data updated event is sent to notification service'
+            1 * mockNotificationService.processDataUpdatedEvent(anchor, '/', Operation.CREATE, observedTimestamp)
+        where: 'given parameters'
+            scenario | dataFile           | contentType
+            'json'   | 'parent-list.json' | ContentType.JSON
+    }
+
     def 'Saving #scenarioDesired data with invalid data.'() {
         given: 'schema set for given anchor and dataspace references test-tree model'
         setupSchemaSetMocks('test-tree.yang')
@@ -130,6 +148,28 @@ class CpsDataServiceImplSpec extends Specification {
             1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
         and: 'data updated event is sent to notification service'
             1 * mockNotificationService.processDataUpdatedEvent(anchor, '/test-tree', Operation.CREATE, observedTimestamp)
+    }
+
+    def 'Saving list element data fragment under Root node.'() {
+        given: 'schema set for given anchor and dataspace references parent-list model'
+            setupSchemaSetMocks('parent-list.yang')
+        when: 'save data method is invoked with list element json data'
+            def jsonData = '{"multiple-data-tree:invoice": [{"ProductID": "2","ProductName": "Banana","price": "100","stock": True}]}'
+            objectUnderTest.saveListElements(dataspaceName, anchorName, jsonData, observedTimestamp)
+        then: 'the persistence service method is invoked with correct parameters'
+            1 * mockCpsDataPersistenceService.addListElements(dataspaceName, anchorName,
+                { dataNodeCollection ->
+                    {
+                        assert dataNodeCollection.size() == 1
+                        assert dataNodeCollection.collect { it.getXpath() }
+                            .containsAll(['/invoice[@ProductID=\'2\']'])
+                    }
+                }
+            )
+        and: 'the CpsValidator is called on the dataspaceName and AnchorName'
+            1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
+        and: 'data updated event is sent to notification service'
+            1 * mockNotificationService.processDataUpdatedEvent(anchor, '/', Operation.CREATE, observedTimestamp)
     }
 
     def 'Saving list element data fragment under existing node.'() {
