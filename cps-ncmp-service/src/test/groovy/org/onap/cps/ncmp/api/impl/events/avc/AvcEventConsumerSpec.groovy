@@ -48,7 +48,7 @@ class AvcEventConsumerSpec extends MessagingBaseSpec {
     AvcEventMapper avcEventMapper = Mappers.getMapper(AvcEventMapper.class)
 
     @SpringBean
-    EventsPublisher eventsPublisher = new EventsPublisher<AvcEvent>(kafkaTemplate)
+    EventsPublisher eventsPublisher = new EventsPublisher<AvcEvent>(kafkaTemplate, kafkaCloudEventTemplate)
 
     @SpringBean
     AvcEventConsumer acvEventConsumer = new AvcEventConsumer(eventsPublisher, avcEventMapper)

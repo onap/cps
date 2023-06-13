@@ -1,44 +1,15 @@
 {
-  "data":{
-    "responses":[
+  "data": {
+    "responses": [
       {
-        "operationid":"1",
-        "ids":[
-          "123",
-          "124"
+        "operationid": "data-operation-id-1",
+        "ids": [
+          "40137a9771f84459affa795fa1d633ab"
         ],
-        "statuscode":1,
-        "statusmessage":"Batch operation success on the above cmhandle ids ",
-        "responsedata":{
-          "ietf-netconf-monitoring:netconf-state":{
-            "schemas":{
-              "schema":[
-                {
-                  "identifier":"ietf-tls-server",
-                  "version":"2016-11-02",
-                  "format":"ietf-netconf-monitoring:yang",
-                  "namespace":"urn:ietf:params:xml:ns:yang:ietf-tls-server",
-                  "location":[
-                    "NETCONF"
-                  ]
-                }
-              ]
-            }
-          }
-        }
-      },
-      {
-        "operationid":"101",
-        "ids":[
-          "456",
-          "457"
-        ],
-        "statuscode":101,
-        "statusmessage":"cmHandle(s) do not exist",
-        "responsedata":{
-          "error":{
-            "message":"cmHandle(s) do not exist"
-          }
+        "statuscode": "1",
+        "statusmessage": "Successfully applied changes",
+        "responsedata": {
+          "some-key": "some-value"
         }
       }
     ]

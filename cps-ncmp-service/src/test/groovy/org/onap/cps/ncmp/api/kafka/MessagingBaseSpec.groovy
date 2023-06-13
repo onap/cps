@@ -20,6 +20,8 @@
 
 package org.onap.cps.ncmp.api.kafka
 
+import io.cloudevents.kafka.CloudEventDeserializer
+import io.cloudevents.kafka.CloudEventSerializer
 import org.apache.kafka.common.serialization.StringDeserializer
 import org.apache.kafka.common.serialization.StringSerializer
 import org.spockframework.spring.SpringBean
@@ -54,6 +56,16 @@ class MessagingBaseSpec extends Specification {
                 ('value.serializer') : JsonSerializer]
     }
 
+    def cloudEventProducerConfigProperties() {
+        return [('bootstrap.servers'): kafkaTestContainer.getBootstrapServers().split(',')[0],
+                ('retries')          : 0,
+                ('batch-size')       : 16384,
+                ('linger.ms')        : 1,
+                ('buffer.memory')    : 33554432,
+                ('key.serializer')   : StringSerializer,
+                ('value.serializer') : CloudEventSerializer]
+    }
+
     def consumerConfigProperties(consumerGroupId) {
         return [('bootstrap.servers') : kafkaTestContainer.getBootstrapServers().split(',')[0],
                 ('key.deserializer')  : StringDeserializer,
@@ -63,8 +75,20 @@ class MessagingBaseSpec extends Specification {
         ]
     }
 
+    def cloudEventConsumerConfigProperties(consumerGroupId) {
+        return [('bootstrap.servers') : kafkaTestContainer.getBootstrapServers().split(',')[0],
+                ('key.deserializer')  : StringDeserializer,
+                ('value.deserializer'): CloudEventDeserializer,
+                ('auto.offset.reset') : 'earliest',
+                ('group.id')          : consumerGroupId
+        ]
+    }
+
     @SpringBean
     KafkaTemplate kafkaTemplate = new KafkaTemplate<>(new DefaultKafkaProducerFactory<Integer, String>(producerConfigProperties()))
+
+    @SpringBean
+    KafkaTemplate kafkaCloudEventTemplate = new KafkaTemplate<>(new DefaultKafkaProducerFactory<Integer, String>(cloudEventProducerConfigProperties()))
 
     @DynamicPropertySource
     static void registerKafkaProperties(DynamicPropertyRegistry dynamicPropertyRegistry) {

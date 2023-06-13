@@ -55,6 +55,6 @@ public class NcmpAsyncRequestResponseEventConsumer {
         final NcmpAsyncRequestResponseEvent ncmpAsyncRequestResponseEvent =
                 ncmpAsyncRequestResponseEventMapper.toNcmpAsyncEvent(dmiAsyncRequestResponseEvent);
         eventsPublisher.publishEvent(ncmpAsyncRequestResponseEvent.getEventTarget(),
-                ncmpAsyncRequestResponseEvent.getEventId(), ncmpAsyncRequestResponseEvent);
+                ncmpAsyncRequestResponseEvent.getEventId(), ncmpAsyncRequestResponseEvent, false);
     }
 }
