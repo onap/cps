@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "32c8a550_a4d35b73",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2023-06-13T09:46:38Z",
+      "side": 1,
+      "message": "Copyright",
+      "revId": "240ac3d9cd8107250574dd0f7221ae2f1afa3bd7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
