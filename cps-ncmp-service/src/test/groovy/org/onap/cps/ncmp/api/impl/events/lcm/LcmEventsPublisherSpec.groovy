@@ -47,7 +47,7 @@ class LcmEventsPublisherSpec extends MessagingBaseSpec {
     def testTopic = 'ncmp-events-test'
 
     @SpringBean
-    EventsPublisher<LcmEvent> lcmEventsPublisher = new EventsPublisher(kafkaTemplate)
+    EventsPublisher<LcmEvent> lcmEventsPublisher = new EventsPublisher(kafkaTemplate, kafkaCloudEventTemplate)
 
     @Autowired
     JsonObjectMapper jsonObjectMapper

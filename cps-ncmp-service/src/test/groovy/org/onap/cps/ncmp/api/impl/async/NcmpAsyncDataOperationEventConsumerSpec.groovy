@@ -21,10 +21,16 @@
 package org.onap.cps.ncmp.api.impl.async
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import org.apache.commons.lang3.SerializationUtils
+import io.cloudevents.CloudEvent
+import io.cloudevents.kafka.CloudEventSerializer
+import io.cloudevents.kafka.impl.KafkaHeaders
+import io.cloudevents.types.Time
+import io.cloudevents.core.CloudEventUtils
+import io.cloudevents.core.builder.CloudEventBuilder
+import io.cloudevents.jackson.PojoCloudEventDataMapper
 import org.apache.kafka.clients.consumer.ConsumerRecord
 import org.apache.kafka.clients.consumer.KafkaConsumer
-import org.apache.kafka.common.header.internals.RecordHeader
+import org.apache.kafka.common.header.internals.RecordHeaders
 import org.onap.cps.ncmp.api.impl.events.EventsPublisher
 import org.onap.cps.ncmp.api.kafka.MessagingBaseSpec
 import org.onap.cps.ncmp.events.async.DataOperationResponseEventV1
@@ -36,7 +42,6 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.kafka.listener.adapter.RecordFilterStrategy
 import org.springframework.test.annotation.DirtiesContext
 import org.testcontainers.spock.Testcontainers
-
 import java.time.Duration
 
 @SpringBootTest(classes = [EventsPublisher, NcmpAsyncDataOperationEventConsumer, DataOperationRecordFilterStrategy,JsonObjectMapper, ObjectMapper])
@@ -45,7 +50,7 @@ import java.time.Duration
 class NcmpAsyncDataOperationEventConsumerSpec extends MessagingBaseSpec {
 
     @SpringBean
-    EventsPublisher asyncDataOperationEventPublisher = new EventsPublisher<DataOperationResponseEventV1>(kafkaTemplate)
+    EventsPublisher asyncDataOperationEventPublisher = new EventsPublisher<DataOperationResponseEventV1>(kafkaTemplate, kafkaCloudEventTemplate)
 
     @SpringBean
     NcmpAsyncDataOperationEventConsumer asyncDataOperationEventConsumer = new NcmpAsyncDataOperationEventConsumer(asyncDataOperationEventPublisher)
@@ -54,9 +59,9 @@ class NcmpAsyncDataOperationEventConsumerSpec extends MessagingBaseSpec {
     JsonObjectMapper jsonObjectMapper
 
     @Autowired
-    RecordFilterStrategy<String, DataOperationResponseEventV1> recordFilterStrategy
+    RecordFilterStrategy<String, CloudEvent> recordFilterStrategy
 
-    def kafkaConsumer = new KafkaConsumer<>(consumerConfigProperties('test'))
+    def kafkaConsumer = new KafkaConsumer<>(cloudEventConsumerConfigProperties('test'))
     def static clientTopic = 'client-topic'
     def static dataOperationType = 'org.onap.cps.ncmp.events.async.DataOperationResponseEventV1'
 
@@ -69,10 +74,22 @@ class NcmpAsyncDataOperationEventConsumerSpec extends MessagingBaseSpec {
             asyncDataOperationEventConsumer.consumeAndPublish(consumerRecordIn)
         and: 'the client specified topic is polled'
             def consumerRecordOut = kafkaConsumer.poll(Duration.ofMillis(1500))[0]
-        then: 'verifying consumed event operationID is same as published event operationID'
-            def operationIdIn = consumerRecordIn.value.data.responses[0].operationid
-            def operationIdOut = jsonObjectMapper.convertJsonString((String)consumerRecordOut.value(), DataOperationResponseEventV1.class).data.responses[0].operationid
-            assert operationIdIn == operationIdOut
+        then: 'verify cloud compliant headers'
+            def consumerRecordOutHeaders = consumerRecordOut.headers()
+            assert KafkaHeaders.getParsedKafkaHeader(consumerRecordOutHeaders, 'ce_correlationid') == 'request-id-123'
+            assert KafkaHeaders.getParsedKafkaHeader(consumerRecordOutHeaders, 'ce_id') == 'some-uuid'
+            assert KafkaHeaders.getParsedKafkaHeader(consumerRecordOutHeaders, 'ce_type') == dataOperationType
+        and: 'verify that extension is included into header'
+            assert KafkaHeaders.getParsedKafkaHeader(consumerRecordOutHeaders, 'ce_destination') == clientTopic
+        and: 'map consumer record to expected event type'
+            def dataOperationResponseEventV1 = CloudEventUtils.mapData(consumerRecordOut.value(),
+                    PojoCloudEventDataMapper.from(new ObjectMapper(), DataOperationResponseEventV1.class)).getValue()
+        and: 'verify published response data properties'
+            def response = dataOperationResponseEventV1.data.responses[0]
+            response.operationid == 'data-operation-id-1'
+            response.statuscode == '1'
+            response.statusmessage == 'Successfully applied changes'
+            response.responsedata.toString() == '[some-key:some-value]'
     }
 
     def 'Filter an event with type #eventType'() {
@@ -83,21 +100,34 @@ class NcmpAsyncDataOperationEventConsumerSpec extends MessagingBaseSpec {
         then: 'the event is #description'
             assert result == expectedResult
         where: 'filter the event based on the eventType #eventType'
-            description                                     | eventType       || expectedResult
-            'not filtered(the consumer will see the event)' | dataOperationType  || false
-            'filtered(the consumer will not see the event)' | 'wrongType'     || true
+            description                                     | eventType         || expectedResult
+            'not filtered(the consumer will see the event)' | dataOperationType || false
+            'filtered(the consumer will not see the event)' | 'wrongType'       || true
     }
 
     def createConsumerRecord(eventTypeAsString) {
         def jsonData = TestUtils.getResourceFileContent('dataOperationEvent.json')
-        def testEventSent = jsonObjectMapper.convertJsonString(jsonData, DataOperationResponseEventV1.class)
-        def eventTarget = SerializationUtils.serialize(clientTopic)
-        def eventType = SerializationUtils.serialize(eventTypeAsString)
-        def eventId = SerializationUtils.serialize('12345')
-        def consumerRecord = new ConsumerRecord<String, Object>(clientTopic, 1, 1L, '123', testEventSent)
-        consumerRecord.headers().add(new RecordHeader('eventId', eventId))
-        consumerRecord.headers().add(new RecordHeader('eventTarget', eventTarget))
-        consumerRecord.headers().add(new RecordHeader('eventType', eventType))
+        def testEventSent = jsonObjectMapper.asJsonBytes(jsonObjectMapper
+                .convertJsonString(jsonData, DataOperationResponseEventV1.class))
+
+        def cloudEvent = CloudEventBuilder.v1()
+                .withId("some-uuid")
+                .withType(eventTypeAsString)
+                .withSource(URI.create("http://localhost:8080//schema/v1/source"))
+                .withTime(Time.parseTime("2023-06-05T04:06:14.109Z"))
+                .withDataSchema(URI.create("http://localhost:8080/schema/v1/dataschema"))
+                .withDataContentType("application/yang-data+json")
+                .withData(testEventSent)
+                .withExtension("correlationid", "request-id-123")
+                .withExtension("destination", clientTopic)
+                .build();
+
+        def headers = new RecordHeaders()
+        def cloudEventSerializer = new CloudEventSerializer()
+        cloudEventSerializer.serialize(clientTopic, headers, cloudEvent)
+
+        def consumerRecord = new ConsumerRecord<String, CloudEvent>(clientTopic, 1, 1L, 'sample-message-key', cloudEvent)
+        headers.forEach(header -> consumerRecord.headers().add(header))
         return consumerRecord
     }
 }

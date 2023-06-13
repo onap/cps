@@ -42,7 +42,11 @@ import org.springframework.util.concurrent.ListenableFutureCallback;
 @RequiredArgsConstructor
 public class EventsPublisher<T> {
 
+    @Deprecated
+    //TODO once all events will be cloud compliant this kafka template need to be removed and only
+    // kafkaCloudEventTemplate will be used in future.
     private final KafkaTemplate<String, T> eventKafkaTemplate;
+    private final KafkaTemplate<String, T> kafkaCloudEventTemplate;
 
     /**
      * Generic Event publisher.
@@ -50,11 +54,16 @@ public class EventsPublisher<T> {
      * @param topicName valid topic name
      * @param eventKey  message key
      * @param event     message payload
+     * @param isCloudEvent     cloud event flag
      * @deprecated This method is not needed anymore since the use of headers will be in place.
      */
     @Deprecated
-    public void publishEvent(final String topicName, final String eventKey, final T event) {
-        final ListenableFuture<SendResult<String, T>> eventFuture = eventKafkaTemplate.send(topicName, eventKey, event);
+    // TODO once all events will be cloud compliant will remove @Deprecated tag, and boolean flag isCloudEvent as well
+    //  from this method and will use kafkaCloudEventTemplate only.
+    public void publishEvent(final String topicName, final String eventKey, final T event, final boolean isCloudEvent) {
+        final ListenableFuture<SendResult<String, T>> eventFuture = isCloudEvent
+                ? kafkaCloudEventTemplate.send(topicName, eventKey, event) :
+                eventKafkaTemplate.send(topicName, eventKey, event);
         eventFuture.addCallback(handleCallback(topicName));
     }
 

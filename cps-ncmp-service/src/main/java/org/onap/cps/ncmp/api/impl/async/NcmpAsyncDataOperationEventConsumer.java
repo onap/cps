@@ -20,12 +20,12 @@
 
 package org.onap.cps.ncmp.api.impl.async;
 
+import io.cloudevents.CloudEvent;
+import io.cloudevents.kafka.impl.KafkaHeaders;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.SerializationUtils;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.onap.cps.ncmp.api.impl.events.EventsPublisher;
-import org.onap.cps.ncmp.events.async.DataOperationResponseEventV1;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
@@ -39,7 +39,7 @@ import org.springframework.stereotype.Component;
 @ConditionalOnProperty(name = "notification.enabled", havingValue = "true", matchIfMissing = true)
 public class NcmpAsyncDataOperationEventConsumer {
 
-    private final EventsPublisher<DataOperationResponseEventV1> eventsPublisher;
+    private final EventsPublisher<CloudEvent> eventsPublisher;
 
     /**
      * Consume the DataOperationResponseEvent published by producer to topic 'async-m2m.topic'
@@ -52,14 +52,12 @@ public class NcmpAsyncDataOperationEventConsumer {
             filter = "filterDataOperationResponseEvent",
             groupId = "ncmp-data-operation-event-group",
             properties = {"spring.json.value.default.type=org.onap.cps.ncmp.events.async.DataOperationResponseEventV1"})
-    public void consumeAndPublish(final ConsumerRecord<String, DataOperationResponseEventV1>
-                                              dataOperationEventConsumerRecord) {
+    public void consumeAndPublish(final ConsumerRecord<String, CloudEvent> dataOperationEventConsumerRecord) {
         log.info("Consuming event payload {} ...", dataOperationEventConsumerRecord.value());
-        final String eventTarget = SerializationUtils
-                .deserialize(dataOperationEventConsumerRecord.headers().lastHeader("eventTarget").value());
-        final String eventId = SerializationUtils
-                .deserialize(dataOperationEventConsumerRecord.headers().lastHeader("eventId").value());
-        eventsPublisher.publishEvent(eventTarget, eventId, dataOperationEventConsumerRecord.headers(),
-                dataOperationEventConsumerRecord.value());
+        final String eventTarget = KafkaHeaders.getParsedKafkaHeader(
+                dataOperationEventConsumerRecord.headers(), "ce_destination");
+        final String eventId = KafkaHeaders.getParsedKafkaHeader(
+                dataOperationEventConsumerRecord.headers(), "ce_id");
+        eventsPublisher.publishEvent(eventTarget, eventId, dataOperationEventConsumerRecord.value(), true);
     }
 }

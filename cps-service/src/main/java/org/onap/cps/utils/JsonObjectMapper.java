@@ -52,6 +52,22 @@ public class JsonObjectMapper {
     }
 
     /**
+     * Serializing generic java object to bytes using Jackson.
+     *
+     * @param object any java object value
+     * @return the generated JSON as a byte array.
+     */
+    public byte[] asJsonBytes(final Object object) {
+        try {
+            return objectMapper.writeValueAsBytes(object);
+        } catch (final JsonProcessingException e) {
+            log.error("Parsing error occurred while converting Object to JSON string.");
+            throw new DataValidationException("Parsing error occurred while converting given object to JSON string.",
+                    e.getMessage());
+        }
+    }
+
+    /**
      * Constructing JavaType out of given type (typically java.lang.Class).
      * Allow efficient value conversions for structurally compatible json objects,
      * according to standard Jackson configuration.
