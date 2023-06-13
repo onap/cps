@@ -22,6 +22,46 @@
       "revId": "eb1c7b98ebbf603a5efe2062b3da357782206ca4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f18df649_7a0e26b4",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-06-13T12:46:40Z",
+      "side": 1,
+      "message": "There needs to be a dedicated test in this class for the use case, Multiple anchors with separate data needed",
+      "revId": "eb1c7b98ebbf603a5efe2062b3da357782206ca4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a9018d19_31c9a0de",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-06-13T12:46:40Z",
+      "side": 1,
+      "message": "these page indexes/sizes should relate just to the existing anchor. A new test should be added that checks the index across anchors",
+      "range": {
+        "startLine": 250,
+        "startChar": 112,
+        "endLine": 260,
+        "endChar": 152
+      },
+      "revId": "eb1c7b98ebbf603a5efe2062b3da357782206ca4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
