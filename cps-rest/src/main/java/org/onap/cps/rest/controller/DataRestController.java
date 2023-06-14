@@ -91,9 +91,16 @@ public class DataRestController implements CpsDataApi {
 
     @Override
     public ResponseEntity<String> addListElements(final String parentNodeXpath, final String apiVersion,
-        final String dataspaceName, final String anchorName, final Object jsonData, final String observedTimestamp) {
-        cpsDataService.saveListElements(dataspaceName, anchorName, parentNodeXpath,
-                jsonObjectMapper.asJsonString(jsonData), toOffsetDateTime(observedTimestamp));
+                                                  final String dataspaceName, final String anchorName,
+                                                  final Object jsonData, final String observedTimestamp) {
+        if (isRootXpath(parentNodeXpath)) {
+            cpsDataService.saveListElements(dataspaceName, anchorName, jsonObjectMapper.asJsonString(jsonData),
+                                            toOffsetDateTime(observedTimestamp));
+        } else {
+            cpsDataService.saveListElements(dataspaceName, anchorName, parentNodeXpath,
+                                            jsonObjectMapper.asJsonString(jsonData),
+                                            toOffsetDateTime(observedTimestamp));
+        }
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 

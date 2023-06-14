@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2023 Nordix Foundation
+ *  Modifications Copyright (C) 2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -71,6 +72,7 @@ class CpsIntegrationSpecBase extends Specification {
 
     def static GENERAL_TEST_DATASPACE = 'generalTestDataspace'
     def static BOOKSTORE_SCHEMA_SET = 'bookstoreSchemaSet'
+    def static TEST_SCHEMA_SET = 'parentlistSS'
 
     def static initialized = false
 
@@ -78,7 +80,9 @@ class CpsIntegrationSpecBase extends Specification {
         if (!initialized) {
             cpsAdminService.createDataspace(GENERAL_TEST_DATASPACE)
             def bookstoreModelFileContent = readResourceDataFile('bookstore/bookstore.yang')
+            def parentlistModelFileContent = readResourceDataFile('parent-list/parent-list.yang')
             cpsModuleService.createSchemaSet(GENERAL_TEST_DATASPACE, BOOKSTORE_SCHEMA_SET, [bookstore : bookstoreModelFileContent])
+            cpsModuleService.createSchemaSet(GENERAL_TEST_DATASPACE, TEST_SCHEMA_SET, [parentlist: parentlistModelFileContent])
             initialized = true;
         }
     }
