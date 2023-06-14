@@ -57,4 +57,26 @@ class SubscriptionOutcomeMapperSpec extends Specification {
             'is full outcome'     || SubscriptionEventOutcome.EventType.COMPLETE_OUTCOME
             'is partial outcome'  || SubscriptionEventOutcome.EventType.PARTIAL_OUTCOME
     }
+
+    def 'Map a null subscription response event to subscription event outcome'() {
+        given: 'a null subscription event response'
+            def testEventToMap = null
+        when: 'the event is mapped to a subscription event outcome'
+            def result = objectUnderTest.toSubscriptionEventOutcome(testEventToMap)
+        then: 'the resulting subscription outcome will be null'
+            assert result == null
+    }
+
+    def 'Map a null subscription response event to subscription, predicates and inner outcome'() {
+        given: 'a null subscription event response'
+            def testEventToMap = null
+        when: 'the event is mapped to to subscription, predicates and inner outcome'
+            def resultSubscription = objectUnderTest.subscriptionEventResponseToSubscription(testEventToMap)
+            def resultPredicates = objectUnderTest.subscriptionEventResponseToPredicates(testEventToMap)
+            def resultInnerOutcome = objectUnderTest.subscriptionEventResponseToInnerSubscriptionEventOutcome(testEventToMap)
+        then: 'the resulting objects will be null'
+            assert resultSubscription == null
+            assert resultPredicates == null
+            assert resultInnerOutcome == null
+    }
 }
