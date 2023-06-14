@@ -37,8 +37,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.common.header.Headers;
 import org.onap.cps.ncmp.api.impl.config.embeddedcache.ForwardedSubscriptionEventCacheConfig;
 import org.onap.cps.ncmp.api.impl.events.EventsPublisher;
+import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionPersistence;
+import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionStatus;
 import org.onap.cps.ncmp.api.impl.utils.DmiServiceNameOrganizer;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
+import org.onap.cps.ncmp.api.impl.yangmodels.YangModelSubscriptionEvent;
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.event.model.SubscriptionEvent;
 import org.onap.cps.spi.exceptions.OperationNotYetSupportedException;
@@ -55,6 +58,8 @@ public class SubscriptionEventForwarder {
     private final EventsPublisher<SubscriptionEvent> eventsPublisher;
     private final IMap<String, Set<String>> forwardedSubscriptionEventCache;
     private final SubscriptionEventResponseOutcome subscriptionEventResponseOutcome;
+    private final SubscriptionEventMapper subscriptionEventMapper;
+    private final SubscriptionPersistence subscriptionPersistence;
     private final ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
     @Value("${app.ncmp.avc.subscription-forward-topic-prefix}")
     private String dmiAvcSubscriptionTopicPrefix;
@@ -85,9 +90,10 @@ public class SubscriptionEventForwarder {
 
         final Set<String> dmisToRespond = new HashSet<>(dmiPropertiesPerCmHandleIdPerServiceName.keySet());
         if (dmisToRespond.isEmpty()) {
+            updatesCmHandlesToRejectedAndPersistSubscriptionEvent(subscriptionEvent);
             final String clientID = subscriptionEvent.getEvent().getSubscription().getClientID();
             final String subscriptionName = subscriptionEvent.getEvent().getSubscription().getName();
-            subscriptionEventResponseOutcome.sendResponse(clientID, subscriptionName, true);
+            subscriptionEventResponseOutcome.sendResponse(clientID, subscriptionName);
         } else {
             startResponseTimeout(subscriptionEvent, dmisToRespond);
             forwardEventToDmis(dmiPropertiesPerCmHandleIdPerServiceName, subscriptionEvent, eventHeaders);
@@ -129,5 +135,18 @@ public class SubscriptionEventForwarder {
             + subscriptionEvent.getEvent().getSubscription().getName()
             + "-"
             + dmiName;
+    }
+
+    private void updatesCmHandlesToRejectedAndPersistSubscriptionEvent(final SubscriptionEvent subscriptionEvent) {
+        final YangModelSubscriptionEvent yangModelSubscriptionEvent =
+                subscriptionEventMapper.toYangModelSubscriptionEvent(subscriptionEvent);
+        final List<YangModelSubscriptionEvent.TargetCmHandle> rejectedCmHandles =
+                yangModelSubscriptionEvent.getPredicates()
+                .getTargetCmHandles().stream().map(
+                        target -> new YangModelSubscriptionEvent.TargetCmHandle(target.getCmHandleId(),
+                        SubscriptionStatus.REJECTED))
+                .collect(Collectors.toList());
+        yangModelSubscriptionEvent.getPredicates().setTargetCmHandles(rejectedCmHandles);
+        subscriptionPersistence.saveSubscriptionEvent(yangModelSubscriptionEvent);
     }
 }
