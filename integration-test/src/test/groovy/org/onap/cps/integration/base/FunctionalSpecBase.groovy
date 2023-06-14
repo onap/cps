@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2023 Nordix Foundation
+ *  Modifications Copyright (C) 2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -29,16 +30,24 @@ class FunctionalSpecBase extends CpsIntegrationSpecBase {
     def static NUMBER_OF_ANCHORS_PER_DATASPACE_WITH_BOOKSTORE_DATA = 2
     def static BOOKSTORE_ANCHOR_1 = 'bookstoreAnchor1'
     def static BOOKSTORE_ANCHOR_2 = 'bookstoreAnchor2'
+    def static TEST_DATASPACE_1 = 'parentlistTestDataspace'
+    def static NUMBER_OF_ANCHORS_PER_DATASPACE_WITH_PARENTLIST_DATA = 1
+    def static TEST_ANCHOR_1 = 'parentlistTestAnchor1'
 
     def static initialized = false
     def static bookstoreJsonData = readResourceDataFile('bookstore/bookstoreData.json')
+    def static parentlistJsonData = readResourceDataFile('parent-list/parent-list.json')
 
     def setup() {
         if (!initialized) {
             setupBookstoreInfraStructure()
             addBookstoreData()
-            initialized = true
         }
+        if (!initialized) {
+            setupParentListInfraStructure()
+            addParentListData()
+        }
+        initialized = true
     }
 
     def setupBookstoreInfraStructure() {
@@ -61,4 +70,13 @@ class FunctionalSpecBase extends CpsIntegrationSpecBase {
         cpsDataService.saveData(FUNCTIONAL_TEST_DATASPACE_1, anchorName, bookstoreJsonData, OffsetDateTime.now())
     }
 
+    def setupParentListInfraStructure() {
+        cpsAdminService.createDataspace(TEST_DATASPACE_1)
+        def parentlistYangModelAsString = readResourceDataFile('parent-list/parent-list.yang')
+        cpsModuleService.createSchemaSet(TEST_DATASPACE_1 , TEST_SCHEMA_SET, [parentlist: parentlistYangModelAsString])
+    }
+
+    def addParentListData() {
+        addAnchorsWithData(NUMBER_OF_ANCHORS_PER_DATASPACE_WITH_PARENTLIST_DATA, TEST_DATASPACE_1, TEST_SCHEMA_SET, 'parentlistTestAnchor', parentlistJsonData)
+    }
 }

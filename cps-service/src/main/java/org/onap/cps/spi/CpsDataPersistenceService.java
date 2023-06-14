@@ -56,6 +56,16 @@ public interface CpsDataPersistenceService {
     void addChildDataNodes(String dataspaceName, String anchorName, String parentXpath, Collection<DataNode> dataNodes);
 
     /**
+     * Stores list elements as fragment at root.
+     *
+     * @param dataspaceName          dataspace name
+     * @param anchorName             anchor name
+     * @param listElementsCollection collection of data nodes representing list elements
+     */
+    void addListElements(String dataspaceName, String anchorName,
+                         Collection<DataNode> listElementsCollection);
+
+    /**
      * Adds list child elements to a Fragment.
      *
      * @param dataspaceName          dataspace name
