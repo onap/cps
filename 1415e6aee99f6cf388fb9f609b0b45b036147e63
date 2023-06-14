@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b9374f70_1e3e3b70",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/subscriptions/SubscriptionPersistence.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-06-14T16:35:13Z",
+      "side": 1,
+      "message": "Would recommmend getCMHandlesForSubscriptionEvent",
+      "range": {
+        "startLine": 48,
+        "startChar": 25,
+        "endLine": 48,
+        "endChar": 54
+      },
+      "revId": "1415e6aee99f6cf388fb9f609b0b45b036147e63",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
