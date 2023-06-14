@@ -43,12 +43,14 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
 
     CpsDataService objectUnderTest
     def originalCountBookstoreChildNodes
+    def originalCountParentlistNodes
     def now = OffsetDateTime.now()
 
     def setup() {
         objectUnderTest = cpsDataService
         originalCountBookstoreChildNodes = countDataNodesInTree(objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore', DIRECT_CHILDREN_ONLY))
-}
+        originalCountParentlistNodes = countDataNodesInTree(objectUnderTest.getDataNodes(TEST_DATASPACE_1, TEST_ANCHOR_1, '/', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS))
+    }
 
 def 'Read bookstore top-level container(s) using #fetchDescendantsOption.'() {
     when: 'get data nodes for bookstore container'
@@ -175,6 +177,21 @@ def 'Add and Delete a (container) data node.'() {
             objectUnderTest.deleteDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, ['/does/not/exist'], now)
         then: 'a  datanode not found (batch) exception is thrown'
             thrown(DataNodeNotFoundExceptionBatch)
+    }
+
+    def 'Add and Delete top-level list (element) data nodes with root node.'() {
+        given: 'two new (categories) datanodes'
+            def json = '{"multiple-data-tree:invoice": [{"ProductID": "2","ProductName": "Mango","price": "150","stock": true}]}'
+        when: 'the new list elements are saved'
+            objectUnderTest.saveListElements(TEST_DATASPACE_1, TEST_ANCHOR_1, json , OffsetDateTime.now())
+        then: 'they can be retrieved by their xpaths'
+            objectUnderTest.getDataNodes(TEST_DATASPACE_1, TEST_ANCHOR_1, '/invoice[@ProductID ="2"]', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS).size() == 1
+        and: 'there are now two extra datanodes'
+            assert originalCountParentlistNodes + 1 == countDataNodesInTree(objectUnderTest.getDataNodes(TEST_DATASPACE_1, TEST_ANCHOR_1, '/', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS))
+        when: 'the new elements are deleted'
+            objectUnderTest.deleteDataNode(TEST_DATASPACE_1, TEST_ANCHOR_1, '/invoice[@ProductID ="2"]', OffsetDateTime.now())
+        then: 'the original number of datanodes is restored'
+            assert originalCountParentlistNodes == countDataNodesInTree(objectUnderTest.getDataNodes(TEST_DATASPACE_1, TEST_ANCHOR_1, '/', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS))
     }
 
     def 'Add and Delete list (element) data nodes.'() {

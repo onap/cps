@@ -1,0 +1,38 @@
+module parent-list{
+    namespace "https://www.techmahindra.com";
+    prefix "int";
+    description
+    "Sample YANG model";
+    revision 2022-09-01{
+        description "Initial version";
+    }
+
+
+	list invoice {
+		key "ProductID";
+		leaf ProductID {
+			type uint64;
+			mandatory "true";
+			description
+			"Unique product ID. Example: 001";
+		}
+		leaf ProductName {
+			type string;
+			mandatory "true";
+			description
+			"Name of the Product";
+		}
+		leaf price {
+			type uint64;
+			mandatory "true";
+			description
+			"Price of book";
+		}
+		leaf stock {
+			type boolean;
+			default "false";
+			description
+			"Book in stock or not. Example value: true";
+		}
+	}
+}
