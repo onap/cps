@@ -1,0 +1,280 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c1a3967f_4f8f1dad",
+        "filename": "cps-dependencies/pom.xml",
+        "patchSetId": 6
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-06-14T08:30:07Z",
+      "side": 1,
+      "message": "just hardcode it.",
+      "range": {
+        "startLine": 221,
+        "startChar": 25,
+        "endLine": 221,
+        "endChar": 47
+      },
+      "revId": "26ddde4e381dabb431c709d43557ee4157fa6f03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "547fbd7e_94d9f213",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/dmidataavc/avc-event-schema-1.0.0.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-06-14T08:30:07Z",
+      "side": 1,
+      "message": "AvcEvent1_0_0",
+      "range": {
+        "startLine": 4,
+        "startChar": 25,
+        "endLine": 4,
+        "endChar": 35
+      },
+      "revId": "26ddde4e381dabb431c709d43557ee4157fa6f03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "915d3b95_fa54fadc",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/dmidataavc/avc-event-schema-1.0.0.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-06-14T08:30:07Z",
+      "side": 1,
+      "message": "avcevent1_0_0",
+      "range": {
+        "startLine": 7,
+        "startChar": 44,
+        "endLine": 7,
+        "endChar": 50
+      },
+      "revId": "26ddde4e381dabb431c709d43557ee4157fa6f03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6504e117_6d2789ab",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/config/CloudEventsPublisherConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-06-14T08:30:07Z",
+      "side": 1,
+      "message": "remove and hardcode",
+      "range": {
+        "startLine": 46,
+        "startChar": 39,
+        "endLine": 46,
+        "endChar": 42
+      },
+      "revId": "26ddde4e381dabb431c709d43557ee4157fa6f03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae116679_1eee1b57",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/config/CloudEventsPublisherConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-06-14T08:30:07Z",
+      "side": 1,
+      "message": "eventProducerFactory or producerFactory",
+      "range": {
+        "startLine": 60,
+        "startChar": 38,
+        "endLine": 60,
+        "endChar": 63
+      },
+      "revId": "26ddde4e381dabb431c709d43557ee4157fa6f03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7ca22cdc_3902d474",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/config/CloudEventsPublisherConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-06-14T08:30:07Z",
+      "side": 1,
+      "message": "remove it",
+      "range": {
+        "startLine": 90,
+        "startChar": 9,
+        "endLine": 90,
+        "endChar": 43
+      },
+      "revId": "26ddde4e381dabb431c709d43557ee4157fa6f03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "129b3bbe_dd4e1151",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/config/CloudEventsPublisherConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-06-14T08:30:07Z",
+      "side": 1,
+      "message": "kafkaTemplate",
+      "range": {
+        "startLine": 91,
+        "startChar": 36,
+        "endLine": 91,
+        "endChar": 59
+      },
+      "revId": "26ddde4e381dabb431c709d43557ee4157fa6f03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7777be04_42eee113",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/CloudEventsPublisher.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-06-14T08:30:07Z",
+      "side": 1,
+      "message": "2023",
+      "range": {
+        "startLine": 3,
+        "startChar": 17,
+        "endLine": 3,
+        "endChar": 26
+      },
+      "revId": "26ddde4e381dabb431c709d43557ee4157fa6f03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "932ac244_94a5f07f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/EventsPublisher.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-06-14T08:30:07Z",
+      "side": 1,
+      "message": "LegacyEventsPublisher and also introduce the deprecated tag",
+      "range": {
+        "startLine": 44,
+        "startChar": 13,
+        "endLine": 44,
+        "endChar": 28
+      },
+      "revId": "26ddde4e381dabb431c709d43557ee4157fa6f03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ae4707e_39d111ef",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avc/AvcEventConsumer.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-06-14T08:30:07Z",
+      "side": 1,
+      "message": "newEventId",
+      "range": {
+        "startLine": 59,
+        "startChar": 21,
+        "endLine": 59,
+        "endChar": 35
+      },
+      "revId": "26ddde4e381dabb431c709d43557ee4157fa6f03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9845a423_df4c1d44",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/avc/AvcEventConsumerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-06-14T08:30:07Z",
+      "side": 1,
+      "message": "some-test-specific-value",
+      "range": {
+        "startLine": 74,
+        "startChar": 27,
+        "endLine": 74,
+        "endChar": 53
+      },
+      "revId": "26ddde4e381dabb431c709d43557ee4157fa6f03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4aea0f77_1ffe4986",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/avc/AvcEventConsumerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-06-14T08:30:07Z",
+      "side": 1,
+      "message": "dont set it at all.",
+      "range": {
+        "startLine": 75,
+        "startChar": 38,
+        "endLine": 75,
+        "endChar": 54
+      },
+      "revId": "26ddde4e381dabb431c709d43557ee4157fa6f03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
