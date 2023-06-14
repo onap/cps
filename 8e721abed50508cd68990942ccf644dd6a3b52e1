@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "026a7393_828780a3",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-06-14T15:15:34Z",
+      "side": 1,
+      "message": "replace with: as root",
+      "range": {
+        "startLine": 88,
+        "startChar": 69,
+        "endLine": 88,
+        "endChar": 83
+      },
+      "revId": "8e721abed50508cd68990942ccf644dd6a3b52e1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5ebaa5c8_f1b0bec3",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-06-14T15:15:34Z",
+      "side": 1,
+      "message": "...list element as root",
+      "revId": "8e721abed50508cd68990942ccf644dd6a3b52e1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "176a59ec_c2e2e774",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-06-14T15:15:34Z",
+      "side": 1,
+      "message": "Stores list elements as fragment at root",
+      "range": {
+        "startLine": 59,
+        "startChar": 7,
+        "endLine": 59,
+        "endChar": 39
+      },
+      "revId": "8e721abed50508cd68990942ccf644dd6a3b52e1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ea9c202_94413311",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-06-14T15:15:34Z",
+      "side": 1,
+      "message": "Don\u0027t need, would use the same dataspace, GENERAL_TEST_DATASPACE",
+      "range": {
+        "startLine": 75,
+        "startChar": 15,
+        "endLine": 75,
+        "endChar": 29
+      },
+      "revId": "8e721abed50508cd68990942ccf644dd6a3b52e1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "269393cb_6d2dab71",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-06-14T15:15:34Z",
+      "side": 1,
+      "message": "can be put between lines 84 \u0026 85\nActually this code is never ran because its in this second if statement where intitialised is always false?",
+      "range": {
+        "startLine": 88,
+        "startChar": 12,
+        "endLine": 90,
+        "endChar": 119
+      },
+      "revId": "8e721abed50508cd68990942ccf644dd6a3b52e1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "edd094c7_1a33d2af",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/FunctionalSpecBase.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-06-14T15:15:34Z",
+      "side": 1,
+      "message": "Capitalise",
+      "range": {
+        "startLine": 73,
+        "startChar": 19,
+        "endLine": 73,
+        "endChar": 20
+      },
+      "revId": "8e721abed50508cd68990942ccf644dd6a3b52e1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
