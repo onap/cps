@@ -57,28 +57,33 @@ public class SubscriptionEventResponseOutcome {
      *
      * @param subscriptionClientId client id of the subscription.
      * @param subscriptionName name of the subscription.
-     * @param isFullOutcomeResponse the flag to decide on complete or partial response to be generated.
      */
-    public void sendResponse(final String subscriptionClientId, final String subscriptionName,
-                             final boolean isFullOutcomeResponse) {
+    public void sendResponse(final String subscriptionClientId, final String subscriptionName) {
         final SubscriptionEventOutcome subscriptionEventOutcome = generateResponse(
-                subscriptionClientId, subscriptionName, isFullOutcomeResponse);
+                subscriptionClientId, subscriptionName);
         final Headers headers = new RecordHeaders();
         final String subscriptionEventId = subscriptionClientId + subscriptionName;
         outcomeEventsPublisher.publishEvent(subscriptionOutcomeEventTopic,
                 subscriptionEventId, headers, subscriptionEventOutcome);
     }
 
-    private SubscriptionEventOutcome generateResponse(final String subscriptionClientId, final String subscriptionName,
-                                                                 final boolean isFullOutcomeResponse) {
-        final Collection<DataNode> dataNodes = subscriptionPersistence.getDataNodesForSubscriptionEvent();
+    private SubscriptionEventOutcome generateResponse(final String subscriptionClientId,
+                                                      final String subscriptionName) {
+        final Collection<DataNode> dataNodes =
+                subscriptionPersistence.getDataNodesForMultipleXpaths(subscriptionClientId, subscriptionName);
         final List<Map<String, Serializable>> dataNodeLeaves = DataNodeHelper.getDataNodeLeaves(dataNodes);
         final List<Collection<Serializable>> cmHandleIdToStatus =
                 DataNodeHelper.getCmHandleIdToStatus(dataNodeLeaves);
+        final Map<String, SubscriptionStatus> cmHandleIdToStatusMap =
+                DataNodeHelper.getCmHandleIdToStatusMap(cmHandleIdToStatus);
         return formSubscriptionOutcomeMessage(cmHandleIdToStatus, subscriptionClientId, subscriptionName,
-                        isFullOutcomeResponse);
+                isFullOutcomeResponse(cmHandleIdToStatusMap));
     }
 
+    private boolean isFullOutcomeResponse(final Map<String, SubscriptionStatus> cmHandleIdToStatusMap) {
+        return !cmHandleIdToStatusMap.values().contains(SubscriptionStatus.PENDING)
+                && !cmHandleIdToStatusMap.values().contains(SubscriptionStatus.REJECTED);
+    }
 
     private SubscriptionEventOutcome formSubscriptionOutcomeMessage(
             final List<Collection<Serializable>> cmHandleIdToStatus, final String subscriptionClientId,

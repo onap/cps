@@ -55,4 +55,17 @@ class DataNodeHelperSpec extends DataNodeBaseSpec {
         then: 'the result list size is 3'
             result.size() == 3
     }
+
+
+    def 'Get cm handle id to status map as expected from a nested data node.'() {
+        given: 'a nested data node'
+            def dataNode = new DataNodeBuilder().withDataspace('NCMP-Admin')
+                .withAnchor('AVC-Subscriptions').withXpath('/subscription-registry/subscription')
+                .withLeaves([clientID:'SCO-9989752', isTagged:false, subscriptionName:'cm-subscription-001'])
+                .withChildDataNodes([dataNode4]).build()
+        when:'cm handle id to status is being extracted'
+            def result = DataNodeHelper.getCmHandleIdToStatusMapFromDataNodes([dataNode]);
+        then: 'the keys are retrieved as expected'
+            result.keySet() == ['CMHandle3','CMHandle2','CMHandle1'] as Set
+    }
 }

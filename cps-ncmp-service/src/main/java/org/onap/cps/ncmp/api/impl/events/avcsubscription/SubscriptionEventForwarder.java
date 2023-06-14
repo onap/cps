@@ -87,7 +87,7 @@ public class SubscriptionEventForwarder {
         if (dmisToRespond.isEmpty()) {
             final String clientID = subscriptionEvent.getEvent().getSubscription().getClientID();
             final String subscriptionName = subscriptionEvent.getEvent().getSubscription().getName();
-            subscriptionEventResponseOutcome.sendResponse(clientID, subscriptionName, true);
+            subscriptionEventResponseOutcome.sendResponse(clientID, subscriptionName);
         } else {
             startResponseTimeout(subscriptionEvent, dmisToRespond);
             forwardEventToDmis(dmiPropertiesPerCmHandleIdPerServiceName, subscriptionEvent, eventHeaders);

@@ -92,14 +92,9 @@ class SubscriptionEventForwarderSpec extends MessagingBaseSpec {
             )
         and: 'a separate thread has been created where the map is polled'
             1 * mockForwardedSubscriptionEventCache.containsKey("SCO-9989752cm-subscription-001") >> true
-            1 * mockForwardedSubscriptionEventCache.get(_) >> DMINamesInMap
             1 * mockSubscriptionEventResponseOutcome.sendResponse(*_)
         and: 'the subscription id is removed from the event cache map returning the asynchronous blocking variable'
             1 * mockForwardedSubscriptionEventCache.remove("SCO-9989752cm-subscription-001") >> {block.set(_)}
-        where:
-            scenario                                  | DMINamesInMap
-            'there are dmis which have not responded' | ["DMIName1", "DMIName2"] as Set
-            'all dmis have responded'                 | [] as Set
     }
 
     def 'Forward CM create subscription where target CM Handles are #scenario'() {
@@ -155,7 +150,7 @@ class SubscriptionEventForwarderSpec extends MessagingBaseSpec {
         and: 'the subscription id is removed from the event cache map returning the asynchronous blocking variable'
             0 * mockForwardedSubscriptionEventCache.remove("SCO-9989752cm-subscription-001") >> {block.set(_)}
         and: 'subscription outcome has been sent'
-            1 * mockSubscriptionEventResponseOutcome.sendResponse('SCO-9989752', 'cm-subscription-001', true)
+            1 * mockSubscriptionEventResponseOutcome.sendResponse('SCO-9989752', 'cm-subscription-001')
     }
 
     static def createYangModelCmHandleWithDmiProperty(id, dmiId,propertyName, propertyValue) {
