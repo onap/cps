@@ -26,6 +26,7 @@ import org.apache.kafka.clients.consumer.ConsumerRecord
 import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionPersistenceImpl
 import org.onap.cps.ncmp.api.kafka.MessagingBaseSpec
 import org.onap.cps.ncmp.api.models.SubscriptionEventResponse
+import org.onap.cps.spi.model.DataNodeBuilder
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.boot.test.context.SpringBootTest
 
@@ -50,6 +51,13 @@ class SubscriptionEventResponseConsumerSpec extends MessagingBaseSpec {
             objectUnderTest.notificationFeatureEnabled = isNotificationFeatureEnabled
         and: 'subscription model loader is enabled'
             objectUnderTest.subscriptionModelLoaderEnabled = true
+        and: 'a data node exist in db'
+            def leaves1 = [status:'ACCEPTED', cmHandleId:'cmhandle1'] as Map
+            def dataNode = new DataNodeBuilder().withDataspace('NCMP-Admin')
+                .withAnchor('AVC-Subscriptions').withXpath('/subscription-registry/subscription')
+                .withLeaves(leaves1).build()
+        and: 'subscription persistence service returns data node'
+            mockSubscriptionPersistence.getDataNodesForMultipleXpaths(*_) >> [dataNode]
         when: 'the valid event is consumed'
             objectUnderTest.consumeSubscriptionEventResponse(consumerRecord)
         then: 'the forwarded subscription event cache returns only the received dmiName existing for the subscription create event'
@@ -60,13 +68,11 @@ class SubscriptionEventResponseConsumerSpec extends MessagingBaseSpec {
         and: 'the subscription event is removed from the map'
             1 * mockForwardedSubscriptionEventCache.remove('some-client-idsome-subscription-name')
         and: 'a response outcome has been created'
-            numberOfExpectedCallToSendResponse * mockSubscriptionEventResponseOutcome.sendResponse('some-client-id', 'some-subscription-name', isFullOutcomeResponse)
+            numberOfExpectedCallToSendResponse * mockSubscriptionEventResponseOutcome.sendResponse('some-client-id', 'some-subscription-name')
         where: 'the following values are used'
-            scenario             | isNotificationFeatureEnabled | isFullOutcomeResponse             || numberOfExpectedCallToSendResponse
-            'Response sent'      | true                         | true                              || 1
-            'Response not sent'  | true                         | false                             || 0
-            'Response not sent'  | false                        | true                              || 0
-            'Response not sent'  | false                        | false                             || 0
+            scenario             | isNotificationFeatureEnabled              || numberOfExpectedCallToSendResponse
+            'Response sent'      | true                                      || 1
+            'Response not sent'  | false                                     || 0
     }
 
     def 'Consume Subscription Event Response where another DMI has not yet responded'() {
