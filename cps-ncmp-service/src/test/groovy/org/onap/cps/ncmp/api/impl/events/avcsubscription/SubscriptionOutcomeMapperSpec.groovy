@@ -57,4 +57,5 @@ class SubscriptionOutcomeMapperSpec extends Specification {
             'is full outcome'     || SubscriptionEventOutcome.EventType.COMPLETE_OUTCOME
             'is partial outcome'  || SubscriptionEventOutcome.EventType.PARTIAL_OUTCOME
     }
+
 }

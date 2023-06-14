@@ -60,7 +60,7 @@ class SubscriptionEventMapperSpec extends Specification {
             assert result.topic == null
     }
 
-    def 'Map null subscription event to yang model subscription event where #scenario'() {
+    def 'Map empty subscription event to yang model subscription event'() {
         given: 'a new Subscription Event with no data'
             def testEventToMap = new SubscriptionEvent()
         when: 'the event is mapped to a yang model subscription'
@@ -76,5 +76,4 @@ class SubscriptionEventMapperSpec extends Specification {
         and: 'the topic is null'
             assert result.topic == null
     }
-
 }
