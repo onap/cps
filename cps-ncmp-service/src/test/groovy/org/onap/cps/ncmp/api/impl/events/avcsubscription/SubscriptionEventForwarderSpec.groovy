@@ -23,8 +23,12 @@ package org.onap.cps.ncmp.api.impl.events.avcsubscription
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.hazelcast.map.IMap
 import org.apache.kafka.clients.consumer.ConsumerRecord
+import org.mapstruct.factory.Mappers
 import org.onap.cps.ncmp.api.impl.events.EventsPublisher
+import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionPersistence
+import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionStatus
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
+import org.onap.cps.ncmp.api.impl.yangmodels.YangModelSubscriptionEvent.TargetCmHandle
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence
 import org.onap.cps.ncmp.api.kafka.MessagingBaseSpec
 import org.onap.cps.ncmp.event.model.SubscriptionEvent
@@ -52,6 +56,10 @@ class SubscriptionEventForwarderSpec extends MessagingBaseSpec {
     IMap<String, Set<String>> mockForwardedSubscriptionEventCache = Mock(IMap<String, Set<String>>)
     @SpringBean
     SubscriptionEventResponseOutcome mockSubscriptionEventResponseOutcome = Mock(SubscriptionEventResponseOutcome)
+    @SpringBean
+    SubscriptionPersistence mockSubscriptionPersistence = Mock(SubscriptionPersistence)
+    @SpringBean
+    SubscriptionEventMapper subscriptionEventMapper = Mappers.getMapper(SubscriptionEventMapper)
     @Autowired
     JsonObjectMapper jsonObjectMapper
 
@@ -92,14 +100,9 @@ class SubscriptionEventForwarderSpec extends MessagingBaseSpec {
             )
         and: 'a separate thread has been created where the map is polled'
             1 * mockForwardedSubscriptionEventCache.containsKey("SCO-9989752cm-subscription-001") >> true
-            1 * mockForwardedSubscriptionEventCache.get(_) >> DMINamesInMap
             1 * mockSubscriptionEventResponseOutcome.sendResponse(*_)
         and: 'the subscription id is removed from the event cache map returning the asynchronous blocking variable'
             1 * mockForwardedSubscriptionEventCache.remove("SCO-9989752cm-subscription-001") >> {block.set(_)}
-        where:
-            scenario                                  | DMINamesInMap
-            'there are dmis which have not responded' | ["DMIName1", "DMIName2"] as Set
-            'all dmis have responded'                 | [] as Set
     }
 
     def 'Forward CM create subscription where target CM Handles are #scenario'() {
@@ -125,6 +128,13 @@ class SubscriptionEventForwarderSpec extends MessagingBaseSpec {
             def jsonData = TestUtils.getResourceFileContent('avcSubscriptionCreationEvent.json')
             def testEventSent = jsonObjectMapper.convertJsonString(jsonData, SubscriptionEvent.class)
             def consumerRecord = new ConsumerRecord<String, SubscriptionEvent>('topic-name', 0, 0, 'event-key', testEventSent)
+        and: 'the cm handles will be rejected'
+            def rejectedCmHandles = [new TargetCmHandle('CMHandle1', SubscriptionStatus.REJECTED),
+                                     new TargetCmHandle('CMHandle2',SubscriptionStatus.REJECTED),
+                                     new TargetCmHandle('CMHandle3',SubscriptionStatus.REJECTED)]
+        and: 'a yang model subscription event will be saved into the db with rejected cm handles'
+            def yangModelSubscriptionEventWithRejectedCmHandles = subscriptionEventMapper.toYangModelSubscriptionEvent(testEventSent)
+            yangModelSubscriptionEventWithRejectedCmHandles.getPredicates().setTargetCmHandles(rejectedCmHandles)
         and: 'the InventoryPersistence returns no private properties for the supplied CM Handles'
             1 * mockInventoryPersistence.getYangModelCmHandles(["CMHandle1", "CMHandle2", "CMHandle3"]) >> []
         and: 'the thread creation delay is reduced to 2 seconds for testing'
@@ -154,8 +164,10 @@ class SubscriptionEventForwarderSpec extends MessagingBaseSpec {
             0 * mockForwardedSubscriptionEventCache.get(_)
         and: 'the subscription id is removed from the event cache map returning the asynchronous blocking variable'
             0 * mockForwardedSubscriptionEventCache.remove("SCO-9989752cm-subscription-001") >> {block.set(_)}
+        and: 'the persistence service save target cm handles of the yang model subscription event as rejected '
+            1 * mockSubscriptionPersistence.saveSubscriptionEvent(yangModelSubscriptionEventWithRejectedCmHandles)
         and: 'subscription outcome has been sent'
-            1 * mockSubscriptionEventResponseOutcome.sendResponse('SCO-9989752', 'cm-subscription-001', true)
+            1 * mockSubscriptionEventResponseOutcome.sendResponse('SCO-9989752', 'cm-subscription-001')
     }
 
     static def createYangModelCmHandleWithDmiProperty(id, dmiId,propertyName, propertyValue) {
