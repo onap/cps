@@ -166,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "5964c46f_8d263297",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentPrefetchRepositoryImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-06-14T10:55:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "18cfc2c6_2f12b3e7",
+      "range": {
+        "startLine": 94,
+        "startChar": 37,
+        "endLine": 94,
+        "endChar": 38
+      },
+      "revId": "b59c2414d87efd3a7954cca06d2c5aebdcd64230",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "386ac2a1_83431e56",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
         "patchSetId": 2
@@ -189,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "0c7a47f0_14e33beb",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-06-14T10:55:23Z",
+      "side": 1,
+      "message": "This query is used by the old getFragmentEntity API that returns only a single FragmentEntity (hence LIMIT 1). Specifically, this SQL query is used for root xpath handling. Previously, that code used FragmentExtract logic, which I wanted to minimize use of.",
+      "parentUuid": "386ac2a1_83431e56",
+      "range": {
+        "startLine": 72,
+        "startChar": 71,
+        "endLine": 72,
+        "endChar": 78
+      },
+      "revId": "b59c2414d87efd3a7954cca06d2c5aebdcd64230",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9e45d23d_99fa7d4b",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
         "patchSetId": 2
@@ -200,6 +248,30 @@
       "writtenOn": "2023-06-12T10:52:25Z",
       "side": 1,
       "message": "why has this changed?",
+      "range": {
+        "startLine": 307,
+        "startChar": 104,
+        "endLine": 307,
+        "endChar": 105
+      },
+      "revId": "b59c2414d87efd3a7954cca06d2c5aebdcd64230",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "33f83065_b94b9ead",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-06-14T10:55:23Z",
+      "side": 1,
+      "message": "This is an edge case involving use of root and non-root xpaths with OMIT_DESCENDANTS.\n\nBefore, if we requested root and a child [\"/\", \"/parent-200/child-201\"], the child would not be included in the result list, because FragmentEntityArranger would connect the child to the parent - even with OMIT_DESCENDANTS. With new changes, we get back [\"/parent-200\", \"/parent-201\", ... \"/parent-200/child-201\"], which I think makes more sense.\nI didn\u0027t spend much time trying preserve original behaviour here, given this is an edge case. I doubt any users would deliberately request root and non-root xpaths in the same request.\n\nIf we want to make the API more stable for these edge cases, we could change behaviour so that we only either handle root or non-root xpaths in a single call (e.g. if we see a root xpath, we could ignore non-root ones, or even throw an IllegalArgumentException). What you think?",
+      "parentUuid": "9e45d23d_99fa7d4b",
       "range": {
         "startLine": 307,
         "startChar": 104,
