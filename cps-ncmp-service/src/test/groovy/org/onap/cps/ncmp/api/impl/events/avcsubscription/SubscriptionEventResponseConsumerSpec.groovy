@@ -60,13 +60,11 @@ class SubscriptionEventResponseConsumerSpec extends MessagingBaseSpec {
         and: 'the subscription event is removed from the map'
             1 * mockForwardedSubscriptionEventCache.remove('some-client-idsome-subscription-name')
         and: 'a response outcome has been created'
-            numberOfExpectedCallToSendResponse * mockSubscriptionEventResponseOutcome.sendResponse('some-client-id', 'some-subscription-name', isFullOutcomeResponse)
+            numberOfExpectedCallToSendResponse * mockSubscriptionEventResponseOutcome.sendResponse('some-client-id', 'some-subscription-name')
         where: 'the following values are used'
-            scenario             | isNotificationFeatureEnabled | isFullOutcomeResponse             || numberOfExpectedCallToSendResponse
-            'Response sent'      | true                         | true                              || 1
-            'Response not sent'  | true                         | false                             || 0
-            'Response not sent'  | false                        | true                              || 0
-            'Response not sent'  | false                        | false                             || 0
+            scenario             | isNotificationFeatureEnabled              || numberOfExpectedCallToSendResponse
+            'Response sent'      | true                                      || 1
+            'Response not sent'  | false                                     || 0
     }
 
     def 'Consume Subscription Event Response where another DMI has not yet responded'() {

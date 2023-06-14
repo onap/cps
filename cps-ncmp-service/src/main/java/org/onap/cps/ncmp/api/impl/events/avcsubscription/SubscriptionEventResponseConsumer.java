@@ -64,25 +64,24 @@ public class SubscriptionEventResponseConsumer {
         log.info("subscription event response of clientId: {} is received.", clientId);
         final String subscriptionName = subscriptionEventResponse.getSubscriptionName();
         final String subscriptionEventId = clientId + subscriptionName;
-        boolean isFullOutcomeResponse = false;
+        boolean createOutcomeResponse = false;
         if (forwardedSubscriptionEventCache.containsKey(subscriptionEventId)) {
             final Set<String> dmiNames = forwardedSubscriptionEventCache.get(subscriptionEventId);
 
             dmiNames.remove(subscriptionEventResponse.getDmiName());
             forwardedSubscriptionEventCache.put(subscriptionEventId, dmiNames,
                     ForwardedSubscriptionEventCacheConfig.SUBSCRIPTION_FORWARD_STARTED_TTL_SECS, TimeUnit.SECONDS);
-            isFullOutcomeResponse = forwardedSubscriptionEventCache.get(subscriptionEventId).isEmpty();
+            createOutcomeResponse = forwardedSubscriptionEventCache.get(subscriptionEventId).isEmpty();
 
-            if (isFullOutcomeResponse) {
+            if (createOutcomeResponse) {
                 forwardedSubscriptionEventCache.remove(subscriptionEventId);
             }
         }
         if (subscriptionModelLoaderEnabled) {
             updateSubscriptionEvent(subscriptionEventResponse);
         }
-        if (isFullOutcomeResponse && notificationFeatureEnabled) {
-            subscriptionEventResponseOutcome.sendResponse(clientId, subscriptionName,
-                    isFullOutcomeResponse);
+        if (createOutcomeResponse && notificationFeatureEnabled) {
+            subscriptionEventResponseOutcome.sendResponse(clientId, subscriptionName);
         }
     }
 

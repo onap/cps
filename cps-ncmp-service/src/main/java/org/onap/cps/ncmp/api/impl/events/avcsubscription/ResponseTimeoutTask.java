@@ -49,9 +49,7 @@ public class ResponseTimeoutTask implements Runnable {
     private void generateAndSendResponse() {
         final String subscriptionEventId = subscriptionClientId + subscriptionName;
         if (forwardedSubscriptionEventCache.containsKey(subscriptionEventId)) {
-            final Set<String> dmiNames = forwardedSubscriptionEventCache.get(subscriptionEventId);
-            subscriptionEventResponseOutcome.sendResponse(subscriptionClientId, subscriptionName,
-                    dmiNames.isEmpty());
+            subscriptionEventResponseOutcome.sendResponse(subscriptionClientId, subscriptionName);
             forwardedSubscriptionEventCache.remove(subscriptionEventId);
         }
     }
