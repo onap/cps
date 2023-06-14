@@ -97,6 +97,30 @@
     },
     {
       "key": {
+        "uuid": "0c6ef159_56d151c3",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/async/data-operation-event-schema-1.0.0.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-14T08:29:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f78c8e53_2bd3dbdd",
+      "range": {
+        "startLine": 4,
+        "startChar": 38,
+        "endLine": 4,
+        "endChar": 46
+      },
+      "revId": "601a4bf8ff53dbffcacf712c1887d765eb5f3f9a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c324a81a_67e66c4d",
         "filename": "cps-ncmp-events/src/main/resources/schemas/async/data-operation-event-schema-1.0.0.json",
         "patchSetId": 1
@@ -922,6 +946,30 @@
       "side": 1,
       "message": "def \u0027Filter an event with type #eventType\u0027() test does this.",
       "parentUuid": "fcc9a55c_f2ee7b56",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 147
+      },
+      "revId": "601a4bf8ff53dbffcacf712c1887d765eb5f3f9a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "def5a3e7_0a227400",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/NcmpAsyncDataOperationEventConsumerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-14T08:29:19Z",
+      "side": 1,
+      "message": "as discussed yesreday you test teh filter logic but not teh annoaation. Cna you add a test using kafak(Container?) taht wil verify teh (filter) annoatation work as expected",
+      "parentUuid": "99d17c47_0cdf34b2",
       "range": {
         "startLine": 41,
         "startChar": 0,
