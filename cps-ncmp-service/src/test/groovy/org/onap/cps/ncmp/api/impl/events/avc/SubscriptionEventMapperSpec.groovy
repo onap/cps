@@ -60,7 +60,7 @@ class SubscriptionEventMapperSpec extends Specification {
             assert result.topic == null
     }
 
-    def 'Map null subscription event to yang model subscription event where #scenario'() {
+    def 'Map empty subscription event to yang model subscription event'() {
         given: 'a new Subscription Event with no data'
             def testEventToMap = new SubscriptionEvent()
         when: 'the event is mapped to a yang model subscription'
@@ -77,4 +77,38 @@ class SubscriptionEventMapperSpec extends Specification {
             assert result.topic == null
     }
 
+    def 'Map a null subscription event to yang model subscription event'() {
+        given: 'a null subscription event'
+            def testEventToMap = null
+        when: 'the event is mapped to a yang model subscription'
+            def result = objectUnderTest.toYangModelSubscriptionEvent(testEventToMap)
+        then: 'the resulting yang model will be null'
+            assert result == null
+    }
+
+    def 'Map a null subscription event to client id, subscription name, and subscription is tagged'() {
+        given: 'a null subscription event response'
+            def testEventToMap = null
+        when: 'the event is mapped to client id, subscription name, and subscription is tagged'
+            def resultClientId = objectUnderTest.subscriptionEventEventSubscriptionClientID(testEventToMap)
+            def resultName = objectUnderTest.subscriptionEventEventSubscriptionName(testEventToMap)
+            def resultSubscriptionIsTagged = objectUnderTest.subscriptionEventEventSubscriptionIsTagged(testEventToMap)
+        then: 'the resulting objects will be null'
+            assert resultClientId == null
+            assert resultName == null
+            assert resultSubscriptionIsTagged == null
+    }
+
+    def 'Map a null inner subscription event to predicates, datastore, and yang model predicates'() {
+        given: 'a null subscription event response'
+            def testEventToMap = null
+        when: 'the event is mapped to predicates, datastore, and yang model predicates'
+            def resultPredicates = objectUnderTest.innerSubscriptionEventPredicatesTargets(testEventToMap)
+            def resultDatastore = objectUnderTest.innerSubscriptionEventPredicatesDatastore(testEventToMap)
+            def resultYangModelPredicats = objectUnderTest.innerSubscriptionEventToPredicates(testEventToMap)
+        then: 'the resulting objects will be null'
+            assert resultPredicates == null
+            assert resultDatastore == null
+            assert resultYangModelPredicats == null
+    }
 }

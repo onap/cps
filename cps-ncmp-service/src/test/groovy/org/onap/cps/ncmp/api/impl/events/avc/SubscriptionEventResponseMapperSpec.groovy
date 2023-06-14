@@ -59,4 +59,22 @@ class SubscriptionEventResponseMapperSpec extends Specification {
             assert result.topic == null
     }
 
+    def 'Map a null subscription response event to yang model subscription event'() {
+        given: 'a null subscription event response'
+            def testEventToMap = null
+        when: 'the event is mapped to a yang model subscription'
+            def result = objectUnderTest.toYangModelSubscriptionEvent(testEventToMap)
+        then: 'the resulting yang model will be null'
+            assert result == null
+    }
+
+    def 'Map a null subscription response event to yang model subscription predicates'() {
+        given: 'a null subscription event response'
+            def testEventToMap = null
+        when: 'the event is mapped to a yang model predicates'
+            def result = objectUnderTest.subscriptionEventResponseToPredicates(testEventToMap)
+        then: 'the resulting predicates will be null'
+            assert result == null
+    }
+
 }
