@@ -50,20 +50,16 @@ class SubscriptionEventResponseOutcomeSpec extends DataNodeBaseSpec {
 
     def 'Generate response via fetching data nodes from database.'() {
         given: 'a db call to get data nodes for subscription event'
-            1 * mockSubscriptionPersistence.getDataNodesForSubscriptionEvent() >> [dataNode4]
+            1 * mockSubscriptionPersistence.getCmHandlesForSubscriptionEvent(*_) >> [dataNode4]
         when: 'a response is generated'
-            def result = objectUnderTest.generateResponse('some-client-id', 'some-subscription-name', isFullOutcomeResponse)
+            def result = objectUnderTest.generateResponse('some-client-id', 'some-subscription-name')
         then: 'the result will have the same values as same as in dataNode4'
-            result.eventType == expectedEventType
+            result.eventType == SubscriptionEventOutcome.EventType.PARTIAL_OUTCOME
             result.getEvent().getSubscription().getClientID() == 'some-client-id'
             result.getEvent().getSubscription().getName() == 'some-subscription-name'
             result.getEvent().getPredicates().getPendingTargets() == ['CMHandle3']
             result.getEvent().getPredicates().getRejectedTargets() == ['CMHandle1']
             result.getEvent().getPredicates().getAcceptedTargets() == ['CMHandle2']
-        where: 'the following values are used'
-            scenario             | isFullOutcomeResponse || expectedEventType
-            'is full outcome'    | true                  || SubscriptionEventOutcome.EventType.COMPLETE_OUTCOME
-            'is partial outcome' | false                 || SubscriptionEventOutcome.EventType.PARTIAL_OUTCOME
     }
 
     def 'Form subscription outcome message with a list of cm handle id to status mapping'() {
