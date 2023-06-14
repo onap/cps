@@ -93,4 +93,15 @@ public class DataNodeHelper {
         }
         return resultMap;
     }
+
+    /**
+     * Extracts the mapping of cm handle id to status from data node collection.
+     *
+     * @param dataNodes as a collection
+     * @return cm handle id to status mapping
+     */
+    public static Map<String, SubscriptionStatus> getCmHandleIdToStatusMapFromDataNodes(
+            final Collection<DataNode> dataNodes) {
+        return getCmHandleIdToStatusMap(getCmHandleIdToStatus(getDataNodeLeaves(dataNodes)));
+    }
 }
