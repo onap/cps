@@ -67,7 +67,7 @@ class CpsAdminServiceIntegrationSpec extends CpsIntegrationSpecBase {
         where: 'the following data is used'
             scenario                        | dataspaceName          | numberOfAnchors || expectedException          | expectedMessageDetails
             'dataspace name does not exist' | 'unknown'              | 0               || DataspaceNotFoundException | 'unknown does not exist'
-            'dataspace contains schemasets' | GENERAL_TEST_DATASPACE | 0               || DataspaceInUseException    | 'contains 1 schemaset(s)'
+            'dataspace contains schemasets' | GENERAL_TEST_DATASPACE | 0               || DataspaceInUseException    | 'contains 2 schemaset(s)'
             'dataspace contains anchors'    | GENERAL_TEST_DATASPACE | 2               || DataspaceInUseException    | 'contains 2 anchor(s)'
     }
 
