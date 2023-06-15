@@ -22,6 +22,7 @@ package org.onap.cps.ncmp.api.impl.async
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.apache.kafka.clients.consumer.KafkaConsumer
+import org.apache.kafka.common.serialization.StringDeserializer
 import org.mapstruct.factory.Mappers
 import org.onap.cps.ncmp.api.impl.events.EventsPublisher
 import org.onap.cps.ncmp.api.kafka.MessagingBaseSpec
@@ -34,7 +35,6 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.annotation.DirtiesContext
 import org.testcontainers.spock.Testcontainers
-
 import java.time.Duration
 
 @SpringBootTest(classes = [EventsPublisher, NcmpAsyncRequestResponseEventConsumer, ObjectMapper, JsonObjectMapper])
@@ -44,7 +44,7 @@ class NcmpAsyncRequestResponseEventProducerIntegrationSpec extends MessagingBase
 
     @SpringBean
     EventsPublisher cpsAsyncRequestResponseEventPublisher =
-        new EventsPublisher<NcmpAsyncRequestResponseEvent>(kafkaTemplate);
+        new EventsPublisher<NcmpAsyncRequestResponseEvent>(legacyEventKafkaTemplate, cloudEventKafkaTemplate);
 
 
     @SpringBean
@@ -59,18 +59,18 @@ class NcmpAsyncRequestResponseEventProducerIntegrationSpec extends MessagingBase
     @Autowired
     JsonObjectMapper jsonObjectMapper
 
-    def kafkaConsumer = new KafkaConsumer<>(consumerConfigProperties('test'))
+    def legacyEventKafkaConsumer = new KafkaConsumer<>(eventConsumerConfigProperties('test', StringDeserializer))
 
     def 'Consume and forward valid message'() {
         given: 'consumer has a subscription'
-            kafkaConsumer.subscribe(['test-topic'] as List<String>)
+            legacyEventKafkaConsumer.subscribe(['test-topic'] as List<String>)
         and: 'an event is sent'
             def jsonData = TestUtils.getResourceFileContent('dmiAsyncRequestResponseEvent.json')
             def testEventSent = jsonObjectMapper.convertJsonString(jsonData, DmiAsyncRequestResponseEvent.class)
         when: 'the event is consumed'
             ncmpAsyncRequestResponseEventConsumer.consumeAndForward(testEventSent)
         and: 'the topic is polled'
-            def records = kafkaConsumer.poll(Duration.ofMillis(1500))
+            def records = legacyEventKafkaConsumer.poll(Duration.ofMillis(1500))
         then: 'poll returns one record'
             assert records.size() == 1
         and: 'consumed forwarded event id is the same as sent event id'

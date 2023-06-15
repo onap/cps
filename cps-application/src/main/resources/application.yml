@@ -75,7 +75,7 @@ spring:
         security:
             protocol: PLAINTEXT
         producer:
-            value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+            value-serializer: io.cloudevents.kafka.CloudEventSerializer
             client-id: cps-core
         consumer:
             group-id: ${NCMP_CONSUMER_GROUP_ID:ncmp-group}
@@ -83,7 +83,7 @@ spring:
             value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
             properties:
                 spring.deserializer.key.delegate.class: org.apache.kafka.common.serialization.StringDeserializer
-                spring.deserializer.value.delegate.class: org.springframework.kafka.support.serializer.JsonDeserializer
+                spring.deserializer.value.delegate.class: io.cloudevents.kafka.CloudEventDeserializer
                 spring.json.use.type.headers: false
 
     jackson:

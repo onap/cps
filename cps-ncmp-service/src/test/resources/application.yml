@@ -16,6 +16,14 @@
 #  SPDX-License-Identifier: Apache-2.0
 #  ============LICENSE_END=========================================================
 
+spring:
+    kafka:
+        producer:
+            value-serializer: io.cloudevents.kafka.CloudEventSerializer
+        consumer:
+            properties:
+                spring.deserializer.value.delegate.class: io.cloudevents.kafka.CloudEventDeserializer
+
 app:
     ncmp:
         avc:
