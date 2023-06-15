@@ -119,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "dccf2a28_76d03ee1",
+        "filename": "cps-bom/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-15T12:25:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a3e964b_b9ae413a",
+      "range": {
+        "startLine": 122,
+        "startChar": 3,
+        "endLine": 128,
+        "endChar": 25
+      },
+      "revId": "a5f0dd02bad41792c276aef33b14c69456691563",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "992d4235_b25e5a7a",
         "filename": "cps-ncmp-service/pom.xml",
         "patchSetId": 1
@@ -166,6 +190,30 @@
     },
     {
       "key": {
+        "uuid": "aa9ec582_941cbf9a",
+        "filename": "cps-ncmp-service/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-15T12:25:49Z",
+      "side": 1,
+      "message": "partly...  but dont worry about it now",
+      "parentUuid": "0f554e6b_4e13dbfc",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 21
+      },
+      "revId": "a5f0dd02bad41792c276aef33b14c69456691563",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e593c56e_ded51fc0",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/kafka/KafkaTemplateConfig.java",
         "patchSetId": 1
@@ -210,6 +258,30 @@
       "revId": "a5f0dd02bad41792c276aef33b14c69456691563",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f2691a04_27d2e16e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/kafka/KafkaTemplateConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-15T12:25:49Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8cd40f6c_5c37932b",
+      "range": {
+        "startLine": 42,
+        "startChar": 20,
+        "endLine": 42,
+        "endChar": 27
+      },
+      "revId": "a5f0dd02bad41792c276aef33b14c69456691563",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -398,6 +470,30 @@
       "revId": "a5f0dd02bad41792c276aef33b14c69456691563",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c2ae5b1d_85db744a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/EventsPublisher.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-15T12:25:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "88593e73_7cd3effe",
+      "range": {
+        "startLine": 47,
+        "startChar": 6,
+        "endLine": 47,
+        "endChar": 11
+      },
+      "revId": "a5f0dd02bad41792c276aef33b14c69456691563",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {

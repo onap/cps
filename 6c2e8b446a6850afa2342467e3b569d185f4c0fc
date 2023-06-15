@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "e99dca94_5da37c91",
+        "filename": "cps-dependencies/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-15T12:25:49Z",
+      "side": 1,
+      "message": "NB: next time fix order of all dependencies (legacy issue)",
+      "range": {
+        "startLine": 217,
+        "startChar": 0,
+        "endLine": 223,
+        "endChar": 25
+      },
+      "revId": "6c2e8b446a6850afa2342467e3b569d185f4c0fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d45afce9_d40b8c44",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/kafka/KafkaTemplateConfig.java",
         "patchSetId": 2
@@ -13,6 +36,29 @@
       "writtenOn": "2023-06-15T11:56:32Z",
       "side": 1,
       "message": "NB: javadoc for this as well as we are doing it for others as well.",
+      "revId": "6c2e8b446a6850afa2342467e3b569d185f4c0fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4d67e9b_fe2fd451",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/kafka/KafkaTemplateConfigSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-15T12:25:49Z",
+      "side": 1,
+      "message": "NB: typo (dont copy\u0026paste from  my comment you know my typing is very bad :-))",
+      "range": {
+        "startLine": 58,
+        "startChar": 113,
+        "endLine": 58,
+        "endChar": 114
+      },
       "revId": "6c2e8b446a6850afa2342467e3b569d185f4c0fc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
