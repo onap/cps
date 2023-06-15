@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5e7d01d9_f252c7a8",
+        "filename": "cps-dependencies/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-06-15T13:46:15Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e99dca94_5da37c91",
+      "range": {
+        "startLine": 217,
+        "startChar": 0,
+        "endLine": 223,
+        "endChar": 25
+      },
+      "revId": "6c2e8b446a6850afa2342467e3b569d185f4c0fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d45afce9_d40b8c44",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/kafka/KafkaTemplateConfig.java",
         "patchSetId": 2
@@ -39,6 +63,24 @@
       "revId": "6c2e8b446a6850afa2342467e3b569d185f4c0fc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "34155332_ab13efa5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/kafka/KafkaTemplateConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-06-15T13:46:15Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d45afce9_d40b8c44",
+      "revId": "6c2e8b446a6850afa2342467e3b569d185f4c0fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -62,6 +104,30 @@
       "revId": "6c2e8b446a6850afa2342467e3b569d185f4c0fc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2e0139fc_e282acdb",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/kafka/KafkaTemplateConfigSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-06-15T13:46:15Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f4d67e9b_fe2fd451",
+      "range": {
+        "startLine": 58,
+        "startChar": 113,
+        "endLine": 58,
+        "endChar": 114
+      },
+      "revId": "6c2e8b446a6850afa2342467e3b569d185f4c0fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
