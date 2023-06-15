@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a9d2046_cad79f3d",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/async/data-operation-event-schema-1.0.0.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-15T15:27:05Z",
+      "side": 1,
+      "message": "No \u0027V\u0027 !",
+      "range": {
+        "startLine": 9,
+        "startChar": 69,
+        "endLine": 9,
+        "endChar": 70
+      },
+      "revId": "5f22658c0571b40c3b2d4df9266b3aba83ea7217",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
