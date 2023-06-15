@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cc4f3b15_8899c486",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-15T07:53:16Z",
+      "side": 1,
+      "message": "very good commit summary !",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 46
+      },
+      "revId": "a5f0dd02bad41792c276aef33b14c69456691563",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "30786929_00d6cbfa",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-15T07:53:16Z",
+      "side": 1,
+      "message": "NB: so a differernt serializer is used for the keys (makes some kind of sense)",
+      "range": {
+        "startLine": 85,
+        "startChar": 36,
+        "endLine": 85,
+        "endChar": 39
+      },
+      "revId": "a5f0dd02bad41792c276aef33b14c69456691563",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1f42cab5_97906bcb",
+        "filename": "cps-bom/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-15T07:53:16Z",
+      "side": 1,
+      "message": "why is this in the BOM and not in the cps-dependencies pom instead?!",
+      "range": {
+        "startLine": 122,
+        "startChar": 3,
+        "endLine": 128,
+        "endChar": 25
+      },
+      "revId": "a5f0dd02bad41792c276aef33b14c69456691563",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "992d4235_b25e5a7a",
+        "filename": "cps-ncmp-service/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-15T07:53:16Z",
+      "side": 1,
+      "message": "NB: we agreed long time ago to sort dependencies alphabetically (to prevent duplication)\nwe often forget and there is a legacy issue already. if you have a minute can you fix that please",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 21
+      },
+      "revId": "a5f0dd02bad41792c276aef33b14c69456691563",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e593c56e_ded51fc0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/kafka/KafkaTemplateConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-15T07:53:16Z",
+      "side": 1,
+      "message": "remove? I presume it can be a cloudEvent too",
+      "range": {
+        "startLine": 42,
+        "startChar": 20,
+        "endLine": 42,
+        "endChar": 27
+      },
+      "revId": "a5f0dd02bad41792c276aef33b14c69456691563",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "733dab23_40f0f6f5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/EventsPublisher.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-15T07:53:16Z",
+      "side": 1,
+      "message": "NB: maybe remove the word TODO (its already annotated with Deprecated) to reduce teh number on SonarQube warnings...",
+      "range": {
+        "startLine": 47,
+        "startChar": 6,
+        "endLine": 47,
+        "endChar": 11
+      },
+      "revId": "a5f0dd02bad41792c276aef33b14c69456691563",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f8e698d1_eafd0346",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/kafka/KafkaTemplateConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-15T07:53:16Z",
+      "side": 1,
+      "message": "deletgateDeserializer",
+      "range": {
+        "startLine": 58,
+        "startChar": 109,
+        "endLine": 58,
+        "endChar": 132
+      },
+      "revId": "a5f0dd02bad41792c276aef33b14c69456691563",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
