@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "62ab6eb1_7e8cc421",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-06-15T11:16:46Z",
+      "side": 1,
+      "message": "StringSerializer and StringDeserializer is used.",
+      "parentUuid": "30786929_00d6cbfa",
+      "range": {
+        "startLine": 85,
+        "startChar": 36,
+        "endLine": 85,
+        "endChar": 39
+      },
+      "revId": "a5f0dd02bad41792c276aef33b14c69456691563",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1f42cab5_97906bcb",
         "filename": "cps-bom/pom.xml",
         "patchSetId": 1
@@ -59,6 +83,30 @@
       "writtenOn": "2023-06-15T07:53:16Z",
       "side": 1,
       "message": "why is this in the BOM and not in the cps-dependencies pom instead?!",
+      "range": {
+        "startLine": 122,
+        "startChar": 3,
+        "endLine": 128,
+        "endChar": 25
+      },
+      "revId": "a5f0dd02bad41792c276aef33b14c69456691563",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a3e964b_b9ae413a",
+        "filename": "cps-bom/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-06-15T11:16:46Z",
+      "side": 1,
+      "message": "moved it to cps-dependencies",
+      "parentUuid": "1f42cab5_97906bcb",
       "range": {
         "startLine": 122,
         "startChar": 3,
@@ -94,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "0f554e6b_4e13dbfc",
+        "filename": "cps-ncmp-service/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-06-15T11:16:46Z",
+      "side": 1,
+      "message": "shorted",
+      "parentUuid": "992d4235_b25e5a7a",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 21
+      },
+      "revId": "a5f0dd02bad41792c276aef33b14c69456691563",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e593c56e_ded51fc0",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/kafka/KafkaTemplateConfig.java",
         "patchSetId": 1
@@ -105,6 +177,30 @@
       "writtenOn": "2023-06-15T07:53:16Z",
       "side": 1,
       "message": "remove? I presume it can be a cloudEvent too",
+      "range": {
+        "startLine": 42,
+        "startChar": 20,
+        "endLine": 42,
+        "endChar": 27
+      },
+      "revId": "a5f0dd02bad41792c276aef33b14c69456691563",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8cd40f6c_5c37932b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/kafka/KafkaTemplateConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-06-15T11:16:46Z",
+      "side": 1,
+      "message": "\u003cT\u003e is used by legacy only otherhand we have very specific CloudEvent to be used.",
+      "parentUuid": "e593c56e_ded51fc0",
       "range": {
         "startLine": 42,
         "startChar": 20,
@@ -140,6 +236,30 @@
     },
     {
       "key": {
+        "uuid": "9325822c_0a43a927",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/kafka/KafkaTemplateConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-06-15T11:16:46Z",
+      "side": 1,
+      "message": "yes, you are right Priyank.\n\nI verified as we discussed:\n\nOnly one template can be configured via application.yml. As soon as we include a Bean of type KafkaTemplate in our app, the auto-configuration stops working (@ConditionalOnMissingBean(KafkaTemplate.class)) and we\u0027d have to create two Beans (the one that \"broke\" auto-configuration and the default one)",
+      "parentUuid": "55f9becb_e5a2f6e6",
+      "range": {
+        "startLine": 77,
+        "startChar": 4,
+        "endLine": 81,
+        "endChar": 5
+      },
+      "revId": "a5f0dd02bad41792c276aef33b14c69456691563",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c3ef31c2_3f9687b5",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/kafka/KafkaTemplateConfig.java",
         "patchSetId": 1
@@ -160,6 +280,30 @@
       "revId": "a5f0dd02bad41792c276aef33b14c69456691563",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "22779230_fef69bf9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/kafka/KafkaTemplateConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-06-15T11:16:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c3ef31c2_3f9687b5",
+      "range": {
+        "startLine": 89,
+        "startChar": 4,
+        "endLine": 93,
+        "endChar": 5
+      },
+      "revId": "a5f0dd02bad41792c276aef33b14c69456691563",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -186,6 +330,30 @@
     },
     {
       "key": {
+        "uuid": "8a83c5a9_7a025ad5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/kafka/KafkaTemplateConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-06-15T11:16:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b08f4cb1_b2d1fb46",
+      "range": {
+        "startLine": 112,
+        "startChar": 4,
+        "endLine": 117,
+        "endChar": 5
+      },
+      "revId": "a5f0dd02bad41792c276aef33b14c69456691563",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "733dab23_40f0f6f5",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/EventsPublisher.java",
         "patchSetId": 1
@@ -197,6 +365,30 @@
       "writtenOn": "2023-06-15T07:53:16Z",
       "side": 1,
       "message": "NB: maybe remove the word TODO (its already annotated with Deprecated) to reduce teh number on SonarQube warnings...",
+      "range": {
+        "startLine": 47,
+        "startChar": 6,
+        "endLine": 47,
+        "endChar": 11
+      },
+      "revId": "a5f0dd02bad41792c276aef33b14c69456691563",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88593e73_7cd3effe",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/EventsPublisher.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-06-15T11:16:46Z",
+      "side": 1,
+      "message": "removed",
+      "parentUuid": "733dab23_40f0f6f5",
       "range": {
         "startLine": 47,
         "startChar": 6,
@@ -232,6 +424,30 @@
     },
     {
       "key": {
+        "uuid": "8af4b55e_cb22766f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/EventsPublisher.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-06-15T11:16:46Z",
+      "side": 1,
+      "message": "yes",
+      "parentUuid": "814e5bce_bdf50652",
+      "range": {
+        "startLine": 51,
+        "startChar": 52,
+        "endLine": 51,
+        "endChar": 75
+      },
+      "revId": "a5f0dd02bad41792c276aef33b14c69456691563",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f8e698d1_eafd0346",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/kafka/KafkaTemplateConfigSpec.groovy",
         "patchSetId": 1
@@ -243,6 +459,30 @@
       "writtenOn": "2023-06-15T07:53:16Z",
       "side": 1,
       "message": "deletgateDeserializer",
+      "range": {
+        "startLine": 58,
+        "startChar": 109,
+        "endLine": 58,
+        "endChar": 132
+      },
+      "revId": "a5f0dd02bad41792c276aef33b14c69456691563",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b44a8a1_822cf19a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/kafka/KafkaTemplateConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-06-15T11:16:46Z",
+      "side": 1,
+      "message": "used it",
+      "parentUuid": "f8e698d1_eafd0346",
       "range": {
         "startLine": 58,
         "startChar": 109,
