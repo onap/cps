@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "61f31a0b_540769af",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/subscriptions/SubscriptionPersistence.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-06-15T11:03:01Z",
+      "side": 1,
+      "message": "will do that soon, once you have finalized your review. Thanks.",
+      "parentUuid": "b9374f70_1e3e3b70",
+      "range": {
+        "startLine": 48,
+        "startChar": 25,
+        "endLine": 48,
+        "endChar": 54
+      },
+      "revId": "1415e6aee99f6cf388fb9f609b0b45b036147e63",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f83b0a64_76a372ce",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/subscriptions/SubscriptionPersistenceImpl.java",
         "patchSetId": 3
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "dc8c1b37_6a70c0af",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/subscriptions/SubscriptionPersistenceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-06-15T11:03:01Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f83b0a64_76a372ce",
+      "range": {
+        "startLine": 66,
+        "startChar": 12,
+        "endLine": 77,
+        "endChar": 87
+      },
+      "revId": "1415e6aee99f6cf388fb9f609b0b45b036147e63",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3551af58_9e15e295",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/subscriptions/SubscriptionPersistenceImpl.java",
         "patchSetId": 3
@@ -59,6 +107,30 @@
       "writtenOn": "2023-06-15T10:34:06Z",
       "side": 1,
       "message": "NB: this is happening in loop.\nJust wanted to make sure there is no alternate way yet to do in bulk. right ?",
+      "range": {
+        "startLine": 97,
+        "startChar": 12,
+        "endLine": 98,
+        "endChar": 47
+      },
+      "revId": "1415e6aee99f6cf388fb9f609b0b45b036147e63",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b52950f9_01198360",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/subscriptions/SubscriptionPersistenceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-06-15T11:03:01Z",
+      "side": 1,
+      "message": "Sorry, no alternative found for that. Initially, I tried to find and API in CPS-DATA but I could not. Then, I decided to implement in this way.",
+      "parentUuid": "3551af58_9e15e295",
       "range": {
         "startLine": 97,
         "startChar": 12,
