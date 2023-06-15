@@ -22,6 +22,52 @@
       "revId": "1415e6aee99f6cf388fb9f609b0b45b036147e63",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f83b0a64_76a372ce",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/subscriptions/SubscriptionPersistenceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-06-15T10:34:06Z",
+      "side": 1,
+      "message": "NB: how about a separate method for this logic with some good name which do justice to this logic.\nJust for beautification.",
+      "range": {
+        "startLine": 66,
+        "startChar": 12,
+        "endLine": 77,
+        "endChar": 87
+      },
+      "revId": "1415e6aee99f6cf388fb9f609b0b45b036147e63",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3551af58_9e15e295",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/subscriptions/SubscriptionPersistenceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-06-15T10:34:06Z",
+      "side": 1,
+      "message": "NB: this is happening in loop.\nJust wanted to make sure there is no alternate way yet to do in bulk. right ?",
+      "range": {
+        "startLine": 97,
+        "startChar": 12,
+        "endLine": 98,
+        "endChar": 47
+      },
+      "revId": "1415e6aee99f6cf388fb9f609b0b45b036147e63",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
