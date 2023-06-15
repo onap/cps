@@ -39,11 +39,15 @@ Release Data
 Bug Fixes
 ---------
 3.3.2
-    - None
+    - `CPS-1716 <https://jira.onap.org/browse/CPS-1716>`_ NCMP: Java Heap OutOfMemory errors and slow registration in case of 20k cmhandles
 
 Features
 --------
     - `CPS-1006 <https://jira.onap.org/browse/CPS-1006>`_ Extend CPS PATCH API to allow update of leaves for multiple data nodes
+    - `CPS-1273 <https://jira.onap.org/browse/CPS-1273>`_ Add <,> operators support to cps-path
+    - `CPS-1664 <https://jira.onap.org/browse/CPS-1664>`_ Use recursive SQL to fetch descendants in CpsPath queries to improve query performance
+    - `CPS-1676 <https://jira.onap.org/browse/CPS-1676>`_ Entity ID types do not match types in database definition
+    - `CPS-1677 <https://jira.onap.org/browse/CPS-1677>`_ Remove dataspace_id column from Fragment table
 
 Version: 3.3.1
 ==============

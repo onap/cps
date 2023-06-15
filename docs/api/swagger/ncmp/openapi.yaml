@@ -625,7 +625,7 @@ paths:
                 dmi-response:
                   http-code: 400
                   body: Bad Request
-  /v1/batch/data/ds/{datastore-name}:
+  /v1/data:
     post:
       tags:
       - network-cm-proxy
@@ -635,51 +635,6 @@ paths:
         to identify the relevant messages.
       operationId: getResourceDataForCmHandleBatch
       parameters:
-      - name: datastore-name
-        in: path
-        description: The type of the requested data
-        required: true
-        schema:
-          type: string
-          example: ncmp-datastore:running
-      - name: resourceIdentifier
-        in: query
-        description: The format of resource identifier depend on the associated DMI
-          Plugin implementation. For ONAP DMI Plugin it will be RESTConf paths but
-          it can really be anything.
-        required: true
-        allowReserved: true
-        schema:
-          type: string
-        examples:
-          sample 1:
-            value:
-              resourceIdentifier: \shops\bookstore
-          sample 2:
-            value:
-              resourceIdentifier: "\\shops\\bookstore\\categories[@code=1]"
-          sample 3:
-            value:
-              resourceIdentifier: "parent=shops,child=bookstore"
-      - name: options
-        in: query
-        description: "options parameter in query, it is mandatory to wrap key(s)=value(s)\
-          \ in parenthesis'()'. The format of options parameter depend on the associated\
-          \ DMI Plugin implementation."
-        required: false
-        allowReserved: true
-        schema:
-          type: string
-        examples:
-          sample 1:
-            value:
-              options: (depth=3)
-          sample 2:
-            value:
-              options: (fields=book)
-          sample 3:
-            value:
-              options: "(depth=2,fields=book/authors)"
       - name: topic
         in: query
         description: mandatory topic parameter in query.
@@ -691,18 +646,11 @@ paths:
           sample 1:
             value:
               topic: my-topic-name
-      - name: include-descendants
-        in: query
-        description: Determines if descendants are included in response
-        required: false
-        schema:
-          type: boolean
-          default: false
       requestBody:
         content:
           application/json:
             schema:
-              type: object
+              $ref: '#/components/schemas/ResourceDataBatchRequest'
         required: true
       responses:
         "200":
@@ -1485,6 +1433,43 @@ components:
           example: Bad Gateway Error Message NCMP
         dmi-response:
           $ref: '#/components/schemas/DmiErrorMessage_dmiresponse'
+    ResourceDataBatchRequest:
+      title: get resource data for given array of operations
+      type: object
+      properties:
+        operations:
+          type: array
+          description: contains batch request details
+          items:
+            $ref: '#/components/schemas/BatchOperationDefinition'
+    BatchOperationDefinition:
+      required:
+      - datastore
+      - operation
+      - operationId
+      properties:
+        operation:
+          type: string
+          example: read
+        operationId:
+          type: string
+          example: "12"
+        datastore:
+          type: string
+          example: ncmp-datastore:passthrough-operational
+        options:
+          type: string
+          example: (fields=schemas/schema)
+        resourceIdentifier:
+          type: string
+          example: parent/child
+        targetIds:
+          type: array
+          example:
+          - da310eecdb8d44c2acc0ddaae01174b1
+          - c748c58f8e0b438f9fd1f28370b17d47
+          items:
+            type: string
     RestModuleReference:
       title: Module reference details
       type: object
