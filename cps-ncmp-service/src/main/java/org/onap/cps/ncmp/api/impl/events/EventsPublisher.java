@@ -20,6 +20,7 @@
 
 package org.onap.cps.ncmp.api.impl.events;
 
+import io.cloudevents.CloudEvent;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -42,7 +43,12 @@ import org.springframework.util.concurrent.ListenableFutureCallback;
 @RequiredArgsConstructor
 public class EventsPublisher<T> {
 
-    private final KafkaTemplate<String, T> eventKafkaTemplate;
+    /** Once all cps events will be modified to cloud compliant, will remove legacyKafkaEventTemplate with
+     it's java configuration file KafkaTemplateConfig. **/
+    @Deprecated(forRemoval = true)
+    private final KafkaTemplate<String, T> legacyKafkaEventTemplate;
+
+    private final KafkaTemplate<String, CloudEvent> cloudEventKafkaTemplate;
 
     /**
      * Generic Event publisher.
@@ -54,7 +60,8 @@ public class EventsPublisher<T> {
      */
     @Deprecated
     public void publishEvent(final String topicName, final String eventKey, final T event) {
-        final ListenableFuture<SendResult<String, T>> eventFuture = eventKafkaTemplate.send(topicName, eventKey, event);
+        final ListenableFuture<SendResult<String, T>> eventFuture
+                = legacyKafkaEventTemplate.send(topicName, eventKey, event);
         eventFuture.addCallback(handleCallback(topicName));
     }
 
@@ -70,7 +77,7 @@ public class EventsPublisher<T> {
 
         final ProducerRecord<String, T> producerRecord =
                 new ProducerRecord<>(topicName, null, eventKey, event, eventHeaders);
-        final ListenableFuture<SendResult<String, T>> eventFuture = eventKafkaTemplate.send(producerRecord);
+        final ListenableFuture<SendResult<String, T>> eventFuture = legacyKafkaEventTemplate.send(producerRecord);
         eventFuture.addCallback(handleCallback(topicName));
     }
 
