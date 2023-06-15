@@ -140,6 +140,29 @@
       "revId": "1415e6aee99f6cf388fb9f609b0b45b036147e63",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9ddec3d7_659ce3f1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/DataNodeHelper.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-06-15T14:16:30Z",
+      "side": 1,
+      "message": "Might be more convenient later on to have this as a method in the Enum",
+      "range": {
+        "startLine": 92,
+        "startChar": 16,
+        "endLine": 103,
+        "endChar": 17
+      },
+      "revId": "1415e6aee99f6cf388fb9f609b0b45b036147e63",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
