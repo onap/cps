@@ -51,6 +51,19 @@ public class EventsPublisher<T> {
     private final KafkaTemplate<String, CloudEvent> cloudEventKafkaTemplate;
 
     /**
+     * Generic CloudEvent publisher.
+     *
+     * @param topicName valid topic name
+     * @param eventKey  message key
+     * @param event     message payload
+     */
+    public void publishCloudEvent(final String topicName, final String eventKey, final CloudEvent event) {
+        final ListenableFuture<SendResult<String, CloudEvent>> eventFuture
+                = cloudEventKafkaTemplate.send(topicName, eventKey, event);
+        eventFuture.addCallback(handleCallback(topicName));
+    }
+
+    /**
      * Generic Event publisher.
      *
      * @param topicName valid topic name
@@ -95,7 +108,7 @@ public class EventsPublisher<T> {
         publishEvent(topicName, eventKey, convertToKafkaHeaders(eventHeaders), event);
     }
 
-    private ListenableFutureCallback<SendResult<String, T>> handleCallback(final String topicName) {
+    private ListenableFutureCallback<SendResult<String, ?>> handleCallback(final String topicName) {
         return new ListenableFutureCallback<>() {
             @Override
             public void onFailure(final Throwable throwable) {
@@ -103,7 +116,7 @@ public class EventsPublisher<T> {
             }
 
             @Override
-            public void onSuccess(final SendResult<String, T> sendResult) {
+            public void onSuccess(final SendResult<String, ?> sendResult) {
                 log.debug("Successfully published event to topic : {} , Event : {}",
                         sendResult.getRecordMetadata().topic(), sendResult.getProducerRecord().value());
             }
