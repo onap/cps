@@ -1,10 +1,9 @@
 {
   "$schema": "https://json-schema.org/draft/2019-09/schema",
-  "$id": "urn:cps:org.onap.cps.ncmp.events:avc-event-schema:v1",
+  "$id": "urn:cps:org.onap.cps.ncmp.events:avc-event-schema:1.0.0",
   "$ref": "#/definitions/AvcEvent",
   "definitions": {
     "Edit": {
-      "javaType": "org.onap.cps.ncmp.events.avc.v1.Edit",
       "additionalProperties": false,
       "properties": {
         "edit-id": {
@@ -48,9 +47,9 @@
     "AvcEvent": {
       "description": "The payload for AVC event.",
       "type": "object",
-      "javaType": "org.onap.cps.ncmp.events.avc.v1.AvcEvent",
+      "javaType": "org.onap.cps.ncmp.events.avc1_0_0.AvcEvent",
       "properties": {
-        "event": {
+        "data": {
           "description": "The AVC event content compliant with RFC8641 format",
           "type": "object",
           "additionalProperties": false,
@@ -99,7 +98,7 @@
         }
       },
       "required": [
-        "event"
+        "data"
       ],
       "additionalProperties": false
     }

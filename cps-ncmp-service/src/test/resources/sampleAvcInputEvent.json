@@ -1,5 +1,5 @@
 {
-  "event":{
+  "data":{
     "push-change-update":{
       "datastore-changes":{
         "ietf-yang-patch:yang-patch":{
