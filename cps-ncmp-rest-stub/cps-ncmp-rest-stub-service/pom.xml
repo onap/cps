@@ -1,7 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <!--
   ============LICENSE_START=======================================================
-  Copyright (C) 2022 Bell Canada
+  Copyright (C) 2023 Nordix Foundation
   ================================================================================
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -21,21 +20,31 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.onap.cps</groupId>
-        <artifactId>cps-parent</artifactId>
+        <artifactId>cps-ncmp-rest-stub</artifactId>
         <version>3.3.3-SNAPSHOT</version>
-        <relativePath>../cps-parent/pom.xml</relativePath>
     </parent>
+    <artifactId>cps-ncmp-rest-stub-service</artifactId>
 
-    <artifactId>cps-ncmp-rest-stub</artifactId>
-    <packaging>pom</packaging>
-
-    <properties>
-        <parent.directory>${project.parent.basedir}/..</parent.directory>
-        <sonar.skip>true</sonar.skip>
-    </properties>
-
-    <modules>
-        <module>cps-ncmp-rest-stub-service</module>
-        <module>cps-ncmp-rest-stub-app</module>
-    </modules>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </exclusion>
+            </exclusions>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jetty</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.onap.cps</groupId>
+            <artifactId>cps-ncmp-rest</artifactId>
+        </dependency>
+    </dependencies>
 </project>

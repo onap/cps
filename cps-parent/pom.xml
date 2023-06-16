@@ -45,6 +45,7 @@
         <sonar.coverage.jacoco.xmlReportPaths>
             ../jacoco-report/target/site/jacoco-aggregate/jacoco.xml
         </sonar.coverage.jacoco.xmlReportPaths>
+        <parent.directory>${project.basedir}/..</parent.directory>
     </properties>
 
     <profiles>
@@ -417,7 +418,7 @@
                 </executions>
                 <configuration>
                     <executable>${script.executor}</executable>
-                    <workingDirectory>../cps-ri/src/main/resources/</workingDirectory>
+                    <workingDirectory>${parent.directory}/cps-ri/src/main/resources/</workingDirectory>
                     <arguments>
                         <argument>yangResourceCsvGenerator.py</argument>
                         <argument>dmi-registry@2021-12-13</argument>
