@@ -34,6 +34,24 @@
       "revId": "1368fd006373dd209a34274723fbda6ecb9d317f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9543fd50_685ed1ce",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/subscriptions/SubscriptionPersistenceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-06-16T09:28:28Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "743dde32_62f89dcf",
+      "revId": "1368fd006373dd209a34274723fbda6ecb9d317f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }

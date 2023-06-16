@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "acc49d06_f04ee979",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/subscriptions/SubscriptionPersistence.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-06-16T09:28:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "61f31a0b_540769af",
+      "range": {
+        "startLine": 48,
+        "startChar": 25,
+        "endLine": 48,
+        "endChar": 54
+      },
+      "revId": "1415e6aee99f6cf388fb9f609b0b45b036147e63",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f83b0a64_76a372ce",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/subscriptions/SubscriptionPersistenceImpl.java",
         "patchSetId": 3
@@ -143,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "b254498e_58f532a0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/subscriptions/SubscriptionPersistenceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-06-16T09:28:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b52950f9_01198360",
+      "range": {
+        "startLine": 97,
+        "startChar": 12,
+        "endLine": 98,
+        "endChar": 47
+      },
+      "revId": "1415e6aee99f6cf388fb9f609b0b45b036147e63",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9ddec3d7_659ce3f1",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/DataNodeHelper.java",
         "patchSetId": 3
@@ -163,6 +211,30 @@
       "revId": "1415e6aee99f6cf388fb9f609b0b45b036147e63",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16d46ca8_6cabb800",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/DataNodeHelper.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-06-16T09:28:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9ddec3d7_659ce3f1",
+      "range": {
+        "startLine": 92,
+        "startChar": 16,
+        "endLine": 103,
+        "endChar": 17
+      },
+      "revId": "1415e6aee99f6cf388fb9f609b0b45b036147e63",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
