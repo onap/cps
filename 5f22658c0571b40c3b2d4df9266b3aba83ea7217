@@ -22,6 +22,30 @@
       "revId": "5f22658c0571b40c3b2d4df9266b3aba83ea7217",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d2d13c08_f9464fbb",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/async/data-operation-event-schema-1.0.0.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-06-16T10:10:42Z",
+      "side": 1,
+      "message": "updated as : DataOperationEvent1_0_0",
+      "parentUuid": "5a9d2046_cad79f3d",
+      "range": {
+        "startLine": 9,
+        "startChar": 69,
+        "endLine": 9,
+        "endChar": 70
+      },
+      "revId": "5f22658c0571b40c3b2d4df9266b3aba83ea7217",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
