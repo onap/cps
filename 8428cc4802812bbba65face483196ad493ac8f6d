@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "753e6293_ab69bde2",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/async/data-operation-event-schema-1.0.0.json",
+        "patchSetId": 10
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-06-16T12:24:52Z",
+      "side": 1,
+      "message": "Please add versioning to the package as we discussed",
+      "range": {
+        "startLine": 14,
+        "startChar": 49,
+        "endLine": 14,
+        "endChar": 54
+      },
+      "revId": "8428cc4802812bbba65face483196ad493ac8f6d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
