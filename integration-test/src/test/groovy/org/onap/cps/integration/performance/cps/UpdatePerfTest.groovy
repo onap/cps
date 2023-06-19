@@ -40,7 +40,7 @@ class UpdatePerfTest extends CpsPerfTestBase {
             stopWatch.stop()
             def updateDurationInMillis = stopWatch.getTotalTimeMillis()
         then: 'update duration is under 1000 milliseconds'
-            recordAndAssertPerformance('Update 1 data node', 1000, updateDurationInMillis)
+            recordAndAssertPerformance('Update 1 data node', 600, updateDurationInMillis)
     }
 
     def 'Batch update 10 data nodes with descendants'() {
@@ -56,7 +56,7 @@ class UpdatePerfTest extends CpsPerfTestBase {
             stopWatch.stop()
             def updateDurationInMillis = stopWatch.getTotalTimeMillis()
         then: 'update duration is under 5000 milliseconds'
-            recordAndAssertPerformance('Update 10 data nodes', 5000, updateDurationInMillis)
+            recordAndAssertPerformance('Update 10 data nodes', 4000, updateDurationInMillis)
     }
 
 }
