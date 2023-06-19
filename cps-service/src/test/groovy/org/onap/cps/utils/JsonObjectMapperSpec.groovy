@@ -33,15 +33,17 @@ class JsonObjectMapperSpec extends Specification {
     def spiedObjectMapper = Spy(ObjectMapper)
     def jsonObjectMapper = new JsonObjectMapper(spiedObjectMapper)
 
-    def 'Map a structured object to json String.'() {
+    def 'Map a structured object to valid json #type.'() {
         given: 'an object model'
             def object = spiedObjectMapper.readValue(TestUtils.getResourceFileContent('bookstore.json'), Object)
         when: 'the object is mapped to string'
-            def content = jsonObjectMapper.asJsonString(object);
-        then: 'the result is a valid json string (can be parsed)'
-            def contentMap = new JsonSlurper().parseText(content)
+            def content = type == 'String' ? jsonObjectMapper.asJsonString(object) : jsonObjectMapper.asJsonBytes(object)
+        then: 'the result is a valid json content (can be parsed)'
+            def contentMap = new JsonSlurper().parseText(content instanceof String ? content : new String(content))
         and: 'the parsed content is as expected'
             assert contentMap.'test:bookstore'.'bookstore-name' == 'Chapters/Easons'
+        where: 'the following expected json types are used'
+            type << ['String', 'Bytes']
     }
 
     def 'Map a structured object to json String error.'() {
