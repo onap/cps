@@ -1,30 +1,15 @@
 {
-  "data":{
-    "responses":[
+  "data": {
+    "responses": [
       {
-        "operationId":"1",
-        "ids":[
-          "123",
-          "124"
+        "operationId": "some-operation-id",
+        "ids": [
+          "cm-handle-id"
         ],
-        "statusCode":1,
-        "statusMessage":"Batch operation success on the above cmhandle ids ",
-        "responseContent":{
-          "ietf-netconf-monitoring:netconf-state":{
-            "schemas":{
-              "schema":[
-                {
-                  "identifier":"ietf-tls-server",
-                  "version":"2016-11-02",
-                  "format":"ietf-netconf-monitoring:yang",
-                  "namespace":"urn:ietf:params:xml:ns:yang:ietf-tls-server",
-                  "location":[
-                    "NETCONF"
-                  ]
-                }
-              ]
-            }
-          }
+        "statusCode": "any-success-status-code",
+        "statusMessage": "Successfully applied changes",
+        "responseContent": {
+          "some-key": "some-value"
         }
       }
     ]
