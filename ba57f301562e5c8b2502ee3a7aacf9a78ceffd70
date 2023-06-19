@@ -22,6 +22,30 @@
       "revId": "ba57f301562e5c8b2502ee3a7aacf9a78ceffd70",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d186dc5_cf29439f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventForwarder.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-06-19T13:17:50Z",
+      "side": 1,
+      "message": "Yes it is possible. However, there are similar usages do exists in SubscriptionEventConsumer.java and SubscriptionEventResponseConsumer.java classes as well (the lasts methods in both classes). They both call a mapper and saveSubscriptionEvent method from SubscriptionPersistenceImpl.",
+      "parentUuid": "4efa3962_17da0a5c",
+      "range": {
+        "startLine": 140,
+        "startChar": 4,
+        "endLine": 151,
+        "endChar": 5
+      },
+      "revId": "ba57f301562e5c8b2502ee3a7aacf9a78ceffd70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
