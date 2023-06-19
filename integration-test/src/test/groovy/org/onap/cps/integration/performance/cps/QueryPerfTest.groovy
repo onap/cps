@@ -45,10 +45,10 @@ class QueryPerfTest extends CpsPerfTestBase {
             recordAndAssertPerformance("Query 1 anchor ${scenario}", durationLimit, durationInMillis)
         where: 'the following parameters are used'
             scenario                     | anchor       | cpsPath                                                             || durationLimit | expectedNumberOfDataNodes
-            'top element'                | 'openroadm1' | '/openroadm-devices'                                                || 500           | 50 * 86 + 1
-            'leaf condition'             | 'openroadm2' | '//openroadm-device[@ne-state="inservice"]'                         || 500           | 50 * 86
-            'ancestors'                  | 'openroadm3' | '//openroadm-device/ancestor::openroadm-devices'                    || 500           | 50 * 86 + 1
-            'leaf condition + ancestors' | 'openroadm4' | '//openroadm-device[@status="success"]/ancestor::openroadm-devices' || 500           | 50 * 86 + 1
+            'top element'                | 'openroadm1' | '/openroadm-devices'                                                || 200           | 50 * 86 + 1
+            'leaf condition'             | 'openroadm2' | '//openroadm-device[@ne-state="inservice"]'                         || 250           | 50 * 86
+            'ancestors'                  | 'openroadm3' | '//openroadm-device/ancestor::openroadm-devices'                    || 200           | 50 * 86 + 1
+            'leaf condition + ancestors' | 'openroadm4' | '//openroadm-device[@status="success"]/ancestor::openroadm-devices' || 200           | 50 * 86 + 1
     }
 
     def 'Query complete data trees across all anchors with #scenario.'() {
@@ -63,10 +63,10 @@ class QueryPerfTest extends CpsPerfTestBase {
             recordAndAssertPerformance("Query across anchors ${scenario}", durationLimit, durationInMillis)
         where: 'the following parameters are used'
             scenario                     | cpspath                                                             || durationLimit | expectedNumberOfDataNodes
-            'top element'                | '/openroadm-devices'                                                || 2000          | 5 * (50 * 86 + 1)
-            'leaf condition'             | '//openroadm-device[@ne-state="inservice"]'                         || 2000          | 5 * (50 * 86)
-            'ancestors'                  | '//openroadm-device/ancestor::openroadm-devices'                    || 2000          | 5 * (50 * 86 + 1)
-            'leaf condition + ancestors' | '//openroadm-device[@status="success"]/ancestor::openroadm-devices' || 2000          | 5 * (50 * 86 + 1)
+            'top element'                | '/openroadm-devices'                                                || 600           | 5 * (50 * 86 + 1)
+            'leaf condition'             | '//openroadm-device[@ne-state="inservice"]'                         || 1000          | 5 * (50 * 86)
+            'ancestors'                  | '//openroadm-device/ancestor::openroadm-devices'                    || 600           | 5 * (50 * 86 + 1)
+            'leaf condition + ancestors' | '//openroadm-device[@status="success"]/ancestor::openroadm-devices' || 600           | 5 * (50 * 86 + 1)
     }
 
     def 'Query with leaf condition and #scenario.'() {
@@ -81,9 +81,9 @@ class QueryPerfTest extends CpsPerfTestBase {
             recordAndAssertPerformance("Query with ${scenario}", durationLimit, durationInMillis)
         where: 'the following parameters are used'
             scenario             | fetchDescendantsOption  | anchor       || durationLimit | expectedNumberOfDataNodes
-            'no descendants'     | OMIT_DESCENDANTS        | 'openroadm1' || 100           | 50
-            'direct descendants' | DIRECT_CHILDREN_ONLY    | 'openroadm2' || 200           | 50 * 2
-            'all descendants'    | INCLUDE_ALL_DESCENDANTS | 'openroadm3' || 500           | 50 * 86
+            'no descendants'     | OMIT_DESCENDANTS        | 'openroadm1' || 60            | 50
+            'direct descendants' | DIRECT_CHILDREN_ONLY    | 'openroadm2' || 120           | 50 * 2
+            'all descendants'    | INCLUDE_ALL_DESCENDANTS | 'openroadm3' || 200           | 50 * 86
     }
 
     def 'Query ancestors with #scenario.'() {
@@ -98,9 +98,9 @@ class QueryPerfTest extends CpsPerfTestBase {
             recordAndAssertPerformance("Query ancestors with ${scenario}", durationLimit, durationInMillis)
         where: 'the following parameters are used'
             scenario             | fetchDescendantsOption  | anchor       || durationLimit | expectedNumberOfDataNodes
-            'no descendants'     | OMIT_DESCENDANTS        | 'openroadm1' || 100           | 1
-            'direct descendants' | DIRECT_CHILDREN_ONLY    | 'openroadm2' || 200           | 1 + 50
-            'all descendants'    | INCLUDE_ALL_DESCENDANTS | 'openroadm3' || 500           | 1 + 50 * 86
+            'no descendants'     | OMIT_DESCENDANTS        | 'openroadm1' || 60            | 1
+            'direct descendants' | DIRECT_CHILDREN_ONLY    | 'openroadm2' || 120           | 1 + 50
+            'all descendants'    | INCLUDE_ALL_DESCENDANTS | 'openroadm3' || 200           | 1 + 50 * 86
     }
 
 }
