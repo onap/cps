@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e1d0210c_d585295d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/NcmpAsyncDataOperationEventConsumerSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-19T13:22:24Z",
+      "side": 1,
+      "message": "NB: align columns",
+      "range": {
+        "startLine": 86,
+        "startChar": 77,
+        "endLine": 88,
+        "endChar": 85
+      },
+      "revId": "a44c84b8072fc75e4fad491b0ed5a77039231bfa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
