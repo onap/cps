@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4efa3962_17da0a5c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventForwarder.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-06-19T12:35:12Z",
+      "side": 1,
+      "message": "do you think this method needs to be in different class??\nmaybe in SubscriptionPersistenceImpl ??",
+      "range": {
+        "startLine": 140,
+        "startChar": 4,
+        "endLine": 151,
+        "endChar": 5
+      },
+      "revId": "ba57f301562e5c8b2502ee3a7aacf9a78ceffd70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
