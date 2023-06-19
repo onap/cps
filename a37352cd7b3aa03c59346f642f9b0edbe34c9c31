@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a7f7cdc5_df370a9b",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/async/data-operation-event-schema-1.0.0.json",
+        "patchSetId": 12
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-06-19T11:55:00Z",
+      "side": 1,
+      "message": "we agreed to use version with pkg name only.",
+      "parentUuid": "d73bc826_031dd82f",
+      "range": {
+        "startLine": 9,
+        "startChar": 50,
+        "endLine": 9,
+        "endChar": 55
+      },
+      "revId": "a37352cd7b3aa03c59346f642f9b0edbe34c9c31",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7bbf5720_b82c29e2",
         "filename": "cps-ncmp-events/src/main/resources/schemas/async/data-operation-event-schema-1.0.0.json",
         "patchSetId": 12
@@ -68,6 +92,54 @@
       "revId": "a37352cd7b3aa03c59346f642f9b0edbe34c9c31",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1b6c02c1_2ef4874f",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/async/data-operation-event-schema-1.0.0.json",
+        "patchSetId": 12
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-06-19T11:55:00Z",
+      "side": 1,
+      "message": "Removed : javaType is not required here.",
+      "parentUuid": "7bbf5720_b82c29e2",
+      "range": {
+        "startLine": 14,
+        "startChar": 60,
+        "endLine": 14,
+        "endChar": 78
+      },
+      "revId": "a37352cd7b3aa03c59346f642f9b0edbe34c9c31",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5733f182_2bd10ecd",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/async/data-operation-event-schema-1.0.0.json",
+        "patchSetId": 12
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-06-19T11:55:00Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4dd251dc_e17191c0",
+      "range": {
+        "startLine": 14,
+        "startChar": 54,
+        "endLine": 14,
+        "endChar": 59
+      },
+      "revId": "a37352cd7b3aa03c59346f642f9b0edbe34c9c31",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -141,6 +213,54 @@
     },
     {
       "key": {
+        "uuid": "454ca073_405b16d5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/async/DataOperationRecordFilterStrategy.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-06-19T11:55:00Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2fc0c4b9_8d3c8e94",
+      "range": {
+        "startLine": 52,
+        "startChar": 81,
+        "endLine": 52,
+        "endChar": 91
+      },
+      "revId": "a37352cd7b3aa03c59346f642f9b0edbe34c9c31",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fbcbcab3_0ec9d992",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/async/DataOperationRecordFilterStrategy.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-06-19T11:55:00Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2a38a050_2b3c6511",
+      "range": {
+        "startLine": 52,
+        "startChar": 110,
+        "endLine": 52,
+        "endChar": 115
+      },
+      "revId": "a37352cd7b3aa03c59346f642f9b0edbe34c9c31",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4236cef3_d5276d29",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/NcmpAsyncDataOperationEventConsumerSpec.groovy",
         "patchSetId": 12
@@ -176,6 +296,30 @@
       "side": 1,
       "message": "use Jacoco report to ensure all paths are covered....",
       "parentUuid": "4236cef3_d5276d29",
+      "range": {
+        "startLine": 88,
+        "startChar": 12,
+        "endLine": 88,
+        "endChar": 85
+      },
+      "revId": "a37352cd7b3aa03c59346f642f9b0edbe34c9c31",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e3f1959c_78d66823",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/NcmpAsyncDataOperationEventConsumerSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-06-19T11:55:00Z",
+      "side": 1,
+      "message": "All paths are covered.",
+      "parentUuid": "872f36c7_431cbb10",
       "range": {
         "startLine": 88,
         "startChar": 12,
