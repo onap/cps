@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "d73bc826_031dd82f",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/async/data-operation-event-schema-1.0.0.json",
+        "patchSetId": 12
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-19T07:25:55Z",
+      "side": 1,
+      "message": "how come the package now also has a version?!",
+      "range": {
+        "startLine": 9,
+        "startChar": 50,
+        "endLine": 9,
+        "endChar": 55
+      },
+      "revId": "a37352cd7b3aa03c59346f642f9b0edbe34c9c31",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "96777d1d_fcc59bb6",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/async/DataOperationRecordFilterStrategy.java",
         "patchSetId": 12
@@ -48,6 +71,30 @@
     },
     {
       "key": {
+        "uuid": "2a38a050_2b3c6511",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/async/DataOperationRecordFilterStrategy.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-19T07:25:55Z",
+      "side": 1,
+      "message": "\u0027starstWith\u0027 this wont work anymore as intended if the (same ?!) version is in the package name too ?!",
+      "parentUuid": "96777d1d_fcc59bb6",
+      "range": {
+        "startLine": 52,
+        "startChar": 110,
+        "endLine": 52,
+        "endChar": 115
+      },
+      "revId": "a37352cd7b3aa03c59346f642f9b0edbe34c9c31",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4236cef3_d5276d29",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/NcmpAsyncDataOperationEventConsumerSpec.groovy",
         "patchSetId": 12
@@ -59,6 +106,30 @@
       "writtenOn": "2023-06-16T15:32:50Z",
       "side": 1,
       "message": "NB: May be we can add one more test case after line 88 with description\u003d \u0027not filtered(the consumer will see the event)\u0027, eventType\u003d \u0027org.onap.cps.ncmp.events.async2_0_0.DataOperationEvent2_0_0\u0027 and expectedResult\u003d \u0027false\u0027 Once we update the filterstrategy eventTypeHeader value checking and moved to cloud event.",
+      "range": {
+        "startLine": 88,
+        "startChar": 12,
+        "endLine": 88,
+        "endChar": 85
+      },
+      "revId": "a37352cd7b3aa03c59346f642f9b0edbe34c9c31",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "872f36c7_431cbb10",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/NcmpAsyncDataOperationEventConsumerSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-19T07:25:55Z",
+      "side": 1,
+      "message": "use Jacoco report to ensure all paths are covered....",
+      "parentUuid": "4236cef3_d5276d29",
       "range": {
         "startLine": 88,
         "startChar": 12,
