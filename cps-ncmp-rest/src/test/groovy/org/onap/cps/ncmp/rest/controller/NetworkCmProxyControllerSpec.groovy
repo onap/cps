@@ -32,14 +32,14 @@ import org.onap.cps.ncmp.api.inventory.CmHandleState
 import org.onap.cps.ncmp.api.inventory.CompositeState
 import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
 import org.onap.cps.ncmp.api.inventory.LockReasonCategory
-import org.onap.cps.ncmp.rest.model.BatchOperationDefinition
+import org.onap.cps.ncmp.rest.model.DataOperationRequest
+import org.onap.cps.ncmp.rest.model.DataOperationDefinition
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.rest.controller.handlers.NcmpCachedResourceRequestHandler
 import org.onap.cps.ncmp.rest.controller.handlers.NcmpPassthroughResourceRequestHandler
 import org.onap.cps.ncmp.rest.executor.CpsNcmpTaskExecutor
 import org.onap.cps.ncmp.rest.mapper.CmHandleStateMapper
-import org.onap.cps.ncmp.rest.mapper.ResourceDataBatchRequestMapper
-import org.onap.cps.ncmp.rest.model.ResourceDataBatchRequest
+import org.onap.cps.ncmp.rest.mapper.DataOperationRequestMapper
 import org.onap.cps.ncmp.rest.util.DeprecationHelper
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.model.ModuleDefinition
@@ -101,7 +101,7 @@ class NetworkCmProxyControllerSpec extends Specification {
     CmHandleStateMapper cmHandleStateMapper = Mappers.getMapper(CmHandleStateMapper)
 
     @SpringBean
-    ResourceDataBatchRequestMapper resourceDataBatchRequestMapper = Mappers.getMapper(ResourceDataBatchRequestMapper)
+    DataOperationRequestMapper dataOperationRequestMapper = Mappers.getMapper(DataOperationRequestMapper)
 
     @SpringBean
     CpsNcmpTaskExecutor spiedCpsTaskExecutor = Spy()
@@ -205,18 +205,18 @@ class NetworkCmProxyControllerSpec extends Specification {
             'invalid non-empty topic value in url' | 'passthrough-operational' | '&topic=1_5_*_#'
     }
 
-    def 'Get (async) batch resource data from dmi service.'() {
-        given: 'batch resource data url'
+    def 'Get (async) data operation resource data from dmi service.'() {
+        given: 'data operation url'
             def getUrl = "$ncmpBasePathV1/data?topic=my-topic-name"
-            def resourceDataBatchRequestJsonData = jsonObjectMapper.asJsonString(
-                    getResourceDataBatchRequest("read", datastore.datastoreName))
-            def expectedDmiResourceDataBatchRequest
-                    = jsonObjectMapper.convertJsonString(resourceDataBatchRequestJsonData, org.onap.cps.ncmp.api.models.ResourceDataBatchRequest.class)
-        when: 'post data resource request is performed'
+            def dataOperationRequestJsonData = jsonObjectMapper.asJsonString(
+                    getDataOperationRequest("read", datastore.datastoreName))
+            def expectedDmiDataOperationRequest
+                    = jsonObjectMapper.convertJsonString(dataOperationRequestJsonData, org.onap.cps.ncmp.api.models.DataOperationRequest.class)
+        when: 'post data operation request is performed'
             def response = mvc.perform(
                     post(getUrl)
                             .contentType(MediaType.APPLICATION_JSON)
-                            .content(resourceDataBatchRequestJsonData)
+                            .content(dataOperationRequestJsonData)
             ).andReturn().response
         then: 'response status is Ok'
             response.status == HttpStatus.OK.value()
@@ -225,21 +225,21 @@ class NetworkCmProxyControllerSpec extends Specification {
         then: 'wait a little to allow execution of service method by task executor (on separate thread)'
             Thread.sleep(100)
         then: 'the service has been invoked with the correct parameters '
-            1 * mockNetworkCmProxyDataService.requestResourceDataForCmHandleBatch('my-topic-name', expectedDmiResourceDataBatchRequest, _)
+            1 * mockNetworkCmProxyDataService.requestResourceDataForDataOperationCmHandle('my-topic-name', expectedDmiDataOperationRequest, _)
         where: 'the following data stores are used'
             datastore << [PASSTHROUGH_RUNNING, PASSTHROUGH_OPERATIONAL]
     }
 
-    def 'Get batch resource data for #scenario from dmi service.'() {
-        given: 'batch resource data url'
+    def 'Get data operation resource data for #scenario from dmi service.'() {
+        given: 'data operation url'
             def getUrl = "$ncmpBasePathV1/data?topic=my-topic-name"
-            def resourceDataBatchRequestJsonData = jsonObjectMapper.asJsonString(
-                    getResourceDataBatchRequest(operation, datastore))
+            def dataOperationRequestJsonData = jsonObjectMapper.asJsonString(
+                    getDataOperationRequest(operation, datastore))
         when: 'post data resource request is performed'
             def response = mvc.perform(
                     post(getUrl)
                             .contentType(MediaType.APPLICATION_JSON)
-                            .content(resourceDataBatchRequestJsonData)
+                            .content(dataOperationRequestJsonData)
             ).andReturn().response
         then: 'response status is BAD_REQUEST'
             response.status == HttpStatus.BAD_REQUEST.value()
@@ -250,17 +250,17 @@ class NetworkCmProxyControllerSpec extends Specification {
             'non-supported operation (passthrough-operational)' | PASSTHROUGH_OPERATIONAL.datastoreName | 'create'
     }
 
-    def 'Get batch resource data when notification feature is disabled for datastore: #datastore.'() {
-        given: 'batch resource data url'
+    def 'Get data operation resource data when notification feature is disabled for datastore: #datastore.'() {
+        given: 'data operation url'
             def getUrl = "$ncmpBasePathV1/data?topic=my-topic-name"
-            def resourceDataBatchRequestJsonData = jsonObjectMapper.asJsonString(
-                    getResourceDataBatchRequest("read", datastore.datastoreName))
+            def dataOperationRequestJsonData = jsonObjectMapper.asJsonString(
+                    getDataOperationRequest("read", datastore.datastoreName))
             ncmpPassthroughResourceRequestHandler.notificationFeatureEnabled = false
         when: 'post data resource request is performed'
             def response = mvc.perform(
                     post(getUrl)
                             .contentType(MediaType.APPLICATION_JSON)
-                            .content(resourceDataBatchRequestJsonData)
+                            .content(dataOperationRequestJsonData)
             ).andReturn().response
         then: 'response status is Ok'
             response.status == HttpStatus.OK.value()
@@ -686,22 +686,23 @@ class NetworkCmProxyControllerSpec extends Specification {
         return assertContainsAll(response, expectedContent)
     }
 
-    def getResourceDataBatchRequest(operation, datastore) {
-        def resourceDataBatchRequest = new ResourceDataBatchRequest()
-        def batchOperationDefinitions = new ArrayList()
-        batchOperationDefinitions.add(getBatchOperationDefinition(operation, datastore))
-        resourceDataBatchRequest.addOperationsItem(batchOperationDefinitions)
+    def getDataOperationRequest(operation, datastore) {
+        def dataOperationRequest = new DataOperationRequest()
+        def dataOperationDefinitions = new ArrayList()
+        dataOperationDefinitions.add(getDataOperationDefinition(operation, datastore))
+        dataOperationRequest.addOperationsItem(dataOperationDefinitions)
+        return dataOperationRequest
     }
 
-    def getBatchOperationDefinition(operation, datastore) {
-        def batchOperationDefinition = new BatchOperationDefinition()
-        batchOperationDefinition.setOperation(operation)
-        batchOperationDefinition.setOperationId("operational-12")
-        batchOperationDefinition.setDatastore(datastore)
-        batchOperationDefinition.setOptions("some option")
-        batchOperationDefinition.setResourceIdentifier("some resource identifier")
-        batchOperationDefinition.addTargetIdsItem("some-cm-handle")
-        return batchOperationDefinition
+    def getDataOperationDefinition(operation, datastore) {
+        def dataOperationDefinition = new DataOperationDefinition()
+        dataOperationDefinition.setOperation(operation)
+        dataOperationDefinition.setOperationId("operational-12")
+        dataOperationDefinition.setDatastore(datastore)
+        dataOperationDefinition.setOptions("some option")
+        dataOperationDefinition.setResourceIdentifier("some resource identifier")
+        dataOperationDefinition.addTargetIdsItem("some-cm-handle")
+        return dataOperationDefinition
     }
 
 }

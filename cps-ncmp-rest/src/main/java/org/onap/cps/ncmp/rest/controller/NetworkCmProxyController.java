@@ -46,10 +46,10 @@ import org.onap.cps.ncmp.rest.controller.handlers.NcmpCachedResourceRequestHandl
 import org.onap.cps.ncmp.rest.controller.handlers.NcmpDatastoreRequestHandler;
 import org.onap.cps.ncmp.rest.controller.handlers.NcmpPassthroughResourceRequestHandler;
 import org.onap.cps.ncmp.rest.mapper.CmHandleStateMapper;
-import org.onap.cps.ncmp.rest.mapper.ResourceDataBatchRequestMapper;
+import org.onap.cps.ncmp.rest.mapper.DataOperationRequestMapper;
 import org.onap.cps.ncmp.rest.model.CmHandlePublicProperties;
 import org.onap.cps.ncmp.rest.model.CmHandleQueryParameters;
-import org.onap.cps.ncmp.rest.model.ResourceDataBatchRequest;
+import org.onap.cps.ncmp.rest.model.DataOperationRequest;
 import org.onap.cps.ncmp.rest.model.RestModuleDefinition;
 import org.onap.cps.ncmp.rest.model.RestModuleReference;
 import org.onap.cps.ncmp.rest.model.RestOutputCmHandle;
@@ -76,7 +76,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     private final CmHandleStateMapper cmHandleStateMapper;
     private final NcmpCachedResourceRequestHandler ncmpCachedResourceRequestHandler;
     private final NcmpPassthroughResourceRequestHandler ncmpPassthroughResourceRequestHandler;
-    private final ResourceDataBatchRequestMapper resourceDataBatchRequestMapper;
+    private final DataOperationRequestMapper dataOperationRequestMapper;
 
     /**
      * Get resource data from datastore.
@@ -105,11 +105,11 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     }
 
     @Override
-    public ResponseEntity<Object> getResourceDataForCmHandleBatch(final String topicParamInQuery,
-                                                                  final ResourceDataBatchRequest
-                                                                          resourceDataBatchRequest) {
+    public ResponseEntity<Object> executeDataOperationForCmHandles(final String topicParamInQuery,
+                                                                  final DataOperationRequest
+                                                                          dataOperationRequest) {
         return ncmpPassthroughResourceRequestHandler.executeRequest(topicParamInQuery,
-                resourceDataBatchRequestMapper.toResourceDataBatchRequest(resourceDataBatchRequest));
+                dataOperationRequestMapper.toDataOperationRequest(dataOperationRequest));
     }
 
     /**
