@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d881f6e7_3b82ac3f",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/JsonObjectMapper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-20T14:54:37Z",
+      "side": 1,
+      "message": "If this only used in test it shoudl NOT be in production code class (I coun\u0027t see wher it is used)\nIf it is used in prod code I expect to see a unit test covering both scenario\u0027s",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 0
+      },
+      "revId": "1440da220ddac5bc9e372251cb08adac20dff738",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
