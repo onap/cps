@@ -20,6 +20,9 @@
 
 package org.onap.cps.rest.controller
 
+import org.onap.cps.config.WebSecurityConfig
+import org.springframework.context.annotation.Import
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 
 import org.springframework.beans.factory.annotation.Autowired
@@ -29,6 +32,7 @@ import org.springframework.test.web.servlet.MockMvc
 import spock.lang.Specification
 
 @WebMvcTest(TestController)
+@Import(WebSecurityConfig)
 class ControllerSecuritySpec extends Specification {
 
     @Autowired
