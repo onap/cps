@@ -23,7 +23,7 @@ package org.onap.cps.ncmp.api.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 import javax.validation.Valid;
 import lombok.EqualsAndHashCode;
@@ -35,9 +35,15 @@ import lombok.Setter;
 @EqualsAndHashCode
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ResourceDataBatchRequest {
+public class DataOperationDefinition {
 
-    @JsonProperty("operations")
+    private String operation;
+    private String operationId;
+    private String datastore;
+    private String options;
+    private String resourceIdentifier;
+
+    @JsonProperty("targetIds")
     @Valid
-    private List<BatchOperationDefinition> batchOperationDefinitions = Collections.emptyList();
+    private List<String> cmHandleIds = new ArrayList<>();
 }

@@ -24,18 +24,18 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.NullValueCheckStrategy;
 import org.mapstruct.NullValuePropertyMappingStrategy;
-import org.onap.cps.ncmp.api.models.BatchOperationDefinition;
-import org.onap.cps.ncmp.api.models.ResourceDataBatchRequest;
+import org.onap.cps.ncmp.api.models.DataOperationDefinition;
+import org.onap.cps.ncmp.api.models.DataOperationRequest;
 
 @Mapper(componentModel = "spring", nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS,
         nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.SET_TO_DEFAULT)
-public interface ResourceDataBatchRequestMapper {
+public interface DataOperationRequestMapper {
 
-    @Mapping(source = "operations", target = "batchOperationDefinitions")
-    ResourceDataBatchRequest toResourceDataBatchRequest(
-            org.onap.cps.ncmp.rest.model.ResourceDataBatchRequest resourceDataBatchRequest);
+    @Mapping(source = "operations", target = "dataOperationDefinitions")
+    DataOperationRequest toDataOperationRequest(
+            org.onap.cps.ncmp.rest.model.DataOperationRequest dataOperationRequest);
 
     @Mapping(source = "targetIds", target = "cmHandleIds")
-    BatchOperationDefinition toBatchOperationDefinition(
-            org.onap.cps.ncmp.rest.model.BatchOperationDefinition batchOperationDefinition);
+    DataOperationDefinition toDataOperationDefinition(
+            org.onap.cps.ncmp.rest.model.DataOperationDefinition dataOperationDefinition);
 }

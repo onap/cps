@@ -23,7 +23,7 @@ package org.onap.cps.ncmp.rest.stub.handlers;
 import java.util.List;
 import org.onap.cps.ncmp.rest.api.NetworkCmProxyApi;
 import org.onap.cps.ncmp.rest.model.CmHandleQueryParameters;
-import org.onap.cps.ncmp.rest.model.ResourceDataBatchRequest;
+import org.onap.cps.ncmp.rest.model.DataOperationRequest;
 import org.onap.cps.ncmp.rest.model.RestModuleDefinition;
 import org.onap.cps.ncmp.rest.model.RestModuleReference;
 import org.onap.cps.ncmp.rest.model.RestOutputCmHandle;
@@ -47,9 +47,9 @@ public interface NetworkCmProxyApiStubDefaultImpl extends NetworkCmProxyApi {
     }
 
     @Override
-    default ResponseEntity<Object> getResourceDataForCmHandleBatch(final String topicParamInQuery,
-                                                                   final ResourceDataBatchRequest
-                                                                           resourceDataBatchRequest) {
+    default ResponseEntity<Object> executeDataOperationForCmHandles(final String topicParamInQuery,
+                                                                   final DataOperationRequest
+                                                                           dataOperationRequest) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 

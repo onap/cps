@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 highstreet technologies GmbH
- *  Modifications Copyright (C) 2021-2022 Nordix Foundation
+ *  Modifications Copyright (C) 2021-2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -33,7 +33,7 @@ import org.onap.cps.ncmp.rest.controller.handlers.NcmpCachedResourceRequestHandl
 import org.onap.cps.ncmp.rest.controller.handlers.NcmpPassthroughResourceRequestHandler
 import org.onap.cps.ncmp.rest.executor.CpsNcmpTaskExecutor
 import org.onap.cps.ncmp.rest.mapper.CmHandleStateMapper
-import org.onap.cps.ncmp.rest.mapper.ResourceDataBatchRequestMapper
+import org.onap.cps.ncmp.rest.mapper.DataOperationRequestMapper
 import org.onap.cps.ncmp.rest.util.DeprecationHelper
 import org.onap.cps.spi.exceptions.AlreadyDefinedException
 import org.onap.cps.spi.exceptions.AlreadyDefinedExceptionBatch
@@ -76,7 +76,7 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
     CmHandleStateMapper cmHandleStateMapper = Mappers.getMapper(CmHandleStateMapper)
 
     @SpringBean
-    ResourceDataBatchRequestMapper resourceDataBatchRequestMapper = Mappers.getMapper(ResourceDataBatchRequestMapper)
+    DataOperationRequestMapper dataOperationRequestMapper = Mappers.getMapper(DataOperationRequestMapper)
 
     @SpringBean
     CpsNcmpTaskExecutor stubbedCpsTaskExecutor = Stub()

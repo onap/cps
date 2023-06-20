@@ -285,18 +285,18 @@ components:
       properties:
         state:
           $ref: '#/components/schemas/CmHandleCompositeState'
-    # Batch Request Schemas
-    ResourceDataBatchRequest:
+    # Data Operation Request Schemas
+    DataOperationRequest:
       type: object
-      title: get resource data for given array of operations
+      title: execute data operation for given array of operations
       properties:
         operations:
           type: array
           items:
             type: object
-            $ref: '#/components/schemas/BatchOperationDefinition'
-          description: contains batch request details
-    BatchOperationDefinition:
+            $ref: '#/components/schemas/DataOperationDefinition'
+          description: contains group of data operation requests
+    DataOperationDefinition:
       required:
         - operation
         - datastore
