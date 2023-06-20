@@ -33,8 +33,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.impl.operations.CmHandle;
 import org.onap.cps.ncmp.api.impl.operations.DmiBatchOperation;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
-import org.onap.cps.ncmp.api.models.BatchOperationDefinition;
-import org.onap.cps.ncmp.api.models.ResourceDataBatchRequest;
+import org.onap.cps.ncmp.api.models.DataOperationDefinition;
+import org.onap.cps.ncmp.api.models.DataOperationRequest;
 
 @Slf4j
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -45,13 +45,13 @@ public class ResourceDataBatchRequestUtils {
     /**
      * Create a list of DMI batch operation per DMI service (name).
      *
-     * @param resourceDataBatchRequestIn incoming batch request details for resource data
-     * @param yangModelCmHandles involved cm handles represented as YangModelCmHandle (incl. metadata)
+     * @param dataOperationRequestIn incoming data operation request details
+     * @param yangModelCmHandles     involved cm handles represented as YangModelCmHandle (incl. metadata)
      *
      * @return {@code Map<String, List<DmiBatchOperation>>} Create a list of DMI batch operation per DMI service (name).
      */
     public static Map<String, List<DmiBatchOperation>> processPerOperationInBatchRequest(
-            final ResourceDataBatchRequest resourceDataBatchRequestIn,
+            final DataOperationRequest dataOperationRequestIn,
             final Collection<YangModelCmHandle> yangModelCmHandles) {
 
         final Map<String, Map<String, Map<String, String>>> dmiPropertiesPerCmHandleIdPerServiceName =
@@ -62,9 +62,9 @@ public class ResourceDataBatchRequestUtils {
 
         final Map<String, List<DmiBatchOperation>> dmiBatchOperationsOutPerDmiServiceName = new HashMap<>();
 
-        for (final BatchOperationDefinition batchOperationDefinitionIn :
-            resourceDataBatchRequestIn.getBatchOperationDefinitions()) {
-            for (final String cmHandleId : batchOperationDefinitionIn.getCmHandleIds()) {
+        for (final DataOperationDefinition dataOperationDefinitionIn :
+            dataOperationRequestIn.getDataOperationDefinitions()) {
+            for (final String cmHandleId : dataOperationDefinitionIn.getCmHandleIds()) {
                 final String dmiServiceName = dmiServiceNamesPerCmHandleId.get(cmHandleId);
                 final Map<String, String> cmHandleIdProperties
                         = dmiPropertiesPerCmHandleIdPerServiceName.get(dmiServiceName).get(cmHandleId);
@@ -72,7 +72,7 @@ public class ResourceDataBatchRequestUtils {
                     publishErrorMessageToClientTopic(cmHandleId);
                 } else {
                     final DmiBatchOperation dmiBatchOperationOut = getOrAddDmiBatchOperation(dmiServiceName,
-                        batchOperationDefinitionIn, dmiBatchOperationsOutPerDmiServiceName);
+                            dataOperationDefinitionIn, dmiBatchOperationsOutPerDmiServiceName);
                     final CmHandle cmHandle = CmHandle.buildCmHandleWithProperties(cmHandleId, cmHandleIdProperties);
                     dmiBatchOperationOut.getCmHandles().add(cmHandle);
                 }
@@ -104,8 +104,8 @@ public class ResourceDataBatchRequestUtils {
     }
 
     private static DmiBatchOperation getOrAddDmiBatchOperation(final String dmiServiceName,
-                                                               final BatchOperationDefinition
-                                                                       batchOperationDefinitionIn,
+                                                               final DataOperationDefinition
+                                                                       dataOperationDefinitionIn,
                                                                final Map<String, List<DmiBatchOperation>>
                                                                        dmiBatchOperationsOutPerDmiServiceName) {
         dmiBatchOperationsOutPerDmiServiceName
@@ -114,10 +114,10 @@ public class ResourceDataBatchRequestUtils {
                 = dmiBatchOperationsOutPerDmiServiceName.get(dmiServiceName);
         final boolean isNewOperation = dmiBatchOperationsOut.isEmpty()
                 || !dmiBatchOperationsOut.get(dmiBatchOperationsOut.size() - 1).getOperationId()
-                .equals(batchOperationDefinitionIn.getOperationId());
+                .equals(dataOperationDefinitionIn.getOperationId());
         if (isNewOperation) {
             final DmiBatchOperation newDmiBatchOperationOut =
-                    DmiBatchOperation.buildDmiBatchRequestBodyWithoutCmHandles(batchOperationDefinitionIn);
+                    DmiBatchOperation.buildDmiBatchRequestBodyWithoutCmHandles(dataOperationDefinitionIn);
             dmiBatchOperationsOut.add(newDmiBatchOperationOut);
             return newDmiBatchOperationOut;
         }

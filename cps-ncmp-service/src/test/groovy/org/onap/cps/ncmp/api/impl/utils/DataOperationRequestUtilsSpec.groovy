@@ -24,36 +24,36 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.inventory.CmHandleState
 import org.onap.cps.ncmp.api.inventory.CompositeStateBuilder
-import org.onap.cps.ncmp.api.models.ResourceDataBatchRequest
+import org.onap.cps.ncmp.api.models.DataOperationRequest
 import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
 import spock.lang.Specification
 
-class ResourceDataBatchRequestUtilsSpec extends Specification {
+class DataOperationRequestUtilsSpec extends Specification {
 
     @SpringBean
     JsonObjectMapper jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
 
-    def 'Process per operation in batch request with #serviceName.'() {
-        given: 'batch request with 3 operations'
-            def resourceDataBatchRequestJsonData = TestUtils.getResourceFileContent('resourceDataBatchRequest.json')
-            def resourceDataBatchRequest = jsonObjectMapper.convertJsonString(resourceDataBatchRequestJsonData, ResourceDataBatchRequest.class)
+    def 'Process per data operation request with #serviceName.'() {
+        given: 'data operation request with 3 operations'
+            def dataOperationRequestJsonData = TestUtils.getResourceFileContent('dataOperationRequest.json')
+            def dataOperationRequest = jsonObjectMapper.convertJsonString(dataOperationRequestJsonData, DataOperationRequest.class)
         and: '4 known cm handles: ch1-dmi1, ch2-dmi1, ch3-dmi2, ch4-dmi2'
             def yangModelCmHandles = getYangModelCmHandles()
-        when: 'Operation in batch request is processed'
-            def operationsOutPerDmiServiceName = ResourceDataBatchRequestUtils.processPerOperationInBatchRequest(resourceDataBatchRequest, yangModelCmHandles)
+        when: 'data operation request is processed'
+            def operationsOutPerDmiServiceName = ResourceDataBatchRequestUtils.processPerOperationInBatchRequest(dataOperationRequest, yangModelCmHandles)
         and: 'converted to a json node'
-            def dmiBatchRequestBody = jsonObjectMapper.asJsonString(operationsOutPerDmiServiceName.get(serviceName))
-            def dmiBatchRequestBodyAsJsonNode = jsonObjectMapper.convertToJsonNode(dmiBatchRequestBody).get(operationIndex)
+            def dmiDataOperationRequestBody = jsonObjectMapper.asJsonString(operationsOutPerDmiServiceName.get(serviceName))
+            def dmiDataOperationRequestBodyAsJsonNode = jsonObjectMapper.convertToJsonNode(dmiDataOperationRequestBody).get(operationIndex)
         then: 'it contains the correct operation details'
-            assert dmiBatchRequestBodyAsJsonNode.get('operation').asText() == 'read'
-            assert dmiBatchRequestBodyAsJsonNode.get('operationId').asText() == expectedOperationId
-            assert dmiBatchRequestBodyAsJsonNode.get('datastore').asText() == expectedDatastore
+            assert dmiDataOperationRequestBodyAsJsonNode.get('operation').asText() == 'read'
+            assert dmiDataOperationRequestBodyAsJsonNode.get('operationId').asText() == expectedOperationId
+            assert dmiDataOperationRequestBodyAsJsonNode.get('datastore').asText() == expectedDatastore
         and: 'the correct cm handles (just for #serviceName)'
-            assert dmiBatchRequestBodyAsJsonNode.get('cmHandles').size() == expectedCmHandleIds.size()
+            assert dmiDataOperationRequestBodyAsJsonNode.get('cmHandles').size() == expectedCmHandleIds.size()
             expectedCmHandleIds.each {
-                dmiBatchRequestBodyAsJsonNode.get('cmHandles').toString().contains(it)
+                dmiDataOperationRequestBodyAsJsonNode.get('cmHandles').toString().contains(it)
             }
         where: 'the following dmi service and operations are checked'
             serviceName | operationIndex || expectedOperationId | expectedDatastore                        | expectedCmHandleIds
