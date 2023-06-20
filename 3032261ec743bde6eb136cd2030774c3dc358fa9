@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "27085a00_f4051a45",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/dmidataavc/avc-event-schema-1.0.0.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2023-06-20T16:29:49Z",
+      "side": 1,
+      "message": "I\u0027m aware that this has been merged.\norg.onap.cps.ncmp.events.avc1_0_0.AvcEvent -\u003e org.onap.cps.ncmp.events.avc.1_0_0.AvcEvent missing \".\" ?",
+      "range": {
+        "startLine": 50,
+        "startChar": 19,
+        "endLine": 50,
+        "endChar": 61
+      },
+      "revId": "3032261ec743bde6eb136cd2030774c3dc358fa9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
