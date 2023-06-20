@@ -24,10 +24,11 @@ GRAB_METRICS=true
 DOCKER_COMPOSE_FILE=../docker-compose/docker-compose.yml
 CREATE_REQUEST=/tmp/cmhandles-create-req.txt
 REMOVE_REQUEST=/tmp/cmhandles-remove-req.txt
-REPORT_FILE=metrics-reports/deregister-summary-$(date --iso-8601=seconds).tsv
+REPORT_FILE=./metrics-reports/deregister-summary-$(date --iso-8601=seconds).tsv
+SCRIPT_DIR=$(dirname -- "${BASH_SOURCE[0]}")
 
 stop_docker() {
-    docker-compose -f $DOCKER_COMPOSE_FILE down >/dev/null
+    docker-compose -f $DOCKER_COMPOSE_FILE --profile dmi-stub --profile monitoring down >/dev/null
     docker container prune -f >/dev/null
     docker volume prune -f >/dev/null
 }
@@ -49,12 +50,12 @@ get_number_of_handles_ready() {
 
 wait_for_handles_to_be_ready() {
     local TOTAL_HANDLES=$1
-    while
-        sleep 30
+    local HANDLES_READY=0
+    while [ "$HANDLES_READY" -lt "$TOTAL_HANDLES" ]; do
+        sleep 10
         HANDLES_READY=$(get_number_of_handles_ready)
         echo "There are $HANDLES_READY CM handles in READY state."
-        [ $HANDLES_READY -ne $TOTAL_HANDLES ]
-    do true; done
+    done
 }
 
 create_handles() {
@@ -70,7 +71,7 @@ remove_handles_and_record_time() {
         --location 'http://localhost:8883/ncmpInventory/v1/ch' \
         --header 'Authorization: Basic Y3BzdXNlcjpjcHNyMGNrcyE=' \
         --header 'Content-Type: application/json' \
-        --data @$REMOVE_REQUEST >> $REPORT_FILE
+        --data @$REMOVE_REQUEST >> "$REPORT_FILE"
 }
 
 create_request_bodies() {
@@ -78,17 +79,18 @@ create_request_bodies() {
     local REMOVE_SIZE=$2
     echo -n '{"dmiPlugin": "http://ncmp-dmi-plugin-stub:8080","createdCmHandles":[' > $CREATE_REQUEST
     echo -n '{"dmiPlugin": "http://ncmp-dmi-plugin-stub:8080","removedCmHandles":[' > $REMOVE_REQUEST
-    for i in $(seq 1 $CREATE_SIZE); do
-        local CMHANDLE=$(uuidgen | tr -d '-')
+    for i in $(seq 1 "$CREATE_SIZE"); do
+        local CMHANDLE
+        CMHANDLE=$(uuidgen | tr -d '-')
         echo -n "{\"cmHandle\": \"$CMHANDLE\",\"cmHandleProperties\":{\"neType\":\"RadioNode\"}}" \
             >> $CREATE_REQUEST
-        if [ $i -lt $CREATE_SIZE ]; then
+        if [ "$i" -lt "$CREATE_SIZE" ]; then
             echo -n "," >> $CREATE_REQUEST
         fi
-        if [ $i -le $REMOVE_SIZE ]; then
+        if [ "$i" -le "$REMOVE_SIZE" ]; then
             echo -n "\"$CMHANDLE\"" >> $REMOVE_REQUEST
         fi
-        if [ $i -lt $REMOVE_SIZE ]; then
+        if [ "$i" -lt "$REMOVE_SIZE" ]; then
             echo -n "," >> $REMOVE_REQUEST
         fi
     done
@@ -108,12 +110,12 @@ test_deregistration() {
     wait_for_cps_to_start
 
     echo "Creating request bodies"
-    create_request_bodies $CREATE_SIZE $REMOVE_SIZE
+    create_request_bodies "$CREATE_SIZE" "$REMOVE_SIZE"
 
     echo "[$(date --iso-8601=seconds)] Creating CM handles"
     create_handles
     echo "Waiting for CM handles to be in READY state"
-    wait_for_handles_to_be_ready $CREATE_SIZE
+    wait_for_handles_to_be_ready "$CREATE_SIZE"
 
     if [ "$GRAB_METRICS" = "true" ]; then
         echo "Grabbing metrics before deregistration"
@@ -121,7 +123,7 @@ test_deregistration() {
     fi
 
     echo "[$(date --iso-8601=seconds)] Removing CM handles"
-    echo -e -n "$REMOVE_SIZE\t$CREATE_SIZE\t" >> $REPORT_FILE
+    echo -e -n "$REMOVE_SIZE\t$CREATE_SIZE\t" >> "$REPORT_FILE"
     remove_handles_and_record_time
     echo "There are $(get_number_of_handles_ready) CM handles still in READY state."
 
@@ -129,9 +131,9 @@ test_deregistration() {
         echo "Grabbing metrics after deregistration"
         METRICS_AFTER=$(./generate-metrics-report.sh)
         echo "Generating metrics report"
-        ./subtract-metrics-reports.py -a $METRICS_AFTER -b $METRICS_BEFORE \
-            -o metrics-reports/deregister-$(date --iso-8601=seconds)-$REMOVE_SIZE-$CREATE_SIZE.tsv
-        rm $METRICS_BEFORE $METRICS_AFTER
+        ./subtract-metrics-reports.py -a "$METRICS_AFTER" -b "$METRICS_BEFORE" \
+            -o "metrics-reports/deregister-$(date --iso-8601=seconds)-$REMOVE_SIZE-$CREATE_SIZE.tsv"
+        rm "$METRICS_BEFORE" "$METRICS_AFTER"
     fi
 
     echo
@@ -140,16 +142,16 @@ test_deregistration() {
 cleanup() {
     rm -f "$CREATE_REQUEST" "$REMOVE_REQUEST"
     stop_docker
+    cat "$REPORT_FILE"
     popd
 }
 trap cleanup EXIT
 
-pushd -- "$(dirname -- "${BASH_SOURCE[0]}")"
+pushd -- "$SCRIPT_DIR"
 
-mkdir -p $(dirname $REPORT_FILE)
-echo -e "Removed\tTotal\tTime" > $REPORT_FILE
+mkdir -p "$(dirname "$REPORT_FILE")"
+echo -e "Removed\tTotal\tTime" > "$REPORT_FILE"
 
 for number_to_delete in 100 500 1000 5000 10000 20000; do
     test_deregistration $number_to_delete $number_to_delete
 done
-
