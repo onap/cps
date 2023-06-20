@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "82b69754_042f2d29",
+        "filename": "cps-ncmp-rest-stub/cps-ncmp-rest-stub-service/src/main/java/org/onap/cps/ncmp/rest/stub/controller/NetworkCmProxyStubController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3237
+      },
+      "writtenOn": "2023-06-20T07:44:19Z",
+      "side": 1,
+      "message": "code is same as before i just moved it to new module",
+      "parentUuid": "ce148a12_0fdfbb3a",
+      "revId": "92ab82b142fb8dd6c9935ea4736a7f7010530b8f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1fce5fcb_ecd9179f",
         "filename": "cps-ncmp-rest-stub/cps-ncmp-rest-stub-service/src/main/java/org/onap/cps/ncmp/rest/stub/controller/NetworkCmProxyStubController.java",
         "patchSetId": 2
@@ -30,6 +48,30 @@
       "writtenOn": "2023-06-19T14:18:54Z",
       "side": 1,
       "message": "NB: this alays gets a bit interesting when moving (and slightly modifying) files... DOnt worry about it",
+      "range": {
+        "startLine": 3,
+        "startChar": 4,
+        "endLine": 4,
+        "endChar": 59
+      },
+      "revId": "92ab82b142fb8dd6c9935ea4736a7f7010530b8f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ceb2bde3_ef9726e4",
+        "filename": "cps-ncmp-rest-stub/cps-ncmp-rest-stub-service/src/main/java/org/onap/cps/ncmp/rest/stub/controller/NetworkCmProxyStubController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 3237
+      },
+      "writtenOn": "2023-06-20T07:44:19Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1fce5fcb_ecd9179f",
       "range": {
         "startLine": 3,
         "startChar": 4,
@@ -59,6 +101,24 @@
     },
     {
       "key": {
+        "uuid": "561affba_22fcf6c8",
+        "filename": "cps-ncmp-rest-stub/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3237
+      },
+      "writtenOn": "2023-06-20T07:44:19Z",
+      "side": 1,
+      "message": "most of the properties are inherited from cps-parent pom so no need to re-define them in any of sub modules and for the dependencies, few were not used and the required ones added as part of cps-ncmp-rest",
+      "parentUuid": "4a43b0e0_fb8ae5dc",
+      "revId": "92ab82b142fb8dd6c9935ea4736a7f7010530b8f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c6369691_1af69e5f",
         "filename": "cps-parent/pom.xml",
         "patchSetId": 2
@@ -70,6 +130,30 @@
       "writtenOn": "2023-06-19T14:18:54Z",
       "side": 1,
       "message": "I think this is better then it was anyway...",
+      "range": {
+        "startLine": 421,
+        "startChar": 38,
+        "endLine": 421,
+        "endChar": 57
+      },
+      "revId": "92ab82b142fb8dd6c9935ea4736a7f7010530b8f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5670dc34_fcc942a6",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 3237
+      },
+      "writtenOn": "2023-06-20T07:44:19Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c6369691_1af69e5f",
       "range": {
         "startLine": 421,
         "startChar": 38,
