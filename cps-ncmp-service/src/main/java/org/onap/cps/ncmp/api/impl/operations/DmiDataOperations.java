@@ -38,7 +38,7 @@ import org.onap.cps.ncmp.api.impl.utils.ResourceDataBatchRequestUtils;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.inventory.CmHandleState;
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
-import org.onap.cps.ncmp.api.models.ResourceDataBatchRequest;
+import org.onap.cps.ncmp.api.models.DataOperationRequest;
 import org.onap.cps.spi.exceptions.CpsException;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.ResponseEntity;
@@ -118,21 +118,21 @@ public class DmiDataOperations extends DmiOperations {
      * The data wil be returned as message on the topic specified.
      *
      * @param topicParamInQuery        topic name for (triggering) async responses
-     * @param resourceDataBatchRequest batch request for resource data
+     * @param dataOperationRequest     data operation request to execute operations
      * @param requestId                requestId for as a response
      */
     public void requestResourceDataFromDmi(final String topicParamInQuery,
-                                           final ResourceDataBatchRequest resourceDataBatchRequest,
+                                           final DataOperationRequest dataOperationRequest,
                                            final String requestId)  {
 
         final Set<String> cmHandlesIds
-                = getDistinctCmHandleIdsFromBatchRequest(resourceDataBatchRequest);
+                = getDistinctCmHandleIdsFromDataOperationRequest(dataOperationRequest);
 
         final Collection<YangModelCmHandle> yangModelCmHandles
                 = getYangModelCmHandlesInReadyState(cmHandlesIds);
 
         final Map<String, List<DmiBatchOperation>> operationsOutPerDmiServiceName
-                = ResourceDataBatchRequestUtils.processPerOperationInBatchRequest(resourceDataBatchRequest,
+                = ResourceDataBatchRequestUtils.processPerOperationInBatchRequest(dataOperationRequest,
                 yangModelCmHandles);
 
         buildBatchRequestUrlAndSendToDmiService(topicParamInQuery, requestId, operationsOutPerDmiServiceName);
@@ -214,11 +214,11 @@ public class DmiDataOperations extends DmiOperations {
         }
     }
 
-    private static Set<String> getDistinctCmHandleIdsFromBatchRequest(final ResourceDataBatchRequest
-                                                                              resourceDataBatchRequest) {
-        return resourceDataBatchRequest.getBatchOperationDefinitions().stream()
-                .flatMap(batchOperationDefinition ->
-                        batchOperationDefinition.getCmHandleIds().stream()).collect(Collectors.toSet());
+    private static Set<String> getDistinctCmHandleIdsFromDataOperationRequest(final DataOperationRequest
+                                                                              dataOperationRequest) {
+        return dataOperationRequest.getDataOperationDefinitions().stream()
+                .flatMap(dataOperationDefinition ->
+                        dataOperationDefinition.getCmHandleIds().stream()).collect(Collectors.toSet());
     }
 
     private Collection<YangModelCmHandle> getYangModelCmHandlesInReadyState(final Set<String> requestedCmHandleIds) {

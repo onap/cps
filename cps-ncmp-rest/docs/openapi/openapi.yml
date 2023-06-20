@@ -35,7 +35,7 @@ paths:
     $ref: 'ncmp.yml#/resourceDataForCmHandle'
 
   /v1/data:
-    $ref: 'ncmp.yml#/getResourceDataForCmHandleBatch'
+    $ref: 'ncmp.yml#/dataOperationForCmHandle'
 
   /v1/ch/{cm-handle}/data/ds/{datastore-name}/query:
     $ref: 'ncmp.yml#/queryResourceDataForCmHandle'

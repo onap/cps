@@ -60,10 +60,10 @@ import org.onap.cps.ncmp.api.models.CmHandleQueryApiParameters;
 import org.onap.cps.ncmp.api.models.CmHandleQueryServiceParameters;
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse;
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationError;
+import org.onap.cps.ncmp.api.models.DataOperationRequest;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistrationResponse;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
-import org.onap.cps.ncmp.api.models.ResourceDataBatchRequest;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.exceptions.AlreadyDefinedExceptionBatch;
 import org.onap.cps.spi.exceptions.CpsException;
@@ -139,11 +139,11 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     }
 
     @Override
-    public void requestResourceDataForCmHandleBatch(final String topicParamInQuery,
-                                                final ResourceDataBatchRequest
-                                                        resourceDataBatchRequest,
-                                                final String requestId) {
-        dmiDataOperations.requestResourceDataFromDmi(topicParamInQuery, resourceDataBatchRequest, requestId);
+    public void executeDataOperationForCmHandles(final String topicParamInQuery,
+                                                 final DataOperationRequest
+                                                         dataOperationRequest,
+                                                 final String requestId) {
+        dmiDataOperations.requestResourceDataFromDmi(topicParamInQuery, dataOperationRequest, requestId);
     }
 
     @Override

@@ -31,7 +31,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.impl.exception.InvalidDatastoreException;
 import org.onap.cps.ncmp.api.impl.operations.DatastoreType;
 import org.onap.cps.ncmp.api.impl.operations.OperationType;
-import org.onap.cps.ncmp.api.models.ResourceDataBatchRequest;
+import org.onap.cps.ncmp.api.models.DataOperationRequest;
 import org.onap.cps.ncmp.rest.exceptions.OperationNotSupportedException;
 import org.onap.cps.ncmp.rest.executor.CpsNcmpTaskExecutor;
 import org.onap.cps.ncmp.rest.util.TopicValidator;
@@ -105,21 +105,21 @@ public class NcmpDatastoreRequestHandler implements TaskManagementDefaultHandler
     }
 
     /**
-     * Executes asynchronous request for batch of cm handles to resource data.
+     * Executes asynchronous request for group of cm handles to resource data.
      *
      * @param topicParamInQuery        the topic param in query
-     * @param resourceDataBatchRequest batch request details for resource data
+     * @param dataOperationRequest     data operation request details for resource data
      * @return the response entity
      */
     public ResponseEntity<Object> executeRequest(final String topicParamInQuery,
-                                                 final ResourceDataBatchRequest
-                                                         resourceDataBatchRequest) {
-        validateBatchRequest(topicParamInQuery, resourceDataBatchRequest);
+                                                 final DataOperationRequest
+                                                         dataOperationRequest) {
+        validateDataOperationRequest(topicParamInQuery, dataOperationRequest);
         if (!notificationFeatureEnabled) {
             return ResponseEntity.ok(Map.of("status",
                     "Asynchronous request is unavailable as notification feature is currently disabled."));
         }
-        return getRequestIdAndSendBatchRequestToDmiService(topicParamInQuery, resourceDataBatchRequest);
+        return getRequestIdAndSendDataOperationRequestToDmiService(topicParamInQuery, dataOperationRequest);
     }
 
     protected ResponseEntity<Object> executeTaskAsync(final String topicParamInQuery,
@@ -152,27 +152,27 @@ public class NcmpDatastoreRequestHandler implements TaskManagementDefaultHandler
         return executeTaskAsync(topicParamInQuery, requestId, taskSupplier);
     }
 
-    private ResponseEntity<Object> getRequestIdAndSendBatchRequestToDmiService(final String topicParamInQuery,
-                                                                               final ResourceDataBatchRequest
-                                                                                       resourceDataBatchRequest) {
+    private ResponseEntity<Object> getRequestIdAndSendDataOperationRequestToDmiService(final String topicParamInQuery,
+                                                                                       final DataOperationRequest
+                                                                                       dataOperationRequest) {
         final String requestId = UUID.randomUUID().toString();
-        sendResourceDataBatchRequestAsynchronously(topicParamInQuery, resourceDataBatchRequest, requestId);
+        sendDataOperationRequestAsynchronously(topicParamInQuery, dataOperationRequest, requestId);
         return ResponseEntity.ok(Map.of("requestId", requestId));
     }
 
-    private void validateBatchRequest(final String topicParamInQuery,
-                                      final ResourceDataBatchRequest
-                                              resourceDataBatchRequest) {
+    private void validateDataOperationRequest(final String topicParamInQuery,
+                                              final DataOperationRequest
+                                              dataOperationRequest) {
         TopicValidator.validateTopicName(topicParamInQuery);
-        resourceDataBatchRequest.getBatchOperationDefinitions().forEach(batchOperationDetail -> {
-            if (OperationType.fromOperationName(batchOperationDetail.getOperation()) != READ) {
+        dataOperationRequest.getDataOperationDefinitions().forEach(dataOperationDetail -> {
+            if (OperationType.fromOperationName(dataOperationDetail.getOperation()) != READ) {
                 throw new OperationNotSupportedException(
-                        batchOperationDetail.getOperation() + " operation not yet supported for target ids :"
-                                + batchOperationDetail.getCmHandleIds());
-            } else if (DatastoreType.fromDatastoreName(batchOperationDetail.getDatastore()) == OPERATIONAL) {
-                throw new InvalidDatastoreException(batchOperationDetail.getDatastore()
+                        dataOperationDetail.getOperation() + " operation not yet supported for target ids :"
+                                + dataOperationDetail.getCmHandleIds());
+            } else if (DatastoreType.fromDatastoreName(dataOperationDetail.getDatastore()) == OPERATIONAL) {
+                throw new InvalidDatastoreException(dataOperationDetail.getDatastore()
                         + " datastore is not supported for target ids : "
-                        + batchOperationDetail.getCmHandleIds());
+                        + dataOperationDetail.getCmHandleIds());
             }
         });
     }

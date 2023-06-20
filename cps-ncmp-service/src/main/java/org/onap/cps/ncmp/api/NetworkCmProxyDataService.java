@@ -29,10 +29,10 @@ import org.onap.cps.ncmp.api.impl.operations.OperationType;
 import org.onap.cps.ncmp.api.inventory.CompositeState;
 import org.onap.cps.ncmp.api.models.CmHandleQueryApiParameters;
 import org.onap.cps.ncmp.api.models.CmHandleQueryServiceParameters;
+import org.onap.cps.ncmp.api.models.DataOperationRequest;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistrationResponse;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
-import org.onap.cps.ncmp.api.models.ResourceDataBatchRequest;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.ModuleDefinition;
 import org.onap.cps.spi.model.ModuleReference;
@@ -83,15 +83,15 @@ public interface NetworkCmProxyDataService {
                                       FetchDescendantsOption fetchDescendantsOption);
 
     /**
-     * Get resource data for batch of cm handles using dmi.
+     * Execute (async) data operation for group of cm handles using dmi.
      *
      * @param topicParamInQuery        topic name for (triggering) async responses
-     * @param resourceDataBatchRequest cm handle identifiers
+     * @param dataOperationRequest     cm handle identifiers
      */
-    void requestResourceDataForCmHandleBatch(String topicParamInQuery,
-                                         ResourceDataBatchRequest
-                                                 resourceDataBatchRequest,
-                                         String requestId);
+    void executeDataOperationForCmHandles(String topicParamInQuery,
+                                          DataOperationRequest
+                                                            dataOperationRequest,
+                                          String requestId);
 
 
     /**

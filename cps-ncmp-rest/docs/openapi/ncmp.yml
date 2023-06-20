@@ -194,13 +194,13 @@ resourceDataForCmHandle:
       502:
         $ref: 'components.yaml#/components/responses/BadGateway'
 
-getResourceDataForCmHandleBatch:
+dataOperationForCmHandle:
   post:
     tags:
       - network-cm-proxy
-    summary: Get resource data for batch of cm handle ids
+    summary: Execute a data operation for group of cm handle ids
     description: This request will be handled asynchronously using messaging to the supplied topic. The rest response will be an acknowledge with a requestId to identify the relevant messages.
-    operationId: getResourceDataForCmHandleBatch
+    operationId: executeDataOperationForCmHandles
     parameters:
       - $ref: 'components.yaml#/components/parameters/requiredTopicParamInQuery'
     requestBody:
@@ -208,7 +208,7 @@ getResourceDataForCmHandleBatch:
       content:
         application/json:
           schema:
-            $ref: 'components.yaml#/components/schemas/ResourceDataBatchRequest'
+            $ref: 'components.yaml#/components/schemas/DataOperationRequest'
     responses:
       200:
         description: OK

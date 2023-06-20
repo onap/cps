@@ -33,13 +33,13 @@ import org.onap.cps.ncmp.api.inventory.CompositeState
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence
 import org.onap.cps.ncmp.api.inventory.LockReasonCategory
 import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
-import org.onap.cps.ncmp.api.models.BatchOperationDefinition
+import org.onap.cps.ncmp.api.models.DataOperationDefinition
 import org.onap.cps.ncmp.api.models.CmHandleQueryApiParameters
 import org.onap.cps.ncmp.api.models.CmHandleQueryServiceParameters
 import org.onap.cps.ncmp.api.models.ConditionApiProperties
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
-import org.onap.cps.ncmp.api.models.ResourceDataBatchRequest
+import org.onap.cps.ncmp.api.models.DataOperationRequest
 import org.onap.cps.spi.exceptions.CpsException
 import org.onap.cps.spi.model.ConditionProperties
 import spock.lang.Shared
@@ -135,13 +135,13 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             response == '{dmi-response}'
     }
 
-    def 'Get batch resource data for #datastoreName from DMI.'() {
+    def 'Execute (async) data operation for #datastoreName from DMI.'() {
         given: 'cpsDataService returns valid data node'
-            def resourceDataBatchRequest = getResourceDataBatchRequest(datastoreName)
-        when: 'get batch resource data is called'
-            objectUnderTest.requestResourceDataForCmHandleBatch('some topic', resourceDataBatchRequest, 'requestId')
-        then: 'get batch resource data returns expected response'
-            1 * mockDmiDataOperations.requestResourceDataFromDmi('some topic', resourceDataBatchRequest, 'requestId')
+            def dataOperationRequest = getDataOperationRequest(datastoreName)
+        when: 'request resource data for data operation is called'
+            objectUnderTest.executeDataOperationForCmHandles('some topic', dataOperationRequest, 'requestId')
+        then: 'request resource data for data operation returns expected response'
+            1 * mockDmiDataOperations.requestResourceDataFromDmi('some topic', dataOperationRequest, 'requestId')
         where: 'the following data stores are used'
             datastoreName << [PASSTHROUGH_RUNNING.datastoreName, PASSTHROUGH_OPERATIONAL.datastoreName]
     }
@@ -368,21 +368,22 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
                 cmHandleXPath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
     }
 
-    def getResourceDataBatchRequest(datastore) {
-        def resourceDataBatchRequest = new ResourceDataBatchRequest()
-        def batchOperationDefinitions = new ArrayList()
-        batchOperationDefinitions.add(getBatchOperationDefinition(datastore))
-        resourceDataBatchRequest.setBatchOperationDefinitions(batchOperationDefinitions)
+    def getDataOperationRequest(datastore) {
+        def dataOperationRequest = new DataOperationRequest()
+        def dataOperationDefinitions = new ArrayList()
+        dataOperationDefinitions.add(getDataOperationDefinition(datastore))
+        dataOperationRequest.setDataOperationDefinitions(dataOperationDefinitions)
+        return dataOperationRequest
     }
 
-    def getBatchOperationDefinition(datastore) {
-        def batchOperationDefinition = new BatchOperationDefinition()
-        batchOperationDefinition.setOperation("read")
-        batchOperationDefinition.setOperationId("operational-12")
-        batchOperationDefinition.setDatastore(datastore)
+    def getDataOperationDefinition(datastore) {
+        def dataOperationDefinition = new DataOperationDefinition()
+        dataOperationDefinition.setOperation("read")
+        dataOperationDefinition.setOperationId("operational-12")
+        dataOperationDefinition.setDatastore(datastore)
         def targetIds = new ArrayList()
         targetIds.add("some-cm-handle")
-        batchOperationDefinition.setCmHandleIds(targetIds)
-        return batchOperationDefinition
+        dataOperationDefinition.setCmHandleIds(targetIds)
+        return dataOperationDefinition
     }
 }
