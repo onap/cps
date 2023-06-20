@@ -23,7 +23,6 @@ package org.onap.cps.ncmp.api.impl.events.lcm;
 import java.util.Map;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.inventory.CmHandleState;
-import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 
 /**
  * The implementation of it should handle the persisting of composite state and delegate the request to publish the
@@ -45,14 +44,5 @@ public interface LcmEventsCmHandleStateHandler {
      * @param cmHandleStatePerCmHandle Map of Yang Model Cm Handle and corresponding cm handle state.
      */
     void updateCmHandleStateBatch(final Map<YangModelCmHandle, CmHandleState> cmHandleStatePerCmHandle);
-
-    /**
-     * Publish LCM Event.
-     *
-     * @param targetNcmpServiceCmHandle  target NcmpServiceCmHandle
-     * @param currentNcmpServiceCmHandle current NcmpServiceCmHandle
-     */
-    void publishLcmEventAsynchronously(final NcmpServiceCmHandle targetNcmpServiceCmHandle,
-            final NcmpServiceCmHandle currentNcmpServiceCmHandle);
 
 }

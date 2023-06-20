@@ -43,9 +43,6 @@ import org.onap.cps.ncmp.api.inventory.CompositeState;
 import org.onap.cps.ncmp.api.inventory.CompositeStateUtils;
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
-import org.onap.cps.ncmp.events.lcm.v1.LcmEvent;
-import org.onap.cps.ncmp.events.lcm.v1.LcmEventHeader;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -54,8 +51,7 @@ import org.springframework.stereotype.Service;
 public class LcmEventsCmHandleStateHandlerImpl implements LcmEventsCmHandleStateHandler {
 
     private final InventoryPersistence inventoryPersistence;
-    private final LcmEventsCreator lcmEventsCreator;
-    private final LcmEventsService lcmEventsService;
+    private final LcmEventsCmHandleStateHandlerAsyncHelper lcmEventsCmHandleStateHandlerAsyncHelper;
 
     @Override
     public void updateCmHandleState(final YangModelCmHandle updatedYangModelCmHandle,
@@ -70,7 +66,8 @@ public class LcmEventsCmHandleStateHandlerImpl implements LcmEventsCmHandleState
             final YangModelCmHandle currentYangModelCmHandle = YangModelCmHandle.deepCopyOf(updatedYangModelCmHandle);
             updateToSpecifiedCmHandleState(updatedYangModelCmHandle, targetCmHandleState);
             persistCmHandle(updatedYangModelCmHandle, currentYangModelCmHandle);
-            publishLcmEventAsynchronously(toNcmpServiceCmHandle(updatedYangModelCmHandle),
+            lcmEventsCmHandleStateHandlerAsyncHelper.publishLcmEventAsynchronously(
+                    toNcmpServiceCmHandle(updatedYangModelCmHandle),
                     toNcmpServiceCmHandle(currentYangModelCmHandle));
         }
     }
@@ -82,37 +79,7 @@ public class LcmEventsCmHandleStateHandlerImpl implements LcmEventsCmHandleState
         final Collection<CmHandleTransitionPair> cmHandleTransitionPairs =
                 prepareCmHandleTransitionBatch(cmHandleStatePerCmHandle);
         persistCmHandleBatch(cmHandleTransitionPairs);
-        publishLcmEventBatchAsynchronously(cmHandleTransitionPairs);
-    }
-
-    @Async("notificationExecutor")
-    @Override
-    public void publishLcmEventAsynchronously(final NcmpServiceCmHandle targetNcmpServiceCmHandle,
-            final NcmpServiceCmHandle currentNcmpServiceCmHandle) {
-        publishLcmEvent(targetNcmpServiceCmHandle, currentNcmpServiceCmHandle);
-    }
-
-    /**
-     * Publish LcmEvent in batches and in asynchronous manner.
-     *
-     * @param cmHandleTransitionPairs Pair of existing and modified cm handle represented as YangModelCmHandle
-     */
-    @Async("notificationExecutor")
-    public void publishLcmEventBatchAsynchronously(final Collection<CmHandleTransitionPair> cmHandleTransitionPairs) {
-        cmHandleTransitionPairs.forEach(cmHandleTransitionPair -> publishLcmEvent(
-                toNcmpServiceCmHandle(cmHandleTransitionPair.getTargetYangModelCmHandle()),
-                toNcmpServiceCmHandle(cmHandleTransitionPair.getCurrentYangModelCmHandle())));
-    }
-
-    private void publishLcmEvent(final NcmpServiceCmHandle targetNcmpServiceCmHandle,
-            final NcmpServiceCmHandle existingNcmpServiceCmHandle) {
-        final String cmHandleId = targetNcmpServiceCmHandle.getCmHandleId();
-        final LcmEventHeader lcmEventHeader =
-                lcmEventsCreator.populateLcmEventHeader(cmHandleId, targetNcmpServiceCmHandle,
-                        existingNcmpServiceCmHandle);
-        final LcmEvent lcmEvent =
-                lcmEventsCreator.populateLcmEvent(cmHandleId, targetNcmpServiceCmHandle, existingNcmpServiceCmHandle);
-        lcmEventsService.publishLcmEvent(cmHandleId, lcmEvent, lcmEventHeader);
+        lcmEventsCmHandleStateHandlerAsyncHelper.publishLcmEventBatchAsynchronously(cmHandleTransitionPairs);
     }
 
     private Collection<CmHandleTransitionPair> prepareCmHandleTransitionBatch(
