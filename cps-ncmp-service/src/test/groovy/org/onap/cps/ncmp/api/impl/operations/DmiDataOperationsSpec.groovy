@@ -24,7 +24,7 @@ package org.onap.cps.ncmp.api.impl.operations
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration
 import org.onap.cps.ncmp.api.impl.utils.DmiServiceUrlBuilder
-import org.onap.cps.ncmp.api.models.ResourceDataBatchRequest
+import org.onap.cps.ncmp.api.models.DataOperationRequest
 import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
@@ -82,12 +82,12 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             'datastore running with properties'    | [yangModelCmHandleProperty] | PASSTHROUGH_RUNNING     | OPTIONS_PARAM || '{"operation":"read","cmHandleProperties":{"prop1":"val1"}}' | 'passthrough-running'     | '&options=(a=1,b=2)'
     }
 
-    def 'call get batch resource data from DMI service #scenario.'() {
-        given: 'collection of yang model cm Handles and resource data batch request'
+    def 'call get resource data from DMI service #scenario.'() {
+        given: 'collection of yang model cm Handles and data operation request'
             mockYangModelCmHandleCollectionRetrieval([yangModelCmHandleProperty])
-            def resourceDataBatchRequestJsonData = TestUtils.getResourceFileContent('resourceDataBatchRequest.json')
-            def resourceDataBatchRequest = spiedJsonObjectMapper.convertJsonString(resourceDataBatchRequestJsonData, ResourceDataBatchRequest.class)
-            resourceDataBatchRequest.batchOperationDefinitions[0].cmHandleIds = [cmHandleId]
+            def dataOperationBatchRequestJsonData = TestUtils.getResourceFileContent('dataOperationRequest.json')
+            def dataOperationRequest = spiedJsonObjectMapper.convertJsonString(dataOperationBatchRequestJsonData, DataOperationRequest.class)
+            dataOperationRequest.dataOperationDefinitions[0].cmHandleIds = [cmHandleId]
             def requestBodyAsJsonStringArg = null
         and: 'a positive response from DMI service when it is called with valid request parameters'
             def responseFromDmi = new ResponseEntity<Object>(HttpStatus.ACCEPTED)
@@ -95,8 +95,8 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             def expectedBatchRequestAsJson = '[{"operation":"read","operationId":"operational-14","datastore":"ncmp-datastore:passthrough-operational","options":"some option","resourceIdentifier":"some resource identifier","cmHandles":[{"id":"some-cm-handle","cmHandleProperties":{"prop1":"val1"}}]}]'
             mockDmiRestClient.postOperationWithJsonData(expectedDmiBatchResourceDataUrl, _, READ.operationName) >> responseFromDmi
             dmiServiceUrlBuilder.getBatchRequestUrl(_, _) >> expectedDmiBatchResourceDataUrl
-        when: 'get resource data for batch of cm handles are invoked'
-            objectUnderTest.requestResourceDataFromDmi('my-topic-name', resourceDataBatchRequest, 'requestId')
+        when: 'get resource data for group of cm handles are invoked'
+            objectUnderTest.requestResourceDataFromDmi('my-topic-name', dataOperationRequest, 'requestId')
         then: 'wait a little to allow execution of service method by task executor (on separate thread)'
             Thread.sleep(100)
         then: 'validate ncmp generated dmi request body json args'

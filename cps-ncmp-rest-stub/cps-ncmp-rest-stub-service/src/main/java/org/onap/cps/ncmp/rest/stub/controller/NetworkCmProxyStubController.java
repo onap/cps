@@ -36,7 +36,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.impl.operations.DatastoreType;
 import org.onap.cps.ncmp.rest.api.NetworkCmProxyApi;
 import org.onap.cps.ncmp.rest.model.CmHandleQueryParameters;
-import org.onap.cps.ncmp.rest.model.ResourceDataBatchRequest;
+import org.onap.cps.ncmp.rest.model.DataOperationRequest;
 import org.onap.cps.ncmp.rest.model.RestModuleDefinition;
 import org.onap.cps.ncmp.rest.model.RestModuleReference;
 import org.onap.cps.ncmp.rest.model.RestOutputCmHandle;
@@ -159,8 +159,8 @@ public class NetworkCmProxyStubController implements NetworkCmProxyApi {
     }
 
     @Override
-    public ResponseEntity<Object> getResourceDataForCmHandleBatch(@NotNull @Valid final String topic,
-                                                                  @Valid final ResourceDataBatchRequest body) {
+    public ResponseEntity<Object> executeDataOperationForCmHandles(final String topicParamInQuery,
+                                                                   final DataOperationRequest dataOperationRequest) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 

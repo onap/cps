@@ -27,7 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lombok.Builder;
 import lombok.Getter;
-import org.onap.cps.ncmp.api.models.BatchOperationDefinition;
+import org.onap.cps.ncmp.api.models.DataOperationDefinition;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Getter
@@ -45,20 +45,20 @@ public class DmiBatchOperation {
     private final List<CmHandle> cmHandles = new ArrayList<>();
 
     /**
-     * Create and initialise a (outgoing) DMI batch operation.
+     * Create and initialise a (outgoing) DMI data operation.
      *
-     * @param batchOperationDefinition batchOperationDefinition definition of incoming of batch request
+     * @param dataOperationDefinition  definition of incoming of dataOperation request
      * @return mapped dmi operation details
      */
     public static DmiBatchOperation buildDmiBatchRequestBodyWithoutCmHandles(
-            final BatchOperationDefinition batchOperationDefinition) {
+            final DataOperationDefinition dataOperationDefinition) {
 
         return DmiBatchOperation.builder()
-                .operationType(OperationType.fromOperationName(batchOperationDefinition.getOperation()))
-                .operationId(batchOperationDefinition.getOperationId())
-                .datastore(DatastoreType.fromDatastoreName(batchOperationDefinition.getDatastore()).getDatastoreName())
-                .options(batchOperationDefinition.getOptions())
-                .resourceIdentifier(batchOperationDefinition.getResourceIdentifier())
+                .operationType(OperationType.fromOperationName(dataOperationDefinition.getOperation()))
+                .operationId(dataOperationDefinition.getOperationId())
+                .datastore(DatastoreType.fromDatastoreName(dataOperationDefinition.getDatastore()).getDatastoreName())
+                .options(dataOperationDefinition.getOptions())
+                .resourceIdentifier(dataOperationDefinition.getResourceIdentifier())
                 .build();
     }
 }
