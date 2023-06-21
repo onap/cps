@@ -70,8 +70,8 @@ class UpdatePerfTest extends CpsPerfTestBase {
             objectUnderTest.updateNodeLeaves(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm3', "/openroadm-devices", jsonDataOriginal, now)
             stopWatch.stop()
             def updateDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'update duration is under 750 milliseconds'
-            recordAndAssertPerformance('Update leaves for 1 data node', 750, updateDurationInMillis)
+        then: 'update duration is under 650 milliseconds'
+            recordAndAssertPerformance('Update leaves for 1 data node', 650, updateDurationInMillis)
     }
 
     def 'Batch update leaves for 50 data nodes'() {
@@ -84,8 +84,8 @@ class UpdatePerfTest extends CpsPerfTestBase {
             objectUnderTest.updateNodeLeaves(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm4', "/openroadm-devices", jsonDataOriginal, now)
             stopWatch.stop()
             def updateDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'update duration is under 3500 milliseconds'
-            recordAndAssertPerformance('Batch update leaves for 50 data nodes', 3500, updateDurationInMillis)
+        then: 'update duration is under 700 milliseconds'
+            recordAndAssertPerformance('Batch update leaves for 50 data nodes', 700, updateDurationInMillis)
     }
 
 }
