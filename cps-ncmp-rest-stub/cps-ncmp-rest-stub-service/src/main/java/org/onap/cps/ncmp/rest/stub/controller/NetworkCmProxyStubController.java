@@ -26,9 +26,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -42,21 +44,21 @@ import org.onap.cps.ncmp.rest.model.RestModuleReference;
 import org.onap.cps.ncmp.rest.model.RestOutputCmHandle;
 import org.onap.cps.ncmp.rest.model.RestOutputCmHandleCompositeState;
 import org.onap.cps.ncmp.rest.model.RestOutputCmHandlePublicProperties;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.ClassPathResource;
+import org.onap.cps.ncmp.rest.stub.providers.ResourceProvider;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 
 @Slf4j
 @RestController
 @RequestMapping("${rest.api.ncmp-stub-base-path}")
 public class NetworkCmProxyStubController implements NetworkCmProxyApi {
 
-    @Value("${stub.path}")
-    private String pathToResponseFiles;
+    @Autowired
+    private ResourceProvider resourceProvider;
+
     private static final String ASYNC_REQUEST_ID = "requestId";
 
     @Override
@@ -70,16 +72,22 @@ public class NetworkCmProxyStubController implements NetworkCmProxyApi {
             final Map<String, Object> asyncResponseData = asyncResponse.getBody();
             Object responseObject = null;
             // read JSON file and map/convert to java POJO
-            final ClassPathResource resource = new ClassPathResource(
-                    pathToResponseFiles + "passthrough-operational-example.json");
-            try (InputStream inputStream = resource.getInputStream()) {
-                final String string = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
-                final ObjectMapper mapper = new ObjectMapper();
-                responseObject = mapper.readValue(string, Object.class);
-            } catch (final IOException exception) {
-                log.error("Error reading the file.", exception);
+            try {
+                final Optional<InputStream> optional = resourceProvider
+                        .getResourceInputStream("passthrough-operational-example.json");
+                if (optional.isPresent()) {
+                    try (InputStream inputStream = optional.get()) {
+                        final String string = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
+                        final ObjectMapper mapper = new ObjectMapper();
+                        responseObject = mapper.readValue(string, Object.class);
+                    }
+                }
+
+            } catch (final IOException ioException) {
+                log.error("Error reading the file.", ioException);
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
             }
+
             if (asyncResponseData == null) {
                 return ResponseEntity.ok(responseObject);
             }
@@ -91,18 +99,24 @@ public class NetworkCmProxyStubController implements NetworkCmProxyApi {
     @Override
     public ResponseEntity<List<RestOutputCmHandle>> searchCmHandles(
             final CmHandleQueryParameters cmHandleQueryParameters) {
-        List<RestOutputCmHandle> restOutputCmHandles = null;
         // read JSON file and map/convert to java POJO
-        final ClassPathResource resource = new ClassPathResource(pathToResponseFiles + "cmHandlesSearch.json");
-        try (InputStream inputStream = resource.getInputStream()) {
-            final String string = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
-            final ObjectMapper mapper = new ObjectMapper();
-            restOutputCmHandles = Arrays.asList(mapper.readValue(string, RestOutputCmHandle[].class));
-        } catch (final IOException exception) {
-            log.error("Error reading the file.", exception);
+        try {
+            final Optional<InputStream> optional = resourceProvider.getResourceInputStream("cmHandlesSearch.json");
+            if (optional.isPresent()) {
+                try (InputStream inputStream = optional.get()) {
+                    final String string = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
+                    final ObjectMapper mapper = new ObjectMapper();
+                    final List<RestOutputCmHandle> restOutputCmHandles = Arrays
+                            .asList(mapper.readValue(string, RestOutputCmHandle[].class));
+                    return ResponseEntity.ok(restOutputCmHandles);
+                }
+            }
+        } catch (final IOException ioException) {
+            log.error("Error reading the file.", ioException);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
-        return ResponseEntity.ok(restOutputCmHandles);
+
+        return ResponseEntity.ok(Collections.<RestOutputCmHandle>emptyList());
     }
 
     private ResponseEntity<Map<String, Object>> populateAsyncResponse(final String topicParamInQuery) {
