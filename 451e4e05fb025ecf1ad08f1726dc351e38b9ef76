@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6c1d2938_730a38a3",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/NcmpAsyncDataOperationEventConsumerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-06-21T12:36:01Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d08cade9_1456a650",
+      "range": {
+        "startLine": 56,
+        "startChar": 40,
+        "endLine": 56,
+        "endChar": 72
+      },
+      "revId": "451e4e05fb025ecf1ad08f1726dc351e38b9ef76",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "be9d7905_9000daf7",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/NcmpAsyncDataOperationEventConsumerSpec.groovy",
         "patchSetId": 4
@@ -36,6 +60,30 @@
       "writtenOn": "2023-06-21T11:50:23Z",
       "side": 1,
       "message": "is this still used/needed?!",
+      "range": {
+        "startLine": 58,
+        "startChar": 3,
+        "endLine": 59,
+        "endChar": 37
+      },
+      "revId": "451e4e05fb025ecf1ad08f1726dc351e38b9ef76",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ea4f9e0_28207578",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/NcmpAsyncDataOperationEventConsumerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-06-21T12:36:01Z",
+      "side": 1,
+      "message": "Yes , at line number : 113",
+      "parentUuid": "be9d7905_9000daf7",
       "range": {
         "startLine": 58,
         "startChar": 3,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "a5444548_7730f91c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/NcmpAsyncDataOperationEventConsumerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-06-21T12:36:01Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "132d0130_b5199221",
+      "range": {
+        "startLine": 89,
+        "startChar": 50,
+        "endLine": 89,
+        "endChar": 68
+      },
+      "revId": "451e4e05fb025ecf1ad08f1726dc351e38b9ef76",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0c8b387b_3ee05e53",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/avc/AvcEventConsumerSpec.groovy",
         "patchSetId": 4
@@ -82,6 +154,30 @@
       "writtenOn": "2023-06-21T11:50:23Z",
       "side": 1,
       "message": "still needed?!",
+      "range": {
+        "startLine": 55,
+        "startChar": 2,
+        "endLine": 56,
+        "endChar": 37
+      },
+      "revId": "451e4e05fb025ecf1ad08f1726dc351e38b9ef76",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab2e4081_6c693421",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/avc/AvcEventConsumerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-06-21T12:36:01Z",
+      "side": 1,
+      "message": "used at line number : 70",
+      "parentUuid": "0c8b387b_3ee05e53",
       "range": {
         "startLine": 55,
         "startChar": 2,
