@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ea85f73c_0acd57bc",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/dmi-subscription-response-event-schema-1.0.0.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-06-21T14:03:03Z",
+      "side": 1,
+      "message": "This causing not to create package signature as followed. It may be required to change into javaType.",
+      "range": {
+        "startLine": 32,
+        "startChar": 11,
+        "endLine": 32,
+        "endChar": 12
+      },
+      "revId": "8b3e20fa25a1f32ecc4766b0124f892061dd7095",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
