@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "7e8f3d93_557f5bae",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/dmi-subscription-response-event-schema-1.0.0.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-06-21T14:06:13Z",
+      "side": 1,
+      "message": "In order to align with general schema version format, maybe better to have a : instead of a dash.",
+      "range": {
+        "startLine": 3,
+        "startChar": 81,
+        "endLine": 3,
+        "endChar": 82
+      },
+      "revId": "8b3e20fa25a1f32ecc4766b0124f892061dd7095",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ea85f73c_0acd57bc",
         "filename": "cps-ncmp-events/src/main/resources/schemas/dmi-subscription-response-event-schema-1.0.0.json",
         "patchSetId": 2
