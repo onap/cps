@@ -2,7 +2,7 @@
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
- *  Modifications Copyright (C) 2021-2022 Nordix Foundation
+ *  Modifications Copyright (C) 2021-2023 Nordix Foundation
  *  Modifications Copyright (C) 2022-2023 TechMahindra Ltd.
  *  Modifications Copyright (C) 2022 Deutsche Telekom AG
  *  ================================================================================
@@ -63,9 +63,9 @@ public class DataRestController implements CpsDataApi {
     private final PrefixResolver prefixResolver;
 
     @Override
-    public ResponseEntity<String> createNode(@RequestHeader(value = "Content-Type") final String contentTypeHeader,
-                                             final String apiVersion,
+    public ResponseEntity<String> createNode(final String apiVersion,
                                              final String dataspaceName, final String anchorName,
+                                             @RequestHeader(value = "Content-Type") final String contentTypeHeader,
                                              final String nodeData, final String parentNodeXpath,
                                              final String observedTimestamp) {
         final ContentType contentType = contentTypeHeader.contains(MediaType.APPLICATION_XML_VALUE) ? ContentType.XML
@@ -90,8 +90,9 @@ public class DataRestController implements CpsDataApi {
     }
 
     @Override
-    public ResponseEntity<String> addListElements(final String parentNodeXpath, final String apiVersion,
-        final String dataspaceName, final String anchorName, final Object jsonData, final String observedTimestamp) {
+    public ResponseEntity<String> addListElements(final String apiVersion, final String dataspaceName,
+                                                  final String anchorName, final String parentNodeXpath,
+                                                  final Object jsonData, final String observedTimestamp) {
         cpsDataService.saveListElements(dataspaceName, anchorName, parentNodeXpath,
                 jsonObjectMapper.asJsonString(jsonData), toOffsetDateTime(observedTimestamp));
         return new ResponseEntity<>(HttpStatus.CREATED);
@@ -148,8 +149,9 @@ public class DataRestController implements CpsDataApi {
     }
 
     @Override
-    public ResponseEntity<Object> replaceListContent(final String parentNodeXpath,
-        final String apiVersion, final String dataspaceName, final String anchorName, final Object jsonData,
+    public ResponseEntity<Object> replaceListContent(final String apiVersion,
+                                                     final String dataspaceName, final String anchorName,
+                                                     final String parentNodeXpath, final Object jsonData,
         final String observedTimestamp) {
         cpsDataService.replaceListContent(dataspaceName, anchorName, parentNodeXpath,
                 jsonObjectMapper.asJsonString(jsonData), toOffsetDateTime(observedTimestamp));

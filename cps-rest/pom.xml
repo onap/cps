@@ -128,8 +128,9 @@
         <plugins>
             <!-- Swagger code generation. -->
             <plugin>
-                <groupId>io.swagger.codegen.v3</groupId>
-                <artifactId>swagger-codegen-maven-plugin</artifactId>
+                <groupId>org.openapitools</groupId>
+                <artifactId>openapi-generator-maven-plugin</artifactId>
+                <version>6.6.0</version>
                 <executions>
                     <execution>
                         <id>code-gen</id>
@@ -141,13 +142,15 @@
                             <invokerPackage>org.onap.cps.rest.controller</invokerPackage>
                             <modelPackage>org.onap.cps.rest.model</modelPackage>
                             <apiPackage>org.onap.cps.rest.api</apiPackage>
-                            <language>spring</language>
+                            <generatorName>spring</generatorName>
                             <generateSupportingFiles>false</generateSupportingFiles>
                             <configOptions>
                                 <sourceFolder>src/gen/java</sourceFolder>
                                 <dateLibrary>java11</dateLibrary>
                                 <interfaceOnly>true</interfaceOnly>
                                 <useTags>true</useTags>
+                                <openApiNullable>false</openApiNullable>
+                                <skipDefaultInterface>true</skipDefaultInterface>
                             </configOptions>
                         </configuration>
                     </execution>
