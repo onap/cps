@@ -116,8 +116,9 @@
         <plugins>
             <!-- Swagger code generation. -->
             <plugin>
-                <groupId>io.swagger.codegen.v3</groupId>
-                <artifactId>swagger-codegen-maven-plugin</artifactId>
+                <groupId>org.openapitools</groupId>
+                <artifactId>openapi-generator-maven-plugin</artifactId>
+                <version>6.6.0</version>
                 <executions>
                     <execution>
                         <id>ncmp-code-gen</id>
@@ -129,13 +130,16 @@
                             <invokerPackage>org.onap.cps.ncmp.rest.controller</invokerPackage>
                             <modelPackage>org.onap.cps.ncmp.rest.model</modelPackage>
                             <apiPackage>org.onap.cps.ncmp.rest.api</apiPackage>
-                            <language>spring</language>
+                            <generatorName>spring</generatorName>
                             <generateSupportingFiles>false</generateSupportingFiles>
+                            <generateAliasAsModel>true</generateAliasAsModel>
                             <configOptions>
                                 <sourceFolder>src/gen/java</sourceFolder>
                                 <dateLibrary>java11</dateLibrary>
                                 <interfaceOnly>true</interfaceOnly>
                                 <useTags>true</useTags>
+                                <openApiNullable>false</openApiNullable>
+                                <skipDefaultInterface>true</skipDefaultInterface>
                             </configOptions>
                         </configuration>
                     </execution>
@@ -149,13 +153,15 @@
                             <invokerPackage>org.onap.cps.ncmp.rest.controller</invokerPackage>
                             <modelPackage>org.onap.cps.ncmp.rest.model</modelPackage>
                             <apiPackage>org.onap.cps.ncmp.rest.api</apiPackage>
-                            <language>spring</language>
+                            <generatorName>spring</generatorName>
                             <generateSupportingFiles>false</generateSupportingFiles>
                             <configOptions>
                                 <sourceFolder>src/gen/java</sourceFolder>
                                 <dateLibrary>java11</dateLibrary>
                                 <interfaceOnly>true</interfaceOnly>
                                 <useTags>true</useTags>
+                                <openApiNullable>false</openApiNullable>
+                                <skipDefaultInterface>true</skipDefaultInterface>
                             </configOptions>
                         </configuration>
                     </execution>
@@ -167,7 +173,7 @@
                         <phase>compile</phase>
                         <configuration>
                             <inputSpec>${project.basedir}/docs/openapi/openapi-inventory.yml</inputSpec>
-                            <language>openapi-yaml</language>
+                            <generatorName>openapi-yaml</generatorName>
                             <configOptions>
                                 <outputFile>openapi-inventory.yaml</outputFile>
                             </configOptions>

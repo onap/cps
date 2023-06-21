@@ -138,18 +138,18 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     /**
      * Patch resource data from passthrough-running.
      *
-     * @param resourceIdentifier resource identifier
      * @param datastoreName      name of the datastore
      * @param cmHandle           cm handle identifier
+     * @param resourceIdentifier resource identifier
      * @param requestBody        the request body
      * @param contentType        content type of body
      * @return {@code ResponseEntity} response from dmi plugin
      */
 
     @Override
-    public ResponseEntity<Object> patchResourceDataRunningForCmHandle(final String resourceIdentifier,
-                                                                      final String datastoreName,
+    public ResponseEntity<Object> patchResourceDataRunningForCmHandle(final String datastoreName,
                                                                       final String cmHandle,
+                                                                      final String resourceIdentifier,
                                                                       final Object requestBody,
                                                                       final String contentType) {
 
@@ -165,17 +165,17 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     /**
      * Create resource data in datastore pass-through running for given cm-handle.
      *
-     * @param resourceIdentifier resource identifier
      * @param datastoreName      name of the datastore
      * @param cmHandle           cm handle identifier
+     * @param resourceIdentifier resource identifier
      * @param requestBody        the request body
      * @param contentType        content type of body
      * @return {@code ResponseEntity} response from dmi plugin
      */
     @Override
-    public ResponseEntity<Void> createResourceDataRunningForCmHandle(final String resourceIdentifier,
-                                                                     final String datastoreName,
+    public ResponseEntity<Void> createResourceDataRunningForCmHandle(final String datastoreName,
                                                                      final String cmHandle,
+                                                                     final String resourceIdentifier,
                                                                      final Object requestBody,
                                                                      final String contentType) {
 
@@ -189,18 +189,18 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     /**
      * Update resource data in datastore pass-through running for given cm-handle.
      *
-     * @param resourceIdentifier resource identifier
      * @param datastoreName      name of the datastore
      * @param cmHandle           cm handle identifier
+     * @param resourceIdentifier resource identifier
      * @param requestBody        the request body
      * @param contentType        content type of the body
      * @return response entity
      */
 
     @Override
-    public ResponseEntity<Object> updateResourceDataRunningForCmHandle(final String resourceIdentifier,
-                                                                       final String datastoreName,
+    public ResponseEntity<Object> updateResourceDataRunningForCmHandle(final String datastoreName,
                                                                        final String cmHandle,
+                                                                       final String resourceIdentifier,
                                                                        final Object requestBody,
                                                                        final String contentType) {
         validateDataStore(PASSTHROUGH_RUNNING, datastoreName);

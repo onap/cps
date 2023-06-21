@@ -102,8 +102,9 @@ public class AdminRestController implements CpsAdminApi {
      * @return a {@Link ResponseEntity} of created schemaset name & {@link HttpStatus} CREATED
      */
     @Override
-    public ResponseEntity<String> createSchemaSet(@NotNull @Valid final String schemaSetName,
-        final String dataspaceName, @Valid final MultipartFile multipartFile) {
+    public ResponseEntity<String> createSchemaSet(final String dataspaceName,
+                                                  @NotNull @Valid final String schemaSetName,
+                                                  final MultipartFile multipartFile) {
         cpsModuleService.createSchemaSet(dataspaceName, schemaSetName, extractYangResourcesMap(multipartFile));
         return new ResponseEntity<>(schemaSetName, HttpStatus.CREATED);
     }
@@ -111,16 +112,17 @@ public class AdminRestController implements CpsAdminApi {
     /**
      * Create a {@link SchemaSet}.
      *
-     * @param multipartFile multipart file
-     * @param schemaSetName schemaset name
      * @param dataspaceName dataspace name
+     * @param schemaSetName schemaset name
+     * @param multipartFile multipart file
      * @return a {@Link ResponseEntity} of created schema set without any response body & {@link HttpStatus} CREATED
      */
     @Override
     @Timed(value = "cps.rest.admin.controller.schemaset.create",
         description = "Time taken to create schemaset from controller")
-    public ResponseEntity<Void> createSchemaSetV2(@NotNull @Valid final String schemaSetName,
-        final String dataspaceName, @Valid final MultipartFile multipartFile) {
+    public ResponseEntity<Void> createSchemaSetV2(final String dataspaceName,
+                                                  @NotNull @Valid final String schemaSetName,
+                                                  final MultipartFile multipartFile) {
         cpsModuleService.createSchemaSet(dataspaceName, schemaSetName, extractYangResourcesMap(multipartFile));
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
