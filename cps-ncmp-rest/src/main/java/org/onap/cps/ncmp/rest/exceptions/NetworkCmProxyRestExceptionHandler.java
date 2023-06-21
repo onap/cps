@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Pantheon.tech
- *  Modifications Copyright (C) 2021-2022 Nordix Foundation
+ *  Modifications Copyright (C) 2021-2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ import org.onap.cps.ncmp.api.impl.exception.ServerNcmpException;
 import org.onap.cps.ncmp.rest.controller.NetworkCmProxyController;
 import org.onap.cps.ncmp.rest.controller.NetworkCmProxyInventoryController;
 import org.onap.cps.ncmp.rest.model.DmiErrorMessage;
-import org.onap.cps.ncmp.rest.model.DmiErrorMessageDmiresponse;
+import org.onap.cps.ncmp.rest.model.DmiErrorMessageDmiResponse;
 import org.onap.cps.ncmp.rest.model.ErrorMessage;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
 import org.onap.cps.spi.exceptions.AlreadyDefinedExceptionBatch;
@@ -116,7 +116,7 @@ public class NetworkCmProxyRestExceptionHandler {
             final HttpStatus httpStatus,
             final HttpClientRequestException httpClientRequestException) {
         final var dmiErrorMessage = new DmiErrorMessage();
-        final var dmiErrorResponse = new DmiErrorMessageDmiresponse();
+        final var dmiErrorResponse = new DmiErrorMessageDmiResponse();
         dmiErrorResponse.setHttpCode(httpClientRequestException.getHttpStatus());
         dmiErrorResponse.setBody(httpClientRequestException.getDetails());
         dmiErrorMessage.setMessage(httpClientRequestException.getMessage());

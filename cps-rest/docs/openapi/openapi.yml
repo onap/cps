@@ -1,5 +1,5 @@
 #  ============LICENSE_START=======================================================
-#  Copyright (C) 2021 Nordix Foundation
+#  Copyright (C) 2021-2023 Nordix Foundation
 #  Modifications Copyright (C) 2021 Pantheon.tech
 #  Modifications Copyright (C) 2021 Bell Canada.
 #  Modifications Copyright (C) 2022-2023 TechMahindra Ltd.
@@ -19,7 +19,7 @@
 #  SPDX-License-Identifier: Apache-2.0
 #  ============LICENSE_END=========================================================
 
-openapi: 3.0.1
+openapi: 3.0.3
 info:
   title: ONAP Open API v3 Configuration Persistence Service
   description: Configuration Persistence Service is a Model Driven Generic Database
