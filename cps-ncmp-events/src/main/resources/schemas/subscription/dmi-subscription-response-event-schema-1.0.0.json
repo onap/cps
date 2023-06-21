@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "urn:cps:org.onap.cps.ncmp.events:dmi-subscription-response-event-schema:1.0.0",
+  "$ref": "#/definitions/SubscriptionEventResponse",
+  "definitions": {
+    "SubscriptionStatus": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "status" : {
+          "type": "string",
+          "enum": [
+            "ACCEPTED",
+            "REJECTED",
+            "PENDING"
+          ]
+        },
+        "details" : {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "status"
+      ],
+      "additionalProperties": false
+    },
+    "SubscriptionEventResponse" : {
+      "description": "The payload for subscription response event.",
+      "type": "object",
+      "javatype": "org.onap.cps.ncmp.events.subscription1_0_0.SubscriptionEventResponse",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "clientId": {
+              "type": "string"
+            },
+            "subscriptionName": {
+              "type": "string"
+            },
+            "dmiName": {
+              "type": "string"
+            },
+            "subscriptionStatus": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/SubscriptionStatus"
+              }
+            }
+          },
+          "required": [
+            "clientId",
+            "subscriptionName",
+            "dmiName",
+            "subscriptionStatus"
+          ],
+          "additionalProperties": false
+        },
+        "required": [
+          "data"
+        ]
+      }
+    }
+  }
+}
