@@ -1,0 +1,251 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "45891533_d1744e4f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-21T14:32:39Z",
+      "side": 1,
+      "message": "NB: I dont think it matters but Issue Id shoulf normally be before Change-Id",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 18
+      },
+      "revId": "bb9e59ada683a8535a7232aa5806df295912eaf0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be7a361e_0051329a",
+        "filename": "cps-ncmp-rest-stub/cps-ncmp-rest-stub-service/src/main/java/org/onap/cps/ncmp/rest/stub/controller/NetworkCmProxyStubController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-21T14:32:39Z",
+      "side": 1,
+      "message": "NB: prefer to attach the type ie. optionalInputStream (to improve readability)",
+      "range": {
+        "startLine": 76,
+        "startChar": 44,
+        "endLine": 76,
+        "endChar": 52
+      },
+      "revId": "bb9e59ada683a8535a7232aa5806df295912eaf0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0cef8dd_0b6da5ae",
+        "filename": "cps-ncmp-rest-stub/cps-ncmp-rest-stub-service/src/main/java/org/onap/cps/ncmp/rest/stub/controller/NetworkCmProxyStubController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-21T14:32:39Z",
+      "side": 1,
+      "message": "I wonder can we extract a common getResonseAsString() method to reduce code updlication and make it easier apply to all method later?\nthe methd could also handle all the exception and the else suggested above\n\neven more advanced: you could pass in the required output type and make it return teh object of teh required type....\nnot suer of teh exact synatx but something like\n\n\u003cT\u003e getResponseObject(jsonFileName, RequiredType) { ... }",
+      "range": {
+        "startLine": 104,
+        "startChar": 3,
+        "endLine": 113,
+        "endChar": 13
+      },
+      "revId": "bb9e59ada683a8535a7232aa5806df295912eaf0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cfb2e286_ba1558a0",
+        "filename": "cps-ncmp-rest-stub/cps-ncmp-rest-stub-service/src/main/java/org/onap/cps/ncmp/rest/stub/providers/ResourceProviderImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-21T14:32:39Z",
+      "side": 1,
+      "message": "looks good, I like it",
+      "range": {
+        "startLine": 37,
+        "startChar": 13,
+        "endLine": 37,
+        "endChar": 34
+      },
+      "revId": "bb9e59ada683a8535a7232aa5806df295912eaf0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1799525_212594f8",
+        "filename": "cps-ncmp-rest-stub/cps-ncmp-rest-stub-service/src/test/groovy/org/onap/cps/ncmp/rest/stub/providers/ResourceProviderSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-21T14:32:39Z",
+      "side": 1,
+      "message": "Overall good test but I can see you are new to groovy/Spock so hence some general notes and tips on Groovy:\n- don\u0027t use \" for strings but always \u0027 (\" is used for GroovyStrings , they are like macros(Google Groovy String) \n(for convenience if your data has \u0027 inside the string you can still use \" ) eg. def title \u003d \"John\u0027s book\"\n- remove all ; \n- no type or java modifiers (except for static\u0027)\n- for more see https://wiki.onap.org/pages/viewpage.action?pageId\u003d92998161",
+      "revId": "bb9e59ada683a8535a7232aa5806df295912eaf0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16f5434f_15f7a8b6",
+        "filename": "cps-ncmp-rest-stub/cps-ncmp-rest-stub-service/src/test/groovy/org/onap/cps/ncmp/rest/stub/providers/ResourceProviderSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-21T14:32:39Z",
+      "side": 1,
+      "message": "prefer to use untyped in Groofy ie. \u0027def\u0027",
+      "range": {
+        "startLine": 32,
+        "startChar": 4,
+        "endLine": 32,
+        "endChar": 9
+      },
+      "revId": "bb9e59ada683a8535a7232aa5806df295912eaf0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "93379bd6_c290e269",
+        "filename": "cps-ncmp-rest-stub/cps-ncmp-rest-stub-service/src/test/groovy/org/onap/cps/ncmp/rest/stub/providers/ResourceProviderSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-21T14:32:39Z",
+      "side": 1,
+      "message": "don\u0027t use term like \u0027should\u0027 or expectation in the test description (that is what the labels in Spock are for) instead use short \u0027scenarios\u0027\n\n\u0027Resource Provider with existing file\u0027",
+      "range": {
+        "startLine": 44,
+        "startChar": 9,
+        "endLine": 44,
+        "endChar": 74
+      },
+      "revId": "bb9e59ada683a8535a7232aa5806df295912eaf0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf313efc_9bf58a80",
+        "filename": "cps-ncmp-rest-stub/cps-ncmp-rest-stub-service/src/test/groovy/org/onap/cps/ncmp/rest/stub/providers/ResourceProviderSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-21T14:32:39Z",
+      "side": 1,
+      "message": "I am not a big fan of \u0027additional\u0027 blank lines, they can be useful to separate large blocka (although it might really be a code smell for refactoring then)  . Its not a blockign issue I dint think anyone in the team does so I prefer if you remove them too",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 14
+      },
+      "revId": "bb9e59ada683a8535a7232aa5806df295912eaf0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "82604d8b_259cd859",
+        "filename": "cps-ncmp-rest-stub/cps-ncmp-rest-stub-service/src/test/groovy/org/onap/cps/ncmp/rest/stub/providers/ResourceProviderSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-21T14:32:39Z",
+      "side": 1,
+      "message": "please provide a short \u0027description\u0027 after each label. The idea is that teh combination of given, when then and thos descriptions reads as a single sentence that someone not so familiar with teh coding language can understand I often call it \u0027ProductOwnner-Speak\u0027 Therefore we also try to avoid exact classnames but instead you short word that a clear enough in the scope of the test \n\nin your case something like\n\ngiven \u0027a resource provider for a temporary folder\u0027\nand \u0027a file in that temporary folder\u0027\nwhen \u0027attempting to access that file\u0027#\nthen \u0027it is present\u0027",
+      "range": {
+        "startLine": 46,
+        "startChar": 8,
+        "endLine": 46,
+        "endChar": 14
+      },
+      "revId": "bb9e59ada683a8535a7232aa5806df295912eaf0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91642b3d_919a80c7",
+        "filename": "cps-ncmp-rest-stub/cps-ncmp-rest-stub-service/src/test/groovy/org/onap/cps/ncmp/rest/stub/providers/ResourceProviderSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-21T14:32:39Z",
+      "side": 1,
+      "message": "see comment below, I would just focus on the error scenarios in this test\n\u0027Resource Provider error scenarios\u0027 \nOR \n\u0027Resource Provider without required resource file\u0027",
+      "range": {
+        "startLine": 59,
+        "startChar": 9,
+        "endLine": 59,
+        "endChar": 33
+      },
+      "revId": "bb9e59ada683a8535a7232aa5806df295912eaf0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bfe227ea_18c1b5b3",
+        "filename": "cps-ncmp-rest-stub/cps-ncmp-rest-stub-service/src/test/groovy/org/onap/cps/ncmp/rest/stub/providers/ResourceProviderSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-21T14:32:39Z",
+      "side": 1,
+      "message": "I would combine this with the previous test ie. keep the positive scenarios together!\n(you can parmeterize the folder for the resourceProvider\u0027 too)",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 142
+      },
+      "revId": "bb9e59ada683a8535a7232aa5806df295912eaf0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
