@@ -32,6 +32,7 @@
     <properties>
         <parent.directory>${project.parent.basedir}/..</parent.directory>
         <sonar.skip>true</sonar.skip>
+        <jacoco.skip>true</jacoco.skip>
     </properties>
 
     <modules>
