@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "379b602e_ac19f9e3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventForwarder.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-06-21T14:50:53Z",
+      "side": 1,
+      "message": "I think the targetCmHandlesDoesNotExistInDb also need to be removed from this as we could run into a pending response where ncmp has forwarded the message to a dmi that doesn\u0027t exist",
+      "range": {
+        "startLine": 117,
+        "startChar": 31,
+        "endLine": 117,
+        "endChar": 71
+      },
+      "revId": "6878caeae59cb8c769081a71a2760328017930bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
