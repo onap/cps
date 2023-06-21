@@ -22,6 +22,7 @@ package org.onap.cps.ncmp.api.impl.async;
 
 import io.cloudevents.CloudEvent;
 import io.cloudevents.kafka.impl.KafkaHeaders;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.listener.adapter.RecordFilterStrategy;
@@ -31,6 +32,7 @@ import org.springframework.kafka.listener.adapter.RecordFilterStrategy;
  *
  */
 @Configuration
+@Slf4j
 public class DataOperationRecordFilterStrategy {
 
     /**
@@ -42,8 +44,11 @@ public class DataOperationRecordFilterStrategy {
     @Bean
     public RecordFilterStrategy<String, CloudEvent> includeDataOperationEventsOnly() {
         return consumedRecord -> {
-            final String eventTypeHeaderValue = KafkaHeaders.getParsedKafkaHeader(
-                    consumedRecord.headers(), "ce_type");
+            final String eventTypeHeaderValue = KafkaHeaders.getParsedKafkaHeader(consumedRecord.headers(), "ce_type");
+            if (eventTypeHeaderValue == null) {
+                log.trace("No ce_type header found, possibly a legacy event (ignored)");
+                return true;
+            }
             return !(eventTypeHeaderValue.contains("DataOperationEvent"));
         };
     }
