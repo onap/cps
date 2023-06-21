@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "80ae0624_f35d35e8",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/UpdatePerfTest.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-06-21T12:39:10Z",
+      "side": 1,
+      "message": "There are two updates performed:\n1. update the leaves to new values\n2. restore the leaves to original values\nThis is so that query tests using leaf values will not be affected by these tests.",
+      "revId": "765de151f09345e96fac3e3254071718289b8359",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
