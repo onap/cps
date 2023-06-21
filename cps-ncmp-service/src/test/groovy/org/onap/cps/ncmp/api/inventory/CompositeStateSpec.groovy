@@ -22,7 +22,6 @@ package org.onap.cps.ncmp.api.inventory
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import spock.lang.Specification
-
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter

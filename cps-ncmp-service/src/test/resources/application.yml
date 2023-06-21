@@ -26,6 +26,8 @@ spring:
 
 app:
     ncmp:
+        async-m2m:
+            topic: ncmp-async-m2m
         avc:
             subscription-topic: cm-avc-subscription
             cm-events-topic: cm-events
