@@ -18,7 +18,7 @@
 #  SPDX-License-Identifier: Apache-2.0
 #  ============LICENSE_END=========================================================
 
-openapi: 3.0.1
+openapi: 3.0.3
 info:
   title: NCMP to CPS Proxy API
   description: NCMP to CPS Proxy API
