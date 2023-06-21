@@ -22,6 +22,30 @@
       "revId": "6878caeae59cb8c769081a71a2760328017930bc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "386bff14_6c1ae702",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventForwarder.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-06-21T17:23:23Z",
+      "side": 1,
+      "message": "Thanks for the heads up and chat. As per our internal discussion, please find the new patch set.",
+      "parentUuid": "379b602e_ac19f9e3",
+      "range": {
+        "startLine": 117,
+        "startChar": 31,
+        "endLine": 117,
+        "endChar": 71
+      },
+      "revId": "6878caeae59cb8c769081a71a2760328017930bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
