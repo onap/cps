@@ -22,6 +22,30 @@
       "revId": "1440da220ddac5bc9e372251cb08adac20dff738",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd226046_406ba42a",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/JsonObjectMapper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-21T11:50:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d881f6e7_3b82ac3f",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 0
+      },
+      "revId": "1440da220ddac5bc9e372251cb08adac20dff738",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
