@@ -22,6 +22,30 @@
       "revId": "1be31bda53efe345fe2682d0dcf0a09adcd9950f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2668212d_db0cec45",
+        "filename": "cps-dependencies/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2023-06-22T09:24:42Z",
+      "side": 1,
+      "message": "Technically we were going from 2.1.4 to 2.2.8 but 2.2.10 does the job so upped us to there.",
+      "parentUuid": "11a6778a_543d1c4f",
+      "range": {
+        "startLine": 102,
+        "startChar": 29,
+        "endLine": 102,
+        "endChar": 30
+      },
+      "revId": "1be31bda53efe345fe2682d0dcf0a09adcd9950f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
