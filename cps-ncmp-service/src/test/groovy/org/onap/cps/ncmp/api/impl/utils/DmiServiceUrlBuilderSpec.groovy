@@ -27,13 +27,11 @@ import org.onap.cps.spi.utils.CpsValidator
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
-import spock.lang.Shared
 import spock.lang.Specification
 
 class DmiServiceUrlBuilderSpec extends Specification {
 
-    @Shared
-    YangModelCmHandle yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle('dmiServiceName',
+    static YangModelCmHandle yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle('dmiServiceName',
         'dmiDataServiceName', 'dmiModuleServiceName', new NcmpServiceCmHandle(cmHandleId: 'some-cm-handle-id'))
 
     NcmpConfiguration.DmiProperties dmiProperties = new NcmpConfiguration.DmiProperties()
@@ -42,14 +40,15 @@ class DmiServiceUrlBuilderSpec extends Specification {
 
     def objectUnderTest = new DmiServiceUrlBuilder(dmiProperties, mockCpsValidator)
 
+    def setup() {
+        dmiProperties.dmiBasePath = 'dmi'
+    }
+
     def 'Create the dmi service url with #scenario.'() {
         given: 'uri variables'
-            dmiProperties.dmiBasePath = 'dmi'
-            def uriVars = objectUnderTest.populateUriVariables(PASSTHROUGH_RUNNING.datastoreName, yangModelCmHandle.resolveDmiServiceName(RequiredDmiService.DATA),
-                    "cmHandle")
+            def uriVars = objectUnderTest.populateUriVariables(PASSTHROUGH_RUNNING.datastoreName, yangModelCmHandle.resolveDmiServiceName(RequiredDmiService.DATA), 'cmHandle')
         and: 'query params'
-                            def uriQueries = objectUnderTest.populateQueryParams(resourceId,
-                    'optionsParamInQuery', topic)
+            def uriQueries = objectUnderTest.populateQueryParams(resourceId, 'optionsParamInQuery', topic)
         when: 'a dmi datastore service url is generated'
             def dmiServiceUrl = objectUnderTest.getDmiDatastoreUrl(uriQueries, uriVars)
         then: 'service url is generated as expected'
@@ -65,11 +64,9 @@ class DmiServiceUrlBuilderSpec extends Specification {
     def 'Populate dmi data store url #scenario.'() {
         given: 'uri variables are created'
             dmiProperties.dmiBasePath = dmiBasePath
-            def uriVars = objectUnderTest.populateUriVariables(PASSTHROUGH_RUNNING.datastoreName, yangModelCmHandle.resolveDmiServiceName(RequiredDmiService.DATA),
-                    "cmHandle")
+            def uriVars = objectUnderTest.populateUriVariables(PASSTHROUGH_RUNNING.datastoreName, yangModelCmHandle.resolveDmiServiceName(RequiredDmiService.DATA), 'cmHandle')
         and: 'null query params'
-            def uriQueries = objectUnderTest.populateQueryParams(null,
-                    null, null)
+            def uriQueries = objectUnderTest.populateQueryParams(null, null, null)
         when: 'a dmi datastore service url is generated'
             def dmiServiceUrl = objectUnderTest.getDmiDatastoreUrl(uriQueries, uriVars)
         then: 'the created dmi service url matches the expected'
@@ -78,5 +75,21 @@ class DmiServiceUrlBuilderSpec extends Specification {
             scenario               | decription                                | dmiBasePath || expectedDmiServiceUrl
             'with base path  / '   | 'Invalid base path as it starts with /'   | '/dmi'      || 'dmiServiceName//dmi/v1/ch/cmHandle/data/ds/ncmp-datastore:passthrough-running'
             'without base path / ' | 'Valid path as it does not starts with /' | 'dmi'       || 'dmiServiceName/dmi/v1/ch/cmHandle/data/ds/ncmp-datastore:passthrough-running'
+    }
+
+    def 'Bath request Url creation.'() {
+        given: 'the required path parameters'
+            def batchRequestUriVariables = [dmiServiceName: 'some-service', dmiBasePath: 'testBase', cmHandleId: '123']
+        and: 'the relevant query parameters'
+            def batchRequestQueryParams = objectUnderTest.getBatchRequestQueryParams('some topic', 'some id')
+        when: 'a URL is created'
+            def result = objectUnderTest.getBatchRequestUrl(batchRequestQueryParams, batchRequestUriVariables)
+        then: 'it is formed correctly'
+            assert result.toString() == 'some-service/testBase/v1/data?topic=some topic&requestId=some id'
+    }
+
+    def 'Populate batch uri variables.'() {
+        expect: 'Populate batch uri variables returns a map with given service name and base path from setup'
+            assert objectUnderTest.populateBatchUriVariables('some service')  == [ dmiServiceName: 'some service',dmiBasePath: 'dmi' ]
     }
 }
