@@ -69,7 +69,7 @@ class NcmpAsyncDataOperationEventConsumerIntegrationSpec extends MessagingBaseSp
             KafkaProducer<String, CloudEvent> producer = new KafkaProducer<>(eventProducerConfigProperties(CloudEventSerializer))
             producer.send(record)
         and: 'wait a little for async processing of message'
-            TimeUnit.MILLISECONDS.sleep(100)
+            TimeUnit.MILLISECONDS.sleep(300)
         then: 'the event has only been forwarded for the correct type'
             expectedNUmberOfCallsToPublishForwardedEvent * mockEventsPublisher.publishCloudEvent(*_)
         where: 'the following event types are used'
@@ -85,7 +85,7 @@ class NcmpAsyncDataOperationEventConsumerIntegrationSpec extends MessagingBaseSp
             KafkaProducer<String, String> producer = new KafkaProducer<>(eventProducerConfigProperties(StringSerializer))
             producer.send(record)
         and: 'wait a little for async processing of message'
-            TimeUnit.MILLISECONDS.sleep(100)
+            TimeUnit.MILLISECONDS.sleep(300)
         then: 'the event is not processed by this consumer'
             0 * mockEventsPublisher.publishCloudEvent(*_)
     }

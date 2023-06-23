@@ -52,7 +52,8 @@ public class AvcEventConsumer {
      *
      * @param avcEventConsumerRecord Incoming raw consumer record
      */
-    @KafkaListener(topics = "${app.dmi.cm-events.topic}")
+    @KafkaListener(topics = "${app.dmi.cm-events.topic}",
+            containerFactory = "cloudEventConcurrentKafkaListenerContainerFactory")
     public void consumeAndForward(final ConsumerRecord<String, CloudEvent> avcEventConsumerRecord) {
         log.debug("Consuming AVC event {} ...", avcEventConsumerRecord.value());
         final String newEventId = UUID.randomUUID().toString();
