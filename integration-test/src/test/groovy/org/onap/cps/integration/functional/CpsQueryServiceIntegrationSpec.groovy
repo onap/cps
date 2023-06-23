@@ -21,6 +21,7 @@
 
 package org.onap.cps.integration.functional
 
+import java.time.OffsetDateTime
 import org.onap.cps.api.CpsQueryService
 import org.onap.cps.integration.base.FunctionalSpecBase
 import org.onap.cps.spi.FetchDescendantsOption
@@ -346,8 +347,29 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
             assert result.isEmpty()
         where:
             scenario                                   | cpsPath
+            '  sql wildcard in parent path list index' | '/bookstore/categories[@code="%"]/books'
+            'regex wildcard in parent path list index' | '/bookstore/categories[@code=".*"]/books'
+            '  sql wildcard in leaf-condition'         | '/bookstore/categories[@code="1"]/books[@title="%"]'
+            'regex wildcard in leaf-condition'         | '/bookstore/categories[@code="1"]/books[@title=".*"]'
+            '  sql wildcard in text-condition'         | '/bookstore/categories[@code="1"]/books/title[text()="%"]'
+            'regex wildcard in text-condition'         | '/bookstore/categories[@code="1"]/books/title[text()=".*"]'
             '  sql wildcard in contains-condition'     | '/bookstore/categories[@code="1"]/books[contains(@title, "%")]'
             'regex wildcard in contains-condition'     | '/bookstore/categories[@code="1"]/books[contains(@title, ".*")]'
     }
 
+    def 'Cps Path query can return a data node containing [@ in xpath #scenario.'() {
+        given: 'a book with special characters [@ and ] in title'
+            cpsDataService.saveData(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, "/bookstore/categories[@code='1']", '{"books": [ {"title":"[@hello=world]"} ] }', OffsetDateTime.now())
+        when: 'a query is executed'
+            def result = objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, cpsPath, OMIT_DESCENDANTS)
+        then: 'the node is returned'
+            assert result.size() == 1
+        cleanup: 'the new datanode'
+            cpsDataService.deleteDataNode(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, "/bookstore/categories[@code='1']/books[@title='[@hello=world]']", OffsetDateTime.now())
+        where:
+            scenario             || cpsPath
+            'leaf-condition'     || "/bookstore/categories[@code='1']/books[@title='[@hello=world]']"
+            'text-condition'     || "/bookstore/categories[@code='1']/books/title[text()='[@hello=world]']"
+            'contains-condition' || "/bookstore/categories[@code='1']/books[contains(@title, '[@hello=world]')]"
+    }
 }
