@@ -322,7 +322,7 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
             thrown(CpsPathException)
     }
 
-    def 'Cps Path querys with all descendants including descendants that are list entries: #scenario.'() {
+    def 'Cps Path query with all descendants including descendants that are list entries: #scenario.'() {
         when: 'a query is executed to get a data node by the given cps path'
             def result = objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, cpsPath, INCLUDE_ALL_DESCENDANTS)
         then: 'correct number of datanodes are returned'
@@ -339,4 +339,17 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
             'incomplete absolute 1 list entry'    | '/categories[@code="3"]'                || 0
     }
 
+    def 'Cps Path query should ignore special characters: #scenario.'() {
+        when: 'a query is executed to get data nodes by the given cps path'
+            def result = objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, cpsPath, INCLUDE_ALL_DESCENDANTS)
+        then: 'no data nodes are returned'
+            assert result.isEmpty()
+        where:
+            scenario                                      | cpsPath
+            'SQL LIKE wildcard in parent path list index' | '/bookstore/categories[@code="%"]/books'
+            'regex wildcard in parent path list index'    | '/bookstore/categories[@code="."]/books'
+            '[ and ] in parent path list index'           | '/bookstore/categories[@code="[1]"]/books'
+            '( and ) in parent path list index'           | '/bookstore/categories[@code="(1)"]/books'
+            '{ and } in parent path list index'           | '/bookstore/categories[@code="1{0,1}"]/books'
+    }
 }
