@@ -25,8 +25,8 @@ import spock.lang.Specification
 class EscapeUtilsSpec extends Specification {
 
     def 'Escape text for using in SQL LIKE operation'() {
-        expect:
-            EscapeUtils.escapeForSqlLike(unescapedText) == escapedText
+        expect: 'SQL LIKE special characters to be escaped with forward-slash'
+            assert EscapeUtils.escapeForSqlLike(unescapedText) == escapedText
         where:
             unescapedText                   || escapedText
             'Only %, _, and \\ are special' || 'Only \\%, \\_, and \\\\ are special'
