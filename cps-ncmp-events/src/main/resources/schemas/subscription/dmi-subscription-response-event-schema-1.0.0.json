@@ -57,13 +57,13 @@
             "subscriptionName",
             "dmiName",
             "subscriptionStatus"
-          ],
-          "additionalProperties": false
-        },
-        "required": [
-          "data"
-        ]
-      }
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "data"
+      ]
     }
   }
 }
