@@ -34,10 +34,10 @@ import org.springframework.kafka.support.serializer.JsonSerializer
 import spock.lang.Shared
 import spock.lang.Specification
 
-@SpringBootTest(classes = [KafkaProperties, KafkaTemplateConfig])
+@SpringBootTest(classes = [KafkaProperties, KafkaConfig])
 @EnableSharedInjection
 @EnableConfigurationProperties
-class KafkaTemplateConfigSpec extends Specification {
+class KafkaConfigSpec extends Specification {
 
     @Shared
     @Autowired
