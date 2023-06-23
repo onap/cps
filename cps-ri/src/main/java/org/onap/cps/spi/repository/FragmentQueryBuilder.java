@@ -25,6 +25,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
+import java.util.Set;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -46,6 +47,8 @@ public class FragmentQueryBuilder {
     private static final String REGEX_ABSOLUTE_PATH_PREFIX = "^";
     private static final String REGEX_DESCENDANT_PATH_PREFIX = "^.*\\/";
     private static final String REGEX_OPTIONAL_LIST_INDEX_POSTFIX = "(\\[@(?!.*\\[).*?])?$";
+    private static final Set<Character> REGEX_CHARACTERS_TO_BE_ESCAPED =
+            Set.of('\\', '[', ']', '{', '}', '(', ')', '|', '$', '*', '+', '.', '?', '^');
     private static final AnchorEntity ACROSS_ALL_ANCHORS = null;
 
     @PersistenceContext
@@ -118,17 +121,22 @@ public class FragmentQueryBuilder {
         final StringBuilder xpathRegexBuilder = new StringBuilder();
         if (CpsPathPrefixType.ABSOLUTE.equals(cpsPathQuery.getCpsPathPrefixType())) {
             xpathRegexBuilder.append(REGEX_ABSOLUTE_PATH_PREFIX);
-            xpathRegexBuilder.append(escapeXpath(cpsPathQuery.getXpathPrefix()));
+            addEscapedXpath(xpathRegexBuilder, cpsPathQuery.getXpathPrefix());
             return xpathRegexBuilder;
         }
         xpathRegexBuilder.append(REGEX_DESCENDANT_PATH_PREFIX);
-        xpathRegexBuilder.append(escapeXpath(cpsPathQuery.getDescendantName()));
+        addEscapedXpath(xpathRegexBuilder, cpsPathQuery.getDescendantName());
         return xpathRegexBuilder;
     }
 
-    private static String escapeXpath(final String xpath) {
-        // See https://jira.onap.org/browse/CPS-500 for limitations of this basic escape mechanism
-        return xpath.replace("[@", "\\[@");
+    private static void addEscapedXpath(final StringBuilder xpathRegexBuilder, final String xpath) {
+        for (int i = 0; i < xpath.length(); i++) {
+            final char character = xpath.charAt(i);
+            if (REGEX_CHARACTERS_TO_BE_ESCAPED.contains(character)) {
+                xpathRegexBuilder.append('\\');
+            }
+            xpathRegexBuilder.append(character);
+        }
     }
 
     private static Integer getTextValueAsInt(final CpsPathQuery cpsPathQuery) {
