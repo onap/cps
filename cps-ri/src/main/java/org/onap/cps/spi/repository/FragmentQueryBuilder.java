@@ -36,6 +36,7 @@ import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.FragmentEntity;
 import org.onap.cps.spi.exceptions.CpsPathException;
+import org.onap.cps.spi.utils.EscapeUtils;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.stereotype.Component;
 
@@ -43,9 +44,6 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 public class FragmentQueryBuilder {
-    private static final String REGEX_ABSOLUTE_PATH_PREFIX = "^";
-    private static final String REGEX_DESCENDANT_PATH_PREFIX = "^.*\\/";
-    private static final String REGEX_OPTIONAL_LIST_INDEX_POSTFIX = "(\\[@(?!.*\\[).*?])?$";
     private static final AnchorEntity ACROSS_ALL_ANCHORS = null;
 
     @PersistenceContext
@@ -76,12 +74,6 @@ public class FragmentQueryBuilder {
         return getQueryForDataspaceOrAnchorAndCpsPath(dataspaceEntity, ACROSS_ALL_ANCHORS, cpsPathQuery);
     }
 
-    private static String getXpathSqlRegex(final CpsPathQuery cpsPathQuery) {
-        final StringBuilder xpathRegexBuilder = getRegexStringBuilderWithPrefix(cpsPathQuery);
-        xpathRegexBuilder.append(REGEX_OPTIONAL_LIST_INDEX_POSTFIX);
-        return xpathRegexBuilder.toString();
-    }
-
     private Query getQueryForDataspaceOrAnchorAndCpsPath(final DataspaceEntity dataspaceEntity,
                                                          final AnchorEntity anchorEntity,
                                                          final CpsPathQuery cpsPathQuery) {
@@ -109,26 +101,15 @@ public class FragmentQueryBuilder {
     private static void addXpathSearch(final CpsPathQuery cpsPathQuery,
                                        final StringBuilder sqlStringBuilder,
                                        final Map<String, Object> queryParameters) {
-        sqlStringBuilder.append(" AND xpath ~ :xpathRegex");
-        final String xpathRegex = getXpathSqlRegex(cpsPathQuery);
-        queryParameters.put("xpathRegex", xpathRegex);
-    }
-
-    private static StringBuilder getRegexStringBuilderWithPrefix(final CpsPathQuery cpsPathQuery) {
-        final StringBuilder xpathRegexBuilder = new StringBuilder();
+        sqlStringBuilder.append(" AND (");
+        sqlStringBuilder.append("xpath LIKE :escapedXpath ");
+        sqlStringBuilder.append("OR (xpath LIKE :escapedXpath||'[@%]' AND xpath NOT LIKE :escapedXpath||'[@%]/%[@%]')");
+        sqlStringBuilder.append(")");
         if (CpsPathPrefixType.ABSOLUTE.equals(cpsPathQuery.getCpsPathPrefixType())) {
-            xpathRegexBuilder.append(REGEX_ABSOLUTE_PATH_PREFIX);
-            xpathRegexBuilder.append(escapeXpath(cpsPathQuery.getXpathPrefix()));
-            return xpathRegexBuilder;
+            queryParameters.put("escapedXpath", EscapeUtils.escapeForSqlLike(cpsPathQuery.getXpathPrefix()));
+        } else {
+            queryParameters.put("escapedXpath", "%/" + EscapeUtils.escapeForSqlLike(cpsPathQuery.getDescendantName()));
         }
-        xpathRegexBuilder.append(REGEX_DESCENDANT_PATH_PREFIX);
-        xpathRegexBuilder.append(escapeXpath(cpsPathQuery.getDescendantName()));
-        return xpathRegexBuilder;
-    }
-
-    private static String escapeXpath(final String xpath) {
-        // See https://jira.onap.org/browse/CPS-500 for limitations of this basic escape mechanism
-        return xpath.replace("[@", "\\[@");
     }
 
     private static Integer getTextValueAsInt(final CpsPathQuery cpsPathQuery) {
@@ -202,7 +183,8 @@ public class FragmentQueryBuilder {
         if (cpsPathQuery.hasContainsFunctionCondition()) {
             sqlStringBuilder.append(" AND attributes ->> :containsLeafName LIKE CONCAT('%',:containsValue,'%') ");
             queryParameters.put("containsLeafName", cpsPathQuery.getContainsFunctionConditionLeafName());
-            queryParameters.put("containsValue", cpsPathQuery.getContainsFunctionConditionValue());
+            queryParameters.put("containsValue",
+                    EscapeUtils.escapeForSqlLike(cpsPathQuery.getContainsFunctionConditionValue()));
         }
     }
 
