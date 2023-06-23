@@ -1,0 +1,150 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "urn:cps:org.onap.cps.ncmp.events:subscription-event-schema:1.0.0",
+  "$ref": "#/definitions/SubscriptionEvent",
+  "definitions": {
+    "SubscriptionEvent": {
+      "description": "The payload for subscription event.",
+      "javaType": "org.onap.cps.ncmp.events.subscription1_0_0.event.SubscriptionEvent",
+      "type": "object",
+      "properties": {
+        "data": {
+          "description": "The payload content for Cloud Events",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "version": {
+              "description": "The event type version",
+              "type": "string"
+            },
+            "eventType": {
+              "description": "The event type",
+              "type": "string",
+              "enum": [
+                "CREATE"
+              ]
+            },
+            "event": {
+              "$ref": "#/definitions/event"
+            }
+          },
+          "required": [
+            "version",
+            "event"
+          ]
+        }
+      }
+    },
+    "event": {
+      "description": "The event content.",
+      "type": "object",
+      "javaType": "InnerSubscriptionEvent",
+      "properties": {
+        "subscription": {
+          "description": "The subscription details.",
+          "type": "object",
+          "properties": {
+            "clientID": {
+              "description": "The clientID",
+              "type": "string"
+            },
+            "name": {
+              "description": "The name of the subscription",
+              "type": "string"
+            },
+            "isTagged": {
+              "description": "optional parameter, default is no",
+              "type": "boolean",
+              "default": false
+            }
+          },
+          "required": [
+            "clientID",
+            "name"
+          ]
+        },
+        "dataType": {
+          "description": "The datatype content.",
+          "type": "object",
+          "properties": {
+            "dataspace": {
+              "description": "The dataspace name",
+              "type": "string"
+            },
+            "dataCategory": {
+              "description": "The category type of the data",
+              "type": "string"
+            },
+            "dataProvider": {
+              "description": "The provider name of the data",
+              "type": "string"
+            },
+            "schemaName": {
+              "description": "The name of the schema",
+              "type": "string"
+            },
+            "schemaVersion": {
+              "description": "The version of the schema",
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "dataspace",
+          "dataCategory",
+          "dataProvider",
+          "schemaName",
+          "schemaVersion"
+        ],
+        "predicates": {
+          "description": "Additional values to be added into the subscription",
+          "type": "object",
+          "properties": {
+            "targets": {
+              "description": "CM Handles to be targeted by the subscription",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CmHandle"
+              }
+            },
+            "datastore": {
+              "description": "datastore which is to be used by the subscription",
+              "type": "string"
+            },
+            "xpath-filter": {
+              "description": "filter to be applied to the CM Handles through this event",
+              "type": "string"
+            }
+          },
+          "required": [
+            "datastore"
+          ]
+        }
+      }
+    },
+    "required": [
+      "subscription",
+      "dataType"
+    ],
+    "CmHandle": {
+      "description": "The CM handle information",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "additional-properties": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "additional-properties"
+      ],
+      "additionalProperties": false
+    }
+  }
+}
