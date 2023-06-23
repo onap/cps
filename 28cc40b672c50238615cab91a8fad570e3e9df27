@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8dadd097_d4124283",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-06-23T12:45:05Z",
+      "side": 1,
+      "message": "These tests fail without the new changes",
+      "range": {
+        "startLine": 348,
+        "startChar": 65,
+        "endLine": 350,
+        "endChar": 103
+      },
+      "revId": "28cc40b672c50238615cab91a8fad570e3e9df27",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
