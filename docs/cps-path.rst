@@ -1,6 +1,6 @@
 .. This work is licensed under a Creative Commons Attribution 4.0 International License.
 .. http://creativecommons.org/licenses/by/4.0
-.. Copyright (C) 2021-2022 Nordix Foundation
+.. Copyright (C) 2021-2023 Nordix Foundation
 .. Modifications Copyright (C) 2023 TechMahindra Ltd
 
 .. DO NOT CHANGE THIS LABEL FOR RELEASE NOTES - EVEN THOUGH IT GIVES A WARNING
@@ -178,7 +178,7 @@ General Notes
 
 - String values must be wrapped in quotation marks ``"`` (U+0022) or apostrophes ``'`` (U+0027).
 - String comparisons are case sensitive.
-- List key-fields containing ``\`` or ``@[`` will not be processed correctly when being referenced with such key values in absolute or descendant paths. This means such entries will be omitted from any query result. See `CPS-500 <https://jira.onap.org/browse/CPS-500>`_ Special Character Limitations of cpsPath Queries
+- List key-fields containing ``@[`` will not be processed correctly when being referenced with such key values in absolute or descendant paths. This means such entries will be omitted from any query result. See `CPS-500 <https://jira.onap.org/browse/CPS-500>`_ Special Character Limitations of cpsPath Queries
 
 Query Syntax
 ============
