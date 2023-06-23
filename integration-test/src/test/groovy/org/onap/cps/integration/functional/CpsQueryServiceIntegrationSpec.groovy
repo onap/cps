@@ -339,4 +339,16 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
             'incomplete absolute 1 list entry'    | '/categories[@code="3"]'                || 0
     }
 
+    def 'Cps Path query should ignore special characters: #scenario.'() {
+        when: 'a query is executed to get data nodes by the given cps path'
+            def result = objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, cpsPath, INCLUDE_ALL_DESCENDANTS)
+        then: 'no data nodes are returned'
+            assert result.isEmpty()
+        where:
+            scenario                                    | cpsPath
+            'SQL LIKE % wildcard in contains condition' | '/bookstore/categories[contains(@code, "%")]'
+            'SQL LIKE _ wildcard in contains condition' | '/bookstore/categories[contains(@code, "_")]'
+            'regex . wildcard in contains condition'    | '/bookstore/categories[contains(@code, ".")]'
+    }
+
 }

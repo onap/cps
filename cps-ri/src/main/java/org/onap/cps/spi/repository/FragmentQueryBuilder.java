@@ -202,7 +202,7 @@ public class FragmentQueryBuilder {
         if (cpsPathQuery.hasContainsFunctionCondition()) {
             sqlStringBuilder.append(" AND attributes ->> :containsLeafName LIKE CONCAT('%',:containsValue,'%') ");
             queryParameters.put("containsLeafName", cpsPathQuery.getContainsFunctionConditionLeafName());
-            queryParameters.put("containsValue", cpsPathQuery.getContainsFunctionConditionValue());
+            queryParameters.put("containsValue", escapeForSqlLike(cpsPathQuery.getContainsFunctionConditionValue()));
         }
     }
 
@@ -212,4 +212,7 @@ public class FragmentQueryBuilder {
         }
     }
 
+    private static String escapeForSqlLike(final String text) {
+        return text.replace("\\", "\\\\").replace("%", "\\%").replace("_", "\\_");
+    }
 }
