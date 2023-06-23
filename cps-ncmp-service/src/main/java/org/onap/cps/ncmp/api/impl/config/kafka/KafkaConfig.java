@@ -29,6 +29,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.kafka.annotation.EnableKafka;
+import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
@@ -45,7 +46,7 @@ import org.springframework.kafka.support.serializer.JsonSerializer;
 @Configuration
 @EnableKafka
 @RequiredArgsConstructor
-public class KafkaTemplateConfig<T> {
+public class KafkaConfig<T> {
 
     private final KafkaProperties kafkaProperties;
 
@@ -76,6 +77,32 @@ public class KafkaTemplateConfig<T> {
     }
 
     /**
+     * A legacy Kafka event template for executing high-level operations. The legacy producer factory ensure this.
+     *
+     * @return an instance of legacy Kafka template.
+     */
+    @Bean
+    @Primary
+    public KafkaTemplate<String, T> legacyEventKafkaTemplate() {
+        final KafkaTemplate<String, T> kafkaTemplate = new KafkaTemplate<>(legacyEventProducerFactory());
+        kafkaTemplate.setConsumerFactory(legacyEventConsumerFactory());
+        return kafkaTemplate;
+    }
+
+    /**
+     * A legacy kafka listener container factory.
+     *
+     * @return instance of Concurrent kafka listener factory
+     */
+    @Bean
+    public ConcurrentKafkaListenerContainerFactory<String, T> legacyEventConcurrentKafkaListenerContainerFactory() {
+        final ConcurrentKafkaListenerContainerFactory<String, T> containerFactory =
+                new ConcurrentKafkaListenerContainerFactory<>();
+        containerFactory.setConsumerFactory(legacyEventConsumerFactory());
+        return containerFactory;
+    }
+
+    /**
      * This sets the strategy for creating cloud Kafka producer instance from kafka properties defined into
      * application.yml with CloudEventSerializer.
      *
@@ -99,18 +126,6 @@ public class KafkaTemplateConfig<T> {
         return new DefaultKafkaConsumerFactory<>(consumerConfigProperties);
     }
 
-    /**
-     * A legacy Kafka event template for executing high-level operations. The legacy producer factory ensure this.
-     *
-     * @return an instance of legacy Kafka template.
-     */
-    @Bean
-    @Primary
-    public KafkaTemplate<String, T> legacyEventKafkaTemplate() {
-        final KafkaTemplate<String, T> kafkaTemplate = new KafkaTemplate<>(legacyEventProducerFactory());
-        kafkaTemplate.setConsumerFactory(legacyEventConsumerFactory());
-        return kafkaTemplate;
-    }
 
     /**
      * A cloud Kafka event template for executing high-level operations. The cloud producer factory ensure this.
@@ -122,6 +137,20 @@ public class KafkaTemplateConfig<T> {
         final KafkaTemplate<String, CloudEvent> kafkaTemplate = new KafkaTemplate<>(cloudEventProducerFactory());
         kafkaTemplate.setConsumerFactory(cloudEventConsumerFactory());
         return kafkaTemplate;
+    }
+
+    /**
+     * A CloudEvent kafka listener container factory.
+     *
+     * @return instance of Concurrent kafka listener factory
+     */
+    @Bean
+    public ConcurrentKafkaListenerContainerFactory<String, CloudEvent>
+                                        cloudEventConcurrentKafkaListenerContainerFactory() {
+        final ConcurrentKafkaListenerContainerFactory<String, CloudEvent> containerFactory =
+                new ConcurrentKafkaListenerContainerFactory<>();
+        containerFactory.setConsumerFactory(cloudEventConsumerFactory());
+        return containerFactory;
     }
 
 }
