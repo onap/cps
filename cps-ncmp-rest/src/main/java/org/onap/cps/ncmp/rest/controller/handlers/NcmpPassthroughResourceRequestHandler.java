@@ -22,7 +22,7 @@ package org.onap.cps.ncmp.rest.controller.handlers;
 
 import java.util.function.Supplier;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
-import org.onap.cps.ncmp.api.models.ResourceDataBatchRequest;
+import org.onap.cps.ncmp.api.models.DataOperationRequest;
 import org.onap.cps.ncmp.rest.executor.CpsNcmpTaskExecutor;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
@@ -59,11 +59,11 @@ public class NcmpPassthroughResourceRequestHandler extends NcmpDatastoreRequestH
 
     @Async
     @Override
-    public void sendResourceDataBatchRequestAsynchronously(final String topicParamInQuery,
-                                                           final ResourceDataBatchRequest
-                                                                  resourceDataBatchRequest,
-                                                           final String requestId) {
-        networkCmProxyDataService.requestResourceDataForCmHandleBatch(topicParamInQuery, resourceDataBatchRequest,
+    public void sendDataOperationRequestAsynchronously(final String topicParamInQuery,
+                                                       final DataOperationRequest
+                                                                   dataOperationRequest,
+                                                       final String requestId) {
+        networkCmProxyDataService.executeDataOperationForCmHandles(topicParamInQuery, dataOperationRequest,
                 requestId);
 
     }
