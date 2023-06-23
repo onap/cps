@@ -81,15 +81,15 @@ class DmiServiceUrlBuilderSpec extends Specification {
         given: 'the required path parameters'
             def batchRequestUriVariables = [dmiServiceName: 'some-service', dmiBasePath: 'testBase', cmHandleId: '123']
         and: 'the relevant query parameters'
-            def batchRequestQueryParams = objectUnderTest.getBatchRequestQueryParams('some topic', 'some id')
+            def batchRequestQueryParams = objectUnderTest.getDataOperationRequestQueryParams('some topic', 'some id')
         when: 'a URL is created'
-            def result = objectUnderTest.getBatchRequestUrl(batchRequestQueryParams, batchRequestUriVariables)
+            def result = objectUnderTest.getDataOperationRequestUrl(batchRequestQueryParams, batchRequestUriVariables)
         then: 'it is formed correctly'
             assert result.toString() == 'some-service/testBase/v1/data?topic=some topic&requestId=some id'
     }
 
     def 'Populate batch uri variables.'() {
         expect: 'Populate batch uri variables returns a map with given service name and base path from setup'
-            assert objectUnderTest.populateBatchUriVariables('some service')  == [ dmiServiceName: 'some service',dmiBasePath: 'dmi' ]
+            assert objectUnderTest.populateDataOperationRequestUriVariables('some service')  == [dmiServiceName: 'some service', dmiBasePath: 'dmi' ]
     }
 }

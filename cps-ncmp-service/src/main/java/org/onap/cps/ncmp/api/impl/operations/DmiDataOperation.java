@@ -33,7 +33,7 @@ import org.onap.cps.ncmp.api.models.DataOperationDefinition;
 @Getter
 @Builder
 @JsonPropertyOrder({"operation", "operationId", "datastore", "options", "resourceIdentifier", "cmHandles"})
-public class DmiBatchOperation {
+public class DmiDataOperation {
 
     @JsonProperty("operation")
     private OperationType operationType;
@@ -50,10 +50,10 @@ public class DmiBatchOperation {
      * @param dataOperationDefinition  definition of incoming of dataOperation request
      * @return mapped dmi operation details
      */
-    public static DmiBatchOperation buildDmiBatchRequestBodyWithoutCmHandles(
+    public static DmiDataOperation buildDmiDataOperationRequestBodyWithoutCmHandles(
             final DataOperationDefinition dataOperationDefinition) {
 
-        return DmiBatchOperation.builder()
+        return DmiDataOperation.builder()
                 .operationType(OperationType.fromOperationName(dataOperationDefinition.getOperation()))
                 .operationId(dataOperationDefinition.getOperationId())
                 .datastore(DatastoreType.fromDatastoreName(dataOperationDefinition.getDatastore()).getDatastoreName())

@@ -94,7 +94,7 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             def expectedDmiBatchResourceDataUrl = "ncmp/v1/data/topic=my-topic-name"
             def expectedBatchRequestAsJson = '[{"operation":"read","operationId":"operational-14","datastore":"ncmp-datastore:passthrough-operational","options":"some option","resourceIdentifier":"some resource identifier","cmHandles":[{"id":"some-cm-handle","cmHandleProperties":{"prop1":"val1"}}]}]'
             mockDmiRestClient.postOperationWithJsonData(expectedDmiBatchResourceDataUrl, _, READ.operationName) >> responseFromDmi
-            dmiServiceUrlBuilder.getBatchRequestUrl(_, _) >> expectedDmiBatchResourceDataUrl
+            dmiServiceUrlBuilder.getDataOperationRequestUrl(_, _) >> expectedDmiBatchResourceDataUrl
         when: 'get resource data for group of cm handles are invoked'
             objectUnderTest.requestResourceDataFromDmi('my-topic-name', dataOperationRequest, 'requestId')
         then: 'wait a little to allow execution of service method by task executor (on separate thread)'
