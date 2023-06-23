@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "85ca1cf3_5aa0f314",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventForwarder.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-06-23T16:53:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "34d997c3_b19725e5",
+      "range": {
+        "startLine": 103,
+        "startChar": 14,
+        "endLine": 103,
+        "endChar": 23
+      },
+      "revId": "bd35017ff4efd778e034e68dabb5927ef33e1eff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a7b3ca78_8ffa0bed",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventForwarder.java",
         "patchSetId": 12
@@ -45,6 +69,30 @@
       "revId": "bd35017ff4efd778e034e68dabb5927ef33e1eff",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a1a79e95_bae6543a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventForwarder.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-06-23T16:53:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a7b3ca78_8ffa0bed",
+      "range": {
+        "startLine": 173,
+        "startChar": 28,
+        "endLine": 173,
+        "endChar": 29
+      },
+      "revId": "bd35017ff4efd778e034e68dabb5927ef33e1eff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "0f2481e3_d1dd1db8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventResponseConsumer.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-06-23T16:53:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "42181cff_1c2ee5a3",
+      "range": {
+        "startLine": 86,
+        "startChar": 19,
+        "endLine": 86,
+        "endChar": 41
+      },
+      "revId": "bd35017ff4efd778e034e68dabb5927ef33e1eff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "127897a4_e08df295",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventResponseConsumer.java",
         "patchSetId": 12
@@ -91,6 +163,30 @@
       "revId": "bd35017ff4efd778e034e68dabb5927ef33e1eff",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2c51dd23_0753b71c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventResponseConsumer.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-06-23T16:53:15Z",
+      "side": 1,
+      "message": "This block is responsible to respond with no delay after a response (sent by dmi-plugin) is being consumed. Thus, the ACCEPTED and REJECTED Cm Handles should not cause a delay. For example, if a subscription contains cmhandle1, cmhandle2 and cmhandle3. Let say cm handle 1 and 2 accepted and cm handle 3 is rejected. Then, by this function, the app won\u0027t wait a response after 30 seconds.",
+      "parentUuid": "127897a4_e08df295",
+      "range": {
+        "startLine": 98,
+        "startChar": 16,
+        "endLine": 98,
+        "endChar": 84
+      },
+      "revId": "bd35017ff4efd778e034e68dabb5927ef33e1eff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "d4673627_52a853c2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventResponseOutcome.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-06-23T16:53:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7677b32a_552fdc60",
+      "range": {
+        "startLine": 85,
+        "startChar": 20,
+        "endLine": 85,
+        "endChar": 88
+      },
+      "revId": "bd35017ff4efd778e034e68dabb5927ef33e1eff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3f5548c0_49760d18",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/avc/SubscriptionEventMapperSpec.groovy",
         "patchSetId": 12
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "e4744625_60b9a47d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/avc/SubscriptionEventMapperSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-06-23T16:53:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f5548c0_49760d18",
+      "range": {
+        "startLine": 63,
+        "startChar": 77,
+        "endLine": 63,
+        "endChar": 86
+      },
+      "revId": "bd35017ff4efd778e034e68dabb5927ef33e1eff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "495385b0_a36dbfcc",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/avc/SubscriptionEventMapperSpec.groovy",
         "patchSetId": 12
@@ -151,6 +295,30 @@
       "writtenOn": "2023-06-23T11:54:51Z",
       "side": 1,
       "message": "if you are trying to test the mappers then it is not required.\nthey are anyways excluded from the coverage report.",
+      "range": {
+        "startLine": 80,
+        "startChar": 4,
+        "endLine": 113,
+        "endChar": 5
+      },
+      "revId": "bd35017ff4efd778e034e68dabb5927ef33e1eff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2989ccb4_6aa9fccd",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/avc/SubscriptionEventMapperSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-06-23T16:53:15Z",
+      "side": 1,
+      "message": "I can do that. However, I am able to see html output of Jacoco report on my local machine. Also, it shows me missing branches for these test functions. Shall I still remove these tests or no?",
+      "parentUuid": "495385b0_a36dbfcc",
       "range": {
         "startLine": 80,
         "startChar": 4,
@@ -186,6 +354,30 @@
     },
     {
       "key": {
+        "uuid": "41185372_40d8b8da",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/avc/SubscriptionEventResponseMapperSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-06-23T16:53:15Z",
+      "side": 1,
+      "message": "Please find my comment on the previous.",
+      "parentUuid": "b1f7bd22_7b7bf4d7",
+      "range": {
+        "startLine": 62,
+        "startChar": 4,
+        "endLine": 79,
+        "endChar": 0
+      },
+      "revId": "bd35017ff4efd778e034e68dabb5927ef33e1eff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6f067dea_1abf3274",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventForwarderSpec.groovy",
         "patchSetId": 12
@@ -206,6 +398,30 @@
       "revId": "bd35017ff4efd778e034e68dabb5927ef33e1eff",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f8c27916_a82144a6",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventForwarderSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-06-23T16:53:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6f067dea_1abf3274",
+      "range": {
+        "startLine": 150,
+        "startChar": 24,
+        "endLine": 150,
+        "endChar": 43
+      },
+      "revId": "bd35017ff4efd778e034e68dabb5927ef33e1eff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -232,6 +448,30 @@
     },
     {
       "key": {
+        "uuid": "0548dc21_c336e51e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventResponseOutcomeSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-06-23T16:53:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "590477d2_93d04977",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 121
+      },
+      "revId": "bd35017ff4efd778e034e68dabb5927ef33e1eff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8bdfbd0c_6b28cbaa",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionOutcomeMapperSpec.groovy",
         "patchSetId": 12
@@ -243,6 +483,30 @@
       "writtenOn": "2023-06-23T11:54:51Z",
       "side": 1,
       "message": "I think we can test the happy scenarios for the mapper.\nBut testing every mapper for null is not a wise choice as per me.\nWe can trust the MapStruct library 😊",
+      "range": {
+        "startLine": 61,
+        "startChar": 4,
+        "endLine": 81,
+        "endChar": 5
+      },
+      "revId": "bd35017ff4efd778e034e68dabb5927ef33e1eff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b2ee2bb_8601308c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionOutcomeMapperSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-06-23T16:53:15Z",
+      "side": 1,
+      "message": "Yea, why not. I can remove those tests. However, I suggest discussing this topic in our daily, and getting team feedback could be another way forward...",
+      "parentUuid": "8bdfbd0c_6b28cbaa",
       "range": {
         "startLine": 61,
         "startChar": 4,
