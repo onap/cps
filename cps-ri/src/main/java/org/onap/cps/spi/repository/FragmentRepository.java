@@ -30,6 +30,7 @@ import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.FragmentEntity;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
+import org.onap.cps.spi.utils.EscapeUtils;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -67,8 +68,6 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>,
         return findByDataspaceIdAndXpathIn(dataspaceEntity.getId(), xpaths.toArray(new String[0]));
     }
 
-    boolean existsByAnchorId(long anchorId);
-
     @Query(value = "SELECT * FROM fragment WHERE anchor_id = :anchorId LIMIT 1", nativeQuery = true)
     Optional<FragmentEntity> findOneByAnchorId(@Param("anchorId") long anchorId);
 
@@ -95,8 +94,8 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>,
                                          @Param("xpathPatterns") String[] xpathPatterns);
 
     default void deleteListsByAnchorIdAndXpaths(long anchorId, Collection<String> xpaths) {
-        final String[] listXpathPatterns = xpaths.stream().map(xpath -> xpath + "[%").toArray(String[]::new);
-        deleteByAnchorIdAndXpathLikeAny(anchorId, listXpathPatterns);
+        deleteByAnchorIdAndXpathLikeAny(anchorId,
+                xpaths.stream().map(xpath -> EscapeUtils.escapeForSqlLike(xpath) + "[@%").toArray(String[]::new));
     }
 
     @Query(value = "SELECT xpath FROM fragment WHERE anchor_id = :anchorId AND xpath = ANY (:xpaths)",
