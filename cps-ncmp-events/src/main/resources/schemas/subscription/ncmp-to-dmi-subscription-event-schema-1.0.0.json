@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "urn:cps:org.onap.cps.ncmp.events:subscription-event-schema:1.0.0",
+  "$ref": "#/definitions/SubscriptionEvent",
+  "definitions": {
+    "SubscriptionEvent": {
+      "description": "The payload for subscription event to be forwarded to dmi plugins.",
+      "javaType": "org.onap.cps.ncmp.events.avcsubscription1_0_0.ncmp_to_dmi.SubscriptionEvent",
+      "type": "object",
+      "properties": {
+        "data": {
+          "description": "The payload content for Cloud Events",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "subscription": {
+              "description": "The subscription details.",
+              "type": "object",
+              "properties": {
+                "clientID": {
+                  "description": "The clientID",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "The name of the subscription",
+                  "type": "string"
+                },
+                "isTagged": {
+                  "description": "optional parameter, default is no",
+                  "type": "boolean",
+                  "default": false
+                }
+              },
+              "required": [
+                "clientID",
+                "name"
+              ]
+            },
+            "dataType": {
+              "description": "The datatype content.",
+              "type": "object",
+              "properties": {
+                "dataspace": {
+                  "description": "The data space name",
+                  "type": "string"
+                },
+                "dataCategory": {
+                  "description": "The category type of the data",
+                  "type": "string"
+                },
+                "dataProvider": {
+                  "description": "The provider name of the data",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "dataspace",
+                "dataCategory",
+                "dataProvider"
+              ]
+            },
+            "predicates": {
+              "description": "Additional values to be added into the subscription",
+              "type": "object",
+              "properties": {
+                "targets": {
+                  "description": "CM Handles to be targeted by the subscription",
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/CmHandle"
+                  }
+                },
+                "datastore": {
+                  "description": "datastore which is to be used by the subscription",
+                  "type": "string"
+                },
+                "datastore-xpath-filter": {
+                  "description": "filter to be applied to the CM Handles through this event",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "datastore"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "CmHandle": {
+      "description": "The CM handle information",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "additional-properties": {
+          "existingJavaType": "java.util.Map<String,String>"
+        }
+      },
+      "required": [
+        "id",
+        "additional-properties"
+      ],
+      "additionalProperties": false
+    }
+  }
+}
