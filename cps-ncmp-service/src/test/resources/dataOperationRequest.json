@@ -9,7 +9,8 @@
       "targetIds": [
         "ch3-dmi2",
         "unknown-cm-handle",
-        "ch6-dmi1"
+        "ch6-dmi1",
+        "non-ready-cm handle"
       ]
     },
     {
@@ -19,7 +20,8 @@
       "targetIds": [
         "ch1-dmi1",
         "ch7-dmi2",
-        "ch2-dmi1"
+        "ch2-dmi1",
+        "non-ready-cm handle"
       ]
     },
     {

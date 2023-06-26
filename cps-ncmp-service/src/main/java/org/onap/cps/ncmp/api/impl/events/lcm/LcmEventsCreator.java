@@ -108,7 +108,7 @@ public class LcmEventsCreator {
         final LcmEvent lcmEvent = new LcmEvent();
         lcmEvent.setEventId(UUID.randomUUID().toString());
         lcmEvent.setEventCorrelationId(eventCorrelationId);
-        lcmEvent.setEventTime(EventDateTimeFormatter.getCurrentDateTime());
+        lcmEvent.setEventTime(EventDateTimeFormatter.getCurrentIsoFormattedDateTime());
         lcmEvent.setEventSource("org.onap.ncmp");
         lcmEvent.setEventType(lcmEventType.getEventType());
         lcmEvent.setEventSchema("org.onap.ncmp:cmhandle-lcm-event");

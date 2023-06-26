@@ -18,22 +18,45 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.utils
+package org.onap.cps.ncmp.api.impl.utils.data.operation
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import io.cloudevents.CloudEvent
+import io.cloudevents.core.CloudEventUtils
+import io.cloudevents.jackson.PojoCloudEventDataMapper
+import io.cloudevents.kafka.CloudEventDeserializer
+import io.cloudevents.kafka.impl.KafkaHeaders
+import org.apache.kafka.clients.consumer.KafkaConsumer
+import org.onap.cps.ncmp.api.impl.events.EventsPublisher
+import org.onap.cps.ncmp.api.impl.utils.context.CpsApplicationContext
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.inventory.CmHandleState
 import org.onap.cps.ncmp.api.inventory.CompositeStateBuilder
+import org.onap.cps.ncmp.api.kafka.MessagingBaseSpec
 import org.onap.cps.ncmp.api.models.DataOperationRequest
+import org.onap.cps.ncmp.events.async1_0_0.DataOperationEvent
 import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
-import spock.lang.Specification
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.test.context.ContextConfiguration
+import java.time.Duration
 
-class DataOperationRequestUtilsSpec extends Specification {
+@ContextConfiguration(classes = [EventsPublisher, CpsApplicationContext, ObjectMapper])
+class ResourceDataOperationRequestUtilsSpec extends MessagingBaseSpec {
+
+    def cloudEventKafkaConsumer = new KafkaConsumer<>(eventConsumerConfigProperties('test', CloudEventDeserializer))
+    def static clientTopic = 'my-topic-name'
+    def static dataOperationType = 'org.onap.cps.ncmp.events.async1_0_0.DataOperationEvent'
 
     @SpringBean
     JsonObjectMapper jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
+
+    @SpringBean
+    EventsPublisher eventPublisher = new EventsPublisher<CloudEvent>(legacyEventKafkaTemplate, cloudEventKafkaTemplate)
+
+    @Autowired
+    ObjectMapper objectMapper
 
     def 'Process per data operation request with #serviceName.'() {
         given: 'data operation request with 3 operations'
@@ -42,7 +65,7 @@ class DataOperationRequestUtilsSpec extends Specification {
         and: '4 known cm handles: ch1-dmi1, ch2-dmi1, ch3-dmi2, ch4-dmi2'
             def yangModelCmHandles = getYangModelCmHandles()
         when: 'data operation request is processed'
-            def operationsOutPerDmiServiceName = ResourceDataOperationRequestUtils.processPerDefinitionInDataOperationsRequest(dataOperationRequest, yangModelCmHandles)
+            def operationsOutPerDmiServiceName = ResourceDataOperationRequestUtils.processPerDefinitionInDataOperationsRequest(clientTopic,'request-id', dataOperationRequest, yangModelCmHandles)
         and: 'converted to a json node'
             def dmiDataOperationRequestBody = jsonObjectMapper.asJsonString(operationsOutPerDmiServiceName.get(serviceName))
             def dmiDataOperationRequestBodyAsJsonNode = jsonObjectMapper.convertToJsonNode(dmiDataOperationRequestBody).get(operationIndex)
@@ -65,9 +88,37 @@ class DataOperationRequestUtilsSpec extends Specification {
             'dmi2'      | 2              || 'operational-15'    | 'ncmp-datastore:passthrough-operational' | ['ch4-dmi2']
     }
 
+    def 'Process per data operation request with non-ready, non-existing cm handle and publish event to client specified topic'() {
+        given: 'consumer subscribing to client topic'
+            cloudEventKafkaConsumer.subscribe([clientTopic])
+        and: 'data operation request having non-ready and non-existing cm handle ids'
+            def dataOperationRequestJsonData = TestUtils.getResourceFileContent('dataOperationRequest.json')
+            def dataOperationRequest = jsonObjectMapper.convertJsonString(dataOperationRequestJsonData, DataOperationRequest.class)
+        when: 'data operation request is processed'
+            ResourceDataOperationRequestUtils.processPerDefinitionInDataOperationsRequest(clientTopic, 'request-id', dataOperationRequest, yangModelCmHandles)
+        and: 'subscribed client specified topic is polled and first record is selected'
+            def consumerRecordOut = cloudEventKafkaConsumer.poll(Duration.ofMillis(1500))[0]
+        then: 'verify cloud compliant headers'
+            def consumerRecordOutHeaders = consumerRecordOut.headers()
+            assert KafkaHeaders.getParsedKafkaHeader(consumerRecordOutHeaders, 'ce_id') != null
+            assert KafkaHeaders.getParsedKafkaHeader(consumerRecordOutHeaders, 'ce_type') == dataOperationType
+        and: 'verify that extension is included into header'
+            assert KafkaHeaders.getParsedKafkaHeader(consumerRecordOutHeaders, 'ce_correlationid') == 'request-id'
+            assert KafkaHeaders.getParsedKafkaHeader(consumerRecordOutHeaders, 'ce_destination') == clientTopic
+        and: 'map consumer record to expected event type'
+            def dataOperationResponseEvent = CloudEventUtils.mapData(consumerRecordOut.value(),
+                    PojoCloudEventDataMapper.from(objectMapper, DataOperationEvent.class)).getValue()
+        and: 'data operation response event response size is 3'
+            dataOperationResponseEvent.data.responses.size() == 3
+        and: 'verify published response data as json string'
+            jsonObjectMapper.asJsonString(dataOperationResponseEvent.data.responses)
+                    == '[{"operationId":"operational-14","ids":["unknown-cm-handle"],"statusCode":"100","statusMessage":"cm handle id(s) not found"},{"operationId":"operational-14","ids":["non-ready-cm handle"],"statusCode":"101","statusMessage":"cm handle(s) not ready"},{"operationId":"running-12","ids":["non-ready-cm handle"],"statusCode":"101","statusMessage":"cm handle(s) not ready"}]'
+    }
+
     static def getYangModelCmHandles() {
         def dmiProperties = [new YangModelCmHandle.Property('prop', 'some DMI property')]
         def readyState = new CompositeStateBuilder().withCmHandleState(CmHandleState.READY).withLastUpdatedTimeNow().build()
+        def advisedState = new CompositeStateBuilder().withCmHandleState(CmHandleState.ADVISED).withLastUpdatedTimeNow().build()
         return [new YangModelCmHandle(id: 'ch1-dmi1', dmiServiceName: 'dmi1', dmiProperties: dmiProperties, compositeState: readyState),
                 new YangModelCmHandle(id: 'ch2-dmi1', dmiServiceName: 'dmi1', dmiProperties: dmiProperties, compositeState: readyState),
                 new YangModelCmHandle(id: 'ch6-dmi1', dmiServiceName: 'dmi1', dmiProperties: dmiProperties, compositeState: readyState),
@@ -75,6 +126,7 @@ class DataOperationRequestUtilsSpec extends Specification {
                 new YangModelCmHandle(id: 'ch3-dmi2', dmiServiceName: 'dmi2', dmiProperties: dmiProperties, compositeState: readyState),
                 new YangModelCmHandle(id: 'ch4-dmi2', dmiServiceName: 'dmi2', dmiProperties: dmiProperties, compositeState: readyState),
                 new YangModelCmHandle(id: 'ch7-dmi2', dmiServiceName: 'dmi2', dmiProperties: dmiProperties, compositeState: readyState),
+                new YangModelCmHandle(id: 'non-ready-cm handle', dmiServiceName: 'dmi2', dmiProperties: dmiProperties, compositeState: advisedState)
         ]
     }
 }
