@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f3293ed8_393c5602",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/data/operation/DataOperationResourceRequestUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-06-26T15:48:58Z",
+      "side": 1,
+      "message": "NB: Data",
+      "range": {
+        "startLine": 54,
+        "startChar": 28,
+        "endLine": 54,
+        "endChar": 33
+      },
+      "revId": "dd4d1abb039119cfd1c8e8224c5a2f81868be627",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "316206bc_dfcc5a29",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/data/operation/DataOperationResourceRequestUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-06-26T15:48:58Z",
+      "side": 1,
+      "message": "exactly matching the code in the class \u0027ResourceDataOperationRequestUtils\u0027. I see some changes happened on the method \u0027processPerDefinitionInDataOperationsRequest\u0027and added new methods as well to this class. \n\nIn case if updating the same existing class with these changes and moving to a different package structure, then we may need to remove the old one",
+      "range": {
+        "startLine": 123,
+        "startChar": 4,
+        "endLine": 157,
+        "endChar": 5
+      },
+      "revId": "dd4d1abb039119cfd1c8e8224c5a2f81868be627",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "53b6233e_746c5c30",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/avc/SubscriptionEventDataOperationResponseMapperSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-06-26T15:48:58Z",
+      "side": 1,
+      "message": "NB: Adding these test cases to cover some other code not related to DataOperation? yes, Pushing these changes in a seperate commit is best then reviewers can mainly focus on the Data Operation related stuff.",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 5
+      },
+      "revId": "dd4d1abb039119cfd1c8e8224c5a2f81868be627",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1b24d28a_4ab7732f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventDataOperationResponseConsumerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-06-26T15:48:58Z",
+      "side": 1,
+      "message": "NB: Adding these test cases to cover some other code not related to DataOperation? yes, Pushing these changes in a seperate commit is best then reviewers can mainly focus on the Data Operation related stuff.",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 106,
+        "endChar": 0
+      },
+      "revId": "dd4d1abb039119cfd1c8e8224c5a2f81868be627",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8625ad3e_b292dda9",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventDataOperationResponseOutcomeSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-06-26T15:48:58Z",
+      "side": 1,
+      "message": "NB: Adding these test cases to cover some other code not related to DataOperation? yes, Pushing these changes in a seperate commit is best then reviewers can mainly focus on the Data Operation related stuff.",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 1
+      },
+      "revId": "dd4d1abb039119cfd1c8e8224c5a2f81868be627",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ece80ff7_2f0751da",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/context/CpsApplicationContextSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-06-26T15:48:58Z",
+      "side": 1,
+      "message": "I think we can remove this class right as it doesn\u0027t contain any tests?",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 1
+      },
+      "revId": "dd4d1abb039119cfd1c8e8224c5a2f81868be627",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0565cbd2_87427f4c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/data/operation/DataOperationResourceRequestUtilsSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-06-26T15:48:58Z",
+      "side": 1,
+      "message": "Same code there in the file \u0027DataOperationRequestUtilsSpec\u0027. Is this testing/covering a different one?",
+      "range": {
+        "startLine": 45,
+        "startChar": 1,
+        "endLine": 86,
+        "endChar": 5
+      },
+      "revId": "dd4d1abb039119cfd1c8e8224c5a2f81868be627",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
