@@ -21,10 +21,11 @@
 package org.onap.cps.ncmp.api.kafka
 
 import io.cloudevents.CloudEvent
+import io.cloudevents.kafka.CloudEventDeserializer
 import io.cloudevents.kafka.CloudEventSerializer
+import org.apache.kafka.clients.consumer.KafkaConsumer
 import org.apache.kafka.common.serialization.StringDeserializer
 import org.apache.kafka.common.serialization.StringSerializer
-import org.spockframework.spring.SpringBean
 import org.springframework.kafka.core.DefaultKafkaProducerFactory
 import org.springframework.kafka.core.KafkaTemplate
 import org.springframework.kafka.support.serializer.JsonSerializer
@@ -34,7 +35,7 @@ import org.testcontainers.containers.KafkaContainer
 import org.testcontainers.utility.DockerImageName
 import spock.lang.Specification
 
-class MessagingBaseSpec extends Specification {
+class MessagingBaseSpec<T> extends Specification {
 
     def setupSpec() {
         kafkaTestContainer.start()
@@ -44,13 +45,21 @@ class MessagingBaseSpec extends Specification {
         kafkaTestContainer.stop()
     }
 
+    def cleanup() {
+        cloudEventDataOperationKafkaConsumer.close()
+        legacyDMIAsyncEventKafkaConsumer.close()
+    }
+
     static kafkaTestContainer = new KafkaContainer(DockerImageName.parse('registry.nordix.org/onaptest/confluentinc/cp-kafka:6.2.1').asCompatibleSubstituteFor('confluentinc/cp-kafka'))
 
-    @SpringBean
-    KafkaTemplate legacyEventKafkaTemplate = new KafkaTemplate<>(new DefaultKafkaProducerFactory<Integer, String>(eventProducerConfigProperties(JsonSerializer)))
+    def legacyEventKafkaTemplate = new KafkaTemplate<>(new DefaultKafkaProducerFactory<String, T>(eventProducerConfigProperties(JsonSerializer)))
 
-    @SpringBean
-    KafkaTemplate cloudEventKafkaTemplate = new KafkaTemplate<>(new DefaultKafkaProducerFactory<String, CloudEvent>(eventProducerConfigProperties(CloudEventSerializer)))
+    def cloudEventKafkaTemplate = new KafkaTemplate<>(new DefaultKafkaProducerFactory<String, CloudEvent>(eventProducerConfigProperties(CloudEventSerializer)))
+
+    def cloudEventDataOperationKafkaConsumer = new KafkaConsumer<>(eventConsumerConfigProperties('ncmp-group', CloudEventDeserializer.class))
+
+    def legacyDMIAsyncEventKafkaConsumer = new KafkaConsumer<>(eventConsumerConfigProperties('legacy-ncmp-group', StringDeserializer.class))
+
 
     @DynamicPropertySource
     static void registerKafkaProperties(DynamicPropertyRegistry dynamicPropertyRegistry) {

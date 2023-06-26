@@ -44,7 +44,7 @@ import org.springframework.test.annotation.DirtiesContext
 import org.testcontainers.spock.Testcontainers
 import java.time.Duration
 
-@SpringBootTest(classes = [EventsPublisher, NcmpAsyncDataOperationEventConsumer, DataOperationRecordFilterStrategy,JsonObjectMapper, ObjectMapper])
+@SpringBootTest(classes = [EventsPublisher, NcmpAsyncDataOperationEventConsumer, RecordFilterStrategies,JsonObjectMapper, ObjectMapper])
 @Testcontainers
 @DirtiesContext
 class NcmpAsyncDataOperationEventConsumerSpec extends MessagingBaseSpec {
