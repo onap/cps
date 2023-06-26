@@ -92,7 +92,7 @@ class NcmpAsyncDataOperationEventConsumerSpec extends MessagingBaseSpec {
             response.operationId == 'some-operation-id'
             response.statusCode == 'any-success-status-code'
             response.statusMessage == 'Successfully applied changes'
-            response.responseContent as String == '[some-key:some-value]'
+            response.result as String == '[some-key:some-value]'
     }
 
     def 'Filter an event with type #eventType'() {
