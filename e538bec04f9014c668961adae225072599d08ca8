@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eca01d93_5ec05f64",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-26T09:35:36Z",
+      "side": 1,
+      "message": "HI Halil I like the commit message details but just a quick not on the slogan, you need to give a bit more context because other teams are looking at these commits (just the slogans) too that don\u0027t know what you working on\n\n\u0027Streamline outcome response for subscription creation\u0027\n\nor if you have a few commit for the same story you can do it more structured (in future) e.g.\n\n\u0027subscription creation: Streamline outcome response\u0027\n\u0027subscription creation: something else\u0027\n\netc.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 27
+      },
+      "revId": "e538bec04f9014c668961adae225072599d08ca8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
