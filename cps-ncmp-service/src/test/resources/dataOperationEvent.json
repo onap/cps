@@ -8,7 +8,7 @@
         ],
         "statusCode": "any-success-status-code",
         "statusMessage": "Successfully applied changes",
-        "responseContent": {
+        "result": {
           "some-key": "some-value"
         }
       }

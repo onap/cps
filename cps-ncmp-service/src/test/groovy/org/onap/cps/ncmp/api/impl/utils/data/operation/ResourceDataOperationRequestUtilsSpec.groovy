@@ -18,9 +18,11 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.utils
+package org.onap.cps.ncmp.api.impl.utils.data.operation
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import org.onap.cps.ncmp.api.impl.events.EventsPublisher
+import org.onap.cps.ncmp.api.impl.utils.context.CpsApplicationContext
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.inventory.CmHandleState
 import org.onap.cps.ncmp.api.inventory.CompositeStateBuilder
@@ -28,12 +30,17 @@ import org.onap.cps.ncmp.api.models.DataOperationRequest
 import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
+import org.springframework.test.context.ContextConfiguration
 import spock.lang.Specification
 
-class DataOperationRequestUtilsSpec extends Specification {
+@ContextConfiguration(classes = [EventsPublisher, CpsApplicationContext])
+class ResourceDataOperationRequestUtilsSpec extends Specification {
 
     @SpringBean
     JsonObjectMapper jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
+
+    @SpringBean
+    EventsPublisher eventsPublisher = Stub()
 
     def 'Process per data operation request with #serviceName.'() {
         given: 'data operation request with 3 operations'
@@ -42,7 +49,7 @@ class DataOperationRequestUtilsSpec extends Specification {
         and: '4 known cm handles: ch1-dmi1, ch2-dmi1, ch3-dmi2, ch4-dmi2'
             def yangModelCmHandles = getYangModelCmHandles()
         when: 'data operation request is processed'
-            def operationsOutPerDmiServiceName = ResourceDataOperationRequestUtils.processPerDefinitionInDataOperationsRequest(dataOperationRequest, yangModelCmHandles)
+            def operationsOutPerDmiServiceName = ResourceDataOperationRequestUtils.processPerDefinitionInDataOperationsRequest('client-topic','request-id', dataOperationRequest, yangModelCmHandles)
         and: 'converted to a json node'
             def dmiDataOperationRequestBody = jsonObjectMapper.asJsonString(operationsOutPerDmiServiceName.get(serviceName))
             def dmiDataOperationRequestBodyAsJsonNode = jsonObjectMapper.convertToJsonNode(dmiDataOperationRequestBody).get(operationIndex)
