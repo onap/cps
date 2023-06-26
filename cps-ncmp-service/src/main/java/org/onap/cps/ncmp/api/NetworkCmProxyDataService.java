@@ -86,11 +86,10 @@ public interface NetworkCmProxyDataService {
      * Execute (async) data operation for group of cm handles using dmi.
      *
      * @param topicParamInQuery        topic name for (triggering) async responses
-     * @param dataOperationRequest     cm handle identifiers
+     * @param dataOperationRequest     contains a list of operation definitions(multiple operations)
      */
     void executeDataOperationForCmHandles(String topicParamInQuery,
-                                          DataOperationRequest
-                                                            dataOperationRequest,
+                                          DataOperationRequest dataOperationRequest,
                                           String requestId);
 
 

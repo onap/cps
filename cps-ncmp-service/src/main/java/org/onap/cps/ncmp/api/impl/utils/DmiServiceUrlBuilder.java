@@ -53,17 +53,17 @@ public class DmiServiceUrlBuilder {
     }
 
     /**
-     * This method builds batch request url.
+     * This method builds data operation request url.
      *
-     * @param batchRequestQueryParams  query param map as key, value pair
-     * @param batchRequestUriVariables uri param map as key (placeholder), value pair
-     * @return {@code String} batch request url as string
+     * @param dataoperationRequestQueryParams  query param map as key, value pair
+     * @param dataoperationRequestUriVariables uri param map as key (placeholder), value pair
+     * @return {@code String} data operation request url as string
      */
-    public String getBatchRequestUrl(final MultiValueMap<String, String> batchRequestQueryParams,
-                                     final Map<String, Object> batchRequestUriVariables) {
-        return getBatchResourceDataBasePathUriBuilder()
-                .queryParams(batchRequestQueryParams)
-                .uriVariables(batchRequestUriVariables)
+    public String getDataOperationRequestUrl(final MultiValueMap<String, String> dataoperationRequestQueryParams,
+                                             final Map<String, Object> dataoperationRequestUriVariables) {
+        return getDataOperationResourceDataBasePathUriBuilder()
+                .queryParams(dataoperationRequestQueryParams)
+                .uriVariables(dataoperationRequestUriVariables)
                 .buildAndExpand().toUriString();
     }
 
@@ -82,11 +82,11 @@ public class DmiServiceUrlBuilder {
     }
 
     /**
-     * This method creates the dmi service url builder object with path variables for batch of cm handles.
+     * This method creates the dmi service url builder object with path variables for data operation request.
      *
      * @return {@code UriComponentsBuilder} dmi service url builder object
      */
-    public UriComponentsBuilder getBatchResourceDataBasePathUriBuilder() {
+    public UriComponentsBuilder getDataOperationResourceDataBasePathUriBuilder() {
         return UriComponentsBuilder.newInstance()
                 .path("{dmiServiceName}")
                 .pathSegment("{dmiBasePath}")
@@ -116,12 +116,12 @@ public class DmiServiceUrlBuilder {
     }
 
     /**
-     * This method populates uri variables for batch request.
+     * This method populates uri variables for data operation request.
      *
      * @param dmiServiceName dmi service name
      * @return {@code Map<String, Object>} uri variables as map
      */
-    public Map<String, Object> populateBatchUriVariables(final String dmiServiceName) {
+    public Map<String, Object> populateDataOperationRequestUriVariables(final String dmiServiceName) {
         final Map<String, Object> uriVariables = new HashMap<>();
         final String dmiBasePath = dmiProperties.getDmiBasePath();
         uriVariables.put("dmiServiceName", dmiServiceName);
@@ -151,14 +151,14 @@ public class DmiServiceUrlBuilder {
     }
 
     /**
-     * This method is used to populate map from query params for batch request.
+     * This method is used to populate map from query params for data operation request.
      *
      * @param topicParamInQuery topic into url param
      * @param requestId         unique id of response for valid topic
      * @return all valid query params as map
      */
-    public MultiValueMap<String, String> getBatchRequestQueryParams(final String topicParamInQuery,
-                                                                    final String requestId) {
+    public MultiValueMap<String, String> getDataOperationRequestQueryParams(final String topicParamInQuery,
+                                                                            final String requestId) {
         final MultiValueMap<String, String> queryParams = new LinkedMultiValueMap<>();
         getQueryParamConsumer().accept("topic", topicParamInQuery, queryParams);
         getQueryParamConsumer().accept("requestId", requestId, queryParams);

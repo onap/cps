@@ -42,7 +42,7 @@ class DataOperationRequestUtilsSpec extends Specification {
         and: '4 known cm handles: ch1-dmi1, ch2-dmi1, ch3-dmi2, ch4-dmi2'
             def yangModelCmHandles = getYangModelCmHandles()
         when: 'data operation request is processed'
-            def operationsOutPerDmiServiceName = ResourceDataBatchRequestUtils.processPerOperationInBatchRequest(dataOperationRequest, yangModelCmHandles)
+            def operationsOutPerDmiServiceName = ResourceDataOperationRequestUtils.processPerDefinitionInDataOperationsRequest(dataOperationRequest, yangModelCmHandles)
         and: 'converted to a json node'
             def dmiDataOperationRequestBody = jsonObjectMapper.asJsonString(operationsOutPerDmiServiceName.get(serviceName))
             def dmiDataOperationRequestBodyAsJsonNode = jsonObjectMapper.convertToJsonNode(dmiDataOperationRequestBody).get(operationIndex)

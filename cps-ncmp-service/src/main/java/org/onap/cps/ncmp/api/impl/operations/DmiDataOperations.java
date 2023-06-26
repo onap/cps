@@ -34,7 +34,7 @@ import org.onap.cps.ncmp.api.impl.client.DmiRestClient;
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration;
 import org.onap.cps.ncmp.api.impl.executor.TaskExecutor;
 import org.onap.cps.ncmp.api.impl.utils.DmiServiceUrlBuilder;
-import org.onap.cps.ncmp.api.impl.utils.ResourceDataBatchRequestUtils;
+import org.onap.cps.ncmp.api.impl.utils.ResourceDataOperationRequestUtils;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.inventory.CmHandleState;
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
@@ -131,11 +131,11 @@ public class DmiDataOperations extends DmiOperations {
         final Collection<YangModelCmHandle> yangModelCmHandles
                 = getYangModelCmHandlesInReadyState(cmHandlesIds);
 
-        final Map<String, List<DmiBatchOperation>> operationsOutPerDmiServiceName
-                = ResourceDataBatchRequestUtils.processPerOperationInBatchRequest(dataOperationRequest,
+        final Map<String, List<DmiDataOperation>> operationsOutPerDmiServiceName
+                = ResourceDataOperationRequestUtils.processPerDefinitionInDataOperationsRequest(dataOperationRequest,
                 yangModelCmHandles);
 
-        buildBatchRequestUrlAndSendToDmiService(topicParamInQuery, requestId, operationsOutPerDmiServiceName);
+        buildDataOperationRequestUrlAndSendToDmiService(topicParamInQuery, requestId, operationsOutPerDmiServiceName);
     }
 
     /**
@@ -196,13 +196,13 @@ public class DmiDataOperations extends DmiOperations {
                         cmHandleId));
     }
 
-    private String getDmiServiceBatchRequestUrl(final String dmiServiceName,
-                                                final String topicParamInQuery,
-                                                final String requestId) {
-        final MultiValueMap<String, String> batchRequestQueryParams = dmiServiceUrlBuilder
-                .getBatchRequestQueryParams(topicParamInQuery, requestId);
-        return dmiServiceUrlBuilder.getBatchRequestUrl(batchRequestQueryParams,
-                dmiServiceUrlBuilder.populateBatchUriVariables(dmiServiceName));
+    private String getDmiServiceDataOperationRequestUrl(final String dmiServiceName,
+                                                        final String topicParamInQuery,
+                                                        final String requestId) {
+        final MultiValueMap<String, String> dataOperationRequestQueryParams = dmiServiceUrlBuilder
+                .getDataOperationRequestQueryParams(topicParamInQuery, requestId);
+        return dmiServiceUrlBuilder.getDataOperationRequestUrl(dataOperationRequestQueryParams,
+                dmiServiceUrlBuilder.populateDataOperationRequestUriVariables(dmiServiceName));
     }
 
     private void validateIfCmHandleStateReady(final YangModelCmHandle yangModelCmHandle,
@@ -230,25 +230,27 @@ public class DmiDataOperations extends DmiOperations {
                         == CmHandleState.READY).collect(Collectors.toList());
     }
 
-    private void buildBatchRequestUrlAndSendToDmiService(final String topicParamInQuery,
-                                                         final String requestId,
-                                                         final Map<String, List<DmiBatchOperation>>
+    private void buildDataOperationRequestUrlAndSendToDmiService(final String topicParamInQuery,
+                                                                 final String requestId,
+                                                                 final Map<String, List<DmiDataOperation>>
                                                                 groupsOutPerDmiServiceName) {
 
         groupsOutPerDmiServiceName.entrySet().forEach(groupsOutPerDmiServiceNameEntry -> {
             final String dmiServiceName = groupsOutPerDmiServiceNameEntry.getKey();
-            final List<DmiBatchOperation> dmiBatchRequestBodies = groupsOutPerDmiServiceNameEntry.getValue();
-            final String dmiBatchResourceDataUrl = getDmiServiceBatchRequestUrl(dmiServiceName, topicParamInQuery,
-                    requestId);
-            sendBatchRequestToDmiService(dmiBatchResourceDataUrl, dmiBatchRequestBodies);
+            final List<DmiDataOperation> dmiDataOperationRequestBodies = groupsOutPerDmiServiceNameEntry.getValue();
+            final String dmiDataOperationResourceUrl =
+                    getDmiServiceDataOperationRequestUrl(dmiServiceName, topicParamInQuery, requestId);
+            sendDataOperationRequestToDmiService(dmiDataOperationResourceUrl, dmiDataOperationRequestBodies);
         });
     }
 
-    private void sendBatchRequestToDmiService(final String batchResourceDataUrl,
-                                              final List<DmiBatchOperation> dmiBatchRequestBodies) {
-        final String batchRequestBodiesAsJsonString = jsonObjectMapper.asJsonString(dmiBatchRequestBodies);
-        TaskExecutor.executeTask(() -> dmiRestClient.postOperationWithJsonData(batchResourceDataUrl,
-                        batchRequestBodiesAsJsonString, READ), DEFAULT_ASYNC_TASK_EXECUTOR_TIMEOUT_IN_MILLISECONDS)
+    private void sendDataOperationRequestToDmiService(final String dataOperationResourceUrl,
+                                                      final List<DmiDataOperation> dmiDataOperationRequestBodies) {
+        final String dataOperationRequestBodiesAsJsonString =
+                jsonObjectMapper.asJsonString(dmiDataOperationRequestBodies);
+        TaskExecutor.executeTask(() -> dmiRestClient.postOperationWithJsonData(dataOperationResourceUrl,
+                        dataOperationRequestBodiesAsJsonString, READ),
+                        DEFAULT_ASYNC_TASK_EXECUTOR_TIMEOUT_IN_MILLISECONDS)
                 .whenCompleteAsync(this::handleTaskCompletion);
     }
 
