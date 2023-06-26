@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "32f169de_0d3b5951",
+        "filename": "cps-ncmp-rest-stub/cps-ncmp-rest-stub-service/src/test/groovy/org/onap/cps/ncmp/rest/stub/providers/ResourceProviderSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-26T08:55:45Z",
+      "side": 1,
+      "message": "NB: remove redundant spacing",
+      "range": {
+        "startLine": 56,
+        "startChar": 19,
+        "endLine": 56,
+        "endChar": 27
+      },
+      "revId": "a7a82b1a2e3ed6122f8445994f8a9d59b24c4b32",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd39be12_e4b5fd04",
+        "filename": "cps-ncmp-rest-stub/cps-ncmp-rest-stub-service/src/test/groovy/org/onap/cps/ncmp/rest/stub/providers/ResourceProviderSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-26T08:55:45Z",
+      "side": 1,
+      "message": "NB: indent",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 93
+      },
+      "revId": "a7a82b1a2e3ed6122f8445994f8a9d59b24c4b32",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3365c704_bded6706",
+        "filename": "cps-ncmp-rest-stub/cps-ncmp-rest-stub-service/src/test/groovy/org/onap/cps/ncmp/rest/stub/providers/ResourceProviderSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-26T08:55:45Z",
+      "side": 1,
+      "message": "same file in both rows, so no need for filename column",
+      "range": {
+        "startLine": 70,
+        "startChar": 55,
+        "endLine": 70,
+        "endChar": 63
+      },
+      "revId": "a7a82b1a2e3ed6122f8445994f8a9d59b24c4b32",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
