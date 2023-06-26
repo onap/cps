@@ -19,12 +19,15 @@
                 "type": "object",
                 "properties": {
                   "operationId": {
-                    "description": "Used to distinguish multiple operations using same cmhandleId",
+                    "description": "Used to distinguish multiple operations using same handle ids",
                     "type": "string"
                   },
                   "ids": {
                     "description": "Id's of the cmhandles",
-                    "type": "array"
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
                   },
                   "statusCode": {
                     "description": "which says success or failure (0-99) are for success and (100-199) are for failure",
@@ -34,7 +37,7 @@
                     "description": "Human readable message, Which says what the response has",
                     "type": "string"
                   },
-                  "responseContent": {
+                  "result": {
                     "description": "Contains the requested data response.",
                     "type": "object",
                     "existingJavaType": "java.lang.Object",

@@ -23,8 +23,6 @@ package org.onap.cps.ncmp.init
 import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.Logger
 import ch.qos.logback.core.read.ListAppender
-import org.junit.jupiter.api.AfterEach
-import org.junit.jupiter.api.BeforeEach
 import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
@@ -53,22 +51,19 @@ class SubscriptionModelLoaderSpec extends Specification {
     def applicationReadyEvent = new ApplicationReadyEvent(new SpringApplication(), null, applicationContext, null)
 
     def yangResourceToContentMap
-    def logger
-    def appender
+    def logger = (Logger) LoggerFactory.getLogger(objectUnderTest.getClass())
+    def loggingListAppender
 
-    @BeforeEach
     void setup() {
         yangResourceToContentMap = objectUnderTest.createYangResourceToContentMap()
-        logger = (Logger) LoggerFactory.getLogger(objectUnderTest.getClass())
-        appender = new ListAppender()
         logger.setLevel(Level.DEBUG)
-        appender.start()
-        logger.addAppender(appender)
+        loggingListAppender = new ListAppender()
+        logger.addAppender(loggingListAppender)
+        loggingListAppender.start()
         applicationContext.refresh()
     }
 
-    @AfterEach
-    void teardown() {
+    void cleanup() {
         ((Logger) LoggerFactory.getLogger(SubscriptionModelLoader.class)).detachAndStopAllAppenders()
         applicationContext.close()
     }
@@ -123,7 +118,7 @@ class SubscriptionModelLoaderSpec extends Specification {
         and: 'the data service to create a top level datanode was not called'
             0 * mockCpsDataService.saveData(*_)
         and: 'the log message contains the correct exception message'
-            def logs = appender.list.toString()
+            def logs = loggingListAppender.list.toString()
             assert logs.contains("Retrieval of NCMP dataspace fails")
     }
 
@@ -168,7 +163,7 @@ class SubscriptionModelLoaderSpec extends Specification {
         when: 'the method to onboard model is called'
             objectUnderTest.onboardSubscriptionModel(yangResourceToContentMap)
         then: 'the log message contains the correct exception message'
-            def debugMessage = appender.list[0].toString()
+            def debugMessage = loggingListAppender.list[0].toString()
             assert debugMessage.contains("Creating schema set failed")
         and: 'exception is thrown'
             thrown(NcmpStartUpException)
@@ -183,7 +178,7 @@ class SubscriptionModelLoaderSpec extends Specification {
         then: 'no exception thrown'
             noExceptionThrown()
         and: 'the log message contains the correct exception message'
-            def infoMessage = appender.list[0].toString()
+            def infoMessage = loggingListAppender.list[0].toString()
             assert infoMessage.contains("already exists")
     }
 
@@ -194,7 +189,7 @@ class SubscriptionModelLoaderSpec extends Specification {
         when: 'the method to onboard model is called'
             objectUnderTest.onboardSubscriptionModel(yangResourceToContentMap)
         then: 'the log message contains the correct exception message'
-            def debugMessage = appender.list[0].toString()
+            def debugMessage = loggingListAppender.list[0].toString()
             assert debugMessage.contains("Schema Set not found")
         and: 'exception is thrown'
             thrown(NcmpStartUpException)
@@ -209,7 +204,7 @@ class SubscriptionModelLoaderSpec extends Specification {
         then: 'no exception thrown'
             noExceptionThrown()
         and: 'the log message contains the correct exception message'
-            def infoMessage = appender.list[0].toString()
+            def infoMessage = loggingListAppender.list[0].toString()
             assert infoMessage.contains("already exists")
     }
 
@@ -220,7 +215,7 @@ class SubscriptionModelLoaderSpec extends Specification {
         when: 'the method to onboard model is called'
             objectUnderTest.onboardSubscriptionModel(yangResourceToContentMap)
         then: 'the log message contains the correct exception message'
-            def debugMessage = appender.list[0].toString()
+            def debugMessage = loggingListAppender.list[0].toString()
             assert debugMessage.contains("Creating data node for subscription model failed: Invalid JSON")
         and: 'exception is thrown'
             thrown(NcmpStartUpException)
