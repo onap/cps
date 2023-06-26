@@ -43,62 +43,75 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
 
     CpsDataService objectUnderTest
     def originalCountBookstoreChildNodes
+    def originalCountParentlistNodes
     def now = OffsetDateTime.now()
 
     def setup() {
         objectUnderTest = cpsDataService
         originalCountBookstoreChildNodes = countDataNodesInTree(objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore', DIRECT_CHILDREN_ONLY))
+        originalCountParentlistNodes = countDataNodesInTree(objectUnderTest.getDataNodes(TEST_DATASPACE_1, TEST_ANCHOR_1, '/', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS))
 }
 
-def 'Read bookstore top-level container(s) using #fetchDescendantsOption.'() {
-    when: 'get data nodes for bookstore container'
-        def result = objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore', fetchDescendantsOption)
-    then: 'the tree consist ouf of #expectNumberOfDataNodes data nodes'
-        assert countDataNodesInTree(result) == expectNumberOfDataNodes
-    and: 'the top level data node has the expected attribute and value'
-        assert result.leaves['bookstore-name'] == ['Easons']
-    and: 'they are from the correct dataspace'
-        assert result.dataspace == [FUNCTIONAL_TEST_DATASPACE_1]
-    and: 'they are from the correct anchor'
-        assert result.anchorName == [BOOKSTORE_ANCHOR_1]
-    where: 'the following option is used'
-        fetchDescendantsOption        || expectNumberOfDataNodes
-        OMIT_DESCENDANTS              || 1
-        DIRECT_CHILDREN_ONLY          || 6
-        INCLUDE_ALL_DESCENDANTS       || 17
-        new FetchDescendantsOption(2) || 17
-}
+    def 'Read bookstore top-level container(s) using #fetchDescendantsOption.'() {
+        when: 'get data nodes for bookstore container'
+            def result = objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore', fetchDescendantsOption)
+        then: 'the tree consist ouf of #expectNumberOfDataNodes data nodes'
+            assert countDataNodesInTree(result) == expectNumberOfDataNodes
+        and: 'the top level data node has the expected attribute and value'
+            assert result.leaves['bookstore-name'] == ['Easons']
+        and: 'they are from the correct dataspace'
+            assert result.dataspace == [FUNCTIONAL_TEST_DATASPACE_1]
+        and: 'they are from the correct anchor'
+            assert result.anchorName == [BOOKSTORE_ANCHOR_1]
+        where: 'the following option is used'
+            fetchDescendantsOption        || expectNumberOfDataNodes
+            OMIT_DESCENDANTS              || 1
+            DIRECT_CHILDREN_ONLY          || 6
+            INCLUDE_ALL_DESCENDANTS       || 17
+            new FetchDescendantsOption(2) || 17
+    }
 
-def 'Read bookstore top-level container(s) using "root" path variations.'() {
-    when: 'get data nodes for bookstore container'
-        def result = objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, root, OMIT_DESCENDANTS)
-    then: 'the tree consist ouf of one data node'
-        assert countDataNodesInTree(result) == 1
-    and: 'the top level data node has the expected attribute and value'
-        assert result.leaves['bookstore-name'] == ['Easons']
-    where: 'the following variations of "root" are used'
-        root << [ '/', '' ]
-}
+    def 'Read bookstore top-level container(s) using "root"  variations.'() {
+        when: 'get data nodes for bookstore container'
+            def result = objectUnderTest.getDataNodes(TEST_DATASPACE_1, TEST_ANCHOR_1, root, OMIT_DESCENDANTS)
+        then: 'the tree consist ouf of one data node'
+            assert countDataNodesInTree(result) == 1
+        and: 'the top level data node has the expected attribute and value'
+            assert result.leaves['ProductID'] == [1]
+        where: 'the following variations of "root" are used'
+            root << ['/']
+    }
 
-def 'Read data nodes with error: #cpsPath'() {
-    when: 'attempt to get data nodes using invalid path'
-        objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, cpsPath, DIRECT_CHILDREN_ONLY)
-    then: 'a #expectedException is thrown'
-        thrown(expectedException)
-    where:
-        cpsPath              || expectedException
-        'invalid path'       || CpsPathException
-        '/non-existing-path' || DataNodeNotFoundException
-}
+    def 'Read bookstore top-level container(s) using "root" path variations.'() {
+        when: 'get data nodes for bookstore container'
+            def result = objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, root, OMIT_DESCENDANTS)
+        then: 'the tree consist ouf of one data node'
+            assert countDataNodesInTree(result) == 1
+        and: 'the top level data node has the expected attribute and value'
+            assert result.leaves['bookstore-name'] == ['Easons']
+        where: 'the following variations of "root" are used'
+            root << ['/', '']
+    }
 
-def 'Read (multiple) data nodes (batch) with #cpsPath'() {
-    when: 'attempt to get data nodes using invalid path'
-        objectUnderTest.getDataNodesForMultipleXpaths(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, [ cpsPath ], DIRECT_CHILDREN_ONLY)
-    then: 'no exception is thrown'
-        noExceptionThrown()
-    where:
-        cpsPath << [ 'invalid path', '/non-existing-path' ]
-}
+    def 'Read data nodes with error: #cpsPath'() {
+        when: 'attempt to get data nodes using invalid path'
+            objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, cpsPath, DIRECT_CHILDREN_ONLY)
+        then: 'a #expectedException is thrown'
+            thrown(expectedException)
+        where:
+            cpsPath              || expectedException
+            'invalid path'       || CpsPathException
+            '/non-existing-path' || DataNodeNotFoundException
+    }
+
+    def 'Read (multiple) data nodes (batch) with #cpsPath'() {
+        when: 'attempt to get data nodes using invalid path'
+            objectUnderTest.getDataNodesForMultipleXpaths(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, [cpsPath], DIRECT_CHILDREN_ONLY)
+        then: 'no exception is thrown'
+            noExceptionThrown()
+        where:
+            cpsPath << ['invalid path', '/non-existing-path']
+    }
 
 def 'Delete root data node.'() {
     when: 'the "root" is deleted'
@@ -175,6 +188,21 @@ def 'Add and Delete a (container) data node.'() {
             objectUnderTest.deleteDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, ['/does/not/exist'], now)
         then: 'a  datanode not found (batch) exception is thrown'
             thrown(DataNodeNotFoundExceptionBatch)
+    }
+
+    def 'Add and Delete top-level list (element) data nodes with root node.'() {
+        given: 'two new (categories) datanodes'
+            def json = '{"multiple-data-tree:invoice": [{"ProductID": "2","ProductName": "Mango","price": "150","stock": true}]}'
+        when: 'the new list elements are saved'
+            objectUnderTest.saveListElements(TEST_DATASPACE_1, TEST_ANCHOR_1, json , OffsetDateTime.now())
+        then: 'they can be retrieved by their xpaths'
+            objectUnderTest.getDataNodes(TEST_DATASPACE_1, TEST_ANCHOR_1, '/invoice[@ProductID ="2"]', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS).size() == 1
+        and: 'there are now two extra datanodes'
+            assert originalCountParentlistNodes + 1 == countDataNodesInTree(objectUnderTest.getDataNodes(TEST_DATASPACE_1, TEST_ANCHOR_1, '/', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS))
+        when: 'the new elements are deleted'
+            objectUnderTest.deleteDataNode(TEST_DATASPACE_1, TEST_ANCHOR_1, '/invoice[@ProductID ="2"]', OffsetDateTime.now())
+        then: 'the original number of datanodes is restored'
+            assert originalCountParentlistNodes == countDataNodesInTree(objectUnderTest.getDataNodes(TEST_DATASPACE_1, TEST_ANCHOR_1, '/', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS))
     }
 
     def 'Add and Delete list (element) data nodes.'() {
