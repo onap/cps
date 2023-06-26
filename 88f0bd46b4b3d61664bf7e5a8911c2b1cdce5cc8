@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9098b9f2_428fd03d",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-06-26T17:16:21Z",
+      "side": 1,
+      "message": "Some of the above test cases fail without the code changes",
+      "revId": "88f0bd46b4b3d61664bf7e5a8911c2b1cdce5cc8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b6437888_d8e0a315",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-06-26T17:16:21Z",
+      "side": 1,
+      "message": "The above cases fail without the code changes",
+      "revId": "88f0bd46b4b3d61664bf7e5a8911c2b1cdce5cc8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
