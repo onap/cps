@@ -39,16 +39,18 @@ import org.springframework.stereotype.Component;
 @ConditionalOnProperty(name = "notification.enabled", havingValue = "true", matchIfMissing = true)
 public class NcmpAsyncDataOperationEventConsumer {
 
-    private final EventsPublisher<CloudEvent> eventsPublisher;
+    private final EventsPublisher eventsPublisher;
 
     /**
-     * Consume the DataOperationResponseEvent published by producer to topic 'async-m2m.topic'
-     * and publish the same to the client specified topic.
+     * Consume the DataOperation cloud event published by producer to topic 'async-m2m.topic'
+     * and publish the same to client specified topic.
      *
      * @param dataOperationEventConsumerRecord consuming event as a ConsumerRecord.
      */
     @KafkaListener(
+            id = "ncmp-data-operation-event-group",
             topics = "${app.ncmp.async-m2m.topic}",
+            containerFactory = "cloudEventConcurrentKafkaListenerContainerFactory",
             filter = "includeDataOperationEventsOnly",
             groupId = "ncmp-data-operation-event-group",
             properties = {"spring.json.value.default.type=org.onap.cps.ncmp.events.async1_0_0.DataOperationEvent"})
