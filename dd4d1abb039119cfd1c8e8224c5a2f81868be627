@@ -284,6 +284,30 @@
     },
     {
       "key": {
+        "uuid": "ad0c3a39_7710b2c3",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/context/CpsApplicationContextSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-06-26T18:57:11Z",
+      "side": 1,
+      "message": "No problem, I read about the groovy test progress from commit message but i assumed that is a different groovy test.",
+      "parentUuid": "68af1ab4_c7e43838",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 1
+      },
+      "revId": "dd4d1abb039119cfd1c8e8224c5a2f81868be627",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0565cbd2_87427f4c",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/data/operation/DataOperationResourceRequestUtilsSpec.groovy",
         "patchSetId": 1
