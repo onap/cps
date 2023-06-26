@@ -55,9 +55,6 @@ class AvcEventConsumerSpec extends MessagingBaseSpec {
     @Autowired
     JsonObjectMapper jsonObjectMapper
 
-    @Autowired
-    ObjectMapper objectMapper
-
     def cloudEventKafkaConsumer = new KafkaConsumer<>(eventConsumerConfigProperties('ncmp-group', CloudEventDeserializer))
 
     def 'Consume and forward valid message'() {
@@ -69,7 +66,7 @@ class AvcEventConsumerSpec extends MessagingBaseSpec {
             def jsonData = TestUtils.getResourceFileContent('sampleAvcInputEvent.json')
             def testEventSent = jsonObjectMapper.convertJsonString(jsonData, AvcEvent.class)
             def testCloudEventSent = CloudEventBuilder.v1()
-                .withData(objectMapper.writeValueAsBytes(testEventSent))
+                .withData(jsonObjectMapper.asJsonBytes(testEventSent))
                 .withId('sample-eventid')
                 .withType('sample-test-type')
                 .withSource(URI.create('sample-test-source'))

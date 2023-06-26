@@ -23,8 +23,11 @@ package org.onap.cps.ncmp.api.impl.operations
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration
+import org.onap.cps.ncmp.api.impl.events.EventsPublisher
 import org.onap.cps.ncmp.api.impl.utils.DmiServiceUrlBuilder
+import org.onap.cps.ncmp.api.impl.utils.context.CpsApplicationContext
 import org.onap.cps.ncmp.api.models.DataOperationRequest
+import org.onap.cps.ncmp.event.model.NcmpAsyncRequestResponseEvent
 import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
@@ -42,7 +45,7 @@ import static org.onap.cps.ncmp.api.impl.operations.OperationType.READ
 import static org.onap.cps.ncmp.api.impl.operations.OperationType.UPDATE
 
 @SpringBootTest
-@ContextConfiguration(classes = [NcmpConfiguration.DmiProperties, DmiDataOperations])
+@ContextConfiguration(classes = [EventsPublisher, CpsApplicationContext, NcmpConfiguration.DmiProperties, DmiDataOperations])
 class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
 
     @SpringBean
@@ -58,6 +61,9 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
 
     @Autowired
     DmiDataOperations objectUnderTest
+
+    @SpringBean
+    EventsPublisher eventsPublisher = Stub()
 
     def 'call get resource data for #expectedDatastoreInUrl from DMI without topic #scenario.'() {
         given: 'a cm handle for #cmHandleId'

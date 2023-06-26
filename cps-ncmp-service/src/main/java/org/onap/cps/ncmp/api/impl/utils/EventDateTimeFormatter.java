@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2022 Nordix Foundation
+ * Copyright (C) 2022-2023 Nordix Foundation
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,23 +20,28 @@
 
 package org.onap.cps.ncmp.api.impl.utils;
 
+import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class EventDateTimeFormatter {
+public interface EventDateTimeFormatter {
 
-    private static final String DATE_TIME_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
+    String ISO_TIMESTAMP_PATTERN = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
+
+    DateTimeFormatter ISO_TIMESTAMP_FORMATTER = DateTimeFormatter.ofPattern(ISO_TIMESTAMP_PATTERN);
 
     /**
      * Gets current date time.
      *
      * @return the current date time
      */
-    public static String getCurrentDateTime() {
-        return ZonedDateTime.now()
-                .format(DateTimeFormatter.ofPattern(DATE_TIME_FORMAT));
+    static String getCurrentIsoFormattedDateTime() {
+        return ZonedDateTime.now().format(ISO_TIMESTAMP_FORMATTER);
+    }
+
+    static OffsetDateTime toIsoOffsetDateTime(final String dateTimestampAsString) {
+        return StringUtils.isNotBlank(dateTimestampAsString)
+                ? OffsetDateTime.parse(dateTimestampAsString, ISO_TIMESTAMP_FORMATTER) : null;
     }
 }
