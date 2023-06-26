@@ -90,6 +90,22 @@ public class JsonObjectMapper {
     }
 
     /**
+     * Serializing generic json object to bytes using Jackson.
+     *
+     * @param jsonObject any json object value
+     * @return the generated JSON as a byte array.
+     */
+    public byte[] asJsonBytes(final Object jsonObject) {
+        try {
+            return objectMapper.writeValueAsBytes(jsonObject);
+        } catch (final JsonProcessingException jsonProcessingException) {
+            log.error("Parsing error occurred while converting JSON object to bytes.");
+            throw new DataValidationException("Parsing error occurred while converting given JSON object to bytes.",
+                    jsonProcessingException.getMessage());
+        }
+    }
+
+    /**
      * Deserialize JSON content from given JSON content String to JsonNode.
      *
      * @param jsonContent   JSON content

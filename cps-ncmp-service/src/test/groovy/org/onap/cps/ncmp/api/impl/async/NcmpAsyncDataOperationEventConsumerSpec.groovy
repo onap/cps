@@ -92,7 +92,7 @@ class NcmpAsyncDataOperationEventConsumerSpec extends MessagingBaseSpec {
             response.operationId == 'some-operation-id'
             response.statusCode == 'any-success-status-code'
             response.statusMessage == 'Successfully applied changes'
-            response.responseContent as String == '[some-key:some-value]'
+            response.result as String == '[some-key:some-value]'
     }
 
     def 'Filter an event with type #eventType'() {
@@ -110,7 +110,7 @@ class NcmpAsyncDataOperationEventConsumerSpec extends MessagingBaseSpec {
 
     def createConsumerRecord(eventTypeAsString) {
         def jsonData = TestUtils.getResourceFileContent('dataOperationEvent.json')
-        def testEventSentAsBytes = objectMapper.writeValueAsBytes(jsonObjectMapper.convertJsonString(jsonData, DataOperationEvent.class))
+        def testEventSentAsBytes = jsonObjectMapper.asJsonBytes(jsonObjectMapper.convertJsonString(jsonData, DataOperationEvent.class))
 
         CloudEvent cloudEvent = getCloudEvent(eventTypeAsString, testEventSentAsBytes)
 

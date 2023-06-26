@@ -34,7 +34,7 @@ import org.onap.cps.ncmp.api.impl.client.DmiRestClient;
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration;
 import org.onap.cps.ncmp.api.impl.executor.TaskExecutor;
 import org.onap.cps.ncmp.api.impl.utils.DmiServiceUrlBuilder;
-import org.onap.cps.ncmp.api.impl.utils.ResourceDataOperationRequestUtils;
+import org.onap.cps.ncmp.api.impl.utils.data.operation.DataOperationRequestUtils;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.inventory.CmHandleState;
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
@@ -129,11 +129,11 @@ public class DmiDataOperations extends DmiOperations {
                 = getDistinctCmHandleIdsFromDataOperationRequest(dataOperationRequest);
 
         final Collection<YangModelCmHandle> yangModelCmHandles
-                = getYangModelCmHandlesInReadyState(cmHandlesIds);
+                = inventoryPersistence.getYangModelCmHandles(cmHandlesIds);
 
         final Map<String, List<DmiDataOperation>> operationsOutPerDmiServiceName
-                = ResourceDataOperationRequestUtils.processPerDefinitionInDataOperationsRequest(dataOperationRequest,
-                yangModelCmHandles);
+                = DataOperationRequestUtils.processPerOperationInBatchRequest(topicParamInQuery, requestId,
+                dataOperationRequest, yangModelCmHandles);
 
         buildDataOperationRequestUrlAndSendToDmiService(topicParamInQuery, requestId, operationsOutPerDmiServiceName);
     }
@@ -219,15 +219,6 @@ public class DmiDataOperations extends DmiOperations {
         return dataOperationRequest.getDataOperationDefinitions().stream()
                 .flatMap(dataOperationDefinition ->
                         dataOperationDefinition.getCmHandleIds().stream()).collect(Collectors.toSet());
-    }
-
-    private Collection<YangModelCmHandle> getYangModelCmHandlesInReadyState(final Set<String> requestedCmHandleIds) {
-        // TODO Need to publish an error response to client given topic.
-        //  Code should be implemented into https://jira.onap.org/browse/CPS-1614 (
-        //  NCMP : Error handling for non-ready cm handle state)
-        return inventoryPersistence.getYangModelCmHandles(requestedCmHandleIds).stream()
-                .filter(yangModelCmHandle -> yangModelCmHandle.getCompositeState().getCmHandleState()
-                        == CmHandleState.READY).collect(Collectors.toList());
     }
 
     private void buildDataOperationRequestUrlAndSendToDmiService(final String topicParamInQuery,
