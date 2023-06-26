@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "74b0f2e5_04740cf1",
+        "filename": "cps-ncmp-rest-stub/cps-ncmp-rest-stub-service/src/test/groovy/org/onap/cps/ncmp/rest/stub/providers/ResourceProviderSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 3237
+      },
+      "writtenOn": "2023-06-26T09:24:29Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "32f169de_0d3b5951",
+      "range": {
+        "startLine": 56,
+        "startChar": 19,
+        "endLine": 56,
+        "endChar": 27
+      },
+      "revId": "a7a82b1a2e3ed6122f8445994f8a9d59b24c4b32",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fd39be12_e4b5fd04",
         "filename": "cps-ncmp-rest-stub/cps-ncmp-rest-stub-service/src/test/groovy/org/onap/cps/ncmp/rest/stub/providers/ResourceProviderSpec.groovy",
         "patchSetId": 4
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "358cd97e_82631c0a",
+        "filename": "cps-ncmp-rest-stub/cps-ncmp-rest-stub-service/src/test/groovy/org/onap/cps/ncmp/rest/stub/providers/ResourceProviderSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 3237
+      },
+      "writtenOn": "2023-06-26T09:24:29Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "fd39be12_e4b5fd04",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 93
+      },
+      "revId": "a7a82b1a2e3ed6122f8445994f8a9d59b24c4b32",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3365c704_bded6706",
         "filename": "cps-ncmp-rest-stub/cps-ncmp-rest-stub-service/src/test/groovy/org/onap/cps/ncmp/rest/stub/providers/ResourceProviderSpec.groovy",
         "patchSetId": 4
@@ -68,6 +116,30 @@
       "revId": "a7a82b1a2e3ed6122f8445994f8a9d59b24c4b32",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "013a054b_78da0c05",
+        "filename": "cps-ncmp-rest-stub/cps-ncmp-rest-stub-service/src/test/groovy/org/onap/cps/ncmp/rest/stub/providers/ResourceProviderSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 3237
+      },
+      "writtenOn": "2023-06-26T09:24:29Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "3365c704_bded6706",
+      "range": {
+        "startLine": 70,
+        "startChar": 55,
+        "endLine": 70,
+        "endChar": 63
+      },
+      "revId": "a7a82b1a2e3ed6122f8445994f8a9d59b24c4b32",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
