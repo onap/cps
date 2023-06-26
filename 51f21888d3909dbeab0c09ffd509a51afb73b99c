@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c9b8b237_6e21519c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventForwarder.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-06-26T14:12:48Z",
+      "side": 1,
+      "message": "ArrayList\u003c\u003e otherwise Sonar will complain about it.",
+      "range": {
+        "startLine": 103,
+        "startChar": 61,
+        "endLine": 103,
+        "endChar": 74
+      },
+      "revId": "51f21888d3909dbeab0c09ffd509a51afb73b99c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "08841967_fb3f10d0",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventResponseOutcomeSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-06-26T14:12:48Z",
+      "side": 1,
+      "message": "NB: Cmhandle1",
+      "range": {
+        "startLine": 74,
+        "startChar": 66,
+        "endLine": 74,
+        "endChar": 75
+      },
+      "revId": "51f21888d3909dbeab0c09ffd509a51afb73b99c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
