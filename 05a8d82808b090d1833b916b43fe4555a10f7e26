@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "d360020c_6a4696a9",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-26T09:02:49Z",
+      "side": 1,
+      "message": "just a question: I noticed you replaced other double quotes with single but not these, is that intentional? what exactly are the rules/conventions we should be aware off ?",
+      "range": {
+        "startLine": 320,
+        "startChar": 23,
+        "endLine": 320,
+        "endChar": 24
+      },
+      "revId": "05a8d82808b090d1833b916b43fe4555a10f7e26",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4cd0847a_7fa0e0bd",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
         "patchSetId": 5
@@ -22,6 +45,30 @@
       "revId": "05a8d82808b090d1833b916b43fe4555a10f7e26",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a00d41d_6618b751",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-26T09:02:49Z",
+      "side": 1,
+      "message": "agreed, i might just edit this on-line if there are no other changes required...",
+      "parentUuid": "4cd0847a_7fa0e0bd",
+      "range": {
+        "startLine": 99,
+        "startChar": 5,
+        "endLine": 101,
+        "endChar": 42
+      },
+      "revId": "05a8d82808b090d1833b916b43fe4555a10f7e26",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
