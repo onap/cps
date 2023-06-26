@@ -38,7 +38,7 @@ components:
       properties:
         message:
           type: string
-          example: "Bad Gateway Error Message NCMP"
+          example: 'Bad Gateway Error Message NCMP'
         dmi-response:
           type: object
           properties:
@@ -160,11 +160,11 @@ components:
           example: |
             module stores {
               yang-version 1.1;
-              namespace "org:onap:ccsdk:sample";
+              namespace 'org:onap:ccsdk:sample';
               prefix book-store;
-              revision "2020-09-15" {
+              revision '2020-09-15' {
                 description
-                "Sample Model";
+                'Sample Model';
               }
             }
 
@@ -175,13 +175,11 @@ components:
         cmHandleQueryParameters:
           type: array
           items:
-            type: object
             $ref: '#/components/schemas/ConditionProperties'
         conditions:
           deprecated: true
           type: array
           items:
-            type: object
             $ref: '#/components/schemas/OldConditionProperties'
           description: not necessary, it is just for backward compatibility
 
@@ -203,7 +201,6 @@ components:
         conditionParameters:
           type: array
           items:
-            type: object
             $ref: '#/components/schemas/ModuleNameAsJsonObject'
     ModuleNameAsJsonObject:
       properties:
@@ -293,7 +290,6 @@ components:
         operations:
           type: array
           items:
-            type: object
             $ref: '#/components/schemas/DataOperationDefinition'
           description: contains group of data operation requests
     DataOperationDefinition:
@@ -321,7 +317,7 @@ components:
           type: array
           items:
             type: string
-          example: [ "da310eecdb8d44c2acc0ddaae01174b1","c748c58f8e0b438f9fd1f28370b17d47" ]
+            example: [ "da310eecdb8d44c2acc0ddaae01174b1","c748c58f8e0b438f9fd1f28370b17d47" ]
 
   examples:
     dataSampleRequest:
