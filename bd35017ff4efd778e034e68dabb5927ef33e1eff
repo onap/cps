@@ -331,6 +331,30 @@
     },
     {
       "key": {
+        "uuid": "14510ad6_dad267ad",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/avc/SubscriptionEventMapperSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-06-26T13:22:57Z",
+      "side": 1,
+      "message": "Removed, done.",
+      "parentUuid": "2989ccb4_6aa9fccd",
+      "range": {
+        "startLine": 80,
+        "startChar": 4,
+        "endLine": 113,
+        "endChar": 5
+      },
+      "revId": "bd35017ff4efd778e034e68dabb5927ef33e1eff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b1f7bd22_7b7bf4d7",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/avc/SubscriptionEventResponseMapperSpec.groovy",
         "patchSetId": 12
@@ -375,6 +399,30 @@
       "revId": "bd35017ff4efd778e034e68dabb5927ef33e1eff",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "632683d4_d381dd25",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/avc/SubscriptionEventResponseMapperSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-06-26T13:22:57Z",
+      "side": 1,
+      "message": "Removed. Done",
+      "parentUuid": "41185372_40d8b8da",
+      "range": {
+        "startLine": 62,
+        "startChar": 4,
+        "endLine": 79,
+        "endChar": 0
+      },
+      "revId": "bd35017ff4efd778e034e68dabb5927ef33e1eff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -516,6 +564,30 @@
       "revId": "bd35017ff4efd778e034e68dabb5927ef33e1eff",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8a3ff641_84c60954",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionOutcomeMapperSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-06-26T13:22:57Z",
+      "side": 1,
+      "message": "Removed. Done.",
+      "parentUuid": "3b2ee2bb_8601308c",
+      "range": {
+        "startLine": 61,
+        "startChar": 4,
+        "endLine": 81,
+        "endChar": 5
+      },
+      "revId": "bd35017ff4efd778e034e68dabb5927ef33e1eff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
