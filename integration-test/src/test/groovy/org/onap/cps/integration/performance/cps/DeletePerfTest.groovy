@@ -40,7 +40,7 @@ class DeletePerfTest extends CpsPerfTestBase {
             resourceMeter.stop()
             def setupDurationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'setup duration is within expected time and memory used is within limit'
-            recordAndAssertResourceUsage('Delete test setup', 200, setupDurationInSeconds, 800, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage('Delete test setup', 100, setupDurationInSeconds, 800, resourceMeter.getTotalMemoryUsageInMB())
     }
 
     def 'Delete 100 container nodes'() {

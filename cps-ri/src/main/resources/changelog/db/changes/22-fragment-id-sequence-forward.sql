@@ -15,7 +15,6 @@
    ============LICENSE_END=========================================================
 */
 
--- replace \' with '' and "" with "
--- SQL strings use single-quote like 'example', where quotes need to be escaped, e.g. 'it''s good'.
--- Using raw quotes like $$example$$, we can avoid escaping, e.g. $$it's good$$
-UPDATE fragment SET xpath = replace(replace(xpath, $$\'$$, $$''$$), '""', '"');
+ALTER TABLE fragment ALTER COLUMN id DROP IDENTITY;
+CREATE SEQUENCE fragment_id_seq INCREMENT BY 100 START WITH 100;
+SELECT setval('fragment_id_seq', (SELECT ((max(id) / 100) + 1) * 100 FROM fragment), TRUE);
