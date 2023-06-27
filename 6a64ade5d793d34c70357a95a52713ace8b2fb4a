@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a116305_63405b51",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/EscapeUtils.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-27T16:45:34Z",
+      "side": 1,
+      "message": "use lombok annotation: @NoArgsConstructor(access \u003d AccessLevel.PRIVATE)",
+      "range": {
+        "startLine": 25,
+        "startChar": 3,
+        "endLine": 25,
+        "endChar": 28
+      },
+      "revId": "6a64ade5d793d34c70357a95a52713ace8b2fb4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "510ad381_4d33661b",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/QueryPerfTest.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-27T16:45:34Z",
+      "side": 1,
+      "message": "Q: is the new solution more performant too ?",
+      "range": {
+        "startLine": 48,
+        "startChar": 2,
+        "endLine": 51,
+        "endChar": 134
+      },
+      "revId": "6a64ade5d793d34c70357a95a52713ace8b2fb4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
