@@ -45,6 +45,29 @@
       "revId": "40ecde78eed23642579851838ec769103b339069",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "57f7b164_848e0361",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/context/CpsApplicationContextSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-06-27T13:31:30Z",
+      "side": 1,
+      "message": "NB: This @Autowired is not important here as we discussed(We are testing to get the bean from the application context which will work with out autowire)",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 37
+      },
+      "revId": "40ecde78eed23642579851838ec769103b339069",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }

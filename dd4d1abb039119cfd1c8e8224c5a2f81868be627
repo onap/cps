@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "5c02224b_373e195a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/data/operation/DataOperationResourceRequestUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-06-27T13:31:30Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "339acd74_4bab9911",
+      "range": {
+        "startLine": 123,
+        "startChar": 4,
+        "endLine": 157,
+        "endChar": 5
+      },
+      "revId": "dd4d1abb039119cfd1c8e8224c5a2f81868be627",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "53b6233e_746c5c30",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/avc/SubscriptionEventDataOperationResponseMapperSpec.groovy",
         "patchSetId": 1

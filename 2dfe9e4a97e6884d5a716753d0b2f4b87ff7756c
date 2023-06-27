@@ -93,6 +93,29 @@
       "revId": "2dfe9e4a97e6884d5a716753d0b2f4b87ff7756c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cdcf9e42_e5b87e0a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/data/operation/ResourceDataOperationRequestUtils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-06-27T13:31:30Z",
+      "side": 1,
+      "message": "NB: Data",
+      "range": {
+        "startLine": 68,
+        "startChar": 53,
+        "endLine": 68,
+        "endChar": 58
+      },
+      "revId": "2dfe9e4a97e6884d5a716753d0b2f4b87ff7756c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
