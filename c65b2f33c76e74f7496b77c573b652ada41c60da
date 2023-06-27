@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "32054eb1_cbf1bd85",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/avc-subscription-event-1.0.0.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-06-27T12:19:07Z",
+      "side": 1,
+      "message": "Can this be a string array or something similar or is array the only option of that type?",
+      "range": {
+        "startLine": 39,
+        "startChar": 27,
+        "endLine": 39,
+        "endChar": 32
+      },
+      "revId": "c65b2f33c76e74f7496b77c573b652ada41c60da",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
