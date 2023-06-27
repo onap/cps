@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d60f5876_ffaad495",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsDataServiceIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-27T16:42:10Z",
+      "side": 1,
+      "message": "jsut wondering oudl this have bene combined with teh prev test ie. have to secarios\nadd \u0026 delete with #scenario\n#1 \u0027normalized path (using \u0027 for strings)\u0027\n#2 \u0027non normalized path (using \" for strings)\u0027",
+      "range": {
+        "startLine": 131,
+        "startChar": 0,
+        "endLine": 145,
+        "endChar": 5
+      },
+      "revId": "0258d6fc267274fedf811a625df73130c442f544",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
