@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6ebfa7ad_746b31e4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-06-27T10:55:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ba27513_e1315377",
+      "range": {
+        "startLine": 9,
+        "startChar": 10,
+        "endLine": 9,
+        "endChar": 13
+      },
+      "revId": "8b22a2baf4772889a3e17eaca57eeac60c4b230d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "16507b9b_e023e694",
         "filename": "cps-ncmp-events/src/main/resources/schemas/subscription/subscription-event-schema-1.0.0.json",
         "patchSetId": 2
