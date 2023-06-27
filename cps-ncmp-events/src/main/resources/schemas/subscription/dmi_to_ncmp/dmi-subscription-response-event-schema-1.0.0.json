@@ -31,7 +31,7 @@
     "SubscriptionEventResponse" : {
       "description": "The payload for subscription response event.",
       "type": "object",
-      "javaType": "org.onap.cps.ncmp.events.subscription1_0_0.SubscriptionEventResponse",
+      "javaType": "org.onap.cps.ncmp.events.subscription1_0_0.dmi_to_ncmp.SubscriptionEventResponse",
       "properties": {
         "data": {
           "type": "object",
