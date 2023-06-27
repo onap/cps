@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3fe5a97e_4224e0ef",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/context/CpsApplicationContext.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-27T09:38:14Z",
+      "side": 1,
+      "message": "NB: see comment in #2",
+      "range": {
+        "startLine": 48,
+        "startChar": 1,
+        "endLine": 50,
+        "endChar": 5
+      },
+      "revId": "2dfe9e4a97e6884d5a716753d0b2f4b87ff7756c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cc3527e9_c9dfb79b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/data/operation/NcmpEventResponseCode.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-27T09:38:14Z",
+      "side": 1,
+      "message": "change package.mayeb direct in\norg.onap.cps.ncmp.api \nOR add a common package or similar\norg.onap.cps.ncmp.api.common",
+      "range": {
+        "startLine": 21,
+        "startChar": 35,
+        "endLine": 21,
+        "endChar": 55
+      },
+      "revId": "2dfe9e4a97e6884d5a716753d0b2f4b87ff7756c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
