@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "f56b4ab3_e40d627c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/EscapeUtils.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-06-27T18:22:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a116305_63405b51",
+      "range": {
+        "startLine": 25,
+        "startChar": 3,
+        "endLine": 25,
+        "endChar": 28
+      },
+      "revId": "6a64ade5d793d34c70357a95a52713ace8b2fb4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "510ad381_4d33661b",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/QueryPerfTest.groovy",
         "patchSetId": 7
@@ -45,6 +69,30 @@
       "revId": "6a64ade5d793d34c70357a95a52713ace8b2fb4a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b53f3df1_0395b491",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/QueryPerfTest.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-06-27T18:22:28Z",
+      "side": 1,
+      "message": "Yes it\u0027s really much faster. In cases using OMIT_DESCENDANTS, it\u0027s nearly 6x faster - I\u0027m seeing queries go from average 46 ms to 8 ms (though for test thresholds, we add 30% margin and round up to a nice number).\n\nIn the above cases, the improvement is not fully reflected as INCLUDE_ALL_DESCENDANTS issues a second SQL query to get the fragments and their 4,200 descendants. But it is still around 2x faster in those cases.\n\nMy hope is that once the new nightly performance job is set up, we can increase the amount of data; then fluctuations will have less effect, and we\u0027ll have a more realistic view of performance.",
+      "parentUuid": "510ad381_4d33661b",
+      "range": {
+        "startLine": 48,
+        "startChar": 2,
+        "endLine": 51,
+        "endChar": 134
+      },
+      "revId": "6a64ade5d793d34c70357a95a52713ace8b2fb4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
