@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "e1d78c5f_99b98b16",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/data/operation/ResourceDataOperationRequestUtils.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-27T15:58:38Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d314cb7c_14243423",
+      "range": {
+        "startLine": 88,
+        "startChar": 20,
+        "endLine": 88,
+        "endChar": 56
+      },
+      "revId": "40ecde78eed23642579851838ec769103b339069",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "57f7b164_848e0361",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/context/CpsApplicationContextSpec.groovy",
         "patchSetId": 5
