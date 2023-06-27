@@ -1,0 +1,87 @@
+{
+  "$id": "urn:cps:org.onap.cps.ncmp.events:avc-subscription-event:1.0.0",
+  "$ref": "#/definitions/SubscriptionEvent",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "definitions": {
+    "SubscriptionEvent": {
+      "description": "The payload for subscription event.",
+      "javaType": "org.onap.cps.ncmp.events.avcsubscription1_0_0.client_to_ncmp",
+      "properties": {
+        "data": {
+          "properties": {
+            "dataType": {
+              "description": "The datatype content.",
+              "properties": {
+                "dataCategory": {
+                  "description": "The category type of the data",
+                  "type": "string"
+                },
+                "dataProvider": {
+                  "description": "The provider name of the data",
+                  "type": "string"
+                },
+                "dataspace": {
+                  "description": "The dataspace name",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "predicates": {
+              "description": "Additional values to be added into the subscription",
+              "properties": {
+                "datastore": {
+                  "description": "datastore which is to be used by the subscription",
+                  "type": "string"
+                },
+                "targets": {
+                  "description": "CM Handles to be targeted by the subscription",
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "datastore-xpath-filter": {
+                  "description": "filter to be applied to the CM Handles through this event",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "datastore"
+              ],
+              "type": "object"
+            },
+            "required": [
+              "dataspace",
+              "dataCategory",
+              "dataProvider"
+            ],
+            "subscription": {
+              "description": "The subscription details.",
+              "properties": {
+                "clientID": {
+                  "description": "The clientID",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "The name of the subscription",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "clientID",
+                "name"
+              ],
+              "type": "object"
+            }
+          }
+        },
+        "required": [
+          "subscription",
+          "dataType"
+        ]
+      },
+      "type": "object"
+    }
+  }
+}
