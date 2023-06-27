@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "96803576_556e54ca",
+        "filename": "cps-dependencies/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-06-27T11:09:39Z",
+      "side": 1,
+      "message": "NB: Usually the plugin dependencies we keep inside plugins element like below\n        \u003c/plugins\u003e\n            \u003cplugin\u003e\n                \u003cgroupId\u003eorg.apache.maven.plugins\u003c/groupId\u003e\n                \u003cartifactId\u003emaven-resources-plugin\u003c/artifactId\u003e\n                \u003cversion\u003e3.3.1\u003c/version\u003e\n            \u003c/plugin\u003e\n         \u003c/plugins\u003e\nI think in dependency management we don\u0027t keep plugins.",
+      "range": {
+        "startLine": 224,
+        "startChar": 0,
+        "endLine": 228,
+        "endChar": 25
+      },
+      "revId": "7ae1bcf4b463aec8c153feacfe32db4360e9c11d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
