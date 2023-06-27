@@ -42,6 +42,27 @@ Bug Fixes
 
 Features
 --------
+    - `CPS-1673 <https://jira.onap.org/browse/CPS-1673>`_ Enable hibernate write batching
+
+Known Limitations, Issues and Workarounds
+-----------------------------------------
+
+*System Limitations*
+CPS-1673 enables Hibernate write batching to improve write performance. This feature will not be enabled unless
+appropriate settings are configured in application.yaml. The following settings should be added to application.yaml:
+```
+spring:
+    jpa:
+        properties:
+            hibernate:
+                id:
+                    new_generator_mappings: true
+                order_inserts: true
+                order_updates: true
+                batch_versioned_data: true
+                jdbc:
+                    batch_size: 100
+```
 
 Version: 3.3.3
 ==============
