@@ -32,6 +32,7 @@ import org.onap.cps.ncmp.api.models.CmHandleQueryServiceParameters;
 import org.onap.cps.ncmp.api.models.DataOperationRequest;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistrationResponse;
+import org.onap.cps.ncmp.api.models.DmiPluginReregistration;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.ModuleDefinition;
@@ -49,6 +50,14 @@ public interface NetworkCmProxyDataService {
      * @return dmiPluginRegistrationResponse
      */
     DmiPluginRegistrationResponse updateDmiRegistrationAndSyncModule(DmiPluginRegistration dmiPluginRegistration);
+
+    /**
+     * Reregistration of CM Handles.
+     *
+     * @param dmiPluginReregistration Dmi Plugin Registration
+     * @return dmiPluginRegistrationResponse
+     */
+    DmiPluginRegistrationResponse dmiReRegistration(DmiPluginReregistration dmiPluginReregistration);
 
     /**
      * Get resource data for given data store using dmi.

@@ -87,6 +87,36 @@ components:
           items:
             type: string
           example: [ my-cm-handle1, my-cm-handle2, my-cm-handle3 ]
+    # Request Schemas
+    RestDmiPluginReregistration:
+      type: object
+      properties:
+        dmiPlugin:
+          type: string
+          example: my-dmi-plugin
+          default: ""
+        dmiDataPlugin:
+          type: string
+          example: my-dmi-data-plugin
+          default: ""
+        dmiModelPlugin:
+          type: string
+          example: my-dmi-model-plugin
+          default: ""
+        cmHandles:
+          type: array
+          items:
+            $ref: '#/components/schemas/RestInputCmHandle'
+            example:
+              cmHandle: my-cm-handle
+              cmHandleProperties:
+                add-my-property: add-property
+                update-my-property: updated-property
+                delete-my-property: '~'
+              publicCmHandleProperties:
+                add-my-property: add-property
+                update-my-property: updated-property
+                delete-my-property: '~'
     DmiPluginRegistrationErrorResponse:
       type: object
       properties:

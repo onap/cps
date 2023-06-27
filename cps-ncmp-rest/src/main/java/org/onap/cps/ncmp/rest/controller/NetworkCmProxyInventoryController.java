@@ -37,6 +37,7 @@ import org.onap.cps.ncmp.rest.model.CmHandleQueryParameters;
 import org.onap.cps.ncmp.rest.model.CmHandlerRegistrationErrorResponse;
 import org.onap.cps.ncmp.rest.model.DmiPluginRegistrationErrorResponse;
 import org.onap.cps.ncmp.rest.model.RestDmiPluginRegistration;
+import org.onap.cps.ncmp.rest.model.RestDmiPluginReregistration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -86,6 +87,24 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
         final DmiPluginRegistrationResponse dmiPluginRegistrationResponse =
             networkCmProxyDataService.updateDmiRegistrationAndSyncModule(
                 ncmpRestInputMapper.toDmiPluginRegistration(restDmiPluginRegistration));
+        final DmiPluginRegistrationErrorResponse failedRegistrationErrorResponse =
+            getFailureRegistrationResponse(dmiPluginRegistrationResponse);
+        return allRegistrationsSuccessful(failedRegistrationErrorResponse)
+            ? new ResponseEntity<>(HttpStatus.OK)
+            : new ResponseEntity<>(failedRegistrationErrorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    /**
+     * DMI Plugin Reregistration.
+     *
+     * @param restDmiPluginReregistration the registration data
+     */
+    @Override
+    public ResponseEntity dmiPluginReRegistration(
+        final @Valid RestDmiPluginReregistration restDmiPluginReregistration) {
+        final DmiPluginRegistrationResponse dmiPluginRegistrationResponse =
+            networkCmProxyDataService.dmiReRegistration(
+                ncmpRestInputMapper.toDmiPluginRegistration(restDmiPluginReregistration));
         final DmiPluginRegistrationErrorResponse failedRegistrationErrorResponse =
             getFailureRegistrationResponse(dmiPluginRegistrationResponse);
         return allRegistrationsSuccessful(failedRegistrationErrorResponse)

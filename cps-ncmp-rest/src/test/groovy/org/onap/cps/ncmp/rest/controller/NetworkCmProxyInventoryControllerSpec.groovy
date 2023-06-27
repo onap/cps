@@ -24,14 +24,18 @@ package org.onap.cps.ncmp.rest.controller
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.TestUtils
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService
+import org.onap.cps.ncmp.api.inventory.CmHandleQueries
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.models.DmiPluginRegistrationResponse
+import org.onap.cps.ncmp.api.models.DmiPluginReregistration
+import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.rest.model.CmHandleQueryParameters
 import org.onap.cps.ncmp.rest.model.CmHandlerRegistrationErrorResponse
 import org.onap.cps.ncmp.rest.model.DmiPluginRegistrationErrorResponse
 import org.onap.cps.ncmp.rest.model.RestDmiPluginRegistration
 import org.onap.cps.ncmp.api.models.CmHandleQueryServiceParameters
+import org.onap.cps.ncmp.rest.model.RestDmiPluginReregistration
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
@@ -59,7 +63,12 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
     @SpringBean
     NcmpRestInputMapper ncmpRestInputMapper = Mock()
 
+    @SpringBean
+    CmHandleQueries mockCmHandleQueries = Mock()
+
     DmiPluginRegistration mockDmiPluginRegistration = Mock()
+
+    DmiPluginReregistration mockDmiPluginReregistration = Mock()
 
     CmHandleQueryServiceParameters cmHandleQueryServiceParameters = Mock()
 
@@ -93,17 +102,44 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
             'without any properties'                                                       | 'dmi_registration_without_properties.json'
     }
 
-    def 'Dmi plugin registration with invalid json'() {
+    def 'Dmi plugin reregistration #scenario'() {
+        given: 'a dmi plugin reregistration with #scenario'
+            def jsonData = TestUtils.getResourceFileContent(dmiRegistrationJson)
+        and: 'the expected rest input as an object'
+            def expectedRestDmiPluginReregistration = jsonObjectMapper.convertJsonString(jsonData, RestDmiPluginReregistration)
+        and: 'the converter returns a dmi reregistration (only for the expected input object)'
+            ncmpRestInputMapper.toDmiPluginRegistration(expectedRestDmiPluginReregistration) >> mockDmiPluginReregistration
+        when: 'post request is performed & registration is called with correct DMI plugin information'
+            def response = mvc.perform(
+                post("$ncmpBasePathV1/ch/reregistration")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(jsonData)
+            ).andReturn().response
+        then: 'the reregistration is called with the correct json object'
+            1 * mockNetworkCmProxyDataService.dmiReRegistration(mockDmiPluginReregistration) >> new DmiPluginRegistrationResponse()
+        and: 'response status is no content'
+            response.status == HttpStatus.OK.value()
+        where: 'the following registration json is used'
+            scenario                                                            | dmiRegistrationJson
+            'One of each CMHandle: new, existing, existing with new properties' | 'dmi_reregistration_all_singing_and_dancing.json'
+            'without any properties'                                            | 'dmi_reregistration_without_properties.json'
+    }
+
+    def 'Dmi plugin #scenario with invalid json'() {
         given: 'a dmi plugin registration with #scenario'
             def jsonDataWithUndefinedDataLabel = '{"notAdmiPlugin":""}'
         when: 'post request is performed & registration is called with correct DMI plugin information'
             def response = mvc.perform(
-                post("$ncmpBasePathV1/ch")
+                post("$ncmpBasePathV1/ch" + endpoint)
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(jsonDataWithUndefinedDataLabel)
             ).andReturn().response
         then: 'response status is bad request'
             response.status == HttpStatus.BAD_REQUEST.value()
+        where: 'the following endpoint is used'
+            scenario         | endpoint
+            'registration'   | ''
+            'reregistration' | '/reregistration'
     }
 
     def 'CmHandle search endpoint test #scenario.'() {

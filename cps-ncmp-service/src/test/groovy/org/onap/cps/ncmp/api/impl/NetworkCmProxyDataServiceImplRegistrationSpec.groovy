@@ -35,6 +35,7 @@ import org.onap.cps.ncmp.api.inventory.CmHandleState
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration
+import org.onap.cps.ncmp.api.models.DmiPluginReregistration
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import org.onap.cps.spi.exceptions.AlreadyDefinedExceptionBatch
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException

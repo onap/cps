@@ -98,6 +98,88 @@ updateDmiRegistration:
                 }
               ]
 
+dmiPluginReRegistration:
+  post:
+    description: Reregister a DMI Plugin with CM Handles.
+    tags:
+      - network-cm-proxy-inventory
+    summary: DMI notifies NCMP of CM Handles
+    operationId: dmiPluginReRegistration
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: 'components.yaml#/components/schemas/RestDmiPluginReregistration'
+    responses:
+      200:
+        $ref: 'components.yaml#/components/responses/NoContent'
+      400:
+        $ref: 'components.yaml#/components/responses/BadRequest'
+      401:
+        $ref: 'components.yaml#/components/responses/Unauthorized'
+      403:
+        $ref: 'components.yaml#/components/responses/Forbidden'
+      500:
+        description: Partial or Complete failure. The error details are provided in the response body and all supported error codes are documented in the example.
+        content:
+          application/json:
+            schema:
+              $ref: 'components.yaml#/components/schemas/DmiPluginRegistrationErrorResponse'
+            example:
+              failedCreatedCmHandles: [
+                {
+                  "cmHandle": "my-cm-handle-01",
+                  "errorCode": "00",
+                  "errorText": "Unknown error. <error-details>"
+                },
+                {
+                  "cmHandle": "my-cm-handle-02",
+                  "errorCode": "01",
+                  "errorText": "cm-handle already exists"
+                },
+                {
+                  "cmHandle": "my-cm-handle-03",
+                  "errorCode": "03",
+                  "errorText": "cm-handle has an invalid character(s) in id"
+                }
+              ]
+              failedUpdatedCmHandles: [
+                {
+                  "cmHandle": "my-cm-handle-01",
+                  "errorCode": "00",
+                  "errorText": "Unknown error. <error-details>"
+                },
+                {
+                  "cmHandle": "my-cm-handle-02",
+                  "errorCode": "02",
+                  "errorText": "cm-handle does not exist"
+                },
+                {
+                  "cmHandle": "my-cm-handle-03",
+                  "errorCode": "03",
+                  "errorText": "cm-handle has an invalid character(s) in id"
+                }
+              ]
+              failedRemovedCmHandles: [
+                {
+                  "cmHandle": "my-cm-handle-01",
+                  "errorCode": "00",
+                  "errorText": "Unknown error. <error-details>"
+                },
+                {
+                  "cmHandle": "my-cm-handle-02",
+                  "errorCode": "02",
+                  "errorText": "cm-handle does not exists"
+                },
+                {
+                  "cmHandle": "my-cm-handle-03",
+                  "errorCode": "03",
+                  "errorText": "cm-handle has an invalid character(s) in id"
+                }
+              ]
+
+
 getAllCmHandleIdsForRegisteredDmi:
   get:
     description: Get all cm handle IDs for a registered DMI plugin

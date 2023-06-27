@@ -63,6 +63,7 @@ import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationErr
 import org.onap.cps.ncmp.api.models.DataOperationRequest;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistrationResponse;
+import org.onap.cps.ncmp.api.models.DmiPluginReregistration;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.exceptions.AlreadyDefinedExceptionBatch;
@@ -112,6 +113,25 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                             .updateCmHandleProperties(dmiPluginRegistration.getUpdatedCmHandles()));
         }
         return dmiPluginRegistrationResponse;
+    }
+
+    @Override
+    public DmiPluginRegistrationResponse dmiReRegistration(final DmiPluginReregistration dmiPluginReregistration) {
+        dmiPluginReregistration.validateDmiPluginRegistration();
+        final Collection<String> existingCmHandleIds =
+            getAllCmHandleIdsByDmiPluginIdentifier(dmiPluginReregistration.getDmiPluginOrDmiDataPlugin());
+        final List<NcmpServiceCmHandle> updateCmHandles = dmiPluginReregistration.getCmHandles().stream()
+            .filter(cmHandle -> !existingCmHandleIds.contains(cmHandle.getCmHandleId())).collect(
+            Collectors.toList());
+        final List<NcmpServiceCmHandle> newCmHandles = new ArrayList<>(dmiPluginReregistration.getCmHandles());
+        newCmHandles.removeAll(updateCmHandles);
+        final DmiPluginRegistration dmiPluginRegistration = new DmiPluginRegistration();
+        dmiPluginRegistration.setDmiPlugin(dmiPluginReregistration.getDmiPlugin());
+        dmiPluginRegistration.setDmiDataPlugin(dmiPluginReregistration.getDmiDataPlugin());
+        dmiPluginRegistration.setDmiModelPlugin(dmiPluginReregistration.getDmiModelPlugin());
+        dmiPluginRegistration.setCreatedCmHandles(updateCmHandles);
+        dmiPluginRegistration.setUpdatedCmHandles(newCmHandles);
+        return updateDmiRegistrationAndSyncModule(dmiPluginRegistration);
     }
 
     @Override

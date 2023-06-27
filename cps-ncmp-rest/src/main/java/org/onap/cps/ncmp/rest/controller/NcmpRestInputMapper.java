@@ -27,9 +27,11 @@ import org.mapstruct.NullValueCheckStrategy;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 import org.onap.cps.ncmp.api.models.CmHandleQueryServiceParameters;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
+import org.onap.cps.ncmp.api.models.DmiPluginReregistration;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.ncmp.rest.model.CmHandleQueryParameters;
 import org.onap.cps.ncmp.rest.model.RestDmiPluginRegistration;
+import org.onap.cps.ncmp.rest.model.RestDmiPluginReregistration;
 import org.onap.cps.ncmp.rest.model.RestInputCmHandle;
 import org.onap.cps.ncmp.rest.model.RestModuleDefinition;
 import org.onap.cps.ncmp.rest.model.RestModuleReference;
@@ -49,6 +51,11 @@ public interface NcmpRestInputMapper {
         nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS,
         nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.SET_TO_DEFAULT)
     DmiPluginRegistration toDmiPluginRegistration(final RestDmiPluginRegistration restDmiPluginRegistration);
+
+    @Mapping(source = "cmHandles", target = "cmHandles",
+        nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS,
+        nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.SET_TO_DEFAULT)
+    DmiPluginReregistration toDmiPluginRegistration(final RestDmiPluginReregistration restDmiPluginReregistration);
 
     @Mapping(source = "cmHandle", target = "cmHandleId")
     @Mapping(source = "cmHandleProperties", target = "dmiProperties")
