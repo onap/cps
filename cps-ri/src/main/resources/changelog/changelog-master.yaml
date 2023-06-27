@@ -58,3 +58,5 @@ databaseChangeLog:
       file: changelog/db/changes/20-change-foreign-key-id-types-to-integer.yaml
   - include:
       file: changelog/db/changes/21-escape-quotes-in-xpath.yaml
+  - include:
+      file: changelog/db/changes/22-fragment-id-sequence.yaml
