@@ -42,6 +42,16 @@ Bug Fixes
 
 Features
 --------
+    - `CPS-1795 <https://jira.onap.org/browse/CPS-1795>`_ Enable hibernate write batching
+
+Known Limitations, Issues and Workarounds
+-----------------------------------------
+
+*System Limitations*
+
+For upgrading, CPS uses Liquibase for database upgrades. In order to enable Hibernate write batching
+(`CPS-1795 <https://jira.onap.org/browse/CPS-1795>`_), a change to the database entity ID generation is needed.
+As such, *this release does not support In-Service Software Upgrade* - the CPS application must be stopped during upgrade.
 
 Version: 3.3.8
 ==============

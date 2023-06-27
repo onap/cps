@@ -69,7 +69,7 @@ class CpsPerfTestBase extends PerfTestBase {
         addAnchorsWithData(OPENROADM_ANCHORS, CPS_PERFORMANCE_TEST_DATASPACE, LARGE_SCHEMA_SET, 'openroadm', data)
         resourceMeter.stop()
         def durationInMillis = resourceMeter.getTotalTimeMillis()
-        recordAndAssertResourceUsage('Creating openroadm anchors with large data tree', TimeUnit.SECONDS.toMillis(200), durationInMillis, 200, resourceMeter.getTotalMemoryUsageInMB())
+        recordAndAssertResourceUsage('Creating openroadm anchors with large data tree', TimeUnit.SECONDS.toMillis(100), durationInMillis, 200, resourceMeter.getTotalMemoryUsageInMB())
     }
 
     def generateOpenRoadData(numberOfNodes) {
@@ -89,7 +89,7 @@ class CpsPerfTestBase extends PerfTestBase {
         then: 'memory used is within #peakMemoryUsage'
             assert resourceMeter.getTotalMemoryUsageInMB() <= 30
         and: 'all data is read within expected time'
-            recordAndAssertResourceUsage("Warming database", TimeUnit.SECONDS.toMillis(200), durationInMillis, 200, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage("Warming database", TimeUnit.SECONDS.toMillis(100), durationInMillis, 200, resourceMeter.getTotalMemoryUsageInMB())
     }
 
 }
