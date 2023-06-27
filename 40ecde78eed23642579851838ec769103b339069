@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "bb69c204_a858f2f8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/async/DataOperationEventCreator.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-06-27T14:56:51Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "fb1d90a1_31757a99",
+      "range": {
+        "startLine": 50,
+        "startChar": 77,
+        "endLine": 50,
+        "endChar": 117
+      },
+      "revId": "40ecde78eed23642579851838ec769103b339069",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0948cf7f_8a479f5d",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/data/operation/ResourceDataOperationRequestUtils.java",
         "patchSetId": 5
@@ -36,6 +60,30 @@
       "writtenOn": "2023-06-27T12:58:05Z",
       "side": 1,
       "message": "no tested ?",
+      "range": {
+        "startLine": 88,
+        "startChar": 20,
+        "endLine": 88,
+        "endChar": 56
+      },
+      "revId": "40ecde78eed23642579851838ec769103b339069",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d314cb7c_14243423",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/data/operation/ResourceDataOperationRequestUtils.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-06-27T14:56:51Z",
+      "side": 1,
+      "message": "New groovy test is here to cover it : org/onap/cps/ncmp/api/impl/utils/data/operation/ResourceDataOperationRequestUtilsSpec.groovy:91",
+      "parentUuid": "0948cf7f_8a479f5d",
       "range": {
         "startLine": 88,
         "startChar": 20,

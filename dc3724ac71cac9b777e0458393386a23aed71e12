@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "37c44c78_e627265c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/async/DataOperationEventCreator.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-06-27T14:56:51Z",
+      "side": 1,
+      "message": "moved",
+      "parentUuid": "ffd93bf9_ba63636f",
+      "range": {
+        "startLine": 21,
+        "startChar": 42,
+        "endLine": 21,
+        "endChar": 47
+      },
+      "revId": "dc3724ac71cac9b777e0458393386a23aed71e12",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8c75a3fa_c4cc55f5",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/async/DataOperationEventCreator.java",
         "patchSetId": 4
@@ -36,6 +60,30 @@
       "writtenOn": "2023-06-27T12:58:05Z",
       "side": 1,
       "message": "add @NoArgsConstructor(access \u003d AccessLevel.PRIVATE)",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 38
+      },
+      "revId": "dc3724ac71cac9b777e0458393386a23aed71e12",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "54520a48_2187b6af",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/async/DataOperationEventCreator.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-06-27T14:56:51Z",
+      "side": 1,
+      "message": "added",
+      "parentUuid": "8c75a3fa_c4cc55f5",
       "range": {
         "startLine": 37,
         "startChar": 0,
