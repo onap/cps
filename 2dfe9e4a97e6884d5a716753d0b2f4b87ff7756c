@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "773770e7_5eca5c2d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/context/CpsApplicationContext.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-06-27T12:48:57Z",
+      "side": 1,
+      "message": "At line-number 44: for \u0027setApplicationContext\u0027 method we cant change its signature as it is overriden, kept into seperate method with synchronized.",
+      "parentUuid": "3fe5a97e_4224e0ef",
+      "range": {
+        "startLine": 48,
+        "startChar": 1,
+        "endLine": 50,
+        "endChar": 5
+      },
+      "revId": "2dfe9e4a97e6884d5a716753d0b2f4b87ff7756c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cc3527e9_c9dfb79b",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/data/operation/NcmpEventResponseCode.java",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2023-06-27T09:38:14Z",
       "side": 1,
       "message": "change package.mayeb direct in\norg.onap.cps.ncmp.api \nOR add a common package or similar\norg.onap.cps.ncmp.api.common",
+      "range": {
+        "startLine": 21,
+        "startChar": 35,
+        "endLine": 21,
+        "endChar": 55
+      },
+      "revId": "2dfe9e4a97e6884d5a716753d0b2f4b87ff7756c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7c1f290e_8629d56e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/data/operation/NcmpEventResponseCode.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-06-27T12:48:57Z",
+      "side": 1,
+      "message": "moved into org.onap.cps.ncmp.api",
+      "parentUuid": "cc3527e9_c9dfb79b",
       "range": {
         "startLine": 21,
         "startChar": 35,
