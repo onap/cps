@@ -22,6 +22,29 @@
       "revId": "c65b2f33c76e74f7496b77c573b652ada41c60da",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9ed6f15f_a5fdaa4f",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/avc-subscription-event-1.0.0.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-06-27T16:20:59Z",
+      "side": 1,
+      "message": "Also sorry just noticed I think this is updated to datastore-xpath-filter in the new commit",
+      "range": {
+        "startLine": 41,
+        "startChar": 17,
+        "endLine": 41,
+        "endChar": 29
+      },
+      "revId": "c65b2f33c76e74f7496b77c573b652ada41c60da",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
