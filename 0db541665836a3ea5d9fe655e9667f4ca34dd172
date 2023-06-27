@@ -22,6 +22,30 @@
       "revId": "0db541665836a3ea5d9fe655e9667f4ca34dd172",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f9cd065a_816931e4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-06-27T12:02:02Z",
+      "side": 1,
+      "message": "Thanks for the heads up. 😊",
+      "parentUuid": "974a3495_8f3a13ed",
+      "range": {
+        "startLine": 11,
+        "startChar": 10,
+        "endLine": 11,
+        "endChar": 18
+      },
+      "revId": "0db541665836a3ea5d9fe655e9667f4ca34dd172",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
