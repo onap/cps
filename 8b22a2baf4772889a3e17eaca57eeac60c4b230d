@@ -45,6 +45,30 @@
       "revId": "8b22a2baf4772889a3e17eaca57eeac60c4b230d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a5a43d2c_1fa5d1e4",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/subscription/subscription-event-schema-1.0.0.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-06-27T08:45:47Z",
+      "side": 1,
+      "message": "Yes, definitely. Otherwise, data object would overlap for other subscription schemas.",
+      "parentUuid": "16507b9b_e023e694",
+      "range": {
+        "startLine": 8,
+        "startChar": 62,
+        "endLine": 8,
+        "endChar": 67
+      },
+      "revId": "8b22a2baf4772889a3e17eaca57eeac60c4b230d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
