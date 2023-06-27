@@ -25,6 +25,13 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
         show_sql: false
+        id:
+          new_generator_mappings: true
+        order_inserts: true
+        order_updates: true
+        batch_versioned_data: true
+        jdbc:
+          batch_size: 100
 
   datasource:
     url: ${DB_URL}
