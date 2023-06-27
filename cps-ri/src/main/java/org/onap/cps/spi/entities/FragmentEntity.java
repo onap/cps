@@ -34,6 +34,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -65,7 +66,8 @@ public class FragmentEntity implements Serializable {
     private static final long serialVersionUID = 7737669789097119667L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "fragment_id_seq_generator")
+    @SequenceGenerator(name = "fragment_id_seq_generator", sequenceName = "fragment_id_seq", allocationSize = 100)
     private Long id;
 
     @NotNull

@@ -100,7 +100,7 @@ databaseChangeLog:
         - createTable:
             columns:
               - column:
-                  autoIncrement: true
+                  autoIncrement: false
                   constraints:
                     nullable: false
                     primaryKey: true
@@ -127,6 +127,11 @@ databaseChangeLog:
                   name: schema_node_id
                   type: INTEGER
             tableName: fragment
+        - createSequence:
+            dataType: BIGINT
+            incrementBy: 100
+            sequenceName: fragment_id_seq
+            startValue: 100
   - changeSet:
       id: 1-5
       author: cps

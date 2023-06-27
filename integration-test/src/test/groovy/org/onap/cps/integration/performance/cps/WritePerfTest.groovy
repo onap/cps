@@ -44,13 +44,13 @@ class WritePerfTest extends CpsPerfTestBase {
             cpsAdminService.deleteAnchor(CPS_PERFORMANCE_TEST_DATASPACE, 'writeAnchor')
         where:
             totalNodes || expectedDurationInSeconds
-            50         ||   3
-            100        ||   5
-            200        ||  10
-            400        ||  20
-//          800        ||  40
-//          1600       ||  80
-//          3200       || 160
+            50         || 2
+            100        || 3
+            200        || 5
+            400        || 10
+//          800        || 20
+//          1600       || 40
+//          3200       || 80
     }
 
     def 'Writing bookstore data has exponential time.'() {
@@ -66,15 +66,15 @@ class WritePerfTest extends CpsPerfTestBase {
             stopWatch.stop()
             def durationInMillis = stopWatch.getTotalTimeMillis()
         then: 'the operation takes less than #expectedDuration'
-            recordAndAssertPerformance("Writing ${totalBooks} books", expectedDuration, durationInMillis)
+            recordAndAssertPerformance("Writing ${totalBooks} books", expectedDurationInMs, durationInMillis)
         cleanup:
             cpsDataService.deleteDataNodes(CPS_PERFORMANCE_TEST_DATASPACE, 'writeAnchor', OffsetDateTime.now())
             cpsAdminService.deleteAnchor(CPS_PERFORMANCE_TEST_DATASPACE, 'writeAnchor')
         where:
-            totalBooks || expectedDuration
-            400        || 200
-            800        || 500
-            1600       || TimeUnit.SECONDS.toMillis(1)
+            totalBooks || expectedDurationInMs
+            400        || 100
+            800        || 250
+            1600       || 500
             3200       || TimeUnit.SECONDS.toMillis(3)
             6400       || TimeUnit.SECONDS.toMillis(10)
 //          12800      || TimeUnit.SECONDS.toMillis(30)

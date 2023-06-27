@@ -42,7 +42,7 @@ class DeletePerfTest extends CpsPerfTestBase {
             stopWatch.stop()
             def setupDurationInMillis = stopWatch.getTotalTimeMillis()
         then: 'setup duration is within expected time'
-            recordAndAssertPerformance('Delete test setup', TimeUnit.SECONDS.toMillis(200), setupDurationInMillis)
+            recordAndAssertPerformance('Delete test setup', TimeUnit.SECONDS.toMillis(75), setupDurationInMillis)
     }
 
     def 'Delete 100 container nodes'() {

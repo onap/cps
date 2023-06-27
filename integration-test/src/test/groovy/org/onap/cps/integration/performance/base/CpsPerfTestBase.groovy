@@ -66,7 +66,7 @@ class CpsPerfTestBase extends PerfTestBase {
         addAnchorsWithData(OPENROADM_ANCHORS, CPS_PERFORMANCE_TEST_DATASPACE, LARGE_SCHEMA_SET, 'openroadm', data)
         stopWatch.stop()
         def durationInMillis = stopWatch.getTotalTimeMillis()
-        recordAndAssertPerformance('Creating openroadm anchors with large data tree', TimeUnit.SECONDS.toMillis(200), durationInMillis)
+        recordAndAssertPerformance('Creating openroadm anchors with large data tree', TimeUnit.SECONDS.toMillis(75), durationInMillis)
     }
 
     def generateOpenRoadData(numberOfNodes) {
@@ -84,7 +84,7 @@ class CpsPerfTestBase extends PerfTestBase {
             stopWatch.stop()
             def durationInMillis = stopWatch.getTotalTimeMillis()
         then: 'all data is read within expected time'
-            recordAndAssertPerformance("Warming database", TimeUnit.SECONDS.toMillis(200), durationInMillis)
+            recordAndAssertPerformance("Warming database", TimeUnit.SECONDS.toMillis(75), durationInMillis)
     }
 
 }
