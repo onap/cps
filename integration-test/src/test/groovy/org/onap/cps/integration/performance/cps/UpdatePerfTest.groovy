@@ -79,12 +79,12 @@ class UpdatePerfTest extends CpsPerfTestBase {
                     memoryLimit, resourceMeter.getTotalMemoryUsageInMB())
         where:
             scenario                           | totalNodes | startId | changeLeaves || timeLimit | memoryLimit
-            'Replace 0 nodes with 100'         | 100        | 1       | false        ||         7 | 250
-            'Replace 100 using same data'      | 100        | 1       | false        ||         3 | 250
-            'Replace 100 with new leaf values' | 100        | 1       | true         ||         3 | 250
-            'Replace 100 with 100 new nodes'   | 100        | 101     | false        ||        12 | 300
-            'Replace 50 existing and 50 new'   | 100        | 151     | true         ||         8 | 250
-            'Replace 100 nodes with 0'         | 0          | 1       | false        ||         5 | 250
+            'Replace 0 nodes with 100'         | 100        | 1       | false        ||       2.5 | 200
+            'Replace 100 using same data'      | 100        | 1       | false        ||       3.5 | 200
+            'Replace 100 with new leaf values' | 100        | 1       | true         ||       3.5 | 200
+            'Replace 100 with 100 new nodes'   | 100        | 101     | false        ||       6.0 | 200
+            'Replace 50 existing and 50 new'   | 100        | 151     | true         ||       4.5 | 200
+            'Replace 100 nodes with 0'         | 0          | 1       | false        ||       3.5 | 200
     }
 
     def 'Replace list content: #scenario.'() {
@@ -105,12 +105,12 @@ class UpdatePerfTest extends CpsPerfTestBase {
                     memoryLimit, resourceMeter.getTotalMemoryUsageInMB())
         where:
             scenario                                   | totalNodes | startId | changeLeaves || timeLimit | memoryLimit
-            'Replace list of 0 with 100'               | 100        | 1       | false        ||         7 | 250
-            'Replace list of 100 using same data'      | 100        | 1       | false        ||         3 | 250
-            'Replace list of 100 with new leaf values' | 100        | 1       | true         ||         3 | 250
-            'Replace list with 100 new nodes'          | 100        | 101     | false        ||        12 | 300
-            'Replace list with 50 existing and 50 new' | 100        | 151     | true         ||         8 | 250
-            'Replace list of 100 nodes with 1'         | 1          | 1       | false        ||         5 | 250
+            'Replace list of 0 with 100'               | 100        | 1       | false        ||       2.5 | 200
+            'Replace list of 100 using same data'      | 100        | 1       | false        ||       3.5 | 200
+            'Replace list of 100 with new leaf values' | 100        | 1       | true         ||       3.5 | 200
+            'Replace list with 100 new nodes'          | 100        | 101     | false        ||       6.0 | 200
+            'Replace list with 50 existing and 50 new' | 100        | 151     | true         ||       4.5 | 200
+            'Replace list of 100 nodes with 1'         | 1          | 1       | false        ||       3.5 | 200
     }
 
     def 'Update leaves for 100 data nodes.'() {
@@ -127,7 +127,7 @@ class UpdatePerfTest extends CpsPerfTestBase {
             assert 100 == countDataNodes('/openroadm-devices/openroadm-device[@status="fail"]')
         and: 'update completes within expected time and memory used is within limit'
             recordAndAssertResourceUsage('Update leaves for 100 data nodes',
-                    0.5, resourceMeter.getTotalTimeInSeconds(),
+                    0.4, resourceMeter.getTotalTimeInSeconds(),
                     120, resourceMeter.getTotalMemoryUsageInMB())
     }
 

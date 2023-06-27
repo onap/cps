@@ -20,11 +20,13 @@ spring:
     ddl-auto: create
     show-sql: false
     properties:
-      hibernate:
-        enable_lazy_load_no_trans: true
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-        format_sql: true
-        show_sql: false
+      hibernate.enable_lazy_load_no_trans: true
+      hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+      hibernate.format_sql: true
+      hibernate.show_sql: false
+      # Please ensure these values match those used in cps-application/src/main/resources/application.yml
+      hibernate.id.new_generator_mappings: true
+      hibernate.jdbc.batch_size: 100
 
   datasource:
     url: ${DB_URL}
