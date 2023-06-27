@@ -16,4 +16,6 @@
 */
 
 -- replace '' with \' and " with ""
+-- SQL strings use single-quote like 'example', where quotes need to be escaped, e.g. 'it''s good'.
+-- Using raw quotes like $$example$$, we can avoid escaping, e.g. $$it's good$$
 UPDATE fragment SET xpath = replace(replace(xpath, $$''$$, $$\'$$), '"', '""');

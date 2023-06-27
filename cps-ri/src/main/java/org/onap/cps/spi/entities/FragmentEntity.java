@@ -31,6 +31,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -63,7 +64,8 @@ public class FragmentEntity implements Serializable {
     private static final long serialVersionUID = 7737669789097119667L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "fragment_id_seq_generator")
+    @SequenceGenerator(name = "fragment_id_seq_generator", sequenceName = "fragment_id_seq", allocationSize = 100)
     private Long id;
 
     @NotNull
