@@ -356,4 +356,23 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
             'text-condition'     || "/bookstore/categories[@code='1']/books/title[text()='[@hello=world]']"
             'contains-condition' || "/bookstore/categories[@code='1']/books[contains(@title, '[@hello=world]')]"
     }
+
+    def 'Cps Path get and query can handle apostrophe inside #quotes.'() {
+        given: 'a book with special characters in title'
+            cpsDataService.saveData(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, "/bookstore/categories[@code='1']",
+                    '{"books": [ {"title":"I\'m escaping"} ] }', OffsetDateTime.now())
+        when: 'a query is executed'
+            def result = objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, cpsPath, OMIT_DESCENDANTS)
+        then: 'the node is returned'
+            assert result.size() == 1
+            assert result[0].xpath == "/bookstore/categories[@code='1']/books[@title='I''m escaping']"
+        cleanup: 'the new datanode'
+            cpsDataService.deleteDataNode(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, "/bookstore/categories[@code='1']/books[@title='I''m escaping']", OffsetDateTime.now())
+        where:
+            quotes               || cpsPath
+            'single quotes'      || "/bookstore/categories[@code='1']/books[@title='I''m escaping']"
+            'double quotes'      || '/bookstore/categories[@code="1"]/books[@title="I\'m escaping"]'
+            'text-condition'     || "/bookstore/categories[@code='1']/books/title[text()='I''m escaping']"
+            'contains-condition' || "/bookstore/categories[@code='1']/books[contains(@title, 'I''m escaping')]"
+    }
 }
