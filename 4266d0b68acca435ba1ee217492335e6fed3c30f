@@ -22,6 +22,30 @@
       "revId": "4266d0b68acca435ba1ee217492335e6fed3c30f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aece3c31_8a007bb4",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/subscription/client-to-ncmp-subscription-event-1.0.0.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-06-28T15:40:54Z",
+      "side": 1,
+      "message": "I think this should be  [dataType, predicates, subscription]. I will align with yours also.",
+      "parentUuid": "7792ce49_663bf9cb",
+      "range": {
+        "startLine": 85,
+        "startChar": 6,
+        "endLine": 87,
+        "endChar": 20
+      },
+      "revId": "4266d0b68acca435ba1ee217492335e6fed3c30f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
