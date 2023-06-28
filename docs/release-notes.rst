@@ -42,6 +42,7 @@ Bug Fixes
 
 Features
 --------
+- `CPS-1760 <https://jira.onap.org/browse/CPS-1760>`_ Improve handling of special characters in Cps Paths
 
 Version: 3.3.3
 ==============
