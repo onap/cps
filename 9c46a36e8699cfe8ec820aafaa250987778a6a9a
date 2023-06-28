@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dc33c21b_3a321b10",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/subscription/edm-to-ncmp-subscription-event-1.0.0.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-06-28T09:42:05Z",
+      "side": 1,
+      "message": "also you can disable creation of additionalProperties for all the objects.\nCheck other patches.\nadditionalProperties: false",
+      "revId": "9c46a36e8699cfe8ec820aafaa250987778a6a9a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "af2c507c_58ab2548",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/subscription/edm-to-ncmp-subscription-event-1.0.0.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-06-28T09:42:05Z",
+      "side": 1,
+      "message": "also Suffix the classname as well.\norg.onap.cps.ncmp.events.avcsubscription1_0_0.client_to_ncmp.SubscriptionEvent",
+      "range": {
+        "startLine": 8,
+        "startChar": 19,
+        "endLine": 8,
+        "endChar": 79
+      },
+      "revId": "9c46a36e8699cfe8ec820aafaa250987778a6a9a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
