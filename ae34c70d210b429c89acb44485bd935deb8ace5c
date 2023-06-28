@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1bbe50f2_2f5a1b52",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/subscription/ncmp-to-dmi-subscription-event-schema-1.0.0.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-06-28T13:39:28Z",
+      "side": 1,
+      "message": "should be lowercase",
+      "range": {
+        "startLine": 43,
+        "startChar": 21,
+        "endLine": 43,
+        "endChar": 22
+      },
+      "revId": "ae34c70d210b429c89acb44485bd935deb8ace5c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1068dc00_52caa88a",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/subscription/ncmp-to-dmi-subscription-event-schema-1.0.0.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-06-28T13:39:28Z",
+      "side": 1,
+      "message": "same",
+      "range": {
+        "startLine": 57,
+        "startChar": 17,
+        "endLine": 57,
+        "endChar": 26
+      },
+      "revId": "ae34c70d210b429c89acb44485bd935deb8ace5c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88383554_a557ab84",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/subscription/ncmp-to-dmi-subscription-event-schema-1.0.0.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-06-28T13:39:28Z",
+      "side": 1,
+      "message": "this is a map of two strings rather than an array",
+      "range": {
+        "startLine": 98,
+        "startChar": 19,
+        "endLine": 98,
+        "endChar": 24
+      },
+      "revId": "ae34c70d210b429c89acb44485bd935deb8ace5c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
