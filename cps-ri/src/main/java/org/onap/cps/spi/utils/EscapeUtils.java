@@ -26,8 +26,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class EscapeUtils {
 
-    public static String escapeForSqlLike(final String text) {
-        return text.replace("\\", "\\\\").replace("%", "\\%").replace("_", "\\_");
+    public static String escapeForSqlLike(final String value) {
+        return value.replace("\\", "\\\\").replace("%", "\\%").replace("_", "\\_");
+    }
+
+    public static String escapeSingleQuotesByDoublingThem(final String value) {
+        return value.replace("'", "''");
     }
 
 }

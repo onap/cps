@@ -253,7 +253,7 @@ public class YangUtils {
         final List<String> keyAttributes = nodeIdentifier.entrySet().stream().map(
                 entry -> {
                     final String name = entry.getKey().getLocalName();
-                    final String value = String.valueOf(entry.getValue()).replace("'", "\\'");
+                    final String value = String.valueOf(entry.getValue()).replace("'", "''");
                     return String.format("@%s='%s'", name, value);
                 }
         ).collect(Collectors.toList());

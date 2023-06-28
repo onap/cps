@@ -33,4 +33,9 @@ class EscapeUtilsSpec extends Specification {
             'Others (./?$) are not special' || 'Others (./?$) are not special'
     }
 
+    def 'Escape single quotes for SQL'() {
+        expect: 'single quotes to be doubled'
+            assert EscapeUtils.escapeSingleQuotesByDoublingThem("I'm escaping!") == "I''m escaping!"
+    }
+
 }
