@@ -24,13 +24,18 @@ import spock.lang.Specification
 
 class EscapeUtilsSpec extends Specification {
 
-    def 'Escape text for using in SQL LIKE operation'() {
+    def 'Escape text for use in SQL LIKE operation.'() {
         expect: 'SQL LIKE special characters to be escaped with forward-slash'
             assert EscapeUtils.escapeForSqlLike(unescapedText) == escapedText
         where:
             unescapedText                   || escapedText
             'Only %, _, and \\ are special' || 'Only \\%, \\_, and \\\\ are special'
             'Others (./?$) are not special' || 'Others (./?$) are not special'
+    }
+
+    def 'Escape text for use in SQL string literal.'() {
+        expect: 'single quotes to be doubled'
+            assert EscapeUtils.escapeForSqlStringLiteral("I'm escaping!") == "I''m escaping!"
     }
 
 }

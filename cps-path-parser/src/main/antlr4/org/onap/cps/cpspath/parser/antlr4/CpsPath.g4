@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Copyright (C) 2021-2023 Nordix Foundation
  *  Modifications Copyright (C) 2023 TechMahindra Ltd
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,6 +17,12 @@
  *
  *  SPDX-License-Identifier: Apache-2.0
  *  ============LICENSE_END=========================================================
+ */
+
+/*
+ * Parser Rules
+ * Some of the parser rules below are inspired by
+ * https://github.com/antlr/grammars-v4/blob/master/xpath/xpath31/XPath31Parser.g4
  */
 
 grammar CpsPath ;
@@ -60,7 +66,7 @@ invalidPostFix : (AT | CB | COLONCOLON | comparativeOperators ).+ ;
 /*
  * Lexer Rules
  * Most of the lexer rules below are inspired by
- * https://raw.githubusercontent.com/antlr/grammars-v4/master/xpath/xpath31/XPath31.g4
+ * https://github.com/antlr/grammars-v4/blob/master/xpath/xpath31/XPath31Lexer.g4
  */
 
 AT : '@' ;
@@ -89,9 +95,9 @@ IntegerLiteral : FragDigits ;
 // Add below type definitions for leafvalue comparision in https://jira.onap.org/browse/CPS-440
 DecimalLiteral : ('.' FragDigits) | (FragDigits '.' [0-9]*) ;
 DoubleLiteral : (('.' FragDigits) | (FragDigits ('.' [0-9]*)?)) [eE] [+-]? FragDigits ;
-StringLiteral : ('"' (FragEscapeQuot | ~[^"])*? '"') | ('\'' (FragEscapeApos | ~['])*? '\'') ;
+StringLiteral : '"' (~["] | FragEscapeQuot)* '"' | '\'' (~['] | FragEscapeApos)* '\'' ;
 fragment FragEscapeQuot : '""' ;
-fragment FragEscapeApos : '\'' ;
+fragment FragEscapeApos : '\'\'';
 fragment FragDigits : [0-9]+ ;
 
 QName  : FragQName ;

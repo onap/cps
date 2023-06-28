@@ -31,6 +31,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.spi.utils.EscapeUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -86,7 +87,7 @@ public class TempTableCreator {
         final Collection<String> sqlInserts = new HashSet<>(sqlData.size());
         for (final Collection<String> rowValues : sqlData) {
             final Collection<String> escapedValues =
-                rowValues.stream().map(it -> escapeSingleQuotesByDoublingThem(it)).collect(Collectors.toList());
+                rowValues.stream().map(EscapeUtils::escapeForSqlStringLiteral).collect(Collectors.toList());
             sqlInserts.add("('" + String.join("','", escapedValues) + "')");
         }
         sqlStringBuilder.append("INSERT INTO ");
@@ -96,10 +97,6 @@ public class TempTableCreator {
         sqlStringBuilder.append(") VALUES ");
         sqlStringBuilder.append(String.join(",", sqlInserts));
         sqlStringBuilder.append(";");
-    }
-
-    private static String escapeSingleQuotesByDoublingThem(final String value) {
-        return value.replace("'", "''");
     }
 
 }
