@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d7a1375c_44ae922d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/async/NcmpAsyncDataOperationEventConsumer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-06-28T11:08:34Z",
+      "side": 1,
+      "message": "If we remove this lie in the integration groovy test line no 104 assert will fail in the first run(It is checking whether the record published to client topic or not)",
+      "range": {
+        "startLine": 53,
+        "startChar": 12,
+        "endLine": 53,
+        "endChar": 83
+      },
+      "revId": "2628e41e05759b647fcfcfb8028ceb30e7023c7e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "00dde421_9238a8ac",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/async/NcmpAsyncRequestResponseEventConsumer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-06-28T11:08:34Z",
+      "side": 1,
+      "message": "If we remove this line in the integration groovy test line no 105 assert will fail in the both runs (This is checking that is anything published to the legacy client topic when using cloud events)",
+      "range": {
+        "startLine": 52,
+        "startChar": 12,
+        "endLine": 52,
+        "endChar": 64
+      },
+      "revId": "2628e41e05759b647fcfcfb8028ceb30e7023c7e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
