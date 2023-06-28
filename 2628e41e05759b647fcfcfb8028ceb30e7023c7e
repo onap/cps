@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "9fe79f7d_353d3027",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/async/NcmpAsyncDataOperationEventConsumer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-06-28T12:43:50Z",
+      "side": 1,
+      "message": "I agree, we can remove this line as there is no use.\n\nNOTE: Even we don\u0027t remove it still gives \"dataOperationEventConsumerRecord.value()\" as \u0027CloudEvent\u0027 becasue this line is setting the default type for the \"JsonDeserialization\" and we are using the \u0027cloudDeserialization\u0027. So, it doesn\u0027t effect anything even if we remove or not(I tested it before).",
+      "parentUuid": "5ea04736_3a65d237",
+      "range": {
+        "startLine": 56,
+        "startChar": 12,
+        "endLine": 56,
+        "endChar": 114
+      },
+      "revId": "2628e41e05759b647fcfcfb8028ceb30e7023c7e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "00dde421_9238a8ac",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/async/NcmpAsyncRequestResponseEventConsumer.java",
         "patchSetId": 1
