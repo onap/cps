@@ -93,6 +93,30 @@
       "revId": "6a64ade5d793d34c70357a95a52713ace8b2fb4a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "615b3221_fa6cc4e5",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/QueryPerfTest.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-28T09:39:24Z",
+      "side": 1,
+      "message": "sounds good, thanks!",
+      "parentUuid": "b53f3df1_0395b491",
+      "range": {
+        "startLine": 48,
+        "startChar": 2,
+        "endLine": 51,
+        "endChar": 134
+      },
+      "revId": "6a64ade5d793d34c70357a95a52713ace8b2fb4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
