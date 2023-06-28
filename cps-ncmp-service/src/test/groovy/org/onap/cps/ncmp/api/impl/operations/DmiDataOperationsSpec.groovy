@@ -22,8 +22,10 @@
 package org.onap.cps.ncmp.api.impl.operations
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import org.onap.cps.ncmp.api.NcmpEventResponseCode
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration
 import org.onap.cps.ncmp.api.impl.events.EventsPublisher
+import org.onap.cps.ncmp.api.impl.exception.HttpClientRequestException
 import org.onap.cps.ncmp.api.impl.utils.DmiServiceUrlBuilder
 import org.onap.cps.ncmp.api.impl.utils.context.CpsApplicationContext
 import org.onap.cps.ncmp.api.models.DataOperationRequest
@@ -37,6 +39,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.http.HttpStatus
 import spock.lang.Shared
+import java.util.concurrent.TimeoutException
 
 import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_OPERATIONAL
 import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RUNNING
@@ -108,6 +111,31 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
         then: 'validate ncmp generated dmi request body json args'
             1 * mockDmiRestClient.postOperationWithJsonData(expectedDmiBatchResourceDataUrl, _, READ) >> { args -> requestBodyAsJsonStringArg = args[1] }
             assert requestBodyAsJsonStringArg == expectedBatchRequestAsJson
+    }
+
+    def 'Execute (async) data operation from DMI service for #scenario.'() {
+        given: 'data operation request body and dmi resource url'
+            def dmiDataOperation = DmiDataOperation.builder().operationId('some-operation-id').build()
+            dmiDataOperation.getCmHandles().add(CmHandle.builder().id('some-cm-handle-id').build())
+            def dmiDataOperationResourceDataUrl = "http://dmi-service-name:dmi-port/dmi/v1/data?topic=my-topic-name&requestId=some-request-id"
+            def expectedDataOperationCloudEvent = null
+        when: 'exception occurs after sending request to dmi service'
+            objectUnderTest.handleTaskCompletionException(new Throwable(exceptionType), dmiDataOperationResourceDataUrl, List.of(dmiDataOperation))
+        then: 'capture expected data operation cloud event'
+            eventsPublisher.publishCloudEvent('my-topic-name', 'some-request-id', _) >> { args -> expectedDataOperationCloudEvent = args[2] }
+        and: 'map data operation cloud event to data operation event'
+            def dataOperationResponseEvent = io.cloudevents.core.CloudEventUtils.mapData(expectedDataOperationCloudEvent,
+                    io.cloudevents.jackson.PojoCloudEventDataMapper.from(new ObjectMapper(), org.onap.cps.ncmp.events.async1_0_0.DataOperationEvent.class)).getValue()
+        and: 'verify data operation event response data attributes'
+            def response = dataOperationResponseEvent.data.responses[0]
+            response.operationId == dmiDataOperation.operationId
+            response.ids == dmiDataOperation.cmHandles.id
+            response.statusCode == responseCode.statusCode
+            response.statusMessage == responseCode.statusMessage
+        where: 'the following exceptions are occurred'
+            scenario                        | exceptionType                                                                                            || responseCode
+            'http client request exception' | new HttpClientRequestException('error-message', 'error-details', HttpStatus.SERVICE_UNAVAILABLE.value()) || NcmpEventResponseCode.CODE_103
+            'timeout exception'             | new TimeoutException()                                                                                   || NcmpEventResponseCode.CODE_102
     }
 
     def 'call get all resource data.'() {
