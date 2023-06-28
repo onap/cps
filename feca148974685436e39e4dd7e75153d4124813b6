@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bd8a9556_b813954c",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/subscription/client-to-ncmp-subscription-event-1.0.0.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-06-28T14:45:29Z",
+      "side": 1,
+      "message": "I think required should be added:\n\n              \"required\": [\n                \"dataCategory\",\n\"dataProvider\",\n\"dataspace\"\n              ],\n\nrealised its on line 56, I think it needs to be moved to here",
+      "revId": "feca148974685436e39e4dd7e75153d4124813b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "916d97e5_3bacb43b",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/subscription/client-to-ncmp-subscription-event-1.0.0.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-06-28T14:45:29Z",
+      "side": 1,
+      "message": "targets and datastore-xpath-filter should be added too",
+      "range": {
+        "startLine": 50,
+        "startChar": 26,
+        "endLine": 52,
+        "endChar": 16
+      },
+      "revId": "feca148974685436e39e4dd7e75153d4124813b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
