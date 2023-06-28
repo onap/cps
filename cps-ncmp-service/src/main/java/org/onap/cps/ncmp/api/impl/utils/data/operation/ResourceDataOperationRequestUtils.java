@@ -68,7 +68,7 @@ public class ResourceDataOperationRequestUtils {
             final Collection<YangModelCmHandle> yangModelCmHandles) {
 
         final Map<String, List<DmiDataOperation>> dmiDataOperationsOutPerDmiServiceName = new HashMap<>();
-        final MultiValueMap<String, Map<NcmpEventResponseCode, List<String>>> cmHandleIdsPerOperationIdPerResponseCode
+        final MultiValueMap<String, Map<NcmpEventResponseCode, List<String>>> cmHandleIdsPerResponseCodesPerOperationId
                 = new LinkedMultiValueMap<>();
         final Set<String> nonReadyCmHandleIdsLookup = filterAndGetNonReadyCmHandleIds(yangModelCmHandles);
 
@@ -100,25 +100,32 @@ public class ResourceDataOperationRequestUtils {
                     }
                 }
             }
-            populateCmHandleIdsPerOperationIdPerResponseCode(cmHandleIdsPerOperationIdPerResponseCode,
-                    dataOperationDefinitionIn.getOperationId(), NcmpEventResponseCode.CODE_100, nonExistingCmHandleIds);
-            populateCmHandleIdsPerOperationIdPerResponseCode(cmHandleIdsPerOperationIdPerResponseCode,
-                    dataOperationDefinitionIn.getOperationId(), NcmpEventResponseCode.CODE_101, nonReadyCmHandleIds);
+            populateCmHandleIdsPerOperationIdPerResponseCode(cmHandleIdsPerResponseCodesPerOperationId,
+                    dataOperationDefinitionIn.getOperationId(), NcmpEventResponseCode.CM_HANDLES_NOT_FOUND, nonExistingCmHandleIds);
+            populateCmHandleIdsPerOperationIdPerResponseCode(cmHandleIdsPerResponseCodesPerOperationId,
+                    dataOperationDefinitionIn.getOperationId(), NcmpEventResponseCode.CM_HANDLES_NOT_READY, nonReadyCmHandleIds);
         }
-        if (!cmHandleIdsPerOperationIdPerResponseCode.isEmpty()) {
-            publishErrorMessageToClientTopic(topicParamInQuery, requestId, cmHandleIdsPerOperationIdPerResponseCode);
+        if (!cmHandleIdsPerResponseCodesPerOperationId.isEmpty()) {
+            publishErrorMessageToClientTopic(topicParamInQuery, requestId, cmHandleIdsPerResponseCodesPerOperationId);
         }
         return dmiDataOperationsOutPerDmiServiceName;
     }
 
+    /**
+     * Creates data operation cloud event and publish it to client topic.
+     *
+     * @param clientTopic                              client given topic
+     * @param requestId                                unique identifier per request
+     * @param cmHandleIdsPerResponseCodesPerOperationId list of cm handle ids per operation id with response code
+     */
     @Async
-    private static void publishErrorMessageToClientTopic(final String clientTopic,
+    public static void publishErrorMessageToClientTopic(final String clientTopic,
                                                          final String requestId,
                                                          final MultiValueMap<String,
                                                                  Map<NcmpEventResponseCode, List<String>>>
-                                                                 cmHandleIdsPerOperationIdPerResponseCode) {
+                                                                    cmHandleIdsPerResponseCodesPerOperationId) {
         final CloudEvent dataOperationCloudEvent = DataOperationEventCreator.createDataOperationEvent(clientTopic,
-                requestId, cmHandleIdsPerOperationIdPerResponseCode);
+                requestId, cmHandleIdsPerResponseCodesPerOperationId);
         final EventsPublisher<CloudEvent> eventsPublisher = CpsApplicationContext.getCpsBean(EventsPublisher.class);
         eventsPublisher.publishCloudEvent(clientTopic, requestId, dataOperationCloudEvent);
     }
@@ -166,13 +173,13 @@ public class ResourceDataOperationRequestUtils {
     }
 
     private static void populateCmHandleIdsPerOperationIdPerResponseCode(final MultiValueMap<String,
-            Map<NcmpEventResponseCode, List<String>>> cmHandleIdsPerOperationIdByResponseCode,
+            Map<NcmpEventResponseCode, List<String>>> cmHandleIdsPerResponseCodesPerOperationId,
                                                                         final String operationId,
                                                                         final NcmpEventResponseCode
                                                                                 ncmpEventResponseCode,
                                                                         final List<String> cmHandleIds) {
         if (!cmHandleIds.isEmpty()) {
-            cmHandleIdsPerOperationIdByResponseCode.add(operationId, Map.of(ncmpEventResponseCode, cmHandleIds));
+            cmHandleIdsPerResponseCodesPerOperationId.add(operationId, Map.of(ncmpEventResponseCode, cmHandleIds));
         }
     }
 }
