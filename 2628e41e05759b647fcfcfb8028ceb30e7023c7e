@@ -112,6 +112,23 @@
     },
     {
       "key": {
+        "uuid": "ade2969a_64040597",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/NcmpAsyncDataOperationAndDmiRequestResponseEventConsumerIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-06-28T13:31:38Z",
+      "side": 1,
+      "message": "just thinking , do we need 2 separate integrations tests for this ? \nOr this is fine ? just wanted to know others opinions.",
+      "revId": "2628e41e05759b647fcfcfb8028ceb30e7023c7e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "35b1d40a_203c2613",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/NcmpAsyncDataOperationAndDmiRequestResponseEventConsumerIntegrationSpec.groovy",
         "patchSetId": 1
