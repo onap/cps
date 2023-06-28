@@ -177,6 +177,12 @@ General Notes
 =============
 
 - String values must be wrapped in quotation marks ``"`` (U+0022) or apostrophes ``'`` (U+0027).
+- Quotations marks and apostrophes can be escaped by doubling them in their respective quotes:
+  - "CPS ""Path"" Query" -> CPS "Path" Query
+  - 'CPS ''Path'' Query' -> CPS 'Path' Query
+- Quotation marks do not have to be doubled if wrapped in apostrophes, and vice-versa:
+  - 'CPS "Path" Query' -> CPS "Path" Query
+  - "CPS 'Path' Query" -> CPS 'Path' Query
 - String comparisons are case sensitive.
 
 Query Syntax
