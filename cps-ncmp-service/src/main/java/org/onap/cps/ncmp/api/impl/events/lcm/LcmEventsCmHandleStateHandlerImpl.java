@@ -100,14 +100,13 @@ public class LcmEventsCmHandleStateHandlerImpl implements LcmEventsCmHandleState
                 cmHandleTransitionPairs.add(cmHandleTransitionPair);
             }
         });
-
         return cmHandleTransitionPairs;
     }
 
 
     private void persistCmHandle(final YangModelCmHandle targetYangModelCmHandle,
             final YangModelCmHandle currentYangModelCmHandle) {
-        if (isNew(currentYangModelCmHandle.getCompositeState(), targetYangModelCmHandle.getCompositeState())) {
+        if (isNew(currentYangModelCmHandle.getCompositeState())) {
             log.debug("Registering a new cm handle {}", targetYangModelCmHandle.getId());
             inventoryPersistence.saveCmHandle(targetYangModelCmHandle);
         } else if (isDeleted(targetYangModelCmHandle.getCompositeState())) {
@@ -124,8 +123,8 @@ public class LcmEventsCmHandleStateHandlerImpl implements LcmEventsCmHandleState
         final Map<String, CompositeState> compositeStatePerCmHandleId = new LinkedHashMap<>();
 
         cmHandleTransitionPairs.forEach(cmHandleTransitionPair -> {
-            if (isNew(cmHandleTransitionPair.getCurrentYangModelCmHandle().getCompositeState(),
-                    cmHandleTransitionPair.getTargetYangModelCmHandle().getCompositeState())) {
+            if (isNew(cmHandleTransitionPair.getCurrentYangModelCmHandle().getCompositeState()
+            )) {
                 newCmHandles.add(cmHandleTransitionPair.getTargetYangModelCmHandle());
             } else if (!isDeleted(cmHandleTransitionPair.getTargetYangModelCmHandle().getCompositeState())) {
                 compositeStatePerCmHandleId.put(cmHandleTransitionPair.getTargetYangModelCmHandle().getId(),
@@ -172,8 +171,8 @@ public class LcmEventsCmHandleStateHandlerImpl implements LcmEventsCmHandleState
         CompositeStateUtils.setCompositeState(targetCmHandleState).accept(yangModelCmHandle.getCompositeState());
     }
 
-    private boolean isNew(final CompositeState existingCompositeState, final CompositeState targetCompositeState) {
-        return (existingCompositeState == null && targetCompositeState.getCmHandleState() == ADVISED);
+    private boolean isNew(final CompositeState existingCompositeState) {
+        return (existingCompositeState == null);
     }
 
     private boolean isDeleted(final CompositeState targetCompositeState) {

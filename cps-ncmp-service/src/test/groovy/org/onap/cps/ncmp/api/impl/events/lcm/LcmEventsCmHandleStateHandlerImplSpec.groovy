@@ -63,7 +63,7 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
             'ADVISED to ADVISED' | ADVISED           | ADVISED         || 0                                   | 0
             'READY to READY'     | READY             | READY           || 0                                   | 0
             'LOCKED to LOCKED'   | LOCKED            | LOCKED          || 0                                   | 0
-
+            'DELETED to ADVISED' | DELETED           | ADVISED         || 0                                   | 1
     }
 
     def 'Update and Publish Events on State Change from NO_EXISTING state to ADVISED'() {
@@ -90,6 +90,17 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
                     assert (args[1] as CompositeState).lockReason.details == 'some lock details'
                 }
             }
+        and: 'event service is called to publish event'
+            1 * mockLcmEventsService.publishLcmEvent(cmHandleId, _, _)
+    }
+
+    def 'Update and Publish Events on State Change from DELETING to ADVISED'() {
+        given: 'Cm Handle represented as YangModelCmHandle in DELETING state'
+            yangModelCmHandle = new YangModelCmHandle(id: cmHandleId, dmiProperties: [], publicProperties: [], compositeState: compositeState)
+        when: 'update state is invoked'
+            objectUnderTest.updateCmHandleState(yangModelCmHandle, ADVISED)
+        then: 'the cm handle is saved using inventory persistence'
+            1 * mockInventoryPersistence.saveCmHandle(yangModelCmHandle)
         and: 'event service is called to publish event'
             1 * mockLcmEventsService.publishLcmEvent(cmHandleId, _, _)
     }
@@ -167,7 +178,7 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
                     assert (args[0] as Collection<YangModelCmHandle>).id.containsAll('cmhandle1', 'cmhandle2')
                 }
             }
-        and: 'event service is called to publish event'
+        and: 'event service is called to publish events'
             2 * mockLcmEventsService.publishLcmEvent(_, _, _)
 
     }
@@ -183,9 +194,23 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
                     assert (args[0] as Map<String, CompositeState>).keySet().containsAll(['cmhandle1','cmhandle2'])
                 }
             }
-        and: 'event service is called to publish event'
+        and: 'event service is called to publish events'
             2 * mockLcmEventsService.publishLcmEvent(_, _, _)
+    }
 
+    def 'Batch of existing cm handles is deleted'() {
+        given: 'A batch of deleted cm handles'
+            def cmHandleStateMap = setupBatch('DELETED')
+        when: 'updating a batch of changes'
+            objectUnderTest.updateCmHandleStateBatch(cmHandleStateMap)
+        then : 'existing cm handles composite state is persisted'
+            1 * mockInventoryPersistence.saveCmHandleStateBatch(_) >> {
+                args -> {
+                    assert (args[0] as Map<String, CompositeState>).isEmpty()
+                }
+            }
+        and: 'event service is called to publish events'
+            2 * mockLcmEventsService.publishLcmEvent(_, _, _)
     }
 
     def setupBatch(type) {
@@ -195,6 +220,12 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
 
         if ('NEW' == type) {
             return [(yangModelCmHandle1): ADVISED, (yangModelCmHandle2): ADVISED]
+        }
+
+        if ('DELETED' == type) {
+            yangModelCmHandle1.compositeState = new CompositeState(cmHandleState: READY)
+            yangModelCmHandle2.compositeState = new CompositeState(cmHandleState: READY)
+            return [(yangModelCmHandle1): DELETED, (yangModelCmHandle2): DELETED]
         }
 
         if ('UPDATE' == type) {
