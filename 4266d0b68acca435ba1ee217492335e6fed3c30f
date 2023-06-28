@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7792ce49_663bf9cb",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/subscription/client-to-ncmp-subscription-event-1.0.0.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-06-28T15:00:06Z",
+      "side": 1,
+      "message": "should this be [data] ? or [dataType, predicates, subscription] ?",
+      "range": {
+        "startLine": 85,
+        "startChar": 6,
+        "endLine": 87,
+        "endChar": 20
+      },
+      "revId": "4266d0b68acca435ba1ee217492335e6fed3c30f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
