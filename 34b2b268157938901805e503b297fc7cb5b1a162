@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "312ed38a_c51a86d7",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/subscription/ncmp-to-dmi-subscription-event-schema-1.0.0.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-06-28T16:21:47Z",
+      "side": 1,
+      "message": "should contain targets and datastore-xpath-filter",
+      "range": {
+        "startLine": 83,
+        "startChar": 17,
+        "endLine": 83,
+        "endChar": 26
+      },
+      "revId": "34b2b268157938901805e503b297fc7cb5b1a162",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
