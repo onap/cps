@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "7f1b1466_28a715af",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/avc-subscription-event-1.0.0.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-06-28T09:23:46Z",
+      "side": 1,
+      "message": "I think, we need a sub folder name here like client_to_ncmp",
+      "range": {
+        "startLine": 8,
+        "startChar": 64,
+        "endLine": 8,
+        "endChar": 65
+      },
+      "revId": "c65b2f33c76e74f7496b77c573b652ada41c60da",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "32054eb1_cbf1bd85",
         "filename": "cps-ncmp-events/src/main/resources/schemas/avc-subscription-event-1.0.0.json",
         "patchSetId": 1
