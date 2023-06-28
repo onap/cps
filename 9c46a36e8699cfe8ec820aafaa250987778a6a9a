@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "63fdd736_a1960885",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/subscription/edm-to-ncmp-subscription-event-1.0.0.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-06-28T10:34:31Z",
+      "side": 1,
+      "message": "can you check new patch :)",
+      "parentUuid": "dc33c21b_3a321b10",
+      "revId": "9c46a36e8699cfe8ec820aafaa250987778a6a9a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "af2c507c_58ab2548",
         "filename": "cps-ncmp-events/src/main/resources/schemas/subscription/edm-to-ncmp-subscription-event-1.0.0.json",
         "patchSetId": 3
@@ -39,6 +57,30 @@
       "revId": "9c46a36e8699cfe8ec820aafaa250987778a6a9a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4184af41_7c91d00e",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/subscription/edm-to-ncmp-subscription-event-1.0.0.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-06-28T10:34:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "af2c507c_58ab2548",
+      "range": {
+        "startLine": 8,
+        "startChar": 19,
+        "endLine": 8,
+        "endChar": 79
+      },
+      "revId": "9c46a36e8699cfe8ec820aafaa250987778a6a9a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
