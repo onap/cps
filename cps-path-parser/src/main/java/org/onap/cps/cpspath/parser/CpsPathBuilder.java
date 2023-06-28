@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Copyright (C) 2021-2023 Nordix Foundation
  *  Modifications Copyright (C) 2023 TechMahindra Ltd
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -43,21 +43,21 @@ public class CpsPathBuilder extends CpsPathBaseListener {
 
     private static final String CLOSE_BRACKET = "]";
 
-    final CpsPathQuery cpsPathQuery = new CpsPathQuery();
+    private final CpsPathQuery cpsPathQuery = new CpsPathQuery();
 
-    final Map<String, Object> leavesData = new LinkedHashMap<>();
+    private final Map<String, Object> leavesData = new LinkedHashMap<>();
 
-    final StringBuilder normalizedXpathBuilder = new StringBuilder();
+    private final StringBuilder normalizedXpathBuilder = new StringBuilder();
 
-    final StringBuilder normalizedAncestorPathBuilder = new StringBuilder();
+    private final StringBuilder normalizedAncestorPathBuilder = new StringBuilder();
 
-    boolean processingAncestorAxis = false;
+    private boolean processingAncestorAxis = false;
 
-    private List<String> containerNames = new ArrayList<>();
+    private final List<String> containerNames = new ArrayList<>();
 
-    final List<String> booleanOperators = new ArrayList<>();
+    private final List<String> booleanOperators = new ArrayList<>();
 
-    final List<String> comparativeOperators = new ArrayList<>();
+    private final List<String> comparativeOperators = new ArrayList<>();
 
     @Override
     public void exitInvalidPostFix(final CpsPathParser.InvalidPostFixContext ctx) {
@@ -81,18 +81,13 @@ public class CpsPathBuilder extends CpsPathBaseListener {
 
     @Override
     public void exitLeafCondition(final LeafConditionContext ctx) {
-        Object comparisonValue;
+        final Object comparisonValue;
         if (ctx.IntegerLiteral() != null) {
             comparisonValue = Integer.valueOf(ctx.IntegerLiteral().getText());
         } else if (ctx.StringLiteral() != null) {
-            final boolean wasWrappedInDoubleQuote = ctx.StringLiteral().getText().startsWith("\"");
-            comparisonValue = stripFirstAndLastCharacter(ctx.StringLiteral().getText());
-            if (wasWrappedInDoubleQuote) {
-                comparisonValue = String.valueOf(comparisonValue).replace("'", "\\'");
-            }
+            comparisonValue = unwrapQuotedString(ctx.StringLiteral().getText());
         } else {
-            throw new PathParsingException(
-                    "Unsupported comparison value encountered in expression" + ctx.getText());
+            throw new PathParsingException("Unsupported comparison value encountered in expression" + ctx.getText());
         }
         leafContext(ctx.leafName(), comparisonValue);
     }
@@ -144,13 +139,13 @@ public class CpsPathBuilder extends CpsPathBaseListener {
     @Override
     public void exitTextFunctionCondition(final TextFunctionConditionContext ctx) {
         cpsPathQuery.setTextFunctionConditionLeafName(ctx.leafName().getText());
-        cpsPathQuery.setTextFunctionConditionValue(stripFirstAndLastCharacter(ctx.StringLiteral().getText()));
+        cpsPathQuery.setTextFunctionConditionValue(unwrapQuotedString(ctx.StringLiteral().getText()));
     }
 
     @Override
     public void exitContainsFunctionCondition(final CpsPathParser.ContainsFunctionConditionContext ctx) {
         cpsPathQuery.setContainsFunctionConditionLeafName(ctx.leafName().getText());
-        cpsPathQuery.setContainsFunctionConditionValue(stripFirstAndLastCharacter(ctx.StringLiteral().getText()));
+        cpsPathQuery.setContainsFunctionConditionValue(unwrapQuotedString(ctx.StringLiteral().getText()));
     }
 
     @Override
@@ -175,10 +170,6 @@ public class CpsPathBuilder extends CpsPathBaseListener {
         cpsPathQuery.setBooleanOperators(booleanOperators);
         cpsPathQuery.setComparativeOperators(comparativeOperators);
         return cpsPathQuery;
-    }
-
-    private static String stripFirstAndLastCharacter(final String wrappedString) {
-        return wrappedString.substring(1, wrappedString.length() - 1);
     }
 
     @Override
@@ -211,11 +202,25 @@ public class CpsPathBuilder extends CpsPathBaseListener {
                                     .append(name)
                                     .append(getLastElement(comparativeOperators))
                                     .append("'")
-                                    .append(value)
+                                    .append(value.toString().replace("'", "''"))
                                     .append("'");
     }
 
-    private String getLastElement(final List<String> listOfStrings) {
+    private static String getLastElement(final List<String> listOfStrings) {
         return listOfStrings.get(listOfStrings.size() - 1);
+    }
+
+    private static String unwrapQuotedString(final String wrappedString) {
+        final boolean wasWrappedInSingleQuote = wrappedString.startsWith("'");
+        final String value = stripFirstAndLastCharacter(wrappedString);
+        if (wasWrappedInSingleQuote) {
+            return value.replace("''", "'");
+        } else {
+            return value.replace("\"\"", "\"");
+        }
+    }
+
+    private static String stripFirstAndLastCharacter(final String wrappedString) {
+        return wrappedString.substring(1, wrappedString.length() - 1);
     }
 }

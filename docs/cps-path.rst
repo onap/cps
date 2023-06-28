@@ -177,6 +177,12 @@ General Notes
 =============
 
 - String values must be wrapped in quotation marks ``"`` (U+0022) or apostrophes ``'`` (U+0027).
+- Quotations marks and apostrophes can be escaped by doubling them in their respective quotes:
+  - "CPS ""Path"" Query" -> CPS "Path" Query
+  - 'CPS ''Path'' Query' -> CPS 'Path' Query
+- Quotation marks do not have to be doubled if wrapped in apostrophes, and vice-versa:
+  - 'CPS "Path" Query' -> CPS "Path" Query
+  - "CPS 'Path' Query" -> CPS 'Path' Query
 - String comparisons are case sensitive.
 
 Query Syntax
@@ -247,7 +253,6 @@ leaf-conditions
   - The key should be supplied with correct data type for it to be queried from DB. In the last example above the attribute code is of type
     Integer so the cps query will not work if the value is passed as string.
     eg: ``//categories[@code="1"]`` or ``//categories[@code='1']`` will not work because the key attribute code is treated a string.
-  - Having '[' token in any index in any list will have a negative impact on this function.
 
 **Notes**
   - For performance reasons it does not make sense to query using key leaf as attribute. If the key value is known it is better to execute a get request with the complete xpath.
@@ -272,7 +277,6 @@ The text()-condition  can be added to any CPS path query.
   - Only string and integer values are supported, boolean and float values are not supported.
   - Since CPS cannot return individual leaves it will always return the container with all its leaves. Ancestor-axis can be used to specify a parent higher up the tree.
   - When querying a leaf value (instead of leaf-list) it is better, more performant to use a text value condition use @<leaf-name> as described above.
-  - Having '[' token in any index in any list will have a negative impact on this function.
 
 contains()-condition
 --------------------
