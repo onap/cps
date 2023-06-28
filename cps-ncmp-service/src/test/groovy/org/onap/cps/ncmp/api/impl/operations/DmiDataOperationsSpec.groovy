@@ -22,12 +22,16 @@
 package org.onap.cps.ncmp.api.impl.operations
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import io.cloudevents.core.CloudEventUtils
+import io.cloudevents.jackson.PojoCloudEventDataMapper
+import org.onap.cps.ncmp.api.NcmpEventResponseCode
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration
 import org.onap.cps.ncmp.api.impl.events.EventsPublisher
+import org.onap.cps.ncmp.api.impl.exception.HttpClientRequestException
 import org.onap.cps.ncmp.api.impl.utils.DmiServiceUrlBuilder
 import org.onap.cps.ncmp.api.impl.utils.context.CpsApplicationContext
 import org.onap.cps.ncmp.api.models.DataOperationRequest
-import org.onap.cps.ncmp.event.model.NcmpAsyncRequestResponseEvent
+import org.onap.cps.ncmp.events.async1_0_0.DataOperationEvent
 import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
@@ -37,6 +41,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.http.HttpStatus
 import spock.lang.Shared
+import java.util.concurrent.TimeoutException
 
 import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_OPERATIONAL
 import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RUNNING
@@ -110,6 +115,28 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             assert requestBodyAsJsonStringArg == expectedBatchRequestAsJson
     }
 
+    def 'Execute (async) data operation from DMI service for #scenario.'() {
+        given: 'data operation request body and dmi resource url'
+            def dmiDataOperation = DmiDataOperation.builder().operationId('some-operation-id').build()
+            dmiDataOperation.getCmHandles().add(CmHandle.builder().id('some-cm-handle-id').build())
+            def dmiDataOperationResourceDataUrl = "http://dmi-service-name:dmi-port/dmi/v1/data?topic=my-topic-name&requestId=some-request-id"
+            def actualDataOperationCloudEvent = null
+        when: 'exception occurs after sending request to dmi service'
+            objectUnderTest.handleTaskCompletionException(new Throwable(exception), dmiDataOperationResourceDataUrl, List.of(dmiDataOperation))
+        then: 'a cloud event is published'
+            eventsPublisher.publishCloudEvent('my-topic-name', 'some-request-id', _) >> { args -> actualDataOperationCloudEvent = args[2] }
+        and: 'the event contains the expected error details'
+            def eventDataValue = extractDataValue(actualDataOperationCloudEvent)
+            assert eventDataValue.operationId == dmiDataOperation.operationId
+            assert eventDataValue.ids == dmiDataOperation.cmHandles.id
+            assert eventDataValue.statusCode == responseCode.statusCode
+            assert eventDataValue.statusMessage == responseCode.statusMessage
+        where: 'the following exceptions are occurred'
+            scenario                        | exception                                                                                                || responseCode
+            'http client request exception' | new HttpClientRequestException('error-message', 'error-details', HttpStatus.SERVICE_UNAVAILABLE.value()) || NcmpEventResponseCode.UNABLE_TO_READ_RESOURCE_DATA
+            'timeout exception'             | new TimeoutException()                                                                                   || NcmpEventResponseCode.DMI_SERVICE_NOT_RESPONDING
+    }
+
     def 'call get all resource data.'() {
         given: 'the system returns a cm handle with a sample property'
             mockYangModelCmHandleRetrieval([yangModelCmHandleProperty])
@@ -141,5 +168,9 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             operation || expectedOperationInUrl
             CREATE    || 'create'
             UPDATE    || 'update'
+    }
+
+    def extractDataValue(actualDataOperationCloudEvent) {
+        return CloudEventUtils.mapData(actualDataOperationCloudEvent, PojoCloudEventDataMapper.from(new ObjectMapper(), DataOperationEvent.class)).getValue().data.responses[0]
     }
 }
