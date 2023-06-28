@@ -25,8 +25,10 @@ import lombok.Getter;
 @Getter
 public enum NcmpEventResponseCode {
 
-    CODE_100("100", "cm handle id(s) not found"),
-    CODE_101("101", "cm handle(s) not ready");
+    CM_HANDLES_NOT_FOUND("100", "cm handle id(s) not found"),
+    CM_HANDLES_NOT_READY("101", "cm handle(s) not ready"),
+    DMI_SERVICE_NOT_RESPONDING("102", "dmi plugin service is not responding"),
+    UNABLE_TO_READ_RESOURCE_DATA("103", "dmi plugin service is not able to read resource data");
 
     private final String statusCode;
     private final String statusMessage;

@@ -30,8 +30,10 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.ncmp.api.NcmpEventResponseCode;
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient;
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration;
+import org.onap.cps.ncmp.api.impl.exception.HttpClientRequestException;
 import org.onap.cps.ncmp.api.impl.executor.TaskExecutor;
 import org.onap.cps.ncmp.api.impl.utils.DmiServiceUrlBuilder;
 import org.onap.cps.ncmp.api.impl.utils.data.operation.ResourceDataOperationRequestUtils;
@@ -43,7 +45,9 @@ import org.onap.cps.spi.exceptions.CpsException;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.util.UriComponentsBuilder;
 
 /**
  * Operations class for DMI data.
@@ -240,14 +244,37 @@ public class DmiDataOperations extends DmiOperations {
         final String dataOperationRequestBodiesAsJsonString =
                 jsonObjectMapper.asJsonString(dmiDataOperationRequestBodies);
         TaskExecutor.executeTask(() -> dmiRestClient.postOperationWithJsonData(dataOperationResourceUrl,
-                        dataOperationRequestBodiesAsJsonString, READ),
+                                dataOperationRequestBodiesAsJsonString, READ),
                         DEFAULT_ASYNC_TASK_EXECUTOR_TIMEOUT_IN_MILLISECONDS)
-                .whenCompleteAsync(this::handleTaskCompletion);
+                .whenCompleteAsync((response, throwable) -> handleTaskCompletionException(throwable,
+                        dataOperationResourceUrl, dmiDataOperationRequestBodies));
     }
 
-    private void handleTaskCompletion(final Object response, final Throwable throwable) {
-        // TODO Need to publish an error response to client given topic.
-        //  Code should be implemented into https://jira.onap.org/browse/CPS-1558 (
-        //  NCMP : Handle non responding DMI-Plugin)
+    private void handleTaskCompletionException(final Throwable throwable,
+                                               final String dataOperationResourceUrl,
+                                               final List<DmiDataOperation> dmiDataOperationRequestBodies) {
+        if (throwable != null) {
+            final MultiValueMap<String, String> dataOperationResourceUrlParameters =
+                    UriComponentsBuilder.fromUriString(dataOperationResourceUrl).build().getQueryParams();
+            final String topicName = dataOperationResourceUrlParameters.get("topic").get(0);
+            final String requestId = dataOperationResourceUrlParameters.get("requestId").get(0);
+
+            final MultiValueMap<String, Map<NcmpEventResponseCode, List<String>>>
+                    cmHandleIdsPerResponseCodesPerOperationId = new LinkedMultiValueMap<>();
+
+            dmiDataOperationRequestBodies.forEach(dmiDataOperationRequestBody -> {
+                final List<String> cmHandleIds = dmiDataOperationRequestBody.getCmHandles().stream()
+                        .map(CmHandle::getId).collect(Collectors.toList());
+                if (throwable.getCause() instanceof HttpClientRequestException) {
+                    cmHandleIdsPerResponseCodesPerOperationId.add(dmiDataOperationRequestBody.getOperationId(),
+                            Map.of(NcmpEventResponseCode.UNABLE_TO_READ_RESOURCE_DATA, cmHandleIds));
+                } else {
+                    cmHandleIdsPerResponseCodesPerOperationId.add(dmiDataOperationRequestBody.getOperationId(),
+                            Map.of(NcmpEventResponseCode.DMI_SERVICE_NOT_RESPONDING, cmHandleIds));
+                }
+            });
+            ResourceDataOperationRequestUtils.publishErrorMessageToClientTopic(topicName, requestId,
+                    cmHandleIdsPerResponseCodesPerOperationId);
+        }
     }
 }
