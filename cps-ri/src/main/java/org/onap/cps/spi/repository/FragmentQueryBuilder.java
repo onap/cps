@@ -37,7 +37,6 @@ import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.FragmentEntity;
 import org.onap.cps.spi.exceptions.CpsPathException;
 import org.onap.cps.spi.utils.EscapeUtils;
-import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
@@ -48,8 +47,6 @@ public class FragmentQueryBuilder {
 
     @PersistenceContext
     private EntityManager entityManager;
-
-    private final JsonObjectMapper jsonObjectMapper;
 
     /**
      * Create a sql query to retrieve by anchor(id) and cps path.
@@ -128,18 +125,18 @@ public class FragmentQueryBuilder {
         sqlStringBuilder.append(" AND (");
         final Queue<String> booleanOperatorsQueue = new LinkedList<>(cpsPathQuery.getBooleanOperators());
         final Queue<String> comparativeOperatorQueue = new LinkedList<>(cpsPathQuery.getComparativeOperators());
-        cpsPathQuery.getLeavesData().entrySet().forEach(entry -> {
+        cpsPathQuery.getLeavesData().forEach((leafName, leafValue) -> {
             final String nextComparativeOperator = comparativeOperatorQueue.poll();
-            if (entry.getValue() instanceof Integer) {
-                sqlStringBuilder.append("(attributes ->> ");
-                sqlStringBuilder.append("'").append(entry.getKey()).append("')\\:\\:int");
-                sqlStringBuilder.append(" ").append(nextComparativeOperator).append(" ");
-                sqlStringBuilder.append("'").append(jsonObjectMapper.asJsonString(entry.getValue())).append("'");
+            if (leafValue instanceof Integer) {
+                sqlStringBuilder.append("(attributes ->> '").append(leafName).append("')\\:\\:int");
+                sqlStringBuilder.append(nextComparativeOperator);
+                sqlStringBuilder.append(leafValue);
             } else {
                 if ("=".equals(nextComparativeOperator)) {
-                    sqlStringBuilder.append(" attributes @> ");
-                    sqlStringBuilder.append("'");
-                    sqlStringBuilder.append(jsonObjectMapper.asJsonString(entry));
+                    final String leafValueAsText = leafValue.toString();
+                    sqlStringBuilder.append("attributes ->> '").append(leafName).append("'");
+                    sqlStringBuilder.append(" = '");
+                    sqlStringBuilder.append(EscapeUtils.escapeSingleQuotesByDoublingThem(leafValueAsText));
                     sqlStringBuilder.append("'");
                 } else {
                     throw new CpsPathException(" can use only " + nextComparativeOperator + " with integer ");

@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Copyright (C) 2021-2023 Nordix Foundation
  *  Modifications Copyright (C) 2023 TechMahindra Ltd
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -89,9 +89,9 @@ IntegerLiteral : FragDigits ;
 // Add below type definitions for leafvalue comparision in https://jira.onap.org/browse/CPS-440
 DecimalLiteral : ('.' FragDigits) | (FragDigits '.' [0-9]*) ;
 DoubleLiteral : (('.' FragDigits) | (FragDigits ('.' [0-9]*)?)) [eE] [+-]? FragDigits ;
-StringLiteral : ('"' (FragEscapeQuot | ~[^"])*? '"') | ('\'' (FragEscapeApos | ~['])*? '\'') ;
+StringLiteral : '"' (~["] | FragEscapeQuot)* '"' | '\'' (~['] | FragEscapeApos)* '\'' ;
 fragment FragEscapeQuot : '""' ;
-fragment FragEscapeApos : '\'' ;
+fragment FragEscapeApos : '\'\'';
 fragment FragDigits : [0-9]+ ;
 
 QName  : FragQName ;
