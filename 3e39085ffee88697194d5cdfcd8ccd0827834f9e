@@ -70,6 +70,30 @@
       "revId": "3e39085ffee88697194d5cdfcd8ccd0827834f9e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "149e2c58_31f10dfd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/async/RecordFilterStrategies.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-06-29T14:35:21Z",
+      "side": 1,
+      "message": "I dont think it make any sense to create \"our own marker interface\" as currently legacy events that are auto-generated from json schema implements Serializable. Anyway in near future legacy events would be removed, we should not waste our time in after effects here.",
+      "parentUuid": "42e13960_90940ed4",
+      "range": {
+        "startLine": 62,
+        "startChar": 40,
+        "endLine": 62,
+        "endChar": 52
+      },
+      "revId": "3e39085ffee88697194d5cdfcd8ccd0827834f9e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
