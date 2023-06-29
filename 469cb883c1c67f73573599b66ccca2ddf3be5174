@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1d114564_efa9ab38",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/subscription/ncmp-to-dmi-subscription-event-schema-1.0.0.json",
+        "patchSetId": 11
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-06-29T09:56:28Z",
+      "side": 1,
+      "message": "\"additionalProperties\": false",
+      "revId": "469cb883c1c67f73573599b66ccca2ddf3be5174",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f531dbf8_3f595b7b",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/subscription/ncmp-to-dmi-subscription-event-schema-1.0.0.json",
+        "patchSetId": 11
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-06-29T09:56:28Z",
+      "side": 1,
+      "message": "\"additionalProperties\": false",
+      "revId": "469cb883c1c67f73573599b66ccca2ddf3be5174",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b4d56cf8_ed7ded97",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/subscription/ncmp-to-dmi-subscription-event-schema-1.0.0.json",
+        "patchSetId": 11
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-06-29T09:56:28Z",
+      "side": 1,
+      "message": "\"additionalProperties\": false",
+      "revId": "469cb883c1c67f73573599b66ccca2ddf3be5174",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
