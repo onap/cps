@@ -42,6 +42,9 @@ Bug Fixes
 
 Features
 --------
+    - `CPS-1515 <https://jira.onap.org/browse/CPS-1515>`_ Support Multiple CM-Handles for NCMP Get Operation
+    - `CPS-1675 <https://jira.onap.org/browse/CPS-1675>`_ Persistence write performance improvement(s)
+    - `CPS-1745 <https://jira.onap.org/browse/CPS-1745>`_ Upgrade to Openapi 3.0.3
 
 Version: 3.3.2
 ==============

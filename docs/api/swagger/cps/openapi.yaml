@@ -1,809 +1,807 @@
-openapi: 3.0.1
+openapi: 3.0.3
 info:
-  title: ONAP Open API v3 Configuration Persistence Service
-  description: Configuration Persistence Service is a Model Driven Generic Database
   contact:
+    email: onap-discuss@lists.onap.org
     name: ONAP
     url: https://onap.readthedocs.io
-    email: onap-discuss@lists.onap.org
+  description: Configuration Persistence Service is a Model Driven Generic Database
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0
+  title: ONAP Open API v3 Configuration Persistence Service
   version: 1.0.0
   x-planned-retirement-date: "202212"
   x-component: Modeling
   x-logo:
     url: cps_logo.png
 servers:
-- url: /cps/api
+  - url: /cps/api
 security:
-- basicAuth: []
+  - basicAuth: []
 tags:
-- name: cps-admin
-  description: cps Admin
-- name: cps-data
-  description: cps Data
+  - description: cps Admin
+    name: cps-admin
+  - description: cps Data
+    name: cps-data
 paths:
   /v1/dataspaces:
     post:
-      tags:
-      - cps-admin
-      summary: Create a dataspace
+      deprecated: true
       description: Create a new dataspace
       operationId: createDataspace
       parameters:
-      - name: dataspace-name
-        in: query
-        description: dataspace-name
-        required: true
-        schema:
-          type: string
-          example: my-dataspace
+        - description: dataspace-name
+          in: query
+          name: dataspace-name
+          required: true
+          schema:
+            example: my-dataspace
+            type: string
       responses:
         "201":
-          description: Created
           content:
             text/plain:
               schema:
-                type: string
                 example: my-resource
+                type: string
+          description: Created
         "400":
-          description: Bad Request
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
               example:
                 status: 400
                 message: Bad Request
                 details: The provided request is not valid
-        "401":
-          description: Unauthorized
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
               example:
                 status: 401
                 message: Unauthorized request
                 details: This request is unauthorized
-        "403":
-          description: Forbidden
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
               example:
                 status: 403
                 message: Request Forbidden
                 details: This request is forbidden
-        "409":
-          description: Conflict
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Forbidden
+        "409":
+          content:
+            application/json:
               example:
                 status: 409
                 message: Conflicting request
                 details: The request cannot be processed as the resource is in use.
-        "500":
-          description: Internal Server Error
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Conflict
+        "500":
+          content:
+            application/json:
               example:
                 status: 500
                 message: Internal Server Error
                 details: Internal Server Error occurred
-      deprecated: true
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Internal Server Error
+      summary: Create a dataspace
+      tags:
+        - cps-admin
   /{apiVersion}/dataspaces:
     delete:
-      tags:
-      - cps-admin
-      summary: Delete a dataspace
       description: Delete a dataspace
       operationId: deleteDataspace
       parameters:
-      - name: apiVersion
-        in: path
-        description: apiVersion
-        required: true
-        schema:
-          type: string
-          default: v2
-          enum:
-          - v1
-          - v2
-      - name: dataspace-name
-        in: query
-        description: dataspace-name
-        required: true
-        schema:
-          type: string
-          example: my-dataspace
+        - description: apiVersion
+          in: path
+          name: apiVersion
+          required: true
+          schema:
+            default: v2
+            enum:
+              - v1
+              - v2
+            type: string
+        - description: dataspace-name
+          in: query
+          name: dataspace-name
+          required: true
+          schema:
+            example: my-dataspace
+            type: string
       responses:
         "204":
-          description: No Content
           content: {}
+          description: No Content
         "400":
-          description: Bad Request
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
               example:
                 status: 400
                 message: Bad Request
                 details: The provided request is not valid
-        "401":
-          description: Unauthorized
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
               example:
                 status: 401
                 message: Unauthorized request
                 details: This request is unauthorized
-        "403":
-          description: Forbidden
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
               example:
                 status: 403
                 message: Request Forbidden
                 details: This request is forbidden
-        "409":
-          description: Conflict
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Forbidden
+        "409":
+          content:
+            application/json:
               example:
                 status: 409
                 message: Conflicting request
                 details: The request cannot be processed as the resource is in use.
-        "500":
-          description: Internal Server Error
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Conflict
+        "500":
+          content:
+            application/json:
               example:
                 status: 500
                 message: Internal Server Error
                 details: Internal Server Error occurred
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Internal Server Error
+      summary: Delete a dataspace
+      tags:
+        - cps-admin
   /v2/dataspaces:
     post:
-      tags:
-      - cps-admin
-      summary: Create a dataspace
       description: Create a new dataspace
       operationId: createDataspaceV2
       parameters:
-      - name: dataspace-name
-        in: query
-        description: dataspace-name
-        required: true
-        schema:
-          type: string
-          example: my-dataspace
+        - description: dataspace-name
+          in: query
+          name: dataspace-name
+          required: true
+          schema:
+            example: my-dataspace
+            type: string
       responses:
         "201":
           description: Created without response body
         "400":
-          description: Bad Request
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
               example:
                 status: 400
                 message: Bad Request
                 details: The provided request is not valid
-        "401":
-          description: Unauthorized
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
               example:
                 status: 401
                 message: Unauthorized request
                 details: This request is unauthorized
-        "403":
-          description: Forbidden
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
               example:
                 status: 403
                 message: Request Forbidden
                 details: This request is forbidden
-        "409":
-          description: Conflict
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Forbidden
+        "409":
+          content:
+            application/json:
               example:
                 status: 409
                 message: Conflicting request
                 details: The request cannot be processed as the resource is in use.
-        "500":
-          description: Internal Server Error
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Conflict
+        "500":
+          content:
+            application/json:
               example:
                 status: 500
                 message: Internal Server Error
                 details: Internal Server Error occurred
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Internal Server Error
+      summary: Create a dataspace
+      tags:
+        - cps-admin
   /{apiVersion}/admin/dataspaces:
     get:
-      tags:
-      - cps-admin
-      summary: Get all dataspaces
       description: Read all dataspaces
       operationId: getAllDataspaces
       parameters:
-      - name: apiVersion
-        in: path
-        description: apiVersion
-        required: true
-        schema:
-          type: string
-          default: v2
-          enum:
-          - v1
-          - v2
+        - description: apiVersion
+          in: path
+          name: apiVersion
+          required: true
+          schema:
+            default: v2
+            enum:
+              - v1
+              - v2
+            type: string
       responses:
         "200":
-          description: OK
           content:
             application/json:
               schema:
-                type: array
                 items:
                   $ref: '#/components/schemas/DataspaceDetails'
+                type: array
+          description: OK
         "400":
-          description: Bad Request
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
               example:
                 status: 400
                 message: Bad Request
                 details: The provided request is not valid
-        "401":
-          description: Unauthorized
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
               example:
                 status: 401
                 message: Unauthorized request
                 details: This request is unauthorized
-        "403":
-          description: Forbidden
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
               example:
                 status: 403
                 message: Request Forbidden
                 details: This request is forbidden
-        "500":
-          description: Internal Server Error
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Forbidden
+        "500":
+          content:
+            application/json:
               example:
                 status: 500
                 message: Internal Server Error
                 details: Internal Server Error occurred
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Internal Server Error
+      summary: Get all dataspaces
+      tags:
+        - cps-admin
   /{apiVersion}/admin/dataspaces/{dataspace-name}:
     get:
-      tags:
-      - cps-admin
-      summary: Get a dataspace
       description: Read a dataspace given a dataspace name
       operationId: getDataspace
       parameters:
-      - name: apiVersion
-        in: path
-        description: apiVersion
-        required: true
-        schema:
-          type: string
-          default: v2
-          enum:
-          - v1
-          - v2
-      - name: dataspace-name
-        in: path
-        description: dataspace-name
-        required: true
-        schema:
-          type: string
-          example: my-dataspace
+        - description: apiVersion
+          in: path
+          name: apiVersion
+          required: true
+          schema:
+            default: v2
+            enum:
+              - v1
+              - v2
+            type: string
+        - description: dataspace-name
+          in: path
+          name: dataspace-name
+          required: true
+          schema:
+            example: my-dataspace
+            type: string
       responses:
         "200":
-          description: OK
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DataspaceDetails'
+          description: OK
         "400":
-          description: Bad Request
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
               example:
                 status: 400
                 message: Bad Request
                 details: The provided request is not valid
-        "401":
-          description: Unauthorized
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
               example:
                 status: 401
                 message: Unauthorized request
                 details: This request is unauthorized
-        "403":
-          description: Forbidden
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
               example:
                 status: 403
                 message: Request Forbidden
                 details: This request is forbidden
-        "500":
-          description: Internal Server Error
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Forbidden
+        "500":
+          content:
+            application/json:
               example:
                 status: 500
                 message: Internal Server Error
                 details: Internal Server Error occurred
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Internal Server Error
+      summary: Get a dataspace
+      tags:
+        - cps-admin
   /v1/dataspaces/{dataspace-name}/anchors:
     post:
-      tags:
-      - cps-admin
-      summary: Create an anchor
+      deprecated: true
       description: Create a new anchor in the given dataspace
       operationId: createAnchor
       parameters:
-      - name: dataspace-name
-        in: path
-        description: dataspace-name
-        required: true
-        schema:
-          type: string
-          example: my-dataspace
-      - name: schema-set-name
-        in: query
-        description: schema-set-name
-        required: true
-        schema:
-          type: string
-          example: my-schema-set
-      - name: anchor-name
-        in: query
-        description: anchor-name
-        required: true
-        schema:
-          type: string
-          example: my-anchor
+        - description: dataspace-name
+          in: path
+          name: dataspace-name
+          required: true
+          schema:
+            example: my-dataspace
+            type: string
+        - description: schema-set-name
+          in: query
+          name: schema-set-name
+          required: true
+          schema:
+            example: my-schema-set
+            type: string
+        - description: anchor-name
+          in: query
+          name: anchor-name
+          required: true
+          schema:
+            example: my-anchor
+            type: string
       responses:
         "201":
-          description: Created
           content:
             text/plain:
               schema:
-                type: string
                 example: my-resource
+                type: string
+          description: Created
         "400":
-          description: Bad Request
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
               example:
                 status: 400
                 message: Bad Request
                 details: The provided request is not valid
-        "401":
-          description: Unauthorized
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
               example:
                 status: 401
                 message: Unauthorized request
                 details: This request is unauthorized
-        "403":
-          description: Forbidden
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
               example:
                 status: 403
                 message: Request Forbidden
                 details: This request is forbidden
-        "409":
-          description: Conflict
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Forbidden
+        "409":
+          content:
+            application/json:
               example:
                 status: 409
                 message: Conflicting request
                 details: The request cannot be processed as the resource is in use.
-        "500":
-          description: Internal Server Error
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Conflict
+        "500":
+          content:
+            application/json:
               example:
                 status: 500
                 message: Internal Server Error
                 details: Internal Server Error occurred
-      deprecated: true
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Internal Server Error
+      summary: Create an anchor
+      tags:
+        - cps-admin
   /v2/dataspaces/{dataspace-name}/anchors:
     post:
-      tags:
-      - cps-admin
-      summary: Create an anchor
       description: Create a new anchor in the given dataspace
       operationId: createAnchorV2
       parameters:
-      - name: dataspace-name
-        in: path
-        description: dataspace-name
-        required: true
-        schema:
-          type: string
-          example: my-dataspace
-      - name: schema-set-name
-        in: query
-        description: schema-set-name
-        required: true
-        schema:
-          type: string
-          example: my-schema-set
-      - name: anchor-name
-        in: query
-        description: anchor-name
-        required: true
-        schema:
-          type: string
-          example: my-anchor
+        - description: dataspace-name
+          in: path
+          name: dataspace-name
+          required: true
+          schema:
+            example: my-dataspace
+            type: string
+        - description: schema-set-name
+          in: query
+          name: schema-set-name
+          required: true
+          schema:
+            example: my-schema-set
+            type: string
+        - description: anchor-name
+          in: query
+          name: anchor-name
+          required: true
+          schema:
+            example: my-anchor
+            type: string
       responses:
         "201":
           description: Created without response body
         "400":
-          description: Bad Request
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
               example:
                 status: 400
                 message: Bad Request
                 details: The provided request is not valid
-        "401":
-          description: Unauthorized
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
               example:
                 status: 401
                 message: Unauthorized request
                 details: This request is unauthorized
-        "403":
-          description: Forbidden
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
               example:
                 status: 403
                 message: Request Forbidden
                 details: This request is forbidden
-        "409":
-          description: Conflict
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Forbidden
+        "409":
+          content:
+            application/json:
               example:
                 status: 409
                 message: Conflicting request
                 details: The request cannot be processed as the resource is in use.
-        "500":
-          description: Internal Server Error
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Conflict
+        "500":
+          content:
+            application/json:
               example:
                 status: 500
                 message: Internal Server Error
                 details: Internal Server Error occurred
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Internal Server Error
+      summary: Create an anchor
+      tags:
+        - cps-admin
   /{apiVersion}/dataspaces/{dataspace-name}/anchors:
     get:
-      tags:
-      - cps-admin
-      summary: Get anchors
       description: "Read all anchors, given a dataspace"
       operationId: getAnchors
       parameters:
-      - name: apiVersion
-        in: path
-        description: apiVersion
-        required: true
-        schema:
-          type: string
-          default: v2
-          enum:
-          - v1
-          - v2
-      - name: dataspace-name
-        in: path
-        description: dataspace-name
-        required: true
-        schema:
-          type: string
-          example: my-dataspace
+        - description: apiVersion
+          in: path
+          name: apiVersion
+          required: true
+          schema:
+            default: v2
+            enum:
+              - v1
+              - v2
+            type: string
+        - description: dataspace-name
+          in: path
+          name: dataspace-name
+          required: true
+          schema:
+            example: my-dataspace
+            type: string
       responses:
         "200":
-          description: OK
           content:
             application/json:
               schema:
-                type: array
                 items:
                   $ref: '#/components/schemas/AnchorDetails'
+                type: array
+          description: OK
         "400":
-          description: Bad Request
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
               example:
                 status: 400
                 message: Bad Request
                 details: The provided request is not valid
-        "401":
-          description: Unauthorized
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
               example:
                 status: 401
                 message: Unauthorized request
                 details: This request is unauthorized
-        "403":
-          description: Forbidden
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
               example:
                 status: 403
                 message: Request Forbidden
                 details: This request is forbidden
-        "500":
-          description: Internal Server Error
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Forbidden
+        "500":
+          content:
+            application/json:
               example:
                 status: 500
                 message: Internal Server Error
                 details: Internal Server Error occurred
-  /{apiVersion}/dataspaces/{dataspace-name}/anchors/{anchor-name}:
-    get:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Internal Server Error
+      summary: Get anchors
       tags:
-      - cps-admin
-      summary: Get an anchor
+        - cps-admin
+  /{apiVersion}/dataspaces/{dataspace-name}/anchors/{anchor-name}:
+    delete:
+      description: Delete an anchor given an anchor name and a dataspace
+      operationId: deleteAnchor
+      parameters:
+        - description: apiVersion
+          in: path
+          name: apiVersion
+          required: true
+          schema:
+            default: v2
+            enum:
+              - v1
+              - v2
+            type: string
+        - description: dataspace-name
+          in: path
+          name: dataspace-name
+          required: true
+          schema:
+            example: my-dataspace
+            type: string
+        - description: anchor-name
+          in: path
+          name: anchor-name
+          required: true
+          schema:
+            example: my-anchor
+            type: string
+      responses:
+        "204":
+          content: {}
+          description: No Content
+        "400":
+          content:
+            application/json:
+              example:
+                status: 400
+                message: Bad Request
+                details: The provided request is not valid
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              example:
+                status: 401
+                message: Unauthorized request
+                details: This request is unauthorized
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              example:
+                status: 403
+                message: Request Forbidden
+                details: This request is forbidden
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Forbidden
+        "500":
+          content:
+            application/json:
+              example:
+                status: 500
+                message: Internal Server Error
+                details: Internal Server Error occurred
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Internal Server Error
+      summary: Delete an anchor
+      tags:
+        - cps-admin
+    get:
       description: Read an anchor given an anchor name and a dataspace
       operationId: getAnchor
       parameters:
-      - name: apiVersion
-        in: path
-        description: apiVersion
-        required: true
-        schema:
-          type: string
-          default: v2
-          enum:
-          - v1
-          - v2
-      - name: dataspace-name
-        in: path
-        description: dataspace-name
-        required: true
-        schema:
-          type: string
-          example: my-dataspace
-      - name: anchor-name
-        in: path
-        description: anchor-name
-        required: true
-        schema:
-          type: string
-          example: my-anchor
+        - description: apiVersion
+          in: path
+          name: apiVersion
+          required: true
+          schema:
+            default: v2
+            enum:
+              - v1
+              - v2
+            type: string
+        - description: dataspace-name
+          in: path
+          name: dataspace-name
+          required: true
+          schema:
+            example: my-dataspace
+            type: string
+        - description: anchor-name
+          in: path
+          name: anchor-name
+          required: true
+          schema:
+            example: my-anchor
+            type: string
       responses:
         "200":
-          description: OK
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AnchorDetails'
+          description: OK
         "400":
-          description: Bad Request
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
               example:
                 status: 400
                 message: Bad Request
                 details: The provided request is not valid
-        "401":
-          description: Unauthorized
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
               example:
                 status: 401
                 message: Unauthorized request
                 details: This request is unauthorized
-        "403":
-          description: Forbidden
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
               example:
                 status: 403
                 message: Request Forbidden
                 details: This request is forbidden
-        "500":
-          description: Internal Server Error
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Forbidden
+        "500":
+          content:
+            application/json:
               example:
                 status: 500
                 message: Internal Server Error
                 details: Internal Server Error occurred
-    delete:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Internal Server Error
+      summary: Get an anchor
       tags:
-      - cps-admin
-      summary: Delete an anchor
-      description: Delete an anchor given an anchor name and a dataspace
-      operationId: deleteAnchor
-      parameters:
-      - name: apiVersion
-        in: path
-        description: apiVersion
-        required: true
-        schema:
-          type: string
-          default: v2
-          enum:
-          - v1
-          - v2
-      - name: dataspace-name
-        in: path
-        description: dataspace-name
-        required: true
-        schema:
-          type: string
-          example: my-dataspace
-      - name: anchor-name
-        in: path
-        description: anchor-name
-        required: true
-        schema:
-          type: string
-          example: my-anchor
-      responses:
-        "204":
-          description: No Content
-          content: {}
-        "400":
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-              example:
-                status: 400
-                message: Bad Request
-                details: The provided request is not valid
-        "401":
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-              example:
-                status: 401
-                message: Unauthorized request
-                details: This request is unauthorized
-        "403":
-          description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-              example:
-                status: 403
-                message: Request Forbidden
-                details: This request is forbidden
-        "500":
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-              example:
-                status: 500
-                message: Internal Server Error
-                details: Internal Server Error occurred
+        - cps-admin
   /v1/dataspaces/{dataspace-name}/schema-sets:
     post:
-      tags:
-      - cps-admin
-      summary: Create a schema set
+      deprecated: true
       description: Create a new schema set in the given dataspace
       operationId: createSchemaSet
       parameters:
-      - name: dataspace-name
-        in: path
-        description: dataspace-name
-        required: true
-        schema:
-          type: string
-          example: my-dataspace
-      - name: schema-set-name
-        in: query
-        description: schema-set-name
-        required: true
-        schema:
-          type: string
-          example: my-schema-set
+        - description: dataspace-name
+          in: path
+          name: dataspace-name
+          required: true
+          schema:
+            example: my-dataspace
+            type: string
+        - description: schema-set-name
+          in: query
+          name: schema-set-name
+          required: true
+          schema:
+            example: my-schema-set
+            type: string
       requestBody:
         content:
           multipart/form-data:
@@ -812,85 +810,84 @@ paths:
         required: true
       responses:
         "201":
-          description: Created
           content:
             text/plain:
               schema:
-                type: string
                 example: my-resource
+                type: string
+          description: Created
         "400":
-          description: Bad Request
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
               example:
                 status: 400
                 message: Bad Request
                 details: The provided request is not valid
-        "401":
-          description: Unauthorized
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
               example:
                 status: 401
                 message: Unauthorized request
                 details: This request is unauthorized
-        "403":
-          description: Forbidden
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
               example:
                 status: 403
                 message: Request Forbidden
                 details: This request is forbidden
-        "409":
-          description: Conflict
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Forbidden
+        "409":
+          content:
+            application/json:
               example:
                 status: 409
                 message: Conflicting request
                 details: The request cannot be processed as the resource is in use.
-        "500":
-          description: Internal Server Error
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Conflict
+        "500":
+          content:
+            application/json:
               example:
                 status: 500
                 message: Internal Server Error
                 details: Internal Server Error occurred
-      deprecated: true
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Internal Server Error
+      summary: Create a schema set
+      tags:
+        - cps-admin
   /v2/dataspaces/{dataspace-name}/schema-sets:
     post:
-      tags:
-      - cps-admin
-      summary: Create a schema set
       description: Create a new schema set in the given dataspace
       operationId: createSchemaSetV2
       parameters:
-      - name: dataspace-name
-        in: path
-        description: dataspace-name
-        required: true
-        schema:
-          type: string
-          example: my-dataspace
-      - name: schema-set-name
-        in: query
-        description: schema-set-name
-        required: true
-        schema:
-          type: string
-          example: my-schema-set
+        - description: dataspace-name
+          in: path
+          name: dataspace-name
+          required: true
+          schema:
+            example: my-dataspace
+            type: string
+        - description: schema-set-name
+          in: query
+          name: schema-set-name
+          required: true
+          schema:
+            example: my-schema-set
+            type: string
       requestBody:
         content:
           multipart/form-data:
@@ -901,1513 +898,1764 @@ paths:
         "201":
           description: Created without response body
         "400":
-          description: Bad Request
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
               example:
                 status: 400
                 message: Bad Request
                 details: The provided request is not valid
-        "401":
-          description: Unauthorized
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
               example:
                 status: 401
                 message: Unauthorized request
                 details: This request is unauthorized
-        "403":
-          description: Forbidden
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
               example:
                 status: 403
                 message: Request Forbidden
                 details: This request is forbidden
-        "409":
-          description: Conflict
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Forbidden
+        "409":
+          content:
+            application/json:
               example:
                 status: 409
                 message: Conflicting request
                 details: The request cannot be processed as the resource is in use.
-        "500":
-          description: Internal Server Error
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Conflict
+        "500":
+          content:
+            application/json:
               example:
                 status: 500
                 message: Internal Server Error
                 details: Internal Server Error occurred
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Internal Server Error
+      summary: Create a schema set
+      tags:
+        - cps-admin
   /{apiVersion}/dataspaces/{dataspace-name}/schema-sets:
     get:
-      tags:
-      - cps-admin
-      summary: Get schema sets
       description: "Read all schema sets, given a dataspace"
       operationId: getSchemaSets
       parameters:
-      - name: apiVersion
-        in: path
-        description: apiVersion
-        required: true
-        schema:
-          type: string
-          default: v2
-          enum:
-          - v1
-          - v2
-      - name: dataspace-name
-        in: path
-        description: dataspace-name
-        required: true
-        schema:
-          type: string
-          example: my-dataspace
+        - description: apiVersion
+          in: path
+          name: apiVersion
+          required: true
+          schema:
+            default: v2
+            enum:
+              - v1
+              - v2
+            type: string
+        - description: dataspace-name
+          in: path
+          name: dataspace-name
+          required: true
+          schema:
+            example: my-dataspace
+            type: string
       responses:
         "200":
-          description: OK
           content:
             application/json:
               schema:
-                type: array
                 items:
                   $ref: '#/components/schemas/SchemaSetDetails'
+                type: array
+          description: OK
         "400":
-          description: Bad Request
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
               example:
                 status: 400
                 message: Bad Request
                 details: The provided request is not valid
-        "401":
-          description: Unauthorized
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
               example:
                 status: 401
                 message: Unauthorized request
                 details: This request is unauthorized
-        "403":
-          description: Forbidden
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
               example:
                 status: 403
                 message: Request Forbidden
                 details: This request is forbidden
-        "500":
-          description: Internal Server Error
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Forbidden
+        "500":
+          content:
+            application/json:
               example:
                 status: 500
                 message: Internal Server Error
                 details: Internal Server Error occurred
-  /{apiVersion}/dataspaces/{dataspace-name}/schema-sets/{schema-set-name}:
-    get:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Internal Server Error
+      summary: Get schema sets
       tags:
-      - cps-admin
-      summary: Get a schema set
+        - cps-admin
+  /{apiVersion}/dataspaces/{dataspace-name}/schema-sets/{schema-set-name}:
+    delete:
+      description: Delete a schema set given a schema set name and a dataspace
+      operationId: deleteSchemaSet
+      parameters:
+        - description: apiVersion
+          in: path
+          name: apiVersion
+          required: true
+          schema:
+            default: v2
+            enum:
+              - v1
+              - v2
+            type: string
+        - description: dataspace-name
+          in: path
+          name: dataspace-name
+          required: true
+          schema:
+            example: my-dataspace
+            type: string
+        - description: schema-set-name
+          in: path
+          name: schema-set-name
+          required: true
+          schema:
+            example: my-schema-set
+            type: string
+      responses:
+        "204":
+          content: {}
+          description: No Content
+        "400":
+          content:
+            application/json:
+              example:
+                status: 400
+                message: Bad Request
+                details: The provided request is not valid
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              example:
+                status: 401
+                message: Unauthorized request
+                details: This request is unauthorized
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              example:
+                status: 403
+                message: Request Forbidden
+                details: This request is forbidden
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Forbidden
+        "409":
+          content:
+            application/json:
+              example:
+                status: 409
+                message: Conflicting request
+                details: The request cannot be processed as the resource is in use.
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Conflict
+        "500":
+          content:
+            application/json:
+              example:
+                status: 500
+                message: Internal Server Error
+                details: Internal Server Error occurred
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Internal Server Error
+      summary: Delete a schema set
+      tags:
+        - cps-admin
+    get:
       description: Read a schema set given a schema set name and a dataspace
       operationId: getSchemaSet
       parameters:
-      - name: apiVersion
-        in: path
-        description: apiVersion
-        required: true
-        schema:
-          type: string
-          default: v2
-          enum:
-          - v1
-          - v2
-      - name: dataspace-name
-        in: path
-        description: dataspace-name
-        required: true
-        schema:
-          type: string
-          example: my-dataspace
-      - name: schema-set-name
-        in: path
-        description: schema-set-name
-        required: true
-        schema:
-          type: string
-          example: my-schema-set
+        - description: apiVersion
+          in: path
+          name: apiVersion
+          required: true
+          schema:
+            default: v2
+            enum:
+              - v1
+              - v2
+            type: string
+        - description: dataspace-name
+          in: path
+          name: dataspace-name
+          required: true
+          schema:
+            example: my-dataspace
+            type: string
+        - description: schema-set-name
+          in: path
+          name: schema-set-name
+          required: true
+          schema:
+            example: my-schema-set
+            type: string
       responses:
         "200":
-          description: OK
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/SchemaSetDetails'
+          description: OK
         "400":
-          description: Bad Request
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
               example:
                 status: 400
                 message: Bad Request
                 details: The provided request is not valid
-        "401":
-          description: Unauthorized
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
               example:
                 status: 401
                 message: Unauthorized request
                 details: This request is unauthorized
-        "403":
-          description: Forbidden
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
               example:
                 status: 403
                 message: Request Forbidden
                 details: This request is forbidden
-        "500":
-          description: Internal Server Error
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Forbidden
+        "500":
+          content:
+            application/json:
               example:
                 status: 500
                 message: Internal Server Error
                 details: Internal Server Error occurred
-    delete:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Internal Server Error
+      summary: Get a schema set
       tags:
-      - cps-admin
-      summary: Delete a schema set
-      description: Delete a schema set given a schema set name and a dataspace
-      operationId: deleteSchemaSet
-      parameters:
-      - name: apiVersion
-        in: path
-        description: apiVersion
-        required: true
-        schema:
-          type: string
-          default: v2
-          enum:
-          - v1
-          - v2
-      - name: dataspace-name
-        in: path
-        description: dataspace-name
-        required: true
-        schema:
-          type: string
-          example: my-dataspace
-      - name: schema-set-name
-        in: path
-        description: schema-set-name
-        required: true
-        schema:
-          type: string
-          example: my-schema-set
-      responses:
-        "204":
-          description: No Content
-          content: {}
-        "400":
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-              example:
-                status: 400
-                message: Bad Request
-                details: The provided request is not valid
-        "401":
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-              example:
-                status: 401
-                message: Unauthorized request
-                details: This request is unauthorized
-        "403":
-          description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-              example:
-                status: 403
-                message: Request Forbidden
-                details: This request is forbidden
-        "409":
-          description: Conflict
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-              example:
-                status: 409
-                message: Conflicting request
-                details: The request cannot be processed as the resource is in use.
-        "500":
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-              example:
-                status: 500
-                message: Internal Server Error
-                details: Internal Server Error occurred
+        - cps-admin
   /v1/dataspaces/{dataspace-name}/anchors/{anchor-name}/node:
     get:
-      tags:
-      - cps-data
-      summary: Get a node
+      deprecated: true
       description: Get a node with an option to retrieve all the children for a given
         anchor and dataspace
       operationId: getNodeByDataspaceAndAnchor
       parameters:
-      - name: dataspace-name
-        in: path
-        description: dataspace-name
-        required: true
-        schema:
-          type: string
-          example: my-dataspace
-      - name: anchor-name
-        in: path
-        description: anchor-name
-        required: true
-        schema:
-          type: string
-          example: my-anchor
-      - name: xpath
-        in: query
-        description: "For more details on xpath, please refer https://docs.onap.org/projects/onap-cps/en/latest/xpath.html"
-        required: false
-        schema:
-          type: string
-          default: /
-        examples:
-          container xpath:
-            value: /shops/bookstore
-          list attributes xpath:
-            value: "/shops/bookstore/categories[@code=1]"
-      - name: include-descendants
-        in: query
-        description: include-descendants
-        required: false
-        schema:
-          type: boolean
-          example: false
-          default: false
+        - description: dataspace-name
+          in: path
+          name: dataspace-name
+          required: true
+          schema:
+            example: my-dataspace
+            type: string
+        - description: anchor-name
+          in: path
+          name: anchor-name
+          required: true
+          schema:
+            example: my-anchor
+            type: string
+        - description: "For more details on xpath, please refer https://docs.onap.org/projects/onap-cps/en/latest/xpath.html"
+          examples:
+            container xpath:
+              value: /shops/bookstore
+            list attributes xpath:
+              value: "/shops/bookstore/categories[@code=1]"
+          in: query
+          name: xpath
+          required: false
+          schema:
+            default: /
+            type: string
+        - description: include-descendants
+          in: query
+          name: include-descendants
+          required: false
+          schema:
+            default: false
+            example: false
+            type: boolean
       responses:
         "200":
-          description: OK
           content:
             application/json:
-              schema:
-                type: object
               examples:
                 dataSample:
                   $ref: '#/components/examples/dataSample'
+                  value: null
+              schema:
+                type: object
+          description: OK
         "400":
-          description: Bad Request
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
               example:
                 status: 400
                 message: Bad Request
                 details: The provided request is not valid
-        "401":
-          description: Unauthorized
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
               example:
                 status: 401
                 message: Unauthorized request
                 details: This request is unauthorized
-        "403":
-          description: Forbidden
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
               example:
                 status: 403
                 message: Request Forbidden
                 details: This request is forbidden
-        "500":
-          description: Internal Server Error
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Forbidden
+        "500":
+          content:
+            application/json:
               example:
                 status: 500
                 message: Internal Server Error
                 details: Internal Server Error occurred
-      deprecated: true
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Internal Server Error
+      summary: Get a node
+      tags:
+        - cps-data
       x-codegen-request-body-name: xpath
   /v2/dataspaces/{dataspace-name}/anchors/{anchor-name}/node:
     get:
-      tags:
-      - cps-data
-      summary: Get a node
       description: Get a node with an option to retrieve all the children for a given
         anchor and dataspace
       operationId: getNodeByDataspaceAndAnchorV2
       parameters:
-      - name: dataspace-name
-        in: path
-        description: dataspace-name
-        required: true
-        schema:
-          type: string
-          example: my-dataspace
-      - name: anchor-name
-        in: path
-        description: anchor-name
-        required: true
-        schema:
-          type: string
-          example: my-anchor
-      - name: xpath
-        in: query
-        description: "For more details on xpath, please refer https://docs.onap.org/projects/onap-cps/en/latest/xpath.html"
-        required: false
-        schema:
-          type: string
-          default: /
-        examples:
-          container xpath:
-            value: /shops/bookstore
-          list attributes xpath:
-            value: "/shops/bookstore/categories[@code=1]"
-      - name: descendants
-        in: query
-        description: "Number of descendants to query. Allowed values are 'none', 'all',\
+        - description: dataspace-name
+          in: path
+          name: dataspace-name
+          required: true
+          schema:
+            example: my-dataspace
+            type: string
+        - description: anchor-name
+          in: path
+          name: anchor-name
+          required: true
+          schema:
+            example: my-anchor
+            type: string
+        - description: "For more details on xpath, please refer https://docs.onap.org/projects/onap-cps/en/latest/xpath.html"
+          examples:
+            container xpath:
+              value: /shops/bookstore
+            list attributes xpath:
+              value: "/shops/bookstore/categories[@code=1]"
+          in: query
+          name: xpath
+          required: false
+          schema:
+            default: /
+            type: string
+        - description: "Number of descendants to query. Allowed values are 'none', 'all',\
           \ -1 (for all), 0 (for none) and any positive number."
-        required: false
-        schema:
-          type: string
-          example: "3"
-          default: none
+          in: query
+          name: descendants
+          required: false
+          schema:
+            default: none
+            example: "3"
+            type: string
       responses:
         "200":
-          description: OK
           content:
             application/json:
-              schema:
-                type: object
               examples:
                 dataSample:
                   $ref: '#/components/examples/dataSample'
-        "400":
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-              example:
-                status: 400
-                message: Bad Request
-                details: The provided request is not valid
-        "401":
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-              example:
-                status: 401
-                message: Unauthorized request
-                details: This request is unauthorized
-        "403":
-          description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-              example:
-                status: 403
-                message: Request Forbidden
-                details: This request is forbidden
-        "500":
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-              example:
-                status: 500
-                message: Internal Server Error
-                details: Internal Server Error occurred
-      x-codegen-request-body-name: xpath
-  /{apiVersion}/dataspaces/{dataspace-name}/anchors/{anchor-name}/nodes:
-    put:
-      tags:
-      - cps-data
-      summary: Replace a node with descendants
-      description: "Replace a node with descendants for a given dataspace, anchor\
-        \ and a parent node xpath"
-      operationId: replaceNode
-      parameters:
-      - name: apiVersion
-        in: path
-        description: apiVersion
-        required: true
-        schema:
-          type: string
-          default: v2
-          enum:
-          - v1
-          - v2
-      - name: dataspace-name
-        in: path
-        description: dataspace-name
-        required: true
-        schema:
-          type: string
-          example: my-dataspace
-      - name: anchor-name
-        in: path
-        description: anchor-name
-        required: true
-        schema:
-          type: string
-          example: my-anchor
-      - name: xpath
-        in: query
-        description: "For more details on xpath, please refer https://docs.onap.org/projects/onap-cps/en/latest/xpath.html"
-        required: false
-        schema:
-          type: string
-          default: /
-        examples:
-          container xpath:
-            value: /shops/bookstore
-          list attributes xpath:
-            value: "/shops/bookstore/categories[@code=1]"
-      - name: observed-timestamp
-        in: query
-        description: observed-timestamp
-        required: false
-        schema:
-          type: string
-          example: 2021-03-21T00:10:34.030-0100
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-            examples:
-              dataSample:
-                $ref: '#/components/examples/dataSample'
-        required: true
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
+                  value: null
               schema:
                 type: object
-              examples:
-                dataSample:
-                  value: ""
+          description: OK
         "400":
-          description: Bad Request
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
               example:
                 status: 400
                 message: Bad Request
                 details: The provided request is not valid
-        "401":
-          description: Unauthorized
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
               example:
                 status: 401
                 message: Unauthorized request
                 details: This request is unauthorized
-        "403":
-          description: Forbidden
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
               example:
                 status: 403
                 message: Request Forbidden
                 details: This request is forbidden
-        "500":
-          description: Internal Server Error
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Forbidden
+        "500":
+          content:
+            application/json:
               example:
                 status: 500
                 message: Internal Server Error
                 details: Internal Server Error occurred
-    post:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Internal Server Error
+      summary: Get a node
       tags:
-      - cps-data
-      summary: Create a node
-      description: Create a node for a given anchor and dataspace
-      operationId: createNode
-      parameters:
-      - name: apiVersion
-        in: path
-        description: apiVersion
-        required: true
-        schema:
-          type: string
-          default: v2
-          enum:
-          - v1
-          - v2
-      - name: dataspace-name
-        in: path
-        description: dataspace-name
-        required: true
-        schema:
-          type: string
-          example: my-dataspace
-      - name: anchor-name
-        in: path
-        description: anchor-name
-        required: true
-        schema:
-          type: string
-          example: my-anchor
-      - name: xpath
-        in: query
-        description: "For more details on xpath, please refer https://docs.onap.org/projects/onap-cps/en/latest/xpath.html"
-        required: false
-        schema:
-          type: string
-          default: /
-        examples:
-          container xpath:
-            value: /shops/bookstore
-          list attributes xpath:
-            value: "/shops/bookstore/categories[@code=1]"
-      - name: observed-timestamp
-        in: query
-        description: observed-timestamp
-        required: false
-        schema:
-          type: string
-          example: 2021-03-21T00:10:34.030-0100
-      - name: Content-Type
-        in: header
-        description: Content type header
-        required: true
-        schema:
-          type: string
-          example: application/json
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: string
-            examples:
-              dataSample:
-                $ref: '#/components/examples/dataSample'
-          application/xml:
-            schema:
-              type: object
-              xml:
-                name: stores
-            examples:
-              dataSample:
-                $ref: '#/components/examples/dataSampleXml'
-        required: true
-      responses:
-        "201":
-          description: Created
-          content:
-            text/plain:
-              schema:
-                type: string
-                example: my-resource
-        "400":
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-              example:
-                status: 400
-                message: Bad Request
-                details: The provided request is not valid
-        "401":
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-              example:
-                status: 401
-                message: Unauthorized request
-                details: This request is unauthorized
-        "403":
-          description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-              example:
-                status: 403
-                message: Request Forbidden
-                details: This request is forbidden
-        "409":
-          description: Conflict
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-              example:
-                status: 409
-                message: Conflicting request
-                details: The request cannot be processed as the resource is in use.
-        "500":
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-              example:
-                status: 500
-                message: Internal Server Error
-                details: Internal Server Error occurred
+        - cps-data
+      x-codegen-request-body-name: xpath
+  /{apiVersion}/dataspaces/{dataspace-name}/anchors/{anchor-name}/nodes:
     delete:
-      tags:
-      - cps-data
-      summary: Delete a data node
       description: Delete a datanode for a given dataspace and anchor given a node
         xpath.
       operationId: deleteDataNode
       parameters:
-      - name: apiVersion
-        in: path
-        description: apiVersion
-        required: true
-        schema:
-          type: string
-          default: v2
-          enum:
-          - v1
-          - v2
-      - name: dataspace-name
-        in: path
-        description: dataspace-name
-        required: true
-        schema:
-          type: string
-          example: my-dataspace
-      - name: anchor-name
-        in: path
-        description: anchor-name
-        required: true
-        schema:
-          type: string
-          example: my-anchor
-      - name: xpath
-        in: query
-        description: "For more details on xpath, please refer https://docs.onap.org/projects/onap-cps/en/latest/xpath.html"
-        required: false
-        schema:
-          type: string
-          default: /
-        examples:
-          container xpath:
-            value: /shops/bookstore
-          list attributes xpath:
-            value: "/shops/bookstore/categories[@code=1]"
-      - name: observed-timestamp
-        in: query
-        description: observed-timestamp
-        required: false
-        schema:
-          type: string
-          example: 2021-03-21T00:10:34.030-0100
+        - description: apiVersion
+          in: path
+          name: apiVersion
+          required: true
+          schema:
+            default: v2
+            enum:
+              - v1
+              - v2
+            type: string
+        - description: dataspace-name
+          in: path
+          name: dataspace-name
+          required: true
+          schema:
+            example: my-dataspace
+            type: string
+        - description: anchor-name
+          in: path
+          name: anchor-name
+          required: true
+          schema:
+            example: my-anchor
+            type: string
+        - description: "For more details on xpath, please refer https://docs.onap.org/projects/onap-cps/en/latest/xpath.html"
+          examples:
+            container xpath:
+              value: /shops/bookstore
+            list attributes xpath:
+              value: "/shops/bookstore/categories[@code=1]"
+          in: query
+          name: xpath
+          required: false
+          schema:
+            default: /
+            type: string
+        - description: observed-timestamp
+          in: query
+          name: observed-timestamp
+          required: false
+          schema:
+            example: 2021-03-21T00:10:34.030-0100
+            type: string
       responses:
         "204":
-          description: No Content
           content: {}
+          description: No Content
         "400":
-          description: Bad Request
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
               example:
                 status: 400
                 message: Bad Request
                 details: The provided request is not valid
-        "401":
-          description: Unauthorized
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
               example:
                 status: 401
                 message: Unauthorized request
                 details: This request is unauthorized
-        "403":
-          description: Forbidden
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
               example:
                 status: 403
                 message: Request Forbidden
                 details: This request is forbidden
-        "500":
-          description: Internal Server Error
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Forbidden
+        "500":
+          content:
+            application/json:
               example:
                 status: 500
                 message: Internal Server Error
                 details: Internal Server Error occurred
-    patch:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Internal Server Error
+      summary: Delete a data node
       tags:
-      - cps-data
-      summary: Update node leaves
+        - cps-data
+    patch:
       description: Update a data node leaves for a given dataspace and anchor and
         a parent node xpath. This operation is currently supported for one top level
         data node only.
       operationId: updateNodeLeaves
       parameters:
-      - name: apiVersion
-        in: path
-        description: apiVersion
-        required: true
-        schema:
-          type: string
-          default: v2
-          enum:
-          - v1
-          - v2
-      - name: dataspace-name
-        in: path
-        description: dataspace-name
-        required: true
-        schema:
-          type: string
-          example: my-dataspace
-      - name: anchor-name
-        in: path
-        description: anchor-name
-        required: true
-        schema:
-          type: string
-          example: my-anchor
-      - name: xpath
-        in: query
-        description: "For more details on xpath, please refer https://docs.onap.org/projects/onap-cps/en/latest/xpath.html"
-        required: false
-        schema:
-          type: string
-          default: /
-        examples:
-          container xpath:
-            value: /shops/bookstore
-          list attributes xpath:
-            value: "/shops/bookstore/categories[@code=1]"
-      - name: observed-timestamp
-        in: query
-        description: observed-timestamp
-        required: false
-        schema:
-          type: string
-          example: 2021-03-21T00:10:34.030-0100
+        - description: apiVersion
+          in: path
+          name: apiVersion
+          required: true
+          schema:
+            default: v2
+            enum:
+              - v1
+              - v2
+            type: string
+        - description: dataspace-name
+          in: path
+          name: dataspace-name
+          required: true
+          schema:
+            example: my-dataspace
+            type: string
+        - description: anchor-name
+          in: path
+          name: anchor-name
+          required: true
+          schema:
+            example: my-anchor
+            type: string
+        - description: "For more details on xpath, please refer https://docs.onap.org/projects/onap-cps/en/latest/xpath.html"
+          examples:
+            container xpath:
+              value: /shops/bookstore
+            list attributes xpath:
+              value: "/shops/bookstore/categories[@code=1]"
+          in: query
+          name: xpath
+          required: false
+          schema:
+            default: /
+            type: string
+        - description: observed-timestamp
+          in: query
+          name: observed-timestamp
+          required: false
+          schema:
+            example: 2021-03-21T00:10:34.030-0100
+            type: string
       requestBody:
         content:
           application/json:
-            schema:
-              type: object
             examples:
               dataSample:
                 $ref: '#/components/examples/dataSample'
-        required: true
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-              examples:
-                dataSample:
-                  value: ""
-        "400":
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-              example:
-                status: 400
-                message: Bad Request
-                details: The provided request is not valid
-        "401":
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-              example:
-                status: 401
-                message: Unauthorized request
-                details: This request is unauthorized
-        "403":
-          description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-              example:
-                status: 403
-                message: Request Forbidden
-                details: This request is forbidden
-        "500":
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-              example:
-                status: 500
-                message: Internal Server Error
-                details: Internal Server Error occurred
-  /v1/dataspaces/{dataspace-name}/anchors/{anchor-name}/list-nodes:
-    delete:
-      tags:
-      - cps-data
-      summary: Delete one or all list element(s)
-      description: Delete one or all list element(s) for a given anchor and dataspace
-      operationId: deleteListOrListElement
-      parameters:
-      - name: dataspace-name
-        in: path
-        description: dataspace-name
-        required: true
-        schema:
-          type: string
-          example: my-dataspace
-      - name: anchor-name
-        in: path
-        description: anchor-name
-        required: true
-        schema:
-          type: string
-          example: my-anchor
-      - name: xpath
-        in: query
-        description: "For more details on xpath, please refer https://docs.onap.org/projects/onap-cps/en/latest/xpath.html"
-        required: true
-        schema:
-          type: string
-        examples:
-          container xpath:
-            value: /shops/bookstore
-          list attributes xpath:
-            value: "/shops/bookstore/categories[@code=1]"
-      - name: observed-timestamp
-        in: query
-        description: observed-timestamp
-        required: false
-        schema:
-          type: string
-          example: 2021-03-21T00:10:34.030-0100
-      responses:
-        "204":
-          description: No Content
-          content: {}
-        "400":
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-              example:
-                status: 400
-                message: Bad Request
-                details: The provided request is not valid
-        "401":
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-              example:
-                status: 401
-                message: Unauthorized request
-                details: This request is unauthorized
-        "403":
-          description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-              example:
-                status: 403
-                message: Request Forbidden
-                details: This request is forbidden
-        "500":
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-              example:
-                status: 500
-                message: Internal Server Error
-                details: Internal Server Error occurred
-      deprecated: true
-  /{apiVersion}/dataspaces/{dataspace-name}/anchors/{anchor-name}/list-nodes:
-    put:
-      tags:
-      - cps-data
-      summary: Replace list content
-      description: "Replace list content under a given parent, anchor and dataspace"
-      operationId: replaceListContent
-      parameters:
-      - name: apiVersion
-        in: path
-        description: apiVersion
-        required: true
-        schema:
-          type: string
-          default: v2
-          enum:
-          - v1
-          - v2
-      - name: dataspace-name
-        in: path
-        description: dataspace-name
-        required: true
-        schema:
-          type: string
-          example: my-dataspace
-      - name: anchor-name
-        in: path
-        description: anchor-name
-        required: true
-        schema:
-          type: string
-          example: my-anchor
-      - name: xpath
-        in: query
-        description: "For more details on xpath, please refer https://docs.onap.org/projects/onap-cps/en/latest/xpath.html"
-        required: true
-        schema:
-          type: string
-        examples:
-          container xpath:
-            value: /shops/bookstore
-          list attributes xpath:
-            value: "/shops/bookstore/categories[@code=1]"
-      - name: observed-timestamp
-        in: query
-        description: observed-timestamp
-        required: false
-        schema:
-          type: string
-          example: 2021-03-21T00:10:34.030-0100
-      requestBody:
-        content:
-          application/json:
+                value: null
             schema:
               type: object
-            examples:
-              dataSample:
-                $ref: '#/components/examples/dataSample'
         required: true
       responses:
         "200":
-          description: OK
           content:
             application/json:
-              schema:
-                type: object
               examples:
                 dataSample:
                   value: ""
+              schema:
+                type: object
+          description: OK
         "400":
-          description: Bad Request
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
               example:
                 status: 400
                 message: Bad Request
                 details: The provided request is not valid
-        "401":
-          description: Unauthorized
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
               example:
                 status: 401
                 message: Unauthorized request
                 details: This request is unauthorized
-        "403":
-          description: Forbidden
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
               example:
                 status: 403
                 message: Request Forbidden
                 details: This request is forbidden
-        "500":
-          description: Internal Server Error
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Forbidden
+        "500":
+          content:
+            application/json:
               example:
                 status: 500
                 message: Internal Server Error
                 details: Internal Server Error occurred
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Internal Server Error
+      summary: Update node leaves
+      tags:
+        - cps-data
     post:
-      tags:
-      - cps-data
-      summary: Add list element(s)
-      description: Add list element(s) to a list for a given anchor and dataspace
-      operationId: addListElements
+      description: Create a node for a given anchor and dataspace
+      operationId: createNode
       parameters:
-      - name: apiVersion
-        in: path
-        description: apiVersion
-        required: true
-        schema:
-          type: string
-          default: v2
-          enum:
-          - v1
-          - v2
-      - name: dataspace-name
-        in: path
-        description: dataspace-name
-        required: true
-        schema:
-          type: string
-          example: my-dataspace
-      - name: anchor-name
-        in: path
-        description: anchor-name
-        required: true
-        schema:
-          type: string
-          example: my-anchor
-      - name: xpath
-        in: query
-        description: "For more details on xpath, please refer https://docs.onap.org/projects/onap-cps/en/latest/xpath.html"
-        required: true
-        schema:
-          type: string
-        examples:
-          container xpath:
-            value: /shops/bookstore
-          list attributes xpath:
-            value: "/shops/bookstore/categories[@code=1]"
-      - name: observed-timestamp
-        in: query
-        description: observed-timestamp
-        required: false
-        schema:
-          type: string
-          example: 2021-03-21T00:10:34.030-0100
+        - description: apiVersion
+          in: path
+          name: apiVersion
+          required: true
+          schema:
+            default: v2
+            enum:
+              - v1
+              - v2
+            type: string
+        - description: dataspace-name
+          in: path
+          name: dataspace-name
+          required: true
+          schema:
+            example: my-dataspace
+            type: string
+        - description: anchor-name
+          in: path
+          name: anchor-name
+          required: true
+          schema:
+            example: my-anchor
+            type: string
+        - description: "For more details on xpath, please refer https://docs.onap.org/projects/onap-cps/en/latest/xpath.html"
+          examples:
+            container xpath:
+              value: /shops/bookstore
+            list attributes xpath:
+              value: "/shops/bookstore/categories[@code=1]"
+          in: query
+          name: xpath
+          required: false
+          schema:
+            default: /
+            type: string
+        - description: observed-timestamp
+          in: query
+          name: observed-timestamp
+          required: false
+          schema:
+            example: 2021-03-21T00:10:34.030-0100
+            type: string
+        - description: Content type header
+          in: header
+          name: Content-Type
+          required: true
+          schema:
+            example: application/json
+            type: string
       requestBody:
         content:
           application/json:
-            schema:
-              type: object
             examples:
               dataSample:
                 $ref: '#/components/examples/dataSample'
+                value: null
+            schema:
+              type: string
+          application/xml:
+            examples:
+              dataSample:
+                $ref: '#/components/examples/dataSampleXml'
+                value: null
+            schema:
+              type: object
+              xml:
+                name: stores
         required: true
       responses:
         "201":
-          description: Created
           content:
             text/plain:
               schema:
-                type: string
                 example: my-resource
+                type: string
+          description: Created
         "400":
-          description: Bad Request
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
               example:
                 status: 400
                 message: Bad Request
                 details: The provided request is not valid
-        "401":
-          description: Unauthorized
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
               example:
                 status: 401
                 message: Unauthorized request
                 details: This request is unauthorized
-        "403":
-          description: Forbidden
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
               example:
                 status: 403
                 message: Request Forbidden
                 details: This request is forbidden
-        "500":
-          description: Internal Server Error
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Forbidden
+        "409":
+          content:
+            application/json:
+              example:
+                status: 409
+                message: Conflicting request
+                details: The request cannot be processed as the resource is in use.
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Conflict
+        "500":
+          content:
+            application/json:
               example:
                 status: 500
                 message: Internal Server Error
                 details: Internal Server Error occurred
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Internal Server Error
+      summary: Create a node
+      tags:
+        - cps-data
+    put:
+      description: "Replace a node with descendants for a given dataspace, anchor\
+        \ and a parent node xpath"
+      operationId: replaceNode
+      parameters:
+        - description: apiVersion
+          in: path
+          name: apiVersion
+          required: true
+          schema:
+            default: v2
+            enum:
+              - v1
+              - v2
+            type: string
+        - description: dataspace-name
+          in: path
+          name: dataspace-name
+          required: true
+          schema:
+            example: my-dataspace
+            type: string
+        - description: anchor-name
+          in: path
+          name: anchor-name
+          required: true
+          schema:
+            example: my-anchor
+            type: string
+        - description: "For more details on xpath, please refer https://docs.onap.org/projects/onap-cps/en/latest/xpath.html"
+          examples:
+            container xpath:
+              value: /shops/bookstore
+            list attributes xpath:
+              value: "/shops/bookstore/categories[@code=1]"
+          in: query
+          name: xpath
+          required: false
+          schema:
+            default: /
+            type: string
+        - description: observed-timestamp
+          in: query
+          name: observed-timestamp
+          required: false
+          schema:
+            example: 2021-03-21T00:10:34.030-0100
+            type: string
+      requestBody:
+        content:
+          application/json:
+            examples:
+              dataSample:
+                $ref: '#/components/examples/dataSample'
+                value: null
+            schema:
+              type: object
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                dataSample:
+                  value: ""
+              schema:
+                type: object
+          description: OK
+        "400":
+          content:
+            application/json:
+              example:
+                status: 400
+                message: Bad Request
+                details: The provided request is not valid
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              example:
+                status: 401
+                message: Unauthorized request
+                details: This request is unauthorized
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              example:
+                status: 403
+                message: Request Forbidden
+                details: This request is forbidden
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Forbidden
+        "500":
+          content:
+            application/json:
+              example:
+                status: 500
+                message: Internal Server Error
+                details: Internal Server Error occurred
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Internal Server Error
+      summary: Replace a node with descendants
+      tags:
+        - cps-data
+  /v1/dataspaces/{dataspace-name}/anchors/{anchor-name}/list-nodes:
+    delete:
+      deprecated: true
+      description: Delete one or all list element(s) for a given anchor and dataspace
+      operationId: deleteListOrListElement
+      parameters:
+        - description: dataspace-name
+          in: path
+          name: dataspace-name
+          required: true
+          schema:
+            example: my-dataspace
+            type: string
+        - description: anchor-name
+          in: path
+          name: anchor-name
+          required: true
+          schema:
+            example: my-anchor
+            type: string
+        - description: "For more details on xpath, please refer https://docs.onap.org/projects/onap-cps/en/latest/xpath.html"
+          examples:
+            container xpath:
+              value: /shops/bookstore
+            list attributes xpath:
+              value: "/shops/bookstore/categories[@code=1]"
+          in: query
+          name: xpath
+          required: true
+          schema:
+            type: string
+        - description: observed-timestamp
+          in: query
+          name: observed-timestamp
+          required: false
+          schema:
+            example: 2021-03-21T00:10:34.030-0100
+            type: string
+      responses:
+        "204":
+          content: {}
+          description: No Content
+        "400":
+          content:
+            application/json:
+              example:
+                status: 400
+                message: Bad Request
+                details: The provided request is not valid
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              example:
+                status: 401
+                message: Unauthorized request
+                details: This request is unauthorized
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              example:
+                status: 403
+                message: Request Forbidden
+                details: This request is forbidden
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Forbidden
+        "500":
+          content:
+            application/json:
+              example:
+                status: 500
+                message: Internal Server Error
+                details: Internal Server Error occurred
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Internal Server Error
+      summary: Delete one or all list element(s)
+      tags:
+        - cps-data
+  /{apiVersion}/dataspaces/{dataspace-name}/anchors/{anchor-name}/list-nodes:
+    post:
+      description: Add list element(s) to a list for a given anchor and dataspace
+      operationId: addListElements
+      parameters:
+        - description: apiVersion
+          in: path
+          name: apiVersion
+          required: true
+          schema:
+            default: v2
+            enum:
+              - v1
+              - v2
+            type: string
+        - description: dataspace-name
+          in: path
+          name: dataspace-name
+          required: true
+          schema:
+            example: my-dataspace
+            type: string
+        - description: anchor-name
+          in: path
+          name: anchor-name
+          required: true
+          schema:
+            example: my-anchor
+            type: string
+        - description: "For more details on xpath, please refer https://docs.onap.org/projects/onap-cps/en/latest/xpath.html"
+          examples:
+            container xpath:
+              value: /shops/bookstore
+            list attributes xpath:
+              value: "/shops/bookstore/categories[@code=1]"
+          in: query
+          name: xpath
+          required: true
+          schema:
+            type: string
+        - description: observed-timestamp
+          in: query
+          name: observed-timestamp
+          required: false
+          schema:
+            example: 2021-03-21T00:10:34.030-0100
+            type: string
+      requestBody:
+        content:
+          application/json:
+            examples:
+              dataSample:
+                $ref: '#/components/examples/dataSample'
+                value: null
+            schema:
+              type: object
+        required: true
+      responses:
+        "201":
+          content:
+            text/plain:
+              schema:
+                example: my-resource
+                type: string
+          description: Created
+        "400":
+          content:
+            application/json:
+              example:
+                status: 400
+                message: Bad Request
+                details: The provided request is not valid
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              example:
+                status: 401
+                message: Unauthorized request
+                details: This request is unauthorized
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              example:
+                status: 403
+                message: Request Forbidden
+                details: This request is forbidden
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Forbidden
+        "500":
+          content:
+            application/json:
+              example:
+                status: 500
+                message: Internal Server Error
+                details: Internal Server Error occurred
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Internal Server Error
+      summary: Add list element(s)
+      tags:
+        - cps-data
+    put:
+      description: "Replace list content under a given parent, anchor and dataspace"
+      operationId: replaceListContent
+      parameters:
+        - description: apiVersion
+          in: path
+          name: apiVersion
+          required: true
+          schema:
+            default: v2
+            enum:
+              - v1
+              - v2
+            type: string
+        - description: dataspace-name
+          in: path
+          name: dataspace-name
+          required: true
+          schema:
+            example: my-dataspace
+            type: string
+        - description: anchor-name
+          in: path
+          name: anchor-name
+          required: true
+          schema:
+            example: my-anchor
+            type: string
+        - description: "For more details on xpath, please refer https://docs.onap.org/projects/onap-cps/en/latest/xpath.html"
+          examples:
+            container xpath:
+              value: /shops/bookstore
+            list attributes xpath:
+              value: "/shops/bookstore/categories[@code=1]"
+          in: query
+          name: xpath
+          required: true
+          schema:
+            type: string
+        - description: observed-timestamp
+          in: query
+          name: observed-timestamp
+          required: false
+          schema:
+            example: 2021-03-21T00:10:34.030-0100
+            type: string
+      requestBody:
+        content:
+          application/json:
+            examples:
+              dataSample:
+                $ref: '#/components/examples/dataSample'
+                value: null
+            schema:
+              type: object
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                dataSample:
+                  value: ""
+              schema:
+                type: object
+          description: OK
+        "400":
+          content:
+            application/json:
+              example:
+                status: 400
+                message: Bad Request
+                details: The provided request is not valid
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              example:
+                status: 401
+                message: Unauthorized request
+                details: This request is unauthorized
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              example:
+                status: 403
+                message: Request Forbidden
+                details: This request is forbidden
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Forbidden
+        "500":
+          content:
+            application/json:
+              example:
+                status: 500
+                message: Internal Server Error
+                details: Internal Server Error occurred
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Internal Server Error
+      summary: Replace list content
+      tags:
+        - cps-data
   /v1/dataspaces/{dataspace-name}/anchors/{anchor-name}/nodes/query:
     get:
-      tags:
-      - cps-query
-      summary: Query data nodes
+      deprecated: true
       description: Query data nodes for the given dataspace and anchor using CPS path
       operationId: getNodesByDataspaceAndAnchorAndCpsPath
       parameters:
-      - name: dataspace-name
-        in: path
-        description: dataspace-name
-        required: true
-        schema:
-          type: string
-          example: my-dataspace
-      - name: anchor-name
-        in: path
-        description: anchor-name
-        required: true
-        schema:
-          type: string
-          example: my-anchor
-      - name: cps-path
-        in: query
-        description: "For more details on cps path, please refer https://docs.onap.org/projects/onap-cps/en/latest/cps-path.html"
-        required: false
-        schema:
-          type: string
-          default: /
-        examples:
-          container cps path:
-            value: //bookstore
-          list attributes cps path:
-            value: "//categories[@code=1]"
-      - name: include-descendants
-        in: query
-        description: include-descendants
-        required: false
-        schema:
-          type: boolean
-          example: false
-          default: false
+        - description: dataspace-name
+          in: path
+          name: dataspace-name
+          required: true
+          schema:
+            example: my-dataspace
+            type: string
+        - description: anchor-name
+          in: path
+          name: anchor-name
+          required: true
+          schema:
+            example: my-anchor
+            type: string
+        - description: "For more details on cps path, please refer https://docs.onap.org/projects/onap-cps/en/latest/cps-path.html"
+          examples:
+            container cps path:
+              value: //bookstore
+            list attributes cps path:
+              value: "//categories[@code=1]"
+          in: query
+          name: cps-path
+          required: false
+          schema:
+            default: /
+            type: string
+        - description: include-descendants
+          in: query
+          name: include-descendants
+          required: false
+          schema:
+            default: false
+            example: false
+            type: boolean
       responses:
         "200":
-          description: OK
           content:
             application/json:
-              schema:
-                type: object
               examples:
                 dataSample:
                   $ref: '#/components/examples/dataSample'
+                  value: null
+              schema:
+                type: object
+          description: OK
         "400":
-          description: Bad Request
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
               example:
                 status: 400
                 message: Bad Request
                 details: The provided request is not valid
-        "401":
-          description: Unauthorized
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
               example:
                 status: 401
                 message: Unauthorized request
                 details: This request is unauthorized
-        "403":
-          description: Forbidden
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
               example:
                 status: 403
                 message: Request Forbidden
                 details: This request is forbidden
-        "500":
-          description: Internal Server Error
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Forbidden
+        "500":
+          content:
+            application/json:
               example:
                 status: 500
                 message: Internal Server Error
                 details: Internal Server Error occurred
-      deprecated: true
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Internal Server Error
+      summary: Query data nodes
+      tags:
+        - cps-query
       x-codegen-request-body-name: xpath
   /v2/dataspaces/{dataspace-name}/anchors/{anchor-name}/nodes/query:
     get:
-      tags:
-      - cps-query
-      summary: Query data nodes
       description: Query data nodes for the given dataspace and anchor using CPS path
       operationId: getNodesByDataspaceAndAnchorAndCpsPathV2
       parameters:
-      - name: dataspace-name
-        in: path
-        description: dataspace-name
-        required: true
-        schema:
-          type: string
-          example: my-dataspace
-      - name: anchor-name
-        in: path
-        description: anchor-name
-        required: true
-        schema:
-          type: string
-          example: my-anchor
-      - name: cps-path
-        in: query
-        description: "For more details on cps path, please refer https://docs.onap.org/projects/onap-cps/en/latest/cps-path.html"
-        required: false
-        schema:
-          type: string
-          default: /
-        examples:
-          container cps path:
-            value: //bookstore
-          list attributes cps path:
-            value: "//categories[@code=1]"
-      - name: descendants
-        in: query
-        description: "Number of descendants to query. Allowed values are 'none', 'all',\
+        - description: dataspace-name
+          in: path
+          name: dataspace-name
+          required: true
+          schema:
+            example: my-dataspace
+            type: string
+        - description: anchor-name
+          in: path
+          name: anchor-name
+          required: true
+          schema:
+            example: my-anchor
+            type: string
+        - description: "For more details on cps path, please refer https://docs.onap.org/projects/onap-cps/en/latest/cps-path.html"
+          examples:
+            container cps path:
+              value: //bookstore
+            list attributes cps path:
+              value: "//categories[@code=1]"
+          in: query
+          name: cps-path
+          required: false
+          schema:
+            default: /
+            type: string
+        - description: "Number of descendants to query. Allowed values are 'none', 'all',\
           \ -1 (for all), 0 (for none) and any positive number."
-        required: false
-        schema:
-          type: string
-          example: "3"
-          default: none
+          in: query
+          name: descendants
+          required: false
+          schema:
+            default: none
+            example: "3"
+            type: string
       responses:
         "200":
-          description: OK
           content:
             application/json:
-              schema:
-                type: object
               examples:
                 dataSample:
                   $ref: '#/components/examples/dataSample'
+                  value: null
+              schema:
+                type: object
+          description: OK
         "400":
-          description: Bad Request
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
               example:
                 status: 400
                 message: Bad Request
                 details: The provided request is not valid
-        "401":
-          description: Unauthorized
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
               example:
                 status: 401
                 message: Unauthorized request
                 details: This request is unauthorized
-        "403":
-          description: Forbidden
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
               example:
                 status: 403
                 message: Request Forbidden
                 details: This request is forbidden
-        "500":
-          description: Internal Server Error
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Forbidden
+        "500":
+          content:
+            application/json:
               example:
                 status: 500
                 message: Internal Server Error
                 details: Internal Server Error occurred
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Internal Server Error
+      summary: Query data nodes
+      tags:
+        - cps-query
       x-codegen-request-body-name: xpath
   /v2/dataspaces/{dataspace-name}/nodes/query:
     get:
-      tags:
-      - cps-query
-      summary: Query data nodes
       description: Query data nodes for the given dataspace across anchors using CPS
         path
       operationId: getNodesByDataspaceAndCpsPath
       parameters:
-      - name: dataspace-name
-        in: path
-        description: dataspace-name
-        required: true
-        schema:
-          type: string
-          example: my-dataspace
-      - name: cps-path
-        in: query
-        description: "For more details on cps path, please refer https://docs.onap.org/projects/onap-cps/en/latest/cps-path.html"
-        required: false
-        schema:
-          type: string
-          default: /
-        examples:
-          container cps path:
-            value: //bookstore
-          list attributes cps path:
-            value: "//categories[@code=1]"
-      - name: descendants
-        in: query
-        description: "Number of descendants to query. Allowed values are 'none', 'all',\
+        - description: dataspace-name
+          in: path
+          name: dataspace-name
+          required: true
+          schema:
+            example: my-dataspace
+            type: string
+        - description: "For more details on cps path, please refer https://docs.onap.org/projects/onap-cps/en/latest/cps-path.html"
+          examples:
+            container cps path:
+              value: //bookstore
+            list attributes cps path:
+              value: "//categories[@code=1]"
+          in: query
+          name: cps-path
+          required: false
+          schema:
+            default: /
+            type: string
+        - description: "Number of descendants to query. Allowed values are 'none', 'all',\
           \ -1 (for all), 0 (for none) and any positive number."
-        required: false
-        schema:
-          type: string
-          example: "3"
-          default: none
+          in: query
+          name: descendants
+          required: false
+          schema:
+            default: none
+            example: "3"
+            type: string
       responses:
         "200":
-          description: OK
           content:
             application/json:
-              schema:
-                type: object
               examples:
                 dataSample:
                   $ref: '#/components/examples/dataSampleAcrossAnchors'
+                  value: null
+              schema:
+                type: object
+          description: OK
         "400":
-          description: Bad Request
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
               example:
                 status: 400
                 message: Bad Request
                 details: The provided request is not valid
-        "401":
-          description: Unauthorized
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
               example:
                 status: 401
                 message: Unauthorized request
                 details: This request is unauthorized
-        "403":
-          description: Forbidden
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
               example:
                 status: 403
                 message: Request Forbidden
                 details: This request is forbidden
-        "500":
-          description: Internal Server Error
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Forbidden
+        "500":
+          content:
+            application/json:
               example:
                 status: 500
                 message: Internal Server Error
                 details: Internal Server Error occurred
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Internal Server Error
+      summary: Query data nodes
+      tags:
+        - cps-query
       x-codegen-request-body-name: xpath
 components:
+  examples:
+    dataSample:
+      value:
+        test:bookstore:
+          bookstore-name: Chapters
+          categories:
+            - code: 1
+              name: SciFi
+            - code: 2
+              name: kids
+    dataSampleXml:
+      value: <stores xmlns="urn:ietf:params:xml:ns:netconf:base:1.0"> <bookstore xmlns="org:onap:ccsdk:sample">
+        <bookstore-name>Chapters</bookstore-name> <categories> <code>1</code> <name>SciFi</name>
+        </categories> </bookstore> </stores>
+    dataSampleAcrossAnchors:
+      value:
+        - anchorName: bookstore1
+          dataNode:
+            test:bookstore:
+              bookstore-name: Chapters
+              categories:
+                - code: 1
+                  name: SciFi
+                - code: 2
+                  name: kids
+        - anchorName: bookstore2
+          dataNode:
+            test:bookstore:
+              bookstore-name: Chapters
+              categories:
+                - code: 1
+                  name: SciFi
+                - code: 2
+                  name: kids
+  parameters:
+    dataspaceNameInQuery:
+      description: dataspace-name
+      in: query
+      name: dataspace-name
+      required: true
+      schema:
+        example: my-dataspace
+        type: string
+    apiVersionInPath:
+      description: apiVersion
+      in: path
+      name: apiVersion
+      required: true
+      schema:
+        default: v2
+        enum:
+          - v1
+          - v2
+        type: string
+    dataspaceNameInPath:
+      description: dataspace-name
+      in: path
+      name: dataspace-name
+      required: true
+      schema:
+        example: my-dataspace
+        type: string
+    schemaSetNameInQuery:
+      description: schema-set-name
+      in: query
+      name: schema-set-name
+      required: true
+      schema:
+        example: my-schema-set
+        type: string
+    anchorNameInQuery:
+      description: anchor-name
+      in: query
+      name: anchor-name
+      required: true
+      schema:
+        example: my-anchor
+        type: string
+    anchorNameInPath:
+      description: anchor-name
+      in: path
+      name: anchor-name
+      required: true
+      schema:
+        example: my-anchor
+        type: string
+    schemaSetNameInPath:
+      description: schema-set-name
+      in: path
+      name: schema-set-name
+      required: true
+      schema:
+        example: my-schema-set
+        type: string
+    xpathInQuery:
+      description: "For more details on xpath, please refer https://docs.onap.org/projects/onap-cps/en/latest/xpath.html"
+      examples:
+        container xpath:
+          value: /shops/bookstore
+        list attributes xpath:
+          value: "/shops/bookstore/categories[@code=1]"
+      in: query
+      name: xpath
+      required: false
+      schema:
+        default: /
+        type: string
+    includeDescendantsOptionInQuery:
+      description: include-descendants
+      in: query
+      name: include-descendants
+      required: false
+      schema:
+        default: false
+        example: false
+        type: boolean
+    descendantsInQuery:
+      description: "Number of descendants to query. Allowed values are 'none', 'all',\
+        \ -1 (for all), 0 (for none) and any positive number."
+      in: query
+      name: descendants
+      required: false
+      schema:
+        default: none
+        example: "3"
+        type: string
+    observedTimestampInQuery:
+      description: observed-timestamp
+      in: query
+      name: observed-timestamp
+      required: false
+      schema:
+        example: 2021-03-21T00:10:34.030-0100
+        type: string
+    contentTypeHeader:
+      description: Content type header
+      in: header
+      name: Content-Type
+      required: true
+      schema:
+        example: application/json
+        type: string
+    requiredXpathInQuery:
+      description: "For more details on xpath, please refer https://docs.onap.org/projects/onap-cps/en/latest/xpath.html"
+      examples:
+        container xpath:
+          value: /shops/bookstore
+        list attributes xpath:
+          value: "/shops/bookstore/categories[@code=1]"
+      in: query
+      name: xpath
+      required: true
+      schema:
+        type: string
+    cpsPathInQuery:
+      description: "For more details on cps path, please refer https://docs.onap.org/projects/onap-cps/en/latest/cps-path.html"
+      examples:
+        container cps path:
+          value: //bookstore
+        list attributes cps path:
+          value: "//categories[@code=1]"
+      in: query
+      name: cps-path
+      required: false
+      schema:
+        default: /
+        type: string
+  responses:
+    Created:
+      content:
+        text/plain:
+          schema:
+            example: my-resource
+            type: string
+      description: Created
+    BadRequest:
+      content:
+        application/json:
+          example:
+            status: 400
+            message: Bad Request
+            details: The provided request is not valid
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+      description: Bad Request
+    Unauthorized:
+      content:
+        application/json:
+          example:
+            status: 401
+            message: Unauthorized request
+            details: This request is unauthorized
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+      description: Unauthorized
+    Forbidden:
+      content:
+        application/json:
+          example:
+            status: 403
+            message: Request Forbidden
+            details: This request is forbidden
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+      description: Forbidden
+    Conflict:
+      content:
+        application/json:
+          example:
+            status: 409
+            message: Conflicting request
+            details: The request cannot be processed as the resource is in use.
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+      description: Conflict
+    InternalServerError:
+      content:
+        application/json:
+          example:
+            status: 500
+            message: Internal Server Error
+            details: Internal Server Error occurred
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+      description: Internal Server Error
+    NoContent:
+      content: {}
+      description: No Content
+    CreatedV2:
+      description: Created without response body
+    Ok:
+      content:
+        application/json:
+          examples:
+            dataSample:
+              value: ""
+          schema:
+            type: object
+      description: OK
   schemas:
     ErrorMessage:
-      title: Error
-      type: object
       properties:
         status:
           type: string
@@ -2415,307 +2663,90 @@ components:
           type: string
         details:
           type: string
+      title: Error
+      type: object
     DataspaceDetails:
+      example:
+        name: my-dataspace
+      properties:
+        name:
+          example: my-dataspace
+          type: string
       title: Dataspace details by dataspace Name
       type: object
+    AnchorDetails:
+      example:
+        schemaSetName: my-schema-set
+        dataspaceName: my-dataspace
+        name: my-anchor
       properties:
         name:
+          example: my-anchor
           type: string
+        dataspaceName:
           example: my-dataspace
-    AnchorDetails:
+          type: string
+        schemaSetName:
+          example: my-schema-set
+          type: string
       title: Anchor details by anchor Name
       type: object
-      properties:
-        name:
-          type: string
-          example: my-anchor
-        dataspaceName:
-          type: string
-          example: my-dataspace
-        schemaSetName:
-          type: string
-          example: my-schema-set
     MultipartFile:
-      required:
-      - file
-      type: object
       properties:
         file:
-          type: string
           description: multipartFile
-          format: binary
           example: !!binary |-
             aHR0cHM6Ly9naXRodWIuY29tL29uYXAvY3BzL2Jsb2IvbWFzdGVyL2Nwcy1zZXJ2aWNlL3NyYy90
             ZXN0L3Jlc291cmNlcy9ib29rc3RvcmUueWFuZw==
-    SchemaSetDetails:
-      title: Schema set details by dataspace and schemasetName
+          format: binary
+          type: string
       required:
-      - moduleReferences
+        - file
       type: object
+    SchemaSetDetails:
+      example:
+        dataspaceName: my-dataspace
+        name: my-schema-set
+        moduleReferences:
+          - name: my-module-reference-name
+            namespace: my-module-reference-namespace
+            revision: my-module-reference-revision
+          - name: my-module-reference-name
+            namespace: my-module-reference-namespace
+            revision: my-module-reference-revision
       properties:
         dataspaceName:
-          type: string
           example: my-dataspace
+          type: string
         moduleReferences:
-          type: array
           items:
             $ref: '#/components/schemas/ModuleReferences'
+          type: array
         name:
-          type: string
           example: my-schema-set
-    ModuleReferences:
-      title: Module reference object
+          type: string
+      required:
+        - moduleReferences
+      title: Schema set details by dataspace and schemasetName
       type: object
+    ModuleReferences:
+      example:
+        name: my-module-reference-name
+        namespace: my-module-reference-namespace
+        revision: my-module-reference-revision
       properties:
         name:
-          type: string
           example: my-module-reference-name
+          type: string
         namespace:
-          type: string
           example: my-module-reference-namespace
-        revision:
           type: string
+        revision:
           example: my-module-reference-revision
-  responses:
-    Created:
-      description: Created
-      content:
-        text/plain:
-          schema:
-            type: string
-            example: my-resource
-    BadRequest:
-      description: Bad Request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorMessage'
-          example:
-            status: 400
-            message: Bad Request
-            details: The provided request is not valid
-    Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorMessage'
-          example:
-            status: 401
-            message: Unauthorized request
-            details: This request is unauthorized
-    Forbidden:
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorMessage'
-          example:
-            status: 403
-            message: Request Forbidden
-            details: This request is forbidden
-    Conflict:
-      description: Conflict
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorMessage'
-          example:
-            status: 409
-            message: Conflicting request
-            details: The request cannot be processed as the resource is in use.
-    InternalServerError:
-      description: Internal Server Error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorMessage'
-          example:
-            status: 500
-            message: Internal Server Error
-            details: Internal Server Error occurred
-    NoContent:
-      description: No Content
-      content: {}
-    CreatedV2:
-      description: Created without response body
-    Ok:
-      description: OK
-      content:
-        application/json:
-          schema:
-            type: object
-          examples:
-            dataSample:
-              value: ""
-  parameters:
-    dataspaceNameInQuery:
-      name: dataspace-name
-      in: query
-      description: dataspace-name
-      required: true
-      schema:
-        type: string
-        example: my-dataspace
-    apiVersionInPath:
-      name: apiVersion
-      in: path
-      description: apiVersion
-      required: true
-      schema:
-        type: string
-        default: v2
-        enum:
-        - v1
-        - v2
-    dataspaceNameInPath:
-      name: dataspace-name
-      in: path
-      description: dataspace-name
-      required: true
-      schema:
-        type: string
-        example: my-dataspace
-    schemaSetNameInQuery:
-      name: schema-set-name
-      in: query
-      description: schema-set-name
-      required: true
-      schema:
-        type: string
-        example: my-schema-set
-    anchorNameInQuery:
-      name: anchor-name
-      in: query
-      description: anchor-name
-      required: true
-      schema:
-        type: string
-        example: my-anchor
-    anchorNameInPath:
-      name: anchor-name
-      in: path
-      description: anchor-name
-      required: true
-      schema:
-        type: string
-        example: my-anchor
-    schemaSetNameInPath:
-      name: schema-set-name
-      in: path
-      description: schema-set-name
-      required: true
-      schema:
-        type: string
-        example: my-schema-set
-    xpathInQuery:
-      name: xpath
-      in: query
-      description: "For more details on xpath, please refer https://docs.onap.org/projects/onap-cps/en/latest/xpath.html"
-      required: false
-      schema:
-        type: string
-        default: /
-      examples:
-        container xpath:
-          value: /shops/bookstore
-        list attributes xpath:
-          value: "/shops/bookstore/categories[@code=1]"
-    includeDescendantsOptionInQuery:
-      name: include-descendants
-      in: query
-      description: include-descendants
-      required: false
-      schema:
-        type: boolean
-        example: false
-        default: false
-    descendantsInQuery:
-      name: descendants
-      in: query
-      description: "Number of descendants to query. Allowed values are 'none', 'all',\
-        \ -1 (for all), 0 (for none) and any positive number."
-      required: false
-      schema:
-        type: string
-        example: "3"
-        default: none
-    observedTimestampInQuery:
-      name: observed-timestamp
-      in: query
-      description: observed-timestamp
-      required: false
-      schema:
-        type: string
-        example: 2021-03-21T00:10:34.030-0100
-    contentTypeHeader:
-      name: Content-Type
-      in: header
-      description: Content type header
-      required: true
-      schema:
-        type: string
-        example: application/json
-    requiredXpathInQuery:
-      name: xpath
-      in: query
-      description: "For more details on xpath, please refer https://docs.onap.org/projects/onap-cps/en/latest/xpath.html"
-      required: true
-      schema:
-        type: string
-      examples:
-        container xpath:
-          value: /shops/bookstore
-        list attributes xpath:
-          value: "/shops/bookstore/categories[@code=1]"
-    cpsPathInQuery:
-      name: cps-path
-      in: query
-      description: "For more details on cps path, please refer https://docs.onap.org/projects/onap-cps/en/latest/cps-path.html"
-      required: false
-      schema:
-        type: string
-        default: /
-      examples:
-        container cps path:
-          value: //bookstore
-        list attributes cps path:
-          value: "//categories[@code=1]"
-  examples:
-    dataSample:
-      value:
-        test:bookstore:
-          bookstore-name: Chapters
-          categories:
-          - code: 1
-            name: SciFi
-          - code: 2
-            name: kids
-    dataSampleXml:
-      value: <stores xmlns="urn:ietf:params:xml:ns:netconf:base:1.0"> <bookstore xmlns="org:onap:ccsdk:sample">
-        <bookstore-name>Chapters</bookstore-name> <categories> <code>1</code> <name>SciFi</name>
-        </categories> </bookstore> </stores>
-    dataSampleAcrossAnchors:
-      value:
-      - anchorName: bookstore1
-        dataNode:
-          test:bookstore:
-            bookstore-name: Chapters
-            categories:
-            - code: 1
-              name: SciFi
-            - code: 2
-              name: kids
-      - anchorName: bookstore2
-        dataNode:
-          test:bookstore:
-            bookstore-name: Chapters
-            categories:
-            - code: 1
-              name: SciFi
-            - code: 2
-              name: kids
+          type: string
+      title: Module reference object
+      type: object
   securitySchemes:
     basicAuth:
-      type: http
       scheme: basic
+      type: http
