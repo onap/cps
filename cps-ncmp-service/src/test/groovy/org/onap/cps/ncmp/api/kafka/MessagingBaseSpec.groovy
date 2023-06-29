@@ -24,7 +24,6 @@ import io.cloudevents.CloudEvent
 import io.cloudevents.kafka.CloudEventSerializer
 import org.apache.kafka.common.serialization.StringDeserializer
 import org.apache.kafka.common.serialization.StringSerializer
-import org.spockframework.spring.SpringBean
 import org.springframework.kafka.core.DefaultKafkaProducerFactory
 import org.springframework.kafka.core.KafkaTemplate
 import org.springframework.kafka.support.serializer.JsonSerializer
@@ -46,11 +45,9 @@ class MessagingBaseSpec extends Specification {
 
     static kafkaTestContainer = new KafkaContainer(DockerImageName.parse('registry.nordix.org/onaptest/confluentinc/cp-kafka:6.2.1').asCompatibleSubstituteFor('confluentinc/cp-kafka'))
 
-    @SpringBean
-    KafkaTemplate legacyEventKafkaTemplate = new KafkaTemplate<>(new DefaultKafkaProducerFactory<Integer, String>(eventProducerConfigProperties(JsonSerializer)))
+    def legacyEventKafkaTemplate = new KafkaTemplate<>(new DefaultKafkaProducerFactory<String, String>(eventProducerConfigProperties(JsonSerializer)))
 
-    @SpringBean
-    KafkaTemplate cloudEventKafkaTemplate = new KafkaTemplate<>(new DefaultKafkaProducerFactory<String, CloudEvent>(eventProducerConfigProperties(CloudEventSerializer)))
+    def cloudEventKafkaTemplate = new KafkaTemplate<>(new DefaultKafkaProducerFactory<String, CloudEvent>(eventProducerConfigProperties(CloudEventSerializer)))
 
     @DynamicPropertySource
     static void registerKafkaProperties(DynamicPropertyRegistry dynamicPropertyRegistry) {
