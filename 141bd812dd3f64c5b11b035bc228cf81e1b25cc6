@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "582253d7_ac2bd14f",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/subscription/dmi-subscription-response-event-schema-1.0.0.json",
+        "patchSetId": 12
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-06-29T11:10:22Z",
+      "side": 1,
+      "message": "just add the \nadditionalProperties : false flag here as well plz to keep everything in sync.",
+      "revId": "141bd812dd3f64c5b11b035bc228cf81e1b25cc6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
