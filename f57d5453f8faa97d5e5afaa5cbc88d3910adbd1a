@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "147bb478_aa6a710e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/async/NcmpAsyncRequestResponseEventConsumer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-06-29T11:02:30Z",
+      "side": 1,
+      "message": "(group need to be represented as \u0027group-id\u0027). This property gives an id the kafka listener container to represent unique out of all.",
+      "parentUuid": "0c07e4a2_d524e453",
+      "range": {
+        "startLine": 50,
+        "startChar": 12,
+        "endLine": 50,
+        "endChar": 63
+      },
+      "revId": "f57d5453f8faa97d5e5afaa5cbc88d3910adbd1a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1aa92951_24babdb9",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/async/RecordFilterStrategies.java",
         "patchSetId": 2
@@ -203,6 +227,70 @@
     },
     {
       "key": {
+        "uuid": "6a22081a_d38fd9a9",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/NcmpAsyncDataOperationEventConsumerIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-06-29T11:02:30Z",
+      "side": 1,
+      "message": "I updated most of the code in this file and later on some suggestions i refactored the file name. So, the git considering it as delete and added the other file.",
+      "parentUuid": "bc6441fd_d460e519",
+      "revId": "f57d5453f8faa97d5e5afaa5cbc88d3910adbd1a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "124926d5_6c79fb92",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/kafka/MessagingBaseSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-06-29T11:02:30Z",
+      "side": 1,
+      "message": "These 2 using in other files to send a record to the kafka.",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 159
+      },
+      "revId": "f57d5453f8faa97d5e5afaa5cbc88d3910adbd1a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "584b6fa7_49e6f83c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/kafka/MessagingBaseSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-06-29T11:02:30Z",
+      "side": 1,
+      "message": "These i am using in one of the groovy integration test and kept here if any  of the other tests needs this.",
+      "range": {
+        "startLine": 59,
+        "startChar": 1,
+        "endLine": 61,
+        "endChar": 140
+      },
+      "revId": "f57d5453f8faa97d5e5afaa5cbc88d3910adbd1a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "579ffe6b_c39cae98",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/kafka/MessagingBaseSpec.groovy",
         "patchSetId": 2
@@ -214,6 +302,30 @@
       "writtenOn": "2023-06-29T10:40:01Z",
       "side": 1,
       "message": "I didn\u0027t think this is need, can we discuss?!",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 0
+      },
+      "revId": "f57d5453f8faa97d5e5afaa5cbc88d3910adbd1a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f8c8a4a6_27a8cd8a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/kafka/MessagingBaseSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-06-29T11:02:30Z",
+      "side": 1,
+      "message": "Yeah we can discuss it more, In short i given small comments above related to this.",
+      "parentUuid": "579ffe6b_c39cae98",
       "range": {
         "startLine": 54,
         "startChar": 0,
