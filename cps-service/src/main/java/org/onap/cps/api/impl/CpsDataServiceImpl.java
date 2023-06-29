@@ -39,6 +39,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.api.CpsDataService;
+import org.onap.cps.cpspath.parser.CpsPathUtil;
 import org.onap.cps.notification.NotificationService;
 import org.onap.cps.notification.Operation;
 import org.onap.cps.spi.CpsDataPersistenceService;
@@ -354,10 +355,11 @@ public class CpsDataServiceImpl implements CpsDataService {
             }
             return dataNodes;
         }
+        final String normalizedParentNodeXpath = CpsPathUtil.getNormalizedXpath(parentNodeXpath);
         final ContainerNode containerNode =
-            timedYangParser.parseData(contentType, nodeData, schemaContext, parentNodeXpath);
+            timedYangParser.parseData(contentType, nodeData, schemaContext, normalizedParentNodeXpath);
         final Collection<DataNode> dataNodes = new DataNodeBuilder()
-            .withParentNodeXpath(parentNodeXpath)
+            .withParentNodeXpath(normalizedParentNodeXpath)
             .withContainerNode(containerNode)
             .buildCollection();
         if (dataNodes.isEmpty()) {
