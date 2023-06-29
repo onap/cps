@@ -22,22 +22,11 @@ package org.onap.cps.rest.utils
 
 import org.onap.cps.spi.exceptions.CpsException
 import org.onap.cps.spi.exceptions.ModelValidationException
-import org.onap.cps.spi.model.DataNodeBuilder
-import org.onap.cps.utils.DataMapUtils
 import org.springframework.mock.web.MockMultipartFile
 import org.springframework.web.multipart.MultipartFile
 import spock.lang.Specification
 
 class MultipartFileUtilSpec extends Specification {
-
-    def 'Data node without leaves and without children.'() {
-        given: 'a datanode with no leaves and no children'
-            def dataNodeWithoutData = new DataNodeBuilder().withXpath('some xpath').build()
-        when: 'it is converted to a map'
-            def result = DataMapUtils.toDataMap(dataNodeWithoutData)
-        then: 'an empty object map is returned'
-            result.isEmpty()
-    }
 
     def 'Extract yang resource from yang file.'() {
         given: 'uploaded yang file'
@@ -114,6 +103,32 @@ class MultipartFileUtilSpec extends Specification {
             thrown(CpsException)
         where: 'following file types are used'
             fileType << ['YANG', 'ZIP']
+    }
+
+    def 'Resource name extension checks, with #scenario.'() {
+        expect: 'extension check returns expected result'
+            assert MultipartFileUtil.resourceNameEndsWithExtension(resourceName, '.test') == expectedResult
+        where: 'following resource names are tested'
+            scenario           | resourceName  || expectedResult
+            'correct extension'| 'file.test'   || true
+            'mixed case'       | 'file.TesT'   || true
+            'other extension'  | 'file.other'  || false
+            'no extension'     | 'file'        || false
+            'null'             | null          || false
+    }
+
+    def 'Extract resourcename, with #scenario.'() {
+        expect: 'extension check returns expected result'
+            assert MultipartFileUtil.extractResourceNameFromPath(path) == expectedResoureName
+        where: 'following resource names are tested'
+            scenario           | path                || expectedResoureName
+            'no folder'        | 'file.test'         || 'file.test'
+            'single folder'    | 'folder/file.test'  || 'file.test'
+            'multiple folders' | 'f1/f2/file.test'   || 'file.test'
+            'with root'        | '/f1/f2/file.test'  || 'file.test'
+            'windows notation' | 'c:\\f2\\file.test' || 'file.test'
+            'empty path'       | ''                  || ''
+            'null path'        | null                || ''
     }
 
     def multipartZipFileFromResource(resourcePath) {
