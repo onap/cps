@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ac77995c_2047d54b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiDataOperationsSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-29T12:55:02Z",
+      "side": 1,
+      "message": "actual",
+      "range": {
+        "startLine": 125,
+        "startChar": 98,
+        "endLine": 125,
+        "endChar": 106
+      },
+      "revId": "1938e4adc0a3e43372bef32b22ea089876a01d74",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eddc0bff_c50d6657",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiDataOperationsSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-29T12:55:02Z",
+      "side": 1,
+      "message": "dont mention the capture bit. Focus on the view for a non-developer in teh labels\nUse a method to coney more technical stuff like the conversion/data extraction\n\nthen: \u0027a cloud event is published\u0027\n   ...\nand: \u0027the event contains the expected error details\u0027\n  def eventDataValue \u003d extractDataValue(actualDataOPerationCloudEvent)\n  assert eventDataValue.xyz \u003d\u003d expectedXyz",
+      "range": {
+        "startLine": 124,
+        "startChar": 8,
+        "endLine": 129,
+        "endChar": 67
+      },
+      "revId": "1938e4adc0a3e43372bef32b22ea089876a01d74",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0859d635_6fbcc3c0",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiDataOperationsSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-29T12:55:02Z",
+      "side": 1,
+      "message": "use assert keyword (4x)",
+      "range": {
+        "startLine": 131,
+        "startChar": 11,
+        "endLine": 134,
+        "endChar": 64
+      },
+      "revId": "1938e4adc0a3e43372bef32b22ea089876a01d74",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be88b2f4_48fdb9bc",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiDataOperationsSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-29T12:55:02Z",
+      "side": 1,
+      "message": "NB: just \u0027exception\u0027 is better (its an instance not just a class)",
+      "range": {
+        "startLine": 136,
+        "startChar": 46,
+        "endLine": 136,
+        "endChar": 151
+      },
+      "revId": "1938e4adc0a3e43372bef32b22ea089876a01d74",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
