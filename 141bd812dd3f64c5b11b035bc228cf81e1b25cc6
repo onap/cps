@@ -16,6 +16,24 @@
       "revId": "141bd812dd3f64c5b11b035bc228cf81e1b25cc6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b8810f2_2176164c",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/subscription/dmi-subscription-response-event-schema-1.0.0.json",
+        "patchSetId": 12
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-06-29T11:18:37Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "582253d7_ac2bd14f",
+      "revId": "141bd812dd3f64c5b11b035bc228cf81e1b25cc6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
