@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "f382459b_d11134f6",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-06-29T16:07:30Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "aafe1ab3_08531601",
+      "range": {
+        "startLine": 46,
+        "startChar": 58,
+        "endLine": 46,
+        "endChar": 120
+      },
+      "revId": "177e87ed0ed725da9b93555eebd36cacc7e46b14",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b12cdef1_7012e4e2",
         "filename": "docs/release-notes.rst",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2023-06-29T16:03:06Z",
       "side": 1,
       "message": "this is also just part of a feature, not suer if we need it at all!",
+      "range": {
+        "startLine": 47,
+        "startChar": 7,
+        "endLine": 47,
+        "endChar": 104
+      },
+      "revId": "177e87ed0ed725da9b93555eebd36cacc7e46b14",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eee5e396_4b79dc97",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-06-29T16:07:30Z",
+      "side": 1,
+      "message": "removed it.",
+      "parentUuid": "b12cdef1_7012e4e2",
       "range": {
         "startLine": 47,
         "startChar": 7,
