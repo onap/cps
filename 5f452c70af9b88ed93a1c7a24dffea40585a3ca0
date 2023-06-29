@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bf9caf89_82b421be",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/async/RecordFilterStrategies.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-29T13:27:19Z",
+      "side": 1,
+      "message": "\u0027legacy\u0027 is not a great term for long term (its a relative-in-time term) NonCloud would be better and more correct",
+      "range": {
+        "startLine": 61,
+        "startChar": 70,
+        "endLine": 61,
+        "endChar": 93
+      },
+      "revId": "5f452c70af9b88ed93a1c7a24dffea40585a3ca0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf855bc4_ee2b9081",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/async/RecordFilterStrategies.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-29T13:27:19Z",
+      "side": 1,
+      "message": "should not refer to a specific eventClass, mayeb use \u0027Serializable\u0027 instead",
+      "range": {
+        "startLine": 61,
+        "startChar": 40,
+        "endLine": 61,
+        "endChar": 68
+      },
+      "revId": "5f452c70af9b88ed93a1c7a24dffea40585a3ca0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "db662cb5_07b603da",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/FilterStrategiesIntegrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-29T13:27:19Z",
+      "side": 1,
+      "message": "the event is consumed by the (legacy) AsynRestRequest consumer",
+      "range": {
+        "startLine": 82,
+        "startChar": 15,
+        "endLine": 82,
+        "endChar": 35
+      },
+      "revId": "5f452c70af9b88ed93a1c7a24dffea40585a3ca0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a08235ee_d9797f35",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/FilterStrategiesIntegrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-29T13:27:19Z",
+      "side": 1,
+      "message": "FYI: not suer how to handle it but it is inly because o the unique method name that we know which consumer is being used...\nI might see if I I can use a \u0027spy\u0027 (in a future commit) to make this test more clear",
+      "range": {
+        "startLine": 83,
+        "startChar": 36,
+        "endLine": 83,
+        "endChar": 48
+      },
+      "revId": "5f452c70af9b88ed93a1c7a24dffea40585a3ca0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
