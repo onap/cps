@@ -21,6 +21,7 @@ spring:
         producer:
             value-serializer: io.cloudevents.kafka.CloudEventSerializer
         consumer:
+            value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
             properties:
                 spring.deserializer.value.delegate.class: io.cloudevents.kafka.CloudEventDeserializer
 

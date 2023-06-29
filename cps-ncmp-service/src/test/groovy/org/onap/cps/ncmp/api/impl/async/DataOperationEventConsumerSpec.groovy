@@ -44,16 +44,16 @@ import org.springframework.test.annotation.DirtiesContext
 import org.testcontainers.spock.Testcontainers
 import java.time.Duration
 
-@SpringBootTest(classes = [EventsPublisher, NcmpAsyncDataOperationEventConsumer, DataOperationRecordFilterStrategy,JsonObjectMapper, ObjectMapper])
+@SpringBootTest(classes = [EventsPublisher, DataOperationEventConsumer, RecordFilterStrategies,JsonObjectMapper, ObjectMapper])
 @Testcontainers
 @DirtiesContext
-class NcmpAsyncDataOperationEventConsumerSpec extends MessagingBaseSpec {
+class DataOperationEventConsumerSpec extends MessagingBaseSpec {
 
     @SpringBean
     EventsPublisher asyncDataOperationEventPublisher = new EventsPublisher<CloudEvent>(legacyEventKafkaTemplate, cloudEventKafkaTemplate)
 
     @SpringBean
-    NcmpAsyncDataOperationEventConsumer objectUnderTest = new NcmpAsyncDataOperationEventConsumer(asyncDataOperationEventPublisher)
+    DataOperationEventConsumer objectUnderTest = new DataOperationEventConsumer(asyncDataOperationEventPublisher)
 
     @Autowired
     JsonObjectMapper jsonObjectMapper
