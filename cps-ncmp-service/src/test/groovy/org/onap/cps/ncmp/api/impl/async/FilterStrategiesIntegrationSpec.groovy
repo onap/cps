@@ -20,14 +20,11 @@
 
 package org.onap.cps.ncmp.api.impl.async
 
-import io.cloudevents.CloudEvent
 import io.cloudevents.core.builder.CloudEventBuilder
-import io.cloudevents.kafka.CloudEventSerializer
-import org.apache.kafka.clients.producer.KafkaProducer
-import org.apache.kafka.clients.producer.ProducerRecord
-import org.apache.kafka.common.serialization.StringSerializer
+import org.onap.cps.ncmp.api.impl.config.kafka.KafkaConfig
 import org.onap.cps.ncmp.api.impl.events.EventsPublisher
 import org.onap.cps.ncmp.api.kafka.MessagingBaseSpec
+import org.onap.cps.ncmp.event.model.DmiAsyncRequestResponseEvent
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
@@ -39,14 +36,17 @@ import org.springframework.test.annotation.DirtiesContext
 import org.testcontainers.spock.Testcontainers
 import java.util.concurrent.TimeUnit
 
-@SpringBootTest(classes =[NcmpAsyncDataOperationEventConsumer, DataOperationRecordFilterStrategy])
+@SpringBootTest(classes =[DataOperationEventConsumer, AsyncRestRequestResponseEventConsumer, RecordFilterStrategies, KafkaConfig])
 @DirtiesContext
 @Testcontainers
 @EnableAutoConfiguration
-class NcmpAsyncDataOperationEventConsumerIntegrationSpec extends MessagingBaseSpec {
+class FilterStrategiesIntegrationSpec extends MessagingBaseSpec {
 
     @SpringBean
     EventsPublisher mockEventsPublisher = Mock()
+
+    @SpringBean
+    NcmpAsyncRequestResponseEventMapper mapper = Stub()
 
     @Autowired
     private KafkaListenerEndpointRegistry kafkaListenerEndpointRegistry
@@ -58,16 +58,39 @@ class NcmpAsyncDataOperationEventConsumerIntegrationSpec extends MessagingBaseSp
         activateListeners()
     }
 
+    def 'Legacy event consumer with cloud event.'() {
+        given: 'a cloud event of type: #eventType'
+            def cloudEvent = CloudEventBuilder.v1().withId('some id')
+                .withType('DataOperationEvent')
+                .withSource(URI.create('some-source'))
+                .build()
+        when: 'send the cloud event'
+            cloudEventKafkaTemplate.send(topic, cloudEvent)
+        and: 'wait a little for async processing of message'
+            TimeUnit.MILLISECONDS.sleep(300)
+        then: 'event is not consumed'
+            0 * mockEventsPublisher.publishEvent(*_)
+    }
+
+    def 'Legacy event consumer with valid legacy event.'() {
+        given: 'a cloud event of type: #eventType'
+            DmiAsyncRequestResponseEvent legacyEvent = new DmiAsyncRequestResponseEvent(eventId:'legacyEventId', eventTarget:'legacyEventTarget')
+        when: 'send the cloud event'
+            legacyEventKafkaTemplate.send(topic, legacyEvent)
+        and: 'wait a little for async processing of message'
+            TimeUnit.MILLISECONDS.sleep(300)
+        then: 'event is not consumed'
+            1 * mockEventsPublisher.publishEvent(*_)
+    }
+
     def 'Filtering Cloud Events on Type.'() {
         given: 'a cloud event of type: #eventType'
             def cloudEvent = CloudEventBuilder.v1().withId('some id')
-                    .withType(eventType)
-                    .withSource(URI.create('some-source'))
-                    .build()
+                .withType(eventType)
+                .withSource(URI.create('some-source'))
+                .build()
         when: 'send the cloud event'
-            ProducerRecord<String, CloudEvent> record = new ProducerRecord<>(topic, cloudEvent)
-            KafkaProducer<String, CloudEvent> producer = new KafkaProducer<>(eventProducerConfigProperties(CloudEventSerializer))
-            producer.send(record)
+            cloudEventKafkaTemplate.send(topic, cloudEvent)
         and: 'wait a little for async processing of message'
             TimeUnit.MILLISECONDS.sleep(300)
         then: 'the event has only been forwarded for the correct type'
@@ -79,11 +102,11 @@ class NcmpAsyncDataOperationEventConsumerIntegrationSpec extends MessagingBaseSp
             'any type contain the word "DataOperationEvent"' || 1
     }
 
+    //TODO Toine, add positive test with data to prove event is converted correctly (using correct factory)
+
     def 'Non cloud events on same Topic.'() {
         when: 'sending a non-cloud event on the same topic'
-            ProducerRecord<String, String> record = new ProducerRecord<>(topic, 'simple string event')
-            KafkaProducer<String, String> producer = new KafkaProducer<>(eventProducerConfigProperties(StringSerializer))
-            producer.send(record)
+            legacyEventKafkaTemplate.send(topic, 'simple string event')
         and: 'wait a little for async processing of message'
             TimeUnit.MILLISECONDS.sleep(300)
         then: 'the event is not processed by this consumer'
@@ -95,5 +118,4 @@ class NcmpAsyncDataOperationEventConsumerIntegrationSpec extends MessagingBaseSp
             messageListenerContainer -> { ContainerTestUtils.waitForAssignment(messageListenerContainer, 1) }
         )
     }
-
 }

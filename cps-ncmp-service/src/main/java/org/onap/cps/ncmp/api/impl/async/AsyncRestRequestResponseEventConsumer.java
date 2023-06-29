@@ -36,7 +36,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @RequiredArgsConstructor
 @ConditionalOnProperty(name = "notification.enabled", havingValue = "true", matchIfMissing = true)
-public class NcmpAsyncRequestResponseEventConsumer {
+public class AsyncRestRequestResponseEventConsumer {
 
     private final EventsPublisher<NcmpAsyncRequestResponseEvent> eventsPublisher;
     private final NcmpAsyncRequestResponseEventMapper ncmpAsyncRequestResponseEventMapper;
@@ -48,13 +48,15 @@ public class NcmpAsyncRequestResponseEventConsumer {
      */
     @KafkaListener(
             topics = "${app.ncmp.async-m2m.topic}",
+            filter = "includeLegacyEventsOnly",
+            groupId = "ncmp-async-rest-request-event-group",
             properties = {"spring.json.value.default.type=org.onap.cps.ncmp.event.model.DmiAsyncRequestResponseEvent"})
     public void consumeAndForward(final DmiAsyncRequestResponseEvent dmiAsyncRequestResponseEvent) {
         log.debug("Consuming event {} ...", dmiAsyncRequestResponseEvent);
-
         final NcmpAsyncRequestResponseEvent ncmpAsyncRequestResponseEvent =
                 ncmpAsyncRequestResponseEventMapper.toNcmpAsyncEvent(dmiAsyncRequestResponseEvent);
         eventsPublisher.publishEvent(ncmpAsyncRequestResponseEvent.getEventTarget(),
-                ncmpAsyncRequestResponseEvent.getEventId(), ncmpAsyncRequestResponseEvent);
+                                     ncmpAsyncRequestResponseEvent.getEventId(),
+                                     ncmpAsyncRequestResponseEvent);
     }
 }

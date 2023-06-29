@@ -38,7 +38,7 @@ import org.testcontainers.spock.Testcontainers
 
 import java.time.Duration
 
-@SpringBootTest(classes = [EventsPublisher, ObjectMapper, JsonObjectMapper])
+@SpringBootTest(classes = [ObjectMapper, JsonObjectMapper])
 @Testcontainers
 @DirtiesContext
 class LcmEventsPublisherSpec extends MessagingBaseSpec {
