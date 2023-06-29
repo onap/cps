@@ -1,18 +1,15 @@
-openapi: 3.0.1
+openapi: 3.0.3
 info:
-  title: NCMP Inventory API
   description: NCMP Inventory API
+  title: NCMP Inventory API
   version: "1.0"
 servers:
-- url: /ncmpInventory
+  - url: /ncmpInventory
 security:
-- basicAuth: []
+  - basicAuth: []
 paths:
   /v1/ch:
     post:
-      tags:
-      - network-cm-proxy-inventory
-      summary: DMI notifies NCMP of new CM Handles
       description: "Register a DMI Plugin with any new, updated or removed CM Handles."
       operationId: updateDmiPluginRegistration
       requestBody:
@@ -23,137 +20,137 @@ paths:
         required: true
       responses:
         "200":
-          description: No Content
           content: {}
+          description: No Content
         "400":
-          description: Bad Request
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
               example:
                 status: 400 BAD_REQUEST
                 message: Bad request error message
                 details: Bad request error details
-        "401":
-          description: Unauthorized
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
               example:
                 status: 401
                 message: Unauthorized error message
                 details: Unauthorized error details
-        "403":
-          description: Forbidden
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
               example:
                 status: 403
                 message: Forbidden error message
                 details: Forbidden error details
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Forbidden
         "500":
+          content:
+            application/json:
+              example:
+                failedCreatedCmHandles:
+                  - cmHandle: my-cm-handle-01
+                    errorCode: "00"
+                    errorText: Unknown error. <error-details>
+                  - cmHandle: my-cm-handle-02
+                    errorCode: "01"
+                    errorText: cm-handle already exists
+                  - cmHandle: my-cm-handle-03
+                    errorCode: "03"
+                    errorText: cm-handle has an invalid character(s) in id
+                failedUpdatedCmHandles:
+                  - cmHandle: my-cm-handle-01
+                    errorCode: "00"
+                    errorText: Unknown error. <error-details>
+                  - cmHandle: my-cm-handle-02
+                    errorCode: "02"
+                    errorText: cm-handle does not exist
+                  - cmHandle: my-cm-handle-03
+                    errorCode: "03"
+                    errorText: cm-handle has an invalid character(s) in id
+                failedRemovedCmHandles:
+                  - cmHandle: my-cm-handle-01
+                    errorCode: "00"
+                    errorText: Unknown error. <error-details>
+                  - cmHandle: my-cm-handle-02
+                    errorCode: "02"
+                    errorText: cm-handle does not exists
+                  - cmHandle: my-cm-handle-03
+                    errorCode: "03"
+                    errorText: cm-handle has an invalid character(s) in id
+              schema:
+                $ref: '#/components/schemas/DmiPluginRegistrationErrorResponse'
           description: Partial or Complete failure. The error details are provided
             in the response body and all supported error codes are documented in the
             example.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DmiPluginRegistrationErrorResponse'
-              example:
-                failedCreatedCmHandles:
-                - cmHandle: my-cm-handle-01
-                  errorCode: "00"
-                  errorText: Unknown error. <error-details>
-                - cmHandle: my-cm-handle-02
-                  errorCode: "01"
-                  errorText: cm-handle already exists
-                - cmHandle: my-cm-handle-03
-                  errorCode: "03"
-                  errorText: cm-handle has an invalid character(s) in id
-                failedUpdatedCmHandles:
-                - cmHandle: my-cm-handle-01
-                  errorCode: "00"
-                  errorText: Unknown error. <error-details>
-                - cmHandle: my-cm-handle-02
-                  errorCode: "02"
-                  errorText: cm-handle does not exist
-                - cmHandle: my-cm-handle-03
-                  errorCode: "03"
-                  errorText: cm-handle has an invalid character(s) in id
-                failedRemovedCmHandles:
-                - cmHandle: my-cm-handle-01
-                  errorCode: "00"
-                  errorText: Unknown error. <error-details>
-                - cmHandle: my-cm-handle-02
-                  errorCode: "02"
-                  errorText: cm-handle does not exists
-                - cmHandle: my-cm-handle-03
-                  errorCode: "03"
-                  errorText: cm-handle has an invalid character(s) in id
+      summary: DMI notifies NCMP of new CM Handles
+      tags:
+        - network-cm-proxy-inventory
   /v1/ch/cmHandles:
     get:
-      tags:
-      - network-cm-proxy-inventory
-      summary: "Get all cm handle IDs for a registered DMI plugin (DMI plugin, DMI\
-        \ data plugin, DMI model plugin)"
       description: Get all cm handle IDs for a registered DMI plugin
       operationId: getAllCmHandleIdsForRegisteredDmi
       parameters:
-      - name: dmi-plugin-identifier
-        in: query
-        description: dmi-plugin-identifier
-        required: true
-        schema:
-          type: string
-          example: my-dmi-plugin
+        - description: dmi-plugin-identifier
+          in: query
+          name: dmi-plugin-identifier
+          required: true
+          schema:
+            example: my-dmi-plugin
+            type: string
       responses:
         "200":
-          description: OK
           content:
             application/json:
               schema:
-                type: array
                 items:
                   type: string
+                type: array
+          description: OK
         "401":
-          description: Unauthorized
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
               example:
                 status: 401
                 message: Unauthorized error message
                 details: Unauthorized error details
-        "403":
-          description: Forbidden
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
               example:
                 status: 403
                 message: Forbidden error message
                 details: Forbidden error details
-        "500":
-          description: Internal Server Error
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Forbidden
+        "500":
+          content:
+            application/json:
               example:
                 status: 500
                 message: Internal Server Error
                 details: Internal Server Error occurred
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Internal Server Error
+      summary: "Get all cm handle IDs for a registered DMI plugin (DMI plugin, DMI\
+        \ data plugin, DMI model plugin)"
+      tags:
+        - network-cm-proxy-inventory
   /v1/ch/searches:
     post:
-      tags:
-      - network-cm-proxy-inventory
-      summary: Query for CM Handle IDs
       description: "Query and get CMHandleIds for additional properties, public properties\
         \ and registered DMI plugin (DMI plugin, DMI data plugin, DMI model plugin)."
       operationId: searchCmHandleIds
@@ -165,96 +162,192 @@ paths:
         required: true
       responses:
         "200":
-          description: OK
           content:
             application/json:
               schema:
-                type: array
                 items:
                   type: string
+                type: array
+          description: OK
         "401":
-          description: Unauthorized
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
               example:
                 status: 401
                 message: Unauthorized error message
                 details: Unauthorized error details
-        "403":
-          description: Forbidden
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
               example:
                 status: 403
                 message: Forbidden error message
                 details: Forbidden error details
-        "500":
-          description: Internal Server Error
-          content:
-            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
+          description: Forbidden
+        "500":
+          content:
+            application/json:
               example:
                 status: 500
                 message: Internal Server Error
                 details: Internal Server Error occurred
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Internal Server Error
+      summary: Query for CM Handle IDs
+      tags:
+        - network-cm-proxy-inventory
 components:
+  parameters:
+    dmiPluginIdentifierInQuery:
+      description: dmi-plugin-identifier
+      in: query
+      name: dmi-plugin-identifier
+      required: true
+      schema:
+        example: my-dmi-plugin
+        type: string
+  responses:
+    NoContent:
+      content: {}
+      description: No Content
+    BadRequest:
+      content:
+        application/json:
+          example:
+            status: 400 BAD_REQUEST
+            message: Bad request error message
+            details: Bad request error details
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+      description: Bad Request
+    Unauthorized:
+      content:
+        application/json:
+          example:
+            status: 401
+            message: Unauthorized error message
+            details: Unauthorized error details
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+      description: Unauthorized
+    Forbidden:
+      content:
+        application/json:
+          example:
+            status: 403
+            message: Forbidden error message
+            details: Forbidden error details
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+      description: Forbidden
+    InternalServerError:
+      content:
+        application/json:
+          example:
+            status: 500
+            message: Internal Server Error
+            details: Internal Server Error occurred
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+      description: Internal Server Error
   schemas:
     RestDmiPluginRegistration:
-      type: object
-      properties:
-        dmiPlugin:
-          type: string
-          example: my-dmi-plugin
-          default: ""
-        dmiDataPlugin:
-          type: string
-          example: my-dmi-data-plugin
-          default: ""
-        dmiModelPlugin:
-          type: string
-          example: my-dmi-model-plugin
-          default: ""
-        createdCmHandles:
-          type: array
-          items:
-            $ref: '#/components/schemas/RestInputCmHandle'
+      example:
         updatedCmHandles:
-          type: array
-          items:
-            $ref: '#/components/schemas/RestInputCmHandle'
+          - cmHandle: my-cm-handle
+            publicCmHandleProperties:
+              key: my-property
+            cmHandleProperties:
+              key: my-property
+          - cmHandle: my-cm-handle
+            publicCmHandleProperties:
+              key: my-property
+            cmHandleProperties:
+              key: my-property
+        createdCmHandles:
+          - cmHandle: my-cm-handle
+            publicCmHandleProperties:
+              key: my-property
+            cmHandleProperties:
+              key: my-property
+          - cmHandle: my-cm-handle
+            publicCmHandleProperties:
+              key: my-property
+            cmHandleProperties:
+              key: my-property
+        dmiPlugin: my-dmi-plugin
+        dmiModelPlugin: my-dmi-model-plugin
+        dmiDataPlugin: my-dmi-data-plugin
         removedCmHandles:
-          type: array
-          example:
           - my-cm-handle1
           - my-cm-handle2
           - my-cm-handle3
+      properties:
+        dmiPlugin:
+          default: ""
+          example: my-dmi-plugin
+          type: string
+        dmiDataPlugin:
+          default: ""
+          example: my-dmi-data-plugin
+          type: string
+        dmiModelPlugin:
+          default: ""
+          example: my-dmi-model-plugin
+          type: string
+        createdCmHandles:
+          items:
+            $ref: '#/components/schemas/RestInputCmHandle'
+          type: array
+        updatedCmHandles:
+          items:
+            $ref: '#/components/schemas/RestInputCmHandle'
+          type: array
+        removedCmHandles:
+          example:
+            - my-cm-handle1
+            - my-cm-handle2
+            - my-cm-handle3
           items:
             type: string
-    RestInputCmHandle:
-      required:
-      - cmHandle
+          type: array
       type: object
+    RestInputCmHandle:
+      example:
+        cmHandle: my-cm-handle
+        publicCmHandleProperties:
+          key: my-property
+        cmHandleProperties:
+          key: my-property
       properties:
         cmHandle:
-          type: string
           example: my-cm-handle
+          type: string
         cmHandleProperties:
-          $ref: '#/components/schemas/RestCmHandleProperties'
+          additionalProperties:
+            example: my-property
+            type: string
+          type: object
         publicCmHandleProperties:
-          $ref: '#/components/schemas/RestCmHandleProperties'
+          additionalProperties:
+            example: my-property
+            type: string
+          type: object
+      required:
+        - cmHandle
+      type: object
     RestCmHandleProperties:
-      type: object
       additionalProperties:
-        type: string
         example: my-property
-    ErrorMessage:
-      title: Error
+        type: string
       type: object
+    ErrorMessage:
       properties:
         status:
           type: string
@@ -262,125 +355,105 @@ components:
           type: string
         details:
           type: string
-    DmiPluginRegistrationErrorResponse:
+      title: Error
       type: object
+    DmiPluginRegistrationErrorResponse:
       properties:
         failedCreatedCmHandles:
-          type: array
           items:
             $ref: '#/components/schemas/CmHandlerRegistrationErrorResponse'
+          type: array
         failedUpdatedCmHandles:
-          type: array
           items:
             $ref: '#/components/schemas/CmHandlerRegistrationErrorResponse'
+          type: array
         failedRemovedCmHandles:
-          type: array
           items:
             $ref: '#/components/schemas/CmHandlerRegistrationErrorResponse'
-    CmHandlerRegistrationErrorResponse:
+          type: array
       type: object
+    CmHandlerRegistrationErrorResponse:
       properties:
         cmHandle:
-          type: string
           example: my-cm-handle
+          type: string
         errorCode:
-          type: string
           example: "00"
-        errorText:
           type: string
+        errorText:
           example: Unknown error. <error-details>
-    CmHandleQueryParameters:
-      title: Cm Handle query parameters for executing cm handle search
+          type: string
       type: object
+    CmHandleQueryParameters:
+      example:
+        cmHandleQueryParameters:
+          - conditionParameters:
+              - key: conditionParameters
+              - key: conditionParameters
+            conditionName: conditionName
+          - conditionParameters:
+              - key: conditionParameters
+              - key: conditionParameters
+            conditionName: conditionName
+        conditions:
+          - name: name
+            conditionParameters:
+              - moduleName: my-module
+              - moduleName: my-module
+          - name: name
+            conditionParameters:
+              - moduleName: my-module
+              - moduleName: my-module
       properties:
         cmHandleQueryParameters:
-          type: array
           items:
             $ref: '#/components/schemas/ConditionProperties'
-        conditions:
           type: array
-          description: "not necessary, it is just for backward compatibility"
+        conditions:
           deprecated: true
+          description: "not necessary, it is just for backward compatibility"
           items:
             $ref: '#/components/schemas/OldConditionProperties'
+          type: array
+      title: Cm Handle query parameters for executing cm handle search
+      type: object
     ConditionProperties:
+      example:
+        conditionParameters:
+          - key: conditionParameters
+          - key: conditionParameters
+        conditionName: conditionName
       properties:
         conditionName:
           type: string
         conditionParameters:
-          type: array
           items:
-            type: object
             additionalProperties:
               type: string
+            type: object
+          type: array
     OldConditionProperties:
+      deprecated: true
+      example:
+        name: name
+        conditionParameters:
+          - moduleName: my-module
+          - moduleName: my-module
       properties:
         name:
           type: string
         conditionParameters:
-          type: array
           items:
             $ref: '#/components/schemas/ModuleNameAsJsonObject'
-      deprecated: true
+          type: array
     ModuleNameAsJsonObject:
+      example:
+        moduleName: my-module
       properties:
         moduleName:
-          type: string
           example: my-module
-  responses:
-    NoContent:
-      description: No Content
-      content: {}
-    BadRequest:
-      description: Bad Request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorMessage'
-          example:
-            status: 400 BAD_REQUEST
-            message: Bad request error message
-            details: Bad request error details
-    Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorMessage'
-          example:
-            status: 401
-            message: Unauthorized error message
-            details: Unauthorized error details
-    Forbidden:
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorMessage'
-          example:
-            status: 403
-            message: Forbidden error message
-            details: Forbidden error details
-    InternalServerError:
-      description: Internal Server Error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorMessage'
-          example:
-            status: 500
-            message: Internal Server Error
-            details: Internal Server Error occurred
-  parameters:
-    dmiPluginIdentifierInQuery:
-      name: dmi-plugin-identifier
-      in: query
-      description: dmi-plugin-identifier
-      required: true
-      schema:
-        type: string
-        example: my-dmi-plugin
+          type: string
   securitySchemes:
     basicAuth:
-      type: http
       scheme: basic
+      type: http
