@@ -22,6 +22,30 @@
       "revId": "3e39085ffee88697194d5cdfcd8ccd0827834f9e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f267617_9f0416d0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/async/RecordFilterStrategies.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-06-29T13:47:57Z",
+      "side": 1,
+      "message": "Legacy events implements marker interface Serializable, where as CloudEvent does not. Ravi , Toine correct me if there is another reasont to use it.",
+      "parentUuid": "4ff5c30d_033724de",
+      "range": {
+        "startLine": 62,
+        "startChar": 40,
+        "endLine": 62,
+        "endChar": 52
+      },
+      "revId": "3e39085ffee88697194d5cdfcd8ccd0827834f9e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
