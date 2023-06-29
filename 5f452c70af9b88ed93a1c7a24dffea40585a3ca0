@@ -48,6 +48,54 @@
     },
     {
       "key": {
+        "uuid": "5ddabe94_4d24cbbd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/async/RecordFilterStrategies.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-29T13:57:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bf855bc4_ee2b9081",
+      "range": {
+        "startLine": 61,
+        "startChar": 40,
+        "endLine": 61,
+        "endChar": 68
+      },
+      "revId": "5f452c70af9b88ed93a1c7a24dffea40585a3ca0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8aa08c89_1c1c6076",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/async/RecordFilterStrategies.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-29T13:57:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bf9caf89_82b421be",
+      "range": {
+        "startLine": 61,
+        "startChar": 70,
+        "endLine": 61,
+        "endChar": 93
+      },
+      "revId": "5f452c70af9b88ed93a1c7a24dffea40585a3ca0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "db662cb5_07b603da",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/FilterStrategiesIntegrationSpec.groovy",
         "patchSetId": 3
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "f0d47eae_a08d1546",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/FilterStrategiesIntegrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-29T13:57:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db662cb5_07b603da",
+      "range": {
+        "startLine": 82,
+        "startChar": 15,
+        "endLine": 82,
+        "endChar": 35
+      },
+      "revId": "5f452c70af9b88ed93a1c7a24dffea40585a3ca0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a08235ee_d9797f35",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/FilterStrategiesIntegrationSpec.groovy",
         "patchSetId": 3
@@ -91,6 +163,30 @@
       "revId": "5f452c70af9b88ed93a1c7a24dffea40585a3ca0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a5a8483a_7bd15b13",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/FilterStrategiesIntegrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-29T13:57:17Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a08235ee_d9797f35",
+      "range": {
+        "startLine": 83,
+        "startChar": 36,
+        "endLine": 83,
+        "endChar": 48
+      },
+      "revId": "5f452c70af9b88ed93a1c7a24dffea40585a3ca0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
