@@ -1,0 +1,251 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0c07e4a2_d524e453",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/async/NcmpAsyncRequestResponseEventConsumer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-29T10:40:01Z",
+      "side": 1,
+      "message": "why do wee need a group, who else is consuming same message(s)?!",
+      "range": {
+        "startLine": 50,
+        "startChar": 12,
+        "endLine": 50,
+        "endChar": 63
+      },
+      "revId": "f57d5453f8faa97d5e5afaa5cbc88d3910adbd1a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1aa92951_24babdb9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/async/RecordFilterStrategies.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-29T10:40:01Z",
+      "side": 1,
+      "message": "no true, i include all legacy events ie. non-cloud events",
+      "range": {
+        "startLine": 57,
+        "startChar": 8,
+        "endLine": 57,
+        "endChar": 38
+      },
+      "revId": "f57d5453f8faa97d5e5afaa5cbc88d3910adbd1a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6eee290e_909a6643",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/async/RecordFilterStrategies.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-29T10:40:01Z",
+      "side": 1,
+      "message": "includeLegacyEventsOnly",
+      "range": {
+        "startLine": 61,
+        "startChar": 70,
+        "endLine": 61,
+        "endChar": 110
+      },
+      "revId": "f57d5453f8faa97d5e5afaa5cbc88d3910adbd1a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "afb44a22_bdddefe9",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/KafkaListenersIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-29T10:40:01Z",
+      "side": 1,
+      "message": "this shoudlnt happen for both ?! Also this is really for a different test (dont put too much in one test)",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 111
+      },
+      "revId": "f57d5453f8faa97d5e5afaa5cbc88d3910adbd1a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "730566c4_48e66ae3",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/KafkaListenersIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-29T10:40:01Z",
+      "side": 1,
+      "message": "half of this shoudl go in the label, you can insert and and: before line 93",
+      "range": {
+        "startLine": 98,
+        "startChar": 64,
+        "endLine": 98,
+        "endChar": 127
+      },
+      "revId": "f57d5453f8faa97d5e5afaa5cbc88d3910adbd1a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f197825a_a7c9540b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/KafkaListenersIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-29T10:40:01Z",
+      "side": 1,
+      "message": "is this reuired for tet test",
+      "range": {
+        "startLine": 123,
+        "startChar": 137,
+        "endLine": 123,
+        "endChar": 158
+      },
+      "revId": "f57d5453f8faa97d5e5afaa5cbc88d3910adbd1a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a3287e4_3149a837",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/KafkaListenersIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-29T10:40:01Z",
+      "side": 1,
+      "message": "NB: maybe its time to have a baseListenerSpec",
+      "range": {
+        "startLine": 128,
+        "startChar": 0,
+        "endLine": 132,
+        "endChar": 5
+      },
+      "revId": "f57d5453f8faa97d5e5afaa5cbc88d3910adbd1a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be266aed_e9d3ed50",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/LegacyConsumerIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-29T10:40:01Z",
+      "side": 1,
+      "message": "we need to consider the naems of this test (mayeb combien it with teh other test too)",
+      "range": {
+        "startLine": 43,
+        "startChar": 6,
+        "endLine": 43,
+        "endChar": 36
+      },
+      "revId": "f57d5453f8faa97d5e5afaa5cbc88d3910adbd1a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc6441fd_d460e519",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/NcmpAsyncDataOperationEventConsumerIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-29T10:40:01Z",
+      "side": 1,
+      "message": "why is this file deleted?!",
+      "revId": "f57d5453f8faa97d5e5afaa5cbc88d3910adbd1a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "579ffe6b_c39cae98",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/kafka/MessagingBaseSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-29T10:40:01Z",
+      "side": 1,
+      "message": "I didn\u0027t think this is need, can we discuss?!",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 0
+      },
+      "revId": "f57d5453f8faa97d5e5afaa5cbc88d3910adbd1a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5af74646_cdba84cc",
+        "filename": "cps-ncmp-service/src/test/resources/application.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-06-29T10:40:01Z",
+      "side": 1,
+      "message": "as I asked before is this really needed?!",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 112
+      },
+      "revId": "f57d5453f8faa97d5e5afaa5cbc88d3910adbd1a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
