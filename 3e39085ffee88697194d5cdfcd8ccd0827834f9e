@@ -46,6 +46,30 @@
       "revId": "3e39085ffee88697194d5cdfcd8ccd0827834f9e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "42e13960_90940ed4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/async/RecordFilterStrategies.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-06-29T14:00:46Z",
+      "side": 1,
+      "message": "Yeah. I get the idea.\nWe can as well have our own marker interface . Call it \"LegacyEvents\" ( which may be extending  Serializable ) and then all the events which are legacy can implement from this interface.\n\nSerializable is way too generic I think. We can have a layer in between.\n\nMaybe we can do this separately as I know the intensity of the situation and we need to get this patch merged.\nBut just wanted to know your thoughts around this. Do you guys think that it makes sense ?",
+      "parentUuid": "8f267617_9f0416d0",
+      "range": {
+        "startLine": 62,
+        "startChar": 40,
+        "endLine": 62,
+        "endChar": 52
+      },
+      "revId": "3e39085ffee88697194d5cdfcd8ccd0827834f9e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
