@@ -64,7 +64,7 @@ class CpsPerfTestBase extends PerfTestBase {
         addAnchorsWithData(5, CPS_PERFORMANCE_TEST_DATASPACE, BOOKSTORE_SCHEMA_SET, 'bookstore', data)
         stopWatch.stop()
         def durationInMillis = stopWatch.getTotalTimeMillis()
-        recordAndAssertPerformance('Creating bookstore anchors with large data tree', 3_000, durationInMillis)
+        recordAndAssertPerformance('Creating bookstore anchors with large data tree', 1_500, durationInMillis)
     }
 
     def addOpenRoadModel() {
@@ -81,7 +81,7 @@ class CpsPerfTestBase extends PerfTestBase {
         addAnchorsWithData(5, CPS_PERFORMANCE_TEST_DATASPACE, LARGE_SCHEMA_SET, 'openroadm', data)
         stopWatch.stop()
         def durationInMillis = stopWatch.getTotalTimeMillis()
-        recordAndAssertPerformance('Creating openroadm anchors with large data tree', 30_000, durationInMillis)
+        recordAndAssertPerformance('Creating openroadm anchors with large data tree', 20_000, durationInMillis)
     }
 
     def generateOpenRoadData(numberOfNodes) {
@@ -98,8 +98,8 @@ class CpsPerfTestBase extends PerfTestBase {
             assert countDataNodesInTree(result) == 1
             stopWatch.stop()
             def durationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'all data is read within 30 seconds (warm up not critical)'
-            recordAndAssertPerformance("Warming database", 30_000, durationInMillis)
+        then: 'all data is read within 20 seconds'
+            recordAndAssertPerformance("Warming database", 20_000, durationInMillis)
     }
 
 }
