@@ -43,8 +43,11 @@ import org.springframework.util.concurrent.ListenableFutureCallback;
 @RequiredArgsConstructor
 public class EventsPublisher<T> {
 
-    /** Once all cps events will be modified to cloud compliant, will remove legacyKafkaEventTemplate with
-     it's java configuration file KafkaTemplateConfig. **/
+    /**
+     * KafaTemplate for legacy (non-cloud) events.
+     *
+     * @deprecated Cloud events should be used. Will address soon as part of  https://jira.onap.org/browse/CPS-1717
+     */
     @Deprecated(forRemoval = true)
     private final KafkaTemplate<String, T> legacyKafkaEventTemplate;
 
@@ -69,7 +72,7 @@ public class EventsPublisher<T> {
      * @param topicName valid topic name
      * @param eventKey  message key
      * @param event     message payload
-     * @deprecated This method is not needed anymore since the use of headers will be in place.
+     * @deprecated Cloud events should be used. Will address soon as part of  https://jira.onap.org/browse/CPS-1717
      */
     @Deprecated(forRemoval = true)
     public void publishEvent(final String topicName, final String eventKey, final T event) {
