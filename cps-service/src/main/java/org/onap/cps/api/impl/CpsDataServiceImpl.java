@@ -108,6 +108,19 @@ public class CpsDataServiceImpl implements CpsDataService {
     }
 
     @Override
+    @Timed(value = "cps.data.service.list.element.root.save",
+            description = "Time taken to save a list element as root")
+    public void saveListElements(final String dataspaceName, final String anchorName, final String jsonData,
+                                 final OffsetDateTime observedTimestamp) {
+        cpsValidator.validateNameCharacters(dataspaceName, anchorName);
+        final Anchor anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
+        final Collection<DataNode> listElementDataNodeCollection =
+                buildDataNodes(anchor, ROOT_NODE_XPATH, jsonData, ContentType.JSON);
+        cpsDataPersistenceService.storeDataNodes(dataspaceName, anchorName, listElementDataNodeCollection);
+        processDataUpdatedEventAsync(anchor, ROOT_NODE_XPATH, CREATE, observedTimestamp);
+    }
+
+    @Override
     @Timed(value = "cps.data.service.list.element.save",
         description = "Time taken to save a list element")
     public void saveListElements(final String dataspaceName, final String anchorName,
