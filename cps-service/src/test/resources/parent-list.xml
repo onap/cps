@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<data xmlns="urn:ietf:params:xml:ns:netconf:base:1.0"
+	  xmlns:multiple-data-tree="org:onap:cps:test:parent-list">
+<multiple-data-tree:invoice xmlns="org:onap:cps:test:parent-list">
+		<ProductID>1</ProductID>
+		<ProductName>Apple</ProductName>
+		<price>100</price>
+		<stock>false</stock>
+</multiple-data-tree:invoice>
+</data>
