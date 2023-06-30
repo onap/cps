@@ -23,15 +23,12 @@ package org.onap.cps.ncmp.api.impl.async
 import io.cloudevents.core.builder.CloudEventBuilder
 import org.onap.cps.ncmp.api.impl.config.kafka.KafkaConfig
 import org.onap.cps.ncmp.api.impl.events.EventsPublisher
-import org.onap.cps.ncmp.api.kafka.MessagingBaseSpec
+import org.onap.cps.ncmp.api.kafka.ConsumerBaseSpec
 import org.onap.cps.ncmp.event.model.DmiAsyncRequestResponseEvent
 import org.spockframework.spring.SpringBean
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.kafka.config.KafkaListenerEndpointRegistry
-import org.springframework.kafka.test.utils.ContainerTestUtils
 import org.springframework.test.annotation.DirtiesContext
 import org.testcontainers.spock.Testcontainers
 import java.util.concurrent.TimeUnit
@@ -40,7 +37,7 @@ import java.util.concurrent.TimeUnit
 @DirtiesContext
 @Testcontainers
 @EnableAutoConfiguration
-class FilterStrategiesIntegrationSpec extends MessagingBaseSpec {
+class FilterStrategiesIntegrationSpec extends ConsumerBaseSpec {
 
     @SpringBean
     EventsPublisher mockEventsPublisher = Mock()
@@ -48,15 +45,8 @@ class FilterStrategiesIntegrationSpec extends MessagingBaseSpec {
     @SpringBean
     NcmpAsyncRequestResponseEventMapper mapper = Stub()
 
-    @Autowired
-    private KafkaListenerEndpointRegistry kafkaListenerEndpointRegistry
-
     @Value('${app.ncmp.async-m2m.topic}')
     def topic
-
-    def setup() {
-        activateListeners()
-    }
 
     def 'Legacy event consumer with cloud event.'() {
         given: 'a cloud event of type: #eventType'
@@ -113,9 +103,4 @@ class FilterStrategiesIntegrationSpec extends MessagingBaseSpec {
             0 * mockEventsPublisher.publishCloudEvent(*_)
     }
 
-    def activateListeners() {
-        kafkaListenerEndpointRegistry.getListenerContainers().forEach(
-            messageListenerContainer -> { ContainerTestUtils.waitForAssignment(messageListenerContainer, 1) }
-        )
-    }
 }
