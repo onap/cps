@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Nordix Foundation
+ *  Copyright (C) 2021-2023 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,6 +18,7 @@
  *  SPDX-License-Identifier: Apache-2.0
  *  ============LICENSE_END=========================================================
  */
+
 package org.onap.cps.spi.exceptions
 
 import spock.lang.Specification
@@ -152,10 +153,10 @@ class CpsExceptionsSpec extends Specification {
                     == "Anchor with name ${anchorName} already exists for ${dataspaceName}."
     }
 
-    def 'Creating a exception that a data node already exists.'() {
+    def 'Creating a exception that data nodes already exist.'() {
         expect: 'the exception details contains the correct message with xpath and dataspace name.'
-            (AlreadyDefinedException.forDataNode(xpath, dataspaceName, rootCause)).details
-                    == "Data node with name ${xpath} already exists for ${dataspaceName}."
+            (AlreadyDefinedException.forDataNodes([xpath], anchorName)).details
+                    == "1 data node(s) already exist for ${anchorName}."
     }
 
     def 'Creating a exception that a schema set already exists.'() {

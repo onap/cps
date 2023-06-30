@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Nordix Foundation
+ *  Copyright (C) 2021-2023 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,6 +22,8 @@
 package org.onap.cps.spi.exceptions;
 
 import java.util.Collection;
+import java.util.Collections;
+import lombok.Getter;
 
 /**
  * Already defined exception. Indicates the cps object with same name already exists.
@@ -31,29 +33,28 @@ import java.util.Collection;
 public class AlreadyDefinedException extends CpsAdminException {
 
     private static final long serialVersionUID = 501929839139881112L;
+    public static final String ALREADY_DEFINED_EXCEPTION_MESSAGE = "Already defined exception";
 
-    /**
-     * Constructor.
-     *
-     * @param objectType  the object type
-     * @param objectName  the name of the object
-     * @param contextName the context name e.g. Anchor or Dataspace
-     * @param cause       the cause of the exception
-     */
+    @Getter
+    private final Collection<String> alreadyDefinedObjectNames;
+
     private AlreadyDefinedException(final String objectType, final String objectName, final String contextName,
         final Throwable cause) {
-        super("Already defined exception",
+        super(ALREADY_DEFINED_EXCEPTION_MESSAGE,
             String.format("%s with name %s already exists for %s.", objectType, objectName, contextName), cause);
+        alreadyDefinedObjectNames = Collections.singletonList(objectName);
     }
 
-    /**
-     * Constructor.
-     *
-     * @param objectName the name of the object
-     * @param cause      the cause of the exception
-     */
+    private AlreadyDefinedException(final String objectType, final Collection<String> objectNames,
+                                    final String contextName) {
+        super(ALREADY_DEFINED_EXCEPTION_MESSAGE,
+                String.format("%d %s already exist for %s.", objectNames.size(), objectType, contextName));
+        alreadyDefinedObjectNames = objectNames;
+    }
+
     private AlreadyDefinedException(final String objectName, final Throwable cause) {
-        super("Already defined exception", String.format("%s already exists.", objectName), cause);
+        super(ALREADY_DEFINED_EXCEPTION_MESSAGE, String.format("%s already exists.", objectName), cause);
+        alreadyDefinedObjectNames = Collections.singletonList(objectName);
     }
 
     public static AlreadyDefinedException forDataspace(final String dataspaceName, final Throwable cause) {
@@ -70,14 +71,7 @@ public class AlreadyDefinedException extends CpsAdminException {
         return new AlreadyDefinedException("Schema Set", schemaSetName, contextName, cause);
     }
 
-    public static AlreadyDefinedException forDataNode(final String xpath, final String contextName,
-        final Throwable cause) {
-        return new AlreadyDefinedException("Data node", xpath, contextName, cause);
-    }
-
-    public static AlreadyDefinedException forDataNodes(final Collection<String> xpaths, final String contextName,
-        final Throwable cause) {
-        final var name = String.format("(one or more) of %s", xpaths);
-        return new AlreadyDefinedException("Data node", name, contextName, cause);
+    public static AlreadyDefinedException forDataNodes(final Collection<String> xpaths, final String contextName) {
+        return new AlreadyDefinedException("data node(s)", xpaths, contextName);
     }
 }
