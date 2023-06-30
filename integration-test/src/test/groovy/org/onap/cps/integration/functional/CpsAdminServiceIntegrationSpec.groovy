@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2023 Nordix Foundation
+ *  Modifications Copyright (C) 2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -67,7 +68,7 @@ class CpsAdminServiceIntegrationSpec extends CpsIntegrationSpecBase {
         where: 'the following data is used'
             scenario                        | dataspaceName          | numberOfAnchors || expectedException          | expectedMessageDetails
             'dataspace name does not exist' | 'unknown'              | 0               || DataspaceNotFoundException | 'unknown does not exist'
-            'dataspace contains schemasets' | GENERAL_TEST_DATASPACE | 0               || DataspaceInUseException    | 'contains 1 schemaset(s)'
+            'dataspace contains schemasets' | GENERAL_TEST_DATASPACE | 0               || DataspaceInUseException    | 'contains 2 schemaset(s)'
             'dataspace contains anchors'    | GENERAL_TEST_DATASPACE | 2               || DataspaceInUseException    | 'contains 2 anchor(s)'
     }
 
