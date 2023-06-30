@@ -34,7 +34,6 @@ import org.onap.cps.ncmp.rest.model.DmiErrorMessage;
 import org.onap.cps.ncmp.rest.model.DmiErrorMessageDmiResponse;
 import org.onap.cps.ncmp.rest.model.ErrorMessage;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
-import org.onap.cps.spi.exceptions.AlreadyDefinedExceptionBatch;
 import org.onap.cps.spi.exceptions.CpsException;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.onap.cps.spi.exceptions.DataValidationException;
@@ -83,7 +82,7 @@ public class NetworkCmProxyRestExceptionHandler {
         return buildErrorResponse(HttpStatus.BAD_REQUEST, exception);
     }
 
-    @ExceptionHandler({AlreadyDefinedException.class, AlreadyDefinedExceptionBatch.class })
+    @ExceptionHandler({AlreadyDefinedException.class})
     public static ResponseEntity<Object> handleAlreadyDefinedExceptions(final Exception exception) {
         return buildErrorResponse(HttpStatus.CONFLICT, exception);
     }
