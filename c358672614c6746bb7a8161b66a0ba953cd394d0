@@ -191,6 +191,30 @@
     },
     {
       "key": {
+        "uuid": "0813363c_9baf9d7e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/SerializationIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-06-30T15:04:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c52c3f6_703ad037",
+      "range": {
+        "startLine": 78,
+        "startChar": 29,
+        "endLine": 78,
+        "endChar": 33
+      },
+      "revId": "c358672614c6746bb7a8161b66a0ba953cd394d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "01d6f8ee_1999ece1",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/SerializationIntegrationSpec.groovy",
         "patchSetId": 1
@@ -330,6 +354,30 @@
       "revId": "c358672614c6746bb7a8161b66a0ba953cd394d0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0bc052ff_96a6e327",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/SerializationIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-06-30T15:04:37Z",
+      "side": 1,
+      "message": "This is non cloudEvent and the actual and expected object type is different but the content is same. So, verifying \u0027ID\u0027 is sufficient i assume. through CSIT anyway we may verfy the full object.",
+      "parentUuid": "1c7fc13c_31f8fd83",
+      "range": {
+        "startLine": 86,
+        "startChar": 19,
+        "endLine": 86,
+        "endChar": 78
+      },
+      "revId": "c358672614c6746bb7a8161b66a0ba953cd394d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
