@@ -43,11 +43,14 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
 
     CpsDataService objectUnderTest
     def originalCountBookstoreChildNodes
+    def originalCountParentlistNodes
+
     def now = OffsetDateTime.now()
 
     def setup() {
         objectUnderTest = cpsDataService
         originalCountBookstoreChildNodes = countDataNodesInBookstore()
+        originalCountParentlistNodes = countDataNodesInParentlist()
     }
 
     def 'Read bookstore top-level container(s) using #fetchDescendantsOption.'() {
@@ -67,6 +70,17 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
             DIRECT_CHILDREN_ONLY          || 6
             INCLUDE_ALL_DESCENDANTS       || 17
             new FetchDescendantsOption(2) || 17
+    }
+
+    def 'Read parent-list top-level using "root"  variations.'() {
+        when: 'get data nodes for parent-list top-level'
+            def result = objectUnderTest.getDataNodes(PARENT_LIST_TEST_DATASPACE, PARENT_LIST_TEST_ANCHOR, root, OMIT_DESCENDANTS)
+        then: 'the list consist ouf of one data node'
+            assert countDataNodesInTree(result) == 1
+        and: 'the top level data node has the expected attribute and value'
+            assert result.leaves['ProductID'] == [1]
+        where: 'the following variations of "root" are used'
+            root << ['/', '']
     }
 
     def 'Read bookstore top-level container(s) using "root" path variations.'() {
@@ -177,6 +191,21 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
             objectUnderTest.deleteDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, ['/does/not/exist'], now)
         then: 'a  datanode not found (batch) exception is thrown'
             thrown(DataNodeNotFoundExceptionBatch)
+    }
+
+    def 'Add and Delete top-level list (element) data nodes with root node.'() {
+        given: 'two new (categories) datanodes'
+            def json = '{"multiple-data-tree:invoice": [{"ProductID": "2","ProductName": "Mango","price": "150","stock": true}]}'
+        when: 'the new list elements are saved'
+            objectUnderTest.createListElements(PARENT_LIST_TEST_DATASPACE, PARENT_LIST_TEST_ANCHOR, json , OffsetDateTime.now())
+        then: 'they can be retrieved by their xpaths'
+            objectUnderTest.getDataNodes(PARENT_LIST_TEST_DATASPACE, PARENT_LIST_TEST_ANCHOR, '/invoice[@ProductID ="2"]', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS).size() == 1
+        and: 'there are now two extra datanodes'
+            assert originalCountParentlistNodes + 1 == countDataNodesInTree(objectUnderTest.getDataNodes(PARENT_LIST_TEST_DATASPACE, PARENT_LIST_TEST_ANCHOR, '/', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS))
+        when: 'the new elements are deleted'
+            objectUnderTest.deleteDataNode(PARENT_LIST_TEST_DATASPACE, PARENT_LIST_TEST_ANCHOR, '/invoice[@ProductID ="2"]', OffsetDateTime.now())
+        then: 'the original number of datanodes is restored'
+            assert originalCountParentlistNodes == countDataNodesInTree(objectUnderTest.getDataNodes(PARENT_LIST_TEST_DATASPACE, PARENT_LIST_TEST_ANCHOR, '/', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS))
     }
 
     def 'Add and Delete list (element) data nodes.'() {
@@ -368,4 +397,9 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
     def countDataNodesInBookstore() {
         return countDataNodesInTree(objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore', INCLUDE_ALL_DESCENDANTS))
     }
+
+    def countDataNodesInParentlist() {
+        return countDataNodesInTree(objectUnderTest.getDataNodes(PARENT_LIST_TEST_DATASPACE, PARENT_LIST_TEST_ANCHOR, '/', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS))
+    }
+
 }
