@@ -36,7 +36,6 @@ import org.onap.cps.ncmp.rest.mapper.CmHandleStateMapper
 import org.onap.cps.ncmp.rest.mapper.DataOperationRequestMapper
 import org.onap.cps.ncmp.rest.util.DeprecationHelper
 import org.onap.cps.spi.exceptions.AlreadyDefinedException
-import org.onap.cps.spi.exceptions.AlreadyDefinedExceptionBatch
 import org.onap.cps.spi.exceptions.CpsException
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.spi.exceptions.DataValidationException
@@ -123,8 +122,8 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
             'DataNode Validation' | new DataNodeNotFoundException('myDataspaceName', 'myAnchorName') || null                     | 'DataNode not found'        | NOT_FOUND
             'other'               | new IllegalStateException(sampleErrorMessage)                    || null                     | sampleErrorMessage          | INTERNAL_SERVER_ERROR
             'Data Node Not Found' | new DataNodeNotFoundException('myDataspaceName', 'myAnchorName') || 'DataNode not found'     | 'DataNode not found'        | NOT_FOUND
-            'Existing entry'      | new AlreadyDefinedException('name',null)                         || 'name already exists'    | 'Already defined exception' | CONFLICT
-            'Existing entries'    | new AlreadyDefinedExceptionBatch(["x[@id='abc']"])               || 'Check logs for details' | null                        | CONFLICT
+            'Existing entry'      | AlreadyDefinedException.forDataNode('name', 'context', null)     || 'name already exists'    | 'Already defined exception' | CONFLICT
+            'Existing entries'    | AlreadyDefinedException.forDataNodes(['A', 'B'], 'context')      || '(2) already exist'      | 'Already defined exception' | CONFLICT
     }
 
     def 'Post request with exception returns correct HTTP Status.'() {
