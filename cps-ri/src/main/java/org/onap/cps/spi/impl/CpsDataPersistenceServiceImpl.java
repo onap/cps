@@ -84,10 +84,24 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     private static final AnchorEntity ALL_ANCHORS = null;
 
     @Override
+    public void storeDataNodes(final String dataspaceName, final String anchorName,
+                               final Collection<DataNode> dataNodes) {
+        final AnchorEntity anchorEntity = getAnchorEntity(dataspaceName, anchorName);
+        addDataNodes(anchorEntity, dataNodes);
+    }
+
+    @Override
     public void addChildDataNodes(final String dataspaceName, final String anchorName,
                                   final String parentNodeXpath, final Collection<DataNode> dataNodes) {
         final AnchorEntity anchorEntity = getAnchorEntity(dataspaceName, anchorName);
         addChildrenDataNodes(anchorEntity, parentNodeXpath, dataNodes);
+    }
+
+    @Override
+    public void addListElements(final String dataspaceName, final String anchorName,
+                                final Collection<DataNode> newListElements) {
+        final AnchorEntity anchorEntity = getAnchorEntity(dataspaceName, anchorName);
+        addDataNodes(anchorEntity, newListElements);
     }
 
     @Override
@@ -160,10 +174,8 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         }
     }
 
-    @Override
-    public void storeDataNodes(final String dataspaceName, final String anchorName,
-                               final Collection<DataNode> dataNodes) {
-        final AnchorEntity anchorEntity = getAnchorEntity(dataspaceName, anchorName);
+    private void addDataNodes(final AnchorEntity anchorEntity,
+                              final Collection<DataNode> dataNodes) {
         final List<FragmentEntity> fragmentEntities = new ArrayList<>(dataNodes.size());
         try {
             for (final DataNode dataNode: dataNodes) {
