@@ -85,6 +85,18 @@ public interface CpsDataService {
                   OffsetDateTime observedTimestamp, ContentType contentType);
 
     /**
+     * Persists data fragment representing one or more list elements as root node for the
+     * given anchor and dataspace.
+     *
+     * @param dataspaceName     dataspace name
+     * @param anchorName        anchor name
+     * @param jsonData          json data representing list element(s)
+     * @param observedTimestamp observedTimestamp
+     */
+    void saveListElements(String dataspaceName, String anchorName, String jsonData,
+                          OffsetDateTime observedTimestamp);
+
+    /**
      * Persists child data fragment representing one or more list elements under existing data node for the
      * given anchor and dataspace.
      *

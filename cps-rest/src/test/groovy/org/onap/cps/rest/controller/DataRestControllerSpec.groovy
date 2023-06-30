@@ -179,6 +179,29 @@ class DataRestControllerSpec extends Specification {
             'without observed-timestamp XML'  | null                           | MediaType.APPLICATION_XML  | requestBodyXml  | expectedXmlData  | ContentType.XML
     }
 
+    def 'Save list elements with root node #scenario.'() {
+        given: 'root node xpath '
+            def rootNodeXpath = '/'
+        when: 'list-node endpoint is invoked with post (create) operation'
+            def postRequestBuilder = post("$dataNodeBaseEndpointV1/anchors/$anchorName/list-nodes")
+                .contentType(MediaType.APPLICATION_JSON)
+                .param('xpath', rootNodeXpath )
+                .content(requestBodyJson)
+            if (observedTimestamp != null)
+                postRequestBuilder.param('observed-timestamp', observedTimestamp)
+            def response = mvc.perform(postRequestBuilder).andReturn().response
+        then: 'a created response is returned'
+            response.status == expectedHttpStatus.value()
+        then: 'the java API was called with the correct parameters'
+            expectedApiCount * mockCpsDataService.saveListElements(dataspaceName, anchorName, expectedJsonData,
+                { it == DateTimeUtility.toOffsetDateTime(observedTimestamp) })
+        where:
+            scenario                          | observedTimestamp              || expectedApiCount | expectedHttpStatus
+            'with observed-timestamp'         | '2021-03-03T23:59:59.999-0400' || 1                | HttpStatus.CREATED
+            'without observed-timestamp'      | null                           || 1                | HttpStatus.CREATED
+            'with invalid observed-timestamp' | 'invalid'                      || 0                | HttpStatus.BAD_REQUEST
+    }
+
     def 'Save list elements #scenario.'() {
         given: 'parent node xpath '
             def parentNodeXpath = 'parent node xpath'
