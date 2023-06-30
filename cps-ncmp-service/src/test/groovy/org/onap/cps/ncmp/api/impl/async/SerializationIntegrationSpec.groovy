@@ -25,6 +25,8 @@ import io.cloudevents.core.builder.CloudEventBuilder
 import org.onap.cps.ncmp.api.impl.config.kafka.KafkaConfig
 import org.onap.cps.ncmp.api.impl.events.EventsPublisher
 import org.onap.cps.ncmp.api.kafka.ConsumerBaseSpec
+import org.onap.cps.ncmp.event.model.DmiAsyncRequestResponseEvent
+import org.onap.cps.ncmp.event.model.NcmpAsyncRequestResponseEvent
 import org.onap.cps.ncmp.events.async1_0_0.Data
 import org.onap.cps.ncmp.events.async1_0_0.DataOperationEvent
 import org.onap.cps.ncmp.events.async1_0_0.Response
@@ -38,7 +40,7 @@ import org.testcontainers.spock.Testcontainers
 
 import java.util.concurrent.TimeUnit
 
-@SpringBootTest(classes =[DataOperationEventConsumer, RecordFilterStrategies, KafkaConfig])
+@SpringBootTest(classes =[DataOperationEventConsumer, AsyncRestRequestResponseEventConsumer, RecordFilterStrategies, KafkaConfig])
 @DirtiesContext
 @Testcontainers
 @EnableAutoConfiguration
@@ -46,6 +48,9 @@ class SerializationIntegrationSpec extends ConsumerBaseSpec {
 
     @SpringBean
     EventsPublisher mockEventsPublisher = Mock()
+
+    @SpringBean
+    NcmpAsyncRequestResponseEventMapper mapper = Stub() { toNcmpAsyncEvent(_) >> new NcmpAsyncRequestResponseEvent(eventId: 'my-event-id', eventTarget: 'some client topic')}
 
     @Autowired
     private ObjectMapper objectMapper
@@ -57,15 +62,29 @@ class SerializationIntegrationSpec extends ConsumerBaseSpec {
 
     def 'Forwarding DataOperation Event Data.'() {
         given: 'a data operation cloud event'
-            def cloudEventSent = createCloudEvent()
+            def cloudEvent = createCloudEvent()
         when: 'send the event'
-            cloudEventKafkaTemplate.send(topic, cloudEventSent)
+            cloudEventKafkaTemplate.send(topic, cloudEvent)
         and: 'wait a little for async processing of message'
             TimeUnit.MILLISECONDS.sleep(300)
         then: 'the event has been forwarded'
             1 * mockEventsPublisher.publishCloudEvent('some client topic', 'my-event-id', _) >> { args -> { capturedForwardedEvent = args[2] } }
         and: 'the forwarded event is identical to the event that was sent'
-            assert capturedForwardedEvent == cloudEventSent
+            assert capturedForwardedEvent == cloudEvent
+    }
+
+    def 'Forwarding AsyncRestRequestResponse Event Data.'() {
+        given: 'async request response legacy event'
+            def dmiAsyncRequestResponseEvent = new DmiAsyncRequestResponseEvent(eventId: 'my-event-id',eventTarget: 'some client topic')
+        when: 'send the event'
+            legacyEventKafkaTemplate.send(topic, dmiAsyncRequestResponseEvent)
+        and: 'wait a little for async processing of message'
+            TimeUnit.MILLISECONDS.sleep(300)
+        then: 'the event has been forwarded'
+            1 * mockEventsPublisher.publishEvent('some client topic', 'my-event-id', _) >> { args -> { capturedForwardedEvent = args[2] } }
+        and: 'the captured id and target of the forwarded event is same as the one that was sent'
+            assert capturedForwardedEvent.eventId == dmiAsyncRequestResponseEvent.eventId
+            assert capturedForwardedEvent.eventTarget == dmiAsyncRequestResponseEvent.eventTarget
     }
 
     def createCloudEvent() {
