@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6d09c4f9_58d48720",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/SerializationIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-06-30T13:10:18Z",
+      "side": 1,
+      "message": "this event is a type of \u0027Asyncrestrequestresponse\u0027 that we call as legacy, But i prefer to not call as legacy only. We can update it to \u0027Forwarding legacy AsyncRestRequestResponse Event Data\u0027. what you say?",
+      "parentUuid": "df4545b2_c943bd65",
+      "range": {
+        "startLine": 76,
+        "startChar": 20,
+        "endLine": 76,
+        "endChar": 55
+      },
+      "revId": "c358672614c6746bb7a8161b66a0ba953cd394d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1b6a8800_4b519f52",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/SerializationIntegrationSpec.groovy",
         "patchSetId": 1
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "338db850_39834f50",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/SerializationIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-06-30T13:10:18Z",
+      "side": 1,
+      "message": "It is not a data opertaion, This test case is checking the deserialization of the \u0027Asyncrestrequestresponse\u0027 consumer",
+      "parentUuid": "1b6a8800_4b519f52",
+      "range": {
+        "startLine": 77,
+        "startChar": 16,
+        "endLine": 77,
+        "endChar": 38
+      },
+      "revId": "c358672614c6746bb7a8161b66a0ba953cd394d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "48c3f74b_25c10fd7",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/SerializationIntegrationSpec.groovy",
         "patchSetId": 1
@@ -59,6 +107,30 @@
       "writtenOn": "2023-06-30T12:58:48Z",
       "side": 1,
       "message": "NB : remove it",
+      "range": {
+        "startLine": 78,
+        "startChar": 29,
+        "endLine": 78,
+        "endChar": 33
+      },
+      "revId": "c358672614c6746bb7a8161b66a0ba953cd394d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "36c239ce_d54b0b17",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/SerializationIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-06-30T13:10:18Z",
+      "side": 1,
+      "message": "line 65 variable name is similar this, So i kept like that.",
+      "parentUuid": "48c3f74b_25c10fd7",
       "range": {
         "startLine": 78,
         "startChar": 29,
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "8e502f11_394b1e6e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/SerializationIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-06-30T13:10:18Z",
+      "side": 1,
+      "message": "This event is also an async",
+      "parentUuid": "01d6f8ee_1999ece1",
+      "range": {
+        "startLine": 81,
+        "startChar": 32,
+        "endLine": 81,
+        "endChar": 38
+      },
+      "revId": "c358672614c6746bb7a8161b66a0ba953cd394d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "245ac850_a4574f17",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/SerializationIntegrationSpec.groovy",
         "patchSetId": 1
@@ -105,6 +201,30 @@
       "writtenOn": "2023-06-30T12:58:48Z",
       "side": 1,
       "message": "compare object",
+      "range": {
+        "startLine": 86,
+        "startChar": 19,
+        "endLine": 86,
+        "endChar": 78
+      },
+      "revId": "c358672614c6746bb7a8161b66a0ba953cd394d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f326030a_8e41a272",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/SerializationIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-06-30T13:10:18Z",
+      "side": 1,
+      "message": "expected object and the actual object is of different types in this case but the data is same that\u0027s why verifying the eventId which is a mandatory one",
+      "parentUuid": "245ac850_a4574f17",
       "range": {
         "startLine": 86,
         "startChar": 19,
