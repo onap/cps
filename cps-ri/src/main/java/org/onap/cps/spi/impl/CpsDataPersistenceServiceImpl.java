@@ -52,7 +52,6 @@ import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.FragmentEntity;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
-import org.onap.cps.spi.exceptions.AlreadyDefinedExceptionBatch;
 import org.onap.cps.spi.exceptions.ConcurrencyException;
 import org.onap.cps.spi.exceptions.CpsAdminException;
 import org.onap.cps.spi.exceptions.CpsPathException;
@@ -105,12 +104,12 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         for (final Collection<DataNode> newList : newLists) {
             try {
                 addChildrenDataNodes(anchorEntity, parentNodeXpath, newList);
-            } catch (final AlreadyDefinedExceptionBatch e) {
-                failedXpaths.addAll(e.getAlreadyDefinedXpaths());
+            } catch (final AlreadyDefinedException e) {
+                failedXpaths.addAll(e.getAlreadyDefinedObjectNames());
             }
         }
         if (!failedXpaths.isEmpty()) {
-            throw new AlreadyDefinedExceptionBatch(failedXpaths);
+            throw AlreadyDefinedException.forDataNodes(failedXpaths, anchorEntity.getName());
         }
     }
 
@@ -156,7 +155,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             }
         }
         if (!failedXpaths.isEmpty()) {
-            throw new AlreadyDefinedExceptionBatch(failedXpaths);
+            throw AlreadyDefinedException.forDataNodes(failedXpaths, anchorEntity.getName());
         }
     }
 
@@ -189,7 +188,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             }
         }
         if (!failedXpaths.isEmpty()) {
-            throw new AlreadyDefinedExceptionBatch(failedXpaths);
+            throw AlreadyDefinedException.forDataNodes(failedXpaths, anchorEntity.getName());
         }
     }
 
