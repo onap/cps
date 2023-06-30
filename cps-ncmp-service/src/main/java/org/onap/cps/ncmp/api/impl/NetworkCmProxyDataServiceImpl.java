@@ -65,7 +65,7 @@ import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistrationResponse;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.spi.FetchDescendantsOption;
-import org.onap.cps.spi.exceptions.AlreadyDefinedExceptionBatch;
+import org.onap.cps.spi.exceptions.AlreadyDefinedException;
 import org.onap.cps.spi.exceptions.CpsException;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.onap.cps.spi.exceptions.DataValidationException;
@@ -411,9 +411,9 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         try {
             lcmEventsCmHandleStateHandler.updateCmHandleStateBatch(cmHandleStatePerCmHandle);
             return CmHandleRegistrationResponse.createSuccessResponses(cmHandleIds);
-        } catch (final AlreadyDefinedExceptionBatch alreadyDefinedExceptionBatch) {
+        } catch (final AlreadyDefinedException alreadyDefinedException) {
             return CmHandleRegistrationResponse.createFailureResponses(
-                    alreadyDefinedExceptionBatch.getAlreadyDefinedXpaths(),
+                    alreadyDefinedException.getAlreadyDefinedObjectNames(),
                     RegistrationError.CM_HANDLE_ALREADY_EXIST);
         } catch (final Exception exception) {
             return CmHandleRegistrationResponse.createFailureResponses(cmHandleIds, exception);
