@@ -198,7 +198,7 @@ class SubscriptionModelLoaderSpec extends Specification {
     def 'Create top level node fails due to an AlreadyDefined exception'() {
         given: 'the saving of the node data will throw an Already Defined exception'
             mockCpsDataService.saveData(*_) >>
-                    { throw AlreadyDefinedException.forDataNode('/xpath', "sampleContextName", null) }
+                    { throw AlreadyDefinedException.forDataNodes(['/xpath'], "sampleContextName") }
         when: 'the method to onboard model is called'
             objectUnderTest.onboardSubscriptionModel(yangResourceToContentMap)
         then: 'no exception thrown'

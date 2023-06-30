@@ -24,7 +24,7 @@ package org.onap.cps.integration.functional
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.integration.base.FunctionalSpecBase
 import org.onap.cps.spi.FetchDescendantsOption
-import org.onap.cps.spi.exceptions.AlreadyDefinedExceptionBatch
+import org.onap.cps.spi.exceptions.AlreadyDefinedException
 import org.onap.cps.spi.exceptions.AnchorNotFoundException
 import org.onap.cps.spi.exceptions.CpsAdminException
 import org.onap.cps.spi.exceptions.CpsPathException
@@ -145,8 +145,8 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
             def json = '{"bookstore": {} }'
             objectUnderTest.saveData(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, json, now)
         then: 'an exception that (one cps paths is)  already defined is thrown '
-            def exceptionThrown = thrown(AlreadyDefinedExceptionBatch)
-            exceptionThrown.alreadyDefinedXpaths == [ '/bookstore' ] as Set
+            def exceptionThrown = thrown(AlreadyDefinedException)
+            exceptionThrown.alreadyDefinedObjectNames == ['/bookstore' ] as Set
         cleanup:
             restoreBookstoreDataAnchor(1)
     }
@@ -202,8 +202,8 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
         when: 'attempt to save the list element'
             objectUnderTest.saveListElements(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1 , '/bookstore', json, now)
         then: 'an exception that (one cps paths is)  already defined is thrown '
-            def exceptionThrown = thrown(AlreadyDefinedExceptionBatch)
-            exceptionThrown.alreadyDefinedXpaths == [ '/bookstore/categories[@code=\'1\']' ] as Set
+            def exceptionThrown = thrown(AlreadyDefinedException)
+            exceptionThrown.alreadyDefinedObjectNames == ['/bookstore/categories[@code=\'1\']' ] as Set
         and: 'there is now one extra data nodes'
             assert originalCountBookstoreChildNodes + 1 == countDataNodesInBookstore()
         cleanup:
@@ -246,8 +246,8 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
         when: 'the batches of new list element(s) are saved'
             objectUnderTest.saveListElementsBatch(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1 , '/bookstore', [jsonNewElement, jsonExistingElement], now)
         then: 'an already defined (batch) exception is thrown for the existing path'
-            def exceptionThrown = thrown(AlreadyDefinedExceptionBatch)
-            assert exceptionThrown.alreadyDefinedXpaths ==  [ '/bookstore/categories[@code=\'1\']' ] as Set
+            def exceptionThrown = thrown(AlreadyDefinedException)
+            assert exceptionThrown.alreadyDefinedObjectNames ==  ['/bookstore/categories[@code=\'1\']' ] as Set
         and: 'there is now one extra data node'
             assert originalCountBookstoreChildNodes + 1 == countDataNodesInBookstore()
         cleanup:
@@ -269,7 +269,7 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
         where: 'the following data is used'
             scenario                 | parentXpath                              | json                                || expectedException
             'parent does not exist'  | '/bookstore/categories[@code="unknown"]' | '{"books": [ {"title":"new"} ] } '  || DataNodeNotFoundException
-            'already existing child' | '/bookstore'                             | '{"categories": [ {"code":"1"} ] }' || AlreadyDefinedExceptionBatch
+            'already existing child' | '/bookstore'                             | '{"categories": [ {"code":"1"} ] }' || AlreadyDefinedException
     }
 
     def 'Add multiple child data nodes with partial success.'() {
@@ -278,8 +278,8 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
         when: 'attempt to add the elements'
             objectUnderTest.saveData(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore', json, now)
         then: 'an already defined (batch) exception is thrown for the existing path'
-            def thrown  = thrown(AlreadyDefinedExceptionBatch)
-            assert thrown.alreadyDefinedXpaths == [ "/bookstore/categories[@code='1']" ] as Set
+            def thrown  = thrown(AlreadyDefinedException)
+            assert thrown.alreadyDefinedObjectNames == [ "/bookstore/categories[@code='1']" ] as Set
         and: 'the new data node has been added i.e. can be retrieved'
             assert objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore/categories[@code="new"]', DIRECT_CHILDREN_ONLY).size() == 1
     }

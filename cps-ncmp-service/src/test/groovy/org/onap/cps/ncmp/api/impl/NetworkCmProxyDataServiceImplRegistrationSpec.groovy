@@ -36,7 +36,7 @@ import org.onap.cps.ncmp.api.inventory.InventoryPersistence
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
-import org.onap.cps.spi.exceptions.AlreadyDefinedExceptionBatch
+import org.onap.cps.spi.exceptions.AlreadyDefinedException
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.exceptions.SchemaSetNotFoundException
@@ -190,7 +190,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
                                        new NcmpServiceCmHandle(cmHandleId: 'cmhandle3')])
         and: 'cm-handle creation is successful for 1st and 3rd; failed for 2nd'
             def xpath = "somePathWithId[@id='cmhandle2']"
-            mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(*_) >> { throw new AlreadyDefinedExceptionBatch([xpath]) }
+            mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(*_) >> { throw AlreadyDefinedException.forDataNodes([xpath], 'some-context') }
         when: 'registration is updated to create cm-handles'
             def response = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'a response is received for all cm-handles'
@@ -221,9 +221,9 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
                 assert it.errorText == expectedErrorText
             }
         where:
-            scenario                                        | exception                                                              || expectedError           | expectedErrorText
-            'cm-handle already exist'                       | new AlreadyDefinedExceptionBatch(["'path[@id='cmhandle']".toString()]) || CM_HANDLE_ALREADY_EXIST | 'cm-handle already exists'
-            'unknown exception while registering cm-handle' | new RuntimeException('Failed')                                         || UNKNOWN_ERROR           | 'Failed'
+            scenario                                        | exception                                                                      || expectedError           | expectedErrorText
+            'cm-handle already exist'                       | AlreadyDefinedException.forDataNodes(["path[@id='cmhandle']"], 'some-context') || CM_HANDLE_ALREADY_EXIST | 'cm-handle already exists'
+            'unknown exception while registering cm-handle' | new RuntimeException('Failed')                                                 || UNKNOWN_ERROR           | 'Failed'
     }
 
     def 'Update CM-Handle: Update Operation Response is added to the response'() {
