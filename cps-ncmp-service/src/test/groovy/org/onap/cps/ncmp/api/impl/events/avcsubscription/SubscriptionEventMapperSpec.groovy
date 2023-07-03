@@ -18,13 +18,13 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.events.avc
+package org.onap.cps.ncmp.api.impl.events.avcsubscription
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.mapstruct.factory.Mappers
-import org.onap.cps.ncmp.api.impl.events.avcsubscription.SubscriptionEventResponseMapper
+import org.onap.cps.ncmp.api.impl.events.avcsubscription.SubscriptionEventMapper
 import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionStatus
-import org.onap.cps.ncmp.api.models.SubscriptionEventResponse
+import org.onap.cps.ncmp.events.avcsubscription1_0_0.client_to_ncmp.SubscriptionEvent
 import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.beans.factory.annotation.Autowired
@@ -33,30 +33,47 @@ import spock.lang.Specification
 
 
 @SpringBootTest(classes = [JsonObjectMapper, ObjectMapper])
-class SubscriptionEventResponseMapperSpec extends Specification {
+class SubscriptionEventMapperSpec extends Specification {
 
-    SubscriptionEventResponseMapper objectUnderTest = Mappers.getMapper(SubscriptionEventResponseMapper)
+    SubscriptionEventMapper objectUnderTest = Mappers.getMapper(SubscriptionEventMapper)
 
     @Autowired
     JsonObjectMapper jsonObjectMapper
 
-    def 'Map subscription response event to yang model subscription event'() {
-        given: 'a Subscription Response Event'
-            def jsonData = TestUtils.getResourceFileContent('avcSubscriptionEventResponse.json')
-            def testEventToMap = jsonObjectMapper.convertJsonString(jsonData, SubscriptionEventResponse.class)
+    def 'Map subscription event to yang model subscription event where #scenario'() {
+        given: 'a Subscription Event'
+            def jsonData = TestUtils.getResourceFileContent('avcSubscriptionCreationEvent.json')
+            def testEventToMap = jsonObjectMapper.convertJsonString(jsonData, SubscriptionEvent.class)
         when: 'the event is mapped to a yang model subscription'
             def result = objectUnderTest.toYangModelSubscriptionEvent(testEventToMap)
         then: 'the resulting yang model subscription event contains the correct clientId'
             assert result.clientId == "SCO-9989752"
         and: 'subscription name'
             assert result.subscriptionName == "cm-subscription-001"
+        and: 'is tagged value is false'
+            assert !result.isTagged
         and: 'predicate targets '
-            assert result.predicates.targetCmHandles.cmHandleId == ["CMHandle1", "CMHandle3", "CMHandle4", "CMHandle5"]
-        and: 'the status for these targets is set to expected values'
-            assert result.predicates.targetCmHandles.status == [SubscriptionStatus.ACCEPTED, SubscriptionStatus.REJECTED,
-            SubscriptionStatus.PENDING, SubscriptionStatus.PENDING]
+            assert result.predicates.targetCmHandles.cmHandleId == ["CMHandle1", "CMHandle2", "CMHandle3"]
+        and: 'the status for these targets is set to pending'
+            assert result.predicates.targetCmHandles.status == [SubscriptionStatus.PENDING, SubscriptionStatus.PENDING, SubscriptionStatus.PENDING]
         and: 'the topic is null'
             assert result.topic == null
     }
 
+    def 'Map empty subscription event to yang model subscription event'() {
+        given: 'a new Subscription Event with no data'
+            def testEventToMap = new SubscriptionEvent()
+        when: 'the event is mapped to a yang model subscription'
+            def result = objectUnderTest.toYangModelSubscriptionEvent(testEventToMap)
+        then: 'the resulting yang model subscription event contains null clientId'
+            assert result.clientId == null
+        and: 'subscription name is null'
+            assert result.subscriptionName == null
+        and: 'is tagged value is false'
+            assert result.isTagged == false
+        and: 'predicates is null'
+            assert result.predicates == null
+        and: 'the topic is null'
+            assert result.topic == null
+    }
 }

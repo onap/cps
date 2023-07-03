@@ -27,17 +27,16 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionStatus;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelSubscriptionEvent;
-import org.onap.cps.ncmp.event.model.SubscriptionEvent;
+import org.onap.cps.ncmp.events.avcsubscription1_0_0.client_to_ncmp.SubscriptionEvent;
 
 @Mapper(componentModel = "spring")
 public interface SubscriptionEventMapper {
 
-    @Mapping(source = "event.subscription.clientID", target = "clientId")
-    @Mapping(source = "event.subscription.name", target = "subscriptionName")
-    @Mapping(source = "event.subscription.isTagged", target = "tagged")
-    @Mapping(source = "event.predicates.targets", target = "predicates.targetCmHandles",
+    @Mapping(source = "data.subscription.clientID", target = "clientId")
+    @Mapping(source = "data.subscription.name", target = "subscriptionName")
+    @Mapping(source = "data.predicates.targets", target = "predicates.targetCmHandles",
             qualifiedByName = "mapTargetsToCmHandleTargets")
-    @Mapping(source = "event.predicates.datastore", target = "predicates.datastore")
+    @Mapping(source = "data.predicates.datastore", target = "predicates.datastore")
     YangModelSubscriptionEvent toYangModelSubscriptionEvent(SubscriptionEvent subscriptionEvent);
 
     /**
@@ -47,8 +46,8 @@ public interface SubscriptionEventMapper {
      * @return TargetCmHandle list
      */
     @Named("mapTargetsToCmHandleTargets")
-    default List<YangModelSubscriptionEvent.TargetCmHandle> mapTargetsToCmHandleTargets(List<Object> targets) {
-        return targets.stream().map(target -> new YangModelSubscriptionEvent.TargetCmHandle(target.toString(),
+    default List<YangModelSubscriptionEvent.TargetCmHandle> mapTargetsToCmHandleTargets(List<String> targets) {
+        return targets.stream().map(target -> new YangModelSubscriptionEvent.TargetCmHandle(target,
                         SubscriptionStatus.PENDING))
                 .collect(Collectors.toList());
     }
