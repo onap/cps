@@ -20,13 +20,17 @@
 
 package org.onap.cps.ncmp.api.impl.events.avcsubscription;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import io.cloudevents.CloudEvent;
+import io.cloudevents.core.CloudEventUtils;
+import io.cloudevents.core.data.PojoCloudEventData;
+import io.cloudevents.jackson.PojoCloudEventDataMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionPersistence;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelSubscriptionEvent;
-import org.onap.cps.ncmp.event.model.InnerSubscriptionEvent;
-import org.onap.cps.ncmp.event.model.SubscriptionEvent;
+import org.onap.cps.ncmp.events.avcsubscription1_0_0.client_to_ncmp.SubscriptionEvent;
 import org.onap.cps.spi.exceptions.OperationNotYetSupportedException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -42,6 +46,8 @@ public class SubscriptionEventConsumer {
     private final SubscriptionEventMapper subscriptionEventMapper;
     private final SubscriptionPersistence subscriptionPersistence;
 
+    private final ObjectMapper objectMapper;
+
     @Value("${notification.enabled:true}")
     private boolean notificationFeatureEnabled;
 
@@ -54,32 +60,42 @@ public class SubscriptionEventConsumer {
      * @param subscriptionEventConsumerRecord the event to be consumed
      */
     @KafkaListener(topics = "${app.ncmp.avc.subscription-topic}",
-            properties = {"spring.json.value.default.type=org.onap.cps.ncmp.event.model.SubscriptionEvent"})
-    public void consumeSubscriptionEvent(
-            final ConsumerRecord<String, SubscriptionEvent> subscriptionEventConsumerRecord) {
-        final SubscriptionEvent subscriptionEvent = subscriptionEventConsumerRecord.value();
-        final InnerSubscriptionEvent event = subscriptionEvent.getEvent();
-        final String eventDatastore = event.getPredicates().getDatastore();
+            containerFactory = "cloudEventConcurrentKafkaListenerContainerFactory")
+    public void consumeSubscriptionEvent(final ConsumerRecord<String, CloudEvent> subscriptionEventConsumerRecord) {
+        final CloudEvent cloudEvent = subscriptionEventConsumerRecord.value();
+        final SubscriptionEvent subscriptionEvent = toSubscriptionEvent(cloudEvent);
+        final String eventDatastore = subscriptionEvent.getData().getPredicates().getDatastore();
         if (!(eventDatastore.equals("passthrough-running") || eventDatastore.equals("passthrough-operational"))) {
             throw new OperationNotYetSupportedException(
                 "passthrough datastores are currently only supported for event subscriptions");
         }
-        if ("CM".equals(event.getDataType().getDataCategory())) {
-            log.debug("Consuming event {} ...", subscriptionEvent);
+        if ("CM".equals(subscriptionEvent.getData().getDataType().getDataCategory())) {
             if (subscriptionModelLoaderEnabled) {
                 persistSubscriptionEvent(subscriptionEvent);
             }
-            if ("CREATE".equals(subscriptionEvent.getEventType().value())) {
+            if ("CREATE".equals(cloudEvent.getType())) {
                 log.info("Subscription for ClientID {} with name {} ...",
-                        event.getSubscription().getClientID(),
-                        event.getSubscription().getName());
+                        subscriptionEvent.getData().getSubscription().getClientID(),
+                        subscriptionEvent.getData().getSubscription().getName());
                 if (notificationFeatureEnabled) {
-                    subscriptionEventForwarder.forwardCreateSubscriptionEvent(subscriptionEvent,
-                            subscriptionEventConsumerRecord.headers());
+                    subscriptionEventForwarder.forwardCreateSubscriptionEvent(subscriptionEvent);
                 }
             }
         } else {
             log.trace("Non-CM subscription event ignored");
+        }
+    }
+
+    private SubscriptionEvent toSubscriptionEvent(final CloudEvent cloudEvent) {
+        final PojoCloudEventData<SubscriptionEvent> deserializedCloudEvent = CloudEventUtils
+                .mapData(cloudEvent, PojoCloudEventDataMapper.from(objectMapper, SubscriptionEvent.class));
+        if (deserializedCloudEvent == null) {
+            log.info("No data found in the consumed event");
+            return null;
+        } else {
+            final SubscriptionEvent subscriptionEvent = deserializedCloudEvent.getValue();
+            log.info("Consuming event {}", subscriptionEvent);
+            return subscriptionEvent;
         }
     }
 

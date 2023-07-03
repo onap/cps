@@ -20,14 +20,17 @@
 
 package org.onap.cps.ncmp.api.impl.events.avcsubscription;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hazelcast.map.IMap;
+import io.cloudevents.CloudEvent;
+import io.cloudevents.core.builder.CloudEventBuilder;
+import java.net.URI;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -35,7 +38,6 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.kafka.common.header.Headers;
 import org.onap.cps.ncmp.api.impl.config.embeddedcache.ForwardedSubscriptionEventCacheConfig;
 import org.onap.cps.ncmp.api.impl.events.EventsPublisher;
 import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionPersistence;
@@ -44,7 +46,8 @@ import org.onap.cps.ncmp.api.impl.utils.DmiServiceNameOrganizer;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelSubscriptionEvent;
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
-import org.onap.cps.ncmp.event.model.SubscriptionEvent;
+import org.onap.cps.ncmp.events.avcsubscription1_0_0.client_to_ncmp.SubscriptionEvent;
+import org.onap.cps.ncmp.events.avcsubscription1_0_0.ncmp_to_dmi.CmHandle;
 import org.onap.cps.spi.exceptions.OperationNotYetSupportedException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -56,10 +59,16 @@ import org.springframework.stereotype.Component;
 public class SubscriptionEventForwarder {
 
     private final InventoryPersistence inventoryPersistence;
-    private final EventsPublisher<SubscriptionEvent> eventsPublisher;
+    private final EventsPublisher<CloudEvent> eventsPublisher;
     private final IMap<String, Set<String>> forwardedSubscriptionEventCache;
     private final SubscriptionEventResponseOutcome subscriptionEventResponseOutcome;
     private final SubscriptionEventMapper subscriptionEventMapper;
+
+    private final ObjectMapper objectMapper;
+
+    private final ClientSubscriptionEventToNcmpSubscriptionEventMapper
+            clientSubscriptionEventToNcmpSubscriptionEventMapper;
+
     private final SubscriptionPersistence subscriptionPersistence;
     private final ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
     @Value("${app.ncmp.avc.subscription-forward-topic-prefix}")
@@ -73,28 +82,22 @@ public class SubscriptionEventForwarder {
      *
      * @param subscriptionEvent the event to be forwarded
      */
-    public void forwardCreateSubscriptionEvent(final SubscriptionEvent subscriptionEvent,
-                                               final Headers eventHeaders) {
-        final List<Object> cmHandleTargets = subscriptionEvent.getEvent().getPredicates().getTargets();
+    public void forwardCreateSubscriptionEvent(final SubscriptionEvent subscriptionEvent) {
+        final List<String> cmHandleTargets = subscriptionEvent.getData().getPredicates().getTargets();
         if (cmHandleTargets == null || cmHandleTargets.isEmpty()
-                || cmHandleTargets.stream().anyMatch(id -> ((String) id).contains("*"))) {
+                || cmHandleTargets.stream().anyMatch(id -> (id).contains("*"))) {
             throw new OperationNotYetSupportedException(
                     "CMHandle targets are required. \"Wildcard\" operations are not yet supported");
         }
-        final List<String> cmHandleTargetsAsStrings = cmHandleTargets.stream().map(
-                Objects::toString).collect(Collectors.toList());
         final Collection<YangModelCmHandle> yangModelCmHandles =
-                inventoryPersistence.getYangModelCmHandles(cmHandleTargetsAsStrings);
-
+                inventoryPersistence.getYangModelCmHandles(cmHandleTargets);
         final Map<String, Map<String, Map<String, String>>> dmiPropertiesPerCmHandleIdPerServiceName
                 = DmiServiceNameOrganizer.getDmiPropertiesPerCmHandleIdPerServiceName(yangModelCmHandles);
-
-        findDmisAndRespond(subscriptionEvent, eventHeaders, cmHandleTargetsAsStrings,
-                dmiPropertiesPerCmHandleIdPerServiceName);
+        findDmisAndRespond(subscriptionEvent, cmHandleTargets, dmiPropertiesPerCmHandleIdPerServiceName);
     }
 
-    private void findDmisAndRespond(final SubscriptionEvent subscriptionEvent, final Headers eventHeaders,
-                           final List<String> cmHandleTargetsAsStrings,
+    private void findDmisAndRespond(final SubscriptionEvent subscriptionEvent,
+                                    final List<String> cmHandleTargetsAsStrings,
                            final Map<String, Map<String, Map<String, String>>>
                                             dmiPropertiesPerCmHandleIdPerServiceName) {
         final List<String> cmHandlesThatExistsInDb = dmiPropertiesPerCmHandleIdPerServiceName.entrySet().stream()
@@ -109,18 +112,20 @@ public class SubscriptionEventForwarder {
             updatesCmHandlesToRejectedAndPersistSubscriptionEvent(subscriptionEvent, targetCmHandlesDoesNotExistInDb);
         }
         if (dmisToRespond.isEmpty()) {
-            final String clientID = subscriptionEvent.getEvent().getSubscription().getClientID();
-            final String subscriptionName = subscriptionEvent.getEvent().getSubscription().getName();
+            final String clientID = subscriptionEvent.getData().getSubscription().getClientID();
+            final String subscriptionName = subscriptionEvent.getData().getSubscription().getName();
             subscriptionEventResponseOutcome.sendResponse(clientID, subscriptionName);
         } else {
             startResponseTimeout(subscriptionEvent, dmisToRespond);
-            forwardEventToDmis(dmiPropertiesPerCmHandleIdPerServiceName, subscriptionEvent, eventHeaders);
+            final org.onap.cps.ncmp.events.avcsubscription1_0_0.ncmp_to_dmi.SubscriptionEvent ncmpSubscriptionEvent =
+                    clientSubscriptionEventToNcmpSubscriptionEventMapper.toNcmpSubscriptionEvent(subscriptionEvent);
+            forwardEventToDmis(dmiPropertiesPerCmHandleIdPerServiceName, ncmpSubscriptionEvent);
         }
     }
 
     private void startResponseTimeout(final SubscriptionEvent subscriptionEvent, final Set<String> dmisToRespond) {
-        final String subscriptionClientId = subscriptionEvent.getEvent().getSubscription().getClientID();
-        final String subscriptionName = subscriptionEvent.getEvent().getSubscription().getName();
+        final String subscriptionClientId = subscriptionEvent.getData().getSubscription().getClientID();
+        final String subscriptionName = subscriptionEvent.getData().getSubscription().getName();
         final String subscriptionEventId = subscriptionClientId + subscriptionName;
 
         forwardedSubscriptionEventCache.put(subscriptionEventId, dmisToRespond,
@@ -137,20 +142,46 @@ public class SubscriptionEventForwarder {
     }
 
     private void forwardEventToDmis(final Map<String, Map<String, Map<String, String>>> dmiNameCmHandleMap,
-                                    final SubscriptionEvent subscriptionEvent,
-                                    final Headers eventHeaders) {
+                                    final org.onap.cps.ncmp.events.avcsubscription1_0_0.ncmp_to_dmi.SubscriptionEvent
+                                            ncmpSubscriptionEvent) {
         dmiNameCmHandleMap.forEach((dmiName, cmHandlePropertiesMap) -> {
-            subscriptionEvent.getEvent().getPredicates().setTargets(Collections.singletonList(cmHandlePropertiesMap));
-            final String eventKey = createEventKey(subscriptionEvent, dmiName);
+            final List<CmHandle> converted = cmHandlePropertiesMap.entrySet().stream().map(etnry -> {
+                final CmHandle cmHandle = new CmHandle();
+                cmHandle.setId(etnry.getKey());
+                cmHandle.setAdditionalProperties(etnry.getValue());
+                return cmHandle;
+            }).collect(Collectors.toList());
+
+            ncmpSubscriptionEvent.getData().getPredicates().setTargets(converted);
+            final String eventKey = createEventKey(ncmpSubscriptionEvent, dmiName);
             final String dmiAvcSubscriptionTopic = dmiAvcSubscriptionTopicPrefix + dmiName;
-            eventsPublisher.publishEvent(dmiAvcSubscriptionTopic, eventKey, eventHeaders, subscriptionEvent);
+
+            final CloudEvent ncmpSubscriptionCloudEvent = toCloudEvent(ncmpSubscriptionEvent, eventKey);
+            eventsPublisher.publishCloudEvent(dmiAvcSubscriptionTopic, eventKey, ncmpSubscriptionCloudEvent);
         });
     }
 
-    private String createEventKey(final SubscriptionEvent subscriptionEvent, final String dmiName) {
-        return subscriptionEvent.getEvent().getSubscription().getClientID()
+    private CloudEvent toCloudEvent(
+            final org.onap.cps.ncmp.events.avcsubscription1_0_0.ncmp_to_dmi.SubscriptionEvent ncmpSubscriptionEvent,
+            final String eventKey) {
+        try {
+            return CloudEventBuilder.v1()
+                    .withData(objectMapper.writeValueAsBytes(ncmpSubscriptionEvent))
+                    .withId(eventKey).withType("CREATE").withSource(
+                            URI.create(ncmpSubscriptionEvent.getData().getSubscription().getClientID()))
+                    .withTime(OffsetDateTime.now()).build();
+        } catch (final Exception e) {
+            log.error("Cloud event could not be constructed since {}", e.getMessage());
+        }
+        return null;
+    }
+
+    private String createEventKey(
+            final org.onap.cps.ncmp.events.avcsubscription1_0_0.ncmp_to_dmi.SubscriptionEvent subscriptionEvent,
+            final String dmiName) {
+        return subscriptionEvent.getData().getSubscription().getClientID()
             + "-"
-            + subscriptionEvent.getEvent().getSubscription().getName()
+            + subscriptionEvent.getData().getSubscription().getName()
             + "-"
             + dmiName;
     }
