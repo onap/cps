@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "130da80c_648c18de",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-03T10:18:31Z",
+      "side": 1,
+      "message": "NB: I think I would use the proper \u0027unit\u0027 test approach here, ie. have test of many variations in a EscapeUtilsSpec\nand here you only need to cover 1oner variation",
+      "range": {
+        "startLine": 350,
+        "startChar": 0,
+        "endLine": 357,
+        "endChar": 121
+      },
+      "revId": "f73c89c14d39e0b5457093f06bb5318d54999a0a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
