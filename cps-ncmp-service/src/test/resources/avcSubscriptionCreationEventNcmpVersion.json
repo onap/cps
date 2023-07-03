@@ -10,10 +10,19 @@
       "dataProvider": "CM-SERVICE"
     },
     "predicates": {
-      "targets": [
-        "CMHandle1",
-        "CMHandle2",
-        "CMHandle3"
+      "targets":[
+        {
+          "id":"CMHandle2",
+          "additional-properties":{
+            "Books":"Novel"
+          }
+        },
+        {
+          "id":"CMHandle1",
+          "additional-properties":{
+            "Books":"Social Media"
+          }
+        }
       ],
       "datastore": "passthrough-running",
       "datastore-xpath-filter": "//_3gpp-nr-nrm-gnbdufunction:GNBDUFunction/_3gpp-nr-nrm-nrcelldu:NRCellDU/ | //_3gpp-nr-nrm-gnbcuupfunction:GNBCUUPFunction// | //_3gpp-nr-nrm-gnbcucpfunction:GNBCUCPFunction/_3gpp-nr-nrm-nrcelldu:NRCellCU// | //_3gpp-nr-nrm-nrsectorcarrier:NRSectorCarrier//"
