@@ -21,6 +21,7 @@
 package org.onap.cps.spi.utils
 
 import com.google.common.util.concurrent.TimeLimiter
+import com.google.common.util.concurrent.UncheckedExecutionException
 import org.hibernate.HibernateException
 import org.hibernate.Transaction
 import org.onap.cps.spi.config.CpsSessionFactory
@@ -67,9 +68,9 @@ class SessionManagerSpec extends Specification {
             def thrown = thrown(SessionManagerException)
             thrown.details.contains(expectedExceptionDetail)
         where:
-            exceptionDuringTest        || expectedExceptionDetail
-            new InterruptedException() || 'interrupted'
-            new ExecutionException()   || 'aborted'
+            exceptionDuringTest               || expectedExceptionDetail
+            new InterruptedException()        || 'interrupted'
+            new UncheckedExecutionException() || 'aborted'
     }
 
     def 'Close a session' () {
