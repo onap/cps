@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f65a3fc2_f3c3d35a",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandlerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-07-03T11:25:54Z",
+      "side": 0,
+      "message": "NB : Is \"x[@id\u003d\u0027abc\u0027]\" is replaced by forDataNodes([\u0027A\u0027, \u0027B\u0027] ?",
+      "range": {
+        "startLine": 127,
+        "startChar": 70,
+        "endLine": 127,
+        "endChar": 82
+      },
+      "revId": "abc251870a167f28f0e2c802828ecba9bf57e874",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}

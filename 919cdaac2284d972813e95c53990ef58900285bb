@@ -25,6 +25,29 @@
     },
     {
       "key": {
+        "uuid": "d589d121_5a1daee1",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-07-03T11:25:54Z",
+      "side": 1,
+      "message": "alreadyDefinedException",
+      "range": {
+        "startLine": 107,
+        "startChar": 51,
+        "endLine": 107,
+        "endChar": 52
+      },
+      "revId": "919cdaac2284d972813e95c53990ef58900285bb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e12411fa_d262509b",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/AlreadyDefinedException.java",
         "patchSetId": 2
