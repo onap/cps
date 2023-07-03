@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aa532dfe_78a934c1",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandlerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-03T10:09:10Z",
+      "side": 1,
+      "message": "cab you edit an objectTYpe for this test ?",
+      "range": {
+        "startLine": 126,
+        "startChar": 105,
+        "endLine": 126,
+        "endChar": 108
+      },
+      "revId": "919cdaac2284d972813e95c53990ef58900285bb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e12411fa_d262509b",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/AlreadyDefinedException.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-03T10:09:10Z",
+      "side": 1,
+      "message": "Can we change to \"%d %ss already exist for %s\" ?\nThe client would be response for putting in the correct term with plural option e.g. \"data node(s)\"",
+      "range": {
+        "startLine": 50,
+        "startChar": 31,
+        "endLine": 50,
+        "endChar": 40
+      },
+      "revId": "919cdaac2284d972813e95c53990ef58900285bb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a602a9e_8f7bab26",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/AlreadyDefinedException.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-03T10:09:10Z",
+      "side": 1,
+      "message": "\"Data node(s)\"  see prev comment",
+      "range": {
+        "startLine": 79,
+        "startChar": 44,
+        "endLine": 79,
+        "endChar": 53
+      },
+      "revId": "919cdaac2284d972813e95c53990ef58900285bb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
