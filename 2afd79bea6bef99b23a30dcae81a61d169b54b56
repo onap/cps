@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e3006bc3_99399387",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/SerializationIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-07-03T09:01:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1970c4dd_2c5ba533",
+      "range": {
+        "startLine": 78,
+        "startChar": 16,
+        "endLine": 78,
+        "endChar": 30
+      },
+      "revId": "2afd79bea6bef99b23a30dcae81a61d169b54b56",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "29b6a57f_613b37a1",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/SerializationIntegrationSpec.groovy",
         "patchSetId": 2
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "be046129_95d47051",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/SerializationIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-07-03T09:01:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "29b6a57f_613b37a1",
+      "range": {
+        "startLine": 85,
+        "startChar": 14,
+        "endLine": 85,
+        "endChar": 73
+      },
+      "revId": "2afd79bea6bef99b23a30dcae81a61d169b54b56",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e055c2e5_cb227a34",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/SerializationIntegrationSpec.groovy",
         "patchSetId": 2
@@ -68,6 +116,30 @@
       "revId": "2afd79bea6bef99b23a30dcae81a61d169b54b56",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bdca1508_7693875a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/SerializationIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-07-03T09:01:11Z",
+      "side": 1,
+      "message": "added assert for target",
+      "parentUuid": "e055c2e5_cb227a34",
+      "range": {
+        "startLine": 86,
+        "startChar": 41,
+        "endLine": 86,
+        "endChar": 50
+      },
+      "revId": "2afd79bea6bef99b23a30dcae81a61d169b54b56",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
