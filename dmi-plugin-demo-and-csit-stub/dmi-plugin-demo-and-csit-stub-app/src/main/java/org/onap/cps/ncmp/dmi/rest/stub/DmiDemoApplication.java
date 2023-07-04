@@ -1,5 +1,5 @@
 /*
- *  ============LICENSE_START=======================================================
+ * ============LICENSE_START=======================================================
  *  Copyright (C) 2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,24 +18,15 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api;
+package org.onap.cps.ncmp.dmi.rest.stub;
 
-import lombok.Getter;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@Getter
-public enum NcmpEventResponseCode {
+@SpringBootApplication
+public class DmiDemoApplication {
 
-    SUCCESS("0", "Successfully applied changes"),
-    CM_HANDLES_NOT_FOUND("100", "cm handle id(s) not found"),
-    CM_HANDLES_NOT_READY("101", "cm handle(s) not ready"),
-    DMI_SERVICE_NOT_RESPONDING("102", "dmi plugin service is not responding"),
-    UNABLE_TO_READ_RESOURCE_DATA("103", "dmi plugin service is not able to read resource data");
-
-    private final String statusCode;
-    private final String statusMessage;
-
-    NcmpEventResponseCode(final String statusCode, final String statusMessage) {
-        this.statusCode = statusCode;
-        this.statusMessage = statusMessage;
+    public static void main(final String[] args) {
+        SpringApplication.run(DmiDemoApplication.class, args);
     }
 }
