@@ -19,6 +19,23 @@
     },
     {
       "key": {
+        "uuid": "eacd0e5c_257d0b28",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventForwarder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-07-04T11:08:27Z",
+      "side": 1,
+      "message": "clearly lots of dependencies are injected. Need to rereview.\nMaybe something to think about. ( Clearly not part of this commit )",
+      "revId": "2a7a866151a5a33ff934eb4d7e510dd6b4727f79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e1b4e339_ca7446e8",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventForwarder.java",
         "patchSetId": 1
