@@ -167,12 +167,10 @@ public class NcmpDatastoreRequestHandler implements TaskManagementDefaultHandler
         dataOperationRequest.getDataOperationDefinitions().forEach(dataOperationDetail -> {
             if (OperationType.fromOperationName(dataOperationDetail.getOperation()) != READ) {
                 throw new OperationNotSupportedException(
-                        dataOperationDetail.getOperation() + " operation not yet supported for target ids :"
-                                + dataOperationDetail.getCmHandleIds());
+                        dataOperationDetail.getOperation() + " operation not yet supported");
             } else if (DatastoreType.fromDatastoreName(dataOperationDetail.getDatastore()) == OPERATIONAL) {
                 throw new InvalidDatastoreException(dataOperationDetail.getDatastore()
-                        + " datastore is not supported for target ids : "
-                        + dataOperationDetail.getCmHandleIds());
+                        + " datastore is not supported");
             }
         });
     }

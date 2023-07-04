@@ -1,9 +1,0 @@
-{
-  "request": {
-    "method": "POST",
-    "urlPattern": "/dmi/v1/data?.*"
-  },
-  "response": {
-    "status": 501
-  }
-}
