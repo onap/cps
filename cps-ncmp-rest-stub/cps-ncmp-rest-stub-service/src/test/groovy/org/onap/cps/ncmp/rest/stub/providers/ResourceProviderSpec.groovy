@@ -21,7 +21,6 @@
 package org.onap.cps.ncmp.rest.stub.providers
 
 import java.nio.file.Files
-import java.nio.file.Path
 import org.springframework.util.FileSystemUtils
 import spock.lang.Shared
 import spock.lang.Specification
@@ -46,7 +45,7 @@ class ResourceProviderSpec extends Specification {
 
     def 'Resource Provider with existing file on #scenario'() {
 
-        given: 'a resource provider with base stub folder defined on #scenario' 
+        given: 'a resource provider with base stub folder defined on #scenario'
             def resourceProvider = new ResourceProviderImpl(dir)
         when: 'attempting to access that file #filename'
             def optional= resourceProvider.getResourceInputStream(filename)

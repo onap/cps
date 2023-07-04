@@ -106,17 +106,18 @@ services:
     profiles:
       - dmi-service
 
-  ncmp-dmi-plugin-stub:
-    container_name: ncmp-dmi-plugin-stub
-    image: wiremock/wiremock:2.33.2
+  ncmp-dmi-plugin-demo-and-csit-stub:
+    container_name: ncmp-dmi-plugin-demo-and-csit-stub
+    image: ${DOCKER_REPO:-nexus3.onap.org:10003}/onap/dmi-plugin-demo-and-csit-stub:${DMI_DEMO_STUB_VERSION:-latest}
     ports:
-      - ${DMI_PORT:-8783}:8080
-    volumes:
-      - ../dmi-plugin-stub/mappings:/home/wiremock/mappings
-      - ../dmi-plugin-stub/files:/home/wiremock/__files
+      - ${DMI_DEMO_STUB_PORT:-8784}:8092
+    environment:
+      KAFKA_BOOTSTRAP_SERVER: kafka:9092
+      NCMP_CONSUMER_GROUP_ID: ncmp-group
+      NCMP_ASYNC_M2M_TOPIC: ncmp-async-m2m
     restart: unless-stopped
     profiles:
-      - dmi-stub
+      - dmi-stub, dmi-service
 
   prometheus:
     container_name: prometheus-container
