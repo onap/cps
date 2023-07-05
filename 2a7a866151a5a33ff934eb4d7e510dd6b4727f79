@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "1aecd04b_e080f5df",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventConsumer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-07-05T08:46:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d83b1ca_42a9413c",
+      "revId": "2a7a866151a5a33ff934eb4d7e510dd6b4727f79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "eacd0e5c_257d0b28",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventForwarder.java",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2023-07-04T11:08:27Z",
       "side": 1,
       "message": "clearly lots of dependencies are injected. Need to rereview.\nMaybe something to think about. ( Clearly not part of this commit )",
+      "revId": "2a7a866151a5a33ff934eb4d7e510dd6b4727f79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "39775643_c0835640",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventForwarder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-07-05T08:46:40Z",
+      "side": 1,
+      "message": "Agree with you, so that I removed static method toSubscriptionEvent and toCloudEvent into CloudEventHelper. By this way, it would also be possible to have branches covering exception hanlding in unit testing.",
+      "parentUuid": "eacd0e5c_257d0b28",
       "revId": "2a7a866151a5a33ff934eb4d7e510dd6b4727f79",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "61606492_e5793e7a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventForwarder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-07-05T08:46:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e1b4e339_ca7446e8",
+      "revId": "2a7a866151a5a33ff934eb4d7e510dd6b4727f79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f213ce02_45d69a32",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventForwarder.java",
         "patchSetId": 1
@@ -67,6 +121,24 @@
       "revId": "2a7a866151a5a33ff934eb4d7e510dd6b4727f79",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2105dfa6_90231485",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventForwarder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-07-05T08:46:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f213ce02_45d69a32",
+      "revId": "2a7a866151a5a33ff934eb4d7e510dd6b4727f79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -93,6 +165,30 @@
     },
     {
       "key": {
+        "uuid": "d2c33c67_c72bfe7f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventForwarder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-07-05T08:46:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5b2e417f_894c2d71",
+      "range": {
+        "startLine": 148,
+        "startChar": 91,
+        "endLine": 148,
+        "endChar": 96
+      },
+      "revId": "2a7a866151a5a33ff934eb4d7e510dd6b4727f79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "093c757d_52def0c3",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventForwarder.java",
         "patchSetId": 1
@@ -113,6 +209,30 @@
       "revId": "2a7a866151a5a33ff934eb4d7e510dd6b4727f79",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df13200d_aad0dd08",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventForwarder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-07-05T08:46:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "093c757d_52def0c3",
+      "range": {
+        "startLine": 172,
+        "startChar": 30,
+        "endLine": 172,
+        "endChar": 50
+      },
+      "revId": "2a7a866151a5a33ff934eb4d7e510dd6b4727f79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
