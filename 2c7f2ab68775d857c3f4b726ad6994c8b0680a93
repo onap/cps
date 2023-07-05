@@ -22,6 +22,30 @@
       "revId": "2c7f2ab68775d857c3f4b726ad6994c8b0680a93",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ee171bf5_f3188304",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/CloudEventHelper.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-07-05T13:34:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c5b6ae25_affb68a6",
+      "range": {
+        "startLine": 37,
+        "startChar": 13,
+        "endLine": 37,
+        "endChar": 29
+      },
+      "revId": "2c7f2ab68775d857c3f4b726ad6994c8b0680a93",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
