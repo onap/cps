@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "urn:cps:org.onap.cps.ncmp.events:subscription-event-outcome-schema:1.0.0",
+  "$ref": "#/definitions/SubscriptionEventOutcome",
+  "definitions": {
+    "SubscriptionEventOutcome": {
+      "description": "The payload for avc subscription event outcome message.",
+      "type": "object",
+      "javaType": "org.onap.cps.ncmp.events.avcsubscription1_0_0.ncmp_to_client.SubscriptionEventOutcome",
+      "additionalProperties": false,
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/data"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    },
+    "data": {
+      "type": "object",
+      "description": "The actual data containing information about the pending and rejected targets",
+      "additionalProperties": false,
+      "properties": {
+        "statusCode": {
+          "type": "integer"
+        },
+        "statusMessage": {
+          "type": "string"
+        },
+        "additionalInfo": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "rejected": {
+              "$ref": "#/definitions/additionalInfoDetails"
+            },
+            "pending": {
+              "$ref": "#/definitions/additionalInfoDetails"
+            }
+          }
+        }
+      },
+      "required": [
+        "statusCode",
+        "statusMessage",
+        "additionalInfo"
+      ]
+    },
+    "additionalInfoDetails": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "description": "Details for the target cmhandles",
+        "additionalProperties": false,
+        "properties": {
+          "details": {
+            "type": "string"
+          },
+          "targets": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}
