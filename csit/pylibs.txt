@@ -25,3 +25,5 @@ jmespath
 jsonpatch
 # odltools for extra debugging
 odltools
+# Confluent kafka library to connect to kafka cluster
+robotframework-confluentkafkalibrary

@@ -23,3 +23,4 @@ cps-model-sync
 cps-data-sync
 ncmp-passthrough
 cm-handle-query
+cps-data-operations
