@@ -1,0 +1,12 @@
+{
+  "operations": [
+    {
+      "operation": "read",
+      "operationId": "12",
+      "datastore": "ncmp-datastore:passthrough-operational",
+      "options": "(fields=schemas/schema)",
+      "resourceIdentifier": "parent/child",
+      "targetIds": ["DataOperationTest"]
+    }
+  ]
+}
