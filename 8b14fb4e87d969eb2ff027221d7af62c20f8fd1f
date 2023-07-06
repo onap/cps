@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a299f81e_cca816e3",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-07-06T09:58:58Z",
+      "side": 1,
+      "message": "root node xpath is more feasible.",
+      "range": {
+        "startLine": 183,
+        "startChar": 16,
+        "endLine": 183,
+        "endChar": 23
+      },
+      "revId": "8b14fb4e87d969eb2ff027221d7af62c20f8fd1f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}

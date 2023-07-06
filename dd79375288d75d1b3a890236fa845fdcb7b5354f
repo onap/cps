@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "322e1f6a_5a6a593b",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-07-06T09:58:58Z",
+      "side": 1,
+      "message": "This method is funtionally is the same as storeDataNodes starting on line 87, has same type input and logic in the body. You may think re-use one of them instead of duplication.",
+      "range": {
+        "startLine": 100,
+        "startChar": 0,
+        "endLine": 106,
+        "endChar": 0
+      },
+      "revId": "dd79375288d75d1b3a890236fa845fdcb7b5354f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9b8a869b_84154c2f",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-07-06T09:58:58Z",
+      "side": 1,
+      "message": "NB: There are two saveListElements method: this processDataUpdatedEvent with a CREATE operation whereas the below one, processDataUpdatedEvent with UPDATE operation. However, both methods have a common name saveListElements creates an ambiguity, but this is a non-blocker, I think.",
+      "range": {
+        "startLine": 120,
+        "startChar": 62,
+        "endLine": 120,
+        "endChar": 68
+      },
+      "revId": "dd79375288d75d1b3a890236fa845fdcb7b5354f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2bb93648_85747b3c",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-07-06T09:58:58Z",
+      "side": 1,
+      "message": "Functionally, there is already defined interface named storeDataNodes starting on line 45. You may think re-use it.",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 70
+      },
+      "revId": "dd79375288d75d1b3a890236fa845fdcb7b5354f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
