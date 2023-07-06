@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b78e5faf_920153f8",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/subscription/ncmp-to-client-subscription-event-outcome-schema-1.0.0.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-07-06T13:31:38Z",
+      "side": 1,
+      "message": "NB: When additionalInfoDetails is being used for any reason, the fields: details and targets might be required to populate.",
+      "range": {
+        "startLine": 64,
+        "startChar": 9,
+        "endLine": 64,
+        "endChar": 11
+      },
+      "revId": "7a7f4882dd64cfae256dd15b7139450064aeeead",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
