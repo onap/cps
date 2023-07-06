@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3515e8e1_7bc2dbc6",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/subscription/ncmp-to-client-subscription-event-outcome-schema-1.0.0.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-07-06T10:48:34Z",
+      "side": 1,
+      "message": "NB: I\u0027m not sure if this is required. Since if the subscription is fully applied, then there would neither rejected nor pending cm handle. Otherwise, the commit is ok for me.",
+      "range": {
+        "startLine": 47,
+        "startChar": 9,
+        "endLine": 47,
+        "endChar": 23
+      },
+      "revId": "9a226f7237c74ac52c53b7528d33952651810267",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
