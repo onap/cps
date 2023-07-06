@@ -46,6 +46,30 @@
       "revId": "9a226f7237c74ac52c53b7528d33952651810267",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "81357bbc_7173bc34",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/subscription/ncmp-to-client-subscription-event-outcome-schema-1.0.0.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-07-06T11:33:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d66286b2_b767191b",
+      "range": {
+        "startLine": 47,
+        "startChar": 9,
+        "endLine": 47,
+        "endChar": 23
+      },
+      "revId": "9a226f7237c74ac52c53b7528d33952651810267",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
