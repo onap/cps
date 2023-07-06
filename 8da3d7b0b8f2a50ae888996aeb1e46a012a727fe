@@ -109,6 +109,52 @@
       "revId": "8da3d7b0b8f2a50ae888996aeb1e46a012a727fe",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0272d140_48b7d19e",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 21
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-07-06T13:10:42Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 348,
+        "startChar": 49,
+        "endLine": 348,
+        "endChar": 59
+      },
+      "revId": "8da3d7b0b8f2a50ae888996aeb1e46a012a727fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9fe31af8_beb7d377",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 21
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-07-06T13:10:42Z",
+      "side": 1,
+      "message": "I think this should be expected xpaths for anchor1 and expected xpaths for anchor 2 and have different data under each anchor, anchor 1 has bookstore1 code1,2,3 and anchor 2 has bookstore2 code4,5,6 etc",
+      "range": {
+        "startLine": 353,
+        "startChar": 203,
+        "endLine": 353,
+        "endChar": 226
+      },
+      "revId": "8da3d7b0b8f2a50ae888996aeb1e46a012a727fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
