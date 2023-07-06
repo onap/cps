@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7f594fbb_e4bad9b6",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-07-06T16:37:48Z",
+      "side": 1,
+      "message": "It is; we want to escape the input xpath, replacing % with \\% etc., but we don\u0027t want to escape % at the end, since that\u0027s part of the pattern to match list elements (% means match anything when using LIKE).\n- Example 1: /bookstore \u003d\u003e /bookstore[@%\n- Example 2: /categories[@name\u003d\"1%\"]/books \u003d\u003e /categories[@name\u003d\"1\\%\"]/books[@%",
+      "parentUuid": "d07475b5_494f4924",
+      "range": {
+        "startLine": 98,
+        "startChar": 79,
+        "endLine": 98,
+        "endChar": 80
+      },
+      "revId": "c259a254037f009bd0b26c4bfa241dc32c021cad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8f026108_f06a74b6",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/EscapeUtils.java",
         "patchSetId": 4
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "a88b3259_90f93cd4",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/EscapeUtils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-07-06T16:37:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8f026108_f06a74b6",
+      "range": {
+        "startLine": 27,
+        "startChar": 13,
+        "endLine": 27,
+        "endChar": 25
+      },
+      "revId": "c259a254037f009bd0b26c4bfa241dc32c021cad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d3599b29_061d8638",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
         "patchSetId": 4
@@ -68,6 +116,30 @@
       "revId": "c259a254037f009bd0b26c4bfa241dc32c021cad",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c110af75_94f7d58b",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-07-06T16:37:48Z",
+      "side": 1,
+      "message": "More cases are added in CPS-1760 #2 patch, so I\u0027ll not refactor here.",
+      "parentUuid": "d3599b29_061d8638",
+      "range": {
+        "startLine": 349,
+        "startChar": 19,
+        "endLine": 349,
+        "endChar": 49
+      },
+      "revId": "c259a254037f009bd0b26c4bfa241dc32c021cad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
