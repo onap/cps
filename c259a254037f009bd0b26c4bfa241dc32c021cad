@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "d07475b5_494f4924",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-07-06T14:54:01Z",
+      "side": 1,
+      "message": "I assume this is not needed here?",
+      "range": {
+        "startLine": 98,
+        "startChar": 79,
+        "endLine": 98,
+        "endChar": 80
+      },
+      "revId": "c259a254037f009bd0b26c4bfa241dc32c021cad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8f026108_f06a74b6",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/EscapeUtils.java",
         "patchSetId": 4
