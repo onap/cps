@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7fac6067_b9f6d41a",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandlerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-07-07T11:48:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aa532dfe_78a934c1",
+      "range": {
+        "startLine": 126,
+        "startChar": 105,
+        "endLine": 126,
+        "endChar": 108
+      },
+      "revId": "919cdaac2284d972813e95c53990ef58900285bb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d589d121_5a1daee1",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 2
@@ -45,6 +69,30 @@
       "revId": "919cdaac2284d972813e95c53990ef58900285bb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "947d8ee2_8306720c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-07-07T11:48:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d589d121_5a1daee1",
+      "range": {
+        "startLine": 107,
+        "startChar": 51,
+        "endLine": 107,
+        "endChar": 52
+      },
+      "revId": "919cdaac2284d972813e95c53990ef58900285bb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "af6807c2_554526b6",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/AlreadyDefinedException.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-07-07T11:48:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e12411fa_d262509b",
+      "range": {
+        "startLine": 50,
+        "startChar": 31,
+        "endLine": 50,
+        "endChar": 40
+      },
+      "revId": "919cdaac2284d972813e95c53990ef58900285bb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a602a9e_8f7bab26",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/AlreadyDefinedException.java",
         "patchSetId": 2
@@ -91,6 +163,30 @@
       "revId": "919cdaac2284d972813e95c53990ef58900285bb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a399333d_df2daab2",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/AlreadyDefinedException.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-07-07T11:48:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a602a9e_8f7bab26",
+      "range": {
+        "startLine": 79,
+        "startChar": 44,
+        "endLine": 79,
+        "endChar": 53
+      },
+      "revId": "919cdaac2284d972813e95c53990ef58900285bb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
