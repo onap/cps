@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "8a263104_2878b8a2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventForwarder.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-07-07T14:10:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "61bae0ba_b7684731",
+      "range": {
+        "startLine": 114,
+        "startChar": 43,
+        "endLine": 114,
+        "endChar": 66
+      },
+      "revId": "6fdbd170bf64615a9285b339fee95854d07edefb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7622e4f3_5996ba2c",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventForwarder.java",
         "patchSetId": 4
@@ -71,6 +95,54 @@
     },
     {
       "key": {
+        "uuid": "2364634d_963707d3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventForwarder.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-07-07T14:10:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d0bd444a_9b324ce7",
+      "range": {
+        "startLine": 141,
+        "startChar": 94,
+        "endLine": 141,
+        "endChar": 99
+      },
+      "revId": "6fdbd170bf64615a9285b339fee95854d07edefb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a3d9a884_ee39f6a0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventForwarder.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-07-07T14:10:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7622e4f3_5996ba2c",
+      "range": {
+        "startLine": 141,
+        "startChar": 33,
+        "endLine": 141,
+        "endChar": 45
+      },
+      "revId": "6fdbd170bf64615a9285b339fee95854d07edefb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e73016d_bccd104b",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/SubscriptionEventHelper.java",
         "patchSetId": 4
@@ -91,6 +163,30 @@
       "revId": "6fdbd170bf64615a9285b339fee95854d07edefb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a09ed475_dc54ed02",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/SubscriptionEventHelper.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-07-07T14:10:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e73016d_bccd104b",
+      "range": {
+        "startLine": 37,
+        "startChar": 30,
+        "endLine": 37,
+        "endChar": 36
+      },
+      "revId": "6fdbd170bf64615a9285b339fee95854d07edefb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -138,6 +234,30 @@
       "revId": "6fdbd170bf64615a9285b339fee95854d07edefb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "50754a52_84967b63",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/SubscriptionEventHelper.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-07-07T14:10:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "62871070_2b7ef2e5",
+      "range": {
+        "startLine": 76,
+        "startChar": 12,
+        "endLine": 76,
+        "endChar": 42
+      },
+      "revId": "6fdbd170bf64615a9285b339fee95854d07edefb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
