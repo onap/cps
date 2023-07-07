@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6006f94c_dc78ffce",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/CloudEventMapper.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-07-07T15:18:37Z",
+      "side": 1,
+      "message": "Amm. CloudEventMapper sounds like it is generic for all the cloud events.\nBut here it is not.\nIts all related to SubscriptionEvent.\nSo how about prefixing with SubscriptionEventMapper ?? or something more specific to the use case.",
+      "range": {
+        "startLine": 37,
+        "startChar": 13,
+        "endLine": 37,
+        "endChar": 29
+      },
+      "revId": "7c07b3fc5f453c8356eb0e498b770e82f10aec09",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
