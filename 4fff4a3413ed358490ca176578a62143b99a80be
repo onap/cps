@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "feb9ad36_060bbfb9",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-07-07T09:45:20Z",
+      "side": 1,
+      "message": "Same, createListElements is better to solve ambiguity.",
+      "range": {
+        "startLine": 96,
+        "startChar": 9,
+        "endLine": 96,
+        "endChar": 25
+      },
+      "revId": "4fff4a3413ed358490ca176578a62143b99a80be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "012191f5_b383a295",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-07-07T09:45:20Z",
+      "side": 1,
+      "message": "I think to resolve the ambiguity with the below function, better to have a new name like createListElements, since the operation is create.",
+      "range": {
+        "startLine": 113,
+        "startChar": 16,
+        "endLine": 113,
+        "endChar": 32
+      },
+      "revId": "4fff4a3413ed358490ca176578a62143b99a80be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3608f93f_f11ee864",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsDataServiceIntegrationSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-07-07T09:45:20Z",
+      "side": 1,
+      "message": "Parent list top-level?",
+      "range": {
+        "startLine": 75,
+        "startChar": 9,
+        "endLine": 75,
+        "endChar": 52
+      },
+      "revId": "4fff4a3413ed358490ca176578a62143b99a80be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e3af694_045af0cb",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsDataServiceIntegrationSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-07-07T09:45:20Z",
+      "side": 1,
+      "message": "I think in your yang model, there is no container?",
+      "range": {
+        "startLine": 76,
+        "startChar": 44,
+        "endLine": 76,
+        "endChar": 53
+      },
+      "revId": "4fff4a3413ed358490ca176578a62143b99a80be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "92c5c732_683c2357",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsDataServiceIntegrationSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-07-07T09:45:20Z",
+      "side": 1,
+      "message": "You can add also variation of root path: \u0027  \u0027 as mentioned on the def.",
+      "range": {
+        "startLine": 83,
+        "startChar": 20,
+        "endLine": 83,
+        "endChar": 25
+      },
+      "revId": "4fff4a3413ed358490ca176578a62143b99a80be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
