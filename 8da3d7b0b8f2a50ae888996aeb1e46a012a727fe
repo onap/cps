@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "629f8148_1a966660",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/QueryRestController.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-07-07T12:23:17Z",
+      "side": 1,
+      "message": "in term of pagination, TotalResults is used although it is total number of anchors.",
+      "parentUuid": "eb657e7d_9dbfeb5a",
+      "range": {
+        "startLine": 100,
+        "startChar": 43,
+        "endLine": 100,
+        "endChar": 55
+      },
+      "revId": "8da3d7b0b8f2a50ae888996aeb1e46a012a727fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e8c65a87_ece9e002",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
         "patchSetId": 21
@@ -60,6 +84,30 @@
       "writtenOn": "2023-07-06T11:07:11Z",
       "side": 1,
       "message": "Why are these commented out?",
+      "range": {
+        "startLine": 144,
+        "startChar": 120,
+        "endLine": 146,
+        "endChar": 122
+      },
+      "revId": "8da3d7b0b8f2a50ae888996aeb1e46a012a727fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f016435d_62af5f01",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
+        "patchSetId": 21
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-07-07T12:23:17Z",
+      "side": 1,
+      "message": "it was by mistake. uncommented",
+      "parentUuid": "e8c65a87_ece9e002",
       "range": {
         "startLine": 144,
         "startChar": 120,
@@ -95,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "2afac927_34011b6a",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-07-07T12:23:17Z",
+      "side": 1,
+      "message": "added test case in CpsRestExceptionHandlerSpec.groovy to validate invalid page index and page size",
+      "parentUuid": "6bd7fb24_bea317e7",
+      "range": {
+        "startLine": 357,
+        "startChar": 19,
+        "endLine": 358,
+        "endChar": 96
+      },
+      "revId": "8da3d7b0b8f2a50ae888996aeb1e46a012a727fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "78dd6a66_176b26c7",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsQueryServiceImplSpec.groovy",
         "patchSetId": 21
@@ -109,6 +181,24 @@
       "revId": "8da3d7b0b8f2a50ae888996aeb1e46a012a727fe",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4350969b_b5cd128a",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsQueryServiceImplSpec.groovy",
+        "patchSetId": 21
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-07-07T12:23:17Z",
+      "side": 1,
+      "message": "Addressed",
+      "parentUuid": "78dd6a66_176b26c7",
+      "revId": "8da3d7b0b8f2a50ae888996aeb1e46a012a727fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     },
     {
       "key": {
@@ -146,6 +236,30 @@
       "writtenOn": "2023-07-06T13:10:42Z",
       "side": 1,
       "message": "I think this should be expected xpaths for anchor1 and expected xpaths for anchor 2 and have different data under each anchor, anchor 1 has bookstore1 code1,2,3 and anchor 2 has bookstore2 code4,5,6 etc",
+      "range": {
+        "startLine": 353,
+        "startChar": 203,
+        "endLine": 353,
+        "endChar": 226
+      },
+      "revId": "8da3d7b0b8f2a50ae888996aeb1e46a012a727fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "52eadc83_992f3a5a",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 21
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-07-07T12:23:17Z",
+      "side": 1,
+      "message": "for that reason, we have expectedAnchors, which is having different anchor for different pages.it also validate correct anchor and number of anchors are queried.",
+      "parentUuid": "9fe31af8_beb7d377",
       "range": {
         "startLine": 353,
         "startChar": 203,
