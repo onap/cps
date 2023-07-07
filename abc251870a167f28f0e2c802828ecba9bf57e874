@@ -22,6 +22,30 @@
       "revId": "abc251870a167f28f0e2c802828ecba9bf57e874",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3056e68e_21673e67",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandlerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-07-07T11:49:24Z",
+      "side": 0,
+      "message": "Yes, this test is for a batch of data nodes, so it makes sense to have at least 2 (A and B)",
+      "parentUuid": "f65a3fc2_f3c3d35a",
+      "range": {
+        "startLine": 127,
+        "startChar": 70,
+        "endLine": 127,
+        "endChar": 82
+      },
+      "revId": "abc251870a167f28f0e2c802828ecba9bf57e874",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
