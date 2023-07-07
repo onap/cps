@@ -2,6 +2,98 @@
   "comments": [
     {
       "key": {
+        "uuid": "61bae0ba_b7684731",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventForwarder.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-07-07T12:37:41Z",
+      "side": 1,
+      "message": "I would remove from the class name as in the method name:\nclientSubscriptionEventMapper",
+      "range": {
+        "startLine": 114,
+        "startChar": 43,
+        "endLine": 114,
+        "endChar": 66
+      },
+      "revId": "6fdbd170bf64615a9285b339fee95854d07edefb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7622e4f3_5996ba2c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventForwarder.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-07-07T12:37:41Z",
+      "side": 1,
+      "message": "would rename to cmHandleTargets",
+      "range": {
+        "startLine": 141,
+        "startChar": 33,
+        "endLine": 141,
+        "endChar": 45
+      },
+      "revId": "6fdbd170bf64615a9285b339fee95854d07edefb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d0bd444a_9b324ce7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventForwarder.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-07-07T12:37:41Z",
+      "side": 1,
+      "message": "typo, but wouldn\u0027t use entry, would use cmHandleAndProperties or something like that",
+      "range": {
+        "startLine": 141,
+        "startChar": 94,
+        "endLine": 141,
+        "endChar": 99
+      },
+      "revId": "6fdbd170bf64615a9285b339fee95854d07edefb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e73016d_bccd104b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/SubscriptionEventHelper.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-07-07T12:37:41Z",
+      "side": 1,
+      "message": "This seems more like a Mapper than a helper\nCould we flip it and call this CloudEventMapper?",
+      "range": {
+        "startLine": 37,
+        "startChar": 30,
+        "endLine": 37,
+        "endChar": 36
+      },
+      "revId": "6fdbd170bf64615a9285b339fee95854d07edefb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "67dcbbba_bcef7c98",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/SubscriptionEventHelper.java",
         "patchSetId": 4
