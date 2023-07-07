@@ -22,6 +22,30 @@
       "revId": "6fdbd170bf64615a9285b339fee95854d07edefb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "62871070_2b7ef2e5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/SubscriptionEventHelper.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-07-07T10:01:05Z",
+      "side": 1,
+      "message": "Right, will handle this on the next item transformation of Outcome event for clients part.",
+      "parentUuid": "67dcbbba_bcef7c98",
+      "range": {
+        "startLine": 76,
+        "startChar": 12,
+        "endLine": 76,
+        "endChar": 42
+      },
+      "revId": "6fdbd170bf64615a9285b339fee95854d07edefb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
