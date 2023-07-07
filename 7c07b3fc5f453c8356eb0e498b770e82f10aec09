@@ -22,6 +22,30 @@
       "revId": "7c07b3fc5f453c8356eb0e498b770e82f10aec09",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c27f23fc_797765c7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/CloudEventMapper.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-07-07T15:25:56Z",
+      "side": 1,
+      "message": "Myself and Priyank talked and decided on SubscriptionEventCloudMapper if thats ok sorry!",
+      "parentUuid": "6006f94c_dc78ffce",
+      "range": {
+        "startLine": 37,
+        "startChar": 13,
+        "endLine": 37,
+        "endChar": 29
+      },
+      "revId": "7c07b3fc5f453c8356eb0e498b770e82f10aec09",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
