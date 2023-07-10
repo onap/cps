@@ -36,6 +36,7 @@ import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.FragmentEntity;
 import org.onap.cps.spi.exceptions.CpsPathException;
+import org.onap.cps.spi.utils.EscapeUtils;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.stereotype.Component;
 
@@ -202,7 +203,8 @@ public class FragmentQueryBuilder {
         if (cpsPathQuery.hasContainsFunctionCondition()) {
             sqlStringBuilder.append(" AND attributes ->> :containsLeafName LIKE CONCAT('%',:containsValue,'%') ");
             queryParameters.put("containsLeafName", cpsPathQuery.getContainsFunctionConditionLeafName());
-            queryParameters.put("containsValue", cpsPathQuery.getContainsFunctionConditionValue());
+            queryParameters.put("containsValue",
+                    EscapeUtils.escapeForSqlLike(cpsPathQuery.getContainsFunctionConditionValue()));
         }
     }
 
