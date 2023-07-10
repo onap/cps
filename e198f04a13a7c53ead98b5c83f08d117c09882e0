@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "f9a2107a_39461b3b",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-10T15:22:18Z",
+      "side": 1,
+      "message": "I brought this up in today\u0027s PTL meeting: in the light of the new ONAP-disaggregation strategy we agreed to phase out use of oparent pom, so its OK to overide these dependencies!",
+      "parentUuid": "d39d8ee1_83d9d364",
+      "range": {
+        "startLine": 360,
+        "startChar": 16,
+        "endLine": 360,
+        "endChar": 41
+      },
+      "revId": "e198f04a13a7c53ead98b5c83f08d117c09882e0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "44533bc5_c5bea6e7",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/utils/SessionManagerSpec.groovy",
         "patchSetId": 1
