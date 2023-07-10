@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9aa9cf08_57bb916b",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/utils/EscapeUtilsSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-10T09:06:52Z",
+      "side": 1,
+      "message": "nb: I know it is a bit superfluous here but by convention all labels should have some description",
+      "range": {
+        "startLine": 28,
+        "startChar": 8,
+        "endLine": 28,
+        "endChar": 14
+      },
+      "revId": "531bd1002a480728936f8fa29ce87d4418783878",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5c83a94a_fc937616",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/utils/EscapeUtilsSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-10T09:06:52Z",
+      "side": 1,
+      "message": "NB: use assert (convention)",
+      "range": {
+        "startLine": 29,
+        "startChar": 12,
+        "endLine": 30,
+        "endChar": 14
+      },
+      "revId": "531bd1002a480728936f8fa29ce87d4418783878",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
