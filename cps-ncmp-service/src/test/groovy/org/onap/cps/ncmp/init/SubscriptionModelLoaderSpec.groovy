@@ -28,6 +28,7 @@ import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.ncmp.api.impl.exception.NcmpStartUpException
 import org.onap.cps.spi.exceptions.AlreadyDefinedException
+import org.onap.cps.spi.exceptions.AlreadyDefinedExceptionBatch
 import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.exceptions.SchemaSetNotFoundException
 import org.onap.cps.spi.model.Dataspace
@@ -198,7 +199,7 @@ class SubscriptionModelLoaderSpec extends Specification {
     def 'Create top level node fails due to an AlreadyDefined exception'() {
         given: 'the saving of the node data will throw an Already Defined exception'
             mockCpsDataService.saveData(*_) >>
-                    { throw AlreadyDefinedException.forDataNode('/xpath', "sampleContextName", null) }
+                    { throw new AlreadyDefinedExceptionBatch(['/xpath']) }
         when: 'the method to onboard model is called'
             objectUnderTest.onboardSubscriptionModel(yangResourceToContentMap)
         then: 'no exception thrown'

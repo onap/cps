@@ -31,6 +31,7 @@ import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.ncmp.api.impl.exception.NcmpStartUpException;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
+import org.onap.cps.spi.exceptions.AlreadyDefinedExceptionBatch;
 import org.onap.cps.spi.model.Dataspace;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -157,7 +158,7 @@ public class SubscriptionModelLoader implements ModelLoader {
         final String nodeData = "{\"" + dataNodeName + "\":{}}";
         try {
             cpsDataService.saveData(dataspaceName, anchorName, nodeData, OffsetDateTime.now());
-        } catch (final AlreadyDefinedException exception) {
+        } catch (final AlreadyDefinedExceptionBatch exception) {
             log.info("Creating new data node '{}' failed as data node already exists", dataNodeName);
         } catch (final Exception exception) {
             log.debug("Creating data node for subscription model failed: {}", exception.getMessage());
