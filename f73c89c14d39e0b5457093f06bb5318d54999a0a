@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "36fd7451_4538e890",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 347,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-07-10T11:27:23Z",
+      "side": 1,
+      "message": "No, without the changes, some of these tests fail. I changed the description to clarify",
+      "parentUuid": "23f19a5d_b1f225db",
+      "range": {
+        "startLine": 347,
+        "startChar": 12,
+        "endLine": 347,
+        "endChar": 35
+      },
+      "revId": "f73c89c14d39e0b5457093f06bb5318d54999a0a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "130da80c_648c18de",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
         "patchSetId": 10
