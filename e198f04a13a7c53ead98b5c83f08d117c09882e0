@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fe6809bb_6831ffc1",
+        "filename": "cps-application/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-10T13:08:10Z",
+      "side": 1,
+      "message": "why do we need to set this every time? Is there version mgmt for plugins ?\nif we do ahve to can we use a common property instead ?",
+      "range": {
+        "startLine": 129,
+        "startChar": 20,
+        "endLine": 129,
+        "endChar": 44
+      },
+      "revId": "e198f04a13a7c53ead98b5c83f08d117c09882e0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d39d8ee1_83d9d364",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-10T13:08:10Z",
+      "side": 1,
+      "message": "I suppose we \u0027inherit\u0027 older versions from ONAP parent correct?!\nI\u0027m a bit worried how we maintain this going forward i.e we should remove this once the ONAP parent is updated, maybe we should request a Java-17 onap parent?!",
+      "range": {
+        "startLine": 360,
+        "startChar": 16,
+        "endLine": 360,
+        "endChar": 41
+      },
+      "revId": "e198f04a13a7c53ead98b5c83f08d117c09882e0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "44533bc5_c5bea6e7",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/utils/SessionManagerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-10T13:08:10Z",
+      "side": 1,
+      "message": "NB: aligmnet of ||",
+      "range": {
+        "startLine": 72,
+        "startChar": 38,
+        "endLine": 72,
+        "endChar": 43
+      },
+      "revId": "e198f04a13a7c53ead98b5c83f08d117c09882e0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fa8b4d54_abf7f6cc",
+        "filename": "spotbugs/src/main/resources/spotbugs-exclude.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-10T13:08:10Z",
+      "side": 1,
+      "message": "I think we should add a commetn why we are NOT following these rules e.g Team Decison d.d. \n(may create Technical Debt Jira\u0027s to address them, one for eahc and refer to those JIra\u0027s here)",
+      "range": {
+        "startLine": 52,
+        "startChar": 5,
+        "endLine": 54,
+        "endChar": 9
+      },
+      "revId": "e198f04a13a7c53ead98b5c83f08d117c09882e0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
