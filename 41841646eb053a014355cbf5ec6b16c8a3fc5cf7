@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a2021478_6ab9d279",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-07-10T11:03:24Z",
+      "side": 1,
+      "message": "This new method is not needed, as it is an exact duplicate of the \u0027saveData\u0027 methods on lines 82 and 92.",
+      "range": {
+        "startLine": 109,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 5
+      },
+      "revId": "41841646eb053a014355cbf5ec6b16c8a3fc5cf7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
