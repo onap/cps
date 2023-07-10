@@ -46,6 +46,30 @@
       "revId": "41841646eb053a014355cbf5ec6b16c8a3fc5cf7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1890536b_fb1bbe66",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-07-10T15:49:01Z",
+      "side": 1,
+      "message": "Apologies, I got the line numbers wrong before (I meant lines 74 and 82).\nsaveData on like 74 does not check for contentType, it uses ContentType.JSON by default.",
+      "parentUuid": "d1ab3316_c14b4d8c",
+      "range": {
+        "startLine": 109,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 5
+      },
+      "revId": "41841646eb053a014355cbf5ec6b16c8a3fc5cf7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
