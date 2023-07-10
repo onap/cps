@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e0054ed2_5d39e195",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-10T12:36:26Z",
+      "side": 1,
+      "message": "Cps Paths with wildcard-like expression:",
+      "range": {
+        "startLine": 343,
+        "startChar": 24,
+        "endLine": 343,
+        "endChar": 30
+      },
+      "revId": "70692b2c4c2cb9e7fc5f6636c3e9d39fe33584cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "92b61d00_b475dc25",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-10T12:36:26Z",
+      "side": 1,
+      "message": "\u0027the cpsPath contains a wildcard-like expression\u0027",
+      "range": {
+        "startLine": 348,
+        "startChar": 8,
+        "endLine": 348,
+        "endChar": 14
+      },
+      "revId": "70692b2c4c2cb9e7fc5f6636c3e9d39fe33584cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7fea7be1_8979b1b5",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-10T12:36:26Z",
+      "side": 1,
+      "message": "\"[@\"",
+      "range": {
+        "startLine": 360,
+        "startChar": 58,
+        "endLine": 360,
+        "endChar": 61
+      },
+      "revId": "70692b2c4c2cb9e7fc5f6636c3e9d39fe33584cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
