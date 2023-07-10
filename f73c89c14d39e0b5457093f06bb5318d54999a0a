@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "23f19a5d_b1f225db",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 347,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-10T09:11:17Z",
+      "side": 1,
+      "message": "what is actually being tested here?! Without the code changes would these tests pass too ?!",
+      "range": {
+        "startLine": 347,
+        "startChar": 12,
+        "endLine": 347,
+        "endChar": 35
+      },
+      "revId": "f73c89c14d39e0b5457093f06bb5318d54999a0a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "130da80c_648c18de",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
         "patchSetId": 10
@@ -22,6 +45,30 @@
       "revId": "f73c89c14d39e0b5457093f06bb5318d54999a0a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a68f3bec_dfe67e23",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-10T09:11:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "130da80c_648c18de",
+      "range": {
+        "startLine": 350,
+        "startChar": 0,
+        "endLine": 357,
+        "endChar": 121
+      },
+      "revId": "f73c89c14d39e0b5457093f06bb5318d54999a0a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
