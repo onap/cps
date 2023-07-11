@@ -1,0 +1,101 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "43c83089_94545796",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-11T09:48:55Z",
+      "side": 1,
+      "message": "as discussed instead of test 2 negative scenarios we should tests one positive scenario",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 161
+      },
+      "revId": "1cbd942df3b05cba32d0d3fc0288b6cd757aaacb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d2073bdb_212144c7",
+        "filename": "csit/data/dataOperationNonAvailableCMHandle.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-11T09:48:55Z",
+      "side": 1,
+      "message": "remove (negative use case)",
+      "revId": "1cbd942df3b05cba32d0d3fc0288b6cd757aaacb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71cb4be6_fdcafaa1",
+        "filename": "csit/data/dataOperationNonReadyCMHandle.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-11T09:48:55Z",
+      "side": 1,
+      "message": "remove/or change to postive scnario",
+      "revId": "1cbd942df3b05cba32d0d3fc0288b6cd757aaacb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a8e6dcf3_ca060d37",
+        "filename": "csit/tests/cps-data-operations/cps-data-operations.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-11T09:48:55Z",
+      "side": 1,
+      "message": "i dont think there is much point reviewing this in details until you have changed it to a single positive scenario",
+      "revId": "1cbd942df3b05cba32d0d3fc0288b6cd757aaacb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f7c405df_0d66df28",
+        "filename": "csit/tests/cps-data-operations/cps-data-operations.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-11T09:48:55Z",
+      "side": 1,
+      "message": "for an integration test thsi name is critical so you shoudl not use word liek \u0027some\u0027\nisntead use \u0027test-topic- or \u0027client-defined-topic\u0027 or simialr tio convey maening and relevance",
+      "range": {
+        "startLine": 53,
+        "startChar": 94,
+        "endLine": 53,
+        "endChar": 111
+      },
+      "revId": "1cbd942df3b05cba32d0d3fc0288b6cd757aaacb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
