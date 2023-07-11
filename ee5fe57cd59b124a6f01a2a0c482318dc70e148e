@@ -22,6 +22,208 @@
       "revId": "ee5fe57cd59b124a6f01a2a0c482318dc70e148e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb31a593_b01b61ea",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-11T17:10:44Z",
+      "side": 1,
+      "message": "agreed: the solution should be in the service layer (CPS Service gets use as a jar too) instead of just in the REST layer...",
+      "parentUuid": "7a081661_29ccfccd",
+      "range": {
+        "startLine": 95,
+        "startChar": 106,
+        "endLine": 99,
+        "endChar": 16
+      },
+      "revId": "ee5fe57cd59b124a6f01a2a0c482318dc70e148e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "80861cff_2a3fd045",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 24
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-11T17:10:44Z",
+      "side": 1,
+      "message": "Does this test (with all the mock) really test something that is not already tested in the existing test line 87)\nif thsi test IS need we do NOT need the 2 formats....",
+      "range": {
+        "startLine": 106,
+        "startChar": 1,
+        "endLine": 123,
+        "endChar": 5
+      },
+      "revId": "ee5fe57cd59b124a6f01a2a0c482318dc70e148e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6d5d5ae1_6c0f3e22",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 24
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-11T17:10:44Z",
+      "side": 1,
+      "message": "order of test: this test should remain just AFTER the test starting at line 87",
+      "range": {
+        "startLine": 125,
+        "startChar": 4,
+        "endLine": 137,
+        "endChar": 0
+      },
+      "revId": "ee5fe57cd59b124a6f01a2a0c482318dc70e148e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "352024ec_a51abe02",
+        "filename": "cps-service/src/test/resources/parent-list.xml",
+        "patchSetId": 24
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-11T17:10:44Z",
+      "side": 1,
+      "message": "no need for differnt format",
+      "revId": "ee5fe57cd59b124a6f01a2a0c482318dc70e148e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e2b2dd3_938da1fa",
+        "filename": "cps-service/src/test/resources/parent-list.yang",
+        "patchSetId": 24
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-11T17:10:44Z",
+      "side": 1,
+      "message": "not a great name...\nNB: I prefer you update the bookstore module to have what you need to test",
+      "range": {
+        "startLine": 1,
+        "startChar": 7,
+        "endLine": 1,
+        "endChar": 18
+      },
+      "revId": "ee5fe57cd59b124a6f01a2a0c482318dc70e148e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f3df1c31_e326b898",
+        "filename": "cps-service/src/test/resources/parent-list.yang",
+        "patchSetId": 24
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-11T17:10:44Z",
+      "side": 1,
+      "message": "always use spaces!",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 1
+      },
+      "revId": "ee5fe57cd59b124a6f01a2a0c482318dc70e148e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4919e7a4_790e7c33",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 24
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-11T17:10:44Z",
+      "side": 1,
+      "message": "as before, less impacts if we can update the bookstore model isntead",
+      "range": {
+        "startLine": 81,
+        "startChar": 41,
+        "endLine": 81,
+        "endChar": 60
+      },
+      "revId": "ee5fe57cd59b124a6f01a2a0c482318dc70e148e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2261631c_e7e73a0b",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/FunctionalSpecBase.groovy",
+        "patchSetId": 24
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-11T17:10:44Z",
+      "side": 1,
+      "message": "2 many changes becasue you didn\u0027t update the bookstore module, now this has become a blocking issue...",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 64
+      },
+      "revId": "ee5fe57cd59b124a6f01a2a0c482318dc70e148e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9542bf8a_a4e57290",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsDataServiceIntegrationSpec.groovy",
+        "patchSetId": 24
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-11T17:10:44Z",
+      "side": 1,
+      "message": "why are you adding this test?",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 5
+      },
+      "revId": "ee5fe57cd59b124a6f01a2a0c482318dc70e148e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
