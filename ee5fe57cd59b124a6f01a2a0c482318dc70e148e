@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a081661_29ccfccd",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-07-11T09:40:44Z",
+      "side": 1,
+      "message": "Suggestion: I think it would be better to do this inside either cpsDataService.saveListElements or even cpsDataPersistenceService.addListElements\n\nThat way, CpsDataService.saveListElements will also support creating root lists, and the tests can use saveListElements instead of saveData",
+      "range": {
+        "startLine": 95,
+        "startChar": 106,
+        "endLine": 99,
+        "endChar": 16
+      },
+      "revId": "ee5fe57cd59b124a6f01a2a0c482318dc70e148e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
