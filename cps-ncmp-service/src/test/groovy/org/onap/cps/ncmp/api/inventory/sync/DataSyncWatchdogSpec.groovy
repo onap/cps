@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -37,55 +37,65 @@ class DataSyncWatchdogSpec extends Specification {
 
     def mockSyncUtils = Mock(SyncUtils)
 
-    def mockDataSyncSemaphoreMap = Mock(IMap<String,Boolean>)
+    def mockDataSyncSemaphores = Mock(IMap<String,Boolean>)
 
     def jsonString = '{"stores:bookstore":{"categories":[{"code":"01"}]}}'
 
-    def objectUnderTest = new DataSyncWatchdog(mockInventoryPersistence, mockCpsDataService, mockSyncUtils, mockDataSyncSemaphoreMap)
+    def objectUnderTest = new DataSyncWatchdog(mockInventoryPersistence, mockCpsDataService, mockSyncUtils, mockDataSyncSemaphores)
 
     def compositeState = getCompositeState()
 
-    def yangModelCmHandle1 = createSampleYangModelCmHandle('some-cm-handle-1')
+    def yangModelCmHandle1 = createSampleYangModelCmHandle('cm-handle-1')
 
-    def yangModelCmHandle2 = createSampleYangModelCmHandle('some-cm-handle-2')
+    def yangModelCmHandle2 = createSampleYangModelCmHandle('cm-handle-2')
 
-    def 'Schedule Data Sync for Cm Handle State in READY and Operational Sync State in UNSYNCHRONIZED'() {
+    def 'Data Sync for Cm Handle State in READY and Operational Sync State in UNSYNCHRONIZED.'() {
         given: 'sample resource data'
             def resourceData = jsonString
-        and: 'sync utilities return a cm handle twice'
+        and: 'sync utilities returns a cm handle twice'
             mockSyncUtils.getUnsynchronizedReadyCmHandles() >> [yangModelCmHandle1, yangModelCmHandle2]
         when: 'data sync poll is executed'
             objectUnderTest.executeUnSynchronizedReadyCmHandlePoll()
         then: 'the inventory persistence cm handle returns a composite state for the first cm handle'
-            1 * mockInventoryPersistence.getCmHandleState('some-cm-handle-1') >> compositeState
+            1 * mockInventoryPersistence.getCmHandleState('cm-handle-1') >> compositeState
         and: 'the sync util returns first resource data'
-            1 * mockSyncUtils.getResourceData('some-cm-handle-1') >> resourceData
+            1 * mockSyncUtils.getResourceData('cm-handle-1') >> resourceData
         and: 'the cm-handle data is saved'
-            1 * mockCpsDataService.saveData('NFP-Operational', 'some-cm-handle-1', jsonString, _)
+            1 * mockCpsDataService.saveData('NFP-Operational', 'cm-handle-1', jsonString, _)
         and: 'the first cm handle operational sync state is updated'
-            1 * mockInventoryPersistence.saveCmHandleState('some-cm-handle-1', compositeState)
+            1 * mockInventoryPersistence.saveCmHandleState('cm-handle-1', compositeState)
         then: 'the inventory persistence cm handle returns a composite state for the second cm handle'
-            1 * mockInventoryPersistence.getCmHandleState('some-cm-handle-2') >> compositeState
+            1 * mockInventoryPersistence.getCmHandleState('cm-handle-2') >> compositeState
         and: 'the sync util returns first resource data'
-            1 * mockSyncUtils.getResourceData('some-cm-handle-2') >> resourceData
+            1 * mockSyncUtils.getResourceData('cm-handle-2') >> resourceData
         and: 'the cm-handle data is saved'
-            1 * mockCpsDataService.saveData('NFP-Operational', 'some-cm-handle-2', jsonString, _)
+            1 * mockCpsDataService.saveData('NFP-Operational', 'cm-handle-2', jsonString, _)
         and: 'the second cm handle operational sync state is updated from "UNSYNCHRONIZED" to "SYNCHRONIZED"'
-            1 * mockInventoryPersistence.saveCmHandleState('some-cm-handle-2', compositeState)
+            1 * mockInventoryPersistence.saveCmHandleState('cm-handle-2', compositeState)
     }
 
-    def 'Schedule Data Sync for Cm Handle State in READY and Operational Sync State in UNSYNCHRONIZED which return empty data from Node'() {
-        given: 'cm handles in an ready state and operational sync state in unsynchronized'
-        and: 'sync utilities return a cm handle twice'
+    def 'Data Sync for Cm Handle State in READY and Operational Sync State in UNSYNCHRONIZED without resource data.'() {
+        given: 'sync utilities returns a cm handle'
             mockSyncUtils.getUnsynchronizedReadyCmHandles() >> [yangModelCmHandle1]
         when: 'data sync poll is executed'
             objectUnderTest.executeUnSynchronizedReadyCmHandlePoll()
         then: 'the inventory persistence cm handle returns a composite state for the first cm handle'
-            1 * mockInventoryPersistence.getCmHandleState('some-cm-handle-1') >> compositeState
-        and: 'the sync util returns first resource data'
-            1 * mockSyncUtils.getResourceData('some-cm-handle-1') >> null
+            1 * mockInventoryPersistence.getCmHandleState('cm-handle-1') >> compositeState
+        and: 'the sync util returns no resource data'
+            1 * mockSyncUtils.getResourceData('cm-handle-1') >> null
         and: 'the cm-handle data is not saved'
-            0 * mockCpsDataService.saveData('NFP-Operational', 'some-cm-handle-1', jsonString, _)
+            0 * mockCpsDataService.saveData(*_)
+    }
+
+    def 'Data Sync for Cm Handle that is already being processed.'() {
+        given: 'sync utilities returns a cm handle'
+            mockSyncUtils.getUnsynchronizedReadyCmHandles() >> [yangModelCmHandle1]
+        and: 'the shared data sync semaphore indicate it is already being processed'
+            mockDataSyncSemaphores.putIfAbsent('cm-handle-1', _, _, _) >> 'something (not null)'
+        when: 'data sync poll is executed'
+            objectUnderTest.executeUnSynchronizedReadyCmHandlePoll()
+        then: 'it is NOT processed e.g. state is not requested'
+            0 * mockInventoryPersistence.getCmHandleState(*_)
     }
 
     def createSampleYangModelCmHandle(cmHandleId) {
