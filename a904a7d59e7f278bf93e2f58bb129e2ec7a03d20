@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ff34a136_f4854adc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-12T14:44:01Z",
+      "side": 1,
+      "message": "FYI: normally we should NOT use this check when it precedes a simple iteration (method) but since the task is done async. there is overhead in creating the task!\n(also it is easier to verify in test this way :-))",
+      "range": {
+        "startLine": 73,
+        "startChar": 20,
+        "endLine": 73,
+        "endChar": 39
+      },
+      "revId": "a904a7d59e7f278bf93e2f58bb129e2ec7a03d20",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
