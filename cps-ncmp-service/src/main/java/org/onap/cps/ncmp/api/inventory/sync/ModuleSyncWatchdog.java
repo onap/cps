@@ -65,16 +65,17 @@ public class ModuleSyncWatchdog {
     public void moduleSyncAdvisedCmHandles() {
         log.info("Processing module sync watchdog waking up.");
         populateWorkQueueIfNeeded();
-        final int asyncTaskParallelismLevel = asyncTaskExecutor.getAsyncTaskParallelismLevel();
         while (!moduleSyncWorkQueue.isEmpty()) {
-            if (batchCounter.get() <= asyncTaskParallelismLevel) {
+            if (batchCounter.get() <= asyncTaskExecutor.getAsyncTaskParallelismLevel()) {
                 final Collection<DataNode> nextBatch = prepareNextBatch();
                 log.info("Processing module sync batch of {}. {} batch(es) active.",
-                        nextBatch.size(), batchCounter.get());
-                asyncTaskExecutor.executeTask(() ->
-                                moduleSyncTasks.performModuleSync(nextBatch, batchCounter),
+                    nextBatch.size(), batchCounter.get());
+                if (!nextBatch.isEmpty()) {
+                    asyncTaskExecutor.executeTask(() ->
+                            moduleSyncTasks.performModuleSync(nextBatch, batchCounter),
                         ASYNC_TASK_TIMEOUT_IN_MILLISECONDS);
-                batchCounter.getAndIncrement();
+                    batchCounter.getAndIncrement();
+                }
             } else {
                 preventBusyWait();
             }
