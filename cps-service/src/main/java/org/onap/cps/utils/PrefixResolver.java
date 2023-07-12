@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation.
+ *  Copyright (C) 2022-2023 Nordix Foundation.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -25,12 +25,14 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.api.impl.YangTextSchemaSourceSetCache;
 import org.onap.cps.cache.AnchorDataCacheEntry;
+import org.onap.cps.cpspath.parser.CpsPathPrefixType;
+import org.onap.cps.cpspath.parser.CpsPathQuery;
+import org.onap.cps.cpspath.parser.CpsPathUtil;
+import org.onap.cps.cpspath.parser.PathParsingException;
 import org.onap.cps.spi.model.Anchor;
 import org.onap.cps.yang.YangTextSchemaSourceSet;
 import org.opendaylight.yangtools.yang.common.QNameModule;
@@ -52,9 +54,6 @@ public class PrefixResolver {
     private final YangTextSchemaSourceSetCache yangTextSchemaSourceSetCache;
 
     private final IMap<String, AnchorDataCacheEntry> anchorDataCache;
-
-    private static final Pattern TOP_LEVEL_NODE_NAME_FINDER
-        = Pattern.compile("\\/([\\w-]*)(\\[@(?!.*\\[).*?])?(\\/.*)?");  //NOSONAR
 
     /**
      * Get the module prefix for the given xpath for a dataspace and anchor name.
@@ -93,14 +92,18 @@ public class PrefixResolver {
 
     private String getPrefixForTopContainer(final Map<String, String> prefixPerContainerName,
                                             final String xpath) {
-        final Matcher matcher = TOP_LEVEL_NODE_NAME_FINDER.matcher(xpath);
-        if (matcher.matches()) {
-            final String topLevelContainerName = matcher.group(1);
-            if (prefixPerContainerName.containsKey(topLevelContainerName)) {
-                return prefixPerContainerName.get(topLevelContainerName);
+        try {
+            final CpsPathQuery cpsPathQuery = CpsPathUtil.getCpsPathQuery(xpath);
+            if (cpsPathQuery.getCpsPathPrefixType() == CpsPathPrefixType.ABSOLUTE) {
+                final String topLevelContainerName = cpsPathQuery.getContainerNames().get(0);
+                if (prefixPerContainerName.containsKey(topLevelContainerName)) {
+                    return prefixPerContainerName.get(topLevelContainerName);
+                }
             }
+            return "";
+        } catch (final PathParsingException e) {
+            return "";
         }
-        return "";
     }
 
     private Map<String, String> createAndCachePrefixPerContainerNameMap(final Anchor anchor) {

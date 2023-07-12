@@ -68,8 +68,8 @@ class DataMapUtilsSpec extends Specification {
             scenario                                | xPath                                     | expectedNodeIdentifier
             'container xpath'                       | '/bookstore'                              | 'sampleModuleName:bookstore'
             'xpath contains list attribute'         | '/bookstore/categories[@code=1]'          | 'sampleModuleName:categories'
-            'xpath contains list attributes with /' | '/bookstore/categories[@code=1/2]'        | 'sampleModuleName:categories'
-
+            'xpath contains list attributes with /' | '/bookstore/categories[@code="1/2"]'      | 'sampleModuleName:categories'
+            'xpath contains list attributes with [' | '/bookstore/categories[@code="[1]"]'      | 'sampleModuleName:categories'
     }
 
     def 'Data node structure with anchor name conversion to map with root node identifier.'() {
@@ -98,7 +98,7 @@ class DataMapUtilsSpec extends Specification {
 
     def dataNode = buildDataNode(
         "/parent",[parentLeaf:'parentLeafValue', parentLeafList:['parentLeafListEntry1','parentLeafListEntry2']],[
-        buildDataNode('/parent/child-list[@id=1/2]',[listElementLeaf:'listElement1leafValue'],noChildren),
+        buildDataNode('/parent/child-list[@id="1/2"]',[listElementLeaf:'listElement1leafValue'],noChildren),
         buildDataNode('/parent/child-list[@id=2]',[listElementLeaf:'listElement2leafValue'],noChildren),
         buildDataNode('/parent/child-object',[childLeaf:'childLeafValue'],
             [buildDataNode('/parent/child-object/grand-child-object',[grandChildLeaf:'grandChildLeafValue'],noChildren)]
@@ -107,7 +107,7 @@ class DataMapUtilsSpec extends Specification {
 
     def dataNodeWithAnchor = buildDataNodeWithAnchor(
         "/parent", 'anchor01',[parentLeaf:'parentLeafValue', parentLeafList:['parentLeafListEntry1','parentLeafListEntry2']],[
-        buildDataNode('/parent/child-list[@id=1/2]',[listElementLeaf:'listElement1leafValue'],noChildren),
+        buildDataNode('/parent/child-list[@id="1/2"]',[listElementLeaf:'listElement1leafValue'],noChildren),
         buildDataNode('/parent/child-list[@id=2]',[listElementLeaf:'listElement2leafValue'],noChildren),
         buildDataNode('/parent/child-object',[childLeaf:'childLeafValue'],
             [buildDataNode('/parent/child-object/grand-child-object',[grandChildLeaf:'grandChildLeafValue'],noChildren)]

@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Copyright (C) 2021-2023 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada.
  *  ================================================================================
@@ -77,6 +77,7 @@ class PrefixResolverSpec extends Specification {
             '/test-tree/with/descendants' || 'tree'
             '/test-tree[@id=1]'           || 'tree'
             '/test-tree[@id=1]/child'     || 'tree'
+            '/test-tree[@id="[1]"]/child' || 'tree'
             '/not-defined'                || ''
             'invalid-xpath'               || ''
     }

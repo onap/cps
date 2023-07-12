@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Pantheon.tech
- *  Modifications (C) 2021-2022 Nordix Foundation
+ *  Modifications (C) 2021-2023 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada
  *  Modifications Copyright (C) 2022-2023 TechMahindra Ltd.
  *  ================================================================================
@@ -33,6 +33,8 @@ import java.util.Collections;
 import java.util.Map;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import org.onap.cps.cpspath.parser.CpsPathQuery;
+import org.onap.cps.cpspath.parser.CpsPathUtil;
 import org.onap.cps.spi.model.DataNode;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -106,8 +108,9 @@ public class DataMapUtils {
     }
 
     private static String getNodeIdentifier(String xpath) {
-        if (xpath.endsWith("]")) {
-            xpath = xpath.substring(0, xpath.lastIndexOf('['));
+        final CpsPathQuery cpsPathQuery = CpsPathUtil.getCpsPathQuery(xpath);
+        if (cpsPathQuery.isPathToListElement()) {
+            xpath = cpsPathQuery.getXpathPrefix();
         }
         final int fromIndex = xpath.lastIndexOf('/') + 1;
         return xpath.substring(fromIndex);
