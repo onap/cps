@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4b32a202_956abc8d",
+        "filename": "dmi-plugin-rest-stub/dmi-plugin-rest-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-07-12T12:59:29Z",
+      "side": 1,
+      "message": "We can directly send the JSON string which we are getting from line no 85. This avoids of creating \u0027ModuleSet\u0027(Means we remove from line 88 to 94) and avoids to define the models related to this",
+      "range": {
+        "startLine": 95,
+        "startChar": 33,
+        "endLine": 95,
+        "endChar": 42
+      },
+      "revId": "04916b7f48db49c30f56cf24ca62288456092143",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9ca56716_84237d23",
+        "filename": "dmi-plugin-rest-stub/dmi-plugin-rest-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-07-12T12:59:29Z",
+      "side": 1,
+      "message": "same as above",
+      "range": {
+        "startLine": 120,
+        "startChar": 36,
+        "endLine": 120,
+        "endChar": 49
+      },
+      "revId": "04916b7f48db49c30f56cf24ca62288456092143",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "18034f07_30affddb",
+        "filename": "dmi-plugin-rest-stub/dmi-plugin-rest-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/model/data/operational/ResourceDataOperationRequests.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-07-12T12:59:29Z",
+      "side": 1,
+      "message": "NB: Can we include \u0027cps-ncmp-evenets\u0027 dependency to this app, If yes, it avoids the redefining of required types similar to this",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 1
+      },
+      "revId": "04916b7f48db49c30f56cf24ca62288456092143",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3d684c2a_8cb7d382",
+        "filename": "dmi-plugin-rest-stub/dmi-plugin-rest-stub-service/src/main/resources/application.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-07-12T12:59:29Z",
+      "side": 1,
+      "message": "NB: I think this application we are not using consumer. so, it will be ok even if we delete these lines",
+      "range": {
+        "startLine": 38,
+        "startChar": 8,
+        "endLine": 45,
+        "endChar": 51
+      },
+      "revId": "04916b7f48db49c30f56cf24ca62288456092143",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
