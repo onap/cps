@@ -71,6 +71,29 @@
     },
     {
       "key": {
+        "uuid": "53f67aa8_367f45b5",
+        "filename": "dmi-plugin-rest-stub/dmi-plugin-rest-stub-service/src/main/resources/application.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-07-12T13:05:04Z",
+      "side": 1,
+      "message": "NB: We can run this with port \u00278080\u0027 as it is running inside container",
+      "range": {
+        "startLine": 19,
+        "startChar": 10,
+        "endLine": 19,
+        "endChar": 14
+      },
+      "revId": "04916b7f48db49c30f56cf24ca62288456092143",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3d684c2a_8cb7d382",
         "filename": "dmi-plugin-rest-stub/dmi-plugin-rest-stub-service/src/main/resources/application.yml",
         "patchSetId": 2
