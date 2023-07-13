@@ -1,6 +1,7 @@
 {
   "comments": [
     {
+      "unresolved": true,
       "key": {
         "uuid": "197d4657_ea9e2f34",
         "filename": "dmi-plugin-rest-stub/dmi-plugin-rest-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
@@ -20,10 +21,10 @@
         "endChar": 22
       },
       "revId": "04916b7f48db49c30f56cf24ca62288456092143",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": true
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "ba376e04_f690db70",
         "filename": "dmi-plugin-rest-stub/dmi-plugin-rest-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
@@ -44,10 +45,10 @@
         "endChar": 22
       },
       "revId": "04916b7f48db49c30f56cf24ca62288456092143",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": true
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "4b32a202_956abc8d",
         "filename": "dmi-plugin-rest-stub/dmi-plugin-rest-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
@@ -67,10 +68,10 @@
         "endChar": 42
       },
       "revId": "04916b7f48db49c30f56cf24ca62288456092143",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": true
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "f35bcc4b_f88e3804",
         "filename": "dmi-plugin-rest-stub/dmi-plugin-rest-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
@@ -91,10 +92,10 @@
         "endChar": 42
       },
       "revId": "04916b7f48db49c30f56cf24ca62288456092143",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": true
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "6cb928e4_c8d1a8e9",
         "filename": "dmi-plugin-rest-stub/dmi-plugin-rest-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
@@ -115,10 +116,10 @@
         "endChar": 42
       },
       "revId": "04916b7f48db49c30f56cf24ca62288456092143",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": false
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "9ca56716_84237d23",
         "filename": "dmi-plugin-rest-stub/dmi-plugin-rest-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
@@ -138,10 +139,10 @@
         "endChar": 49
       },
       "revId": "04916b7f48db49c30f56cf24ca62288456092143",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": true
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "8183d755_da154659",
         "filename": "dmi-plugin-rest-stub/dmi-plugin-rest-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
@@ -162,10 +163,10 @@
         "endChar": 49
       },
       "revId": "04916b7f48db49c30f56cf24ca62288456092143",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": false
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "eda01ab9_7bff3cef",
         "filename": "dmi-plugin-rest-stub/dmi-plugin-rest-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
@@ -185,10 +186,10 @@
         "endChar": 37
       },
       "revId": "04916b7f48db49c30f56cf24ca62288456092143",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": true
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "bc005b44_70c4e04e",
         "filename": "dmi-plugin-rest-stub/dmi-plugin-rest-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
@@ -209,10 +210,10 @@
         "endChar": 37
       },
       "revId": "04916b7f48db49c30f56cf24ca62288456092143",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": false
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "18034f07_30affddb",
         "filename": "dmi-plugin-rest-stub/dmi-plugin-rest-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/model/data/operational/ResourceDataOperationRequests.java",
@@ -232,10 +233,10 @@
         "endChar": 1
       },
       "revId": "04916b7f48db49c30f56cf24ca62288456092143",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": true
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "c8aeda2a_9ef85083",
         "filename": "dmi-plugin-rest-stub/dmi-plugin-rest-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/model/data/operational/ResourceDataOperationRequests.java",
@@ -256,10 +257,10 @@
         "endChar": 1
       },
       "revId": "04916b7f48db49c30f56cf24ca62288456092143",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": true
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "8e6713a5_3b76ed43",
         "filename": "dmi-plugin-rest-stub/dmi-plugin-rest-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/model/data/operational/ResourceDataOperationRequests.java",
@@ -280,10 +281,10 @@
         "endChar": 1
       },
       "revId": "04916b7f48db49c30f56cf24ca62288456092143",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": false
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "e9865428_816e2ecc",
         "filename": "dmi-plugin-rest-stub/dmi-plugin-rest-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/model/module/reference/ModuleSet.java",
@@ -303,10 +304,10 @@
         "endChar": 23
       },
       "revId": "04916b7f48db49c30f56cf24ca62288456092143",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": true
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "853b3258_004e573c",
         "filename": "dmi-plugin-rest-stub/dmi-plugin-rest-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/model/module/reference/ModuleSet.java",
@@ -327,10 +328,34 @@
         "endChar": 23
       },
       "revId": "04916b7f48db49c30f56cf24ca62288456092143",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": true
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "22907a46_447d8168",
+        "filename": "dmi-plugin-rest-stub/dmi-plugin-rest-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/model/module/reference/ModuleSet.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-13T08:17:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "853b3258_004e573c",
+      "range": {
+        "startLine": 29,
+        "startChar": 13,
+        "endLine": 29,
+        "endChar": 23
+      },
+      "revId": "04916b7f48db49c30f56cf24ca62288456092143",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "53f67aa8_367f45b5",
         "filename": "dmi-plugin-rest-stub/dmi-plugin-rest-stub-service/src/main/resources/application.yml",
@@ -350,10 +375,10 @@
         "endChar": 14
       },
       "revId": "04916b7f48db49c30f56cf24ca62288456092143",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": true
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "405894c6_96306137",
         "filename": "dmi-plugin-rest-stub/dmi-plugin-rest-stub-service/src/main/resources/application.yml",
@@ -374,10 +399,10 @@
         "endChar": 14
       },
       "revId": "04916b7f48db49c30f56cf24ca62288456092143",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": true
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "3d684c2a_8cb7d382",
         "filename": "dmi-plugin-rest-stub/dmi-plugin-rest-stub-service/src/main/resources/application.yml",
@@ -397,10 +422,10 @@
         "endChar": 51
       },
       "revId": "04916b7f48db49c30f56cf24ca62288456092143",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": true
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "7c67f399_3d0c0906",
         "filename": "dmi-plugin-rest-stub/dmi-plugin-rest-stub-service/src/main/resources/application.yml",
@@ -421,10 +446,34 @@
         "endChar": 51
       },
       "revId": "04916b7f48db49c30f56cf24ca62288456092143",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": true
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "919bf0c0_4f9ad588",
+        "filename": "dmi-plugin-rest-stub/dmi-plugin-rest-stub-service/src/main/resources/application.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-13T08:17:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7c67f399_3d0c0906",
+      "range": {
+        "startLine": 38,
+        "startChar": 8,
+        "endLine": 45,
+        "endChar": 51
+      },
+      "revId": "04916b7f48db49c30f56cf24ca62288456092143",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "0a797d01_223c98a4",
         "filename": "pom.xml",
@@ -444,10 +493,10 @@
         "endChar": 31
       },
       "revId": "04916b7f48db49c30f56cf24ca62288456092143",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": true
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "41e4c4bf_dc9bbfa8",
         "filename": "pom.xml",
@@ -468,8 +517,7 @@
         "endChar": 31
       },
       "revId": "04916b7f48db49c30f56cf24ca62288456092143",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": false
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
