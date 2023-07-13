@@ -273,6 +273,46 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f2a92b32_65761909",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-07-13T15:51:27Z",
+      "side": 1,
+      "message": "You need to order the results for pagination to work reliably.\nFor example, the integration tests fail on my local environment because the ordering is different.\nCan be fixed using ORDER BY\n\n    sqlStringBuilder.append(\" ORDER BY anchor_id\");\nor even:\n\n    sqlStringBuilder.append(\" ORDER BY anchor.name\");",
+      "revId": "7a99e5e61d09a28c4c1f355ec01e9471f4b16aa1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37b57e01_2ac8da65",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-07-13T15:51:27Z",
+      "side": 1,
+      "message": "You can remove dataspace field since you know the anchors belong to the same dataspace. This can be then simplified to:\n\n    @Query(value \u003d \"SELECT * FROM fragment WHERE anchor_id IN (:anchorIds) AND xpath IN (:xpaths)\", \n            nativeQuery \u003d true)\n    List\u003cFragmentEntity\u003e findByAnchorIdsAndXpathIn(@Param(\"anchorIds\") Long[] anchorIds, \n                                                   @Param(\"xpaths\") String[] xpaths);",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 100
+      },
+      "revId": "7a99e5e61d09a28c4c1f355ec01e9471f4b16aa1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "63ece105_4708dbe7",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
         "patchSetId": 24
