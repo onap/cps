@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "383d1ea8_5278237e",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/PrefixResolver.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-13T13:33:07Z",
+      "side": 1,
+      "message": "no blocking",
+      "parentUuid": "6e0f1202_fde642c9",
+      "range": {
+        "startLine": 103,
+        "startChar": 19,
+        "endLine": 103,
+        "endChar": 21
+      },
+      "revId": "3a62c562bfc96a0ff845feb9d91d5264eda6248d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1a2e6324_f5c22eb4",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/PrefixResolver.java",
         "patchSetId": 2
