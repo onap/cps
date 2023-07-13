@@ -92,7 +92,7 @@ class SubscriptionEventForwarderSpec extends MessagingBaseSpec {
         and: 'a Blocking Variable is used for the Asynchronous call with a timeout of 5 seconds'
             def block = new BlockingVariable<Object>(5)
         when: 'the valid event is forwarded'
-            objectUnderTest.forwardCreateSubscriptionEvent(testEventSent)
+            objectUnderTest.forwardSubscriptionEvent(testEventSent)
         then: 'An asynchronous call is made to the blocking variable'
             block.get()
         then: 'the event is added to the forwarded subscription event cache'
@@ -122,7 +122,7 @@ class SubscriptionEventForwarderSpec extends MessagingBaseSpec {
         and: 'the target CMHandles are set to #scenario'
             testEventSent.getData().getPredicates().setTargets(invalidTargets)
         when: 'the event is forwarded'
-            objectUnderTest.forwardCreateSubscriptionEvent(testEventSent)
+            objectUnderTest.forwardSubscriptionEvent(testEventSent)
         then: 'an operation not yet supported exception is thrown'
             thrown(OperationNotYetSupportedException)
         where:
@@ -150,7 +150,7 @@ class SubscriptionEventForwarderSpec extends MessagingBaseSpec {
         and: 'a Blocking Variable is used for the Asynchronous call with a timeout of 5 seconds'
             def block = new BlockingVariable<Object>(5)
         when: 'the valid event is forwarded'
-            objectUnderTest.forwardCreateSubscriptionEvent(testEventSent)
+            objectUnderTest.forwardSubscriptionEvent(testEventSent)
         then: 'the event is not added to the forwarded subscription event cache'
             0 * mockForwardedSubscriptionEventCache.put("SCO-9989752cm-subscription-001", ["DMIName1", "DMIName2"] as Set)
         and: 'the event is not being forwarded with the CMHandle private properties and does not provides a valid listenable future'
