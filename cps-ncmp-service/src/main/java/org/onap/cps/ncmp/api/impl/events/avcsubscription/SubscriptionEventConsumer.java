@@ -60,15 +60,15 @@ public class SubscriptionEventConsumer {
         final CloudEvent cloudEvent = subscriptionEventConsumerRecord.value();
         final SubscriptionEvent subscriptionEvent = SubscriptionEventCloudMapper.toSubscriptionEvent(cloudEvent);
         final String eventDatastore = subscriptionEvent.getData().getPredicates().getDatastore();
-        if (!(eventDatastore.equals("passthrough-running") || eventDatastore.equals("passthrough-operational"))) {
+        if (!eventDatastore.equals("passthrough-running")) {
             throw new OperationNotYetSupportedException(
-                "passthrough datastores are currently only supported for event subscriptions");
+                "passthrough-running datastores are currently only supported for event subscriptions");
         }
         if ("CM".equals(subscriptionEvent.getData().getDataType().getDataCategory())) {
             if (subscriptionModelLoaderEnabled) {
                 persistSubscriptionEvent(subscriptionEvent);
             }
-            if ("CREATE".equals(cloudEvent.getType())) {
+            if ("subscriptionCreated".equals(cloudEvent.getType())) {
                 log.info("Subscription for ClientID {} with name {} ...",
                         subscriptionEvent.getData().getSubscription().getClientID(),
                         subscriptionEvent.getData().getSubscription().getName());

@@ -76,20 +76,20 @@ class SubscriptionEventConsumerSpec extends MessagingBaseSpec {
         and: 'the event is forwarded'
             numberOfTimesToForward * mockSubscriptionEventForwarder.forwardCreateSubscriptionEvent(testEventSent)
         where: 'given values are used'
-            scenario                                            |  dataCategory  |   dataType     |  isNotificationEnabled     |   isModelLoaderEnabled      ||     numberOfTimesToForward        ||      numberOfTimesToPersist
-            'Both model loader and notification are enabled'    |       'CM'     |   'CREATE'     |     true                   |        true                 ||         1                         ||             1
-            'Both model loader and notification are disabled'   |       'CM'     |   'CREATE'     |     false                  |        false                ||         0                         ||             0
-            'Model loader enabled and notification  disabled'   |       'CM'     |   'CREATE'     |     false                  |        true                 ||         0                         ||             1
-            'Model loader disabled and notification enabled'    |       'CM'     |   'CREATE'     |     true                   |        false                ||         1                         ||             0
-            'Flags are enabled but data category is FM'         |       'FM'     |   'CREATE'     |     true                   |        true                 ||         0                         ||             0
-            'Flags are enabled but data type is UPDATE'         |       'CM'     |   'UPDATE'     |     true                   |        true                 ||         0                         ||             1
+            scenario                                            |  dataCategory  |   dataType                  |  isNotificationEnabled     |   isModelLoaderEnabled      ||     numberOfTimesToForward        ||      numberOfTimesToPersist
+            'Both model loader and notification are enabled'    |       'CM'     |   'subscriptionCreated'     |     true                   |        true                 ||         1                         ||             1
+            'Both model loader and notification are disabled'   |       'CM'     |   'subscriptionCreated'     |     false                  |        false                ||         0                         ||             0
+            'Model loader enabled and notification  disabled'   |       'CM'     |   'subscriptionCreated'     |     false                  |        true                 ||         0                         ||             1
+            'Model loader disabled and notification enabled'    |       'CM'     |   'subscriptionCreated'     |     true                   |        false                ||         1                         ||             0
+            'Flags are enabled but data category is FM'         |       'FM'     |   'subscriptionCreated'     |     true                   |        true                 ||         0                         ||             0
+            'Flags are enabled but data type is UPDATE'         |       'CM'     |   'subscriptionUpdated'     |     true                   |        true                 ||         0                         ||             1
     }
 
     def 'Consume event with wrong datastore causes an exception'() {
         given: 'an event'
             def jsonData = TestUtils.getResourceFileContent('avcSubscriptionCreationEvent.json')
             def testEventSent = jsonObjectMapper.convertJsonString(jsonData, SubscriptionEvent.class)
-        and: 'datastore is set to a non passthrough datastore'
+        and: 'datastore is set to a passthrough-running datastore'
             testEventSent.getData().getPredicates().setDatastore('operational')
             def testCloudEventSent = CloudEventBuilder.v1()
                 .withData(objectMapper.writeValueAsBytes(testEventSent))
@@ -99,9 +99,16 @@ class SubscriptionEventConsumerSpec extends MessagingBaseSpec {
                 .withExtension('correlationid', 'test-cmhandle1').build()
             def consumerRecord = new ConsumerRecord<String, SubscriptionEvent>('topic-name', 0, 0, 'event-key', testCloudEventSent)
         when: 'the valid event is consumed'
-            objectUnderTest.consumeSubscriptionEvent(consumerRecord)
+            def thrownException = null;
+            try {
+                objectUnderTest.consumeSubscriptionEvent(consumerRecord)
+            } catch (Exception ex) {
+                thrownException = ex;
+            }
+
         then: 'an operation not yet supported exception is thrown'
-            thrown(OperationNotYetSupportedException)
+            assert thrownException instanceof OperationNotYetSupportedException
+            assert thrownException.details.contains('passthrough-running datastores are currently only supported for event subscriptions')
     }
 
 }
