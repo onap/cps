@@ -48,6 +48,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "04844169_8132a27d",
+        "filename": "dmi-plugin-rest-stub/dmi-plugin-rest-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-07-13T08:36:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba376e04_f690db70",
+      "range": {
+        "startLine": 80,
+        "startChar": 15,
+        "endLine": 80,
+        "endChar": 22
+      },
+      "revId": "04916b7f48db49c30f56cf24ca62288456092143",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4b32a202_956abc8d",
@@ -392,6 +416,30 @@
       "side": 1,
       "message": "It is assigned so that local development should be impacted.",
       "parentUuid": "53f67aa8_367f45b5",
+      "range": {
+        "startLine": 19,
+        "startChar": 10,
+        "endLine": 19,
+        "endChar": 14
+      },
+      "revId": "04916b7f48db49c30f56cf24ca62288456092143",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc857ddf_d3a121d7",
+        "filename": "dmi-plugin-rest-stub/dmi-plugin-rest-stub-service/src/main/resources/application.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-07-13T08:36:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "405894c6_96306137",
       "range": {
         "startLine": 19,
         "startChar": 10,
