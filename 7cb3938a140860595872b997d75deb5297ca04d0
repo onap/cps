@@ -48,6 +48,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "008a62d7_39a3b7a3",
+        "filename": "csit/data/dataOperationReadyStateCMHandle.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-07-13T10:58:07Z",
+      "side": 1,
+      "message": "then use \"operational-12\" as datastore is operational.\n\nIn cas eof running we may have used \"running-12\"",
+      "parentUuid": "4bb45477_464785ad",
+      "range": {
+        "startLine": 5,
+        "startChar": 22,
+        "endLine": 5,
+        "endChar": 29
+      },
+      "revId": "7cb3938a140860595872b997d75deb5297ca04d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c5257691_0c3dc307",
@@ -95,6 +119,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "637259f0_2321ecc4",
+        "filename": "csit/data/dataOperationReadyStateCMHandle.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-07-13T10:58:07Z",
+      "side": 1,
+      "message": "then use \"850117873c9a4936856a5081be96e6a8\" or any other UUID to make it more realistic.",
+      "parentUuid": "19105a28_dadd57c2",
+      "range": {
+        "startLine": 9,
+        "startChar": 21,
+        "endLine": 9,
+        "endChar": 38
+      },
+      "revId": "7cb3938a140860595872b997d75deb5297ca04d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c3c77868_70ba65da",
@@ -132,6 +180,30 @@
       "side": 1,
       "message": "It\u0027s the stub URL, BasePath is different",
       "parentUuid": "c3c77868_70ba65da",
+      "range": {
+        "startLine": 40,
+        "startChar": 2,
+        "endLine": 40,
+        "endChar": 22
+      },
+      "revId": "7cb3938a140860595872b997d75deb5297ca04d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd475059_8b30caba",
+        "filename": "csit/tests/cps-data-operations/cps-data-operations.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-07-13T10:58:07Z",
+      "side": 1,
+      "message": "then use \"dmipluginCsitStubUrl\" (small l in url)",
+      "parentUuid": "1938289c_2e560422",
       "range": {
         "startLine": 40,
         "startChar": 2,
@@ -278,6 +350,54 @@
         "startChar": 2,
         "endLine": 41,
         "endChar": 26
+      },
+      "revId": "7cb3938a140860595872b997d75deb5297ca04d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b58f42d_440077e0",
+        "filename": "csit/tests/cps-data-operations/cps-data-operations.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-07-13T10:58:07Z",
+      "side": 1,
+      "message": "same as above use \"dmipluginCsitStubUrl\" (small l in url)",
+      "parentUuid": "2cca9290_02bc4951",
+      "range": {
+        "startLine": 41,
+        "startChar": 56,
+        "endLine": 41,
+        "endChar": 76
+      },
+      "revId": "7cb3938a140860595872b997d75deb5297ca04d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67543bad_b2389c28",
+        "filename": "csit/tests/cps-data-operations/cps-data-operations.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-07-13T10:58:07Z",
+      "side": 1,
+      "message": "use \"850117873c9a4936856a5081be96e6a8\" for realistic value.\nI mean here UUID.",
+      "parentUuid": "4321245e_6af0a135",
+      "range": {
+        "startLine": 41,
+        "startChar": 112,
+        "endLine": 41,
+        "endChar": 129
       },
       "revId": "7cb3938a140860595872b997d75deb5297ca04d0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
