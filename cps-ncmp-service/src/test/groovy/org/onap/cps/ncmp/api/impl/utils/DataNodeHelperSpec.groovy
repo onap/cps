@@ -20,7 +20,6 @@
 
 package org.onap.cps.ncmp.api.impl.utils
 
-import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionStatus
 import org.onap.cps.spi.model.DataNodeBuilder
 
 class DataNodeHelperSpec extends DataNodeBaseSpec {
@@ -38,9 +37,9 @@ class DataNodeHelperSpec extends DataNodeBaseSpec {
         and: 'all the leaves result list are equal to given leaves of data nodes'
             result[0] == [clientID:'SCO-9989752', isTagged:false, subscriptionName:'cm-subscription-001']
             result[1] == [datastore:'passthrough-running']
-            result[2] == [status:'PENDING', cmHandleId:'CMHandle3']
-            result[3] == [status:'ACCEPTED', cmHandleId:'CMHandle2']
-            result[4] == [status:'REJECTED', cmHandleId:'CMHandle1']
+            result[2] == [status:'PENDING', cmHandleId:'CMHandle3', details:'Subscription forwarded to dmi plugin']
+            result[3] == [status:'ACCEPTED', cmHandleId:'CMHandle2', details:'']
+            result[4] == [status:'REJECTED', cmHandleId:'CMHandle1', details:'Cm handle does not exist']
     }
 
     def 'Get cm handle id to status as expected from a nested data node.'() {
@@ -52,25 +51,17 @@ class DataNodeHelperSpec extends DataNodeBaseSpec {
         and: 'the nested data node is flatten and retrieves the leaves '
             def leaves = DataNodeHelper.getDataNodeLeaves([dataNode])
         when:'cm handle id to status is retrieved'
-            def result = DataNodeHelper.getCmHandleIdToStatus(leaves)
+            def result = DataNodeHelper.cmHandleIdToStatusAndDetailsAsMap(leaves)
         then: 'the result list size is 3'
             result.size() == 3
         and: 'the result contains expected values'
-            result[0] as List == ['PENDING', 'CMHandle3']
-            result[1] as List == ['ACCEPTED', 'CMHandle2']
-            result[2] as List == ['REJECTED', 'CMHandle1']
-    }
+            result == [
+                CMHandle3: [details:'Subscription forwarded to dmi plugin',status:'PENDING'] as Map,
+                CMHandle2: [details:'',status:'ACCEPTED'] as Map,
+                CMHandle1: [details:'Cm handle does not exist',status:'REJECTED'] as Map
+            ] as Map
 
-    def 'Get cm handle id to status map as expected from list of collection' () {
-        given: 'a list of collection'
-            def cmHandleCollection = [['PENDING', 'CMHandle3'], ['ACCEPTED', 'CMHandle2'], ['REJECTED', 'CMHandle1']]
-        when: 'the map is formed up with a method call'
-            def result = DataNodeHelper.getCmHandleIdToStatusMap(cmHandleCollection)
-        then: 'the map values are as expected'
-            result.keySet() == ['CMHandle3', 'CMHandle2', 'CMHandle1'] as Set
-            result.values() as List == [SubscriptionStatus.PENDING, SubscriptionStatus.ACCEPTED, SubscriptionStatus.REJECTED]
     }
-
 
     def 'Get cm handle id to status map as expected from a nested data node.'() {
         given: 'a nested data node'
@@ -79,8 +70,14 @@ class DataNodeHelperSpec extends DataNodeBaseSpec {
                 .withLeaves([clientID:'SCO-9989752', isTagged:false, subscriptionName:'cm-subscription-001'])
                 .withChildDataNodes([dataNode4]).build()
         when:'cm handle id to status is being extracted'
-            def result = DataNodeHelper.getCmHandleIdToStatusMapFromDataNodes([dataNode]);
-        then: 'the keys are retrieved as expected'
-            result.keySet() == ['CMHandle3','CMHandle2','CMHandle1'] as Set
+            def result = DataNodeHelper.cmHandleIdToStatusAndDetailsAsMapFromDataNode([dataNode]);
+        then: 'the result list size is 3'
+            result.size() == 3
+        and: 'the result contains expected values'
+            result == [
+                CMHandle3: [details:'Subscription forwarded to dmi plugin',status:'PENDING'] as Map,
+                CMHandle2: [details:'',status:'ACCEPTED'] as Map,
+                CMHandle1: [details:'Cm handle does not exist',status:'REJECTED'] as Map
+            ] as Map
     }
 }

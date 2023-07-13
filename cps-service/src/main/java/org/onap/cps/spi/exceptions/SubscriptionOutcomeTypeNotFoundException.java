@@ -1,6 +1,8 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023 Nordix Foundation
+ *  Copyright (C) 2020 Pantheon.tech
+ *  Modifications Copyright (C) 2020 Bell Canada
+ *  Modifications Copyright (C) 2020-2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -18,32 +20,30 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.subscriptions;
+package org.onap.cps.spi.exceptions;
 
+public class SubscriptionOutcomeTypeNotFoundException extends CpsException {
 
-public enum SubscriptionStatus {
-    ACCEPTED("ACCEPTED"),
-    REJECTED("REJECTED"),
-    PENDING("PENDING");
+    private static final long serialVersionUID = 7747941311132087621L;
 
-    private final String subscriptionStatusValue;
-
-    SubscriptionStatus(final String subscriptionStatusValue) {
-        this.subscriptionStatusValue = subscriptionStatusValue;
+    /**
+     * Constructor.
+     *
+     * @param message the error message
+     * @param details the error details
+     */
+    public SubscriptionOutcomeTypeNotFoundException(final String message, final String details) {
+        super(message, details);
     }
 
     /**
-     * Finds the value of the given enum.
+     * Constructor.
      *
-     * @param statusValue value of the enum
-     * @return a SubscriptionStatus
+     * @param message the error message
+     * @param details the error details
+     * @param cause   the error cause
      */
-    public static SubscriptionStatus fromString(final String statusValue) {
-        for (final SubscriptionStatus subscriptionStatusType : SubscriptionStatus.values()) {
-            if (subscriptionStatusType.subscriptionStatusValue.equalsIgnoreCase(statusValue)) {
-                return subscriptionStatusType;
-            }
-        }
-        return null;
+    public SubscriptionOutcomeTypeNotFoundException(final String message, final String details, final Throwable cause) {
+        super(message, details, cause);
     }
 }
