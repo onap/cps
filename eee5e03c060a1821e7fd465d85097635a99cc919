@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c91a747_915884c0",
+        "filename": "csit/tests/cps-data-operations/cps-data-operations.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-07-13T14:52:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0b753eae_0e14db03",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 0
+      },
+      "revId": "eee5e03c060a1821e7fd465d85097635a99cc919",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "34ef4c87_8980bec5",
@@ -64,6 +88,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb62c1ce_bc18625b",
+        "filename": "csit/tests/cps-data-operations/cps-data-operations.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-07-13T14:52:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "34ef4c87_8980bec5",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 141
+      },
+      "revId": "eee5e03c060a1821e7fd465d85097635a99cc919",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "47de4bc8_c60ed655",
@@ -77,6 +125,30 @@
       "writtenOn": "2023-07-13T14:43:21Z",
       "side": 1,
       "message": "Consume cloud event from client topic",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 64
+      },
+      "revId": "eee5e03c060a1821e7fd465d85097635a99cc919",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2025836c_b5a3a90d",
+        "filename": "csit/tests/cps-data-operations/cps-data-operations.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-07-13T14:52:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "47de4bc8_c60ed655",
       "range": {
         "startLine": 57,
         "startChar": 0,
