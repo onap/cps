@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "25b982ef_c1e2b3e5",
+        "filename": "csit/data/dataOperationReadyStateCMHandle.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-07-13T11:00:20Z",
+      "side": 1,
+      "message": "Unresolved",
+      "parentUuid": "008a62d7_39a3b7a3",
+      "range": {
+        "startLine": 5,
+        "startChar": 22,
+        "endLine": 5,
+        "endChar": 29
+      },
+      "revId": "7cb3938a140860595872b997d75deb5297ca04d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c5257691_0c3dc307",
         "filename": "csit/data/dataOperationReadyStateCMHandle.json",
         "patchSetId": 7
@@ -133,6 +157,30 @@
       "side": 1,
       "message": "then use \"850117873c9a4936856a5081be96e6a8\" or any other UUID to make it more realistic.",
       "parentUuid": "19105a28_dadd57c2",
+      "range": {
+        "startLine": 9,
+        "startChar": 21,
+        "endLine": 9,
+        "endChar": 38
+      },
+      "revId": "7cb3938a140860595872b997d75deb5297ca04d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb8eda0e_4b0fab83",
+        "filename": "csit/data/dataOperationReadyStateCMHandle.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-07-13T11:00:20Z",
+      "side": 1,
+      "message": "Unresolved",
+      "parentUuid": "637259f0_2321ecc4",
       "range": {
         "startLine": 9,
         "startChar": 21,
