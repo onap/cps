@@ -24,6 +24,7 @@ import com.hazelcast.map.IMap;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.ncmp.events.avcsubscription1_0_0.dmi_to_ncmp.SubscriptionEventResponse;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -31,8 +32,7 @@ public class ResponseTimeoutTask implements Runnable {
 
     private final IMap<String, Set<String>> forwardedSubscriptionEventCache;
     private final SubscriptionEventResponseOutcome subscriptionEventResponseOutcome;
-    private final String subscriptionClientId;
-    private final String subscriptionName;
+    private final SubscriptionEventResponse subscriptionEventResponse;
 
     @Override
     public void run() {
@@ -47,9 +47,11 @@ public class ResponseTimeoutTask implements Runnable {
     }
 
     private void generateAndSendResponse() {
+        final String subscriptionClientId = subscriptionEventResponse.getData().getClientId();
+        final String subscriptionName = subscriptionEventResponse.getData().getSubscriptionName();
         final String subscriptionEventId = subscriptionClientId + subscriptionName;
         if (forwardedSubscriptionEventCache.containsKey(subscriptionEventId)) {
-            subscriptionEventResponseOutcome.sendResponse(subscriptionClientId, subscriptionName);
+            subscriptionEventResponseOutcome.sendResponse(subscriptionEventResponse);
             forwardedSubscriptionEventCache.remove(subscriptionEventId);
         }
     }

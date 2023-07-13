@@ -20,21 +20,18 @@
 
 package org.onap.cps.ncmp.api.impl.events.avcsubscription;
 
-import java.io.Serializable;
-import java.util.Collection;
-import java.util.List;
+import io.cloudevents.CloudEvent;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.kafka.common.header.Headers;
-import org.apache.kafka.common.header.internals.RecordHeaders;
 import org.onap.cps.ncmp.api.impl.events.EventsPublisher;
+import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionOutcomeType;
 import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionPersistence;
 import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionStatus;
 import org.onap.cps.ncmp.api.impl.utils.DataNodeHelper;
-import org.onap.cps.ncmp.api.models.SubscriptionEventResponse;
-import org.onap.cps.ncmp.events.avc.subscription.v1.SubscriptionEventOutcome;
-import org.onap.cps.spi.model.DataNode;
+import org.onap.cps.ncmp.api.impl.utils.SubscriptionOutcomeCloudMapper;
+import org.onap.cps.ncmp.events.avcsubscription1_0_0.dmi_to_ncmp.SubscriptionEventResponse;
+import org.onap.cps.ncmp.events.avcsubscription1_0_0.ncmp_to_client.SubscriptionEventOutcome;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -45,7 +42,7 @@ public class SubscriptionEventResponseOutcome {
 
     private final SubscriptionPersistence subscriptionPersistence;
 
-    private final EventsPublisher<SubscriptionEventOutcome> outcomeEventsPublisher;
+    private final EventsPublisher<CloudEvent> outcomeEventsPublisher;
 
     private final SubscriptionOutcomeMapper subscriptionOutcomeMapper;
 
@@ -55,65 +52,48 @@ public class SubscriptionEventResponseOutcome {
     /**
      * This is for construction of outcome message to be published for client apps.
      *
-     * @param subscriptionClientId client id of the subscription.
-     * @param subscriptionName name of the subscription.
+     * @param subscriptionEventResponse event produced by Dmi Plugin
      */
-    public void sendResponse(final String subscriptionClientId, final String subscriptionName) {
-        final SubscriptionEventOutcome subscriptionEventOutcome = generateResponse(
-                subscriptionClientId, subscriptionName);
-        final Headers headers = new RecordHeaders();
+    public void sendResponse(final SubscriptionEventResponse subscriptionEventResponse) {
+        final SubscriptionEventOutcome subscriptionEventOutcome =
+                formSubscriptionOutcomeMessage(subscriptionEventResponse);
+        final String subscriptionClientId = subscriptionEventResponse.getData().getClientId();
+        final String subscriptionName = subscriptionEventResponse.getData().getSubscriptionName();
         final String subscriptionEventId = subscriptionClientId + subscriptionName;
-        outcomeEventsPublisher.publishEvent(subscriptionOutcomeEventTopic,
-                subscriptionEventId, headers, subscriptionEventOutcome);
+        outcomeEventsPublisher.publishCloudEvent(subscriptionOutcomeEventTopic,
+                subscriptionEventId, SubscriptionOutcomeCloudMapper.toCloudEvent(subscriptionEventOutcome));
     }
 
-    private SubscriptionEventOutcome generateResponse(final String subscriptionClientId,
-                                                      final String subscriptionName) {
-        final Collection<DataNode> dataNodes =
-                subscriptionPersistence.getCmHandlesForSubscriptionEvent(subscriptionClientId, subscriptionName);
-        final List<Map<String, Serializable>> dataNodeLeaves = DataNodeHelper.getDataNodeLeaves(dataNodes);
-        final List<Collection<Serializable>> cmHandleIdToStatus =
-                DataNodeHelper.getCmHandleIdToStatus(dataNodeLeaves);
-        final Map<String, SubscriptionStatus> cmHandleIdToStatusMap =
-                DataNodeHelper.getCmHandleIdToStatusMap(cmHandleIdToStatus);
-        return formSubscriptionOutcomeMessage(cmHandleIdToStatus, subscriptionClientId, subscriptionName,
-                isFullOutcomeResponse(cmHandleIdToStatusMap));
+    private SubscriptionEventOutcome formSubscriptionOutcomeMessage(
+            final SubscriptionEventResponse subscriptionEventResponse) {
+        final Map<String, SubscriptionStatus> cmHandleIdToStatusMapFromDb =
+                DataNodeHelper.getCmHandleIdToStatusMapFromDataNodes(
+                        subscriptionPersistence.getCmHandlesForSubscriptionEvent(
+                                subscriptionEventResponse.getData().getClientId(),
+                                subscriptionEventResponse.getData().getSubscriptionName()));
+        return fromSubscriptionEventResponse(subscriptionEventResponse,
+                isFullOutcomeResponse(cmHandleIdToStatusMapFromDb));
     }
 
     private boolean isFullOutcomeResponse(final Map<String, SubscriptionStatus> cmHandleIdToStatusMap) {
         return !cmHandleIdToStatusMap.values().contains(SubscriptionStatus.PENDING);
     }
 
-    private SubscriptionEventOutcome formSubscriptionOutcomeMessage(
-            final List<Collection<Serializable>> cmHandleIdToStatus, final String subscriptionClientId,
-            final String subscriptionName, final boolean isFullOutcomeResponse) {
-
-        final SubscriptionEventResponse subscriptionEventResponse = toSubscriptionEventResponse(
-                cmHandleIdToStatus, subscriptionClientId, subscriptionName);
+    private SubscriptionEventOutcome fromSubscriptionEventResponse(
+            final SubscriptionEventResponse subscriptionEventResponse,
+            final boolean isFullOutcomeResponse) {
 
         final SubscriptionEventOutcome subscriptionEventOutcome =
                 subscriptionOutcomeMapper.toSubscriptionEventOutcome(subscriptionEventResponse);
 
         if (isFullOutcomeResponse) {
-            subscriptionEventOutcome.setEventType(SubscriptionEventOutcome.EventType.COMPLETE_OUTCOME);
+            subscriptionEventOutcome.getData().setStatusCode(SubscriptionOutcomeType.SUCCESS.outcomeCode());
+            subscriptionEventOutcome.getData().setStatusMessage("Fully applied subscription");
         } else {
-            subscriptionEventOutcome.setEventType(SubscriptionEventOutcome.EventType.PARTIAL_OUTCOME);
+            subscriptionEventOutcome.getData().setStatusCode(SubscriptionOutcomeType.PARTIAL_SUCCESS.outcomeCode());
+            subscriptionEventOutcome.getData().setStatusMessage("Partially Applied Subscription");
         }
 
         return subscriptionEventOutcome;
-    }
-
-    private SubscriptionEventResponse toSubscriptionEventResponse(
-            final List<Collection<Serializable>> cmHandleIdToStatus, final String subscriptionClientId,
-            final String subscriptionName) {
-        final Map<String, SubscriptionStatus> cmHandleIdToStatusMap =
-                DataNodeHelper.getCmHandleIdToStatusMap(cmHandleIdToStatus);
-
-        final SubscriptionEventResponse subscriptionEventResponse = new SubscriptionEventResponse();
-        subscriptionEventResponse.setClientId(subscriptionClientId);
-        subscriptionEventResponse.setSubscriptionName(subscriptionName);
-        subscriptionEventResponse.setCmHandleIdToStatus(cmHandleIdToStatusMap);
-
-        return subscriptionEventResponse;
     }
 }

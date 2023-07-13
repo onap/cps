@@ -35,6 +35,8 @@ import org.onap.cps.ncmp.api.impl.yangmodels.YangModelSubscriptionEvent.TargetCm
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence
 import org.onap.cps.ncmp.api.kafka.MessagingBaseSpec
 import org.onap.cps.ncmp.events.avcsubscription1_0_0.client_to_ncmp.SubscriptionEvent
+import org.onap.cps.ncmp.events.avcsubscription1_0_0.dmi_to_ncmp.Data
+import org.onap.cps.ncmp.events.avcsubscription1_0_0.dmi_to_ncmp.SubscriptionEventResponse
 import org.onap.cps.ncmp.events.avcsubscription1_0_0.ncmp_to_dmi.CmHandle;
 import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.spi.exceptions.OperationNotYetSupportedException
@@ -136,6 +138,10 @@ class SubscriptionEventForwarderSpec extends MessagingBaseSpec {
         given: 'an event'
             def jsonData = TestUtils.getResourceFileContent('avcSubscriptionCreationEvent.json')
             def testEventSent = jsonObjectMapper.convertJsonString(jsonData, SubscriptionEvent.class)
+        and: 'a subscription event response'
+            def emptySubscriptionEventResponse = new SubscriptionEventResponse().withData(new Data());
+            emptySubscriptionEventResponse.getData().setSubscriptionName('cm-subscription-001');
+            emptySubscriptionEventResponse.getData().setClientId('SCO-9989752');
         and: 'the cm handles will be rejected'
             def rejectedCmHandles = [new TargetCmHandle('CMHandle1', SubscriptionStatus.REJECTED),
                                      new TargetCmHandle('CMHandle2',SubscriptionStatus.REJECTED),
@@ -177,7 +183,7 @@ class SubscriptionEventForwarderSpec extends MessagingBaseSpec {
         and: 'the persistence service save target cm handles of the yang model subscription event as rejected '
             1 * mockSubscriptionPersistence.saveSubscriptionEvent(yangModelSubscriptionEventWithRejectedCmHandles)
         and: 'subscription outcome has been sent'
-            1 * mockSubscriptionEventResponseOutcome.sendResponse('SCO-9989752', 'cm-subscription-001')
+            1 * mockSubscriptionEventResponseOutcome.sendResponse(emptySubscriptionEventResponse)
     }
 
     static def createYangModelCmHandleWithDmiProperty(id, dmiId,propertyName, propertyValue) {

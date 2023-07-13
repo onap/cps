@@ -25,10 +25,30 @@ import java.util.Iterator;
 import java.util.Map;
 
 public enum SubscriptionStatus {
-    ACCEPTED,
-    REJECTED,
-    PENDING;
+    ACCEPTED("ACCEPTED"),
+    REJECTED("REJECTED"),
+    PENDING("PENDING");
 
+    private final String subscriptionStatusValue;
+
+    SubscriptionStatus(final String subscriptionStatusValue) {
+        this.subscriptionStatusValue = subscriptionStatusValue;
+    }
+
+    /**
+     * Finds the value of the given enum.
+     *
+     * @param statusValue value of the enum
+     * @return a SubscriptionStatus
+     */
+    public static SubscriptionStatus fromString(final String statusValue) {
+        for (final SubscriptionStatus subscriptionStatusType : SubscriptionStatus.values()) {
+            if (subscriptionStatusType.subscriptionStatusValue.equalsIgnoreCase(statusValue)) {
+                return subscriptionStatusType;
+            }
+        }
+        return null;
+    }
 
     /**
      * Populates a map with a key of cm handle id and a value of subscription status.
