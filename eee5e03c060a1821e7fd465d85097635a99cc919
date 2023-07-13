@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b90081ff_27151654",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-13T14:43:21Z",
+      "side": 1,
+      "message": "pretty good, nothing blocking really, just try to be less verbose in the testware (it makes it hard to read and understand)",
+      "revId": "eee5e03c060a1821e7fd465d85097635a99cc919",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b753eae_0e14db03",
+        "filename": "csit/tests/cps-data-operations/cps-data-operations.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-13T14:43:21Z",
+      "side": 1,
+      "message": "not a fan f too many blank lines :-)",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 0
+      },
+      "revId": "eee5e03c060a1821e7fd465d85097635a99cc919",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34ef4c87_8980bec5",
+        "filename": "csit/tests/cps-data-operations/cps-data-operations.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-13T14:43:21Z",
+      "side": 1,
+      "message": "try not to write novels :-)\nsugegstion: NCMP Data Operation, forwarded to DMI, response on Client Topic",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 141
+      },
+      "revId": "eee5e03c060a1821e7fd465d85097635a99cc919",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47de4bc8_c60ed655",
+        "filename": "csit/tests/cps-data-operations/cps-data-operations.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-13T14:43:21Z",
+      "side": 1,
+      "message": "Consume cloud event from client topic",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 64
+      },
+      "revId": "eee5e03c060a1821e7fd465d85097635a99cc919",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
