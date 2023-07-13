@@ -23,14 +23,12 @@ package org.onap.cps.ncmp.api.impl.utils;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionStatus;
 import org.onap.cps.spi.model.DataNode;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -50,8 +48,8 @@ public class DataNodeHelper {
     /**
      * The leaves for each DataNode is listed as map.
      *
-     * @param dataNodes as collection.
-     * @return list of map for the all leaves.
+     * @param dataNodes as collection
+     * @return list of map for the all leaves
      */
     public static List<Map<String, Serializable>> getDataNodeLeaves(final Collection<DataNode> dataNodes) {
         return dataNodes.stream()
@@ -61,47 +59,42 @@ public class DataNodeHelper {
     }
 
     /**
-     * The cm handle and status is listed as a collection.
+     * Extracts the mapping of cm handle id to status with details from nodes leaves.
      *
-     * @param dataNodeLeaves as a list of map.
-     * @return list of collection containing cm handle id and statuses.
+     * @param dataNodeLeaves as a list of map
+     * @return cm handle id to status and details mapping
      */
-    public static List<Collection<Serializable>> getCmHandleIdToStatus(
+    public static Map<String, Map<String, String>> cmHandleIdToStatusAndDetailsAsMap(
             final List<Map<String, Serializable>> dataNodeLeaves) {
         return dataNodeLeaves.stream()
-                .map(Map::values)
-                .filter(col -> col.contains("PENDING")
-                        || col.contains("ACCEPTED")
-                        || col.contains("REJECTED"))
-                .collect(Collectors.toList());
+                .filter(entryset -> entryset.values().contains("PENDING")
+                        || entryset.values().contains("ACCEPTED")
+                        || entryset.values().contains("REJECTED"))
+                .collect(
+                        HashMap<String, Map<String, String>>::new,
+                        (result, entry) -> {
+                            final String cmHandleId = (String) entry.get("cmHandleId");
+                            final String status = (String) entry.get("status");
+                            final String details = (String) entry.get("details");
+
+                            if (cmHandleId != null && status != null) {
+                                result.put(cmHandleId, new HashMap<>());
+                                result.get(cmHandleId).put("status", status);
+                                result.get(cmHandleId).put("details", details == null ? "" : details);
+                            }
+                        },
+                        HashMap::putAll
+                );
     }
 
     /**
-     * The cm handle and status is returned as a map.
-     *
-     * @param cmHandleIdToStatus as a list of collection
-     * @return a map of cm handle id to status
-     */
-    public static Map<String, SubscriptionStatus> getCmHandleIdToStatusMap(
-            final List<Collection<Serializable>> cmHandleIdToStatus) {
-        final Map<String, SubscriptionStatus> resultMap = new HashMap<>();
-        for (final Collection<Serializable> cmHandleToStatusBucket: cmHandleIdToStatus) {
-            final Iterator<Serializable> bucketIterator = cmHandleToStatusBucket.iterator();
-            while (bucketIterator.hasNext()) {
-                SubscriptionStatus.populateCmHandleToSubscriptionStatusMap(resultMap, bucketIterator);
-            }
-        }
-        return resultMap;
-    }
-
-    /**
-     * Extracts the mapping of cm handle id to status from data node collection.
+     * Extracts the mapping of cm handle id to status with details from data node collection.
      *
      * @param dataNodes as a collection
-     * @return cm handle id to status mapping
+     * @return cm handle id to status and details mapping
      */
-    public static Map<String, SubscriptionStatus> getCmHandleIdToStatusMapFromDataNodes(
+    public static Map<String, Map<String, String>> cmHandleIdToStatusAndDetailsAsMapFromDataNode(
             final Collection<DataNode> dataNodes) {
-        return getCmHandleIdToStatusMap(getCmHandleIdToStatus(getDataNodeLeaves(dataNodes)));
+        return cmHandleIdToStatusAndDetailsAsMap(getDataNodeLeaves(dataNodes));
     }
 }

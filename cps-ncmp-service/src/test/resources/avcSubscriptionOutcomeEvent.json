@@ -1,20 +1,23 @@
 {
-  "eventType": "PARTIAL_OUTCOME",
-  "event": {
-    "subscription": {
-      "clientID": "SCO-9989752",
-      "name": "cm-subscription-001"
-    },
-    "predicates": {
-      "rejectedTargets": [
-        "CMHandle3"
+  "data": {
+    "statusCode": 104,
+    "statusMessage": "partially applied subscription",
+    "additionalInfo": {
+      "rejected": [
+        {
+          "details": "Target(s) do not exist",
+          "targets": ["CMHandle4"]
+        },
+        {
+          "details": "Faulty subscription format for target(s)",
+          "targets": ["CMHandle1", "CMHandle2", "CMHandle3"]
+        }
       ],
-      "acceptedTargets": [
-        "CMHandle1"
-      ],
-      "pendingTargets": [
-        "CMHandle4",
-        "CMHandle5"
+      "pending": [
+        {
+          "details": "EMS or node connectivity issues, retrying",
+          "targets": ["CMHandle5", "CMHandle6", "CMHandle7"]
+        }
       ]
     }
   }
