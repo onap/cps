@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4bb45477_464785ad",
+        "filename": "csit/data/dataOperationReadyStateCMHandle.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-07-13T10:20:15Z",
+      "side": 1,
+      "message": "Toine suggested sometime before to use some realistic values, But i missed to update here, Now updated with some realistic values.",
+      "parentUuid": "4e24edc1_4ad0fc53",
+      "range": {
+        "startLine": 5,
+        "startChar": 22,
+        "endLine": 5,
+        "endChar": 29
+      },
+      "revId": "7cb3938a140860595872b997d75deb5297ca04d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c5257691_0c3dc307",
@@ -47,6 +71,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "19105a28_dadd57c2",
+        "filename": "csit/data/dataOperationReadyStateCMHandle.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-07-13T10:20:15Z",
+      "side": 1,
+      "message": "Toine suggested sometime before to use some realistic values",
+      "parentUuid": "c5257691_0c3dc307",
+      "range": {
+        "startLine": 9,
+        "startChar": 21,
+        "endLine": 9,
+        "endChar": 38
+      },
+      "revId": "7cb3938a140860595872b997d75deb5297ca04d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c3c77868_70ba65da",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-07-13T09:09:44Z",
       "side": 1,
       "message": "dmipluginCsitStubBasePath",
+      "range": {
+        "startLine": 40,
+        "startChar": 2,
+        "endLine": 40,
+        "endChar": 22
+      },
+      "revId": "7cb3938a140860595872b997d75deb5297ca04d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1938289c_2e560422",
+        "filename": "csit/tests/cps-data-operations/cps-data-operations.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-07-13T10:20:15Z",
+      "side": 1,
+      "message": "It\u0027s the stub URL, BasePath is different",
+      "parentUuid": "c3c77868_70ba65da",
       "range": {
         "startLine": 40,
         "startChar": 2,
@@ -139,6 +211,78 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2cca9290_02bc4951",
+        "filename": "csit/tests/cps-data-operations/cps-data-operations.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-07-13T10:20:15Z",
+      "side": 1,
+      "message": "same as above",
+      "parentUuid": "47d71cf0_f8a33611",
+      "range": {
+        "startLine": 41,
+        "startChar": 56,
+        "endLine": 41,
+        "endChar": 76
+      },
+      "revId": "7cb3938a140860595872b997d75deb5297ca04d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4321245e_6af0a135",
+        "filename": "csit/tests/cps-data-operations/cps-data-operations.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-07-13T10:20:15Z",
+      "side": 1,
+      "message": "Toine suggested sometime before to use some realistic values",
+      "parentUuid": "5c370dc7_d3f97d2d",
+      "range": {
+        "startLine": 41,
+        "startChar": 112,
+        "endLine": 41,
+        "endChar": 129
+      },
+      "revId": "7cb3938a140860595872b997d75deb5297ca04d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "466c8676_b0d87ac7",
+        "filename": "csit/tests/cps-data-operations/cps-data-operations.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-07-13T10:20:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "686aeec9_47577e15",
+      "range": {
+        "startLine": 41,
+        "startChar": 2,
+        "endLine": 41,
+        "endChar": 26
+      },
+      "revId": "7cb3938a140860595872b997d75deb5297ca04d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c67495d7_b3b9a692",
@@ -152,6 +296,30 @@
       "writtenOn": "2023-07-13T09:09:44Z",
       "side": 1,
       "message": "dataOperationRequest.json",
+      "range": {
+        "startLine": 47,
+        "startChar": 75,
+        "endLine": 47,
+        "endChar": 111
+      },
+      "revId": "7cb3938a140860595872b997d75deb5297ca04d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc5ffd2b_1105b2c6",
+        "filename": "csit/tests/cps-data-operations/cps-data-operations.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-07-13T10:20:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c67495d7_b3b9a692",
       "range": {
         "startLine": 47,
         "startChar": 75,
@@ -185,6 +353,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6380846b_9d2a1e0f",
+        "filename": "csit/tests/cps-data-operations/cps-data-operations.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-07-13T10:20:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "50738054_58a00505",
+      "range": {
+        "startLine": 50,
+        "startChar": 129,
+        "endLine": 50,
+        "endChar": 153
+      },
+      "revId": "7cb3938a140860595872b997d75deb5297ca04d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3ed9e14f_e96b2c55",
@@ -208,6 +400,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d512f35a_755f5908",
+        "filename": "csit/tests/cps-data-operations/cps-data-operations.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-07-13T10:20:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3ed9e14f_e96b2c55",
+      "range": {
+        "startLine": 51,
+        "startChar": 8,
+        "endLine": 51,
+        "endChar": 42
+      },
+      "revId": "7cb3938a140860595872b997d75deb5297ca04d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "55843a91_b7965a07",
@@ -221,6 +437,30 @@
       "writtenOn": "2023-07-13T09:09:44Z",
       "side": 1,
       "message": "cloud event of type DataOperationEvent from client topic",
+      "range": {
+        "startLine": 57,
+        "startChar": 8,
+        "endLine": 57,
+        "endChar": 60
+      },
+      "revId": "7cb3938a140860595872b997d75deb5297ca04d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "407594c6_c79ac723",
+        "filename": "csit/tests/cps-data-operations/cps-data-operations.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7735
+      },
+      "writtenOn": "2023-07-13T10:20:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "55843a91_b7965a07",
       "range": {
         "startLine": 57,
         "startChar": 8,
