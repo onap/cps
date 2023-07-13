@@ -74,15 +74,19 @@ class SubscriptionEventConsumerSpec extends MessagingBaseSpec {
         and: 'the event is persisted'
             numberOfTimesToPersist * mockSubscriptionPersistence.saveSubscriptionEvent(yangModelSubscriptionEvent)
         and: 'the event is forwarded'
-            numberOfTimesToForward * mockSubscriptionEventForwarder.forwardCreateSubscriptionEvent(testEventSent)
+            numberOfTimesToForward * mockSubscriptionEventForwarder.forwardSubscriptionEvent(testEventSent, dataType)
         where: 'given values are used'
-            scenario                                            |  dataCategory  |   dataType     |  isNotificationEnabled     |   isModelLoaderEnabled      ||     numberOfTimesToForward        ||      numberOfTimesToPersist
-            'Both model loader and notification are enabled'    |       'CM'     |   'CREATE'     |     true                   |        true                 ||         1                         ||             1
-            'Both model loader and notification are disabled'   |       'CM'     |   'CREATE'     |     false                  |        false                ||         0                         ||             0
-            'Model loader enabled and notification  disabled'   |       'CM'     |   'CREATE'     |     false                  |        true                 ||         0                         ||             1
-            'Model loader disabled and notification enabled'    |       'CM'     |   'CREATE'     |     true                   |        false                ||         1                         ||             0
-            'Flags are enabled but data category is FM'         |       'FM'     |   'CREATE'     |     true                   |        true                 ||         0                         ||             0
-            'Flags are enabled but data type is UPDATE'         |       'CM'     |   'UPDATE'     |     true                   |        true                 ||         0                         ||             1
+            scenario                                                 | dataCategory | dataType              | isNotificationEnabled | isModelLoaderEnabled || numberOfTimesToForward || numberOfTimesToPersist
+            'Both model loader and notification are enabled'         | 'CM'         | 'subscriptionCreated' | true                  | true                 || 1                      || 1
+            'Both model loader and notification are enabled'         | 'CM'         | 'subscriptionDeleted' | true                  | true                 || 1                      || 0
+            'Both model loader and notification are disabled'        | 'CM'         | 'subscriptionCreated' | false                 | false                || 0                      || 0
+            'Both model loader and notification are disabled'        | 'CM'         | 'subscriptionDeleted' | false                 | false                || 0                      || 0
+            'Model loader enabled and notification  disabled'        | 'CM'         | 'subscriptionCreated' | false                 | true                 || 0                      || 1
+            'Model loader enabled and notification  disabled'        | 'CM'         | 'subscriptionDeleted' | false                 | true                 || 0                      || 0
+            'Model loader disabled and notification enabled'         | 'CM'         | 'subscriptionCreated' | true                  | false                || 1                      || 0
+            'Flags are enabled but data category is FM'              | 'FM'         | 'subscriptionCreated' | true                  | true                 || 0                      || 0
+            'Flags are enabled but data category is FM'              | 'FM'         | 'subscriptionDeleted' | true                  | true                 || 0                      || 0
+            'Flags are enabled but data type is subscriptionUpdated' | 'CM'         | 'subscriptionUpdated' | true                  | true                 || 0                      || 0
     }
 
     def 'Consume event with wrong datastore causes an exception'() {
@@ -94,7 +98,7 @@ class SubscriptionEventConsumerSpec extends MessagingBaseSpec {
             def testCloudEventSent = CloudEventBuilder.v1()
                 .withData(objectMapper.writeValueAsBytes(testEventSent))
                 .withId('some-event-id')
-                .withType('CREATE')
+                .withType('subscriptionCreated')
                 .withSource(URI.create('some-resource'))
                 .withExtension('correlationid', 'test-cmhandle1').build()
             def consumerRecord = new ConsumerRecord<String, SubscriptionEvent>('topic-name', 0, 0, 'event-key', testCloudEventSent)

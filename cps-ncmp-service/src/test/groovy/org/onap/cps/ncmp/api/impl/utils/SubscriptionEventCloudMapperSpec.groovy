@@ -59,7 +59,7 @@ class SubscriptionEventCloudMapperSpec extends Specification {
             def testCloudEvent = CloudEventBuilder.v1()
                 .withData(null)
                 .withId('some-event-id')
-                .withType('CREATE')
+                .withType('subscriptionCreated')
                 .withSource(URI.create('some-resource'))
                 .withExtension('correlationid', 'test-cmhandle1').build()
         when: 'the cloud event map to subscription event'
@@ -76,11 +76,11 @@ class SubscriptionEventCloudMapperSpec extends Specification {
             def testCloudEvent = CloudEventBuilder.v1()
                 .withData(objectMapper.writeValueAsBytes(testEventData))
                 .withId('some-event-key')
-                .withType('CREATE')
+                .withType('subscriptionCreated')
                 .withSource(URI.create('some-resource'))
                 .withExtension('correlationid', 'test-cmhandle1').build()
         when: 'the subscription event map to data of cloud event'
-            def resultCloudEvent = SubscriptionEventCloudMapper.toCloudEvent(testEventData, 'some-event-key')
+            def resultCloudEvent = SubscriptionEventCloudMapper.toCloudEvent(testEventData, 'some-event-key', "subscriptionCreated")
         then: 'the subscription event resulted having expected values'
             resultCloudEvent.getData() == testCloudEvent.getData()
             resultCloudEvent.getId() == testCloudEvent.getId()
@@ -93,7 +93,7 @@ class SubscriptionEventCloudMapperSpec extends Specification {
         when: 'the subscription event map to data of cloud event'
             def thrownException = null
             try {
-                SubscriptionEventCloudMapper.toCloudEvent(testNcmpSubscriptionEvent, 'some-key')
+                SubscriptionEventCloudMapper.toCloudEvent(testNcmpSubscriptionEvent, 'some-key', "subscriptionCreated")
             } catch (Exception e) {
                 thrownException  = e
             }

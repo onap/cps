@@ -65,19 +65,34 @@ public class SubscriptionEventConsumer {
                 "passthrough datastores are currently only supported for event subscriptions");
         }
         if ("CM".equals(subscriptionEvent.getData().getDataType().getDataCategory())) {
-            if (subscriptionModelLoaderEnabled) {
-                persistSubscriptionEvent(subscriptionEvent);
-            }
-            if ("CREATE".equals(cloudEvent.getType())) {
-                log.info("Subscription for ClientID {} with name {} ...",
-                        subscriptionEvent.getData().getSubscription().getClientID(),
-                        subscriptionEvent.getData().getSubscription().getName());
-                if (notificationFeatureEnabled) {
-                    subscriptionEventForwarder.forwardCreateSubscriptionEvent(subscriptionEvent);
-                }
+            if ("subscriptionCreated".equals(cloudEvent.getType())) {
+                handleSubscriptionCreateEvent(subscriptionEvent);
+            } else if ("subscriptionDeleted".equals(cloudEvent.getType())) {
+                handleSubscriptionDeleteEvent(subscriptionEvent);
             }
         } else {
             log.trace("Non-CM subscription event ignored");
+        }
+    }
+
+    private void handleSubscriptionCreateEvent(final SubscriptionEvent subscriptionEvent) {
+        if (subscriptionModelLoaderEnabled) {
+            persistSubscriptionEvent(subscriptionEvent);
+        }
+        log.info("Subscription Created Event for ClientID {} with name {} ...",
+                subscriptionEvent.getData().getSubscription().getClientID(),
+                subscriptionEvent.getData().getSubscription().getName());
+        if (notificationFeatureEnabled) {
+            subscriptionEventForwarder.forwardSubscriptionEvent(subscriptionEvent, "subscriptionCreated");
+        }
+    }
+
+    private void handleSubscriptionDeleteEvent(final SubscriptionEvent subscriptionEvent) {
+        log.info("Subscription Deleted Event for ClientID {} with name {} ...",
+                subscriptionEvent.getData().getSubscription().getClientID(),
+                subscriptionEvent.getData().getSubscription().getName());
+        if (notificationFeatureEnabled) {
+            subscriptionEventForwarder.forwardSubscriptionEvent(subscriptionEvent, "subscriptionDeleted");
         }
     }
 

@@ -74,7 +74,7 @@ public class SubscriptionEventForwarder {
      *
      * @param subscriptionEvent the event to be forwarded
      */
-    public void forwardCreateSubscriptionEvent(final SubscriptionEvent subscriptionEvent) {
+    public void forwardSubscriptionEvent(final SubscriptionEvent subscriptionEvent, final String eventType) {
         final List<String> cmHandleTargets = subscriptionEvent.getData().getPredicates().getTargets();
         if (cmHandleTargets == null || cmHandleTargets.isEmpty()
                 || cmHandleTargets.stream().anyMatch(id -> (id).contains("*"))) {
@@ -85,13 +85,13 @@ public class SubscriptionEventForwarder {
                 inventoryPersistence.getYangModelCmHandles(cmHandleTargets);
         final Map<String, Map<String, Map<String, String>>> dmiPropertiesPerCmHandleIdPerServiceName
                 = DmiServiceNameOrganizer.getDmiPropertiesPerCmHandleIdPerServiceName(yangModelCmHandles);
-        findDmisAndRespond(subscriptionEvent, cmHandleTargets, dmiPropertiesPerCmHandleIdPerServiceName);
+        findDmisAndRespond(subscriptionEvent, cmHandleTargets, dmiPropertiesPerCmHandleIdPerServiceName, eventType);
     }
 
     private void findDmisAndRespond(final SubscriptionEvent subscriptionEvent,
-                                    final List<String> cmHandleTargetsAsStrings,
-                           final Map<String, Map<String, Map<String, String>>>
-                                            dmiPropertiesPerCmHandleIdPerServiceName) {
+            final List<String> cmHandleTargetsAsStrings,
+            final Map<String, Map<String, Map<String, String>>> dmiPropertiesPerCmHandleIdPerServiceName,
+            final String eventType) {
         final List<String> cmHandlesThatExistsInDb = dmiPropertiesPerCmHandleIdPerServiceName.entrySet().stream()
                 .map(Map.Entry::getValue).map(Map::keySet).flatMap(Set::stream).collect(Collectors.toList());
 
@@ -111,7 +111,7 @@ public class SubscriptionEventForwarder {
             startResponseTimeout(subscriptionEvent, dmisToRespond);
             final org.onap.cps.ncmp.events.avcsubscription1_0_0.ncmp_to_dmi.SubscriptionEvent ncmpSubscriptionEvent =
                     clientSubscriptionEventMapper.toNcmpSubscriptionEvent(subscriptionEvent);
-            forwardEventToDmis(dmiPropertiesPerCmHandleIdPerServiceName, ncmpSubscriptionEvent);
+            forwardEventToDmis(dmiPropertiesPerCmHandleIdPerServiceName, ncmpSubscriptionEvent, eventType);
         }
     }
 
@@ -134,8 +134,8 @@ public class SubscriptionEventForwarder {
     }
 
     private void forwardEventToDmis(final Map<String, Map<String, Map<String, String>>> dmiNameCmHandleMap,
-                                    final org.onap.cps.ncmp.events.avcsubscription1_0_0.ncmp_to_dmi.SubscriptionEvent
-                                            ncmpSubscriptionEvent) {
+            final org.onap.cps.ncmp.events.avcsubscription1_0_0.ncmp_to_dmi.SubscriptionEvent ncmpSubscriptionEvent,
+            final String eventType) {
         dmiNameCmHandleMap.forEach((dmiName, cmHandlePropertiesMap) -> {
             final List<CmHandle> cmHandleTargets = cmHandlePropertiesMap.entrySet().stream().map(
                     cmHandleAndProperties -> {
@@ -150,7 +150,7 @@ public class SubscriptionEventForwarder {
             final String dmiAvcSubscriptionTopic = dmiAvcSubscriptionTopicPrefix + dmiName;
 
             final CloudEvent ncmpSubscriptionCloudEvent =
-                    SubscriptionEventCloudMapper.toCloudEvent(ncmpSubscriptionEvent, eventKey);
+                    SubscriptionEventCloudMapper.toCloudEvent(ncmpSubscriptionEvent, eventKey, eventType);
             eventsPublisher.publishCloudEvent(dmiAvcSubscriptionTopic, eventKey, ncmpSubscriptionCloudEvent);
         });
     }
