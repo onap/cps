@@ -116,8 +116,12 @@ public class CpsDataServiceImpl implements CpsDataService {
         final Anchor anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
         final Collection<DataNode> listElementDataNodeCollection =
             buildDataNodes(anchor, parentNodeXpath, jsonData, ContentType.JSON);
-        cpsDataPersistenceService.addListElements(dataspaceName, anchorName, parentNodeXpath,
-            listElementDataNodeCollection);
+        if (isRootNodeXpath(parentNodeXpath)) {
+            cpsDataPersistenceService.storeDataNodes(dataspaceName, anchorName, listElementDataNodeCollection);
+        } else {
+            cpsDataPersistenceService.addListElements(dataspaceName, anchorName, parentNodeXpath,
+                                                      listElementDataNodeCollection);
+        }
         processDataUpdatedEventAsync(anchor, parentNodeXpath, UPDATE, observedTimestamp);
     }
 
@@ -389,6 +393,10 @@ public class CpsDataServiceImpl implements CpsDataService {
     private SchemaContext getSchemaContext(final Anchor anchor) {
         return yangTextSchemaSourceSetCache
             .get(anchor.getDataspaceName(), anchor.getSchemaSetName()).getSchemaContext();
+    }
+
+    private static boolean isRootNodeXpath(final String xpath) {
+        return ROOT_NODE_XPATH.equals(xpath);
     }
 
     private void processDataNodeUpdate(final Anchor anchor, final DataNode dataNodeUpdate) {
