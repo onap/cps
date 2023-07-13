@@ -24,6 +24,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import io.cloudevents.core.builder.CloudEventBuilder
 import org.onap.cps.ncmp.events.avcsubscription1_0_0.client_to_ncmp.SubscriptionEvent
 import org.onap.cps.ncmp.utils.TestUtils
+import org.onap.cps.spi.exceptions.CloudEventConstructionException
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -45,7 +46,7 @@ class SubscriptionEventCloudMapperSpec extends Specification {
             def testCloudEvent = CloudEventBuilder.v1()
                 .withData(objectMapper.writeValueAsBytes(testEventData))
                 .withId('some-event-id')
-                .withType('CREATE')
+                .withType('subscriptionCreated')
                 .withSource(URI.create('some-resource'))
                 .withExtension('correlationid', 'test-cmhandle1').build()
         when: 'the cloud event map to subscription event'
@@ -59,7 +60,7 @@ class SubscriptionEventCloudMapperSpec extends Specification {
             def testCloudEvent = CloudEventBuilder.v1()
                 .withData(null)
                 .withId('some-event-id')
-                .withType('CREATE')
+                .withType('subscriptionCreated')
                 .withSource(URI.create('some-resource'))
                 .withExtension('correlationid', 'test-cmhandle1').build()
         when: 'the cloud event map to subscription event'
@@ -75,30 +76,29 @@ class SubscriptionEventCloudMapperSpec extends Specification {
                                 org.onap.cps.ncmp.events.avcsubscription1_0_0.ncmp_to_dmi.SubscriptionEvent.class)
             def testCloudEvent = CloudEventBuilder.v1()
                 .withData(objectMapper.writeValueAsBytes(testEventData))
-                .withId('some-event-key')
-                .withType('CREATE')
-                .withSource(URI.create('some-resource'))
+                .withId('some-id')
+                .withType('subscriptionCreated')
+                .withSource(URI.create('SCO-9989752'))
                 .withExtension('correlationid', 'test-cmhandle1').build()
         when: 'the subscription event map to data of cloud event'
-            def resultCloudEvent = SubscriptionEventCloudMapper.toCloudEvent(testEventData, 'some-event-key')
+            SubscriptionEventCloudMapper.randomId = 'some-id'
+            def resultCloudEvent = SubscriptionEventCloudMapper.toCloudEvent(testEventData, 'some-event-key', 'subscriptionCreated')
         then: 'the subscription event resulted having expected values'
             resultCloudEvent.getData() == testCloudEvent.getData()
             resultCloudEvent.getId() == testCloudEvent.getId()
             resultCloudEvent.getType() == testCloudEvent.getType()
+            resultCloudEvent.getSource() == URI.create('SCO-9989752')
+            resultCloudEvent.getDataSchema() == URI.create('urn:cps:org.onap.cps.ncmp.events.avcsubscription1_0_0.ncmp_to_dmi.SubscriptionEvent:1.0.0')
     }
 
     def 'Map the subscription event to data of the cloud event with wrong content causes an exception'() {
         given: 'an empty ncmp subscription event'
             def testNcmpSubscriptionEvent = new org.onap.cps.ncmp.events.avcsubscription1_0_0.ncmp_to_dmi.SubscriptionEvent()
         when: 'the subscription event map to data of cloud event'
-            def thrownException = null
-            try {
-                SubscriptionEventCloudMapper.toCloudEvent(testNcmpSubscriptionEvent, 'some-key')
-            } catch (Exception e) {
-                thrownException  = e
-            }
+            SubscriptionEventCloudMapper.toCloudEvent(testNcmpSubscriptionEvent, 'some-key', 'some-event-type')
         then: 'a run time exception is thrown'
-            assert thrownException instanceof RuntimeException
+            def exception = thrown(CloudEventConstructionException)
+            exception.details == 'Invalid object to serialize or required headers is missing'
     }
 
 }
