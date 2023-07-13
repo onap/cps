@@ -41,6 +41,10 @@ module subscription {
                     leaf status {
                       type string;
                     }
+
+                    leaf details {
+                        type string;
+                    }
                 }
 
                 leaf datastore {

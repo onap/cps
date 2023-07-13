@@ -22,9 +22,10 @@ package org.onap.cps.ncmp.api.impl.events.avcsubscription
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.mapstruct.factory.Mappers
-import org.onap.cps.ncmp.api.models.SubscriptionEventResponse
-import org.onap.cps.ncmp.events.avc.subscription.v1.SubscriptionEventOutcome
+import org.onap.cps.ncmp.events.avcsubscription1_0_0.dmi_to_ncmp.SubscriptionEventResponse
+import org.onap.cps.ncmp.events.avcsubscription1_0_0.dmi_to_ncmp.SubscriptionStatus
 import org.onap.cps.ncmp.utils.TestUtils
+import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -43,19 +44,49 @@ class SubscriptionOutcomeMapperSpec extends Specification {
         given: 'a Subscription Response Event'
             def subscriptionResponseJsonData = TestUtils.getResourceFileContent('avcSubscriptionEventResponse.json')
             def subscriptionResponseEvent = jsonObjectMapper.convertJsonString(subscriptionResponseJsonData, SubscriptionEventResponse.class)
-        and: 'a Subscription Outcome Event'
-            def jsonDataOutcome = TestUtils.getResourceFileContent('avcSubscriptionOutcomeEvent.json')
-            def expectedEventOutcome = jsonObjectMapper.convertJsonString(jsonDataOutcome, SubscriptionEventOutcome.class)
-            expectedEventOutcome.setEventType(expectedEventType)
         when: 'the subscription response event is mapped to a subscription event outcome'
             def result = objectUnderTest.toSubscriptionEventOutcome(subscriptionResponseEvent)
-            result.setEventType(expectedEventType)
-        then: 'the resulting subscription event outcome contains the correct clientId'
-            assert result == expectedEventOutcome
-        where: 'the following values are used'
-            scenario              || expectedEventType
-            'is full outcome'     || SubscriptionEventOutcome.EventType.COMPLETE_OUTCOME
-            'is partial outcome'  || SubscriptionEventOutcome.EventType.PARTIAL_OUTCOME
+        then: 'the resulting subscription event outcome contains expected pending targets per details grouping'
+            def pendingCmHandleTargetsPerDetails = result.getData().getAdditionalInfo().getPending()
+            assert pendingCmHandleTargetsPerDetails.get(0).getDetails() == 'EMS or node connectivity issues, retrying'
+            assert pendingCmHandleTargetsPerDetails.get(0).getTargets() == ['CMHandle5', 'CMHandle6','CMHandle7']
+        and: 'the resulting subscription event outcome contains expected rejected targets per details grouping'
+            def rejectedCmHandleTargetsPerDetails = result.getData().getAdditionalInfo().getRejected()
+            assert rejectedCmHandleTargetsPerDetails.get(0).getDetails() == 'Target(s) do not exist'
+            assert rejectedCmHandleTargetsPerDetails.get(0).getTargets() == ['CMHandle4']
+            assert rejectedCmHandleTargetsPerDetails.get(1).getDetails() == 'Faulty subscription format for target(s)'
+            assert rejectedCmHandleTargetsPerDetails.get(1).getTargets() == ['CMHandle1', 'CMHandle2','CMHandle3']
     }
 
+    def 'Map subscription event response with null of subscription status list to subscription event outcome causes an exception'() {
+        given: 'a Subscription Response Event'
+            def subscriptionResponseJsonData = TestUtils.getResourceFileContent('avcSubscriptionEventResponse.json')
+            def subscriptionResponseEvent = jsonObjectMapper.convertJsonString(subscriptionResponseJsonData, SubscriptionEventResponse.class)
+        and: 'set subscription status list to null'
+            subscriptionResponseEvent.getData().setSubscriptionStatus(subscriptionStatusList)
+        when: 'the subscription response event is mapped to a subscription event outcome'
+            def thrownException = null
+            try {
+                objectUnderTest.toSubscriptionEventOutcome(subscriptionResponseEvent)
+            } catch (DataValidationException ex) {
+                thrownException = ex
+            }
+        then: 'a DataValidationException is thrown with an expected exception details'
+            assert thrownException instanceof DataValidationException
+            assert thrownException.details.contains('SubscriptionStatus list can not be null or empty')
+        where: 'the following values are used'
+            scenario                            ||     subscriptionStatusList
+            'A null subscription status list'   ||      null
+            'An empty subscription status list' ||      new ArrayList<SubscriptionStatus>()
+    }
+
+    def 'Map subscription event response with subscription status list to subscription event outcome without any exception'() {
+        given: 'a Subscription Response Event'
+            def subscriptionResponseJsonData = TestUtils.getResourceFileContent('avcSubscriptionEventResponse.json')
+            def subscriptionResponseEvent = jsonObjectMapper.convertJsonString(subscriptionResponseJsonData, SubscriptionEventResponse.class)
+        when: 'the subscription response event is mapped to a subscription event outcome'
+            objectUnderTest.toSubscriptionEventOutcome(subscriptionResponseEvent)
+        then: 'no exception thrown'
+            noExceptionThrown()
+    }
 }

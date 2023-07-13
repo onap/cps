@@ -26,63 +26,75 @@ import java.util.stream.Collectors;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
-import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionStatus;
-import org.onap.cps.ncmp.api.models.SubscriptionEventResponse;
-import org.onap.cps.ncmp.events.avc.subscription.v1.SubscriptionEventOutcome;
+import org.onap.cps.ncmp.events.avcsubscription1_0_0.dmi_to_ncmp.SubscriptionEventResponse;
+import org.onap.cps.ncmp.events.avcsubscription1_0_0.dmi_to_ncmp.SubscriptionStatus;
+import org.onap.cps.ncmp.events.avcsubscription1_0_0.ncmp_to_client.AdditionalInfo;
+import org.onap.cps.ncmp.events.avcsubscription1_0_0.ncmp_to_client.AdditionalInfoDetail;
+import org.onap.cps.ncmp.events.avcsubscription1_0_0.ncmp_to_client.SubscriptionEventOutcome;
+import org.onap.cps.spi.exceptions.DataValidationException;
 
 @Mapper(componentModel = "spring")
 public interface SubscriptionOutcomeMapper {
 
-    @Mapping(source = "clientId", target = "event.subscription.clientID")
-    @Mapping(source = "subscriptionName", target = "event.subscription.name")
-    @Mapping(source = "cmHandleIdToStatus", target = "event.predicates.rejectedTargets",
-            qualifiedByName = "mapStatusToCmHandleRejected")
-    @Mapping(source = "cmHandleIdToStatus", target = "event.predicates.acceptedTargets",
-            qualifiedByName = "mapStatusToCmHandleAccepted")
-    @Mapping(source = "cmHandleIdToStatus", target = "event.predicates.pendingTargets",
-            qualifiedByName = "mapStatusToCmHandlePending")
-    SubscriptionEventOutcome toSubscriptionEventOutcome(
-            SubscriptionEventResponse subscriptionEventResponse);
+    @Mapping(source = "data.subscriptionStatus", target = "data.additionalInfo",
+            qualifiedByName = "mapListOfSubscriptionStatusToAdditionalInfo")
+    SubscriptionEventOutcome toSubscriptionEventOutcome(SubscriptionEventResponse subscriptionEventResponse);
 
     /**
-     * Maps StatusToCMHandle to list of TargetCmHandle rejected.
+     * Maps list of SubscriptionStatus to an AdditionalInfo.
      *
-     * @param targets as a map
-     * @return TargetCmHandle list
+     * @param subscriptionStatusList containing details
+     * @return an AdditionalInfo
      */
-    @Named("mapStatusToCmHandleRejected")
-    default List<Object> mapStatusToCmHandleRejected(Map<String, SubscriptionStatus> targets) {
-        return targets.entrySet()
-                .stream().filter(target -> SubscriptionStatus.REJECTED.equals(target.getValue()))
-                .map(Map.Entry::getKey)
-                .collect(Collectors.toList());
+    @Named("mapListOfSubscriptionStatusToAdditionalInfo")
+    default AdditionalInfo mapListOfSubscriptionStatusToAdditionalInfo(
+            final List<SubscriptionStatus> subscriptionStatusList) {
+        if (subscriptionStatusList == null || subscriptionStatusList.isEmpty()) {
+            throw new DataValidationException("Invalid subscriptionStatusList",
+                    "SubscriptionStatus list can not be null or empty");
+        }
+
+        final List<AdditionalInfoDetail> rejectedCmHandles = getAdditionalInfoDetailList(
+                getCmHandlesPerDetails(getSubscriptionsPerDetails(subscriptionStatusList,
+                        SubscriptionStatus.Status.REJECTED)));
+
+        final List<AdditionalInfoDetail> pendingCmHandles = getAdditionalInfoDetailList(
+                getCmHandlesPerDetails(getSubscriptionsPerDetails(subscriptionStatusList,
+                        SubscriptionStatus.Status.PENDING)));
+
+        final AdditionalInfo additionalInfo = new AdditionalInfo();
+        additionalInfo.setRejected(rejectedCmHandles);
+        additionalInfo.setPending(pendingCmHandles);
+
+        return additionalInfo;
     }
 
-    /**
-     * Maps StatusToCMHandle to list of TargetCmHandle accepted.
-     *
-     * @param targets as a map
-     * @return TargetCmHandle list
-     */
-    @Named("mapStatusToCmHandleAccepted")
-    default List<Object> mapStatusToCmHandleAccepted(Map<String, SubscriptionStatus> targets) {
-        return targets.entrySet()
-                .stream().filter(target -> SubscriptionStatus.ACCEPTED.equals(target.getValue()))
-                .map(Map.Entry::getKey)
-                .collect(Collectors.toList());
+    private static Map<String, List<SubscriptionStatus>> getSubscriptionsPerDetails(
+            final List<SubscriptionStatus> subscriptionStatusList, final SubscriptionStatus.Status status) {
+        return subscriptionStatusList.stream()
+                .filter(subscriptionStatus -> subscriptionStatus.getStatus() == status)
+                .collect(Collectors.groupingBy(SubscriptionStatus::getDetails));
     }
 
-    /**
-     * Maps StatusToCMHandle to list of TargetCmHandle pending.
-     *
-     * @param targets as a map
-     * @return TargetCmHandle list
-     */
-    @Named("mapStatusToCmHandlePending")
-    default List<Object> mapStatusToCmHandlePending(Map<String, SubscriptionStatus> targets) {
-        return targets.entrySet()
-                .stream().filter(target -> SubscriptionStatus.PENDING.equals(target.getValue()))
-                .map(Map.Entry::getKey)
-                .collect(Collectors.toList());
+    private static Map<String, List<String>> getCmHandlesPerDetails(
+            final Map<String, List<SubscriptionStatus>> subscriptionsPerDetails) {
+        return subscriptionsPerDetails.entrySet().stream()
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        entry -> entry.getValue().stream()
+                                .map(SubscriptionStatus::getId)
+                                .collect(Collectors.toList())
+                ));
+    }
+
+    private static List<AdditionalInfoDetail> getAdditionalInfoDetailList(
+            final Map<String, List<String>> cmHandlesPerDetails) {
+        return cmHandlesPerDetails.entrySet().stream()
+                .map(entry -> {
+                    final AdditionalInfoDetail detail = new AdditionalInfoDetail();
+                    detail.setDetails(entry.getKey());
+                    detail.setTargets(entry.getValue());
+                    return detail;
+                }).collect(Collectors.toList());
     }
 }

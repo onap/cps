@@ -25,7 +25,6 @@ import java.util.stream.Collectors;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
-import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionStatus;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelSubscriptionEvent;
 import org.onap.cps.ncmp.events.avcsubscription1_0_0.client_to_ncmp.SubscriptionEvent;
 
@@ -47,8 +46,7 @@ public interface SubscriptionEventMapper {
      */
     @Named("mapTargetsToCmHandleTargets")
     default List<YangModelSubscriptionEvent.TargetCmHandle> mapTargetsToCmHandleTargets(List<String> targets) {
-        return targets.stream().map(target -> new YangModelSubscriptionEvent.TargetCmHandle(target,
-                        SubscriptionStatus.PENDING))
+        return targets.stream().map(target -> new YangModelSubscriptionEvent.TargetCmHandle(target))
                 .collect(Collectors.toList());
     }
 }
