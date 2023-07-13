@@ -1,6 +1,7 @@
 {
   "comments": [
     {
+      "unresolved": true,
       "key": {
         "uuid": "4a80afbe_36274f31",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/QueryRestController.java",
@@ -20,10 +21,10 @@
         "endChar": 55
       },
       "revId": "8da3d7b0b8f2a50ae888996aeb1e46a012a727fe",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": true
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "eb657e7d_9dbfeb5a",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/QueryRestController.java",
@@ -44,10 +45,10 @@
         "endChar": 55
       },
       "revId": "8da3d7b0b8f2a50ae888996aeb1e46a012a727fe",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": true
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "629f8148_1a966660",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/QueryRestController.java",
@@ -68,10 +69,10 @@
         "endChar": 55
       },
       "revId": "8da3d7b0b8f2a50ae888996aeb1e46a012a727fe",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": true
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "e8c65a87_ece9e002",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
@@ -91,10 +92,10 @@
         "endChar": 122
       },
       "revId": "8da3d7b0b8f2a50ae888996aeb1e46a012a727fe",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": true
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "f016435d_62af5f01",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
@@ -115,10 +116,10 @@
         "endChar": 122
       },
       "revId": "8da3d7b0b8f2a50ae888996aeb1e46a012a727fe",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": true
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "6bd7fb24_bea317e7",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
@@ -138,10 +139,10 @@
         "endChar": 96
       },
       "revId": "8da3d7b0b8f2a50ae888996aeb1e46a012a727fe",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": true
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "2afac927_34011b6a",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
@@ -162,10 +163,34 @@
         "endChar": 96
       },
       "revId": "8da3d7b0b8f2a50ae888996aeb1e46a012a727fe",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": true
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad3ae27f_310621e0",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-07-13T13:20:00Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2afac927_34011b6a",
+      "range": {
+        "startLine": 357,
+        "startChar": 19,
+        "endLine": 358,
+        "endChar": 96
+      },
+      "revId": "8da3d7b0b8f2a50ae888996aeb1e46a012a727fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "78dd6a66_176b26c7",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsQueryServiceImplSpec.groovy",
@@ -179,10 +204,10 @@
       "side": 1,
       "message": "Should be a test in this class with different pagination values",
       "revId": "8da3d7b0b8f2a50ae888996aeb1e46a012a727fe",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": true
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "4350969b_b5cd128a",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsQueryServiceImplSpec.groovy",
@@ -197,10 +222,10 @@
       "message": "Addressed",
       "parentUuid": "78dd6a66_176b26c7",
       "revId": "8da3d7b0b8f2a50ae888996aeb1e46a012a727fe",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": false
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "0272d140_48b7d19e",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
@@ -220,10 +245,10 @@
         "endChar": 59
       },
       "revId": "8da3d7b0b8f2a50ae888996aeb1e46a012a727fe",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": true
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "9fe31af8_beb7d377",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
@@ -243,10 +268,10 @@
         "endChar": 226
       },
       "revId": "8da3d7b0b8f2a50ae888996aeb1e46a012a727fe",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": true
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "52eadc83_992f3a5a",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
@@ -267,8 +292,31 @@
         "endChar": 226
       },
       "revId": "8da3d7b0b8f2a50ae888996aeb1e46a012a727fe",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": true
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2b06390_eb33c0e3",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 21
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-07-13T13:20:00Z",
+      "side": 1,
+      "message": "Yeah but this doesn\u0027t validate that the correct data is being returned per anchor, it could just be returning anchor 1s data every time, this is the main test on the sql so I think it needs to be validated. should have different data under each anchor, if this test case is added then would be +1 for me",
+      "parentUuid": "52eadc83_992f3a5a",
+      "range": {
+        "startLine": 353,
+        "startChar": 203,
+        "endLine": 353,
+        "endChar": 226
+      },
+      "revId": "8da3d7b0b8f2a50ae888996aeb1e46a012a727fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
