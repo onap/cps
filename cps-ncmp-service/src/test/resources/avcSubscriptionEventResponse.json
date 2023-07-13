@@ -1,11 +1,44 @@
 {
-  "clientId": "SCO-9989752",
-  "subscriptionName": "cm-subscription-001",
-  "dmiName": "ncmp-dmi-plugin",
-  "cmHandleIdToStatus": {
-    "CMHandle1": "ACCEPTED",
-    "CMHandle3": "REJECTED",
-    "CMHandle4": "PENDING",
-    "CMHandle5": "PENDING"
+  "data": {
+    "clientId": "SCO-9989752",
+    "subscriptionName": "cm-subscription-001",
+    "dmiName": "dminame1",
+    "subscriptionStatus": [
+      {
+        "id": "CMHandle1",
+        "status": "REJECTED",
+        "details": "Faulty subscription format for target(s)"
+      },
+      {
+        "id": "CMHandle2",
+        "status": "REJECTED",
+        "details": "Faulty subscription format for target(s)"
+      },
+      {
+        "id": "CMHandle3",
+        "status": "REJECTED",
+        "details": "Faulty subscription format for target(s)"
+      },
+      {
+        "id": "CMHandle4",
+        "status": "REJECTED",
+        "details": "Target(s) do not exist"
+      },
+      {
+        "id": "CMHandle5",
+        "status": "PENDING",
+        "details": "EMS or node connectivity issues, retrying"
+      },
+      {
+        "id": "CMHandle6",
+        "status": "PENDING",
+        "details": "EMS or node connectivity issues, retrying"
+      },
+      {
+        "id": "CMHandle7",
+        "status": "PENDING",
+        "details": "EMS or node connectivity issues, retrying"
+      }
+    ]
   }
 }

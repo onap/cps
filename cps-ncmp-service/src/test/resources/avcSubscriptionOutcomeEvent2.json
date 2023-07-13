@@ -1,0 +1,20 @@
+{
+  "data": {
+    "statusCode": 601,
+    "statusMessage": "Partially Applied Subscription",
+    "additionalInfo": {
+      "rejected": [
+        {
+          "details": "Cm handle does not exist",
+          "targets": ["CMHandle1"]
+        }
+      ],
+      "pending": [
+        {
+          "details": "Subscription forwarded to dmi plugin",
+          "targets": ["CMHandle3"]
+        }
+      ]
+    }
+  }
+}

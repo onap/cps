@@ -22,9 +22,8 @@ package org.onap.cps.ncmp.api.impl.events.avcsubscription
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.mapstruct.factory.Mappers
-import org.onap.cps.ncmp.api.impl.events.avcsubscription.SubscriptionEventResponseMapper
 import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionStatus
-import org.onap.cps.ncmp.api.models.SubscriptionEventResponse
+import org.onap.cps.ncmp.events.avcsubscription1_0_0.dmi_to_ncmp.SubscriptionEventResponse;
 import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.beans.factory.annotation.Autowired
@@ -50,13 +49,12 @@ class SubscriptionEventResponseMapperSpec extends Specification {
             assert result.clientId == "SCO-9989752"
         and: 'subscription name'
             assert result.subscriptionName == "cm-subscription-001"
-        and: 'predicate targets '
-            assert result.predicates.targetCmHandles.cmHandleId == ["CMHandle1", "CMHandle3", "CMHandle4", "CMHandle5"]
+        and: 'predicate targets cm handle size as expected'
+            assert result.predicates.targetCmHandles.size() == 7
+        and: 'predicate targets cm handle ids as expected'
+            assert result.predicates.targetCmHandles.cmHandleId == ["CMHandle1", "CMHandle2", "CMHandle3", "CMHandle4", "CMHandle5", "CMHandle6", "CMHandle7"]
         and: 'the status for these targets is set to expected values'
-            assert result.predicates.targetCmHandles.status == [SubscriptionStatus.ACCEPTED, SubscriptionStatus.REJECTED,
-            SubscriptionStatus.PENDING, SubscriptionStatus.PENDING]
-        and: 'the topic is null'
-            assert result.topic == null
+            assert result.predicates.targetCmHandles.status == [SubscriptionStatus.REJECTED, SubscriptionStatus.REJECTED, SubscriptionStatus.REJECTED, SubscriptionStatus.REJECTED, SubscriptionStatus.PENDING, SubscriptionStatus.PENDING, SubscriptionStatus.PENDING]
     }
 
 }

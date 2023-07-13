@@ -81,9 +81,18 @@ public class YangModelSubscriptionEvent {
         @JsonProperty()
         private final SubscriptionStatus status;
 
+        @JsonProperty()
+        private final String details;
+
+        /**
+         * Constructor with single parameter for TargetCmHandle.
+         *
+         * @param cmHandleId as cm handle id
+         */
         public TargetCmHandle(final String cmHandleId) {
             this.cmHandleId = cmHandleId;
             this.status = SubscriptionStatus.PENDING;
+            this.details = "Subscription forwarded to dmi plugin";
         }
     }
 }

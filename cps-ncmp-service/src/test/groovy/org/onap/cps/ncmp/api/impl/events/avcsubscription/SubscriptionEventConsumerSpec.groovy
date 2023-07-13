@@ -89,7 +89,7 @@ class SubscriptionEventConsumerSpec extends MessagingBaseSpec {
         given: 'an event'
             def jsonData = TestUtils.getResourceFileContent('avcSubscriptionCreationEvent.json')
             def testEventSent = jsonObjectMapper.convertJsonString(jsonData, SubscriptionEvent.class)
-        and: 'datastore is set to a non passthrough datastore'
+        and: 'datastore is set to a passthrough-running datastore'
             testEventSent.getData().getPredicates().setDatastore('operational')
             def testCloudEventSent = CloudEventBuilder.v1()
                 .withData(objectMapper.writeValueAsBytes(testEventSent))
@@ -99,9 +99,16 @@ class SubscriptionEventConsumerSpec extends MessagingBaseSpec {
                 .withExtension('correlationid', 'test-cmhandle1').build()
             def consumerRecord = new ConsumerRecord<String, SubscriptionEvent>('topic-name', 0, 0, 'event-key', testCloudEventSent)
         when: 'the valid event is consumed'
-            objectUnderTest.consumeSubscriptionEvent(consumerRecord)
+            def thrownException = null;
+            try {
+                objectUnderTest.consumeSubscriptionEvent(consumerRecord)
+            } catch (Exception ex) {
+                thrownException = ex;
+            }
+
         then: 'an operation not yet supported exception is thrown'
-            thrown(OperationNotYetSupportedException)
+            assert thrownException instanceof OperationNotYetSupportedException
+            assert thrownException.details.contains('passthrough-running datastores are currently only supported for event subscriptions')
     }
 
 }
