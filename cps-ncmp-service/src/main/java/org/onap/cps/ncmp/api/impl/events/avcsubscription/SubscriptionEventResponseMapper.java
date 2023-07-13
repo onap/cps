@@ -21,36 +21,35 @@
 package org.onap.cps.ncmp.api.impl.events.avcsubscription;
 
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
-import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionStatus;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelSubscriptionEvent;
-import org.onap.cps.ncmp.api.models.SubscriptionEventResponse;
+import org.onap.cps.ncmp.events.avcsubscription1_0_0.dmi_to_ncmp.SubscriptionEventResponse;
+import org.onap.cps.ncmp.events.avcsubscription1_0_0.dmi_to_ncmp.SubscriptionStatus;
 
 @Mapper(componentModel = "spring")
 public interface SubscriptionEventResponseMapper {
 
-    @Mapping(source = "clientId", target = "clientId")
-    @Mapping(source = "subscriptionName", target = "subscriptionName")
-    @Mapping(source = "cmHandleIdToStatus", target = "predicates.targetCmHandles",
-            qualifiedByName = "mapStatusToCmHandleTargets")
+    @Mapping(source = "data.clientId", target = "clientId")
+    @Mapping(source = "data.subscriptionName", target = "subscriptionName")
+    @Mapping(source = "data.subscriptionStatus", target = "predicates.targetCmHandles",
+            qualifiedByName = "mapSubscriptionStatusToCmHandleTargets")
     YangModelSubscriptionEvent toYangModelSubscriptionEvent(
             SubscriptionEventResponse subscriptionEventResponse);
 
     /**
-     * Maps StatusToCMHandle to list of TargetCmHandle.
+     * Maps SubscriptionStatus to list of TargetCmHandle.
      *
-     * @param targets as a map
+     * @param subscriptionStatus as a list
      * @return TargetCmHandle list
      */
-    @Named("mapStatusToCmHandleTargets")
-    default List<YangModelSubscriptionEvent.TargetCmHandle> mapStatusToCmHandleTargets(
-            Map<String, SubscriptionStatus> targets) {
-        return targets.entrySet().stream().map(target ->
-                new YangModelSubscriptionEvent.TargetCmHandle(target.getKey(), target.getValue())).collect(
-                Collectors.toList());
+    @Named("mapSubscriptionStatusToCmHandleTargets")
+    default List<YangModelSubscriptionEvent.TargetCmHandle> mapSubscriptionStatusToCmHandleTargets(
+            List<SubscriptionStatus> subscriptionStatus) {
+        return subscriptionStatus.stream().map(status -> new YangModelSubscriptionEvent.TargetCmHandle(status.getId(),
+                org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionStatus.fromString(status.getStatus().value()),
+                        status.getDetails())).collect(Collectors.toList());
     }
 }
