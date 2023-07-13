@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cda2fb0f_0dc27a4f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 25
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2023-07-13T17:38:00Z",
+      "side": 1,
+      "message": "Added changes to service layer. Can be re-reviewed",
+      "revId": "eb9086d408f26a6b86875acb5d33af1e545dbf60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
