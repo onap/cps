@@ -62,15 +62,16 @@ public class SubscriptionEventCloudMapper {
      *
      * @param ncmpSubscriptionEvent object.
      * @param eventKey as String.
+     * @param eventType as String.
      * @return CloudEvent builded.
      */
     public static CloudEvent toCloudEvent(
             final org.onap.cps.ncmp.events.avcsubscription1_0_0.ncmp_to_dmi.SubscriptionEvent ncmpSubscriptionEvent,
-            final String eventKey) {
+            final String eventKey, final String eventType) {
         try {
             return CloudEventBuilder.v1()
                     .withData(objectMapper.writeValueAsBytes(ncmpSubscriptionEvent))
-                    .withId(eventKey).withType("CREATE").withSource(
+                    .withId(eventKey).withType(eventType).withSource(
                             URI.create(ncmpSubscriptionEvent.getData().getSubscription().getClientID())).build();
         } catch (final Exception ex) {
             throw new RuntimeException("The Cloud Event could not be constructed.", ex);
