@@ -1,6 +1,7 @@
 {
   "comments": [
     {
+      "unresolved": true,
       "key": {
         "uuid": "11adb51e_3c150726",
         "filename": "cps-rest/docs/openapi/components.yml",
@@ -20,10 +21,34 @@
         "endChar": 44
       },
       "revId": "eb1c7b98ebbf603a5efe2062b3da357782206ca4",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": true
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "27c9738b_a71fa59d",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 13
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-13T14:27:33Z",
+      "side": 1,
+      "message": "teh name is acceptable although itemsPerPage is clearer\nThe description defintion can be made clearer.. Also what is an \u0027item\u0027 in this context ?! A Yang element, an anchor or something else ?",
+      "parentUuid": "11adb51e_3c150726",
+      "range": {
+        "startLine": 283,
+        "startChar": 2,
+        "endLine": 285,
+        "endChar": 44
+      },
+      "revId": "eb1c7b98ebbf603a5efe2062b3da357782206ca4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "f18df649_7a0e26b4",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
@@ -37,10 +62,10 @@
       "side": 1,
       "message": "There needs to be a dedicated test in this class for the use case, Multiple anchors with separate data needed",
       "revId": "eb1c7b98ebbf603a5efe2062b3da357782206ca4",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": true
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "d166ea85_ac05e96c",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
@@ -55,10 +80,10 @@
       "message": "Done",
       "parentUuid": "f18df649_7a0e26b4",
       "revId": "eb1c7b98ebbf603a5efe2062b3da357782206ca4",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": false
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "a9018d19_31c9a0de",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
@@ -78,10 +103,10 @@
         "endChar": 152
       },
       "revId": "eb1c7b98ebbf603a5efe2062b3da357782206ca4",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": true
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "d4c51f2d_84faf530",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
@@ -102,8 +127,7 @@
         "endChar": 152
       },
       "revId": "eb1c7b98ebbf603a5efe2062b3da357782206ca4",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": false
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
