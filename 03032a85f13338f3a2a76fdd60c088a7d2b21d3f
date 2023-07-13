@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee7e7fe1_cda04d89",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-07-13T09:32:39Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6a3ef36b_91b67ebc",
+      "range": {
+        "startLine": 86,
+        "startChar": 15,
+        "endLine": 86,
+        "endChar": 55
+      },
+      "revId": "03032a85f13338f3a2a76fdd60c088a7d2b21d3f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bf78d7c5_b80cbe3d",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-07-13T08:43:35Z",
       "side": 1,
       "message": "This need to be \n- dmi-stub\n- dmi-service",
+      "range": {
+        "startLine": 120,
+        "startChar": 6,
+        "endLine": 120,
+        "endChar": 29
+      },
+      "revId": "03032a85f13338f3a2a76fdd60c088a7d2b21d3f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "036a5271_61926254",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-07-13T09:32:39Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "bf78d7c5_b80cbe3d",
       "range": {
         "startLine": 120,
         "startChar": 6,
