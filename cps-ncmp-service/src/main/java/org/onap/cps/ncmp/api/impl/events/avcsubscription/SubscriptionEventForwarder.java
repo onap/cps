@@ -74,7 +74,7 @@ public class SubscriptionEventForwarder {
      *
      * @param subscriptionEvent the event to be forwarded
      */
-    public void forwardCreateSubscriptionEvent(final SubscriptionEvent subscriptionEvent) {
+    public void forwardSubscriptionEvent(final SubscriptionEvent subscriptionEvent) {
         final List<String> cmHandleTargets = subscriptionEvent.getData().getPredicates().getTargets();
         if (cmHandleTargets == null || cmHandleTargets.isEmpty()
                 || cmHandleTargets.stream().anyMatch(id -> (id).contains("*"))) {
