@@ -59,14 +59,15 @@ class SubscriptionPersistenceSpec extends Specification {
                 SUBSCRIPTION_REGISTRY_PARENT,
                 '{"subscription":[{' +
                     '"topic":"some-topic",' +
-                    '"predicates":{"datastore":"some-datastore","targetCmHandles":[{"cmHandleId":"cmhandle1","status":"PENDING"},{"cmHandleId":"cmhandle2","status":"PENDING"}]},' +
+                    '"predicates":{"datastore":"some-datastore","targetCmHandles":[{"cmHandleId":"cmhandle1","status":"PENDING","details":"Subscription forwarded to dmi plugin"},' +
+                    '{"cmHandleId":"cmhandle2","status":"PENDING","details":"Subscription forwarded to dmi plugin"}]},' +
                     '"clientID":"some-client-id","subscriptionName":"some-subscription-name","isTagged":true}]}',
                 NO_TIMESTAMP)
    }
 
     def 'add or replace cm handle list element into db' () {
         given: 'a data node with child node exist in db'
-            def leaves1 = [status:'PENDING', cmHandleId:'cmhandle1'] as Map
+            def leaves1 = [status:'REJECTED', cmHandleId:'cmhandle1', details:'Cm handle does not exist'] as Map
             def childDataNode = new DataNodeBuilder().withDataspace('NCMP-Admin')
                 .withAnchor('AVC-Subscriptions').withXpath('/subscription-registry/subscription')
                 .withLeaves(leaves1).build()
@@ -81,11 +82,11 @@ class SubscriptionPersistenceSpec extends Specification {
             objectUnderTest.saveSubscriptionEvent(yangModelSubscriptionEvent)
         then: 'the cpsDataService save non-existing cm handle with the correct data'
             1 * mockCpsDataService.saveListElements(SUBSCRIPTION_DATASPACE_NAME, SUBSCRIPTION_ANCHOR_NAME,
-                SUBSCRIPTION_REGISTRY_PREDICATES_XPATH, '{"targetCmHandles":[{"cmHandleId":"cmhandle2","status":"PENDING"}]}',
+                SUBSCRIPTION_REGISTRY_PREDICATES_XPATH, '{"targetCmHandles":[{"cmHandleId":"cmhandle2","status":"PENDING","details":"Subscription forwarded to dmi plugin"}]}',
                 NO_TIMESTAMP)
         and: 'the cpsDataService update existing cm handle with the correct data'
             1 * mockCpsDataService.updateNodeLeaves(SUBSCRIPTION_DATASPACE_NAME, SUBSCRIPTION_ANCHOR_NAME,
-                SUBSCRIPTION_REGISTRY_PREDICATES_XPATH, '{"targetCmHandles":[{"cmHandleId":"cmhandle1","status":"PENDING"}]}',
+                SUBSCRIPTION_REGISTRY_PREDICATES_XPATH, '{"targetCmHandles":[{"cmHandleId":"cmhandle1","status":"PENDING","details":"Subscription forwarded to dmi plugin"}]}',
                 NO_TIMESTAMP)
     }
 

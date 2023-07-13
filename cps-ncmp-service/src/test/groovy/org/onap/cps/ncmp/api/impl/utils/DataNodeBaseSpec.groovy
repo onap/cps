@@ -25,13 +25,13 @@ import spock.lang.Specification
 
 class DataNodeBaseSpec extends Specification {
 
-    def leaves1 = [status:'PENDING', cmHandleId:'CMHandle3'] as Map
+    def leaves1 = [status:'PENDING', cmHandleId:'CMHandle3', details:'Subscription forwarded to dmi plugin'] as Map
     def dataNode1 = createDataNodeWithLeaves(leaves1)
 
-    def leaves2 = [status:'ACCEPTED', cmHandleId:'CMHandle2'] as Map
+    def leaves2 = [status:'ACCEPTED', cmHandleId:'CMHandle2', details:''] as Map
     def dataNode2 = createDataNodeWithLeaves(leaves2)
 
-    def leaves3 = [status:'REJECTED', cmHandleId:'CMHandle1'] as Map
+    def leaves3 = [status:'REJECTED', cmHandleId:'CMHandle1', details:'Cm handle does not exist'] as Map
     def dataNode3 = createDataNodeWithLeaves(leaves3)
 
     def leaves4 = [datastore:'passthrough-running'] as Map
