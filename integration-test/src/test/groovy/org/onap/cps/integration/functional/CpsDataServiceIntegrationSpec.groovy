@@ -43,11 +43,13 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
 
     CpsDataService objectUnderTest
     def originalCountBookstoreChildNodes
+    def originalCountBookstoreTopLevelListNodes
     def now = OffsetDateTime.now()
 
     def setup() {
         objectUnderTest = cpsDataService
         originalCountBookstoreChildNodes = countDataNodesInBookstore()
+        originalCountBookstoreTopLevelListNodes = countTopLevelListDataNodesInBookstore()
     }
 
     def 'Read bookstore top-level container(s) using #fetchDescendantsOption.'() {
@@ -73,9 +75,9 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
         when: 'get data nodes for bookstore container'
             def result = objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, root, OMIT_DESCENDANTS)
         then: 'the tree consist ouf of one data node'
-            assert countDataNodesInTree(result) == 1
+            assert countDataNodesInTree(result) == 2
         and: 'the top level data node has the expected attribute and value'
-            assert result.leaves['bookstore-name'] == ['Easons']
+            assert result.leaves.size() == 2
         where: 'the following variations of "root" are used'
             root << [ '/', '' ]
     }
@@ -177,6 +179,21 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
             objectUnderTest.deleteDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, ['/does/not/exist'], now)
         then: 'a  datanode not found (batch) exception is thrown'
             thrown(DataNodeNotFoundExceptionBatch)
+    }
+
+    def 'Add and Delete top-level list (element) data nodes with root node.'() {
+        given: 'a new (multiple-data-tree:invoice) datanodes'
+            def json = '{"multiple-data-tree:invoice": [{"ProductID": "2","ProductName": "Mango","price": "150","stock": true}]}'
+        when: 'the new list elements are saved'
+            objectUnderTest.saveListElements(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1 , '/', json, now)
+        then: 'they can be retrieved by their xpaths'
+            objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1 , '/invoice[@ProductID ="2"]', INCLUDE_ALL_DESCENDANTS)
+        and: 'there is one extra datanode'
+            assert originalCountBookstoreTopLevelListNodes + 1 == countTopLevelListDataNodesInBookstore()
+        when: 'the new elements are deleted'
+            objectUnderTest.deleteDataNode(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1 , '/invoice[@ProductID ="2"]', now)
+        then: 'the original number of datanodes is restored'
+            assert originalCountBookstoreTopLevelListNodes == countTopLevelListDataNodesInBookstore()
     }
 
     def 'Add and Delete list (element) data nodes.'() {
@@ -367,5 +384,9 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
 
     def countDataNodesInBookstore() {
         return countDataNodesInTree(objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore', INCLUDE_ALL_DESCENDANTS))
+    }
+
+    def countTopLevelListDataNodesInBookstore() {
+        return countDataNodesInTree(objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/', INCLUDE_ALL_DESCENDANTS))
     }
 }
