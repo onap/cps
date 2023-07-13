@@ -288,9 +288,10 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             1 * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch({ assert it.every { entry -> entry.value == CmHandleState.DELETING } })
         and: 'a response is received for all cm-handles'
             response.removedCmHandles.size() == 3
-        and: 'successfully de-registered cm handle entries are removed from in progress map'
+        and: 'successfully de-registered cm handle 1 is removed from in progress map'
             1 * mockModuleSyncStartedOnCmHandles.remove('cmhandle1')
-            1 * mockModuleSyncStartedOnCmHandles.remove('cmhandle3')
+        and: 'successfully de-registered cm handle 3 is removed from in progress map even though it was already being removed'
+            1 * mockModuleSyncStartedOnCmHandles.remove('cmhandle3') >> 'already in progress'
         and: 'failed de-registered cm handle entries should not be removed from in progress map'
             0 * mockModuleSyncStartedOnCmHandles.remove('cmhandle2')
         and: '1st and 3rd cm-handle deletes successfully'

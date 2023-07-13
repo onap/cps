@@ -295,26 +295,17 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
      */
     public List<CmHandleRegistrationResponse> parseAndCreateCmHandlesInDmiRegistrationAndSyncModules(
             final DmiPluginRegistration dmiPluginRegistration) {
-        List<CmHandleRegistrationResponse> cmHandleRegistrationResponses = new ArrayList<>();
         final Map<YangModelCmHandle, CmHandleState> cmHandleStatePerCmHandle = new HashMap<>();
-        try {
-            dmiPluginRegistration.getCreatedCmHandles()
-                    .forEach(cmHandle -> {
-                        final YangModelCmHandle yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle(
-                                dmiPluginRegistration.getDmiPlugin(),
-                                dmiPluginRegistration.getDmiDataPlugin(),
-                                dmiPluginRegistration.getDmiModelPlugin(),
-                                cmHandle);
-                        cmHandleStatePerCmHandle.put(yangModelCmHandle, CmHandleState.ADVISED);
-                    });
-            cmHandleRegistrationResponses = registerNewCmHandles(cmHandleStatePerCmHandle);
-        } catch (final DataValidationException dataValidationException) {
-            cmHandleRegistrationResponses.add(CmHandleRegistrationResponse.createFailureResponse(dmiPluginRegistration
-                            .getCreatedCmHandles().stream()
-                            .map(NcmpServiceCmHandle::getCmHandleId).findFirst().orElse(null),
-                    RegistrationError.CM_HANDLE_INVALID_ID));
-        }
-        return cmHandleRegistrationResponses;
+        dmiPluginRegistration.getCreatedCmHandles()
+                .forEach(cmHandle -> {
+                    final YangModelCmHandle yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle(
+                            dmiPluginRegistration.getDmiPlugin(),
+                            dmiPluginRegistration.getDmiDataPlugin(),
+                            dmiPluginRegistration.getDmiModelPlugin(),
+                            cmHandle);
+                    cmHandleStatePerCmHandle.put(yangModelCmHandle, CmHandleState.ADVISED);
+                });
+        return registerNewCmHandles(cmHandleStatePerCmHandle);
     }
 
     protected List<CmHandleRegistrationResponse> parseAndRemoveCmHandlesInDmiRegistration(
