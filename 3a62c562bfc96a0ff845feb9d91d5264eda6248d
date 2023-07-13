@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e0f1202_fde642c9",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/PrefixResolver.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-07-13T10:11:31Z",
+      "side": 1,
+      "message": "NB : Give some logical/readable variable name.",
+      "range": {
+        "startLine": 103,
+        "startChar": 19,
+        "endLine": 103,
+        "endChar": 21
+      },
+      "revId": "3a62c562bfc96a0ff845feb9d91d5264eda6248d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a2e6324_f5c22eb4",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/PrefixResolver.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-07-13T10:11:31Z",
+      "side": 1,
+      "message": "pathParsingException",
+      "range": {
+        "startLine": 104,
+        "startChar": 44,
+        "endLine": 104,
+        "endChar": 45
+      },
+      "revId": "3a62c562bfc96a0ff845feb9d91d5264eda6248d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
