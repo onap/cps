@@ -116,6 +116,27 @@ class CpsDataServiceImplSpec extends Specification {
             'xml'           | '<invalid xml'          | ContentType.JSON
     }
 
+    def 'Saving list element data fragment under Root node.'() {
+        given: 'schema set for given anchor and dataspace references bookstore model'
+            setupSchemaSetMocks('bookstore.yang')
+        when: 'save data method is invoked with list element json data'
+            def jsonData = '{"multiple-data-tree:invoice": [{"ProductID": "2","ProductName": "Banana","price": "100","stock": True}]}'
+            objectUnderTest.saveListElements(dataspaceName, anchorName, '/', jsonData, observedTimestamp)
+        then: 'the persistence service method is invoked with correct parameters'
+            1 * mockCpsDataPersistenceService.storeDataNodes(dataspaceName, anchorName,
+                { dataNodeCollection ->
+                    {
+                        assert dataNodeCollection.size() == 1
+                        assert dataNodeCollection.collect { it.getXpath() }
+                            .containsAll(['/invoice[@ProductID=\'2\']'])
+                    }
+                }
+            )
+        and: 'the CpsValidator is called on the dataspaceName and AnchorName'
+            1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
+        and: 'data updated event is sent to notification service'
+            1 * mockNotificationService.processDataUpdatedEvent(anchor, '/', Operation.UPDATE, observedTimestamp)
+    }
 
     def 'Saving child data fragment under existing node.'() {
         given: 'schema set for given anchor and dataspace references test-tree model'
