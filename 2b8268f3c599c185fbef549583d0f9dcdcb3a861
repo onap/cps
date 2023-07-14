@@ -33,6 +33,23 @@
       "message": "looks fine to me.\n- we already checked the openapi yaml files are generating fine with the new generators with jdk11 , I hope its the same with jdk17.\n- I hope there is no problem with the aggregate reports formation for jacoco",
       "revId": "2b8268f3c599c185fbef549583d0f9dcdcb3a861",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e04807a9_20625f10",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2023-07-14T11:15:07Z",
+      "side": 1,
+      "message": "run-sonar",
+      "revId": "2b8268f3c599c185fbef549583d0f9dcdcb3a861",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ],
   "submitRequirementResults": []
