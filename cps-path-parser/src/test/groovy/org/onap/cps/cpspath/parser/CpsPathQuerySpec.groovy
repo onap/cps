@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Copyright (C) 2021-2023 Nordix Foundation
  *  Modifications Copyright (C) 2023 TechMahindra Ltd
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -32,12 +32,12 @@ class CpsPathQuerySpec extends Specification {
         when: 'the given cps path is parsed'
             def result = CpsPathQuery.createFrom(cpsPath)
         then: 'the query has the right xpath type'
-            result.cpsPathPrefixType == ABSOLUTE
+            assert result.cpsPathPrefixType == ABSOLUTE
         and: 'the right query parameters are set'
-            result.xpathPrefix == expectedXpathPrefix
-            result.hasLeafConditions()
-            result.leavesData.containsKey(expectedLeafName)
-            result.leavesData.get(expectedLeafName) == expectedLeafValue
+            assert result.xpathPrefix == expectedXpathPrefix
+            assert result.hasLeafConditions()
+            assert result.leavesData.get(0).name == expectedLeafName
+            assert result.leavesData.get(0).value == expectedLeafValue
         where: 'the following data is used'
             scenario               | cpsPath                                                    || expectedXpathPrefix                             | expectedLeafName       | expectedLeafValue
             'leaf of type String'  | '/parent/child[@common-leaf-name="common-leaf-value"]'     || '/parent/child'                                 | 'common-leaf-name'     | 'common-leaf-value'
@@ -103,31 +103,24 @@ class CpsPathQuerySpec extends Specification {
             'descendant anywhere'  | '//xpath'  || '//xpath'
     }
 
-    def 'Parse cps path that ends with a yang list containing #scenario.'() {
+    def 'Parse cps path that ends with a yang list containing multiple leaf conditions.'() {
         when: 'the given cps path is parsed'
             def result = CpsPathQuery.createFrom(cpsPath)
-        then: 'the query has the right xpath type'
-            result.cpsPathPrefixType == DESCENDANT
-        and: 'the right parameters are set'
-            result.descendantName == "child"
+        then: 'the expected number of leaves are returned'
             result.leavesData.size() == expectedNumberOfLeaves
         and: 'the given operator(s) returns in the correct order'
             result.booleanOperators == expectedOperators
         and: 'the given comparativeOperator(s) returns in the correct order'
             result.comparativeOperators == expectedComparativeOperator
         where: 'the following data is used'
-            scenario                                                      | cpsPath                                                                                   || expectedNumberOfLeaves || expectedOperators || expectedComparativeOperator
-            'one attribute'                                               | '//child[@common-leaf-name-int=5]'                                                        || 1                      || []                || ['=']
-            'more than one attribute has AND operator'                    | '//child[@int-leaf=5 and @leaf-name="leaf value"]'                                        || 2                      || ['and']           || ['=', '=']
-            'more than one attribute has OR operator'                     | '//child[@int-leaf=5 or @leaf-name="leaf value"]'                                         || 2                      || ['or']            || ['=', '=']
-            'more than one attribute has combinations AND operators'      | '//child[@int-leaf=5 and @common-leaf-name="leaf value" and @leaf-name="leaf value1" ]'   || 3                      || ['and', 'and']    || ['=', '=', '=']
-            'more than one attribute has combinations OR operators'       | '//child[@int-leaf=5 or @common-leaf-name="leaf value" or @leaf-name="leaf value1" ]'     || 3                      || ['or', 'or']      || ['=', '=', '=']
-            'more than one attribute has combinations AND/OR combination' | '//child[@int-leaf=5 and @common-leaf-name="leaf value" or @leaf-name="leaf value1" ]'    || 3                      || ['and', 'or']     || ['=', '=', '=']
-            'more than one attribute has combinations OR/AND combination' | '//child[@int-leaf=5 or @common-leaf-name="leaf value" and @leaf-name="leaf value1" ]'    || 3                      || ['or', 'and']     || ['=', '=', '=']
-            'more than one attribute has AND/> operators'                 | '//child[@int-leaf>15 and @leaf-name="leaf value"]'                                       || 2                      || ['and']           || ['>', '=']
-            'more than one attribute has OR/< operators'                  | '//child[@int-leaf<5 or @leaf-name="leaf value"]'                                         || 2                      || ['or']            || ['<', '=']
-            'more than one attribute has combinations AND/>= operators'   | '//child[@int-leaf>=18 and @common-leaf-name="leaf value" and @leaf-name="leaf value1" ]' || 3                      || ['and', 'and']    || ['>=', '=', '=']
-            'more than one attribute has combinations OR/<= operators'    | '//child[@int-leaf<=25 or @common-leaf-name="leaf value" or @leaf-name="leaf value1" ]'   || 3                      || ['or', 'or']      || ['<=', '=', '=']
+            cpsPath                                                                                   || expectedNumberOfLeaves || expectedOperators || expectedComparativeOperator
+            '/parent[@code=1]/child[@common-leaf-name-int=5]'                                         || 1                      || []                || ['=']
+            '//child[@int-leaf>15 and @leaf-name="leaf value"]'                                       || 2                      || ['and']           || ['>', '=']
+            '//child[@int-leaf<5 or @leaf-name="leaf value"]'                                         || 2                      || ['or']            || ['<', '=']
+            '//child[@int-leaf=5 and @common-leaf-name="leaf value" or @leaf-name="leaf value1" ]'    || 3                      || ['and', 'or']     || ['=', '=', '=']
+            '//child[@int-leaf=5 or @common-leaf-name="leaf value" and @leaf-name="leaf value1" ]'    || 3                      || ['or', 'and']     || ['=', '=', '=']
+            '//child[@int-leaf>=18 and @common-leaf-name="leaf value" and @leaf-name="leaf value1" ]' || 3                      || ['and', 'and']    || ['>=', '=', '=']
+            '//child[@int-leaf<=25 or @common-leaf-name="leaf value" or @leaf-name="leaf value1" ]'   || 3                      || ['or', 'or']      || ['<=', '=', '=']
     }
 
     def 'Parse #scenario cps path with text function condition'() {
@@ -220,4 +213,28 @@ class CpsPathQuerySpec extends Specification {
             'container with list-parent' | '//parent[@id=1]/child'               || "parent[@id='1']/child"  | false
             'container with list-parent' | '//parent[@id=1]/child[@name="test"]' || "parent[@id='1']/child"  | true
     }
+
+    def 'Leaf condition can contain duplicate leaf name in boolean condition.'() {
+        when: 'the given cps path is parsed using duplicate leaf name'
+            def result = CpsPathQuery.createFrom('/test[@same-name="value1" or @same-name="value2"]')
+        then: 'two leaves are present with correct values'
+            assert result.leavesData.size() == 2
+            assert result.leavesData.get(0).name == "same-name"
+            assert result.leavesData.get(0).value == "value1"
+            assert result.leavesData.get(1).name == "same-name"
+            assert result.leavesData.get(1).value == "value2"
+    }
+
+    def 'Ordering of data leaves is preserved.'() {
+        when: 'the given cps path is parsed'
+            def result = CpsPathQuery.createFrom(cpsPath)
+        then: 'the order of the data leaves is preserved'
+            assert result.leavesData.get(0).name == expectedFirstLeafName
+            assert result.leavesData.get(1).name == expectedSecondLeafName
+        where: 'the following data is used'
+            cpsPath                                      || expectedFirstLeafName | expectedSecondLeafName
+            '/test[@name1="value1" and @name2="value2"]' || 'name1'               | 'name2'
+            '/test[@name2="value2" and @name1="value1"]' || 'name2'               | 'name1'
+    }
+
 }
