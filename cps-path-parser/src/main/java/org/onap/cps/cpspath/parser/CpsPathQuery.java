@@ -24,8 +24,9 @@ package org.onap.cps.cpspath.parser;
 import static org.onap.cps.cpspath.parser.CpsPathPrefixType.ABSOLUTE;
 
 import java.util.List;
-import java.util.Map;
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -39,7 +40,7 @@ public class CpsPathQuery {
     private List<String> containerNames;
     private CpsPathPrefixType cpsPathPrefixType = ABSOLUTE;
     private String descendantName;
-    private Map<String, Object> leavesData;
+    private List<DataLeaf> leavesData;
     private String ancestorSchemaNodeIdentifier = "";
     private String textFunctionConditionLeafName;
     private String textFunctionConditionValue;
@@ -103,4 +104,11 @@ public class CpsPathQuery {
         return cpsPathPrefixType == ABSOLUTE && hasLeafConditions();
     }
 
+    @Getter
+    @EqualsAndHashCode
+    @AllArgsConstructor
+    public static class DataLeaf {
+        private final String name;
+        private final Object value;
+    }
 }
