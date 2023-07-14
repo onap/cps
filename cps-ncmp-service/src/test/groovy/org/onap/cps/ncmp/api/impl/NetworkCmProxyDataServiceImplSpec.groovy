@@ -54,6 +54,7 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import spock.lang.Specification
 
+import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.OPERATIONAL
 import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_OPERATIONAL
 import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RUNNING
 import static org.onap.cps.ncmp.api.impl.operations.OperationType.CREATE
@@ -108,31 +109,36 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     }
 
     def 'Get resource data for pass-through operational from DMI.'() {
-        given: 'get data node is called'
+        given: 'cpsDataService returns valid data node'
             mockDataNode()
         and: 'get resource data from DMI is called'
-            mockDmiDataOperations.getResourceDataFromDmi(PASSTHROUGH_OPERATIONAL.datastoreName,'testCmHandle',
-                    'testResourceId', OPTIONS_PARAM, NO_TOPIC, NO_REQUEST_ID) >>
+            mockDmiDataOperations.getResourceDataFromDmi(PASSTHROUGH_OPERATIONAL.datastoreName,'testCmHandle', 'testResourceId', OPTIONS_PARAM, NO_TOPIC, NO_REQUEST_ID) >>
                     new ResponseEntity<>('dmi-response', HttpStatus.OK)
         when: 'get resource data operational for cm-handle is called'
-            def response = objectUnderTest.getResourceDataForCmHandle(PASSTHROUGH_OPERATIONAL.datastoreName, 'testCmHandle',
-                    'testResourceId', OPTIONS_PARAM, NO_TOPIC, NO_REQUEST_ID)
+            def response = objectUnderTest.getResourceDataForCmHandle(PASSTHROUGH_OPERATIONAL.datastoreName, 'testCmHandle', 'testResourceId', OPTIONS_PARAM, NO_TOPIC, NO_REQUEST_ID)
         then: 'DMI returns a json response'
-            response == 'dmi-response'
+            assert response == 'dmi-response'
     }
 
     def 'Get resource data for pass-through running from DMI.'() {
         given: 'cpsDataService returns valid data node'
             mockDataNode()
         and: 'DMI returns valid response and data'
-            mockDmiDataOperations.getResourceDataFromDmi(PASSTHROUGH_RUNNING.datastoreName, 'testCmHandle',
-                    'testResourceId', OPTIONS_PARAM, NO_TOPIC, NO_REQUEST_ID) >>
+            mockDmiDataOperations.getResourceDataFromDmi(PASSTHROUGH_RUNNING.datastoreName, 'testCmHandle', 'testResourceId', OPTIONS_PARAM, NO_TOPIC, NO_REQUEST_ID) >>
                     new ResponseEntity<>('{dmi-response}', HttpStatus.OK)
         when: 'get resource data is called'
-            def response = objectUnderTest.getResourceDataForCmHandle(PASSTHROUGH_RUNNING.datastoreName, 'testCmHandle',
-                    'testResourceId', OPTIONS_PARAM, NO_TOPIC, NO_REQUEST_ID)
+            def response = objectUnderTest.getResourceDataForCmHandle(PASSTHROUGH_RUNNING.datastoreName, 'testCmHandle', 'testResourceId', OPTIONS_PARAM, NO_TOPIC, NO_REQUEST_ID)
         then: 'get resource data returns expected response'
-            response == '{dmi-response}'
+            assert response == '{dmi-response}'
+    }
+
+    def 'Get resource data for operational (cached) data.'() {
+        given: 'CPS Data service returns some object(s)'
+            mockCpsDataService.getDataNodes(OPERATIONAL.datastoreName, 'testCmHandle', 'testResourceId', FetchDescendantsOption.OMIT_DESCENDANTS) >> ['First Object', 'other Object']
+        when: 'get resource data is called'
+            def response = objectUnderTest.getResourceDataForCmHandle(OPERATIONAL.datastoreName, 'testCmHandle', 'testResourceId', FetchDescendantsOption.OMIT_DESCENDANTS)
+        then: 'get resource data returns teh first object from the data service'
+            assert response == 'First Object'
     }
 
     def 'Execute (async) data operation for #datastoreName from DMI.'() {
@@ -243,7 +249,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
                 >> { new ResponseEntity<>(HttpStatus.OK) }
     }
 
-    def 'Verify modules and create anchor params'() {
+    def 'Verify modules and create anchor params.'() {
         given: 'dmi plugin registration return created cm handles'
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'service1', dmiModelPlugin: 'service1',
                     dmiDataPlugin: 'service2')
@@ -253,17 +259,15 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             objectUnderTest.parseAndCreateCmHandlesInDmiRegistrationAndSyncModules(mockDmiPluginRegistration)
         then: 'system persists the cm handle state'
             1 * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(_) >> {
-                args ->
-                    {
-                        def cmHandleStatePerCmHandle = (args[0] as Map)
-                        cmHandleStatePerCmHandle.each {
-                            assert (it.key.id == 'test-cm-handle-id'
-                                    && it.value == CmHandleState.ADVISED)
-                        }
+                args -> {
+                          def cmHandleStatePerCmHandle = (args[0] as Map)
+                          cmHandleStatePerCmHandle.each {
+                            assert it.key.id == 'test-cm-handle-id' && it.value == CmHandleState.ADVISED
+                          }
                     }
             }
     }
-
+    
     def 'Execute cm handle id search'() {
         given: 'valid CmHandleQueryApiParameters input'
             def cmHandleQueryApiParameters = new CmHandleQueryApiParameters()
