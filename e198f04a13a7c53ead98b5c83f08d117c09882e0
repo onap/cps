@@ -163,6 +163,30 @@
       },
       "revId": "e198f04a13a7c53ead98b5c83f08d117c09882e0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f403edf_9cc22637",
+        "filename": "spotbugs/src/main/resources/spotbugs-exclude.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2023-07-14T10:09:45Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "fa8b4d54_abf7f6cc",
+      "range": {
+        "startLine": 52,
+        "startChar": 5,
+        "endLine": 54,
+        "endChar": 9
+      },
+      "revId": "e198f04a13a7c53ead98b5c83f08d117c09882e0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
