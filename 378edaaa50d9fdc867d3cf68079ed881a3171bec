@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fee8f7e_69b195d1",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-07-14T11:41:43Z",
+      "side": 1,
+      "message": "There is a utility method for this now:\n\n    EscapeUtils.escapeForSqlLike(xpath)",
+      "range": {
+        "startLine": 68,
+        "startChar": 36,
+        "endLine": 68,
+        "endChar": 103
+      },
+      "revId": "378edaaa50d9fdc867d3cf68079ed881a3171bec",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84fd115d_4567c409",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsDataServiceIntegrationSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-07-14T11:41:43Z",
+      "side": 1,
+      "message": "Indentation is wrong",
+      "range": {
+        "startLine": 125,
+        "startChar": 0,
+        "endLine": 141,
+        "endChar": 64
+      },
+      "revId": "378edaaa50d9fdc867d3cf68079ed881a3171bec",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
