@@ -39,6 +39,30 @@
       },
       "revId": "eb9086d408f26a6b86875acb5d33af1e545dbf60",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d91de99d_7fa10dfb",
+        "filename": "integration-test/src/test/resources/data/bookstore/bookstore.yang",
+        "patchSetId": 25
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2023-07-14T15:21:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b8e59f41_37842e83",
+      "range": {
+        "startLine": 19,
+        "startChar": 4,
+        "endLine": 19,
+        "endChar": 6
+      },
+      "revId": "eb9086d408f26a6b86875acb5d33af1e545dbf60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
