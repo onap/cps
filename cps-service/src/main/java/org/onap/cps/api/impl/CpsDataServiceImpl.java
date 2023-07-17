@@ -351,7 +351,7 @@ public class CpsDataServiceImpl implements CpsDataService {
                     .withContainerNode(containerNode)
                     .buildCollection();
             if (dataNodes.isEmpty()) {
-                throw new DataValidationException("Invalid data.", "No data nodes provided");
+                throw new DataValidationException("No data nodes.", "No data nodes provided");
             }
             return dataNodes;
         }
@@ -363,7 +363,7 @@ public class CpsDataServiceImpl implements CpsDataService {
             .withContainerNode(containerNode)
             .buildCollection();
         if (dataNodes.isEmpty()) {
-            throw new DataValidationException("Invalid data.", "No data nodes provided");
+            throw new DataValidationException("No data nodes.", "No data nodes provided");
         }
         return dataNodes;
     }
@@ -381,7 +381,7 @@ public class CpsDataServiceImpl implements CpsDataService {
         try {
             notificationService.processDataUpdatedEvent(anchor, xpath, operation, observedTimestamp);
         } catch (final Exception exception) {
-            //If async message can't be queued for notification service, the initial request should not failed.
+            //If async message can't be queued for notification service, the initial request should not fail.
             log.error("Failed to send message to notification service", exception);
         }
     }
@@ -392,9 +392,6 @@ public class CpsDataServiceImpl implements CpsDataService {
     }
 
     private void processDataNodeUpdate(final Anchor anchor, final DataNode dataNodeUpdate) {
-        if (dataNodeUpdate == null) {
-            return;
-        }
         cpsDataPersistenceService.batchUpdateDataLeaves(anchor.getDataspaceName(), anchor.getName(),
                 Collections.singletonMap(dataNodeUpdate.getXpath(), dataNodeUpdate.getLeaves()));
         final Collection<DataNode> childDataNodeUpdates = dataNodeUpdate.getChildDataNodes();

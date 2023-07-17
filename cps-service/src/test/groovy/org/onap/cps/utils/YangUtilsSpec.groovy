@@ -44,9 +44,9 @@ class YangUtilsSpec extends Specification {
         then: 'qualified name of children created is as expected'
             result.body().getAt(index).getIdentifier().nodeType == QName.create('org:onap:ccsdk:multiDataTree', '2020-09-15', nodeName)
         where:
-            index   | nodeName
-            0       | 'first-container'
-            1       | 'last-container'
+            index | nodeName
+            0     | 'first-container'
+            1     | 'last-container'
     }
 
     def 'Parsing a valid #scenario String.'() {
