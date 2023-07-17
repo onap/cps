@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "00045008_7e990c3b",
+        "filename": "cps-path-parser/src/main/antlr4/org/onap/cps/cpspath/parser/antlr4/CpsPath.g4",
+        "patchSetId": 2
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-07-17T14:24:43Z",
+      "side": 1,
+      "message": "Done. And yes, I copied the rules for quotes from the XPath 3.1 Lexer",
+      "parentUuid": "9d14e807_1b26b23e",
+      "range": {
+        "startLine": 63,
+        "startChar": 3,
+        "endLine": 63,
+        "endChar": 86
+      },
+      "revId": "09cc1b7dba6dd9d0d8e313f11b85344304440bb9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d7c522a3_c51add1e",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-07-17T11:00:42Z",
       "side": 1,
       "message": "NB: how did we get away without these before?!",
+      "range": {
+        "startLine": 46,
+        "startChar": 4,
+        "endLine": 46,
+        "endChar": 12
+      },
+      "revId": "09cc1b7dba6dd9d0d8e313f11b85344304440bb9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6836d45c_58ac9364",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-07-17T14:24:43Z",
+      "side": 1,
+      "message": "Not sure, maybe checkstyle doesn\u0027t care about package-private fields?",
+      "parentUuid": "d7c522a3_c51add1e",
       "range": {
         "startLine": 46,
         "startChar": 4,
@@ -87,6 +135,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ebd4b35_8016e331",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-07-17T14:24:43Z",
+      "side": 1,
+      "message": "-\u003e\u003e Extract JSON object field with the given key, as text.\n\n    \u0027{\"a\":1,\"b\":2}\u0027::json -\u003e\u003e \u0027b\u0027 → 2\n\n@\u003e Does the first JSON value contain the second?\n\n    \u0027{\"a\":1, \"b\":2}\u0027::json @\u003e \u0027{\"b\":2}\u0027::json → t",
+      "parentUuid": "6b36f748_8985da36",
+      "range": {
+        "startLine": 137,
+        "startChar": 56,
+        "endLine": 137,
+        "endChar": 60
+      },
+      "revId": "09cc1b7dba6dd9d0d8e313f11b85344304440bb9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2b11a705_2bff6bd9",
@@ -100,6 +172,30 @@
       "writtenOn": "2023-07-17T11:00:42Z",
       "side": 1,
       "message": "suggestion: maybe use teh \u0027forSomethign\u0027 Pattern here as well (not suer if teh by-bit is still needed then but it up to our preference",
+      "range": {
+        "startLine": 33,
+        "startChar": 25,
+        "endLine": 33,
+        "endChar": 57
+      },
+      "revId": "09cc1b7dba6dd9d0d8e313f11b85344304440bb9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "912f9e76_2a13d059",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/utils/EscapeUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-07-17T14:24:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2b11a705_2bff6bd9",
       "range": {
         "startLine": 33,
         "startChar": 25,
