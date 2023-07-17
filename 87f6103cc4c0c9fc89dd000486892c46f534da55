@@ -35,6 +35,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "453f46c7_8442579d",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBooleanOperatorType.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-07-17T13:24:38Z",
+      "side": 1,
+      "message": "Yes, the CpsPathQuery always used strings, not enum:\n\n    private List\u003cString\u003e booleanOperators;\n    private List\u003cString\u003e comparativeOperators;",
+      "parentUuid": "c28d90f2_689e5388",
+      "revId": "87f6103cc4c0c9fc89dd000486892c46f534da55",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "135b1e18_a2793d45",
@@ -48,6 +66,30 @@
       "writtenOn": "2023-07-17T12:09:11Z",
       "side": 1,
       "message": "suggestion: I think this can be simplified to leavesData[0]",
+      "range": {
+        "startLine": 39,
+        "startChar": 26,
+        "endLine": 39,
+        "endChar": 43
+      },
+      "revId": "87f6103cc4c0c9fc89dd000486892c46f534da55",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "956c8071_ad122020",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathQuerySpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-07-17T13:24:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "135b1e18_a2793d45",
       "range": {
         "startLine": 39,
         "startChar": 26,
@@ -104,6 +146,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dbc18c9d_b74da30f",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathQuerySpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-07-17T13:24:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "326d79c5_50d960d7",
+      "range": {
+        "startLine": 217,
+        "startChar": 36,
+        "endLine": 217,
+        "endChar": 55
+      },
+      "revId": "87f6103cc4c0c9fc89dd000486892c46f534da55",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0814ff73_0d59f746",
@@ -117,6 +183,30 @@
       "writtenOn": "2023-07-17T12:09:11Z",
       "side": 1,
       "message": "[0]",
+      "range": {
+        "startLine": 222,
+        "startChar": 36,
+        "endLine": 222,
+        "endChar": 43
+      },
+      "revId": "87f6103cc4c0c9fc89dd000486892c46f534da55",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "33dbb3f6_707774c6",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathQuerySpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-07-17T13:24:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0814ff73_0d59f746",
       "range": {
         "startLine": 222,
         "startChar": 36,
