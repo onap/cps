@@ -50,6 +50,23 @@
       "message": "recheck",
       "revId": "46d92642586fcb3d05a728ec518f262ae63fc7b1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18c978f0_c29b5d06",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2023-07-17T10:47:00Z",
+      "side": 1,
+      "message": "Unexpected indentation.",
+      "revId": "46d92642586fcb3d05a728ec518f262ae63fc7b1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
