@@ -64,26 +64,6 @@ class CpsDataServiceImplSpec extends Specification {
     def anchor = Anchor.builder().name(anchorName).dataspaceName(dataspaceName).schemaSetName(schemaSetName).build()
     def observedTimestamp = OffsetDateTime.now()
 
-    def 'Saving multicontainer json data.'() {
-        given: 'schema set for given anchor and dataspace references test-tree model'
-            setupSchemaSetMocks('multipleDataTree.yang')
-        when: 'save data method is invoked with test-tree json data'
-            def jsonData = TestUtils.getResourceFileContent('multiple-object-data.json')
-            objectUnderTest.saveData(dataspaceName, anchorName, jsonData, observedTimestamp)
-        then: 'the persistence service method is invoked with correct parameters'
-            1 * mockCpsDataPersistenceService.storeDataNodes(dataspaceName, anchorName,
-                { dataNode -> dataNode.xpath[index] == xpath })
-        and: 'the CpsValidator is called on the dataspaceName and AnchorName'
-            1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
-        and: 'data updated event is sent to notification service'
-            1 * mockNotificationService.processDataUpdatedEvent(anchor, '/', Operation.CREATE, observedTimestamp)
-        where:
-            index   |   xpath
-                0   | '/first-container'
-                1   | '/last-container'
-
-    }
-
     def 'Saving #scenario data.'() {
         given: 'schema set for given anchor and dataspace references test-tree model'
             setupSchemaSetMocks('test-tree.yang')
@@ -103,19 +83,32 @@ class CpsDataServiceImplSpec extends Specification {
             'xml'    | 'test-tree.xml'  | ContentType.XML
     }
 
-    def 'Saving #scenarioDesired data with invalid data.'() {
+    def 'Saving data with error: #scenario.'() {
         given: 'schema set for given anchor and dataspace references test-tree model'
-        setupSchemaSetMocks('test-tree.yang')
+            setupSchemaSetMocks('test-tree.yang')
         when: 'save data method is invoked with test-tree json data'
             objectUnderTest.saveData(dataspaceName, anchorName, invalidData, observedTimestamp, contentType)
-        then: 'a data validation exception is thrown'
-            thrown(DataValidationException)
+        then: 'a data validation exception is thrown with the correct message'
+            def exceptionThrown  = thrown(DataValidationException)
+            assert exceptionThrown.message.startsWith(expectedMessage)
         where: 'given parameters'
-            scenarioDesired | invalidData             | contentType
-            'json'          | '{invalid  json'        | ContentType.XML
-            'xml'           | '<invalid xml'          | ContentType.JSON
+            scenario        | invalidData     | contentType      || expectedMessage
+            'no data nodes' | '{}'            | ContentType.JSON || 'No data nodes'
+            'invalid json'  | '{invalid json' | ContentType.JSON || 'Failed to parse json data'
+            'invalid xml'   | '<invalid xml'  | ContentType.XML  || 'Failed to parse xml data'
     }
 
+    def 'Saving #scenarioDesired data exception during notification.'() {
+        given: 'schema set for given anchor and dataspace references test-tree model'
+            setupSchemaSetMocks('test-tree.yang')
+        and: 'the notification service throws an exception'
+            mockNotificationService.processDataUpdatedEvent(*_) >> { throw new RuntimeException('to be ignored')}
+        when: 'save data method is invoked with test-tree json data'
+            def data = TestUtils.getResourceFileContent('test-tree.json')
+            objectUnderTest.saveData(dataspaceName, anchorName, data, observedTimestamp)
+        then: 'the exception is ignored'
+            noExceptionThrown()
+    }
 
     def 'Saving child data fragment under existing node.'() {
         given: 'schema set for given anchor and dataspace references test-tree model'
@@ -235,12 +228,12 @@ class CpsDataServiceImplSpec extends Specification {
         then: 'the persistence service method is invoked with correct parameters'
             thrown(DataValidationException)
         where: 'following parameters were used'
-            scenario          | jsonData
+            scenario                  | jsonData
             'multiple expectedLeaves' | '{"code": "01","name": "some-name"}'
-            'one leaf'        | '{"name": "some-name"}'
+            'one leaf'                | '{"name": "some-name"}'
     }
 
-    def 'Update multiple data nodes' () {
+    def 'Update data nodes in different containers.' () {
         given: 'schema set for given dataspace and anchor refers multipleDataTree model'
             setupSchemaSetMocks('multipleDataTree.yang')
         and: 'json string with multiple data trees'
@@ -258,21 +251,23 @@ class CpsDataServiceImplSpec extends Specification {
             index | expectedNodeXpath
             0     | '/first-container'
             1     | '/last-container'
-
     }
 
-    def 'Update Bookstore node leaves' () {
+    def 'Update Bookstore node leaves and child.' () {
         given: 'a DMI registry model'
             setupSchemaSetMocks('bookstore.yang')
-        and: 'the expected json string'
-            def jsonData = '{"categories":[{"code":01,"name":"Romance"}]}'
+        and: 'json update for a category (parent) and new book (child)'
+            def jsonData = '{"categories":[{"code":01,"name":"Romance","books": [{"title": "new"}]}]}'
         when: 'update data method is invoked with json data and parent node xpath'
-            objectUnderTest.updateNodeLeavesAndExistingDescendantLeaves(dataspaceName, anchorName,
-                '/bookstore', jsonData, observedTimestamp)
-        then: 'the persistence service method is invoked with correct parameters'
+            objectUnderTest.updateNodeLeavesAndExistingDescendantLeaves(dataspaceName, anchorName, '/bookstore', jsonData, observedTimestamp)
+        then: 'the persistence service method is invoked for the category (parent)'
             1 * mockCpsDataPersistenceService.batchUpdateDataLeaves(dataspaceName, anchorName,
                     {updatedDataNodesPerXPath -> updatedDataNodesPerXPath.keySet()
                                                 .iterator().next() == "/bookstore/categories[@code='01']"})
+        and: 'the persistence service method is invoked for the new book (child)'
+            1 * mockCpsDataPersistenceService.batchUpdateDataLeaves(dataspaceName, anchorName,
+                {updatedDataNodesPerXPath -> updatedDataNodesPerXPath.keySet()
+                    .iterator().next() == "/bookstore/categories[@code='01']/books[@title='new']"})
         and: 'the CpsValidator is called on the dataspaceName and AnchorName'
             1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
         and: 'the data updated event is sent to the notification service'
