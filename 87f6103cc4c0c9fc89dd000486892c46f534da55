@@ -16,6 +16,138 @@
       "message": "recheck",
       "revId": "87f6103cc4c0c9fc89dd000486892c46f534da55",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c28d90f2_689e5388",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBooleanOperatorType.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-17T12:09:11Z",
+      "side": 1,
+      "message": "I\u0027m a bit confused, where they already unused these classes and replaced by strings?",
+      "revId": "87f6103cc4c0c9fc89dd000486892c46f534da55",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "135b1e18_a2793d45",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathQuerySpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-17T12:09:11Z",
+      "side": 1,
+      "message": "suggestion: I think this can be simplified to leavesData[0]",
+      "range": {
+        "startLine": 39,
+        "startChar": 26,
+        "endLine": 39,
+        "endChar": 43
+      },
+      "revId": "87f6103cc4c0c9fc89dd000486892c46f534da55",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f199767a_8dd00a5a",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathQuerySpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-17T12:09:11Z",
+      "side": 1,
+      "message": "much better thanks!",
+      "range": {
+        "startLine": 116,
+        "startChar": 104,
+        "endLine": 116,
+        "endChar": 179
+      },
+      "revId": "87f6103cc4c0c9fc89dd000486892c46f534da55",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "326d79c5_50d960d7",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathQuerySpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-17T12:09:11Z",
+      "side": 1,
+      "message": "NB: \u0027duplicate\u0027 sounds if something is wrong...\nmaybe use phrasing like : \u0027multiple conditions on same leaf\u0027  I think that is clearer too",
+      "range": {
+        "startLine": 217,
+        "startChar": 36,
+        "endLine": 217,
+        "endChar": 55
+      },
+      "revId": "87f6103cc4c0c9fc89dd000486892c46f534da55",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0814ff73_0d59f746",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathQuerySpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-17T12:09:11Z",
+      "side": 1,
+      "message": "[0]",
+      "range": {
+        "startLine": 222,
+        "startChar": 36,
+        "endLine": 222,
+        "endChar": 43
+      },
+      "revId": "87f6103cc4c0c9fc89dd000486892c46f534da55",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "afba79a9_4a51a50e",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-17T12:09:11Z",
+      "side": 1,
+      "message": "thanks this make test test easier to understand and maintain!",
+      "range": {
+        "startLine": 67,
+        "startChar": 12,
+        "endLine": 67,
+        "endChar": 58
+      },
+      "revId": "87f6103cc4c0c9fc89dd000486892c46f534da55",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
