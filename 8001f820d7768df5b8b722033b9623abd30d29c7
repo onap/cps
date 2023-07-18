@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47a7f821_78f2ca6f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/SubscriptionEventCloudMapper.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2023-07-18T14:42:38Z",
+      "side": 1,
+      "message": "NB. \u0027built\u0027 small grammatical error",
+      "range": {
+        "startLine": 66,
+        "startChar": 30,
+        "endLine": 66,
+        "endChar": 33
+      },
+      "revId": "8001f820d7768df5b8b722033b9623abd30d29c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
