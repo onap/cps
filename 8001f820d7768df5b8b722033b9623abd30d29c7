@@ -22,6 +22,30 @@
       },
       "revId": "8001f820d7768df5b8b722033b9623abd30d29c7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7edea982_69de9ea7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/SubscriptionEventCloudMapper.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-07-18T16:36:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "47a7f821_78f2ca6f",
+      "range": {
+        "startLine": 66,
+        "startChar": 30,
+        "endLine": 66,
+        "endChar": 33
+      },
+      "revId": "8001f820d7768df5b8b722033b9623abd30d29c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
