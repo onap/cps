@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "420be94c_d556c564",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventForwarder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-07-18T11:30:21Z",
+      "side": 1,
+      "message": "The info that we have at this moment of time is that we populate.\nI can confirm it tomorrow and refactor accordingly if otherwise.",
+      "parentUuid": "8608d935_146769bb",
+      "range": {
+        "startLine": 140,
+        "startChar": 0,
+        "endLine": 146,
+        "endChar": 52
+      },
+      "revId": "1970ec1af561561b264dc43c7d7f5c2b4ba307d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e9744d14_3c69388a",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventForwarder.java",
         "patchSetId": 1
@@ -37,6 +61,30 @@
       "writtenOn": "2023-07-18T09:45:56Z",
       "side": 1,
       "message": "If you forward a subscriptionDeleted event as same as subscriptionCreated logic here, it would forward the event with type subscriptionCreated in the header. You need to consider changing subscription type as well.",
+      "range": {
+        "startLine": 152,
+        "startChar": 0,
+        "endLine": 154,
+        "endChar": 109
+      },
+      "revId": "1970ec1af561561b264dc43c7d7f5c2b4ba307d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf773218_f5aecbba",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventForwarder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-07-18T11:30:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e9744d14_3c69388a",
       "range": {
         "startLine": 152,
         "startChar": 0,
